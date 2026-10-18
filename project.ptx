@@ -5,18 +5,35 @@
 <!-- This file, the project manifest, provides the overall configuration for your PreTeXt project. To edit the content of your document, open `source/main.ptx`. See https://pretextbook.org/doc/guide/html/processing-CLI.html#cli-project-manifest. -->
 <project ptx-version="2">
   <targets>
-    <target name="web" format="html" publication="publication-teacher.ptx" deploy-dir="web">
+    <!-- Core Mathematics -->
+    <target name="core-web" format="html" publication="publication-core-teacher.ptx" deploy-dir="core/teacher">
         <stringparams html.js.extra="external/review-button.js" />
     </target>
-    <target name="student" format="html" publication="publication-student.ptx" deploy-dir="student">
+    <target name="core-student" format="html" publication="publication-core-student.ptx" deploy-dir="core/student">
     </target>
-    <target name="print" format="pdf" publication="publication-teacher-print.ptx">
+    <target name="core-print" format="pdf" publication="publication-core-teacher-print.ptx">
     </target>
-    <target name="latex" format="latex" publication="publication-teacher-print.ptx">
+    <target name="core-latex" format="latex" publication="publication-core-teacher-print.ptx">
     </target>
-    <target name="plans-print" format="pdf" publication="publication-plans-print.ptx">
+    <target name="core-plans-print" format="pdf" publication="publication-core-plans-print.ptx">
     </target>
-    <target name="plans" format="html" publication="publication-plans.ptx" deploy-dir="plans">
+    <target name="core-plans" format="html" publication="publication-core-plans.ptx" deploy-dir="core/plans">
+      <stringparams html.js.extra="external/print-button.js" />
+    </target>
+
+    <!-- Essential Mathematics -->
+    <target name="essential-web" format="html" publication="publication-essential-teacher.ptx" deploy-dir="essential/teacher">
+        <stringparams html.js.extra="external/review-button.js" />
+    </target>
+    <target name="essential-student" format="html" publication="publication-essential-student.ptx" deploy-dir="essential/student">
+    </target>
+    <target name="essential-print" format="pdf" publication="publication-essential-teacher-print.ptx">
+    </target>
+    <target name="essential-latex" format="latex" publication="publication-essential-teacher-print.ptx">
+    </target>
+    <target name="essential-plans-print" format="pdf" publication="publication-essential-plans-print.ptx">
+    </target>
+    <target name="essential-plans" format="html" publication="publication-essential-plans.ptx" deploy-dir="essential/plans">
       <stringparams html.js.extra="external/print-button.js" />
     </target>
   </targets>

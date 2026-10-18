@@ -16,6 +16,8 @@ The book will be available in multiple formats, including web, PDF, and print. T
 
 ## Building and Viewing the Book
 
+> **The repository builds four books** (Core and Essential, each in a Teacher's and a Learner's version). See **[BUILDING.md](BUILDING.md)** for every target and how to build and view each one.
+
 ### Prerequisites
 - Python 3.x with PreTeXt CLI installed (`pip install pretext>=2.34`)
 - All dependencies from `requirements.txt` installed (`pip install -r requirements.txt`)
@@ -79,17 +81,17 @@ If you need more control over the build process:
 
 1. **Build the book:**
    ```bash
-   pretext build web
+   pretext build core-web
    ```
 
 2. **Copy custom STACK integration file (required for STACK questions to render properly):**
    ```bash
-   copy /Y "assets\pretext\js\pretext-stack\stackapicalls.js" "output\web\_static\pretext\js\pretext-stack\stackapicalls.js"
+   copy /Y "assets\pretext\js\pretext-stack\stackapicalls.js" "output\core-web\_static\pretext\js\pretext-stack\stackapicalls.js"
    ```
 
 3. **View the book in browser:**
    ```bash
-   pretext view web
+   pretext view core-web
    ```
 
 #### Important Notes

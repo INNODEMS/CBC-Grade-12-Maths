@@ -1,42 +1,48 @@
 <?xml version="1.0" encoding="utf-8"?>
 
+<!-- Chapters and sections marked component="core" or component="essential" appear only in -->
+<!-- that book; everything unmarked appears in both. See publication/*.ptx for the versions. -->
 <pretext xml:lang="en-US" xmlns:xi="http://www.w3.org/2001/XInclude">
   <book xml:id="generated-content">
   <part xml:id="part-numbers-and-algebra">
     <title>Numbers and Algebra</title>
 
     <xi:include href="./01-sets/ch-sets.ptx" />
-    <xi:include href="./02-binomial-expansions/ch-binomial-expansions.ptx" />
+    <xi:include href="./02-binomial-expansions/ch-binomial-expansions.ptx" />  <!-- core only -->
     <xi:include href="./03-compound-proportions-rates-of-work-and-mixtures/ch-compound-proportions-rates-of-work-and-mixtures.ptx" />
-    <xi:include href="./04-linear-programming/ch-linear-programming.ptx" />
+    <xi:include href="./04-linear-inequalities/ch-linear-inequalities.ptx" />  <!-- essential only -->
+    <xi:include href="./05-linear-programming/ch-linear-programming.ptx" />
 
   </part>
 
   <part xml:id="part-measurements-and-geometry">
     <title>Measurements and Geometry</title>
 
-    <xi:include href="./05-matrices-and-transformations/ch-matrices-and-transformations.ptx" />
-    <xi:include href="./06-area-approximations/ch-area-approximations.ptx" />
-    <xi:include href="./07-loci/ch-loci.ptx" />
-    <xi:include href="./08-three-dimensional-geometry/ch-three-dimensional-geometry.ptx" />
-    <xi:include href="./09-trigonometry-iii/ch-trigonometry-iii.ptx" />
-    <xi:include href="./10-vectors-ii/ch-vectors-ii.ptx" />
-    <xi:include href="./11-navigation/ch-navigation.ptx" />
+    <xi:include href="./06-matrices-and-transformations/ch-matrices-and-transformations.ptx" />  <!-- core only -->
+    <xi:include href="./07-area-approximations/ch-area-approximations.ptx" />
+    <xi:include href="./08-loci/ch-loci.ptx" />  <!-- core only -->
+    <xi:include href="./09-three-dimensional-geometry/ch-three-dimensional-geometry.ptx" />  <!-- core only -->
+    <xi:include href="./10-trigonometry-iii/ch-trigonometry-iii.ptx" />  <!-- core only -->
+    <xi:include href="./11-vectors/ch-vectors.ptx" />  <!-- essential only -->
+    <xi:include href="./12-vectors-ii/ch-vectors-ii.ptx" />  <!-- core only -->
+    <xi:include href="./13-navigation/ch-navigation.ptx" />
+    <xi:include href="./14-commercial-arithmetic-iii/ch-commercial-arithmetic-iii.ptx" />  <!-- essential only -->
 
   </part>
 
   <part xml:id="part-statistics-and-probability">
     <title>Statistics and Probability</title>
 
-    <xi:include href="./12-statistics-ii/ch-statistics-ii.ptx" />
+    <xi:include href="./15-statistics/ch-statistics-ii.ptx" />
+    <xi:include href="./16-probability-iii/ch-probability-iii.ptx" />  <!-- essential only -->
 
   </part>
 
-  <part xml:id="part-calculus">
+  <part xml:id="part-calculus" component="core">
     <title>Calculus</title>
 
-    <xi:include href="./13-differentiation-ii/ch-differentiation-ii.ptx" />
-    <xi:include href="./14-integration/ch-integration.ptx" />
+    <xi:include href="./17-differentiation-ii/ch-differentiation-ii.ptx" />  <!-- core only -->
+    <xi:include href="./18-integration/ch-integration.ptx" />  <!-- core only -->
 
   </part>
 
