@@ -137,28 +137,25 @@ jobs:
                     tail -n 80 "$f"
                 done
 
+            # Each track (core, essential) deploys its teacher, student and plans
+            # versions to <track>/teacher, <track>/student and <track>/plans.
             - name: Copy custom stackapicalls.js
               run: |
-                cp assets/pretext/js/pretext-stack/stackapicalls.js output/web/_static/pretext/js/pretext-stack/stackapicalls.js
-
-            - name: Copy custom stackapicalls.js
-              run: |
-                cp assets/pretext/js/pretext-stack/stackapicalls.js output/student/_static/pretext/js/pretext-stack/stackapicalls.js
-
-            - name: Copy version without review links into student subfolder
-              run: |
-                cp -r output/student/ output/web/
-
-            - name: Copy plans version into web
-              run: |
-                cp -r output/plans/ output/web/
+                for t in core essential; do
+                  for v in web student; do
+                    cp assets/pretext/js/pretext-stack/stackapicalls.js output/$t-$v/_static/pretext/js/pretext-stack/stackapicalls.js
+                  done
+                done
 
             - name: build deploy target print
-              run: pretext build print
+              run: |
+                pretext build core-print
+                pretext build essential-print
 
             - name: Copy built PDF into assets folder
               run: |
-                cp output/print/main.pdf assets/CBC-Grade-11-Maths.pdf
+                cp output/core-print/main.pdf assets/CBC-Grade-12-Core-Maths.pdf
+                cp output/essential-print/main.pdf assets/CBC-Grade-12-Essential-Maths.pdf
 
             - name: stage deployment
               run: pretext deploy --stage-only
