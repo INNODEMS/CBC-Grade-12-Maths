@@ -1,4 +1,4 @@
-# This file was automatically generated with PreTeXt 2.55.0.
+# This file was automatically generated with PreTeXt 2.23.0.
 # If you modify this file, PreTeXt will no longer automatically update it.
 #
 
@@ -11,7 +11,7 @@ on:
   # pull_request:
   #     branches: ["*"]
 
-  # # Runs on pushes to main
+  # Runs on pushes to main
   # push:
   #     branches: ["main"]
 
@@ -34,10 +34,8 @@ jobs:
       - name: Checkout source
         uses: actions/checkout@v4
 
-      - name: set up node
-        uses: actions/setup-node@v4
-        with:
-          node-version: '22'
+      - name: Setup Node.js
+        uses: actions/setup-node@v6
 
       - name: add gh-cli
         run: |
@@ -53,10 +51,13 @@ jobs:
       - name: install deps
         run: pip install -r requirements.txt --break-system-packages
 
+      - name: install tex dependencies
+        run: tlmgr update --self && tlmgr install tkz-euclide
+
       - name: install local ptx files
         run: pretext --version
 
-      - name: build deploy targets
+      - name: build deploy targets  # This fails: PTX:ERROR: cannot locate executable with configuration name `node` as command `node`
         run: pretext build --deploys
 
       - name: run deploy
@@ -66,3 +67,4 @@ jobs:
         run: git push origin gh-pages --force
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        

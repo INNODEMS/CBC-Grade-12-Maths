@@ -1,4 +1,3 @@
-# This file was automatically generated with PreTeXt 2.55.0.
 # If you modify this file, PreTeXt will no longer automatically update it.
 #
 # Boilerplate list of files in a PreTeXt project for git to ignore
@@ -10,14 +9,28 @@ output
 published
 
 # don't track assets generated from source
-generated-assets
+generated-assets/*
+!generated-assets/stack
 .cache
+assets/stack/images
+
+# gitsync stuff
+assets/stack/manifest_backups
+pull_ecampus.sh
+
+# random stuff
+tmp
+**/*.tmp
 
 # don't track the executables.ptx file
 executables.ptx
+orphaned.ptx
 
 # don't track node packages
 node_modules
+
+# don't track backup files
+*.bak
 
 # don't track error logs
 .error_schema.log
@@ -99,6 +112,37 @@ venv/
 .dropbox.attr
 .dropbox.cache
 
+# Don't track codechat config (will be generated automatically)
+codechat_config.yaml
+
 # Don't track deprecated workflows
 .github/workflows/deploy.yml
 .github/workflows/test-build.yml
+
+# secrets
+secret/
+
+*.pyc
+
+test.html
+
+# Open Source materials
+adapted-works/
+
+# Playwright
+/test-results/
+/playwright-report/
+/blob-report/
+/playwright/.cache/
+/playwright/.auth/
+tests
+playwright.config.ts
+
+# Don't track draft sample stacks questions
+functions.md
+
+orphaned_older.ptx
+stack_exercises_tags_generation.py
+
+move_orphaned_stack_exercises.py
+move_orphaned_stack_exercises.py
