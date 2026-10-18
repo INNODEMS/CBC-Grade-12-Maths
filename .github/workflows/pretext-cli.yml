@@ -158,7 +158,7 @@ jobs:
 
             - name: Copy built PDF into assets folder
               run: |
-                cp output/print/main.pdf assets/CBC-Grade-12-Maths.pdf
+                cp output/print/main.pdf assets/CBC-Grade-11-Maths.pdf
 
             - name: stage deployment
               run: pretext deploy --stage-only
