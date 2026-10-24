@@ -158,6 +158,10 @@ jobs:
                   done
                 done
 
+            # Serve the Core teachers' book at the site root as well.
+            - name: Copy Core teachers' book into site root
+              run: cp -r output/core-web/. site/
+
             - name: stage deployment
               run: pretext deploy --stage-only
 
