@@ -110,6 +110,17 @@ jobs:
             - name: install local ptx files
               run: pretext --version
 
+            # PDFs go into assets/ before the HTML build so they are copied to external/.
+            - name: build deploy target print
+              run: |
+                pretext build core-print
+                pretext build essential-print
+
+            - name: Copy built PDF into assets folder
+              run: |
+                cp output/core-print/main.pdf assets/CBC-Grade-12-Core-Maths.pdf
+                cp output/essential-print/main.pdf assets/CBC-Grade-12-Essential-Maths.pdf
+
             - name: build deploy targets
               run: |
                 version="$(pretext --version)"
@@ -138,7 +149,7 @@ jobs:
                 done
 
             # Each track (core, essential) deploys its teacher, student and plans
-            # versions to <track>/teacher, <track>/student and <track>/plans.
+            # versions to <track>/teachers, <track>/students and <track>/plans.
             - name: Copy custom stackapicalls.js
               run: |
                 for t in core essential; do
@@ -146,16 +157,6 @@ jobs:
                     cp assets/pretext/js/pretext-stack/stackapicalls.js output/$t-$v/_static/pretext/js/pretext-stack/stackapicalls.js
                   done
                 done
-
-            - name: build deploy target print
-              run: |
-                pretext build core-print
-                pretext build essential-print
-
-            - name: Copy built PDF into assets folder
-              run: |
-                cp output/core-print/main.pdf assets/CBC-Grade-12-Core-Maths.pdf
-                cp output/essential-print/main.pdf assets/CBC-Grade-12-Essential-Maths.pdf
 
             - name: stage deployment
               run: pretext deploy --stage-only
