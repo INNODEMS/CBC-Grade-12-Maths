@@ -6,10 +6,10 @@
 <project ptx-version="2">
   <targets>
     <!-- Core Mathematics -->
-    <target name="core-web" format="html" publication="publication-core-teacher.ptx" deploy-dir="core/teacher">
+    <target name="core-web" format="html" publication="publication-core-teacher.ptx" deploy-dir="core/teachers">
         <stringparams html.js.extra="external/review-button.js" />
     </target>
-    <target name="core-student" format="html" publication="publication-core-student.ptx" deploy-dir="core/student">
+    <target name="core-student" format="html" publication="publication-core-student.ptx" deploy-dir="core/students">
     </target>
     <target name="core-print" format="pdf" publication="publication-core-teacher-print.ptx">
     </target>
@@ -22,10 +22,10 @@
     </target>
 
     <!-- Essential Mathematics -->
-    <target name="essential-web" format="html" publication="publication-essential-teacher.ptx" deploy-dir="essential/teacher">
+    <target name="essential-web" format="html" publication="publication-essential-teacher.ptx" deploy-dir="essential/teachers">
         <stringparams html.js.extra="external/review-button.js" />
     </target>
-    <target name="essential-student" format="html" publication="publication-essential-student.ptx" deploy-dir="essential/student">
+    <target name="essential-student" format="html" publication="publication-essential-student.ptx" deploy-dir="essential/students">
     </target>
     <target name="essential-print" format="pdf" publication="publication-essential-teacher-print.ptx">
     </target>
