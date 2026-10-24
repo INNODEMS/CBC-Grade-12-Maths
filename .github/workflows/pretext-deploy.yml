@@ -4,16 +4,15 @@
 
 name: Build and Deploy
 on:
-  # Currently, this workflow only runs when manually selected (the `workflow_dispatch` event).
-  # If you would like it to run on other events, uncomment some of the lines below.
+  # Runs on every push/merge to main (publishing the site to gh-pages), and on demand.
 
   # # Runs on pull requests
   # pull_request:
   #     branches: ["*"]
 
   # Runs on pushes to main
-  # push:
-  #     branches: ["main"]
+  push:
+    branches: ["main"]
 
   # # Runs every day at 00:00 UTC
   # schedule:
@@ -24,6 +23,12 @@ on:
 
 permissions:
   contents: write
+
+# If several merges land close together, only deploy the newest one; the
+# deploy force-pushes gh-pages, so overlapping runs must not race.
+concurrency:
+  group: deploy-gh-pages
+  cancel-in-progress: true
 
 jobs:
   build-and-deploy:
