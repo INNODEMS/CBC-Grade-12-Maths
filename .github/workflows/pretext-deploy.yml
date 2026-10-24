@@ -136,8 +136,13 @@ jobs:
             done
           done
 
-      # Deploy layout (see project.ptx and site/index.html):
-      #   /                    -> redirects to core/teachers/
+      # Serve the Core teachers' book at the site root as well. PreTeXt copies
+      # everything in site/ to the root of the staged deployment.
+      - name: Copy Core teachers' book into site root
+        run: cp -r output/core-web/. site/
+
+      # Deploy layout (see project.ptx):
+      #   /                    -> Core teachers' book (same as core/teachers/)
       #   /core/teachers/      /core/students/      /core/plans/
       #   /essential/teachers/ /essential/students/ /essential/plans/
       - name: run deploy
