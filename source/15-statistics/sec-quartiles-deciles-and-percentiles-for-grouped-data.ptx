@@ -23,7 +23,7 @@
                     </p>
                 </li>
                 <li>
-                    <title>Specific Learning Outcomes</title> 
+                    <title>Specific Learning Outcomes</title>
                     <p component="core">
                         Calculate median, quartiles, deciles and percentiles for grouped data; Estimate median, quartiles, deciles and percentiles from a cumulative frequency curve
                     </p>
@@ -39,8 +39,11 @@
                 </li>
                 <li component="lesson-plan">
                     <title>Estimated Duration</title>
-                    <p>
-                        40 minutes
+                    <p component="core">
+                        3 lessons of 40 minutes
+                    </p>
+                    <p component="essential">
+                        2 lessons of 40 minutes
                     </p>
                 </li>
             </dl>
@@ -54,163 +57,720 @@
          Suggested activity: Learners read the median, quartiles, deciles and percentiles from their ogive and compare with calculated values.
          Interactive (JSXGraph): Ogive with draggable horizontal lines at chosen percentiles; the matching x-values (median, quartiles, deciles) are read off and labelled. -->
 
-    <!-- [LP] Add guidance on activity -->
+    <!-- Section notes (2026-11)
+         SLOs: Core (c), (e); Essential (c) grouped part, (e). Lessons 3.1 to 3.3 as subsections; 3.2 is Core only.
+         Activity: as planning notes (read the class ogive from 15.2 and compare with calculated values) in lesson 3.3 | changed: lessons 3.1 and 3.2 add a calculation activity first
+         JSXGraph: fig-ogive-percentile-reader (assets/jsxgraph/ogive-percentile-reader.js), as planning notes, with a percentage slider in place of draggable lines
+         STACK: assets/stack/top/3-statistics-and-probability/15-statistics/03-quartiles-deciles-and-percentiles-for-grouped-data/ -->
 
-    <!-- <axiom component="lesson-plan">
+    <!-- ============================================================ Lesson 3.1 -->
+    <subsection xml:id="subsec-median-and-quartiles-grouped">
+        <title>Median and Quartiles of Grouped Data</title>
+
+        <p component="lesson-plan">Upon completion of this lesson, learners will be able to:
+            <ol>
+                <li><p><alert>Know:</alert> for grouped data the positions are <m>n/4</m>, <m>n/2</m> and <m>3n/4</m>; inside a class the values are assumed to be spread evenly from the lower class boundary.</p></li>
+                <li><p><alert>Do:</alert> estimate the median and quartiles of grouped data with the formula.</p></li>
+                <li><p><alert>Apply:</alert> use the formula backwards to find a missing frequency.</p></li>
+            </ol>
+        </p>
+
+        <axiom component="lesson-plan">
             <title>Problem-Solving and Discovery</title>
             <dl>
-                <li>
-                    <title>Suggested Time</title>
-                    <p>
-                        XX minutes
-                    </p>
-                </li>
-                <li>
-                    <title>Objective</title>
-                    <p>
-                        XXX
-                    </p>
-                </li>
-                <li>
-                    <title>Teacher's Role</title>
-                    <p>
-                        XXX
-                    </p>
-                </li>
+                <li><title>Suggested Time</title><p>14 minutes</p></li>
+                <li><title>Objective</title><p>Learners estimate the journey time of the 10th learner without the raw data, and so discover interpolation inside a class.</p></li>
+                <li><title>Teacher's Role</title><p>Use the table from the activity in the previous section. Give each group a paper strip of <m>9</m> equal squares for the class 15–24. Ask: <q>If the 9 learners in this class are spread evenly, where is the 6th?</q></p></li>
             </dl>
-        </axiom> -->
+        </axiom>
 
-    <!-- Add Activity -->
-
-    <!-- <activity>
-        <statement>
-        </statement>
-    </activity> -->
-
-    <!-- [LP] Add guidance on structured lesson plan-->
-
-    <!-- <axiom component="lesson-plan">
-        <title>Structured Instruction</title>
-        <p>
-            <dl>
-            <li>
-                <title>Suggested Time</title>
+        <activity xml:id="act-where-is-the-10th-learner">
+            <title>Where Is the 10th Learner?</title>
+            <statement>
+                <p>The table repeats the journey times to school, in minutes (to the nearest minute), of <m>40</m> learners in Nakuru from <xref ref="act-getting-to-school"/>, with the cumulative frequencies.</p>
+                <table xml:id="table-where-is-the-10th-learner">
+                    <title>Journey Times of 40 Learners</title>
+                    <tabular halign="center" top="minor" bottom="minor" left="minor" right="minor">
+                        <row header="yes" bottom="medium"><cell>Time (minutes)</cell><cell>5–14</cell><cell>15–24</cell><cell>25–34</cell><cell>35–44</cell><cell>45–54</cell><cell>55–64</cell></row>
+                        <row><cell>Frequency (<m>f</m>)</cell><cell>4</cell><cell>9</cell><cell>13</cell><cell>8</cell><cell>4</cell><cell>2</cell></row>
+                        <row><cell>Cumulative frequency (cf)</cell><cell>4</cell><cell>13</cell><cell>26</cell><cell>34</cell><cell>38</cell><cell>40</cell></row>
+                    </tabular>
+                </table>
                 <p>
-                    XX minutes
+                    <ol marker="(a)">
+                        <li>
+                            <p>Imagine the 40 learners in order of journey time. In which class is the 10th learner? The 20th? The 30th?</p>
+                            <solution component="lesson-plan"><p>15–24 (the cumulative frequency first reaches 10 there), 25–34 and 35–44.</p></solution>
+                        </li>
+                        <li>
+                            <p>How many learners come before the class 15–24? So which learner in that class is the 10th learner overall?</p>
+                            <solution component="lesson-plan"><p><m>4</m> learners, so the 10th learner is the 6th of the <m>9</m> in the class.</p></solution>
+                        </li>
+                        <li>
+                            <p>The class 15–24 really runs from <m>14.5</m> to <m>24.5</m> minutes. Assume its <m>9</m> learners are spread evenly across it. Estimate the 10th learner's time, to 1 decimal place.</p>
+                            <solution component="lesson-plan"><p><m>14.5 + \dfrac{6}{9} \times 10 = 21.2</m> minutes. Since <m>10 = 40 \div 4</m>, this is the lower quartile. Point out the strip in <xref ref="fig-quartile-interpolation-strip"/>.</p></solution>
+                        </li>
+                        <li>
+                            <p>In the same way, estimate the times of the 20th and 30th learners.</p>
+                            <solution component="lesson-plan"><p>20th: <m>24.5 + \dfrac{20 - 13}{13} \times 10 = 29.9</m> minutes (the median). 30th: <m>34.5 + \dfrac{30 - 26}{8} \times 10 = 39.5</m> minutes (the upper quartile).</p></solution>
+                        </li>
+                    </ol>
                 </p>
-            </li>
-            <li>
-                <title>Objective</title>
-                <p>
-                    To formalize the concepts and properties learners discovered in the anchor task.
-                </p>
-            </li>
-            </dl>
-        </p>
-        <paragraphs>
-            <title>Key Takeaways &amp; Teacher Connection</title>
-            <ol>
-                <li>
-                    <p>
-                        <alert>Connecting to Learner Work:</alert> XXXX
-                    </p>
-                </li>
-            </ol>
-        </paragraphs>
-    </axiom> -->
+            </statement>
+        </activity>
 
-    <!-- Add insight / key takeaway directly related to activity / learner experience -->
+        <figure xml:id="fig-quartile-interpolation-strip">
+            <caption>The class 15–24 as a strip from <m>14.5</m> to <m>24.5</m> minutes, cut into <m>9</m> equal cells, one for each learner. The 10th learner overall is the 6th in the class.</caption>
+            <image width="60%">
+                <shortdescription>A strip from 14.5 to 24.5 minutes in 9 equal cells, the first 6 shaded. A note on the left says 4 learners come before 14.5. An arrow two thirds of the way along marks Q1, about 21.2 minutes.</shortdescription>
+                <latex-image>
+\begin{tikzpicture}[x=1cm, y=1cm]
+\foreach \i in {0,...,8} {
+  \pgfmathsetmacro{\a}{\i*10/9}
+  \pgfmathsetmacro{\b}{(\i+1)*10/9}
+  \ifnum\i&lt;6 \fill[gray!35] (\a,0) rectangle (\b,1); \fi
+  \draw (\a,0) rectangle (\b,1);
+}
+\node[below] at (0,0) {14.5};
+\node[below] at (10,0) {24.5};
+\node[left, align=right, font=\small] at (-0.2,0.5) {4 learners\\before 14.5};
+\draw[->, thick] (6.667,2) -- (6.667,1.08);
+\node[above] at (6.667,2) {$Q_1 \approx 21.2$ min};
+\node[below, font=\small] at (5,-0.5) {time (minutes)};
+\end{tikzpicture}
+                </latex-image>
+            </image>
+        </figure>
 
-    <!-- <insight>
-    </insight> -->
+        <axiom component="lesson-plan">
+            <title>Structured Instruction</title>
+            <p>
+                <dl>
+                    <li><title>Suggested Time</title><p>8 minutes</p></li>
+                    <li><title>Objective</title><p>To formalise the formula for the median and quartiles of grouped data.</p></li>
+                </dl>
+            </p>
+            <paragraphs>
+                <title>Key Takeaways &amp; Teacher Connection</title>
+                <ol>
+                    <li><p><alert>Connecting to Learner Work:</alert> part (c) is the formula: start at the lower class boundary and go the fraction <m>6/9</m> of the class width.</p></li>
+                    <li><p><m>L</m> is the lower class boundary, not the class limit; <m>CF</m> is the cumulative frequency before the class.</p></li>
+                    <li><p>For grouped data use <m>n/4</m>, <m>n/2</m> and <m>3n/4</m>, not the <m>n + 1</m> positions used for lists.</p></li>
+                </ol>
+            </paragraphs>
+        </axiom>
 
-    <!-- Add further instruction (not in a block) to develop ideas as needed -->
+        <insight xml:id="insight-grouped-quartiles">
+            <title>Quartiles of Grouped Data</title>
+            <p>
+                For grouped data, the median is at position <m>n/2</m>, the <term>lower quartile</term> <m>Q_1</m> at <m>n/4</m> and the <term>upper quartile</term> <m>Q_3</m> at <m>3n/4</m>. <m>Q_1</m> has a quarter of the data at or below it. Find the class that holds the position (the first class whose cumulative frequency reaches it). Inside a class we assume the values are spread evenly from the lower class boundary to the upper, so
+                <md>Q = L + \frac{\text{position} - CF}{F} \times c</md>
+                where <m>L</m> is the lower class boundary of that class, <m>CF</m> the cumulative frequency before it, <m>F</m> its frequency and <m>c</m> the class width.
+            </p>
+            <p>
+                There is no <m>+1</m> here: with grouped data a position is a point on a continuous scale, not the number of a value in a list, and for large <m>n</m> the difference is very small.
+            </p>
+        </insight>
 
-    <xi:include href="../lesson-plan-templates/example-intro.ptx" />
+        <xi:include href="../lesson-plan-templates/example-intro.ptx" />
 
-    <!-- Add at least 3 examples -->
-
-    <!-- <example>
-        <statement>
-        </statement>
-        <solution>
-        </solution>
-    </example>
-
-    <example>
-        <statement>
-        </statement>
-        <solution>
-        </solution>
-    </example>
-
-    <example>
-        <statement>
-        </statement>
-        <solution>
-        </solution>
-    </example> -->
-
-    <xi:include href="../lesson-plan-templates/assessment-intro.ptx" />
-
-    <!-- If STACK questions are included, uncomment this: -->
-
-    <!-- <xi:include href="../lesson-plan-templates/checkpoint.ptx" /> -->
-
-    <!-- Add STACK exercises if made -->
-
-    <!-- Add static exercises -->
-
-    <!-- <exercises>
-        <exercise>
-            <statement>   
-
-            </statement>   
+        <example xml:id="example-goats-quartiles">
+            <title>Goats: Quartiles by Calculation</title>
+            <statement>
+                <p>Estimate the median and the quartiles of the masses of the <m>50</m> goats at Garissa market in <xref ref="example-goats-ogive"/>.</p>
+                <table xml:id="table-goats-quartiles">
+                    <title>Masses of 50 Goats</title>
+                    <tabular halign="center" top="minor" bottom="minor" left="minor" right="minor">
+                        <row header="yes" bottom="medium"><cell>Mass (kg)</cell><cell>15–19</cell><cell>20–24</cell><cell>25–29</cell><cell>30–34</cell><cell>35–39</cell><cell>40–44</cell></row>
+                        <row><cell>Frequency (<m>f</m>)</cell><cell>3</cell><cell>7</cell><cell>12</cell><cell>14</cell><cell>9</cell><cell>5</cell></row>
+                        <row><cell>Cumulative frequency (cf)</cell><cell>3</cell><cell>10</cell><cell>22</cell><cell>36</cell><cell>45</cell><cell>50</cell></row>
+                    </tabular>
+                </table>
+            </statement>
             <solution>
+                <p><alert>Step 1: positions.</alert> <m>n = 50</m>, so <m>Q_1</m> is at <m>50 \div 4 = 12.5</m>, the median at <m>25</m> and <m>Q_3</m> at <m>37.5</m>.</p>
+                <p><alert>Step 2: <m>Q_1</m>.</alert> The cumulative frequency first reaches <m>12.5</m> in the class 25–29, so <m>L = 24.5</m>, <m>CF = 10</m>, <m>F = 12</m>, <m>c = 5</m>:
+                    <md>Q_1 = 24.5 + \frac{12.5 - 10}{12} \times 5 = 25.54\ldots \approx 25.5 \,\text{kg}</md></p>
+                <p><alert>Step 3: median.</alert> Position <m>25</m> is in 30–34: <m>L = 29.5</m>, <m>CF = 22</m>, <m>F = 14</m>:
+                    <md>\text{median} = 29.5 + \frac{25 - 22}{14} \times 5 = 30.57\ldots \approx 30.6 \,\text{kg}</md></p>
+                <p><alert>Step 4: <m>Q_3</m>.</alert> Position <m>37.5</m> is in 35–39: <m>L = 34.5</m>, <m>CF = 36</m>, <m>F = 9</m>:
+                    <md>Q_3 = 34.5 + \frac{37.5 - 36}{9} \times 5 = 35.33\ldots \approx 35.3 \,\text{kg}</md></p>
+            </solution>
+        </example>
 
-            </solution>             
-        </exercise>        
-    </exercises> -->
+        <example xml:id="example-bank-quartiles">
+            <title>Bank Waiting Times</title>
+            <statement>
+                <p>Estimate the median and quartiles of the waiting times of the <m>50</m> customers at a bank in Kisumu in <xref ref="example-bank-ogive"/>: frequencies <m>6, 14, 18, 8, 4</m> for <m>0 \le t \lt 5</m>, <m>5 \le t \lt 10</m>, <m>10 \le t \lt 15</m>, <m>15 \le t \lt 20</m> and <m>20 \le t \lt 25</m> minutes.</p>
+            </statement>
+            <solution>
+                <p>These classes are written with their boundaries, so <m>L</m> is the number written. The cumulative frequencies are <m>6, 20, 38, 46, 50</m>, and the positions are <m>12.5</m>, <m>25</m> and <m>37.5</m>.
+                    <md>
+                        <mrow>Q_1 \amp = 5 + \frac{12.5 - 6}{14} \times 5 \approx 7.3 \text{ minutes}</mrow>
+                        <mrow>\text{median} \amp = 10 + \frac{25 - 20}{18} \times 5 \approx 11.4 \text{ minutes}</mrow>
+                        <mrow>Q_3 \amp = 10 + \frac{37.5 - 20}{18} \times 5 \approx 14.9 \text{ minutes}</mrow>
+                    </md>
+                    The median and <m>Q_3</m> are in the same class: that is fine, because the class 10 to 15 minutes holds <m>18</m> customers.</p>
+            </solution>
+        </example>
 
-    <!-- [LP] Add information on how to differentiate  -->
+        <example xml:id="example-missing-frequency-median">
+            <title>A Missing Frequency</title>
+            <statement>
+                <p>The lengths, in cm (to the nearest cm), of fish landed at a beach in Homa Bay are shown below. The median length is <m>37\,\text{cm}</m>. Find <m>x</m>.</p>
+                <table xml:id="table-missing-frequency-median">
+                    <title>Lengths of Fish</title>
+                    <tabular halign="center" top="minor" bottom="minor" left="minor" right="minor">
+                        <row header="yes" bottom="medium"><cell>Length (cm)</cell><cell>10–19</cell><cell>20–29</cell><cell>30–39</cell><cell>40–49</cell><cell>50–59</cell><cell>60–69</cell></row>
+                        <row><cell>Frequency (<m>f</m>)</cell><cell>5</cell><cell>9</cell><cell>14</cell><cell>12</cell><cell><m>x</m></cell><cell>4</cell></row>
+                    </tabular>
+                </table>
+            </statement>
+            <solution>
+                <p>A median of <m>37\,\text{cm}</m> lies in the class 30–39, so <m>L = 29.5</m>, <m>CF = 5 + 9 = 14</m>, <m>F = 14</m> and <m>c = 10</m>. The unknown <m>x</m> comes after this class, so it changes <m>n = 44 + x</m> but not <m>CF</m> or <m>F</m>.
+                    <md>
+                        <mrow>37 \amp = 29.5 + \frac{(44 + x)/2 - 14}{14} \times 10</mrow>
+                        <mrow>10.5 \amp = (44 + x)/2 - 14</mrow>
+                        <mrow>x \amp = 5</mrow>
+                    </md>
+                    Check: <m>n = 49</m>, and position <m>24.5</m> does lie in 30–39 (cumulative frequencies <m>14</m> and <m>28</m>).</p>
+            </solution>
+        </example>
 
-    <!-- <axiom component="lesson-plan">
-        <title>Differentiation</title>
+        <xi:include href="../lesson-plan-templates/assessment-intro.ptx" />
+        <xi:include href="../lesson-plan-templates/checkpoint.ptx" />
 
-        <table>
+        <p>Type decimals with a point, for example <c>30.6</c>. Give answers to the accuracy asked for.</p>
+
+        <exercise xml:id="ex-quartiles-of-grouped-data">
+            <!--<title></title>-->
+            <stack label="stk-quartiles-of-grouped-data" source="stack/top/3-statistics-and-probability/15-statistics/03-quartiles-deciles-and-percentiles-for-grouped-data/Quartiles-of-grouped-data.xml"/>
+        </exercise>
+
+        <exercise xml:id="ex-finding-the-mistake-in-a-grouped-quartile">
+            <!--<title></title>-->
+            <stack label="stk-finding-the-mistake-in-a-grouped-quartile" source="stack/top/3-statistics-and-probability/15-statistics/03-quartiles-deciles-and-percentiles-for-grouped-data/Finding-the-mistake-in-a-grouped-quartile.xml"/>
+        </exercise>
+
+        <exercise xml:id="ex-finding-a-missing-frequency-from-the-median">
+            <!--<title></title>-->
+            <stack label="stk-finding-a-missing-frequency-from-the-median" source="stack/top/3-statistics-and-probability/15-statistics/03-quartiles-deciles-and-percentiles-for-grouped-data/Finding-a-missing-frequency-from-the-median.xml"/>
+        </exercise>
+
+        <exercises xml:id="exercises-grouped-quartiles">
+            <exercise xml:id="ex-quartiles-seedlings">
+                <statement><p>Use the heights of the <m>60</m> seedlings in <xref ref="ex-ogive-seedlings"/> (cumulative frequencies <m>4, 13, 28, 46, 56, 60</m> for the classes 10–14 to 35–39 cm). Calculate the lower quartile, the median and the upper quartile.</p></statement>
+                <answer><p><m>Q_1 \approx 20.2\,\text{cm}</m>, median <m>\approx 25.1\,\text{cm}</m>, <m>Q_3 \approx 29.2\,\text{cm}</m></p></answer>
+                <solution><p>Positions <m>15</m>, <m>30</m>, <m>45</m>. <m>Q_1 = 19.5 + \dfrac{15 - 13}{15} \times 5 = 20.17</m>; median <m>= 24.5 + \dfrac{30 - 28}{18} \times 5 = 25.06</m>; <m>Q_3 = 24.5 + \dfrac{45 - 28}{18} \times 5 = 29.22</m>.</p></solution>
+            </exercise>
+            <exercise xml:id="ex-quartiles-rainfall">
+                <statement><p>Use the Kericho rainfall data in <xref ref="ex-ogive-rainfall"/> (frequencies <m>5, 8, 12, 9, 4, 2</m> for <m>0 \le r \lt 10</m> to <m>50 \le r \lt 60\,\text{mm}</m>). Calculate the quartiles and the median.</p></statement>
+                <answer><p><m>Q_1 \approx 16.3\,\text{mm}</m>, median <m>\approx 25.8\,\text{mm}</m>, <m>Q_3 \approx 35.6\,\text{mm}</m></p></answer>
+                <solution><p>Cumulative frequencies <m>5, 13, 25, 34, 38, 40</m>; positions <m>10, 20, 30</m>. <m>Q_1 = 10 + \dfrac{10 - 5}{8} \times 10 = 16.25</m>; median <m>= 20 + \dfrac{20 - 13}{12} \times 10 = 25.83</m>; <m>Q_3 = 30 + \dfrac{30 - 25}{9} \times 10 = 35.56</m>.</p></solution>
+            </exercise>
+            <exercise xml:id="ex-quartiles-tomatoes">
+                <statement>
+                    <p>The masses, in g (to the nearest g), of <m>60</m> tomatoes from a farm in Kirinyaga are shown below. Find the median and the quartiles.</p>
+                    <tabular halign="center" top="minor" bottom="minor" left="minor" right="minor">
+                        <row header="yes" bottom="medium"><cell>Mass (g)</cell><cell>50–59</cell><cell>60–69</cell><cell>70–79</cell><cell>80–89</cell><cell>90–99</cell><cell>100–109</cell></row>
+                        <row><cell>Frequency (<m>f</m>)</cell><cell>6</cell><cell>10</cell><cell>17</cell><cell>13</cell><cell>8</cell><cell>6</cell></row>
+                    </tabular>
+                </statement>
+                <answer><p><m>Q_1 = 68.5\,\text{g}</m>, median <m>\approx 77.7\,\text{g}</m>, <m>Q_3 \approx 88.7\,\text{g}</m></p></answer>
+                <solution><p>Cumulative frequencies <m>6, 16, 33, 46, 54, 60</m>; positions <m>15, 30, 45</m>. <m>Q_1 = 59.5 + \dfrac{15 - 6}{10} \times 10 = 68.5</m>; median <m>= 69.5 + \dfrac{30 - 16}{17} \times 10 = 77.74</m>; <m>Q_3 = 79.5 + \dfrac{45 - 33}{13} \times 10 = 88.73</m>.</p></solution>
+            </exercise>
+            <exercise xml:id="ex-wafula-lower-quartile">
+                <statement><p>Wafula found the lower quartile of the seedling heights in <xref ref="ex-quartiles-seedlings"/> as <m>20.7\,\text{cm}</m>. What was his mistake?</p></statement>
+                <answer><p>He used the class limit <m>L = 20</m> instead of the lower class boundary <m>19.5</m>; the correct value is <m>20.2\,\text{cm}</m>.</p></answer>
+                <solution><p><m>20 + \dfrac{15 - 13}{15} \times 5 = 20.67 \approx 20.7</m>. The heights are to the nearest cm, so the class 20–24 starts at <m>19.5</m>, which gives <m>20.17 \approx 20.2\,\text{cm}</m>.</p></solution>
+            </exercise>
+            <exercise xml:id="ex-why-not-n-plus-one">
+                <statement><p>Use position <m>(n + 1)/4</m> instead of <m>n/4</m> to find <m>Q_1</m> for the seedlings. Compare with your answer to <xref ref="ex-quartiles-seedlings"/>. Why does this book use <m>n/4</m> for grouped data?</p></statement>
+                <answer><p><m>20.25\,\text{cm}</m> against <m>20.17\,\text{cm}</m>: a very small difference. With grouped data a position is a point on a continuous scale, not the number of a value in a list.</p></answer>
+                <solution><p>Position <m>61/4 = 15.25</m>: <m>19.5 + \dfrac{15.25 - 13}{15} \times 5 = 20.25\,\text{cm}</m>. The individual values are not known, so there is no 15th value to find; we are cutting a continuous scale at a quarter of the total frequency, which is <m>n/4</m>.</p></solution>
+            </exercise>
+            <exercise xml:id="ex-missing-frequency-in-median-class">
+                <title>Challenge: A Missing Frequency in the Median Class</title>
+                <statement>
+                    <p>The times, in minutes, that <m>4 + 9 + x + 10 + 5</m> learners took to finish a puzzle are grouped as <m>0 \le t \lt 10</m>, <m>10 \le t \lt 20</m>, <m>20 \le t \lt 30</m>, <m>30 \le t \lt 40</m> and <m>40 \le t \lt 50</m>, with frequencies <m>4, 9, x, 10, 5</m>. The median is <m>26</m> minutes and lies in the class <m>20 \le t \lt 30</m>. Find <m>x</m>.</p>
+                </statement>
+                <hint><p><m>x</m> appears twice: in <m>n</m> and as the frequency <m>F</m> of the median class.</p></hint>
+                <answer><p><m>x = 10</m></p></answer>
+                <solution><p><m>n = 28 + x</m>, <m>L = 20</m>, <m>CF = 13</m>, <m>F = x</m>: <m>26 = 20 + \dfrac{(28 + x)/2 - 13}{x} \times 10</m>. So <m>6x = 10\left(\dfrac{28 + x}{2} - 13\right) = 5x + 10</m>, giving <m>x = 10</m>. Check: <m>n = 38</m>, position <m>19</m> lies between the cumulative frequencies <m>13</m> and <m>23</m>.</p></solution>
+            </exercise>
+        </exercises>
+
+        <axiom component="lesson-plan">
             <title>Differentiation</title>
-            <tabular halign="left">
-                <row header="yes" bottom="minor">
-                    <cell>Learner Group</cell>
-                    <cell>Strategy &amp; Learning Experience</cell>
-                    <cell></cell>
-                </row>
-                <row>
-                    <cell>Struggling Learners (Support)</cell>
-                    <cell>
-                        XXXX
-                    </cell>
-                    <cell></cell>
-                </row>
-                <row>
-                    <cell>On-Level Learners (Core)</cell>
-                    <cell>
-                        <line>The core lesson activities as described above.</line>
-                    </cell>
-                    <cell></cell>
-                </row>
-                <row>
-                    <cell>Advanced Learners (Challenge)</cell>
-                    <cell>
-                        XXXX
-                    </cell>
-                    <cell></cell>
-                </row>
-            </tabular>
-        </table>
-    </axiom> -->
+            <table xml:id="table-differentiation-grouped-quartiles">
+                <title>Differentiation Strategies</title>
+                <tabular halign="left" top="minor" bottom="minor" left="minor" right="minor">
+                    <row header="yes" bottom="medium"><cell>Learner Group</cell><cell>Strategy and Learning Experience</cell></row>
+                    <row><cell>Struggling Learners (Support)</cell><cell>Use <xref ref="fig-quartile-interpolation-strip"/> as a template for each quartile. Provide a table with columns position, class, <m>L</m>, <m>CF</m>, <m>F</m>, <m>c</m> to fill in. Assign <xref ref="ex-quartiles-seedlings"/> and <xref ref="ex-quartiles-rainfall"/>.</cell></row>
+                    <row><cell>On-Level Learners (Core)</cell><cell>Full activity and all examples. Assign <xref ref="ex-quartiles-seedlings"/> to <xref ref="ex-why-not-n-plus-one"/>.</cell></row>
+                    <row><cell>Advanced Learners (Challenge)</cell><cell>All exercises including <xref ref="ex-missing-frequency-in-median-class"/>. Extension: estimate the 10th journey time by reading your graph from the activity in the previous section, and compare it with part (c) of the activity (they agree if the points were joined with straight lines).</cell></row>
+                </tabular>
+            </table>
+        </axiom>
 
-    <xi:include href="../lesson-plan-templates/assessment-methods.ptx" />
+        <xi:include href="../lesson-plan-templates/assessment-methods.ptx" />
+        <xi:include href="../lesson-plan-templates/reflection.ptx"/>
+    </subsection>
 
-    <xi:include href="../lesson-plan-templates/reflection.ptx"/>
+    <!-- ============================================================ Lesson 3.2 (Core) -->
+    <subsection xml:id="subsec-deciles-and-percentiles-grouped" component="core">
+        <title>Deciles and Percentiles of Grouped Data</title>
+
+        <p component="lesson-plan">Upon completion of this lesson, learners will be able to:
+            <ol>
+                <li><p><alert>Know:</alert> the decile <m>D_k</m> is at position <m>kn/10</m> and the percentile <m>P_k</m> at <m>kn/100</m>; the same formula as for quartiles.</p></li>
+                <li><p><alert>Do:</alert> estimate deciles and percentiles of grouped data, and the percentage of values below a given value.</p></li>
+                <li><p><alert>Apply:</alert> find cut-off marks and the spread of the middle 80 per cent.</p></li>
+            </ol>
+        </p>
+
+        <axiom component="lesson-plan">
+            <title>Problem-Solving and Discovery</title>
+            <dl>
+                <li><title>Suggested Time</title><p>14 minutes</p></li>
+                <li><title>Objective</title><p>Learners find a cut-off mark for a prize, which is a percentile.</p></li>
+                <li><title>Teacher's Role</title><p>Ask: <q>The county gives certificates to the top 10 per cent of learners. What mark is the cut-off?</q> Let groups decide how many learners that is before they look for the mark.</p></li>
+            </dl>
+        </axiom>
+
+        <activity xml:id="act-top-ten-percent">
+            <title>Top Ten Percent</title>
+            <statement>
+                <p>The marks out of 100 of <m>80</m> learners in a county mock examination are shown below.</p>
+                <table xml:id="table-county-mock-marks">
+                    <title>Marks of 80 Learners</title>
+                    <tabular halign="center" top="minor" bottom="minor" left="minor" right="minor">
+                        <row header="yes" bottom="medium"><cell>Mark</cell><cell>20–29</cell><cell>30–39</cell><cell>40–49</cell><cell>50–59</cell><cell>60–69</cell><cell>70–79</cell><cell>80–89</cell><cell>90–99</cell></row>
+                        <row><cell>Frequency (<m>f</m>)</cell><cell>3</cell><cell>6</cell><cell>11</cell><cell>18</cell><cell>19</cell><cell>12</cell><cell>7</cell><cell>4</cell></row>
+                    </tabular>
+                </table>
+                <p>
+                    <ol marker="(a)">
+                        <li>
+                            <p>How many learners are in the top <m>10</m> per cent?</p>
+                            <solution component="lesson-plan"><p><m>10\%</m> of <m>80</m> is <m>8</m>.</p></solution>
+                        </li>
+                        <li>
+                            <p>So how many learners are below the cut-off mark? In which class is the cut-off?</p>
+                            <solution component="lesson-plan"><p><m>72</m>. The cumulative frequencies are <m>3, 9, 20, 38, 57, 69, 76, 80</m>, so position <m>72</m> is in the class 80–89.</p></solution>
+                        </li>
+                        <li>
+                            <p>Estimate the cut-off mark, as for a quartile.</p>
+                            <solution component="lesson-plan"><p><m>79.5 + \dfrac{72 - 69}{7} \times 10 = 83.8</m>. Learners with more than about <m>84</m> marks get a certificate.</p></solution>
+                        </li>
+                        <li>
+                            <p>Estimate the mark below which the bottom <m>10</m> per cent of learners lie.</p>
+                            <solution component="lesson-plan"><p>Position <m>8</m>, in 30–39: <m>29.5 + \dfrac{8 - 3}{6} \times 10 = 37.8</m>.</p></solution>
+                        </li>
+                    </ol>
+                </p>
+            </statement>
+        </activity>
+
+        <axiom component="lesson-plan">
+            <title>Structured Instruction</title>
+            <p>
+                <dl>
+                    <li><title>Suggested Time</title><p>8 minutes</p></li>
+                    <li><title>Objective</title><p>To name deciles and percentiles and connect them with quartiles.</p></li>
+                </dl>
+            </p>
+            <paragraphs>
+                <title>Key Takeaways &amp; Teacher Connection</title>
+                <ol>
+                    <li><p><alert>Connecting to Learner Work:</alert> part (c) found <m>P_{90}</m>, also called <m>D_9</m>; part (d) found <m>D_1</m>.</p></li>
+                    <li><p>Only the position changes: <m>kn/10</m> for a decile, <m>kn/100</m> for a percentile. The formula is the one used for quartiles.</p></li>
+                    <li><p>A common slip is to use position <m>k</m> itself instead of <m>k</m> per cent of <m>n</m>.</p></li>
+                </ol>
+            </paragraphs>
+        </axiom>
+
+        <insight xml:id="insight-grouped-deciles-percentiles">
+            <title>Deciles and Percentiles</title>
+            <p>
+                The <term>deciles</term> <m>D_1, D_2, \ldots, D_9</m> cut the data into tenths, and the <term>percentiles</term> <m>P_1, \ldots, P_{99}</m> into hundredths. For grouped data, <m>D_k</m> is at position <m>kn/10</m> and <m>P_k</m> at <m>kn/100</m>; then use the same formula
+                <md>L + \frac{\text{position} - CF}{F} \times c</md>.
+                So <m>D_5 = P_{50} = Q_2</m>, the median, and <m>P_{25} = Q_1</m>.
+            </p>
+            <p>
+                Working backwards, the <term>percentile rank</term> of a value is the percentage of the data below it.
+            </p>
+        </insight>
+
+        <xi:include href="../lesson-plan-templates/example-intro.ptx" />
+
+        <example xml:id="example-county-mock-deciles">
+            <title>County Mock Marks</title>
+            <statement>
+                <p>Use the county mock marks in <xref ref="act-top-ten-percent"/> to find <m>D_1</m> and <m>D_9</m>, and describe the middle <m>80</m> per cent of learners.</p>
+            </statement>
+            <solution>
+                <p><m>D_1</m> is at position <m>1 \times 80 \div 10 = 8</m>, in 30–39 (<m>CF = 3</m>, <m>F = 6</m>); <m>D_9</m> is at <m>72</m>, in 80–89 (<m>CF = 69</m>, <m>F = 7</m>).
+                    <md>
+                        <mrow>D_1 \amp = 29.5 + \frac{8 - 3}{6} \times 10 \approx 37.8</mrow>
+                        <mrow>D_9 \amp = 79.5 + \frac{72 - 69}{7} \times 10 \approx 83.8</mrow>
+                    </md>
+                    The middle <m>80</m> per cent of learners scored between about <m>38</m> and <m>84</m> marks.</p>
+            </solution>
+        </example>
+
+        <example xml:id="example-water-percentiles">
+            <title>Household Water Use</title>
+            <statement>
+                <p>The water used in a day, <m>w</m> litres, by <m>90</m> households in Machakos is shown below. Find <m>P_{10}</m> and <m>P_{90}</m>, and the 10 to 90 percentile range.</p>
+                <table xml:id="table-water-use">
+                    <title>Water Used by 90 Households</title>
+                    <tabular halign="center" top="minor" bottom="minor" left="minor" right="minor">
+                        <row header="yes" bottom="medium"><cell>Water (litres)</cell><cell><m>0 \le w \lt 20</m></cell><cell><m>20 \le w \lt 40</m></cell><cell><m>40 \le w \lt 60</m></cell><cell><m>60 \le w \lt 80</m></cell><cell><m>80 \le w \lt 100</m></cell><cell><m>100 \le w \lt 120</m></cell><cell><m>120 \le w \lt 140</m></cell></row>
+                        <row><cell>Frequency (<m>f</m>)</cell><cell>8</cell><cell>15</cell><cell>24</cell><cell>20</cell><cell>13</cell><cell>7</cell><cell>3</cell></row>
+                    </tabular>
+                </table>
+            </statement>
+            <solution>
+                <p>The cumulative frequencies are <m>8, 23, 47, 67, 80, 87, 90</m>. <m>P_{10}</m> is at <m>10 \times 90 \div 100 = 9</m> and <m>P_{90}</m> at <m>81</m>.
+                    <md>
+                        <mrow>P_{10} \amp = 20 + \frac{9 - 8}{15} \times 20 \approx 21.3 \,\text{litres}</mrow>
+                        <mrow>P_{90} \amp = 100 + \frac{81 - 80}{7} \times 20 \approx 102.9 \,\text{litres}</mrow>
+                    </md>
+                    The 10 to 90 percentile range is <m>102.86 - 21.33 \approx 81.5\,\text{litres}</m>: the middle <m>80</m> per cent of households used amounts spread over about <m>81.5\,\text{litres}</m>.</p>
+            </solution>
+        </example>
+
+        <example xml:id="example-water-percentile-rank">
+            <title>What Percentage Used Less Than 50 Litres?</title>
+            <statement>
+                <p>For the households in <xref ref="example-water-percentiles"/>, estimate the percentage that used less than <m>50\,\text{litres}</m>.</p>
+            </statement>
+            <solution>
+                <p><m>50\,\text{litres}</m> is halfway through the class <m>40 \le w \lt 60</m>, which holds <m>24</m> households, with <m>23</m> before it. So about <m>23 + 24 \times \dfrac{50 - 40}{20} = 35</m> households used less than <m>50\,\text{litres}</m>, and <m>\dfrac{35}{90} \times 100 \approx 38.9\%</m>. The percentile rank of <m>50\,\text{litres}</m> is about <m>39</m>.</p>
+            </solution>
+        </example>
+
+        <xi:include href="../lesson-plan-templates/assessment-intro.ptx" />
+        <xi:include href="../lesson-plan-templates/checkpoint.ptx" />
+
+        <p>Type decimals with a point, for example <c>30.6</c>. Give answers to the accuracy asked for.</p>
+
+        <exercise xml:id="ex-deciles-and-percentiles-of-grouped-data">
+            <!--<title></title>-->
+            <stack label="stk-deciles-and-percentiles-of-grouped-data" source="stack/top/3-statistics-and-probability/15-statistics/03-quartiles-deciles-and-percentiles-for-grouped-data/Deciles-and-percentiles-of-grouped-data.xml"/>
+        </exercise>
+
+        <exercises xml:id="exercises-grouped-deciles-percentiles">
+            <exercise xml:id="ex-deciles-goats">
+                <statement><p>Find <m>D_3</m> and <m>D_7</m> for the goat masses in <xref ref="example-goats-quartiles"/>.</p></statement>
+                <answer><p><m>D_3 \approx 26.6\,\text{kg}</m>, <m>D_7 \approx 34.1\,\text{kg}</m></p></answer>
+                <solution><p>Positions <m>15</m> and <m>35</m>. <m>D_3 = 24.5 + \dfrac{15 - 10}{12} \times 5 = 26.58</m>; <m>D_7 = 29.5 + \dfrac{35 - 22}{14} \times 5 = 34.14</m>.</p></solution>
+            </exercise>
+            <exercise xml:id="ex-percentiles-goats">
+                <statement><p>Find <m>P_{15}</m> and <m>P_{85}</m> for the goat masses.</p></statement>
+                <answer><p><m>P_{15} \approx 22.7\,\text{kg}</m>, <m>P_{85} \approx 38.1\,\text{kg}</m></p></answer>
+                <solution><p>Positions <m>7.5</m> and <m>42.5</m>. <m>P_{15} = 19.5 + \dfrac{7.5 - 3}{7} \times 5 = 22.71</m>; <m>P_{85} = 34.5 + \dfrac{42.5 - 36}{9} \times 5 = 38.11</m>.</p></solution>
+            </exercise>
+            <exercise xml:id="ex-deciles-seedlings">
+                <statement><p>Find <m>D_2</m>, <m>D_8</m> and <m>P_{95}</m> for the seedling heights in <xref ref="ex-quartiles-seedlings"/>.</p></statement>
+                <answer><p><m>D_2 \approx 18.9\,\text{cm}</m>, <m>D_8 = 30.5\,\text{cm}</m>, <m>P_{95} \approx 35.8\,\text{cm}</m></p></answer>
+                <solution><p>Positions <m>12</m>, <m>48</m>, <m>57</m>. <m>D_2 = 14.5 + \dfrac{12 - 4}{9} \times 5 = 18.94</m>; <m>D_8 = 29.5 + \dfrac{48 - 46}{10} \times 5 = 30.5</m>; <m>P_{95} = 34.5 + \dfrac{57 - 56}{4} \times 5 = 35.75</m>.</p></solution>
+            </exercise>
+            <exercise xml:id="ex-percentage-shorter-than-30">
+                <statement><p>Estimate the percentage of the seedlings that are shorter than <m>30\,\text{cm}</m>.</p></statement>
+                <answer><p>About <m>78.3\%</m></p></answer>
+                <solution><p><m>30</m> is <m>0.5\,\text{cm}</m> into the class 30–34 (boundaries <m>29.5</m> to <m>34.5</m>), which holds <m>10</m> seedlings with <m>46</m> before it: <m>46 + 10 \times \dfrac{0.5}{5} = 47</m> seedlings, and <m>\dfrac{47}{60} \times 100 \approx 78.3\%</m>.</p></solution>
+            </exercise>
+            <exercise xml:id="ex-njoroge-percentile">
+                <statement><p>Njoroge found <m>P_{15}</m> of the goat masses as <m>26.6\,\text{kg}</m>. What was his mistake?</p></statement>
+                <answer><p>He used position <m>15</m> instead of <m>15\%</m> of <m>50</m>, which is <m>7.5</m>. The correct value is <m>22.7\,\text{kg}</m>.</p></answer>
+                <solution><p>Position <m>15</m> gives <m>24.5 + \dfrac{15 - 10}{12} \times 5 = 26.6</m>, which is <m>D_3</m>. <m>P_{15}</m> is at <m>15 \times 50 \div 100 = 7.5</m>, giving <m>22.7\,\text{kg}</m>.</p></solution>
+            </exercise>
+            <exercise xml:id="ex-deciles-and-quartiles-agree">
+                <title>Challenge: Deciles, Percentiles and Quartiles</title>
+                <statement><p>Show that, for any grouped frequency table, <m>D_5 = P_{50} = Q_2</m> and <m>P_{75} = Q_3</m>.</p></statement>
+                <hint><p>Compare the positions.</p></hint>
+                <answer><p>The positions are equal, so the values are equal.</p></answer>
+                <solution><p><m>D_5</m> is at <m>5n/10 = n/2</m>, <m>P_{50}</m> at <m>50n/100 = n/2</m> and <m>Q_2</m> at <m>n/2</m>. <m>P_{75}</m> is at <m>75n/100 = 3n/4</m>, the position of <m>Q_3</m>. The same position in the same table gives the same value.</p></solution>
+            </exercise>
+        </exercises>
+
+        <axiom component="lesson-plan">
+            <title>Differentiation</title>
+            <table xml:id="table-differentiation-grouped-deciles-percentiles">
+                <title>Differentiation Strategies</title>
+                <tabular halign="left" top="minor" bottom="minor" left="minor" right="minor">
+                    <row header="yes" bottom="medium"><cell>Learner Group</cell><cell>Strategy and Learning Experience</cell></row>
+                    <row><cell>Struggling Learners (Support)</cell><cell>Provide a table of positions <m>kn/10</m> already worked out for <m>n = 50</m> and <m>n = 60</m>. Assign <xref ref="ex-deciles-goats"/> and <xref ref="ex-percentiles-goats"/>.</cell></row>
+                    <row><cell>On-Level Learners (Core)</cell><cell>Full activity and all examples. Assign <xref ref="ex-deciles-goats"/> to <xref ref="ex-njoroge-percentile"/>.</cell></row>
+                    <row><cell>Advanced Learners (Challenge)</cell><cell>All exercises including <xref ref="ex-deciles-and-quartiles-agree"/>. Extension: find <m>P_{99}</m> of the county mock marks and say why it is unreliable (answer: position <m>79.2</m> in the last class, which holds only <m>4</m> learners: <m>89.5 + \dfrac{3.2}{4} \times 10 = 97.5</m>; it depends on how just four marks are spread).</cell></row>
+                </tabular>
+            </table>
+        </axiom>
+
+        <xi:include href="../lesson-plan-templates/assessment-methods.ptx" />
+        <xi:include href="../lesson-plan-templates/reflection.ptx"/>
+    </subsection>
+
+    <!-- ============================================================ Lesson 3.3 -->
+    <subsection xml:id="subsec-estimating-from-the-ogive">
+        <title>Estimating from a Cumulative Frequency Curve</title>
+
+        <p component="lesson-plan">Upon completion of this lesson, learners will be able to:
+            <ol>
+                <li><p><alert>Know:</alert> a quantile is read by going across from its position on the cumulative frequency axis to the curve, then down.</p></li>
+                <li><p><alert>Do:</alert> read the median and quartiles from a cumulative frequency curve, and find the interquartile range and quartile deviation from them.</p></li>
+                <li component="core"><p><alert>Do (Core):</alert> read deciles and percentiles from the curve.</p></li>
+                <li><p><alert>Apply:</alert> estimate how many values lie above or below a given value.</p></li>
+            </ol>
+        </p>
+
+        <axiom component="lesson-plan">
+            <title>Problem-Solving and Discovery</title>
+            <dl>
+                <li><title>Suggested Time</title><p>14 minutes</p></li>
+                <li><title>Objective</title><p>Learners read values off their own cumulative frequency curve and compare them with the values they calculated.</p></li>
+                <li><title>Teacher's Role</title><p>Learners use the graph they drew in the activity of the previous section. Learners who joined their points with a smooth curve will get slightly different readings; ask them why.</p></li>
+            </dl>
+        </axiom>
+
+        <activity xml:id="act-reading-our-curve">
+            <title>Reading Our Curve</title>
+            <statement>
+                <p>Use your cumulative frequency curve of the journey times from <xref ref="act-getting-to-school"/>.</p>
+                <p>
+                    <ol marker="(a)">
+                        <li>
+                            <p>Go across from <m>10</m>, <m>20</m> and <m>30</m> on the cumulative frequency axis to your graph, then down to the time axis. Write down the three times.</p>
+                            <solution component="lesson-plan"><p>About <m>21</m>, <m>30</m> and <m>39.5</m> minutes.</p></solution>
+                        </li>
+                        <li>
+                            <p>Compare your readings with the values you calculated in <xref ref="act-where-is-the-10th-learner"/>.</p>
+                            <solution component="lesson-plan"><p>With straight segments they agree (<m>21.2</m>, <m>29.9</m>, <m>39.5</m>): the straight segment across a class is exactly the even spread the formula assumes. A smooth curve gives slightly different readings.</p></solution>
+                        </li>
+                        <li>
+                            <p>Use your readings to find the difference between the upper and lower quartiles, and half of it.</p>
+                            <solution component="lesson-plan"><p><m>39.5 - 21.2 = 18.3</m> minutes and <m>9.2</m> minutes (from the unrounded <m>39.5 - 21.17 = 18.33</m>). Name them now: the interquartile range and the quartile deviation.</p></solution>
+                        </li>
+                        <li component="core">
+                            <p>Go across from <m>36</m>. Which decile is this, and what is its value?</p>
+                            <solution component="lesson-plan"><p><m>36 = 9 \times 40 \div 10</m>, so this is <m>D_9</m>: <m>44.5 + \dfrac{36 - 34}{4} \times 10 = 49.5</m> minutes.</p></solution>
+                        </li>
+                    </ol>
+                </p>
+            </statement>
+        </activity>
+
+        <axiom component="lesson-plan">
+            <title>Structured Instruction</title>
+            <p>
+                <dl>
+                    <li><title>Suggested Time</title><p>8 minutes</p></li>
+                    <li><title>Objective</title><p>To formalise reading from the curve, and the interquartile range and quartile deviation.</p></li>
+                </dl>
+            </p>
+            <paragraphs>
+                <title>Key Takeaways &amp; Teacher Connection</title>
+                <ol>
+                    <li><p><alert>Connecting to Learner Work:</alert> across at the position, then down to the value; the answer is a value of the data, not a cumulative frequency.</p></li>
+                    <li><p>The interquartile range is the spread of the middle half of the data; the quartile deviation is half of it.</p></li>
+                    <li><p>To count values above a given value, go up from it, across to the cumulative frequency, and subtract from <m>n</m>.</p></li>
+                </ol>
+            </paragraphs>
+        </axiom>
+
+        <insight xml:id="insight-reading-the-curve">
+            <title>Reading the Curve</title>
+            <p>
+                To estimate a median or quartile from a cumulative frequency curve, find its position (<m>n/2</m>, <m>n/4</m> or <m>3n/4</m>) on the cumulative frequency axis, go across to the curve, then down to the horizontal axis.
+            </p>
+            <p>
+                The <term>interquartile range</term> is <m>Q_3 - Q_1</m>, the spread of the middle half of the data. The <term>quartile deviation</term> (or semi-interquartile range) is half of it, <m>\dfrac{Q_3 - Q_1}{2}</m>.
+            </p>
+            <p component="core">
+                Deciles and percentiles are read in the same way, going across from <m>kn/10</m> or <m>kn/100</m>.
+            </p>
+        </insight>
+
+        <figure xml:id="fig-ogive-percentile-reader">
+            <caption>Drag the slider to choose a percentage. A line goes across from that percentage of the <m>50</m> goats to the cumulative frequency curve, then down to the mass axis.</caption>
+            <interactive xml:id="interactive-ogive-percentile-reader" platform="jsxgraph" width="90%" aspect="16:12" source="jsxgraph/ogive-percentile-reader.js">
+                <slate xml:id="jsxgraph-ogive-percentile-reader" surface="jsxboard" aspect="16:12"/>
+                <instructions>
+                    <p>
+                        <ul>
+                            <li><p>The graph is the cumulative frequency curve of the goat masses from <xref ref="example-goats-ogive"/>.</p></li>
+                            <li><p>Press the <alert>25%</alert>, <alert>50%</alert> and <alert>75%</alert> buttons to read <m>Q_1</m>, the median and <m>Q_3</m>.</p></li>
+                            <li><p>Drag the <alert>p</alert> slider and watch the reading change. Where does a small change in <m>p</m> make the biggest change in the mass?</p></li>
+                            <li component="core"><p>Set <alert>p</alert> to <m>10, 20, \ldots, 90</m> to read the deciles.</p></li>
+                        </ul>
+                    </p>
+                </instructions>
+            </interactive>
+        </figure>
+
+        <xi:include href="../lesson-plan-templates/example-intro.ptx" />
+
+        <example xml:id="example-goats-quartiles-from-curve">
+            <title>Goats: Quartiles from the Curve</title>
+            <statement>
+                <p>Use the cumulative frequency curve of the goat masses (<xref ref="fig-goats-ogive"/>) to estimate the median, the quartiles, the interquartile range and the quartile deviation.</p>
+            </statement>
+            <solution>
+                <p>With <m>n = 50</m>, go across from <m>12.5</m>, <m>25</m> and <m>37.5</m>.</p>
+                <figure xml:id="fig-goats-ogive-quartiles">
+                    <caption>Reading the quartiles of the goat masses from the curve.</caption>
+                    <image width="90%">
+                        <shortdescription>The goat-mass cumulative frequency curve with dashed lines across from 12.5, 25 and 37.5 to the curve and down to the mass axis at about 25.5, 30.6 and 35.3 kg.</shortdescription>
+                        <description><p>Horizontal axis mass in kg from 10 to 50; vertical axis cumulative frequency from 0 to 50. Plotted points (14.5, 0), (19.5, 3), (24.5, 10), (29.5, 22), (34.5, 36), (39.5, 45), (44.5, 50) joined by straight line segments. Dashed lines go across from cumulative frequency 12.5, 25 and 37.5 to the graph and down to the mass axis at 25.5, 30.6 and 35.3 kg.</p></description>
+                        <latex-image>
+\begin{tikzpicture}
+\begin{axis}[width=12cm, height=8cm, xmin=10, xmax=50, ymin=0, ymax=52,
+  xtick={10,15,...,50}, ytick={0,10,...,50}, minor x tick num=4, minor y tick num=4,
+  grid=both, major grid style={gray!50}, minor grid style={gray!20},
+  xlabel={Mass (kg)}, ylabel={Cumulative frequency}]
+\addplot[thick, mark=*] coordinates {(14.5,0) (19.5,3) (24.5,10) (29.5,22) (34.5,36) (39.5,45) (44.5,50)};
+\addplot[dashed, thick] coordinates {(10,12.5) (25.54,12.5) (25.54,0)};
+\addplot[dashed, thick] coordinates {(10,25) (30.57,25) (30.57,0)};
+\addplot[dashed, thick] coordinates {(10,37.5) (35.33,37.5) (35.33,0)};
+\node[anchor=south west, font=\small] at (axis cs:10.2,12.5) {12.5};
+\node[anchor=south west, font=\small] at (axis cs:10.2,25) {25};
+\node[anchor=south west, font=\small] at (axis cs:10.2,37.5) {37.5};
+\node[anchor=south, font=\small, fill=white, inner sep=1pt] at (axis cs:25.54,3) {25.5};
+\node[anchor=south, font=\small, fill=white, inner sep=1pt] at (axis cs:30.57,6) {30.6};
+\node[anchor=south, font=\small, fill=white, inner sep=1pt] at (axis cs:35.33,9) {35.3};
+\end{axis}
+\end{tikzpicture}
+                        </latex-image>
+                    </image>
+                </figure>
+                <p><m>Q_1 \approx 25.5\,\text{kg}</m>, median <m>\approx 30.6\,\text{kg}</m> and <m>Q_3 \approx 35.3\,\text{kg}</m>, the same as the values calculated in <xref ref="example-goats-quartiles"/>. So the interquartile range is about <m>35.33 - 25.54 = 9.8\,\text{kg}</m> and the quartile deviation about <m>4.9\,\text{kg}</m>. The middle half of the goats weigh between about <m>25.5</m> and <m>35.3\,\text{kg}</m>.</p>
+            </solution>
+        </example>
+
+        <example xml:id="example-goats-deciles-from-curve" component="core">
+            <title>Goats: Deciles and Percentiles from the Curve</title>
+            <statement>
+                <p>Use the curve to estimate <m>D_1</m>, <m>D_9</m> and <m>P_{80}</m> of the goat masses.</p>
+            </statement>
+            <solution>
+                <p>Go across from <m>50 \div 10 = 5</m>, <m>45</m> and <m>80 \times 50 \div 100 = 40</m>.</p>
+                <figure xml:id="fig-goats-ogive-deciles">
+                    <caption>Reading <m>D_1</m>, <m>P_{80}</m> and <m>D_9</m> of the goat masses from the curve.</caption>
+                    <image width="90%">
+                        <shortdescription>The goat-mass cumulative frequency curve with dashed lines across from 5, 40 and 45 to the curve and down to the mass axis at about 20.9, 36.7 and 39.5 kg.</shortdescription>
+                        <description><p>Horizontal axis mass in kg from 10 to 50; vertical axis cumulative frequency from 0 to 50. The same points as the goat-mass curve, joined by straight line segments. Dashed lines go across from cumulative frequency 5, 40 and 45 to the graph and down to the mass axis at 20.9, 36.7 and 39.5 kg.</p></description>
+                        <latex-image>
+\begin{tikzpicture}
+\begin{axis}[width=12cm, height=8cm, xmin=10, xmax=50, ymin=0, ymax=52,
+  xtick={10,15,...,50}, ytick={0,10,...,50}, minor x tick num=4, minor y tick num=4,
+  grid=both, major grid style={gray!50}, minor grid style={gray!20},
+  xlabel={Mass (kg)}, ylabel={Cumulative frequency}]
+\addplot[thick, mark=*] coordinates {(14.5,0) (19.5,3) (24.5,10) (29.5,22) (34.5,36) (39.5,45) (44.5,50)};
+\addplot[dashed, thick] coordinates {(10,5) (20.93,5) (20.93,0)};
+\addplot[dashed, thick] coordinates {(10,40) (36.72,40) (36.72,0)};
+\addplot[dashed, thick] coordinates {(10,45) (39.5,45) (39.5,0)};
+\node[anchor=south west, font=\small] at (axis cs:10.2,5) {5};
+\node[anchor=south west, font=\small] at (axis cs:10.2,40) {40};
+\node[anchor=south west, font=\small] at (axis cs:10.2,45) {45};
+\node[anchor=south, font=\small, fill=white, inner sep=1pt] at (axis cs:20.93,1) {20.9};
+\node[anchor=south, font=\small, fill=white, inner sep=1pt] at (axis cs:36.72,3) {36.7};
+\node[anchor=south, font=\small, fill=white, inner sep=1pt] at (axis cs:39.5,7) {39.5};
+\end{axis}
+\end{tikzpicture}
+                        </latex-image>
+                    </image>
+                </figure>
+                <p><m>D_1 \approx 20.9\,\text{kg}</m>, <m>P_{80} \approx 36.7\,\text{kg}</m> and <m>D_9 = 39.5\,\text{kg}</m>. By calculation, for example, <m>P_{80} = 34.5 + \dfrac{40 - 36}{9} \times 5 = 36.72</m>.</p>
+            </solution>
+        </example>
+
+        <example xml:id="example-goats-heavier-than-32">
+            <title>Heavier Than 32 kg</title>
+            <statement>
+                <p>Use the goat-mass curve.</p>
+                <p>
+                    <ol marker="(a)">
+                        <li><p>Estimate how many of the goats weigh more than <m>32\,\text{kg}</m>.</p></li>
+                        <li component="core"><p>Above what mass are the heaviest <m>20</m> per cent of the goats?</p></li>
+                    </ol>
+                </p>
+            </statement>
+            <solution>
+                <p>(a) Go up from <m>32\,\text{kg}</m> to the curve, then across: the cumulative frequency is <m>22 + 14 \times \dfrac{32 - 29.5}{5} = 29</m>. So <m>29</m> goats weigh less than <m>32\,\text{kg}</m> and about <m>50 - 29 = 21</m> goats weigh more.</p>
+                <p component="core">(b) The heaviest <m>20</m> per cent are above <m>P_{80} \approx 36.7\,\text{kg}</m> (<xref ref="example-goats-deciles-from-curve"/>).</p>
+            </solution>
+        </example>
+
+        <p>
+            <em>Statistics in everyday life:</em> a county education office uses the quartiles of mock marks to decide which schools need extra support. Where else might a cut-off read from a cumulative frequency curve be used?
+        </p>
+
+        <xi:include href="../lesson-plan-templates/assessment-intro.ptx" />
+        <xi:include href="../lesson-plan-templates/checkpoint.ptx" />
+
+        <p>Type decimals with a point, for example <c>30.6</c>. Give answers to the accuracy asked for.</p>
+
+        <exercise xml:id="ex-reading-quartiles-from-a-cumulative-frequency-curve">
+            <!--<title></title>-->
+            <stack label="stk-reading-quartiles-from-a-cumulative-frequency-curve" source="stack/top/3-statistics-and-probability/15-statistics/03-quartiles-deciles-and-percentiles-for-grouped-data/Reading-quartiles-from-a-cumulative-frequency-curve.xml"/>
+        </exercise>
+
+        <exercise xml:id="ex-reading-percentiles-from-a-cumulative-frequency-curve" component="core">
+            <!--<title></title>-->
+            <stack label="stk-reading-percentiles-from-a-cumulative-frequency-curve" source="stack/top/3-statistics-and-probability/15-statistics/03-quartiles-deciles-and-percentiles-for-grouped-data/Reading-percentiles-from-a-cumulative-frequency-curve.xml"/>
+        </exercise>
+
+        <exercises xml:id="exercises-estimating-from-the-curve">
+            <exercise xml:id="ex-curve-seedlings-quartiles">
+                <statement><p>Use your curve from <xref ref="ex-ogive-seedlings"/> to estimate the median, the quartiles, the interquartile range and the quartile deviation of the seedling heights.</p></statement>
+                <answer><p>Median <m>\approx 25.1\,\text{cm}</m>, <m>Q_1 \approx 20.2\,\text{cm}</m>, <m>Q_3 \approx 29.2\,\text{cm}</m>; IQR <m>\approx 9.1\,\text{cm}</m>; QD <m>\approx 4.5\,\text{cm}</m></p></answer>
+                <solution><p>Go across from <m>30</m>, <m>15</m> and <m>45</m>. The readings match <xref ref="ex-quartiles-seedlings"/>: IQR <m>= 29.22 - 20.17 = 9.06 \approx 9.1\,\text{cm}</m> and QD <m>\approx 4.5\,\text{cm}</m>.</p></solution>
+            </exercise>
+            <exercise xml:id="ex-curve-rainfall-spread">
+                <statement><p>Use your curve from <xref ref="ex-ogive-rainfall"/> to estimate the median, the interquartile range and the quartile deviation of the rainfall.</p></statement>
+                <answer><p>Median <m>\approx 25.8\,\text{mm}</m>; IQR <m>\approx 19.3\,\text{mm}</m>; QD <m>\approx 9.7\,\text{mm}</m></p></answer>
+                <solution><p>Across from <m>20</m>, <m>10</m> and <m>30</m>: <m>25.8</m>, <m>16.25</m> and <m>35.56\,\text{mm}</m>. IQR <m>= 35.56 - 16.25 = 19.31</m>; QD <m>= 9.65 \approx 9.7\,\text{mm}</m>.</p></solution>
+            </exercise>
+            <exercise xml:id="ex-curve-seedlings-deciles" component="core">
+                <statement><p>Use the seedling curve to estimate <m>D_2</m> and <m>D_8</m>.</p></statement>
+                <answer><p><m>D_2 \approx 18.9\,\text{cm}</m>, <m>D_8 \approx 30.5\,\text{cm}</m></p></answer>
+            </exercise>
+            <exercise xml:id="ex-curve-taller-than-27">
+                <statement><p>Use the seedling curve to estimate how many seedlings are taller than <m>27\,\text{cm}</m>.</p></statement>
+                <answer><p>About <m>23</m></p></answer>
+                <solution><p>Up from <m>27</m> and across: about <m>37</m> seedlings are shorter than <m>27\,\text{cm}</m>, so about <m>60 - 37 = 23</m> are taller.</p></solution>
+            </exercise>
+            <exercise xml:id="ex-curve-water-percentiles" component="core">
+                <statement><p>Draw the cumulative frequency curve of the household water use in <xref ref="example-water-percentiles"/>, and read <m>P_{10}</m> and <m>P_{90}</m> from it.</p></statement>
+                <answer><p><m>P_{10} \approx 21.3\,\text{litres}</m>, <m>P_{90} \approx 102.9\,\text{litres}</m></p></answer>
+                <solution><p>Plot <m>(0, 0)</m>, <m>(20, 8)</m>, <m>(40, 23)</m>, <m>(60, 47)</m>, <m>(80, 67)</m>, <m>(100, 80)</m>, <m>(120, 87)</m>, <m>(140, 90)</m>. Go across from <m>9</m> and <m>81</m>.</p></solution>
+            </exercise>
+            <exercise xml:id="ex-why-curve-equals-calculation">
+                <title>Challenge: Why the Curve Agrees with the Formula</title>
+                <statement><p>Explain why a reading from a cumulative frequency curve drawn with straight segments always equals the value from the formula <m>L + \dfrac{\text{position} - CF}{F} \times c</m>.</p></statement>
+                <hint><p>Look at the segment across the class that holds the position, and use similar triangles.</p></hint>
+                <answer><p>Across one class the segment rises <m>F</m> while it moves <m>c</m>; going up <m>\text{position} - CF</m> from the start of the class moves across <m>\dfrac{\text{position} - CF}{F} \times c</m>, which is the formula.</p></answer>
+                <solution><p>The segment for the class joins <m>(L, CF)</m> to <m>(L + c, CF + F)</m>. A point on it at height <m>\text{position}</m> has risen <m>\text{position} - CF</m> out of <m>F</m>, so by similar triangles it has moved the same fraction of <m>c</m> across: its horizontal coordinate is <m>L + \dfrac{\text{position} - CF}{F} \times c</m>. A straight segment is exactly the even spread inside a class that the formula assumes.</p></solution>
+            </exercise>
+        </exercises>
+
+        <axiom component="lesson-plan">
+            <title>Differentiation</title>
+            <table xml:id="table-differentiation-estimating-from-the-curve">
+                <title>Differentiation Strategies</title>
+                <tabular halign="left" top="minor" bottom="minor" left="minor" right="minor">
+                    <row header="yes" bottom="medium"><cell>Learner Group</cell><cell>Strategy and Learning Experience</cell></row>
+                    <row><cell>Struggling Learners (Support)</cell><cell>Give a printed copy of <xref ref="fig-goats-ogive"/> with the grid, and a template showing one dashed reading line (across, then down). Assign <xref ref="ex-curve-seedlings-quartiles"/> and <xref ref="ex-curve-taller-than-27"/>.</cell></row>
+                    <row><cell>On-Level Learners (Core)</cell><cell>Full activity and all examples. Assign <xref ref="ex-curve-seedlings-quartiles"/>, <xref ref="ex-curve-rainfall-spread"/> and <xref ref="ex-curve-taller-than-27"/>.</cell></row>
+                    <row><cell>Advanced Learners (Challenge)</cell><cell>All exercises including <xref ref="ex-why-curve-equals-calculation"/>. Extension: read your curve from the activity at <m>45</m> minutes. How many learners took longer? (Answer: the cumulative frequency is about <m>34.2</m>, so about <m>6</m> learners.)</cell></row>
+                </tabular>
+            </table>
+        </axiom>
+
+
+        <xi:include href="../lesson-plan-templates/assessment-methods.ptx" />
+        <xi:include href="../lesson-plan-templates/reflection.ptx"/>
+    </subsection>
 </section>

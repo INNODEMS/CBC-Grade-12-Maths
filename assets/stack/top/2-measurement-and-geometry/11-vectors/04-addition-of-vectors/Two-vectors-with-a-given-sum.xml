@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<quiz>
+<question type="stack">
+  <name><text>Two vectors with a given sum</text></name>
+  <questiontext format="html">
+    <text><![CDATA[<p>\(\mathbf{c} = {@col(cv)@}\). Give two vectors \(\mathbf{p}\) and \(\mathbf{q}\) with \(\mathbf{p} + \mathbf{q} = \mathbf{c}\). Neither \(\mathbf{p}\) nor \(\mathbf{q}\) may be horizontal or vertical: each must have two non-zero components. (There are many correct answers.)</p><div>\(\mathbf{p} =\) [[input:ans1]] [[validation:ans1]] \(\quad \mathbf{q} =\) [[input:ans2]] [[validation:ans2]]</div><div>[[feedback:prt1]]</div>]]></text>
+  </questiontext>
+  <generalfeedback format="html">
+    <text><![CDATA[<p>Split each component of \(\mathbf{c}\) into two non-zero parts. For example, take \(\mathbf{q} = {@q1t@}\); then \(\mathbf{p} = \mathbf{c} - \mathbf{q} = {@p1t@}\). Check: \({@p1t@} + {@q1t@} = {@col(cv)@}\).</p><p>Drawn head to tail, \(\mathbf{p}\) then \(\mathbf{q}\) ends where \(\mathbf{c}\) ends.</p>]]></text>
+  </generalfeedback>
+  <defaultgrade>1</defaultgrade>
+  <penalty>0.1</penalty>
+  <hidden>0</hidden>
+  <idnumber></idnumber>
+  <stackversion><text>2026063000</text></stackversion>
+  <questionvariables>
+    <text><![CDATA[validate_numeric(ex) := block([sx], sx: ev(ex, simp), if listofvars(ex) = [] and freeof(%i, sx) then "" else "Type a number in each box, not a letter.");
+col(v) := matrix([v[1]],[v[2]]);
+/* Design: give two vectors with a given sum, graded by property: any p and q with p + q = c and no zero component scores. Source: original. */
+c1: rand_with_prohib(-8,8,[-1,0,1]); c2: rand_with_prohib(-8,8,[-1,0,1]);
+cv: [c1,c2];
+p1t: col([c1-1,c2-1]); q1t: matrix([1],[1]);
+p2t: col([c1+1,c2+1]);
+hv1: col([c1,0]); hv2: col([0,c2]);
+bad1: col([c1+2,c2]); badm: matrix([q],[1]);
+/* decimal test inputs (fairness) */
+dp: float(col([c1/4,c2/4])); dq: float(col([3*c1/4,3*c2/4])); fh1: float(hv1); fh2: float(hv2);
+]]></text>
+  </questionvariables>
+  <specificfeedback format="html"><text><![CDATA[]]></text></specificfeedback>
+  <questionnote format="moodle_auto_format">
+    <text>c={@cv@}</text>
+  </questionnote>
+  <questiondescription format="html"><text><![CDATA[<p id="concept">Vectors: two vectors with a given sum</p><p id="description">Grade 12 CBE Essential 2.2: Construct two vectors, neither horizontal nor vertical, whose sum is a given column vector.</p><p id="edition">Essential</p><p id="provenance">This question is original to this project.</p><p id="citation">INNODEMS CBC Grade 12 Mathematics, first draft by Ben Davies, 2026. Aligned to the KICD Senior School Curriculum Design, Essential Mathematics Grade 12 (draft).</p>]]></text></questiondescription>
+  <questionsimplify>1</questionsimplify>
+  <assumepositive>0</assumepositive>
+  <assumereal>0</assumereal>
+  <prtcorrect format="html"><text><![CDATA[[[commonstring key="symbolicprtcorrectfeedback"/]] [[commonstring key="defaultprtcorrectfeedback"/]]]]></text></prtcorrect>
+  <prtpartiallycorrect format="html"><text><![CDATA[[[commonstring key="symbolicprtpartiallycorrectfeedback"/]] [[commonstring key="defaultprtpartiallycorrectfeedback"/]]]]></text></prtpartiallycorrect>
+  <prtincorrect format="html"><text><![CDATA[[[commonstring key="symbolicprtincorrectfeedback"/]] [[commonstring key="defaultprtincorrectfeedback"/]]]]></text></prtincorrect>
+  <decimals>.</decimals>
+  <scientificnotation>*10</scientificnotation>
+  <multiplicationsign>none</multiplicationsign>
+  <sqrtsign>1</sqrtsign>
+  <complexno>i</complexno>
+  <inversetrig>cos-1</inversetrig>
+  <logicsymbol>lang</logicsymbol>
+  <matrixparens>(</matrixparens>
+  <isbroken>0</isbroken>
+  <variantsselectionseed></variantsselectionseed>
+
+  <input><name>ans1</name><type>matrix</type><tans>p1t</tans><boxsize>3</boxsize><strictsyntax>1</strictsyntax><insertstars>0</insertstars><syntaxhint></syntaxhint><syntaxattribute>0</syntaxattribute><forbidwords></forbidwords><allowwords></allowwords><forbidfloat>0</forbidfloat><requirelowestterms>0</requirelowestterms><checkanswertype>0</checkanswertype><mustverify>0</mustverify><showvalidation>3</showvalidation><options>validator:validate_numeric</options></input>
+  <input><name>ans2</name><type>matrix</type><tans>q1t</tans><boxsize>3</boxsize><strictsyntax>1</strictsyntax><insertstars>0</insertstars><syntaxhint></syntaxhint><syntaxattribute>0</syntaxattribute><forbidwords></forbidwords><allowwords></allowwords><forbidfloat>0</forbidfloat><requirelowestterms>0</requirelowestterms><checkanswertype>0</checkanswertype><mustverify>0</mustverify><showvalidation>3</showvalidation><options>validator:validate_numeric</options></input>
+
+  <prt><name>prt1</name><value>1.0000000</value><autosimplify>1</autosimplify><feedbackstyle>1</feedbackstyle><feedbackvariables><text><![CDATA[Pv: float([ans1[1,1], ans1[2,1]]); Qv: float([ans2[1,1], ans2[2,1]]);
+zz(v) := is(abs(v[1]) < 10^-9 and abs(v[2]) < 10^-9);
+sumok: zz(Pv+Qv-cv);
+nz: is(abs(Pv[1]) > 10^-9 and abs(Pv[2]) > 10^-9 and abs(Qv[1]) > 10^-9 and abs(Qv[2]) > 10^-9);
+subok: is(zz(Pv-Qv-cv) or zz(Qv-Pv-cv));
+sm: ev(ans1+ans2, simp);
+/* the example pair must not be the learner's own pair (1, 1) with c - (1, 1) */
+zown: zz(Pv-[1,1]) or zz(Qv-[1,1]);
+zq: if zown then matrix([-1],[-1]) else q1t; zp: if zown then col([c1+1,c2+1]) else p1t;
+]]></text></feedbackvariables>
+    <node><name>0</name><description>p + q = c, no zero component</description><answertest>AlgEquiv</answertest><sans>sumok and nz</sans><tans>true</tans><testoptions></testoptions><quiet>0</quiet><truescoremode>=</truescoremode><truescore>1.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt1-1-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>Your vectors work. There are many other pairs, for example \({@zp@}\) and \({@zq@}\).</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>1</falsenextnode><falseanswernote>prt1-1-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>1</name><description>Sum right, a zero component</description><answertest>AlgEquiv</answertest><sans>sumok</sans><tans>true</tans><testoptions></testoptions><quiet>1</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt1-2-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>Your vectors add up to \(\mathbf{c}\), but one of them has a zero component, so it is horizontal or vertical. Move a little of each component from one vector to the other.</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>2</falsenextnode><falseanswernote>prt1-2-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>2</name><description>Difference is c</description><answertest>AlgEquiv</answertest><sans>subok</sans><tans>true</tans><testoptions></testoptions><quiet>1</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt1-3-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>Your vectors differ by \(\mathbf{c}\): you subtracted. Their sum must be \(\mathbf{c}\).</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>-1</falsenextnode><falseanswernote>prt1-3-F</falseanswernote><falsefeedback format="html"><text><![CDATA[<p>Your vectors add up to \({@sm@}\), not \(\mathbf{c}\). Add the top numbers and the bottom numbers, then adjust.</p>]]></text></falsefeedback></node>
+  </prt>
+
+  <deployedseed>1</deployedseed>
+  <deployedseed>2</deployedseed>
+  <deployedseed>3</deployedseed>
+  <deployedseed>4</deployedseed>
+  <deployedseed>5</deployedseed>
+  <deployedseed>7</deployedseed>
+  <deployedseed>9</deployedseed>
+  <deployedseed>11</deployedseed>
+  <deployedseed>12</deployedseed>
+  <deployedseed>13</deployedseed>
+  <qtest><testcase>1</testcase><description>Correct</description>
+    <testinput><name>ans1</name><value>p1t</value></testinput>
+    <testinput><name>ans2</name><value>q1t</value></testinput>
+    <expected><name>prt1</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt1-1-T</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>2</testcase><description>Correct, order swapped</description>
+    <testinput><name>ans1</name><value>q1t</value></testinput>
+    <testinput><name>ans2</name><value>p1t</value></testinput>
+    <expected><name>prt1</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt1-1-T</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>3</testcase><description>Sum right, horizontal and vertical</description>
+    <testinput><name>ans1</name><value>hv1</value></testinput>
+    <testinput><name>ans2</name><value>hv2</value></testinput>
+    <expected><name>prt1</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt1-1-F | prt1-2-T</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>4</testcase><description>Difference is c</description>
+    <testinput><name>ans1</name><value>p2t</value></testinput>
+    <testinput><name>ans2</name><value>q1t</value></testinput>
+    <expected><name>prt1</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt1-1-F | prt1-2-F | prt1-3-T</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>5</testcase><description>Generic: sum off</description>
+    <testinput><name>ans1</name><value>bad1</value></testinput>
+    <testinput><name>ans2</name><value>q1t</value></testinput>
+    <expected><name>prt1</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt1-1-F | prt1-2-F | prt1-3-F</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>6</testcase><description>Correct with decimals</description>
+    <testinput><name>ans1</name><value>dp</value></testinput>
+    <testinput><name>ans2</name><value>dq</value></testinput>
+    <expected><name>prt1</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt1-1-T</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>7</testcase><description>Sum right, a component typed as 0.0</description>
+    <testinput><name>ans1</name><value>fh1</value></testinput>
+    <testinput><name>ans2</name><value>fh2</value></testinput>
+    <expected><name>prt1</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt1-1-F | prt1-2-T</expectedanswernote></expected>
+  </qtest>
+</question>
+</quiz>

@@ -1,0 +1,7 @@
+<stack-static>
+    <statement><p><p>Solve <m>{2\sin^2 x + 7\cos x - 5 = 0}</m> for <m>0^\circ \le x \le 360^\circ</m>.</p><p>(a) Let <m>c = \cos x</m>. Write the equation as a quadratic equation in <m>c</m>.</p><div><fillin characters="18" name="ans1"/>  </div><p>(b) Write the set of values of <m>c</m> that can be values of <m>\cos x</m>.</p><div><m>c \in</m> <fillin characters="20" name="ans2"/>  </div><p>(c) Write the set of solutions <m>x</m>. Give angles that are not whole numbers to 1 decimal place.</p><div><m>x \in</m> <fillin characters="20" name="ans3"/>  </div></p></statement>
+    <solution><p><p>Change every ratio into the same ratio: then it is a quadratic you already know how to solve.</p><p>(a) Replace <m>\sin^2 x</m> by <m>1 - \cos^2 x = 1 - c^2</m>:</p><p><me>{2}(1 - c^2){ + 7c}{ - 5} = 0 \quad\Rightarrow\quad {2 c^2-7 c+3} = 0.</me></p><p>(b) The roots are <m>c = {\frac{1}{2}}</m> and <m>c = {3}</m>. But <m>\cos x</m> can never be bigger than 1 or smaller than <m>-1</m>, so <m>\cos x = {3}</m> is impossible. So <m>c \in \{{\frac{1}{2}}\}</m>.</p><p>(c) <m>\cos x = {\frac{1}{2}}</m>: your calculator gives <m>\alpha = {60^\circ}</m>. Cosine has the same value at <m>360^\circ - \alpha</m>. So <m>x \in {\{60^\circ, 300^\circ\}}</m>.</p></p></solution>
+    <answer><p><m>2 c^2-7 c+3=0</m></p></answer>
+    <answer><p><m>\left \{\frac{1}{2} \right \}</m></p></answer>
+    <answer><p><m>\left \{60.0 , 300.0 \right \}</m></p></answer>
+</stack-static>

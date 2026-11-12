@@ -46,161 +46,344 @@
          Suggested activity: Learners open a book or a classroom door at different angles and identify the line of intersection, then calculate the angle between a slanting face of a pyramid and its base.
          Interactive (JSXGraph): Square-based pyramid with a slider for height; the line from the apex to the midpoint of a base edge and its projection are drawn, showing the angle between the slant face and the base. -->
 
-    <!-- [LP] Add guidance on activity -->
+    <!-- Section notes (2026-11)
+         SLOs: Core 2.4 (e); outcome (g), appreciating three-dimensional geometry, is placed here (closing paragraphs)
+         Activity: as planning notes (a book and the classroom door for the common line, then the slope of a pyramid face)
+         JSXGraph: fig-face-and-base (assets/jsxgraph/face-and-base.js), as planning notes; face VBC shaded by a 2D polygon over view.project3DTo2D points
+         STACK: assets/stack/top/2-measurement-and-geometry/09-three-dimensional-geometry/06-angle-between-two-planes/ -->
+
+    <p component="lesson-plan">Upon completion of this lesson, learners will be able to:
+        <ol>
+            <li><p><alert>Know:</alert> two planes meet along a common line; the angle between them is the angle between two lines, one in each plane, at right angles to the common line at the same point; for a face of a right pyramid and its base these lines are <m>VM</m> and <m>OM</m>, with <m>M</m> the midpoint of the base edge.</p></li>
+            <li><p><alert>Do:</alert> find the angle between a face and the base of square-based and rectangular-based pyramids, between a diagonal plane and a face of a cuboid, and between faces of a prism.</p></li>
+            <li><p><alert>Apply:</alert> a classroom door, a gazebo roof, a solar panel; appreciate where three-dimensional geometry is used.</p></li>
+        </ol>
+    </p>
 
     <axiom component="lesson-plan">
         <title>Problem-Solving and Discovery</title>
         <dl>
-            <li>
-                <title>Suggested Time</title>
-                <p>
-                    XXX minutes
-                </p>
-            </li>
-            <li>
-                <title>Objective</title>
-                <p>
-                    XXX
-                </p>
-            </li>
-            <li>
-                <title>Teacher's Role</title>
-                <p>
-                    XXX
-                </p>
-            </li>
+            <li><title>Suggested Time</title><p>14 minutes</p></li>
+            <li><title>Objective</title><p>Learners identify the common line of two planes, see that the angle between the planes must be measured at right angles to it, and calculate the slope of a pyramid face.</p></li>
+            <li><title>Teacher's Role</title><p>Groups of four; each learner leads one part and reports to the group. Use a textbook, the classroom door and the model pyramid of <xref ref="example-edges-of-a-pyramid"/> (or a drawing of it). After part (b), ask: <q>If you measured along a slanting line on the door, would you get the same angle?</q></p></li>
         </dl>
     </axiom>
 
-    <!-- Add Activity -->
-
-    <!-- <activity>
+    <activity xml:id="act-doors-books-and-a-pyramid">
+        <title>Doors, Books and a Pyramid</title>
         <statement>
+            <p>
+                <ol marker="(a)">
+                    <li>
+                        <p>Open a book and stand it on the desk. Name the common line of the two covers. Measure the angle between the covers along their bottom edges.</p>
+                        <solution component="lesson-plan"><p>The spine is the common line. The bottom edges of the covers are at right angles to the spine, so the angle between them is the angle between the covers.</p></solution>
+                    </li>
+                    <li>
+                        <p>Open the classroom door. Its hinge line is the common line of the door and the wall. The door is <m>0.9\,\text{m}</m> wide, and its outer edge is <m>0.6\,\text{m}</m> from the line of the wall, measured across the floor. Calculate the angle between the door and the wall.</p>
+                        <solution component="lesson-plan"><p>The bottom edge of the door (<m>0.9\,\text{m}</m>) and the line of the wall on the floor are both at right angles to the hinge. The <m>0.6\,\text{m}</m> distance is at right angles to the wall, so <m>\sin \theta = \dfrac{0.6}{0.9}</m> and <m>\theta \approx 41.8^{\circ}</m>. A slanting line on the door would not be at right angles to the hinge and would give a different angle.</p></solution>
+                    </li>
+                    <li>
+                        <p>On the model pyramid <m>VABCD</m> (square base of side <m>10\,\text{cm}</m>, height <m>VO = 12\,\text{cm}</m>), mark <m>M</m>, the midpoint of <m>BC</m>. Why are <m>VM</m> and <m>OM</m> both at right angles to <m>BC</m>?</p>
+                        <solution component="lesson-plan"><p>Triangle <m>VBC</m> is isosceles (<m>VB = VC</m>), so the line from <m>V</m> to the midpoint of <m>BC</m> is at right angles to <m>BC</m>. <m>OM</m> is parallel to <m>AB</m>, which is at right angles to <m>BC</m>.</p></solution>
+                    </li>
+                    <li>
+                        <p>Calculate angle <m>VMO</m>.</p>
+                        <solution component="lesson-plan"><p><m>OM = 5\,\text{cm}</m>, so <m>\tan VMO = \dfrac{12}{5}</m> and angle <m>VMO \approx 67.4^{\circ}</m>.</p></solution>
+                    </li>
+                    <li>
+                        <p>Compare angle <m>VMO</m> with angle <m>VCO</m>, the angle between the edge <m>VC</m> and the base. Which is the slope of the face <m>VBC</m>?</p>
+                        <solution component="lesson-plan"><p>Angle <m>VCO \approx 59.5^{\circ}</m> (<m>\tan VCO = \frac{12}{\sqrt{50}}</m>), smaller than <m>67.4^{\circ}</m>. The slope of the face is angle <m>VMO</m>, because <m>VM</m> and <m>OM</m> are at right angles to the common line <m>BC</m>; <m>VC</m> and <m>OC</m> are not.</p></solution>
+                    </li>
+                </ol>
+            </p>
         </statement>
-    </activity> -->
+    </activity>
 
-    <!-- [LP] Add guidance on structured lesson plan-->
-
-    <!-- <axiom component="lesson-plan">
+    <axiom component="lesson-plan">
         <title>Structured Instruction</title>
         <p>
             <dl>
-            <li>
-                <title>Suggested Time</title>
-                <p>
-                    XX minutes
-                </p>
-            </li>
-            <li>
-                <title>Objective</title>
-                <p>
-                    To formalize the concepts and properties learners discovered in the anchor task.
-                </p>
-            </li>
+                <li><title>Suggested Time</title><p>8 minutes</p></li>
+                <li><title>Objective</title><p>To formalise the angle between two planes and the line of greatest slope.</p></li>
             </dl>
         </p>
         <paragraphs>
             <title>Key Takeaways &amp; Teacher Connection</title>
             <ol>
-                <li>
-                    <p>
-                        <alert>Connecting to Learner Work:</alert> XXXX
-                    </p>
-                </li>
+                <li><p><alert>Connecting to Learner Work:</alert> the spine of the book, the hinge of the door and the edge <m>BC</m> of the pyramid are common lines.</p></li>
+                <li><p>Find the common line; stand at one point of it; draw a line at right angles to it in each plane; use the triangle.</p></li>
+                <li><p>For the face of a pyramid, never use a corner of the face: use the midpoint of the base edge.</p></li>
             </ol>
         </paragraphs>
-    </axiom> -->
+    </axiom>
 
-    <!-- Add insight / key takeaway directly related to activity / learner experience -->
+    <insight xml:id="insight-angle-between-two-planes">
+        <title>Angle Between Two Planes</title>
+        <p>Two planes that are not parallel meet along a straight line, their <term>line of intersection</term> (or common line). To find the angle between the planes, choose a point on the common line and draw a line in each plane at right angles to the common line at that point. The angle between these two lines is the angle between the planes, from <m>0^{\circ}</m> to <m>90^{\circ}</m>. <em>Stand on the common line and look along it: the angle you see is the angle between the planes.</em></p>
+        <p>For a face <m>VBC</m> of a right pyramid and its base, the common line is <m>BC</m>. With <m>M</m> the midpoint of <m>BC</m>, both <m>VM</m> and <m>OM</m> are at right angles to <m>BC</m>, so the angle between the face and the base is angle <m>VMO</m>, and <m>\tan VMO = \dfrac{VO}{OM}</m>.</p>
+        <p>A <term>line of greatest slope</term> of a sloping plane is a line in it at right angles to its horizontal common line with the ground. Its angle with the horizontal is the angle between the plane and the ground: <m>VM</m> is a line of greatest slope of the face <m>VBC</m>.</p>
+    </insight>
 
-    <!-- <insight>
-    </insight> -->
+    <figure xml:id="fig-two-planes">
+        <caption>Two planes meeting along a common line. At the point <m>P</m>, one line in each plane is drawn at right angles to the common line; the angle <m>\theta</m> between them is the angle between the planes.</caption>
+        <image width="55%">
+            <shortdescription>Two shaded planes meet along a thick common line. At a point P on the common line, a thick line in each plane is drawn at right angles to the common line, with right-angle marks. The angle theta between the two thick lines is marked.</shortdescription>
+            <latex-image>
+\tdplotsetmaincoords{70}{120}
+\begin{tikzpicture}[tdplot_main_coords,scale=1.3]
+\filldraw[fill=gray!15] (0,0,0) -- (3.2,0,0) -- (3.2,4,0) -- (0,4,0) -- cycle;
+\filldraw[fill=gray!30,fill opacity=0.7] (0,0,0) -- (1.835,0,2.621) -- (1.835,4,2.621) -- (0,4,0) -- cycle;
+\draw[very thick] (0,-0.6,0) -- (0,4.6,0) node[anchor=west]{common line};
+\draw[very thick] (0,2,0) -- (2.4,2,0);
+\draw[very thick] (0,2,0) -- (1.377,2,1.966);
+\draw (0.25,2,0) -- (0.25,2.25,0) -- (0,2.25,0);
+\draw (0.143,2,0.205) -- (0.143,2.25,0.205) -- (0,2.25,0);
+\draw (0.9,2,0) .. controls (0.998,2,0.519) .. (0.516,2,0.737);
+\node at (1.277,2,0.665) {$\theta$};
+\node[anchor=north west] at (0,2,0) {$P$};
+\end{tikzpicture}
+            </latex-image>
+        </image>
+    </figure>
 
-    <!-- Add further instruction (not in a block) to develop ideas as needed -->
+    <warning xml:id="warning-midpoint-not-corner">
+        <title>The Midpoint, Not the Corner</title>
+        <p>For the angle between a face <m>VBC</m> of a right pyramid and its base, use the midpoint <m>M</m> of the base edge: angle <m>VMO</m>. Angle <m>VCO</m>, at the corner <m>C</m>, is the angle between the edge <m>VC</m> and the base, which is smaller.</p>
+    </warning>
+
+    <figure xml:id="fig-face-and-base">
+        <caption>Drag the h slider. Angle <m>VMO</m>, between <m>VM</m> and <m>OM</m>, is the angle between the face <m>VBC</m> and the base. Compare it with the angle <m>VCO</m> that the edge <m>VC</m> makes with the base.</caption>
+        <interactive xml:id="interactive-face-and-base" platform="jsxgraph" width="90%" aspect="16:12" source="jsxgraph/face-and-base.js">
+            <slate xml:id="jsxgraph-face-and-base" surface="jsxboard" aspect="16:12"/>
+            <instructions>
+                <p>
+                    <ul>
+                        <li><p>Drag the <alert>h</alert> slider. Is angle <m>VMO</m> always bigger than angle <m>VCO</m>?</p></li>
+                        <li><p>The base has side <m>6</m>, so <m>OM = 3</m>. Find the height that makes the face slope at <m>45^{\circ}</m>, then check it with the <alert>h</alert> slider.</p></li>
+                        <li><p>Drag the view sliders to look along <m>BC</m>: the angle you see between the face and the base is angle <m>VMO</m>.</p></li>
+                    </ul>
+                </p>
+            </instructions>
+        </interactive>
+    </figure>
+
+    <note xml:id="note-three-dimensional-geometry-online">
+        <title>Three-Dimensional Geometry Online</title>
+        <p>Free 3D graphing tools on the internet can draw a cuboid or a pyramid and let you turn it to see lines and planes from every side. Use a well-known site that your teacher suggests. You should not need an account: never give your name, phone number, school or other personal details to use such a tool, and ask your teacher before installing anything on a phone or computer.</p>
+    </note>
 
     <xi:include href="../lesson-plan-templates/example-intro.ptx" />
 
-    <!-- Add at least 3 examples -->
-
-    <!-- <example>
+    <example xml:id="example-slope-of-a-gazebo-roof">
+        <title>The Slope of a Gazebo Roof</title>
         <statement>
+            <p>The roof of a gazebo at a hotel in Naivasha is a right pyramid <m>VABCD</m> on a square base of side <m>4.8\,\text{m}</m>, with height <m>VO = 1.6\,\text{m}</m>. Find (a) the angle between the face <m>VBC</m> and the base; (b) the angle between the edge <m>VC</m> and the base.</p>
+            <figure xml:id="fig-face-and-base-angle">
+                <caption>The slope of the face, angle <m>VMO</m>, and the slope of the edge, angle <m>VCO</m> (dashed).</caption>
+                <image width="60%">
+                    <shortdescription>The gazebo roof as a right pyramid VABCD on a square base of side 4.8 m, with height VO 1.6 m dotted. M is the midpoint of BC. VM and OM are thick, with a right angle at O and a right angle between OM and BC at M; angle VMO is marked. OC is dashed and angle VCO is marked with a dashed arc.</shortdescription>
+                    <latex-image>
+\tdplotsetmaincoords{70}{120}
+\begin{tikzpicture}[tdplot_main_coords,scale=1.1]
+\draw (4.8,0,0) -- (4.8,4.8,0);
+\draw (4.8,4.8,0) -- (0,4.8,0);
+\draw (2.4,2.4,1.6) -- (4.8,0,0);
+\draw (2.4,2.4,1.6) -- (4.8,4.8,0);
+\draw (2.4,2.4,1.6) -- (0,4.8,0);
+\draw[dashed] (4.8,0,0) -- (0,0,0);
+\draw[dashed] (0,0,0) -- (0,4.8,0);
+\draw[dashed] (2.4,2.4,1.6) -- (0,0,0);
+\draw[dotted] (2.4,2.4,1.6) -- (2.4,2.4,0);
+\draw[very thick] (2.4,2.4,1.6) -- (2.4,4.8,0);
+\draw[very thick] (2.4,2.4,0) -- (2.4,4.8,0);
+\draw[dashed] (2.4,2.4,0) -- (0,4.8,0);
+\draw (2.4,2.6,0) -- (2.4,2.6,0.2) -- (2.4,2.4,0.2);
+\draw (2.2,4.8,0) -- (2.2,4.6,0) -- (2.4,4.6,0);
+\draw (2.4,4.25,0) .. controls (2.4,4.142,0.199) .. (2.4,4.342,0.305);
+\draw[dashed] (0.495,4.305,0) .. controls (0.604,4.196,0.191) .. (0.448,4.352,0.298);
+\node[anchor=north east] at (4.8,0,0) {$A$};
+\node[anchor=north west] at (4.8,4.8,0) {$B$};
+\node[anchor=west] at (0,4.8,0) {$C$};
+\node[anchor=south east] at (0,0,0) {$D$};
+\node[anchor=south] at (2.4,2.4,1.6) {$V$};
+\node[anchor=north] at (2.4,2.4,0) {$O$};
+\node[anchor=west] at (2.4,4.8,0) {$M$};
+\node[anchor=north] at (4.8,2.4,0) {$4.8$};
+\node[anchor=east] at (2.4,2.4,0.8) {$1.6$};
+\end{tikzpicture}
+                    </latex-image>
+                </image>
+            </figure>
         </statement>
         <solution>
+            <p>(a) The face <m>VBC</m> and the base meet along <m>BC</m>. With <m>M</m> the midpoint of <m>BC</m>, <m>VM</m> and <m>OM</m> are both at right angles to <m>BC</m>. <m>OM = 2.4\,\text{m}</m>, half the side. In triangle <m>VOM</m>, with the right angle at <m>O</m>:
+            <md>\tan VMO = \frac{1.6}{2.4}</md>
+            so the face slopes at about <m>33.7^{\circ}</m>.</p>
+            <p>(b) <m>OC</m> is half the diagonal: <m>OC = 2.4\sqrt{2} \approx 3.39\,\text{m}</m>. <m>\tan VCO = \frac{1.6}{2.4\sqrt{2}}</m>, so the edge makes about <m>25.2^{\circ}</m> with the base. The edge is less steep than the face.</p>
         </solution>
     </example>
 
-    <example>
+    <example xml:id="example-rectangular-based-pyramid">
+        <title>A Rectangular-Based Pyramid</title>
         <statement>
+            <p>A model is a right pyramid <m>VABCD</m> on a rectangular base with <m>AB = 16\,\text{cm}</m> and <m>BC = 10\,\text{cm}</m>. Its height <m>VO</m> is <m>7\,\text{cm}</m>. <m>N</m> is the midpoint of <m>AB</m> and <m>M</m> the midpoint of <m>BC</m>. Find the angle between the base and (a) the face <m>VAB</m>; (b) the face <m>VBC</m>.</p>
         </statement>
         <solution>
+            <p>(a) Face <m>VAB</m> meets the base along <m>AB</m>; the lines at right angles to <m>AB</m> at <m>N</m> are <m>VN</m> and <m>ON</m>. <m>ON</m> is parallel to <m>BC</m>, so <m>ON = \frac{10}{2} = 5\,\text{cm}</m>. <m>\tan VNO = \frac{7}{5}</m>, so the angle is about <m>54.5^{\circ}</m>.</p>
+            <p>(b) Face <m>VBC</m> meets the base along <m>BC</m>. <m>OM</m> is parallel to <m>AB</m>, so <m>OM = \frac{16}{2} = 8\,\text{cm}</m>. <m>\tan VMO = \frac{7}{8}</m>, so the angle is about <m>41.2^{\circ}</m>.</p>
+            <p>Opposite faces slope at equal angles; neighbouring faces of a rectangular-based pyramid do not. The face on the longer side is the steeper one.</p>
         </solution>
     </example>
 
-    <example>
+    <example xml:id="example-plane-through-a-cuboid">
+        <title>A Plane Through a Cuboid</title>
         <statement>
+            <p>A packing crate is a cuboid <m>ABCDEFGH</m> with <m>AB = 16\,\text{cm}</m>, <m>BC = 10\,\text{cm}</m> and <m>AE = 12\,\text{cm}</m>. A sheet of card is fitted along the plane <m>ABGH</m>. Find the angle between (a) the plane <m>ABGH</m> and the base <m>ABCD</m>; (b) the plane <m>ACGE</m> and the base.</p>
+            <figure xml:id="fig-plane-through-a-cuboid">
+                <caption>The plane <m>ABGH</m> (shaded) meets the base along <m>AB</m>; <m>BC</m> and <m>BG</m> are at right angles to <m>AB</m>.</caption>
+                <image width="55%">
+                    <shortdescription>A cuboid ABCDEFGH, 16 by 10 by 12 cm, with the plane ABGH lightly shaded. AB is the common line of the plane and the base. BC in the base and BG in the plane are drawn thick, each with a right-angle mark at B against AB, and angle CBG is marked. The hidden corner D and its three edges are dashed.</shortdescription>
+                    <latex-image>
+\tdplotsetmaincoords{70}{120}
+\begin{tikzpicture}[tdplot_main_coords,scale=0.25]
+\fill[gray!20] (10,0,0) -- (10,16,0) -- (0,16,12) -- (0,0,12) -- cycle;
+\draw (10,0,0) -- (10,16,0);
+\draw (10,16,0) -- (0,16,0);
+\draw (10,0,12) -- (10,16,12);
+\draw (10,16,12) -- (0,16,12);
+\draw (0,16,12) -- (0,0,12);
+\draw (0,0,12) -- (10,0,12);
+\draw (10,0,0) -- (10,0,12);
+\draw (10,16,0) -- (10,16,12);
+\draw (0,16,0) -- (0,16,12);
+\draw[dashed] (10,0,0) -- (0,0,0);
+\draw[dashed] (0,0,0) -- (0,16,0);
+\draw[dashed] (0,0,0) -- (0,0,12);
+\node[anchor=north east] at (10,0,0) {$A$};
+\node[anchor=north west] at (10,16,0) {$B$};
+\node[anchor=west] at (0,16,0) {$C$};
+\node[anchor=south east] at (0,0,0) {$D$};
+\node[anchor=east] at (10,0,12) {$E$};
+\node[anchor=north west] at (10,16,12) {$F$};
+\node[anchor=south west] at (0,16,12) {$G$};
+\node[anchor=south east] at (0,0,12) {$H$};
+\draw[thick] (10,0,0) -- (0,0,12);
+\draw[very thick] (10,16,0) -- (0,16,12);
+\draw[very thick] (10,16,0) -- (0,16,0);
+\draw[very thick] (10,0,0) -- (10,16,0);
+\draw (10,14.8,0) -- (8.8,14.8,0) -- (8.8,16,0);
+\draw (10,14.8,0) -- (9.232,14.8,0.922) -- (9.232,16,0.922);
+\draw (6.8,16,0) .. controls (6.378,16,1.697) .. (7.951,16,2.458);
+\node[anchor=north] at (10,8,0) {$16$};
+\node[anchor=north west] at (5,16,0) {$10$};
+\node[anchor=east] at (10,0,6) {$12$};
+\end{tikzpicture}
+                    </latex-image>
+                </image>
+            </figure>
         </statement>
         <solution>
+            <p>(a) The plane <m>ABGH</m> and the base meet along <m>AB</m>. At <m>B</m>, the edge <m>BC</m> lies in the base and is at right angles to <m>AB</m>; the line <m>BG</m> lies in the plane and is also at right angles to <m>AB</m> (it lies in the face <m>BCGF</m>, and <m>AB</m> is at right angles to that face). So the angle is angle <m>CBG</m>. In triangle <m>BCG</m>, with the right angle at <m>C</m>:
+            <md>\tan CBG = \frac{12}{10}</md>
+            so the angle is about <m>50.2^{\circ}</m>.</p>
+            <p>(b) The plane <m>ACGE</m> contains the vertical edges <m>AE</m> and <m>CG</m>, so it stands upright: the angle between it and the base is <m>90^{\circ}</m>.</p>
         </solution>
-    </example> -->
+    </example>
+
+    <paragraphs xml:id="paragraphs-three-dimensional-geometry-around-us">
+        <title>Three-Dimensional Geometry Around Us</title>
+        <p>At the start of this chapter we asked: <em>where do we use the lengths and angles of solid shapes in everyday life?</em> You can now find any length or angle in a solid by finding the right triangle and flattening it.</p>
+        <p>
+            <ul>
+                <li><p>A fundi building a roof needs the length of each rafter and the slope of each face. County building plans state the roof pitch, which is the angle between a roof face and the horizontal.</p></li>
+                <li><p>Solar panels near the equator are tilted only a little, about <m>10^{\circ}</m> to <m>15^{\circ}</m>, so that they face the sun well and rain still washes off the dust.</p></li>
+                <li><p>Ramps for wheelchair users must not be too steep: the guideline is about the steepest line on the ramp, as in <xref ref="example-ramp"/>.</p></li>
+                <li><p>Tents and greenhouses are prisms; the tent maker needs the slope of the sides and the length of each guy rope.</p></li>
+                <li><p>Surveyors and drone pilots measure angles of elevation to a line in space, and 3D design and printing programs work out the lengths and angles of every edge of a model.</p></li>
+            </ul>
+        </p>
+    </paragraphs>
+
+    <axiom component="lesson-plan">
+        <title>Curriculum Links</title>
+        <dl>
+            <li><title>Key Inquiry Question</title><p>Where do we use the lengths and angles of solid shapes in everyday life? (Revisited in <xref ref="paragraphs-three-dimensional-geometry-around-us" text="title"/>.)</p></li>
+            <li><title>Core Competencies</title><p>Learning to learn, through the routine <q>find the triangle, then flatten it</q> used in every lesson of the chapter; self-efficacy, through the graded exercises and the model-building activities.</p></li>
+            <li><title>Values</title><p>Integrity, through honest measuring: in <xref ref="act-pyramid-from-manila-paper"/> and in this lesson's activity, learners report measured and calculated values side by side and keep any difference rather than adjusting it.</p></li>
+            <li><title>Pertinent and Contemporary Issues</title><p>Online safety, in <xref ref="note-three-dimensional-geometry-online"/>: well-known free tools, no account or personal details, and the teacher's permission before installing anything.</p></li>
+            <li><title>Learning Outcome</title><p>This lesson carries the outcome on appreciating the use of three-dimensional geometry in real life.</p></li>
+        </dl>
+    </axiom>
 
     <xi:include href="../lesson-plan-templates/assessment-intro.ptx" />
+    <xi:include href="../lesson-plan-templates/checkpoint.ptx" />
 
-    <!-- If STACK questions are included, uncomment this: -->
+    <p>Choose from each list. Type angles in degrees as numbers, without the degree sign, for example <c>36.9</c>, correct to 1 decimal place.</p>
 
-    <!-- <xi:include href="../lesson-plan-templates/checkpoint.ptx" /> -->
+    <exercise xml:id="ex-angle-between-a-face-and-the-base-of-a-pyramid">
+        <!--<title></title>-->
+        <stack label="stk-angle-between-a-face-and-the-base-of-a-pyramid" source="stack/top/2-measurement-and-geometry/09-three-dimensional-geometry/06-angle-between-two-planes/Angle-between-a-face-and-the-base-of-a-pyramid.xml"/>
+    </exercise>
 
-    <!-- Add STACK exercises if made -->
+    <exercise xml:id="ex-angle-between-a-diagonal-plane-and-a-face">
+        <!--<title></title>-->
+        <stack label="stk-angle-between-a-diagonal-plane-and-a-face" source="stack/top/2-measurement-and-geometry/09-three-dimensional-geometry/06-angle-between-two-planes/Angle-between-a-diagonal-plane-and-a-face.xml"/>
+    </exercise>
 
-    <!-- Add static exercises -->
+    <exercise xml:id="ex-finding-the-mistake-in-a-roof-angle">
+        <!--<title></title>-->
+        <stack label="stk-finding-the-mistake-in-a-roof-angle" source="stack/top/2-measurement-and-geometry/09-three-dimensional-geometry/06-angle-between-two-planes/Finding-the-mistake-in-a-roof-angle.xml"/>
+    </exercise>
 
-    <!-- <exercises>
-        <exercise>
-            <statement>   
+    <exercises xml:id="exercises-angle-between-two-planes">
+        <exercise xml:id="ex-square-pyramid-face">
+            <statement><p>A right pyramid has a square base of side <m>14\,\text{cm}</m> and height <m>9\,\text{cm}</m>. Find the angle between a face and the base.</p></statement>
+            <answer><p><m>52.1^{\circ}</m></p></answer>
+            <solution><p><m>OM = 7\,\text{cm}</m>, so <m>\tan VMO = \dfrac{9}{7}</m> and the angle is about <m>52.1^{\circ}</m>.</p></solution>
+        </exercise>
+        <exercise xml:id="ex-rectangular-pyramid-faces">
+            <statement><p>A right pyramid <m>VABCD</m> has a rectangular base with <m>AB = 18\,\text{cm}</m> and <m>BC = 12\,\text{cm}</m>, and each sloping edge is <m>15\,\text{cm}</m> long. Find the height, and the angle that each face makes with the base.</p></statement>
+            <answer><p>Height <m>\sqrt{108} \approx 10.39\,\text{cm}</m>; the faces on the <m>18\,\text{cm}</m> sides make <m>60.0^{\circ}</m>, the faces on the <m>12\,\text{cm}</m> sides <m>49.1^{\circ}</m>.</p></answer>
+            <solution><p><m>AC^2 = 324 + 144 = 468</m>, so <m>OA^2 = 117</m> and <m>VO^2 = 225 - 117 = 108</m>: the height is <m>\sqrt{108} \approx 10.39\,\text{cm}</m>. Face <m>VAB</m> (on an <m>18\,\text{cm}</m> side): <m>ON = 6</m>, <m>\tan VNO = \dfrac{\sqrt{108}}{6}</m>, so the angle is <m>60.0^{\circ}</m>. Face <m>VBC</m> (on a <m>12\,\text{cm}</m> side): <m>OM = 9</m>, <m>\tan VMO = \dfrac{\sqrt{108}}{9}</m>, so the angle is about <m>49.1^{\circ}</m>.</p></solution>
+        </exercise>
+        <exercise xml:id="ex-planes-in-a-grain-store">
+            <statement><p>The grain store of <xref ref="ex-grain-store-wires"/> is a cuboid <m>ABCDEFGH</m> with <m>AB = 15\,\text{m}</m>, <m>BC = 9\,\text{m}</m> and <m>AE = 5\,\text{m}</m>. Find the angle between the base and (a) the plane <m>CDEF</m>; (b) the plane <m>BCHE</m>.</p></statement>
+            <answer><p>(a) <m>29.1^{\circ}</m> (b) <m>18.4^{\circ}</m></p></answer>
+            <solution><p>(a) The common line is <m>CD</m>. At <m>C</m>, <m>CB</m> (in the base) and <m>CF</m> (in the plane) are at right angles to <m>CD</m>, so the angle is angle <m>BCF</m>: <m>\tan BCF = \dfrac{5}{9}</m>, about <m>29.1^{\circ}</m>.</p>
+            <p>(b) The common line is <m>BC</m>. At <m>B</m>, <m>BA</m> and <m>BE</m> are at right angles to <m>BC</m>, so the angle is angle <m>ABE</m>: <m>\tan ABE = \dfrac{5}{15}</m>, about <m>18.4^{\circ}</m>.</p></solution>
+        </exercise>
+        <exercise xml:id="ex-tent-planes">
+            <statement><p>For the tent in <xref ref="fig-tent-prism"/> (<m>AB = 2.4\,\text{m}</m>, <m>CA = CB = 1.5\,\text{m}</m>, <m>AD = 3\,\text{m}</m>), find the angle between (a) a sloping side <m>ACFD</m> and the ground; (b) the two sloping sides.</p></statement>
+            <answer><p>(a) <m>36.9^{\circ}</m> (b) <m>73.7^{\circ}</m></p></answer>
+            <solution><p>(a) The common line is <m>AD</m>. In the front end, <m>AC</m> and <m>AN</m> are at right angles to <m>AD</m>, so the angle is angle <m>CAN</m>: <m>\cos CAN = \dfrac{1.2}{1.5}</m>, about <m>36.9^{\circ}</m>.</p>
+            <p>(b) The common line is the ridge <m>CF</m>. <m>CA</m> and <m>CB</m> are at right angles to it, so the angle comes from angle <m>ACB \approx 106.3^{\circ}</m> (<xref ref="example-ridge-of-a-tent"/>). The angle between two planes is not obtuse, so it is <m>180^{\circ} - 106.3^{\circ} = 73.7^{\circ}</m>.</p></solution>
+        </exercise>
+        <exercise xml:id="ex-solar-panel">
+            <statement><p>A solar panel <m>1.6\,\text{m}</m> by <m>1.0\,\text{m}</m> on a flat roof in Garissa is hinged along its long lower edge and tilted at <m>12^{\circ}</m> to the roof. How high above the roof is its top edge?</p></statement>
+            <answer><p>About <m>0.21\,\text{m}</m></p></answer>
+            <solution><p>The hinge is the common line. The short side, <m>1.0\,\text{m}</m>, is at right angles to the hinge, so it makes <m>12^{\circ}</m> with the roof. The height is <m>1.0 \times \sin 12^{\circ} \approx 0.21\,\text{m}</m>.</p></solution>
+        </exercise>
+        <exercise xml:id="ex-plane-through-a-cube">
+            <title>Challenge: A Corner Cut From a Cube</title>
+            <statement><p>A cube <m>ABCDEFGH</m> has edges of <m>6\,\text{cm}</m>. Find the angle between the plane <m>BDG</m> and the base <m>ABCD</m>.</p></statement>
+            <hint><p>The common line is <m>BD</m>. The line from <m>C</m> at right angles to <m>BD</m> meets it at the centre <m>X</m> of the base.</p></hint>
+            <answer><p><m>54.7^{\circ}</m></p></answer>
+            <solution><p>At <m>X</m>, <m>XC</m> lies in the base and is at right angles to <m>BD</m> (the diagonals of a square cross at right angles). Triangle <m>BGD</m> is equilateral, so <m>XG</m>, from <m>G</m> to the midpoint of <m>BD</m>, is also at right angles to <m>BD</m>. The angle is angle <m>GXC</m>, with the right angle at <m>C</m>. <m>XC = \frac{1}{2}\sqrt{72} = 3\sqrt{2}</m>, so <m>\tan GXC = \dfrac{6}{3\sqrt{2}}</m> and the angle is about <m>54.7^{\circ}</m>.</p></solution>
+        </exercise>
+    </exercises>
 
-            </statement>   
-            <solution>
-
-            </solution>             
-        </exercise>        
-    </exercises> -->
-
-    <!-- [LP] Add information on how to differentiate  -->
-
-    <!-- <axiom component="lesson-plan">
+    <axiom component="lesson-plan">
         <title>Differentiation</title>
-
-        <table>
-            <title>Differentiation</title>
-            <tabular halign="left">
-                <row header="yes" bottom="minor">
-                    <cell>Learner Group</cell>
-                    <cell>Strategy &amp; Learning Experience</cell>
-                    <cell></cell>
-                </row>
-                <row>
-                    <cell>Struggling Learners (Support)</cell>
-                    <cell>
-                        XXXX
-                    </cell>
-                    <cell></cell>
-                </row>
-                <row>
-                    <cell>On-Level Learners (Core)</cell>
-                    <cell>
-                        <line>The core lesson activities as described above.</line>
-                    </cell>
-                    <cell></cell>
-                </row>
-                <row>
-                    <cell>Advanced Learners (Challenge)</cell>
-                    <cell>
-                        XXXX
-                    </cell>
-                    <cell></cell>
-                </row>
+        <table xml:id="table-differentiation-angle-between-two-planes">
+            <title>Differentiation Strategies</title>
+            <tabular halign="left" top="minor" bottom="minor" left="minor" right="minor">
+                <row header="yes" bottom="medium"><cell>Learner Group</cell><cell>Strategy and Learning Experience</cell></row>
+                <row><cell>Struggling Learners (Support)</cell><cell>Give a common-line card: <q>find the hinge, stand on it, look along it</q>. Work through activity parts (c) and (d) and <xref ref="example-slope-of-a-gazebo-roof"/>. Assign <xref ref="ex-square-pyramid-face"/> and <xref ref="ex-solar-panel"/>.</cell></row>
+                <row><cell>On-Level Learners (Core)</cell><cell>Full activity plus all examples. Assign <xref ref="ex-square-pyramid-face"/> to <xref ref="ex-solar-panel"/>.</cell></row>
+                <row><cell>Advanced Learners (Challenge)</cell><cell>All exercises including <xref ref="ex-plane-through-a-cube"/>. Extension: what height would make each face of the gazebo roof in <xref ref="example-slope-of-a-gazebo-roof"/> slope at <m>45^{\circ}</m>? (Answer: <m>2.4\,\text{m}</m>, equal to <m>OM</m>.)</cell></row>
             </tabular>
         </table>
-    </axiom> -->
+    </axiom>
 
     <xi:include href="../lesson-plan-templates/assessment-methods.ptx" />
 

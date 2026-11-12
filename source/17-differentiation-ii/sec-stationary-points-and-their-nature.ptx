@@ -19,7 +19,7 @@
                     </p>
                 </li>
                 <li>
-                    <title>Specific Learning Outcomes</title> 
+                    <title>Specific Learning Outcomes</title>
                     <p>
                         Determine stationary points and their nature from equations of curves
                     </p>
@@ -33,7 +33,7 @@
                 <li component="lesson-plan">
                     <title>Estimated Duration</title>
                     <p>
-                        40 minutes
+                        3 lessons of 40 minutes
                     </p>
                 </li>
             </dl>
@@ -46,163 +46,727 @@
          Suggested activity: Learners differentiate given cubic functions, find stationary points and check their nature by sketching or using the second derivative.
          Interactive (JSXGraph): Graph of a cubic with sliders for coefficients; stationary points are marked and labelled as maximum, minimum or point of inflection. -->
 
-    <!-- [LP] Add guidance on activity -->
+    <!-- Section notes (2026-11)
+         SLOs: Core 4.1 (a). Lessons 1.1 to 1.3 as subsections.
+         Activity: as planning notes (differentiate cubics, find stationary points, check by sketch and second derivative), spread over 1.1 and 1.3
+         JSXGraph: interactive-stationary-points-cubic (assets/jsxgraph/stationary-points-cubic.js, lesson 1.2), as planning notes
+         STACK: assets/stack/top/4-calculus/17-differentiation-ii/01-stationary-points-and-their-nature/ -->
 
-    <!-- <axiom component="lesson-plan">
+    <introduction>
+        <question xml:id="kiq-differentiation-ii">
+            <p><em>How can differentiation help us find the best possible value of a quantity, and describe how things move?</em></p>
+        </question>
+        <p>
+            In Grade 11 you learnt to differentiate: for <m>y = x^n</m>, <m>\dfrac{dy}{dx} = nx^{n-1}</m>, and the derivative of a sum is the sum of the derivatives. You used <m>\dfrac{dy}{dx}</m> to find the gradient of a curve at a point, the equations of tangents and normals, and the velocity <m>v = \dfrac{ds}{dt}</m> of a moving object. In this chapter you use the derivative to find where a curve turns, to sketch curves, to find the best value of a quantity, and to describe motion more fully.
+        </p>
+        <p>
+            Questions like these come up every day in Kenya. A fundi cutting a metal sheet into a water tank wants to use as little metal as possible. A juice seller in Mombasa wants the price that brings in the most profit. A drone flying over a tea estate in Kericho turns back and forth along a row, and its operator needs to know how far it has really flown. Each of these questions is answered by finding where a derivative is zero.
+        </p>
+    </introduction>
+
+    <!-- ============================================================ Lesson 1.1 -->
+    <subsection xml:id="subsec-increasing-decreasing-and-stationary-points">
+        <title>Increasing and Decreasing Functions and Stationary Points</title>
+
+        <p component="lesson-plan">Upon completion of this lesson, learners will be able to:
+            <ol>
+                <li><p><alert>Know:</alert> the sign of <m>\dfrac{dy}{dx}</m> tells whether a curve is rising or falling; a stationary point is where <m>\dfrac{dy}{dx} = 0</m>.</p></li>
+                <li><p><alert>Do:</alert> find the coordinates of the stationary points of quadratics and cubics, and the interval where a function increases or decreases.</p></li>
+                <li><p><alert>Apply:</alert> interpret the rising and falling parts of a model.</p></li>
+            </ol>
+        </p>
+
+        <axiom component="lesson-plan">
             <title>Problem-Solving and Discovery</title>
             <dl>
-                <li>
-                    <title>Suggested Time</title>
-                    <p>
-                        XX minutes
-                    </p>
-                </li>
-                <li>
-                    <title>Objective</title>
-                    <p>
-                        XXX
-                    </p>
-                </li>
-                <li>
-                    <title>Teacher's Role</title>
-                    <p>
-                        XXX
-                    </p>
-                </li>
+                <li><title>Suggested Time</title><p>14 minutes</p></li>
+                <li><title>Objective</title><p>Learners differentiate a cubic, plot it from a table and see that the top of a rise and the bottom of a dip are where the gradient is <m>0</m>.</p></li>
+                <li><title>Teacher's Role</title><p>Give out graph paper. Groups of three share the table work. Do not say <q>stationary</q> until part (d). Ask: <q>Where would a walker feel the path is flat?</q> Before the class answer, let each group hear another group's sketch and say one thing it agrees with.</p></li>
             </dl>
-        </axiom> -->
+        </axiom>
 
-    <!-- Add Activity -->
-
-    <!-- <activity>
-        <statement>
-        </statement>
-    </activity> -->
-
-    <!-- [LP] Add guidance on structured lesson plan-->
-
-    <!-- <axiom component="lesson-plan">
-        <title>Structured Instruction</title>
-        <p>
-            <dl>
-            <li>
-                <title>Suggested Time</title>
+        <activity xml:id="act-walking-the-ngong-hills-path">
+            <title>Walking the Ngong Hills Path</title>
+            <statement>
+                <p>A walking path over the Ngong Hills is modelled by <m>h = 4x^3 - 24x^2 + 45x</m> for <m>0 \le x \le 3.5</m>, where <m>x</m> km is the distance along the path and <m>h</m> is the height above the trailhead in tens of metres.</p>
                 <p>
-                    XX minutes
+                    <ol marker="(a)">
+                        <li>
+                            <p>Complete a table of <m>h</m> for <m>x = 0, 0.5, 1, \ldots, 3.5</m> and plot the path.</p>
+                            <solution component="lesson-plan"><p><m>h = 0, 17, 25, 27, 26, 25, 27, 35</m>.</p></solution>
+                        </li>
+                        <li>
+                            <p>Find <m>\dfrac{dh}{dx}</m> and its value at the same values of <m>x</m>.</p>
+                            <solution component="lesson-plan"><p><m>\dfrac{dh}{dx} = 12x^2 - 48x + 45</m>: <m>45, 24, 9, 0, -3, 0, 9, 24</m>.</p></solution>
+                        </li>
+                        <li>
+                            <p>Where is the walker climbing, and where descending?</p>
+                            <solution component="lesson-plan"><p>Climbing for <m>0 \le x \lt 1.5</m> and <m>2.5 \lt x \le 3.5</m> (gradient positive); descending for <m>1.5 \lt x \lt 2.5</m> (gradient negative).</p></solution>
+                        </li>
+                        <li>
+                            <p>Where is the gradient <m>0</m>, and what does the path look like there?</p>
+                            <solution component="lesson-plan"><p>At <m>x = 1.5</m>, the top of a rise (<m>h = 27</m>, that is <m>270\,\text{m}</m>), and at <m>x = 2.5</m>, the bottom of a dip (<m>h = 25</m>). The path is momentarily flat at both.</p></solution>
+                        </li>
+                        <li>
+                            <p>Is the point at <m>x = 1.5</m> the highest point of the whole walk?</p>
+                            <solution component="lesson-plan"><p>No: <m>h = 35</m> at <m>x = 3.5</m> is higher. The top of a rise is only highest nearby. (This returns in <xref ref="subsec-greatest-and-least-values"/>.)</p></solution>
+                        </li>
+                    </ol>
                 </p>
-            </li>
-            <li>
-                <title>Objective</title>
-                <p>
-                    To formalize the concepts and properties learners discovered in the anchor task.
-                </p>
-            </li>
-            </dl>
-        </p>
-        <paragraphs>
-            <title>Key Takeaways &amp; Teacher Connection</title>
-            <ol>
-                <li>
-                    <p>
-                        <alert>Connecting to Learner Work:</alert> XXXX
-                    </p>
-                </li>
-            </ol>
-        </paragraphs>
-    </axiom> -->
+            </statement>
+        </activity>
 
-    <!-- Add insight / key takeaway directly related to activity / learner experience -->
+        <axiom component="lesson-plan">
+            <title>Structured Instruction</title>
+            <p>
+                <dl>
+                    <li><title>Suggested Time</title><p>8 minutes</p></li>
+                    <li><title>Objective</title><p>To define increasing, decreasing and stationary points, and to set out the method for finding stationary points.</p></li>
+                </dl>
+            </p>
+            <paragraphs>
+                <title>Key Takeaways &amp; Teacher Connection</title>
+                <ol>
+                    <li><p><alert>Connecting to Learner Work:</alert> parts (c) and (d) show that the sign of the gradient tells us whether the path rises or falls, and that it is <m>0</m> exactly where the path turns.</p></li>
+                    <li><p>A stationary point is where the tangent is horizontal.</p></li>
+                    <li><p><q>Stationary</q> is about the gradient being <m>0</m>, not about <m>y</m> being <m>0</m>. Grade 11 warned about the same mix-up.</p></li>
+                </ol>
+            </paragraphs>
+        </axiom>
 
-    <!-- <insight>
-    </insight> -->
+        <insight xml:id="insight-increasing-decreasing-stationary">
+            <title>Increasing, Decreasing and Stationary</title>
+            <p>
+                A function <m>f</m> is <term>increasing</term> on an interval if <m>f'(x) \gt 0</m> at every <m>x</m> in it: the curve rises from left to right. It is <term>decreasing</term> on an interval if <m>f'(x) \lt 0</m> there: the curve falls.
+            </p>
+            <p>
+                A <term>stationary point</term> is a point where <m>\dfrac{dy}{dx} = 0</m>. The tangent is horizontal: the curve is momentarily neither rising nor falling. The <m>y</m>-coordinate of a stationary point is its <term>stationary value</term>. Always give both coordinates.
+            </p>
+            <p>
+                To find the stationary points of a curve: differentiate, solve <m>\dfrac{dy}{dx} = 0</m>, and substitute each solution into the equation of the curve to find <m>y</m>.
+            </p>
+            <p>
+                In this book an interval where a function increases or decreases is written with strict inequalities, such as <m>-1 \lt x \lt 2</m>; its ends are the stationary points.
+            </p>
+        </insight>
 
-    <!-- Add further instruction (not in a block) to develop ideas as needed -->
+        <figure xml:id="fig-ngong-path-gradients">
+            <caption>The Ngong Hills path with short tangent segments and their gradients.</caption>
+            <image width="90%">
+                <shortdescription>The path rises to a top at (1.5, 27), dips to (2.5, 25) and rises to 35 at x = 3.5. Tangent gradients 9, 0, -3, 0, 9 are marked at x = 1, 1.5, 2, 2.5, 3.</shortdescription>
+                <description><p>Graph of h = 4x cubed minus 24x squared plus 45x for x from 0 to 3.5, on a grid. Short tangent segments are drawn at x = 1 (gradient 9), x = 1.5 (gradient 0, at the point (1.5, 27)), x = 2 (gradient -3), x = 2.5 (gradient 0, at the point (2.5, 25)) and x = 3 (gradient 9). The points (1.5, 27) and (2.5, 25) are marked.</p></description>
+                <latex-image>
+\begin{tikzpicture}
+\begin{axis}[clip=false, width=12cm, height=8cm, xmin=0, xmax=3.7, ymin=0, ymax=40,
+  xtick={0,0.5,...,3.5}, ytick={0,5,...,40}, grid=both, major grid style={gray!40},
+  xlabel={$x$ (km)}, ylabel={$h$ (tens of m)}]
+\addplot[thick, domain=0:3.5, samples=100] {4*x^3-24*x^2+45*x};
+\addplot[dashed, thick, domain=0.8:1.2] {25+9*(x-1)};
+\addplot[dashed, thick, domain=1.25:1.75] {27};
+\addplot[dashed, thick, domain=1.75:2.25] {26-3*(x-2)};
+\addplot[dashed, thick, domain=2.25:2.75] {25};
+\addplot[dashed, thick, domain=2.8:3.2] {27+9*(x-3)};
+\addplot[only marks, mark=*] coordinates {(1.5,27) (2.5,25)};
+\node[anchor=south east] at (axis cs:0.95,26) {$9$};
+\node[anchor=south] at (axis cs:1.5,27.6) {$0$};
+\node[anchor=south west] at (axis cs:2,26.4) {$-3$};
+\node[anchor=north] at (axis cs:2.5,24.4) {$0$};
+\node[anchor=north west] at (axis cs:3.05,27) {$9$};
+\node[anchor=north] at (axis cs:1.5,26) {$(1.5, 27)$};
+\node[anchor=north] at (axis cs:2.5,21.5) {$(2.5, 25)$};
+\end{axis}
+\end{tikzpicture}
+                </latex-image>
+            </image>
+        </figure>
 
-    <xi:include href="../lesson-plan-templates/example-intro.ptx" />
+        <xi:include href="../lesson-plan-templates/example-intro.ptx" />
 
-    <!-- Add at least 3 examples -->
-
-    <!-- <example>
-        <statement>
-        </statement>
-        <solution>
-        </solution>
-    </example>
-
-    <example>
-        <statement>
-        </statement>
-        <solution>
-        </solution>
-    </example>
-
-    <example>
-        <statement>
-        </statement>
-        <solution>
-        </solution>
-    </example> -->
-
-    <xi:include href="../lesson-plan-templates/assessment-intro.ptx" />
-
-    <!-- If STACK questions are included, uncomment this: -->
-
-    <!-- <xi:include href="../lesson-plan-templates/checkpoint.ptx" /> -->
-
-    <!-- Add STACK exercises if made -->
-
-    <!-- Add static exercises -->
-
-    <!-- <exercises>
-        <exercise>
-            <statement>   
-
-            </statement>   
+        <example xml:id="example-finding-stationary-points">
+            <title>Finding Stationary Points</title>
+            <statement><p>Find the coordinates of the stationary points of <m>y = x^3 + 3x^2 - 24x + 5</m>.</p></statement>
             <solution>
+                <p>Differentiate and factorise:
+                    <md>\frac{dy}{dx} = 3x^2 + 6x - 24 = 3(x^2 + 2x - 8) = 3(x + 4)(x - 2)</md>
+                    So <m>\dfrac{dy}{dx} = 0</m> when <m>x = -4</m> or <m>x = 2</m>.</p>
+                <p>When <m>x = -4</m>: <m>y = -64 + 48 + 96 + 5 = 85</m>. When <m>x = 2</m>: <m>y = 8 + 12 - 48 + 5 = -23</m>.</p>
+                <p>The stationary points are <m>(-4, 85)</m> and <m>(2, -23)</m>.</p>
+            </solution>
+        </example>
 
-            </solution>             
-        </exercise>        
-    </exercises> -->
+        <example xml:id="example-where-is-it-decreasing">
+            <title>Where Is the Function Decreasing?</title>
+            <statement><p>Find the values of <m>x</m> for which <m>f(x) = 2x^3 - 3x^2 - 12x + 1</m> is decreasing.</p></statement>
+            <solution>
+                <p><m>f'(x) = 6x^2 - 6x - 12 = 6(x - 2)(x + 1)</m>, which is <m>0</m> at <m>x = -1</m> and <m>x = 2</m>.</p>
+                <p>As with a quadratic inequality, sketch the graph of <m>f'(x)</m>: a <q>U</q> shape crossing the <m>x</m>-axis at <m>-1</m> and <m>2</m>. It is below the axis between the roots, so <m>f'(x) \lt 0</m> for <m>-1 \lt x \lt 2</m>.</p>
+                <p>So <m>f</m> is decreasing for <m>-1 \lt x \lt 2</m>, and increasing for <m>x \lt -1</m> and for <m>x \gt 2</m>.</p>
+            </solution>
+        </example>
 
-    <!-- [LP] Add information on how to differentiate  -->
+        <example xml:id="example-only-one-stationary-point">
+            <title>Only One Stationary Point</title>
+            <statement><p>Find the stationary points of <m>y = x^3 - 6x^2 + 12x - 3</m>.</p></statement>
+            <solution>
+                <p><m>\dfrac{dy}{dx} = 3x^2 - 12x + 12 = 3(x^2 - 4x + 4) = 3(x - 2)^2</m>.</p>
+                <p>This is <m>0</m> only when <m>x = 2</m>, and then <m>y = 8 - 24 + 24 - 3 = 5</m>. There is one stationary point, <m>(2, 5)</m>.</p>
+                <p>Because <m>3(x - 2)^2 \ge 0</m> for every <m>x</m>, the curve never falls. So what kind of point is <m>(2, 5)</m>? It is not the top of a rise or the bottom of a dip. You will answer this in <xref ref="example-a-point-of-inflection"/>.</p>
+                <p>Some curves have no stationary point at all. For <m>y = x^3 + 3x</m>, <m>\dfrac{dy}{dx} = 3x^2 + 3</m>, which is always at least <m>3</m>, so it is never <m>0</m>.</p>
+            </solution>
+        </example>
 
-    <!-- <axiom component="lesson-plan">
-        <title>Differentiation</title>
+        <xi:include href="../lesson-plan-templates/assessment-intro.ptx" />
+        <xi:include href="../lesson-plan-templates/checkpoint.ptx" />
 
-        <table>
+        <p>Type whole numbers or fractions, for example <c>-3</c> or <c>5/2</c>. Type powers with <c>^</c>, for example <c>2x^3-5x+1</c>.</p>
+
+        <exercise xml:id="ex-coordinates-of-the-stationary-points-of-a-cubic">
+            <!--<title></title>-->
+            <stack label="stk-coordinates-of-the-stationary-points-of-a-cubic" source="stack/top/4-calculus/17-differentiation-ii/01-stationary-points-and-their-nature/Coordinates-of-the-stationary-points-of-a-cubic.xml"/>
+        </exercise>
+
+        <exercise xml:id="ex-where-a-cubic-is-increasing-or-decreasing">
+            <!--<title></title>-->
+            <stack label="stk-where-a-cubic-is-increasing-or-decreasing" source="stack/top/4-calculus/17-differentiation-ii/01-stationary-points-and-their-nature/Where-a-cubic-is-increasing-or-decreasing.xml"/>
+        </exercise>
+
+        <exercises xml:id="exercises-increasing-decreasing-stationary">
+            <exercise xml:id="ex-stationary-point-of-a-quadratic">
+                <statement><p>Find the coordinates of the stationary point of <m>y = x^2 - 8x + 3</m>.</p></statement>
+                <answer><p><m>(4, -13)</m></p></answer>
+            </exercise>
+            <exercise xml:id="ex-stationary-points-of-a-cubic">
+                <statement><p>Find the coordinates of the stationary points of <m>y = 2x^3 + 3x^2 - 36x + 10</m>.</p></statement>
+                <answer><p><m>(-3, 91)</m> and <m>(2, -34)</m></p></answer>
+                <solution><p><m>\dfrac{dy}{dx} = 6x^2 + 6x - 36 = 6(x + 3)(x - 2)</m>, so <m>x = -3</m> or <m>x = 2</m>. Then <m>y = -54 + 27 + 108 + 10 = 91</m> and <m>y = 16 + 12 - 72 + 10 = -34</m>.</p></solution>
+            </exercise>
+            <exercise xml:id="ex-stationary-points-twelve-x">
+                <statement><p>Find the coordinates of the stationary points of <m>y = 12x - 4x^3</m>.</p></statement>
+                <answer><p><m>(-1, -8)</m> and <m>(1, 8)</m></p></answer>
+            </exercise>
+            <exercise xml:id="ex-decreasing-interval">
+                <statement><p>Find the values of <m>x</m> for which <m>f(x) = x^3 - 12x + 7</m> is decreasing.</p></statement>
+                <answer><p><m>-2 \lt x \lt 2</m></p></answer>
+                <solution><p><m>f'(x) = 3x^2 - 12 = 3(x - 2)(x + 2)</m>, which is negative between its roots, so <m>f</m> is decreasing for <m>-2 \lt x \lt 2</m>.</p></solution>
+            </exercise>
+            <exercise xml:id="ex-water-level-in-a-tank">
+                <statement><p>The water level, <m>h</m> cm, in a tank at a school in Kitui, <m>t</m> hours after 6 a.m., is modelled by <m>h = t^3 - 15t^2 + 63t + 40</m> for <m>0 \le t \le 10</m>. When is the water level falling? Give the level at each stationary point.</p></statement>
+                <answer><p>Falling for <m>3 \lt t \lt 7</m>, that is from 9 a.m. to 1 p.m. The level is <m>121\,\text{cm}</m> at <m>t = 3</m> and <m>89\,\text{cm}</m> at <m>t = 7</m>.</p></answer>
+                <solution><p><m>\dfrac{dh}{dt} = 3t^2 - 30t + 63 = 3(t - 3)(t - 7)</m>, which is negative for <m>3 \lt t \lt 7</m>. <m>h(3) = 27 - 135 + 189 + 40 = 121</m> and <m>h(7) = 343 - 735 + 441 + 40 = 89</m>.</p></solution>
+            </exercise>
+            <exercise xml:id="ex-find-k-stationary-at-four">
+                <statement><p>The curve <m>y = x^3 + kx^2 + 5</m> has a stationary point at <m>x = 4</m>. Find <m>k</m> and the coordinates of both stationary points.</p></statement>
+                <answer><p><m>k = -6</m>; <m>(0, 5)</m> and <m>(4, -27)</m></p></answer>
+                <solution><p><m>\dfrac{dy}{dx} = 3x^2 + 2kx</m>. At <m>x = 4</m>: <m>48 + 8k = 0</m>, so <m>k = -6</m>. Then <m>\dfrac{dy}{dx} = 3x^2 - 12x = 3x(x - 4)</m>, which is <m>0</m> at <m>x = 0</m> and <m>x = 4</m>; <m>y = 5</m> and <m>y = 64 - 96 + 5 = -27</m>.</p></solution>
+            </exercise>
+            <exercise xml:id="ex-never-stationary">
+                <title>Challenge: A Curve That Never Stops Rising</title>
+                <statement><p>Show that <m>y = x^3 + 3x^2 + 6x - 1</m> has no stationary points and is increasing for every <m>x</m>.</p></statement>
+                <hint><p>Complete the square in <m>\dfrac{dy}{dx}</m>.</p></hint>
+                <answer><p><m>\dfrac{dy}{dx} = 3x^2 + 6x + 6 = 3\left((x + 1)^2 + 1\right) \ge 3 \gt 0</m></p></answer>
+                <solution><p><m>\dfrac{dy}{dx} = 3(x^2 + 2x + 2) = 3\left((x + 1)^2 + 1\right)</m>. A square is never negative, so <m>\dfrac{dy}{dx} \ge 3</m> for every <m>x</m>. It is never <m>0</m>, so there are no stationary points, and it is always positive, so the curve is increasing everywhere.</p></solution>
+            </exercise>
+        </exercises>
+
+        <axiom component="lesson-plan">
             <title>Differentiation</title>
-            <tabular halign="left">
-                <row header="yes" bottom="minor">
-                    <cell>Learner Group</cell>
-                    <cell>Strategy &amp; Learning Experience</cell>
-                    <cell></cell>
-                </row>
-                <row>
-                    <cell>Struggling Learners (Support)</cell>
-                    <cell>
-                        XXXX
-                    </cell>
-                    <cell></cell>
-                </row>
-                <row>
-                    <cell>On-Level Learners (Core)</cell>
-                    <cell>
-                        <line>The core lesson activities as described above.</line>
-                    </cell>
-                    <cell></cell>
-                </row>
-                <row>
-                    <cell>Advanced Learners (Challenge)</cell>
-                    <cell>
-                        XXXX
-                    </cell>
-                    <cell></cell>
-                </row>
-            </tabular>
-        </table>
-    </axiom> -->
+            <table xml:id="table-differentiation-increasing-decreasing-stationary">
+                <title>Differentiation Strategies</title>
+                <tabular halign="left" top="minor" bottom="minor" left="minor" right="minor">
+                    <row header="yes" bottom="medium"><cell>Learner Group</cell><cell>Strategy and Learning Experience</cell></row>
+                    <row><cell>Struggling Learners (Support)</cell><cell>Activity parts (a) to (d) with the table started. Provide a step card: <q>differentiate, set equal to 0, solve, substitute</q>. Work through the first two examples. Assign <xref ref="ex-stationary-point-of-a-quadratic"/>, <xref ref="ex-stationary-points-of-a-cubic"/> and <xref ref="ex-decreasing-interval"/>.</cell></row>
+                    <row><cell>On-Level Learners (Core)</cell><cell>Full activity and all examples. Assign <xref ref="ex-stationary-point-of-a-quadratic"/> to <xref ref="ex-find-k-stationary-at-four"/>.</cell></row>
+                    <row><cell>Advanced Learners (Challenge)</cell><cell>All exercises including <xref ref="ex-never-stationary"/>. Extension: find a cubic <m>y = x^3 + bx^2 + cx</m> with stationary points at <m>x = 1</m> and <m>x = 5</m>. (Answer: <m>\dfrac{dy}{dx} = 3(x - 1)(x - 5) = 3x^2 - 18x + 15</m>, so <m>b = -9</m>, <m>c = 15</m>.)</cell></row>
+                </tabular>
+            </table>
+        </axiom>
 
-    <xi:include href="../lesson-plan-templates/assessment-methods.ptx" />
+        <xi:include href="../lesson-plan-templates/assessment-methods.ptx" />
+        <xi:include href="../lesson-plan-templates/reflection.ptx"/>
+    </subsection>
 
-    <xi:include href="../lesson-plan-templates/reflection.ptx"/>
+    <!-- ============================================================ Lesson 1.2 -->
+    <subsection xml:id="subsec-nature-from-the-gradient">
+        <title>The Nature of a Stationary Point from the Gradient</title>
+
+        <p component="lesson-plan">Upon completion of this lesson, learners will be able to:
+            <ol>
+                <li><p><alert>Know:</alert> maximum point, minimum point and point of inflection, and the sign pattern of <m>\dfrac{dy}{dx}</m> around each.</p></li>
+                <li><p><alert>Do:</alert> classify stationary points with a gradient table.</p></li>
+                <li><p><alert>Apply:</alert> say how a model behaves at its stationary points.</p></li>
+            </ol>
+        </p>
+
+        <axiom component="lesson-plan">
+            <title>Problem-Solving and Discovery</title>
+            <dl>
+                <li><title>Suggested Time</title><p>14 minutes</p></li>
+                <li><title>Objective</title><p>Learners discover the three sign patterns of the gradient around a stationary point.</p></li>
+                <li><title>Teacher's Role</title><p>After part (c), ask: <q>Can a curve be flat for an instant and keep rising?</q> Then let pairs use the interactive for part (d). Ask each pair to listen to another pair's three cubics before saying whether they agree.</p></li>
+            </dl>
+        </axiom>
+
+        <activity xml:id="act-three-kinds-of-flat">
+            <title>Three Kinds of Flat</title>
+            <statement>
+                <p>
+                    <ol marker="(a)">
+                        <li>
+                            <p>Find the stationary point of each curve: <m>y = x^2 - 4x + 7</m>; <m>y = 6x - x^2</m>; <m>y = x^3 + 2</m>.</p>
+                            <solution component="lesson-plan"><p><m>(2, 3)</m>; <m>(3, 9)</m>; <m>(0, 2)</m>.</p></solution>
+                        </li>
+                        <li>
+                            <p>For each curve, find <m>\dfrac{dy}{dx}</m> one unit to the left and one unit to the right of its stationary point.</p>
+                            <solution component="lesson-plan"><p><m>-2</m> and <m>2</m>; <m>2</m> and <m>-2</m>; <m>3</m> and <m>3</m>.</p></solution>
+                        </li>
+                        <li>
+                            <p>Describe each curve near its stationary point.</p>
+                            <solution component="lesson-plan"><p>The first falls then rises; the second rises then falls; the third rises, flattens for an instant and rises again.</p></solution>
+                        </li>
+                        <li>
+                            <p>Use the interactive in <xref ref="fig-stationary-points-cubic"/> to make a cubic with two turning points, a cubic with a single stationary point that is not a turning point, and a cubic with no stationary points.</p>
+                            <solution component="lesson-plan"><p>For example <m>a = 1, b = 0, c = -3, d = 0</m>; <m>a = 1, b = c = d = 0</m>; <m>a = 1, b = 0, c = 3, d = 0</m>.</p></solution>
+                        </li>
+                    </ol>
+                </p>
+            </statement>
+        </activity>
+
+        <axiom component="lesson-plan">
+            <title>Structured Instruction</title>
+            <p>
+                <dl>
+                    <li><title>Suggested Time</title><p>8 minutes</p></li>
+                    <li><title>Objective</title><p>To name the three kinds of stationary point and set out the gradient table.</p></li>
+                </dl>
+            </p>
+            <paragraphs>
+                <title>Key Takeaways &amp; Teacher Connection</title>
+                <ol>
+                    <li><p><alert>Connecting to Learner Work:</alert> part (b) gives the three sign patterns; part (c) matches each to a shape.</p></li>
+                    <li><p>Read the sign of the gradient just before and just after the stationary point.</p></li>
+                    <li><p>Choose test values between neighbouring stationary points only, never beyond a neighbour.</p></li>
+                    <li><p>A point of inflection is not a turning point.</p></li>
+                </ol>
+            </paragraphs>
+        </axiom>
+
+        <insight xml:id="insight-nature-of-a-stationary-point">
+            <title>The Nature of a Stationary Point</title>
+            <p>
+                At a <term>maximum point</term> the curve rises to the point and falls after it: the gradient goes from positive to <m>0</m> to negative. At a <term>minimum point</term> the curve falls then rises: the gradient goes from negative to <m>0</m> to positive. Maximum and minimum points are called <term>turning points</term>.
+            </p>
+            <p>
+                At a <term>point of inflection</term> the curve flattens for an instant but carries on the same way: the gradient has the same sign on both sides.
+            </p>
+            <table xml:id="table-nature-sign-patterns">
+                <title>Sign of the Gradient Around a Stationary Point</title>
+                <tabular halign="center" top="minor" bottom="minor" left="minor" right="minor">
+                    <row header="yes" bottom="medium"><cell>Nature</cell><cell>A little less than <m>x</m></cell><cell>At <m>x</m></cell><cell>A little more than <m>x</m></cell><cell>Shape</cell></row>
+                    <row><cell>maximum point</cell><cell><m>+</m></cell><cell><m>0</m></cell><cell><m>-</m></cell><cell>rising, flat, falling</cell></row>
+                    <row><cell>minimum point</cell><cell><m>-</m></cell><cell><m>0</m></cell><cell><m>+</m></cell><cell>falling, flat, rising</cell></row>
+                    <row><cell>point of inflection</cell><cell><m>+</m></cell><cell><m>0</m></cell><cell><m>+</m></cell><cell>rising, flat, rising</cell></row>
+                    <row><cell>point of inflection</cell><cell><m>-</m></cell><cell><m>0</m></cell><cell><m>-</m></cell><cell>falling, flat, falling</cell></row>
+                </tabular>
+            </table>
+            <p>
+                A maximum point need not be the highest point of the whole curve: the curve may go higher elsewhere. That is why it is sometimes called a <em>local</em> maximum. Older Kenyan textbooks spell the third kind <q>point of inflexion</q>; it is the same thing.
+            </p>
+        </insight>
+
+        <figure xml:id="fig-three-kinds-of-stationary-point">
+            <caption>The three kinds of stationary point, with the sign of the gradient on each side.</caption>
+            <image width="90%">
+                <shortdescription>Three panels. A minimum point with gradient signs minus, 0, plus; a maximum point with plus, 0, minus; a point of inflection with plus, 0, plus.</shortdescription>
+                <latex-image>
+\begin{tikzpicture}[scale=1]
+\begin{scope}
+\draw[thick, domain=-1.2:1.2, samples=50] plot (\x, {0.8*\x*\x});
+\draw[dashed] (-1.0,0.8)++(-0.3,0.48) -- ++(0.6,-0.96);
+\draw[dashed] (-0.4,0) -- (0.4,0);
+\draw[dashed] (1.0,0.8)++(-0.3,-0.48) -- ++(0.6,0.96);
+\node at (-1,-0.5) {$-$}; \node at (0,-0.5) {$0$}; \node at (1,-0.5) {$+$};
+\node at (0,-1.1) {minimum point};
+\end{scope}
+\begin{scope}[xshift=4.5cm]
+\draw[thick, domain=-1.2:1.2, samples=50] plot (\x, {1.2-0.8*\x*\x});
+\draw[dashed] (-1.0,0.4)++(-0.3,-0.48) -- ++(0.6,0.96);
+\draw[dashed] (-0.4,1.2) -- (0.4,1.2);
+\draw[dashed] (1.0,0.4)++(-0.3,0.48) -- ++(0.6,-0.96);
+\node at (-1,-0.5) {$+$}; \node at (0,-0.5) {$0$}; \node at (1,-0.5) {$-$};
+\node at (0,-1.1) {maximum point};
+\end{scope}
+\begin{scope}[xshift=9cm]
+\draw[thick, domain=-1.1:1.1, samples=50] plot (\x, {0.6+0.6*\x*\x*\x});
+\draw[dashed] (-0.9,0.163)++(-0.25,-0.365) -- ++(0.5,0.73);
+\draw[dashed] (-0.4,0.6) -- (0.4,0.6);
+\draw[dashed] (0.9,1.037)++(-0.25,-0.365) -- ++(0.5,0.73);
+\node at (-1,-0.5) {$+$}; \node at (0,-0.5) {$0$}; \node at (1,-0.5) {$+$};
+\node at (0,-1.1) {point of inflection};
+\end{scope}
+\end{tikzpicture}
+                </latex-image>
+            </image>
+        </figure>
+
+        <figure xml:id="fig-stationary-points-cubic">
+            <caption>Drag the sliders. The stationary points move and are labelled by their nature. Can you make the two turning points merge into one point of inflection?</caption>
+            <interactive xml:id="interactive-stationary-points-cubic" platform="jsxgraph" width="90%" aspect="16:12" source="jsxgraph/stationary-points-cubic.js">
+                <slate xml:id="jsxgraph-stationary-points-cubic" surface="jsxboard" aspect="16:12"/>
+                <instructions>
+                    <p>
+                        <ul>
+                            <li><p>The curve is <m>y = ax^3 + bx^2 + cx + d</m>. Set <alert>a</alert> to <m>1</m>, <alert>b</alert> to <m>0</m> and <alert>c</alert> to <m>-3</m>: the curve has two turning points.</p></li>
+                            <li><p>Now drag <alert>c</alert> up to <m>0</m>. The two turning points merge into a single point of inflection.</p></li>
+                            <li><p>Drag <alert>c</alert> to <m>3</m>. The curve has no stationary points. Why? (Look at <m>\dfrac{dy}{dx} = 3ax^2 + 2bx + c</m>.)</p></li>
+                            <li><p>Make <alert>a</alert> negative. Which way round are the maximum and minimum points now?</p></li>
+                        </ul>
+                    </p>
+                </instructions>
+            </interactive>
+        </figure>
+
+        <xi:include href="../lesson-plan-templates/example-intro.ptx" />
+
+        <example xml:id="example-classifying-with-a-gradient-table">
+            <title>Classifying with a Gradient Table</title>
+            <statement><p>Find the stationary points of <m>y = 2x^3 - 24x + 5</m> and determine their nature.</p></statement>
+            <solution>
+                <p><m>\dfrac{dy}{dx} = 6x^2 - 24 = 6(x - 2)(x + 2)</m>, which is <m>0</m> at <m>x = -2</m> and <m>x = 2</m>. Then <m>y = -16 + 48 + 5 = 37</m> and <m>y = 16 - 48 + 5 = -27</m>.</p>
+                <p>Choose test values either side, but not beyond the other stationary point: <m>x = -3</m>, <m>x = 0</m> (between the two points, so it serves both) and <m>x = 3</m>.</p>
+                <table xml:id="table-gradient-table-2x3-24x">
+                    <title>Gradient Table for <m>y = 2x^3 - 24x + 5</m></title>
+                    <tabular halign="center" top="minor" bottom="minor" left="minor" right="minor">
+                        <row header="yes" bottom="medium"><cell><m>x</m></cell><cell><m>-3</m></cell><cell><m>-2</m></cell><cell><m>0</m></cell><cell><m>2</m></cell><cell><m>3</m></cell></row>
+                        <row><cell><m>\dfrac{dy}{dx}</m></cell><cell><m>30</m></cell><cell><m>0</m></cell><cell><m>-24</m></cell><cell><m>0</m></cell><cell><m>30</m></cell></row>
+                        <row><cell>Sign</cell><cell><m>+</m></cell><cell><m>0</m></cell><cell><m>-</m></cell><cell><m>0</m></cell><cell><m>+</m></cell></row>
+                        <row><cell>Shape</cell><cell>rising</cell><cell>flat</cell><cell>falling</cell><cell>flat</cell><cell>rising</cell></row>
+                    </tabular>
+                </table>
+                <p>So <m>(-2, 37)</m> is a maximum point and <m>(2, -27)</m> is a minimum point.</p>
+            </solution>
+        </example>
+
+        <example xml:id="example-a-point-of-inflection">
+            <title>A Point of Inflection</title>
+            <statement><p>Determine the nature of the stationary point <m>(2, 5)</m> of <m>y = x^3 - 6x^2 + 12x - 3</m> from <xref ref="example-only-one-stationary-point"/>.</p></statement>
+            <solution>
+                <p><m>\dfrac{dy}{dx} = 3(x - 2)^2</m>. At <m>x = 1</m> it is <m>3</m>, and at <m>x = 3</m> it is <m>3</m>. The pattern is <m>+, 0, +</m>: the curve rises, flattens for an instant at <m>(2, 5)</m> and rises again. So <m>(2, 5)</m> is a point of inflection.</p>
+            </solution>
+        </example>
+
+        <example xml:id="example-quartic-with-a-flat-step">
+            <title>A Quartic with a Flat Step</title>
+            <statement><p>Find the stationary points of <m>y = x^4 - 4x^3</m> and determine their nature.</p></statement>
+            <solution>
+                <p><m>\dfrac{dy}{dx} = 4x^3 - 12x^2 = 4x^2(x - 3)</m>, which is <m>0</m> at <m>x = 0</m> and <m>x = 3</m>. The points are <m>(0, 0)</m> and <m>(3, 81 - 108) = (3, -27)</m>.</p>
+                <table xml:id="table-gradient-table-x4-4x3">
+                    <title>Gradient Table for <m>y = x^4 - 4x^3</m></title>
+                    <tabular halign="center" top="minor" bottom="minor" left="minor" right="minor">
+                        <row header="yes" bottom="medium"><cell><m>x</m></cell><cell><m>-1</m></cell><cell><m>0</m></cell><cell><m>1</m></cell><cell><m>3</m></cell><cell><m>4</m></cell></row>
+                        <row><cell><m>\dfrac{dy}{dx}</m></cell><cell><m>-16</m></cell><cell><m>0</m></cell><cell><m>-8</m></cell><cell><m>0</m></cell><cell><m>64</m></cell></row>
+                        <row><cell>Sign</cell><cell><m>-</m></cell><cell><m>0</m></cell><cell><m>-</m></cell><cell><m>0</m></cell><cell><m>+</m></cell></row>
+                        <row><cell>Shape</cell><cell>falling</cell><cell>flat</cell><cell>falling</cell><cell>flat</cell><cell>rising</cell></row>
+                    </tabular>
+                </table>
+                <p>So <m>(0, 0)</m> is a point of inflection (the curve falls on both sides) and <m>(3, -27)</m> is a minimum point.</p>
+            </solution>
+        </example>
+
+        <note xml:id="note-graphing-software">
+            <title>Graphing Software</title>
+            <p>
+                You can check a classification by plotting the curve in GeoGebra, Desmos or on a graphing calculator. Use the apps your school has approved. Do not create accounts with personal details or share your location to use them.
+            </p>
+        </note>
+
+        <xi:include href="../lesson-plan-templates/assessment-intro.ptx" />
+        <xi:include href="../lesson-plan-templates/checkpoint.ptx" />
+
+        <p>Type whole numbers or fractions, for example <c>-3</c> or <c>5/2</c>. For the nature of a point, choose from the list.</p>
+
+        <exercise xml:id="ex-nature-of-stationary-points-from-the-gradient">
+            <!--<title></title>-->
+            <stack label="stk-nature-of-stationary-points-from-the-gradient" source="stack/top/4-calculus/17-differentiation-ii/01-stationary-points-and-their-nature/Nature-of-stationary-points-from-the-gradient.xml"/>
+        </exercise>
+
+        <exercise xml:id="ex-classifying-stationary-points-at-the-origin">
+            <!--<title></title>-->
+            <stack label="stk-classifying-stationary-points-at-the-origin" source="stack/top/4-calculus/17-differentiation-ii/01-stationary-points-and-their-nature/Classifying-stationary-points-at-the-origin.xml"/>
+        </exercise>
+
+        <exercises xml:id="exercises-nature-from-the-gradient">
+            <exercise xml:id="ex-nature-quadratic">
+                <statement><p>Find the stationary point of <m>y = x^2 + 6x - 2</m> and determine its nature.</p></statement>
+                <answer><p><m>(-3, -11)</m>, a minimum point</p></answer>
+            </exercise>
+            <exercise xml:id="ex-nature-three-x-minus-x-cubed">
+                <statement><p>Find the stationary points of <m>y = 3x - x^3</m> and determine their nature.</p></statement>
+                <answer><p><m>(-1, -2)</m> minimum point; <m>(1, 2)</m> maximum point</p></answer>
+            </exercise>
+            <exercise xml:id="ex-nature-inflection-cubic">
+                <statement><p>Find the stationary point of <m>y = x^3 + 3x^2 + 3x + 4</m> and determine its nature.</p></statement>
+                <answer><p><m>(-1, 3)</m>, a point of inflection</p></answer>
+                <solution><p><m>\dfrac{dy}{dx} = 3x^2 + 6x + 3 = 3(x + 1)^2</m>, which is <m>0</m> only at <m>x = -1</m>, where <m>y = 3</m>. It is positive on both sides, so the point is a point of inflection.</p></solution>
+            </exercise>
+            <exercise xml:id="ex-nature-quartic-three-points">
+                <statement><p>Find the three stationary points of <m>y = x^4 - 18x^2 + 5</m> and determine their nature. Use the test values <m>x = -4, -1, 1, 4</m>.</p></statement>
+                <answer><p><m>(-3, -76)</m> minimum point, <m>(0, 5)</m> maximum point, <m>(3, -76)</m> minimum point</p></answer>
+                <solution><p><m>\dfrac{dy}{dx} = 4x^3 - 36x = 4x(x - 3)(x + 3)</m>, zero at <m>x = -3, 0, 3</m>. At <m>x = -4, -1, 1, 4</m> the gradient is <m>-112, 32, -32, 112</m>, giving the pattern <m>-, 0, +, 0, -, 0, +</m>.</p></solution>
+            </exercise>
+            <exercise xml:id="ex-eldoret-temperature">
+                <statement><p>The temperature, <m>T\,^{\circ}\text{C}</m>, in Eldoret <m>t</m> hours after 6 a.m. on a dry day is modelled by <m>T = 10 + 4t - \dfrac{t^2}{4}</m>. Find the stationary point, determine its nature and say what it means.</p></statement>
+                <answer><p><m>(8, 26)</m>, a maximum point: the hottest time is 2 p.m., at <m>26\,^{\circ}\text{C}</m>.</p></answer>
+                <solution><p><m>\dfrac{dT}{dt} = 4 - \dfrac{t}{2} = 0</m> at <m>t = 8</m>, and <m>T = 10 + 32 - 16 = 26</m>. The gradient is positive before <m>t = 8</m> and negative after it, so this is a maximum point.</p></solution>
+            </exercise>
+            <exercise xml:id="ex-why-no-turning-points">
+                <statement><p>Explain why <m>y = x^3 + 3x</m> has no turning points.</p></statement>
+                <answer><p><m>\dfrac{dy}{dx} = 3x^2 + 3 \gt 0</m> for every <m>x</m>, so the gradient is never <m>0</m>.</p></answer>
+            </exercise>
+            <exercise xml:id="ex-make-a-point-of-inflection">
+                <title>Challenge: Make a Point of Inflection</title>
+                <statement><p>Find <m>b</m> and <m>c</m> so that <m>y = x^3 + bx^2 + cx</m> has a point of inflection at <m>x = 2</m>.</p></statement>
+                <hint><p><m>\dfrac{dy}{dx}</m> must be <m>3(x - 2)^2</m>.</p></hint>
+                <answer><p><m>b = -6</m>, <m>c = 12</m></p></answer>
+                <solution><p><m>\dfrac{dy}{dx} = 3x^2 + 2bx + c</m> must equal <m>3(x - 2)^2 = 3x^2 - 12x + 12</m>, so <m>2b = -12</m> and <m>c = 12</m>.</p></solution>
+            </exercise>
+        </exercises>
+
+        <axiom component="lesson-plan">
+            <title>Differentiation</title>
+            <table xml:id="table-differentiation-nature-from-the-gradient">
+                <title>Differentiation Strategies</title>
+                <tabular halign="left" top="minor" bottom="minor" left="minor" right="minor">
+                    <row header="yes" bottom="medium"><cell>Learner Group</cell><cell>Strategy and Learning Experience</cell></row>
+                    <row><cell>Struggling Learners (Support)</cell><cell>Provide a blank gradient-table template. Focus on activity parts (a) to (c) and the first two examples. Assign <xref ref="ex-nature-quadratic"/> to <xref ref="ex-nature-inflection-cubic"/>.</cell></row>
+                    <row><cell>On-Level Learners (Core)</cell><cell>Full activity and all examples. Assign <xref ref="ex-nature-quadratic"/> to <xref ref="ex-why-no-turning-points"/>.</cell></row>
+                    <row><cell>Advanced Learners (Challenge)</cell><cell>All exercises including <xref ref="ex-make-a-point-of-inflection"/>. Extension: show that every cubic with <m>a \lt 0</m> that has two stationary points has its minimum point to the left of its maximum point. (Answer: <m>\dfrac{dy}{dx} = 3a(x - p)(x - q)</m> with <m>a \lt 0</m> is negative outside the interval from <m>p</m> to <m>q</m> and positive inside it, so the pattern is <m>-, 0, +, 0, -</m>.)</cell></row>
+                </tabular>
+            </table>
+        </axiom>
+
+        <xi:include href="../lesson-plan-templates/assessment-methods.ptx" />
+        <xi:include href="../lesson-plan-templates/reflection.ptx"/>
+    </subsection>
+
+    <!-- ============================================================ Lesson 1.3 -->
+    <subsection xml:id="subsec-second-derivative-test">
+        <title>The Second Derivative Test</title>
+
+        <p component="lesson-plan">Upon completion of this lesson, learners will be able to:
+            <ol>
+                <li><p><alert>Know:</alert> <m>\dfrac{d^2y}{dx^2}</m> measures how the gradient changes; its sign decides between a maximum and a minimum point; zero decides nothing.</p></li>
+                <li><p><alert>Do:</alert> classify stationary points by <m>\dfrac{d^2y}{dx^2}</m>, falling back on the gradient table.</p></li>
+                <li><p><alert>Apply:</alert> find unknown coefficients from a stationary point.</p></li>
+            </ol>
+        </p>
+
+        <axiom component="lesson-plan">
+            <title>Problem-Solving and Discovery</title>
+            <dl>
+                <li><title>Suggested Time</title><p>14 minutes</p></li>
+                <li><title>Objective</title><p>Learners see that at a maximum point the gradient is decreasing, so its own derivative is negative, and that a zero second derivative settles nothing.</p></li>
+                <li><title>Teacher's Role</title><p>Return to the Ngong Hills path. After part (c), ask: <q>What if <m>\dfrac{d^2h}{dx^2}</m> is <m>0</m>?</q> Let groups test <m>y = x^4</m> and <m>y = x^3</m>, and hear each group's answer before giving one.</p></li>
+            </dl>
+        </axiom>
+
+        <activity xml:id="act-gradient-of-the-gradient">
+            <title>The Gradient of the Gradient</title>
+            <statement>
+                <p>Use the Ngong Hills path <m>h = 4x^3 - 24x^2 + 45x</m> from <xref ref="act-walking-the-ngong-hills-path"/>.</p>
+                <p>
+                    <ol marker="(a)">
+                        <li>
+                            <p>From <m>\dfrac{dh}{dx} = 12x^2 - 48x + 45</m>, find <m>\dfrac{d^2h}{dx^2}</m>, the derivative of the gradient.</p>
+                            <solution component="lesson-plan"><p><m>24x - 48</m>.</p></solution>
+                        </li>
+                        <li>
+                            <p>Find its value at <m>x = 1.5</m> and at <m>x = 2.5</m>.</p>
+                            <solution component="lesson-plan"><p><m>-12</m> and <m>12</m>.</p></solution>
+                        </li>
+                        <li>
+                            <p>At the maximum point the gradient goes from positive to negative. Is the gradient increasing or decreasing there? What about at the minimum point?</p>
+                            <solution component="lesson-plan"><p>Decreasing at the maximum point, so <m>\dfrac{d^2h}{dx^2} \lt 0</m>; increasing at the minimum point, so <m>\dfrac{d^2h}{dx^2} \gt 0</m>.</p></solution>
+                        </li>
+                        <li>
+                            <p>For <m>y = x^4</m> and <m>y = x^3</m>, find <m>\dfrac{d^2y}{dx^2}</m> at <m>x = 0</m>, and find the nature of the stationary point at the origin from a gradient table.</p>
+                            <solution component="lesson-plan"><p>Both are <m>0</m>. <m>y = x^4</m> has a minimum point (<m>-, 0, +</m>); <m>y = x^3</m> has a point of inflection (<m>+, 0, +</m>). A zero second derivative tells you nothing.</p></solution>
+                        </li>
+                    </ol>
+                </p>
+            </statement>
+        </activity>
+
+        <axiom component="lesson-plan">
+            <title>Structured Instruction</title>
+            <p>
+                <dl>
+                    <li><title>Suggested Time</title><p>8 minutes</p></li>
+                    <li><title>Objective</title><p>To state the second derivative test and its blind spot.</p></li>
+                </dl>
+            </p>
+            <paragraphs>
+                <title>Key Takeaways &amp; Teacher Connection</title>
+                <ol>
+                    <li><p><alert>Connecting to Learner Work:</alert> part (c) is the reason for the test; part (d) is its blind spot.</p></li>
+                    <li><p>When <m>\dfrac{d^2y}{dx^2} = 0</m>, the test is silent, not a verdict: go back to the gradient table.</p></li>
+                </ol>
+            </paragraphs>
+        </axiom>
+
+        <insight xml:id="insight-second-derivative-test">
+            <title>The Second Derivative Test</title>
+            <p>
+                The <term>second derivative</term>, written <m>\dfrac{d^2y}{dx^2}</m> or <m>f''(x)</m>, is the derivative of <m>\dfrac{dy}{dx}</m>. It is the rate at which the gradient itself is changing. (In Grade 11 you met <m>s''(t)</m> as acceleration.)
+            </p>
+            <p>At a stationary point:
+                <ul>
+                    <li><p>if <m>\dfrac{d^2y}{dx^2} \gt 0</m>, the point is a minimum point;</p></li>
+                    <li><p>if <m>\dfrac{d^2y}{dx^2} \lt 0</m>, the point is a maximum point;</p></li>
+                    <li><p>if <m>\dfrac{d^2y}{dx^2} = 0</m>, the test is silent, not a verdict: use the gradient table.</p></li>
+                </ul>
+            </p>
+        </insight>
+
+        <warning xml:id="warning-second-derivative-zero">
+            <title>When the Second Derivative Is Zero</title>
+            <p>
+                <m>y = x^4</m> has <m>\dfrac{d^2y}{dx^2} = 12x^2 = 0</m> at <m>x = 0</m>, but the origin is a minimum point. <m>y = x^3</m> also has <m>\dfrac{d^2y}{dx^2} = 6x = 0</m> at <m>x = 0</m>, and there the origin is a point of inflection. So <m>\dfrac{d^2y}{dx^2} = 0</m> does not mean a point of inflection. Use the gradient table (<xref ref="fig-x4-and-x3"/>).
+            </p>
+        </warning>
+
+        <figure xml:id="fig-x4-and-x3">
+            <caption>Two curves with <m>\dfrac{d^2y}{dx^2} = 0</m> at the origin.</caption>
+            <image width="70%">
+                <shortdescription>Both curves have second derivative 0 at the origin. y = x to the 4 has a minimum point there; y = x cubed has a point of inflection.</shortdescription>
+                <latex-image>
+\begin{tikzpicture}
+\begin{scope}
+\draw[->] (-1.5,0) -- (1.5,0) node[right] {$x$};
+\draw[->] (0,-1.3) -- (0,1.6) node[above] {$y$};
+\draw[thick, domain=-1.1:1.1, samples=60] plot (\x, {\x^4});
+\fill (0,0) circle (1.5pt);
+\node at (0,-1.7) {$y = x^4$: minimum point};
+\end{scope}
+\begin{scope}[xshift=5cm]
+\draw[->] (-1.5,0) -- (1.5,0) node[right] {$x$};
+\draw[->] (0,-1.3) -- (0,1.6) node[above] {$y$};
+\draw[thick, domain=-1.1:1.1, samples=60] plot (\x, {\x^3});
+\fill (0,0) circle (1.5pt);
+\node at (0,-1.7) {$y = x^3$: point of inflection};
+\end{scope}
+\node at (2.5,-2.3) {In both, $\dfrac{d^2y}{dx^2} = 0$ at $x = 0$.};
+\end{tikzpicture}
+                </latex-image>
+            </image>
+        </figure>
+
+        <xi:include href="../lesson-plan-templates/example-intro.ptx" />
+
+        <example xml:id="example-using-the-second-derivative">
+            <title>Using the Second Derivative</title>
+            <statement><p>Find the stationary points of <m>f(x) = 2x^3 - 15x^2 + 36x - 20</m> and use the second derivative to determine their nature.</p></statement>
+            <solution>
+                <p><m>f'(x) = 6x^2 - 30x + 36 = 6(x - 2)(x - 3)</m>, so the stationary points are at <m>x = 2</m> and <m>x = 3</m>: <m>f(2) = 16 - 60 + 72 - 20 = 8</m> and <m>f(3) = 54 - 135 + 108 - 20 = 7</m>.</p>
+                <p><m>f''(x) = 12x - 30</m>. <m>f''(2) = -6 \lt 0</m>, so <m>(2, 8)</m> is a maximum point. <m>f''(3) = 6 \gt 0</m>, so <m>(3, 7)</m> is a minimum point.</p>
+            </solution>
+        </example>
+
+        <example xml:id="example-when-the-test-is-silent">
+            <title>When the Test Is Silent</title>
+            <statement><p>Find the stationary points of <m>y = 3x^4 - 8x^3 + 6</m> and determine their nature.</p></statement>
+            <solution>
+                <p><m>\dfrac{dy}{dx} = 12x^3 - 24x^2 = 12x^2(x - 2)</m>, zero at <m>x = 0</m> and <m>x = 2</m>. The points are <m>(0, 6)</m> and <m>(2, 48 - 64 + 6) = (2, -10)</m>.</p>
+                <p><m>\dfrac{d^2y}{dx^2} = 36x^2 - 48x</m>. At <m>x = 2</m> it is <m>144 - 96 = 48 \gt 0</m>, so <m>(2, -10)</m> is a minimum point.</p>
+                <p>At <m>x = 0</m> it is <m>0</m>, so the test is silent. Use the gradient either side: at <m>x = -1</m>, <m>\dfrac{dy}{dx} = -36</m>; at <m>x = 1</m>, <m>\dfrac{dy}{dx} = -12</m>. The pattern is <m>-, 0, -</m>, so <m>(0, 6)</m> is a point of inflection.</p>
+            </solution>
+        </example>
+
+        <example xml:id="example-finding-coefficients">
+            <title>Finding Coefficients</title>
+            <statement><p>The curve <m>y = ax^3 + bx^2</m> has a stationary point at <m>(2, -4)</m>. Find <m>a</m> and <m>b</m>, and determine the nature of the point.</p></statement>
+            <solution>
+                <p><m>\dfrac{dy}{dx} = 3ax^2 + 2bx</m>. The gradient is <m>0</m> at <m>x = 2</m>: <m>12a + 4b = 0</m>. The point lies on the curve: <m>8a + 4b = -4</m>.</p>
+                <p>Subtracting, <m>4a = 4</m>, so <m>a = 1</m> and <m>b = -3</m>. The curve is <m>y = x^3 - 3x^2</m>.</p>
+                <p><m>\dfrac{d^2y}{dx^2} = 6x - 6</m>, which is <m>6 \gt 0</m> at <m>x = 2</m>: <m>(2, -4)</m> is a minimum point.</p>
+            </solution>
+        </example>
+
+        <p>
+            <em>Differentiation in use:</em> a dairy cooperative that knows when its milk supply peaks and when it dips, as in <xref ref="ex-milk-at-ol-kalou"/>, can plan its cooling tanks and transport. Name one quantity in your community that rises and falls during the year. When are its stationary points?
+        </p>
+
+        <xi:include href="../lesson-plan-templates/assessment-intro.ptx" />
+        <xi:include href="../lesson-plan-templates/checkpoint.ptx" />
+
+        <p>Type whole numbers or fractions, for example <c>-3</c> or <c>5/2</c>. Type powers with <c>^</c>, for example <c>2x^3-5x+1</c>. For the nature of a point, choose from the list.</p>
+
+        <exercise xml:id="ex-nature-of-stationary-points-by-the-second-derivative">
+            <!--<title></title>-->
+            <stack label="stk-nature-of-stationary-points-by-the-second-derivative" source="stack/top/4-calculus/17-differentiation-ii/01-stationary-points-and-their-nature/Nature-of-stationary-points-by-the-second-derivative.xml"/>
+        </exercise>
+
+        <exercise xml:id="ex-finding-the-mistake-when-the-second-derivative-is-zero">
+            <!--<title></title>-->
+            <stack label="stk-finding-the-mistake-when-the-second-derivative-is-zero" source="stack/top/4-calculus/17-differentiation-ii/01-stationary-points-and-their-nature/Finding-the-mistake-when-the-second-derivative-is-zero.xml"/>
+        </exercise>
+
+        <exercise xml:id="ex-finding-coefficients-from-a-stationary-point">
+            <!--<title></title>-->
+            <stack label="stk-finding-coefficients-from-a-stationary-point" source="stack/top/4-calculus/17-differentiation-ii/01-stationary-points-and-their-nature/Finding-coefficients-from-a-stationary-point.xml"/>
+        </exercise>
+
+        <exercises xml:id="exercises-second-derivative-test">
+            <exercise xml:id="ex-first-and-second-derivatives">
+                <statement><p>For <m>f(x) = 4x^3 - 3x^2 + 2x - 7</m>, find <m>f'(x)</m> and <m>f''(x)</m>.</p></statement>
+                <answer><p><m>f'(x) = 12x^2 - 6x + 2</m>; <m>f''(x) = 24x - 6</m></p></answer>
+            </exercise>
+            <exercise xml:id="ex-second-derivative-cubic">
+                <statement><p>Find the stationary points of <m>y = x^3 - 3x^2 - 24x + 10</m> and use the second derivative to determine their nature.</p></statement>
+                <answer><p><m>(-2, 38)</m> maximum point (<m>\dfrac{d^2y}{dx^2} = -18</m>); <m>(4, -70)</m> minimum point (<m>\dfrac{d^2y}{dx^2} = 18</m>)</p></answer>
+            </exercise>
+            <exercise xml:id="ex-second-derivative-six-x-squared">
+                <statement><p>Find the stationary points of <m>y = 6x^2 - x^3</m> and use the second derivative to determine their nature.</p></statement>
+                <answer><p><m>(0, 0)</m> minimum point (<m>12</m>); <m>(4, 32)</m> maximum point (<m>-12</m>)</p></answer>
+            </exercise>
+            <exercise xml:id="ex-second-derivative-silent">
+                <statement><p>Find the stationary points of <m>y = x^4 + 4x^3 - 2</m> and determine their nature.</p></statement>
+                <answer><p><m>(-3, -29)</m> minimum point; <m>(0, -2)</m> point of inflection</p></answer>
+                <solution><p><m>\dfrac{dy}{dx} = 4x^3 + 12x^2 = 4x^2(x + 3)</m>, zero at <m>x = -3</m> and <m>x = 0</m>. <m>\dfrac{d^2y}{dx^2} = 12x^2 + 24x</m> is <m>36</m> at <m>x = -3</m> (minimum point) and <m>0</m> at <m>x = 0</m>, so test the gradient: <m>8</m> at <m>x = -1</m> and <m>16</m> at <m>x = 1</m>. Both positive, so <m>(0, -2)</m> is a point of inflection.</p></solution>
+            </exercise>
+            <exercise xml:id="ex-coefficients-from-two-points">
+                <statement><p>The curve <m>y = x^3 + ax^2 + bx + 1</m> has stationary points at <m>x = 1</m> and <m>x = 5</m>. Find <m>a</m> and <m>b</m>, and determine the nature of each stationary point.</p></statement>
+                <answer><p><m>a = -9</m>, <m>b = 15</m>; <m>(1, 8)</m> maximum point, <m>(5, -24)</m> minimum point</p></answer>
+                <solution><p><m>\dfrac{dy}{dx} = 3x^2 + 2ax + b</m> must be <m>3(x - 1)(x - 5) = 3x^2 - 18x + 15</m>, so <m>a = -9</m> and <m>b = 15</m>. <m>\dfrac{d^2y}{dx^2} = 6x - 18</m> is <m>-12</m> at <m>x = 1</m> and <m>12</m> at <m>x = 5</m>.</p></solution>
+            </exercise>
+            <exercise xml:id="ex-milk-at-ol-kalou">
+                <statement><p>The milk collected each day at a cooling centre in Ol Kalou, <m>N</m> hundred litres, <m>t</m> months after the start of January, is modelled by <m>N = 2t^3 - 21t^2 + 60t + 300</m> for <m>0 \le t \le 6</m>. Find and classify the stationary points, and say what they mean.</p></statement>
+                <answer><p><m>(2, 352)</m> maximum point; <m>(5, 325)</m> minimum point. The most milk, about <m>35\,200\,\text{litres}</m> a day, comes at the start of March; the least, about <m>32\,500\,\text{litres}</m> a day, at the start of June.</p></answer>
+                <solution><p><m>\dfrac{dN}{dt} = 6t^2 - 42t + 60 = 6(t - 2)(t - 5)</m>. <m>N(2) = 16 - 84 + 120 + 300 = 352</m> and <m>N(5) = 250 - 525 + 300 + 300 = 325</m>. <m>\dfrac{d^2N}{dt^2} = 12t - 42</m> is <m>-18</m> at <m>t = 2</m> and <m>18</m> at <m>t = 5</m>.</p></solution>
+            </exercise>
+            <exercise xml:id="ex-every-k">
+                <title>Challenge: Every Value of k</title>
+                <statement><p>Show that for every <m>k \gt 0</m>, the curve <m>y = x^3 - 3k^2x</m> has a maximum point at <m>x = -k</m> and a minimum point at <m>x = k</m>.</p></statement>
+                <hint><p><m>\dfrac{d^2y}{dx^2} = 6x</m>.</p></hint>
+                <answer><p><m>\dfrac{dy}{dx} = 3(x^2 - k^2)</m> is <m>0</m> at <m>x = \pm k</m>; <m>\dfrac{d^2y}{dx^2} = -6k \lt 0</m> at <m>x = -k</m> and <m>6k \gt 0</m> at <m>x = k</m>.</p></answer>
+            </exercise>
+        </exercises>
+
+        <axiom component="lesson-plan">
+            <title>Differentiation</title>
+            <table xml:id="table-differentiation-second-derivative-test">
+                <title>Differentiation Strategies</title>
+                <tabular halign="left" top="minor" bottom="minor" left="minor" right="minor">
+                    <row header="yes" bottom="medium"><cell>Learner Group</cell><cell>Strategy and Learning Experience</cell></row>
+                    <row><cell>Struggling Learners (Support)</cell><cell>Provide a two-column card: <q><m>f'' \gt 0</m> minimum point; <m>f'' \lt 0</m> maximum point; <m>f'' = 0</m> use the gradient table</q>. Work through the first two examples. Assign <xref ref="ex-first-and-second-derivatives"/> to <xref ref="ex-second-derivative-six-x-squared"/>.</cell></row>
+                    <row><cell>On-Level Learners (Core)</cell><cell>Full activity and all examples. Assign <xref ref="ex-first-and-second-derivatives"/> to <xref ref="ex-milk-at-ol-kalou"/>.</cell></row>
+                    <row><cell>Advanced Learners (Challenge)</cell><cell>All exercises including <xref ref="ex-every-k"/>. Extension: find a curve with <m>\dfrac{d^2y}{dx^2} = 0</m> at a stationary point that is a maximum point. (Answer: <m>y = -x^4</m>, or any <m>y = -(x - h)^4 + k</m>.)</cell></row>
+                </tabular>
+            </table>
+        </axiom>
+
+
+        <xi:include href="../lesson-plan-templates/assessment-methods.ptx" />
+        <xi:include href="../lesson-plan-templates/reflection.ptx"/>
+    </subsection>
 </section>

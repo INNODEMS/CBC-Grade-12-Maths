@@ -19,7 +19,7 @@
                     </p>
                 </li>
                 <li>
-                    <title>Specific Learning Outcomes</title> 
+                    <title>Specific Learning Outcomes</title>
                     <p>
                         Sketch curves using stationary points and intercepts
                     </p>
@@ -33,7 +33,7 @@
                 <li component="lesson-plan">
                     <title>Estimated Duration</title>
                     <p>
-                        40 minutes
+                        2 lessons of 40 minutes
                     </p>
                 </li>
             </dl>
@@ -46,163 +46,528 @@
          Suggested activity: Learners sketch curves using intercepts and stationary points, then compare with a graph drawn from a table of values.
          Interactive (JSXGraph): Draggable point on the curve showing the tangent line and its gradient; the gradient becomes zero at stationary points. -->
 
-    <!-- [LP] Add guidance on activity -->
+    <!-- Section notes (2026-11)
+         SLOs: Core 4.1 (b). Lessons 2.1 and 2.2 as subsections.
+         Activity: as planning notes (sketch from intercepts and stationary points, then compare with a plotted graph) in lesson 2.1; lesson 2.2 adds counting solutions with a ruler
+         JSXGraph: interactive-tangent-gradient (assets/jsxgraph/tangent-gradient.js, lesson 2.1), as planning notes
+         STACK: assets/stack/top/4-calculus/17-differentiation-ii/02-curve-sketching/ -->
 
-    <!-- <axiom component="lesson-plan">
+    <!-- ============================================================ Lesson 2.1 -->
+    <subsection xml:id="subsec-sketching-polynomial-curves">
+        <title>Sketching Polynomial Curves</title>
+
+        <p component="lesson-plan">Upon completion of this lesson, learners will be able to:
+            <ol>
+                <li><p><alert>Know:</alert> the features a sketch must show, and the behaviour of a polynomial for large positive and negative <m>x</m>.</p></li>
+                <li><p><alert>Do:</alert> sketch quadratics and cubics from their intercepts and stationary points.</p></li>
+                <li><p><alert>Apply:</alert> compare a sketch with a plotted graph and judge which carries more information.</p></li>
+            </ol>
+        </p>
+
+        <axiom component="lesson-plan">
             <title>Problem-Solving and Discovery</title>
             <dl>
-                <li>
-                    <title>Suggested Time</title>
-                    <p>
-                        XX minutes
-                    </p>
-                </li>
-                <li>
-                    <title>Objective</title>
-                    <p>
-                        XXX
-                    </p>
-                </li>
-                <li>
-                    <title>Teacher's Role</title>
-                    <p>
-                        XXX
-                    </p>
-                </li>
+                <li><title>Suggested Time</title><p>14 minutes</p></li>
+                <li><title>Objective</title><p>Learners sketch a cubic from its intercepts and stationary points, then compare it with a graph plotted from a table.</p></li>
+                <li><title>Teacher's Role</title><p>Half of each group does parts (a) to (d) and sketches; the other half plots the table in part (e). Compare in part (e). Ask: <q>Which took longer? Which showed the turning points exactly?</q> Each half explains its graph to the other before the class discussion.</p></li>
             </dl>
-        </axiom> -->
+        </axiom>
 
-    <!-- Add Activity -->
-
-    <!-- <activity>
-        <statement>
-        </statement>
-    </activity> -->
-
-    <!-- [LP] Add guidance on structured lesson plan-->
-
-    <!-- <axiom component="lesson-plan">
-        <title>Structured Instruction</title>
-        <p>
-            <dl>
-            <li>
-                <title>Suggested Time</title>
+        <activity xml:id="act-sketch-first-plot-second">
+            <title>Sketch First, Plot Second</title>
+            <statement>
+                <p>Consider the curve <m>y = (x + 3)(x - 3)^2</m>.</p>
                 <p>
-                    XX minutes
+                    <ol marker="(a)">
+                        <li>
+                            <p>Where does the curve meet the axes?</p>
+                            <solution component="lesson-plan"><p>The <m>x</m>-axis at <m>x = -3</m> and <m>x = 3</m>; the <m>y</m>-axis at <m>y = 3 \times 9 = 27</m>.</p></solution>
+                        </li>
+                        <li>
+                            <p>Expand <m>y</m>, differentiate, and find and classify the stationary points.</p>
+                            <solution component="lesson-plan"><p><m>y = x^3 - 3x^2 - 9x + 27</m>; <m>\dfrac{dy}{dx} = 3x^2 - 6x - 9 = 3(x + 1)(x - 3)</m>; <m>(-1, 32)</m> maximum point, <m>(3, 0)</m> minimum point.</p></solution>
+                        </li>
+                        <li>
+                            <p>What happens to <m>y</m> for large positive and large negative <m>x</m>?</p>
+                            <solution component="lesson-plan"><p>The <m>x^3</m> term wins: <m>y</m> is large and positive for large positive <m>x</m>, and large and negative for large negative <m>x</m>.</p></solution>
+                        </li>
+                        <li>
+                            <p>Sketch the curve, labelling the intercepts and stationary points with their coordinates.</p>
+                            <solution component="lesson-plan"><p>The curve comes up from the bottom left, crosses at <m>(-3, 0)</m>, rises to <m>(-1, 32)</m>, falls through <m>(0, 27)</m>, touches the axis at <m>(3, 0)</m> and rises again.</p></solution>
+                        </li>
+                        <li>
+                            <p>The other half of your group plots the curve from this table. Compare the two graphs.</p>
+                            <tabular halign="center" top="minor" bottom="minor" left="minor" right="minor">
+                                <row header="yes" bottom="medium"><cell><m>x</m></cell><cell><m>-4</m></cell><cell><m>-3</m></cell><cell><m>-2</m></cell><cell><m>-1</m></cell><cell><m>0</m></cell><cell><m>1</m></cell><cell><m>2</m></cell><cell><m>3</m></cell><cell><m>4</m></cell><cell><m>5</m></cell></row>
+                                <row><cell><m>y</m></cell><cell><m>-49</m></cell><cell><m>0</m></cell><cell><m>25</m></cell><cell><m>32</m></cell><cell><m>27</m></cell><cell><m>16</m></cell><cell><m>5</m></cell><cell><m>0</m></cell><cell><m>7</m></cell><cell><m>32</m></cell></row>
+                            </tabular>
+                            <solution component="lesson-plan"><p>The plot misses nothing here, but it does not show that <m>x = -1</m> is exactly the top, nor that the curve only touches the axis at <m>x = 3</m>. The sketch shows both, and took less work.</p></solution>
+                        </li>
+                    </ol>
                 </p>
-            </li>
-            <li>
-                <title>Objective</title>
-                <p>
-                    To formalize the concepts and properties learners discovered in the anchor task.
-                </p>
-            </li>
-            </dl>
-        </p>
-        <paragraphs>
-            <title>Key Takeaways &amp; Teacher Connection</title>
-            <ol>
-                <li>
+            </statement>
+        </activity>
+
+        <axiom component="lesson-plan">
+            <title>Structured Instruction</title>
+            <p>
+                <dl>
+                    <li><title>Suggested Time</title><p>8 minutes</p></li>
+                    <li><title>Objective</title><p>To set out what a sketch must show, and how to decide the behaviour at the ends.</p></li>
+                </dl>
+            </p>
+            <paragraphs>
+                <title>Key Takeaways &amp; Teacher Connection</title>
+                <ol>
+                    <li><p><alert>Connecting to Learner Work:</alert> parts (a) to (c) give every feature in the checklist below.</p></li>
+                    <li><p>The sign of the highest power decides the behaviour at the ends.</p></li>
+                    <li><p>A sketch needs no scale, but every key point carries its coordinates.</p></li>
+                </ol>
+            </paragraphs>
+        </axiom>
+
+        <insight xml:id="insight-sketching-a-curve">
+            <title>Sketching a Curve</title>
+            <p>The stationary points and the intercepts are the skeleton of the curve. A sketch shows:
+                <ol>
+                    <li><p>the <m>y</m>-intercept (put <m>x = 0</m>);</p></li>
+                    <li><p>the <m>x</m>-intercepts that can be found exactly, from factorised form, a given factor or the factor theorem; if one cannot be found exactly, say between which whole numbers it lies;</p></li>
+                    <li><p>every stationary point, with its coordinates and nature;</p></li>
+                    <li><p>the behaviour for large positive and large negative <m>x</m>;</p></li>
+                    <li><p>labelled axes and a smooth curve.</p></li>
+                </ol>
+            </p>
+            <p>
+                For large <m>x</m> the term with the highest power is the largest. A cubic <m>y = ax^3 + \cdots</m> with <m>a \gt 0</m> rises to the right and falls to the left; with <m>a \lt 0</m> it falls to the right. A quartic <m>y = ax^4 + \cdots</m> with <m>a \gt 0</m> rises at both ends; with <m>a \lt 0</m> it falls at both ends.
+            </p>
+        </insight>
+
+        <figure xml:id="fig-tangent-gradient">
+            <caption>Drag <m>P</m> along the curve. The gradient readout changes sign at the stationary points and is zero there.</caption>
+            <interactive xml:id="interactive-tangent-gradient" platform="jsxgraph" width="90%" aspect="16:12" source="jsxgraph/tangent-gradient.js">
+                <slate xml:id="jsxgraph-tangent-gradient" surface="jsxboard" aspect="16:12"/>
+                <instructions>
                     <p>
-                        <alert>Connecting to Learner Work:</alert> XXXX
+                        <ul>
+                            <li><p>The curve is <m>y = (x + 3)(x - 3)^2</m> from <xref ref="act-sketch-first-plot-second"/>. Drag the point <alert>P</alert> slowly from the left.</p></li>
+                            <li><p>Watch the gradient readout. Where does it change from positive to negative? Stop <alert>P</alert> there: the readout says the gradient is <m>0</m>.</p></li>
+                            <li><p>Find the second place where the gradient is <m>0</m>. Which kind of stationary point is it?</p></li>
+                        </ul>
                     </p>
-                </li>
-            </ol>
-        </paragraphs>
-    </axiom> -->
+                </instructions>
+            </interactive>
+        </figure>
 
-    <!-- Add insight / key takeaway directly related to activity / learner experience -->
+        <xi:include href="../lesson-plan-templates/example-intro.ptx" />
 
-    <!-- <insight>
-    </insight> -->
-
-    <!-- Add further instruction (not in a block) to develop ideas as needed -->
-
-    <xi:include href="../lesson-plan-templates/example-intro.ptx" />
-
-    <!-- Add at least 3 examples -->
-
-    <!-- <example>
-        <statement>
-        </statement>
-        <solution>
-        </solution>
-    </example>
-
-    <example>
-        <statement>
-        </statement>
-        <solution>
-        </solution>
-    </example>
-
-    <example>
-        <statement>
-        </statement>
-        <solution>
-        </solution>
-    </example> -->
-
-    <xi:include href="../lesson-plan-templates/assessment-intro.ptx" />
-
-    <!-- If STACK questions are included, uncomment this: -->
-
-    <!-- <xi:include href="../lesson-plan-templates/checkpoint.ptx" /> -->
-
-    <!-- Add STACK exercises if made -->
-
-    <!-- Add static exercises -->
-
-    <!-- <exercises>
-        <exercise>
-            <statement>   
-
-            </statement>   
+        <example xml:id="example-sketching-a-quadratic">
+            <title>Sketching a Quadratic</title>
+            <statement><p>Sketch the curve <m>y = 8 + 2x - x^2</m>.</p></statement>
             <solution>
+                <p>The <m>y</m>-intercept is <m>8</m>. Factorise: <m>y = (4 - x)(2 + x)</m>, so the curve crosses the <m>x</m>-axis at <m>x = -2</m> and <m>x = 4</m>.</p>
+                <p><m>\dfrac{dy}{dx} = 2 - 2x = 0</m> at <m>x = 1</m>, where <m>y = 9</m>. The coefficient of <m>x^2</m> is negative, so the curve falls at both ends and <m>(1, 9)</m> is a maximum point.</p>
+                <figure xml:id="fig-sketch-quadratic">
+                    <caption>Sketch of <m>y = 8 + 2x - x^2</m>.</caption>
+                    <image width="60%">
+                        <shortdescription>A downward parabola crossing the x-axis at -2 and 4 and the y-axis at 8, with maximum point (1, 9).</shortdescription>
+                        <latex-image>
+\begin{tikzpicture}
+\begin{axis}[width=9cm, height=7cm, axis lines=middle, xtick=\empty, ytick=\empty, xmin=-3.5, xmax=5.5, ymin=-7, ymax=12, xlabel={$x$}, ylabel={$y$}]
+\addplot[thick, domain=-3:5, samples=80] {8+2*x-x^2};
+\addplot[only marks, mark=*] coordinates {(-2,0) (4,0) (0,8) (1,9)};
+\node[anchor=north east] at (axis cs:-2,0) {$(-2, 0)$};
+\node[anchor=north west] at (axis cs:4,0) {$(4, 0)$};
+\node[anchor=east] at (axis cs:-0.1,7.6) {$(0, 8)$};
+\node[anchor=south] at (axis cs:1,9.2) {$(1, 9)$};
+\end{axis}
+\end{tikzpicture}
+                        </latex-image>
+                    </image>
+                </figure>
+            </solution>
+        </example>
 
-            </solution>             
-        </exercise>        
-    </exercises> -->
+        <example xml:id="example-cubic-with-three-roots">
+            <title>A Cubic with Three Roots</title>
+            <statement><p>Sketch the curve <m>y = x^3 - 4x</m>.</p></statement>
+            <solution>
+                <p><m>y = x(x - 2)(x + 2)</m>, so the curve crosses the <m>x</m>-axis at <m>x = -2, 0, 2</m>, and the <m>y</m>-intercept is <m>0</m>.</p>
+                <p><m>\dfrac{dy}{dx} = 3x^2 - 4 = 0</m> when <m>x = \pm\dfrac{2}{\sqrt{3}} \approx \pm 1.15</m>. Then <m>y = \mp\dfrac{16}{3\sqrt{3}} \approx \mp 3.08</m>. <m>\dfrac{d^2y}{dx^2} = 6x</m> is negative at <m>x \approx -1.15</m> and positive at <m>x \approx 1.15</m>: a maximum point at about <m>(-1.15, 3.08)</m> and a minimum point at about <m>(1.15, -3.08)</m>.</p>
+                <p>The <m>x^3</m> term is positive, so the curve rises to the right and falls to the left.</p>
+                <figure xml:id="fig-sketch-x3-minus-4x">
+                    <caption>Sketch of <m>y = x^3 - 4x</m>.</caption>
+                    <image width="60%">
+                        <shortdescription>A cubic crossing the x-axis at -2, 0 and 2, with a maximum point at about (-1.15, 3.08) and a minimum point at about (1.15, -3.08). It rises to the right.</shortdescription>
+                        <latex-image>
+\begin{tikzpicture}
+\begin{axis}[width=9cm, height=7cm, axis lines=middle, xtick=\empty, ytick=\empty, xmin=-3, xmax=3, ymin=-7, ymax=7, xlabel={$x$}, ylabel={$y$}]
+\addplot[thick, domain=-2.5:2.5, samples=100] {x^3-4*x};
+\addplot[only marks, mark=*] coordinates {(-2,0) (0,0) (2,0) (-1.155,3.079) (1.155,-3.079)};
+\node[anchor=north east] at (axis cs:-2,0) {$(-2, 0)$};
+\node[anchor=north west] at (axis cs:2.05,-0.1) {$(2, 0)$};
+\node[anchor=south] at (axis cs:-1.155,3.3) {$(-1.15, 3.08)$};
+\node[anchor=north] at (axis cs:1.155,-3.3) {$(1.15, -3.08)$};
+\end{axis}
+\end{tikzpicture}
+                        </latex-image>
+                    </image>
+                </figure>
+            </solution>
+        </example>
 
-    <!-- [LP] Add information on how to differentiate  -->
+        <example xml:id="example-intercept-hard-to-find">
+            <title>When an Intercept Is Hard to Find</title>
+            <statement><p>Sketch the curve <m>y = -x^3 + 3x^2 + 2</m>.</p></statement>
+            <solution>
+                <p>The <m>y</m>-intercept is <m>2</m>. <m>\dfrac{dy}{dx} = -3x^2 + 6x = -3x(x - 2)</m>, zero at <m>x = 0</m> and <m>x = 2</m>, where <m>y = 2</m> and <m>y = -8 + 12 + 2 = 6</m>. <m>\dfrac{d^2y}{dx^2} = -6x + 6</m> is <m>6</m> at <m>x = 0</m> and <m>-6</m> at <m>x = 2</m>: <m>(0, 2)</m> is a minimum point and <m>(2, 6)</m> a maximum point.</p>
+                <p>The <m>x^3</m> term is negative, so the curve falls to the right. The cubic does not factorise nicely, but <m>y(3) = 2 \gt 0</m> and <m>y(4) = -14 \lt 0</m>, so the one <m>x</m>-intercept lies between <m>3</m> and <m>4</m>. (For <m>x \le 3</m> the curve never goes below <m>2</m>, its value at the minimum point and at <m>x = 3</m>; after <m>x = 2</m> it only falls, so it crosses the axis just once.)</p>
+                <figure xml:id="fig-sketch-negative-cubic">
+                    <caption>Sketch of <m>y = -x^3 + 3x^2 + 2</m>.</caption>
+                    <image width="60%">
+                        <shortdescription>y-intercept 2 at the minimum point (0, 2); maximum point (2, 6); one x-intercept between 3 and 4; the curve falls to the right.</shortdescription>
+                        <latex-image>
+\begin{tikzpicture}
+\begin{axis}[width=9cm, height=7cm, axis lines=middle, xtick=\empty, ytick=\empty, xmin=-1.8, xmax=4.5, ymin=-5, ymax=9, xlabel={$x$}, ylabel={$y$}]
+\addplot[thick, domain=-1.3:3.9, samples=100] {-x^3+3*x^2+2};
+\addplot[only marks, mark=*] coordinates {(0,2) (2,6) (3.196,0)};
+\node[anchor=north west] at (axis cs:0.05,1.9) {$(0, 2)$};
+\node[anchor=south] at (axis cs:2,6.2) {$(2, 6)$};
+\node[anchor=north east] at (axis cs:3.1,-0.3) {between $3$ and $4$};
+\end{axis}
+\end{tikzpicture}
+                        </latex-image>
+                    </image>
+                </figure>
+            </solution>
+        </example>
 
-    <!-- <axiom component="lesson-plan">
-        <title>Differentiation</title>
+        <note xml:id="note-check-sketch-with-software">
+            <title>Check with Software</title>
+            <p>
+                Sketch first, then check your sketch by plotting the curve in GeoGebra or Desmos. Use the apps your school has approved. Do not create accounts with personal details or share your location to use them.
+            </p>
+        </note>
 
-        <table>
+        <xi:include href="../lesson-plan-templates/assessment-intro.ptx" />
+        <xi:include href="../lesson-plan-templates/checkpoint.ptx" />
+
+        <p>Type whole numbers or fractions, for example <c>-3</c> or <c>5/2</c>. Type powers with <c>^</c>, for example <c>2x^3-5x+1</c>.</p>
+
+        <exercise xml:id="ex-key-features-for-sketching-a-cubic">
+            <!--<title></title>-->
+            <stack label="stk-key-features-for-sketching-a-cubic" source="stack/top/4-calculus/17-differentiation-ii/02-curve-sketching/Key-features-for-sketching-a-cubic.xml"/>
+        </exercise>
+
+        <exercise xml:id="ex-matching-a-cubic-to-its-sketch">
+            <!--<title></title>-->
+            <stack label="stk-matching-a-cubic-to-its-sketch" source="stack/top/4-calculus/17-differentiation-ii/02-curve-sketching/Matching-a-cubic-to-its-sketch.xml"/>
+        </exercise>
+
+        <exercises xml:id="exercises-sketching-polynomial-curves">
+            <introduction><p>Sketch each curve, labelling the intercepts and the stationary points with their coordinates.</p></introduction>
+            <exercise xml:id="ex-sketch-quadratic-up">
+                <statement><p><m>y = x^2 - 2x - 8</m></p></statement>
+                <answer><p>Crosses at <m>x = -2</m> and <m>x = 4</m>; <m>y</m>-intercept <m>-8</m>; minimum point <m>(1, -9)</m>.</p></answer>
+            </exercise>
+            <exercise xml:id="ex-sketch-quadratic-down">
+                <statement><p><m>y = 3 + 2x - x^2</m></p></statement>
+                <answer><p>Crosses at <m>x = -1</m> and <m>x = 3</m>; <m>y</m>-intercept <m>3</m>; maximum point <m>(1, 4)</m>.</p></answer>
+            </exercise>
+            <exercise xml:id="ex-sketch-x-cubed-minus-nine-x">
+                <statement><p><m>y = x^3 - 9x</m></p></statement>
+                <answer><p>Crosses at <m>x = -3, 0, 3</m>; maximum point <m>(-\sqrt{3}, 6\sqrt{3}) \approx (-1.73, 10.39)</m>; minimum point <m>(\sqrt{3}, -6\sqrt{3}) \approx (1.73, -10.39)</m>; rises to the right.</p></answer>
+            </exercise>
+            <exercise xml:id="ex-sketch-three-roots-fractions">
+                <statement><p><m>y = (x - 1)(x - 4)(x + 4)</m></p></statement>
+                <answer><p>Crosses at <m>x = -4, 1, 4</m>; <m>y</m>-intercept <m>16</m>; maximum point <m>(-2, 36)</m>; minimum point <m>\left(\dfrac{8}{3}, -\dfrac{400}{27}\right) \approx (2.67, -14.81)</m>.</p></answer>
+                <solution><p><m>y = x^3 - x^2 - 16x + 16</m>, so <m>\dfrac{dy}{dx} = 3x^2 - 2x - 16 = (3x - 8)(x + 2)</m>.</p></solution>
+            </exercise>
+            <exercise xml:id="ex-sketch-given-a-root">
+                <statement><p>Show that <m>x = -2</m> is a root of <m>-x^3 + 3x^2 + 9x - 2 = 0</m>, and sketch the curve <m>y = -x^3 + 3x^2 + 9x - 2</m>.</p></statement>
+                <answer><p><m>y = (x + 2)(-x^2 + 5x - 1)</m>; crosses at <m>x = -2</m>, about <m>0.21</m> and about <m>4.79</m>; <m>y</m>-intercept <m>-2</m>; minimum point <m>(-1, -7)</m>; maximum point <m>(3, 25)</m>; falls to the right.</p></answer>
+                <solution><p>At <m>x = -2</m>: <m>8 + 12 - 18 - 2 = 0</m>. Dividing, <m>y = (x + 2)(-x^2 + 5x - 1)</m>, and <m>x^2 - 5x + 1 = 0</m> gives <m>x = \dfrac{5 \pm \sqrt{21}}{2}</m>. <m>\dfrac{dy}{dx} = -3x^2 + 6x + 9 = -3(x + 1)(x - 3)</m>.</p></solution>
+            </exercise>
+            <exercise xml:id="ex-cubic-from-its-turning-points">
+                <statement><p>A cubic <m>y = x^3 + bx^2 + cx + d</m> has a maximum point at <m>(-1, 6)</m> and a minimum point at <m>(1, 2)</m>. Find <m>b</m>, <m>c</m> and <m>d</m>, and sketch the curve.</p></statement>
+                <answer><p><m>b = 0</m>, <m>c = -3</m>, <m>d = 4</m>: <m>y = x^3 - 3x + 4</m>, <m>y</m>-intercept <m>4</m>.</p></answer>
+                <solution><p><m>\dfrac{dy}{dx} = 3x^2 + 2bx + c</m> must be <m>3(x + 1)(x - 1) = 3x^2 - 3</m>, so <m>b = 0</m> and <m>c = -3</m>. Then <m>y(1) = 1 - 3 + d = 2</m>, so <m>d = 4</m>; check <m>y(-1) = -1 + 3 + 4 = 6</m>.</p></solution>
+            </exercise>
+            <exercise xml:id="ex-every-cubic-crosses">
+                <title>Challenge: Every Cubic Crosses</title>
+                <statement><p>Explain why every curve <m>y = x^3 + bx^2 + cx + d</m> crosses the <m>x</m>-axis at least once.</p></statement>
+                <hint><p>Think about large positive and large negative <m>x</m>.</p></hint>
+                <answer><p>For large negative <m>x</m>, <m>y</m> is large and negative; for large positive <m>x</m>, <m>y</m> is large and positive. The curve has no breaks, so it must cross <m>y = 0</m> somewhere in between.</p></answer>
+            </exercise>
+        </exercises>
+
+        <axiom component="lesson-plan">
             <title>Differentiation</title>
-            <tabular halign="left">
-                <row header="yes" bottom="minor">
-                    <cell>Learner Group</cell>
-                    <cell>Strategy &amp; Learning Experience</cell>
-                    <cell></cell>
-                </row>
-                <row>
-                    <cell>Struggling Learners (Support)</cell>
-                    <cell>
-                        XXXX
-                    </cell>
-                    <cell></cell>
-                </row>
-                <row>
-                    <cell>On-Level Learners (Core)</cell>
-                    <cell>
-                        <line>The core lesson activities as described above.</line>
-                    </cell>
-                    <cell></cell>
-                </row>
-                <row>
-                    <cell>Advanced Learners (Challenge)</cell>
-                    <cell>
-                        XXXX
-                    </cell>
-                    <cell></cell>
-                </row>
-            </tabular>
-        </table>
-    </axiom> -->
+            <table xml:id="table-differentiation-sketching-polynomial-curves">
+                <title>Differentiation Strategies</title>
+                <tabular halign="left" top="minor" bottom="minor" left="minor" right="minor">
+                    <row header="yes" bottom="medium"><cell>Learner Group</cell><cell>Strategy and Learning Experience</cell></row>
+                    <row><cell>Struggling Learners (Support)</cell><cell>Provide a sketch checklist card and pre-drawn axes. Work through the first two examples. Assign <xref ref="ex-sketch-quadratic-up"/> to <xref ref="ex-sketch-x-cubed-minus-nine-x"/>.</cell></row>
+                    <row><cell>On-Level Learners (Core)</cell><cell>Full activity and all examples. Assign <xref ref="ex-sketch-quadratic-up"/> to <xref ref="ex-cubic-from-its-turning-points"/>.</cell></row>
+                    <row><cell>Advanced Learners (Challenge)</cell><cell>All exercises including <xref ref="ex-every-cubic-crosses"/>. Extension: sketch <m>y = x^3 + 3x</m> and explain why it has no turning points. (Answer: <m>\dfrac{dy}{dx} = 3x^2 + 3 \gt 0</m>, so the curve rises everywhere, passing through the origin.)</cell></row>
+                </tabular>
+            </table>
+        </axiom>
 
-    <xi:include href="../lesson-plan-templates/assessment-methods.ptx" />
+        <xi:include href="../lesson-plan-templates/assessment-methods.ptx" />
+        <xi:include href="../lesson-plan-templates/reflection.ptx"/>
+    </subsection>
 
-    <xi:include href="../lesson-plan-templates/reflection.ptx"/>
+    <!-- ============================================================ Lesson 2.2 -->
+    <subsection xml:id="subsec-repeated-roots-and-counting-solutions">
+        <title>Repeated Roots, Quartics and Counting Solutions</title>
+
+        <p component="lesson-plan">Upon completion of this lesson, learners will be able to:
+            <ol>
+                <li><p><alert>Know:</alert> a squared factor makes a curve touch the axis, a cubed factor makes it flatten on the axis; the number of solutions of <m>f(x) = k</m> is the number of times the line <m>y = k</m> meets the curve.</p></li>
+                <li><p><alert>Do:</alert> sketch curves with repeated roots and simple quartics; count solutions from the stationary values.</p></li>
+                <li><p><alert>Apply:</alert> read the stationary points of a curve from the graph of its gradient function.</p></li>
+            </ol>
+        </p>
+
+        <axiom component="lesson-plan">
+            <title>Problem-Solving and Discovery</title>
+            <dl>
+                <li><title>Suggested Time</title><p>14 minutes</p></li>
+                <li><title>Objective</title><p>Learners count solutions of an equation by laying a ruler across their sketch.</p></li>
+                <li><title>Teacher's Role</title><p>Give each group a ruler and the sketch from <xref ref="act-sketch-first-plot-second"/>. Ask: <q>Where must the ruler be for exactly two meetings?</q> Let every group give its answer before any is judged.</p></li>
+            </dl>
+        </axiom>
+
+        <activity xml:id="act-how-many-solutions">
+            <title>How Many Solutions?</title>
+            <statement>
+                <p>Use your sketch of <m>y = (x + 3)(x - 3)^2</m>, with maximum point <m>(-1, 32)</m> and minimum point <m>(3, 0)</m>.</p>
+                <p>
+                    <ol marker="(a)">
+                        <li>
+                            <p>Lay a ruler along each of the lines <m>y = 10</m>, <m>y = 32</m>, <m>y = 40</m>, <m>y = 0</m> and <m>y = -5</m>. How many times does each meet the curve?</p>
+                            <solution component="lesson-plan"><p><m>3</m>, <m>2</m>, <m>1</m>, <m>2</m>, <m>1</m>.</p></solution>
+                        </li>
+                        <li>
+                            <p>For which values of <m>k</m> does <m>(x + 3)(x - 3)^2 = k</m> have three solutions?</p>
+                            <solution component="lesson-plan"><p><m>0 \lt k \lt 32</m>, strictly between the two stationary values.</p></solution>
+                        </li>
+                        <li>
+                            <p>Why does the curve only touch the axis at <m>x = 3</m>?</p>
+                            <solution component="lesson-plan"><p>The factor <m>(x - 3)^2</m> is never negative, so <m>y</m> does not change sign at <m>x = 3</m>.</p></solution>
+                        </li>
+                    </ol>
+                </p>
+            </statement>
+        </activity>
+
+        <axiom component="lesson-plan">
+            <title>Structured Instruction</title>
+            <p>
+                <dl>
+                    <li><title>Suggested Time</title><p>8 minutes</p></li>
+                    <li><title>Objective</title><p>To connect repeated factors with touching, and stationary values with the number of solutions.</p></li>
+                </dl>
+            </p>
+            <paragraphs>
+                <title>Key Takeaways &amp; Teacher Connection</title>
+                <ol>
+                    <li><p><alert>Connecting to Learner Work:</alert> part (a) shows that the count changes only at the stationary values.</p></li>
+                    <li><p>Touching and crossing come from the powers of the factors.</p></li>
+                    <li><p>Three solutions need the line strictly between the two stationary values.</p></li>
+                </ol>
+            </paragraphs>
+        </axiom>
+
+        <insight xml:id="insight-repeated-roots-counting-solutions">
+            <title>Repeated Roots and Counting Solutions</title>
+            <p>
+                A factor <m>(x - a)^2</m> makes the curve touch the <m>x</m>-axis at <m>x = a</m>: it is a turning point on the axis. A factor <m>(x - a)^3</m> makes the curve flatten as it crosses the axis at <m>x = a</m>: a point of inflection on the axis.
+            </p>
+            <p>
+                The solutions of <m>f(x) = k</m> are the <m>x</m>-coordinates of the points where the line <m>y = k</m> meets the curve <m>y = f(x)</m>. For a cubic with a maximum value <m>M</m> and a minimum value <m>m</m>, the equation has three solutions when <m>m \lt k \lt M</m>, two when <m>k = m</m> or <m>k = M</m>, and one otherwise.
+            </p>
+        </insight>
+
+        <xi:include href="../lesson-plan-templates/example-intro.ptx" />
+
+        <example xml:id="example-curve-that-touches-the-axis">
+            <title>A Curve That Touches the Axis</title>
+            <statement><p>Sketch the curve <m>y = x(x - 3)^2</m>.</p></statement>
+            <solution>
+                <p>The curve crosses the axis at <m>x = 0</m> and touches it at <m>x = 3</m>. Expand: <m>y = x^3 - 6x^2 + 9x</m>, so <m>\dfrac{dy}{dx} = 3x^2 - 12x + 9 = 3(x - 1)(x - 3)</m>.</p>
+                <p>At <m>x = 1</m>, <m>y = 4</m>; at <m>x = 3</m>, <m>y = 0</m>. <m>\dfrac{d^2y}{dx^2} = 6x - 12</m> is <m>-6</m> at <m>x = 1</m> and <m>6</m> at <m>x = 3</m>: <m>(1, 4)</m> is a maximum point and <m>(3, 0)</m> a minimum point on the axis.</p>
+                <figure xml:id="fig-sketch-repeated-root">
+                    <caption>Sketch of <m>y = x(x - 3)^2</m>.</caption>
+                    <image width="60%">
+                        <shortdescription>Passes through the origin, rises to the maximum point (1, 4), and touches the x-axis at the minimum point (3, 0) before rising again.</shortdescription>
+                        <latex-image>
+\begin{tikzpicture}
+\begin{axis}[width=9cm, height=7cm, axis lines=middle, xtick=\empty, ytick=\empty, xmin=-1.2, xmax=4.6, ymin=-4, ymax=7, xlabel={$x$}, ylabel={$y$}]
+\addplot[thick, domain=-0.6:4.3, samples=100] {x*(x-3)^2};
+\addplot[only marks, mark=*] coordinates {(0,0) (1,4) (3,0)};
+\node[anchor=north west] at (axis cs:0.05,-0.1) {$(0, 0)$};
+\node[anchor=south] at (axis cs:1,4.2) {$(1, 4)$};
+\node[anchor=north] at (axis cs:3,-0.2) {$(3, 0)$};
+\end{axis}
+\end{tikzpicture}
+                        </latex-image>
+                    </image>
+                </figure>
+            </solution>
+        </example>
+
+        <example xml:id="example-w-shaped-quartic">
+            <title>A W-shaped Quartic</title>
+            <statement><p>Sketch the curve <m>y = (x^2 - 4)^2</m>.</p></statement>
+            <solution>
+                <p><m>y = (x - 2)^2(x + 2)^2</m>, so the curve touches the <m>x</m>-axis at <m>x = -2</m> and <m>x = 2</m>. The <m>y</m>-intercept is <m>16</m>.</p>
+                <p><m>y = x^4 - 8x^2 + 16</m>, so <m>\dfrac{dy}{dx} = 4x^3 - 16x = 4x(x - 2)(x + 2)</m>, zero at <m>x = -2, 0, 2</m>. <m>\dfrac{d^2y}{dx^2} = 12x^2 - 16</m> is <m>32</m> at <m>x = \pm 2</m> and <m>-16</m> at <m>x = 0</m>: minimum points <m>(-2, 0)</m> and <m>(2, 0)</m>, maximum point <m>(0, 16)</m>. The <m>x^4</m> term is positive, so the curve rises at both ends.</p>
+                <figure xml:id="fig-sketch-quartic-w">
+                    <caption>Sketch of <m>y = (x^2 - 4)^2</m>.</caption>
+                    <image width="60%">
+                        <shortdescription>A W shape touching the x-axis at the minimum points (-2, 0) and (2, 0), with maximum point (0, 16).</shortdescription>
+                        <latex-image>
+\begin{tikzpicture}
+\begin{axis}[width=9cm, height=7cm, axis lines=middle, xtick=\empty, ytick=\empty, xmin=-3.6, xmax=3.6, ymin=-4, ymax=24, xlabel={$x$}, ylabel={$y$}]
+\addplot[thick, domain=-3:3, samples=120] {(x^2-4)^2};
+\addplot[only marks, mark=*] coordinates {(-2,0) (2,0) (0,16)};
+\node[anchor=north] at (axis cs:-2,-0.4) {$(-2, 0)$};
+\node[anchor=north] at (axis cs:2,-0.4) {$(2, 0)$};
+\node[anchor=south west] at (axis cs:0.1,16.3) {$(0, 16)$};
+\end{axis}
+\end{tikzpicture}
+                        </latex-image>
+                    </image>
+                </figure>
+            </solution>
+        </example>
+
+        <example xml:id="example-counting-solutions">
+            <title>Counting Solutions</title>
+            <statement><p>Use the stationary points of <m>y = x^3 - 3x + 2</m> to find how many solutions the equation <m>x^3 - 3x + 2 = k</m> has for different values of <m>k</m>.</p></statement>
+            <solution>
+                <p><m>\dfrac{dy}{dx} = 3x^2 - 3 = 3(x - 1)(x + 1)</m>, so the stationary points are <m>(-1, 4)</m>, a maximum point, and <m>(1, 0)</m>, a minimum point. (In fact <m>y = (x - 1)^2(x + 2)</m>.)</p>
+                <p>So <m>x^3 - 3x + 2 = k</m> has three solutions for <m>0 \lt k \lt 4</m>, two solutions for <m>k = 0</m> or <m>k = 4</m>, and one solution for <m>k \lt 0</m> or <m>k \gt 4</m>. For example, <m>x^3 - 3x + 2 = 2</m> has three solutions.</p>
+                <figure xml:id="fig-counting-solutions">
+                    <caption>The curve <m>y = x^3 - 3x + 2</m> with the lines <m>y = 2</m>, <m>y = 4</m> and <m>y = 5</m>.</caption>
+                    <image width="60%">
+                        <shortdescription>The dashed line y = 2 meets the curve three times, y = 4 meets it twice (touching at the maximum point (-1, 4)), and y = 5 meets it once.</shortdescription>
+                        <latex-image>
+\begin{tikzpicture}
+\begin{axis}[width=9cm, height=7cm, axis lines=middle, xtick=\empty, ytick=\empty, xmin=-3, xmax=3, ymin=-3, ymax=7.5, xlabel={$x$}, ylabel={$y$}]
+\addplot[thick, domain=-2.45:2.2, samples=100] {x^3-3*x+2};
+\addplot[dashed, domain=-3:3] {2}; \addplot[dashed, domain=-3:3] {4}; \addplot[dashed, domain=-3:3] {5};
+\addplot[only marks, mark=*] coordinates {(-1,4) (1,0)};
+\node[anchor=south west] at (axis cs:2.2,2) {$y = 2$};
+\node[anchor=south west] at (axis cs:2.2,4) {$y = 4$};
+\node[anchor=west] at (axis cs:2.2,5.4) {$y = 5$};
+\node[anchor=south] at (axis cs:-1,4.1) {$(-1, 4)$};
+\node[anchor=north] at (axis cs:1,-0.2) {$(1, 0)$};
+\end{axis}
+\end{tikzpicture}
+                        </latex-image>
+                    </image>
+                </figure>
+            </solution>
+        </example>
+
+        <example xml:id="example-reading-the-gradient-graph">
+            <title>Reading the Gradient Graph</title>
+            <statement><p>The graph shows the gradient function <m>y = f'(x) = x^2 - x - 6</m> of a curve <m>y = f(x)</m>. Find the stationary points of <m>f</m> and their nature.</p>
+                <figure xml:id="fig-gradient-graph">
+                    <caption>The graph of the gradient function <m>y = f'(x) = x^2 - x - 6</m>.</caption>
+                    <image width="70%">
+                        <shortdescription>The gradient graph crosses the x-axis at -2 and 3. It is above the axis for x less than -2 and for x greater than 3, and below the axis between them.</shortdescription>
+                        <description><p>Graph of y = x squared minus x minus 6 on a grid, x from -4 to 5, y from -8 to 14. It crosses the x-axis at x = -2 and x = 3, with its lowest point at (0.5, -6.25).</p></description>
+                        <latex-image>
+\begin{tikzpicture}
+\begin{axis}[width=10cm, height=7.5cm, axis lines=middle, xmin=-4, xmax=5, ymin=-8, ymax=14, xtick={-4,...,5}, ytick={-8,-6,...,14}, grid=both, major grid style={gray!40}, xlabel={$x$}, ylabel={$y$}]
+\addplot[thick, domain=-4:5, samples=80] {x^2-x-6};
+\node[anchor=east] at (axis cs:3.9,12.5) {$y = f'(x)$};
+\end{axis}
+\end{tikzpicture}
+                        </latex-image>
+                    </image>
+                </figure>
+            </statement>
+            <solution>
+                <p>The stationary points of <m>f</m> are where <m>f'(x) = 0</m>, where the graph meets the <m>x</m>-axis: <m>x = -2</m> and <m>x = 3</m>.</p>
+                <p>Where the graph of <m>f'</m> is above the axis, <m>f</m> is increasing; where it is below, <m>f</m> is decreasing. At <m>x = -2</m> the graph goes from above to below: <m>f</m> goes from increasing to decreasing, a maximum point. At <m>x = 3</m> it goes from below to above: a minimum point. This is the Grade 11 idea of finding the derivative graphically, read the other way.</p>
+            </solution>
+        </example>
+
+        <p>
+            <em>Differentiation in use:</em> engineers sketch the curve of a model before they trust a computer plot, so that a wrong formula shows up at once. Where could a quick sketch save you from a mistake?
+        </p>
+
+        <xi:include href="../lesson-plan-templates/assessment-intro.ptx" />
+        <xi:include href="../lesson-plan-templates/checkpoint.ptx" />
+
+        <p>Type whole numbers or fractions, for example <c>-3</c> or <c>5/2</c>. Type powers with <c>^</c>, for example <c>2x^3-5x+1</c>. For the nature of a point, choose from the list.</p>
+
+        <exercise xml:id="ex-counting-solutions-from-a-sketch">
+            <!--<title></title>-->
+            <stack label="stk-counting-solutions-from-a-sketch" source="stack/top/4-calculus/17-differentiation-ii/02-curve-sketching/Counting-solutions-from-a-sketch.xml"/>
+        </exercise>
+
+        <exercise xml:id="ex-constructing-a-cubic-with-given-turning-points">
+            <!--<title></title>-->
+            <stack label="stk-constructing-a-cubic-with-given-turning-points" source="stack/top/4-calculus/17-differentiation-ii/02-curve-sketching/Constructing-a-cubic-with-given-turning-points.xml"/>
+        </exercise>
+
+        <exercise xml:id="ex-stationary-points-from-the-graph-of-the-gradient">
+            <!--<title></title>-->
+            <stack label="stk-stationary-points-from-the-graph-of-the-gradient" source="stack/top/4-calculus/17-differentiation-ii/02-curve-sketching/Stationary-points-from-the-graph-of-the-gradient.xml"/>
+        </exercise>
+
+        <exercises xml:id="exercises-repeated-roots-counting-solutions">
+            <exercise xml:id="ex-sketch-x-times-x-minus-six-squared">
+                <statement><p>Sketch <m>y = x(x - 6)^2</m>, labelling the intercepts and stationary points.</p></statement>
+                <answer><p>Crosses at <m>x = 0</m>, touches at <m>x = 6</m>; maximum point <m>(2, 32)</m>; minimum point <m>(6, 0)</m>.</p></answer>
+            </exercise>
+            <exercise xml:id="ex-sketch-x-plus-one-squared">
+                <statement><p>Sketch <m>y = (x + 1)^2(x - 2)</m>, labelling the intercepts and stationary points.</p></statement>
+                <answer><p><m>y = x^3 - 3x - 2</m>; touches at <m>x = -1</m>, crosses at <m>x = 2</m>; <m>y</m>-intercept <m>-2</m>; maximum point <m>(-1, 0)</m>; minimum point <m>(1, -4)</m>.</p></answer>
+            </exercise>
+            <exercise xml:id="ex-sketch-cubed-factor">
+                <statement><p>Expand <m>y = (x - 2)^3 + 1</m> and sketch the curve.</p></statement>
+                <answer><p><m>y = x^3 - 6x^2 + 12x - 7</m>; point of inflection <m>(2, 1)</m>; <m>y</m>-intercept <m>-7</m>; crosses the <m>x</m>-axis at <m>x = 1</m>.</p></answer>
+                <solution><p><m>\dfrac{dy}{dx} = 3(x - 2)^2 \ge 0</m>, zero only at <m>x = 2</m>, where <m>y = 1</m>; positive on both sides, so a point of inflection. <m>y = 0</m> when <m>(x - 2)^3 = -1</m>, so <m>x = 1</m>.</p></solution>
+            </exercise>
+            <exercise xml:id="ex-sketch-upside-down-w">
+                <statement><p>Sketch <m>y = 4x^2 - x^4</m>, labelling the intercepts and stationary points.</p></statement>
+                <answer><p><m>y = x^2(2 - x)(2 + x)</m>: crosses at <m>x = \pm 2</m>, touches at <m>x = 0</m>; minimum point <m>(0, 0)</m>; maximum points <m>(\pm\sqrt{2}, 4) \approx (\pm 1.41, 4)</m>; falls at both ends.</p></answer>
+            </exercise>
+            <exercise xml:id="ex-solutions-of-x-cubed-minus-twelve-x">
+                <statement><p>For which values of <m>k</m> does <m>x^3 - 12x = k</m> have three solutions?</p></statement>
+                <answer><p><m>-16 \lt k \lt 16</m></p></answer>
+                <solution><p><m>\dfrac{dy}{dx} = 3x^2 - 12 = 0</m> at <m>x = \pm 2</m>; the maximum value is <m>y(-2) = 16</m> and the minimum value is <m>y(2) = -16</m>. Three solutions need <m>-16 \lt k \lt 16</m>.</p></solution>
+            </exercise>
+            <exercise xml:id="ex-sketch-double-touch">
+                <title>Challenge: Two Squared Factors</title>
+                <statement><p>Sketch <m>y = x^2(x + 2)^2</m>.</p></statement>
+                <hint><p>Both factors are squared.</p></hint>
+                <answer><p>Touches the <m>x</m>-axis at <m>x = -2</m> and <m>x = 0</m>; minimum points <m>(-2, 0)</m> and <m>(0, 0)</m>; maximum point <m>(-1, 1)</m>; rises at both ends.</p></answer>
+                <solution><p><m>y = x^4 + 4x^3 + 4x^2</m>, so <m>\dfrac{dy}{dx} = 4x^3 + 12x^2 + 8x = 4x(x + 1)(x + 2)</m>, zero at <m>x = -2, -1, 0</m>.</p></solution>
+            </exercise>
+        </exercises>
+
+        <axiom component="lesson-plan">
+            <title>Differentiation</title>
+            <table xml:id="table-differentiation-repeated-roots-counting-solutions">
+                <title>Differentiation Strategies</title>
+                <tabular halign="left" top="minor" bottom="minor" left="minor" right="minor">
+                    <row header="yes" bottom="medium"><cell>Learner Group</cell><cell>Strategy and Learning Experience</cell></row>
+                    <row><cell>Struggling Learners (Support)</cell><cell>Do the activity with a ruler. Work through <xref ref="example-curve-that-touches-the-axis"/> and <xref ref="example-counting-solutions"/>. Assign <xref ref="ex-sketch-x-times-x-minus-six-squared"/>, <xref ref="ex-sketch-x-plus-one-squared"/> and <xref ref="ex-solutions-of-x-cubed-minus-twelve-x"/>.</cell></row>
+                    <row><cell>On-Level Learners (Core)</cell><cell>Full activity and all examples. Assign <xref ref="ex-sketch-x-times-x-minus-six-squared"/> to <xref ref="ex-solutions-of-x-cubed-minus-twelve-x"/>.</cell></row>
+                    <row><cell>Advanced Learners (Challenge)</cell><cell>All exercises including <xref ref="ex-sketch-double-touch"/>. Extension: give a quartic that touches the <m>x</m>-axis at <m>x = 1</m> and crosses it at <m>x = -1</m> and <m>x = 3</m>. (Answer: for example <m>y = (x - 1)^2(x + 1)(x - 3)</m>.)</cell></row>
+                </tabular>
+            </table>
+        </axiom>
+
+
+        <xi:include href="../lesson-plan-templates/assessment-methods.ptx" />
+        <xi:include href="../lesson-plan-templates/reflection.ptx"/>
+    </subsection>
 </section>

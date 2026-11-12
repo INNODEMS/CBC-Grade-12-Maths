@@ -1,0 +1,16 @@
+<stack-static>
+    <statement><p><p>Jepkosgei and Rotich ran 400 m six times each at a training camp in Iten. Their times, in seconds, were</p><tabular border="1" style="border-collapse:collapse;text-align:center;"><row><cell style="padding:4px 10px;">Runner</cell><cell style="padding:4px 10px;">Race 1</cell><cell style="padding:4px 10px;">Race 2</cell><cell style="padding:4px 10px;">Race 3</cell><cell style="padding:4px 10px;">Race 4</cell><cell style="padding:4px 10px;">Race 5</cell><cell style="padding:4px 10px;">Race 6</cell></row><row><cell style="padding:4px 10px;">Jepkosgei</cell><cell style="padding:4px 10px;"><m>{54.1}</m></cell><cell style="padding:4px 10px;"><m>{54.4}</m></cell><cell style="padding:4px 10px;"><m>{54.3}</m></cell><cell style="padding:4px 10px;"><m>{54.6}</m></cell><cell style="padding:4px 10px;"><m>{54.6}</m></cell><cell style="padding:4px 10px;"><m>{54.1}</m></cell></row><row><cell style="padding:4px 10px;">Rotich</cell><cell style="padding:4px 10px;"><m>{55.1}</m></cell><cell style="padding:4px 10px;"><m>{55.4}</m></cell><cell style="padding:4px 10px;"><m>{55.5}</m></cell><cell style="padding:4px 10px;"><m>{54.9}</m></cell><cell style="padding:4px 10px;"><m>{55.2}</m></cell><cell style="padding:4px 10px;"><m>{53.4}</m></cell></row></tabular><p>(a) Find the standard deviation of Jepkosgei's times, correct to 2 decimal places.</p><div><m>\sigma =</m> <fillin characters="6" name="ans1"/> s  </div><p>(b) Find the standard deviation of Rotich's times, correct to 2 decimal places.</p><div><m>\sigma =</m> <fillin characters="6" name="ans2"/> s  </div><p>(c) Who is the more consistent runner?</p><div><ol marker="(1)">
+<li>They are equally consistent.</li>
+<li>Jepkosgei</li>
+<li>Rotich</li>
+</ol>  </div><p>(d) Which reason supports your answer to (c)?</p><div><ol marker="(1)">
+<li>A lower mean time means the times are more consistent.</li>
+<li>A smaller standard deviation means the times stay closer to the runner's own mean.</li>
+<li>A larger standard deviation means the times are more consistent.</li>
+</ol>  </div></p></statement>
+    <solution><p><p>The variance is the mean of the squared deviations from the mean, and the standard deviation is its square root, in seconds. Divide by <m>n = 6</m>.</p><p>(a) Jepkosgei: <m>\bar{x} \approx {54.35}</m>, <m>\Sigma(x - \bar{x})^2 \approx {0.255}</m>, so <m>\sigma^2 \approx {0.0425}</m> and <m>\sigma \approx {0.21}</m> s.</p><p>(b) Rotich: <m>\bar{x} \approx {54.92}</m>, <m>\Sigma(x - \bar{x})^2 \approx {2.9883}</m>, so <m>\sigma^2 \approx {0.4981}</m> and <m>\sigma \approx {0.71}</m> s.</p><p>(c) Jepkosgei has the smaller standard deviation, so Jepkosgei is the more consistent runner.</p><p>(d) A smaller standard deviation means the times stay closer to the runner's own mean. Consistency is about spread, not about the mean: here the more consistent runner also happens to be faster on average, but that is not why the times are consistent.</p></p></solution>
+    <answer><p><m>\frac{\sqrt{17}}{20}</m></p></answer>
+    <answer><p><m>\frac{\sqrt{1793}}{60}</m></p></answer>
+    <answer><p><m>(2)</m></p></answer>
+    <answer><p><m>(2)</m></p></answer>
+</stack-static>

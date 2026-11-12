@@ -46,163 +46,206 @@
          Suggested activity: Learners find out the current value of land in their area over the past few years and calculate the rate of appreciation.
          Interactive (JSXGraph): Value of an asset over time with a slider for the appreciation rate, plotted as a growth curve. -->
 
-    <!-- [LP] Add guidance on activity -->
+    <!-- Section notes (2026-11)
+         SLO: Essential 2.4 (c), appreciation (the skeleton's SLO line, shared with 14.4, is kept). One lesson, flat anatomy.
+         Activity: as planning notes (land values near Kitengela over past years; rate of appreciation); invented values, learners may substitute local ones
+         JSXGraph: fig-appreciation-curve (assets/jsxgraph/appreciation-curve.js), as planning notes
+         STACK: assets/stack/top/2-measurement-and-geometry/14-commercial-arithmetic-iii/03-appreciation/ -->
+
+    <p component="lesson-plan">Upon completion of this lesson, learners will be able to:
+        <ol>
+            <li><p><alert>Know:</alert> appreciation, the rate of appreciation, and <m>V = P\left(1 + \dfrac{r}{100}\right)^n</m>.</p></li>
+            <li><p><alert>Do:</alert> find a value after <m>n</m> years and the appreciation in Ksh; find the rate over one year, and the equal yearly rate over two years.</p></li>
+            <li><p><alert>Apply:</alert> land and houses in Kenyan towns.</p></li>
+        </ol>
+    </p>
 
     <axiom component="lesson-plan">
         <title>Problem-Solving and Discovery</title>
         <dl>
-            <li>
-                <title>Suggested Time</title>
-                <p>
-                    XXX minutes
-                </p>
-            </li>
-            <li>
-                <title>Objective</title>
-                <p>
-                    XXX
-                </p>
-            </li>
-            <li>
-                <title>Teacher's Role</title>
-                <p>
-                    XXX
-                </p>
-            </li>
+            <li><title>Suggested Time</title><p>14 minutes</p></li>
+            <li><title>Objective</title><p>Learners find the yearly rate from a run of land values and use it to predict a later value.</p></li>
+            <li><title>Teacher's Role</title><p>If learners know real land prices in their area over recent years, use those; otherwise use the values given. Part (d) can be homework.</p></li>
         </dl>
     </axiom>
 
-    <!-- Add Activity -->
-
-    <!-- <activity>
+    <activity xml:id="act-a-plot-near-kitengela">
+        <title>A Plot Near Kitengela</title>
         <statement>
+            <p>A family bought a plot near Kitengela in 2021. These are its values in four years (invented for this activity).</p>
+            <table xml:id="table-a-plot-near-kitengela">
+                <title>Value of the Plot</title>
+                <tabular halign="center" top="minor" bottom="minor" left="minor" right="minor">
+                    <row header="yes" bottom="medium"><cell>Year</cell><cell>2021</cell><cell>2022</cell><cell>2023</cell><cell>2024</cell></row>
+                    <row><cell>Value (Ksh)</cell><cell><m>800\,000</m></cell><cell><m>880\,000</m></cell><cell><m>968\,000</m></cell><cell><m>1\,064\,800</m></cell></row>
+                </tabular>
+            </table>
+            <p>
+                <ol marker="(a)">
+                    <li>
+                        <p>Find the increase in value each year, in Ksh.</p>
+                        <solution component="lesson-plan"><p><m>80\,000</m>, <m>88\,000</m> and <m>96\,800</m>.</p></solution>
+                    </li>
+                    <li>
+                        <p>Write each increase as a percentage of the value at the start of that year.</p>
+                        <solution component="lesson-plan"><p><m>\dfrac{80\,000}{800\,000} \times 100 = 10\%</m>, <m>\dfrac{88\,000}{880\,000} \times 100 = 10\%</m> and <m>\dfrac{96\,800}{968\,000} \times 100 = 10\%</m>: <m>10\%</m> each year.</p></solution>
+                    </li>
+                    <li>
+                        <p>If the value keeps rising at the same rate, predict its value in 2026.</p>
+                        <solution component="lesson-plan"><p>2026 is <m>5</m> years after 2021: <m>800\,000 \times 1.1^5 = 1\,288\,408</m>, Ksh <m>1\,288\,408</m>.</p></solution>
+                    </li>
+                    <li>
+                        <p>Ask at home: is land in your area gaining value? Why?</p>
+                        <solution component="lesson-plan"><p>Answers vary: new roads, water, electricity, a growing town or a new school nearby can all raise land values.</p></solution>
+                    </li>
+                </ol>
+            </p>
         </statement>
-    </activity> -->
+    </activity>
 
-    <!-- [LP] Add guidance on structured lesson plan-->
-
-    <!-- <axiom component="lesson-plan">
+    <axiom component="lesson-plan">
         <title>Structured Instruction</title>
         <p>
             <dl>
-            <li>
-                <title>Suggested Time</title>
-                <p>
-                    XX minutes
-                </p>
-            </li>
-            <li>
-                <title>Objective</title>
-                <p>
-                    To formalize the concepts and properties learners discovered in the anchor task.
-                </p>
-            </li>
+                <li><title>Suggested Time</title><p>8 minutes</p></li>
+                <li><title>Objective</title><p>To name appreciation and to link it to compound interest.</p></li>
             </dl>
         </p>
         <paragraphs>
             <title>Key Takeaways &amp; Teacher Connection</title>
             <ol>
-                <li>
-                    <p>
-                        <alert>Connecting to Learner Work:</alert> XXXX
-                    </p>
-                </li>
+                <li><p><alert>Connecting to Learner Work:</alert> the increases in part (a) grew, but the rate in part (b) stayed at <m>10\%</m>, because each increase was worked on the value at the start of the year.</p></li>
+                <li><p>Appreciation works like compound interest: multiply by <m>1 + \dfrac{r}{100}</m> each year.</p></li>
+                <li><p>A rate is always found from the value at the start of the year.</p></li>
             </ol>
         </paragraphs>
-    </axiom> -->
+    </axiom>
 
-    <!-- Add insight / key takeaway directly related to activity / learner experience -->
+    <insight xml:id="insight-appreciation">
+        <title>Appreciation</title>
+        <p>An asset <term>appreciates</term> when its value goes up over time; the increase in value is its <term>appreciation</term>. If the value rises by <m>r\%</m> of its value at the start of each year, <m>r</m> is the <term>rate of appreciation</term>, and the value is multiplied by the same number, <m>1 + \dfrac{r}{100}</m>, every year. A value <m>P</m> becomes, after <m>n</m> years,
+            <md>V = P\left(1 + \frac{r}{100}\right)^n</md>
+            and the appreciation is <m>V - P</m>.</p>
+        <p>The rate over one year is <m>\dfrac{\text{increase}}{\text{starting value}} \times 100</m>. Over two years at an equal yearly rate, <m>\left(1 + \dfrac{r}{100}\right)^2 = \dfrac{V}{P}</m>, so <m>1 + \dfrac{r}{100} = \sqrt{\dfrac{V}{P}}</m>.</p>
+    </insight>
 
-    <!-- <insight>
-    </insight> -->
-
-    <!-- Add further instruction (not in a block) to develop ideas as needed -->
+    <figure xml:id="fig-appreciation-curve">
+        <caption>The value of an asset that appreciates at a fixed yearly rate.</caption>
+        <interactive xml:id="interactive-appreciation-curve" platform="jsxgraph" width="90%" aspect="16:12" source="jsxgraph/appreciation-curve.js">
+            <slate xml:id="jsxgraph-appreciation-curve" surface="jsxboard" aspect="16:12"/>
+            <instructions>
+                <p>
+                    <ul>
+                        <li><p>Drag <alert>P</alert> to set the starting value and <alert>r</alert> to set the rate of appreciation per cent per year.</p></li>
+                        <li><p>The curve shows the value <m>V = P\left(1 + \dfrac{r}{100}\right)^t</m>; the dots mark the value at the end of each whole year.</p></li>
+                        <li><p>Drag the year marker <alert>n</alert> to read the value after <m>n</m> years. Each year the value is multiplied by <m>1 + \dfrac{r}{100}</m>. With <m>P = 800\,000</m>, <m>r = 10</m> and <m>n = 5</m> you should see <m>1\,288\,408</m>, as in <xref ref="act-a-plot-near-kitengela"/>.</p></li>
+                    </ul>
+                </p>
+            </instructions>
+        </interactive>
+    </figure>
 
     <xi:include href="../lesson-plan-templates/example-intro.ptx" />
 
-    <!-- Add at least 3 examples -->
-
-    <!-- <example>
+    <example xml:id="example-five-years-on">
+        <title>Five Years On</title>
         <statement>
+            <p>A plot in Nanyuki bought for Ksh <m>1\,200\,000</m> appreciates at <m>12\%</m> a year. Find its value after <m>5</m> years and the appreciation, to the nearest shilling.</p>
         </statement>
         <solution>
+            <p><md>V = 1\,200\,000 \times 1.12^5 = 2\,114\,810.02</md>
+                The value is Ksh <m>2\,114\,810</m> and the appreciation is <m>2\,114\,810 - 1\,200\,000 = 914\,810</m>, Ksh <m>914\,810</m>.</p>
         </solution>
     </example>
 
-    <example>
+    <example xml:id="example-rate-from-two-valuations">
+        <title>Rate from Two Valuations</title>
         <statement>
+            <p>A house in Nakuru was valued at Ksh <m>2\,400\,000</m> and a year later at Ksh <m>2\,700\,000</m>. Find the rate of appreciation.</p>
         </statement>
         <solution>
+            <p>The increase is <m>300\,000</m>, so the rate is
+                <md>\frac{300\,000}{2\,400\,000} \times 100 = 12.5\%</md>
+                Divide by the value at the start of the year, not the new value.</p>
         </solution>
     </example>
 
-    <example>
+    <example xml:id="example-equal-rate-two-years">
+        <title>An Equal Rate over Two Years</title>
         <statement>
+            <p>A plot rises in value from Ksh <m>500\,000</m> to Ksh <m>605\,000</m> in <m>2</m> years, appreciating at the same rate each year. Find the yearly rate.</p>
         </statement>
         <solution>
+            <p><md>
+                <mrow>\left(1 + \frac{r}{100}\right)^2 \amp = \frac{605\,000}{500\,000} = 1.21</mrow>
+                <mrow>1 + \frac{r}{100} \amp = \sqrt{1.21} = 1.1</mrow>
+            </md>
+                So <m>r = 10</m>: the rate is <m>10\%</m> a year. The total rise is <m>21\%</m>, but halving it to <m>10.5\%</m> is wrong, because the second year's rise is worked on a bigger value.</p>
         </solution>
-    </example> -->
+    </example>
 
     <xi:include href="../lesson-plan-templates/assessment-intro.ptx" />
+    <xi:include href="../lesson-plan-templates/checkpoint.ptx" />
 
-    <!-- If STACK questions are included, uncomment this: -->
+    <p>Type amounts as plain numbers, without Ksh, spaces or commas, for example <c>45326</c>. Give money to the nearest shilling and percentages to 1 decimal place unless the question says otherwise; exact answers in cents are also accepted.</p>
 
-    <!-- <xi:include href="../lesson-plan-templates/checkpoint.ptx" /> -->
+    <exercise xml:id="ex-value-after-appreciation">
+        <!--<title></title>-->
+        <stack label="stk-value-after-appreciation" source="stack/top/2-measurement-and-geometry/14-commercial-arithmetic-iii/03-appreciation/Value-after-appreciation.xml"/>
+    </exercise>
 
-    <!-- Add STACK exercises if made -->
+    <exercise xml:id="ex-rate-of-appreciation">
+        <!--<title></title>-->
+        <stack label="stk-rate-of-appreciation" source="stack/top/2-measurement-and-geometry/14-commercial-arithmetic-iii/03-appreciation/Rate-of-appreciation.xml"/>
+    </exercise>
 
-    <!-- Add static exercises -->
+    <exercises xml:id="exercises-appreciation">
+        <exercise xml:id="ex-house-appreciates-6">
+            <statement><p>A house worth Ksh <m>3\,500\,000</m> appreciates at <m>6\%</m> a year. Find its value after <m>4</m> years and the appreciation, to the nearest shilling.</p></statement>
+            <answer><p>Value Ksh <m>4\,418\,669</m>; appreciation Ksh <m>918\,669</m></p></answer>
+        </exercise>
+        <exercise xml:id="ex-plot-appreciates-15">
+            <statement><p>A plot bought for Ksh <m>650\,000</m> appreciates at <m>15\%</m> a year. Find its value after <m>3</m> years, to the nearest shilling.</p></statement>
+            <answer><p>Ksh <m>988\,569</m></p></answer>
+        </exercise>
+        <exercise xml:id="ex-rate-one-year">
+            <statement><p>A plot was valued at Ksh <m>840\,000</m> and a year later at Ksh <m>924\,000</m>. Find the rate of appreciation.</p></statement>
+            <answer><p><m>10\%</m></p></answer>
+        </exercise>
+        <exercise xml:id="ex-rate-two-years">
+            <statement><p>A shamba in Kiambu rose in value from Ksh <m>1\,600\,000</m> to Ksh <m>2\,116\,000</m> in <m>2</m> years at an equal yearly rate. Find the rate.</p></statement>
+            <answer><p><m>15\%</m></p></answer>
+            <solution><p><m>\dfrac{2\,116\,000}{1\,600\,000} = 1.3225</m> and <m>\sqrt{1.3225} = 1.15</m>, so the rate is <m>15\%</m> a year.</p></solution>
+        </exercise>
+        <exercise xml:id="ex-total-percentage-four-years">
+            <statement><p>A value rises by <m>9\%</m> a year for <m>4</m> years. By what percentage has it risen altogether?</p></statement>
+            <answer><p><m>41.2\%</m> (not <m>36\%</m>)</p></answer>
+            <solution><p><m>1.09^4 = 1.41158161</m>, so the value has risen by <m>41.158161\%</m>, about <m>41.2\%</m>.</p></solution>
+        </exercise>
+        <exercise xml:id="ex-rate-three-years">
+            <title>Challenge: Three Years at an Equal Rate</title>
+            <statement><p>A plot rose in value from Ksh <m>1\,000\,000</m> to Ksh <m>1\,331\,000</m> in <m>3</m> years at an equal yearly rate. Find the rate.</p></statement>
+            <hint><p>Use the cube root.</p></hint>
+            <answer><p><m>10\%</m></p></answer>
+            <solution><p><m>\left(1 + \dfrac{r}{100}\right)^3 = 1.331</m> and <m>\sqrt[3]{1.331} = 1.1</m>, so <m>r = 10</m>.</p></solution>
+        </exercise>
+    </exercises>
 
-    <!-- <exercises>
-        <exercise>
-            <statement>   
-
-            </statement>   
-            <solution>
-
-            </solution>             
-        </exercise>        
-    </exercises> -->
-
-    <!-- [LP] Add information on how to differentiate  -->
-
-    <!-- <axiom component="lesson-plan">
+    <axiom component="lesson-plan">
         <title>Differentiation</title>
-
-        <table>
-            <title>Differentiation</title>
-            <tabular halign="left">
-                <row header="yes" bottom="minor">
-                    <cell>Learner Group</cell>
-                    <cell>Strategy &amp; Learning Experience</cell>
-                    <cell></cell>
-                </row>
-                <row>
-                    <cell>Struggling Learners (Support)</cell>
-                    <cell>
-                        XXXX
-                    </cell>
-                    <cell></cell>
-                </row>
-                <row>
-                    <cell>On-Level Learners (Core)</cell>
-                    <cell>
-                        <line>The core lesson activities as described above.</line>
-                    </cell>
-                    <cell></cell>
-                </row>
-                <row>
-                    <cell>Advanced Learners (Challenge)</cell>
-                    <cell>
-                        XXXX
-                    </cell>
-                    <cell></cell>
-                </row>
+        <table xml:id="table-differentiation-appreciation">
+            <title>Differentiation Strategies</title>
+            <tabular halign="left" top="minor" bottom="minor" left="minor" right="minor">
+                <row header="yes" bottom="medium"><cell>Learner Group</cell><cell>Strategy and Learning Experience</cell></row>
+                <row><cell>Struggling Learners (Support)</cell><cell>Activity parts (a) to (c), <xref ref="example-five-years-on"/> and <xref ref="example-rate-from-two-valuations"/>. Give a card: <q>multiply by <m>1 + \dfrac{r}{100}</m> each year</q>. Assign <xref ref="ex-house-appreciates-6"/> and <xref ref="ex-rate-one-year"/>.</cell></row>
+                <row><cell>On-Level Learners (Core)</cell><cell>Full activity and all examples. Assign <xref ref="ex-house-appreciates-6"/> to <xref ref="ex-total-percentage-four-years"/>.</cell></row>
+                <row><cell>Advanced Learners (Challenge)</cell><cell>All exercises including <xref ref="ex-rate-three-years"/>. Extension: why might land in one county appreciate faster than in another? (Discussion: roads, a growing town, water and electricity, demand from buyers.)</cell></row>
             </tabular>
         </table>
-    </axiom> -->
+    </axiom>
+
+    <p component="lesson-plan">Closing question for the class: is buying land always a good way to save? What could make a plot lose value?</p>
 
     <xi:include href="../lesson-plan-templates/assessment-methods.ptx" />
-
     <xi:include href="../lesson-plan-templates/reflection.ptx"/>
 </section>

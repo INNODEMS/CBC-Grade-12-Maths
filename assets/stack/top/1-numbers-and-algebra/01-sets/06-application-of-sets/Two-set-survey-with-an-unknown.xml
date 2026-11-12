@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<quiz>
+<question type="stack">
+  <name><text>Two-set survey with an unknown</text></name>
+  <questiontext format="html">
+    <text><![CDATA[<p>\({@N@}\) traders at a market in {@town@} were asked about money services. \({@m@}\) use M-Pesa, \({@b@}\) have a bank account and \({@d@}\) use neither.</p><p>(a) How many use both? [[input:ans1]] [[validation:ans1]] [[feedback:prt1]]</p><p>(b) How many use exactly one of the two? [[input:ans2]] [[validation:ans2]] [[feedback:prt2]]</p>]]></text>
+  </questiontext>
+  <generalfeedback format="html">
+    <text><![CDATA[<p>Let \(x\) traders use both. Then M-Pesa only is \({@m@} - x\), bank only is \({@b@} - x\), and \({@d@}\) use neither. Every trader is in exactly one region, so</p><p>\[({@m@} - x) + x + ({@b@} - x) + {@d@} = {@N@}\]</p><p>which gives \({@m+b+d@} - x = {@N@}\), so \(x = {@x@}\).</p><p>(a) \({@x@}\) use both.</p><p>(b) Exactly one \(=\) M-Pesa only \(+\) bank only \(= {@mo@} + {@bo@} = {@one@}\).</p><p>Check: \({@mo@} + {@x@} + {@bo@} + {@d@} = {@N@}\).</p>]]></text>
+  </generalfeedback>
+  <defaultgrade>2</defaultgrade>
+  <penalty>0.1</penalty>
+  <hidden>0</hidden>
+  <idnumber></idnumber>
+  <stackversion><text>2026063000</text></stackversion>
+  <questionvariables>
+    <text><![CDATA[cardn(S) := length(listify(S));
+dset(S) := if emptyp(S) then "\\{\\,\\}" else sconcat("\\{", simplode(map(string, listify(S)), ", "), "\\}");
+ix: 1+rand(10);
+/* Design: two-set survey where neither is given; find both (M-Pesa and bank context). Source: adapted from SMP Book 5, revision exercise.
+   Curated list, one seed per entry. x: both; one: exactly one; d: named diagnostics; t: tests. */
+L: [[50,39,22,4,15,31,24,7,11,7,46,35,18,25,71,"Kisumu"],
+  [64,45,30,6,17,41,28,13,11,5,58,47,20,35,81,"Eldoret"],
+  [80,62,35,3,20,57,42,15,17,14,77,60,23,51,97,"Nakuru"],
+  [45,34,19,2,10,33,24,9,8,6,43,35,13,27,73,"Thika"],
+  [72,50,43,5,26,41,24,17,21,16,67,46,29,35,81,"Machakos"],
+  [90,71,38,7,26,57,45,12,19,12,83,64,29,51,97,"Nyeri"],
+  [56,41,25,8,18,30,23,7,10,2,48,38,21,24,70,"Kakamega"],
+  [120,95,48,9,32,79,63,16,23,14,111,88,35,73,119,"Kitale"],
+  [36,25,18,4,11,21,14,7,7,3,32,25,14,15,61,"Embu"],
+  [150,118,67,11,46,93,72,21,35,24,139,104,49,87,133,"Meru"]];
+N: L[ix][1]; m: L[ix][2]; b: L[ix][3]; d: L[ix][4]; x: L[ix][5]; one: L[ix][6]; mo: L[ix][7]; bo: L[ix][8]; d1a: L[ix][9]; d1b: L[ix][10]; d2a: L[ix][11]; d2b: L[ix][12]; t4a: L[ix][13]; t4b: L[ix][14]; t5b: L[ix][15]; town: L[ix][16]; 
+]]></text>
+  </questionvariables>
+  <specificfeedback format="html"><text><![CDATA[]]></text></specificfeedback>
+  <questionnote format="moodle_auto_format">
+    <text>ix={@ix@}, x={@x@}, one={@one@}</text>
+  </questionnote>
+  <questiondescription format="html"><text><![CDATA[<p id="concept">Sets: two-set surveys with an unknown overlap</p><p id="description">Grade 12 CBE Core and Essential 1.1 (e): Find the number in both of two groups from the group sizes, the number in neither and the total, and the number in exactly one.</p><p id="edition">Core and Essential</p><p id="provenance">This question is adapted from the miscellaneous revision exercises (a class of 32 with brothers and sisters) of School Mathematics Project, SMP Book 5 (Metric), ed. P. G. Bowie, Cambridge University Press, 1969: finding the overlap of two groups when the number in neither is given; M-Pesa and bank accounts, every number new, and an exactly-one part.</p><p id="citation">INNODEMS CBC Grade 12 Mathematics, first draft by Ben Davies, 2026. Aligned to the KICD Senior School Curriculum Design, Core and Essential Mathematics Grade 12 (draft).</p>]]></text></questiondescription>
+  <questionsimplify>1</questionsimplify>
+  <assumepositive>0</assumepositive>
+  <assumereal>0</assumereal>
+  <prtcorrect format="html"><text><![CDATA[[[commonstring key="symbolicprtcorrectfeedback"/]] [[commonstring key="defaultprtcorrectfeedback"/]]]]></text></prtcorrect>
+  <prtpartiallycorrect format="html"><text><![CDATA[[[commonstring key="symbolicprtpartiallycorrectfeedback"/]] [[commonstring key="defaultprtpartiallycorrectfeedback"/]]]]></text></prtpartiallycorrect>
+  <prtincorrect format="html"><text><![CDATA[[[commonstring key="symbolicprtincorrectfeedback"/]] [[commonstring key="defaultprtincorrectfeedback"/]]]]></text></prtincorrect>
+  <decimals>.</decimals>
+  <scientificnotation>*10</scientificnotation>
+  <multiplicationsign>none</multiplicationsign>
+  <sqrtsign>1</sqrtsign>
+  <complexno>i</complexno>
+  <inversetrig>cos-1</inversetrig>
+  <logicsymbol>lang</logicsymbol>
+  <matrixparens>[</matrixparens>
+  <isbroken>0</isbroken>
+  <variantsselectionseed></variantsselectionseed>
+
+  <input><name>ans1</name><type>numerical</type><tans>x</tans><boxsize>5</boxsize><strictsyntax>1</strictsyntax><insertstars>0</insertstars><syntaxhint></syntaxhint><syntaxattribute>0</syntaxattribute><forbidwords></forbidwords><allowwords></allowwords><forbidfloat>1</forbidfloat><requirelowestterms>0</requirelowestterms><checkanswertype>0</checkanswertype><mustverify>0</mustverify><showvalidation>0</showvalidation><options>intnum</options></input>
+  <input><name>ans2</name><type>numerical</type><tans>one</tans><boxsize>5</boxsize><strictsyntax>1</strictsyntax><insertstars>0</insertstars><syntaxhint></syntaxhint><syntaxattribute>0</syntaxattribute><forbidwords></forbidwords><allowwords></allowwords><forbidfloat>1</forbidfloat><requirelowestterms>0</requirelowestterms><checkanswertype>0</checkanswertype><mustverify>0</mustverify><showvalidation>0</showvalidation><options>intnum</options></input>
+
+  <prt><name>prt1</name><value>1.0000000</value><autosimplify>1</autosimplify><feedbackstyle>1</feedbackstyle><feedbackvariables><text><![CDATA[]]></text></feedbackvariables>
+    <node><name>0</name><description>Both</description><answertest>AlgEquiv</answertest><sans>ans1</sans><tans>x</tans><testoptions></testoptions><quiet>0</quiet><truescoremode>=</truescoremode><truescore>1.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt1-1-T</trueanswernote><truefeedback format="html"><text><![CDATA[]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>1</falsenextnode><falseanswernote>prt1-1-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>1</name><description>Left out neither</description><answertest>AlgEquiv</answertest><sans>ans1</sans><tans>d1a</tans><testoptions></testoptions><quiet>0</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt1-2-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>You left out the \({@d@}\) traders who use neither: they are part of the \({@N@}\).</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>2</falsenextnode><falseanswernote>prt1-2-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>2</name><description>Subtracted neither</description><answertest>AlgEquiv</answertest><sans>ans1</sans><tans>d1b</tans><testoptions></testoptions><quiet>0</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt1-3-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>Add the \({@d@}\) who use neither to the regions; do not subtract them.</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>-1</falsenextnode><falseanswernote>prt1-3-F</falseanswernote><falsefeedback format="html"><text><![CDATA[<p>Let \(x\) use both: \(({@m@} - x) + x + ({@b@} - x) + {@d@} = {@N@}\).</p>]]></text></falsefeedback></node>
+  </prt>
+  <prt><name>prt2</name><value>1.0000000</value><autosimplify>1</autosimplify><feedbackstyle>1</feedbackstyle><feedbackvariables><text><![CDATA[ftc: is(ans2=m+b-2*ans1);]]></text></feedbackvariables>
+    <node><name>0</name><description>Exactly one</description><answertest>AlgEquiv</answertest><sans>ans2</sans><tans>one</tans><testoptions></testoptions><quiet>0</quiet><truescoremode>=</truescoremode><truescore>1.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt2-1-T</trueanswernote><truefeedback format="html"><text><![CDATA[]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>1</falsenextnode><falseanswernote>prt2-1-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>1</name><description>At least one</description><answertest>AlgEquiv</answertest><sans>ans2</sans><tans>d2a</tans><testoptions></testoptions><quiet>0</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt2-2-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>That is the number who use at least one service.</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>2</falsenextnode><falseanswernote>prt2-2-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>2</name><description>Included neither</description><answertest>AlgEquiv</answertest><sans>ans2</sans><tans>d2b</tans><testoptions></testoptions><quiet>0</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt2-3-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>You included the \({@d@}\) who use neither.</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>3</falsenextnode><falseanswernote>prt2-3-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>3</name><description>Follow-through</description><answertest>AlgEquiv</answertest><sans>ftc</sans><tans>true</tans><testoptions></testoptions><quiet>0</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt2-4-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>Your method is right, but it uses your answer to (a), which is not right.</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>-1</falsenextnode><falseanswernote>prt2-4-F</falseanswernote><falsefeedback format="html"><text><![CDATA[<p>Exactly one \(=\) (M-Pesa only) \(+\) (bank only).</p>]]></text></falsefeedback></node>
+  </prt>
+
+  <deployedseed>4</deployedseed>
+  <deployedseed>5</deployedseed>
+  <deployedseed>15</deployedseed>
+  <deployedseed>8</deployedseed>
+  <deployedseed>24</deployedseed>
+  <deployedseed>1</deployedseed>
+  <deployedseed>3</deployedseed>
+  <deployedseed>10</deployedseed>
+  <deployedseed>2</deployedseed>
+  <deployedseed>17</deployedseed>
+  <qtest><testcase>1</testcase><description>Correct</description>
+    <testinput><name>ans1</name><value>x</value></testinput>
+    <testinput><name>ans2</name><value>one</value></testinput>
+    <expected><name>prt1</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt1-1-T</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt2-1-T</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>2</testcase><description>Node 2 errors</description>
+    <testinput><name>ans1</name><value>d1a</value></testinput>
+    <testinput><name>ans2</name><value>d2a</value></testinput>
+    <expected><name>prt1</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt1-1-F | prt1-2-T</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt2-1-F | prt2-2-T</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>3</testcase><description>Node 3 errors</description>
+    <testinput><name>ans1</name><value>d1b</value></testinput>
+    <testinput><name>ans2</name><value>d2b</value></testinput>
+    <expected><name>prt1</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt1-1-F | prt1-2-F | prt1-3-T</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt2-1-F | prt2-2-F | prt2-3-T</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>4</testcase><description>Wrong both; exactly one follows from it</description>
+    <testinput><name>ans1</name><value>t4a</value></testinput>
+    <testinput><name>ans2</name><value>t4b</value></testinput>
+    <expected><name>prt1</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt1-1-F | prt1-2-F | prt1-3-F</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt2-1-F | prt2-2-F | prt2-3-F | prt2-4-T</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>5</testcase><description>Generic wrong in both</description>
+    <testinput><name>ans1</name><value>t4a</value></testinput>
+    <testinput><name>ans2</name><value>t5b</value></testinput>
+    <expected><name>prt1</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt1-1-F | prt1-2-F | prt1-3-F</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt2-1-F | prt2-2-F | prt2-3-F | prt2-4-F</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>6</testcase><description>Invalid: letter in (a)</description>
+    <testinput><name>ans1</name><value>y</value></testinput>
+    <testinput><name>ans2</name><value>one</value></testinput>
+    <expected><name>prt1</name><expectedscore></expectedscore><expectedpenalty></expectedpenalty><expectedanswernote>NULL</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore></expectedscore><expectedpenalty></expectedpenalty><expectedanswernote>NULL</expectedanswernote></expected>
+  </qtest>
+</question>
+</quiz>

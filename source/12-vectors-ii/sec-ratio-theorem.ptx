@@ -46,161 +46,254 @@
          Suggested activity: Learners derive the ratio theorem using a triangle drawn on paper and vectors from a common origin.
          Interactive (JSXGraph): Points A and B with origin O; a slider for the ratio shows OP = (nOA + mOB)/(m + n) updating live. -->
 
-    <!-- [LP] Add guidance on activity -->
+    <!-- Section notes (2026-11)
+         SLOs: Core 2.6 (g), internal and external forms
+         Activity: as planning notes (derive the ratio theorem on a paper triangle OAB) | added: part (e), a check against the 12.7 activity point
+         JSXGraph: fig-ratio-theorem-interactive (assets/jsxgraph/ratio-theorem.js), as planning notes, with the two weighted arrows drawn tip to tail
+         STACK: assets/stack/top/2-measurement-and-geometry/12-vectors-ii/08-ratio-theorem/ -->
 
-    <!-- <axiom component="lesson-plan">
-            <title>Problem-Solving and Discovery</title>
-            <dl>
-                <li>
-                    <title>Suggested Time</title>
-                    <p>
-                        XX minutes
-                    </p>
-                </li>
-                <li>
-                    <title>Objective</title>
-                    <p>
-                        XXX
-                    </p>
-                </li>
-                <li>
-                    <title>Teacher's Role</title>
-                    <p>
-                        XXX
-                    </p>
-                </li>
-            </dl>
-        </axiom> -->
+    <p component="lesson-plan">Upon completion of this lesson, learners will be able to:
+        <ol>
+            <li><p><alert>Know:</alert> the ratio theorem for internal and external division, and that the two coefficients add to <m>1</m>.</p></li>
+            <li><p><alert>Do:</alert> derive the theorem from <m>\overrightarrow{OP} = \overrightarrow{OA} + \overrightarrow{AP}</m>; use it with letters and with coordinates; read the ratio from a position vector.</p></li>
+            <li><p><alert>Apply:</alert> place a valve on a water pipe; find the centroid of a triangle.</p></li>
+        </ol>
+    </p>
 
-    <!-- Add Activity -->
+    <axiom component="lesson-plan">
+        <title>Problem-Solving and Discovery</title>
+        <dl>
+            <li><title>Suggested Time</title><p>14 minutes</p></li>
+            <li><title>Objective</title><p>Learners derive <m>\overrightarrow{OP} = \dfrac{n\mathbf{a} + m\mathbf{b}}{m + n}</m> from <m>\overrightarrow{OP} = \overrightarrow{OA} + \overrightarrow{AP}</m>.</p></li>
+            <li><title>Teacher's Role</title><p>Each learner draws a triangle <m>OAB</m> on paper, marks <m>\mathbf{a}</m> and <m>\mathbf{b}</m>, and divides <m>AB</m> in the ratio <m>2 : 3</m> with a ruler. Before part (f), ask: <q>What do the two numbers in front of <m>\mathbf{a}</m> and <m>\mathbf{b}</m> add to?</q></p></li>
+        </dl>
+    </axiom>
 
-    <!-- <activity>
+    <activity xml:id="act-deriving-the-ratio-theorem">
+        <title>Deriving the Ratio Theorem</title>
         <statement>
+            <p>In triangle <m>OAB</m>, <m>\overrightarrow{OA} = \mathbf{a}</m> and <m>\overrightarrow{OB} = \mathbf{b}</m>. The point <m>P</m> on <m>AB</m> divides it internally in the ratio <m>2 : 3</m>.</p>
+            <figure xml:id="fig-ratio-theorem">
+                <caption>Triangle <m>OAB</m> with <m>P</m> on <m>AB</m> and <m>AP : PB = m : n</m>.</caption>
+                <image width="55%">
+                    <shortdescription>Triangle OAB. An arrow labelled a goes from O to A and an arrow labelled b from O to B. P is on AB, with AP marked m and PB marked n. An arrow goes from O to P.</shortdescription>
+                    <latex-image>
+\begin{tikzpicture}[scale=1.1, >=stealth]
+\coordinate (O) at (0,0); \coordinate (A) at (1,3.2); \coordinate (B) at (5,0.8);
+\coordinate (P) at (2.6,2.24);
+\draw[thick,->] (O) -- node[left] {$\mathbf{a}$} (A);
+\draw[thick,->] (O) -- node[below] {$\mathbf{b}$} (B);
+\draw[thick] (A) -- (B);
+\draw[thick,->,dashed] (O) -- (P);
+\fill (O) circle (1.5pt) node[below left] {$O$};
+\fill (A) circle (1.5pt) node[above] {$A$};
+\fill (B) circle (1.5pt) node[right] {$B$};
+\fill (P) circle (1.5pt) node[above right] {$P$};
+\node[above right] at (1.8,2.72) {$m$};
+\node[above right] at (3.8,1.52) {$n$};
+\end{tikzpicture}
+                    </latex-image>
+                </image>
+            </figure>
+            <p>
+                <ol marker="(a)">
+                    <li>
+                        <p>What fraction of <m>\overrightarrow{AB}</m> is <m>\overrightarrow{AP}</m>?</p>
+                        <solution component="lesson-plan"><p><m>\overrightarrow{AP} = \dfrac{2}{5}\overrightarrow{AB}</m>.</p></solution>
+                    </li>
+                    <li>
+                        <p>Write <m>\overrightarrow{AB}</m> in terms of <m>\mathbf{a}</m> and <m>\mathbf{b}</m>.</p>
+                        <solution component="lesson-plan"><p><m>\overrightarrow{AB} = \mathbf{b} - \mathbf{a}</m> (end minus start).</p></solution>
+                    </li>
+                    <li>
+                        <p>Use <m>\overrightarrow{OP} = \overrightarrow{OA} + \overrightarrow{AP}</m> to write <m>\overrightarrow{OP}</m> in terms of <m>\mathbf{a}</m> and <m>\mathbf{b}</m>. Collect the terms.</p>
+                        <solution component="lesson-plan"><p><m>\overrightarrow{OP} = \mathbf{a} + \dfrac{2}{5}(\mathbf{b} - \mathbf{a}) = \dfrac{3}{5}\mathbf{a} + \dfrac{2}{5}\mathbf{b}</m>.</p></solution>
+                    </li>
+                    <li>
+                        <p>Repeat (a) to (c) for a ratio <m>m : n</m>.</p>
+                        <solution component="lesson-plan"><p><m>\overrightarrow{OP} = \mathbf{a} + \dfrac{m}{m+n}(\mathbf{b} - \mathbf{a}) = \dfrac{(m + n) - m}{m + n}\mathbf{a} + \dfrac{m}{m+n}\mathbf{b} = \dfrac{n\mathbf{a} + m\mathbf{b}}{m + n}</m>.</p></solution>
+                    </li>
+                    <li>
+                        <p>Check your formula with <m>A(2, -1, 4)</m>, <m>B(12, 9, -6)</m> and the ratio <m>2 : 3</m>. Compare with <xref ref="act-dividing-a-stick"/>, part (e).</p>
+                        <solution component="lesson-plan"><p><m>\dfrac{3\mathbf{a} + 2\mathbf{b}}{5} = \dfrac{1}{5}\left(\begin{pmatrix} 6 \\ -3 \\ 12 \end{pmatrix} + \begin{pmatrix} 24 \\ 18 \\ -12 \end{pmatrix}\right) = \begin{pmatrix} 6 \\ 3 \\ 0 \end{pmatrix}</m>, the same point <m>P(6, 3, 0)</m>.</p></solution>
+                    </li>
+                    <li>
+                        <p>What do the coefficients of <m>\mathbf{a}</m> and <m>\mathbf{b}</m> add to?</p>
+                        <solution component="lesson-plan"><p><m>\dfrac{n}{m+n} + \dfrac{m}{m+n} = 1</m>, for every ratio.</p></solution>
+                    </li>
+                </ol>
+            </p>
         </statement>
-    </activity> -->
+    </activity>
 
-    <!-- [LP] Add guidance on structured lesson plan-->
-
-    <!-- <axiom component="lesson-plan">
+    <axiom component="lesson-plan">
         <title>Structured Instruction</title>
         <p>
             <dl>
-            <li>
-                <title>Suggested Time</title>
-                <p>
-                    XX minutes
-                </p>
-            </li>
-            <li>
-                <title>Objective</title>
-                <p>
-                    To formalize the concepts and properties learners discovered in the anchor task.
-                </p>
-            </li>
+                <li><title>Suggested Time</title><p>8 minutes</p></li>
+                <li><title>Objective</title><p>To formalise the ratio theorem, internal and external, and the meaning of coefficients that add to <m>1</m>.</p></li>
             </dl>
         </p>
         <paragraphs>
             <title>Key Takeaways &amp; Teacher Connection</title>
             <ol>
-                <li>
-                    <p>
-                        <alert>Connecting to Learner Work:</alert> XXXX
-                    </p>
-                </li>
+                <li><p><alert>Connecting to Learner Work:</alert> the theorem was derived, not memorised; learners can rebuild it from part (d) at any time.</p></li>
+                <li><p>The weights cross over: the weight on <m>\mathbf{a}</m> is the part of the ratio nearer <m>B</m>.</p></li>
+                <li><p>The external version comes from replacing <m>n</m> by <m>-n</m>.</p></li>
             </ol>
         </paragraphs>
-    </axiom> -->
+    </axiom>
 
-    <!-- Add insight / key takeaway directly related to activity / learner experience -->
+    <insight xml:id="insight-ratio-theorem">
+        <title>The Ratio Theorem</title>
+        <p>
+            Let <m>A</m> and <m>B</m> have position vectors <m>\mathbf{a}</m> and <m>\mathbf{b}</m>. The point <m>P</m> dividing <m>AB</m> internally in the ratio <m>m : n</m> has position vector
+            <md>\mathbf{p} = \frac{n\mathbf{a} + m\mathbf{b}}{m + n}.</md>
+            The point dividing <m>AB</m> externally in the ratio <m>m : n</m> has position vector
+            <md>\mathbf{p} = \frac{m\mathbf{b} - n\mathbf{a}}{m - n}.</md>
+            This is the <term>ratio theorem</term>. The weight on <m>\mathbf{a}</m> is the part of the ratio nearer <m>B</m>. For the midpoint, <m>m = n = 1</m> gives <m>\frac{1}{2}(\mathbf{a} + \mathbf{b})</m>, as in Grade 10.
+        </p>
+        <p>
+            Both forms come from <m>\mathbf{p} = \mathbf{a} + t(\mathbf{b} - \mathbf{a}) = (1 - t)\mathbf{a} + t\mathbf{b}</m>, so the coefficients always add to <m>1</m>. Turning this round: a point with position vector <m>\lambda\mathbf{a} + \mu\mathbf{b}</m>, where <m>\lambda + \mu = 1</m>, lies on the line <m>AB</m>. It is between <m>A</m> and <m>B</m> when <m>0 \lt \mu \lt 1</m>, beyond <m>B</m> when <m>\mu \gt 1</m>, and beyond <m>A</m> when <m>\mu \lt 0</m>.
+        </p>
+    </insight>
 
-    <!-- <insight>
-    </insight> -->
-
-    <!-- Add further instruction (not in a block) to develop ideas as needed -->
+    <figure xml:id="fig-ratio-theorem-interactive">
+        <caption>Drag <m>A</m> and <m>B</m>, and move the <m>m</m> and <m>n</m> sliders. The two arrows from <m>O</m>, a multiple of <m>\mathbf{a}</m> then a multiple of <m>\mathbf{b}</m>, always end at the point <m>P</m> on <m>AB</m>.</caption>
+        <interactive xml:id="interactive-ratio-theorem" platform="jsxgraph" width="90%" aspect="16:12" source="jsxgraph/ratio-theorem.js">
+            <slate xml:id="jsxgraph-ratio-theorem" surface="jsxboard" aspect="16:12"/>
+            <instructions>
+                <p>
+                    <ul>
+                        <li><p>Set the <alert>m</alert> slider to <m>2</m> and the <alert>n</alert> slider to <m>3</m>. Read the two coefficients in the text and check that they add to <m>1</m>.</p></li>
+                        <li><p>Set <m>m = 3</m>, <m>n = 1</m>. Which weight is larger now, and which end is <m>P</m> nearer?</p></li>
+                        <li><p>Set <m>m = n</m>. Where is <m>P</m>?</p></li>
+                    </ul>
+                </p>
+            </instructions>
+        </interactive>
+    </figure>
 
     <xi:include href="../lesson-plan-templates/example-intro.ptx" />
 
-    <!-- Add at least 3 examples -->
-
-    <!-- <example>
+    <example xml:id="example-using-the-ratio-theorem">
+        <title>Using the Ratio Theorem</title>
         <statement>
+            <p>The points <m>A</m> and <m>B</m> have position vectors <m>\mathbf{a} = \begin{pmatrix} 2 \\ -1 \\ 3 \end{pmatrix}</m> and <m>\mathbf{b} = \begin{pmatrix} 7 \\ 9 \\ -2 \end{pmatrix}</m>. Find the point <m>P</m> that divides <m>AB</m> internally in the ratio <m>3 : 2</m>.</p>
         </statement>
         <solution>
+            <p>
+                With <m>m = 3</m> and <m>n = 2</m>:
+                <md>\mathbf{p} = \frac{2\mathbf{a} + 3\mathbf{b}}{5} = \frac{1}{5}\left(\begin{pmatrix} 4 \\ -2 \\ 6 \end{pmatrix} + \begin{pmatrix} 21 \\ 27 \\ -6 \end{pmatrix}\right) = \frac{1}{5}\begin{pmatrix} 25 \\ 25 \\ 0 \end{pmatrix} = \begin{pmatrix} 5 \\ 5 \\ 0 \end{pmatrix}</md>
+                so <m>P</m> is <m>(5, 5, 0)</m>.
+            </p>
         </solution>
     </example>
 
-    <example>
+    <example xml:id="example-ratio-theorem-external">
+        <title>External Division by the Ratio Theorem</title>
         <statement>
+            <p><m>A</m> is <m>(1, 2, -1)</m> and <m>B</m> is <m>(3, 4, 1)</m>. Find the point <m>Q</m> that divides <m>AB</m> externally in the ratio <m>3 : 1</m>.</p>
         </statement>
         <solution>
+            <p>
+                <md>\mathbf{q} = \frac{3\mathbf{b} - \mathbf{a}}{3 - 1} = \frac{1}{2}\left(\begin{pmatrix} 9 \\ 12 \\ 3 \end{pmatrix} - \begin{pmatrix} 1 \\ 2 \\ -1 \end{pmatrix}\right) = \frac{1}{2}\begin{pmatrix} 8 \\ 10 \\ 4 \end{pmatrix} = \begin{pmatrix} 4 \\ 5 \\ 2 \end{pmatrix}</md>
+                so <m>Q</m> is <m>(4, 5, 2)</m>. Check: <m>\overrightarrow{AQ} = \begin{pmatrix} 3 \\ 3 \\ 3 \end{pmatrix}</m> and <m>\overrightarrow{QB} = \begin{pmatrix} -1 \\ -1 \\ -1 \end{pmatrix}</m>, so <m>AQ</m> is three times <m>QB</m> and <m>Q</m> is beyond <m>B</m>.
+            </p>
         </solution>
     </example>
 
-    <example>
+    <example xml:id="example-finding-the-ratio">
+        <title>Finding the Ratio</title>
         <statement>
+            <p>For each point, decide whether it divides <m>AB</m> internally or externally, and find the ratio.</p>
+            <p>
+                <ol marker="(a)">
+                    <li><p><m>\overrightarrow{OP} = \frac{1}{4}\mathbf{a} + \frac{3}{4}\mathbf{b}</m></p></li>
+                    <li><p><m>\overrightarrow{OQ} = -2\mathbf{a} + 3\mathbf{b}</m></p></li>
+                </ol>
+            </p>
         </statement>
         <solution>
+            <p>
+                (a) The coefficients add to <m>1</m> and <m>\mu = \frac{3}{4}</m> is between <m>0</m> and <m>1</m>, so <m>P</m> is between <m>A</m> and <m>B</m>. The weight on <m>\mathbf{b}</m> is <m>m</m> and the weight on <m>\mathbf{a}</m> is <m>n</m>: <m>AP : PB = 3 : 1</m> internally. (Check: <m>\overrightarrow{AP} = \mathbf{p} - \mathbf{a} = \frac{3}{4}(\mathbf{b} - \mathbf{a})</m>.)
+            </p>
+            <p>
+                (b) <m>-2 + 3 = 1</m>, so <m>Q</m> is on the line <m>AB</m>, and <m>\mu = 3 \gt 1</m> puts it beyond <m>B</m>. <m>\overrightarrow{AQ} = \mathbf{q} - \mathbf{a} = -3\mathbf{a} + 3\mathbf{b} = 3\overrightarrow{AB}</m> and <m>\overrightarrow{QB} = \mathbf{b} - \mathbf{q} = 2\mathbf{a} - 2\mathbf{b} = -2\overrightarrow{AB}</m>. The lengths are <m>3AB</m> and <m>2AB</m>, so <m>Q</m> divides <m>AB</m> externally in the ratio <m>3 : 2</m>.
+            </p>
         </solution>
-    </example> -->
+    </example>
+
+    <p>
+        <em>Vectors in use:</em> in 3D animation a point is often placed <q>three fifths of the way</q> between two others; the program computes it with exactly the weights <m>\frac{2}{5}\mathbf{a} + \frac{3}{5}\mathbf{b}</m> of the ratio theorem.
+    </p>
 
     <xi:include href="../lesson-plan-templates/assessment-intro.ptx" />
+    <xi:include href="../lesson-plan-templates/checkpoint.ptx" />
 
-    <!-- If STACK questions are included, uncomment this: -->
+    <p>Type answers in terms of a and b like <c>3/5*a+2/5*b</c> or <c>(3a+2b)/5</c>. Type fractions with a slash, for example <c>3/4</c>, not as decimals.</p>
 
-    <!-- <xi:include href="../lesson-plan-templates/checkpoint.ptx" /> -->
+    <exercise xml:id="ex-deriving-the-ratio-theorem">
+        <!--<title></title>-->
+        <stack label="stk-deriving-the-ratio-theorem" source="stack/top/2-measurement-and-geometry/12-vectors-ii/08-ratio-theorem/Deriving-the-ratio-theorem.xml"/>
+    </exercise>
 
-    <!-- Add STACK exercises if made -->
+    <exercise xml:id="ex-the-ratio-theorem-in-terms-of-a-and-b">
+        <!--<title></title>-->
+        <stack label="stk-the-ratio-theorem-in-terms-of-a-and-b" source="stack/top/2-measurement-and-geometry/12-vectors-ii/08-ratio-theorem/The-ratio-theorem-in-terms-of-a-and-b.xml"/>
+    </exercise>
 
-    <!-- Add static exercises -->
+    <exercise xml:id="ex-a-point-on-the-line-ab">
+        <!--<title></title>-->
+        <stack label="stk-a-point-on-the-line-ab" source="stack/top/2-measurement-and-geometry/12-vectors-ii/08-ratio-theorem/A-point-on-the-line-AB.xml"/>
+    </exercise>
 
-    <!-- <exercises>
-        <exercise>
-            <statement>   
+    <exercises xml:id="exercises-ratio-theorem">
+        <exercise xml:id="ex-ratio-theorem-internal">
+            <statement><p>Use the ratio theorem to find the point dividing <m>AB</m> internally in the ratio <m>2 : 3</m>, where <m>A</m> is <m>(4, 0, -2)</m> and <m>B</m> is <m>(-1, 5, 8)</m>.</p></statement>
+            <answer><p><m>(2, 2, 2)</m></p></answer>
+        </exercise>
+        <exercise xml:id="ex-ratio-theorem-external">
+            <statement><p>Use the ratio theorem to find the point dividing <m>AB</m> externally in the ratio <m>3 : 2</m>, where <m>A</m> is <m>(2, 5, 1)</m> and <m>B</m> is <m>(4, 2, 3)</m>.</p></statement>
+            <answer><p><m>(8, -4, 7)</m></p></answer>
+            <solution><p><m>\mathbf{p} = \dfrac{3\mathbf{b} - 2\mathbf{a}}{3 - 2} = \begin{pmatrix} 12 \\ 6 \\ 9 \end{pmatrix} - \begin{pmatrix} 4 \\ 10 \\ 2 \end{pmatrix} = \begin{pmatrix} 8 \\ -4 \\ 7 \end{pmatrix}</m>.</p></solution>
+        </exercise>
+        <exercise xml:id="ex-ratio-theorem-letters">
+            <statement><p>In terms of <m>\mathbf{a}</m> and <m>\mathbf{b}</m>, write the position vector of the point dividing <m>AB</m> (a) internally in the ratio <m>5 : 1</m>; (b) externally in the ratio <m>1 : 4</m>.</p></statement>
+            <answer><p>(a) <m>\dfrac{\mathbf{a} + 5\mathbf{b}}{6}</m> (b) <m>\dfrac{4\mathbf{a} - \mathbf{b}}{3}</m></p></answer>
+            <solution><p>(b) <m>\dfrac{1\mathbf{b} - 4\mathbf{a}}{1 - 4} = \dfrac{\mathbf{b} - 4\mathbf{a}}{-3} = \dfrac{4\mathbf{a} - \mathbf{b}}{3}</m>. The coefficients <m>\frac{4}{3}</m> and <m>-\frac{1}{3}</m> add to <m>1</m>, and <m>\mu \lt 0</m>: the point is beyond <m>A</m>.</p></solution>
+        </exercise>
+        <exercise xml:id="ex-valve-on-a-pipe">
+            <statement><p>A water pipe at a school runs straight from a tank <m>T(0, 0, 6)</m> to a tap <m>R(9, 12, 0)</m>, in metres. A valve <m>V</m> divides <m>TR</m> internally in the ratio <m>1 : 2</m>. Find the position of <m>V</m>.</p></statement>
+            <answer><p><m>V(3, 4, 4)</m></p></answer>
+            <solution><p><m>\mathbf{v} = \dfrac{2\mathbf{t} + \mathbf{r}}{3} = \dfrac{1}{3}\left(\begin{pmatrix} 0 \\ 0 \\ 12 \end{pmatrix} + \begin{pmatrix} 9 \\ 12 \\ 0 \end{pmatrix}\right) = \begin{pmatrix} 3 \\ 4 \\ 4 \end{pmatrix}</m>.</p></solution>
+        </exercise>
+        <exercise xml:id="ex-read-the-ratio">
+            <statement><p>Each point lies on the line <m>AB</m>. Say whether it divides <m>AB</m> internally or externally, and give the ratio. (a) <m>\overrightarrow{OP} = \frac{3}{7}\mathbf{a} + \frac{4}{7}\mathbf{b}</m> (b) <m>\overrightarrow{OQ} = 5\mathbf{b} - 4\mathbf{a}</m></p></statement>
+            <answer><p>(a) Internally, <m>AP : PB = 4 : 3</m>. (b) Externally, <m>AQ : QB = 5 : 4</m>.</p></answer>
+            <solution><p>(b) <m>\overrightarrow{AQ} = 5\mathbf{b} - 5\mathbf{a} = 5\overrightarrow{AB}</m> and <m>\overrightarrow{QB} = 4\mathbf{a} - 4\mathbf{b} = -4\overrightarrow{AB}</m>; <m>Q</m> is beyond <m>B</m> and <m>AQ : QB = 5 : 4</m>.</p></solution>
+        </exercise>
+        <exercise xml:id="ex-centroid">
+            <title>Challenge: The Centroid</title>
+            <statement><p>In triangle <m>ABC</m>, <m>M</m> is the midpoint of <m>BC</m>. Show that the point <m>G</m> dividing <m>AM</m> internally in the ratio <m>2 : 1</m> has position vector <m>\frac{1}{3}(\mathbf{a} + \mathbf{b} + \mathbf{c})</m>. Explain why the three medians of the triangle meet at <m>G</m>.</p></statement>
+            <hint><p>The answer is symmetric in <m>\mathbf{a}</m>, <m>\mathbf{b}</m> and <m>\mathbf{c}</m>.</p></hint>
+            <answer><p><m>\mathbf{g} = \dfrac{\mathbf{a} + 2\mathbf{m}}{3}</m> with <m>\mathbf{m} = \frac{1}{2}(\mathbf{b} + \mathbf{c})</m>.</p></answer>
+            <solution><p>By the ratio theorem, <m>\mathbf{g} = \dfrac{1\mathbf{a} + 2\mathbf{m}}{3} = \dfrac{\mathbf{a} + \mathbf{b} + \mathbf{c}}{3}</m>. The same working for the median from <m>B</m> (to the midpoint of <m>CA</m>) or from <m>C</m> gives the same expression, because it does not change when <m>\mathbf{a}</m>, <m>\mathbf{b}</m> and <m>\mathbf{c}</m> are swapped. So the point two thirds of the way along each median is the same point <m>G</m>, and all three medians pass through it.</p></solution>
+        </exercise>
+    </exercises>
 
-            </statement>   
-            <solution>
-
-            </solution>             
-        </exercise>        
-    </exercises> -->
-
-    <!-- [LP] Add information on how to differentiate  -->
-
-    <!-- <axiom component="lesson-plan">
+    <axiom component="lesson-plan">
         <title>Differentiation</title>
-
-        <table>
-            <title>Differentiation</title>
-            <tabular halign="left">
-                <row header="yes" bottom="minor">
-                    <cell>Learner Group</cell>
-                    <cell>Strategy &amp; Learning Experience</cell>
-                    <cell></cell>
-                </row>
-                <row>
-                    <cell>Struggling Learners (Support)</cell>
-                    <cell>
-                        XXXX
-                    </cell>
-                    <cell></cell>
-                </row>
-                <row>
-                    <cell>On-Level Learners (Core)</cell>
-                    <cell>
-                        <line>The core lesson activities as described above.</line>
-                    </cell>
-                    <cell></cell>
-                </row>
-                <row>
-                    <cell>Advanced Learners (Challenge)</cell>
-                    <cell>
-                        XXXX
-                    </cell>
-                    <cell></cell>
-                </row>
+        <table xml:id="table-differentiation-ratio-theorem">
+            <title>Differentiation Strategies</title>
+            <tabular halign="left" top="minor" bottom="minor" left="minor" right="minor">
+                <row header="yes" bottom="medium"><cell>Learner Group</cell><cell>Strategy and Learning Experience</cell></row>
+                <row><cell>Struggling Learners (Support)</cell><cell>Give the derivation as a fill-in sheet with the same three blanks as the first STACK question, then work <xref ref="example-using-the-ratio-theorem"/>. Assign <xref ref="ex-ratio-theorem-internal"/> and <xref ref="ex-valve-on-a-pipe"/>.</cell></row>
+                <row><cell>On-Level Learners (Core)</cell><cell>Full activity and all examples. Assign <xref ref="ex-ratio-theorem-internal"/> to <xref ref="ex-read-the-ratio"/>.</cell></row>
+                <row><cell>Advanced Learners (Challenge)</cell><cell>All exercises including <xref ref="ex-centroid"/>. Extension: show that if <m>\mathbf{p} = \lambda\mathbf{a} + \mu\mathbf{b}</m> with <m>\lambda + \mu = 1</m>, then <m>\overrightarrow{AP} = \mu\overrightarrow{AB}</m>. (Answer: <m>\mathbf{p} - \mathbf{a} = (\lambda - 1)\mathbf{a} + \mu\mathbf{b} = -\mu\mathbf{a} + \mu\mathbf{b} = \mu(\mathbf{b} - \mathbf{a})</m>.)</cell></row>
             </tabular>
         </table>
-    </axiom> -->
+    </axiom>
 
     <xi:include href="../lesson-plan-templates/assessment-methods.ptx" />
 

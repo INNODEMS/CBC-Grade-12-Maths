@@ -46,161 +46,264 @@
          Suggested activity: Learners apply a reflection followed by a rotation to a triangle on graph paper, then multiply the two matrices and check that the product gives the same final image.
          Interactive (JSXGraph): Triangle with two matrices set by input boxes; the first image and the final image are shown, and the product matrix gives the final image in one step. -->
 
-    <!-- [LP] Add guidance on activity -->
+    <!-- Section notes (2026-11)
+         SLOs: Core 2.1 (c), (d)
+         Activity: as planning notes (a reflection then a rotation, step by step and by one product matrix)
+         JSXGraph: interactive-two-matrices (assets/jsxgraph/two-matrices.js), as planning notes, with a box to swap the order
+         STACK: assets/stack/top/2-measurement-and-geometry/06-matrices-and-transformations/02-successive-transformations/ -->
+
+    <p component="lesson-plan">Upon completion of this lesson, learners will be able to:
+        <ol>
+            <li><p><alert>Know:</alert> <q><m>P</m> followed by <m>Q</m></q> has the single matrix <m>QP</m>; the order matters; one matrix can replace two.</p></li>
+            <li><p><alert>Do:</alert> find final images step by step and in one step; find the single matrix and name the single transformation; find a single matrix from an object and its final image.</p></li>
+            <li><p><alert>Apply:</alert> turn and enlarge a signboard design.</p></li>
+        </ol>
+    </p>
 
     <axiom component="lesson-plan">
         <title>Problem-Solving and Discovery</title>
         <dl>
-            <li>
-                <title>Suggested Time</title>
-                <p>
-                    XXX minutes
-                </p>
-            </li>
-            <li>
-                <title>Objective</title>
-                <p>
-                    XXX
-                </p>
-            </li>
-            <li>
-                <title>Teacher's Role</title>
-                <p>
-                    XXX
-                </p>
-            </li>
+            <li><title>Suggested Time</title><p>14 minutes</p></li>
+            <li><title>Objective</title><p>Learners find that multiplying two matrices (second times first) gives the final image in one step, and that the order matters.</p></li>
+            <li><title>Teacher's Role</title><p>Give everyone graph paper. Half the class does parts (a) to (c) with <m>X</m> first and then <m>R</m>; the other half does <m>R</m> first and then <m>X</m>, so the class has both orders for part (d). Compare the final images on the board. Ask: <q>We used the same two transformations. Why did we end in different places?</q></p></li>
         </dl>
     </axiom>
 
-    <!-- Add Activity -->
-
-    <!-- <activity>
+    <activity xml:id="act-reflect-then-rotate">
+        <title>Reflect, Then Rotate</title>
         <statement>
+            <p>A sign painter in Kakamega copies a triangle with vertices <m>A(1, 1)</m>, <m>B(4, 1)</m> and <m>C(1, 3)</m> onto a board twice. <m>X</m> is the reflection in the <m>y</m>-axis and <m>R</m> is the rotation of <m>90^{\circ}</m> anticlockwise about <m>O</m>:
+                <md>X = \begin{bmatrix} -1 \amp 0 \\ 0 \amp 1 \end{bmatrix}, \qquad R = \begin{bmatrix} 0 \amp -1 \\ 1 \amp 0 \end{bmatrix}</md>
+            </p>
+            <p>
+                <ol marker="(a)">
+                    <li>
+                        <p>Find the image <m>A'B'C'</m> of the triangle under <m>X</m>. Draw both triangles.</p>
+                        <solution component="lesson-plan"><p><m>A'(-1, 1)</m>, <m>B'(-4, 1)</m>, <m>C'(-1, 3)</m>.</p></solution>
+                    </li>
+                    <li>
+                        <p>Find the image <m>A''B''C''</m> of <m>A'B'C'</m> under <m>R</m>. Draw it.</p>
+                        <solution component="lesson-plan"><p><m>A''(-1, -1)</m>, <m>B''(-1, -4)</m>, <m>C''(-3, -1)</m>. See <xref ref="fig-reflect-then-rotate"/>.</p></solution>
+                    </li>
+                    <li>
+                        <p>Work out the product <m>RX</m>. Use it on <m>A</m>, <m>B</m> and <m>C</m>. Do you get the same final image?</p>
+                        <solution component="lesson-plan"><p><m>RX = \begin{bmatrix} 0 \amp -1 \\ -1 \amp 0 \end{bmatrix}</m>, which sends <m>(1, 1)</m>, <m>(4, 1)</m>, <m>(1, 3)</m> to <m>(-1, -1)</m>, <m>(-1, -4)</m>, <m>(-3, -1)</m>: the same final image.</p></solution>
+                    </li>
+                    <li>
+                        <p>Now work out <m>XR</m> and use it on <m>A</m>, <m>B</m> and <m>C</m>. Is the final image the same as before?</p>
+                        <solution component="lesson-plan"><p><m>XR = \begin{bmatrix} 0 \amp 1 \\ 1 \amp 0 \end{bmatrix}</m>, giving <m>(1, 1)</m>, <m>(1, 4)</m>, <m>(3, 1)</m>. This is a different image.</p></solution>
+                    </li>
+                    <li>
+                        <p>Use the table of standard matrices to name the single transformations <m>RX</m> and <m>XR</m>.</p>
+                        <solution component="lesson-plan"><p><m>RX</m> is the reflection in the line <m>y = -x</m>; <m>XR</m> is the reflection in the line <m>y = x</m>. They are different, so the order matters.</p></solution>
+                        <note component="lesson-plan"><p>Learners who did <m>R</m> first and then <m>X</m> have used the matrix <m>XR</m>. Let them check part (d) against their drawing.</p></note>
+                    </li>
+                </ol>
+            </p>
         </statement>
-    </activity> -->
+    </activity>
 
-    <!-- [LP] Add guidance on structured lesson plan-->
-
-    <!-- <axiom component="lesson-plan">
+    <axiom component="lesson-plan">
         <title>Structured Instruction</title>
         <p>
             <dl>
-            <li>
-                <title>Suggested Time</title>
-                <p>
-                    XX minutes
-                </p>
-            </li>
-            <li>
-                <title>Objective</title>
-                <p>
-                    To formalize the concepts and properties learners discovered in the anchor task.
-                </p>
-            </li>
+                <li><title>Suggested Time</title><p>8 minutes</p></li>
+                <li><title>Objective</title><p>To formalise the single matrix of two successive transformations and the order in which it is written.</p></li>
             </dl>
         </p>
         <paragraphs>
             <title>Key Takeaways &amp; Teacher Connection</title>
             <ol>
-                <li>
-                    <p>
-                        <alert>Connecting to Learner Work:</alert> XXXX
-                    </p>
-                </li>
+                <li><p><alert>Connecting to Learner Work:</alert> in part (c) the reflection <m>X</m> was done first, and its matrix is on the right of <m>RX</m>, next to the point it acts on.</p></li>
+                <li><p>Check a single matrix by using it on one point and comparing with the step-by-step answer.</p></li>
+                <li><p>The single transformation can be named from its matrix, using the columns rule and the table of standard matrices.</p></li>
+                <li><p>Grade 11 combined a rotation <m>R</m> and a scaling <m>S</m> and found that <q>rotate, then scale</q> has matrix <m>SR</m>. This is the same rule.</p></li>
             </ol>
         </paragraphs>
-    </axiom> -->
+    </axiom>
 
-    <!-- Add insight / key takeaway directly related to activity / learner experience -->
+    <insight xml:id="insight-successive-transformations">
+        <title>Successive Transformations</title>
+        <p>
+            Suppose a transformation with matrix <m>P</m> is followed by a transformation with matrix <m>Q</m>. A point with column <m>\mathbf{x}</m> goes first to <m>P\mathbf{x}</m>, and then to <m>Q(P\mathbf{x}) = (QP)\mathbf{x}</m>. So <q><m>P</m> followed by <m>Q</m></q> is the <term>single matrix</term> <m>QP</m>: one matrix that does both transformations in one step.
+        </p>
+        <p>
+            The matrix of the transformation done first is written on the right, next to the point it acts on. In general <m>QP \neq PQ</m>, so the order matters: doing the same two transformations in the other order can give a different final image.
+        </p>
+    </insight>
 
-    <!-- <insight>
-    </insight> -->
+    <figure xml:id="fig-reflect-then-rotate">
+        <caption>The triangle <m>ABC</m> (solid), its reflection <m>A'B'C'</m> in the <m>y</m>-axis (dotted), and the image <m>A''B''C''</m> of that after a rotation of <m>90^{\circ}</m> anticlockwise about <m>O</m> (dashed).</caption>
+        <image width="60%">
+            <shortdescription>The triangle with vertices A(1, 1), B(4, 1), C(1, 3); its reflection in the y-axis, A prime(-1, 1), B prime(-4, 1), C prime(-1, 3), drawn dotted; then that image turned 90 degrees anticlockwise about O, ending at A double prime(-1, -1), B double prime(-1, -4), C double prime(-3, -1), drawn dashed.</shortdescription>
+            <latex-image>
+\begin{tikzpicture}[scale=0.6]
+\draw[very thin, gray!40] (-5,-5) grid (5,4);
+\draw[->] (-5.3,0) -- (5.4,0) node[right]{$x$};
+\draw[->] (0,-5.3) -- (0,4.4) node[above]{$y$};
+\node[below left] at (0,0) {$O$};
+\draw[thick] (1,1) -- (4,1) -- (1,3) -- cycle;
+\node[below] at (1,1) {$A$}; \node[below] at (4,1) {$B$}; \node[above] at (1,3) {$C$};
+\draw[thick, dotted] (-1,1) -- (-4,1) -- (-1,3) -- cycle;
+\node[below] at (-1,1) {$A'$}; \node[below] at (-4,1) {$B'$}; \node[above] at (-1,3) {$C'$};
+\draw[thick, dashed] (-1,-1) -- (-1,-4) -- (-3,-1) -- cycle;
+\node[right] at (-1,-1) {$A''$}; \node[right] at (-1,-4) {$B''$}; \node[left] at (-3,-1) {$C''$};
+\end{tikzpicture}
+            </latex-image>
+        </image>
+    </figure>
 
-    <!-- Add further instruction (not in a block) to develop ideas as needed -->
+    <figure xml:id="fig-two-matrices">
+        <caption><m>P</m> is done first, then <m>Q</m>. The final image is the same as the image under the single matrix <m>QP</m>.</caption>
+        <interactive xml:id="interactive-two-matrices" platform="jsxgraph" width="90%" aspect="4:3" source="jsxgraph/two-matrices.js">
+            <slate xml:id="jsxgraph-two-matrices" surface="jsxboard" aspect="4:3"/>
+            <instructions>
+                <p>
+                    <ul>
+                        <li><p>The boxes start with the activity's matrices: <m>P = X</m> and <m>Q = R</m>. Check your first image and final image, and the product <m>QP</m>.</p></li>
+                        <li><p>Tick the box <alert>Do Q first instead</alert>. Does the final image change? Which single matrix is printed now?</p></li>
+                        <li><p>Drag the corners of the triangle <m>ABC</m>, or type your own matrices in the boxes.</p></li>
+                    </ul>
+                </p>
+            </instructions>
+        </interactive>
+    </figure>
 
     <xi:include href="../lesson-plan-templates/example-intro.ptx" />
 
-    <!-- Add at least 3 examples -->
-
-    <!-- <example>
+    <example xml:id="example-enlarge-then-reflect">
+        <title>Enlarge, Then Reflect</title>
         <statement>
+            <p><m>E</m> is the enlargement, centre <m>O</m>, scale factor <m>2</m>, and <m>F</m> is the reflection in the <m>x</m>-axis. Find the single matrix for <q><m>E</m> followed by <m>F</m></q>, and use it to find the final image of the point <m>(3, 1)</m>.</p>
         </statement>
         <solution>
+            <p>The matrices are <m>E = \begin{bmatrix} 2 \amp 0 \\ 0 \amp 2 \end{bmatrix}</m> and <m>F = \begin{bmatrix} 1 \amp 0 \\ 0 \amp -1 \end{bmatrix}</m>. <m>E</m> is done first, so it goes on the right:
+                <md>FE = \begin{bmatrix} 1 \amp 0 \\ 0 \amp -1 \end{bmatrix}\begin{bmatrix} 2 \amp 0 \\ 0 \amp 2 \end{bmatrix} = \begin{bmatrix} 2 \amp 0 \\ 0 \amp -2 \end{bmatrix}</md>
+            The final image of <m>(3, 1)</m> is
+                <md>\begin{bmatrix} 2 \amp 0 \\ 0 \amp -2 \end{bmatrix}\begin{pmatrix} 3 \\ 1 \end{pmatrix} = \begin{pmatrix} 6 \\ -2 \end{pmatrix}</md>
+            so the point ends at <m>(6, -2)</m>.</p>
+            <p>Here <m>EF</m> is also <m>\begin{bmatrix} 2 \amp 0 \\ 0 \amp -2 \end{bmatrix}</m>. An enlargement with centre <m>O</m> multiplies every coordinate by the same number, so it gives the same product in either order with any matrix. Most pairs of transformations are not like this.</p>
         </solution>
     </example>
 
-    <example>
+    <example xml:id="example-two-general-matrices">
+        <title>Two General Matrices</title>
         <statement>
+            <p><m>P = \begin{bmatrix} 1 \amp 2 \\ 0 \amp -1 \end{bmatrix}</m> and <m>Q = \begin{bmatrix} 2 \amp 0 \\ 1 \amp 1 \end{bmatrix}</m>. The triangle with vertices <m>(2, 1)</m>, <m>(1, -1)</m> and <m>(0, 2)</m> is transformed by <m>P</m>, and its image is then transformed by <m>Q</m>.</p>
+            <p>
+                <ol marker="(a)">
+                    <li><p>Find the final image step by step.</p></li>
+                    <li><p>Find the single matrix and use it to check your answer.</p></li>
+                    <li><p>Find the final image if <m>Q</m> is done first and then <m>P</m>.</p></li>
+                </ol>
+            </p>
         </statement>
         <solution>
+            <p>(a) Write the vertices as the columns of an object matrix and multiply by <m>P</m>:
+                <md>\begin{bmatrix} 1 \amp 2 \\ 0 \amp -1 \end{bmatrix}\begin{bmatrix} 2 \amp 1 \amp 0 \\ 1 \amp -1 \amp 2 \end{bmatrix} = \begin{bmatrix} 4 \amp -1 \amp 4 \\ -1 \amp 1 \amp -2 \end{bmatrix}</md>
+            Then multiply the first image by <m>Q</m>:
+                <md>\begin{bmatrix} 2 \amp 0 \\ 1 \amp 1 \end{bmatrix}\begin{bmatrix} 4 \amp -1 \amp 4 \\ -1 \amp 1 \amp -2 \end{bmatrix} = \begin{bmatrix} 8 \amp -2 \amp 8 \\ 3 \amp 0 \amp 2 \end{bmatrix}</md>
+            The final image has vertices <m>(8, 3)</m>, <m>(-2, 0)</m> and <m>(8, 2)</m>.</p>
+            <p>(b) <m>P</m> is done first, so the single matrix is
+                <md>QP = \begin{bmatrix} 2 \amp 0 \\ 1 \amp 1 \end{bmatrix}\begin{bmatrix} 1 \amp 2 \\ 0 \amp -1 \end{bmatrix} = \begin{bmatrix} 2 \amp 4 \\ 1 \amp 1 \end{bmatrix}</md>
+            Check with the first vertex: <m>\begin{bmatrix} 2 \amp 4 \\ 1 \amp 1 \end{bmatrix}\begin{pmatrix} 2 \\ 1 \end{pmatrix} = \begin{pmatrix} 8 \\ 3 \end{pmatrix}</m>, as in (a).</p>
+            <p>(c) Now the single matrix is <m>PQ = \begin{bmatrix} 1 \amp 2 \\ 0 \amp -1 \end{bmatrix}\begin{bmatrix} 2 \amp 0 \\ 1 \amp 1 \end{bmatrix} = \begin{bmatrix} 4 \amp 2 \\ -1 \amp -1 \end{bmatrix}</m>, and
+                <md>\begin{bmatrix} 4 \amp 2 \\ -1 \amp -1 \end{bmatrix}\begin{bmatrix} 2 \amp 1 \amp 0 \\ 1 \amp -1 \amp 2 \end{bmatrix} = \begin{bmatrix} 10 \amp 2 \amp 4 \\ -3 \amp 0 \amp -2 \end{bmatrix}</md>
+            The final image is <m>(10, -3)</m>, <m>(2, 0)</m>, <m>(4, -2)</m>: a different triangle, because <m>PQ \neq QP</m>.</p>
         </solution>
     </example>
 
-    <example>
+    <example xml:id="example-one-matrix-from-final-image">
+        <title>One Matrix From the Final Image</title>
         <statement>
+            <p>After two transformations, <m>U(2, 3)</m> ends at <m>U''(-3, -2)</m> and <m>V(4, 1)</m> ends at <m>V''(-1, -4)</m>. Find the single matrix that maps <m>U</m> and <m>V</m> straight onto their final images, and name the single transformation. Show that a rotation of <m>90^{\circ}</m> anticlockwise about <m>O</m> followed by the reflection in the <m>x</m>-axis has this matrix.</p>
         </statement>
         <solution>
+            <p>Let the single matrix be <m>\begin{bmatrix} a \amp b \\ c \amp d \end{bmatrix}</m>. The top row gives the <m>x</m>-coordinates of the final images:
+                <md>2a + 3b = -3, \qquad 4a + b = -1</md>
+            From the second equation <m>b = -1 - 4a</m>, so <m>2a - 3 - 12a = -3</m>, giving <m>a = 0</m> and <m>b = -1</m>. The bottom row gives the <m>y</m>-coordinates:
+                <md>2c + 3d = -2, \qquad 4c + d = -4</md>
+            From the second, <m>d = -4 - 4c</m>, so <m>2c - 12 - 12c = -2</m>, giving <m>c = -1</m> and <m>d = 0</m>. The single matrix is <m>\begin{bmatrix} 0 \amp -1 \\ -1 \amp 0 \end{bmatrix}</m>: it sends <m>(1, 0)</m> to <m>(0, -1)</m> and <m>(0, 1)</m> to <m>(-1, 0)</m>, so it is the reflection in the line <m>y = -x</m>.</p>
+            <p>The rotation is done first, so its matrix goes on the right:
+                <md>\begin{bmatrix} 1 \amp 0 \\ 0 \amp -1 \end{bmatrix}\begin{bmatrix} 0 \amp -1 \\ 1 \amp 0 \end{bmatrix} = \begin{bmatrix} 0 \amp -1 \\ -1 \amp 0 \end{bmatrix}</md>
+            which is the same matrix.</p>
         </solution>
-    </example> -->
+    </example>
 
     <xi:include href="../lesson-plan-templates/assessment-intro.ptx" />
+    <xi:include href="../lesson-plan-templates/checkpoint.ptx" />
 
-    <!-- If STACK questions are included, uncomment this: -->
+    <p>Type one number in each box of a matrix. Type fractions with a slash, for example <c>-3/2</c>, or as decimals, for example <c>-1.5</c>. Type each coordinate in its own box.</p>
 
-    <!-- <xi:include href="../lesson-plan-templates/checkpoint.ptx" /> -->
+    <exercise xml:id="ex-single-matrix-for-two-successive-transformations">
+        <stack label="stk-single-matrix-for-two-successive-transformations" source="stack/top/2-measurement-and-geometry/06-matrices-and-transformations/02-successive-transformations/Single-matrix-for-two-successive-transformations.xml"/>
+    </exercise>
 
-    <!-- Add STACK exercises if made -->
+    <exercise xml:id="ex-one-transformation-equal-to-two">
+        <stack label="stk-one-transformation-equal-to-two" source="stack/top/2-measurement-and-geometry/06-matrices-and-transformations/02-successive-transformations/One-transformation-equal-to-two.xml"/>
+    </exercise>
 
-    <!-- Add static exercises -->
+    <exercise xml:id="ex-two-transformations-with-a-given-result">
+        <stack label="stk-two-transformations-with-a-given-result" source="stack/top/2-measurement-and-geometry/06-matrices-and-transformations/02-successive-transformations/Two-transformations-with-a-given-result.xml"/>
+    </exercise>
 
-    <!-- <exercises>
-        <exercise>
-            <statement>   
+    <exercise xml:id="ex-finding-the-mistake-in-a-combined-transformation">
+        <stack label="stk-finding-the-mistake-in-a-combined-transformation" source="stack/top/2-measurement-and-geometry/06-matrices-and-transformations/02-successive-transformations/Finding-the-mistake-in-a-combined-transformation.xml"/>
+    </exercise>
 
-            </statement>   
-            <solution>
+    <exercises xml:id="exercises-successive-transformations">
+        <exercise xml:id="ex-order-of-two-reflections">
+            <statement><p>Find the single matrix, and name the single transformation, for each of these.
+                <ol marker="(a)">
+                    <li><p>The reflection in the line <m>y = x</m> followed by the reflection in the line <m>y = -x</m>.</p></li>
+                    <li><p>The reflection in the line <m>y = -x</m> followed by the reflection in the line <m>y = x</m>.</p></li>
+                    <li><p>The reflection in the <m>x</m>-axis followed by the reflection in the line <m>y = x</m>.</p></li>
+                    <li><p>The reflection in the line <m>y = x</m> followed by the reflection in the <m>x</m>-axis.</p></li>
+                </ol>
+            </p></statement>
+            <answer><p>(a) <m>\begin{bmatrix} -1 \amp 0 \\ 0 \amp -1 \end{bmatrix}</m>, rotation of <m>180^{\circ}</m> about <m>O</m> (b) the same matrix and rotation: these two orders happen to agree (c) <m>\begin{bmatrix} 0 \amp -1 \\ 1 \amp 0 \end{bmatrix}</m>, rotation of <m>90^{\circ}</m> anticlockwise about <m>O</m> (d) <m>\begin{bmatrix} 0 \amp 1 \\ -1 \amp 0 \end{bmatrix}</m>, rotation of <m>90^{\circ}</m> clockwise about <m>O</m></p></answer>
+            <solution><p>(c) The reflection in the <m>x</m>-axis is done first, so it goes on the right: <m>\begin{bmatrix} 0 \amp 1 \\ 1 \amp 0 \end{bmatrix}\begin{bmatrix} 1 \amp 0 \\ 0 \amp -1 \end{bmatrix} = \begin{bmatrix} 0 \amp -1 \\ 1 \amp 0 \end{bmatrix}</m>. (d) <m>\begin{bmatrix} 1 \amp 0 \\ 0 \amp -1 \end{bmatrix}\begin{bmatrix} 0 \amp 1 \\ 1 \amp 0 \end{bmatrix} = \begin{bmatrix} 0 \amp 1 \\ -1 \amp 0 \end{bmatrix}</m>. Two reflections always give a rotation; the order decides its direction.</p></solution>
+        </exercise>
+        <exercise xml:id="ex-single-matrix-and-image">
+            <statement><p><m>A = \begin{bmatrix} 2 \amp 1 \\ 0 \amp 1 \end{bmatrix}</m> and <m>B = \begin{bmatrix} 1 \amp 0 \\ -1 \amp 2 \end{bmatrix}</m>. Find the single matrix for <q><m>A</m> followed by <m>B</m></q>, and the final image of the point <m>(1, -1)</m>.</p></statement>
+            <answer><p><m>BA = \begin{bmatrix} 2 \amp 1 \\ -2 \amp 1 \end{bmatrix}</m>; <m>(1, -3)</m></p></answer>
+        </exercise>
+        <exercise xml:id="ex-three-transformations">
+            <statement><p>A shape is rotated <m>90^{\circ}</m> anticlockwise about <m>O</m>, then rotated <m>90^{\circ}</m> anticlockwise about <m>O</m> again, and then reflected in the <m>x</m>-axis. Find the single matrix and name the single transformation.</p></statement>
+            <answer><p><m>\begin{bmatrix} -1 \amp 0 \\ 0 \amp 1 \end{bmatrix}</m>: the reflection in the <m>y</m>-axis</p></answer>
+            <solution><p>Two quarter turns make a half turn, <m>\begin{bmatrix} -1 \amp 0 \\ 0 \amp -1 \end{bmatrix}</m>. The reflection is done last, so it goes on the left: <m>\begin{bmatrix} 1 \amp 0 \\ 0 \amp -1 \end{bmatrix}\begin{bmatrix} -1 \amp 0 \\ 0 \amp -1 \end{bmatrix} = \begin{bmatrix} -1 \amp 0 \\ 0 \amp 1 \end{bmatrix}</m>, which sends <m>(1, 0)</m> to <m>(-1, 0)</m> and leaves <m>(0, 1)</m> fixed: the reflection in the <m>y</m>-axis.</p></solution>
+        </exercise>
+        <exercise xml:id="ex-single-matrix-from-final-image">
+            <statement><p>After two transformations, <m>(1, 1)</m> ends at <m>(4, 2)</m> and <m>(1, -1)</m> ends at <m>(-2, 4)</m>. Find the single matrix for the two transformations together.</p></statement>
+            <answer><p><m>\begin{bmatrix} 1 \amp 3 \\ 3 \amp -1 \end{bmatrix}</m></p></answer>
+            <solution><p>Let the matrix be <m>\begin{bmatrix} a \amp b \\ c \amp d \end{bmatrix}</m>. Then <m>a + b = 4</m> and <m>a - b = -2</m>, so <m>a = 1</m>, <m>b = 3</m>; and <m>c + d = 2</m>, <m>c - d = 4</m>, so <m>c = 3</m>, <m>d = -1</m>.</p></solution>
+        </exercise>
+        <exercise xml:id="ex-turning-a-signboard">
+            <statement><p>A design for a shop signboard in Machakos is rotated <m>90^{\circ}</m> anticlockwise about <m>O</m> and then enlarged, centre <m>O</m>, scale factor <m>3</m>. Find the single matrix, and the image of the corner <m>(4, 1)</m>.</p></statement>
+            <answer><p><m>\begin{bmatrix} 0 \amp -3 \\ 3 \amp 0 \end{bmatrix}</m>; <m>(-3, 12)</m></p></answer>
+            <solution><p>The enlargement is done second, so it goes on the left: <m>\begin{bmatrix} 3 \amp 0 \\ 0 \amp 3 \end{bmatrix}\begin{bmatrix} 0 \amp -1 \\ 1 \amp 0 \end{bmatrix} = \begin{bmatrix} 0 \amp -3 \\ 3 \amp 0 \end{bmatrix}</m>. Then <m>\begin{bmatrix} 0 \amp -3 \\ 3 \amp 0 \end{bmatrix}\begin{pmatrix} 4 \\ 1 \end{pmatrix} = \begin{pmatrix} -3 \\ 12 \end{pmatrix}</m>.</p></solution>
+        </exercise>
+        <exercise xml:id="ex-when-order-does-not-matter">
+            <title>Challenge: When the Order Does Not Matter</title>
+            <statement><p>Show that the rotation of <m>180^{\circ}</m> about <m>O</m> followed by any transformation with matrix <m>M</m> has the same effect as <m>M</m> followed by the rotation of <m>180^{\circ}</m>.</p></statement>
+            <hint><p>The rotation of <m>180^{\circ}</m> has matrix <m>-I</m>. Work out <m>M(-I)</m> and <m>(-I)M</m>.</p></hint>
+            <answer><p><m>M(-I) = -M = (-I)M</m>, so the two single matrices are equal.</p></answer>
+            <solution><p>Let <m>M = \begin{bmatrix} a \amp b \\ c \amp d \end{bmatrix}</m>. The rotation first, then <m>M</m>, has matrix <m>M\begin{bmatrix} -1 \amp 0 \\ 0 \amp -1 \end{bmatrix} = \begin{bmatrix} -a \amp -b \\ -c \amp -d \end{bmatrix}</m>. <m>M</m> first, then the rotation, has matrix <m>\begin{bmatrix} -1 \amp 0 \\ 0 \amp -1 \end{bmatrix}M = \begin{bmatrix} -a \amp -b \\ -c \amp -d \end{bmatrix}</m>. The two single matrices are the same, so the order does not matter here.</p></solution>
+        </exercise>
+    </exercises>
 
-            </solution>             
-        </exercise>        
-    </exercises> -->
-
-    <!-- [LP] Add information on how to differentiate  -->
-
-    <!-- <axiom component="lesson-plan">
+    <axiom component="lesson-plan">
         <title>Differentiation</title>
-
-        <table>
-            <title>Differentiation</title>
-            <tabular halign="left">
-                <row header="yes" bottom="minor">
-                    <cell>Learner Group</cell>
-                    <cell>Strategy &amp; Learning Experience</cell>
-                    <cell></cell>
-                </row>
-                <row>
-                    <cell>Struggling Learners (Support)</cell>
-                    <cell>
-                        XXXX
-                    </cell>
-                    <cell></cell>
-                </row>
-                <row>
-                    <cell>On-Level Learners (Core)</cell>
-                    <cell>
-                        <line>The core lesson activities as described above.</line>
-                    </cell>
-                    <cell></cell>
-                </row>
-                <row>
-                    <cell>Advanced Learners (Challenge)</cell>
-                    <cell>
-                        XXXX
-                    </cell>
-                    <cell></cell>
-                </row>
+        <table xml:id="table-differentiation-successive-transformations">
+            <title>Differentiation Strategies</title>
+            <tabular halign="left" top="minor" bottom="minor" left="minor" right="minor">
+                <row header="yes" bottom="medium"><cell>Learner Group</cell><cell>Strategy and Learning Experience</cell></row>
+                <row><cell>Struggling Learners (Support)</cell><cell>Focus on activity parts (a) to (c). Give a step table with columns <q>object</q>, <q>after the first</q>, <q>after the second</q>, and a card: <q>first matrix on the right</q>. Work through <xref ref="example-enlarge-then-reflect"/>. Assign <xref ref="ex-order-of-two-reflections"/> and <xref ref="ex-single-matrix-and-image"/>.</cell></row>
+                <row><cell>On-Level Learners (Core)</cell><cell>Full activity plus all examples. Assign <xref ref="ex-order-of-two-reflections"/> to <xref ref="ex-turning-a-signboard"/>.</cell></row>
+                <row><cell>Advanced Learners (Challenge)</cell><cell>All exercises including <xref ref="ex-when-order-does-not-matter"/>. Extension: find two different transformations from the table of standard matrices whose combination, in either order, is the rotation of <m>180^{\circ}</m> about <m>O</m>. (Answer: for example the reflections in the <m>x</m>-axis and the <m>y</m>-axis, or the reflections in <m>y = x</m> and <m>y = -x</m>.)</cell></row>
             </tabular>
         </table>
-    </axiom> -->
+    </axiom>
 
     <xi:include href="../lesson-plan-templates/assessment-methods.ptx" />
 

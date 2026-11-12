@@ -1,0 +1,7 @@
+<stack-static>
+    <statement><p><p>A region from <m>x = {2}</m> to <m>x = {10}</m> is split into <m>{4}</m> strips of equal width <m>h</m>.</p><p>Type k for the strip number, for example <c>2+3*k</c>. Use fractions such as <c>1/2</c>, not decimals.</p><p>(a) Find <m>h</m>.</p><div><m>h =</m> <fillin characters="5" name="ans1"/>  </div><p>(b) Strip <m>k</m> runs from <m>x = {2} + (k - 1)h</m> to <m>x = {2} + kh</m>. Write the <m>x</m>-coordinate of the middle of strip <m>k</m> in terms of <m>k</m>.</p><div><m>x =</m> <fillin characters="15" name="ans2"/>  </div><p>(c) Which strip has its mid-ordinate at <m>x = {7}</m>?</p><div>Strip <fillin characters="5" name="ans3"/>  </div></p></statement>
+    <solution><p><p>(a) <m>h = \dfrac{ {10} - {2} }{ {4} } = {2}</m>.</p><p>(b) The middle of a strip is halfway between its edges, so add the two edges and divide by <m>2</m>:</p><p><me>x = \frac{\left({2} + {2}(k - 1)\right) + \left({2} + {2}k\right)}{2} = {2} + {2}\left(k - \tfrac{1}{2}\right) = {2 k+1}</me></p><p>Check with <m>k = 1</m>: <m>x = {2} + \tfrac{1}{2} \times {2}</m>, halfway across the first strip.</p><p>(c) Solve <m>{2} + {2}\left(k - \tfrac{1}{2}\right) = {7}</m>: <m>k - \tfrac{1}{2} = {5} \div {2} = {2.5}</m>, so <m>k = {3}</m>. Strip <m>{3}</m> runs from <m>x = {6}</m> to <m>x = {8}</m>.</p></p></solution>
+    <answer><p><m>2</m></p></answer>
+    <answer><p><m>2 \left(k-\frac{1}{2}\right)+2</m></p></answer>
+    <answer><p><m>3</m></p></answer>
+</stack-static>

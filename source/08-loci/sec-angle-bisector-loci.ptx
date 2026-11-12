@@ -46,161 +46,288 @@
          Suggested activity: Learners construct the bisector of the angle at a corner of the classroom floor using a pair of compasses on manila paper.
          Interactive (JSXGraph): Two lines from a common vertex with draggable arms; a point equidistant from both lines traces the angle bisector. -->
 
-    <!-- [LP] Add guidance on activity -->
+    <!-- Section notes (2026-11)
+         SLOs: Core 2.3 (b), angle-bisector half (8.1 has the perpendicular bisector)
+         Activity: as planning notes (bisector of a classroom corner on manila paper) | added: equal distances checked with a set square, two crossing lines
+         JSXGraph: fig-angle-bisector-locus (assets/jsxgraph/angle-bisector-locus.js), as planning notes, with Next/Back construction steps and a whole-lines option
+         STACK: assets/stack/top/2-measurement-and-geometry/08-loci/04-angle-bisector-loci/ -->
 
-    <!-- <axiom component="lesson-plan">
-            <title>Problem-Solving and Discovery</title>
-            <dl>
-                <li>
-                    <title>Suggested Time</title>
-                    <p>
-                        XX minutes
-                    </p>
-                </li>
-                <li>
-                    <title>Objective</title>
-                    <p>
-                        XXX
-                    </p>
-                </li>
-                <li>
-                    <title>Teacher's Role</title>
-                    <p>
-                        XXX
-                    </p>
-                </li>
-            </dl>
-        </axiom> -->
+    <p component="lesson-plan">Upon completion of this lesson, learners will be able to:
+        <ol>
+            <li><p><alert>Know:</alert> the points equidistant from the two arms of an angle lie on its bisector; the points equidistant from two crossing lines lie on two bisectors at right angles to each other.</p></li>
+            <li><p><alert>Do:</alert> construct an angle bisector; use the equal perpendicular distances with Pythagoras and trigonometry; find points equidistant from two grid lines.</p></li>
+            <li><p><alert>Apply:</alert> a water point between two roads; a sprinkler equidistant from the edges of a lawn.</p></li>
+        </ol>
+    </p>
 
-    <!-- Add Activity -->
+    <axiom component="lesson-plan">
+        <title>Problem-Solving and Discovery</title>
+        <dl>
+            <li><title>Suggested Time</title><p>14 minutes</p></li>
+            <li><title>Objective</title><p>Learners construct an angle bisector, test that its points are equally far from both arms, and find that two crossing lines give two bisectors.</p></li>
+            <li><title>Teacher's Role</title><p>Groups tape a manila sheet into a corner of the classroom floor, or draw a <m>90^{\circ}</m> corner on paper. Provide compasses and set squares for the perpendicular distances. Each group checks another group's construction without rubbing out the arcs. After part (a), ask: <q>Did every group's bisector make <m>45^{\circ}</m>?</q></p></li>
+        </dl>
+    </axiom>
 
-    <!-- <activity>
+    <activity xml:id="act-corner-of-the-classroom-floor">
+        <title>The Corner of the Classroom</title>
         <statement>
+            <p>The two walls of a classroom meet the floor in two straight edges that make a right angle at the corner <m>O</m>.</p>
+            <p>
+                <ol marker="(a)">
+                    <li>
+                        <p>Construct the bisector of the corner angle with compasses. Measure the angle it makes with each wall.</p>
+                        <solution component="lesson-plan"><p><m>45^{\circ}</m> with each wall.</p></solution>
+                    </li>
+                    <li>
+                        <p>Choose a point <m>P</m> on your bisector. Use a set square to draw the perpendicular from <m>P</m> to each wall, and measure both distances.</p>
+                        <solution component="lesson-plan"><p>The two distances are equal.</p></solution>
+                    </li>
+                    <li>
+                        <p>Choose a point that is not on the bisector and measure its two distances in the same way.</p>
+                        <solution component="lesson-plan"><p>The two distances are different: the point is nearer the wall on its own side of the bisector.</p></solution>
+                    </li>
+                    <li>
+                        <p>On a new sheet, draw two straight lines that cross at <m>76^{\circ}</m>. Find several points that are equidistant from both lines, in all four angles. What do they lie on? Measure the angle between the lines you find.</p>
+                        <solution component="lesson-plan"><p>They lie on two lines through the crossing point: the bisectors of the <m>76^{\circ}</m> angles and of the <m>104^{\circ}</m> angles. The angle between them is <m>38^{\circ} + 52^{\circ} = 90^{\circ}</m>.</p></solution>
+                        <note component="lesson-plan"><p>Learners often find only the bisector of the angle they started in. Ask them to look in the other angles.</p></note>
+                    </li>
+                </ol>
+            </p>
         </statement>
-    </activity> -->
+    </activity>
 
-    <!-- [LP] Add guidance on structured lesson plan-->
-
-    <!-- <axiom component="lesson-plan">
+    <axiom component="lesson-plan">
         <title>Structured Instruction</title>
         <p>
             <dl>
-            <li>
-                <title>Suggested Time</title>
-                <p>
-                    XX minutes
-                </p>
-            </li>
-            <li>
-                <title>Objective</title>
-                <p>
-                    To formalize the concepts and properties learners discovered in the anchor task.
-                </p>
-            </li>
+                <li><title>Suggested Time</title><p>8 minutes</p></li>
+                <li><title>Objective</title><p>To formalise the angle-bisector locus, for one angle and for two crossing lines.</p></li>
             </dl>
         </p>
         <paragraphs>
             <title>Key Takeaways &amp; Teacher Connection</title>
             <ol>
-                <li>
-                    <p>
-                        <alert>Connecting to Learner Work:</alert> XXXX
-                    </p>
-                </li>
+                <li><p><alert>Connecting to Learner Work:</alert> part (b) is the rule of the locus, and part (c) shows that points off the bisector break it.</p></li>
+                <li><p>The distance to an arm is the perpendicular distance.</p></li>
+                <li><p>The arms of one angle give one bisector; two whole lines that cross give two bisectors, and these are at right angles.</p></li>
+                <li><p>Connect to the incentre from Grade 11: it is the point where the bisectors of the three angles of a triangle meet, equidistant from all three sides.</p></li>
             </ol>
         </paragraphs>
-    </axiom> -->
+    </axiom>
 
-    <!-- Add insight / key takeaway directly related to activity / learner experience -->
+    <insight xml:id="insight-angle-bisector-locus">
+        <title>The Angle Bisector Locus</title>
+        <p>
+            The locus of points equidistant from the two arms of an angle is the <term>angle bisector</term>, the line through the vertex that cuts the angle into two equal halves. Every point on the bisector is the same distance from both arms, and every point inside the angle that is the same distance from both arms is on the bisector.
+        </p>
+        <p>
+            Why: if <m>P</m> is on the bisector of angle <m>XOY</m> and <m>F</m>, <m>G</m> are the feet of the perpendiculars from <m>P</m> to <m>OX</m> and <m>OY</m>, the triangles <m>OFP</m> and <m>OGP</m> have a right angle, the common hypotenuse <m>OP</m> and equal angles at <m>O</m>, so they are congruent and <m>PF = PG</m>.
+        </p>
+        <p>
+            The locus of points equidistant from two straight lines that cross is the pair of bisectors of the angles between them. The two bisectors are at right angles to each other.
+        </p>
+        <p>
+            To construct the bisector of an angle: with the compass point at the vertex, draw an arc cutting both arms; from the two points where it cuts, draw equal arcs that cross inside the angle; join the vertex to the crossing point. Keep the arcs. The bisectors of the three angles of a triangle meet at the <term>incentre</term>, which is equidistant from the three sides.
+        </p>
+    </insight>
 
-    <!-- <insight>
-    </insight> -->
+    <figure xml:id="fig-angle-bisector-construction">
+        <caption>Bisecting angle <m>XOY</m> of <m>64^{\circ}</m>: every point <m>P</m> on the bisector has <m>PF = PG</m>.</caption>
+        <image width="60%">
+            <shortdescription>An angle XOY of 64 degrees with vertex O. An arc centred at O cuts OX at A and OY at B. Equal arcs from A and from B cross at C. The bisector OC is drawn. P is on the bisector, with perpendiculars PF to OX and PG to OY, right-angle marks at F and G, and PF and PG marked equal.</shortdescription>
+            <latex-image>
+\begin{tikzpicture}[scale=1]
+% SET
+\tkzDefPoint(0,0){O} \tkzDefPoint(6,0){X} \tkzDefPoint(64:6){Y}
+% CALCULATE
+\tkzDefPoint(2,0){A} \tkzDefPoint(64:2){B}
+\tkzDefPoint(32:3.09){C}
+\tkzDefPoint(32:4.5){P}
+\tkzDefPointBy[projection=onto O--X](P) \tkzGetPoint{F}
+\tkzDefPointBy[projection=onto O--Y](P) \tkzGetPoint{G}
+% DRAW
+\tkzDrawSegments[thick](O,X O,Y)
+\draw[thin] (O) ++(-8:2) arc (-8:72:2);
+\draw[thin] (A) ++(59:1.75) arc (59:79:1.75);
+\draw[thin] (B) ++(-15:1.75) arc (-15:5:1.75);
+\draw[thick, dashed] (O) -- (32:6.2);
+\tkzDrawSegments(P,F P,G)
+% MARK
+\tkzMarkRightAngle[size=0.25](O,F,P)
+\tkzMarkRightAngle[size=0.25](P,G,O)
+\tkzMarkSegments[mark=|](P,F P,G)
+\tkzDrawPoints(O,A,B,C,P,F,G)
+% LABEL
+\tkzLabelPoint[below left](O){$O$}
+\tkzLabelPoint[right](X){$X$}
+\tkzLabelPoint[above](Y){$Y$}
+\tkzLabelPoint[below](A){$A$}
+\tkzLabelPoint[left](B){$B$}
+\tkzLabelPoint[above left](C){$C$}
+\tkzLabelPoint[right](P){$P$}
+\tkzLabelPoint[below](F){$F$}
+\tkzLabelPoint[above left](G){$G$}
+\end{tikzpicture}
+            </latex-image>
+        </image>
+    </figure>
 
-    <!-- Add further instruction (not in a block) to develop ideas as needed -->
+    <figure xml:id="fig-angle-bisector-locus">
+        <caption>Drag <m>P</m> until its distances to the two arms are equal: it leaves a dot. Use <q>Next</q> and <q>Back</q> to step through the construction. Tick the boxes to show the bisector and to see what happens with two whole lines.</caption>
+        <interactive xml:id="interactive-angle-bisector-locus" platform="jsxgraph" width="90%" aspect="16:12" source="jsxgraph/angle-bisector-locus.js">
+            <slate xml:id="jsxgraph-angle-bisector-locus" surface="jsxboard" aspect="16:12"/>
+            <instructions>
+                <p>
+                    <ul>
+                        <li><p>Drag <m>P</m> and watch the two distances. Collect at least ten dots, then tick <alert>Show the bisector</alert>.</p></li>
+                        <li><p>Press <alert>Next</alert> three times to see the compass construction. Drag the ends of the arms: the construction follows.</p></li>
+                        <li><p>Tick <alert>Whole lines</alert>. Where else can <m>P</m> be equidistant from the two lines? What angle do the two bisectors make?</p></li>
+                    </ul>
+                </p>
+            </instructions>
+        </interactive>
+    </figure>
 
     <xi:include href="../lesson-plan-templates/example-intro.ptx" />
 
-    <!-- Add at least 3 examples -->
-
-    <!-- <example>
+    <example xml:id="example-bisecting-an-angle">
+        <title>Bisecting an Angle of <m>64^{\circ}</m></title>
         <statement>
+            <p>Draw an angle <m>XOY</m> of <m>64^{\circ}</m> and construct its bisector.</p>
         </statement>
         <solution>
+            <p>
+                <alert>Step 1:</alert> With the compass point at <m>O</m>, draw an arc that cuts <m>OX</m> at <m>A</m> and <m>OY</m> at <m>B</m>.
+            </p>
+            <p>
+                <alert>Step 2:</alert> With the compasses open to a suitable radius, the same for both, draw an arc from <m>A</m> and an arc from <m>B</m> inside the angle so that they cross at <m>C</m>.
+            </p>
+            <p>
+                <alert>Step 3:</alert> Join <m>O</m> to <m>C</m> and extend the line. This is the bisector (<xref ref="fig-angle-bisector-construction"/>).
+            </p>
+            <p>
+                Check with a protractor: each half should measure <m>64^{\circ} \div 2 = 32^{\circ}</m>. It works because <m>OA = OB</m> and <m>AC = BC</m>, so triangles <m>OAC</m> and <m>OBC</m> are congruent and the angles at <m>O</m> are equal.
+            </p>
         </solution>
     </example>
 
-    <example>
+    <example xml:id="example-equal-distances-to-the-arms">
+        <title>Equal Distances to the Arms</title>
         <statement>
+            <p><m>P</m> is on the bisector of angle <m>XOY</m>. <m>F</m> on <m>OX</m> and <m>G</m> on <m>OY</m> are the feet of the perpendiculars from <m>P</m>. <m>PF = 6\,\text{cm}</m> and <m>OP = 10\,\text{cm}</m>. Find <m>PG</m>, <m>OF</m> and <m>OG</m>, and angle <m>XOY</m> to the nearest degree.</p>
         </statement>
         <solution>
+            <p>
+                <m>P</m> is on the bisector, so it is the same distance from both arms: <m>PG = PF = 6\,\text{cm}</m>.
+            </p>
+            <p>
+                In the right-angled triangle <m>OFP</m>: <m>OF^2 = OP^2 - PF^2 = 100 - 36 = 64</m>, so <m>OF = 8\,\text{cm}</m>. In the same way <m>OG = 8\,\text{cm}</m>.
+            </p>
+            <p>
+                <m>\sin \angle FOP = \dfrac{6}{10} = 0.6</m>, so <m>\angle FOP = 36.87^{\circ}</m> and <m>\angle XOY = 2 \times 36.87^{\circ} = 73.74^{\circ}</m>, about <m>74^{\circ}</m>.
+            </p>
         </solution>
     </example>
 
-    <example>
+    <example xml:id="example-two-roads-that-cross">
+        <title>Two Roads that Cross</title>
         <statement>
+            <p>Two straight roads cross at an angle of <m>50^{\circ}</m>. A water point is to be the same distance from both roads. Describe where it can be.</p>
         </statement>
         <solution>
+            <p>
+                The roads are two whole lines, so the water point can be on either bisector of the angles between them (<xref ref="fig-two-roads-bisectors"/>). One bisector halves the <m>50^{\circ}</m> angles and makes <m>25^{\circ}</m> with the first road. The other halves the <m>130^{\circ}</m> angles and makes <m>25^{\circ} + 90^{\circ} = 115^{\circ}</m> with the first road, measured the same way round. The two bisectors meet at <m>25^{\circ} + 65^{\circ} = 90^{\circ}</m>.
+            </p>
+            <figure xml:id="fig-two-roads-bisectors">
+                <caption>Two roads crossing at <m>50^{\circ}</m> and the two bisectors of the angles between them.</caption>
+                <image width="55%">
+                    <shortdescription>Two solid lines, the roads, cross at O at 50 degrees. Two dashed lines through O are the angle bisectors: one at 25 degrees to the first road, inside the 50 degree angle, and one at 115 degrees, inside the 130 degree angle. A right-angle mark shows that the bisectors are perpendicular.</shortdescription>
+                    <latex-image>
+\begin{tikzpicture}[scale=1]
+% SET
+\tkzDefPoint(0,0){O}
+\tkzDefPoint(3.5,0){R1} \tkzDefPoint(50:3.5){R2}
+\tkzDefPoint(25:3.5){B1} \tkzDefPoint(115:3.5){B2}
+% DRAW
+\draw[thick] (-3.5,0) -- (R1) node[right] {first road};
+\draw[thick] (230:3.5) -- (R2) node[above right] {second road};
+\draw[dashed] (205:3.5) -- (B1);
+\draw[dashed] (295:3.5) -- (B2);
+% MARK
+\tkzMarkRightAngle[size=0.3](B1,O,B2)
+\draw (0.9,0) arc (0:25:0.9); \node at (12.5:1.25) {$25^{\circ}$};
+\draw (25:1.6) arc (25:50:1.6); \node at (37.5:1.95) {$25^{\circ}$};
+% LABEL
+\tkzDrawPoints(O)
+\tkzLabelPoint[below right](O){$O$}
+\end{tikzpicture}
+                    </latex-image>
+                </image>
+            </figure>
         </solution>
-    </example> -->
+    </example>
 
     <xi:include href="../lesson-plan-templates/assessment-intro.ptx" />
+    <xi:include href="../lesson-plan-templates/checkpoint.ptx" />
 
-    <!-- If STACK questions are included, uncomment this: -->
+    <p>Type angles in degrees as numbers, without the degree sign, for example <c>74</c>. Type coordinates as whole numbers, for example <c>-3</c>.</p>
 
-    <!-- <xi:include href="../lesson-plan-templates/checkpoint.ptx" /> -->
+    <exercise xml:id="ex-distances-from-a-point-on-an-angle-bisector">
+        <!--<title></title>-->
+        <stack label="stk-distances-from-a-point-on-an-angle-bisector" source="stack/top/2-measurement-and-geometry/08-loci/04-angle-bisector-loci/Distances-from-a-point-on-an-angle-bisector.xml"/>
+    </exercise>
 
-    <!-- Add STACK exercises if made -->
+    <exercise xml:id="ex-a-point-equidistant-from-two-perpendicular-lines">
+        <!--<title></title>-->
+        <stack label="stk-a-point-equidistant-from-two-perpendicular-lines" source="stack/top/2-measurement-and-geometry/08-loci/04-angle-bisector-loci/A-point-equidistant-from-two-perpendicular-lines.xml"/>
+    </exercise>
 
-    <!-- Add static exercises -->
+    <exercises xml:id="exercises-angle-bisector-loci">
+        <exercise xml:id="ex-construct-angle-bisector">
+            <statement><p>Draw an angle of <m>110^{\circ}</m> and construct its bisector. What should each half measure?</p></statement>
+            <answer><p><m>55^{\circ}</m></p></answer>
+        </exercise>
+        <exercise xml:id="ex-distances-on-the-bisector">
+            <statement><p><m>P</m> is on the bisector of angle <m>XOY</m>. <m>F</m> on <m>OX</m> and <m>G</m> on <m>OY</m> are the feet of the perpendiculars from <m>P</m>, with <m>PF = 8\,\text{cm}</m> and <m>OP = 17\,\text{cm}</m>. Find <m>PG</m> and <m>OF</m>.</p></statement>
+            <answer><p><m>PG = 8\,\text{cm}</m>, <m>OF = 15\,\text{cm}</m></p></answer>
+            <solution><p><m>PG = PF</m> because <m>P</m> is on the bisector. <m>OF^2 = 17^2 - 8^2 = 289 - 64 = 225</m>, so <m>OF = 15\,\text{cm}</m>.</p></solution>
+        </exercise>
+        <exercise xml:id="ex-bisectors-of-crossing-lines">
+            <statement><p>Two straight lines cross at <m>46^{\circ}</m>. Give the angles that the two bisectors of the angles between them make with the first line, and the angle between the two bisectors.</p></statement>
+            <answer><p><m>23^{\circ}</m> and <m>113^{\circ}</m>; <m>90^{\circ}</m></p></answer>
+        </exercise>
+        <exercise xml:id="ex-sprinkler-in-a-lawn">
+            <statement><p>A triangular lawn at a school in Nyeri has sides <m>6\,\text{m}</m>, <m>8\,\text{m}</m> and <m>10\,\text{m}</m>. A sprinkler is to be placed the same distance from all three edges. Using <m>1\,\text{cm}</m> to represent <m>1\,\text{m}</m>, construct its position. How far is it from each edge?</p></statement>
+            <answer><p>At the incentre, <m>2\,\text{m}</m> from each edge.</p></answer>
+            <solution><p>Construct the triangle and the bisectors of two of its angles; they meet at the incentre <m>I</m>. The triangle is right-angled (<m>6^2 + 8^2 = 10^2</m>), so the distance is <m>\frac{6 + 8 - 10}{2} = 2\,\text{m}</m>, which you can check by measuring the perpendicular from <m>I</m> to each side: <m>2\,\text{cm}</m> on the drawing.</p></solution>
+        </exercise>
+        <exercise xml:id="ex-angle-at-the-incentre">
+            <statement><p>In triangle <m>ABC</m>, angle <m>A = 70^{\circ}</m> and angle <m>B = 50^{\circ}</m>. The bisectors of angles <m>B</m> and <m>C</m> meet at <m>I</m>. Find angle <m>BIC</m>.</p></statement>
+            <answer><p><m>125^{\circ}</m></p></answer>
+            <solution><p>Angle <m>C = 180^{\circ} - 70^{\circ} - 50^{\circ} = 60^{\circ}</m>. In triangle <m>BIC</m>, angle <m>IBC = 25^{\circ}</m> and angle <m>ICB = 30^{\circ}</m>, so angle <m>BIC = 180^{\circ} - 25^{\circ} - 30^{\circ} = 125^{\circ}</m>.</p></solution>
+        </exercise>
+        <exercise xml:id="ex-bisectors-are-perpendicular">
+            <title>Challenge: Why the Bisectors Meet at Right Angles</title>
+            <statement><p>Two straight lines cross, making angles of <m>x^{\circ}</m> and <m>(180 - x)^{\circ}</m>. Show that the bisectors of these two angles are perpendicular.</p></statement>
+            <hint><p>The two angles are next to each other on a straight line. Add their halves.</p></hint>
+            <answer><p>The angle between the bisectors is <m>\frac{x}{2} + \frac{180 - x}{2} = 90</m> degrees.</p></answer>
+            <solution><p>The bisectors lie inside two adjacent angles, so the angle between them is half of one plus half of the other: <m>\frac{x}{2} + \frac{180 - x}{2} = \frac{180}{2} = 90</m>. So the bisectors are perpendicular, whatever <m>x</m> is.</p></solution>
+        </exercise>
+    </exercises>
 
-    <!-- <exercises>
-        <exercise>
-            <statement>   
-
-            </statement>   
-            <solution>
-
-            </solution>             
-        </exercise>        
-    </exercises> -->
-
-    <!-- [LP] Add information on how to differentiate  -->
-
-    <!-- <axiom component="lesson-plan">
+    <axiom component="lesson-plan">
         <title>Differentiation</title>
-
-        <table>
-            <title>Differentiation</title>
-            <tabular halign="left">
-                <row header="yes" bottom="minor">
-                    <cell>Learner Group</cell>
-                    <cell>Strategy &amp; Learning Experience</cell>
-                    <cell></cell>
-                </row>
-                <row>
-                    <cell>Struggling Learners (Support)</cell>
-                    <cell>
-                        XXXX
-                    </cell>
-                    <cell></cell>
-                </row>
-                <row>
-                    <cell>On-Level Learners (Core)</cell>
-                    <cell>
-                        <line>The core lesson activities as described above.</line>
-                    </cell>
-                    <cell></cell>
-                </row>
-                <row>
-                    <cell>Advanced Learners (Challenge)</cell>
-                    <cell>
-                        XXXX
-                    </cell>
-                    <cell></cell>
-                </row>
+        <table xml:id="table-differentiation-angle-bisector-loci">
+            <title>Differentiation Strategies</title>
+            <tabular halign="left" top="minor" bottom="minor" left="minor" right="minor">
+                <row header="yes" bottom="medium"><cell>Learner Group</cell><cell>Strategy and Learning Experience</cell></row>
+                <row><cell>Struggling Learners (Support)</cell><cell>Give a card with the three construction steps. Work <xref ref="example-bisecting-an-angle"/> and <xref ref="example-equal-distances-to-the-arms"/>. Assign <xref ref="ex-construct-angle-bisector"/> and <xref ref="ex-distances-on-the-bisector"/>.</cell></row>
+                <row><cell>On-Level Learners (Core)</cell><cell>Full activity and all examples. Assign <xref ref="ex-construct-angle-bisector"/> to <xref ref="ex-angle-at-the-incentre"/>.</cell></row>
+                <row><cell>Advanced Learners (Challenge)</cell><cell>All exercises including <xref ref="ex-bisectors-are-perpendicular"/>. Extension: show that angle <m>BIC = 90^{\circ} + \frac{1}{2}A</m> in every triangle <m>ABC</m> with incentre <m>I</m>. (Answer: <m>BIC = 180^{\circ} - \frac{1}{2}(B + C) = 180^{\circ} - \frac{1}{2}(180^{\circ} - A) = 90^{\circ} + \frac{1}{2}A</m>.)</cell></row>
             </tabular>
         </table>
-    </axiom> -->
+    </axiom>
 
     <xi:include href="../lesson-plan-templates/assessment-methods.ptx" />
 

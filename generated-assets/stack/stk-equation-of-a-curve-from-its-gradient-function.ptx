@@ -1,0 +1,5 @@
+<stack-static>
+    <statement><p><p>A curve has gradient function <m>\dfrac{dy}{dx} = {6 x^2-2 x+2}</m> and passes through the point <m>({2}, {14})</m>.</p><p>Find the equation of the curve.</p><div><m>y =</m> <fillin characters="20" name="ans1"/>  </div></p></statement>
+    <solution><p><p>Integrating the gradient function gives a family of curves; one known point picks out one curve from the family.</p><p><me>y = \int \left({6 x^2-2 x+2}\right) dx = {2 x^3-x^2+2 x} + c</me></p><p>At <m>({2}, {14})</m>: <m>{14} = {16} + c</m>, so <m>c = {-2}</m>.</p><p>The equation of the curve is <m>y = {2 x^3-x^2+2 x-2}</m>. Check: it differentiates to <m>{6 x^2-2 x+2}</m>, and at <m>x = {2}</m> it gives <m>{14}</m>.</p></p></solution>
+    <answer><p><m>2 x^3-x^2+2 x-2</m></p></answer>
+</stack-static>

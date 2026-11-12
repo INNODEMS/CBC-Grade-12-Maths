@@ -33,7 +33,7 @@
                 <li component="lesson-plan">
                     <title>Estimated Duration</title>
                     <p>
-                        40 minutes
+                        2 lessons of 40 minutes
                     </p>
                 </li>
             </dl>
@@ -47,163 +47,359 @@
          Suggested activity: Using two hula hoops (or chalk circles) on the floor, learners stand in the region that fits them, e.g. 'plays football' and 'plays netball', to act out union, intersection and complement.
          Interactive (JSXGraph): Two draggable circles inside a rectangle (universal set). Buttons shade A∪B, A∩B, A−B or A′ so learners see each region change as the circles overlap more or less. -->
 
-    <!-- [LP] Add guidance on activity -->
+    <!-- Section notes (2026-11)
+         SLO: Core and Essential 1.1 (c). Lessons 4.1 and 4.2 as subsections.
+         Activity: as planning notes (two hoops, "plays football" and "plays netball")
+         JSXGraph: fig-set-operations (assets/jsxgraph/set-operations.js), as planning notes
+         Essential-only: p-disjoint-reminder-essential
+         STACK: assets/stack/top/1-numbers-and-algebra/01-sets/04-operations-on-sets/ -->
 
-    <!-- <axiom component="lesson-plan">
+    <!-- ============================================================ Lesson 4.1 -->
+    <subsection xml:id="subsec-union-and-intersection">
+        <title>Union and Intersection</title>
+
+        <p component="lesson-plan">Upon completion of this lesson, learners will be able to:
+            <ol>
+                <li><p><alert>Know:</alert> the union <m>A \cup B</m> and the intersection <m>A \cap B</m>.</p></li>
+                <li><p><alert>Do:</alert> list unions and intersections of two or three sets, and count a union.</p></li>
+                <li><p><alert>Apply:</alert> club and games lists.</p></li>
+            </ol>
+        </p>
+
+        <axiom component="lesson-plan">
             <title>Problem-Solving and Discovery</title>
             <dl>
-                <li>
-                    <title>Suggested Time</title>
-                    <p>
-                        XX minutes
-                    </p>
-                </li>
-                <li>
-                    <title>Objective</title>
-                    <p>
-                        XXX
-                    </p>
-                </li>
-                <li>
-                    <title>Teacher's Role</title>
-                    <p>
-                        XXX
-                    </p>
-                </li>
+                <li><title>Suggested Time</title><p>14 minutes</p></li>
+                <li><title>Objective</title><p>Learners act out union and intersection with two hoops on the floor.</p></li>
+                <li><title>Teacher's Role</title><p>Draw two overlapping chalk circles (or lay two hoops), one labelled <q>plays football</q> and one <q>plays netball</q>. Seven learners stand where they belong; record the names on the board.</p></li>
             </dl>
-        </axiom> -->
+        </axiom>
 
-    <!-- Add Activity -->
-
-    <!-- <activity>
-        <statement>
-        </statement>
-    </activity> -->
-
-    <!-- [LP] Add guidance on structured lesson plan-->
-
-    <!-- <axiom component="lesson-plan">
-        <title>Structured Instruction</title>
-        <p>
-            <dl>
-            <li>
-                <title>Suggested Time</title>
+        <activity xml:id="act-two-hoops">
+            <title>Two Hoops</title>
+            <statement>
+                <p>Seven learners take part: Amani, Bahati, Cherono, Dalmas, Kevo, Zawadi and Lulu. The football players are <m>F = \{\text{Amani}, \text{Cherono}, \text{Dalmas}, \text{Kevo}\}</m> and the netball players are <m>N = \{\text{Bahati}, \text{Cherono}, \text{Kevo}, \text{Zawadi}\}</m>. Each learner stands inside every hoop that fits them.</p>
                 <p>
-                    XX minutes
+                    <ol marker="(a)">
+                        <li>
+                            <p>Who stands inside both hoops?</p>
+                            <solution component="lesson-plan"><p>Cherono and Kevo.</p></solution>
+                        </li>
+                        <li>
+                            <p>List everyone standing inside at least one hoop.</p>
+                            <solution component="lesson-plan"><p>Amani, Bahati, Cherono, Dalmas, Kevo and Zawadi.</p></solution>
+                        </li>
+                        <li>
+                            <p>Who stands outside both hoops?</p>
+                            <solution component="lesson-plan"><p>Lulu.</p></solution>
+                        </li>
+                        <li>
+                            <p><m>n(F) + n(N) = 8</m>, but only <m>6</m> learners stand inside the hoops. Why?</p>
+                            <solution component="lesson-plan"><p>Cherono and Kevo are in both sets, so adding <m>n(F)</m> and <m>n(N)</m> counts them twice.</p></solution>
+                        </li>
+                    </ol>
                 </p>
-            </li>
-            <li>
-                <title>Objective</title>
-                <p>
-                    To formalize the concepts and properties learners discovered in the anchor task.
-                </p>
-            </li>
-            </dl>
-        </p>
-        <paragraphs>
-            <title>Key Takeaways &amp; Teacher Connection</title>
-            <ol>
-                <li>
+            </statement>
+        </activity>
+
+        <axiom component="lesson-plan">
+            <title>Structured Instruction</title>
+            <p>
+                <dl>
+                    <li><title>Suggested Time</title><p>8 minutes</p></li>
+                    <li><title>Objective</title><p>To name union and intersection from the activity.</p></li>
+                </dl>
+            </p>
+            <paragraphs>
+                <title>Key Takeaways &amp; Teacher Connection</title>
+                <ol>
+                    <li><p><alert>Connecting to Learner Work:</alert> part (a) is <m>F \cap N</m> and part (b) is <m>F \cup N</m>.</p></li>
+                    <li><p><m>\cup</m> is <q>or (or both)</q>; <m>\cap</m> is <q>and</q>.</p></li>
+                    <li><p>Each element of a union is written once.</p></li>
+                </ol>
+            </paragraphs>
+        </axiom>
+
+        <insight xml:id="insight-union-and-intersection">
+            <title>Union and Intersection</title>
+            <p>The <term>union</term> <m>A \cup B</m> is the set of elements in <m>A</m> or <m>B</m> or both, each element once. The <term>intersection</term> <m>A \cap B</m> is the set of elements in both <m>A</m> and <m>B</m>. When <m>A</m> and <m>B</m> have no element in common, <m>A \cap B = \varnothing</m>.</p>
+            <p>In the activity, <m>F \cap N = \{\text{Cherono}, \text{Kevo}\}</m> and <m>F \cup N = \{\text{Amani}, \text{Bahati}, \text{Cherono}, \text{Dalmas}, \text{Kevo}, \text{Zawadi}\}</m>.</p>
+        </insight>
+
+        <p>The symbols <m>\cup</m> and <m>\cap</m> join the list in <xref ref="note-set-symbols"/>.</p>
+
+        <figure xml:id="fig-set-operations">
+            <caption>Union, intersection, difference and complement of two sets. Drag the circles and choose a set to shade.</caption>
+            <interactive xml:id="interactive-set-operations" platform="jsxgraph" width="90%" aspect="16:12" source="jsxgraph/set-operations.js">
+                <slate xml:id="jsxgraph-set-operations" surface="jsxboard" aspect="16:12"/>
+                <instructions>
                     <p>
-                        <alert>Connecting to Learner Work:</alert> XXXX
+                        <ul>
+                            <li><p>Drag the centre points <alert>P</alert> and <alert>Q</alert> to move the circles <m>A</m> and <m>B</m> inside the universal set <m>\xi</m>.</p></li>
+                            <li><p>Press <alert>A ∪ B</alert>, <alert>A ∩ B</alert>, <alert>A − B</alert> or <alert>A′</alert> to shade that set. The text below the diagram names it in words.</p></li>
+                            <li><p>What happens to <m>A \cap B</m> when the circles move apart? What happens to <m>A \cup B</m> and <m>A \cap B</m> when <m>B</m> lies inside <m>A</m>?</p></li>
+                        </ul>
                     </p>
-                </li>
-            </ol>
-        </paragraphs>
-    </axiom> -->
+                </instructions>
+            </interactive>
+        </figure>
 
-    <!-- Add insight / key takeaway directly related to activity / learner experience -->
+        <xi:include href="../lesson-plan-templates/example-intro.ptx" />
 
-    <!-- <insight>
-    </insight> -->
-
-    <!-- Add further instruction (not in a block) to develop ideas as needed -->
-
-    <xi:include href="../lesson-plan-templates/example-intro.ptx" />
-
-    <!-- Add at least 3 examples -->
-
-    <!-- <example>
-        <statement>
-        </statement>
-        <solution>
-        </solution>
-    </example>
-
-    <example>
-        <statement>
-        </statement>
-        <solution>
-        </solution>
-    </example>
-
-    <example>
-        <statement>
-        </statement>
-        <solution>
-        </solution>
-    </example> -->
-
-    <xi:include href="../lesson-plan-templates/assessment-intro.ptx" />
-
-    <!-- If STACK questions are included, uncomment this: -->
-
-    <!-- <xi:include href="../lesson-plan-templates/checkpoint.ptx" /> -->
-
-    <!-- Add STACK exercises if made -->
-
-    <!-- Add static exercises -->
-
-    <!-- <exercises>
-        <exercise>
-            <statement>   
-
-            </statement>   
+        <example xml:id="example-common-factors">
+            <title>Common Factors</title>
+            <statement>
+                <p><m>A = \{\text{factors of } 20\}</m> and <m>B = \{\text{factors of } 44\}</m>. Find <m>A \cap B</m>, <m>A \cup B</m> and <m>n(A \cup B)</m>.</p>
+            </statement>
             <solution>
+                <p><m>A = \{1, 2, 4, 5, 10, 20\}</m> and <m>B = \{1, 2, 4, 11, 22, 44\}</m>. So <m>A \cap B = \{1, 2, 4\}</m> and <m>A \cup B = \{1, 2, 4, 5, 10, 11, 20, 22, 44\}</m>. <m>n(A \cup B) = 9</m>. Notice that <m>6 + 6 - 3 = 9</m>: the <m>3</m> common factors would otherwise be counted twice.</p>
+            </solution>
+        </example>
 
-            </solution>             
-        </exercise>        
-    </exercises> -->
+        <example xml:id="example-three-sets">
+            <title>Three Sets</title>
+            <statement>
+                <p><m>P = \{\text{factors of } 24\}</m>, <m>Q = \{\text{even numbers less than } 17\}</m> and <m>R = \{\text{multiples of 4 less than } 30\}</m>. Find <m>P \cap Q</m>, <m>Q \cap R</m>, <m>P \cap Q \cap R</m> and <m>P \cup R</m>.</p>
+            </statement>
+            <solution>
+                <p><m>P = \{1, 2, 3, 4, 6, 8, 12, 24\}</m>, <m>Q = \{2, 4, 6, 8, 10, 12, 14, 16\}</m>, <m>R = \{4, 8, 12, 16, 20, 24, 28\}</m>.</p>
+                <p><m>P \cap Q = \{2, 4, 6, 8, 12\}</m>; <m>Q \cap R = \{4, 8, 12, 16\}</m>; <m>P \cap Q \cap R = \{4, 8, 12\}</m>; <m>P \cup R = \{1, 2, 3, 4, 6, 8, 12, 16, 20, 24, 28\}</m>.</p>
+            </solution>
+        </example>
 
-    <!-- [LP] Add information on how to differentiate  -->
+        <example xml:id="example-no-common-elements">
+            <title>No Common Elements</title>
+            <statement>
+                <p><m>M = \{4, 8, 12, 16\}</m> and <m>N = \{1, 3, 5, 7\}</m>. Find <m>M \cap N</m> and <m>n(M \cup N)</m>.</p>
+            </statement>
+            <solution>
+                <p><m>M</m> and <m>N</m> have no element in common, so <m>M \cap N = \varnothing</m> and <m>n(M \cup N) = 4 + 4 = 8</m>.</p>
+            </solution>
+        </example>
 
-    <!-- <axiom component="lesson-plan">
-        <title>Differentiation</title>
+        <p xml:id="p-disjoint-reminder-essential" component="essential">Sets with no element in common are called <term>disjoint</term> sets (<xref ref="sec-types-of-sets"/>).</p>
 
-        <table>
+        <xi:include href="../lesson-plan-templates/assessment-intro.ptx" />
+        <xi:include href="../lesson-plan-templates/checkpoint.ptx" />
+
+        <p>Type a set inside curly brackets with commas between the elements, for example <c>{2, 5, 9}</c>. On most phone keyboards the curly brackets are on the second page of symbols: tap <c>?123</c> (or <c>123</c>), then <c>=\&lt;</c> (or <c>#+=</c>). Type the empty set as <c>{}</c>. Type a count as a whole number.</p>
+
+        <exercise xml:id="ex-union-and-intersection">
+            <!--<title></title>-->
+            <stack label="stk-union-and-intersection" source="stack/top/1-numbers-and-algebra/01-sets/04-operations-on-sets/Union-and-intersection.xml"/>
+        </exercise>
+
+        <exercises xml:id="exercises-union-and-intersection">
+            <exercise xml:id="ex-union-two-lists">
+                <statement><p><m>A = \{3, 4, 5, 6, 7\}</m> and <m>B = \{4, 6, 8, 10\}</m>. Find <m>A \cup B</m> and <m>A \cap B</m>.</p></statement>
+                <answer><p><m>A \cup B = \{3, 4, 5, 6, 7, 8, 10\}</m>; <m>A \cap B = \{4, 6\}</m></p></answer>
+            </exercise>
+            <exercise xml:id="ex-factors-27-and-odds">
+                <statement><p><m>C = \{\text{factors of } 27\}</m> and <m>D = \{\text{odd numbers less than } 12\}</m>. Find <m>C \cap D</m> and <m>C \cup D</m>.</p></statement>
+                <answer><p><m>C \cap D = \{1, 3, 9\}</m>; <m>C \cup D = \{1, 3, 5, 7, 9, 11, 27\}</m></p></answer>
+            </exercise>
+            <exercise xml:id="ex-two-clubs">
+                <statement><p>The Kiswahili club is <m>K = \{\text{Otieno}, \text{Wanjiku}, \text{Hassan}, \text{Mumbua}\}</m> and the debate club is <m>D = \{\text{Wanjiku}, \text{Kiprop}, \text{Mumbua}, \text{Njoroge}, \text{Auma}\}</m>. Find <m>K \cap D</m> and <m>n(K \cup D)</m>.</p></statement>
+                <answer><p><m>K \cap D = \{\text{Wanjiku}, \text{Mumbua}\}</m>; <m>n(K \cup D) = 7</m></p></answer>
+            </exercise>
+            <exercise xml:id="ex-integers-and-wholes">
+                <statement><p><m>E = \{x : x \text{ is an integer}, -3 \lt x \lt 3\}</m> and <m>F = \{x : x \text{ is a whole number}, x \le 4\}</m>. Find <m>E \cap F</m> and <m>E \cup F</m>.</p></statement>
+                <answer><p><m>E \cap F = \{0, 1, 2\}</m>; <m>E \cup F = \{-2, -1, 0, 1, 2, 3, 4\}</m></p></answer>
+            </exercise>
+            <exercise xml:id="ex-when-counts-add">
+                <statement><p>Is <m>n(A \cup B) = n(A) + n(B)</m> always true? Give an example where it is true and one where it is not.</p></statement>
+                <answer><p>Only when <m>A \cap B = \varnothing</m>. For example <m>\{1, 2\}</m> and <m>\{3\}</m> give <m>3 = 2 + 1</m>, but <m>\{1, 2\}</m> and <m>\{2, 3\}</m> give <m>3 \neq 4</m>.</p></answer>
+            </exercise>
+            <exercise xml:id="ex-union-of-a-subset">
+                <title>Challenge: A Set Inside Another</title>
+                <statement><p>If <m>A \subseteq B</m>, what are <m>A \cup B</m> and <m>A \cap B</m>? Explain with a diagram.</p></statement>
+                <answer><p><m>A \cup B = B</m> and <m>A \cap B = A</m>: the circle for <m>A</m> lies inside the circle for <m>B</m>.</p></answer>
+            </exercise>
+        </exercises>
+
+        <axiom component="lesson-plan">
             <title>Differentiation</title>
-            <tabular halign="left">
-                <row header="yes" bottom="minor">
-                    <cell>Learner Group</cell>
-                    <cell>Strategy &amp; Learning Experience</cell>
-                    <cell></cell>
-                </row>
-                <row>
-                    <cell>Struggling Learners (Support)</cell>
-                    <cell>
-                        XXXX
-                    </cell>
-                    <cell></cell>
-                </row>
-                <row>
-                    <cell>On-Level Learners (Core)</cell>
-                    <cell>
-                        <line>The core lesson activities as described above.</line>
-                    </cell>
-                    <cell></cell>
-                </row>
-                <row>
-                    <cell>Advanced Learners (Challenge)</cell>
-                    <cell>
-                        XXXX
-                    </cell>
-                    <cell></cell>
-                </row>
-            </tabular>
-        </table>
-    </axiom> -->
+            <table xml:id="table-differentiation-union-and-intersection">
+                <title>Differentiation Strategies</title>
+                <tabular halign="left" top="minor" bottom="minor" left="minor" right="minor">
+                    <row header="yes" bottom="medium"><cell>Learner Group</cell><cell>Strategy and Learning Experience</cell></row>
+                    <row><cell>Struggling Learners (Support)</cell><cell>Work through the activity and <xref ref="example-common-factors"/>. Give a card: <q><m>\cup</m> or, <m>\cap</m> and</q>. Assign <xref ref="ex-union-two-lists"/> and <xref ref="ex-two-clubs"/>.</cell></row>
+                    <row><cell>On-Level Learners (Core)</cell><cell>Full activity and all examples. Assign <xref ref="ex-union-two-lists"/> to <xref ref="ex-when-counts-add"/>.</cell></row>
+                    <row><cell>Advanced Learners (Challenge)</cell><cell>All exercises including <xref ref="ex-union-of-a-subset"/>. Extension: find sets <m>A</m> and <m>B</m> with <m>n(A) = 5</m>, <m>n(B) = 4</m> and <m>n(A \cup B) = 7</m>.</cell></row>
+                </tabular>
+            </table>
+        </axiom>
 
-    <xi:include href="../lesson-plan-templates/assessment-methods.ptx" />
+        <xi:include href="../lesson-plan-templates/assessment-methods.ptx" />
+        <xi:include href="../lesson-plan-templates/reflection.ptx"/>
+    </subsection>
 
-    <xi:include href="../lesson-plan-templates/reflection.ptx"/>
+    <!-- ============================================================ Lesson 4.2 -->
+    <subsection xml:id="subsec-complement-and-difference">
+        <title>Complement and Difference</title>
+
+        <p component="lesson-plan">Upon completion of this lesson, learners will be able to:
+            <ol>
+                <li><p><alert>Know:</alert> the universal set, the complement <m>A'</m>, the difference <m>A - B</m>, and that brackets are worked first.</p></li>
+                <li><p><alert>Do:</alert> list complements and differences, and sets made with more than one operation.</p></li>
+                <li><p><alert>Apply:</alert> who is not in a group.</p></li>
+            </ol>
+        </p>
+
+        <axiom component="lesson-plan">
+            <title>Problem-Solving and Discovery</title>
+            <dl>
+                <li><title>Suggested Time</title><p>14 minutes</p></li>
+                <li><title>Objective</title><p>With the hoops again, learners find who is not in a hoop and who is in one hoop but not the other.</p></li>
+                <li><title>Teacher's Role</title><p>Name the universal set (the whole group of seven) before asking <q>Who is not in <m>F</m>?</q></p></li>
+            </dl>
+        </axiom>
+
+        <activity xml:id="act-who-is-left-out">
+            <title>Who Is Left Out?</title>
+            <statement>
+                <p>Use the seven learners and the sets <m>F</m> and <m>N</m> from <xref ref="act-two-hoops"/>. The universal set <m>\xi</m> is all seven learners.</p>
+                <p>
+                    <ol marker="(a)">
+                        <li>
+                            <p>List the learners who are not in <m>F</m>. This set is written <m>F'</m>.</p>
+                            <solution component="lesson-plan"><p><m>F' = \{\text{Bahati}, \text{Zawadi}, \text{Lulu}\}</m>.</p></solution>
+                        </li>
+                        <li>
+                            <p>List the learners in <m>F</m> but not in <m>N</m>. This set is written <m>F - N</m>.</p>
+                            <solution component="lesson-plan"><p><m>F - N = \{\text{Amani}, \text{Dalmas}\}</m>.</p></solution>
+                        </li>
+                        <li>
+                            <p>List <m>N - F</m>. Is it the same as <m>F - N</m>?</p>
+                            <solution component="lesson-plan"><p><m>N - F = \{\text{Bahati}, \text{Zawadi}\}</m>: not the same.</p></solution>
+                        </li>
+                        <li>
+                            <p>List <m>(F \cup N)'</m>.</p>
+                            <solution component="lesson-plan"><p><m>(F \cup N)' = \{\text{Lulu}\}</m>.</p></solution>
+                        </li>
+                    </ol>
+                </p>
+            </statement>
+        </activity>
+
+        <axiom component="lesson-plan">
+            <title>Structured Instruction</title>
+            <p>
+                <dl>
+                    <li><title>Suggested Time</title><p>8 minutes</p></li>
+                    <li><title>Objective</title><p>To name complement and difference from the activity.</p></li>
+                </dl>
+            </p>
+            <paragraphs>
+                <title>Key Takeaways &amp; Teacher Connection</title>
+                <ol>
+                    <li><p><alert>Connecting to Learner Work:</alert> a complement needs the universal set; parts (b) and (c) show that <m>A - B</m> and <m>B - A</m> differ.</p></li>
+                    <li><p>Work inside brackets first.</p></li>
+                </ol>
+            </paragraphs>
+        </axiom>
+
+        <insight xml:id="insight-complement-and-difference">
+            <title>Complement and Difference</title>
+            <p>The <term>complement</term> of <m>A</m>, written <m>A'</m>, is everything in <m>\xi</m> that is not in <m>A</m>. So <m>n(A') = n(\xi) - n(A)</m>.</p>
+            <p>The <term>difference</term> <m>A - B</m> is the set of elements of <m>A</m> that are not in <m>B</m>: start with <m>A</m> and remove anything that is also in <m>B</m>. It is the same set as <m>A \cap B'</m>. In general <m>A - B</m> and <m>B - A</m> are different. Some books write <m>A \setminus B</m>.</p>
+            <p>Try each set in <xref ref="fig-set-operations"/>.</p>
+        </insight>
+
+        <p>The symbols <m>A'</m> and <m>A - B</m> join the list in <xref ref="note-set-symbols"/>.</p>
+
+        <xi:include href="../lesson-plan-templates/example-intro.ptx" />
+
+        <example xml:id="example-complements-and-differences">
+            <title>Complements and Differences</title>
+            <statement>
+                <p><m>\xi = \{x : x \text{ is a natural number}, x \le 14\}</m>, <m>A = \{4, 8, 12\}</m> and <m>B = \{x : x \text{ is a natural number}, x \le 6\}</m>. List <m>A'</m>, <m>A - B</m>, <m>B - A</m> and <m>(A \cup B)'</m>.</p>
+            </statement>
+            <solution>
+                <p><m>B = \{1, 2, 3, 4, 5, 6\}</m>.</p>
+                <p><m>A' = \{1, 2, 3, 5, 6, 7, 9, 10, 11, 13, 14\}</m>; <m>A - B = \{8, 12\}</m>; <m>B - A = \{1, 2, 3, 5, 6\}</m>.</p>
+                <p><m>A \cup B = \{1, 2, 3, 4, 5, 6, 8, 12\}</m>, so <m>(A \cup B)' = \{7, 9, 10, 11, 13, 14\}</m>.</p>
+            </solution>
+        </example>
+
+        <example xml:id="example-brackets-matter">
+            <title>Brackets Matter</title>
+            <statement>
+                <p>With the same sets, find <m>(A \cap B)'</m> and <m>A' \cap B</m>.</p>
+            </statement>
+            <solution>
+                <p><m>A \cap B = \{4\}</m>, so <m>(A \cap B)'</m> is every element of <m>\xi</m> except <m>4</m>: <m>13</m> elements. <m>A' \cap B</m> is the elements of <m>B</m> that are not in <m>A</m>: <m>\{1, 2, 3, 5, 6\}</m>. The two sets are very different.</p>
+            </solution>
+        </example>
+
+        <example xml:id="example-counting-a-complement">
+            <title>Counting a Complement</title>
+            <statement>
+                <p>A class has <m>45</m> learners, and <m>28</m> of them take Agriculture. How many do not?</p>
+            </statement>
+            <solution>
+                <p><m>n(A') = n(\xi) - n(A) = 45 - 28 = 17</m>.</p>
+            </solution>
+        </example>
+
+        <xi:include href="../lesson-plan-templates/assessment-intro.ptx" />
+        <xi:include href="../lesson-plan-templates/checkpoint.ptx" />
+
+        <p>Type a set inside curly brackets with commas between the elements, for example <c>{2, 5, 9}</c>. On most phone keyboards the curly brackets are on the second page of symbols: tap <c>?123</c> (or <c>123</c>), then <c>=\&lt;</c> (or <c>#+=</c>). Type the empty set as <c>{}</c>. Type a count as a whole number.</p>
+
+        <exercise xml:id="ex-complement-and-difference">
+            <!--<title></title>-->
+            <stack label="stk-complement-and-difference" source="stack/top/1-numbers-and-algebra/01-sets/04-operations-on-sets/Complement-and-difference.xml"/>
+        </exercise>
+
+        <exercise xml:id="ex-choose-a-set-for-a-difference">
+            <!--<title></title>-->
+            <stack label="stk-choose-a-set-for-a-difference" source="stack/top/1-numbers-and-algebra/01-sets/04-operations-on-sets/Choose-a-set-for-a-difference.xml"/>
+        </exercise>
+
+        <exercises xml:id="exercises-complement-and-difference">
+            <exercise xml:id="ex-complement-one-to-nine">
+                <statement><p><m>\xi = \{1, 2, \ldots, 9\}</m>, <m>A = \{2, 5, 6, 9\}</m> and <m>B = \{1, 2, 3, 9\}</m>. List <m>A'</m>, <m>A - B</m>, <m>B - A</m> and <m>(A \cup B)'</m>.</p></statement>
+                <answer><p><m>A' = \{1, 3, 4, 7, 8\}</m>; <m>A - B = \{5, 6\}</m>; <m>B - A = \{1, 3\}</m>; <m>(A \cup B)' = \{4, 7, 8\}</m></p></answer>
+            </exercise>
+            <exercise xml:id="ex-nyahururu-vowels">
+                <statement><p><m>\xi = \{\text{letters of the word NYAHURURU}\}</m> and <m>V</m> is the set of vowels in <m>\xi</m>. List <m>\xi</m> and <m>V'</m>.</p></statement>
+                <answer><p><m>\xi = \{\text{N}, \text{Y}, \text{A}, \text{H}, \text{U}, \text{R}\}</m>; <m>V' = \{\text{N}, \text{Y}, \text{H}, \text{R}\}</m></p></answer>
+            </exercise>
+            <exercise xml:id="ex-difference-as-intersection">
+                <statement><p>Using the sets in <xref ref="ex-complement-one-to-nine"/>, find <m>A \cap B'</m> and compare it with <m>A - B</m>.</p></statement>
+                <answer><p><m>A \cap B' = \{5, 6\}</m>: the same as <m>A - B</m>.</p></answer>
+            </exercise>
+            <exercise xml:id="ex-count-a-complement">
+                <statement><p><m>n(\xi) = 60</m> and <m>n(A) = 37</m>. Find <m>n(A')</m>.</p></statement>
+                <answer><p><m>23</m></p></answer>
+            </exercise>
+            <exercise xml:id="ex-factors-and-odds-below-ten">
+                <statement><p><m>\xi = \{x : x \text{ is a whole number}, x \lt 10\}</m>, <m>P</m> is the set of factors of <m>6</m> and <m>Q</m> is the set of odd numbers in <m>\xi</m>. List <m>P - Q</m>, <m>Q - P</m> and <m>(P \cup Q)'</m>.</p></statement>
+                <answer><p><m>P - Q = \{2, 6\}</m>; <m>Q - P = \{5, 7, 9\}</m>; <m>(P \cup Q)' = \{0, 4, 8\}</m></p></answer>
+            </exercise>
+            <exercise xml:id="ex-when-differences-match">
+                <title>Challenge: Equal Differences</title>
+                <statement><p>When is <m>A - B = B - A</m>?</p></statement>
+                <answer><p>Only when both are <m>\varnothing</m>, that is, when <m>A = B</m>.</p></answer>
+                <solution><p>Every element of <m>A - B</m> is in <m>A</m> and every element of <m>B - A</m> is not in <m>A</m>, so the two sets can share no element. They can only be equal if both are empty. <m>A - B = \varnothing</m> means <m>A \subseteq B</m>, and <m>B - A = \varnothing</m> means <m>B \subseteq A</m>, so <m>A = B</m>.</p></solution>
+            </exercise>
+        </exercises>
+
+        <axiom component="lesson-plan">
+            <title>Differentiation</title>
+            <table xml:id="table-differentiation-complement-and-difference">
+                <title>Differentiation Strategies</title>
+                <tabular halign="left" top="minor" bottom="minor" left="minor" right="minor">
+                    <row header="yes" bottom="medium"><cell>Learner Group</cell><cell>Strategy and Learning Experience</cell></row>
+                    <row><cell>Struggling Learners (Support)</cell><cell>Work through the activity and <xref ref="example-complements-and-differences"/>. Give a card: <q><m>A'</m> = not in <m>A</m>; <m>A - B</m> = in <m>A</m>, not in <m>B</m></q>. Assign <xref ref="ex-complement-one-to-nine"/> and <xref ref="ex-count-a-complement"/>.</cell></row>
+                    <row><cell>On-Level Learners (Core)</cell><cell>Full activity and all examples. Assign <xref ref="ex-complement-one-to-nine"/> to <xref ref="ex-factors-and-odds-below-ten"/>.</cell></row>
+                    <row><cell>Advanced Learners (Challenge)</cell><cell>All exercises including <xref ref="ex-when-differences-match"/>. Extension: show with <xref ref="fig-set-operations"/> that <m>(A - B) \cup (A \cap B) = A</m>.</cell></row>
+                </tabular>
+            </table>
+        </axiom>
+
+        <xi:include href="../lesson-plan-templates/assessment-methods.ptx" />
+        <xi:include href="../lesson-plan-templates/reflection.ptx"/>
+    </subsection>
 </section>

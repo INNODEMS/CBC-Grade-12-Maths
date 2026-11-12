@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<quiz>
+<question type="stack">
+  <name><text>Deriving the ratio theorem</text></name>
+  <questiontext format="html">
+    <text><![CDATA[<p>P divides AB internally in the ratio \({@m@} : {@n@}\), and \(\overrightarrow{OA} = \mathbf{a}\) and \(\overrightarrow{OB} = \mathbf{b}\). Complete the working.</p><div>(a) \(\overrightarrow{AP} =\) [[input:ans1]] \(\overrightarrow{AB}\) (a fraction) [[validation:ans1]] [[feedback:prt1]]</div><div>(b) \(\overrightarrow{AB} =\) [[input:ans2]] [[validation:ans2]] [[feedback:prt2]]</div><div>(c) \(\overrightarrow{OP} = \overrightarrow{OA} + \overrightarrow{AP} = \mathbf{a} + \dfrac{ {@m@} }{ {@m+n@} }(\mathbf{b} - \mathbf{a}) =\) [[input:ans3]] [[validation:ans3]] [[feedback:prt3]]</div>]]></text>
+  </questiontext>
+  <generalfeedback format="html">
+    <text><![CDATA[<p>(a) The ratio \({@m@} : {@n@}\) splits AB into \({@m+n@}\) equal parts and AP is \({@m@}\) of them, so \(\overrightarrow{AP} = \dfrac{ {@m@} }{ {@m+n@} }\,\overrightarrow{AB}\).</p><p>(b) End minus start: \(\overrightarrow{AB} = \mathbf{b} - \mathbf{a}\).</p><p>(c) \(\mathbf{a} + \dfrac{ {@m@} }{ {@m+n@} }(\mathbf{b} - \mathbf{a}) = \left(1 - \dfrac{ {@m@} }{ {@m+n@} }\right)\mathbf{a} + \dfrac{ {@m@} }{ {@m+n@} }\mathbf{b} = {@ta3@}\). This is the ratio theorem: \(\overrightarrow{OP} = \dfrac{n\mathbf{a} + m\mathbf{b}}{m + n}\). The weight on \(\mathbf{a}\) is the part of the ratio nearer B.</p>]]></text>
+  </generalfeedback>
+  <defaultgrade>3</defaultgrade>
+  <penalty>0.1</penalty>
+  <hidden>0</hidden>
+  <idnumber></idnumber>
+  <stackversion><text>2026063000</text></stackversion>
+  <questionvariables>
+    <text><![CDATA[validate_ab(ex) := block([s, ca, cb], if not every(lambda([vv], member(vv, [a,b])), listofvars(ex)) then "Use only the vectors a and b." else (s: ev(expand(ex), simp), ca: ev(coeff(s,a), simp), cb: ev(coeff(s,b), simp), if ev(is(s - ca*a - cb*b = 0), simp) and ev(numberp(float(ca)) and numberp(float(cb)), simp) then "" else "Write your answer as a number times a plus a number times b, for example 3/5*a+2/5*b."));
+texput(a,"\\mathbf{a}"); texput(b,"\\mathbf{b}");
+/* Design: deriving the ratio theorem as a faded worked example. The third line shows the right fraction, so (c) does not depend on (a). Source: original. */
+rlist: [[2,3],[3,1],[1,4],[3,2],[1,2],[2,1],[4,1],[3,4],[5,2],[2,5]];
+ix: 1+rand(10);
+m: rlist[ix][1]; n: rlist[ix][2];
+ta1: m/(m+n); ta2: b-a; ta3: n/(m+n)*a+m/(m+n)*b;
+d11: m/n; d12: n/(m+n); d2: a-b;
+d31: m/(m+n)*a+n/(m+n)*b; d32: a+m/(m+n)*b;
+w1: ta1+1; w2: ta2+a; w3: ta3+b;
+]]></text>
+  </questionvariables>
+  <specificfeedback format="html"><text><![CDATA[]]></text></specificfeedback>
+  <questionnote format="moodle_auto_format">
+    <text>ix={@ix@}, m:n={@m@}:{@n@}</text>
+  </questionnote>
+  <questiondescription format="html"><text><![CDATA[<p id="concept">Vectors II: deriving the ratio theorem</p><p id="description">Grade 12 CBE Core 2.6: Complete the derivation of the ratio theorem OP = (na + mb)/(m + n) for internal division.</p><p id="edition">Core</p><p id="provenance">This question is original to this project.</p><p id="citation">INNODEMS CBC Grade 12 Mathematics, first draft by Ben Davies, 2026. Aligned to the KICD Senior School Curriculum Design, Core Mathematics Grade 12 (draft).</p>]]></text></questiondescription>
+  <questionsimplify>1</questionsimplify>
+  <assumepositive>0</assumepositive>
+  <assumereal>0</assumereal>
+  <prtcorrect format="html"><text><![CDATA[[[commonstring key="symbolicprtcorrectfeedback"/]] [[commonstring key="defaultprtcorrectfeedback"/]]]]></text></prtcorrect>
+  <prtpartiallycorrect format="html"><text><![CDATA[[[commonstring key="symbolicprtpartiallycorrectfeedback"/]] [[commonstring key="defaultprtpartiallycorrectfeedback"/]]]]></text></prtpartiallycorrect>
+  <prtincorrect format="html"><text><![CDATA[[[commonstring key="symbolicprtincorrectfeedback"/]] [[commonstring key="defaultprtincorrectfeedback"/]]]]></text></prtincorrect>
+  <decimals>.</decimals>
+  <scientificnotation>*10</scientificnotation>
+  <multiplicationsign>none</multiplicationsign>
+  <sqrtsign>1</sqrtsign>
+  <complexno>symi</complexno>
+  <inversetrig>cos-1</inversetrig>
+  <logicsymbol>lang</logicsymbol>
+  <matrixparens>(</matrixparens>
+  <isbroken>0</isbroken>
+  <variantsselectionseed></variantsselectionseed>
+
+  <input><name>ans1</name><type>numerical</type><tans>ta1</tans><boxsize>6</boxsize><strictsyntax>1</strictsyntax><insertstars>0</insertstars><syntaxhint></syntaxhint><syntaxattribute>0</syntaxattribute><forbidwords></forbidwords><allowwords></allowwords><forbidfloat>1</forbidfloat><requirelowestterms>0</requirelowestterms><checkanswertype>0</checkanswertype><mustverify>0</mustverify><showvalidation>0</showvalidation><options></options></input>
+  <input><name>ans2</name><type>algebraic</type><tans>ta2</tans><boxsize>15</boxsize><strictsyntax>1</strictsyntax><insertstars>4</insertstars><syntaxhint></syntaxhint><syntaxattribute>0</syntaxattribute><forbidwords></forbidwords><allowwords></allowwords><forbidfloat>1</forbidfloat><requirelowestterms>0</requirelowestterms><checkanswertype>0</checkanswertype><mustverify>0</mustverify><showvalidation>3</showvalidation><options>validator:validate_ab</options></input>
+  <input><name>ans3</name><type>algebraic</type><tans>ta3</tans><boxsize>15</boxsize><strictsyntax>1</strictsyntax><insertstars>4</insertstars><syntaxhint></syntaxhint><syntaxattribute>0</syntaxattribute><forbidwords></forbidwords><allowwords></allowwords><forbidfloat>1</forbidfloat><requirelowestterms>0</requirelowestterms><checkanswertype>0</checkanswertype><mustverify>0</mustverify><showvalidation>3</showvalidation><options>validator:validate_ab</options></input>
+
+  <prt><name>prt1</name><value>1.0000000</value><autosimplify>1</autosimplify><feedbackstyle>1</feedbackstyle><feedbackvariables><text><![CDATA[]]></text></feedbackvariables>
+    <node><name>0</name><description>AP fraction</description><answertest>AlgEquiv</answertest><sans>ans1</sans><tans>ta1</tans><testoptions></testoptions><quiet>1</quiet><truescoremode>=</truescoremode><truescore>1.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt1-1-T</trueanswernote><truefeedback format="html"><text><![CDATA[]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>1</falsenextnode><falseanswernote>prt1-1-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>1</name><description>m/n</description><answertest>AlgEquiv</answertest><sans>ans1</sans><tans>d11</tans><testoptions></testoptions><quiet>1</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt1-2-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>You gave \({@m/n@}\), which compares AP with PB. The fraction needed compares AP with the whole of AB: how many equal parts does AB have?</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>2</falsenextnode><falseanswernote>prt1-2-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>2</name><description>PB fraction</description><answertest>AlgEquiv</answertest><sans>ans1</sans><tans>d12</tans><testoptions></testoptions><quiet>1</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt1-3-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>That is PB as a fraction of AB.</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>-1</falsenextnode><falseanswernote>prt1-3-F</falseanswernote><falsefeedback format="html"><text><![CDATA[<p>AP is the part next to A: count how many of the \({@m+n@}\) equal parts it has.</p>]]></text></falsefeedback></node>
+  </prt>
+  <prt><name>prt2</name><value>1.0000000</value><autosimplify>1</autosimplify><feedbackstyle>1</feedbackstyle><feedbackvariables><text><![CDATA[]]></text></feedbackvariables>
+    <node><name>0</name><description>AB</description><answertest>AlgEquiv</answertest><sans>ans2</sans><tans>ta2</tans><testoptions></testoptions><quiet>1</quiet><truescoremode>=</truescoremode><truescore>1.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt2-1-T</trueanswernote><truefeedback format="html"><text><![CDATA[]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>1</falsenextnode><falseanswernote>prt2-1-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>1</name><description>a - b</description><answertest>AlgEquiv</answertest><sans>ans2</sans><tans>d2</tans><testoptions></testoptions><quiet>1</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt2-2-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>That is \(\overrightarrow{BA}\), the journey from B to A. \(\overrightarrow{AB}\) goes the other way: end minus start.</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>-1</falsenextnode><falseanswernote>prt2-2-F</falseanswernote><falsefeedback format="html"><text><![CDATA[<p>Go from A back to O, then out to B. The second journey is \(\mathbf{b}\); what is the journey from A to O in terms of \(\mathbf{a}\)?</p>]]></text></falsefeedback></node>
+  </prt>
+  <prt><name>prt3</name><value>1.0000000</value><autosimplify>1</autosimplify><feedbackstyle>1</feedbackstyle><feedbackvariables><text><![CDATA[]]></text></feedbackvariables>
+    <node><name>0</name><description>OP</description><answertest>AlgEquiv</answertest><sans>ans3</sans><tans>ta3</tans><testoptions></testoptions><quiet>1</quiet><truescoremode>=</truescoremode><truescore>1.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt3-1-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>Collected: \(\overrightarrow{OP} = {@ta3@}\).</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>1</falsenextnode><falseanswernote>prt3-1-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>1</name><description>Weights crossed</description><answertest>AlgEquiv</answertest><sans>ans3</sans><tans>d31</tans><testoptions></testoptions><quiet>1</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt3-2-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>The weights are the wrong way round. Expand \(\mathbf{a} + \dfrac{ {@m@} }{ {@m+n@} }(\mathbf{b} - \mathbf{a})\): the coefficient of \(\mathbf{a}\) is \(1 - \dfrac{ {@m@} }{ {@m+n@} }\).</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>2</falsenextnode><falseanswernote>prt3-2-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>2</name><description>Bracket not fully expanded</description><answertest>AlgEquiv</answertest><sans>ans3</sans><tans>d32</tans><testoptions></testoptions><quiet>1</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt3-3-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>Multiply the bracket out fully: \(\dfrac{ {@m@} }{ {@m+n@} }(\mathbf{b} - \mathbf{a})\) also has a term in \(\mathbf{a}\).</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>-1</falsenextnode><falseanswernote>prt3-3-F</falseanswernote><falsefeedback format="html"><text><![CDATA[<p>Expand the bracket, then collect the terms in \(\mathbf{a}\) and in \(\mathbf{b}\).</p>]]></text></falsefeedback></node>
+  </prt>
+
+  <deployedseed>4</deployedseed>
+  <deployedseed>5</deployedseed>
+  <deployedseed>15</deployedseed>
+  <deployedseed>8</deployedseed>
+  <deployedseed>24</deployedseed>
+  <deployedseed>1</deployedseed>
+  <deployedseed>3</deployedseed>
+  <deployedseed>10</deployedseed>
+  <deployedseed>2</deployedseed>
+  <deployedseed>17</deployedseed>
+  <qtest><testcase>1</testcase><description>Correct</description>
+    <testinput><name>ans1</name><value>ta1</value></testinput>
+    <testinput><name>ans2</name><value>ta2</value></testinput>
+    <testinput><name>ans3</name><value>ta3</value></testinput>
+    <expected><name>prt1</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt1-1-T</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt2-1-T</expectedanswernote></expected>
+    <expected><name>prt3</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt3-1-T</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>2</testcase><description>m/n; a - b; weights crossed</description>
+    <testinput><name>ans1</name><value>d11</value></testinput>
+    <testinput><name>ans2</name><value>d2</value></testinput>
+    <testinput><name>ans3</name><value>d31</value></testinput>
+    <expected><name>prt1</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt1-1-F | prt1-2-T</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt2-1-F | prt2-2-T</expectedanswernote></expected>
+    <expected><name>prt3</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt3-1-F | prt3-2-T</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>3</testcase><description>PB fraction; bracket not expanded</description>
+    <testinput><name>ans1</name><value>d12</value></testinput>
+    <testinput><name>ans2</name><value>ta2</value></testinput>
+    <testinput><name>ans3</name><value>d32</value></testinput>
+    <expected><name>prt1</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt1-1-F | prt1-2-F | prt1-3-T</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt2-1-T</expectedanswernote></expected>
+    <expected><name>prt3</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt3-1-F | prt3-2-F | prt3-3-T</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>4</testcase><description>Generic offsets</description>
+    <testinput><name>ans1</name><value>w1</value></testinput>
+    <testinput><name>ans2</name><value>w2</value></testinput>
+    <testinput><name>ans3</name><value>w3</value></testinput>
+    <expected><name>prt1</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt1-1-F | prt1-2-F | prt1-3-F</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt2-1-F | prt2-2-F</expectedanswernote></expected>
+    <expected><name>prt3</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt3-1-F | prt3-2-F | prt3-3-F</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>5</testcase><description>Invalid: another letter in (b)</description>
+    <testinput><name>ans1</name><value>ta1</value></testinput>
+    <testinput><name>ans2</name><value>c</value></testinput>
+    <testinput><name>ans3</name><value>ta3</value></testinput>
+    <expected><name>prt1</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt1-1-T</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore></expectedscore><expectedpenalty></expectedpenalty><expectedanswernote>NULL</expectedanswernote></expected>
+    <expected><name>prt3</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt3-1-T</expectedanswernote></expected>
+  </qtest>
+</question>
+</quiz>

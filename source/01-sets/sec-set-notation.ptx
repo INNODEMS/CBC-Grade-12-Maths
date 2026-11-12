@@ -48,161 +48,218 @@
          Content summary: Set notation ({ }, ∈, ∉, n(A)); describing a set and listing its elements.
          Suggested activity: Learners sort classroom items (pens, books, bottle tops) into labelled boxes and write each collection using set notation, e.g. A = {ruler, pen, pencil}. -->
 
-    <!-- [LP] Add guidance on activity -->
+    <!-- Section notes (2026-11)
+         SLO: Core and Essential 1.1 (a). One lesson.
+         Activity: as planning notes (desk items sorted into labelled groups and written in set notation)
+         STACK: assets/stack/top/1-numbers-and-algebra/01-sets/01-set-notation/ -->
+
+    <introduction>
+        <question xml:id="kiq-sets">
+            <p><em>How do sets help us sort, describe and count the things around us?</em></p>
+        </question>
+        <p>
+            Every day we sort things into groups. A school sorts its learners into classes, clubs and games; a county agricultural officer counts the farmers who grow maize, the farmers who grow beans, and the farmers who grow both; an M-Pesa agent records which customers also have a bank account.
+        </p>
+        <p>
+            A set describes such a group exactly, so that everyone agrees on what belongs to it. In this chapter you will learn to write sets, to describe them in different ways, to combine them, to draw them in Venn diagrams, and to use them to count without counting anyone twice. Keep the key inquiry question in mind as you work.
+        </p>
+        <note xml:id="note-set-symbols">
+            <title>Set Symbols in This Book</title>
+            <p>
+                <ul>
+                    <li><p><m>\{\ \}</m>: curly brackets (braces) hold the elements of a set, separated by commas, for example <m>A = \{2, 4, 6\}</m>.</p></li>
+                    <li><p><m>x \in A</m>: <m>x</m> is an element of <m>A</m>.</p></li>
+                    <li><p><m>x \notin A</m>: <m>x</m> is not an element of <m>A</m>.</p></li>
+                    <li><p><m>n(A)</m>: the number of elements in <m>A</m>.</p></li>
+                </ul>
+            </p>
+            <p>Later sections add more symbols to this list, each where it is first needed.</p>
+        </note>
+    </introduction>
+
+    <p component="lesson-plan">Upon completion of this lesson, learners will be able to:
+        <ol>
+            <li><p><alert>Know:</alert> a set, an element, the symbols <m>\in</m>, <m>\notin</m> and <m>n(A)</m>, and what makes a set well defined.</p></li>
+            <li><p><alert>Do:</alert> list the elements of a described set, decide whether an object belongs to a set, and count the elements.</p></li>
+            <li><p><alert>Apply:</alert> sorting classroom objects; the letters of the names of Kenyan counties.</p></li>
+        </ol>
+    </p>
 
     <axiom component="lesson-plan">
         <title>Problem-Solving and Discovery</title>
         <dl>
-            <li>
-                <title>Suggested Time</title>
-                <p>
-                    XXX minutes
-                </p>
-            </li>
-            <li>
-                <title>Objective</title>
-                <p>
-                    XXX
-                </p>
-            </li>
-            <li>
-                <title>Teacher's Role</title>
-                <p>
-                    XXX
-                </p>
-            </li>
+            <li><title>Suggested Time</title><p>14 minutes</p></li>
+            <li><title>Objective</title><p>Learners sort desk items into labelled groups and write each group in curly brackets.</p></li>
+            <li><title>Teacher's Role</title><p>Put one group's items on the front desk. Before naming the idea of a well-defined set, ask: <q>Could two people disagree about what belongs in this group?</q></p></li>
         </dl>
     </axiom>
 
-    <!-- Add Activity -->
-
-    <!-- <activity>
+    <activity xml:id="act-sorting-the-classroom">
+        <title>Sorting the Classroom</title>
         <statement>
+            <p>On the front desk are a ruler, a pen, a pencil, an eraser, an exercise book, a textbook, a bottle top, a piece of chalk and a sharpener.</p>
+            <p>
+                <ol marker="(a)">
+                    <li>
+                        <p>List <m>W</m>, the set of things on the desk that are used for writing.</p>
+                        <solution component="lesson-plan"><p><m>W = \{\text{pen}, \text{pencil}, \text{chalk}\}</m>.</p></solution>
+                    </li>
+                    <li>
+                        <p>Fill in <m>\in</m> or <m>\notin</m>: chalk <m>\underline{\quad}\ W</m>; ruler <m>\underline{\quad}\ W</m>.</p>
+                        <solution component="lesson-plan"><p>chalk <m>\in W</m>; ruler <m>\notin W</m>.</p></solution>
+                    </li>
+                    <li>
+                        <p>Find <m>n(W)</m>.</p>
+                        <solution component="lesson-plan"><p><m>n(W) = 3</m>.</p></solution>
+                    </li>
+                    <li>
+                        <p>Write a rule for the set <m>\{\text{exercise book}, \text{textbook}\}</m>.</p>
+                        <solution component="lesson-plan"><p>For example <m>\{\text{books on the desk}\}</m>.</p></solution>
+                    </li>
+                    <li>
+                        <p>Why is <m>\{\text{useful things on the desk}\}</m> not a set?</p>
+                        <solution component="lesson-plan"><p>There is no clear test for belonging: one learner may think a bottle top is useful and another may not.</p></solution>
+                    </li>
+                </ol>
+            </p>
         </statement>
-    </activity> -->
+    </activity>
 
-    <!-- [LP] Add guidance on structured lesson plan-->
-
-    <!-- <axiom component="lesson-plan">
+    <axiom component="lesson-plan">
         <title>Structured Instruction</title>
         <p>
             <dl>
-            <li>
-                <title>Suggested Time</title>
-                <p>
-                    XX minutes
-                </p>
-            </li>
-            <li>
-                <title>Objective</title>
-                <p>
-                    To formalize the concepts and properties learners discovered in the anchor task.
-                </p>
-            </li>
+                <li><title>Suggested Time</title><p>8 minutes</p></li>
+                <li><title>Objective</title><p>To formalise sets, elements and the set symbols from the activity.</p></li>
             </dl>
         </p>
         <paragraphs>
             <title>Key Takeaways &amp; Teacher Connection</title>
             <ol>
-                <li>
-                    <p>
-                        <alert>Connecting to Learner Work:</alert> XXXX
-                    </p>
-                </li>
+                <li><p><alert>Connecting to Learner Work:</alert> part (e) shows why a set needs a clear rule; parts (a) to (c) used braces, <m>\in</m>, <m>\notin</m> and <m>n(W)</m>.</p></li>
+                <li><p>Write the elements in curly brackets, separated by commas, each element once.</p></li>
+                <li><p><m>\in</m> means <q>is an element of</q>, <m>\notin</m> means <q>is not an element of</q>, and <m>n(A)</m> is the number of elements.</p></li>
             </ol>
         </paragraphs>
-    </axiom> -->
+    </axiom>
 
-    <!-- Add insight / key takeaway directly related to activity / learner experience -->
-
-    <!-- <insight>
-    </insight> -->
-
-    <!-- Add further instruction (not in a block) to develop ideas as needed -->
+    <insight xml:id="insight-sets-and-elements">
+        <title>Sets and Elements</title>
+        <p>A <term>set</term> is a collection with a clear rule for what belongs. The objects in a set are its <term>elements</term> (or members). We name sets with capital letters and write the elements in curly brackets, separated by commas: <m>A = \{2, 4, 6\}</m>.</p>
+        <p>
+            <ul>
+                <li><p><m>4 \in A</m> means <q><m>4</m> is an element of <m>A</m></q>; <m>5 \notin A</m> means <q><m>5</m> is not an element of <m>A</m></q>.</p></li>
+                <li><p><m>n(A)</m> is the number of elements in <m>A</m>; here <m>n(A) = 3</m>.</p></li>
+                <li><p>Order does not matter and each element is written once: <m>\{6, 2, 4\}</m> and <m>\{2, 4, 6\}</m> are the same set.</p></li>
+                <li><p>A set must be <term>well defined</term>: for any object, there is a clear answer to <q>Does it belong?</q></p></li>
+            </ul>
+        </p>
+    </insight>
 
     <xi:include href="../lesson-plan-templates/example-intro.ptx" />
 
-    <!-- Add at least 3 examples -->
-
-    <!-- <example>
+    <example xml:id="example-letters-of-a-county">
+        <title>Letters of a County</title>
         <statement>
+            <p>List the set <m>A = \{\text{letters of the word KIRINYAGA}\}</m> and find <m>n(A)</m>.</p>
         </statement>
         <solution>
+            <p>KIRINYAGA has nine letters, but I appears twice and A appears twice. Each element is written once, so <m>A = \{\text{K}, \text{I}, \text{R}, \text{N}, \text{Y}, \text{A}, \text{G}\}</m> and <m>n(A) = 7</m>, not <m>9</m>.</p>
         </solution>
     </example>
 
-    <example>
+    <example xml:id="example-factors-and-membership">
+        <title>Factors and Membership</title>
         <statement>
+            <p>List <m>B = \{\text{factors of } 54\}</m>. Is <m>6 \in B</m>? Is <m>4 \in B</m>? Find <m>n(B)</m>.</p>
         </statement>
         <solution>
+            <p>The factors of <m>54</m> come in pairs: <m>1 \times 54</m>, <m>2 \times 27</m>, <m>3 \times 18</m>, <m>6 \times 9</m>. So <m>B = \{1, 2, 3, 6, 9, 18, 27, 54\}</m>. Then <m>6 \in B</m>, <m>4 \notin B</m> and <m>n(B) = 8</m>.</p>
         </solution>
     </example>
 
-    <example>
+    <example xml:id="example-well-defined-or-not">
+        <title>Well Defined or Not?</title>
         <statement>
+            <p>Which of these are sets? List any that are.</p>
+            <p>
+                <ol marker="(a)">
+                    <li><p><m>\{\text{tall learners in our class}\}</m></p></li>
+                    <li><p><m>\{\text{learners in our class taller than 170 cm}\}</m></p></li>
+                    <li><p><m>\{\text{vowels in the word MOMBASA}\}</m></p></li>
+                </ol>
+            </p>
         </statement>
         <solution>
+            <p>(a) Not a set: <q>tall</q> has no clear test, so two people could disagree. (b) A set: a tape measure decides who belongs. (c) A set: <m>\{\text{O}, \text{A}\}</m>, with <m>n = 2</m>.</p>
         </solution>
-    </example> -->
+    </example>
 
     <xi:include href="../lesson-plan-templates/assessment-intro.ptx" />
+    <xi:include href="../lesson-plan-templates/checkpoint.ptx" />
 
-    <!-- If STACK questions are included, uncomment this: -->
+    <p>Type a set inside curly brackets with commas between the elements, for example <c>{2, 5, 9}</c>. On most phone keyboards the curly brackets are on the second page of symbols: tap <c>?123</c> (or <c>123</c>), then <c>=\&lt;</c> (or <c>#+=</c>). Type the empty set as <c>{}</c>. Type a count as a whole number.</p>
 
-    <!-- <xi:include href="../lesson-plan-templates/checkpoint.ptx" /> -->
+    <exercise xml:id="ex-elements-of-a-described-set">
+        <!--<title></title>-->
+        <stack label="stk-elements-of-a-described-set" source="stack/top/1-numbers-and-algebra/01-sets/01-set-notation/Elements-of-a-described-set.xml"/>
+    </exercise>
 
-    <!-- Add STACK exercises if made -->
+    <exercise xml:id="ex-member-or-not-a-member">
+        <!--<title></title>-->
+        <stack label="stk-member-or-not-a-member" source="stack/top/1-numbers-and-algebra/01-sets/01-set-notation/Member-or-not-a-member.xml"/>
+    </exercise>
 
-    <!-- Add static exercises -->
+    <exercises xml:id="exercises-set-notation">
+        <exercise xml:id="ex-factors-of-sixty-six">
+            <statement><p>List the elements of <m>\{\text{factors of } 66\}</m> and find the number of elements.</p></statement>
+            <answer><p><m>\{1, 2, 3, 6, 11, 22, 33, 66\}</m>; <m>8</m> elements</p></answer>
+        </exercise>
+        <exercise xml:id="ex-letters-of-machakos">
+            <statement><p>List <m>\{\text{letters of the word MACHAKOS}\}</m> and find the number of elements.</p></statement>
+            <answer><p><m>\{\text{M}, \text{A}, \text{C}, \text{H}, \text{K}, \text{O}, \text{S}\}</m>; <m>7</m> elements</p></answer>
+        </exercise>
+        <exercise xml:id="ex-true-or-false-membership">
+            <statement>
+                <p>True or false?</p>
+                <p>
+                    <ol marker="(a)">
+                        <li><p><m>9 \in \{\text{multiples of } 3\}</m></p></li>
+                        <li><p><m>15 \notin \{\text{odd numbers}\}</m></p></li>
+                        <li><p><m>n(\{\text{letters of the word ELDORET}\}) = 7</m></p></li>
+                    </ol>
+                </p>
+            </statement>
+            <answer><p>(a) True. (b) False. (c) False: the set is <m>\{\text{E}, \text{L}, \text{D}, \text{O}, \text{R}, \text{T}\}</m>, so <m>n = 6</m>.</p></answer>
+        </exercise>
+        <exercise xml:id="ex-describe-in-words">
+            <statement><p>Describe the set <m>\{2, 3, 5, 7, 11, 13\}</m> in words.</p></statement>
+            <answer><p>The prime numbers less than <m>15</m> (or less than <m>17</m>: both are correct).</p></answer>
+        </exercise>
+        <exercise xml:id="ex-tens-twice-units">
+            <statement><p>List the set of two-digit numbers whose tens digit is twice the units digit.</p></statement>
+            <answer><p><m>\{21, 42, 63, 84\}</m></p></answer>
+            <solution><p>The units digit can be <m>1</m>, <m>2</m>, <m>3</m> or <m>4</m> (a units digit of <m>5</m> would need a tens digit of <m>10</m>, and a units digit of <m>0</m> gives the one-digit number <m>0</m>). So the numbers are <m>21</m>, <m>42</m>, <m>63</m> and <m>84</m>.</p></solution>
+        </exercise>
+        <exercise xml:id="ex-zero-and-empty">
+            <title>Challenge: Zero and Nothing</title>
+            <statement><p>Explain why <m>\{0\}</m> and <m>\{\ \}</m> are different sets, and give the number of elements of each.</p></statement>
+            <answer><p><m>\{0\}</m> has one element, the number <m>0</m>, so <m>n(\{0\}) = 1</m>. <m>\{\ \}</m> has no elements, so <m>n(\{\ \}) = 0</m>.</p></answer>
+        </exercise>
+    </exercises>
 
-    <!-- <exercises>
-        <exercise>
-            <statement>   
-
-            </statement>   
-            <solution>
-
-            </solution>             
-        </exercise>        
-    </exercises> -->
-
-    <!-- [LP] Add information on how to differentiate  -->
-
-    <!-- <axiom component="lesson-plan">
+    <axiom component="lesson-plan">
         <title>Differentiation</title>
-
-        <table>
-            <title>Differentiation</title>
-            <tabular halign="left">
-                <row header="yes" bottom="minor">
-                    <cell>Learner Group</cell>
-                    <cell>Strategy &amp; Learning Experience</cell>
-                    <cell></cell>
-                </row>
-                <row>
-                    <cell>Struggling Learners (Support)</cell>
-                    <cell>
-                        XXXX
-                    </cell>
-                    <cell></cell>
-                </row>
-                <row>
-                    <cell>On-Level Learners (Core)</cell>
-                    <cell>
-                        <line>The core lesson activities as described above.</line>
-                    </cell>
-                    <cell></cell>
-                </row>
-                <row>
-                    <cell>Advanced Learners (Challenge)</cell>
-                    <cell>
-                        XXXX
-                    </cell>
-                    <cell></cell>
-                </row>
+        <table xml:id="table-differentiation-set-notation">
+            <title>Differentiation Strategies</title>
+            <tabular halign="left" top="minor" bottom="minor" left="minor" right="minor">
+                <row header="yes" bottom="medium"><cell>Learner Group</cell><cell>Strategy and Learning Experience</cell></row>
+                <row><cell>Struggling Learners (Support)</cell><cell>Work through the activity, <xref ref="example-letters-of-a-county"/> and <xref ref="example-factors-and-membership"/>. Give a card: <q><m>\{\ \}</m> braces; <m>\in</m> is in; <m>\notin</m> is not in; <m>n</m> = how many</q>. Assign <xref ref="ex-factors-of-sixty-six"/> and <xref ref="ex-letters-of-machakos"/>.</cell></row>
+                <row><cell>On-Level Learners (Core)</cell><cell>Full activity and all examples. Assign <xref ref="ex-factors-of-sixty-six"/> to <xref ref="ex-tens-twice-units"/>.</cell></row>
+                <row><cell>Advanced Learners (Challenge)</cell><cell>All exercises including <xref ref="ex-zero-and-empty"/>. Extension: write a set of four Kenyan counties whose names have exactly five letters (for example <m>\{\text{Nyeri}, \text{Kitui}, \text{Siaya}, \text{Narok}\}</m>; the teacher checks).</cell></row>
             </tabular>
         </table>
-    </axiom> -->
+    </axiom>
 
     <xi:include href="../lesson-plan-templates/assessment-methods.ptx" />
 

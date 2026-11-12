@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<quiz>
+<question type="stack">
+  <name><text>Member or not a member</text></name>
+  <questiontext format="html">
+    <text><![CDATA[<p>\(A = {@Ad@}\). Is each statement true or false?</p><p>(a) \({@p@} \in A\) [[input:ans1]] [[validation:ans1]] [[feedback:prt1]]</p><p>(b) \({@q@} \notin A\) [[input:ans2]] [[validation:ans2]] [[feedback:prt2]]</p><p>(c) \(n(A) = {@c@}\) [[input:ans3]] [[validation:ans3]] [[feedback:prt3]]</p><p>(d) \({@r@} \in A\) [[input:ans4]] [[validation:ans4]] [[feedback:prt4]]</p>]]></text>
+  </questiontext>
+  <generalfeedback format="html">
+    <text><![CDATA[<p>First list the set: \(A = {@dset(A)@}\), so \(n(A) = {@cardn(A)@}\).</p><p>(a) \({@p@}\) [[if test="elementp(p,A)"]]is[[else]]is not[[/if]] an element of \(A\), so the statement is [[if test="is(k1=1)"]]true[[else]]false[[/if]].</p><p>(b) \({@q@}\) [[if test="elementp(q,A)"]]is[[else]]is not[[/if]] an element of \(A\). The symbol \(\notin\) means <q>is not an element of</q>, so the statement is [[if test="is(k2=1)"]]true[[else]]false[[/if]].</p><p>(c) \(A\) has \({@cardn(A)@}\) elements, so the statement is [[if test="is(k3=1)"]]true[[else]]false[[/if]].</p><p>(d) \({@r@}\) [[if test="elementp(r,A)"]]is[[else]]is not[[/if]] an element of \(A\), so the statement is [[if test="is(k4=1)"]]true[[else]]false[[/if]].</p>]]></text>
+  </generalfeedback>
+  <defaultgrade>4</defaultgrade>
+  <penalty>0.1</penalty>
+  <hidden>0</hidden>
+  <idnumber></idnumber>
+  <stackversion><text>2026063000</text></stackversion>
+  <questionvariables>
+    <text><![CDATA[cardn(S) := length(listify(S));
+dset(S) := if emptyp(S) then "\\{\\,\\}" else sconcat("\\{", simplode(map(string, listify(S)), ", "), "\\}");
+ix: 1+rand(10);
+tf(k) := [[1, is(k=1), "True"], [2, is(k=2), "False"]];
+/* Design: true-or-false statements about membership and n(A). Source: adapted from SMP Book 3, Chapter 11, Exercise A, question 8. Curated list.
+   [description TeX, A, p, q, c, r]: (a) p in A, (b) q notin A, (c) n(A) = c, (d) r in A. Keys 1 true, 2 false. */
+L: [["\\{\\text{the factors of 36}\\}",{1,2,3,4,6,9,12,18,36},12,8,8,24],["\\{\\text{the multiples of 9 between 10 and 70}\\}",{18,27,36,45,54,63},81,45,6,27],["\\{\\text{the prime numbers less than 25}\\}",{2,3,5,7,11,13,17,19,23},21,1,9,23],["\\{\\text{the odd factors of 60}\\}",{1,3,5,15},15,5,4,30],["\\{\\text{the square numbers between 20 and 150}\\}",{25,36,49,64,81,100,121,144},121,125,7,150],["\\{\\text{the factors of 50}\\}",{1,2,5,10,25,50},20,25,6,50],["\\{\\text{the multiples of 11 between 30 and 100}\\}",{33,44,55,66,77,88,99},111,110,7,77],["\\{\\text{the prime numbers between 70 and 90}\\}",{71,73,79,83,89},81,87,6,79],["\\{\\text{the even factors of 40}\\}",{2,4,8,10,20,40},40,1,8,5],["\\{\\text{the two-digit numbers whose digits add up to 7}\\}",{16,25,34,43,52,61,70},7,61,7,52]];
+Ad: L[ix][1]; A: L[ix][2]; p: L[ix][3]; q: L[ix][4]; c: L[ix][5]; r: L[ix][6];
+k1: if elementp(p,A) then 1 else 2; k2: if not elementp(q,A) then 1 else 2;
+k3: if is(cardn(A)=c) then 1 else 2; k4: if elementp(r,A) then 1 else 2;
+o1: tf(k1); o2: tf(k2); o3: tf(k3); o4: tf(k4);
+/* test values: the other option */
+f1: 3-k1; f2: 3-k2; f3: 3-k3; f4: 3-k4;
+]]></text>
+  </questionvariables>
+  <specificfeedback format="html"><text><![CDATA[]]></text></specificfeedback>
+  <questionnote format="moodle_auto_format">
+    <text>ix={@ix@}, A={@A@}, keys {@[k1,k2,k3,k4]@}</text>
+  </questionnote>
+  <questiondescription format="html"><text><![CDATA[<p id="concept">Sets: membership and counting</p><p id="description">Grade 12 CBE Core and Essential 1.1 (a): Decide whether statements using the symbols for is an element of, is not an element of, and n(A) are true for a described set.</p><p id="edition">Core and Essential</p><p id="provenance">This question is adapted from Chapter 11, Exercise A, question 8 of School Mathematics Project, SMP Book 3 (Metric), ed. A. G. Howson, Cambridge University Press, 1967: deciding whether a number is or is not a member of a set; every set is new, in a true-or-false form with a count.</p><p id="citation">INNODEMS CBC Grade 12 Mathematics, first draft by Ben Davies, 2026. Aligned to the KICD Senior School Curriculum Design, Core and Essential Mathematics Grade 12 (draft).</p>]]></text></questiondescription>
+  <questionsimplify>1</questionsimplify>
+  <assumepositive>0</assumepositive>
+  <assumereal>0</assumereal>
+  <prtcorrect format="html"><text><![CDATA[[[commonstring key="symbolicprtcorrectfeedback"/]] [[commonstring key="defaultprtcorrectfeedback"/]]]]></text></prtcorrect>
+  <prtpartiallycorrect format="html"><text><![CDATA[[[commonstring key="symbolicprtpartiallycorrectfeedback"/]] [[commonstring key="defaultprtpartiallycorrectfeedback"/]]]]></text></prtpartiallycorrect>
+  <prtincorrect format="html"><text><![CDATA[[[commonstring key="symbolicprtincorrectfeedback"/]] [[commonstring key="defaultprtincorrectfeedback"/]]]]></text></prtincorrect>
+  <decimals>.</decimals>
+  <scientificnotation>*10</scientificnotation>
+  <multiplicationsign>none</multiplicationsign>
+  <sqrtsign>1</sqrtsign>
+  <complexno>i</complexno>
+  <inversetrig>cos-1</inversetrig>
+  <logicsymbol>lang</logicsymbol>
+  <matrixparens>[</matrixparens>
+  <isbroken>0</isbroken>
+  <variantsselectionseed></variantsselectionseed>
+
+  <input><name>ans1</name><type>dropdown</type><tans>o1</tans><boxsize>15</boxsize><strictsyntax>1</strictsyntax><insertstars>0</insertstars><syntaxhint></syntaxhint><syntaxattribute>0</syntaxattribute><forbidwords></forbidwords><allowwords></allowwords><forbidfloat>1</forbidfloat><requirelowestterms>0</requirelowestterms><checkanswertype>0</checkanswertype><mustverify>0</mustverify><showvalidation>0</showvalidation><options></options></input>
+  <input><name>ans2</name><type>dropdown</type><tans>o2</tans><boxsize>15</boxsize><strictsyntax>1</strictsyntax><insertstars>0</insertstars><syntaxhint></syntaxhint><syntaxattribute>0</syntaxattribute><forbidwords></forbidwords><allowwords></allowwords><forbidfloat>1</forbidfloat><requirelowestterms>0</requirelowestterms><checkanswertype>0</checkanswertype><mustverify>0</mustverify><showvalidation>0</showvalidation><options></options></input>
+  <input><name>ans3</name><type>dropdown</type><tans>o3</tans><boxsize>15</boxsize><strictsyntax>1</strictsyntax><insertstars>0</insertstars><syntaxhint></syntaxhint><syntaxattribute>0</syntaxattribute><forbidwords></forbidwords><allowwords></allowwords><forbidfloat>1</forbidfloat><requirelowestterms>0</requirelowestterms><checkanswertype>0</checkanswertype><mustverify>0</mustverify><showvalidation>0</showvalidation><options></options></input>
+  <input><name>ans4</name><type>dropdown</type><tans>o4</tans><boxsize>15</boxsize><strictsyntax>1</strictsyntax><insertstars>0</insertstars><syntaxhint></syntaxhint><syntaxattribute>0</syntaxattribute><forbidwords></forbidwords><allowwords></allowwords><forbidfloat>1</forbidfloat><requirelowestterms>0</requirelowestterms><checkanswertype>0</checkanswertype><mustverify>0</mustverify><showvalidation>0</showvalidation><options></options></input>
+
+  <prt><name>prt1</name><value>1.0000000</value><autosimplify>1</autosimplify><feedbackstyle>1</feedbackstyle><feedbackvariables><text><![CDATA[]]></text></feedbackvariables>
+    <node><name>0</name><description>Key</description><answertest>AlgEquiv</answertest><sans>ans1</sans><tans>k1</tans><testoptions></testoptions><quiet>0</quiet><truescoremode>=</truescoremode><truescore>1.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt1-1-T</trueanswernote><truefeedback format="html"><text><![CDATA[]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>-1</falsenextnode><falseanswernote>prt1-1-F</falseanswernote><falsefeedback format="html"><text><![CDATA[<p>\(A = {@dset(A)@}\), so \({@p@}\) [[if test="elementp(p,A)"]]is[[else]]is not[[/if]] one of its elements.</p>]]></text></falsefeedback></node>
+  </prt>
+  <prt><name>prt2</name><value>1.0000000</value><autosimplify>1</autosimplify><feedbackstyle>1</feedbackstyle><feedbackvariables><text><![CDATA[]]></text></feedbackvariables>
+    <node><name>0</name><description>Key</description><answertest>AlgEquiv</answertest><sans>ans2</sans><tans>k2</tans><testoptions></testoptions><quiet>0</quiet><truescoremode>=</truescoremode><truescore>1.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt2-1-T</trueanswernote><truefeedback format="html"><text><![CDATA[]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>-1</falsenextnode><falseanswernote>prt2-1-F</falseanswernote><falsefeedback format="html"><text><![CDATA[<p>\(A = {@dset(A)@}\), so \({@q@}\) [[if test="elementp(q,A)"]]is[[else]]is not[[/if]] one of its elements. \(\notin\) means <q>is not an element of</q>.</p>]]></text></falsefeedback></node>
+  </prt>
+  <prt><name>prt3</name><value>1.0000000</value><autosimplify>1</autosimplify><feedbackstyle>1</feedbackstyle><feedbackvariables><text><![CDATA[]]></text></feedbackvariables>
+    <node><name>0</name><description>Key</description><answertest>AlgEquiv</answertest><sans>ans3</sans><tans>k3</tans><testoptions></testoptions><quiet>0</quiet><truescoremode>=</truescoremode><truescore>1.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt3-1-T</trueanswernote><truefeedback format="html"><text><![CDATA[]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>-1</falsenextnode><falseanswernote>prt3-1-F</falseanswernote><falsefeedback format="html"><text><![CDATA[<p>\(A = {@dset(A)@}\) has \({@cardn(A)@}\) elements.</p>]]></text></falsefeedback></node>
+  </prt>
+  <prt><name>prt4</name><value>1.0000000</value><autosimplify>1</autosimplify><feedbackstyle>1</feedbackstyle><feedbackvariables><text><![CDATA[]]></text></feedbackvariables>
+    <node><name>0</name><description>Key</description><answertest>AlgEquiv</answertest><sans>ans4</sans><tans>k4</tans><testoptions></testoptions><quiet>0</quiet><truescoremode>=</truescoremode><truescore>1.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt4-1-T</trueanswernote><truefeedback format="html"><text><![CDATA[]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>-1</falsenextnode><falseanswernote>prt4-1-F</falseanswernote><falsefeedback format="html"><text><![CDATA[<p>\(A = {@dset(A)@}\), so \({@r@}\) [[if test="elementp(r,A)"]]is[[else]]is not[[/if]] one of its elements.</p>]]></text></falsefeedback></node>
+  </prt>
+
+  <deployedseed>4</deployedseed>
+  <deployedseed>5</deployedseed>
+  <deployedseed>15</deployedseed>
+  <deployedseed>8</deployedseed>
+  <deployedseed>24</deployedseed>
+  <deployedseed>1</deployedseed>
+  <deployedseed>3</deployedseed>
+  <deployedseed>10</deployedseed>
+  <deployedseed>2</deployedseed>
+  <deployedseed>17</deployedseed>
+  <qtest><testcase>1</testcase><description>Correct</description>
+    <testinput><name>ans1</name><value>k1</value></testinput>
+    <testinput><name>ans2</name><value>k2</value></testinput>
+    <testinput><name>ans3</name><value>k3</value></testinput>
+    <testinput><name>ans4</name><value>k4</value></testinput>
+    <expected><name>prt1</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt1-1-T</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt2-1-T</expectedanswernote></expected>
+    <expected><name>prt3</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt3-1-T</expectedanswernote></expected>
+    <expected><name>prt4</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt4-1-T</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>2</testcase><description>All wrong</description>
+    <testinput><name>ans1</name><value>f1</value></testinput>
+    <testinput><name>ans2</name><value>f2</value></testinput>
+    <testinput><name>ans3</name><value>f3</value></testinput>
+    <testinput><name>ans4</name><value>f4</value></testinput>
+    <expected><name>prt1</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt1-1-F</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt2-1-F</expectedanswernote></expected>
+    <expected><name>prt3</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt3-1-F</expectedanswernote></expected>
+    <expected><name>prt4</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt4-1-F</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>3</testcase><description>Mixed</description>
+    <testinput><name>ans1</name><value>k1</value></testinput>
+    <testinput><name>ans2</name><value>k2</value></testinput>
+    <testinput><name>ans3</name><value>f3</value></testinput>
+    <testinput><name>ans4</name><value>f4</value></testinput>
+    <expected><name>prt1</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt1-1-T</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt2-1-T</expectedanswernote></expected>
+    <expected><name>prt3</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt3-1-F</expectedanswernote></expected>
+    <expected><name>prt4</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt4-1-F</expectedanswernote></expected>
+  </qtest>
+</question>
+</quiz>

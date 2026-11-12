@@ -39,7 +39,7 @@
                 <li component="lesson-plan">
                     <title>Estimated Duration</title>
                     <p>
-                        40 minutes
+                        2 lessons of 40 minutes
                     </p>
                 </li>
             </dl>
@@ -52,163 +52,389 @@
          Suggested activity: Learners time how long it takes one, two and three learners to fill a bucket with cups of water, then predict and check the time for four learners.
          Interactive (JSXGraph): Two taps filling a tank at rates set by sliders; the animation shows the tank level over time and the combined filling time. -->
 
-    <!-- [LP] Add guidance on activity -->
+    <!-- Section notes (2026-11)
+         SLO: Core 1.3 (c), (e); Essential 1.2 (d), (f). Lessons 3.1 and 3.2 as subsections; Essential key inquiry question 2 in the introduction.
+         Activity: as planning notes (one, two and three learners filling a bucket with cups; predict four)
+         JSXGraph: fig-two-taps-tank (assets/jsxgraph/two-taps-tank.js), as planning notes
+         STACK: assets/stack/top/1-numbers-and-algebra/03-compound-proportions-rates-of-work-and-mixtures/03-rates-of-work/ -->
 
-    <!-- <axiom component="lesson-plan">
+    <introduction>
+        <p>A rate of work is a compound proportion: the work done depends on how many work, how fast each works, and for how long. In this section we measure work as a fraction of the whole job, so that people and machines working at different speeds can be combined.</p>
+        <question xml:id="kiq-rate-of-work" component="essential">
+            <p><em>Why does it matter how fast people and machines work?</em></p>
+        </question>
+    </introduction>
+
+    <!-- ============================================================ Lesson 3.1 -->
+    <subsection xml:id="subsec-working-together">
+        <title>Working Together</title>
+
+        <p component="lesson-plan">Upon completion of this lesson, learners will be able to:
+            <ol>
+                <li><p><alert>Know:</alert> a rate of work is the fraction of a job done in one unit of time; rates of people or machines working together add.</p></li>
+                <li><p><alert>Do:</alert> find the time to do a job together, the fraction done in a given time, and the time when one worker starts first.</p></li>
+                <li><p><alert>Apply:</alert> welders, tractors, painters and road crews.</p></li>
+            </ol>
+        </p>
+
+        <axiom component="lesson-plan">
             <title>Problem-Solving and Discovery</title>
             <dl>
-                <li>
-                    <title>Suggested Time</title>
-                    <p>
-                        XX minutes
-                    </p>
-                </li>
-                <li>
-                    <title>Objective</title>
-                    <p>
-                        XXX
-                    </p>
-                </li>
-                <li>
-                    <title>Teacher's Role</title>
-                    <p>
-                        XXX
-                    </p>
-                </li>
+                <li><title>Suggested Time</title><p>14 minutes</p></li>
+                <li><title>Objective</title><p>Learners time one, two and three learners filling a bucket with cups of water, predict the time for four, and then meet two learners who work at different speeds.</p></li>
+                <li><title>Teacher's Role</title><p>Record the class's times on the board. If there is no water to spare, use the sample times in the activity.</p></li>
             </dl>
-        </axiom> -->
+        </axiom>
 
-    <!-- Add Activity -->
-
-    <!-- <activity>
-        <statement>
-        </statement>
-    </activity> -->
-
-    <!-- [LP] Add guidance on structured lesson plan-->
-
-    <!-- <axiom component="lesson-plan">
-        <title>Structured Instruction</title>
-        <p>
-            <dl>
-            <li>
-                <title>Suggested Time</title>
+        <activity xml:id="act-filling-the-bucket">
+            <title>Filling the Bucket</title>
+            <statement>
+                <p>Learners fill a bucket from a drum, one cup at a time. Each learner has a cup of the same size and works at the same speed.</p>
                 <p>
-                    XX minutes
+                    <ol marker="(a)">
+                        <li>
+                            <p>One learner takes <m>120</m> seconds, two take <m>60</m> seconds and three take <m>40</m> seconds. Predict the time for four learners, then check it.</p>
+                            <solution component="lesson-plan"><p>Learners <m>\times</m> time is always <m>120</m> learner-seconds (inverse proportion), so four take <m>120 \div 4 = 30</m> seconds.</p></solution>
+                        </li>
+                        <li>
+                            <p>Asha alone fills the bucket in <m>90</m> seconds and Brian alone in <m>180</m> seconds. What fraction of the bucket does each fill in one second?</p>
+                            <solution component="lesson-plan"><p>Asha <m>\tfrac{1}{90}</m> and Brian <m>\tfrac{1}{180}</m>.</p></solution>
+                        </li>
+                        <li>
+                            <p>What fraction do they fill together in one second? How long do they take together?</p>
+                            <solution component="lesson-plan"><p><m>\tfrac{1}{90} + \tfrac{1}{180} = \tfrac{3}{180} = \tfrac{1}{60}</m>, so <m>60</m> seconds.</p></solution>
+                        </li>
+                        <li>
+                            <p>Why is the answer not <m>135</m> seconds, the mean of their times?</p>
+                            <solution component="lesson-plan"><p>Together they must be faster than Asha alone, so less than <m>90</m> seconds. Brian helps; he does not slow Asha down.</p></solution>
+                        </li>
+                    </ol>
                 </p>
-            </li>
-            <li>
-                <title>Objective</title>
-                <p>
-                    To formalize the concepts and properties learners discovered in the anchor task.
-                </p>
-            </li>
-            </dl>
-        </p>
-        <paragraphs>
-            <title>Key Takeaways &amp; Teacher Connection</title>
-            <ol>
-                <li>
+            </statement>
+        </activity>
+
+        <axiom component="lesson-plan">
+            <title>Structured Instruction</title>
+            <p>
+                <dl>
+                    <li><title>Suggested Time</title><p>8 minutes</p></li>
+                    <li><title>Objective</title><p>To formalise rates of work and combined rates.</p></li>
+                </dl>
+            </p>
+            <paragraphs>
+                <title>Key Takeaways &amp; Teacher Connection</title>
+                <ol>
+                    <li><p><alert>Connecting to Learner Work:</alert> part (c) added the fractions filled in one second, not the times.</p></li>
+                    <li><p>Rate <m>= 1 \div</m> time; time <m>= 1 \div</m> rate.</p></li>
+                    <li><p>Together is always quicker than the quicker worker alone.</p></li>
+                </ol>
+            </paragraphs>
+        </axiom>
+
+        <insight xml:id="insight-rate-of-work">
+            <title>Rate of Work</title>
+            <p>A job that takes <m>t</m> days is done at a <term>rate of work</term> of <m>\dfrac{1}{t}</m> of the job a day. When people or machines work together, their rates add. The time together is <m>1 \div</m> (the combined rate), and the fraction done in <m>k</m> days is <m>k \times</m> (the rate). Add the fractions done in one day, not the times.</p>
+        </insight>
+
+        <figure xml:id="fig-two-taps-tank">
+            <caption>Two taps and an outlet on a tank. Set the taps with the sliders and watch the tank fill.</caption>
+            <interactive xml:id="interactive-two-taps-tank" platform="jsxgraph" width="90%" aspect="16:10" source="jsxgraph/two-taps-tank.js">
+                <slate xml:id="jsxgraph-two-taps-tank" surface="jsxboard" aspect="16:10"/>
+                <instructions>
                     <p>
-                        <alert>Connecting to Learner Work:</alert> XXXX
+                        <ul>
+                            <li><p>Drag <alert>a</alert> to set the hours tap A alone takes to fill the tank, <alert>b</alert> for tap B alone, and <alert>c</alert> for the hours the outlet alone takes to empty a full tank. Tick or clear <alert>tap B open</alert> and <alert>outlet open</alert>.</p></li>
+                            <li><p>The graph shows the fraction of the tank that is full against time: dashed for tap A alone, dotted for tap B alone, and solid with everything that is open. Press <alert>Play</alert> to watch the tank fill.</p></li>
+                            <li><p>The tank fills fastest with both taps on; open the outlet to see it slow down. Set <m>a = 4</m> and <m>b = 12</m> with the outlet closed: the tank fills in <m>3</m> hours.</p></li>
+                        </ul>
                     </p>
-                </li>
-            </ol>
-        </paragraphs>
-    </axiom> -->
+                </instructions>
+            </interactive>
+        </figure>
 
-    <!-- Add insight / key takeaway directly related to activity / learner experience -->
+        <xi:include href="../lesson-plan-templates/example-intro.ptx" />
 
-    <!-- <insight>
-    </insight> -->
-
-    <!-- Add further instruction (not in a block) to develop ideas as needed -->
-
-    <xi:include href="../lesson-plan-templates/example-intro.ptx" />
-
-    <!-- Add at least 3 examples -->
-
-    <!-- <example>
-        <statement>
-        </statement>
-        <solution>
-        </solution>
-    </example>
-
-    <example>
-        <statement>
-        </statement>
-        <solution>
-        </solution>
-    </example>
-
-    <example>
-        <statement>
-        </statement>
-        <solution>
-        </solution>
-    </example> -->
-
-    <xi:include href="../lesson-plan-templates/assessment-intro.ptx" />
-
-    <!-- If STACK questions are included, uncomment this: -->
-
-    <!-- <xi:include href="../lesson-plan-templates/checkpoint.ptx" /> -->
-
-    <!-- Add STACK exercises if made -->
-
-    <!-- Add static exercises -->
-
-    <!-- <exercises>
-        <exercise>
-            <statement>   
-
-            </statement>   
+        <example xml:id="example-two-welders">
+            <title>Two Welders</title>
+            <statement>
+                <p>Mutua can make a gate in <m>6</m> days and Njeri can make one in <m>3</m> days. How long do they take working together?</p>
+            </statement>
             <solution>
+                <p>In one day Mutua makes <m>\tfrac{1}{6}</m> of the gate and Njeri <m>\tfrac{1}{3}</m>. Together: <m>\tfrac{1}{6} + \tfrac{1}{3} = \tfrac{1}{6} + \tfrac{2}{6} = \tfrac{1}{2}</m> of the gate a day.</p>
+                <p>The time is <m>1 \div \tfrac{1}{2} = 2</m> days.</p>
+            </solution>
+        </example>
 
-            </solution>             
-        </exercise>        
-    </exercises> -->
+        <example xml:id="example-two-tractors">
+            <title>Two Tractors</title>
+            <statement>
+                <p>Tractor A ploughs a farm in <m>10</m> hours and tractor B in <m>15</m> hours. How long do they take together, and what fraction of the farm do they plough in <m>4</m> hours?</p>
+            </statement>
+            <solution>
+                <p>Together: <m>\tfrac{1}{10} + \tfrac{1}{15} = \tfrac{3}{30} + \tfrac{2}{30} = \tfrac{1}{6}</m> of the farm an hour, so <m>6</m> hours.</p>
+                <p>In <m>4</m> hours they plough <m>4 \times \tfrac{1}{6} = \tfrac{2}{3}</m> of the farm.</p>
+            </solution>
+        </example>
 
-    <!-- [LP] Add information on how to differentiate  -->
+        <example xml:id="example-one-starts-early">
+            <title>One Starts Early</title>
+            <statement>
+                <p>Kiprop can paint a hall in <m>12</m> days and Auma in <m>8</m> days. Kiprop works alone for <m>2</m> days, then Auma joins and they finish together. How many days does the whole job take?</p>
+            </statement>
+            <solution>
+                <p>In <m>2</m> days Kiprop paints <m>\tfrac{2}{12} = \tfrac{1}{6}</m> of the hall, so <m>\tfrac{5}{6}</m> is left.</p>
+                <p>Together they paint <m>\tfrac{1}{12} + \tfrac{1}{8} = \tfrac{2}{24} + \tfrac{3}{24} = \tfrac{5}{24}</m> a day, so the rest takes <m>\tfrac{5}{6} \div \tfrac{5}{24} = 4</m> days. The whole job takes <m>2 + 4 = 6</m> days.</p>
+            </solution>
+        </example>
 
-    <!-- <axiom component="lesson-plan">
-        <title>Differentiation</title>
+        <xi:include href="../lesson-plan-templates/assessment-intro.ptx" />
+        <xi:include href="../lesson-plan-templates/checkpoint.ptx" />
 
-        <table>
+        <p>Type numbers only, without Ksh, units, spaces or commas, for example <c>45326</c>. Give a fraction as a fraction, for example <c>7/12</c>, or as a decimal correct to 3 decimal places. Give times, masses and volumes exactly or correct to 1 decimal place, and money to the nearest shilling, unless the question says otherwise.</p>
+
+        <exercise xml:id="ex-two-workers-together">
+            <!--<title></title>-->
+            <stack label="stk-two-workers-together" source="stack/top/1-numbers-and-algebra/03-compound-proportions-rates-of-work-and-mixtures/03-rates-of-work/Two-workers-together.xml"/>
+        </exercise>
+
+        <exercise xml:id="ex-finishing-a-job-together">
+            <!--<title></title>-->
+            <stack label="stk-finishing-a-job-together" source="stack/top/1-numbers-and-algebra/03-compound-proportions-rates-of-work-and-mixtures/03-rates-of-work/Finishing-a-job-together.xml"/>
+        </exercise>
+
+        <exercise xml:id="ex-choose-two-working-times">
+            <!--<title></title>-->
+            <stack label="stk-choose-two-working-times" source="stack/top/1-numbers-and-algebra/03-compound-proportions-rates-of-work-and-mixtures/03-rates-of-work/Choose-two-working-times.xml"/>
+        </exercise>
+
+        <exercises xml:id="exercises-working-together">
+            <exercise xml:id="ex-together-4-and-12">
+                <statement><p>A can do a job in <m>4</m> hours and B in <m>12</m> hours. How long do they take together?</p></statement>
+                <answer><p><m>3</m> hours</p></answer>
+                <solution><p><m>\tfrac{1}{4} + \tfrac{1}{12} = \tfrac{4}{12} = \tfrac{1}{3}</m> an hour, so <m>3</m> hours.</p></solution>
+            </exercise>
+            <exercise xml:id="ex-road-crews-20-30">
+                <statement><p>Two road crews take <m>20</m> days and <m>30</m> days to do a job alone. How long do they take together, and what fraction of the job do they do in <m>5</m> days?</p></statement>
+                <answer><p><m>12</m> days; <m>\tfrac{5}{12}</m></p></answer>
+            </exercise>
+            <exercise xml:id="ex-three-workers">
+                <statement><p>Three workers take <m>6</m>, <m>10</m> and <m>15</m> days to do a job alone. How long do they take together?</p></statement>
+                <answer><p><m>3</m> days</p></answer>
+                <solution><p><m>\tfrac{1}{6} + \tfrac{1}{10} + \tfrac{1}{15} = \tfrac{5 + 3 + 2}{30} = \tfrac{1}{3}</m> a day, so <m>3</m> days.</p></solution>
+            </exercise>
+            <exercise xml:id="ex-find-b-alone">
+                <statement><p>Together A and B take <m>8</m> days to do a job. A alone takes <m>12</m> days. How long does B take alone?</p></statement>
+                <answer><p><m>24</m> days</p></answer>
+                <solution><p>B's rate is <m>\tfrac{1}{8} - \tfrac{1}{12} = \tfrac{1}{24}</m> of the job a day.</p></solution>
+            </exercise>
+            <exercise xml:id="ex-a-starts-first">
+                <statement><p>A can do a job in <m>9</m> days and B in <m>18</m> days. A works alone for <m>3</m> days, then they finish together. How many days does the job take in all?</p></statement>
+                <answer><p><m>7</m> days</p></answer>
+                <solution><p>A does <m>\tfrac{3}{9} = \tfrac{1}{3}</m>, leaving <m>\tfrac{2}{3}</m>. Together they do <m>\tfrac{1}{9} + \tfrac{1}{18} = \tfrac{1}{6}</m> a day, so <m>\tfrac{2}{3} \div \tfrac{1}{6} = 4</m> more days: <m>7</m> in all.</p></solution>
+            </exercise>
+            <exercise xml:id="ex-twice-as-fast">
+                <title>Challenge: Twice as Fast</title>
+                <statement><p>Two workers together take <m>6</m> days to do a job. One works twice as fast as the other. How long would each take alone?</p></statement>
+                <hint><p>If the slower worker does <m>r</m> of the job a day, the faster does <m>2r</m>.</p></hint>
+                <answer><p><m>9</m> days and <m>18</m> days</p></answer>
+                <solution><p><m>r + 2r = \tfrac{1}{6}</m>, so <m>r = \tfrac{1}{18}</m>. The slower takes <m>18</m> days and the faster <m>9</m> days.</p></solution>
+            </exercise>
+        </exercises>
+
+        <axiom component="lesson-plan">
             <title>Differentiation</title>
-            <tabular halign="left">
-                <row header="yes" bottom="minor">
-                    <cell>Learner Group</cell>
-                    <cell>Strategy &amp; Learning Experience</cell>
-                    <cell></cell>
-                </row>
-                <row>
-                    <cell>Struggling Learners (Support)</cell>
-                    <cell>
-                        XXXX
-                    </cell>
-                    <cell></cell>
-                </row>
-                <row>
-                    <cell>On-Level Learners (Core)</cell>
-                    <cell>
-                        <line>The core lesson activities as described above.</line>
-                    </cell>
-                    <cell></cell>
-                </row>
-                <row>
-                    <cell>Advanced Learners (Challenge)</cell>
-                    <cell>
-                        XXXX
-                    </cell>
-                    <cell></cell>
-                </row>
-            </tabular>
-        </table>
-    </axiom> -->
+            <table xml:id="table-differentiation-working-together">
+                <title>Differentiation Strategies</title>
+                <tabular halign="left" top="minor" bottom="minor" left="minor" right="minor">
+                    <row header="yes" bottom="medium"><cell>Learner Group</cell><cell>Strategy and Learning Experience</cell></row>
+                    <row><cell>Struggling Learners (Support)</cell><cell>The activity and <xref ref="example-two-welders"/>. Give a card: <q>rate <m>= 1 \div</m> time; add rates</q>. Assign <xref ref="ex-together-4-and-12"/> and <xref ref="ex-road-crews-20-30"/>.</cell></row>
+                    <row><cell>On-Level Learners (Core)</cell><cell>Full activity, the interactive and all examples. Assign <xref ref="ex-together-4-and-12"/> to <xref ref="ex-a-starts-first"/>.</cell></row>
+                    <row><cell>Advanced Learners (Challenge)</cell><cell>All exercises including <xref ref="ex-twice-as-fast"/>. Extension: three taps fill a tank in <m>2</m>, <m>3</m> and <m>6</m> hours. How long do they take together? (Answer: <m>1</m> hour.)</cell></row>
+                </tabular>
+            </table>
+        </axiom>
 
-    <xi:include href="../lesson-plan-templates/assessment-methods.ptx" />
+        <xi:include href="../lesson-plan-templates/assessment-methods.ptx" />
+        <xi:include href="../lesson-plan-templates/reflection.ptx"/>
+    </subsection>
 
-    <xi:include href="../lesson-plan-templates/reflection.ptx"/>
+    <!-- ============================================================ Lesson 3.2 -->
+    <subsection xml:id="subsec-filling-emptying-and-safe-hours">
+        <title>Filling, Emptying and Safe Working Hours</title>
+
+        <p component="lesson-plan">Upon completion of this lesson, learners will be able to:
+            <ol>
+                <li><p><alert>Know:</alert> an outlet's rate is subtracted; working hours are limited for safety.</p></li>
+                <li><p><alert>Do:</alert> find the time to fill a tank with an outlet open; find the number of drivers or workers needed under hours limits, rounding up.</p></li>
+                <li><p><alert>Apply:</alert> school water tanks and long-distance transport.</p></li>
+            </ol>
+        </p>
+
+        <axiom component="lesson-plan">
+            <title>Problem-Solving and Discovery</title>
+            <dl>
+                <li><title>Suggested Time</title><p>14 minutes</p></li>
+                <li><title>Objective</title><p>Learners plan drivers for a long-distance bus route under a safety rule and discuss why such limits exist.</p></li>
+                <li><title>Teacher's Role</title><p>Start with: <q>Have you travelled by long-distance bus? How long did the driver drive without a break?</q></p></li>
+            </dl>
+        </axiom>
+
+        <activity xml:id="act-safe-hours-on-a-long-journey">
+            <title>Safe Hours on a Long Journey</title>
+            <statement>
+                <p>A bus company runs buses from Nairobi to Mombasa, about <m>480\,\text{km}</m>, at an average speed of <m>60\,\text{km/h}</m>. The company's own rule is that a driver drives at most <m>4</m> hours without a <m>30</m>-minute rest, at most <m>8</m> hours a day, and on at most <m>5</m> days a week.</p>
+                <p>
+                    <ol marker="(a)">
+                        <li>
+                            <p>How long is the driving time from Nairobi to Mombasa?</p>
+                            <solution component="lesson-plan"><p><m>480 \div 60 = 8</m> hours.</p></solution>
+                        </li>
+                        <li>
+                            <p>With one rest after <m>4</m> hours, how long does the journey take?</p>
+                            <solution component="lesson-plan"><p><m>8\tfrac{1}{2}</m> hours.</p></solution>
+                        </li>
+                        <li>
+                            <p>The company runs <m>12</m> one-way trips a day. How many hours of driving is that a day, and how many drivers are needed each day?</p>
+                            <solution component="lesson-plan"><p><m>12 \times 8 = 96</m> hours a day, and <m>96 \div 8 = 12</m> drivers a day.</p></solution>
+                        </li>
+                        <li>
+                            <p>Drivers work <m>5</m> days a week, but the buses run every day. How many drivers does the company need?</p>
+                            <solution component="lesson-plan"><p><m>96 \times 7 = 672</m> hours a week, and one driver may drive <m>8 \times 5 = 40</m> hours. <m>672 \div 40 = 16.8</m>, so <m>17</m> drivers: <m>16</m> drivers could cover only <m>640</m> hours.</p></solution>
+                        </li>
+                        <li>
+                            <p>Why do companies and the law limit how long drivers may drive?</p>
+                            <solution component="lesson-plan"><p>Tired drivers cause crashes. Limits protect passengers, other road users and the drivers themselves: a matter of responsibility and respect for others' lives.</p></solution>
+                        </li>
+                    </ol>
+                </p>
+            </statement>
+        </activity>
+
+        <axiom component="lesson-plan">
+            <title>Structured Instruction</title>
+            <p>
+                <dl>
+                    <li><title>Suggested Time</title><p>8 minutes</p></li>
+                    <li><title>Objective</title><p>To formalise filling and emptying, and rounding up the number of workers.</p></li>
+                </dl>
+            </p>
+            <paragraphs>
+                <title>Key Takeaways &amp; Teacher Connection</title>
+                <ol>
+                    <li><p><alert>Connecting to Learner Work:</alert> part (d) gave <m>16.8</m> drivers, which must be rounded up, and the reason checked.</p></li>
+                    <li><p>For a tank: inlet rate minus outlet rate.</p></li>
+                    <li><p>Workers and drivers are always rounded up, and we say why.</p></li>
+                </ol>
+            </paragraphs>
+        </axiom>
+
+        <insight xml:id="insight-filling-and-emptying">
+            <title>Filling and Emptying</title>
+            <p>An inlet that fills a tank in <m>a</m> hours adds <m>\dfrac{1}{a}</m> of the tank each hour; an outlet that empties it in <m>c</m> hours removes <m>\dfrac{1}{c}</m>. With both open the net rate is <m>\dfrac{1}{a} - \dfrac{1}{c}</m> of the tank an hour, and the time to fill is <m>1 \div</m> (net rate). If the outlet is faster, the net rate is negative and the tank empties; if they are equally fast, the level never changes. The outlet takes away its fraction each hour.</p>
+        </insight>
+
+        <note xml:id="note-safe-working-hours">
+            <title>Safe Working Hours</title>
+            <p>Tired drivers cause many road crashes. In Kenya the law, and the National Transport and Safety Authority (NTSA), set rules on how long drivers of public service vehicles may drive; look up the current rules. The hours in this chapter are a company's own rules, invented for practice. Keeping to safe hours is part of a driver's responsibility to passengers and other road users.</p>
+        </note>
+
+        <xi:include href="../lesson-plan-templates/example-intro.ptx" />
+
+        <example xml:id="example-a-school-water-tank">
+            <title>A School Water Tank</title>
+            <statement>
+                <p>A pump fills the school's water tank in <m>5</m> hours. The kitchen taps empty the full tank in <m>20</m> hours. The tank is empty and both are turned on. How long does the tank take to fill?</p>
+            </statement>
+            <solution>
+                <p>The net rate is <m>\tfrac{1}{5} - \tfrac{1}{20} = \tfrac{4}{20} - \tfrac{1}{20} = \tfrac{3}{20}</m> of the tank an hour.</p>
+                <p>The time is <m>1 \div \tfrac{3}{20} = \tfrac{20}{3} = 6\tfrac{2}{3}</m> hours, that is <m>6</m> h <m>40</m> min. Check with <xref ref="fig-two-taps-tank"/>: set <m>a = 5</m>, clear tap B, open the outlet and set <m>c = 20</m>.</p>
+            </solution>
+        </example>
+
+        <example xml:id="example-two-inlets-and-a-drain">
+            <title>Two Inlets and a Drain</title>
+            <statement>
+                <p>Two inlets fill a tank in <m>6</m> hours and <m>4</m> hours, and a drain empties it in <m>8</m> hours. With all three open, how long does the empty tank take to fill?</p>
+            </statement>
+            <solution>
+                <p><m>\tfrac{1}{6} + \tfrac{1}{4} - \tfrac{1}{8} = \tfrac{4}{24} + \tfrac{6}{24} - \tfrac{3}{24} = \tfrac{7}{24}</m> of the tank an hour.</p>
+                <p>The time is <m>\tfrac{24}{7} \approx 3.4</m> hours (about <m>3</m> h <m>26</m> min).</p>
+            </solution>
+        </example>
+
+        <example xml:id="example-how-many-drivers">
+            <title>How Many Drivers?</title>
+            <statement>
+                <p>A transport company needs <m>250</m> hours of driving a week. Its rule is at most <m>7</m> hours a day on at most <m>5</m> days a week. How many drivers does it need? How many if the daily limit falls to <m>6</m> hours?</p>
+            </statement>
+            <solution>
+                <p>One driver may drive <m>7 \times 5 = 35</m> hours a week. <m>250 \div 35 = 7.14\ldots</m>; <m>7</m> drivers give only <m>245</m> hours, so <m>8</m> drivers are needed.</p>
+                <p>At <m>6</m> hours a day one driver gives <m>30</m> hours. <m>250 \div 30 = 8.33\ldots</m>, so <m>9</m> drivers.</p>
+            </solution>
+        </example>
+
+        <xi:include href="../lesson-plan-templates/assessment-intro.ptx" />
+        <xi:include href="../lesson-plan-templates/checkpoint.ptx" />
+
+        <p>Type numbers only, without Ksh, units, spaces or commas, for example <c>45326</c>. Give a fraction as a fraction, for example <c>7/12</c>, or as a decimal correct to 3 decimal places. Give times, masses and volumes exactly or correct to 1 decimal place, and money to the nearest shilling, unless the question says otherwise.</p>
+
+        <exercise xml:id="ex-inlet-and-outlet-claim">
+            <!--<title></title>-->
+            <stack label="stk-inlet-and-outlet-claim" source="stack/top/1-numbers-and-algebra/03-compound-proportions-rates-of-work-and-mixtures/03-rates-of-work/Inlet-and-outlet-claim.xml"/>
+        </exercise>
+
+        <exercise xml:id="ex-drivers-for-safe-working-hours">
+            <!--<title></title>-->
+            <stack label="stk-drivers-for-safe-working-hours" source="stack/top/1-numbers-and-algebra/03-compound-proportions-rates-of-work-and-mixtures/03-rates-of-work/Drivers-for-safe-working-hours.xml"/>
+        </exercise>
+
+        <exercises xml:id="exercises-filling-emptying-and-safe-hours">
+            <exercise xml:id="ex-inlet-3-outlet-12">
+                <statement><p>An inlet fills a tank in <m>3</m> hours and an outlet empties it in <m>12</m> hours. Both are opened when the tank is empty. How long does it take to fill?</p></statement>
+                <answer><p><m>4</m> hours</p></answer>
+                <solution><p><m>\tfrac{1}{3} - \tfrac{1}{12} = \tfrac{3}{12} = \tfrac{1}{4}</m> an hour.</p></solution>
+            </exercise>
+            <exercise xml:id="ex-emptying-full-tank">
+                <statement><p>A tank is full. Its inlet fills it in <m>10</m> hours and its outlet empties it in <m>6</m> hours. With both open, how long does it take to empty?</p></statement>
+                <answer><p><m>15</m> hours</p></answer>
+                <solution><p>It loses <m>\tfrac{1}{6} - \tfrac{1}{10} = \tfrac{1}{15}</m> of the tank an hour.</p></solution>
+            </exercise>
+            <exercise xml:id="ex-half-full-tank">
+                <statement><p>A tank is half full. The inlet fills an empty tank in <m>8</m> hours and the outlet empties a full one in <m>12</m> hours. With both open, how long does it take to fill?</p></statement>
+                <answer><p><m>12</m> hours</p></answer>
+                <solution><p>Net rate <m>\tfrac{1}{8} - \tfrac{1}{12} = \tfrac{1}{24}</m>, and <m>\tfrac{1}{2} \div \tfrac{1}{24} = 12</m>.</p></solution>
+            </exercise>
+            <exercise xml:id="ex-drivers-330-hours">
+                <statement><p>A company needs <m>330</m> hours of driving a week. Its drivers may drive at most <m>8</m> hours a day on <m>5</m> days a week. How many drivers does it need?</p></statement>
+                <answer><p><m>9</m> drivers</p></answer>
+                <solution><p><m>330 \div 40 = 8.25</m>; <m>8</m> drivers give only <m>320</m> hours, so <m>9</m>.</p></solution>
+            </exercise>
+            <exercise xml:id="ex-lorry-14-hours">
+                <statement><p>A lorry trip needs <m>14</m> hours of driving, and one driver may drive at most <m>8</m> hours a day. (a) How many days does the trip take with one driver? (b) How many hours does each drive if two drivers share the driving equally?</p></statement>
+                <answer><p>(a) <m>2</m> days (b) <m>7</m> hours each, so the trip can be done in one day</p></answer>
+            </exercise>
+            <exercise xml:id="ex-fill-time-formula">
+                <title>Challenge: A Formula for the Time</title>
+                <statement><p>Show that an inlet that fills a tank in <m>a</m> hours and an outlet that empties it in <m>c</m> hours fill the empty tank in <m>\dfrac{ac}{c - a}</m> hours, when <m>c \gt a</m>. What happens when <m>c \le a</m>?</p></statement>
+                <answer><p>The net rate is <m>\dfrac{c - a}{ac}</m>; if <m>c \le a</m> the tank never fills (the net rate is <m>0</m> or negative).</p></answer>
+                <solution><p><m>\dfrac{1}{a} - \dfrac{1}{c} = \dfrac{c - a}{ac}</m>, so the time is <m>\dfrac{ac}{c - a}</m>. If <m>c = a</m> the net rate is <m>0</m> and the level stays where it is; if <m>c \lt a</m> the outlet is faster and the net rate is negative: the tank never fills.</p></solution>
+            </exercise>
+        </exercises>
+
+        <axiom component="lesson-plan">
+            <title>Differentiation</title>
+            <table xml:id="table-differentiation-filling-emptying-and-safe-hours">
+                <title>Differentiation Strategies</title>
+                <tabular halign="left" top="minor" bottom="minor" left="minor" right="minor">
+                    <row header="yes" bottom="medium"><cell>Learner Group</cell><cell>Strategy and Learning Experience</cell></row>
+                    <row><cell>Struggling Learners (Support)</cell><cell><xref ref="example-a-school-water-tank"/> with the interactive. Give a card: <q>in minus out</q>. Assign <xref ref="ex-inlet-3-outlet-12"/> and <xref ref="ex-drivers-330-hours"/>.</cell></row>
+                    <row><cell>On-Level Learners (Core)</cell><cell>Full activity and all examples. Assign <xref ref="ex-inlet-3-outlet-12"/> to <xref ref="ex-lorry-14-hours"/>.</cell></row>
+                    <row><cell>Advanced Learners (Challenge)</cell><cell>All exercises including <xref ref="ex-fill-time-formula"/>. Extension: find out the current rule for the driving hours of public service vehicle drivers in Kenya, and redo the activity with it.</cell></row>
+                </tabular>
+            </table>
+        </axiom>
+
+        <xi:include href="../lesson-plan-templates/assessment-methods.ptx" />
+        <xi:include href="../lesson-plan-templates/reflection.ptx"/>
+    </subsection>
 </section>

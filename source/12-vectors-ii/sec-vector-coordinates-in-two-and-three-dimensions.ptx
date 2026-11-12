@@ -46,161 +46,298 @@
          Suggested activity: Learners use the corner of the classroom as the origin and give 3D coordinates of objects (e.g. the clock, a window corner) in metres.
          Interactive (JSXGraph): Rotatable 3D axes with a draggable point P(x, y, z); the column vector and dashed lines to each axis are shown. -->
 
-    <!-- [LP] Add guidance on activity -->
+    <!-- Section notes (2026-11)
+         SLOs: Core 2.6 (a): coordinates in 2D and 3D, moves between points as columns
+         Activity: as planning notes (the corner of the classroom as the origin; a ready-made room for classes without a tape measure)
+         JSXGraph: fig-point-in-space (assets/jsxgraph/point-in-space.js) | changed: sliders for x, y and z instead of a draggable point (a JSXGraph 1.8.0 3D point drags only within a plane); the view sliders rotate the axes
+         Key inquiry question: kiq-vectors-ii, placed in the section body (an introduction is not allowed in a section without subsections)
+         STACK: assets/stack/top/2-measurement-and-geometry/12-vectors-ii/01-vector-coordinates-in-two-and-three-dimensions/ -->
 
-    <!-- <axiom component="lesson-plan">
-            <title>Problem-Solving and Discovery</title>
-            <dl>
-                <li>
-                    <title>Suggested Time</title>
-                    <p>
-                        XX minutes
-                    </p>
-                </li>
-                <li>
-                    <title>Objective</title>
-                    <p>
-                        XXX
-                    </p>
-                </li>
-                <li>
-                    <title>Teacher's Role</title>
-                    <p>
-                        XXX
-                    </p>
-                </li>
-            </dl>
-        </axiom> -->
+    <question xml:id="kiq-vectors-ii">
+        <p><em>How do we use vectors to describe positions and movements in space?</em></p>
+    </question>
 
-    <!-- Add Activity -->
+    <p>
+        In Grade 10 you worked with vectors in a plane. A vector such as <m>\begin{pmatrix} 3 \\ -2 \end{pmatrix}</m> is a column of two numbers: a move of <m>3</m> units across and <m>2</m> units down. You wrote the position vector of a point <m>A</m> as <m>\overrightarrow{OA} = \mathbf{a}</m>, found the magnitude of a vector by Pythagoras, and found the midpoint of <m>AB</m> as <m>\frac{1}{2}(\mathbf{a} + \mathbf{b})</m>.
+    </p>
+    <p>
+        A map needs only two numbers to fix a place, but the world has height too. A drone spraying a shamba near Nakuru must know how high it is as well as where it is over the field. An engineer fixing a cable from the top of a telecom mast in Kitui to an anchor in the ground works with points that are above, beside and in front of each other. In this chapter you extend vectors to three dimensions, and then use them to divide lines in a ratio and to prove facts about shapes.
+    </p>
 
-    <!-- <activity>
+    <p component="lesson-plan">Upon completion of this lesson, learners will be able to:
+        <ol>
+            <li><p><alert>Know:</alert> a point in space needs three coordinates; the axes and the three coordinate planes; the column vector between two points lists the moves along each axis.</p></li>
+            <li><p><alert>Do:</alert> read and write coordinates in two and three dimensions, including the vertices of a cuboid and midpoints, and write the moves from one point to another as a column.</p></li>
+            <li><p><alert>Apply:</alert> locate objects in a classroom with three coordinates.</p></li>
+        </ol>
+    </p>
+
+    <axiom component="lesson-plan">
+        <title>Problem-Solving and Discovery</title>
+        <dl>
+            <li><title>Suggested Time</title><p>14 minutes</p></li>
+            <li><title>Objective</title><p>Learners describe positions in a room with three numbers and discover the need for a third coordinate.</p></li>
+            <li><title>Teacher's Role</title><p>Put learners in groups of four with a tape measure. Choose one floor corner of the room as the origin. One learner holds the tape along each floor edge from the corner and one measures heights. Groups without a tape measure use the room in the figure. After part (b), ask: <q>Two numbers fixed the clock on the wall; why does the light need three?</q></p></li>
+        </dl>
+    </axiom>
+
+    <activity xml:id="act-corner-of-the-classroom">
+        <title>The Corner of the Classroom</title>
         <statement>
+            <p>A classroom is <m>8\,\text{m}</m> long, <m>6\,\text{m}</m> wide and <m>3\,\text{m}</m> high. Take a floor corner as the origin <m>O</m>, the <m>x</m>-axis along the front wall, the <m>y</m>-axis along the side wall and the <m>z</m>-axis straight up. Distances are in metres.</p>
+            <figure xml:id="fig-classroom-corner">
+                <caption>The classroom as a box, with the origin at a floor corner.</caption>
+                <image width="60%">
+                    <shortdescription>A classroom drawn as a box 8 m along the x-axis, 6 m along the y-axis and 3 m up, with the origin O at a floor corner. The clock is at (4, 0, 2.5) on the front wall, the light at (4, 3, 3) in the middle of the ceiling, and the far ceiling corner is (8, 6, 3).</shortdescription>
+                    <latex-image>
+\tdplotsetmaincoords{70}{110}
+\begin{tikzpicture}[tdplot_main_coords, scale=0.6]
+\draw[dashed] (0,0,0) -- (8,0,0); \draw[dashed] (0,0,0) -- (0,6,0); \draw[dashed] (0,0,0) -- (0,0,3);
+\draw[->] (8,0,0) -- (10,0,0) node[anchor=north east]{$x$};
+\draw[->] (0,6,0) -- (0,8,0) node[anchor=west]{$y$};
+\draw[->] (0,0,3) -- (0,0,4.6) node[anchor=south]{$z$};
+\draw (8,0,0) -- (8,6,0) -- (0,6,0);
+\draw (8,0,0) -- (8,0,3); \draw (8,6,0) -- (8,6,3); \draw (0,6,0) -- (0,6,3);
+\draw (0,0,3) -- (8,0,3) -- (8,6,3) -- (0,6,3) -- cycle;
+\node[circle, fill, inner sep=1.3pt, label={[anchor=south east]{clock $(4, 0, 2.5)$}}] at (4,0,2.5) {};
+\node[circle, fill, inner sep=1.3pt, label={[anchor=south west]{light $(4, 3, 3)$}}] at (4,3,3) {};
+\node[circle, fill, inner sep=1.3pt, label={[anchor=south east]{$(8, 6, 3)$}}] at (8,6,3) {};
+\node[anchor=north, font=\small] at (0,0,0) {$O$};
+\node[anchor=north east] at (8,0,1.5) {$3$ m};
+\node[anchor=north] at (8,3,0) {$6$ m};
+\node[anchor=north west] at (4,6,0) {$8$ m};
+\end{tikzpicture}
+                    </latex-image>
+                </image>
+            </figure>
+            <p>
+                <ol marker="(a)">
+                    <li>
+                        <p>The clock is on the front wall, <m>4\,\text{m}</m> along from the corner and <m>2.5\,\text{m}</m> up. Write its coordinates <m>(x, y, z)</m>.</p>
+                        <solution component="lesson-plan"><p><m>(4, 0, 2.5)</m>. It is on the front wall, so it has not moved along the side wall: <m>y = 0</m>.</p></solution>
+                    </li>
+                    <li>
+                        <p>The light is at the centre of the ceiling. Write its coordinates.</p>
+                        <solution component="lesson-plan"><p><m>(4, 3, 3)</m>: half of <m>8</m>, half of <m>6</m>, and the height of the ceiling.</p></solution>
+                    </li>
+                    <li>
+                        <p>Which coordinate is <m>0</m> for every point on the floor? Which is <m>0</m> for every point on the front wall?</p>
+                        <solution component="lesson-plan"><p>On the floor <m>z = 0</m>; on the front wall <m>y = 0</m>.</p></solution>
+                    </li>
+                    <li>
+                        <p>How far must you move along each axis to go from the clock to the light? Write the three moves as a column.</p>
+                        <solution component="lesson-plan"><p><m>0</m> along <m>x</m>, <m>3</m> along <m>y</m> and <m>0.5</m> up: <m>\begin{pmatrix} 0 \\ 3 \\ 0.5 \end{pmatrix}</m>.</p></solution>
+                    </li>
+                    <li>
+                        <p>Write the coordinates of the ceiling corner farthest from the origin.</p>
+                        <solution component="lesson-plan"><p><m>(8, 6, 3)</m>.</p></solution>
+                        <note component="lesson-plan"><p>Groups who measured their own room report different numbers. Compare the reasoning, not the numbers.</p></note>
+                    </li>
+                </ol>
+            </p>
         </statement>
-    </activity> -->
+    </activity>
 
-    <!-- [LP] Add guidance on structured lesson plan-->
-
-    <!-- <axiom component="lesson-plan">
+    <axiom component="lesson-plan">
         <title>Structured Instruction</title>
         <p>
             <dl>
-            <li>
-                <title>Suggested Time</title>
-                <p>
-                    XX minutes
-                </p>
-            </li>
-            <li>
-                <title>Objective</title>
-                <p>
-                    To formalize the concepts and properties learners discovered in the anchor task.
-                </p>
-            </li>
+                <li><title>Suggested Time</title><p>8 minutes</p></li>
+                <li><title>Objective</title><p>To formalise coordinates in three dimensions and the moves between two points.</p></li>
             </dl>
         </p>
         <paragraphs>
             <title>Key Takeaways &amp; Teacher Connection</title>
             <ol>
-                <li>
-                    <p>
-                        <alert>Connecting to Learner Work:</alert> XXXX
-                    </p>
-                </li>
+                <li><p><alert>Connecting to Learner Work:</alert> part (b) needed a third number, the height; that is the <m>z</m>-coordinate.</p></li>
+                <li><p>Three axes at right angles; coordinates always in the order <m>(x, y, z)</m>.</p></li>
+                <li><p>One zero coordinate puts a point in a coordinate plane; two zeros put it on an axis.</p></li>
+                <li><p>The moves from one point to another are the end coordinates minus the start coordinates, as in the Grade 10 columns.</p></li>
             </ol>
         </paragraphs>
-    </axiom> -->
+    </axiom>
 
-    <!-- Add insight / key takeaway directly related to activity / learner experience -->
+    <insight xml:id="insight-coordinates-in-three-dimensions">
+        <title>Coordinates in Three Dimensions</title>
+        <p>
+            Three axes <m>Ox</m>, <m>Oy</m> and <m>Oz</m> meet at the origin <m>O</m>, each at right angles to the other two. Think of the <m>x</m>- and <m>y</m>-axes on the floor and the <m>z</m>-axis going up a corner of the room. The coordinates <m>(x, y, z)</m> of a point <m>P</m> tell you how far along each of the three axes you must move from <m>O</m> to reach <m>P</m>.
+        </p>
+        <p>
+            The three <term>coordinate planes</term> are the <m>xy</m>-plane (where <m>z = 0</m>), the <m>yz</m>-plane (<m>x = 0</m>) and the <m>xz</m>-plane (<m>y = 0</m>). Points on the axes have two zero coordinates: <m>(x, 0, 0)</m>, <m>(0, y, 0)</m> and <m>(0, 0, z)</m>.
+        </p>
+        <p>
+            The moves from <m>P(x_1, y_1, z_1)</m> to <m>Q(x_2, y_2, z_2)</m> form the column <md>\begin{pmatrix} x_2 - x_1 \\ y_2 - y_1 \\ z_2 - z_1 \end{pmatrix}</md> and the midpoint of <m>PQ</m> is <m>\left(\frac{x_1 + x_2}{2}, \frac{y_1 + y_2}{2}, \frac{z_1 + z_2}{2}\right)</m>, just as in two dimensions.
+        </p>
+    </insight>
 
-    <!-- <insight>
-    </insight> -->
+    <figure xml:id="fig-3d-axes-point">
+        <caption>The point <m>P(3, 4, 2)</m> and the moves along each axis that reach it.</caption>
+        <image width="55%">
+            <shortdescription>Axes x, y and z with the point P(3, 4, 2). Dashed lines drop from P to (3, 4, 0) on the floor and run from there to 3 on the x-axis and 4 on the y-axis.</shortdescription>
+            <latex-image>
+\tdplotsetmaincoords{70}{110}
+\begin{tikzpicture}[tdplot_main_coords, scale=0.9]
+\draw[->] (0,0,0) -- (5,0,0) node[anchor=north east]{$x$};
+\draw[->] (0,0,0) -- (0,5.5,0) node[anchor=west]{$y$};
+\draw[->] (0,0,0) -- (0,0,3.5) node[anchor=south]{$z$};
+\node[anchor=east] at (0,0,0) {$O$};
+\draw[dashed] (3,4,2) -- (3,4,0);
+\draw[dashed] (3,0,0) -- (3,4,0) -- (0,4,0);
+\node[circle, fill, inner sep=1.3pt, label={above right:{$P(3, 4, 2)$}}] at (3,4,2) {};
+\node[circle, fill, inner sep=1pt, label={below:{$(3, 4, 0)$}}] at (3,4,0) {};
+\node[anchor=north east] at (3,0,0) {$3$};
+\node[anchor=north] at (0,4,0) {$4$};
+\draw (0,0,2) -- ++(0.15,0,0); \node[anchor=east] at (0,0,2) {$2$};
+\end{tikzpicture}
+            </latex-image>
+        </image>
+    </figure>
 
-    <!-- Add further instruction (not in a block) to develop ideas as needed -->
+    <figure xml:id="fig-point-in-space">
+        <caption>Move the <m>x</m>, <m>y</m> and <m>z</m> sliders to move <m>P</m>. Drag the two view sliders to turn the axes. The dashed lines show how far <m>P</m> is along each axis.</caption>
+        <interactive xml:id="interactive-point-in-space" platform="jsxgraph" width="90%" aspect="16:12" source="jsxgraph/point-in-space.js">
+            <slate xml:id="jsxgraph-point-in-space" surface="jsxboard" aspect="16:12"/>
+            <instructions>
+                <p>
+                    <ul>
+                        <li><p>Set the <alert>x</alert>, <alert>y</alert> and <alert>z</alert> sliders to <m>3</m>, <m>4</m> and <m>2</m> to show the point of <xref ref="fig-3d-axes-point"/>.</p></li>
+                        <li><p>Set <alert>z</alert> to <m>0</m>. Which coordinate plane is <m>P</m> in now? Then set <alert>y</alert> to <m>0</m> as well: where is <m>P</m>?</p></li>
+                        <li><p>Drag the horizontal and vertical view sliders to look at <m>P</m> from another direction. The coordinates do not change.</p></li>
+                    </ul>
+                </p>
+            </instructions>
+        </interactive>
+    </figure>
 
     <xi:include href="../lesson-plan-templates/example-intro.ptx" />
 
-    <!-- Add at least 3 examples -->
-
-    <!-- <example>
+    <example xml:id="example-vertices-of-a-cuboid">
+        <title>Vertices of a Cuboid</title>
         <statement>
+            <p>A cuboid <m>OABCDEFG</m> has <m>O</m> at the origin, <m>OA = 5</m> along the <m>x</m>-axis, <m>OC = 3</m> along the <m>y</m>-axis and <m>OD = 2</m> up the <m>z</m>-axis. Its base is <m>OABC</m>, and <m>D</m>, <m>E</m>, <m>F</m>, <m>G</m> are above <m>O</m>, <m>A</m>, <m>B</m>, <m>C</m>. This cuboid is labelled from the origin <m>O</m>, unlike the <m>ABCDEFGH</m> labelling used in Three Dimensional Geometry (<xref ref="fig-lines-in-a-cuboid"/>). Write down the coordinates of all eight vertices.</p>
         </statement>
         <solution>
+            <p>The base is on the floor, so its vertices have <m>z = 0</m>: <m>O(0, 0, 0)</m>, <m>A(5, 0, 0)</m>, <m>B(5, 3, 0)</m> and <m>C(0, 3, 0)</m>. <m>B</m> is <m>5</m> along <m>x</m> and <m>3</m> along <m>y</m>.</p>
+            <p>Each top vertex is <m>2</m> above the vertex below it, so it has the same <m>x</m> and <m>y</m> and <m>z = 2</m>. For example, <m>E</m> is above <m>A</m>, so <m>x = 5</m>, <m>y = 0</m>, <m>z = 2</m>. The top vertices are <m>D(0, 0, 2)</m>, <m>E(5, 0, 2)</m>, <m>F(5, 3, 2)</m> and <m>G(0, 3, 2)</m>.</p>
+            <figure xml:id="fig-cuboid-coordinates">
+                <caption>The cuboid <m>OABCDEFG</m> with the coordinates of its vertices.</caption>
+                <image width="60%">
+                    <shortdescription>Cuboid OABCDEFG with O at the origin: A(5, 0, 0), B(5, 3, 0), C(0, 3, 0), D(0, 0, 2), E(5, 0, 2), F(5, 3, 2), G(0, 3, 2). Edges hidden behind the box are dashed.</shortdescription>
+                    <latex-image>
+\tdplotsetmaincoords{70}{110}
+\begin{tikzpicture}[tdplot_main_coords, scale=0.9]
+\draw[->] (5,0,0) -- (7,0,0) node[anchor=north east]{$x$};
+\draw[->] (0,3,0) -- (0,5,0) node[anchor=west]{$y$};
+\draw[->] (0,0,2) -- (0,0,3.5) node[anchor=south]{$z$};
+\draw[dashed] (0,0,0) -- (5,0,0); \draw[dashed] (0,0,0) -- (0,3,0); \draw[dashed] (0,0,0) -- (0,0,2);
+\draw (5,0,0) -- (5,3,0) -- (0,3,0);
+\draw (5,0,0) -- (5,0,2); \draw (5,3,0) -- (5,3,2); \draw (0,3,0) -- (0,3,2);
+\draw (0,0,2) -- (5,0,2) -- (5,3,2) -- (0,3,2) -- cycle;
+\node[anchor=north east, font=\small] at (0,0,0) {$O(0, 0, 0)$};
+\node[anchor=north east] at (5,0,0) {$A(5, 0, 0)$};
+\node[anchor=north west] at (5,3,0) {$B(5, 3, 0)$};
+\node[anchor=north west] at (0,3,0) {$C(0, 3, 0)$};
+\node[anchor=south east] at (0,0,2) {$D(0, 0, 2)$};
+\node[anchor=east] at (5,0,2) {$E(5, 0, 2)$};
+\node[anchor=south west] at (5,3,2) {$F(5, 3, 2)$};
+\node[anchor=south west] at (0,3,2) {$G(0, 3, 2)$};
+\end{tikzpicture}
+                    </latex-image>
+                </image>
+            </figure>
         </solution>
     </example>
 
-    <example>
+    <example xml:id="example-box-away-from-origin">
+        <title>A Box Away from the Origin</title>
         <statement>
+            <p>A carton stands on the floor with one bottom corner at <m>(3, 1, 0)</m>. Its edges are <m>4</m> units along the <m>x</m>-axis, <m>3</m> along the <m>y</m>-axis and <m>2</m> up. Find the coordinates of the opposite corner, and of the centre of the top face.</p>
         </statement>
         <solution>
+            <p>Start at <m>(3, 1, 0)</m> and move <m>4</m> along <m>x</m>, <m>3</m> along <m>y</m> and <m>2</m> up: the opposite corner is <m>(3 + 4, 1 + 3, 0 + 2) = (7, 4, 2)</m>.</p>
+            <p>The centre of the top face is the midpoint of the top diagonal from <m>(3, 1, 2)</m> to <m>(7, 4, 2)</m>: <md>\left(\frac{3 + 7}{2}, \frac{1 + 4}{2}, \frac{2 + 2}{2}\right) = (5, 2.5, 2)</md></p>
         </solution>
     </example>
 
-    <example>
+    <example xml:id="example-moves-between-points">
+        <title>Moving from One Point to Another</title>
         <statement>
+            <p>Write as a column the moves (a) from <m>A(1, 4)</m> to <m>B(6, 1)</m>; (b) from <m>P(2, -1, 3)</m> to <m>Q(5, 1, -1)</m>; (c) from <m>Q</m> back to <m>P</m>.</p>
         </statement>
         <solution>
+            <p>Subtract the start coordinates from the end coordinates.</p>
+            <p>(a) <m>\begin{pmatrix} 6 - 1 \\ 1 - 4 \end{pmatrix} = \begin{pmatrix} 5 \\ -3 \end{pmatrix}</m>, as in Grade 10.</p>
+            <p>(b) <m>\begin{pmatrix} 5 - 2 \\ 1 - (-1) \\ -1 - 3 \end{pmatrix} = \begin{pmatrix} 3 \\ 2 \\ -4 \end{pmatrix}</m>.</p>
+            <p>(c) Going back reverses every move: <m>\begin{pmatrix} -3 \\ -2 \\ 4 \end{pmatrix}</m>.</p>
         </solution>
-    </example> -->
+    </example>
 
     <xi:include href="../lesson-plan-templates/assessment-intro.ptx" />
+    <xi:include href="../lesson-plan-templates/checkpoint.ptx" />
 
-    <!-- If STACK questions are included, uncomment this: -->
+    <p>Type each coordinate in its own box. Decimals are typed with a point, for example <c>2.5</c>.</p>
 
-    <!-- <xi:include href="../lesson-plan-templates/checkpoint.ptx" /> -->
+    <exercise xml:id="ex-coordinates-of-the-vertices-of-a-cuboid">
+        <!--<title></title>-->
+        <stack label="stk-coordinates-of-the-vertices-of-a-cuboid" source="stack/top/2-measurement-and-geometry/12-vectors-ii/01-vector-coordinates-in-two-and-three-dimensions/Coordinates-of-the-vertices-of-a-cuboid.xml"/>
+    </exercise>
 
-    <!-- Add STACK exercises if made -->
+    <exercise xml:id="ex-points-on-the-axes-and-coordinate-planes">
+        <!--<title></title>-->
+        <stack label="stk-points-on-the-axes-and-coordinate-planes" source="stack/top/2-measurement-and-geometry/12-vectors-ii/01-vector-coordinates-in-two-and-three-dimensions/Points-on-the-axes-and-coordinate-planes.xml"/>
+    </exercise>
 
-    <!-- Add static exercises -->
+    <exercises xml:id="exercises-coordinates-in-three-dimensions">
+        <exercise xml:id="ex-write-coordinates">
+            <statement>
+                <p>Write the coordinates of each point.
+                    <ol marker="(a)">
+                        <li><p><m>4</m> units along the <m>x</m>-axis, <m>2</m> along the <m>y</m>-axis and <m>5</m> up.</p></li>
+                        <li><p>On the <m>z</m>-axis, <m>3</m> units below <m>O</m>.</p></li>
+                        <li><p>In the <m>xz</m>-plane, <m>2</m> along the <m>x</m>-axis and <m>6</m> up.</p></li>
+                    </ol>
+                </p>
+            </statement>
+            <answer><p>(a) <m>(4, 2, 5)</m> (b) <m>(0, 0, -3)</m> (c) <m>(2, 0, 6)</m></p></answer>
+        </exercise>
+        <exercise xml:id="ex-cube-vertices">
+            <statement><p>A cube of edge <m>6</m> has <m>O</m> as one vertex and three edges along the positive axes. List the coordinates of its eight vertices.</p></statement>
+            <answer><p><m>(0, 0, 0)</m>, <m>(6, 0, 0)</m>, <m>(6, 6, 0)</m>, <m>(0, 6, 0)</m>, <m>(0, 0, 6)</m>, <m>(6, 0, 6)</m>, <m>(6, 6, 6)</m>, <m>(0, 6, 6)</m></p></answer>
+        </exercise>
+        <exercise xml:id="ex-moves-between-points">
+            <statement><p>Write the moves from <m>A(3, -2, 1)</m> to <m>B(-1, 4, 6)</m> as a column.</p></statement>
+            <answer><p><m>\begin{pmatrix} -4 \\ 6 \\ 5 \end{pmatrix}</m></p></answer>
+        </exercise>
+        <exercise xml:id="ex-water-tank-corners">
+            <statement><p>A water tank at a school in Kisumu is a cuboid <m>3\,\text{m}</m> along the <m>x</m>-axis, <m>2\,\text{m}</m> along the <m>y</m>-axis and <m>1.5\,\text{m}</m> high. One bottom corner is at <m>(2, 1, 0)</m> and the tank lies in the positive directions from it. Give the coordinates of its four top corners.</p></statement>
+            <answer><p><m>(2, 1, 1.5)</m>, <m>(5, 1, 1.5)</m>, <m>(5, 3, 1.5)</m>, <m>(2, 3, 1.5)</m></p></answer>
+        </exercise>
+        <exercise xml:id="ex-point-from-midpoint">
+            <statement><p><m>M(3, 1, 4)</m> is the midpoint of <m>AB</m>, and <m>A</m> is <m>(1, -2, 5)</m>. Find <m>B</m>.</p></statement>
+            <answer><p><m>B(5, 4, 3)</m></p></answer>
+            <solution><p>The moves from <m>A</m> to <m>M</m> are <m>\begin{pmatrix} 2 \\ 3 \\ -1 \end{pmatrix}</m>. <m>B</m> is the same moves on from <m>M</m>: <m>(3 + 2, 1 + 3, 4 - 1) = (5, 4, 3)</m>.</p></solution>
+        </exercise>
+        <exercise xml:id="ex-two-possible-cubes">
+            <title>Challenge: Two Possible Cubes</title>
+            <statement><p>A cube has vertices at <m>(3, 2, 0)</m>, <m>(8, 2, 0)</m> and <m>(3, 7, 0)</m>. Find the other five vertices.</p></statement>
+            <hint><p>Is there only one such cube?</p></hint>
+            <answer><p><m>(8, 7, 0)</m>, and either <m>(3, 2, 5)</m>, <m>(8, 2, 5)</m>, <m>(8, 7, 5)</m>, <m>(3, 7, 5)</m>, or the same four points with <m>z = -5</m>.</p></answer>
+            <solution><p>The three given vertices lie in the <m>xy</m>-plane, and the edges from <m>(3, 2, 0)</m> are <m>5</m> long, so one face is the square with fourth corner <m>(8, 7, 0)</m>. The cube can stand on this square, with its other face at <m>z = 5</m>, or hang below it, with its other face at <m>z = -5</m>. Both cubes have edge <m>5</m>, so there are two answers.</p></solution>
+        </exercise>
+    </exercises>
 
-    <!-- <exercises>
-        <exercise>
-            <statement>   
-
-            </statement>   
-            <solution>
-
-            </solution>             
-        </exercise>        
-    </exercises> -->
-
-    <!-- [LP] Add information on how to differentiate  -->
-
-    <!-- <axiom component="lesson-plan">
+    <axiom component="lesson-plan">
         <title>Differentiation</title>
-
-        <table>
-            <title>Differentiation</title>
-            <tabular halign="left">
-                <row header="yes" bottom="minor">
-                    <cell>Learner Group</cell>
-                    <cell>Strategy &amp; Learning Experience</cell>
-                    <cell></cell>
-                </row>
-                <row>
-                    <cell>Struggling Learners (Support)</cell>
-                    <cell>
-                        XXXX
-                    </cell>
-                    <cell></cell>
-                </row>
-                <row>
-                    <cell>On-Level Learners (Core)</cell>
-                    <cell>
-                        <line>The core lesson activities as described above.</line>
-                    </cell>
-                    <cell></cell>
-                </row>
-                <row>
-                    <cell>Advanced Learners (Challenge)</cell>
-                    <cell>
-                        XXXX
-                    </cell>
-                    <cell></cell>
-                </row>
+        <table xml:id="table-differentiation-coordinates-in-three-dimensions">
+            <title>Differentiation Strategies</title>
+            <tabular halign="left" top="minor" bottom="minor" left="minor" right="minor">
+                <row header="yes" bottom="medium"><cell>Learner Group</cell><cell>Strategy and Learning Experience</cell></row>
+                <row><cell>Struggling Learners (Support)</cell><cell>Focus on activity parts (a) to (c) with a printed diagram of the room. Give a card: <q><m>x</m> along, <m>y</m> across, <m>z</m> up</q>. Assign <xref ref="ex-write-coordinates"/> and <xref ref="ex-cube-vertices"/>.</cell></row>
+                <row><cell>On-Level Learners (Core)</cell><cell>Full activity plus all examples. Assign <xref ref="ex-write-coordinates"/> to <xref ref="ex-point-from-midpoint"/>.</cell></row>
+                <row><cell>Advanced Learners (Challenge)</cell><cell>All exercises including <xref ref="ex-two-possible-cubes"/>. Extension: give the coordinates of the centre of the cube in <xref ref="ex-cube-vertices"/>. (Answer: <m>(3, 3, 3)</m>.)</cell></row>
             </tabular>
         </table>
-    </axiom> -->
+    </axiom>
 
     <xi:include href="../lesson-plan-templates/assessment-methods.ptx" />
 

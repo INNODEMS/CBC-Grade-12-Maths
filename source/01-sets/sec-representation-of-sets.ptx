@@ -45,161 +45,198 @@
          Content summary: Representing sets by listing (roster method) and by set-builder notation.
          Suggested activity: In pairs, learners describe the set of learners in the class born in a given month, first by listing names and then in set-builder form. -->
 
-    <!-- [LP] Add guidance on activity -->
+    <!-- Section notes (2026-11)
+         SLO: Core and Essential 1.1 (b). One lesson.
+         Activity: as planning notes (learners born in a given month, listed and then in set-builder form)
+         STACK: assets/stack/top/1-numbers-and-algebra/01-sets/02-representation-of-sets/ -->
 
-    <!-- <axiom component="lesson-plan">
-            <title>Problem-Solving and Discovery</title>
-            <dl>
-                <li>
-                    <title>Suggested Time</title>
-                    <p>
-                        XX minutes
-                    </p>
-                </li>
-                <li>
-                    <title>Objective</title>
-                    <p>
-                        XXX
-                    </p>
-                </li>
-                <li>
-                    <title>Teacher's Role</title>
-                    <p>
-                        XXX
-                    </p>
-                </li>
-            </dl>
-        </axiom> -->
+    <p component="lesson-plan">Upon completion of this lesson, learners will be able to:
+        <ol>
+            <li><p><alert>Know:</alert> three ways to describe a set (in words, by listing, in set-builder notation); dots for a pattern; natural numbers, whole numbers and integers.</p></li>
+            <li><p><alert>Do:</alert> list a set from its rule, write a rule for a listed set, and list sets given by inequalities.</p></li>
+            <li><p><alert>Apply:</alert> class registers and birthdays.</p></li>
+        </ol>
+    </p>
 
-    <!-- Add Activity -->
+    <axiom component="lesson-plan">
+        <title>Problem-Solving and Discovery</title>
+        <dl>
+            <li><title>Suggested Time</title><p>14 minutes</p></li>
+            <li><title>Objective</title><p>Learners describe the same set by a list and by a rule.</p></li>
+            <li><title>Teacher's Role</title><p>Put the table of birth months on the board, or collect the class's own months. Pairs write the set of learners born in June in two ways, then compare.</p></li>
+        </dl>
+    </axiom>
 
-    <!-- <activity>
+    <activity xml:id="act-born-in-the-same-month">
+        <title>Born in the Same Month</title>
         <statement>
+            <p>Ten learners in a group gave the months in which they were born.</p>
+            <table xml:id="table-birth-months">
+                <title>Birth Months of Ten Learners</title>
+                <tabular halign="left" top="minor" bottom="minor" left="minor" right="minor">
+                    <row header="yes" bottom="medium"><cell>Learner</cell><cell>Month</cell><cell>Learner</cell><cell>Month</cell></row>
+                    <row><cell>Atieno</cell><cell>March</cell><cell>Faraji</cell><cell>June</cell></row>
+                    <row><cell>Baraka</cell><cell>June</cell><cell>Gathoni</cell><cell>August</cell></row>
+                    <row><cell>Chebet</cell><cell>June</cell><cell>Halima</cell><cell>November</cell></row>
+                    <row><cell>Daudi</cell><cell>November</cell><cell>Imani</cell><cell>March</cell></row>
+                    <row><cell>Esther</cell><cell>March</cell><cell>Jabari</cell><cell>October</cell></row>
+                </tabular>
+            </table>
+            <p>
+                <ol marker="(a)">
+                    <li>
+                        <p>List <m>J</m>, the set of learners in the group born in June.</p>
+                        <solution component="lesson-plan"><p><m>J = \{\text{Baraka}, \text{Chebet}, \text{Faraji}\}</m>.</p></solution>
+                    </li>
+                    <li>
+                        <p>Write <m>J</m> as a rule, in the form <m>\{x : \ldots\}</m>.</p>
+                        <solution component="lesson-plan"><p><m>J = \{x : x \text{ is a learner in the group born in June}\}</m>.</p></solution>
+                    </li>
+                    <li>
+                        <p>List <m>M</m>, the learners born in March, and give <m>n(M)</m>.</p>
+                        <solution component="lesson-plan"><p><m>M = \{\text{Atieno}, \text{Esther}, \text{Imani}\}</m>; <m>n(M) = 3</m>.</p></solution>
+                    </li>
+                    <li>
+                        <p>List the learners in the group born in January.</p>
+                        <solution component="lesson-plan"><p>Nobody: the set is <m>\{\ \}</m>, a set with no elements.</p></solution>
+                    </li>
+                </ol>
+            </p>
         </statement>
-    </activity> -->
+    </activity>
 
-    <!-- [LP] Add guidance on structured lesson plan-->
-
-    <!-- <axiom component="lesson-plan">
+    <axiom component="lesson-plan">
         <title>Structured Instruction</title>
         <p>
             <dl>
-            <li>
-                <title>Suggested Time</title>
-                <p>
-                    XX minutes
-                </p>
-            </li>
-            <li>
-                <title>Objective</title>
-                <p>
-                    To formalize the concepts and properties learners discovered in the anchor task.
-                </p>
-            </li>
+                <li><title>Suggested Time</title><p>8 minutes</p></li>
+                <li><title>Objective</title><p>To formalise the three ways of describing a set and set-builder notation.</p></li>
             </dl>
         </p>
         <paragraphs>
             <title>Key Takeaways &amp; Teacher Connection</title>
             <ol>
-                <li>
-                    <p>
-                        <alert>Connecting to Learner Work:</alert> XXXX
-                    </p>
-                </li>
+                <li><p><alert>Connecting to Learner Work:</alert> parts (a) and (b) describe the same set <m>J</m> by a list and by a rule.</p></li>
+                <li><p>In set-builder notation, the colon is read <q>such that</q>, and the kind of number is always stated.</p></li>
+                <li><p>Dots show a pattern that goes on, or a long list whose middle is left out.</p></li>
             </ol>
         </paragraphs>
-    </axiom> -->
+    </axiom>
 
-    <!-- Add insight / key takeaway directly related to activity / learner experience -->
+    <insight xml:id="insight-three-ways-to-describe-a-set">
+        <title>Three Ways to Describe a Set</title>
+        <p>A set can be described in three ways.
+            <ul>
+                <li><p>In words: <m>E</m> is the set of odd numbers between <m>20</m> and <m>28</m>.</p></li>
+                <li><p>By listing (the roster method): <m>E = \{21, 23, 25, 27\}</m>.</p></li>
+                <li><p>In <term>set-builder notation</term>: <m>E = \{x : x \text{ is an odd number}, 20 \lt x \lt 28\}</m>, read <q>the set of all <m>x</m> such that <m>x</m> is an odd number and <m>x</m> is between <m>20</m> and <m>28</m></q>.</p></li>
+            </ul>
+        </p>
+        <p>Dots show a pattern: <m>\{6, 12, 18, \ldots\}</m> goes on for ever, while <m>\{1, 2, \ldots, 100\}</m> stops at <m>100</m>. Some books write a vertical bar instead of the colon: <m>\{x \mid x \gt 2\}</m>.</p>
+    </insight>
 
-    <!-- <insight>
-    </insight> -->
+    <note xml:id="note-kinds-of-numbers">
+        <title>Kinds of Numbers</title>
+        <p>
+            <ul>
+                <li><p><term>Natural numbers</term>: <m>1, 2, 3, \ldots</m></p></li>
+                <li><p><term>Whole numbers</term>: <m>0, 1, 2, 3, \ldots</m></p></li>
+                <li><p><term>Integers</term>: <m>\ldots, -2, -1, 0, 1, 2, \ldots</m></p></li>
+            </ul>
+        </p>
+        <p>In this book, <q>between <m>a</m> and <m>b</m></q> leaves out <m>a</m> and <m>b</m>. Always say which kind of number a rule uses.</p>
+    </note>
 
-    <!-- Add further instruction (not in a block) to develop ideas as needed -->
+    <p>The colon in <m>\{x : \ldots\}</m> joins the list of symbols in <xref ref="note-set-symbols"/>: it is read <q>such that</q>.</p>
 
     <xi:include href="../lesson-plan-templates/example-intro.ptx" />
 
-    <!-- Add at least 3 examples -->
-
-    <!-- <example>
+    <example xml:id="example-from-a-rule-to-a-list">
+        <title>From a Rule to a List</title>
         <statement>
+            <p>List the elements of <m>\{x : x \text{ is an integer}, -5 \lt x \le -1\}</m>.</p>
         </statement>
         <solution>
+            <p><m>-5</m> is left out (the sign is <m>\lt</m>) and <m>-1</m> is included (the sign is <m>\le</m>). So the set is <m>\{-4, -3, -2, -1\}</m>.</p>
         </solution>
     </example>
 
-    <example>
+    <example xml:id="example-from-a-list-to-a-rule">
+        <title>From a List to a Rule</title>
         <statement>
+            <p>Write each set in set-builder notation: (a) <m>\{6, 12, 18, \ldots\}</m>; (b) <m>\{10, 20, 30, 40, 50\}</m>.</p>
         </statement>
         <solution>
+            <p>(a) <m>\{x : x \text{ is a positive multiple of } 6\}</m>. (b) <m>\{x : x \text{ is a multiple of } 10, 0 \lt x \le 50\}</m>. Other correct rules are possible.</p>
         </solution>
     </example>
 
-    <example>
+    <example xml:id="example-a-rule-with-an-inequality">
+        <title>A Rule with an Inequality</title>
         <statement>
+            <p>List the elements of <m>\{x : x \text{ is a whole number}, 5x - 4 \lt 18\}</m>.</p>
         </statement>
         <solution>
+            <p>Solve the inequality first: <m>5x \lt 22</m>, so <m>x \lt 4.4</m>. The whole numbers less than <m>4.4</m> are <m>0, 1, 2, 3, 4</m>, so the set is <m>\{0, 1, 2, 3, 4\}</m>.</p>
         </solution>
-    </example> -->
+    </example>
 
     <xi:include href="../lesson-plan-templates/assessment-intro.ptx" />
+    <xi:include href="../lesson-plan-templates/checkpoint.ptx" />
 
-    <!-- If STACK questions are included, uncomment this: -->
+    <p>Type a set inside curly brackets with commas between the elements, for example <c>{2, 5, 9}</c>. On most phone keyboards the curly brackets are on the second page of symbols: tap <c>?123</c> (or <c>123</c>), then <c>=\&lt;</c> (or <c>#+=</c>). Type the empty set as <c>{}</c>. Type a count as a whole number.</p>
 
-    <!-- <xi:include href="../lesson-plan-templates/checkpoint.ptx" /> -->
+    <exercise xml:id="ex-from-set-builder-notation-to-a-list">
+        <!--<title></title>-->
+        <stack label="stk-from-set-builder-notation-to-a-list" source="stack/top/1-numbers-and-algebra/01-sets/02-representation-of-sets/From-set-builder-notation-to-a-list.xml"/>
+    </exercise>
 
-    <!-- Add STACK exercises if made -->
+    <exercise xml:id="ex-find-the-mistake-in-a-listed-set">
+        <!--<title></title>-->
+        <stack label="stk-find-the-mistake-in-a-listed-set" source="stack/top/1-numbers-and-algebra/01-sets/02-representation-of-sets/Find-the-mistake-in-a-listed-set.xml"/>
+    </exercise>
 
-    <!-- Add static exercises -->
+    <exercises xml:id="exercises-representation-of-sets">
+        <exercise xml:id="ex-integers-minus-six">
+            <statement><p>List the elements of <m>\{x : x \text{ is an integer}, -6 \le x \lt -2\}</m>.</p></statement>
+            <answer><p><m>\{-6, -5, -4, -3\}</m></p></answer>
+        </exercise>
+        <exercise xml:id="ex-natural-fifteen-minus-two-x">
+            <statement><p>List the elements of <m>\{x : x \text{ is a natural number}, 15 - 2x \gt 0\}</m>.</p></statement>
+            <answer><p><m>\{1, 2, 3, 4, 5, 6, 7\}</m></p></answer>
+            <solution><p><m>15 - 2x \gt 0</m> gives <m>2x \lt 15</m>, so <m>x \lt 7.5</m>. The natural numbers less than <m>7.5</m> are <m>1</m> to <m>7</m>.</p></solution>
+        </exercise>
+        <exercise xml:id="ex-multiples-of-seven-rule">
+            <statement><p>Write <m>\{7, 14, 21, 28, 35\}</m> in set-builder notation.</p></statement>
+            <answer><p>For example <m>\{x : x \text{ is a multiple of } 7, 0 \lt x \le 35\}</m>. Other correct rules are accepted.</p></answer>
+        </exercise>
+        <exercise xml:id="ex-primes-fifty-to-seventy">
+            <statement><p>List the elements of <m>\{x : x \text{ is a prime number}, 50 \lt x \lt 70\}</m>.</p></statement>
+            <answer><p><m>\{53, 59, 61, 67\}</m></p></answer>
+        </exercise>
+        <exercise xml:id="ex-odd-from-three">
+            <statement><p>Write <m>\{3, 5, 7, 9, \ldots\}</m> in set-builder notation. Does the set have a last element?</p></statement>
+            <answer><p><m>\{x : x \text{ is an odd number}, x \ge 3\}</m>. No: the odd numbers go on for ever.</p></answer>
+        </exercise>
+        <exercise xml:id="ex-two-rules-one-set">
+            <title>Challenge: Two Rules, One Set</title>
+            <statement><p>Give two different set-builder descriptions of <m>\{1, 4, 7, 10, 13\}</m>.</p></statement>
+            <answer><p>For example <m>\{x : x \text{ is a natural number less than } 14 \text{ that leaves remainder } 1 \text{ when divided by } 3\}</m> and <m>\{3n + 1 : n \text{ is a whole number}, n \le 4\}</m>.</p></answer>
+        </exercise>
+    </exercises>
 
-    <!-- <exercises>
-        <exercise>
-            <statement>   
-
-            </statement>   
-            <solution>
-
-            </solution>             
-        </exercise>        
-    </exercises> -->
-
-    <!-- [LP] Add information on how to differentiate  -->
-
-    <!-- <axiom component="lesson-plan">
+    <axiom component="lesson-plan">
         <title>Differentiation</title>
-
-        <table>
-            <title>Differentiation</title>
-            <tabular halign="left">
-                <row header="yes" bottom="minor">
-                    <cell>Learner Group</cell>
-                    <cell>Strategy &amp; Learning Experience</cell>
-                    <cell></cell>
-                </row>
-                <row>
-                    <cell>Struggling Learners (Support)</cell>
-                    <cell>
-                        XXXX
-                    </cell>
-                    <cell></cell>
-                </row>
-                <row>
-                    <cell>On-Level Learners (Core)</cell>
-                    <cell>
-                        <line>The core lesson activities as described above.</line>
-                    </cell>
-                    <cell></cell>
-                </row>
-                <row>
-                    <cell>Advanced Learners (Challenge)</cell>
-                    <cell>
-                        XXXX
-                    </cell>
-                    <cell></cell>
-                </row>
+        <table xml:id="table-differentiation-representation-of-sets">
+            <title>Differentiation Strategies</title>
+            <tabular halign="left" top="minor" bottom="minor" left="minor" right="minor">
+                <row header="yes" bottom="medium"><cell>Learner Group</cell><cell>Strategy and Learning Experience</cell></row>
+                <row><cell>Struggling Learners (Support)</cell><cell>Work through the activity, <xref ref="example-from-a-rule-to-a-list"/> and <xref ref="example-a-rule-with-an-inequality"/>. Give a card: <q>natural <m>1, 2, 3, \ldots</m>; whole <m>0, 1, 2, \ldots</m>; integers <m>\ldots, -1, 0, 1, \ldots</m></q>. Assign <xref ref="ex-integers-minus-six"/> and <xref ref="ex-primes-fifty-to-seventy"/>.</cell></row>
+                <row><cell>On-Level Learners (Core)</cell><cell>Full activity and all examples. Assign <xref ref="ex-integers-minus-six"/> to <xref ref="ex-odd-from-three"/>.</cell></row>
+                <row><cell>Advanced Learners (Challenge)</cell><cell>All exercises including <xref ref="ex-two-rules-one-set"/>. Extension: describe the set of all learners in your class in three different ways.</cell></row>
             </tabular>
         </table>
-    </axiom> -->
+    </axiom>
 
     <xi:include href="../lesson-plan-templates/assessment-methods.ptx" />
 

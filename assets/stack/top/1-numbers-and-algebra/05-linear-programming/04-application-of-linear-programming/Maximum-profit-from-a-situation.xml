@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<quiz>
+<question type="stack">
+  <name><text>Maximum profit from a situation</text></name>
+  <questiontext format="html">
+    <text><![CDATA[<p>{@E[1]@}</p><p>Type \(\le\) as <code>&lt;=</code> and \(\ge\) as <code>&gt;=</code>, for example <code>4x+9y&lt;=72</code>. Use the letters x and y as defined in the question.</p><p>(a) Write the inequality for {@rw1@}.</p><div>[[input:ans1]] [[validation:ans1]] [[feedback:prt1]]</div><p>(b) Write the inequality for {@rw2@}.</p><div>[[input:ans2]] [[validation:ans2]] [[feedback:prt2]]</div><p>(c) Find the whole-number plan that gives the greatest profit. \(x =\) [[input:ans3]] [[validation:ans3]] \(y =\) [[input:ans4]] [[validation:ans4]]</p><div>[[feedback:prt3]]</div><p>(d) The greatest profit is Ksh [[input:ans5]] [[validation:ans5]] [[feedback:prt4]]</p>]]></text>
+  </questiontext>
+  <generalfeedback format="html">
+    <text><![CDATA[<p>(a) \({@ta1@}\) (b) \({@ta2@}\), with \(x \ge 0\), \(y \ge 0\) and whole numbers.</p><p>(c) The boundary lines meet at the vertex \({@vd@}\), the best corner of R for \(P = {@pp@}x + {@pq@}y\). [[if test='isint']]It is a whole-number point, so it is the answer.[[else]]It is not a whole-number point, so test the whole-number points of R around it and check every constraint.[[/if]] The best plan is \(x = {@bst[1]@}\), \(y = {@bst[2]@}\).</p><p>(d) \(P = {@pp@} \times {@bst[1]@} + {@pq@} \times {@bst[2]@} = {@t@}\), so the greatest profit is Ksh \({@thou(t)@}\).</p>]]></text>
+  </generalfeedback>
+  <defaultgrade>4</defaultgrade>
+  <penalty>0.1</penalty>
+  <hidden>0</hidden>
+  <idnumber></idnumber>
+  <stackversion><text>2026063000</text></stackversion>
+  <questionvariables>
+    <text><![CDATA[/* Design: two inequalities and the most profitable whole-number plan. Source: adapted from SMP Book 5 (Metric), Chapter 8, Exercise B, question 5. Vertex whole on 4 entries, a fraction on 6; the best plan lies within 2 of the vertex.
+   trp: the vertex rounded to the nearest whole numbers (non-whole vertex), or one more of the first item (whole vertex): always outside R.
+   tv2: profit at the vertex (non-whole) or at the far vertex on the x-axis (whole). */
+/* lincan(q): canonical form of a linear inequality in x and y: [strict?, [a, b, c]] meaning a*x + b*y + c (< or <=) 0 */
+lincan(q) := block([r, d, s], r: op(q), d: expand(lhs(q) - rhs(q)),
+    if r = ">" or r = ">=" then d: -d,
+    s: is(r = "<" or r = ">"),
+    [s, map(lambda([t], float(t)), [coeff(d, x), coeff(d, y), subst([x = 0, y = 0], d)])]);
+lpar(u, v) := is(abs(u[1]*v[2] - u[2]*v[1]) + abs(u[1]*v[3] - u[3]*v[1]) + abs(u[2]*v[3] - u[3]*v[2]) < 1/10^9 * (abs(u[1]) + abs(u[2]) + abs(u[3])) * (abs(v[1]) + abs(v[2]) + abs(v[3])));
+ldot(u, v) := u[1]*v[1] + u[2]*v[2] + u[3]*v[3];
+/* lcls(L, T): "same" region; "dir" same boundary, other side, same strictness; "strict" same side, other strictness; "both"; "other" */
+lcls(L, T) := block([l: lincan(L), t: lincan(T)],
+    if not lpar(l[2], t[2]) then "other"
+    elseif ldot(l[2], t[2]) > 0 then (if l[1] = t[1] then "same" else "strict")
+    elseif l[1] = t[1] then "dir" else "both");
+/* the validator: an inequality in x and y, linear */
+validate_ineq(ex) := block([e: ev(ex, simp), d],
+    if atom(e) or not member(op(e), ["<", "<=", ">", ">="]) then
+        "Type an inequality using <, <=, > or >=, for example 2*x+3*y<=60. An equation with = is not an inequality."
+    elseif listofvars(e) = [] or not every(lambda([v], member(v, [x, y])), listofvars(e)) then "Use only the letters x and y."
+    else (d: ev(expand(lhs(e) - rhs(e)), simp),
+          if not ev(polynomialp(d, [x, y]), simp) then
+              "This inequality should be linear: only numbers times x and y, added or subtracted."
+          elseif ev(hipow(d, x), simp) > 1 or ev(hipow(d, y), simp) > 1 or not freeof(x, ev(coeff(d, y), simp)) then
+              "This inequality should be linear: no powers or products of x and y." else ""));
+/* mkineq([a, b, rel, c]): the inequality a*x + b*y rel c */
+mkineq(L) := if L[3] = "<=" then L[1]*x + L[2]*y <= L[4] elseif L[3] = "<" then L[1]*x + L[2]*y < L[4]
+    elseif L[3] = ">=" then L[1]*x + L[2]*y >= L[4] else L[1]*x + L[2]*y > L[4];
+Q41L: [["A furniture workshop in Thika makes \\(x\\) sofas and \\(y\\) armchairs a week. Carpentry (in hours): each of the sofas needs \\(3\\) and each of the armchairs needs \\(7\\); \\(66\\) are available. Upholstery (in hours): each of the sofas needs \\(9\\) and each of the armchairs needs \\(2\\); \\(65\\) are available. The profit is Ksh \\(9000\\) on each of the sofas and Ksh \\(8000\\) on each of the armchairs.",[3,7,"<=",66],[9,2,"<=",65],9000,8000,[5,7],101000,false,[6,7],107000,"3 \\times 6 + 7 \\times 7 = 67 \\gt 66",[-1,-1],"sofas","armchairs","carpentry","upholstery","(\\frac{17}{3}, 7)",["hours of carpentry","hours of upholstery"],[3,9],[7,2]],
+["A farmer in Narok buys \\(x\\) goats and \\(y\\) sheep to fatten for market. Grazing land (in acres): each of the goats needs \\(4\\) and each of the sheep needs \\(9\\); \\(78\\) are available. Money for vaccines (in hundred shillings): each of the goats needs \\(7\\) and each of the sheep needs \\(5\\); \\(72\\) are available. The profit is Ksh \\(9000\\) on each of the goats and Ksh \\(7000\\) on each of the sheep.",[4,9,"<=",78],[7,5,"<=",72],9000,7000,[6,6],96000,true,[7,6],648000/7,"4 \\times 7 + 9 \\times 6 = 82 \\gt 78",[-1,-1],"goats","sheep","grazing land","money for vaccines","(6, 6)",["acres of grazing land","hundred shillings of money for vaccines"],[4,7],[9,5]],
+["A beadwork artist in Kajiado makes \\(x\\) pairs of earrings and \\(y\\) bracelets a week. Beads (in hundreds): each of the pairs of earrings needs \\(1\\) and each of the bracelets needs \\(9\\); \\(77\\) are available. Time (in hours): each of the pairs of earrings needs \\(9\\) and each of the bracelets needs \\(1\\); \\(69\\) are available. The profit is Ksh \\(400\\) on each of the pairs of earrings and Ksh \\(500\\) on each of the bracelets.",[1,9,"<=",77],[9,1,"<=",69],400,500,[5,8],6000,false,[7,8],6620,"1 \\times 7 + 9 \\times 8 = 79 \\gt 77",[6,7],"pairs of earrings","bracelets","beads","time","(6.8, 7.8)",["hundreds of beads","hours of time"],[1,1],[9,9]],
+["A garage in Kakamega repairs \\(x\\) bicycles and \\(y\\) motorbikes a week. Mechanic time (in hours): each of the bicycles repaired needs \\(3\\) and each of the motorbikes repaired needs \\(7\\); \\(79\\) are available. Spare parts budget (in thousand shillings): each of the bicycles repaired needs \\(9\\) and each of the motorbikes repaired needs \\(1\\); \\(52\\) are available. The profit is Ksh \\(700\\) on each of the bicycles repaired and Ksh \\(500\\) on each of the motorbikes repaired.",[3,7,"<=",79],[9,1,"<=",52],700,500,[4,9],7300,false,[5,9],7950,"9 \\times 5 + 1 \\times 9 = 54 \\gt 52",[-1,-1],"bicycles repaired","motorbikes repaired","mechanic time","spare parts budget","(4.75, 9.25)",["hours of mechanic time","thousand shillings of spare parts budget"],[3,9],[7,1]],
+["A mattress maker in Nakuru makes \\(x\\) mattresses and \\(y\\) pillows a day. Foam (in units): each of the mattresses needs \\(3\\) and each of the pillows needs \\(8\\); \\(42\\) are available. Sewing time (in hours): each of the mattresses needs \\(8\\) and each of the pillows needs \\(3\\); \\(57\\) are available. The profit is Ksh \\(900\\) on each of the mattresses and Ksh \\(500\\) on each of the pillows.",[3,8,"<=",42],[8,3,"<=",57],900,500,[6,3],6900,true,[7,3],12825/2,"3 \\times 7 + 8 \\times 3 = 45 \\gt 42",[-1,-1],"mattresses","pillows","foam","sewing time","(6, 3)",["units of foam","hours of sewing time"],[3,3],[8,8]],
+["A solar shop in Garissa assembles \\(x\\) solar lamps and \\(y\\) phone chargers a week. Assembly time (in hours): each of the solar lamps needs \\(3\\) and each of the phone chargers needs \\(8\\); \\(52\\) are available. Testing time (in hours): each of the solar lamps needs \\(7\\) and each of the phone chargers needs \\(2\\); \\(68\\) are available. The profit is Ksh \\(900\\) on each of the solar lamps and Ksh \\(700\\) on each of the phone chargers.",[3,8,"<=",52],[7,2,"<=",68],900,700,[9,2],9500,false,[9,3],10160,"7 \\times 9 + 2 \\times 3 = 69 \\gt 68",[8,3],"solar lamps","phone chargers","assembly time","testing time","(8.8, 3.2)",["hours of assembly time","hours of testing time"],[3,7],[8,2]],
+["A youth group in Kibera makes \\(x\\) bags of charcoal briquettes and \\(y\\) bags of cooking pellets a week. Sawdust (in kg): each of the bags of charcoal briquettes needs \\(2\\) and each of the bags of cooking pellets needs \\(7\\); \\(72\\) are available. Drying space (in square metres): each of the bags of charcoal briquettes needs \\(8\\) and each of the bags of cooking pellets needs \\(1\\); \\(72\\) are available. The profit is Ksh \\(80\\) on each of the bags of charcoal briquettes and Ksh \\(90\\) on each of the bags of cooking pellets.",[2,7,"<=",72],[8,1,"<=",72],80,90,[8,8],1360,true,[9,8],720,"2 \\times 9 + 7 \\times 8 = 74 \\gt 72",[-1,-1],"bags of charcoal briquettes","bags of cooking pellets","sawdust","drying space","(8, 8)",["kg of sawdust","square metres of drying space"],[2,8],[7,1]],
+["A carpenter in Nyeri makes \\(x\\) school desks and \\(y\\) lockers a week. Timber (in planks): each of the school desks needs \\(3\\) and each of the lockers needs \\(7\\); \\(66\\) are available. Painting time (in hours): each of the school desks needs \\(9\\) and each of the lockers needs \\(1\\); \\(42\\) are available. The profit is Ksh \\(700\\) on each of the school desks and Ksh \\(200\\) on each of the lockers.",[3,7,"<=",66],[9,1,"<=",42],700,200,[4,6],4000,false,[4,8],4220,"3 \\times 4 + 7 \\times 8 = 68 \\gt 66",[3,7],"school desks","lockers","timber","painting time","(3.8, 7.8)",["planks of timber","hours of painting time"],[3,9],[7,1]],
+["A dairy cooperative in Ol Kalou packs \\(x\\) crates of milk and \\(y\\) crates of yoghurt a day. Milk (in hundred litres): each of the crates of milk needs \\(1\\) and each of the crates of yoghurt needs \\(7\\); \\(32\\) are available. Cooling space (in units): each of the crates of milk needs \\(4\\) and each of the crates of yoghurt needs \\(7\\); \\(51\\) are available. The profit is Ksh \\(200\\) on each of the crates of milk and Ksh \\(500\\) on each of the crates of yoghurt.",[1,7,"<=",32],[4,7,"<=",51],200,500,[7,3],2900,false,[6,4],3100,"1 \\times 6 + 7 \\times 4 = 34 \\gt 32",[6,3],"crates of milk","crates of yoghurt","milk","cooling space","(\\frac{19}{3}, \\frac{11}{3})",["hundred litres of milk","units of cooling space"],[1,4],[7,7]],
+["A leather worker in Kisumu makes \\(x\\) pairs of sandals and \\(y\\) leather belts a week. Leather (in cut pieces): each of the pairs of sandals needs \\(4\\) and each of the leather belts needs \\(7\\); \\(62\\) are available. Stitching time (in hours): each of the pairs of sandals needs \\(7\\) and each of the leather belts needs \\(1\\); \\(41\\) are available. The profit is Ksh \\(50\\) on each of the pairs of sandals and Ksh \\(60\\) on each of the leather belts.",[4,7,"<=",62],[7,1,"<=",41],50,60,[5,6],610,true,[6,6],2050/7,"4 \\times 6 + 7 \\times 6 = 66 \\gt 62",[-1,-1],"pairs of sandals","leather belts","leather","stitching time","(5, 6)",["cut pieces of leather","hours of stitching time"],[4,1],[7,7]]];
+ix: 1+rand(10);
+E: Q41L[ix];
+a1: E[2][1]; b1: E[2][2]; c1: E[2][4]; a2: E[3][1]; b2: E[3][2]; c2: E[3][4];
+pp: E[4]; pq: E[5]; bst: E[6]; t: E[7]; isint: E[8]; trp: E[9]; tv2: E[10]; brkd: E[11]; fl: E[12]; i1: E[13]; i2: E[14]; rw1: E[15]; rw2: E[16]; vd: E[17]; un: E[18];
+ta1: a1*x+b1*y<=c1; ta2: a2*x+b2*y<=c2;
+/* mixed conditions: a column of the two sentences (another mix where that column equals a row) */
+col1: E[19][1]*x+E[19][2]*y<=c1; col2: E[20][1]*x+E[20][2]*y<=c2;
+sw1: b1*x+a1*y<=c1; sw2: b2*x+a2*y<=c2;
+dr1: a1*x+b1*y>=c1; dr2: a2*x+b2*y>=c2;
+Pof(u, w) := pp*u + pq*w;
+ptrp: Pof(trp[1], trp[2]);
+validate_int(ex) := if integerp(ev(ex, simp)) then "" else "Type whole numbers.";
+g3(v) := block([q,r], if v < 1000 then string(v) else (q: floor(v/1000), r: v - 1000*q, sconcat(g3(q), "\\,", if r < 10 then "00" elseif r < 100 then "0" else "", string(r))));
+thou(v) := if abs(v) < 10000 then string(v) else g3(v);
+]]></text>
+  </questionvariables>
+  <specificfeedback format="html"><text><![CDATA[]]></text></specificfeedback>
+  <questionnote format="moodle_auto_format">
+    <text>ix={@ix@}, best ({@bst[1]@}, {@bst[2]@}), P={@t@}</text>
+  </questionnote>
+  <questiondescription format="html"><text><![CDATA[<p id="concept">Linear Programming: maximum profit from a situation</p><p id="description">Grade 12 CBE Core 1.4 (d) / Essential 1.4 (d): Write two resource constraints from a situation, then find the whole-number plan with the greatest profit and that profit.</p><p id="edition">Core and Essential</p><p id="provenance">This question is adapted from Chapter 8, Exercise B, question 5 of School Mathematics Project, SMP Book 5 (Metric), ed. P. G. Bowie, Cambridge University Press, 1969: two inequalities from a situation and the most profitable whole-number plan, with Kenyan contexts and new numbers.</p><p id="citation">INNODEMS CBC Grade 12 Mathematics, first draft by Ben Davies, 2026. Aligned to the KICD Senior School Curriculum Design, Core and Essential Mathematics Grade 12 (draft).</p>]]></text></questiondescription>
+  <questionsimplify>1</questionsimplify>
+  <assumepositive>0</assumepositive>
+  <assumereal>0</assumereal>
+  <prtcorrect format="html"><text><![CDATA[[[commonstring key="symbolicprtcorrectfeedback"/]] [[commonstring key="defaultprtcorrectfeedback"/]]]]></text></prtcorrect>
+  <prtpartiallycorrect format="html"><text><![CDATA[[[commonstring key="symbolicprtpartiallycorrectfeedback"/]] [[commonstring key="defaultprtpartiallycorrectfeedback"/]]]]></text></prtpartiallycorrect>
+  <prtincorrect format="html"><text><![CDATA[[[commonstring key="symbolicprtincorrectfeedback"/]] [[commonstring key="defaultprtincorrectfeedback"/]]]]></text></prtincorrect>
+  <decimals>.</decimals>
+  <scientificnotation>*10</scientificnotation>
+  <multiplicationsign>none</multiplicationsign>
+  <sqrtsign>1</sqrtsign>
+  <complexno>i</complexno>
+  <inversetrig>cos-1</inversetrig>
+  <logicsymbol>lang</logicsymbol>
+  <matrixparens>[</matrixparens>
+  <isbroken>0</isbroken>
+  <variantsselectionseed></variantsselectionseed>
+
+  <input><name>ans1</name><type>algebraic</type><tans>ta1</tans><boxsize>18</boxsize><strictsyntax>1</strictsyntax><insertstars>4</insertstars><syntaxhint></syntaxhint><syntaxattribute>0</syntaxattribute><forbidwords></forbidwords><allowwords></allowwords><forbidfloat>0</forbidfloat><requirelowestterms>0</requirelowestterms><checkanswertype>0</checkanswertype><mustverify>0</mustverify><showvalidation>1</showvalidation><options>validator:validate_ineq</options></input>
+  <input><name>ans2</name><type>algebraic</type><tans>ta2</tans><boxsize>18</boxsize><strictsyntax>1</strictsyntax><insertstars>4</insertstars><syntaxhint></syntaxhint><syntaxattribute>0</syntaxattribute><forbidwords></forbidwords><allowwords></allowwords><forbidfloat>0</forbidfloat><requirelowestterms>0</requirelowestterms><checkanswertype>0</checkanswertype><mustverify>0</mustverify><showvalidation>1</showvalidation><options>validator:validate_ineq</options></input>
+  <input><name>ans3</name><type>numerical</type><tans>bst[1]</tans><boxsize>4</boxsize><strictsyntax>1</strictsyntax><insertstars>0</insertstars><syntaxhint></syntaxhint><syntaxattribute>0</syntaxattribute><forbidwords></forbidwords><allowwords></allowwords><forbidfloat>1</forbidfloat><requirelowestterms>0</requirelowestterms><checkanswertype>0</checkanswertype><mustverify>0</mustverify><showvalidation>0</showvalidation><options>validator:validate_int</options></input>
+  <input><name>ans4</name><type>numerical</type><tans>bst[2]</tans><boxsize>4</boxsize><strictsyntax>1</strictsyntax><insertstars>0</insertstars><syntaxhint></syntaxhint><syntaxattribute>0</syntaxattribute><forbidwords></forbidwords><allowwords></allowwords><forbidfloat>1</forbidfloat><requirelowestterms>0</requirelowestterms><checkanswertype>0</checkanswertype><mustverify>0</mustverify><showvalidation>0</showvalidation><options>validator:validate_int</options></input>
+  <input><name>ans5</name><type>numerical</type><tans>t</tans><boxsize>8</boxsize><strictsyntax>1</strictsyntax><insertstars>0</insertstars><syntaxhint></syntaxhint><syntaxattribute>0</syntaxattribute><forbidwords></forbidwords><allowwords></allowwords><forbidfloat>0</forbidfloat><requirelowestterms>0</requirelowestterms><checkanswertype>0</checkanswertype><mustverify>0</mustverify><showvalidation>0</showvalidation><options></options></input>
+
+  <prt><name>prt1</name><value>1.0000000</value><autosimplify>1</autosimplify><feedbackstyle>1</feedbackstyle><feedbackvariables><text><![CDATA[k1: lcls(ans1, ta1); q1: lcls(ans1, col1); w1: lcls(ans1, sw1);]]></text></feedbackvariables>
+    <node><name>0</name><description>Inequality 1</description><answertest>AlgEquiv</answertest><sans>k1</sans><tans>"same"</tans><testoptions></testoptions><quiet>0</quiet><truescoremode>=</truescoremode><truescore>1.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt1-1-T</trueanswernote><truefeedback format="html"><text><![CDATA[]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>1</falsenextnode><falseanswernote>prt1-1-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>1</name><description>Numbers from the other condition</description><answertest>AlgEquiv</answertest><sans>q1</sans><tans>"same"</tans><testoptions></testoptions><quiet>0</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt1-2-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>You mixed the two conditions. Each condition gives one inequality: for {@rw1@} it uses the two numbers in that sentence only.</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>2</falsenextnode><falseanswernote>prt1-2-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>2</name><description>Letters swapped</description><answertest>AlgEquiv</answertest><sans>w1</sans><tans>"same"</tans><testoptions></testoptions><quiet>0</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt1-3-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>You matched the numbers to the wrong letters: \(x\) counts the {@i1@}.</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>3</falsenextnode><falseanswernote>prt1-3-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>3</name><description>Wrong direction</description><answertest>AlgEquiv</answertest><sans>k1</sans><tans>"dir"</tans><testoptions></testoptions><quiet>0</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt1-4-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>Your inequality says the amount used is \({@c1@}\) or more. The amount available is the most that can be used.</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>-1</falsenextnode><falseanswernote>prt1-4-F</falseanswernote><falsefeedback format="html"><text><![CDATA[<p>For {@rw1@}: multiply the amount for one item by its letter, add, and compare with the amount available.</p>]]></text></falsefeedback></node>
+  </prt>
+  <prt><name>prt2</name><value>1.0000000</value><autosimplify>1</autosimplify><feedbackstyle>1</feedbackstyle><feedbackvariables><text><![CDATA[k2: lcls(ans2, ta2); q2: lcls(ans2, col2); w2: lcls(ans2, sw2);]]></text></feedbackvariables>
+    <node><name>0</name><description>Inequality 2</description><answertest>AlgEquiv</answertest><sans>k2</sans><tans>"same"</tans><testoptions></testoptions><quiet>0</quiet><truescoremode>=</truescoremode><truescore>1.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt2-1-T</trueanswernote><truefeedback format="html"><text><![CDATA[]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>1</falsenextnode><falseanswernote>prt2-1-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>1</name><description>Numbers from the other condition</description><answertest>AlgEquiv</answertest><sans>q2</sans><tans>"same"</tans><testoptions></testoptions><quiet>0</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt2-2-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>You mixed the two conditions. Each condition gives one inequality: for {@rw2@} it uses the two numbers in that sentence only.</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>2</falsenextnode><falseanswernote>prt2-2-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>2</name><description>Letters swapped</description><answertest>AlgEquiv</answertest><sans>w2</sans><tans>"same"</tans><testoptions></testoptions><quiet>0</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt2-3-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>You matched the numbers to the wrong letters: \(x\) counts the {@i1@}.</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>3</falsenextnode><falseanswernote>prt2-3-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>3</name><description>Wrong direction</description><answertest>AlgEquiv</answertest><sans>k2</sans><tans>"dir"</tans><testoptions></testoptions><quiet>0</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt2-4-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>Your inequality says the amount used is \({@c2@}\) or more. The amount available is the most that can be used.</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>-1</falsenextnode><falseanswernote>prt2-4-F</falseanswernote><falsefeedback format="html"><text><![CDATA[<p>For {@rw2@}: multiply the amount for one item by its letter, add, and compare with the amount available.</p>]]></text></falsefeedback></node>
+  </prt>
+  <prt><name>prt3</name><value>1.0000000</value><autosimplify>1</autosimplify><feedbackstyle>1</feedbackstyle><feedbackvariables><text><![CDATA[inR: is(a1*ans3 + b1*ans4 <= c1 and a2*ans3 + b2*ans4 <= c2 and ans3 >= 0 and ans4 >= 0);]]></text></feedbackvariables>
+    <node><name>0</name><description>Plan satisfies both conditions</description><answertest>AlgEquiv</answertest><sans>inR</sans><tans>true</tans><testoptions></testoptions><quiet>0</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>2</truenextnode><trueanswernote>prt3-1-T</trueanswernote><truefeedback format="html"><text><![CDATA[]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>1</falsenextnode><falseanswernote>prt3-1-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>1</name><description>Next to the vertex, outside R</description><answertest>AlgEquiv</answertest><sans>[ans3, ans4]</sans><tans>trp</tans><testoptions></testoptions><quiet>1</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt3-2-T</trueanswernote><truefeedback format="html"><text><![CDATA[[[if test='isint']]<p>\(({@trp[1]@}, {@trp[2]@})\) is next to the vertex, but outside R: \({@brkd@}\).</p>[[else]]<p>\(({@trp[1]@}, {@trp[2]@})\) is the vertex rounded to the nearest whole numbers, but it is outside R: \({@brkd@}\). Try the whole-number points round the vertex.</p>[[/if]]]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>-1</falsenextnode><falseanswernote>prt3-2-F</falseanswernote><falsefeedback format="html"><text><![CDATA[<p>Your plan breaks a condition: it needs \({@a1*ans3+b1*ans4@}\) {@un[1]@} (there are \({@c1@}\)) and \({@a2*ans3+b2*ans4@}\) {@un[2]@} (there are \({@c2@}\)).</p>]]></text></falsefeedback></node>
+    <node><name>2</name><description>Best plan</description><answertest>AlgEquiv</answertest><sans>Pof(ans3, ans4)</sans><tans>t</tans><testoptions></testoptions><quiet>0</quiet><truescoremode>=</truescoremode><truescore>1.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt3-3-T</trueanswernote><truefeedback format="html"><text><![CDATA[]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>3</falsenextnode><falseanswernote>prt3-3-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>3</name><description>Rounded down</description><answertest>AlgEquiv</answertest><sans>[ans3, ans4]</sans><tans>fl</tans><testoptions></testoptions><quiet>1</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt3-4-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>\(({@fl[1]@}, {@fl[2]@})\) is in R, but rounding both numbers down loses profit: another nearby plan gives more.</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>-1</falsenextnode><falseanswernote>prt3-4-F</falseanswernote><falsefeedback format="html"><text><![CDATA[<p>Your plan is in R and gives Ksh \({@Pof(ans3, ans4)@}\); a plan near the vertex gives more.</p>]]></text></falsefeedback></node>
+  </prt>
+  <prt><name>prt4</name><value>1.0000000</value><autosimplify>1</autosimplify><feedbackstyle>1</feedbackstyle><feedbackvariables><text><![CDATA[]]></text></feedbackvariables>
+    <node><name>0</name><description>Greatest profit</description><answertest>NumAbsolute</answertest><sans>ans5</sans><tans>t</tans><testoptions>0.501</testoptions><quiet>0</quiet><truescoremode>=</truescoremode><truescore>1.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt4-1-T</trueanswernote><truefeedback format="html"><text><![CDATA[]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>1</falsenextnode><falseanswernote>prt4-1-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>1</name><description>Profit at a vertex</description><answertest>NumAbsolute</answertest><sans>ans5</sans><tans>tv2</tans><testoptions>0.501</testoptions><quiet>0</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt4-2-T</trueanswernote><truefeedback format="html"><text><![CDATA[[[if test='isint']]<p>That is the profit at the far vertex on the \(x\)-axis, which is not the best corner.</p>[[else]]<p>That is the profit at the vertex, which is not a whole-number plan.</p>[[/if]]]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>2</falsenextnode><falseanswernote>prt4-2-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>2</name><description>Follow-through</description><answertest>NumAbsolute</answertest><sans>ans5</sans><tans>Pof(ans3, ans4)</tans><testoptions>0.501</testoptions><quiet>0</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt4-3-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>That is the profit for your plan in (c), but your plan is not the best.</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>-1</falsenextnode><falseanswernote>prt4-3-F</falseanswernote><falsefeedback format="html"><text><![CDATA[<p>That is not the profit for your plan in (c), which is \({@pp@} \times {@ans3@} + {@pq@} \times {@ans4@}\). Work it out again, and check that your plan is the best one.</p>]]></text></falsefeedback></node>
+  </prt>
+
+  <deployedseed>4</deployedseed>
+  <deployedseed>5</deployedseed>
+  <deployedseed>15</deployedseed>
+  <deployedseed>8</deployedseed>
+  <deployedseed>24</deployedseed>
+  <deployedseed>1</deployedseed>
+  <deployedseed>3</deployedseed>
+  <deployedseed>10</deployedseed>
+  <deployedseed>2</deployedseed>
+  <deployedseed>17</deployedseed>
+  <qtest><testcase>1</testcase><description>Correct</description>
+    <testinput><name>ans1</name><value>ta1</value></testinput>
+    <testinput><name>ans2</name><value>ta2</value></testinput>
+    <testinput><name>ans3</name><value>bst[1]</value></testinput>
+    <testinput><name>ans4</name><value>bst[2]</value></testinput>
+    <testinput><name>ans5</name><value>t</value></testinput>
+    <expected><name>prt1</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt1-1-T</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt2-1-T</expectedanswernote></expected>
+    <expected><name>prt3</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt3-1-T | prt3-3-T</expectedanswernote></expected>
+    <expected><name>prt4</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt4-1-T</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>2</testcase><description>Equivalent forms</description>
+    <testinput><name>ans1</name><value>2*a1*x+2*b1*y&lt;=2*c1</value></testinput>
+    <testinput><name>ans2</name><value>c2&gt;=a2*x+b2*y</value></testinput>
+    <testinput><name>ans3</name><value>bst[1]</value></testinput>
+    <testinput><name>ans4</name><value>bst[2]</value></testinput>
+    <testinput><name>ans5</name><value>t</value></testinput>
+    <expected><name>prt1</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt1-1-T</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt2-1-T</expectedanswernote></expected>
+    <expected><name>prt3</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt3-1-T | prt3-3-T</expectedanswernote></expected>
+    <expected><name>prt4</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt4-1-T</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>3</testcase><description>Conditions mixed; next to the vertex outside R; its profit</description>
+    <testinput><name>ans1</name><value>col1</value></testinput>
+    <testinput><name>ans2</name><value>col2</value></testinput>
+    <testinput><name>ans3</name><value>trp[1]</value></testinput>
+    <testinput><name>ans4</name><value>trp[2]</value></testinput>
+    <testinput><name>ans5</name><value>ptrp</value></testinput>
+    <expected><name>prt1</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt1-1-F | prt1-2-T</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt2-1-F | prt2-2-T</expectedanswernote></expected>
+    <expected><name>prt3</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt3-1-F | prt3-2-T</expectedanswernote></expected>
+    <expected><name>prt4</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt4-1-F | prt4-2-F | prt4-3-T</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>4</testcase><description>Letters swapped; origin; profit at a vertex</description>
+    <testinput><name>ans1</name><value>sw1</value></testinput>
+    <testinput><name>ans2</name><value>sw2</value></testinput>
+    <testinput><name>ans3</name><value>0</value></testinput>
+    <testinput><name>ans4</name><value>0</value></testinput>
+    <testinput><name>ans5</name><value>tv2</value></testinput>
+    <expected><name>prt1</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt1-1-F | prt1-2-F | prt1-3-T</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt2-1-F | prt2-2-F | prt2-3-T</expectedanswernote></expected>
+    <expected><name>prt3</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt3-1-T | prt3-3-F | prt3-4-F</expectedanswernote></expected>
+    <expected><name>prt4</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt4-1-F | prt4-2-T</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>5</testcase><description>Wrong direction; breaks a condition; generic profit</description>
+    <testinput><name>ans1</name><value>dr1</value></testinput>
+    <testinput><name>ans2</name><value>dr2</value></testinput>
+    <testinput><name>ans3</name><value>0</value></testinput>
+    <testinput><name>ans4</name><value>c1</value></testinput>
+    <testinput><name>ans5</name><value>t+100</value></testinput>
+    <expected><name>prt1</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt1-1-F | prt1-2-F | prt1-3-F | prt1-4-T</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt2-1-F | prt2-2-F | prt2-3-F | prt2-4-T</expectedanswernote></expected>
+    <expected><name>prt3</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt3-1-F | prt3-2-F</expectedanswernote></expected>
+    <expected><name>prt4</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt4-1-F | prt4-2-F | prt4-3-F</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>6</testcase><description>Letters swapped with another number: generic</description>
+    <testinput><name>ans1</name><value>a1*y+b1*x&lt;=c1+1</value></testinput>
+    <testinput><name>ans2</name><value>ta2</value></testinput>
+    <testinput><name>ans3</name><value>bst[1]</value></testinput>
+    <testinput><name>ans4</name><value>bst[2]</value></testinput>
+    <testinput><name>ans5</name><value>t</value></testinput>
+    <expected><name>prt1</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt1-1-F | prt1-2-F | prt1-3-F | prt1-4-F</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt2-1-T</expectedanswernote></expected>
+    <expected><name>prt3</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt3-1-T | prt3-3-T</expectedanswernote></expected>
+    <expected><name>prt4</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt4-1-T</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>7</testcase><description>Invalid: an expression in (a)</description>
+    <testinput><name>ans1</name><value>a1*x+b1*y</value></testinput>
+    <testinput><name>ans2</name><value>ta2</value></testinput>
+    <testinput><name>ans3</name><value>bst[1]</value></testinput>
+    <testinput><name>ans4</name><value>bst[2]</value></testinput>
+    <testinput><name>ans5</name><value>t</value></testinput>
+    <expected><name>prt1</name><expectedscore></expectedscore><expectedpenalty></expectedpenalty><expectedanswernote>NULL</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt2-1-T</expectedanswernote></expected>
+    <expected><name>prt3</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt3-1-T | prt3-3-T</expectedanswernote></expected>
+    <expected><name>prt4</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt4-1-T</expectedanswernote></expected>
+  </qtest>
+</question>
+</quiz>

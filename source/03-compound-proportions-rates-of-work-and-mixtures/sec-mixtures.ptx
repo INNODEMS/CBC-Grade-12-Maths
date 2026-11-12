@@ -39,7 +39,7 @@
                 <li component="lesson-plan">
                     <title>Estimated Duration</title>
                     <p>
-                        40 minutes
+                        2 lessons of 40 minutes
                     </p>
                 </li>
             </dl>
@@ -51,163 +51,398 @@
          Content summary: Mixtures: finding ratios, quantities and costs of components in a mixture.
          Suggested activity: Learners mix water and milk (or maize and beans) in different ratios and calculate the cost per kg/litre of each mixture using local market prices. -->
 
-    <!-- [LP] Add guidance on activity -->
+    <!-- Section notes (2026-11)
+         SLO: Core 1.3 (d), (e), (f); Essential 1.2 (e), (f), (g). Lessons 4.1 and 4.2 as subsections.
+         Activity: as planning notes (mixing maize and beans, or milk and water, and costing per kg or litre at local prices)
+         STACK: assets/stack/top/1-numbers-and-algebra/03-compound-proportions-rates-of-work-and-mixtures/04-mixtures/ -->
 
-    <!-- <axiom component="lesson-plan">
+    <!-- ============================================================ Lesson 4.1 -->
+    <subsection xml:id="subsec-mixtures-in-a-ratio">
+        <title>Mixtures in a Ratio</title>
+
+        <p component="lesson-plan">Upon completion of this lesson, learners will be able to:
+            <ol>
+                <li><p><alert>Know:</alert> the components of a mixture made in a ratio; the cost of 1 kg or 1 litre of a mixture.</p></li>
+                <li><p><alert>Do:</alert> find the components; find the cost per kilogram or per litre; explain why the mean price is usually wrong.</p></li>
+                <li><p><alert>Apply:</alert> githeri, chai, uji flour, animal feed and fertiliser.</p></li>
+            </ol>
+        </p>
+
+        <axiom component="lesson-plan">
             <title>Problem-Solving and Discovery</title>
             <dl>
-                <li>
-                    <title>Suggested Time</title>
-                    <p>
-                        XX minutes
-                    </p>
-                </li>
-                <li>
-                    <title>Objective</title>
-                    <p>
-                        XXX
-                    </p>
-                </li>
-                <li>
-                    <title>Teacher's Role</title>
-                    <p>
-                        XXX
-                    </p>
-                </li>
+                <li><title>Suggested Time</title><p>14 minutes</p></li>
+                <li><title>Objective</title><p>Learners mix and cost maize and beans at local prices and find when the mean of the two prices gives the right cost.</p></li>
+                <li><title>Teacher's Role</title><p>If learners know today's prices at the local market, use them; otherwise use the prices in the activity.</p></li>
             </dl>
-        </axiom> -->
+        </axiom>
 
-    <!-- Add Activity -->
-
-    <!-- <activity>
-        <statement>
-        </statement>
-    </activity> -->
-
-    <!-- [LP] Add guidance on structured lesson plan-->
-
-    <!-- <axiom component="lesson-plan">
-        <title>Structured Instruction</title>
-        <p>
-            <dl>
-            <li>
-                <title>Suggested Time</title>
+        <activity xml:id="act-costing-githeri">
+            <title>Costing Githeri</title>
+            <statement>
+                <p>Maize costs Ksh <m>55</m> a kilogram and beans Ksh <m>150</m> a kilogram.</p>
                 <p>
-                    XX minutes
+                    <ol marker="(a)">
+                        <li>
+                            <p>Mix <m>3\,\text{kg}</m> of maize with <m>1\,\text{kg}</m> of beans. What does the mix cost, and what does 1 kg of it cost?</p>
+                            <solution component="lesson-plan"><p><m>3 \times 55 + 150 = 315</m>, so Ksh <m>315</m> for <m>4\,\text{kg}</m>, and <m>315 \div 4 = 78.75</m>, Ksh <m>78.75</m> a kilogram.</p></solution>
+                        </li>
+                        <li>
+                            <p>Mix maize and beans in the ratio <m>2 : 1</m>. What does 1 kg cost?</p>
+                            <solution component="lesson-plan"><p><m>3\,\text{kg}</m> cost <m>2 \times 55 + 150 = 260</m>, and <m>260 \div 3 \approx 86.67</m>, so about Ksh <m>87</m> a kilogram.</p></solution>
+                        </li>
+                        <li>
+                            <p>Mix them in the ratio <m>1 : 1</m>. What does 1 kg cost?</p>
+                            <solution component="lesson-plan"><p><m>(55 + 150) \div 2 = 102.50</m>, Ksh <m>102.50</m>: the mean of the two prices.</p></solution>
+                        </li>
+                        <li>
+                            <p>Why is only the <m>1 : 1</m> mix costed by the mean of the prices?</p>
+                            <solution component="lesson-plan"><p>With equal masses each price counts equally. With more maize, the cheaper price counts more and pulls the cost down.</p></solution>
+                        </li>
+                        <li>
+                            <p>At home, make a small mix of your own (water and milk for chai, or maize and beans) and cost 1 litre or 1 kg of it at your local prices.</p>
+                            <solution component="lesson-plan"><p>Open.</p></solution>
+                        </li>
+                    </ol>
                 </p>
-            </li>
-            <li>
-                <title>Objective</title>
-                <p>
-                    To formalize the concepts and properties learners discovered in the anchor task.
-                </p>
-            </li>
-            </dl>
-        </p>
-        <paragraphs>
-            <title>Key Takeaways &amp; Teacher Connection</title>
-            <ol>
-                <li>
-                    <p>
-                        <alert>Connecting to Learner Work:</alert> XXXX
-                    </p>
-                </li>
-            </ol>
-        </paragraphs>
-    </axiom> -->
+            </statement>
+        </activity>
 
-    <!-- Add insight / key takeaway directly related to activity / learner experience -->
+        <axiom component="lesson-plan">
+            <title>Structured Instruction</title>
+            <p>
+                <dl>
+                    <li><title>Suggested Time</title><p>8 minutes</p></li>
+                    <li><title>Objective</title><p>To formalise the components and cost of a mixture.</p></li>
+                </dl>
+            </p>
+            <paragraphs>
+                <title>Key Takeaways &amp; Teacher Connection</title>
+                <ol>
+                    <li><p><alert>Connecting to Learner Work:</alert> in every part, the cost of 1 kg was the total cost divided by the total mass.</p></li>
+                    <li><p>The components of a mixture are found by sharing in the ratio.</p></li>
+                    <li><p>The mean of the prices is right only for equal masses.</p></li>
+                </ol>
+            </paragraphs>
+        </axiom>
 
-    <!-- <insight>
-    </insight> -->
+        <insight xml:id="insight-mixtures">
+            <title>Mixtures</title>
+            <p>A <term>mixture</term> is made of two or more <term>components</term>. When the components are mixed in a ratio, find each component by sharing in that ratio. The cost of 1 kg (or 1 litre) of the mixture is</p>
+            <p><md>\text{cost of 1 kg} = \frac{\text{total cost}}{\text{total mass}}</md></p>
+            <p>It always lies between the two prices, nearer the one used more; it is the mean of the prices only when equal masses are used. The cost of a mixture leans towards the ingredient you use more of.</p>
+        </insight>
 
-    <!-- Add further instruction (not in a block) to develop ideas as needed -->
+        <xi:include href="../lesson-plan-templates/example-intro.ptx" />
 
-    <xi:include href="../lesson-plan-templates/example-intro.ptx" />
-
-    <!-- Add at least 3 examples -->
-
-    <!-- <example>
-        <statement>
-        </statement>
-        <solution>
-        </solution>
-    </example>
-
-    <example>
-        <statement>
-        </statement>
-        <solution>
-        </solution>
-    </example>
-
-    <example>
-        <statement>
-        </statement>
-        <solution>
-        </solution>
-    </example> -->
-
-    <xi:include href="../lesson-plan-templates/assessment-intro.ptx" />
-
-    <!-- If STACK questions are included, uncomment this: -->
-
-    <!-- <xi:include href="../lesson-plan-templates/checkpoint.ptx" /> -->
-
-    <!-- Add STACK exercises if made -->
-
-    <!-- Add static exercises -->
-
-    <!-- <exercises>
-        <exercise>
-            <statement>   
-
-            </statement>   
+        <example xml:id="example-chai-for-the-school">
+            <title>Chai for the School</title>
+            <statement>
+                <p>The school kitchen makes <m>40\,\text{litres}</m> of milk and water for chai, in the ratio <m>7 : 3</m>. Milk costs Ksh <m>60</m> a litre (the water is not costed). How much milk is used, and what does 1 litre of the mixture cost?</p>
+            </statement>
             <solution>
+                <p><m>10</m> parts make <m>40\,\text{litres}</m>, so one part is <m>4\,\text{litres}</m>: milk <m>7 \times 4 = 28\,\text{litres}</m> and water <m>12\,\text{litres}</m>.</p>
+                <p>The milk costs <m>28 \times 60 = 1680</m>, Ksh <m>1680</m>, so 1 litre of the mixture costs <m>1680 \div 40 = 42</m>, Ksh <m>42</m>.</p>
+            </solution>
+        </example>
 
-            </solution>             
-        </exercise>        
-    </exercises> -->
+        <example xml:id="example-a-coffee-blend">
+            <title>A Coffee Blend</title>
+            <statement>
+                <p>A roaster blends <m>6\,\text{kg}</m> of grade AA coffee at Ksh <m>1600</m> a kilogram with <m>9\,\text{kg}</m> of grade AB coffee at Ksh <m>1300</m> a kilogram. What does 1 kg of the blend cost?</p>
+            </statement>
+            <solution>
+                <p>Total cost: <m>6 \times 1600 + 9 \times 1300 = 9600 + 11\,700 = 21\,300</m>. Total mass: <m>15\,\text{kg}</m>.</p>
+                <p><m>21\,300 \div 15 = 1420</m>, so Ksh <m>1420</m> a kilogram: nearer the AB price, because more AB is used.</p>
+            </solution>
+        </example>
 
-    <!-- [LP] Add information on how to differentiate  -->
+        <example xml:id="example-dairy-meal">
+            <title>Dairy Meal</title>
+            <statement>
+                <p>A farmer mixes maize germ and sunflower cake in the ratio <m>7 : 3</m> to make <m>300\,\text{kg}</m> of dairy meal. Maize germ costs Ksh <m>35</m> a kilogram and sunflower cake Ksh <m>60</m>. Find the mass of each and the cost of 1 kg of the meal.</p>
+            </statement>
+            <solution>
+                <p>One part is <m>300 \div 10 = 30\,\text{kg}</m>: maize germ <m>7 \times 30 = 210\,\text{kg}</m> and sunflower cake <m>3 \times 30 = 90\,\text{kg}</m>.</p>
+                <p>Total cost: <m>210 \times 35 + 90 \times 60 = 7350 + 5400 = 12\,750</m>, so 1 kg costs <m>12\,750 \div 300 = 42.50</m>, Ksh <m>42.50</m>.</p>
+            </solution>
+        </example>
 
-    <!-- <axiom component="lesson-plan">
-        <title>Differentiation</title>
+        <xi:include href="../lesson-plan-templates/assessment-intro.ptx" />
+        <xi:include href="../lesson-plan-templates/checkpoint.ptx" />
 
-        <table>
+        <p>Type numbers only, without Ksh, units, spaces or commas, for example <c>45326</c>. Give a fraction as a fraction, for example <c>7/12</c>, or as a decimal correct to 3 decimal places. Give times, masses and volumes exactly or correct to 1 decimal place, and money to the nearest shilling, unless the question says otherwise.</p>
+
+        <exercise xml:id="ex-githeri-components-and-cost">
+            <!--<title></title>-->
+            <stack label="stk-githeri-components-and-cost" source="stack/top/1-numbers-and-algebra/03-compound-proportions-rates-of-work-and-mixtures/04-mixtures/Githeri-components-and-cost.xml"/>
+        </exercise>
+
+        <exercise xml:id="ex-mean-price-claim">
+            <!--<title></title>-->
+            <stack label="stk-mean-price-claim" source="stack/top/1-numbers-and-algebra/03-compound-proportions-rates-of-work-and-mixtures/04-mixtures/Mean-price-claim.xml"/>
+        </exercise>
+
+        <exercises xml:id="exercises-mixtures-in-a-ratio">
+            <exercise xml:id="ex-feed-three-parts">
+                <statement><p>A <m>90\,\text{kg}</m> bag of feed contains maize bran, cotton seed cake and minerals in the ratio <m>12 : 5 : 1</m>. Find the mass of each.</p></statement>
+                <answer><p><m>60\,\text{kg}</m>, <m>25\,\text{kg}</m> and <m>5\,\text{kg}</m></p></answer>
+            </exercise>
+            <exercise xml:id="ex-rice-two-prices">
+                <statement><p><m>20\,\text{kg}</m> of rice at Ksh <m>140</m> a kilogram is mixed with <m>30\,\text{kg}</m> at Ksh <m>190</m>. Find the cost of 1 kg of the mixture.</p></statement>
+                <answer><p>Ksh <m>170</m></p></answer>
+                <solution><p><m>(20 \times 140 + 30 \times 190) \div 50 = 8500 \div 50 = 170</m>.</p></solution>
+            </exercise>
+            <exercise xml:id="ex-uji-flour-three">
+                <statement><p>Uji flour is made of maize, millet and sorghum flour in the ratio <m>5 : 4 : 1</m>, <m>30\,\text{kg}</m> in all. They cost Ksh <m>70</m>, Ksh <m>200</m> and Ksh <m>140</m> a kilogram. Find the mass of each and the cost of 1 kg of the uji flour.</p></statement>
+                <answer><p><m>15\,\text{kg}</m>, <m>12\,\text{kg}</m> and <m>3\,\text{kg}</m>; Ksh <m>129</m></p></answer>
+                <solution><p>Total cost <m>15 \times 70 + 12 \times 200 + 3 \times 140 = 1050 + 2400 + 420 = 3870</m>, and <m>3870 \div 30 = 129</m>.</p></solution>
+            </exercise>
+            <exercise xml:id="ex-chai-36-litres">
+                <statement><p>A kitchen makes <m>36\,\text{litres}</m> of milk and water in the ratio <m>2 : 1</m>. Milk costs Ksh <m>65</m> a litre. Find the milk used and the cost of 1 litre of the mixture.</p></statement>
+                <answer><p><m>24\,\text{litres}</m>; Ksh <m>43</m> to the nearest shilling</p></answer>
+                <solution><p>Milk <m>24\,\text{litres}</m> costs <m>24 \times 65 = 1560</m>, and <m>1560 \div 36 \approx 43.33</m>, so Ksh <m>43</m> a litre to the nearest shilling.</p></solution>
+            </exercise>
+            <exercise xml:id="ex-fertiliser-blend">
+                <statement><p>A farmer blends DAP and CAN fertiliser in the ratio <m>7 : 5</m> to make <m>420\,\text{kg}</m>. They cost Ksh <m>72</m> and Ksh <m>54</m> a kilogram. Find the mass of each and the cost of 1 kg of the blend.</p></statement>
+                <answer><p><m>245\,\text{kg}</m> and <m>175\,\text{kg}</m>; Ksh <m>64.50</m></p></answer>
+                <solution><p>Total cost <m>245 \times 72 + 175 \times 54 = 17\,640 + 9450 = 27\,090</m>, and <m>27\,090 \div 420 = 64.50</m>.</p></solution>
+            </exercise>
+            <exercise xml:id="ex-equal-money-not-equal-mass">
+                <title>Challenge: Equal Money, Not Equal Mass</title>
+                <statement><p>Show that mixing equal masses of two foods gives the mean of their prices, but spending equal amounts of money on each does not.</p></statement>
+                <hint><p>Try Ksh <m>600</m> on each of two foods at Ksh <m>60</m> and Ksh <m>150</m> a kilogram.</p></hint>
+                <answer><p>Equal masses <m>m</m>: <m>\dfrac{mp + mq}{2m} = \dfrac{p + q}{2}</m>. Ksh <m>600</m> on each buys <m>10\,\text{kg}</m> and <m>4\,\text{kg}</m>: Ksh <m>1200</m> for <m>14\,\text{kg}</m>, and <m>1200 \div 14 \approx 85.71</m>, so about Ksh <m>86</m> a kilogram, not Ksh <m>105</m>.</p></answer>
+            </exercise>
+        </exercises>
+
+        <axiom component="lesson-plan">
             <title>Differentiation</title>
-            <tabular halign="left">
-                <row header="yes" bottom="minor">
-                    <cell>Learner Group</cell>
-                    <cell>Strategy &amp; Learning Experience</cell>
-                    <cell></cell>
-                </row>
-                <row>
-                    <cell>Struggling Learners (Support)</cell>
-                    <cell>
-                        XXXX
-                    </cell>
-                    <cell></cell>
-                </row>
-                <row>
-                    <cell>On-Level Learners (Core)</cell>
-                    <cell>
-                        <line>The core lesson activities as described above.</line>
-                    </cell>
-                    <cell></cell>
-                </row>
-                <row>
-                    <cell>Advanced Learners (Challenge)</cell>
-                    <cell>
-                        XXXX
-                    </cell>
-                    <cell></cell>
-                </row>
-            </tabular>
-        </table>
-    </axiom> -->
+            <table xml:id="table-differentiation-mixtures-in-a-ratio">
+                <title>Differentiation Strategies</title>
+                <tabular halign="left" top="minor" bottom="minor" left="minor" right="minor">
+                    <row header="yes" bottom="medium"><cell>Learner Group</cell><cell>Strategy and Learning Experience</cell></row>
+                    <row><cell>Struggling Learners (Support)</cell><cell>Activity parts (a) to (c) and <xref ref="example-a-coffee-blend"/>. Assign <xref ref="ex-feed-three-parts"/> and <xref ref="ex-rice-two-prices"/>.</cell></row>
+                    <row><cell>On-Level Learners (Core)</cell><cell>Full activity and all examples. Assign <xref ref="ex-feed-three-parts"/> to <xref ref="ex-fertiliser-blend"/>.</cell></row>
+                    <row><cell>Advanced Learners (Challenge)</cell><cell>All exercises including <xref ref="ex-equal-money-not-equal-mass"/>.</cell></row>
+                </tabular>
+            </table>
+        </axiom>
 
-    <xi:include href="../lesson-plan-templates/assessment-methods.ptx" />
+        <xi:include href="../lesson-plan-templates/assessment-methods.ptx" />
+        <xi:include href="../lesson-plan-templates/reflection.ptx"/>
+    </subsection>
 
-    <xi:include href="../lesson-plan-templates/reflection.ptx"/>
+    <!-- ============================================================ Lesson 4.2 -->
+    <subsection xml:id="subsec-mixing-to-a-target-price">
+        <title>Mixing to a Target Price</title>
+
+        <p component="lesson-plan">Upon completion of this lesson, learners will be able to:
+            <ol>
+                <li><p><alert>Know:</alert> the balance rule for a target price; profit as a percentage of the cost price.</p></li>
+                <li><p><alert>Do:</alert> find the ratio in which to mix two grades for a target price; find how much of one grade to add; work back from a selling price and a percentage profit.</p></li>
+                <li><p><alert>Apply:</alert> traders' blends of coffee, tea, rice and beans.</p></li>
+            </ol>
+        </p>
+
+        <axiom component="lesson-plan">
+            <title>Curriculum Links</title>
+            <dl>
+                <li><title>Key Inquiry Question</title><p>Revisit the key inquiry questions (<xref ref="kiq-proportions"/>) with <xref ref="insight-proportion-in-daily-life"/>.</p></li>
+                <li><title>Core Competencies</title><p>Critical thinking and problem solving (checking that each answer makes sense); communication and collaboration (group work in every activity).</p></li>
+                <li><title>Values</title><p component="core">Responsibility; respect.</p><p component="essential">Social justice; respect.</p></li>
+                <li><title>Pertinent and Contemporary Issues</title><p>Citizenship: equity and non-discrimination, in fair shares by contribution and by work done, safe working hours, and honest mixtures sold at stated prices.</p></li>
+            </dl>
+        </axiom>
+
+        <axiom component="lesson-plan">
+            <title>Problem-Solving and Discovery</title>
+            <dl>
+                <li><title>Suggested Time</title><p>14 minutes</p></li>
+                <li><title>Objective</title><p>Learners find by trial the mixes of two coffee grades that cost Ksh <m>1400</m> and Ksh <m>1500</m> a kilogram, and discover the balance rule.</p></li>
+                <li><title>Teacher's Role</title><p>Ask: <q>How far is each grade's price from the target?</q></p></li>
+            </dl>
+        </axiom>
+
+        <activity xml:id="act-hitting-the-target-price">
+            <title>Hitting the Target Price</title>
+            <statement>
+                <p>A trader sells grade AA coffee at Ksh <m>1600</m> a kilogram and grade AB at Ksh <m>1300</m> a kilogram.</p>
+                <p>
+                    <ol marker="(a)">
+                        <li>
+                            <p>Find the cost of 1 kg of AA and AB mixed in the ratios <m>1 : 1</m>, <m>2 : 1</m> and <m>1 : 2</m>.</p>
+                            <solution component="lesson-plan"><p>Ksh <m>1450</m>, Ksh <m>1500</m> and Ksh <m>1400</m>.</p></solution>
+                        </li>
+                        <li>
+                            <p>Which mix costs Ksh <m>1400</m> a kilogram, and which Ksh <m>1500</m>?</p>
+                            <solution component="lesson-plan"><p>AA : AB <m>= 1 : 2</m> costs Ksh <m>1400</m>; AA : AB <m>= 2 : 1</m> costs Ksh <m>1500</m>.</p></solution>
+                        </li>
+                        <li>
+                            <p>For Ksh <m>1400</m>: each kilogram of AA is Ksh <m>200</m> above the target and each kilogram of AB is Ksh <m>100</m> below it. How many kilograms of AB balance 1 kg of AA?</p>
+                            <solution component="lesson-plan"><p><m>2\,\text{kg}</m>, since <m>2 \times 100 = 200</m>.</p></solution>
+                        </li>
+                    </ol>
+                </p>
+            </statement>
+        </activity>
+
+        <axiom component="lesson-plan">
+            <title>Structured Instruction</title>
+            <p>
+                <dl>
+                    <li><title>Suggested Time</title><p>8 minutes</p></li>
+                    <li><title>Objective</title><p>To formalise the balance rule, the equation method and profit on cost.</p></li>
+                </dl>
+            </p>
+            <paragraphs>
+                <title>Key Takeaways &amp; Teacher Connection</title>
+                <ol>
+                    <li><p><alert>Connecting to Learner Work:</alert> part (c) is the balance rule: distances from the target, crossed over.</p></li>
+                    <li><p>Always check the ratio by costing the mixture.</p></li>
+                    <li><p>Profit is a percentage of the cost price, not of the selling price.</p></li>
+                </ol>
+            </paragraphs>
+        </axiom>
+
+        <insight xml:id="insight-mixing-to-a-target-price">
+            <title>Mixing to a Target Price</title>
+            <p>To mix a cheap grade and a dear grade so that the mixture costs a target price, balance the distances from the target:</p>
+            <p><md>(\text{target} - \text{cheap price}) \times \text{mass of cheap} = (\text{dear price} - \text{target}) \times \text{mass of dear}</md></p>
+            <p>so cheap : dear <m>=</m> (dear price <m>-</m> target) : (target <m>-</m> cheap price). The same rule comes from an equation: the total cost of the mixture equals the target price times its total mass.</p>
+            <p>When a mixture is sold at a profit of <m>r\%</m> on the cost, selling price <m>=</m> cost price <m>\times \left(1 + \dfrac{r}{100}\right)</m>, so cost price <m>=</m> selling price <m>\div \left(1 + \dfrac{r}{100}\right)</m>.</p>
+        </insight>
+
+        <figure xml:id="fig-price-line">
+            <caption>Balancing two grades of coffee on a price line.</caption>
+            <image width="70%">
+                <shortdescription>On a price line the target 1400 is 100 above AB and 200 below AA, so 2 kg of AB balance 1 kg of AA.</shortdescription>
+                <latex-image>
+% SET: 1 unit = 50 shillings; the line runs from 1300 (x = 0) to 1600 (x = 6).
+% CALCULATE: target 1400 is at x = 2; distances 100 and 200.
+% DRAW: the price line with ticks every 50; points at AB, the target and AA.
+% MARK: measuring lines for the two distances. LABEL: grades, prices and the balance.
+\begin{tikzpicture}[scale=1.1]
+\draw[thick] (-0.3,0) -- (6.3,0);
+\foreach \i/\p in {0/1300,1/1350,2/1400,3/1450,4/1500,5/1550,6/1600} { \draw (\i,-0.1) -- (\i,0.1); \node[below, font=\small] at (\i,-0.15) {$\p$}; }
+\fill (0,0) circle (3pt); \fill (6,0) circle (3pt);
+\draw[very thick] (2,-0.25) -- (2,0.25);
+\node[above] at (0,0.3) {AB};
+\node[above] at (6,0.3) {AA};
+\node[above] at (2,0.3) {target $1400$};
+\draw[|-|, thick] (0,1.1) -- (2,1.1); \node[above] at (1,1.15) {$100$ below};
+\draw[|-|, thick] (2,1.1) -- (6,1.1); \node[above] at (4,1.15) {$200$ above};
+\node[right, font=\small] at (6.4,0) {Ksh a kg};
+\node[below] at (3,-0.8) {balance: $2$ kg of AB $\times\ 100 = 1$ kg of AA $\times\ 200$};
+\end{tikzpicture}
+                </latex-image>
+            </image>
+        </figure>
+
+        <xi:include href="../lesson-plan-templates/example-intro.ptx" />
+
+        <example xml:id="example-tea-grades">
+            <title>Tea Grades</title>
+            <statement>
+                <p>A tea packer mixes grade PF1 tea at Ksh <m>520</m> a kilogram with grade BP1 at Ksh <m>680</m> a kilogram, so that the blend costs Ksh <m>590</m> a kilogram. In what ratio are they mixed?</p>
+            </statement>
+            <solution>
+                <p>PF1 is <m>590 - 520 = 70</m> below the target and BP1 is <m>680 - 590 = 90</m> above it. Crossing over:</p>
+                <p>PF1 : BP1 <m>= 90 : 70 = 9 : 7</m>.</p>
+                <p>Check: <m>(9 \times 520 + 7 \times 680) \div 16 = (4680 + 4760) \div 16 = 590</m>.</p>
+            </solution>
+        </example>
+
+        <example xml:id="example-how-much-to-add">
+            <title>How Much to Add?</title>
+            <statement>
+                <p>A trader has <m>40\,\text{kg}</m> of beans that cost Ksh <m>120</m> a kilogram. How many kilograms of beans at Ksh <m>160</m> must be added so that the mixture costs Ksh <m>150</m> a kilogram?</p>
+            </statement>
+            <solution>
+                <p>Let <m>x</m> kg be added. The total cost equals <m>150</m> times the total mass:</p>
+                <p><md>4800 + 160x = 150(40 + x)</md> so <m>4800 + 160x = 6000 + 150x</m>, <m>10x = 1200</m> and <m>x = 120\,\text{kg}</m>.</p>
+                <p>By the balance rule: <m>40 \times 30 = x \times 10</m>, which gives the same answer.</p>
+            </solution>
+        </example>
+
+        <example xml:id="example-mixing-for-a-profit">
+            <title>Mixing for a Profit</title>
+            <statement>
+                <p>A shopkeeper mixes rice that cost Ksh <m>150</m> and Ksh <m>210</m> a kilogram and sells the mixture at Ksh <m>222</m> a kilogram, making a profit of <m>20\%</m> on the cost. In what ratio is the rice mixed?</p>
+            </statement>
+            <solution>
+                <p>The cost price of the mixture is <m>222 \div 1.2 = 185</m>, Ksh <m>185</m> a kilogram.</p>
+                <p>Cheap : dear <m>= (210 - 185) : (185 - 150) = 25 : 35 = 5 : 7</m>.</p>
+            </solution>
+        </example>
+
+        <insight xml:id="insight-proportion-in-daily-life">
+            <title>Proportion in Daily Life</title>
+            <p>Ratios and proportions let a group share a profit fairly by what each member put in; they let a contractor plan workers and days, and a company plan drivers so that no one drives for too long; and they let a trader price a mixture honestly, so that customers pay for what they get. How fast people and machines work decides how many are needed, and how long they can safely work.</p>
+        </insight>
+
+        <xi:include href="../lesson-plan-templates/assessment-intro.ptx" />
+        <xi:include href="../lesson-plan-templates/checkpoint.ptx" />
+
+        <p>Type numbers only, without Ksh, units, spaces or commas, for example <c>45326</c>. Give a fraction as a fraction, for example <c>7/12</c>, or as a decimal correct to 3 decimal places. Give times, masses and volumes exactly or correct to 1 decimal place, and money to the nearest shilling, unless the question says otherwise.</p>
+
+        <exercise xml:id="ex-mixing-ratio-for-a-target-price">
+            <!--<title></title>-->
+            <stack label="stk-mixing-ratio-for-a-target-price" source="stack/top/1-numbers-and-algebra/03-compound-proportions-rates-of-work-and-mixtures/04-mixtures/Mixing-ratio-for-a-target-price.xml"/>
+        </exercise>
+
+        <exercise xml:id="ex-adding-a-dearer-grade-for-a-profit">
+            <!--<title></title>-->
+            <stack label="stk-adding-a-dearer-grade-for-a-profit" source="stack/top/1-numbers-and-algebra/03-compound-proportions-rates-of-work-and-mixtures/04-mixtures/Adding-a-dearer-grade-for-a-profit.xml"/>
+        </exercise>
+
+        <exercises xml:id="exercises-mixing-to-a-target-price">
+            <exercise xml:id="ex-coffee-1200-1700">
+                <statement><p>In what ratio must coffee at Ksh <m>1200</m> and Ksh <m>1700</m> a kilogram be mixed so that the mixture costs Ksh <m>1500</m> a kilogram?</p></statement>
+                <answer><p><m>2 : 3</m></p></answer>
+                <solution><p><m>(1700 - 1500) : (1500 - 1200) = 200 : 300 = 2 : 3</m>.</p></solution>
+            </exercise>
+            <exercise xml:id="ex-maize-48-60">
+                <statement><p>Maize at Ksh <m>48</m> and Ksh <m>60</m> a kilogram is mixed so that the mixture costs Ksh <m>52</m> a kilogram. In what ratio?</p></statement>
+                <answer><p><m>2 : 1</m></p></answer>
+            </exercise>
+            <exercise xml:id="ex-milk-add-dearer">
+                <statement><p><m>30\,\text{litres}</m> of milk at Ksh <m>55</m> a litre are mixed with milk at Ksh <m>70</m> a litre so that the mixture costs Ksh <m>60</m> a litre. How many litres at Ksh <m>70</m> are used?</p></statement>
+                <answer><p><m>15\,\text{litres}</m></p></answer>
+                <solution><p><m>30 \times 5 = x \times 10</m>, so <m>x = 15</m>.</p></solution>
+            </exercise>
+            <exercise xml:id="ex-tea-for-profit">
+                <statement><p>Tea at Ksh <m>500</m> and Ksh <m>800</m> a kilogram is mixed and sold at Ksh <m>702</m> a kilogram, a profit of <m>17\%</m> on the cost. Find the cost of 1 kg of the mixture and the ratio.</p></statement>
+                <answer><p>Ksh <m>600</m>; <m>2 : 1</m></p></answer>
+                <solution><p><m>702 \div 1.17 = 600</m>, and <m>(800 - 600) : (600 - 500) = 200 : 100 = 2 : 1</m>.</p></solution>
+            </exercise>
+            <exercise xml:id="ex-chai-change-ratio">
+                <statement><p><m>28\,\text{litres}</m> of milk and water for chai are in the ratio <m>5 : 2</m>. How much milk must be added to make the ratio <m>7 : 2</m>?</p></statement>
+                <answer><p><m>8\,\text{litres}</m></p></answer>
+                <solution><p>Milk <m>20\,\text{litres}</m> and water <m>8\,\text{litres}</m>. With <m>8\,\text{litres}</m> of water, <m>7 : 2</m> needs <m>28\,\text{litres}</m> of milk, so add <m>8\,\text{litres}</m>.</p></solution>
+            </exercise>
+            <exercise xml:id="ex-impossible-target">
+                <title>Challenge: An Impossible Target</title>
+                <statement><p>Why can no mixture of maize at Ksh <m>48</m> and Ksh <m>60</m> a kilogram cost Ksh <m>65</m> a kilogram?</p></statement>
+                <answer><p>The cost of a mixture always lies between the two prices, here between Ksh <m>48</m> and Ksh <m>60</m>.</p></answer>
+            </exercise>
+        </exercises>
+
+        <axiom component="lesson-plan">
+            <title>Differentiation</title>
+            <table xml:id="table-differentiation-mixing-to-a-target-price">
+                <title>Differentiation Strategies</title>
+                <tabular halign="left" top="minor" bottom="minor" left="minor" right="minor">
+                    <row header="yes" bottom="medium"><cell>Learner Group</cell><cell>Strategy and Learning Experience</cell></row>
+                    <row><cell>Struggling Learners (Support)</cell><cell>The activity, <xref ref="fig-price-line"/> and <xref ref="example-tea-grades"/>. Give a card: <q>cross the distances</q>. Assign <xref ref="ex-coffee-1200-1700"/> and <xref ref="ex-maize-48-60"/>.</cell></row>
+                    <row><cell>On-Level Learners (Core)</cell><cell>Full activity and all examples. Assign <xref ref="ex-coffee-1200-1700"/> to <xref ref="ex-chai-change-ratio"/>.</cell></row>
+                    <row><cell>Advanced Learners (Challenge)</cell><cell>All exercises including <xref ref="ex-impossible-target"/>. Extension (digital): build a spreadsheet that costs any mix of two grades and finds the ratio for a target price typed in.</cell></row>
+                </tabular>
+            </table>
+        </axiom>
+
+
+        <xi:include href="../lesson-plan-templates/assessment-methods.ptx" />
+        <xi:include href="../lesson-plan-templates/reflection.ptx"/>
+    </subsection>
 </section>

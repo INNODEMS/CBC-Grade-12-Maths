@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<quiz>
+<question type="stack">
+  <name><text>Adding a dearer grade for a profit</text></name>
+  <questiontext format="html">
+    <text><![CDATA[<p>A shopkeeper has \({@m@}\) kg of ordinary rice that cost Ksh \({@p1@}\) a kilogram and adds pishori rice that cost Ksh \({@p2@}\) a kilogram. The mixture is sold at Ksh \({@s@}\) a kilogram, a profit of \({@dd(r)@}\%\) on the cost.</p><p>(a) What did 1 kg of the mixture cost the shopkeeper?</p><p>Ksh [[input:ans1]] [[validation:ans1]] [[feedback:prt1]]</p><p>(b) How many kilograms of pishori rice were added? Give your answer exactly or correct to 1 decimal place.</p><p>[[input:ans2]] kg [[validation:ans2]] [[feedback:prt2]]</p>]]></text>
+  </questiontext>
+  <generalfeedback format="html">
+    <text><![CDATA[<p>(a) Profit is a percentage of the cost price: selling price \(=\) cost \(\times {@dd(mf)@}\). So the cost of 1 kg is \({@s@} \div {@dd(mf)@} = {@cc@}\) shillings.</p><p>(b) Let \(x\) kg of pishori be added. Each kilogram of ordinary rice is \({@cc@} - {@p1@} = {@cc-p1@}\) shillings below the mixture's cost and each kilogram of pishori is \({@p2@} - {@cc@} = {@p2-cc@}\) shillings above it, so</p><p>\[{@m@} \times {@cc-p1@} = x \times {@p2-cc@}, \qquad x = \frac{ {@m*(cc-p1)@} }{ {@p2-cc@} } = {@dd(xx)@}\]</p><p>Check: \(({@m@} \times {@p1@} + {@dd(xx)@} \times {@p2@}) \div {@dd(m+xx)@} = {@cc@}\), and \({@cc@} \times {@dd(mf)@} = {@s@}\).</p>]]></text>
+  </generalfeedback>
+  <defaultgrade>2</defaultgrade>
+  <penalty>0.1</penalty>
+  <hidden>0</hidden>
+  <idnumber></idnumber>
+  <stackversion><text>2026063000</text></stackversion>
+  <questionvariables>
+    <text><![CDATA[kgrp(n) := block([s, out, k], s: string(n), k: slength(s), if k < 5 then s else (out: "", while k > 3 do (out: sconcat("\\,", substring(s, k-2, k+1), out), k: k-3), sconcat(substring(s, 1, k+1), out)));
+ksh(v) := block([c, w, f], c: floor(100*v+1/2), w: floor(c/100), f: c-100*w, if f = 0 then kgrp(w) else sconcat(kgrp(w), ".", if f < 10 then "0" else "", string(f)));
+dd(v) := if integerp(v) then v else if integerp(10*v) then dispdp(float(v),1) else if integerp(100*v) then dispdp(float(v),2) else if integerp(1000*v) then dispdp(float(v),3) else dispdp(float(v),4);
+fr(v) := if integerp(v) then string(v) else sconcat("\\frac{", string(num(v)), "}{", string(denom(v)), "}");
+r1(v) := floor(10*v+1/2)/10;
+ix: 1+rand(10);
+/* Design: how much dearer rice to add for a given profit. Source: original. [m, p1, p2, s, r]: m kg of ordinary rice at p1, pishori at p2, selling price s a kg for r% profit on cost. Curated list, one seed per entry. */
+L: [[28,145,265,234,20],[24,165,275,230,15],[56,145,240,187,10],[36,140,235,184,15],[48,165,280,275,25],[20,140,240,234,25/2],[44,130,240,228,20],[60,120,240,184,15],[56,140,195,180,25/2],[28,135,255,207,15]];
+E: L[ix];
+m: E[1]; p1: E[2]; p2: E[3]; s: E[4]; r: E[5];
+cc: s/(1+r/100);
+xx: m*(cc-p1)/(p2-cc);
+mf: 1+r/100;
+/* diagnostics */
+sr: s*(1-r/100);
+smr: s-r;
+swx: m*(p2-cc)/(cc-p1);
+usx: m*(s-p1)/(p2-s);
+tot: m+xx;
+ftsr: m*(sr-p1)/(p2-sr);
+]]></text>
+  </questionvariables>
+  <specificfeedback format="html"><text><![CDATA[]]></text></specificfeedback>
+  <questionnote format="moodle_auto_format">
+    <text>ix={@ix@}, cc={@cc@}, xx={@xx@}</text>
+  </questionnote>
+  <questiondescription format="html"><text><![CDATA[<p id="concept">Compound Proportions: adding a dearer grade for a profit</p><p id="description">Grade 12 CBE Core 1.3 / Essential 1.2 (C d, e; E e, f): Find the cost price of a mixture from its selling price and percentage profit, then the mass of the dearer grade added.</p><p id="edition">Core and Essential</p><p id="provenance">This question is original to this project.</p><p id="citation">INNODEMS CBC Grade 12 Mathematics, first draft by Ben Davies, 2026. Aligned to the KICD Senior School Curriculum Design, Core and Essential Mathematics Grade 12 (draft).</p>]]></text></questiondescription>
+  <questionsimplify>1</questionsimplify>
+  <assumepositive>0</assumepositive>
+  <assumereal>0</assumereal>
+  <prtcorrect format="html"><text><![CDATA[[[commonstring key="symbolicprtcorrectfeedback"/]] [[commonstring key="defaultprtcorrectfeedback"/]]]]></text></prtcorrect>
+  <prtpartiallycorrect format="html"><text><![CDATA[[[commonstring key="symbolicprtpartiallycorrectfeedback"/]] [[commonstring key="defaultprtpartiallycorrectfeedback"/]]]]></text></prtpartiallycorrect>
+  <prtincorrect format="html"><text><![CDATA[[[commonstring key="symbolicprtincorrectfeedback"/]] [[commonstring key="defaultprtincorrectfeedback"/]]]]></text></prtincorrect>
+  <decimals>.</decimals>
+  <scientificnotation>*10</scientificnotation>
+  <multiplicationsign>none</multiplicationsign>
+  <sqrtsign>1</sqrtsign>
+  <complexno>i</complexno>
+  <inversetrig>cos-1</inversetrig>
+  <logicsymbol>lang</logicsymbol>
+  <matrixparens>[</matrixparens>
+  <isbroken>0</isbroken>
+  <variantsselectionseed></variantsselectionseed>
+
+  <input><name>ans1</name><type>numerical</type><tans>cc</tans><boxsize>6</boxsize><strictsyntax>1</strictsyntax><insertstars>0</insertstars><syntaxhint></syntaxhint><syntaxattribute>0</syntaxattribute><forbidwords></forbidwords><allowwords></allowwords><forbidfloat>0</forbidfloat><requirelowestterms>0</requirelowestterms><checkanswertype>0</checkanswertype><mustverify>0</mustverify><showvalidation>0</showvalidation><options></options></input>
+  <input><name>ans2</name><type>numerical</type><tans>xx</tans><boxsize>6</boxsize><strictsyntax>1</strictsyntax><insertstars>0</insertstars><syntaxhint></syntaxhint><syntaxattribute>0</syntaxattribute><forbidwords></forbidwords><allowwords></allowwords><forbidfloat>0</forbidfloat><requirelowestterms>0</requirelowestterms><checkanswertype>0</checkanswertype><mustverify>0</mustverify><showvalidation>0</showvalidation><options></options></input>
+
+  <prt><name>prt1</name><value>1.0000000</value><autosimplify>1</autosimplify><feedbackstyle>1</feedbackstyle><feedbackvariables><text><![CDATA[sd(v) := dd(floor(100*v+1/2)/100);
+sd3(v) := dd(floor(1000*v+1/2)/1000);
+ab(v, k) := if is(abs(v-floor(10^k*v+1/2)/10^k) < 10^(-9)) then "" else "about ";
+mys: ans1*mf;]]></text></feedbackvariables>
+    <node><name>0</name><description>Cost price</description><answertest>NumAbsolute</answertest><sans>ans1</sans><tans>cc</tans><testoptions>0.501</testoptions><quiet>0</quiet><truescoremode>=</truescoremode><truescore>1.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt1-1-T</trueanswernote><truefeedback format="html"><text><![CDATA[]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>1</falsenextnode><falseanswernote>prt1-1-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>1</name><description>Percentage of selling price</description><answertest>NumAbsolute</answertest><sans>ans1</sans><tans>sr</tans><testoptions>0.501</testoptions><quiet>0</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt1-2-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>You took \({@dd(r)@}\%\) of the selling price. The profit is \({@dd(r)@}\%\) of the cost: cost \(\times {@dd(mf)@} = {@s@}\).</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>2</falsenextnode><falseanswernote>prt1-2-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>2</name><description>Subtracted r shillings</description><answertest>NumAbsolute</answertest><sans>ans1</sans><tans>smr</tans><testoptions>0.501</testoptions><quiet>0</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt1-3-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>You subtracted \({@dd(r)@}\) shillings, not \({@dd(r)@}\%\).</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>-1</falsenextnode><falseanswernote>prt1-3-F</falseanswernote><falsefeedback format="html"><text><![CDATA[[[if test="is(ans1>0)"]]<p>Test your answer: a profit of \({@dd(r)@}\%\) on a cost of Ksh \({@ans1@}\) gives a selling price of \({@ans1@} \times {@dd(mf)@}\), which is {@ab(mys,2)@}Ksh \({@ksh(mys)@}\), not Ksh \({@s@}\).</p>[[else]]<p>The cost must be a positive amount, and less than the selling price of Ksh \({@s@}\).</p>[[/if]]]]></text></falsefeedback></node>
+  </prt>
+  <prt><name>prt2</name><value>1.0000000</value><autosimplify>1</autosimplify><feedbackstyle>1</feedbackstyle><feedbackvariables><text><![CDATA[sd(v) := dd(floor(100*v+1/2)/100);
+sd3(v) := dd(floor(1000*v+1/2)/1000);
+ab(v, k) := if is(abs(v-floor(10^k*v+1/2)/10^k) < 10^(-9)) then "" else "about ";
+mc2: if is(ans2>=0) then (m*p1+ans2*p2)/(m+ans2) else 0;
+ft2: if is(ans1>p1 and ans1<p2) then is(abs(ans1-cc)>0.501 and abs(ans2-m*(ans1-p1)/(p2-ans1))<=0.0501) else false;]]></text></feedbackvariables>
+    <node><name>0</name><description>Pishori added</description><answertest>NumAbsolute</answertest><sans>ans2</sans><tans>xx</tans><testoptions>0.0501</testoptions><quiet>0</quiet><truescoremode>=</truescoremode><truescore>1.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt2-1-T</trueanswernote><truefeedback format="html"><text><![CDATA[]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>1</falsenextnode><falseanswernote>prt2-1-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>1</name><description>Crossed wrongly</description><answertest>NumAbsolute</answertest><sans>ans2</sans><tans>swx</tans><testoptions>0.0501</testoptions><quiet>0</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt2-2-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>Your distances are crossed the wrong way: the ordinary rice is \({@cc@} - {@p1@}\) below the mixture's cost and the pishori \({@p2@} - {@cc@}\) above.</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>2</falsenextnode><falseanswernote>prt2-2-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>2</name><description>Used the selling price</description><answertest>NumAbsolute</answertest><sans>ans2</sans><tans>usx</tans><testoptions>0.0501</testoptions><quiet>0</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt2-3-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>You used the selling price. The mixture must cost Ksh \({@cc@}\), before profit.</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>3</falsenextnode><falseanswernote>prt2-3-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>3</name><description>Total mass</description><answertest>NumAbsolute</answertest><sans>ans2</sans><tans>tot</tans><testoptions>0.0501</testoptions><quiet>0</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt2-4-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>That is the total mass of the mixture. Subtract the \({@m@}\) kg of ordinary rice.</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>4</falsenextnode><falseanswernote>prt2-4-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>4</name><description>Follow-through</description><answertest>AlgEquiv</answertest><sans>ft2</sans><tans>true</tans><testoptions></testoptions><quiet>0</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt2-5-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>Your method is right, but it uses your answer to (a), which is wrong.</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>-1</falsenextnode><falseanswernote>prt2-5-F</falseanswernote><falsefeedback format="html"><text><![CDATA[[[if test="is(ans2>=0)"]]<p>Test your answer: \({@m@}\) kg at Ksh \({@p1@}\) with \({@ans2@}\) kg at Ksh \({@p2@}\) is \({@m+ans2@}\) kg costing {@ab(mc2,2)@}Ksh \({@ksh(mc2)@}\) a kilogram. The mixture must cost the amount in (a).</p>[[else]]<p>The mass added cannot be negative.</p>[[/if]]]]></text></falsefeedback></node>
+  </prt>
+
+  <deployedseed>4</deployedseed>
+  <deployedseed>5</deployedseed>
+  <deployedseed>15</deployedseed>
+  <deployedseed>8</deployedseed>
+  <deployedseed>24</deployedseed>
+  <deployedseed>1</deployedseed>
+  <deployedseed>3</deployedseed>
+  <deployedseed>10</deployedseed>
+  <deployedseed>2</deployedseed>
+  <deployedseed>17</deployedseed>
+  <qtest><testcase>1</testcase><description>Correct</description>
+    <testinput><name>ans1</name><value>cc</value></testinput>
+    <testinput><name>ans2</name><value>xx</value></testinput>
+    <expected><name>prt1</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt1-1-T</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt2-1-T</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>2</testcase><description>Percentage of selling price, then follow-through</description>
+    <testinput><name>ans1</name><value>sr</value></testinput>
+    <testinput><name>ans2</name><value>ftsr</value></testinput>
+    <expected><name>prt1</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt1-1-F | prt1-2-T</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt2-1-F | prt2-2-F | prt2-3-F | prt2-4-F | prt2-5-T</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>3</testcase><description>Subtracted r shillings; crossed wrongly</description>
+    <testinput><name>ans1</name><value>smr</value></testinput>
+    <testinput><name>ans2</name><value>swx</value></testinput>
+    <expected><name>prt1</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt1-1-F | prt1-2-F | prt1-3-T</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt2-1-F | prt2-2-T</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>4</testcase><description>Used the selling price</description>
+    <testinput><name>ans1</name><value>cc</value></testinput>
+    <testinput><name>ans2</name><value>usx</value></testinput>
+    <expected><name>prt1</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt1-1-T</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt2-1-F | prt2-2-F | prt2-3-T</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>5</testcase><description>Total mass</description>
+    <testinput><name>ans1</name><value>cc</value></testinput>
+    <testinput><name>ans2</name><value>tot</value></testinput>
+    <expected><name>prt1</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt1-1-T</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt2-1-F | prt2-2-F | prt2-3-F | prt2-4-T</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>6</testcase><description>Generic wrong in both</description>
+    <testinput><name>ans1</name><value>cc+4</value></testinput>
+    <testinput><name>ans2</name><value>xx+1.3</value></testinput>
+    <expected><name>prt1</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt1-1-F | prt1-2-F | prt1-3-F</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt2-1-F | prt2-2-F | prt2-3-F | prt2-4-F | prt2-5-F</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>7</testcase><description>Invalid: letter in (a)</description>
+    <testinput><name>ans1</name><value>x</value></testinput>
+    <testinput><name>ans2</name><value>xx</value></testinput>
+    <expected><name>prt1</name><expectedscore></expectedscore><expectedpenalty></expectedpenalty><expectedanswernote>NULL</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore></expectedscore><expectedpenalty></expectedpenalty><expectedanswernote>NULL</expectedanswernote></expected>
+  </qtest>
+</question>
+</quiz>

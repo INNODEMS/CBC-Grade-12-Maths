@@ -46,161 +46,344 @@
          Suggested activity: On the school field, learners use a string to find all points equidistant from two fixed pegs and mark the perpendicular bisector with chalk.
          Interactive (JSXGraph): Two draggable points A and B; a point P traces all positions where PA = PB, building the perpendicular bisector. -->
 
-    <!-- [LP] Add guidance on activity -->
+    <!-- Section notes (2026-11)
+         SLOs: Core 2.3 (a); (b) perpendicular-bisector half taught here (8.4 has the angle bisector)
+         Activity: as planning notes (string and two pegs) | added: string lengths that do and do not meet
+         JSXGraph: fig-perpendicular-bisector-locus (assets/jsxgraph/perpendicular-bisector-locus.js), as planning notes, with Next/Back construction steps as board buttons
+         Key inquiry question: kiq-loci, placed in the section body (an introduction is not allowed in a section without subsections)
+         STACK: assets/stack/top/2-measurement-and-geometry/08-loci/01-perpendicular-bisector-loci/ -->
 
-    <!-- <axiom component="lesson-plan">
-            <title>Problem-Solving and Discovery</title>
-            <dl>
-                <li>
-                    <title>Suggested Time</title>
-                    <p>
-                        XX minutes
-                    </p>
-                </li>
-                <li>
-                    <title>Objective</title>
-                    <p>
-                        XXX
-                    </p>
-                </li>
-                <li>
-                    <title>Teacher's Role</title>
-                    <p>
-                        XXX
-                    </p>
-                </li>
-            </dl>
-        </axiom> -->
+    <question xml:id="kiq-loci">
+        <p><em>How do we use loci to decide where things can be placed or where they can move?</em></p>
+    </question>
+    <p>
+        A <em>locus</em> is the path a moving point can take, or the set of places where something is allowed to be. When a goat is tied to a peg, the places it can reach make a locus. When a county engineer wants a borehole to be fair to two villages, the places that are the same distance from both make a locus.
+    </p>
+    <p>
+        In this chapter you describe loci in words, construct them with a ruler and a pair of compasses, and combine them to find the places that obey several rules at once: a borehole sited fairly between two villages, the area a security guard's floodlight covers, the angle a goalkeeper has to defend. The constructions are the ones you met in Grade 11; what is new is reading each one as a set of points that obey a rule.
+    </p>
 
-    <!-- Add Activity -->
+    <p component="lesson-plan">Upon completion of this lesson, learners will be able to:
+        <ol>
+            <li><p><alert>Know:</alert> a locus is every point that obeys a rule and no other point; the basic loci in locus language and in construction language; every point on the perpendicular bisector of <m>AB</m> is equidistant from <m>A</m> and <m>B</m>, and every such point is on it.</p></li>
+            <li><p><alert>Do:</alert> construct the perpendicular bisector of a segment; decide whether a grid point is on it, nearer to <m>A</m> or nearer to <m>B</m>.</p></li>
+            <li><p><alert>Apply:</alert> place an object fairly between two others, using a scale drawing.</p></li>
+        </ol>
+    </p>
 
-    <!-- <activity>
+    <axiom component="lesson-plan">
+        <title>Problem-Solving and Discovery</title>
+        <dl>
+            <li><title>Suggested Time</title><p>14 minutes</p></li>
+            <li><title>Objective</title><p>Learners find many points equidistant from two pegs and see that they form a straight line, and why the string must be longer than half the gap.</p></li>
+            <li><title>Teacher's Role</title><p>Groups of four on the field with two pegs <m>6\,\text{m}</m> apart and two strings of equal length. If outside work is not possible, use paper with a scale of <m>1\,\text{cm}</m> to <m>1\,\text{m}</m> and a pair of compasses for the strings. Do not name <q>perpendicular bisector</q> until part (e). After part (d), ask: <q>Why did the <m>2.5\,\text{m}</m> strings never meet?</q></p></li>
+        </dl>
+    </axiom>
+
+    <activity xml:id="act-two-pegs-on-the-field">
+        <title>Two Pegs on the Field</title>
         <statement>
+            <p>Two pegs <m>A</m> and <m>B</m> are pushed into the school field <m>6\,\text{m}</m> apart. Two learners each hold a string of the same length, one from <m>A</m> and one from <m>B</m>, and pull them tight. A third learner marks with chalk where the ends of the strings meet.</p>
+            <p>
+                <ol marker="(a)">
+                    <li>
+                        <p>Use strings <m>5\,\text{m}</m> long. Where can the strings meet? How far is each meeting point from the middle <m>M</m> of <m>AB</m>?</p>
+                        <solution component="lesson-plan"><p>At two points, one on each side of <m>AB</m>. Each is <m>\sqrt{5^2 - 3^2} = 4\,\text{m}</m> from <m>M</m> (a <m>3, 4, 5</m> triangle).</p></solution>
+                    </li>
+                    <li>
+                        <p>Repeat with strings <m>4\,\text{m}</m> long.</p>
+                        <solution component="lesson-plan"><p>Two points, each <m>\sqrt{4^2 - 3^2} = \sqrt{7} \approx 2.6\,\text{m}</m> from <m>M</m>.</p></solution>
+                    </li>
+                    <li>
+                        <p>Repeat with strings <m>3\,\text{m}</m> long.</p>
+                        <solution component="lesson-plan"><p>Only one point: the strings meet at <m>M</m> itself.</p></solution>
+                    </li>
+                    <li>
+                        <p>Repeat with strings <m>2.5\,\text{m}</m> long.</p>
+                        <solution component="lesson-plan"><p>They do not meet: <m>2.5\,\text{m}</m> is less than half of <m>6\,\text{m}</m>, so the two strings together cannot reach across <m>AB</m>.</p></solution>
+                    </li>
+                    <li>
+                        <p>Mark all your points with chalk. What shape do they make, and how does it cross <m>AB</m>?</p>
+                        <solution component="lesson-plan"><p>A straight line through <m>M</m>, at right angles to <m>AB</m>.</p></solution>
+                        <note component="lesson-plan"><p>This is the moment to name the line, in two languages: in locus language it is <q>the points equidistant from <m>A</m> and <m>B</m></q>; in construction language it is <q>the perpendicular bisector of <m>AB</m></q>.</p></note>
+                    </li>
+                </ol>
+            </p>
         </statement>
-    </activity> -->
+    </activity>
 
-    <!-- [LP] Add guidance on structured lesson plan-->
-
-    <!-- <axiom component="lesson-plan">
+    <axiom component="lesson-plan">
         <title>Structured Instruction</title>
         <p>
             <dl>
-            <li>
-                <title>Suggested Time</title>
-                <p>
-                    XX minutes
-                </p>
-            </li>
-            <li>
-                <title>Objective</title>
-                <p>
-                    To formalize the concepts and properties learners discovered in the anchor task.
-                </p>
-            </li>
+                <li><title>Suggested Time</title><p>8 minutes</p></li>
+                <li><title>Objective</title><p>To formalise the idea of a locus, the two languages for loci, and the perpendicular bisector locus.</p></li>
             </dl>
         </p>
         <paragraphs>
             <title>Key Takeaways &amp; Teacher Connection</title>
             <ol>
-                <li>
-                    <p>
-                        <alert>Connecting to Learner Work:</alert> XXXX
-                    </p>
-                </li>
+                <li><p><alert>Connecting to Learner Work:</alert> every chalk mark was the same distance from both pegs, and every point the same distance from both pegs could have been marked: that is what makes the line a locus.</p></li>
+                <li><p>The table of locus language and construction language is the map of the whole chapter.</p></li>
+                <li><p>The string length is the compass radius. It must be more than half of <m>AB</m>, or the arcs do not meet.</p></li>
+                <li><p>The construction works because each crossing point is one radius from <m>A</m> and the same radius from <m>B</m>. Recall the Grade 11 circumcircle construction, which used two perpendicular bisectors.</p></li>
             </ol>
         </paragraphs>
-    </axiom> -->
+    </axiom>
 
-    <!-- Add insight / key takeaway directly related to activity / learner experience -->
+    <insight xml:id="insight-loci-in-two-languages">
+        <title>Loci in Two Languages</title>
+        <p>
+            A <term>locus</term> (plural <term>loci</term>) is the set of all points, and only those points, that obey a rule. We often say <q>the locus of a point <m>P</m> that moves so that ...</q>. Every point on the locus obeys the rule, and every point that obeys the rule is on the locus. A locus may be a line, a curve or a region. Points that are the same distance from two things are <term>equidistant</term> from them.
+        </p>
+        <table xml:id="table-locus-and-construction-language">
+            <title>Locus Language and Construction Language</title>
+            <tabular halign="left" top="minor" bottom="minor" left="minor" right="minor">
+                <row header="yes" bottom="medium"><cell>Locus language: the points that are ...</cell><cell>Construction language</cell><cell>Section</cell></row>
+                <row><cell>equidistant from two points <m>A</m> and <m>B</m></cell><cell>the perpendicular bisector of <m>AB</m></cell><cell><xref ref="sec-perpendicular-bisector-loci"/></cell></row>
+                <row><cell>a fixed distance <m>r</m> from a point <m>O</m></cell><cell>a circle, centre <m>O</m>, radius <m>r</m></cell><cell><xref ref="sec-loci-at-a-given-distance-from-a-fixed-point"/></cell></row>
+                <row><cell>a fixed distance <m>d</m> from a straight line <m>l</m></cell><cell>a pair of lines parallel to <m>l</m>, one on each side, each <m>d</m> from <m>l</m></cell><cell><xref ref="sec-loci-at-a-given-distance-from-a-fixed-line"/></cell></row>
+                <row><cell>equidistant from two parallel lines</cell><cell>the line parallel to both, halfway between them</cell><cell><xref ref="sec-loci-at-a-given-distance-from-a-fixed-line"/></cell></row>
+                <row><cell>equidistant from two intersecting lines</cell><cell>the two bisectors of the angles between the lines</cell><cell><xref ref="sec-angle-bisector-loci"/></cell></row>
+                <row><cell>at which a segment <m>AB</m> is seen at a fixed angle <m>\theta</m></cell><cell>two arcs of circles through <m>A</m> and <m>B</m>, mirror images in <m>AB</m></cell><cell><xref ref="sec-constant-angle-loci"/></cell></row>
+            </tabular>
+        </table>
+        <p>
+            In this chapter <q>construct</q> means using only a ruler (as a straight edge) and a pair of compasses; <q>draw</q> allows measuring with a ruler and a protractor. Never rub out construction arcs. Measure lengths on drawings to the nearest millimetre and angles to the nearest degree.
+        </p>
+    </insight>
 
-    <!-- <insight>
-    </insight> -->
+    <insight xml:id="insight-perpendicular-bisector-locus">
+        <title>The Perpendicular Bisector Locus</title>
+        <p>
+            The locus of points equidistant from two points <m>A</m> and <m>B</m> is the <term>perpendicular bisector</term> of <m>AB</m>: the line through the midpoint of <m>AB</m> at right angles to <m>AB</m>. Both halves hold: every point on the perpendicular bisector is equidistant from <m>A</m> and <m>B</m>, and every point equidistant from <m>A</m> and <m>B</m> is on it.
+        </p>
+        <p>To construct it:</p>
+        <p>
+            <ol>
+                <li><p>Open the compasses to more than half of <m>AB</m>.</p></li>
+                <li><p>With the point at <m>A</m>, draw an arc above <m>AB</m> and an arc below it.</p></li>
+                <li><p>Without changing the compasses, do the same from <m>B</m>.</p></li>
+                <li><p>Join the two points where the arcs cross. Keep the arcs.</p></li>
+            </ol>
+        </p>
+    </insight>
 
-    <!-- Add further instruction (not in a block) to develop ideas as needed -->
+    <figure xml:id="fig-perpendicular-bisector-construction">
+        <caption>Constructing the perpendicular bisector of <m>AB</m>.</caption>
+        <image width="60%">
+            <shortdescription>Segment AB of 7 cm with arcs of radius 5 cm drawn from A and from B, crossing above and below AB. The line through the two crossing points meets AB at its midpoint M at right angles, with AM and MB marked equal. A point P on the line is joined to A and B by dashed lines marked equal.</shortdescription>
+            <latex-image>
+\begin{tikzpicture}[scale=0.8]
+% SET
+\tkzDefPoint(0,0){A} \tkzDefPoint(7,0){B}
+% CALCULATE
+\tkzDefMidPoint(A,B) \tkzGetPoint{M}
+\tkzDefPoint(3.5,3.5707){C} \tkzDefPoint(3.5,-3.5707){D} % crossings: sqrt(5^2 - 3.5^2) = 3.57 from M
+\tkzDefPoint(3.5,2){P}
+% DRAW
+\tkzDrawSegment[thick](A,B)
+\draw (A) ++(28:5) arc (28:62:5);
+\draw (A) ++(-62:5) arc (-62:-28:5);
+\draw (B) ++(118:5) arc (118:152:5);
+\draw (B) ++(-152:5) arc (-152:-118:5);
+\tkzDrawLine[add=0.15 and 0.15](C,D)
+\tkzDrawSegments[dashed](P,A P,B)
+\tkzDrawPoints(A,B,M,P,C,D)
+% MARK
+\tkzMarkRightAngle[size=0.3](B,M,C)
+\tkzMarkSegments[mark=|](A,M M,B)
+\tkzMarkSegments[mark=||](P,A P,B)
+% LABEL
+\tkzLabelPoints[below left](A) \tkzLabelPoints[below right](B,M)
+\tkzLabelPoints[right](P)
+\end{tikzpicture}
+            </latex-image>
+        </image>
+    </figure>
+
+    <figure xml:id="fig-perpendicular-bisector-locus">
+        <caption>Drag <m>P</m> until <m>PA = PB</m> and it leaves a dot. Find many such points, then tick <q>Show the locus</q>. Use <alert>Next</alert> and <alert>Back</alert> to see the construction.</caption>
+        <interactive xml:id="interactive-perpendicular-bisector-locus" platform="jsxgraph" width="90%" aspect="16:12" source="jsxgraph/perpendicular-bisector-locus.js">
+            <slate xml:id="jsxgraph-perpendicular-bisector-locus" surface="jsxboard" aspect="16:12"/>
+            <instructions>
+                <p>
+                    <ul>
+                        <li><p>Drag <m>P</m> and watch <m>PA</m> and <m>PB</m>. When they are equal, <m>P</m> leaves a dot. Find at least six dots, on both sides of <m>AB</m>.</p></li>
+                        <li><p>Tick <alert>Show the locus</alert>. Do your dots lie on the line?</p></li>
+                        <li><p>Press <alert>Next</alert> three times to see the compass construction, step by step. Drag <m>A</m> or <m>B</m> and see the construction follow.</p></li>
+                        <li><p>Press <alert>Clear</alert> to remove the dots.</p></li>
+                    </ul>
+                </p>
+            </instructions>
+        </interactive>
+    </figure>
 
     <xi:include href="../lesson-plan-templates/example-intro.ptx" />
 
-    <!-- Add at least 3 examples -->
-
-    <!-- <example>
+    <example xml:id="example-constructing-perpendicular-bisector">
+        <title>Constructing the Perpendicular Bisector</title>
         <statement>
+            <p>Draw a line segment <m>AB = 7\,\text{cm}</m> and construct its perpendicular bisector, with the compasses opened to <m>5\,\text{cm}</m>. How far from the midpoint <m>M</m> are the points where the arcs cross? Would a radius of <m>3\,\text{cm}</m> work?</p>
         </statement>
         <solution>
+            <p>
+                <alert>Step 1:</alert> Draw <m>AB = 7\,\text{cm}</m>. Open the compasses to <m>5\,\text{cm}</m>, which is more than half of <m>AB</m> (<m>3.5\,\text{cm}</m>).
+            </p>
+            <p>
+                <alert>Step 2:</alert> With the point at <m>A</m>, draw an arc above <m>AB</m> and an arc below. Without changing the compasses, do the same from <m>B</m>. Join the two crossing points (<xref ref="fig-perpendicular-bisector-construction"/>).
+            </p>
+            <p>
+                <alert>Check:</alert> each crossing point is <m>5\,\text{cm}</m> from <m>A</m> and <m>3.5\,\text{cm}</m> along from <m>A</m> to <m>M</m>, so by Pythagoras its distance from <m>M</m> is
+                <md>\sqrt{5^2 - 3.5^2} = \sqrt{12.75} \approx 3.6\,\text{cm}.</md>
+                Measure it on your drawing. Any radius more than <m>3.5\,\text{cm}</m> works. A radius of <m>3\,\text{cm}</m> does not: the arcs from <m>A</m> and <m>B</m> would not meet.
+            </p>
         </solution>
     </example>
 
-    <example>
+    <example xml:id="example-on-the-perpendicular-bisector">
+        <title>On the Locus, or Nearer to <m>A</m> or <m>B</m>?</title>
         <statement>
+            <p><m>A</m> is <m>(1, 2)</m> and <m>B</m> is <m>(7, 6)</m>. Find the midpoint <m>M</m> of <m>AB</m>. For each of <m>P(2, 7)</m>, <m>Q(6, 1)</m> and <m>R(5, 5)</m>, decide whether it is on the locus of points equidistant from <m>A</m> and <m>B</m>, nearer to <m>A</m>, or nearer to <m>B</m>.</p>
         </statement>
         <solution>
+            <p>
+                <m>M = \left(\frac{1 + 7}{2}, \frac{2 + 6}{2}\right) = (4, 4)</m>. Compare the squares of the distances, worked out by Pythagoras:
+                <md>
+                    <mrow>PA^2 \amp = 1^2 + 5^2 = 26, \amp PB^2 \amp = 5^2 + 1^2 = 26</mrow>
+                    <mrow>QA^2 \amp = 5^2 + 1^2 = 26, \amp QB^2 \amp = 1^2 + 5^2 = 26</mrow>
+                    <mrow>RA^2 \amp = 4^2 + 3^2 = 25, \amp RB^2 \amp = 2^2 + 1^2 = 5</mrow>
+                </md>
+                So <m>P</m> and <m>Q</m> are on the locus, and <m>R</m> is nearer to <m>B</m>. Comparing squares means nothing has to be rounded. <xref ref="fig-grid-perpendicular-bisector"/> shows the points.
+            </p>
+            <figure xml:id="fig-grid-perpendicular-bisector">
+                <caption>The perpendicular bisector of <m>AB</m>, with <m>A(1, 2)</m> and <m>B(7, 6)</m>.</caption>
+                <image width="55%">
+                    <shortdescription>A grid from 0 to 8 in each direction with A(1, 2), B(7, 6) and their midpoint M(4, 4). The perpendicular bisector of AB is a dashed line through M. P(2, 7) and Q(6, 1) lie on it; R(5, 5) is on B's side of it.</shortdescription>
+                    <latex-image>
+\begin{tikzpicture}[scale=0.6]
+% SET
+\coordinate (A) at (1,2); \coordinate (B) at (7,6); \coordinate (M) at (4,4);
+\coordinate (P) at (2,7); \coordinate (Q) at (6,1); \coordinate (R) at (5,5);
+% DRAW
+\draw[gray!40] (0,0) grid (8,8);
+\draw[->] (0,0) -- (8.5,0) node[right] {$x$};
+\draw[->] (0,0) -- (0,8.5) node[above] {$y$};
+\foreach \k in {2,4,6,8} { \node[below] at (\k,0) {\small $\k$}; \node[left] at (0,\k) {\small $\k$}; }
+\draw[thick] (A) -- (B);
+\draw[thick,dashed] (4/3,8) -- (20/3,0);
+% MARK
+\foreach \p in {A,B,M,P,Q,R} \fill (\p) circle (2.5pt);
+% LABEL
+\node[below right] at (A) {$A$}; \node[above left] at (B) {$B$}; \node[below left] at (M) {$M$};
+\node[left] at (P) {$P$}; \node[right] at (Q) {$Q$}; \node[above right] at (R) {$R$};
+\end{tikzpicture}
+                    </latex-image>
+                </image>
+            </figure>
         </solution>
     </example>
 
-    <example>
+    <example xml:id="example-water-tank-between-homes">
+        <title>A Water Tank Between Two Homes</title>
         <statement>
+            <p>Two homes <m>H</m> and <m>K</m> are <m>80\,\text{m}</m> apart beside a straight path that joins them. A water tank is to be the same distance from both homes and <m>30\,\text{m}</m> from the path. Make a scale drawing with <m>1\,\text{cm}</m> representing <m>10\,\text{m}</m>, and find how far the tank is from each home.</p>
         </statement>
         <solution>
+            <p>
+                <alert>Step 1:</alert> Draw <m>HK = 8\,\text{cm}</m> and construct its perpendicular bisector. The tank is on this line, because it is equidistant from <m>H</m> and <m>K</m>.
+            </p>
+            <p>
+                <alert>Step 2:</alert> Mark the tank <m>T</m> on the bisector <m>3\,\text{cm}</m> from <m>HK</m>. Measure <m>TH</m>: about <m>5.0\,\text{cm}</m>, which represents <m>50\,\text{m}</m>.
+            </p>
+            <p>
+                <alert>Check:</alert> the midpoint of <m>HK</m> is <m>40\,\text{m}</m> from each home, so <m>TH = \sqrt{40^2 + 30^2} = 50\,\text{m}</m>. The tank is <m>50\,\text{m}</m> from each home. (There is a second possible place, <m>30\,\text{m}</m> on the other side of the path.)
+            </p>
         </solution>
-    </example> -->
+    </example>
+
+    <note xml:id="note-loci-with-geometry-software">
+        <title>Loci with Geometry Software</title>
+        <p>
+            Free geometry software such as GeoGebra lets you place two points <m>A</m> and <m>B</m>, construct the perpendicular bisector with one tool, then put a point on it and drag it while the software shows <m>PA</m> and <m>PB</m>. Try it on a phone or computer: the two lengths stay equal however far you drag. Checking a construction this way is a useful digital skill.
+        </p>
+    </note>
 
     <xi:include href="../lesson-plan-templates/assessment-intro.ptx" />
+    <xi:include href="../lesson-plan-templates/checkpoint.ptx" />
 
-    <!-- If STACK questions are included, uncomment this: -->
+    <p>Choose from each list. Type coordinates as whole numbers, for example <c>-3</c>.</p>
 
-    <!-- <xi:include href="../lesson-plan-templates/checkpoint.ptx" /> -->
+    <exercise xml:id="ex-loci-in-words-and-in-construction-language">
+        <!--<title></title>-->
+        <stack label="stk-loci-in-words-and-in-construction-language" source="stack/top/2-measurement-and-geometry/08-loci/01-perpendicular-bisector-loci/Loci-in-words-and-in-construction-language.xml"/>
+    </exercise>
 
-    <!-- Add STACK exercises if made -->
+    <exercise xml:id="ex-points-and-the-perpendicular-bisector-of-ab">
+        <!--<title></title>-->
+        <stack label="stk-points-and-the-perpendicular-bisector-of-ab" source="stack/top/2-measurement-and-geometry/08-loci/01-perpendicular-bisector-loci/Points-and-the-perpendicular-bisector-of-AB.xml"/>
+    </exercise>
 
-    <!-- Add static exercises -->
+    <exercise xml:id="ex-finding-the-mistake-in-a-bisector-construction">
+        <!--<title></title>-->
+        <stack label="stk-finding-the-mistake-in-a-bisector-construction" source="stack/top/2-measurement-and-geometry/08-loci/01-perpendicular-bisector-loci/Finding-the-mistake-in-a-bisector-construction.xml"/>
+    </exercise>
 
-    <!-- <exercises>
-        <exercise>
-            <statement>   
+    <exercises xml:id="exercises-perpendicular-bisector-loci">
+        <exercise xml:id="ex-construct-perpendicular-bisector">
+            <statement><p>Draw a line segment <m>AB = 9\,\text{cm}</m> and construct its perpendicular bisector with the compasses opened to <m>6\,\text{cm}</m>. How far from the midpoint <m>M</m> are the points where your arcs cross?</p></statement>
+            <answer><p>About <m>4.0\,\text{cm}</m></p></answer>
+            <solution><p>Each crossing point is <m>6\,\text{cm}</m> from <m>A</m>, and <m>AM = 4.5\,\text{cm}</m>, so its distance from <m>M</m> is <m>\sqrt{6^2 - 4.5^2} = \sqrt{15.75} \approx 3.97\,\text{cm}</m>, about <m>4.0\,\text{cm}</m>.</p></solution>
+        </exercise>
+        <exercise xml:id="ex-grid-perpendicular-bisector">
+            <statement><p><m>A</m> is <m>(-2, 1)</m> and <m>B</m> is <m>(4, 3)</m>. Find the midpoint <m>M</m> of <m>AB</m>. For each of <m>P(0, 5)</m>, <m>Q(2, -1)</m> and <m>R(3, 1)</m>, decide whether it is on the locus of points equidistant from <m>A</m> and <m>B</m>, nearer to <m>A</m>, or nearer to <m>B</m>.</p></statement>
+            <answer><p><m>M(1, 2)</m>; <m>P</m> and <m>Q</m> are on the locus; <m>R</m> is nearer to <m>B</m>.</p></answer>
+            <solution><p><m>PA^2 = 4 + 16 = 20</m>, <m>PB^2 = 16 + 4 = 20</m>: on. <m>QA^2 = 16 + 4 = 20</m>, <m>QB^2 = 4 + 16 = 20</m>: on. <m>RA^2 = 25 + 0 = 25</m>, <m>RB^2 = 1 + 4 = 5</m>: nearer to <m>B</m>.</p></solution>
+        </exercise>
+        <exercise xml:id="ex-kiosk-between-stages">
+            <statement><p>Two matatu stages <m>S</m> and <m>T</m> are <m>1.2\,\text{km}</m> apart on a straight road. A kiosk must be equidistant from <m>S</m> and <m>T</m> and <m>0.8\,\text{km}</m> from the road. Make a scale drawing with <m>1\,\text{cm}</m> representing <m>0.2\,\text{km}</m>. How far is the kiosk from each stage?</p></statement>
+            <answer><p><m>1.0\,\text{km}</m></p></answer>
+            <solution><p>Draw <m>ST = 6\,\text{cm}</m> and construct its perpendicular bisector. Mark the kiosk on it <m>4\,\text{cm}</m> from <m>ST</m>. It measures <m>5\,\text{cm}</m> from each stage, which is <m>1.0\,\text{km}</m>. Check: <m>\sqrt{0.6^2 + 0.8^2} = 1.0\,\text{km}</m>.</p></solution>
+        </exercise>
+        <exercise xml:id="ex-length-from-the-bisector">
+            <statement><p><m>P</m> is on the perpendicular bisector of <m>AB</m>, <m>5\,\text{cm}</m> from <m>AB</m>, and <m>PA = 13\,\text{cm}</m>. Find the length of <m>AB</m>.</p></statement>
+            <answer><p><m>24\,\text{cm}</m></p></answer>
+            <solution><p>If <m>M</m> is the midpoint of <m>AB</m>, triangle <m>PMA</m> has a right angle at <m>M</m>, so <m>AM = \sqrt{13^2 - 5^2} = 12\,\text{cm}</m> and <m>AB = 24\,\text{cm}</m>.</p></solution>
+        </exercise>
+        <exercise xml:id="ex-two-languages">
+            <statement>
+                <p>Write each locus in construction language.</p>
+                <p>
+                    <ol marker="(a)">
+                        <li><p>The locus of a point that is always as far from the gate <m>G</m> as from the tap <m>T</m>.</p></li>
+                        <li><p>The locus of a point <m>2\,\text{m}</m> from the tap <m>T</m>.</p></li>
+                        <li><p>The locus of a point equidistant from two parallel fences.</p></li>
+                    </ol>
+                </p>
+            </statement>
+            <answer><p>(a) The perpendicular bisector of <m>GT</m>. (b) A circle, centre <m>T</m>, radius <m>2\,\text{m}</m>. (c) The line parallel to both fences, halfway between them.</p></answer>
+        </exercise>
+        <exercise xml:id="ex-why-the-bisector-works">
+            <title>Challenge: Why the Bisector Works</title>
+            <statement><p><m>P</m> is equidistant from <m>A</m> and <m>B</m>, and <m>M</m> is the midpoint of <m>AB</m>. Show that <m>PM</m> is at right angles to <m>AB</m>.</p></statement>
+            <hint><p>Compare triangles <m>PMA</m> and <m>PMB</m>.</p></hint>
+            <answer><p>The triangles are congruent (SSS), so the angles at <m>M</m> are equal, and each is <m>90^{\circ}</m>.</p></answer>
+            <solution><p>In triangles <m>PMA</m> and <m>PMB</m>: <m>PA = PB</m> (given), <m>AM = MB</m> (<m>M</m> is the midpoint) and <m>PM</m> is common. So the triangles are congruent (SSS), and angle <m>PMA</m> equals angle <m>PMB</m>. These two angles lie on the straight line <m>AB</m>, so they add to <m>180^{\circ}</m>, and each is <m>90^{\circ}</m>.</p></solution>
+        </exercise>
+    </exercises>
 
-            </statement>   
-            <solution>
-
-            </solution>             
-        </exercise>        
-    </exercises> -->
-
-    <!-- [LP] Add information on how to differentiate  -->
-
-    <!-- <axiom component="lesson-plan">
+    <axiom component="lesson-plan">
         <title>Differentiation</title>
-
-        <table>
-            <title>Differentiation</title>
-            <tabular halign="left">
-                <row header="yes" bottom="minor">
-                    <cell>Learner Group</cell>
-                    <cell>Strategy &amp; Learning Experience</cell>
-                    <cell></cell>
-                </row>
-                <row>
-                    <cell>Struggling Learners (Support)</cell>
-                    <cell>
-                        XXXX
-                    </cell>
-                    <cell></cell>
-                </row>
-                <row>
-                    <cell>On-Level Learners (Core)</cell>
-                    <cell>
-                        <line>The core lesson activities as described above.</line>
-                    </cell>
-                    <cell></cell>
-                </row>
-                <row>
-                    <cell>Advanced Learners (Challenge)</cell>
-                    <cell>
-                        XXXX
-                    </cell>
-                    <cell></cell>
-                </row>
+        <table xml:id="table-differentiation-perpendicular-bisector-loci">
+            <title>Differentiation Strategies</title>
+            <tabular halign="left" top="minor" bottom="minor" left="minor" right="minor">
+                <row header="yes" bottom="medium"><cell>Learner Group</cell><cell>Strategy and Learning Experience</cell></row>
+                <row><cell>Struggling Learners (Support)</cell><cell>Do activity parts (a) to (c) on paper with a printed segment. Give a card with the three construction steps (radius more than half, arcs from both ends, join the crossings). Work <xref ref="example-constructing-perpendicular-bisector"/> together. Assign <xref ref="ex-construct-perpendicular-bisector"/> and <xref ref="ex-two-languages"/>.</cell></row>
+                <row><cell>On-Level Learners (Core)</cell><cell>Full activity and all examples. Assign <xref ref="ex-construct-perpendicular-bisector"/> to <xref ref="ex-two-languages"/>.</cell></row>
+                <row><cell>Advanced Learners (Challenge)</cell><cell>All exercises including <xref ref="ex-why-the-bisector-works"/>. Extension: find all points with whole-number coordinates between <m>x = 0</m> and <m>x = 8</m> that are equidistant from <m>(0, 0)</m> and <m>(8, 4)</m>. (Answer: the bisector is <m>y = -2x + 10</m>, so <m>(0, 10)</m>, <m>(1, 8)</m>, <m>(2, 6)</m>, <m>(3, 4)</m>, <m>(4, 2)</m>, <m>(5, 0)</m>, <m>(6, -2)</m>, <m>(7, -4)</m>, <m>(8, -6)</m>.)</cell></row>
             </tabular>
         </table>
-    </axiom> -->
+    </axiom>
 
     <xi:include href="../lesson-plan-templates/assessment-methods.ptx" />
 

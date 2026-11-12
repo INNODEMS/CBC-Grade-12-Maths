@@ -33,7 +33,7 @@
                 <li component="lesson-plan">
                     <title>Estimated Duration</title>
                     <p>
-                        40 minutes
+                        2 lessons of 40 minutes
                     </p>
                 </li>
             </dl>
@@ -46,163 +46,500 @@
          Suggested activity: Learners expand (a+b)², (a+b)³ and (a+b)⁴ by multiplication on manila paper and colour-code like terms to spot the coefficient pattern.
          Interactive (JSXGraph): Slider for n (0 to 4) showing the expansion of (a+b)ⁿ with an area model: a square/cube split into coloured rectangles whose areas match each term. -->
 
-    <!-- [LP] Add guidance on activity -->
+    <!-- Section notes (2026-11)
+         SLOs: Core (a). Lessons 1.1 and 1.2 as subsections.
+         Activity: as planning notes (manila paper, like terms marked) | changed: like terms marked by colour and by a shape symbol, so the record does not rely on colour
+         JSXGraph: interactive-binomial-area-model | changed: power 4 shown as a multiplication grid (no 4D area model exists)
+         STACK: assets/stack/top/1-numbers-and-algebra/02-binomial-expansions/01-binomial-expansion/ -->
 
-    <!-- <axiom component="lesson-plan">
+    <introduction>
+        <question xml:id="kiq-binomial-expansions">
+            <p><em>Where do we use binomial expansions in everyday life?</em></p>
+        </question>
+        <p>
+            A <term>binomial</term> is an expression with two terms, such as <m>a + b</m> or <m>2x - 3</m>. In this chapter you multiply out powers of binomials, first by repeated multiplication and then by a pattern. You build Pascal's triangle and use it to find any coefficient up to the power <m>10</m>, and you use expansions to estimate powers of numbers such as <m>1.02^5</m> without a calculator.
+        </p>
+        <p>
+            Expansions are useful well beyond the classroom. A SACCO statement for savings that grow by a fixed percentage each year shows interest on interest, and the expansion of <m>(1 + x)^n</m> shows exactly where it comes from. Engineers, surveyors and scientists use the first few terms of an expansion to make quick, accurate estimates. As you work through the chapter, look out for other places where expansions help.
+        </p>
+    </introduction>
+
+    <!-- ============================================================ Lesson 1.1 -->
+    <subsection xml:id="subsec-expanding-by-multiplication">
+        <title>Expanding by Multiplication</title>
+
+        <p component="lesson-plan">Upon completion of this lesson, learners will be able to:
+            <ol>
+                <li><p><alert>Know:</alert> <m>(a + b)^n</m> means <m>n</m> factors of <m>(a + b)</m> multiplied together; multiplying out gives like terms that must be collected; the coefficient pattern for powers 1 to 4.</p></li>
+                <li><p><alert>Do:</alert> expand squares, cubes and fourth powers of binomials by repeated multiplication with a grid.</p></li>
+                <li><p><alert>Apply:</alert> write the volume of a cube-shaped box as a polynomial.</p></li>
+            </ol>
+        </p>
+
+        <axiom component="lesson-plan">
             <title>Problem-Solving and Discovery</title>
             <dl>
-                <li>
-                    <title>Suggested Time</title>
-                    <p>
-                        XX minutes
-                    </p>
-                </li>
-                <li>
-                    <title>Objective</title>
-                    <p>
-                        XXX
-                    </p>
-                </li>
-                <li>
-                    <title>Teacher's Role</title>
-                    <p>
-                        XXX
-                    </p>
-                </li>
+                <li><title>Suggested Time</title><p>14 minutes</p></li>
+                <li><title>Objective</title><p>Learners expand <m>(a + b)^2</m>, <m>(a + b)^3</m> and <m>(a + b)^4</m> by multiplication and discover the coefficient and power patterns.</p></li>
+                <li><title>Teacher's Role</title><p>Put learners in groups of three or four with a sheet of manila paper and two marker colours. Ask each group to mark like terms with the same colour and the same shape (circle, box, triangle), so the record still makes sense when photocopied. Do not mention Pascal yet. After part (d), ask: <q>What would the next row be?</q> Groups that finish early repeat the grids for <m>(x + 1)^2</m>, <m>(x + 1)^3</m> and <m>(x + 1)^4</m>.</p></li>
             </dl>
-        </axiom> -->
+        </axiom>
 
-    <!-- Add Activity -->
-
-    <!-- <activity>
-        <statement>
-        </statement>
-    </activity> -->
-
-    <!-- [LP] Add guidance on structured lesson plan-->
-
-    <!-- <axiom component="lesson-plan">
-        <title>Structured Instruction</title>
-        <p>
-            <dl>
-            <li>
-                <title>Suggested Time</title>
+        <activity xml:id="act-multiplying-out-on-manila-paper">
+            <title>Multiplying Out on Manila Paper</title>
+            <statement>
                 <p>
-                    XX minutes
+                    Work in your group on a sheet of manila paper.
+                    <ol marker="(a)">
+                        <li>
+                            <p>Draw a grid with <m>a</m> and <m>b</m> along the top and <m>a</m> and <m>b</m> down the side. Fill in each cell with the product of its row and column, and use it to expand <m>(a + b)^2</m>.</p>
+                            <solution component="lesson-plan"><p>The cells are <m>a^2</m>, <m>ab</m>, <m>ab</m>, <m>b^2</m>. The two <m>ab</m> cells are like terms, so <m>(a + b)^2 = a^2 + 2ab + b^2</m>.</p></solution>
+                        </li>
+                        <li>
+                            <p>Multiply your answer by <m>(a + b)</m>: draw a grid with <m>a^2</m>, <m>2ab</m>, <m>b^2</m> along the top and <m>a</m>, <m>b</m> down the side. Mark the like terms with the same colour and the same shape, then collect them.</p>
+                            <solution component="lesson-plan"><p>The cells are <m>a^3, 2a^2b, ab^2</m> and <m>a^2b, 2ab^2, b^3</m>, so <m>(a + b)^3 = a^3 + 3a^2b + 3ab^2 + b^3</m>.</p></solution>
+                        </li>
+                        <li>
+                            <p>Expand <m>(a + b)^4</m> the same way, by multiplying your answer to (b) by <m>(a + b)</m>.</p>
+                            <solution component="lesson-plan"><p><m>(a + b)^4 = a^4 + 4a^3b + 6a^2b^2 + 4ab^3 + b^4</m>.</p></solution>
+                        </li>
+                        <li>
+                            <p>Write the coefficients of <m>(a + b)^1</m>, <m>(a + b)^2</m>, <m>(a + b)^3</m> and <m>(a + b)^4</m> in rows, one under another and centred. Describe three patterns you can see.</p>
+                            <solution component="lesson-plan"><p>The rows are 1, 1; 1, 2, 1; 1, 3, 3, 1; 1, 4, 6, 4, 1. Patterns: <m>(a + b)^n</m> has <m>n + 1</m> terms; the powers of <m>a</m> fall from <m>n</m> to <m>0</m> while the powers of <m>b</m> rise from <m>0</m> to <m>n</m>, so every term has total power <m>n</m>; each row reads the same both ways, starts and ends with 1, and each inside number is the sum of the two numbers above it.</p></solution>
+                        </li>
+                        <li>
+                            <p>Predict the coefficients of <m>(a + b)^5</m> without multiplying.</p>
+                            <solution component="lesson-plan"><p>1, 5, 10, 10, 5, 1.</p></solution>
+                            <note component="lesson-plan"><p>Ask one group to check the prediction by multiplying their answer to (c) by <m>(a + b)</m>.</p></note>
+                        </li>
+                    </ol>
                 </p>
-            </li>
-            <li>
-                <title>Objective</title>
-                <p>
-                    To formalize the concepts and properties learners discovered in the anchor task.
-                </p>
-            </li>
-            </dl>
-        </p>
-        <paragraphs>
-            <title>Key Takeaways &amp; Teacher Connection</title>
-            <ol>
-                <li>
+            </statement>
+        </activity>
+
+        <axiom component="lesson-plan">
+            <title>Structured Instruction</title>
+            <p>
+                <dl>
+                    <li><title>Suggested Time</title><p>8 minutes</p></li>
+                    <li><title>Objective</title><p>To formalise expanding by multiplication and the patterns learners found.</p></li>
+                </dl>
+            </p>
+            <paragraphs>
+                <title>Key Takeaways &amp; Teacher Connection</title>
+                <ol>
+                    <li><p><alert>Connecting to Learner Work:</alert> <m>(a + b)^n</m> means <m>n</m> factors of <m>(a + b)</m> multiplied together, never <m>a^n + b^n</m>.</p></li>
+                    <li><p>Like terms appear because different products give the same power (the two <m>ab</m> cells in part (a)); they must be added.</p></li>
+                    <li><p>Use the groups' own rows from part (d) to state the three patterns; keep the rows on the wall for the next lesson.</p></li>
+                </ol>
+            </paragraphs>
+        </axiom>
+
+        <insight xml:id="insight-expanding-a-binomial">
+            <title>Expanding a Binomial</title>
+            <p>
+                A <term>binomial</term> is an expression with two terms. To <term>expand</term> a power of a binomial, multiply out the brackets and collect <term>like terms</term> (terms with the same powers of the letters). The result is the <term>expansion</term>. The number in front of the letters in a term is its <term>coefficient</term>: the coefficient of <m>a^2b</m> in <m>3a^2b</m> is <m>3</m>.
+            </p>
+            <p>
+                <md>
+                    <mrow>(a + b)^1 \amp = a + b</mrow>
+                    <mrow>(a + b)^2 \amp = a^2 + 2ab + b^2</mrow>
+                    <mrow>(a + b)^3 \amp = a^3 + 3a^2b + 3ab^2 + b^3</mrow>
+                    <mrow>(a + b)^4 \amp = a^4 + 4a^3b + 6a^2b^2 + 4ab^3 + b^4</mrow>
+                </md>
+            </p>
+            <p>
+                <ul>
+                    <li><p><m>(a + b)^n</m> has <m>n + 1</m> terms.</p></li>
+                    <li><p>The powers of <m>a</m> go down, the powers of <m>b</m> go up, and every term has total power <m>n</m>.</p></li>
+                    <li><p>Each row of coefficients starts and ends with 1, reads the same both ways, and each inside number is the sum of the two numbers above it.</p></li>
+                </ul>
+            </p>
+            <p>
+                <m>(a + b)^n</m> means <m>n</m> factors of <m>(a + b)</m> multiplied together, never <m>a^n + b^n</m>.
+            </p>
+        </insight>
+
+        <warning xml:id="warning-power-of-a-sum">
+            <title>A Power of a Sum</title>
+            <p>
+                <m>(a + b)^2</m> is not <m>a^2 + b^2</m>. With <m>a = 3</m> and <m>b = 4</m>, <m>(3 + 4)^2 = 49</m> but <m>3^2 + 4^2 = 25</m>. Likewise <m>(x + 2)^3</m> is not <m>x^3 + 8</m>.
+            </p>
+        </warning>
+
+        <figure xml:id="fig-area-model-of-a-square">
+            <caption>A square of side <m>a + b</m> split into four pieces: <m>(a + b)^2 = a^2 + 2ab + b^2</m>.</caption>
+            <image width="55%">
+                <shortdescription>A square with sides a + b, split by one vertical and one horizontal line into a square a squared, two rectangles a b and a square b squared; together the areas give (a + b) squared = a squared + 2 a b + b squared.</shortdescription>
+                <latex-image>
+\begin{tikzpicture}[scale=0.8]
+  \fill[gray!25] (0,2) rectangle (3,5);
+  \fill[gray!10] (3,2) rectangle (5,5);
+  \fill[gray!10] (0,0) rectangle (3,2);
+  \fill[gray!45] (3,0) rectangle (5,2);
+  \draw[thick] (0,0) rectangle (5,5);
+  \draw[thick] (3,0) -- (3,5);
+  \draw[thick] (0,2) -- (5,2);
+  \node at (1.5,3.5) {$a^2$};
+  \node at (4,3.5) {$ab$};
+  \node at (1.5,1) {$ab$};
+  \node at (4,1) {$b^2$};
+  \node[above] at (1.5,5) {$a$};
+  \node[above] at (4,5) {$b$};
+  \node[left] at (0,3.5) {$a$};
+  \node[left] at (0,1) {$b$};
+\end{tikzpicture}
+                </latex-image>
+            </image>
+        </figure>
+
+        <figure xml:id="fig-binomial-area-model-interactive">
+            <caption>Drag <m>n</m> to see <m>(a + b)^n</m> as a length, an area, a volume and (for power 4, which has no picture in space) a multiplication grid. Drag <m>a</m> and <m>b</m> to change the sizes.</caption>
+            <interactive xml:id="interactive-binomial-area-model" platform="jsxgraph" width="90%" aspect="16:12" source="jsxgraph/binomial-area-model.js">
+                <slate xml:id="jsxgraph-binomial-area-model" surface="jsxboard" aspect="16:12"/>
+                <instructions>
                     <p>
-                        <alert>Connecting to Learner Work:</alert> XXXX
+                        <ul>
+                            <li><p>Drag <alert>n</alert> to 3 and count the blocks of each kind in the cube.</p></li>
+                            <li><p>Drag <alert>n</alert> to 4: like terms in the grid carry the same symbol and are collected below it.</p></li>
+                            <li><p>Change <alert>a</alert> and <alert>b</alert>: the value of the expansion and the value of <m>(a + b)^n</m> always agree.</p></li>
+                        </ul>
                     </p>
-                </li>
-            </ol>
-        </paragraphs>
-    </axiom> -->
+                </instructions>
+            </interactive>
+        </figure>
 
-    <!-- Add insight / key takeaway directly related to activity / learner experience -->
+        <xi:include href="../lesson-plan-templates/example-intro.ptx" />
 
-    <!-- <insight>
-    </insight> -->
-
-    <!-- Add further instruction (not in a block) to develop ideas as needed -->
-
-    <xi:include href="../lesson-plan-templates/example-intro.ptx" />
-
-    <!-- Add at least 3 examples -->
-
-    <!-- <example>
-        <statement>
-        </statement>
-        <solution>
-        </solution>
-    </example>
-
-    <example>
-        <statement>
-        </statement>
-        <solution>
-        </solution>
-    </example>
-
-    <example>
-        <statement>
-        </statement>
-        <solution>
-        </solution>
-    </example> -->
-
-    <xi:include href="../lesson-plan-templates/assessment-intro.ptx" />
-
-    <!-- If STACK questions are included, uncomment this: -->
-
-    <!-- <xi:include href="../lesson-plan-templates/checkpoint.ptx" /> -->
-
-    <!-- Add STACK exercises if made -->
-
-    <!-- Add static exercises -->
-
-    <!-- <exercises>
-        <exercise>
-            <statement>   
-
-            </statement>   
+        <example xml:id="example-squaring-and-cubing-x-plus-3">
+            <title>Squaring and Cubing <m>x + 3</m></title>
+            <statement><p>Expand (a) <m>(x + 3)^2</m> (b) <m>(x + 3)^3</m>.</p></statement>
             <solution>
+                <p>(a) Use a grid with <m>x</m> and <m>3</m> along the top and down the side.</p>
+                <table xml:id="table-grid-x-plus-3-squared">
+                    <title>Grid for <m>(x + 3)^2</m></title>
+                    <tabular halign="center" top="minor" bottom="minor" left="minor" right="minor">
+                        <row header="yes" bottom="medium"><cell><m>\times</m></cell><cell><m>x</m></cell><cell><m>3</m></cell></row>
+                        <row><cell><m>x</m></cell><cell><m>x^2</m></cell><cell><m>3x</m></cell></row>
+                        <row><cell><m>3</m></cell><cell><m>3x</m></cell><cell><m>9</m></cell></row>
+                    </tabular>
+                </table>
+                <p>Collecting the like terms <m>3x + 3x = 6x</m>: <md>(x + 3)^2 = x^2 + 6x + 9</md></p>
+                <p>(b) <m>(x + 3)^3 = (x^2 + 6x + 9)(x + 3)</m>. Use a 2 by 3 grid.</p>
+                <table xml:id="table-grid-x-plus-3-cubed">
+                    <title>Grid for <m>(x^2 + 6x + 9)(x + 3)</m></title>
+                    <tabular halign="center" top="minor" bottom="minor" left="minor" right="minor">
+                        <row header="yes" bottom="medium"><cell><m>\times</m></cell><cell><m>x^2</m></cell><cell><m>6x</m></cell><cell><m>9</m></cell></row>
+                        <row><cell><m>x</m></cell><cell><m>x^3</m></cell><cell><m>6x^2</m></cell><cell><m>9x</m></cell></row>
+                        <row><cell><m>3</m></cell><cell><m>3x^2</m></cell><cell><m>18x</m></cell><cell><m>27</m></cell></row>
+                    </tabular>
+                </table>
+                <p>Collecting like terms: <md>(x + 3)^3 = x^3 + 9x^2 + 27x + 27</md></p>
+            </solution>
+        </example>
 
-            </solution>             
-        </exercise>        
-    </exercises> -->
+        <example xml:id="example-cubing-2x-minus-1">
+            <title>A Minus Sign in the Bracket</title>
+            <statement><p>Expand <m>(2x - 1)^3</m>.</p></statement>
+            <solution>
+                <p>First, <m>(2x - 1)^2 = 4x^2 - 2x - 2x + 1 = 4x^2 - 4x + 1</m>. Then multiply by <m>(2x - 1)</m>:</p>
+                <table xml:id="table-grid-2x-minus-1-cubed">
+                    <title>Grid for <m>(4x^2 - 4x + 1)(2x - 1)</m></title>
+                    <tabular halign="center" top="minor" bottom="minor" left="minor" right="minor">
+                        <row header="yes" bottom="medium"><cell><m>\times</m></cell><cell><m>4x^2</m></cell><cell><m>-4x</m></cell><cell><m>1</m></cell></row>
+                        <row><cell><m>2x</m></cell><cell><m>8x^3</m></cell><cell><m>-8x^2</m></cell><cell><m>2x</m></cell></row>
+                        <row><cell><m>-1</m></cell><cell><m>-4x^2</m></cell><cell><m>4x</m></cell><cell><m>-1</m></cell></row>
+                    </tabular>
+                </table>
+                <p><md>(2x - 1)^3 = 8x^3 - 12x^2 + 6x - 1</md> The signs alternate, because the bracket contains a minus sign.</p>
+                <p>Check by putting <m>x = 1</m>: <m>(2 - 1)^3 = 1</m> and <m>8 - 12 + 6 - 1 = 1</m>.</p>
+            </solution>
+        </example>
 
-    <!-- [LP] Add information on how to differentiate  -->
+        <example xml:id="example-fourth-power-from-two-squares">
+            <title>A Fourth Power from Two Squares</title>
+            <statement><p>Expand <m>(x + 2)^4</m>.</p></statement>
+            <solution>
+                <p><m>(x + 2)^4 = (x + 2)^2(x + 2)^2 = (x^2 + 4x + 4)(x^2 + 4x + 4)</m>. Use a 3 by 3 grid.</p>
+                <table xml:id="table-grid-x-plus-2-to-the-fourth">
+                    <title>Grid for <m>(x^2 + 4x + 4)^2</m></title>
+                    <tabular halign="center" top="minor" bottom="minor" left="minor" right="minor">
+                        <row header="yes" bottom="medium"><cell><m>\times</m></cell><cell><m>x^2</m></cell><cell><m>4x</m></cell><cell><m>4</m></cell></row>
+                        <row><cell><m>x^2</m></cell><cell><m>x^4</m></cell><cell><m>4x^3</m></cell><cell><m>4x^2</m></cell></row>
+                        <row><cell><m>4x</m></cell><cell><m>4x^3</m></cell><cell><m>16x^2</m></cell><cell><m>16x</m></cell></row>
+                        <row><cell><m>4</m></cell><cell><m>4x^2</m></cell><cell><m>16x</m></cell><cell><m>16</m></cell></row>
+                    </tabular>
+                </table>
+                <p>Collecting like terms: <md>(x + 2)^4 = x^4 + 8x^3 + 24x^2 + 32x + 16</md> This matches the row 1, 4, 6, 4, 1 with powers of 2: <m>1</m>, <m>4 \times 2</m>, <m>6 \times 2^2</m>, <m>4 \times 2^3</m>, <m>2^4</m>.</p>
+            </solution>
+        </example>
 
-    <!-- <axiom component="lesson-plan">
-        <title>Differentiation</title>
+        <xi:include href="../lesson-plan-templates/assessment-intro.ptx" />
+        <xi:include href="../lesson-plan-templates/checkpoint.ptx" />
 
-        <table>
+        <p>Type powers with <c>^</c> and fractions with <c>/</c>, for example <c>8x^3-12x^2+3/2*x-1</c>.</p>
+
+        <exercise xml:id="ex-expanding-a-binomial-by-multiplication">
+            <!--<title></title>-->
+            <stack label="stk-expanding-a-binomial-by-multiplication" source="stack/top/1-numbers-and-algebra/02-binomial-expansions/01-binomial-expansion/Expanding-a-binomial-by-multiplication.xml"/>
+        </exercise>
+        <exercise xml:id="ex-finding-the-mistake-in-a-multiplication-grid">
+            <!--<title></title>-->
+            <stack label="stk-finding-the-mistake-in-a-multiplication-grid" source="stack/top/1-numbers-and-algebra/02-binomial-expansions/01-binomial-expansion/Finding-the-mistake-in-a-multiplication-grid.xml"/>
+        </exercise>
+        <exercises xml:id="exercises-expanding-by-multiplication">
+            <exercise xml:id="ex-expand-x-plus-5-squared-and-cubed">
+                <statement><p>Expand (a) <m>(x + 5)^2</m> (b) <m>(x + 5)^3</m>.</p></statement>
+                <answer><p>(a) <m>x^2 + 10x + 25</m> (b) <m>x^3 + 15x^2 + 75x + 125</m></p></answer>
+                <solution><p>(a) The grid gives <m>x^2 + 5x + 5x + 25 = x^2 + 10x + 25</m>. (b) <m>(x^2 + 10x + 25)(x + 5) = x^3 + 5x^2 + 10x^2 + 50x + 25x + 125 = x^3 + 15x^2 + 75x + 125</m>.</p></solution>
+            </exercise>
+            <exercise xml:id="ex-expand-3x-minus-2-cubed">
+                <statement><p>Expand <m>(3x - 2)^3</m>.</p></statement>
+                <answer><p><m>27x^3 - 54x^2 + 36x - 8</m></p></answer>
+                <solution><p><m>(3x - 2)^2 = 9x^2 - 12x + 4</m>. Then <m>(9x^2 - 12x + 4)(3x - 2) = 27x^3 - 18x^2 - 36x^2 + 24x + 12x - 8 = 27x^3 - 54x^2 + 36x - 8</m>.</p></solution>
+            </exercise>
+            <exercise xml:id="ex-expand-x-minus-1-to-the-fourth">
+                <statement><p>Expand <m>(x - 1)^4</m>.</p></statement>
+                <answer><p><m>x^4 - 4x^3 + 6x^2 - 4x + 1</m></p></answer>
+                <solution><p><m>(x - 1)^2 = x^2 - 2x + 1</m>, and <m>(x^2 - 2x + 1)^2 = x^4 - 2x^3 + x^2 - 2x^3 + 4x^2 - 2x + x^2 - 2x + 1 = x^4 - 4x^3 + 6x^2 - 4x + 1</m>.</p></solution>
+            </exercise>
+            <exercise xml:id="ex-volume-of-a-storage-box">
+                <statement>
+                    <p>A jua kali workshop in Kariobangi makes cube-shaped metal boxes with edges <m>(x + 4)</m> cm long.
+                    <ol marker="(a)">
+                        <li><p>Write the volume of a box as a polynomial in <m>x</m>.</p></li>
+                        <li><p>Find the volume when <m>x = 6</m> from your polynomial, and check your answer with <m>10^3</m>.</p></li>
+                    </ol></p>
+                </statement>
+                <answer><p>(a) <m>x^3 + 12x^2 + 48x + 64</m> cubic centimetres (b) <m>1000\,\text{cm}^3</m></p></answer>
+                <solution><p>(a) <m>(x + 4)^2 = x^2 + 8x + 16</m>, and <m>(x^2 + 8x + 16)(x + 4) = x^3 + 12x^2 + 48x + 64</m>. (b) <m>216 + 432 + 288 + 64 = 1000</m>, and the edge is <m>6 + 4 = 10\,\text{cm}</m>, so the volume is <m>10^3 = 1000\,\text{cm}^3</m> both ways.</p></solution>
+            </exercise>
+            <exercise xml:id="ex-find-the-number-in-the-bracket">
+                <statement><p><m>(x + k)^3 = x^3 + 18x^2 + px + q</m>. Find <m>k</m>, <m>p</m> and <m>q</m>.</p></statement>
+                <answer><p><m>k = 6</m>, <m>p = 108</m>, <m>q = 216</m></p></answer>
+                <solution><p><m>(x + k)^3 = x^3 + 3kx^2 + 3k^2x + k^3</m>. So <m>3k = 18</m>, giving <m>k = 6</m>; then <m>p = 3k^2 = 108</m> and <m>q = k^3 = 216</m>.</p></solution>
+            </exercise>
+            <exercise xml:id="ex-difference-of-two-squares-of-sums">
+                <title>Challenge: A Quick Subtraction</title>
+                <statement><p>Show that <m>(a + b)^2 - (a - b)^2 = 4ab</m>, and use it to work out <m>53^2 - 47^2</m> without a calculator.</p></statement>
+                <hint><p>Put <m>a = 50</m> and <m>b = 3</m>.</p></hint>
+                <answer><p><m>600</m></p></answer>
+                <solution><p><m>(a^2 + 2ab + b^2) - (a^2 - 2ab + b^2) = 4ab</m>. With <m>a = 50</m>, <m>b = 3</m>: <m>53^2 - 47^2 = 4 \times 50 \times 3 = 600</m>.</p></solution>
+            </exercise>
+        </exercises>
+
+        <axiom component="lesson-plan">
             <title>Differentiation</title>
-            <tabular halign="left">
-                <row header="yes" bottom="minor">
-                    <cell>Learner Group</cell>
-                    <cell>Strategy &amp; Learning Experience</cell>
-                    <cell></cell>
-                </row>
-                <row>
-                    <cell>Struggling Learners (Support)</cell>
-                    <cell>
-                        XXXX
-                    </cell>
-                    <cell></cell>
-                </row>
-                <row>
-                    <cell>On-Level Learners (Core)</cell>
-                    <cell>
-                        <line>The core lesson activities as described above.</line>
-                    </cell>
-                    <cell></cell>
-                </row>
-                <row>
-                    <cell>Advanced Learners (Challenge)</cell>
-                    <cell>
-                        XXXX
-                    </cell>
-                    <cell></cell>
-                </row>
-            </tabular>
-        </table>
-    </axiom> -->
+            <table xml:id="table-differentiation-expanding-by-multiplication">
+                <title>Differentiation Strategies</title>
+                <tabular halign="left" top="minor" bottom="minor" left="minor" right="minor">
+                    <row header="yes" bottom="medium"><cell>Learner Group</cell><cell>Strategy and Learning Experience</cell></row>
+                    <row><cell>Struggling Learners (Support)</cell><cell>Focus on activity parts (a) to (c) with a printed blank grid, and on <xref ref="example-squaring-and-cubing-x-plus-3"/> and <xref ref="example-cubing-2x-minus-1"/>. Assign <xref ref="ex-expand-x-plus-5-squared-and-cubed"/> and <xref ref="ex-expand-3x-minus-2-cubed"/>.</cell></row>
+                    <row><cell>On-Level Learners (Core)</cell><cell>Full activity and all examples. Assign <xref ref="ex-expand-x-plus-5-squared-and-cubed"/> to <xref ref="ex-find-the-number-in-the-bracket"/>.</cell></row>
+                    <row><cell>Advanced Learners (Challenge)</cell><cell>All exercises including <xref ref="ex-difference-of-two-squares-of-sums"/>. Extension: expand <m>(x + 1)^4</m> and use it to explain why <m>11^4 = 14\,641</m> (answer: <m>x^4 + 4x^3 + 6x^2 + 4x + 1</m>; at <m>x = 10</m> this is <m>10\,000 + 4000 + 600 + 40 + 1 = 14\,641</m>).</cell></row>
+                </tabular>
+            </table>
+        </axiom>
 
-    <xi:include href="../lesson-plan-templates/assessment-methods.ptx" />
+        <xi:include href="../lesson-plan-templates/assessment-methods.ptx" />
+        <xi:include href="../lesson-plan-templates/reflection.ptx"/>
+    </subsection>
 
-    <xi:include href="../lesson-plan-templates/reflection.ptx"/>
+    <!-- ============================================================ Lesson 1.2 -->
+    <subsection xml:id="subsec-using-the-pattern-of-an-expansion">
+        <title>Using the Pattern of an Expansion</title>
+
+        <p component="lesson-plan">Upon completion of this lesson, learners will be able to:
+            <ol>
+                <li><p><alert>Know:</alert> the pattern of <m>(a + b)^n</m> holds whatever <m>a</m> and <m>b</m> are; the signs alternate for <m>(a - b)^n</m>.</p></li>
+                <li><p><alert>Do:</alert> expand binomials such as <m>(2x + 3)^3</m>, <m>(1 - 3x)^4</m> and <m>(2p - 3q)^3</m> by substituting into the pattern, with brackets.</p></li>
+                <li><p><alert>Apply:</alert> check an expansion by substituting a number; work out <m>11^4</m> and <m>9^4</m> from <m>(10 \pm 1)^4</m>.</p></li>
+            </ol>
+        </p>
+
+        <axiom component="lesson-plan">
+            <title>Problem-Solving and Discovery</title>
+            <dl>
+                <li><title>Suggested Time</title><p>14 minutes</p></li>
+                <li><title>Objective</title><p>Learners find that substituting into the pattern of <m>(a + b)^n</m> gives the same result as multiplying out, and see where the signs alternate.</p></li>
+                <li><title>Teacher's Role</title><p>Work in pairs: in part (a) partner A multiplies and partner B substitutes; they swap roles for part (b). Insist on brackets round each substituted term. Respect: each partner explains their method before the pair compares answers.</p></li>
+            </dl>
+        </axiom>
+
+        <activity xml:id="act-two-ways-to-the-same-answer">
+            <title>Two Ways to the Same Answer</title>
+            <statement>
+                <p>
+                    Work in pairs.
+                    <ol marker="(a)">
+                        <li>
+                            <p>Partner A expands <m>(2x + 1)^3</m> by multiplication. Partner B puts <m>a = 2x</m> and <m>b = 1</m> into <m>a^3 + 3a^2b + 3ab^2 + b^3</m>. Compare your answers.</p>
+                            <solution component="lesson-plan"><p>Both give <m>8x^3 + 12x^2 + 6x + 1</m>; for example <m>3a^2b = 3(2x)^2(1) = 12x^2</m>.</p></solution>
+                        </li>
+                        <li>
+                            <p>Both partners expand <m>(2x - 1)^3</m> by substituting <m>a = 2x</m> and <m>b = -1</m>. Which terms change sign compared with (a), and why?</p>
+                            <solution component="lesson-plan"><p><m>8x^3 - 12x^2 + 6x - 1</m>. The terms with an odd power of <m>b</m> change sign, because an odd power of <m>-1</m> is <m>-1</m>.</p></solution>
+                        </li>
+                        <li>
+                            <p>Check your answer to (b) by putting <m>x = 1</m> on both sides.</p>
+                            <solution component="lesson-plan"><p><m>(2 - 1)^3 = 1</m> and <m>8 - 12 + 6 - 1 = 1</m>.</p></solution>
+                        </li>
+                        <li>
+                            <p>Write down the expansion of <m>(a - b)^4</m> without multiplying.</p>
+                            <solution component="lesson-plan"><p><m>a^4 - 4a^3b + 6a^2b^2 - 4ab^3 + b^4</m>.</p></solution>
+                        </li>
+                    </ol>
+                </p>
+            </statement>
+        </activity>
+
+        <axiom component="lesson-plan">
+            <title>Structured Instruction</title>
+            <p>
+                <dl>
+                    <li><title>Suggested Time</title><p>8 minutes</p></li>
+                    <li><title>Objective</title><p>To formalise substituting into the pattern and the sign rule.</p></li>
+                </dl>
+            </p>
+            <paragraphs>
+                <title>Key Takeaways &amp; Teacher Connection</title>
+                <ol>
+                    <li><p><alert>Connecting to Learner Work:</alert> both partners reached the same answer in (a); the pattern saves the multiplying.</p></li>
+                    <li><p>Substitute whole terms with brackets: <m>(2x)^3 = 8x^3</m>, not <m>2x^3</m>.</p></li>
+                    <li><p>Odd powers of a negative number are negative, so the signs alternate for <m>(a - b)^n</m>. Check with <m>x = 1</m>.</p></li>
+                </ol>
+            </paragraphs>
+        </axiom>
+
+        <insight xml:id="insight-substituting-into-the-pattern">
+            <title>Substituting into the Pattern</title>
+            <p>
+                To expand <m>(p + q)^n</m>, write down the coefficients for power <m>n</m> (for power 3: 1, 3, 3, 1; for power 4: 1, 4, 6, 4, 1), then put <m>a = p</m> and <m>b = q</m> into each term, with brackets. For example, in <m>(2x - 3)^4</m> put <m>a = 2x</m> and <m>b = -3</m>: <m>(2x)^3 = 8x^3</m> and <m>(-3)^2 = 9</m>.
+            </p>
+            <p>
+                For <m>(p - q)^n</m> the terms with an odd power of <m>q</m> are negative, so the signs alternate <m>+, -, +, \ldots</m> in descending powers of <m>p</m>. Write an expansion in descending powers of the first term of the bracket as it is printed: <m>(1 - 3x)^4</m> starts with the constant <m>1</m>, so its expansion is in ascending powers of <m>x</m>.
+            </p>
+        </insight>
+
+        <note xml:id="note-check-with-a-number">
+            <title>Check With a Number</title>
+            <p>
+                Put <m>x = 1</m> (or another easy number) into the bracket and into your expansion: the two values must agree. A check cannot prove an expansion right, but a disagreement always shows a mistake.
+            </p>
+        </note>
+
+        <xi:include href="../lesson-plan-templates/example-intro.ptx" />
+
+        <example xml:id="example-expanding-2x-plus-3-cubed">
+            <title>Expanding <m>(2x + 3)^3</m></title>
+            <statement><p>Expand <m>(2x + 3)^3</m>.</p></statement>
+            <solution>
+                <p>Put <m>a = 2x</m> and <m>b = 3</m> into <m>a^3 + 3a^2b + 3ab^2 + b^3</m>:
+                    <md>
+                        <mrow>(2x + 3)^3 \amp = (2x)^3 + 3(2x)^2(3) + 3(2x)(3)^2 + 3^3</mrow>
+                        <mrow>\amp = 8x^3 + 36x^2 + 54x + 27</mrow>
+                    </md>
+                Check with <m>x = 1</m>: <m>5^3 = 125</m> and <m>8 + 36 + 54 + 27 = 125</m>.</p>
+            </solution>
+        </example>
+
+        <example xml:id="example-expanding-1-minus-3x-to-the-fourth">
+            <title>Expanding <m>(1 - 3x)^4</m></title>
+            <statement><p>Expand <m>(1 - 3x)^4</m>.</p></statement>
+            <solution>
+                <p>Put <m>a = 1</m> and <m>b = -3x</m> into the pattern for power 4:
+                    <md>
+                        <mrow>(1 - 3x)^4 \amp = 1 + 4(-3x) + 6(-3x)^2 + 4(-3x)^3 + (-3x)^4</mrow>
+                        <mrow>\amp = 1 - 12x + 54x^2 - 108x^3 + 81x^4</mrow>
+                    </md>
+                The bracket starts with 1, so the expansion is written in ascending powers of <m>x</m>. The odd powers of <m>-3x</m> are negative.</p>
+            </solution>
+        </example>
+
+        <example xml:id="example-expanding-2p-minus-3q-cubed">
+            <title>Two Letters</title>
+            <statement><p>Expand <m>(2p - 3q)^3</m>.</p></statement>
+            <solution>
+                <p>Put <m>a = 2p</m> and <m>b = -3q</m>:
+                    <md>
+                        <mrow>(2p - 3q)^3 \amp = (2p)^3 + 3(2p)^2(-3q) + 3(2p)(-3q)^2 + (-3q)^3</mrow>
+                        <mrow>\amp = 8p^3 - 36p^2q + 54pq^2 - 27q^3</mrow>
+                    </md>
+                Check with <m>p = q = 1</m>: <m>(2 - 3)^3 = -1</m> and <m>8 - 36 + 54 - 27 = -1</m>.</p>
+            </solution>
+        </example>
+
+        <xi:include href="../lesson-plan-templates/assessment-intro.ptx" />
+        <xi:include href="../lesson-plan-templates/checkpoint.ptx" />
+
+        <p>Type powers with <c>^</c> and fractions with <c>/</c>, for example <c>8x^3-12x^2+3/2*x-1</c>.</p>
+
+        <exercise xml:id="ex-expanding-a-binomial-using-the-pattern">
+            <!--<title></title>-->
+            <stack label="stk-expanding-a-binomial-using-the-pattern" source="stack/top/1-numbers-and-algebra/02-binomial-expansions/01-binomial-expansion/Expanding-a-binomial-using-the-pattern.xml"/>
+        </exercise>
+        <exercise xml:id="ex-sign-patterns-in-binomial-expansions">
+            <!--<title></title>-->
+            <stack label="stk-sign-patterns-in-binomial-expansions" source="stack/top/1-numbers-and-algebra/02-binomial-expansions/01-binomial-expansion/Sign-patterns-in-binomial-expansions.xml"/>
+        </exercise>
+        <exercise xml:id="ex-expanding-a-binomial-in-two-letters">
+            <!--<title></title>-->
+            <stack label="stk-expanding-a-binomial-in-two-letters" source="stack/top/1-numbers-and-algebra/02-binomial-expansions/01-binomial-expansion/Expanding-a-binomial-in-two-letters.xml"/>
+        </exercise>
+        <exercises xml:id="exercises-using-the-pattern">
+            <exercise xml:id="ex-expand-x-plus-4-to-the-fourth">
+                <statement><p>Expand <m>(x + 4)^4</m>.</p></statement>
+                <answer><p><m>x^4 + 16x^3 + 96x^2 + 256x + 256</m></p></answer>
+                <solution><p><m>x^4 + 4x^3(4) + 6x^2(4)^2 + 4x(4)^3 + 4^4 = x^4 + 16x^3 + 96x^2 + 256x + 256</m>.</p></solution>
+            </exercise>
+            <exercise xml:id="ex-expand-3-minus-x-cubed">
+                <statement><p>Expand <m>(3 - x)^3</m> in ascending powers of <m>x</m>.</p></statement>
+                <answer><p><m>27 - 27x + 9x^2 - x^3</m></p></answer>
+                <solution><p><m>3^3 + 3(3)^2(-x) + 3(3)(-x)^2 + (-x)^3 = 27 - 27x + 9x^2 - x^3</m>.</p></solution>
+            </exercise>
+            <exercise xml:id="ex-expand-2x-minus-5-to-the-fourth">
+                <statement><p>Expand <m>(2x - 5)^4</m>.</p></statement>
+                <answer><p><m>16x^4 - 160x^3 + 600x^2 - 1000x + 625</m></p></answer>
+                <solution><p><m>(2x)^4 + 4(2x)^3(-5) + 6(2x)^2(-5)^2 + 4(2x)(-5)^3 + (-5)^4 = 16x^4 - 160x^3 + 600x^2 - 1000x + 625</m>.</p></solution>
+            </exercise>
+            <exercise xml:id="ex-expand-1-plus-half-x-to-the-fourth">
+                <statement><p>Expand <m>\left(1 + \dfrac{x}{2}\right)^4</m>.</p></statement>
+                <answer><p><m>1 + 2x + \dfrac{3}{2}x^2 + \dfrac{1}{2}x^3 + \dfrac{1}{16}x^4</m></p></answer>
+                <solution><p><m>1 + 4\left(\dfrac{x}{2}\right) + 6\left(\dfrac{x}{2}\right)^2 + 4\left(\dfrac{x}{2}\right)^3 + \left(\dfrac{x}{2}\right)^4 = 1 + 2x + \dfrac{6}{4}x^2 + \dfrac{4}{8}x^3 + \dfrac{1}{16}x^4</m>, and <m>\dfrac{6}{4} = \dfrac{3}{2}</m>, <m>\dfrac{4}{8} = \dfrac{1}{2}</m>.</p></solution>
+            </exercise>
+            <exercise xml:id="ex-eleven-and-nine-to-the-fourth">
+                <statement><p>Use <m>(10 + 1)^4</m> to find <m>11^4</m>, and <m>(10 - 1)^4</m> to find <m>9^4</m>, without a calculator.</p></statement>
+                <answer><p><m>14\,641</m>; <m>6561</m></p></answer>
+                <solution><p><m>(10 + 1)^4 = 10\,000 + 4000 + 600 + 40 + 1 = 14\,641</m>. <m>(10 - 1)^4 = 10\,000 - 4000 + 600 - 40 + 1 = 6561</m>.</p></solution>
+            </exercise>
+            <exercise xml:id="ex-find-a-and-b-from-an-expansion">
+                <statement><p><m>(a + bx)^3 = 8 + 36x + cx^2 + dx^3</m>, where <m>a</m> and <m>b</m> are positive. Find <m>a</m>, <m>b</m>, <m>c</m> and <m>d</m>.</p></statement>
+                <answer><p><m>a = 2</m>, <m>b = 3</m>, <m>c = 54</m>, <m>d = 27</m></p></answer>
+                <solution><p>The constant term is <m>a^3 = 8</m>, so <m>a = 2</m>. The term in <m>x</m> is <m>3a^2bx = 12bx</m>, so <m>12b = 36</m> and <m>b = 3</m>. Then <m>c = 3ab^2 = 54</m> and <m>d = b^3 = 27</m>.</p></solution>
+            </exercise>
+            <exercise xml:id="ex-constant-term-of-x-plus-1-over-x">
+                <title>Challenge: A Term Without <m>x</m></title>
+                <statement><p>Expand <m>\left(x + \dfrac{1}{x}\right)^4</m> and write down the term that does not contain <m>x</m>.</p></statement>
+                <hint><p>Put <m>a = x</m> and <m>b = \dfrac{1}{x}</m>, and use <m>x \times \dfrac{1}{x} = 1</m>.</p></hint>
+                <answer><p><m>x^4 + 4x^2 + 6 + \dfrac{4}{x^2} + \dfrac{1}{x^4}</m>; the term is <m>6</m>.</p></answer>
+                <solution><p><m>x^4 + 4x^3\left(\dfrac{1}{x}\right) + 6x^2\left(\dfrac{1}{x}\right)^2 + 4x\left(\dfrac{1}{x}\right)^3 + \left(\dfrac{1}{x}\right)^4 = x^4 + 4x^2 + 6 + \dfrac{4}{x^2} + \dfrac{1}{x^4}</m>. The middle term, <m>6</m>, does not contain <m>x</m>.</p></solution>
+            </exercise>
+        </exercises>
+
+        <axiom component="lesson-plan">
+            <title>Differentiation</title>
+            <table xml:id="table-differentiation-using-the-pattern">
+                <title>Differentiation Strategies</title>
+                <tabular halign="left" top="minor" bottom="minor" left="minor" right="minor">
+                    <row header="yes" bottom="medium"><cell>Learner Group</cell><cell>Strategy and Learning Experience</cell></row>
+                    <row><cell>Struggling Learners (Support)</cell><cell>Focus on activity parts (a) to (c). Provide a substitution card with the empty pattern <m>(\;)^3 + 3(\;)^2(\;) + 3(\;)(\;)^2 + (\;)^3</m>. Use <xref ref="example-expanding-2x-plus-3-cubed"/> and <xref ref="example-expanding-1-minus-3x-to-the-fourth"/>. Assign <xref ref="ex-expand-x-plus-4-to-the-fourth"/> and <xref ref="ex-expand-3-minus-x-cubed"/>.</cell></row>
+                    <row><cell>On-Level Learners (Core)</cell><cell>Full activity and all examples. Assign <xref ref="ex-expand-x-plus-4-to-the-fourth"/> to <xref ref="ex-find-a-and-b-from-an-expansion"/>.</cell></row>
+                    <row><cell>Advanced Learners (Challenge)</cell><cell>All exercises including <xref ref="ex-constant-term-of-x-plus-1-over-x"/>. Extension: find the term in <m>x^2</m> in <m>\left(x - \dfrac{2}{x}\right)^4</m> (answer: <m>-8x^2</m>; the terms are <m>x^4</m>, <m>-8x^2</m>, <m>24</m>, <m>-\dfrac{32}{x^2}</m>, <m>\dfrac{16}{x^4}</m>).</cell></row>
+                </tabular>
+            </table>
+        </axiom>
+
+        <xi:include href="../lesson-plan-templates/assessment-methods.ptx" />
+        <xi:include href="../lesson-plan-templates/reflection.ptx"/>
+    </subsection>
 </section>

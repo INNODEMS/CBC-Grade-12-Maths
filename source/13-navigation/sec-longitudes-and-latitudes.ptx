@@ -39,7 +39,7 @@
                 <li component="lesson-plan">
                     <title>Estimated Duration</title>
                     <p>
-                        40 minutes
+                        2 lessons of 40 minutes
                     </p>
                 </li>
             </dl>
@@ -53,163 +53,576 @@
          Suggested activity: Learners use a globe or an orange marked with rubber bands to identify the equator, parallels of latitude and meridians, and locate Nairobi, Mombasa and Kisumu by coordinates.
          Interactive (JSXGraph): Rotatable globe with lines of latitude and longitude; a draggable point shows its latitude and longitude. -->
 
-    <!-- [LP] Add guidance on activity -->
+    <!-- Section notes (2026-11)
+         SLOs: Core (a), (b); Essential (a), (b). Lessons 1.1 and 1.2 as subsections.
+         Activity: as planning notes (an orange with rubber bands in 1.1; locating Nairobi, Mombasa, Kisumu and other towns on a globe in 1.2)
+         JSXGraph: fig-globe-great-and-small-circles (assets/jsxgraph/globe-great-and-small-circles.js) and fig-globe-latitude-longitude (assets/jsxgraph/globe-latitude-longitude.js) | changed: latitude and longitude sliders instead of a draggable point (a JSXGraph 1.8.0 3D point drags only within a plane, as Ch12); the view sliders turn the globe
+         STACK: assets/stack/top/2-measurement-and-geometry/13-navigation/01-longitudes-and-latitudes/ -->
 
-    <!-- <axiom component="lesson-plan">
+    <introduction>
+        <question xml:id="kiq-navigation">
+            <p><em>How do we use navigation in daily life?</em></p>
+        </question>
+        <p>
+            Every day ships sail into the ports of Mombasa and Lamu, Kenya Airways flights leave Nairobi for cities on every continent, and fishermen on Lake Victoria find their way back to the beach they left before dawn. Matatu and boda boda riders follow maps on their phones to reach an address they have never visited. All of them need to know where they are, where they are going, how far it is and how long it will take.
+        </p>
+        <p>
+            This chapter describes positions on the earth by two angles, latitude and longitude. From those angles you will find distances along the earth's surface in kilometres and in nautical miles, speeds in knots, and the local time at places east and west of you. As you work, look out for the ways people around you use these ideas.
+        </p>
+        <note xml:id="note-earth-constants">
+            <title>Values Used in This Chapter</title>
+            <p>
+                <ul>
+                    <li><p>The earth is treated as a sphere. (The real earth bulges a little at the equator: measured to the equator it is wider than measured through the poles, by about <m>1</m> part in <m>300</m>. We ignore this.)</p></li>
+                    <li><p>The radius of the earth is <m>R = 6370\,\text{km}</m>. Its mean radius is about <m>6371\,\text{km}</m>; the value <m>6370\,\text{km}</m> is the one used in Kenyan secondary schools.</p></li>
+                    <li><p>We take <m>\pi = \tfrac{22}{7}</m>. Then the length of a great circle is <m>2\pi R = 2 \times \tfrac{22}{7} \times 6370 = 40\,040\,\text{km}</m> exactly, and <m>1^\circ</m> of a great circle is <m>40\,040 \div 360 = 111.2\,\text{km}</m>.</p></li>
+                    <li><p>One nautical mile is <m>1.853\,\text{km}</m> and one knot is one nautical mile per hour (<xref ref="sec-distances-on-the-earths-surface"/> and <xref ref="sec-distance-and-speed"/>).</p></li>
+                </ul>
+            </p>
+        </note>
+    </introduction>
+
+    <!-- ============================================================ Lesson 1.1 -->
+    <subsection xml:id="subsec-great-and-small-circles">
+        <title>Great and Small Circles</title>
+
+        <p component="lesson-plan">Upon completion of this lesson, learners will be able to:
+            <ol>
+                <li><p><alert>Know:</alert> a plane cuts a sphere in a circle; a great circle has its plane through the centre and the same radius as the sphere; any other circle is a small circle; the shortest path along the surface between two points follows a great circle.</p></li>
+                <li><p><alert>Do:</alert> find the radius of a small circle from the radius of the sphere and the distance of the plane from the centre; classify circles on the earth as great or small.</p></li>
+                <li><p><alert>Apply:</alert> recognise the equator, parallels of latitude and pairs of meridians as great or small circles.</p></li>
+            </ol>
+        </p>
+
+        <axiom component="lesson-plan">
             <title>Problem-Solving and Discovery</title>
             <dl>
-                <li>
-                    <title>Suggested Time</title>
-                    <p>
-                        XX minutes
-                    </p>
-                </li>
-                <li>
-                    <title>Objective</title>
-                    <p>
-                        XXX
-                    </p>
-                </li>
-                <li>
-                    <title>Teacher's Role</title>
-                    <p>
-                        XXX
-                    </p>
-                </li>
+                <li><title>Suggested Time</title><p>14 minutes</p></li>
+                <li><title>Objective</title><p>Learners discover that every plane section of a sphere is a circle, that the largest such circles pass through the centre, and that a thread stretched tightly between two points on the surface follows one of them.</p></li>
+                <li><title>Teacher's Role</title><p>Give each group an orange (or a ball), two rubber bands, two pins and a piece of thread; keep a globe at the front. The teacher makes the cut in part (b). Do not use the words <q>great circle</q> until after part (c).</p></li>
             </dl>
-        </axiom> -->
+        </axiom>
 
-    <!-- Add Activity -->
-
-    <!-- <activity>
-        <statement>
-        </statement>
-    </activity> -->
-
-    <!-- [LP] Add guidance on structured lesson plan-->
-
-    <!-- <axiom component="lesson-plan">
-        <title>Structured Instruction</title>
-        <p>
-            <dl>
-            <li>
-                <title>Suggested Time</title>
+        <activity xml:id="act-circles-on-an-orange">
+            <title>Circles on an Orange</title>
+            <statement>
                 <p>
-                    XX minutes
+                    <ol marker="(a)">
+                        <li>
+                            <p>Put a rubber band round the orange so that it divides the orange into two equal halves. Put a second band round it nearer the top. Which band is longer? Why?</p>
+                            <solution component="lesson-plan"><p>The first band. It goes round the widest part of the orange, in a plane through the centre.</p></solution>
+                        </li>
+                        <li>
+                            <p>The teacher cuts an orange of radius <m>4\,\text{cm}</m> with one straight cut <m>2.4\,\text{cm}</m> from its centre. Predict the radius of the cut face, then measure it.</p>
+                            <solution component="lesson-plan"><p>The centre of the orange, the centre of the cut face and a point on the edge of the cut form a right-angled triangle with hypotenuse <m>4\,\text{cm}</m>. So <m>r^2 = 4^2 - 2.4^2 = 10.24</m> and <m>r = 3.2\,\text{cm}</m>.</p></solution>
+                        </li>
+                        <li>
+                            <p>Push two pins into the peel and stretch a thread tightly between them along the surface. Now hold a band so that it passes through both pins and divides the orange into two equal halves. What do you notice?</p>
+                            <solution component="lesson-plan"><p>The thread lies along the band. The shortest path between the pins follows the circle whose plane passes through the centre of the orange.</p></solution>
+                        </li>
+                        <li>
+                            <p>On the globe, which of these divide the earth into two equal halves: the equator; the circle of latitude through Nairobi; the Greenwich meridian together with the <m>180^\circ</m> meridian?</p>
+                            <solution component="lesson-plan"><p>The equator, and the Greenwich meridian with the <m>180^\circ</m> meridian. The circle through Nairobi lies just south of the equator, so its plane does not pass through the centre.</p></solution>
+                        </li>
+                    </ol>
                 </p>
-            </li>
-            <li>
-                <title>Objective</title>
-                <p>
-                    To formalize the concepts and properties learners discovered in the anchor task.
-                </p>
-            </li>
-            </dl>
-        </p>
-        <paragraphs>
-            <title>Key Takeaways &amp; Teacher Connection</title>
-            <ol>
-                <li>
+            </statement>
+        </activity>
+
+        <axiom component="lesson-plan">
+            <title>Structured Instruction</title>
+            <p>
+                <dl>
+                    <li><title>Suggested Time</title><p>8 minutes</p></li>
+                    <li><title>Objective</title><p>To name great and small circles and find the radius of a small circle by Pythagoras.</p></li>
+                </dl>
+            </p>
+            <paragraphs>
+                <title>Key Takeaways &amp; Teacher Connection</title>
+                <ol>
+                    <li><p><alert>Connecting to Learner Work:</alert> the first band in part (a) and the band in part (c) lie on great circles; the second band in part (a) and the cut in part (b) are small circles.</p></li>
+                    <li><p>A plane through the centre gives the biggest circle, with the radius of the sphere.</p></li>
+                    <li><p>For any other plane, Pythagoras in the triangle of part (b) gives the radius.</p></li>
+                    <li><p>A single meridian runs from pole to pole on one side of the earth: it is half of a great circle.</p></li>
+                </ol>
+            </paragraphs>
+        </axiom>
+
+        <insight xml:id="insight-great-and-small-circles">
+            <title>Great and Small Circles</title>
+            <p>
+                A <term>sphere</term> is the set of points in space at the same distance <m>R</m> from a centre <m>O</m>. Any plane that cuts a sphere cuts it in a circle.
+            </p>
+            <p>
+                <ul>
+                    <li><p>If the plane passes through the centre, the circle is a <term>great circle</term>: its radius is the radius <m>R</m> of the sphere.</p></li>
+                    <li><p>If the plane is at a distance <m>d</m> from the centre, with <m>0 \lt d \lt R</m>, the circle is a <term>small circle</term>. Its radius <m>r</m> satisfies <md>r^2 = R^2 - d^2</md>, from the right-angled triangle in <xref ref="fig-great-and-small-circles"/>.</p></li>
+                </ul>
+            </p>
+            <p>
+                The shortest distance between two points on the surface of a sphere is along the shorter arc of the great circle through them.
+            </p>
+        </insight>
+
+        <figure xml:id="fig-great-and-small-circles">
+            <caption>A great circle through the centre <m>O</m>, and a small circle a distance <m>d</m> above it. The triangle has sides <m>d</m>, <m>r</m> and hypotenuse <m>R</m>.</caption>
+            <image width="60%">
+                <shortdescription>A sphere with centre O. A horizontal great circle passes through O; a smaller circle lies above it. A right-angled triangle joins O, the centre of the small circle and a point on it, with sides d, r and hypotenuse R.</shortdescription>
+                <latex-image>
+\begin{tikzpicture}[back/.style={dashed, thin}]
+% SET: sphere radius R = 2.6 drawn as an orthographic view tilted 12 degrees; small circle 1.5 units above O (radius sqrt(2.6^2 - 1.5^2) = 2.124)
+% CALCULATE: points (latitude, longitude) projected as X = R cos(lat) sin(long), Y = R(sin(lat) cos 12 - cos(lat) cos(long) sin 12); hidden parts dashed
+\draw[thick] (0,0) circle (2.6);
+\draw[back] (-0.000,0.541) -- (-0.227,0.539) -- (-0.451,0.532) -- (-0.673,0.522) -- (-0.889,0.508) -- (-1.099,0.490) -- (-1.300,0.468) -- (-1.491,0.443) -- (-1.671,0.414) -- (-1.838,0.382) -- (-1.992,0.347) -- (-2.130,0.310) -- (-2.252,0.270) -- (-2.356,0.228) -- (-2.443,0.185) -- (-2.511,0.140) -- (-2.561,0.094) -- (-2.590,0.047) -- (-2.600,-0.000);
+\draw[thick] (-2.600,-0.000) -- (-2.590,-0.047) -- (-2.561,-0.094) -- (-2.511,-0.140) -- (-2.443,-0.185) -- (-2.356,-0.228) -- (-2.252,-0.270) -- (-2.130,-0.310) -- (-1.992,-0.347) -- (-1.838,-0.382) -- (-1.671,-0.414) -- (-1.491,-0.443) -- (-1.300,-0.468) -- (-1.099,-0.490) -- (-0.889,-0.508) -- (-0.673,-0.522) -- (-0.451,-0.532) -- (-0.227,-0.539) -- (0.000,-0.541) -- (0.227,-0.539) -- (0.451,-0.532) -- (0.673,-0.522) -- (0.889,-0.508) -- (1.099,-0.490) -- (1.300,-0.468) -- (1.491,-0.443) -- (1.671,-0.414) -- (1.838,-0.382) -- (1.992,-0.347) -- (2.130,-0.310) -- (2.252,-0.270) -- (2.356,-0.228) -- (2.443,-0.185) -- (2.511,-0.140) -- (2.561,-0.094) -- (2.590,-0.047) -- (2.600,-0.000) -- (2.590,0.047);
+\draw[back] (2.590,0.047) -- (2.561,0.094) -- (2.511,0.140) -- (2.443,0.185) -- (2.356,0.228) -- (2.252,0.270) -- (2.130,0.310) -- (1.992,0.347) -- (1.838,0.382) -- (1.671,0.414) -- (1.491,0.443) -- (1.300,0.468) -- (1.099,0.490) -- (0.889,0.508) -- (0.673,0.522) -- (0.451,0.532) -- (0.227,0.539) -- (0.000,0.541);
+\draw[back] (-0.000,1.909) -- (-0.185,1.907) -- (-0.369,1.902) -- (-0.550,1.894) -- (-0.726,1.882) -- (-0.898,1.867) -- (-1.062,1.850) -- (-1.218,1.829) -- (-1.365,1.805) -- (-1.502,1.779) -- (-1.627,1.751) -- (-1.740,1.720) -- (-1.839,1.688) -- (-1.925,1.654) -- (-1.996,1.618) -- (-2.051,1.581) -- (-2.091,1.544) -- (-2.116,1.506);
+\draw[thick] (-2.116,1.506) -- (-2.124,1.467) -- (-2.116,1.429) -- (-2.091,1.391) -- (-2.051,1.353) -- (-1.996,1.316) -- (-1.925,1.281) -- (-1.839,1.246) -- (-1.740,1.214) -- (-1.627,1.183) -- (-1.502,1.155) -- (-1.365,1.129) -- (-1.218,1.106) -- (-1.062,1.085) -- (-0.898,1.067) -- (-0.726,1.052) -- (-0.550,1.041) -- (-0.369,1.032) -- (-0.185,1.027) -- (0.000,1.026) -- (0.185,1.027) -- (0.369,1.032) -- (0.550,1.041) -- (0.726,1.052) -- (0.898,1.067) -- (1.062,1.085) -- (1.218,1.106) -- (1.365,1.129) -- (1.502,1.155) -- (1.627,1.183) -- (1.740,1.214) -- (1.839,1.246) -- (1.925,1.281) -- (1.996,1.316) -- (2.051,1.353) -- (2.091,1.391) -- (2.116,1.429) -- (2.124,1.467) -- (2.116,1.506) -- (2.091,1.544);
+\draw[back] (2.091,1.544) -- (2.051,1.581) -- (1.996,1.618) -- (1.925,1.654) -- (1.839,1.688) -- (1.740,1.720) -- (1.627,1.751) -- (1.502,1.779) -- (1.365,1.805) -- (1.218,1.829) -- (1.062,1.850) -- (0.898,1.867) -- (0.726,1.882) -- (0.550,1.894) -- (0.369,1.902) -- (0.185,1.907) -- (0.000,1.909);
+\draw[thick] (0,0) -- (0.000,1.467) node[midway,left] {$d$};
+\draw[thick] (0.000,1.467) -- (2.124,1.467) node[midway,above] {$r$};
+\draw[thick] (0,0) -- (2.124,1.467) node[pos=0.55,below right=2pt] {$R$};
+\draw (0.250,1.467) -- (0.250,1.217) -- (0.000,1.217);
+\fill (0,0) circle (1.5pt) node[below left] {O};
+\fill (0.000,1.467) circle (1.5pt);
+\fill (2.124,1.467) circle (1.5pt);
+\node[font=\small, anchor=west] at (2.80,2.2) {small circle};
+\draw[->] (2.75,2.2) -- (1.839,1.246);
+\node[font=\small, anchor=west] at (2.80,-1.2) {great circle};
+\draw[->] (2.75,-1.2) -- (1.992,-0.347);
+\end{tikzpicture}
+                </latex-image>
+            </image>
+        </figure>
+
+        <figure xml:id="fig-globe-great-and-small-circles">
+            <caption>A plane cutting a globe. Move the <m>h</m> slider to slide the plane up and down; the thick circle is where it cuts the sphere.</caption>
+            <interactive xml:id="interactive-globe-great-and-small-circles" platform="jsxgraph" width="90%" aspect="16:12" source="jsxgraph/globe-great-and-small-circles.js">
+                <slate xml:id="jsxgraph-globe-great-and-small-circles" surface="jsxboard" aspect="16:12"/>
+                <instructions>
                     <p>
-                        <alert>Connecting to Learner Work:</alert> XXXX
+                        <ul>
+                            <li><p>Move the <alert>h</alert> slider to slide a plane through the globe. The sphere has radius <m>1</m>; <m>h</m> is the distance of the plane above or below the centre.</p></li>
+                            <li><p>The circle where the plane cuts is largest when the plane passes through the centre (<m>h = 0</m>). Check that <m>h = 0.35</m> gives <m>r = 0.94</m>, which on the earth is about <m>5967\,\text{km}</m>.</p></li>
+                            <li><p>Turn the globe with the two view sliders at the bottom and left of the board.</p></li>
+                        </ul>
                     </p>
-                </li>
-            </ol>
-        </paragraphs>
-    </axiom> -->
+                </instructions>
+            </interactive>
+        </figure>
 
-    <!-- Add insight / key takeaway directly related to activity / learner experience -->
+        <xi:include href="../lesson-plan-templates/example-intro.ptx" />
 
-    <!-- <insight>
-    </insight> -->
-
-    <!-- Add further instruction (not in a block) to develop ideas as needed -->
-
-    <xi:include href="../lesson-plan-templates/example-intro.ptx" />
-
-    <!-- Add at least 3 examples -->
-
-    <!-- <example>
-        <statement>
-        </statement>
-        <solution>
-        </solution>
-    </example>
-
-    <example>
-        <statement>
-        </statement>
-        <solution>
-        </solution>
-    </example>
-
-    <example>
-        <statement>
-        </statement>
-        <solution>
-        </solution>
-    </example> -->
-
-    <xi:include href="../lesson-plan-templates/assessment-intro.ptx" />
-
-    <!-- If STACK questions are included, uncomment this: -->
-
-    <!-- <xi:include href="../lesson-plan-templates/checkpoint.ptx" /> -->
-
-    <!-- Add STACK exercises if made -->
-
-    <!-- Add static exercises -->
-
-    <!-- <exercises>
-        <exercise>
-            <statement>   
-
-            </statement>   
+        <example xml:id="example-slicing-a-watermelon">
+            <title>Slicing a Watermelon</title>
+            <statement>
+                <p>A watermelon from a farm in Makueni is a sphere of radius <m>13\,\text{cm}</m>. It is cut with one straight cut <m>5\,\text{cm}</m> from its centre. Find the radius of the cut face.</p>
+            </statement>
             <solution>
+                <p>The centre of the watermelon, the centre of the cut face and a point on the edge of the cut make a right-angled triangle with hypotenuse <m>13\,\text{cm}</m>:
+                    <md>r^2 = 13^2 - 5^2 = 169 - 25 = 144</md>
+                    so <m>r = 12\,\text{cm}</m>.</p>
+            </solution>
+        </example>
 
-            </solution>             
-        </exercise>        
-    </exercises> -->
+        <example xml:id="example-great-or-small">
+            <title>Great or Small?</title>
+            <statement>
+                <p>Say whether each of these is a great circle, a small circle or half of a great circle.
+                    <ol marker="(a)">
+                        <li><p>The equator.</p></li>
+                        <li><p>The parallel of latitude <m>23^\circ 26'\,\text{S}</m> (the Tropic of Capricorn).</p></li>
+                        <li><p>The meridian <m>37^\circ\,\text{E}</m>.</p></li>
+                        <li><p>The meridian <m>37^\circ\,\text{E}</m> together with the meridian <m>143^\circ\,\text{W}</m>.</p></li>
+                        <li><p>The circle traced by Mombasa as the earth turns once on its axis.</p></li>
+                    </ol>
+                </p>
+            </statement>
+            <solution>
+                <p>
+                    <ol marker="(a)">
+                        <li><p>Great circle: its plane passes through the centre of the earth.</p></li>
+                        <li><p>Small circle: its plane is parallel to the equator but below the centre.</p></li>
+                        <li><p>Half of a great circle: a meridian runs from pole to pole on one side of the earth only.</p></li>
+                        <li><p>Great circle: <m>37 + 143 = 180</m>, so the two meridians are opposite each other and together make a whole circle through the centre.</p></li>
+                        <li><p>Small circle: Mombasa moves round its own parallel of latitude, which is not the equator.</p></li>
+                    </ol>
+                </p>
+            </solution>
+        </example>
 
-    <!-- [LP] Add information on how to differentiate  -->
+        <example xml:id="example-how-far-from-the-centre-core" component="core">
+            <title>How Far from the Centre?</title>
+            <statement>
+                <p>A small circle of radius <m>7.7\,\text{cm}</m> is drawn on a ball of radius <m>8.5\,\text{cm}</m>. How far is the plane of the circle from the centre of the ball?</p>
+            </statement>
+            <solution>
+                <p>In the right-angled triangle of <xref ref="fig-great-and-small-circles"/> the hypotenuse is <m>8.5</m> and one side is <m>7.7</m>:
+                    <md>d^2 = 8.5^2 - 7.7^2 = 72.25 - 59.29 = 12.96</md>
+                    so <m>d = 3.6\,\text{cm}</m>. The same triangle gives the radius of a parallel of latitude on the earth (<xref ref="subsec-distance-along-a-parallel"/>).</p>
+            </solution>
+        </example>
 
-    <!-- <axiom component="lesson-plan">
-        <title>Differentiation</title>
+        <xi:include href="../lesson-plan-templates/assessment-intro.ptx" />
+        <xi:include href="../lesson-plan-templates/checkpoint.ptx" />
 
-        <table>
+        <p>Type decimals with a point, for example <c>36.8</c>. Type angles in degrees as numbers, without the degree sign. Choose N, S, E or W from each list.</p>
+
+        <exercise xml:id="ex-great-circle-or-small-circle">
+            <!--<title></title>-->
+            <stack label="stk-great-circle-or-small-circle" source="stack/top/2-measurement-and-geometry/13-navigation/01-longitudes-and-latitudes/Great-circle-or-small-circle.xml"/>
+        </exercise>
+
+        <exercise xml:id="ex-radius-of-a-small-circle">
+            <!--<title></title>-->
+            <stack label="stk-radius-of-a-small-circle" source="stack/top/2-measurement-and-geometry/13-navigation/01-longitudes-and-latitudes/Radius-of-a-small-circle.xml"/>
+        </exercise>
+
+        <exercises xml:id="exercises-great-and-small-circles">
+            <exercise xml:id="ex-small-circle-radius-ball">
+                <statement><p>A ball has radius <m>17\,\text{cm}</m>. A plane cuts it <m>8\,\text{cm}</m> from the centre. Find the radius of the circle of the cut.</p></statement>
+                <answer><p><m>15\,\text{cm}</m></p></answer>
+                <solution><p><m>r^2 = 17^2 - 8^2 = 289 - 64 = 225</m>, so <m>r = 15\,\text{cm}</m>.</p></solution>
+            </exercise>
+            <exercise xml:id="ex-small-circle-distance">
+                <statement><p>A small circle of radius <m>24\,\text{cm}</m> is drawn on a sphere of radius <m>25\,\text{cm}</m>. How far is the plane of the circle from the centre of the sphere?</p></statement>
+                <answer><p><m>7\,\text{cm}</m></p></answer>
+                <solution><p><m>d^2 = 25^2 - 24^2 = 625 - 576 = 49</m>, so <m>d = 7\,\text{cm}</m>.</p></solution>
+            </exercise>
+            <exercise xml:id="ex-classify-five-circles">
+                <statement>
+                    <p>Say whether each is a great circle, a small circle or half of a great circle.
+                        <ol marker="(a)">
+                            <li><p>The parallel of latitude <m>1^\circ 17'\,\text{S}</m>.</p></li>
+                            <li><p>The Greenwich meridian.</p></li>
+                            <li><p>The Greenwich meridian together with the <m>180^\circ</m> meridian.</p></li>
+                            <li><p>The parallel of latitude <m>0^\circ</m>.</p></li>
+                            <li><p>A circle on the earth's surface of radius <m>3000\,\text{km}</m>.</p></li>
+                        </ol>
+                    </p>
+                </statement>
+                <answer><p>(a) small; (b) half of a great circle; (c) great; (d) great (it is the equator); (e) small</p></answer>
+                <solution><p>A great circle has its centre at the centre of the earth. (a) A parallel other than the equator has its centre on the axis above or below the earth's centre: small. (b) A meridian runs from pole to pole only: half of a great circle. (c) The two meridians together make a whole circle through both poles: great. (d) The equator: great. (e) A great circle has radius <m>R = 6370\,\text{km}</m>; <m>3000\,\text{km}</m> is less, so small.</p></solution>
+            </exercise>
+            <exercise xml:id="ex-football-in-a-ring">
+                <statement><p>A football of radius <m>11\,\text{cm}</m> rests in a circular ring of radius <m>8\,\text{cm}</m>, touching it all the way round. How high is the centre of the ball above the plane of the ring? Give your answer correct to 2 decimal places.</p></statement>
+                <answer><p><m>\sqrt{57} = 7.55\,\text{cm}</m></p></answer>
+                <solution><p>The ring is a small circle of the ball. <m>d^2 = 11^2 - 8^2 = 121 - 64 = 57</m>, so <m>d = \sqrt{57} = 7.55\,\text{cm}</m>.</p></solution>
+            </exercise>
+            <exercise xml:id="ex-great-circles-meet-at-opposite-points">
+                <title>Challenge: Where Great Circles Meet</title>
+                <statement><p>Explain why any two different great circles on a sphere cross at exactly two points, and why those two points are at opposite ends of a diameter.</p></statement>
+                <hint><p>Both planes pass through the centre.</p></hint>
+                <answer><p>The two planes meet in a line through the centre, which meets the sphere at the two ends of a diameter.</p></answer>
+                <solution><p>The planes of the two great circles are different, and both contain the centre <m>O</m>. Two different planes that share a point meet in a straight line, so they meet in a line through <m>O</m>. The circles cross where this line meets the sphere: at two points, each a distance <m>R</m> from <m>O</m> on opposite sides of it, that is, at the two ends of a diameter.</p></solution>
+            </exercise>
+        </exercises>
+
+        <axiom component="lesson-plan">
             <title>Differentiation</title>
-            <tabular halign="left">
-                <row header="yes" bottom="minor">
-                    <cell>Learner Group</cell>
-                    <cell>Strategy &amp; Learning Experience</cell>
-                    <cell></cell>
-                </row>
-                <row>
-                    <cell>Struggling Learners (Support)</cell>
-                    <cell>
-                        XXXX
-                    </cell>
-                    <cell></cell>
-                </row>
-                <row>
-                    <cell>On-Level Learners (Core)</cell>
-                    <cell>
-                        <line>The core lesson activities as described above.</line>
-                    </cell>
-                    <cell></cell>
-                </row>
-                <row>
-                    <cell>Advanced Learners (Challenge)</cell>
-                    <cell>
-                        XXXX
-                    </cell>
-                    <cell></cell>
-                </row>
-            </tabular>
-        </table>
-    </axiom> -->
+            <table xml:id="table-differentiation-great-and-small-circles">
+                <title>Differentiation Strategies</title>
+                <tabular halign="left" top="minor" bottom="minor" left="minor" right="minor">
+                    <row header="yes" bottom="medium"><cell>Learner Group</cell><cell>Strategy and Learning Experience</cell></row>
+                    <row><cell>Struggling Learners (Support)</cell><cell>Activity parts (a) to (c) and <xref ref="example-slicing-a-watermelon"/>. Give a card with the triangle <q>centre, centre of the cut, edge of the cut</q> and <m>r^2 = R^2 - d^2</m>. Assign <xref ref="ex-small-circle-radius-ball"/> and <xref ref="ex-classify-five-circles"/>.</cell></row>
+                    <row><cell>On-Level Learners (Core)</cell><cell>Full activity and all examples. Assign <xref ref="ex-small-circle-radius-ball"/> to <xref ref="ex-football-in-a-ring"/>.</cell></row>
+                    <row><cell>Advanced Learners (Challenge)</cell><cell>All exercises including <xref ref="ex-great-circles-meet-at-opposite-points"/>. Extension: how many great circles pass through two points that are not opposite each other? Through two opposite points? (Answer: exactly one; infinitely many.)</cell></row>
+                </tabular>
+            </table>
+        </axiom>
 
-    <xi:include href="../lesson-plan-templates/assessment-methods.ptx" />
+        <xi:include href="../lesson-plan-templates/assessment-methods.ptx" />
+        <xi:include href="../lesson-plan-templates/reflection.ptx"/>
+    </subsection>
 
-    <xi:include href="../lesson-plan-templates/reflection.ptx"/>
+    <!-- ============================================================ Lesson 1.2 -->
+    <subsection xml:id="subsec-latitude-and-longitude">
+        <title>Latitude, Longitude and Position</title>
+
+        <p component="lesson-plan">Upon completion of this lesson, learners will be able to:
+            <ol>
+                <li><p><alert>Know:</alert> the poles, the equator, meridians and the Greenwich meridian, parallels of latitude; latitude and longitude as angles at the centre of the earth; degrees and minutes.</p></li>
+                <li><p><alert>Do:</alert> read and write positions; find differences in latitude and in longitude; find the point on the opposite side of the earth.</p></li>
+                <li><p><alert>Apply:</alert> locate Kenyan and African towns by their positions; read positions from a phone.</p></li>
+            </ol>
+        </p>
+
+        <axiom component="lesson-plan">
+            <title>Problem-Solving and Discovery</title>
+            <dl>
+                <li><title>Suggested Time</title><p>14 minutes</p></li>
+                <li><title>Objective</title><p>Learners locate towns from their latitude and longitude and discover when to add and when to subtract to find a difference in latitude or longitude.</p></li>
+                <li><title>Teacher's Role</title><p>Give each group a globe or an atlas, or use the interactive in <xref ref="fig-globe-latitude-longitude"/>. Write the five positions on the board. Ask: <q>Why must we always say N or S, and E or W?</q></p></li>
+            </dl>
+        </axiom>
+
+        <activity xml:id="act-finding-kenya-on-the-globe">
+            <title>Finding Kenya on the Globe</title>
+            <statement>
+                <p>Take Nairobi to be at <m>(1^\circ 17'\,\text{S},\ 36^\circ 49'\,\text{E})</m>, Mombasa at <m>(4^\circ 03'\,\text{S},\ 39^\circ 40'\,\text{E})</m>, Kisumu at <m>(0^\circ 06'\,\text{S},\ 34^\circ 45'\,\text{E})</m>, Lodwar at <m>(3^\circ 07'\,\text{N},\ 35^\circ 36'\,\text{E})</m> and Mandera at <m>(3^\circ 56'\,\text{N},\ 41^\circ 52'\,\text{E})</m>.</p>
+                <p>
+                    <ol marker="(a)">
+                        <li>
+                            <p>Find each town on the globe or on the interactive. Which of them are north of the equator?</p>
+                            <solution component="lesson-plan"><p>Lodwar and Mandera.</p></solution>
+                        </li>
+                        <li>
+                            <p>Which town is furthest east?</p>
+                            <solution component="lesson-plan"><p>Mandera (<m>41^\circ 52'\,\text{E}</m>).</p></solution>
+                        </li>
+                        <li>
+                            <p>How many degrees and minutes of latitude separate Lodwar and Nairobi?</p>
+                            <solution component="lesson-plan"><p>They are on opposite sides of the equator, so add: <m>3^\circ 07' + 1^\circ 17' = 4^\circ 24'</m>.</p></solution>
+                        </li>
+                        <li>
+                            <p>How many degrees and minutes of longitude separate Kisumu and Mombasa?</p>
+                            <solution component="lesson-plan"><p>Both are east of Greenwich, so subtract: <m>39^\circ 40' - 34^\circ 45' = 38^\circ 100' - 34^\circ 45' = 4^\circ 55'</m>.</p></solution>
+                        </li>
+                    </ol>
+                </p>
+            </statement>
+        </activity>
+
+        <axiom component="lesson-plan">
+            <title>Structured Instruction</title>
+            <p>
+                <dl>
+                    <li><title>Suggested Time</title><p>8 minutes</p></li>
+                    <li><title>Objective</title><p>To define latitude and longitude as angles at the centre and state the rule for differences.</p></li>
+                </dl>
+            </p>
+            <paragraphs>
+                <title>Key Takeaways &amp; Teacher Connection</title>
+                <ol>
+                    <li><p><alert>Connecting to Learner Work:</alert> in part (c) the equator lies between the two towns, so the latitudes add; in part (d) both towns are east of Greenwich, so the longitudes subtract.</p></li>
+                    <li><p>Latitude and longitude are angles at the centre of the earth, not distances.</p></li>
+                    <li><p>N or S and E or W are part of every position: <m>1^\circ\,\text{S}</m> and <m>1^\circ\,\text{N}</m> are about <m>222\,\text{km}</m> apart.</p></li>
+                    <li><p>Same side of the equator (or of Greenwich): subtract. Opposite sides: add.</p></li>
+                </ol>
+            </paragraphs>
+        </axiom>
+
+        <insight xml:id="insight-latitude-and-longitude">
+            <title>Latitude and Longitude</title>
+            <p>
+                The earth turns about an <term>axis</term> through the <term>North Pole</term> and the <term>South Pole</term>. The <term>equator</term> is the great circle halfway between the poles.
+            </p>
+            <p>
+                <ul>
+                    <li><p>A <term>meridian</term> is half of a great circle from the North Pole to the South Pole. The meridian through Greenwich in London is the <term>Greenwich meridian</term>, <m>0^\circ</m>.</p></li>
+                    <li><p>The <term>longitude</term> of a point P is the angle between the plane of P's meridian and the plane of the Greenwich meridian, from <m>0^\circ</m> to <m>180^\circ</m> east (E) or west (W).</p></li>
+                    <li><p>A <term>parallel of latitude</term> is a circle on the earth parallel to the equator. Every parallel except the equator itself is a small circle.</p></li>
+                    <li><p>The <term>latitude</term> of P is the angle at the centre between OP and the plane of the equator, measured in P's meridian, from <m>0^\circ</m> to <m>90^\circ</m> north (N) or south (S).</p></li>
+                </ul>
+            </p>
+            <p>
+                The <term>position</term> of a point is written (latitude, longitude), latitude first: Nairobi is at about <m>(1^\circ 17'\,\text{S},\ 36^\circ 49'\,\text{E})</m>. Each degree is divided into <m>60</m> minutes: <m>1^\circ = 60'</m>.
+            </p>
+            <p>
+                To find the difference in latitude of two points: if they are on the same side of the equator, subtract their latitudes; if they are on opposite sides, add them. Longitudes work the same way with Greenwich in place of the equator; if the sum is more than <m>180^\circ</m>, the smaller angle between the meridians is <m>360^\circ</m> minus the sum (going the shorter way round, across the <m>180^\circ</m> meridian).
+            </p>
+        </insight>
+
+        <figure xml:id="fig-latitude-and-longitude-angles">
+            <caption>The latitude <m>\phi</m> and longitude <m>\lambda</m> of a point P.</caption>
+            <image width="65%">
+                <shortdescription>A globe with the North and South Poles, the equator and the Greenwich meridian. Point P is joined to the centre O. The latitude phi is the angle between OP and the equator, in P's meridian; the longitude lambda is the angle in the plane of the equator between P's meridian and the Greenwich meridian.</shortdescription>
+                <latex-image>
+\begin{tikzpicture}[back/.style={dashed, thin}]
+% SET: sphere radius 2.6, orthographic view centred on longitude 15 E, tilted 15 degrees; P at (35 N, 55 E)
+% CALCULATE: points (latitude, longitude) projected as X = R cos(lat) sin(long - 15), Y = R(sin(lat) cos 15 - cos(lat) cos(long - 15) sin 15); hidden parts dashed
+% DRAW: outline, equator, Greenwich meridian (dash pattern), P's meridian and parallel, OP, OQ (Q on the equator below P), OG (G on Greenwich); MARK: angle phi (latitude) and lambda (longitude)
+\draw[thick] (0,0) circle (2.6);
+\draw[back] (0.673,0.650) -- (0.451,0.663) -- (0.227,0.670) -- (-0.000,0.673) -- (-0.227,0.670) -- (-0.451,0.663) -- (-0.673,0.650) -- (-0.889,0.632) -- (-1.099,0.610) -- (-1.300,0.583) -- (-1.491,0.551) -- (-1.671,0.515) -- (-1.838,0.476) -- (-1.992,0.433) -- (-2.130,0.386) -- (-2.252,0.336) -- (-2.356,0.284) -- (-2.443,0.230) -- (-2.511,0.174) -- (-2.561,0.117) -- (-2.590,0.059) -- (-2.600,-0.000);
+\draw[thick] (-2.600,-0.000) -- (-2.590,-0.059) -- (-2.561,-0.117) -- (-2.511,-0.174) -- (-2.443,-0.230) -- (-2.356,-0.284) -- (-2.252,-0.336) -- (-2.130,-0.386) -- (-1.992,-0.433) -- (-1.838,-0.476) -- (-1.671,-0.515) -- (-1.491,-0.551) -- (-1.300,-0.583) -- (-1.099,-0.610) -- (-0.889,-0.632) -- (-0.673,-0.650) -- (-0.451,-0.663) -- (-0.227,-0.670) -- (0.000,-0.673) -- (0.227,-0.670) -- (0.451,-0.663) -- (0.673,-0.650) -- (0.889,-0.632) -- (1.099,-0.610) -- (1.300,-0.583) -- (1.491,-0.551) -- (1.671,-0.515) -- (1.838,-0.476) -- (1.992,-0.433) -- (2.130,-0.386) -- (2.252,-0.336) -- (2.356,-0.284) -- (2.443,-0.230) -- (2.511,-0.174) -- (2.561,-0.117) -- (2.590,-0.059) -- (2.600,-0.000) -- (2.590,0.059);
+\draw[back] (2.590,0.059) -- (2.561,0.117) -- (2.511,0.174) -- (2.443,0.230) -- (2.356,0.284) -- (2.252,0.336) -- (2.130,0.386) -- (1.992,0.433) -- (1.838,0.476) -- (1.671,0.515) -- (1.491,0.551) -- (1.300,0.583) -- (1.099,0.610) -- (0.889,0.632) -- (0.673,0.650);
+\draw[back] (-0.000,-2.511) -- (-0.047,-2.551) -- (-0.094,-2.577) -- (-0.140,-2.592) -- (-0.185,-2.593);
+\draw[thick, dash pattern=on 4pt off 2pt] (-0.185,-2.593) -- (-0.230,-2.582) -- (-0.274,-2.559) -- (-0.316,-2.523) -- (-0.357,-2.474) -- (-0.396,-2.414) -- (-0.433,-2.342) -- (-0.467,-2.258) -- (-0.500,-2.164) -- (-0.530,-2.058) -- (-0.558,-1.943) -- (-0.583,-1.819) -- (-0.605,-1.685) -- (-0.624,-1.543) -- (-0.640,-1.394) -- (-0.653,-1.238) -- (-0.663,-1.076) -- (-0.669,-0.909) -- (-0.673,-0.737) -- (-0.673,-0.562) -- (-0.669,-0.384) -- (-0.663,-0.204) -- (-0.653,-0.023) -- (-0.640,0.158) -- (-0.624,0.338) -- (-0.605,0.517) -- (-0.583,0.693) -- (-0.558,0.865) -- (-0.530,1.034) -- (-0.500,1.197) -- (-0.467,1.355) -- (-0.433,1.506) -- (-0.396,1.650) -- (-0.357,1.785) -- (-0.316,1.912) -- (-0.274,2.030) -- (-0.230,2.138) -- (-0.185,2.235) -- (-0.140,2.321) -- (-0.094,2.397) -- (-0.047,2.460) -- (-0.000,2.511);
+\draw[back] (0.000,-2.511) -- (0.117,-2.541) -- (0.233,-2.559) -- (0.347,-2.564) -- (0.461,-2.556) -- (0.572,-2.536);
+\draw[thick] (0.572,-2.536) -- (0.680,-2.504) -- (0.785,-2.459) -- (0.886,-2.403) -- (0.982,-2.335) -- (1.074,-2.255) -- (1.161,-2.165) -- (1.242,-2.064) -- (1.317,-1.952) -- (1.386,-1.832) -- (1.447,-1.702) -- (1.502,-1.564) -- (1.550,-1.419) -- (1.589,-1.266) -- (1.622,-1.108) -- (1.646,-0.944) -- (1.662,-0.775) -- (1.670,-0.603) -- (1.670,-0.428) -- (1.662,-0.250) -- (1.646,-0.072) -- (1.622,0.107) -- (1.589,0.286) -- (1.550,0.463) -- (1.502,0.638) -- (1.447,0.809) -- (1.386,0.977) -- (1.317,1.140) -- (1.242,1.297) -- (1.161,1.448) -- (1.074,1.592) -- (0.982,1.729) -- (0.886,1.857) -- (0.785,1.975) -- (0.680,2.085) -- (0.572,2.184) -- (0.461,2.272) -- (0.347,2.349) -- (0.233,2.415) -- (0.117,2.469) -- (0.000,2.511);
+\draw[back] (0.551,1.973) -- (0.370,1.983) -- (0.186,1.990) -- (-0.000,1.992) -- (-0.186,1.990) -- (-0.370,1.983) -- (-0.551,1.973) -- (-0.728,1.958) -- (-0.900,1.940) -- (-1.065,1.918) -- (-1.222,1.892) -- (-1.369,1.863) -- (-1.506,1.830) -- (-1.632,1.795) -- (-1.745,1.757) -- (-1.844,1.716) -- (-1.930,1.673) -- (-2.001,1.629) -- (-2.057,1.583) -- (-2.097,1.536);
+\draw[thin] (-2.097,1.536) -- (-2.122,1.489) -- (-2.130,1.440) -- (-2.122,1.392) -- (-2.097,1.345) -- (-2.057,1.298) -- (-2.001,1.252) -- (-1.930,1.208) -- (-1.844,1.165) -- (-1.745,1.124) -- (-1.632,1.086) -- (-1.506,1.051) -- (-1.369,1.018) -- (-1.222,0.989) -- (-1.065,0.963) -- (-0.900,0.941) -- (-0.728,0.922) -- (-0.551,0.908) -- (-0.370,0.898) -- (-0.186,0.891) -- (0.000,0.889) -- (0.186,0.891) -- (0.370,0.898) -- (0.551,0.908) -- (0.728,0.922) -- (0.900,0.941) -- (1.065,0.963) -- (1.222,0.989) -- (1.369,1.018) -- (1.506,1.051) -- (1.632,1.086) -- (1.745,1.124) -- (1.844,1.165) -- (1.930,1.208) -- (2.001,1.252) -- (2.057,1.298) -- (2.097,1.345) -- (2.122,1.392) -- (2.130,1.440) -- (2.122,1.489) -- (2.097,1.536) -- (2.057,1.583);
+\draw[back] (2.057,1.583) -- (2.001,1.629) -- (1.930,1.673) -- (1.844,1.716) -- (1.745,1.757) -- (1.632,1.795) -- (1.506,1.830) -- (1.369,1.863) -- (1.222,1.892) -- (1.065,1.918) -- (0.900,1.940) -- (0.728,1.958) -- (0.551,1.973);
+\draw[thick] (0,0) -- (1.369,1.018);
+\draw (0,0) -- (1.671,-0.515);
+\draw (0,0) -- (-0.673,-0.650);
+\draw[thick] (0.535,-0.165) -- (0.533,-0.094) -- (0.527,-0.023) -- (0.517,0.049) -- (0.503,0.120) -- (0.485,0.190) -- (0.463,0.259) -- (0.438,0.326);
+\draw[thick] (-0.188,-0.182) -- (-0.126,-0.186) -- (-0.063,-0.188) -- (0.000,-0.188) -- (0.063,-0.188) -- (0.126,-0.186) -- (0.188,-0.182) -- (0.249,-0.177) -- (0.308,-0.171) -- (0.364,-0.163) -- (0.418,-0.154) -- (0.468,-0.144);
+\node at (0.719,0.109) {$\phi$};
+\node at (0.224,-0.438) {$\lambda$};
+\fill (-0.000,2.511) circle (1.5pt) node[above] {N};
+\fill (-0.000,-2.511) circle (1.5pt) node[below] {S};
+\fill (0,0) circle (1.5pt) node[left] {O};
+\fill (1.369,1.018) circle (2pt) node[above right] {P};
+\fill (1.671,-0.515) circle (1.5pt);
+\fill (-0.673,-0.650) circle (1.5pt);
+\node[font=\small, anchor=west] at (2.80,-0.9) {equator};
+\draw[->] (2.75,-0.8) -- (2.252,-0.336);
+\node[font=\small, anchor=east] at (-2.70,1.6) {Greenwich meridian};
+\draw[->] (-2.70,1.6) -- (-0.515,1.116);
+\node[font=\small, anchor=west] at (2.80,1.9) {P's meridian};
+\draw[->] (2.75,1.9) -- (0.959,1.762);
+\end{tikzpicture}
+                </latex-image>
+            </image>
+        </figure>
+
+        <figure xml:id="fig-globe-latitude-longitude">
+            <caption>A point P on a globe set by its latitude and longitude. P's meridian and parallel are drawn, with the angles that give its position.</caption>
+            <interactive xml:id="interactive-globe-latitude-longitude" platform="jsxgraph" width="90%" aspect="16:12" source="jsxgraph/globe-latitude-longitude.js">
+                <slate xml:id="jsxgraph-globe-latitude-longitude" surface="jsxboard" aspect="16:12"/>
+                <instructions>
+                    <p>
+                        <ul>
+                            <li><p>Move the <alert>latitude</alert> slider (negative values are south) and the <alert>longitude</alert> slider (negative values are west) to move P. Its meridian and parallel are drawn thick; the position is shown beside the globe.</p></li>
+                            <li><p>The cross marks Nairobi, taken as <m>(1^\circ\,\text{S},\ 37^\circ\,\text{E})</m>. Find Lodwar <m>(3^\circ\,\text{N},\ 36^\circ\,\text{E})</m> and Mombasa <m>(4^\circ\,\text{S},\ 40^\circ\,\text{E})</m>.</p></li>
+                            <li><p>Turn the globe with the two view sliders at the bottom and left of the board.</p></li>
+                        </ul>
+                    </p>
+                </instructions>
+            </interactive>
+        </figure>
+
+        <figure xml:id="fig-kenya-graticule">
+            <caption>Nine towns of Kenya and its neighbours on a grid of latitude and longitude.</caption>
+            <image width="70%">
+                <shortdescription>A latitude-longitude grid from 32 degrees E to 43 degrees E and 7 degrees S to 5 degrees N, with the equator drawn thick and nine towns plotted.</shortdescription>
+                <description><p>Positions plotted: Nairobi 1°17'S, 36°49'E; Mombasa 4°03'S, 39°40'E; Kisumu 0°06'S, 34°45'E; Lodwar 3°07'N, 35°36'E; Kampala 0°19'N, 32°35'E; Dar es Salaam 6°48'S, 39°17'E; Garissa 0°27'S, 39°39'E; Lamu 2°16'S, 40°54'E; Mandera 3°56'N, 41°52'E.</p></description>
+                <latex-image>
+\begin{tikzpicture}[x=0.9cm, y=0.9cm]
+% SET: grid 32 to 43 degrees E (x), 7 degrees S to 5 degrees N (y); one unit is one degree
+% DRAW: graticule every degree, equator thick
+\draw[very thin, gray!60] (32,-7) grid (43,5);
+\draw[ultra thick] (32,0) -- (43,0);
+\foreach \x in {32,34,...,42} { \node[below, font=\footnotesize] at (\x,-7) {$\x^\circ$E}; }
+\foreach \y in {-6,-4,-2} { \node[left, font=\footnotesize] at (32,\y) {$\the\numexpr-\y\relax^\circ$S}; }
+\foreach \y in {2,4} { \node[left, font=\footnotesize] at (32,\y) {$\y^\circ$N}; }
+\node[left, font=\footnotesize] at (32,0) {$0^\circ$};
+\node[above right, font=\footnotesize] at (42,0) {equator};
+% MARK: towns at their positions in degrees and minutes
+\fill (36.817,-1.283) circle (2.5pt) node[below right, font=\small] {Nairobi};
+\fill (39.667,-4.050) circle (2.5pt) node[below right, font=\small] {Mombasa};
+\fill (34.750,-0.100) circle (2.5pt) node[below left, font=\small] {Kisumu};
+\fill (35.600,3.117) circle (2.5pt) node[above right, font=\small] {Lodwar};
+\fill (32.583,0.317) circle (2.5pt) node[above right, font=\small] {Kampala};
+\fill (39.283,-6.800) circle (2.5pt) node[right, font=\small] {Dar es Salaam};
+\fill (39.650,-0.450) circle (2.5pt) node[below right, font=\small] {Garissa};
+\fill (40.900,-2.267) circle (2.5pt) node[right, font=\small] {Lamu};
+\fill (41.867,3.933) circle (2.5pt) node[below left, font=\small] {Mandera};
+\end{tikzpicture}
+                </latex-image>
+            </image>
+        </figure>
+
+        <note xml:id="note-gps-coordinates">
+            <title>Location on Your Phone</title>
+            <p>
+                Map apps on phones show positions in decimal degrees, for example <c>-1.2864, 36.8172</c> in Nairobi. A minus sign means south (for latitude) or west (for longitude). To change the decimal part to minutes, multiply by <m>60</m>: <m>0.2864 \times 60 = 17.2</m>, so the latitude is <m>1^\circ 17'\,\text{S}</m>; <m>0.8172 \times 60 = 49.0</m>, so the longitude is <m>36^\circ 49'\,\text{E}</m>.
+            </p>
+            <p>
+                A phone that shares your live location tells others exactly where you are. Think before you share it, and share it only with people you trust.
+            </p>
+        </note>
+
+        <xi:include href="../lesson-plan-templates/example-intro.ptx" />
+
+        <example xml:id="example-differences-in-latitude-and-longitude">
+            <title>Differences in Latitude and Longitude</title>
+            <statement>
+                <p>Take Addis Ababa to be at <m>(9^\circ 02'\,\text{N},\ 38^\circ 45'\,\text{E})</m>, Dar es Salaam at <m>(6^\circ 48'\,\text{S},\ 39^\circ 17'\,\text{E})</m> and Accra at <m>(5^\circ 33'\,\text{N},\ 0^\circ 12'\,\text{W})</m>.
+                    <ol marker="(a)">
+                        <li><p>Find the differences in latitude and in longitude of Addis Ababa and Dar es Salaam.</p></li>
+                        <li><p>Find the difference in longitude of Accra and Nairobi <m>(1^\circ 17'\,\text{S},\ 36^\circ 49'\,\text{E})</m>.</p></li>
+                    </ol>
+                </p>
+            </statement>
+            <solution>
+                <p>
+                    <ol marker="(a)">
+                        <li><p>Latitude: one is north and one south of the equator, so add: <m>9^\circ 02' + 6^\circ 48' = 15^\circ 50'</m>. Longitude: both are east, so subtract. The minutes <m>17' - 45'</m> do not subtract, so borrow <m>1^\circ = 60'</m>:
+                            <md>39^\circ 17' - 38^\circ 45' = 38^\circ 77' - 38^\circ 45' = 0^\circ 32'</md></p></li>
+                        <li><p>Accra is west of Greenwich and Nairobi east, so add: <m>0^\circ 12' + 36^\circ 49' = 36^\circ 61' = 37^\circ 01'</m>.</p></li>
+                    </ol>
+                </p>
+            </solution>
+        </example>
+
+        <example xml:id="example-opposite-side-of-the-earth">
+            <title>The Opposite Side of the Earth</title>
+            <statement>
+                <p>Find the position of the point at the other end of the earth's diameter through Nairobi <m>(1^\circ 17'\,\text{S},\ 36^\circ 49'\,\text{E})</m>.</p>
+            </statement>
+            <solution>
+                <p>The diameter passes through the centre, so the opposite point is as far north of the equator as Nairobi is south: latitude <m>1^\circ 17'\,\text{N}</m>.</p>
+                <p>Its meridian is opposite Nairobi's, so the two longitudes add to <m>180^\circ</m>, on the other side of Greenwich: <m>180^\circ - 36^\circ 49' = 143^\circ 11'</m>, so <m>143^\circ 11'\,\text{W}</m>.</p>
+                <p>The point is <m>(1^\circ 17'\,\text{N},\ 143^\circ 11'\,\text{W})</m>, in the Pacific Ocean.</p>
+            </solution>
+        </example>
+
+        <xi:include href="../lesson-plan-templates/assessment-intro.ptx" />
+        <xi:include href="../lesson-plan-templates/checkpoint.ptx" />
+
+        <p>Type decimals with a point, for example <c>36.8</c>. Type angles in degrees as numbers, without the degree sign. Choose N, S, E or W from each list.</p>
+
+        <exercise xml:id="ex-differences-in-latitude-and-longitude">
+            <!--<title></title>-->
+            <stack label="stk-differences-in-latitude-and-longitude" source="stack/top/2-measurement-and-geometry/13-navigation/01-longitudes-and-latitudes/Differences-in-latitude-and-longitude.xml"/>
+        </exercise>
+
+        <exercise xml:id="ex-a-new-position-after-moving">
+            <!--<title></title>-->
+            <stack label="stk-a-new-position-after-moving" source="stack/top/2-measurement-and-geometry/13-navigation/01-longitudes-and-latitudes/A-new-position-after-moving.xml"/>
+        </exercise>
+
+        <exercises xml:id="exercises-latitude-and-longitude">
+            <exercise xml:id="ex-differences-kisumu-lodwar">
+                <statement><p>Take Kisumu to be at <m>(0^\circ 06'\,\text{S},\ 34^\circ 45'\,\text{E})</m> and Lodwar at <m>(3^\circ 07'\,\text{N},\ 35^\circ 36'\,\text{E})</m>. Find their difference in latitude and their difference in longitude.</p></statement>
+                <answer><p><m>3^\circ 13'</m>; <m>0^\circ 51'</m></p></answer>
+                <solution><p>Opposite sides of the equator: <m>0^\circ 06' + 3^\circ 07' = 3^\circ 13'</m>. Both east: <m>35^\circ 36' - 34^\circ 45' = 34^\circ 96' - 34^\circ 45' = 0^\circ 51'</m>.</p></solution>
+            </exercise>
+            <exercise xml:id="ex-differences-kampala-mogadishu">
+                <statement><p>Take Kampala to be at <m>(0^\circ 19'\,\text{N},\ 32^\circ 35'\,\text{E})</m> and Mogadishu at <m>(2^\circ 03'\,\text{N},\ 45^\circ 19'\,\text{E})</m>. Find both differences.</p></statement>
+                <answer><p>Latitude <m>1^\circ 44'</m>; longitude <m>12^\circ 44'</m></p></answer>
+                <solution><p>Both north: <m>2^\circ 03' - 0^\circ 19' = 1^\circ 63' - 0^\circ 19' = 1^\circ 44'</m>. Both east: <m>45^\circ 19' - 32^\circ 35' = 44^\circ 79' - 32^\circ 35' = 12^\circ 44'</m>.</p></solution>
+            </exercise>
+            <exercise xml:id="ex-differences-lima-mombasa">
+                <statement><p>Take Lima to be at <m>(12^\circ 03'\,\text{S},\ 77^\circ 03'\,\text{W})</m> and Mombasa at <m>(4^\circ 03'\,\text{S},\ 39^\circ 40'\,\text{E})</m>. Find both differences.</p></statement>
+                <answer><p>Latitude <m>8^\circ 00'</m>; longitude <m>116^\circ 43'</m></p></answer>
+                <solution><p>Both south: <m>12^\circ 03' - 4^\circ 03' = 8^\circ 00'</m>. Opposite sides of Greenwich: <m>77^\circ 03' + 39^\circ 40' = 116^\circ 43'</m>, which is less than <m>180^\circ</m>.</p></solution>
+            </exercise>
+            <exercise xml:id="ex-opposite-mombasa">
+                <statement><p>Give the position of the point at the opposite end of the earth's diameter through Mombasa <m>(4^\circ 03'\,\text{S},\ 39^\circ 40'\,\text{E})</m>.</p></statement>
+                <answer><p><m>(4^\circ 03'\,\text{N},\ 140^\circ 20'\,\text{W})</m></p></answer>
+                <solution><p>Same latitude in the other hemisphere: <m>4^\circ 03'\,\text{N}</m>. Opposite meridian: <m>180^\circ - 39^\circ 40' = 140^\circ 20'\,\text{W}</m>.</p></solution>
+            </exercise>
+            <exercise xml:id="ex-gps-eldoret">
+                <statement><p>A phone in Eldoret shows the position <c>0.5143, 35.2698</c>. Write this position in degrees and minutes (to the nearest minute), with N or S and E or W.</p></statement>
+                <answer><p><m>(0^\circ 31'\,\text{N},\ 35^\circ 16'\,\text{E})</m></p></answer>
+                <solution><p><m>0.5143 \times 60 = 30.9</m>, so <m>0^\circ 31'</m>; positive, so north. <m>0.2698 \times 60 = 16.2</m>, so <m>35^\circ 16'</m>; positive, so east.</p></solution>
+            </exercise>
+            <exercise xml:id="ex-the-short-way-round">
+                <title>Challenge: The Short Way Round</title>
+                <statement><p>P is at <m>(20^\circ\,\text{N},\ 150^\circ\,\text{E})</m> and Q is at <m>(20^\circ\,\text{N},\ 150^\circ\,\text{W})</m>. Find their difference in longitude, and explain why it is not <m>300^\circ</m>.</p></statement>
+                <hint><p>Go across the <m>180^\circ</m> meridian.</p></hint>
+                <answer><p><m>60^\circ</m></p></answer>
+                <solution><p>The meridians are on opposite sides of Greenwich, and <m>150 + 150 = 300</m> is more than <m>180</m>. Going the other way, each meridian is <m>30^\circ</m> from the <m>180^\circ</m> meridian, so they are <m>30^\circ + 30^\circ = 60^\circ</m> apart, which is <m>360^\circ - 300^\circ</m>. The difference in longitude is the smaller angle, <m>60^\circ</m>.</p></solution>
+            </exercise>
+        </exercises>
+
+        <axiom component="lesson-plan">
+            <title>Differentiation</title>
+            <table xml:id="table-differentiation-latitude-and-longitude">
+                <title>Differentiation Strategies</title>
+                <tabular halign="left" top="minor" bottom="minor" left="minor" right="minor">
+                    <row header="yes" bottom="medium"><cell>Learner Group</cell><cell>Strategy and Learning Experience</cell></row>
+                    <row><cell>Struggling Learners (Support)</cell><cell>Activity parts (a) to (c) and <xref ref="example-differences-in-latitude-and-longitude"/>. Give a card: <q>Same side: subtract. Opposite sides: add.</q> Assign <xref ref="ex-differences-kisumu-lodwar"/> and <xref ref="ex-differences-kampala-mogadishu"/>.</cell></row>
+                    <row><cell>On-Level Learners (Core)</cell><cell>Full activity and all examples. Assign <xref ref="ex-differences-kisumu-lodwar"/> to <xref ref="ex-gps-eldoret"/>.</cell></row>
+                    <row><cell>Advanced Learners (Challenge)</cell><cell>All exercises including <xref ref="ex-the-short-way-round"/>. Extension: name the point opposite <m>(0^\circ,\ 0^\circ)</m> (answer: <m>(0^\circ,\ 180^\circ)</m>).</cell></row>
+                </tabular>
+            </table>
+        </axiom>
+
+        <xi:include href="../lesson-plan-templates/assessment-methods.ptx" />
+        <xi:include href="../lesson-plan-templates/reflection.ptx"/>
+    </subsection>
 </section>

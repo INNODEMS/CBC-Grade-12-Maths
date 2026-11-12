@@ -46,161 +46,271 @@
          Suggested activity: Learners write position vectors of the corners of a box (cuboid) placed with one corner at the origin.
          Interactive (JSXGraph): 3D cuboid with its vertices labelled; clicking a vertex shows its position vector. -->
 
-    <!-- [LP] Add guidance on activity -->
+    <!-- Section notes (2026-11)
+         SLOs: Core 2.6 (a): position vectors and the vector AB in three dimensions
+         Activity: as planning notes (position vectors of the corners of a carton with one corner at the origin)
+         JSXGraph: fig-cuboid-position-vectors (assets/jsxgraph/cuboid-position-vectors.js), as planning notes; clicking a vertex works in 1.8.0 (tested headless), so no fallback slider
+         STACK: assets/stack/top/2-measurement-and-geometry/12-vectors-ii/02-column-and-position-vectors-in-three-dimensions/ -->
 
-    <!-- <axiom component="lesson-plan">
-            <title>Problem-Solving and Discovery</title>
-            <dl>
-                <li>
-                    <title>Suggested Time</title>
-                    <p>
-                        XX minutes
-                    </p>
-                </li>
-                <li>
-                    <title>Objective</title>
-                    <p>
-                        XXX
-                    </p>
-                </li>
-                <li>
-                    <title>Teacher's Role</title>
-                    <p>
-                        XXX
-                    </p>
-                </li>
-            </dl>
-        </axiom> -->
+    <p component="lesson-plan">Upon completion of this lesson, learners will be able to:
+        <ol>
+            <li><p><alert>Know:</alert> the position vector of <m>P</m> is <m>\overrightarrow{OP}</m>; <m>\overrightarrow{AB} = \mathbf{b} - \mathbf{a}</m>; equal vectors have equal components.</p></li>
+            <li><p><alert>Do:</alert> write position vectors, find <m>\overrightarrow{AB}</m>, find a point from a vector, and find the fourth vertex of a parallelogram.</p></li>
+            <li><p><alert>Apply:</alert> describe the corners of a box and the flight of a drone with vectors.</p></li>
+        </ol>
+    </p>
 
-    <!-- Add Activity -->
+    <axiom component="lesson-plan">
+        <title>Problem-Solving and Discovery</title>
+        <dl>
+            <li><title>Suggested Time</title><p>14 minutes</p></li>
+            <li><title>Objective</title><p>Learners find that the moves from <m>A</m> to <m>B</m> equal the position vector of <m>B</m> minus the position vector of <m>A</m>.</p></li>
+            <li><title>Teacher's Role</title><p>If possible, stand a real carton with one corner on a marked origin on a desk. After part (b), ask: <q>Did you get the same column by counting moves and by subtracting?</q></p></li>
+        </dl>
+    </axiom>
 
-    <!-- <activity>
+    <activity xml:id="act-corners-of-a-box">
+        <title>Corners of a Box</title>
         <statement>
+            <p>A carton <m>40\,\text{cm}</m> long, <m>30\,\text{cm}</m> wide and <m>20\,\text{cm}</m> high has one corner at the origin <m>O</m>. It is lettered like the cuboid in <xref ref="example-vertices-of-a-cuboid"/>: base <m>OABC</m> with <m>A</m> on the <m>x</m>-axis and <m>C</m> on the <m>y</m>-axis, and <m>D</m>, <m>E</m>, <m>F</m>, <m>G</m> above <m>O</m>, <m>A</m>, <m>B</m>, <m>C</m>. Distances are in centimetres.</p>
+            <figure xml:id="fig-box-position-vectors">
+                <caption>The carton with the arrows <m>\overrightarrow{OA}</m>, <m>\overrightarrow{OF}</m> and <m>\overrightarrow{AF}</m>.</caption>
+                <image width="60%">
+                    <shortdescription>A box 40 cm along x, 30 cm along y and 20 cm high with a corner at O. Solid arrows go from O to A and from O to F; a dashed arrow goes from A to F.</shortdescription>
+                    <latex-image>
+\tdplotsetmaincoords{70}{110}
+\begin{tikzpicture}[tdplot_main_coords, scale=0.12, >=Stealth]
+\draw[->] (40,0,0) -- (52,0,0) node[anchor=north east]{$x$};
+\draw[->] (0,30,0) -- (0,40,0) node[anchor=west]{$y$};
+\draw[->] (0,0,20) -- (0,0,30) node[anchor=south]{$z$};
+\draw[dashed] (0,0,0) -- (0,30,0); \draw[dashed] (0,0,0) -- (0,0,20);
+\draw (40,0,0) -- (40,30,0) -- (0,30,0);
+\draw (40,0,0) -- (40,0,20); \draw (40,30,0) -- (40,30,20); \draw (0,30,0) -- (0,30,20);
+\draw (0,0,20) -- (40,0,20) -- (40,30,20) -- (0,30,20) -- cycle;
+\draw[->, very thick] (0,0,0) -- (40,0,0);
+\draw[->, very thick] (0,0,0) -- (40,30,20);
+\draw[->, very thick, densely dashed] (40,0,0) -- (40,30,20);
+\node[anchor=south east] at (0,0,0) {$O$};
+\node[anchor=north east] at (40,0,0) {$A$};
+\node[anchor=north west] at (40,30,0) {$B$};
+\node[anchor=west] at (0,30,0) {$C$};
+\node[anchor=south east] at (0,0,20) {$D$};
+\node[anchor=east] at (40,0,20) {$E$};
+\node[anchor=south west] at (40,30,20) {$F$};
+\node[anchor=south west] at (0,30,20) {$G$};
+\node[anchor=north west] at (20,30,0) {$40$ cm};
+\node[anchor=north] at (40,15,0) {$30$ cm};
+\node[anchor=west] at (0,30,10) {$20$ cm};
+\end{tikzpicture}
+                    </latex-image>
+                </image>
+            </figure>
+            <p>
+                <ol marker="(a)">
+                    <li>
+                        <p>The <em>position vector</em> of a point is the column of moves from <m>O</m> to the point. Write the position vectors of <m>A</m>, <m>B</m> and <m>F</m>.</p>
+                        <solution component="lesson-plan"><p><m>\overrightarrow{OA} = \begin{pmatrix} 40 \\ 0 \\ 0 \end{pmatrix}</m>, <m>\overrightarrow{OB} = \begin{pmatrix} 40 \\ 30 \\ 0 \end{pmatrix}</m>, <m>\overrightarrow{OF} = \begin{pmatrix} 40 \\ 30 \\ 20 \end{pmatrix}</m>.</p></solution>
+                    </li>
+                    <li>
+                        <p>Find <m>\overrightarrow{AF}</m> by counting the moves along the edges from <m>A</m> to <m>F</m>. Then work out <m>\overrightarrow{OF} - \overrightarrow{OA}</m>. What do you notice?</p>
+                        <solution component="lesson-plan"><p>Counting: <m>0</m> along <m>x</m>, <m>30</m> along <m>y</m>, <m>20</m> up, so <m>\begin{pmatrix} 0 \\ 30 \\ 20 \end{pmatrix}</m>. Subtracting gives the same column.</p></solution>
+                    </li>
+                    <li>
+                        <p>Write <m>\overrightarrow{FA}</m>. How is it related to <m>\overrightarrow{AF}</m>?</p>
+                        <solution component="lesson-plan"><p><m>\begin{pmatrix} 0 \\ -30 \\ -20 \end{pmatrix} = -\overrightarrow{AF}</m>: the same moves in reverse.</p></solution>
+                    </li>
+                    <li>
+                        <p>Compare <m>\overrightarrow{DE}</m> with <m>\overrightarrow{OA}</m>.</p>
+                        <solution component="lesson-plan"><p>Both are <m>\begin{pmatrix} 40 \\ 0 \\ 0 \end{pmatrix}</m>. They are equal vectors: parallel edges of the same length, pointing the same way.</p></solution>
+                    </li>
+                    <li>
+                        <p>Find <m>\overrightarrow{BD}</m>.</p>
+                        <solution component="lesson-plan"><p><m>\overrightarrow{OD} - \overrightarrow{OB} = \begin{pmatrix} 0 \\ 0 \\ 20 \end{pmatrix} - \begin{pmatrix} 40 \\ 30 \\ 0 \end{pmatrix} = \begin{pmatrix} -40 \\ -30 \\ 20 \end{pmatrix}</m>.</p></solution>
+                    </li>
+                </ol>
+            </p>
         </statement>
-    </activity> -->
+    </activity>
 
-    <!-- [LP] Add guidance on structured lesson plan-->
-
-    <!-- <axiom component="lesson-plan">
+    <axiom component="lesson-plan">
         <title>Structured Instruction</title>
         <p>
             <dl>
-            <li>
-                <title>Suggested Time</title>
-                <p>
-                    XX minutes
-                </p>
-            </li>
-            <li>
-                <title>Objective</title>
-                <p>
-                    To formalize the concepts and properties learners discovered in the anchor task.
-                </p>
-            </li>
+                <li><title>Suggested Time</title><p>8 minutes</p></li>
+                <li><title>Objective</title><p>To formalise position vectors and the rule for the vector between two points.</p></li>
             </dl>
         </p>
         <paragraphs>
             <title>Key Takeaways &amp; Teacher Connection</title>
             <ol>
-                <li>
-                    <p>
-                        <alert>Connecting to Learner Work:</alert> XXXX
-                    </p>
-                </li>
+                <li><p><alert>Connecting to Learner Work:</alert> part (b) showed that counting moves and subtracting position vectors give the same column.</p></li>
+                <li><p>A position vector always starts at <m>O</m>.</p></li>
+                <li><p><m>\overrightarrow{AB} = \mathbf{b} - \mathbf{a}</m>: end minus start.</p></li>
+                <li><p>Equal vectors have equal columns, wherever they are drawn.</p></li>
             </ol>
         </paragraphs>
-    </axiom> -->
+    </axiom>
 
-    <!-- Add insight / key takeaway directly related to activity / learner experience -->
+    <insight xml:id="insight-position-vectors">
+        <title>Position Vectors and the Vector <m>\overrightarrow{AB}</m></title>
+        <p>
+            The <term>position vector</term> of a point <m>P</m> is <m>\overrightarrow{OP}</m>, the journey from the origin to the point. We write it with the small bold letter, <m>\mathbf{p}</m>. The point <m>P(x, y, z)</m> has position vector <m>\mathbf{p} = \begin{pmatrix} x \\ y \\ z \end{pmatrix}</m>.
+        </p>
+        <p>
+            A vector such as <m>\overrightarrow{AB}</m> that is not tied to <m>O</m> is a <term>free vector</term>. Going from <m>A</m> to <m>B</m> is the same as going from <m>A</m> back to <m>O</m> and then from <m>O</m> to <m>B</m>, so
+            <md>\overrightarrow{AB} = \mathbf{b} - \mathbf{a}</md>
+            (end minus start). Going the other way, <m>\overrightarrow{BA} = \mathbf{a} - \mathbf{b} = -\overrightarrow{AB}</m>.
+        </p>
+        <p>
+            Two vectors are equal when all their components are equal: they have the same length and the same direction, wherever they are drawn.
+        </p>
+    </insight>
 
-    <!-- <insight>
-    </insight> -->
+    <figure xml:id="fig-vector-ab-triangle">
+        <caption>The vector from <m>A</m> to <m>B</m> is <m>\mathbf{b} - \mathbf{a}</m>.</caption>
+        <image width="45%">
+            <shortdescription>From O, an arrow a goes to A and an arrow b goes to B. A dashed arrow from A to B is labelled AB = b minus a.</shortdescription>
+            <latex-image>
+\begin{tikzpicture}[scale=1.1, >=Stealth]
+\coordinate (O) at (0,0); \coordinate (A) at (4,1); \coordinate (B) at (1.5,3);
+\draw[->, thick] (O) -- (A) node[midway, below right]{$\mathbf{a}$};
+\draw[->, thick] (O) -- (B) node[midway, left]{$\mathbf{b}$};
+\draw[->, thick, densely dashed] (A) -- (B) node[midway, above right]{$\overrightarrow{AB} = \mathbf{b} - \mathbf{a}$};
+\fill (O) circle (1.5pt) node[below left]{$O$};
+\fill (A) circle (1.5pt) node[right]{$A$};
+\fill (B) circle (1.5pt) node[above]{$B$};
+\end{tikzpicture}
+            </latex-image>
+        </image>
+    </figure>
 
-    <!-- Add further instruction (not in a block) to develop ideas as needed -->
+    <note xml:id="note-writing-vectors-by-hand">
+        <title>Writing Vectors by Hand</title>
+        <p>
+            Printed books show vectors in bold, <m>\mathbf{a}</m>. You cannot write bold by hand, so underline the letter (<m>\underline{a}</m>) or draw an arrow over the two letters, <m>\overrightarrow{AB}</m>.
+        </p>
+    </note>
+
+    <warning xml:id="warning-end-minus-start">
+        <title>End Minus Start</title>
+        <p>
+            <m>\mathbf{a} - \mathbf{b}</m> is the vector from <m>B</m> to <m>A</m>, not from <m>A</m> to <m>B</m>. For <m>\overrightarrow{AB}</m>, start with the end point: <m>\mathbf{b} - \mathbf{a}</m>.
+        </p>
+    </warning>
+
+    <figure xml:id="fig-cuboid-position-vectors">
+        <caption>Click a corner of the box to see its position vector. Turn the box with the view sliders.</caption>
+        <interactive xml:id="interactive-cuboid-position-vectors" platform="jsxgraph" width="90%" aspect="16:12" source="jsxgraph/cuboid-position-vectors.js">
+            <slate xml:id="jsxgraph-cuboid-position-vectors" surface="jsxboard" aspect="16:12"/>
+            <instructions>
+                <p>
+                    <ul>
+                        <li><p>Click the corner <m>F</m>. The column is <m>\overrightarrow{OF}</m>, the moves from <m>O</m> to <m>F</m>. Compare it with your answer to part (a) of <xref ref="act-corners-of-a-box"/>.</p></li>
+                        <li><p>Click <m>A</m>, then <m>B</m>, then <m>F</m>. Which component changes at each step, and why?</p></li>
+                        <li><p>Drag the horizontal and vertical view sliders to turn the box. The position vectors do not change when the view turns.</p></li>
+                    </ul>
+                </p>
+            </instructions>
+        </interactive>
+    </figure>
 
     <xi:include href="../lesson-plan-templates/example-intro.ptx" />
 
-    <!-- Add at least 3 examples -->
-
-    <!-- <example>
+    <example xml:id="example-position-vectors-of-points">
+        <title>Position Vectors of Points</title>
         <statement>
+            <p>(a) Write the position vector of <m>A(3, -1, 4)</m>. (b) The point <m>P</m> has position vector <m>\mathbf{p} = \begin{pmatrix} 0 \\ 5 \\ -2 \end{pmatrix}</m>. Write the coordinates of <m>P</m> and say which coordinate plane it lies in.</p>
         </statement>
         <solution>
+            <p>(a) <m>\mathbf{a} = \begin{pmatrix} 3 \\ -1 \\ 4 \end{pmatrix}</m>: the coordinates written as a column.</p>
+            <p>(b) <m>P(0, 5, -2)</m>. Its <m>x</m>-coordinate is <m>0</m>, so <m>P</m> lies in the <m>yz</m>-plane.</p>
         </solution>
     </example>
 
-    <example>
+    <example xml:id="example-vector-between-two-points">
+        <title>The Vector Between Two Points</title>
         <statement>
+            <p><m>A</m> is <m>(2, 5, -1)</m> and <m>B</m> is <m>(6, 3, 4)</m>. Find <m>\overrightarrow{AB}</m> and <m>\overrightarrow{BA}</m>.</p>
         </statement>
         <solution>
+            <p>End minus start: <md>\overrightarrow{AB} = \mathbf{b} - \mathbf{a} = \begin{pmatrix} 6 \\ 3 \\ 4 \end{pmatrix} - \begin{pmatrix} 2 \\ 5 \\ -1 \end{pmatrix} = \begin{pmatrix} 4 \\ -2 \\ 5 \end{pmatrix}</md>
+            and <m>\overrightarrow{BA} = -\overrightarrow{AB} = \begin{pmatrix} -4 \\ 2 \\ -5 \end{pmatrix}</m>.</p>
         </solution>
     </example>
 
-    <example>
+    <example xml:id="example-point-from-a-vector">
+        <title>Finding a Point from a Vector</title>
         <statement>
+            <p>(a) <m>A</m> is <m>(1, -2, 3)</m> and <m>\overrightarrow{AB} = \begin{pmatrix} 4 \\ 5 \\ -6 \end{pmatrix}</m>. Find <m>B</m>.</p>
+            <p>(b) <m>ABCD</m> is a parallelogram with <m>A(1, 0, 2)</m>, <m>B(4, 1, 0)</m> and <m>C(6, 5, 3)</m>. Find <m>D</m>.</p>
         </statement>
         <solution>
+            <p>(a) <m>\mathbf{b} = \mathbf{a} + \overrightarrow{AB} = \begin{pmatrix} 1 \\ -2 \\ 3 \end{pmatrix} + \begin{pmatrix} 4 \\ 5 \\ -6 \end{pmatrix} = \begin{pmatrix} 5 \\ 3 \\ -3 \end{pmatrix}</m>, so <m>B</m> is <m>(5, 3, -3)</m>.</p>
+            <p>(b) In the parallelogram <m>ABCD</m>, the sides <m>AD</m> and <m>BC</m> are opposite, so <m>\overrightarrow{AD} = \overrightarrow{BC}</m>. Now <m>\overrightarrow{BC} = \mathbf{c} - \mathbf{b} = \begin{pmatrix} 2 \\ 4 \\ 3 \end{pmatrix}</m>, so
+            <md>\mathbf{d} = \mathbf{a} + \overrightarrow{AD} = \begin{pmatrix} 1 \\ 0 \\ 2 \end{pmatrix} + \begin{pmatrix} 2 \\ 4 \\ 3 \end{pmatrix} = \begin{pmatrix} 3 \\ 4 \\ 5 \end{pmatrix}</md>
+            and <m>D</m> is <m>(3, 4, 5)</m>.</p>
         </solution>
-    </example> -->
+    </example>
 
     <xi:include href="../lesson-plan-templates/assessment-intro.ptx" />
+    <xi:include href="../lesson-plan-templates/checkpoint.ptx" />
 
-    <!-- If STACK questions are included, uncomment this: -->
+    <p>Type one number in each box of a column vector. Fractions may be typed with a slash, for example <c>5/2</c>.</p>
 
-    <!-- <xi:include href="../lesson-plan-templates/checkpoint.ptx" /> -->
+    <exercise xml:id="ex-position-vectors-and-the-vector-between-two-points">
+        <!--<title></title>-->
+        <stack label="stk-position-vectors-and-the-vector-between-two-points" source="stack/top/2-measurement-and-geometry/12-vectors-ii/02-column-and-position-vectors-in-three-dimensions/Position-vectors-and-the-vector-between-two-points.xml"/>
+    </exercise>
 
-    <!-- Add STACK exercises if made -->
+    <exercise xml:id="ex-a-fourth-vertex-of-a-parallelogram">
+        <!--<title></title>-->
+        <stack label="stk-a-fourth-vertex-of-a-parallelogram" source="stack/top/2-measurement-and-geometry/12-vectors-ii/02-column-and-position-vectors-in-three-dimensions/A-fourth-vertex-of-a-parallelogram.xml"/>
+    </exercise>
 
-    <!-- Add static exercises -->
+    <exercises xml:id="exercises-position-vectors">
+        <exercise xml:id="ex-write-position-vectors">
+            <statement><p>Write the position vectors of <m>P(4, 0, -3)</m> and <m>Q(-2, 7, 1)</m>.</p></statement>
+            <answer><p><m>\mathbf{p} = \begin{pmatrix} 4 \\ 0 \\ -3 \end{pmatrix}</m>, <m>\mathbf{q} = \begin{pmatrix} -2 \\ 7 \\ 1 \end{pmatrix}</m></p></answer>
+        </exercise>
+        <exercise xml:id="ex-ab-and-ba">
+            <statement><p><m>A</m> is <m>(-1, 2, 5)</m> and <m>B</m> is <m>(3, -4, 0)</m>. Find <m>\overrightarrow{AB}</m> and <m>\overrightarrow{BA}</m>.</p></statement>
+            <answer><p><m>\overrightarrow{AB} = \begin{pmatrix} 4 \\ -6 \\ -5 \end{pmatrix}</m>, <m>\overrightarrow{BA} = \begin{pmatrix} -4 \\ 6 \\ 5 \end{pmatrix}</m></p></answer>
+        </exercise>
+        <exercise xml:id="ex-carton-vectors">
+            <statement><p>For the carton in <xref ref="act-corners-of-a-box"/>, find <m>\overrightarrow{OG}</m> and <m>\overrightarrow{EC}</m>.</p></statement>
+            <answer><p><m>\overrightarrow{OG} = \begin{pmatrix} 0 \\ 30 \\ 20 \end{pmatrix}</m>, <m>\overrightarrow{EC} = \begin{pmatrix} -40 \\ 30 \\ -20 \end{pmatrix}</m></p></answer>
+            <solution><p><m>G</m> is <m>(0, 30, 20)</m>, so <m>\overrightarrow{OG} = \begin{pmatrix} 0 \\ 30 \\ 20 \end{pmatrix}</m>. <m>E</m> is <m>(40, 0, 20)</m> and <m>C</m> is <m>(0, 30, 0)</m>, so <m>\overrightarrow{EC} = \mathbf{c} - \mathbf{e} = \begin{pmatrix} -40 \\ 30 \\ -20 \end{pmatrix}</m>.</p></solution>
+        </exercise>
+        <exercise xml:id="ex-drone-flight">
+            <statement><p>A drone spraying a shamba near Nakuru flies in a straight line from <m>A(20, 15, 0)</m> to <m>B(50, 35, 40)</m>, in metres. Write <m>\overrightarrow{AB}</m> as a column.</p></statement>
+            <answer><p><m>\begin{pmatrix} 30 \\ 20 \\ 40 \end{pmatrix}</m></p></answer>
+        </exercise>
+        <exercise xml:id="ex-start-from-the-vector">
+            <statement><p><m>\overrightarrow{AB} = \begin{pmatrix} 3 \\ -1 \\ 4 \end{pmatrix}</m> and <m>B</m> is <m>(5, 2, 0)</m>. Find <m>A</m>.</p></statement>
+            <answer><p><m>A(2, 3, -4)</m></p></answer>
+            <solution><p><m>\mathbf{a} = \mathbf{b} - \overrightarrow{AB} = \begin{pmatrix} 5 - 3 \\ 2 + 1 \\ 0 - 4 \end{pmatrix} = \begin{pmatrix} 2 \\ 3 \\ -4 \end{pmatrix}</m>.</p></solution>
+        </exercise>
+        <exercise xml:id="ex-parallelogram-diagonals-meet">
+            <title>Challenge: Where the Diagonals Meet</title>
+            <statement><p><m>ABCD</m> is a parallelogram with <m>A(2, -1, 3)</m>, <m>B(5, 1, 4)</m> and <m>D(0, 2, 6)</m>. Find <m>C</m>. Then show that the diagonals <m>AC</m> and <m>BD</m> have the same midpoint.</p></statement>
+            <hint><p><m>\overrightarrow{BC} = \overrightarrow{AD}</m>.</p></hint>
+            <answer><p><m>C(3, 4, 7)</m>; both midpoints are <m>(2.5, 1.5, 5)</m>.</p></answer>
+            <solution><p><m>\overrightarrow{AD} = \mathbf{d} - \mathbf{a} = \begin{pmatrix} -2 \\ 3 \\ 3 \end{pmatrix}</m>, so <m>\mathbf{c} = \mathbf{b} + \overrightarrow{AD} = \begin{pmatrix} 3 \\ 4 \\ 7 \end{pmatrix}</m>. The midpoint of <m>AC</m> is <m>\left(\frac{2 + 3}{2}, \frac{-1 + 4}{2}, \frac{3 + 7}{2}\right) = (2.5, 1.5, 5)</m>, and the midpoint of <m>BD</m> is <m>\left(\frac{5 + 0}{2}, \frac{1 + 2}{2}, \frac{4 + 6}{2}\right) = (2.5, 1.5, 5)</m>: the same point.</p></solution>
+        </exercise>
+    </exercises>
 
-    <!-- <exercises>
-        <exercise>
-            <statement>   
-
-            </statement>   
-            <solution>
-
-            </solution>             
-        </exercise>        
-    </exercises> -->
-
-    <!-- [LP] Add information on how to differentiate  -->
-
-    <!-- <axiom component="lesson-plan">
+    <axiom component="lesson-plan">
         <title>Differentiation</title>
-
-        <table>
-            <title>Differentiation</title>
-            <tabular halign="left">
-                <row header="yes" bottom="minor">
-                    <cell>Learner Group</cell>
-                    <cell>Strategy &amp; Learning Experience</cell>
-                    <cell></cell>
-                </row>
-                <row>
-                    <cell>Struggling Learners (Support)</cell>
-                    <cell>
-                        XXXX
-                    </cell>
-                    <cell></cell>
-                </row>
-                <row>
-                    <cell>On-Level Learners (Core)</cell>
-                    <cell>
-                        <line>The core lesson activities as described above.</line>
-                    </cell>
-                    <cell></cell>
-                </row>
-                <row>
-                    <cell>Advanced Learners (Challenge)</cell>
-                    <cell>
-                        XXXX
-                    </cell>
-                    <cell></cell>
-                </row>
+        <table xml:id="table-differentiation-position-vectors">
+            <title>Differentiation Strategies</title>
+            <tabular halign="left" top="minor" bottom="minor" left="minor" right="minor">
+                <row header="yes" bottom="medium"><cell>Learner Group</cell><cell>Strategy and Learning Experience</cell></row>
+                <row><cell>Struggling Learners (Support)</cell><cell>Give a column template with an <q>end</q> row and a <q>start</q> row to subtract. Work through <xref ref="example-position-vectors-of-points"/> and <xref ref="example-vector-between-two-points"/>. Assign <xref ref="ex-write-position-vectors"/> and <xref ref="ex-ab-and-ba"/>.</cell></row>
+                <row><cell>On-Level Learners (Core)</cell><cell>Full activity plus all examples. Assign <xref ref="ex-write-position-vectors"/> to <xref ref="ex-start-from-the-vector"/>.</cell></row>
+                <row><cell>Advanced Learners (Challenge)</cell><cell>All exercises including <xref ref="ex-parallelogram-diagonals-meet"/>. Extension: with <m>A</m>, <m>B</m>, <m>C</m> as in <xref ref="example-point-from-a-vector"/> (b), find the other two points <m>D</m> that make a parallelogram with <m>A</m>, <m>B</m> and <m>C</m>. (Answer: <m>(-1, -4, -1)</m> and <m>(9, 6, 1)</m>.)</cell></row>
             </tabular>
         </table>
-    </axiom> -->
+    </axiom>
 
     <xi:include href="../lesson-plan-templates/assessment-methods.ptx" />
 

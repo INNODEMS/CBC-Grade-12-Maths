@@ -19,7 +19,7 @@
                     </p>
                 </li>
                 <li>
-                    <title>Specific Learning Outcomes</title> 
+                    <title>Specific Learning Outcomes</title>
                     <p>
                         Form simple inequalities in one unknown from real life scenarios; Solve simple and compound inequalities in one unknown
                     </p>
@@ -33,7 +33,7 @@
                 <li component="lesson-plan">
                     <title>Estimated Duration</title>
                     <p>
-                        40 minutes
+                        2 lessons of 40 minutes
                     </p>
                 </li>
             </dl>
@@ -46,163 +46,545 @@
          Suggested activity: Learners write inequalities for real rules such as 'the speed limit is 50 km/h' or 'you must be at least 18 to vote' and solve simple and compound inequalities.
          Interactive (JSXGraph): Number line with sliders for the boundary values; the solution set of a compound inequality is shaded with open or closed circles. -->
 
-    <!-- [LP] Add guidance on activity -->
+    <!-- Section notes (2026-11)
+         SLOs: Essential 1.3 (a), (b). Two lessons as subsections (1.1 forming and solving simple inequalities; 1.2 compound inequalities); Estimated Duration changed to 2 lessons
+         Key inquiry question: kiq-linear-inequalities, in the section introduction
+         Activity: as planning notes (speed limit and voting age) in lesson 1.1 | added: lesson 1.2 activity on a vaccine cool box
+         JSXGraph: fig-compound-number-line (assets/jsxgraph/compound-number-line.js), as planning notes, with buttons for open or filled ends and an integer count
+         STACK: assets/stack/top/1-numbers-and-algebra/04-linear-inequalities/01-simple-and-compound-inequalities/ -->
 
-    <axiom component="lesson-plan">
-        <title>Problem-Solving and Discovery</title>
-        <dl>
-            <li>
-                <title>Suggested Time</title>
-                <p>
-                    XXX minutes
-                </p>
-            </li>
-            <li>
-                <title>Objective</title>
-                <p>
-                    XXX
-                </p>
-            </li>
-            <li>
-                <title>Teacher's Role</title>
-                <p>
-                    XXX
-                </p>
-            </li>
-        </dl>
-    </axiom>
-
-    <!-- Add Activity -->
-
-    <!-- <activity>
-        <statement>
-        </statement>
-    </activity> -->
-
-    <!-- [LP] Add guidance on structured lesson plan-->
-
-    <!-- <axiom component="lesson-plan">
-        <title>Structured Instruction</title>
+    <introduction>
+        <question xml:id="kiq-linear-inequalities">
+            <p><em>How do we use inequalities in daily life?</em></p>
+        </question>
         <p>
-            <dl>
-            <li>
-                <title>Suggested Time</title>
-                <p>
-                    XX minutes
-                </p>
-            </li>
-            <li>
-                <title>Objective</title>
-                <p>
-                    To formalize the concepts and properties learners discovered in the anchor task.
-                </p>
-            </li>
-            </dl>
+            Limits are all around us. A road sign tells drivers the fastest they may go. You must reach a certain age before you can vote or drive. A lift shows the greatest load it can carry, and a shopper has a budget that the bill must not go over. Each of these is a rule that allows many values, not just one, and an <em>inequality</em> is the mathematical way to write it.
         </p>
-        <paragraphs>
-            <title>Key Takeaways &amp; Teacher Connection</title>
+        <p>
+            In this chapter you write inequalities for rules and limits, solve them, draw them as regions on a graph, and read inequalities back from a graph. At the end of the chapter we return to the question above.
+        </p>
+    </introduction>
+
+    <!-- ============================================================ Lesson 1.1 -->
+    <subsection xml:id="subsec-forming-and-solving-simple-inequalities">
+        <title>Forming and Solving Simple Inequalities</title>
+
+        <p component="lesson-plan">Upon completion of this lesson, learners will be able to:
             <ol>
-                <li>
-                    <p>
-                        <alert>Connecting to Learner Work:</alert> XXXX
-                    </p>
-                </li>
+                <li><p><alert>Know:</alert> the four inequality signs and the words that go with them; open and filled circles on a number line; the rules for solving, including turning the sign round.</p></li>
+                <li><p><alert>Do:</alert> write an inequality for a rule or a limit; solve a linear inequality with the unknown on one side or on both sides; show the solution on a number line.</p></li>
+                <li><p><alert>Apply:</alert> find the largest or smallest whole number allowed by a limit.</p></li>
             </ol>
-        </paragraphs>
-    </axiom> -->
+        </p>
 
-    <!-- Add insight / key takeaway directly related to activity / learner experience -->
+        <axiom component="lesson-plan">
+            <title>Problem-Solving and Discovery</title>
+            <dl>
+                <li><title>Suggested Time</title><p>14 minutes</p></li>
+                <li><title>Objective</title><p>Learners turn everyday rules into symbols and see that one rule allows many values.</p></li>
+                <li><title>Teacher's Role</title><p>Draw a <m>50\,\text{km/h}</m> sign on the board. Before any symbol is named, ask: <q>Is a speed of exactly <m>50</m> allowed? Is <m>49.9</m>? Is <m>50.1</m>?</q> Pairs then work through the activity on cards.</p></li>
+            </dl>
+        </axiom>
 
-    <!-- <insight>
-    </insight> -->
+        <activity xml:id="act-rules-on-the-road">
+            <title>Rules on the Road</title>
+            <statement>
+                <p>Work with a partner.</p>
+                <figure xml:id="fig-speed-limit-sign">
+                    <caption>A speed-limit sign and the speeds it allows.</caption>
+                    <image width="70%">
+                        <shortdescription>A round speed-limit sign showing 50 beside a number line from 40 to 60 with a filled circle at 50 and a thick line to the left.</shortdescription>
+                        <latex-image>
+\begin{tikzpicture}[scale=0.5]
+\draw[line width=4pt] (-4,1) circle (1.6); \node[font=\Large] at (-4,1) {50};
+\draw[stealth-stealth] (0.5,1) -- (21.5,1);
+\draw (1,0.9) -- (1,1.1) node[below=6pt, font=\scriptsize] {$40$};
+\draw (3,0.9) -- (3,1.1) node[below=6pt, font=\scriptsize] {$42$};
+\draw (5,0.9) -- (5,1.1) node[below=6pt, font=\scriptsize] {$44$};
+\draw (7,0.9) -- (7,1.1) node[below=6pt, font=\scriptsize] {$46$};
+\draw (9,0.9) -- (9,1.1) node[below=6pt, font=\scriptsize] {$48$};
+\draw (11,0.9) -- (11,1.1) node[below=6pt, font=\scriptsize] {$50$};
+\draw (13,0.9) -- (13,1.1) node[below=6pt, font=\scriptsize] {$52$};
+\draw (15,0.9) -- (15,1.1) node[below=6pt, font=\scriptsize] {$54$};
+\draw (17,0.9) -- (17,1.1) node[below=6pt, font=\scriptsize] {$56$};
+\draw (19,0.9) -- (19,1.1) node[below=6pt, font=\scriptsize] {$58$};
+\draw (21,0.9) -- (21,1.1) node[below=6pt, font=\scriptsize] {$60$};
+\draw[line width=2.5pt, -stealth] (11,1) -- (0.6,1);
+\filldraw[fill=black, thick] (11,1) circle (5pt);
+\node[below, font=\small] at (11,-0.6) {speed $s$ km/h, $s \le 50$};
+\end{tikzpicture}
+                        </latex-image>
+                    </image>
+                </figure>
+                <p>
+                    <ol marker="(a)">
+                        <li>
+                            <p>A sign in Nakuru town shows a speed limit of <m>50\,\text{km/h}</m>. Write the rule for a driver's speed, <m>s\,\text{km/h}</m>.</p>
+                            <solution component="lesson-plan"><p><m>s \le 50</m>.</p></solution>
+                        </li>
+                        <li>
+                            <p>You must be at least <m>18</m> years old to vote. Write the rule for a voter's age, <m>a</m> years.</p>
+                            <solution component="lesson-plan"><p><m>a \ge 18</m>.</p></solution>
+                        </li>
+                        <li>
+                            <p>Milk in a dairy fridge must be kept below <m>5\,^{\circ}\text{C}</m>. Write the rule for the temperature, <m>t\,^{\circ}\text{C}</m>.</p>
+                            <solution component="lesson-plan"><p><m>t \lt 5</m>.</p></solution>
+                        </li>
+                        <li>
+                            <p>More than <m>40\,000</m> fans watched a match at Kasarani. Write this for the number of fans, <m>n</m>.</p>
+                            <solution component="lesson-plan"><p><m>n \gt 40\,000</m>.</p></solution>
+                        </li>
+                        <li>
+                            <p>Draw each rule on a number line.</p>
+                            <solution component="lesson-plan"><p>Filled circles at <m>50</m> and at <m>18</m>, because these values are allowed; open circles at <m>5</m> and at <m>40\,000</m>, because they are not. The thick line goes left from <m>50</m> and from <m>5</m>, and right from <m>18</m> and from <m>40\,000</m>.</p></solution>
+                        </li>
+                        <li>
+                            <p>Which of the speeds <m>49</m>, <m>50</m> and <m>50.5\,\text{km/h}</m> obey rule (a)?</p>
+                            <solution component="lesson-plan"><p><m>49</m> and <m>50</m>. A driver at exactly <m>50\,\text{km/h}</m> is within the limit; <m>50.5\,\text{km/h}</m> is over it.</p></solution>
+                        </li>
+                        <li>
+                            <p>Discuss with your partner: why do rules (a) and (c) use different signs?</p>
+                            <solution component="lesson-plan"><p>The speed limit allows <m>50</m> itself (<q>at most <m>50</m></q>), so the sign is <m>\le</m>. <q>Below <m>5</m></q> does not allow <m>5</m> itself, so the sign is <m>\lt</m>.</p></solution>
+                        </li>
+                    </ol>
+                </p>
+            </statement>
+        </activity>
 
-    <!-- Add further instruction (not in a block) to develop ideas as needed -->
+        <axiom component="lesson-plan">
+            <title>Structured Instruction</title>
+            <p>
+                <dl>
+                    <li><title>Suggested Time</title><p>8 minutes</p></li>
+                    <li><title>Objective</title><p>To fix the symbols, the words that go with them, and the rules for solving.</p></li>
+                </dl>
+            </p>
+            <paragraphs>
+                <title>Key Takeaways &amp; Teacher Connection</title>
+                <ol>
+                    <li><p><alert>Connecting to Learner Work:</alert> learners' answers to part (g) give the difference between <m>\le</m> and <m>\lt</m>: does the rule allow the boundary value itself?</p></li>
+                    <li><p>The word table: <q>at most</q> gives <m>\le</m>, <q>at least</q> gives <m>\ge</m>, <q>less than</q> and <q>below</q> give <m>\lt</m>, <q>more than</q> and <q>over</q> give <m>\gt</m>.</p></li>
+                    <li><p>A filled circle means the number is included; an open circle means it is not.</p></li>
+                    <li><p>Solving is like solving an equation, except that multiplying or dividing by a negative number turns the sign round. Check the answer with one value.</p></li>
+                </ol>
+            </paragraphs>
+        </axiom>
 
-    <xi:include href="../lesson-plan-templates/example-intro.ptx" />
+        <insight xml:id="insight-inequality-symbols">
+            <title>Inequalities and Their Symbols</title>
+            <p>An <term>inequality</term> is a statement that one quantity is bigger or smaller than another, often a rule or a limit. There are four signs.</p>
+            <table xml:id="table-inequality-words">
+                <title>Inequality Signs and the Words That Go with Them</title>
+                <tabular halign="left" top="minor" bottom="minor" left="minor" right="minor">
+                    <row header="yes" bottom="medium"><cell>Sign</cell><cell>Read as</cell><cell>Words in a problem</cell></row>
+                    <row><cell><m>\lt</m></cell><cell>is less than</cell><cell>less than, fewer than, under, below</cell></row>
+                    <row><cell><m>\le</m></cell><cell>is less than or equal to</cell><cell>at most, not more than, no more than, a maximum of, cannot exceed</cell></row>
+                    <row><cell><m>\gt</m></cell><cell>is greater than</cell><cell>more than, over, above</cell></row>
+                    <row><cell><m>\ge</m></cell><cell>is greater than or equal to</cell><cell>at least, no less than, not fewer than, a minimum of</cell></row>
+                </tabular>
+            </table>
+            <p>On a number line, an <em>open</em> (empty) circle shows that a number is not included (<m>\lt</m> or <m>\gt</m>), and a <em>filled</em> circle shows that it is included (<m>\le</m> or <m>\ge</m>). A thick line or an arrow covers the numbers that satisfy the inequality.</p>
+        </insight>
 
-    <!-- Add at least 3 examples -->
+        <insight xml:id="insight-solving-inequalities">
+            <title>Solving Inequalities</title>
+            <p>To <term>solve</term> an inequality means to find all the values of the unknown that make it true. These values are the <term>solution</term>, for example <q>the solution is <m>x \ge 3</m></q>.</p>
+            <p>
+                <ul>
+                    <li><p>You may add or subtract the same number on both sides.</p></li>
+                    <li><p>You may multiply or divide both sides by the same <em>positive</em> number.</p></li>
+                    <li><p>If you multiply or divide both sides by a <em>negative</em> number, you must turn the sign round: <m>\lt</m> becomes <m>\gt</m> and <m>\le</m> becomes <m>\ge</m>. Multiplying by a negative number turns the order round, as <m>2 \lt 3</m> but <m>-2 \gt -3</m> shows.</p></li>
+                </ul>
+            </p>
+            <p>You can avoid turning the sign round: collect the unknown on the side where its number stays positive. We usually write the answer with the unknown on the left (<m>x \lt 5</m> rather than <m>5 \gt x</m>); both mean the same. Check your answer by putting one value from the solution back into the inequality.</p>
+        </insight>
 
-    <!-- <example>
-        <statement>
-        </statement>
-        <solution>
-        </solution>
-    </example>
+        <warning xml:id="warning-turning-the-sign-round">
+            <title>Turning the Sign Round</title>
+            <p>Only multiplying or dividing by a negative number turns the sign round. Adding or subtracting a negative number does not: from <m>x - 3 \gt -5</m>, adding <m>3</m> gives <m>x \gt -2</m>, with the sign unchanged.</p>
+        </warning>
 
-    <example>
-        <statement>
-        </statement>
-        <solution>
-        </solution>
-    </example>
+        <xi:include href="../lesson-plan-templates/example-intro.ptx" />
 
-    <example>
-        <statement>
-        </statement>
-        <solution>
-        </solution>
-    </example> -->
-
-    <xi:include href="../lesson-plan-templates/assessment-intro.ptx" />
-
-    <!-- If STACK questions are included, uncomment this: -->
-
-    <!-- <xi:include href="../lesson-plan-templates/checkpoint.ptx" /> -->
-
-    <!-- Add STACK exercises if made -->
-
-    <!-- Add static exercises -->
-
-    <!-- <exercises>
-        <exercise>
-            <statement>   
-
-            </statement>   
+        <example xml:id="example-loading-a-pick-up">
+            <title>Loading a Pick-up</title>
+            <statement>
+                <p>A pick-up can carry at most <m>1200\,\text{kg}</m>. It already carries <m>380\,\text{kg}</m> of timber. Bags of cement weigh <m>50\,\text{kg}</m> each. Write an inequality for the number of bags, <m>n</m>, and find the greatest number of bags it can carry.</p>
+            </statement>
             <solution>
+                <p>The total load is <m>380 + 50n\,\text{kg}</m>, and <q>at most</q> gives <m>\le</m>:</p>
+                <p><md>
+                    <mrow>380 + 50n \amp\le 1200</mrow>
+                    <mrow>50n \amp\le 820 \amp\amp \text{(subtract 380)}</mrow>
+                    <mrow>n \amp\le 16.4 \amp\amp \text{(divide by 50)}</mrow>
+                </md></p>
+                <p><m>n</m> must be a whole number, so the pick-up can carry at most <m>16</m> bags. Check: <m>17</m> bags would make <m>380 + 850 = 1230\,\text{kg}</m>, which is over the limit.</p>
+            </solution>
+        </example>
 
-            </solution>             
-        </exercise>        
-    </exercises> -->
+        <example xml:id="example-unknown-on-both-sides">
+            <title>Unknown on Both Sides</title>
+            <statement>
+                <p>Solve <m>6x - 5 \gt 2x + 11</m> and show the solution on a number line.</p>
+            </statement>
+            <solution>
+                <p><md>
+                    <mrow>6x - 5 \amp\gt 2x + 11</mrow>
+                    <mrow>4x - 5 \amp\gt 11 \amp\amp \text{(subtract } 2x\text{)}</mrow>
+                    <mrow>4x \amp\gt 16 \amp\amp \text{(add 5)}</mrow>
+                    <mrow>x \amp\gt 4 \amp\amp \text{(divide by 4)}</mrow>
+                </md></p>
+                <p>On a number line: an open circle at <m>4</m>, because <m>4</m> is not included, and a thick line going right.</p>
+                <p>Check with <m>x = 5</m>: <m>6(5) - 5 = 25</m> and <m>2(5) + 11 = 21</m>; <m>25 \gt 21</m> is true.</p>
+            </solution>
+        </example>
 
-    <!-- [LP] Add information on how to differentiate  -->
+        <example xml:id="example-dividing-by-a-negative-number">
+            <title>Dividing by a Negative Number</title>
+            <statement>
+                <p>Solve <m>13 - 3x \le 4</m> in two ways.</p>
+            </statement>
+            <solution>
+                <p>Method 1: subtract <m>13</m> from both sides: <m>-3x \le -9</m>. Divide both sides by <m>-3</m> and turn the sign round: <m>x \ge 3</m>.</p>
+                <p>Method 2: add <m>3x</m> to both sides, so that the <m>x</m> term stays positive: <m>13 \le 4 + 3x</m>. Subtract <m>4</m>: <m>9 \le 3x</m>. Divide by <m>3</m>: <m>3 \le x</m>, that is <m>x \ge 3</m>.</p>
+                <p>Both methods give <m>x \ge 3</m>. Check with <m>x = 4</m>: <m>13 - 12 = 1</m> and <m>1 \le 4</m> is true.</p>
+            </solution>
+        </example>
 
-    <!-- <axiom component="lesson-plan">
-        <title>Differentiation</title>
+        <xi:include href="../lesson-plan-templates/assessment-intro.ptx" />
+        <xi:include href="../lesson-plan-templates/checkpoint.ptx" />
 
-        <table>
+        <p>Choose a sign from each list. Type numbers as whole numbers, decimals with a point, or fractions, for example <c>-3</c>, <c>2.5</c> or <c>7/2</c>. Type <m>\le</m> as <c>&lt;=</c> and <m>\ge</m> as <c>&gt;=</c>, for example <c>4n+3&gt;=19</c>. Use the letter n as defined in the question.</p>
+
+        <exercise xml:id="ex-writing-inequalities-from-rules">
+            <!--<title></title>-->
+            <stack label="stk-writing-inequalities-from-rules" source="stack/top/1-numbers-and-algebra/04-linear-inequalities/01-simple-and-compound-inequalities/Writing-inequalities-from-rules.xml"/>
+        </exercise>
+
+        <exercise xml:id="ex-solving-simple-inequalities">
+            <!--<title></title>-->
+            <stack label="stk-solving-simple-inequalities" source="stack/top/1-numbers-and-algebra/04-linear-inequalities/01-simple-and-compound-inequalities/Solving-simple-inequalities.xml"/>
+        </exercise>
+
+        <exercise xml:id="ex-forming-and-solving-an-inequality-in-one-unknown">
+            <!--<title></title>-->
+            <stack label="stk-forming-and-solving-an-inequality-in-one-unknown" source="stack/top/1-numbers-and-algebra/04-linear-inequalities/01-simple-and-compound-inequalities/Forming-and-solving-an-inequality-in-one-unknown.xml"/>
+        </exercise>
+
+        <exercises xml:id="exercises-forming-and-solving-simple-inequalities">
+            <exercise xml:id="ex-write-four-rules">
+                <statement><p>Write an inequality for each rule, saying what your letter stands for.
+                    <ol marker="(a)">
+                        <li><p>A classroom holds at most <m>45</m> learners.</p></li>
+                        <li><p>Learners shorter than <m>140\,\text{cm}</m> sit in the front row of a school photo.</p></li>
+                        <li><p>A borehole must be at least <m>60\,\text{m}</m> deep.</p></li>
+                        <li><p>The fare is more than Ksh <m>100</m>.</p></li>
+                    </ol>
+                </p></statement>
+                <answer><p>(a) <m>n \le 45</m>, <m>n</m> learners; (b) <m>h \lt 140</m>, height <m>h\,\text{cm}</m>; (c) <m>d \ge 60</m>, depth <m>d\,\text{m}</m>; (d) <m>f \gt 100</m>, fare Ksh <m>f</m>.</p></answer>
+            </exercise>
+            <exercise xml:id="ex-solve-two-simple">
+                <statement><p>Solve (a) <m>x + 11 \lt 4</m>; (b) <m>6x \ge -21</m>.</p></statement>
+                <answer><p>(a) <m>x \lt -7</m>; (b) <m>x \ge -3.5</m>.</p></answer>
+                <solution><p>(a) Subtract <m>11</m>: <m>x \lt -7</m>. (b) Divide by the positive number <m>6</m>, so the sign stays the same: <m>x \ge -3.5</m>.</p></solution>
+            </exercise>
+            <exercise xml:id="ex-solve-and-draw">
+                <statement><p>Solve <m>7x - 4 \ge 3x + 10</m> and show the solution on a number line.</p></statement>
+                <answer><p><m>x \ge 3.5</m>: a filled circle at <m>3.5</m> and a thick line to the right.</p></answer>
+                <solution><p>Subtract <m>3x</m>: <m>4x - 4 \ge 10</m>. Add <m>4</m>: <m>4x \ge 14</m>. Divide by <m>4</m>: <m>x \ge 3.5</m>.</p></solution>
+            </exercise>
+            <exercise xml:id="ex-solve-negative-term">
+                <statement><p>Solve <m>9 - 2x \gt x - 6</m>.</p></statement>
+                <answer><p><m>x \lt 5</m></p></answer>
+                <solution><p>Add <m>2x</m> to both sides so that the <m>x</m> term stays positive: <m>9 \gt 3x - 6</m>. Add <m>6</m>: <m>15 \gt 3x</m>. Divide by <m>3</m>: <m>5 \gt x</m>, that is <m>x \lt 5</m>.</p></solution>
+            </exercise>
+            <exercise xml:id="ex-nairobi-to-nakuru">
+                <statement><p>A matatu travels about <m>160\,\text{km}</m> from Nairobi to Nakuru and must not go faster than <m>80\,\text{km/h}</m>.
+                    <ol marker="(a)">
+                        <li><p>Write an inequality for the journey time, <m>t</m> hours, and solve it.</p></li>
+                        <li><p>The matatu leaves at 7:00 am. Can it arrive legally before 8:45 am?</p></li>
+                    </ol>
+                </p></statement>
+                <answer><p>(a) <m>80t \ge 160</m>, so <m>t \ge 2</m>. (b) No: the earliest legal arrival is 9:00 am.</p></answer>
+                <solution><p>(a) In <m>t</m> hours at most <m>80\,\text{km/h}</m>, the matatu covers at most <m>80t\,\text{km}</m>, and it must cover <m>160\,\text{km}</m>, so <m>80t \ge 160</m> and <m>t \ge 2</m>. (b) The journey takes at least <m>2</m> hours, so it cannot arrive before 9:00 am. Arriving at 8:45 am would need an average speed above <m>80\,\text{km/h}</m>, which breaks the limit and puts passengers at risk.</p></solution>
+            </exercise>
+            <exercise xml:id="ex-largest-whole-number">
+                <title>Challenge: The Largest Whole Number</title>
+                <statement><p>Find the largest whole number <m>n</m> with <m>3(n + 4) \lt 50 - n</m>.</p></statement>
+                <hint><p>Expand the bracket first.</p></hint>
+                <answer><p><m>n = 9</m></p></answer>
+                <solution><p><m>3n + 12 \lt 50 - n</m>. Add <m>n</m>: <m>4n + 12 \lt 50</m>. Subtract <m>12</m>: <m>4n \lt 38</m>. Divide by <m>4</m>: <m>n \lt 9.5</m>. The largest whole number less than <m>9.5</m> is <m>9</m>. Check: <m>3(13) = 39 \lt 41</m>.</p></solution>
+            </exercise>
+        </exercises>
+
+        <axiom component="lesson-plan">
             <title>Differentiation</title>
-            <tabular halign="left">
-                <row header="yes" bottom="minor">
-                    <cell>Learner Group</cell>
-                    <cell>Strategy &amp; Learning Experience</cell>
-                    <cell></cell>
-                </row>
-                <row>
-                    <cell>Struggling Learners (Support)</cell>
-                    <cell>
-                        XXXX
-                    </cell>
-                    <cell></cell>
-                </row>
-                <row>
-                    <cell>On-Level Learners (Core)</cell>
-                    <cell>
-                        <line>The core lesson activities as described above.</line>
-                    </cell>
-                    <cell></cell>
-                </row>
-                <row>
-                    <cell>Advanced Learners (Challenge)</cell>
-                    <cell>
-                        XXXX
-                    </cell>
-                    <cell></cell>
-                </row>
-            </tabular>
-        </table>
-    </axiom> -->
+            <table xml:id="table-differentiation-simple-inequalities">
+                <title>Differentiation Strategies</title>
+                <tabular halign="left" top="minor" bottom="minor" left="minor" right="minor">
+                    <row header="yes" bottom="medium"><cell>Learner Group</cell><cell>Strategy and Learning Experience</cell></row>
+                    <row><cell>Struggling Learners (Support)</cell><cell>Give a card with the word table. Work parts (a) to (e) of the activity and <xref ref="example-loading-a-pick-up"/>. Assign <xref ref="ex-write-four-rules"/> and <xref ref="ex-solve-two-simple"/>.</cell></row>
+                    <row><cell>On-Level Learners (Core)</cell><cell>Full activity and all examples. Assign <xref ref="ex-write-four-rules"/> to <xref ref="ex-nairobi-to-nakuru"/>.</cell></row>
+                    <row><cell>Advanced Learners (Challenge)</cell><cell>All exercises including <xref ref="ex-largest-whole-number"/>. Extension: write an inequality that has exactly three whole-number solutions, the largest being <m>7</m>. (Answer: for example <m>4 \lt n \le 7</m>, or <m>5 \le n \lt 8</m>.)</cell></row>
+                </tabular>
+            </table>
+        </axiom>
 
-    <xi:include href="../lesson-plan-templates/assessment-methods.ptx" />
+        <xi:include href="../lesson-plan-templates/assessment-methods.ptx" />
+        <xi:include href="../lesson-plan-templates/reflection.ptx"/>
+    </subsection>
 
-    <xi:include href="../lesson-plan-templates/reflection.ptx"/>
+    <!-- ============================================================ Lesson 1.2 -->
+    <subsection xml:id="subsec-compound-inequalities">
+        <title>Compound Inequalities</title>
+
+        <p component="lesson-plan">Upon completion of this lesson, learners will be able to:
+            <ol>
+                <li><p><alert>Know:</alert> that a compound inequality describes the numbers between two values; open and filled ends on a number line.</p></li>
+                <li><p><alert>Do:</alert> combine two conditions into one statement; solve <m>p \lt ax + b \le q</m> by doing the same to all three parts; list or count the integers in a range.</p></li>
+                <li><p><alert>Apply:</alert> find safe ranges, such as a temperature range or a cost range.</p></li>
+            </ol>
+        </p>
+
+        <axiom component="lesson-plan">
+            <title>Problem-Solving and Discovery</title>
+            <dl>
+                <li><title>Suggested Time</title><p>14 minutes</p></li>
+                <li><title>Objective</title><p>Learners see that two conditions together give a range, and that doing the same thing to every part keeps the range true.</p></li>
+                <li><title>Teacher's Role</title><p>Pairs work through the activity. Before part (f), ask: <q>If every box were <m>4\,^{\circ}\text{C}</m> warmer, what happens to both limits?</q></p></li>
+            </dl>
+        </axiom>
+
+        <activity xml:id="act-keeping-vaccines-cold">
+            <title>Keeping Vaccines Cold</title>
+            <statement>
+                <p>Health workers keep many vaccines between <m>2\,^{\circ}\text{C}</m> and <m>8\,^{\circ}\text{C}</m>, including both of these temperatures. Work with a partner.</p>
+                <p>
+                    <ol marker="(a)">
+                        <li>
+                            <p>Write two inequalities for a safe temperature, <m>t\,^{\circ}\text{C}</m>.</p>
+                            <solution component="lesson-plan"><p><m>t \ge 2</m> and <m>t \le 8</m>.</p></solution>
+                        </li>
+                        <li>
+                            <p>Write them as one statement.</p>
+                            <solution component="lesson-plan"><p><m>2 \le t \le 8</m>.</p></solution>
+                        </li>
+                        <li>
+                            <p>Show the safe temperatures on a number line.</p>
+                            <solution component="lesson-plan"><p>Filled circles at <m>2</m> and at <m>8</m>, joined by a thick line.</p></solution>
+                        </li>
+                        <li>
+                            <p>Which of these readings are safe: <m>1.5</m>, <m>2</m>, <m>5.6</m>, <m>8</m>, <m>8.4\,^{\circ}\text{C}</m>?</p>
+                            <solution component="lesson-plan"><p><m>2</m>, <m>5.6</m> and <m>8</m>.</p></solution>
+                        </li>
+                        <li>
+                            <p>A thermometer shows whole degrees only. How many different safe readings can it show?</p>
+                            <solution component="lesson-plan"><p><m>7</m>: the whole numbers <m>2</m> to <m>8</m>.</p></solution>
+                        </li>
+                        <li>
+                            <p>A second box is always <m>4\,^{\circ}\text{C}</m> warmer than the first, so its temperature is <m>T = t + 4</m>. Write the range for <m>T</m> when the first box is safe.</p>
+                            <solution component="lesson-plan"><p>Add <m>4</m> to every part: <m>6 \le T \le 12</m>.</p></solution>
+                        </li>
+                    </ol>
+                </p>
+            </statement>
+        </activity>
+
+        <axiom component="lesson-plan">
+            <title>Structured Instruction</title>
+            <p>
+                <dl>
+                    <li><title>Suggested Time</title><p>8 minutes</p></li>
+                    <li><title>Objective</title><p>To formalise compound inequalities and how to solve them.</p></li>
+                </dl>
+            </p>
+            <paragraphs>
+                <title>Key Takeaways &amp; Teacher Connection</title>
+                <ol>
+                    <li><p><alert>Connecting to Learner Work:</alert> part (f) added <m>4</m> to both limits at once; this is <q>do the same to all three parts</q>.</p></li>
+                    <li><p>A compound inequality is a <q>between</q> statement, written with the smaller number first.</p></li>
+                    <li><p>Dividing every part by a negative number turns both signs round; then rewrite it with the smaller number first.</p></li>
+                </ol>
+            </paragraphs>
+        </axiom>
+
+        <insight xml:id="insight-compound-inequalities">
+            <title>Compound Inequalities</title>
+            <p>A <term>compound inequality</term> such as <m>p \lt x \le q</m> says that <m>x</m> lies between <m>p</m> and <m>q</m>: it means <m>x \gt p</m> and <m>x \le q</m> at the same time. We write the smaller number first. On a number line it is a thick line from <m>p</m> to <m>q</m>, with an open circle at <m>p</m> and a filled circle at <m>q</m>.</p>
+            <p>To solve a compound inequality, do the same thing to all three parts. If you multiply or divide by a negative number, turn <em>both</em> signs round, then rewrite the statement with the smaller number first.</p>
+            <p>When two separate conditions on <m>x</m> overlap, combine them into one compound statement. To list the <term>integers</term> in a range, check each end: an open end leaves that number out.</p>
+        </insight>
+
+        <figure xml:id="fig-compound-number-line">
+            <caption>Move the sliders to set the two ends and press the buttons to include or exclude each end. Tick the box to count the integers.</caption>
+            <interactive xml:id="interactive-compound-number-line" platform="jsxgraph" width="90%" aspect="11:4" source="jsxgraph/compound-number-line.js">
+                <slate xml:id="jsxgraph-compound-number-line" surface="jsxboard" aspect="11:4"/>
+                <instructions>
+                <p>
+                    <ul>
+                        <li><p>Move the <alert>a</alert> and <alert>b</alert> sliders to set the two ends of the range.</p></li>
+                        <li><p>Press <alert>Left end</alert> and <alert>Right end</alert> to switch each end between an open circle (not included) and a filled circle (included). Watch the signs in the statement change.</p></li>
+                        <li><p>Tick <alert>Show integers</alert> to mark and count the integers in the range. Which ends change the count when you press their buttons?</p></li>
+                        <li><p>Make <alert>a</alert> bigger than <alert>b</alert>. What happens, and why?</p></li>
+                    </ul>
+                </p>
+                </instructions>
+            </interactive>
+        </figure>
+
+        <xi:include href="../lesson-plan-templates/example-intro.ptx" />
+
+        <example xml:id="example-solving-a-compound-inequality">
+            <title>Solving a Compound Inequality</title>
+            <statement>
+                <p>Solve <m>7 \le 2x + 3 \lt 15</m> and list the integers that satisfy it.</p>
+            </statement>
+            <solution>
+                <p><md>
+                    <mrow>7 \amp\le 2x + 3 \lt 15</mrow>
+                    <mrow>4 \amp\le 2x \lt 12 \amp\amp \text{(subtract 3 from every part)}</mrow>
+                    <mrow>2 \amp\le x \lt 6 \amp\amp \text{(divide every part by 2)}</mrow>
+                </md></p>
+                <p>The integers are <m>2</m>, <m>3</m>, <m>4</m> and <m>5</m>: <m>2</m> is included, <m>6</m> is not.</p>
+            </solution>
+        </example>
+
+        <example xml:id="example-two-conditions-together">
+            <title>Two Conditions at Once</title>
+            <statement>
+                <p>Find the values of <m>x</m> for which <m>4x - 5 \ge 3</m> and <m>12 - x \gt 5</m> are both true. Show them on a number line.</p>
+            </statement>
+            <solution>
+                <p>First: <m>4x \ge 8</m>, so <m>x \ge 2</m>. Second: add <m>x</m> to both sides, <m>12 \gt 5 + x</m>, so <m>7 \gt x</m>, that is <m>x \lt 7</m>.</p>
+                <p>Both together: <m>2 \le x \lt 7</m>. On a number line: a filled circle at <m>2</m>, an open circle at <m>7</m>, joined by a thick line.</p>
+            </solution>
+        </example>
+
+        <example xml:id="example-negative-coefficient-in-the-middle">
+            <title>A Negative Coefficient in the Middle</title>
+            <statement>
+                <p>Solve <m>-4 \lt 5 - 3x \le 11</m>.</p>
+            </statement>
+            <solution>
+                <p>Subtract <m>5</m> from every part: <m>-9 \lt -3x \le 6</m>.</p>
+                <p>Divide every part by <m>-3</m> and turn both signs round: <m>3 \gt x \ge -2</m>.</p>
+                <p>Write it with the smaller number first: <m>-2 \le x \lt 3</m>.</p>
+                <p>Notice that the strict end and the inclusive end have changed places. Check with <m>x = 0</m>: <m>5 - 0 = 5</m>, and <m>-4 \lt 5 \le 11</m> is true.</p>
+            </solution>
+        </example>
+
+        <xi:include href="../lesson-plan-templates/assessment-intro.ptx" />
+        <xi:include href="../lesson-plan-templates/checkpoint.ptx" />
+
+        <p>Choose a sign from each list. Type numbers as whole numbers, decimals with a point, or fractions, for example <c>-3</c>, <c>2.5</c> or <c>7/2</c>.</p>
+
+        <exercise xml:id="ex-solving-a-compound-inequality">
+            <!--<title></title>-->
+            <stack label="stk-solving-a-compound-inequality" source="stack/top/1-numbers-and-algebra/04-linear-inequalities/01-simple-and-compound-inequalities/Solving-a-compound-inequality.xml"/>
+        </exercise>
+
+        <exercise xml:id="ex-reading-a-compound-inequality-from-a-number-line">
+            <!--<title></title>-->
+            <stack label="stk-reading-a-compound-inequality-from-a-number-line" source="stack/top/1-numbers-and-algebra/04-linear-inequalities/01-simple-and-compound-inequalities/Reading-a-compound-inequality-from-a-number-line.xml"/>
+        </exercise>
+
+        <exercise xml:id="ex-finding-the-mistake-in-solving-an-inequality">
+            <!--<title></title>-->
+            <stack label="stk-finding-the-mistake-in-solving-an-inequality" source="stack/top/1-numbers-and-algebra/04-linear-inequalities/01-simple-and-compound-inequalities/Finding-the-mistake-in-solving-an-inequality.xml"/>
+        </exercise>
+
+        <exercises xml:id="exercises-compound-inequalities">
+            <exercise xml:id="ex-read-two-number-lines">
+                <statement>
+                    <p>Write the inequality shown on each number line in <xref ref="fig-two-compound-number-lines"/>.</p>
+                    <figure xml:id="fig-two-compound-number-lines">
+                        <caption>Two compound inequalities on number lines.</caption>
+                        <image width="65%">
+                            <shortdescription>Two number lines from -5 to 5. (a) An open circle at -4 and a filled circle at 2, joined by a thick line. (b) Filled circles at 0 and 4, joined by a thick line.</shortdescription>
+                            <latex-image>
+\begin{tikzpicture}[scale=0.6]
+\draw[stealth-stealth] (-5-0.5,1.8) -- (5+0.5,1.8);
+\draw (-5,1.8-0.1) -- (-5,1.8+0.1) node[below=6pt, font=\small] {$-5$};
+\draw (-4,1.8-0.1) -- (-4,1.8+0.1) node[below=6pt, font=\small] {$-4$};
+\draw (-3,1.8-0.1) -- (-3,1.8+0.1) node[below=6pt, font=\small] {$-3$};
+\draw (-2,1.8-0.1) -- (-2,1.8+0.1) node[below=6pt, font=\small] {$-2$};
+\draw (-1,1.8-0.1) -- (-1,1.8+0.1) node[below=6pt, font=\small] {$-1$};
+\draw (0,1.8-0.1) -- (0,1.8+0.1) node[below=6pt, font=\small] {$0$};
+\draw (1,1.8-0.1) -- (1,1.8+0.1) node[below=6pt, font=\small] {$1$};
+\draw (2,1.8-0.1) -- (2,1.8+0.1) node[below=6pt, font=\small] {$2$};
+\draw (3,1.8-0.1) -- (3,1.8+0.1) node[below=6pt, font=\small] {$3$};
+\draw (4,1.8-0.1) -- (4,1.8+0.1) node[below=6pt, font=\small] {$4$};
+\draw (5,1.8-0.1) -- (5,1.8+0.1) node[below=6pt, font=\small] {$5$};
+\draw[line width=2.5pt] (-4,1.8) -- (2,1.8);
+\filldraw[fill=white, thick] (-4,1.8) circle (5pt);
+\filldraw[fill=black, thick] (2,1.8) circle (5pt);
+\node[left] at (-5-0.7,1.8) {(a)};
+\draw[stealth-stealth] (-5-0.5,0) -- (5+0.5,0);
+\draw (-5,0-0.1) -- (-5,0+0.1) node[below=6pt, font=\small] {$-5$};
+\draw (-4,0-0.1) -- (-4,0+0.1) node[below=6pt, font=\small] {$-4$};
+\draw (-3,0-0.1) -- (-3,0+0.1) node[below=6pt, font=\small] {$-3$};
+\draw (-2,0-0.1) -- (-2,0+0.1) node[below=6pt, font=\small] {$-2$};
+\draw (-1,0-0.1) -- (-1,0+0.1) node[below=6pt, font=\small] {$-1$};
+\draw (0,0-0.1) -- (0,0+0.1) node[below=6pt, font=\small] {$0$};
+\draw (1,0-0.1) -- (1,0+0.1) node[below=6pt, font=\small] {$1$};
+\draw (2,0-0.1) -- (2,0+0.1) node[below=6pt, font=\small] {$2$};
+\draw (3,0-0.1) -- (3,0+0.1) node[below=6pt, font=\small] {$3$};
+\draw (4,0-0.1) -- (4,0+0.1) node[below=6pt, font=\small] {$4$};
+\draw (5,0-0.1) -- (5,0+0.1) node[below=6pt, font=\small] {$5$};
+\draw[line width=2.5pt] (0,0) -- (4,0);
+\filldraw[fill=black, thick] (0,0) circle (5pt);
+\filldraw[fill=black, thick] (4,0) circle (5pt);
+\node[left] at (-5-0.7,0) {(b)};
+\end{tikzpicture}
+                            </latex-image>
+                        </image>
+                    </figure>
+                </statement>
+                <answer><p>(a) <m>-4 \lt x \le 2</m>; (b) <m>0 \le x \le 4</m>.</p></answer>
+            </exercise>
+            <exercise xml:id="ex-solve-compound-add">
+                <statement><p>Solve <m>5 \lt x + 7 \le 12</m>.</p></statement>
+                <answer><p><m>-2 \lt x \le 5</m></p></answer>
+                <solution><p>Subtract <m>7</m> from every part: <m>-2 \lt x \le 5</m>.</p></solution>
+            </exercise>
+            <exercise xml:id="ex-solve-compound-and-list">
+                <statement><p>Solve <m>-6 \le 4x + 2 \lt 18</m> and list the integers that satisfy it.</p></statement>
+                <answer><p><m>-2 \le x \lt 4</m>; the integers are <m>-2, -1, 0, 1, 2, 3</m> (six integers).</p></answer>
+                <solution><p>Subtract <m>2</m>: <m>-8 \le 4x \lt 16</m>. Divide by <m>4</m>: <m>-2 \le x \lt 4</m>. <m>-2</m> is included and <m>4</m> is not.</p></solution>
+            </exercise>
+            <exercise xml:id="ex-solve-compound-negative">
+                <statement><p>Solve <m>1 \le 7 - 2x \lt 9</m>.</p></statement>
+                <answer><p><m>-1 \lt x \le 3</m></p></answer>
+                <solution><p>Subtract <m>7</m>: <m>-6 \le -2x \lt 2</m>. Divide by <m>-2</m>, turning both signs: <m>3 \ge x \gt -1</m>. Smaller number first: <m>-1 \lt x \le 3</m>.</p></solution>
+            </exercise>
+            <exercise xml:id="ex-bus-hire">
+                <statement><p>Hiring a bus for a school trip costs Ksh <m>4000</m> plus Ksh <m>150</m> for each learner. The class wants the total cost to be between Ksh <m>7000</m> and Ksh <m>9000</m>, including both amounts. How many learners can go?</p></statement>
+                <answer><p>From <m>20</m> to <m>33</m> learners.</p></answer>
+                <solution><p><m>7000 \le 4000 + 150n \le 9000</m>. Subtract <m>4000</m>: <m>3000 \le 150n \le 5000</m>. Divide by <m>150</m>: <m>20 \le n \le 33\tfrac{1}{3}</m>. <m>n</m> is a whole number, so <m>20 \le n \le 33</m>.</p></solution>
+            </exercise>
+            <exercise xml:id="ex-integers-satisfying-both">
+                <title>Challenge: Integers Satisfying Both</title>
+                <statement><p>Find every integer <m>x</m> with <m>5x - 4 \lt 26</m> and <m>1 - x \le 4</m>.</p></statement>
+                <hint><p>Solve each inequality first.</p></hint>
+                <answer><p><m>-3, -2, -1, 0, 1, 2, 3, 4, 5</m> (nine integers)</p></answer>
+                <solution><p><m>5x \lt 30</m>, so <m>x \lt 6</m>. <m>1 \le 4 + x</m>, so <m>x \ge -3</m>. Together <m>-3 \le x \lt 6</m>: the integers from <m>-3</m> to <m>5</m>.</p></solution>
+            </exercise>
+        </exercises>
+
+        <axiom component="lesson-plan">
+            <title>Differentiation</title>
+            <table xml:id="table-differentiation-compound-inequalities">
+                <title>Differentiation Strategies</title>
+                <tabular halign="left" top="minor" bottom="minor" left="minor" right="minor">
+                    <row header="yes" bottom="medium"><cell>Learner Group</cell><cell>Strategy and Learning Experience</cell></row>
+                    <row><cell>Struggling Learners (Support)</cell><cell>Give a three-column card, <q>left part, middle, right part</q>, so that every step is done to all three. Work <xref ref="example-solving-a-compound-inequality"/>. Assign <xref ref="ex-read-two-number-lines"/> to <xref ref="ex-solve-compound-and-list"/>.</cell></row>
+                    <row><cell>On-Level Learners (Core)</cell><cell>Full activity and all examples. Assign <xref ref="ex-read-two-number-lines"/> to <xref ref="ex-bus-hire"/>.</cell></row>
+                    <row><cell>Advanced Learners (Challenge)</cell><cell>All exercises including <xref ref="ex-integers-satisfying-both"/>. Extension: find <m>p</m> and <m>q</m> if <m>p \lt 3x - 1 \le q</m> has the solution <m>2 \lt x \le 5</m>. (Answer: <m>p = 5</m>, <m>q = 14</m>.)</cell></row>
+                </tabular>
+            </table>
+        </axiom>
+
+        <xi:include href="../lesson-plan-templates/assessment-methods.ptx" />
+        <xi:include href="../lesson-plan-templates/reflection.ptx"/>
+    </subsection>
 </section>

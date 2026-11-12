@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<quiz>
+<question type="stack">
+  <name><text>Matrix and image under a shear</text></name>
+  <questiontext format="html">
+    <text><![CDATA[<p>A shear has the [[if test="is(ax=\"x\")"]]x[[else]]y[[/if]]-axis invariant and shear factor \({@k@}\).</p><p>(a) Write down its matrix.</p><div>[[input:ans1]] [[validation:ans1]] [[feedback:prt1]]</div><p>(b) Find the image of the point \(({@p[1]@},\,{@p[2]@})\).</p><div>( [[input:ans2]] , [[input:ans3]] ) [[validation:ans2]] [[validation:ans3]] [[feedback:prt2]]</div>]]></text>
+  </questiontext>
+  <generalfeedback format="html">
+    <text><![CDATA[<p>Every point slides parallel to the invariant axis, by the shear factor times its distance from that axis, so areas do not change.</p><p>(a) With the [[if test="is(ax=\"x\")"]]x[[else]]y[[/if]]-axis invariant, (1, 0) and (0, 1) go to the columns of \({@ta@}\): [[if test="is(ax=\"x\")"]]\(x' = {@x+k*y@}\) and \(y' = y\).[[else]]\(x' = x\) and \(y' = {@y+k*x@}\).[[/if]]</p><p>(b) The point's [[if test="is(ax=\"x\")"]]y[[else]]x[[/if]]-coordinate, \({@dist@}\), is its signed distance from the [[if test="is(ax=\"x\")"]]x[[else]]y[[/if]]-axis, so it slides \({@k@} \times [[if test="is(dist<0)"]]({@dist@})[[else]]{@dist@}[[/if]] = {@k*dist@}\) parallel to the [[if test="is(ax=\"x\")"]]x[[else]]y[[/if]]-axis: \({@ta@}{@pc@} = {@ta.pc@}\). The image is \(({@tp[1]@},\,{@tp[2]@})\).</p>]]></text>
+  </generalfeedback>
+  <defaultgrade>2</defaultgrade>
+  <penalty>0.1</penalty>
+  <hidden>0</hidden>
+  <idnumber></idnumber>
+  <stackversion><text>2026063000</text></stackversion>
+  <questionvariables>
+    <text><![CDATA[validate_numeric(ex) := block([sx], sx: ev(ex, simp), if listofvars(ex) = [] and freeof(%i, sx) then "" else "Type a number in each box, not a letter.");
+near(L,T) := is(abs(L[1]-T[1]) + abs(L[2]-T[2]) < 0.001);
+/* Design: matrix and image under a shear, in the chapter's wording (invariant axis, shear factor). Source: adapted from SMP Book 5 (Metric), Chapter 13, Section 6 and Chapter 14, Section 6. The other position, the stretch confusion and "moved by k only" give images distinct from the answer and each other. */
+slist: [["x",4,[-1,4]],["y",-4,[-1,4]],["x",1/2,[1,4]],["y",-1/2,[2,3]],["x",3/2,[1,2]],["y",-3/2,[3,-2]],["x",5/2,[3,-1]],["y",1,[-1,4]],["x",-1,[1,4]],["y",5,[2,4]]];
+ix: 1+rand(10);
+ax: slist[ix][1]; k: slist[ix][2]; p: slist[ix][3];
+pc: transpose(matrix(p));
+ta: if ax="x" then matrix([1,k],[0,1]) else matrix([1,0],[k,1]);
+/* diagnostics: k in the other position; a stretch; the point moved by k, not k times its distance */
+dW: if ax="x" then matrix([1,0],[k,1]) else matrix([1,k],[0,1]);
+dSt: if ax="x" then matrix([1,0],[0,k]) else matrix([k,0],[0,1]);
+tp: list_matrix_entries(ta.pc); pW: list_matrix_entries(dW.pc); pSt: list_matrix_entries(dSt.pc);
+pK: if ax="x" then [p[1]+k,p[2]] else [p[1],p[2]+k];
+dist: if ax="x" then p[2] else p[1];
+tw: ta+matrix([0,0],[0,1]); tpw: tp+[0,1];
+]]></text>
+  </questionvariables>
+  <specificfeedback format="html"><text><![CDATA[]]></text></specificfeedback>
+  <questionnote format="moodle_auto_format">
+    <text>ix={@ix@}, axis {@ax@}, k={@k@}, image={@tp@}</text>
+  </questionnote>
+  <questiondescription format="html"><text><![CDATA[<p id="concept">Matrices and Transformations: matrix and image under a shear</p><p id="description">Grade 12 CBE Core 2.1: Write down the matrix of a shear with a given invariant axis and shear factor, and find the image of a point.</p><p id="edition">Core</p><p id="provenance">This question is adapted from Chapter 13, Section 6 and Chapter 14, Section 6 of School Mathematics Project, SMP Book 5 (Metric), ed. P. G. Bowie, Cambridge University Press, 1969: the shear given by its invariant axis and shear factor in this book's wording, new factors and points, randomised, with named and follow-through feedback.</p><p id="citation">INNODEMS CBC Grade 12 Mathematics, first draft by Ben Davies, 2026. Aligned to the KICD Senior School Curriculum Design, Core Mathematics Grade 12 (draft).</p>]]></text></questiondescription>
+  <questionsimplify>1</questionsimplify>
+  <assumepositive>0</assumepositive>
+  <assumereal>0</assumereal>
+  <prtcorrect format="html"><text><![CDATA[[[commonstring key="symbolicprtcorrectfeedback"/]] [[commonstring key="defaultprtcorrectfeedback"/]]]]></text></prtcorrect>
+  <prtpartiallycorrect format="html"><text><![CDATA[[[commonstring key="symbolicprtpartiallycorrectfeedback"/]] [[commonstring key="defaultprtpartiallycorrectfeedback"/]]]]></text></prtpartiallycorrect>
+  <prtincorrect format="html"><text><![CDATA[[[commonstring key="symbolicprtincorrectfeedback"/]] [[commonstring key="defaultprtincorrectfeedback"/]]]]></text></prtincorrect>
+  <decimals>.</decimals>
+  <scientificnotation>*10</scientificnotation>
+  <multiplicationsign>none</multiplicationsign>
+  <sqrtsign>1</sqrtsign>
+  <complexno>i</complexno>
+  <inversetrig>cos-1</inversetrig>
+  <logicsymbol>lang</logicsymbol>
+  <matrixparens>[</matrixparens>
+  <isbroken>0</isbroken>
+  <variantsselectionseed></variantsselectionseed>
+
+  <input><name>ans1</name><type>matrix</type><tans>ta</tans><boxsize>3</boxsize><strictsyntax>1</strictsyntax><insertstars>0</insertstars><syntaxhint></syntaxhint><syntaxattribute>0</syntaxattribute><forbidwords></forbidwords><allowwords></allowwords><forbidfloat>0</forbidfloat><requirelowestterms>0</requirelowestterms><checkanswertype>0</checkanswertype><mustverify>0</mustverify><showvalidation>3</showvalidation><options>validator:validate_numeric</options></input>
+  <input><name>ans2</name><type>numerical</type><tans>tp[1]</tans><boxsize>5</boxsize><strictsyntax>1</strictsyntax><insertstars>0</insertstars><syntaxhint></syntaxhint><syntaxattribute>0</syntaxattribute><forbidwords></forbidwords><allowwords></allowwords><forbidfloat>0</forbidfloat><requirelowestterms>0</requirelowestterms><checkanswertype>0</checkanswertype><mustverify>0</mustverify><showvalidation>0</showvalidation><options></options></input>
+  <input><name>ans3</name><type>numerical</type><tans>tp[2]</tans><boxsize>5</boxsize><strictsyntax>1</strictsyntax><insertstars>0</insertstars><syntaxhint></syntaxhint><syntaxattribute>0</syntaxattribute><forbidwords></forbidwords><allowwords></allowwords><forbidfloat>0</forbidfloat><requirelowestterms>0</requirelowestterms><checkanswertype>0</checkanswertype><mustverify>0</mustverify><showvalidation>0</showvalidation><options></options></input>
+
+  <prt><name>prt1</name><value>1.0000000</value><autosimplify>1</autosimplify><feedbackstyle>1</feedbackstyle><feedbackvariables><text><![CDATA[]]></text></feedbackvariables>
+    <node><name>0</name><description>Shear matrix</description><answertest>AlgEquiv</answertest><sans>ans1</sans><tans>ta</tans><testoptions></testoptions><quiet>0</quiet><truescoremode>=</truescoremode><truescore>1.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt1-1-T</trueanswernote><truefeedback format="html"><text><![CDATA[]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>1</falsenextnode><falseanswernote>prt1-1-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>1</name><description>k in the other position</description><answertest>AlgEquiv</answertest><sans>ans1</sans><tans>dW</tans><testoptions></testoptions><quiet>1</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt1-2-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>With the [[if test="is(ax=\"x\")"]]x[[else]]y[[/if]]-axis invariant, points slide parallel to the [[if test="is(ax=\"x\")"]]x[[else]]y[[/if]]-axis, so the [[if test="is(ax=\"x\")"]]x[[else]]y[[/if]]-coordinate changes: [[if test="is(ax=\"x\")"]]\(x' = {@x+k*y@}\). The shear factor goes in the top right.[[else]]\(y' = {@y+k*x@}\). The shear factor goes in the bottom left.[[/if]]</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>2</falsenextnode><falseanswernote>prt1-2-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>2</name><description>A stretch</description><answertest>AlgEquiv</answertest><sans>ans1</sans><tans>dSt</tans><testoptions></testoptions><quiet>1</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt1-3-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>[[if test="is(k=1)"]]That is the identity matrix: it leaves every point where it is.[[else]]That matrix multiplies one coordinate by \({@k@}\), as a stretch does, so it moves points at right angles to the axis.[[/if]] A shear slides every point parallel to the invariant axis.</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>-1</falsenextnode><falseanswernote>prt1-3-F</falseanswernote><falsefeedback format="html"><text><![CDATA[<p>Your matrix sends (1, 0) to \(({@ans1[1,1]@},\,{@ans1[2,1]@})\) and (0, 1) to \(({@ans1[1,2]@},\,{@ans1[2,2]@})\). Find the images of (1, 0) and (0, 1) under the shear: they are the columns of the matrix. The one on the [[if test="is(ax=\"x\")"]]x[[else]]y[[/if]]-axis does not move; the other slides parallel to the [[if test="is(ax=\"x\")"]]x[[else]]y[[/if]]-axis.</p>]]></text></falsefeedback></node>
+  </prt>
+  <prt><name>prt2</name><value>1.0000000</value><autosimplify>1</autosimplify><feedbackstyle>1</feedbackstyle><feedbackvariables><text><![CDATA[L: [ans2,ans3];
+ft: if matrixp(ans1) then list_matrix_entries(ans1.pc) else [0,0];
+]]></text></feedbackvariables>
+    <node><name>0</name><description>Image</description><answertest>AlgEquiv</answertest><sans>near(L,tp)</sans><tans>true</tans><testoptions></testoptions><quiet>1</quiet><truescoremode>=</truescoremode><truescore>1.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt2-1-T</trueanswernote><truefeedback format="html"><text><![CDATA[]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>1</falsenextnode><falseanswernote>prt2-1-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>1</name><description>Slid along the other axis</description><answertest>AlgEquiv</answertest><sans>near(L,pW)</sans><tans>true</tans><testoptions></testoptions><quiet>1</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt2-2-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>Your point moved parallel to the [[if test="is(ax=\"x\")"]]y[[else]]x[[/if]]-axis. With the [[if test="is(ax=\"x\")"]]x[[else]]y[[/if]]-axis invariant, points slide parallel to the [[if test="is(ax=\"x\")"]]x[[else]]y[[/if]]-axis.</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>2</falsenextnode><falseanswernote>prt2-2-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>2</name><description>Moved by k only</description><answertest>AlgEquiv</answertest><sans>near(L,pK)</sans><tans>true</tans><testoptions></testoptions><quiet>1</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt2-3-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>The point moves \({@k@}\) times its distance from the invariant axis, not \({@k@}\) units.</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>3</falsenextnode><falseanswernote>prt2-3-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>3</name><description>Follow-through from (a)</description><answertest>AlgEquiv</answertest><sans>near(L,ft)</sans><tans>true</tans><testoptions></testoptions><quiet>1</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt2-4-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>Your method is right for your matrix in (a), but that matrix is not right; see (a).</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>-1</falsenextnode><falseanswernote>prt2-4-F</falseanswernote><falsefeedback format="html"><text><![CDATA[<p>Multiply the shear matrix by the column of the point. Check: the point slides \({@k@}\) times its distance from the [[if test="is(ax=\"x\")"]]x[[else]]y[[/if]]-axis.</p>]]></text></falsefeedback></node>
+  </prt>
+
+  <deployedseed>4</deployedseed>
+  <deployedseed>5</deployedseed>
+  <deployedseed>15</deployedseed>
+  <deployedseed>8</deployedseed>
+  <deployedseed>24</deployedseed>
+  <deployedseed>1</deployedseed>
+  <deployedseed>3</deployedseed>
+  <deployedseed>10</deployedseed>
+  <deployedseed>2</deployedseed>
+  <deployedseed>17</deployedseed>
+  <qtest><testcase>1</testcase><description>Correct</description>
+    <testinput><name>ans1</name><value>ta</value></testinput>
+    <testinput><name>ans2</name><value>tp[1]</value></testinput>
+    <testinput><name>ans3</name><value>tp[2]</value></testinput>
+    <expected><name>prt1</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt1-1-T</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt2-1-T</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>2</testcase><description>Other position</description>
+    <testinput><name>ans1</name><value>dW</value></testinput>
+    <testinput><name>ans2</name><value>pW[1]</value></testinput>
+    <testinput><name>ans3</name><value>pW[2]</value></testinput>
+    <expected><name>prt1</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt1-1-F | prt1-2-T</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt2-1-F | prt2-2-T</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>3</testcase><description>Stretch; moved by k only</description>
+    <testinput><name>ans1</name><value>dSt</value></testinput>
+    <testinput><name>ans2</name><value>pK[1]</value></testinput>
+    <testinput><name>ans3</name><value>pK[2]</value></testinput>
+    <expected><name>prt1</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt1-1-F | prt1-2-F | prt1-3-T</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt2-1-F | prt2-2-F | prt2-3-T</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>4</testcase><description>Stretch; follow-through</description>
+    <testinput><name>ans1</name><value>dSt</value></testinput>
+    <testinput><name>ans2</name><value>pSt[1]</value></testinput>
+    <testinput><name>ans3</name><value>pSt[2]</value></testinput>
+    <expected><name>prt1</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt1-1-F | prt1-2-F | prt1-3-T</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt2-1-F | prt2-2-F | prt2-3-F | prt2-4-T</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>5</testcase><description>Generic offsets</description>
+    <testinput><name>ans1</name><value>tw</value></testinput>
+    <testinput><name>ans2</name><value>tpw[1]</value></testinput>
+    <testinput><name>ans3</name><value>tpw[2]</value></testinput>
+    <expected><name>prt1</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt1-1-F | prt1-2-F | prt1-3-F</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt2-1-F | prt2-2-F | prt2-3-F | prt2-4-F</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>6</testcase><description>Invalid: a letter in (b)</description>
+    <testinput><name>ans1</name><value>ta</value></testinput>
+    <testinput><name>ans2</name><value>x</value></testinput>
+    <testinput><name>ans3</name><value>tp[2]</value></testinput>
+    <expected><name>prt1</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt1-1-T</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore></expectedscore><expectedpenalty></expectedpenalty><expectedanswernote>NULL</expectedanswernote></expected>
+  </qtest>
+</question>
+</quiz>

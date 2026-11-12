@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<quiz>
+<question type="stack">
+  <name><text>The search line</text></name>
+  <questiontext format="html">
+    <text><![CDATA[<p>R is the feasible region shown, with vertices A\(({@vs[1][1]@}, {@vs[1][2]@})\), B\(({@vs[2][1]@}, {@vs[2][2]@})\), C\(({@vs[3][1]@}, {@vs[3][2]@})\) and D\(({@vs[4][1]@}, {@vs[4][2]@})\). The dashed line is one search line for \(P = {@pa@}x + {@pb@}y\).</p><div style="text-align:center;" role="img" aria-label="{@arl@}">
+[[jsxgraph width="420px" height="380px"]]
+(function () {
+  // static region board: the unwanted side of every boundary is shaded, R is left clear
+  var J = {#JB#};
+  var bb = J[0], Ls = J[1], Vs = J[2], R = J[3], st = J[4];
+  var b = JXG.JSXGraph.initBoard(divid, {boundingbox: bb, axis: false, grid: false, keepAspectRatio: false,
+    showNavigation: false, showCopyright: false, pan: {enabled: false}, zoom: {enabled: false}});
+  var i, k;
+  for (k = Math.ceil(bb[0]); k <= bb[2]; k++) {
+    b.create('segment', [[k, bb[3]], [k, bb[1]]], {strokeColor: '#d9d9d9', strokeWidth: 1, fixed: true, highlight: false});
+  }
+  for (k = Math.ceil(bb[3]); k <= bb[1]; k++) {
+    b.create('segment', [[bb[0], k], [bb[2], k]], {strokeColor: '#d9d9d9', strokeWidth: 1, fixed: true, highlight: false});
+  }
+  function clip(P, a, q, c, s) {
+    var out = [], j, p, r, fp, fr, t;
+    for (j = 0; j < P.length; j++) {
+      p = P[j]; r = P[(j + 1) % P.length];
+      fp = s * (a * p[0] + q * p[1] - c); fr = s * (a * r[0] + q * r[1] - c);
+      if (fp >= 0) { out.push(p); }
+      if ((fp >= 0) !== (fr >= 0)) { t = fp / (fp - fr); out.push([p[0] + t * (r[0] - p[0]), p[1] + t * (r[1] - p[1])]); }
+    }
+    return out;
+  }
+  function shade(a, q, c, s) {
+    var P = clip([[bb[0], bb[3]], [bb[2], bb[3]], [bb[2], bb[1]], [bb[0], bb[1]]], a, q, c, s);
+    if (P.length > 2) {
+      b.create('polygon', P, {fillColor: '#808080', fillOpacity: 0.25, borders: {visible: false},
+        vertices: {visible: false}, fixed: true, highlight: false, hasInnerPoints: false});
+    }
+  }
+  shade(1, 0, 0, -1); shade(0, 1, 0, -1);
+  b.create('axis', [[0, 0], [1, 0]], {name: 'x', withLabel: true, label: {position: 'rt', offset: [-12, 12]},
+    ticks: {insertTicks: false, ticksDistance: st, minorTicks: st - 1, majorHeight: 8, minorHeight: 4, drawZero: true, label: {offset: [-4, -12]}}});
+  b.create('axis', [[0, 0], [0, 1]], {name: 'y', withLabel: true, label: {position: 'rt', offset: [8, -6]},
+    ticks: {insertTicks: false, ticksDistance: st, minorTicks: st - 1, majorHeight: 8, minorHeight: 4, drawZero: false, label: {offset: [-18, 0]}}});
+  for (i = 0; i < Ls.length; i++) {
+    var L = Ls[i];
+    if (L[3] !== 0) { shade(L[0], L[1], L[2], L[3]); }
+    b.create('line', [-L[2], L[0], L[1]], {strokeColor: (L[3] !== 0 ? '#000000' : '#1f4e9c'), strokeWidth: 2, dash: (L[4] ? 2 : 0), fixed: true, highlight: false});
+    if (L[7] > 0) { b.create('text', [L[5], L[6], 'L<sub>' + L[7] + '</sub>'], {fontSize: 14, fixed: true, highlight: false}); }
+    if (L[7] < 0) { b.create('text', [L[5], L[6], 'search line'], {fontSize: 13, color: '#1f4e9c', fixed: true, highlight: false}); }
+  }
+  for (i = 0; i < Vs.length; i++) {
+    var V = Vs[i], nm = 'ABCDE'.charAt(V[2] - 1);
+    if (V[3]) { nm = nm + '(' + V[0] + ', ' + V[1] + ')'; }
+    b.create('point', [V[0], V[1]], {name: nm, fixed: true, size: 2, color: '#000000', highlight: false,
+      label: {offset: [V[4], V[5]], fontSize: 13}});
+  }
+  if (R.length === 2) { b.create('text', [R[0], R[1], 'R'], {fontSize: 18, fixed: true, highlight: false}); }
+})();
+[[/jsxgraph]]
+</div><p>(a) What is the gradient of every search line \({@pa@}x + {@pb@}y = k\)? Give an exact value, for example \(-2/3\). [[input:ans1]] [[validation:ans1]] [[feedback:prt1]]</p><p>(b) As the search line moves {@dirw@} the origin, which vertex of R does it touch last? [[input:ans2]] [[validation:ans2]] [[feedback:prt2]]</p><p>(c) What is the {@mw@} value of \(P\)? [[input:ans3]] [[validation:ans3]] [[feedback:prt3]]</p>]]></text>
+  </questiontext>
+  <generalfeedback format="html">
+    <text><![CDATA[<p>(a) \({@pa@}x + {@pb@}y = k\) gives \(y = -\frac{{@pa@}}{{@pb@}}x + \frac{k}{{@pb@}}\), so every search line has gradient \({@grad@}\).</p><p>(b) Every point on one search line gives the same value, so slide it {@dirw@} the origin until it is about to leave R. The last vertex it touches is {@lab@}.</p><p>(c) At {@lab@}, \(P = {@t@}\).</p>]]></text>
+  </generalfeedback>
+  <defaultgrade>3</defaultgrade>
+  <penalty>0.1</penalty>
+  <hidden>0</hidden>
+  <idnumber></idnumber>
+  <stackversion><text>2026063000</text></stackversion>
+  <questionvariables>
+    <text><![CDATA[/* Design: lines of equal cost are parallel; the best line through the region. Source: adapted from SMP Book 5 (Metric), Chapter 8, Section 2.2. Core only. A is the corner the line touches first, never the answer; max 6, min 4. */
+Q33L: [[[[8,1,"<=",80],[2,9,"<=",90],[1,0,">=",0],[0,1,">=",0]],[[0,0],[10,0],[9,8],[0,10]],[3,8],"max",[0,30,91,80],91,0,"C","B",30,-3/8,[[-1,13,16,-1],[[8,1,80,1,0,0.0,0.0,0],[2,9,90,1,0,0.0,0.0,0],[3,8,24,0,1,0.3,3.3,-1]],[[0.0,0.0,1,1,6,10],[10.0,0.0,2,1,6,10],[9.0,8.0,3,1,6,10],[0.0,10.0,4,1,6,10]],[],2],"Graph with x from 0 to 16 and y from 0 to 13. The feasible region R is left clear and the unwanted side of each boundary is shaded. Boundaries: 8x + y = 80 (solid); 2x + 9y = 90 (solid). Vertices of R: A (0, 0), B (10, 0), C (9, 8), D (0, 10). A dashed search line 3x + 8y = 24 is drawn."],
+[[[7,4,"<=",91],[1,7,"<=",58],[1,0,">=",2],[0,1,">=",0]],[[2,0],[13,0],[9,7],[2,8]],[8,9],"max",[16,104,135,88],135,16,"C","B",104,-8/9,[[-1,11,19,-1],[[7,4,91,1,0,0.0,0.0,0],[1,7,58,1,0,0.0,0.0,0],[1,0,2,-1,0,0.0,0.0,0],[8,9,72,0,1,0.3,8.3,-1]],[[2.0,0.0,1,1,6,10],[13.0,0.0,2,1,6,10],[9.0,7.0,3,1,6,10],[2.0,8.0,4,1,6,10]],[],2],"Graph with x from 0 to 19 and y from 0 to 11. The feasible region R is left clear and the unwanted side of each boundary is shaded. Boundaries: 7x + 4y = 91 (solid); x + 7y = 58 (solid); x = 2 (solid). Vertices of R: A (2, 0), B (13, 0), C (9, 7), D (2, 8). A dashed search line 8x + 9y = 72 is drawn."],
+[[[7,1,">=",62],[1,8,">=",56],[1,0,"<=",16],[0,1,"<=",13]],[[16,13],[7,13],[8,6],[16,5]],[5,2],"min",[106,61,52,90],52,106,"C","B",61,-5/2,[[-1,16,22,-1],[[7,1,62,-1,0,0.0,0.0,0],[1,8,56,-1,0,0.0,0.0,0],[1,0,16,1,0,0.0,0.0,0],[0,1,13,1,0,0.0,0.0,0],[5,2,10,0,1,2.3,0.4,-1]],[[16.0,13.0,1,1,6,10],[7.0,13.0,2,1,6,10],[8.0,6.0,3,1,6,10],[16.0,5.0,4,1,6,10]],[],2],"Graph with x from 0 to 22 and y from 0 to 16. The feasible region R is left clear and the unwanted side of each boundary is shaded. Boundaries: 7x + y = 62 (solid); x + 8y = 56 (solid); x = 16 (solid); y = 13 (solid). Vertices of R: A (16, 13), B (7, 13), C (8, 6), D (16, 5). A dashed search line 5x + 2y = 10 is drawn."],
+[[[6,1,"<=",62],[5,9,"<=",117],[1,0,">=",0],[0,1,">=",2]],[[0,2],[10,2],[9,8],[0,13]],[5,7],"max",[14,64,101,91],101,14,"C","B",64,-5/7,[[-1,16,16,-1],[[6,1,62,1,0,0.0,0.0,0],[5,9,117,1,0,0.0,0.0,0],[0,1,2,-1,0,0.0,0.0,0],[5,7,35,0,1,7.3,0.4,-1]],[[0.0,2.0,1,1,6,10],[10.0,2.0,2,1,6,10],[9.0,8.0,3,1,6,10],[0.0,13.0,4,1,6,10]],[],2],"Graph with x from 0 to 16 and y from 0 to 16. The feasible region R is left clear and the unwanted side of each boundary is shaded. Boundaries: 6x + y = 62 (solid); 5x + 9y = 117 (solid); y = 2 (solid). Vertices of R: A (0, 2), B (10, 2), C (9, 8), D (0, 13). A dashed search line 5x + 7y = 35 is drawn."],
+[[[6,1,">=",47],[3,8,">=",61],[1,0,"<=",15],[0,1,"<=",11]],[[15,11],[6,11],[7,5],[15,2]],[8,1],"min",[131,59,61,122],59,131,"B","C",61,-8,[[-1,14,21,-1],[[6,1,47,-1,0,0.0,0.0,0],[3,8,61,-1,0,0.0,0.0,0],[1,0,15,1,0,0.0,0.0,0],[0,1,11,1,0,0.0,0.0,0],[8,1,8,0,1,1.3,0.4,-1]],[[15.0,11.0,1,1,6,10],[6.0,11.0,2,1,6,10],[7.0,5.0,3,1,6,10],[15.0,2.0,4,1,6,10]],[],2],"Graph with x from 0 to 21 and y from 0 to 14. The feasible region R is left clear and the unwanted side of each boundary is shaded. Boundaries: 6x + y = 47 (solid); 3x + 8y = 61 (solid); x = 15 (solid); y = 11 (solid). Vertices of R: A (15, 11), B (6, 11), C (7, 5), D (15, 2). A dashed search line 8x + y = 8 is drawn."],
+[[[7,3,"<=",87],[2,7,"<=",74],[1,0,">=",2],[0,1,">=",1]],[[2,1],[12,1],[9,8],[2,10]],[1,4],"max",[6,16,41,42],42,6,"D","B",16,-1/4,[[-1,13,18,-1],[[7,3,87,1,0,0.0,0.0,0],[2,7,74,1,0,0.0,0.0,0],[1,0,2,-1,0,0.0,0.0,0],[0,1,1,-1,0,0.0,0.0,0],[1,4,4,0,1,4.3,0.4,-1]],[[2.0,1.0,1,1,6,10],[12.0,1.0,2,1,6,10],[9.0,8.0,3,1,6,10],[2.0,10.0,4,1,6,10]],[],2],"Graph with x from 0 to 18 and y from 0 to 13. The feasible region R is left clear and the unwanted side of each boundary is shaded. Boundaries: 7x + 3y = 87 (solid); 2x + 7y = 74 (solid); x = 2 (solid); y = 1 (solid). Vertices of R: A (2, 1), B (12, 1), C (9, 8), D (2, 10). A dashed search line x + 4y = 4 is drawn."],
+[[[7,5,"<=",84],[3,7,"<=",70],[1,0,">=",0],[0,1,">=",0]],[[0,0],[12,0],[7,7],[0,10]],[8,7],"max",[0,96,105,70],105,0,"C","B",96,-8/7,[[-1,13,18,-1],[[7,5,84,1,0,0.0,0.0,0],[3,7,70,1,0,0.0,0.0,0],[8,7,56,0,1,7.3,0.4,-1]],[[0.0,0.0,1,1,6,10],[12.0,0.0,2,1,6,10],[7.0,7.0,3,1,6,10],[0.0,10.0,4,1,6,10]],[],2],"Graph with x from 0 to 18 and y from 0 to 13. The feasible region R is left clear and the unwanted side of each boundary is shaded. Boundaries: 7x + 5y = 84 (solid); 3x + 7y = 70 (solid). Vertices of R: A (0, 0), B (12, 0), C (7, 7), D (0, 10). A dashed search line 8x + 7y = 56 is drawn."],
+[[[7,3,">=",81],[5,6,">=",81],[1,0,"<=",15],[0,1,"<=",13]],[[15,13],[6,13],[9,6],[15,1]],[1,6],"min",[93,84,45,21],21,93,"D","B",84,-1/6,[[-1,16,21,-1],[[7,3,81,-1,0,0.0,0.0,0],[5,6,81,-1,0,0.0,0.0,0],[1,0,15,1,0,0.0,0.0,0],[0,1,13,1,0,0.0,0.0,0],[1,6,6,0,1,6.3,0.4,-1]],[[15.0,13.0,1,1,6,10],[6.0,13.0,2,1,6,10],[9.0,6.0,3,1,6,10],[15.0,1.0,4,1,6,10]],[],2],"Graph with x from 0 to 21 and y from 0 to 16. The feasible region R is left clear and the unwanted side of each boundary is shaded. Boundaries: 7x + 3y = 81 (solid); 5x + 6y = 81 (solid); x = 15 (solid); y = 13 (solid). Vertices of R: A (15, 13), B (6, 13), C (9, 6), D (15, 1). A dashed search line x + 6y = 6 is drawn."],
+[[[7,5,"<=",103],[4,9,"<=",108],[1,0,">=",0],[0,1,">=",1]],[[0,1],[14,1],[9,8],[0,12]],[3,2],"max",[2,44,43,24],44,2,"B","C",43,-3/2,[[-1,15,20,-1],[[7,5,103,1,0,0.0,0.0,0],[4,9,108,1,0,0.0,0.0,0],[0,1,1,-1,0,0.0,0.0,0],[3,2,6,0,1,2.3,0.4,-1]],[[0.0,1.0,1,1,6,10],[14.0,1.0,2,1,6,10],[9.0,8.0,3,1,6,10],[0.0,12.0,4,1,6,10]],[],2],"Graph with x from 0 to 20 and y from 0 to 15. The feasible region R is left clear and the unwanted side of each boundary is shaded. Boundaries: 7x + 5y = 103 (solid); 4x + 9y = 108 (solid); y = 1 (solid). Vertices of R: A (0, 1), B (14, 1), C (9, 8), D (0, 12). A dashed search line 3x + 2y = 6 is drawn."],
+[[[8,3,">=",68],[4,9,">=",64],[1,0,"<=",16],[0,1,"<=",12]],[[16,12],[4,12],[7,4],[16,0]],[8,7],"min",[212,116,84,128],84,212,"C","B",116,-8/7,[[-1,15,22,-1],[[8,3,68,-1,0,0.0,0.0,0],[4,9,64,-1,0,0.0,0.0,0],[1,0,16,1,0,0.0,0.0,0],[0,1,12,1,0,0.0,0.0,0],[8,7,56,0,1,7.3,0.4,-1]],[[16.0,12.0,1,1,6,10],[4.0,12.0,2,1,6,10],[7.0,4.0,3,1,6,10],[16.0,0.0,4,1,6,10]],[],2],"Graph with x from 0 to 22 and y from 0 to 15. The feasible region R is left clear and the unwanted side of each boundary is shaded. Boundaries: 8x + 3y = 68 (solid); 4x + 9y = 64 (solid); x = 16 (solid); y = 12 (solid). Vertices of R: A (16, 12), B (4, 12), C (7, 4), D (16, 0). A dashed search line 8x + 7y = 56 is drawn."]];
+ix: 1+rand(10);
+E: Q33L[ix];
+vs: E[2]; pa: E[3][1]; pb: E[3][2]; mode: E[4]; vals: E[5]; t: E[6]; PA: E[7]; lab: E[8]; wl: E[9]; pwl: E[10]; grad: E[11]; JB: E[12]; arl: E[13];
+ismax: is(mode = "max");
+dirw: if ismax then "away from" else "towards";
+mw: if ismax then "greatest" else "least"; ow: if ismax then "least" else "greatest";
+o2: [["A", false, "A"], ["B", is(lab = "B"), "B"], ["C", is(lab = "C"), "C"], ["D", is(lab = "D"), "D"]];
+]]></text>
+  </questionvariables>
+  <specificfeedback format="html"><text><![CDATA[]]></text></specificfeedback>
+  <questionnote format="moodle_auto_format">
+    <text>ix={@ix@}, {@mode@}, gradient {@grad@}, vertex {@lab@}, P={@t@}</text>
+  </questionnote>
+  <questiondescription format="html"><text><![CDATA[<p id="concept">Linear Programming: the search line</p><p id="description">Grade 12 CBE Core 1.4 (c): Find the gradient of the search line for a linear objective, the last vertex of the feasible region it touches, and the optimum value.</p><p id="edition">Core</p><p id="provenance">This question is adapted from Chapter 8, Section 2.2 of School Mathematics Project, SMP Book 5 (Metric), ed. P. G. Bowie, Cambridge University Press, 1969: lines of equal cost as parallel lines, with the best line through the region, turned into a search line for a maximum or minimum, with new regions.</p><p id="citation">INNODEMS CBC Grade 12 Mathematics, first draft by Ben Davies, 2026. Aligned to the KICD Senior School Curriculum Design, Core Mathematics Grade 12 (draft).</p>]]></text></questiondescription>
+  <questionsimplify>1</questionsimplify>
+  <assumepositive>0</assumepositive>
+  <assumereal>0</assumereal>
+  <prtcorrect format="html"><text><![CDATA[[[commonstring key="symbolicprtcorrectfeedback"/]] [[commonstring key="defaultprtcorrectfeedback"/]]]]></text></prtcorrect>
+  <prtpartiallycorrect format="html"><text><![CDATA[[[commonstring key="symbolicprtpartiallycorrectfeedback"/]] [[commonstring key="defaultprtpartiallycorrectfeedback"/]]]]></text></prtpartiallycorrect>
+  <prtincorrect format="html"><text><![CDATA[[[commonstring key="symbolicprtincorrectfeedback"/]] [[commonstring key="defaultprtincorrectfeedback"/]]]]></text></prtincorrect>
+  <decimals>.</decimals>
+  <scientificnotation>*10</scientificnotation>
+  <multiplicationsign>none</multiplicationsign>
+  <sqrtsign>1</sqrtsign>
+  <complexno>i</complexno>
+  <inversetrig>cos-1</inversetrig>
+  <logicsymbol>lang</logicsymbol>
+  <matrixparens>[</matrixparens>
+  <isbroken>0</isbroken>
+  <variantsselectionseed></variantsselectionseed>
+
+  <input><name>ans1</name><type>numerical</type><tans>grad</tans><boxsize>6</boxsize><strictsyntax>1</strictsyntax><insertstars>0</insertstars><syntaxhint></syntaxhint><syntaxattribute>0</syntaxattribute><forbidwords></forbidwords><allowwords></allowwords><forbidfloat>0</forbidfloat><requirelowestterms>0</requirelowestterms><checkanswertype>0</checkanswertype><mustverify>0</mustverify><showvalidation>0</showvalidation><options></options></input>
+  <input><name>ans2</name><type>dropdown</type><tans>o2</tans><boxsize>15</boxsize><strictsyntax>1</strictsyntax><insertstars>0</insertstars><syntaxhint></syntaxhint><syntaxattribute>0</syntaxattribute><forbidwords></forbidwords><allowwords></allowwords><forbidfloat>1</forbidfloat><requirelowestterms>0</requirelowestterms><checkanswertype>0</checkanswertype><mustverify>0</mustverify><showvalidation>0</showvalidation><options></options></input>
+  <input><name>ans3</name><type>numerical</type><tans>t</tans><boxsize>6</boxsize><strictsyntax>1</strictsyntax><insertstars>0</insertstars><syntaxhint></syntaxhint><syntaxattribute>0</syntaxattribute><forbidwords></forbidwords><allowwords></allowwords><forbidfloat>0</forbidfloat><requirelowestterms>0</requirelowestterms><checkanswertype>0</checkanswertype><mustverify>0</mustverify><showvalidation>0</showvalidation><options></options></input>
+
+  <prt><name>prt1</name><value>1.0000000</value><autosimplify>1</autosimplify><feedbackstyle>1</feedbackstyle><feedbackvariables><text><![CDATA[]]></text></feedbackvariables>
+    <node><name>0</name><description>Gradient</description><answertest>NumAbsolute</answertest><sans>ans1</sans><tans>grad</tans><testoptions>0.001</testoptions><quiet>0</quiet><truescoremode>=</truescoremode><truescore>1.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt1-1-T</trueanswernote><truefeedback format="html"><text><![CDATA[]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>1</falsenextnode><falseanswernote>prt1-1-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>1</name><description>Reciprocal</description><answertest>NumAbsolute</answertest><sans>ans1</sans><tans>-pb/pa</tans><testoptions>0.001</testoptions><quiet>0</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt1-2-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>You divided by \({@pa@}\), the number in front of \(x\). To make \(y\) the subject of \({@pa@}x + {@pb@}y = k\), which number do you divide by?</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>2</falsenextnode><falseanswernote>prt1-2-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>2</name><description>Sign</description><answertest>NumAbsolute</answertest><sans>ans1</sans><tans>pa/pb</tans><testoptions>0.001</testoptions><quiet>0</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt1-3-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>The size is right. Now look at the dashed search line: it falls from left to right. What does that say about the sign of the gradient?</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>3</falsenextnode><falseanswernote>prt1-3-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>3</name><description>Both slips</description><answertest>NumAbsolute</answertest><sans>ans1</sans><tans>pb/pa</tans><testoptions>0.001</testoptions><quiet>0</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt1-4-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>Two slips. The search line falls from left to right, so its gradient cannot be positive. And making \(y\) the subject divides by the number in front of \(y\), not by \({@pa@}\), the number in front of \(x\).</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>-1</falsenextnode><falseanswernote>prt1-4-F</falseanswernote><falsefeedback format="html"><text><![CDATA[[[if test='is(abs(ans1 - grad) < 1/50)']]<p>Your value is close to the gradient, but it is rounded. Give the exact value as a fraction.</p>[[else]]<p>Make \(y\) the subject of \({@pa@}x + {@pb@}y = k\); the number in front of \(x\) is the gradient.</p>[[/if]]]]></text></falsefeedback></node>
+  </prt>
+  <prt><name>prt2</name><value>1.0000000</value><autosimplify>1</autosimplify><feedbackstyle>1</feedbackstyle><feedbackvariables><text><![CDATA[Pc2: if ans2 = "A" then vals[1] elseif ans2 = "B" then vals[2] elseif ans2 = "C" then vals[3] else vals[4];]]></text></feedbackvariables>
+    <node><name>0</name><description>Last vertex</description><answertest>AlgEquiv</answertest><sans>ans2</sans><tans>lab</tans><testoptions></testoptions><quiet>0</quiet><truescoremode>=</truescoremode><truescore>1.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt2-1-T</trueanswernote><truefeedback format="html"><text><![CDATA[]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>1</falsenextnode><falseanswernote>prt2-1-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>1</name><description>First vertex</description><answertest>AlgEquiv</answertest><sans>ans2</sans><tans>"A"</tans><testoptions></testoptions><quiet>0</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt2-2-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>A is where the line first touches R, which gives the {@ow@} value.</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>-1</falsenextnode><falseanswernote>prt2-2-F</falseanswernote><falsefeedback format="html"><text><![CDATA[<p>At {@ans2@}, \(P = {@Pc2@}\). The search line keeps moving {@dirw@} the origin after it passes {@ans2@}: find a vertex of R where \(P\) is [[if test='ismax']]greater[[else]]less[[/if]].</p>]]></text></falsefeedback></node>
+  </prt>
+  <prt><name>prt3</name><value>1.0000000</value><autosimplify>1</autosimplify><feedbackstyle>1</feedbackstyle><feedbackvariables><text><![CDATA[Pch: if ans2 = "A" then vals[1] elseif ans2 = "B" then vals[2] elseif ans2 = "C" then vals[3] else vals[4];]]></text></feedbackvariables>
+    <node><name>0</name><description>Optimum</description><answertest>NumAbsolute</answertest><sans>ans3</sans><tans>t</tans><testoptions>0.001</testoptions><quiet>0</quiet><truescoremode>=</truescoremode><truescore>1.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt3-1-T</trueanswernote><truefeedback format="html"><text><![CDATA[]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>1</falsenextnode><falseanswernote>prt3-1-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>1</name><description>Other extreme</description><answertest>NumAbsolute</answertest><sans>ans3</sans><tans>PA</tans><testoptions>0.001</testoptions><quiet>0</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt3-2-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>That is \(P\) at A, the {@ow@} value.</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>2</falsenextnode><falseanswernote>prt3-2-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>2</name><description>Follow-through</description><answertest>NumAbsolute</answertest><sans>ans3</sans><tans>Pch</tans><testoptions>0.001</testoptions><quiet>0</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt3-3-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>That is \(P\) at your vertex in (b), which is not the right vertex.</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>-1</falsenextnode><falseanswernote>prt3-3-F</falseanswernote><falsefeedback format="html"><text><![CDATA[<p>Work out \(P = {@pa@}x + {@pb@}y\) at the last vertex the search line touches.</p>]]></text></falsefeedback></node>
+  </prt>
+
+  <deployedseed>4</deployedseed>
+  <deployedseed>5</deployedseed>
+  <deployedseed>15</deployedseed>
+  <deployedseed>8</deployedseed>
+  <deployedseed>24</deployedseed>
+  <deployedseed>1</deployedseed>
+  <deployedseed>3</deployedseed>
+  <deployedseed>10</deployedseed>
+  <deployedseed>2</deployedseed>
+  <deployedseed>17</deployedseed>
+  <qtest><testcase>1</testcase><description>Correct</description>
+    <testinput><name>ans1</name><value>grad</value></testinput>
+    <testinput><name>ans2</name><value>lab</value></testinput>
+    <testinput><name>ans3</name><value>t</value></testinput>
+    <expected><name>prt1</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt1-1-T</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt2-1-T</expectedanswernote></expected>
+    <expected><name>prt3</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt3-1-T</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>2</testcase><description>Reciprocal; first vertex; its value</description>
+    <testinput><name>ans1</name><value>-pb/pa</value></testinput>
+    <testinput><name>ans2</name><value>"A"</value></testinput>
+    <testinput><name>ans3</name><value>PA</value></testinput>
+    <expected><name>prt1</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt1-1-F | prt1-2-T</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt2-1-F | prt2-2-T</expectedanswernote></expected>
+    <expected><name>prt3</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt3-1-F | prt3-2-T</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>3</testcase><description>Sign; another vertex; follow-through</description>
+    <testinput><name>ans1</name><value>pa/pb</value></testinput>
+    <testinput><name>ans2</name><value>wl</value></testinput>
+    <testinput><name>ans3</name><value>pwl</value></testinput>
+    <expected><name>prt1</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt1-1-F | prt1-2-F | prt1-3-T</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt2-1-F | prt2-2-F</expectedanswernote></expected>
+    <expected><name>prt3</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt3-1-F | prt3-2-F | prt3-3-T</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>4</testcase><description>Both slips; right vertex; generic value</description>
+    <testinput><name>ans1</name><value>pb/pa</value></testinput>
+    <testinput><name>ans2</name><value>lab</value></testinput>
+    <testinput><name>ans3</name><value>t+5</value></testinput>
+    <expected><name>prt1</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt1-1-F | prt1-2-F | prt1-3-F | prt1-4-T</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt2-1-T</expectedanswernote></expected>
+    <expected><name>prt3</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt3-1-F | prt3-2-F | prt3-3-F</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>5</testcase><description>Invalid: a letter in (a)</description>
+    <testinput><name>ans1</name><value>x</value></testinput>
+    <testinput><name>ans2</name><value>lab</value></testinput>
+    <testinput><name>ans3</name><value>t</value></testinput>
+    <expected><name>prt1</name><expectedscore></expectedscore><expectedpenalty></expectedpenalty><expectedanswernote>NULL</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt2-1-T</expectedanswernote></expected>
+    <expected><name>prt3</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt3-1-T</expectedanswernote></expected>
+  </qtest>
+</question>
+</quiz>

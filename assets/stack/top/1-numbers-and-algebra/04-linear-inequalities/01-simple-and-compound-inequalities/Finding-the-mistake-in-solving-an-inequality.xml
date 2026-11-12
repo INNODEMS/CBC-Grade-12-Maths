@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<quiz>
+<question type="stack">
+  <name><text>Finding the mistake in solving an inequality</text></name>
+  <questiontext format="html">
+    <text><![CDATA[<p>Wanjiru solved {@qd@}. Her working has one mistake.</p><table border="1" style="border-collapse:collapse;text-align:left;"><tr><th style="padding:4px 10px;">Step</th><th style="padding:4px 10px;">Working</th><th style="padding:4px 10px;">Reason</th></tr><tr><td style="padding:4px 10px;">1</td><td style="padding:4px 10px;">{@l1@}</td><td style="padding:4px 10px;">subtract \({@c@}x\) from both sides</td></tr><tr><td style="padding:4px 10px;">2</td><td style="padding:4px 10px;">{@l2@}</td><td style="padding:4px 10px;">{@r2@}</td></tr><tr><td style="padding:4px 10px;">3</td><td style="padding:4px 10px;">{@l3@}</td><td style="padding:4px 10px;">divide both sides by \({@dv@}\)</td></tr></table><p>So she wrote {@l3@}.</p><p>(a) Which step has the mistake?</p><div>[[input:ans1]] [[validation:ans1]] [[feedback:prt1]]</div><p>(b) Solve the inequality correctly.</p><div>\(x\) [[input:ans2]] [[input:ans3]] [[validation:ans3]] [[feedback:prt2]]</div>]]></text>
+  </questiontext>
+  <generalfeedback format="html">
+    <text><![CDATA[<p>(a) [[if test="is(er=1)"]]Step 1 is wrong: subtracting \({@c@}x\) from \({@a@}x\) leaves \({@lfs([[a-c,"x"]])@}\), not \({@lfs([[a+c,"x"]])@}\).[[elif test="is(er=2)"]]Step 2 is wrong: to {@r2@}, the right side becomes \({@d-b@}\), not \({@d+b@}\).[[else]]Step 3 is wrong: dividing by the negative number \({@a-c@}\) turns the sign round, so the sign must change.[[/if]] A quick test: put a value allowed by her answer into the original inequality and see whether it is true.</p><p>(b) Subtract \({@c@}x\): \({@lfs([[a-c,"x"],[b,""]])@} {@relt(rel)@} {@d@}\). Then {@r2@}: \({@lfs([[a-c,"x"]])@} {@relt(rel)@} {@d-b@}\). Divide by \({@a-c@}\), a negative number, and turn the sign round: {@ansd@}.</p><p>Or collect the \(x\) terms on the right, where the coefficient \({@c-a@}\) is positive, and no reversal is needed. Check with \(x = {@chk@}\): the left side is \({@a*chk+b@}\), the right side is \({@c*chk+d@}\), and the original statement is true.</p>]]></text>
+  </generalfeedback>
+  <defaultgrade>2</defaultgrade>
+  <penalty>0.1</penalty>
+  <hidden>0</hidden>
+  <idnumber></idnumber>
+  <stackversion><text>2026063000</text></stackversion>
+  <questionvariables>
+    <text><![CDATA[/* helpers: relation tokens, display strings, inequality builders */
+relt(r) := if r="lt" then "\\lt" else if r="le" then "\\le" else if r="gt" then "\\gt" else "\\ge";
+reluc(r) := if r="lt" then "<" else if r="le" then "≤" else if r="gt" then ">" else "≥";
+relflip(r) := if r="lt" then "gt" else if r="le" then "ge" else if r="gt" then "lt" else "le";
+relother(r) := if r="lt" then "le" else if r="le" then "lt" else if r="gt" then "ge" else "gt";
+relcomp(r) := if r="lt" then "ge" else if r="le" then "gt" else if r="gt" then "le" else "lt";
+strictp(r) := is(r="lt" or r="gt");
+/* Typed answers must be one inequality; "and"/"or" statements are rejected at validation. */
+vsingle(ex) := if not atom(ex) and member(op(ex), ["and", "or", "nounand", "nounor"]) then "Type a single inequality, without the words and or or." else "";
+mkin(u, r, w) := if r="lt" then u<w else if r="le" then u<=w else if r="gt" then u>w else u>=w;
+holds(u, r, w) := if r="lt" then is(u<w) else if r="le" then is(u<=w) else if r="gt" then is(u>w) else is(u>=w);
+relopts(c) := [["lt",is(c="lt"),"<"],["le",is(c="le"),"≤"],["gt",is(c="gt"),">"],["ge",is(c="ge"),"≥"]];
+termp(v) := block([dd], dd: denom(v), while is(mod(dd,2)=0) do dd: dd/2, while is(mod(dd,5)=0) do dd: dd/5, is(dd=1));
+nd(v) := if integerp(v) then string(v) else if termp(v) then string(float(v))
+  else sconcat(if is(v<0) then "-" else "", "\\frac{", string(abs(num(v))), "}{", string(denom(v)), "}");
+ndm(v) := sconcat("\\(", nd(v), "\\)");
+/* plain-text number for aria-labels (nd gives TeX fractions, which a screen reader reads raw) */
+ndt(v) := if integerp(v) then string(v) else if termp(v) then string(float(v)) else sconcat(string(num(v)), "/", string(denom(v)));
+trm(k, v, fst) := block([m, s], m: abs(k), s: if v="" then nd(m) else if m=1 then v else sconcat(nd(m), v),
+  if fst then (if k<0 then sconcat("-", s) else s) else (if k<0 then sconcat(" - ", s) else sconcat(" + ", s)));
+lfs(L) := block([s, t], s: "", for t in L do (if t[1]#0 then s: sconcat(s, trm(t[1], t[2], is(s="")))), if s="" then "0" else s);
+ins(a, b, c, r) := sconcat(lfs([[a,"x"],[b,"y"]]), " ", relt(r), " ", nd(c));
+ineqd(a, b, c, r) := sconcat("\\(", ins(a, b, c, r), "\\)");
+lind(a, b, c) := sconcat("\\(", lfs([[a,"x"],[b,"y"]]), " = ", nd(c), "\\)");
+ineqm(a, b, c, r) := mkin(a*x+b*y, r, c);
+/* Design: find-the-mistake pattern (reading comprehension). Source: original.
+   q16 [a,b,c,d,rel,er]: a*x+b rel c*x+d; Wanjiru's one mistake is in step er.
+   c > a, so a - c < 0 always; k = (d - b)/(a - c) is a whole number; er 1 three times, er 2 four, er 3 three. */
+q16: [[2,3,7,-27,"le",2],[2,-5,7,-25,"le",2],[5,-4,7,-8,"ge",2],[2,-11,7,-1,"gt",3],[5,4,7,-4,"lt",2],[5,-3,7,-11,"gt",3],[3,-3,6,3,"gt",1],[2,10,5,22,"lt",3],[3,12,6,3,"le",1],[1,11,3,19,"ge",1]];
+ix: 1+rand(10);
+a: q16[ix][1]; b: q16[ix][2]; c: q16[ix][3]; d: q16[ix][4]; rel: q16[ix][5]; er: q16[ix][6];
+k: (d-b)/(a-c);
+trel: relflip(rel);
+m(s) := sconcat("\\(", s, "\\)");
+qd: m(sconcat(lfs([[a,"x"],[b,""]]), " ", relt(rel), " ", lfs([[c,"x"],[d,""]])));
+/* the three lines Wanjiru wrote */
+l1: if is(er=1) then lfs([[a+c,"x"],[b,""]]) else lfs([[a-c,"x"],[b,""]]);
+l1: m(sconcat(l1, " ", relt(rel), " ", nd(d)));
+l2: if is(er=1) then sconcat(lfs([[a+c,"x"]]), " ", relt(rel), " ", nd(d-b))
+    else if is(er=2) then sconcat(lfs([[a-c,"x"]]), " ", relt(rel), " ", nd(d+b))
+    else sconcat(lfs([[a-c,"x"]]), " ", relt(rel), " ", nd(d-b));
+l2: m(l2);
+shrel: if is(er=1) or is(er=3) then rel else trel;
+shnum: if is(er=1) then (d-b)/(a+c) else if is(er=2) then (d+b)/(a-c) else k;
+l3: m(sconcat("x ", relt(shrel), " ", nd(shnum)));
+dv: if is(er=1) then a+c else a-c;
+r2: if is(b>0) then sconcat("subtract ", m(nd(b)), " from both sides") else sconcat("add ", m(nd(-b)), " to both sides");
+cs: ["s1","s2","s3"][er];
+o1: [["none",false,"None: the working is correct"],["s1",is(er=1),"Step 1"],["s2",is(er=2),"Step 2"],["s3",is(er=3),"Step 3"]];
+o2: relopts(trel);
+ansd: m(sconcat("x ", relt(trel), " ", nd(k)));
+/* test values */
+wst: if is(er=1) then "s2" else "s1";
+tro: relother(trel); mk: -k; ko: k+1/7;
+chk: if is(trel="gt" or trel="ge") then k+1 else k-1;]]></text>
+  </questionvariables>
+  <specificfeedback format="html"><text><![CDATA[]]></text></specificfeedback>
+  <questionnote format="moodle_auto_format">
+    <text>ix={@ix@}, er={@er@}, {@ansd@}</text>
+  </questionnote>
+  <questiondescription format="html"><text><![CDATA[<p id="concept">Linear Inequalities: finding the mistake in solving an inequality</p><p id="description">Grade 12 CBE Essential 1.3: Find the wrong step in a worked solution of a linear inequality, then solve it correctly.</p><p id="edition">Essential</p><p id="provenance">This question is original to this project.</p><p id="citation">INNODEMS CBC Grade 12 Mathematics, first draft by Ben Davies, 2026. Aligned to the KICD Senior School Curriculum Design, Essential Mathematics Grade 12 (draft).</p>]]></text></questiondescription>
+  <questionsimplify>1</questionsimplify>
+  <assumepositive>0</assumepositive>
+  <assumereal>0</assumereal>
+  <prtcorrect format="html"><text><![CDATA[[[commonstring key="symbolicprtcorrectfeedback"/]] [[commonstring key="defaultprtcorrectfeedback"/]]]]></text></prtcorrect>
+  <prtpartiallycorrect format="html"><text><![CDATA[[[commonstring key="symbolicprtpartiallycorrectfeedback"/]] [[commonstring key="defaultprtpartiallycorrectfeedback"/]]]]></text></prtpartiallycorrect>
+  <prtincorrect format="html"><text><![CDATA[[[commonstring key="symbolicprtincorrectfeedback"/]] [[commonstring key="defaultprtincorrectfeedback"/]]]]></text></prtincorrect>
+  <decimals>.</decimals>
+  <scientificnotation>*10</scientificnotation>
+  <multiplicationsign>none</multiplicationsign>
+  <sqrtsign>1</sqrtsign>
+  <complexno>i</complexno>
+  <inversetrig>cos-1</inversetrig>
+  <logicsymbol>lang</logicsymbol>
+  <matrixparens>[</matrixparens>
+  <isbroken>0</isbroken>
+  <variantsselectionseed></variantsselectionseed>
+
+  <input><name>ans1</name><type>radio</type><tans>o1</tans><boxsize>15</boxsize><strictsyntax>1</strictsyntax><insertstars>0</insertstars><syntaxhint></syntaxhint><syntaxattribute>0</syntaxattribute><forbidwords></forbidwords><allowwords></allowwords><forbidfloat>1</forbidfloat><requirelowestterms>0</requirelowestterms><checkanswertype>0</checkanswertype><mustverify>0</mustverify><showvalidation>0</showvalidation><options></options></input>
+  <input><name>ans2</name><type>dropdown</type><tans>o2</tans><boxsize>15</boxsize><strictsyntax>1</strictsyntax><insertstars>0</insertstars><syntaxhint></syntaxhint><syntaxattribute>0</syntaxattribute><forbidwords></forbidwords><allowwords></allowwords><forbidfloat>1</forbidfloat><requirelowestterms>0</requirelowestterms><checkanswertype>0</checkanswertype><mustverify>0</mustverify><showvalidation>0</showvalidation><options></options></input>
+  <input><name>ans3</name><type>numerical</type><tans>k</tans><boxsize>5</boxsize><strictsyntax>1</strictsyntax><insertstars>0</insertstars><syntaxhint></syntaxhint><syntaxattribute>0</syntaxattribute><forbidwords></forbidwords><allowwords></allowwords><forbidfloat>0</forbidfloat><requirelowestterms>0</requirelowestterms><checkanswertype>0</checkanswertype><mustverify>0</mustverify><showvalidation>0</showvalidation><options></options></input>
+
+  <prt><name>prt1</name><value>1.0000000</value><autosimplify>1</autosimplify><feedbackstyle>1</feedbackstyle><feedbackvariables><text><![CDATA[chs: if ans1="s1" then 1 else if ans1="s2" then 2 else 3;]]></text></feedbackvariables>
+    <node><name>0</name><description>Step with the mistake</description><answertest>AlgEquiv</answertest><sans>ans1</sans><tans>cs</tans><testoptions></testoptions><quiet>0</quiet><truescoremode>=</truescoremode><truescore>1.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt1-1-T</trueanswernote><truefeedback format="html"><text><![CDATA[]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>1</falsenextnode><falseanswernote>prt1-1-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>1</name><description>Said the working is correct</description><answertest>AlgEquiv</answertest><sans>ans1</sans><tans>"none"</tans><testoptions></testoptions><quiet>0</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt1-2-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>One step is wrong. Test her final answer with a value it allows, in the original inequality.</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>-1</falsenextnode><falseanswernote>prt1-2-F</falseanswernote><falsefeedback format="html"><text><![CDATA[<p>[[if test="is(chs=1)"]]Step 1 is correct: taking \({@c@}x\) from \({@a@}x\) leaves \({@lfs([[a-c,"x"]])@}\), as she wrote.[[elif test="is(chs=2)"]]Step 2 is correct for the line above it: when you {@r2@}, the right side changes from \({@d@}\) to \({@d-b@}\), as she wrote.[[else]]Step 3 is correct for the line above it: she divided both sides by \({@dv@}\), [[if test="is(dv<0)"]]a negative number, and turned the sign round[[else]]a positive number, and kept the sign[[/if]].[[/if]] Check the other steps against the reasons beside them.</p>]]></text></falsefeedback></node>
+  </prt>
+  <prt><name>prt2</name><value>1.0000000</value><autosimplify>1</autosimplify><feedbackstyle>1</feedbackstyle><feedbackvariables><text><![CDATA[xr: ratdisrep(rat(ans3));]]></text></feedbackvariables>
+    <node><name>0</name><description>Boundary</description><answertest>NumAbsolute</answertest><sans>ans3</sans><tans>k</tans><testoptions>0.001</testoptions><quiet>0</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>1</truenextnode><trueanswernote>prt2-1-T</trueanswernote><truefeedback format="html"><text><![CDATA[]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>3</falsenextnode><falseanswernote>prt2-1-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>1</name><description>Sign</description><answertest>AlgEquiv</answertest><sans>ans2</sans><tans>trel</tans><testoptions></testoptions><quiet>0</quiet><truescoremode>=</truescoremode><truescore>1.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt2-2-T</trueanswernote><truefeedback format="html"><text><![CDATA[]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>2</falsenextnode><falseanswernote>prt2-2-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>2</name><description>Strictness</description><answertest>AlgEquiv</answertest><sans>ans2</sans><tans>tro</tans><testoptions></testoptions><quiet>0</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt2-3-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>The value is right, but check the sign: [[if test="strictp(rel)"]]the question's sign is strict, so yours must be too[[else]]the question's sign includes <q>equal to</q>, so yours must too[[/if]].</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>-1</falsenextnode><falseanswernote>prt2-3-F</falseanswernote><falsefeedback format="html"><text><![CDATA[<p>The value is right. Dividing by the negative number \({@a-c@}\) turns the sign round.</p>]]></text></falsefeedback></node>
+    <node><name>3</name><description>Sign of the number</description><answertest>NumAbsolute</answertest><sans>ans3</sans><tans>mk</tans><testoptions>0.001</testoptions><quiet>0</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt2-4-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>Check the sign of your number: the last step divides \({@d-b@}\) by \({@a-c@}\). Is the result positive or negative?</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>-1</falsenextnode><falseanswernote>prt2-4-F</falseanswernote><falsefeedback format="html"><text><![CDATA[<p>At the boundary value the two sides are equal. With \(x = {@nd(xr)@}\) the left side is \({@nd(a*xr+b)@}\) and the right side is \({@nd(c*xr+d)@}\). Collect the \(x\) terms on the side where the coefficient is positive, or divide by \({@a-c@}\) and turn the sign round.</p>]]></text></falsefeedback></node>
+  </prt>
+
+  <deployedseed>4</deployedseed>
+  <deployedseed>5</deployedseed>
+  <deployedseed>15</deployedseed>
+  <deployedseed>8</deployedseed>
+  <deployedseed>24</deployedseed>
+  <deployedseed>1</deployedseed>
+  <deployedseed>3</deployedseed>
+  <deployedseed>10</deployedseed>
+  <deployedseed>2</deployedseed>
+  <deployedseed>17</deployedseed>
+  <qtest><testcase>1</testcase><description>Correct</description>
+    <testinput><name>ans1</name><value>cs</value></testinput>
+    <testinput><name>ans2</name><value>trel</value></testinput>
+    <testinput><name>ans3</name><value>k</value></testinput>
+    <expected><name>prt1</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt1-1-T</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt2-1-T | prt2-2-T</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>2</testcase><description>None; sign not turned</description>
+    <testinput><name>ans1</name><value>"none"</value></testinput>
+    <testinput><name>ans2</name><value>rel</value></testinput>
+    <testinput><name>ans3</name><value>k</value></testinput>
+    <expected><name>prt1</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt1-1-F | prt1-2-T</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt2-1-T | prt2-2-F | prt2-3-F</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>3</testcase><description>Wrong step; strictness</description>
+    <testinput><name>ans1</name><value>wst</value></testinput>
+    <testinput><name>ans2</name><value>tro</value></testinput>
+    <testinput><name>ans3</name><value>k</value></testinput>
+    <expected><name>prt1</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt1-1-F | prt1-2-F</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt2-1-T | prt2-2-F | prt2-3-T</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>4</testcase><description>Sign of the number</description>
+    <testinput><name>ans1</name><value>cs</value></testinput>
+    <testinput><name>ans2</name><value>trel</value></testinput>
+    <testinput><name>ans3</name><value>mk</value></testinput>
+    <expected><name>prt1</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt1-1-T</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt2-1-F | prt2-4-T</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>5</testcase><description>Generic number</description>
+    <testinput><name>ans1</name><value>cs</value></testinput>
+    <testinput><name>ans2</name><value>trel</value></testinput>
+    <testinput><name>ans3</name><value>ko</value></testinput>
+    <expected><name>prt1</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt1-1-T</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt2-1-F | prt2-4-F</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>6</testcase><description>Invalid: letter in (b)</description>
+    <testinput><name>ans1</name><value>cs</value></testinput>
+    <testinput><name>ans2</name><value>trel</value></testinput>
+    <testinput><name>ans3</name><value>x</value></testinput>
+    <expected><name>prt1</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt1-1-T</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore></expectedscore><expectedpenalty></expectedpenalty><expectedanswernote>NULL</expectedanswernote></expected>
+  </qtest>
+</question>
+</quiz>

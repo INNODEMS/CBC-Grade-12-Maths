@@ -36,7 +36,7 @@
                 <li component="lesson-plan">
                     <title>Estimated Duration</title>
                     <p>
-                        40 minutes
+                        2 lessons of 40 minutes
                     </p>
                 </li>
             </dl>
@@ -49,163 +49,711 @@
          Suggested activity: Learners plot the inequalities from the fundraiser problem on graph paper and shade the unwanted region.
          Interactive (JSXGraph): Sliders change the coefficients of two or three linear inequalities; the unwanted regions shade automatically and the feasible region is outlined. -->
 
-    <!-- [LP] Add guidance on activity -->
+    <!-- Section notes (2026-11)
+         SLOs: Core (b) represent, Essential (b) draw. Lessons 2.1 and 2.2 as subsections.
+         Activity: as planning notes (plot the fundraiser inequalities and shade the unwanted region); lesson 2.2 finds its corners
+         JSXGraph: fig-lp-feasible-region (planning notes: sliders on three inequalities, unwanted sides shaded, R outlined; assets/jsxgraph/lp-feasible-region.js)
+         STACK: assets/stack/top/1-numbers-and-algebra/05-linear-programming/02-graphing-linear-inequalities/ -->
 
-    <!-- <axiom component="lesson-plan">
+    <!-- ============================================================ Lesson 2.1 -->
+    <subsection xml:id="subsec-graphing-constraints">
+        <title>Graphing Constraints: Shading the Unwanted Region</title>
+
+        <p component="lesson-plan">Upon completion of this lesson, learners will be able to:
+            <ol>
+                <li><p><alert>Know:</alert> every constraint has a boundary line; the line is solid for <m>\le</m> and <m>\ge</m> and dashed for <m>\lt</m> and <m>\gt</m>; we shade the side that is not wanted, so the region R that satisfies every constraint is left clear.</p></li>
+                <li><p><alert>Do:</alert> draw a boundary through two points, choose its style, use a test point to decide which side to shade, and label R with a key.</p></li>
+                <li><p><alert>Apply:</alert> graph the constraints of the class fundraiser and decide whether plans lie in R.</p></li>
+            </ol>
+        </p>
+
+        <axiom component="lesson-plan">
             <title>Problem-Solving and Discovery</title>
             <dl>
-                <li>
-                    <title>Suggested Time</title>
-                    <p>
-                        XX minutes
-                    </p>
-                </li>
-                <li>
-                    <title>Objective</title>
-                    <p>
-                        XXX
-                    </p>
-                </li>
-                <li>
-                    <title>Teacher's Role</title>
-                    <p>
-                        XXX
-                    </p>
-                </li>
+                <li><title>Suggested Time</title><p>14 minutes</p></li>
+                <li><title>Objective</title><p>Learners graph the fundraiser model and see the region of possible plans left clear.</p></li>
+                <li><title>Teacher's Role</title><p>Give out graph paper and agree a scale of <m>1\,\text{cm}</m> to <m>10</m> items on both axes. After part (b), ask: <q>Which side did <m>(0, 0)</m> fall on, and did you shade it?</q></p></li>
             </dl>
-        </axiom> -->
+        </axiom>
 
-    <!-- Add Activity -->
-
-    <!-- <activity>
-        <statement>
-        </statement>
-    </activity> -->
-
-    <!-- [LP] Add guidance on structured lesson plan-->
-
-    <!-- <axiom component="lesson-plan">
-        <title>Structured Instruction</title>
-        <p>
-            <dl>
-            <li>
-                <title>Suggested Time</title>
+        <activity xml:id="act-graphing-the-fundraiser">
+            <title>Graphing the Fundraiser</title>
+            <statement>
+                <p>The Grade 12 class in Machakos makes <m>x</m> mandazi and <m>y</m> samosas for its fundraiser (<xref ref="act-planning-the-fundraiser"/>). The constraints are
+                    <md>x + y \le 100, \quad 15x + 35y \le 2520, \quad y \ge 30, \quad x \ge 0.</md>
+                Draw axes with <m>x</m> from <m>0</m> to <m>170</m> and <m>y</m> from <m>0</m> to <m>110</m>.</p>
                 <p>
-                    XX minutes
+                    <ol marker="(a)">
+                        <li>
+                            <p>Draw the line <m>x + y = 100</m> through <m>(100, 0)</m> and <m>(0, 100)</m>. Should it be solid or dashed?</p>
+                            <solution component="lesson-plan"><p>Solid: <q>at most</q> allows exactly <m>100</m> items, so points on the line are allowed.</p></solution>
+                        </li>
+                        <li>
+                            <p>Test the point <m>(0, 0)</m> in <m>x + y \le 100</m>. Shade the side of the line where the inequality is false.</p>
+                            <solution component="lesson-plan"><p><m>0 + 0 = 0 \le 100</m> is true, so <m>(0, 0)</m> is on the wanted side. Shade the other side, above and to the right of the line.</p></solution>
+                        </li>
+                        <li>
+                            <p>Find where <m>15x + 35y = 2520</m> crosses the axes. Draw it and shade its unwanted side in the same way.</p>
+                            <solution component="lesson-plan"><p>With <m>y = 0</m>, <m>x = 168</m>; with <m>x = 0</m>, <m>y = 72</m>. Draw the solid line through <m>(168, 0)</m> and <m>(0, 72)</m>. <m>(0, 0)</m> gives <m>0 \le 2520</m>, true, so shade the side away from the origin.</p></solution>
+                        </li>
+                        <li>
+                            <p>Draw <m>y = 30</m>. Which side do you shade?</p>
+                            <solution component="lesson-plan"><p>A solid horizontal line. The wanted side is <m>y \ge 30</m>, above the line, so shade below it.</p></solution>
+                        </li>
+                        <li>
+                            <p>Shade the side of the <m>y</m>-axis where <m>x \lt 0</m>. Label the region left clear R and add a key.</p>
+                            <solution component="lesson-plan">
+                                <p>R is the clear four-sided region shown in <xref ref="fig-fundraiser-region"/>. Its corners are found in <xref ref="act-corners-of-the-fundraiser-region"/>.</p>
+                            </solution>
+                        </li>
+                        <li>
+                            <p>Is the plan <m>(50, 40)</m> in R? Is <m>(50, 55)</m>?</p>
+                            <solution component="lesson-plan"><p><m>(50, 40)</m>: <m>90 \le 100</m>, <m>750 + 1400 = 2150 \le 2520</m>, <m>40 \ge 30</m>: yes, it is in R. <m>(50, 55)</m>: <m>105 \gt 100</m>, so it lies in the shaded part: no.</p></solution>
+                        </li>
+                    </ol>
                 </p>
-            </li>
-            <li>
-                <title>Objective</title>
-                <p>
-                    To formalize the concepts and properties learners discovered in the anchor task.
-                </p>
-            </li>
-            </dl>
-        </p>
-        <paragraphs>
-            <title>Key Takeaways &amp; Teacher Connection</title>
-            <ol>
-                <li>
+            </statement>
+        </activity>
+
+        <axiom component="lesson-plan">
+            <title>Structured Instruction</title>
+            <p>
+                <dl>
+                    <li><title>Suggested Time</title><p>8 minutes</p></li>
+                    <li><title>Objective</title><p>To state the steps for graphing a constraint and the shading convention used in this chapter.</p></li>
+                </dl>
+            </p>
+            <paragraphs>
+                <title>Key Takeaways &amp; Teacher Connection</title>
+                <ol>
+                    <li><p><alert>Connecting to Learner Work:</alert> after shading the unwanted side of every line, the clear part of the fundraiser graph is the set of possible plans.</p></li>
+                    <li><p>Draw each boundary through two points, usually where it crosses the axes.</p></li>
+                    <li><p>Solid for <m>\le</m> and <m>\ge</m>; dashed for <m>\lt</m> and <m>\gt</m>.</p></li>
+                    <li><p>Test a point that is not on the line, and shade the side where the inequality is false.</p></li>
+                    <li><p>Label R and give a key every time.</p></li>
+                </ol>
+            </paragraphs>
+        </axiom>
+
+        <insight xml:id="insight-graphing-a-constraint">
+            <title>Graphing a Constraint</title>
+            <p>To graph a constraint such as <m>ax + by \le c</m>:
+                <ol marker="1.">
+                    <li><p>Draw the <term>boundary line</term> <m>ax + by = c</m> through two of its points, usually where it crosses the axes (put <m>y = 0</m>, then <m>x = 0</m>).</p></li>
+                    <li><p>Draw the line solid for <m>\le</m> or <m>\ge</m>, because points on it satisfy the constraint, and dashed for <m>\lt</m> or <m>\gt</m>, because they do not.</p></li>
+                    <li><p>Choose a test point that is not on the line: <m>(0, 0)</m>, or <m>(1, 0)</m> or <m>(0, 1)</m> if the line passes through the origin. Substitute it into the inequality.</p></li>
+                    <li><p>Shade the side of the line where the inequality is false: the side that is not wanted.</p></li>
+                </ol>
+            </p>
+            <p>Do this for every constraint. Shade what you cannot have, and what is left is what you can: the clear region satisfies every constraint at once. It is the required region of a set of inequalities, called the <term>feasible region</term> in linear programming, and we label it R. Every graph has a key: <q>Shaded, not wanted; unshaded (R), the required region.</q></p>
+        </insight>
+
+        <p xml:id="p-shading-change-core" component="core">In Grade 11 you shaded the region you wanted. With three or more inequalities the shading piles up and the wanted region is hard to see, so from now on we shade what we do not want and leave R clear, as Kenyan examination papers usually do. Always say in a key which you have done.</p>
+        <p xml:id="p-shading-recap-essential" component="essential">As in <xref ref="ch-linear-inequalities"/>, we shade the unwanted side of each line and leave R clear.</p>
+
+        <figure xml:id="fig-lp-feasible-region">
+            <caption>Drag the sliders to change each constraint and use the buttons to change its sign. The unwanted side of each line is shaded; the clear region R satisfies every constraint.</caption>
+            <interactive xml:id="interactive-lp-feasible-region" platform="jsxgraph" width="100%" aspect="16:9" source="jsxgraph/lp-feasible-region.js">
+                <slate xml:id="jsxgraph-lp-feasible-region" surface="jsxboard" aspect="16:9"/>
+                <instructions>
                     <p>
-                        <alert>Connecting to Learner Work:</alert> XXXX
+                        <ul>
+                            <li><p>Each constraint is <m>ax + by \le c</m> or <m>ax + by \ge c</m>. Move its <alert>a</alert>, <alert>b</alert> and <alert>c</alert> sliders and watch its boundary line move. <m>x \ge 0</m> and <m>y \ge 0</m> always hold.</p></li>
+                            <li><p>Press <alert>sign</alert> to switch between at most and at least, and see the shading jump to the other side. Press <alert>line</alert> to switch between a solid line (<m>\le</m>, <m>\ge</m>) and a dashed line (<m>\lt</m>, <m>\gt</m>).</p></li>
+                            <li><p>R is outlined and its vertices are listed below the graph. Where two shaded parts overlap, the shading is darker.</p></li>
+                            <li><p>Make R disappear by changing only the <alert>c</alert> slider of constraint 3. What is the smallest value that does it? What is left of R one step before?</p></li>
+                        </ul>
                     </p>
-                </li>
-            </ol>
-        </paragraphs>
-    </axiom> -->
+                </instructions>
+            </interactive>
+        </figure>
 
-    <!-- Add insight / key takeaway directly related to activity / learner experience -->
+        <xi:include href="../lesson-plan-templates/example-intro.ptx" />
 
-    <!-- <insight>
-    </insight> -->
-
-    <!-- Add further instruction (not in a block) to develop ideas as needed -->
-
-    <xi:include href="../lesson-plan-templates/example-intro.ptx" />
-
-    <!-- Add at least 3 examples -->
-
-    <!-- <example>
-        <statement>
-        </statement>
-        <solution>
-        </solution>
-    </example>
-
-    <example>
-        <statement>
-        </statement>
-        <solution>
-        </solution>
-    </example>
-
-    <example>
-        <statement>
-        </statement>
-        <solution>
-        </solution>
-    </example> -->
-
-    <xi:include href="../lesson-plan-templates/assessment-intro.ptx" />
-
-    <!-- If STACK questions are included, uncomment this: -->
-
-    <!-- <xi:include href="../lesson-plan-templates/checkpoint.ptx" /> -->
-
-    <!-- Add STACK exercises if made -->
-
-    <!-- Add static exercises -->
-
-    <!-- <exercises>
-        <exercise>
-            <statement>   
-
-            </statement>   
+        <example xml:id="example-graphing-one-constraint">
+            <title>Graphing One Constraint</title>
+            <statement>
+                <p>Graph <m>5x + 6y \le 30</m> and shade the unwanted side.</p>
+            </statement>
             <solution>
+                <p>The boundary is <m>5x + 6y = 30</m>. With <m>y = 0</m>, <m>x = 6</m>; with <m>x = 0</m>, <m>y = 5</m>. Draw the line through <m>(6, 0)</m> and <m>(0, 5)</m>, solid, since the sign is <m>\le</m>.</p>
+                <p>Test <m>(0, 0)</m>: <m>5(0) + 6(0) = 0 \le 30</m> is true, so the origin is on the wanted side. Shade the side away from the origin.</p>
+                <figure xml:id="fig-one-constraint">
+                    <caption>The constraint <m>5x + 6y \le 30</m>: the side not containing the origin is shaded.</caption>
+                    <image width="60%">
+                        <shortdescription>The solid line 5x + 6y = 30 through (6, 0) and (0, 5); the side not containing the origin is shaded.</shortdescription>
+                        <latex-image>
+\begin{tikzpicture}
+\begin{axis}[axis lines=middle, axis line style={->}, grid=major, grid style={gray!25}, xlabel style={anchor=north east, at={(axis description cs:1,0)}, yshift=-14pt}, ylabel style={anchor=north east, at={(axis description cs:0,1)}, xshift=-4pt, rotate=90}, tick label style={font=\scriptsize}, clip=false, width=8cm, height=6.5cm, xmin=-1, xmax=9, ymin=-1, ymax=7, xtick={1,...,8}, ytick={1,...,6}, xlabel={$x$}, ylabel={$y$}]
+\fill[gray!30, fill opacity=0.75] (axis cs:7.2,-1) -- (axis cs:9,-1) -- (axis cs:9,7) -- (axis cs:-1,7) -- (axis cs:-1,5.8333) -- cycle;
+\draw[thick] (axis cs:-1,5.8333) -- (axis cs:7.2,-1);
+\node[anchor=south west, font=\small, inner sep=2pt] at (axis cs:6,0) {$(6, 0)$};
+\node[anchor=south west, font=\small, inner sep=2pt] at (axis cs:0,5) {$(0, 5)$};
+\fill (axis cs:6,0) circle[radius=2pt];
+\fill (axis cs:0,5) circle[radius=2pt];
+\node[anchor=north east, font=\small, inner sep=2pt] at (axis cs:0,0) {$O$};
+\node[anchor=south west, font=\scriptsize, inner sep=2pt] at (axis cs:4.2,3.4) {$5x + 6y = 30$};
+\node[font=\large] at (axis cs:2,1.5) {$R$};
+\end{axis}
+\coordinate (k) at ([yshift=-0.2cm]current axis.outer south west);
+\fill[gray!30, draw=black, thin] (k) rectangle ++(0.45,-0.3);
+\node[anchor=west, font=\small] at ([xshift=0.55cm, yshift=-0.15cm]k) {Shaded, not wanted; unshaded ($R$), the required region.};
+\end{tikzpicture}
+                        </latex-image>
+                    </image>
+                </figure>
+            </solution>
+        </example>
 
-            </solution>             
-        </exercise>        
-    </exercises> -->
+        <example xml:id="example-boundary-through-origin">
+            <title>A Boundary Through the Origin</title>
+            <statement>
+                <p>The hotel of <xref ref="example-hotel-chicken-and-beef"/> decides it wants more than three times as much chicken as beef: <m>y \gt 3x</m>. Graph this constraint.</p>
+            </statement>
+            <solution>
+                <p>The boundary <m>y = 3x</m> passes through <m>(0, 0)</m> and <m>(2, 6)</m>. Draw it dashed, since the sign is <m>\gt</m>: an order with exactly three times as much chicken is not allowed.</p>
+                <p>The origin is on the line, so it cannot be the test point. Test <m>(1, 0)</m>: is <m>0 \gt 3 \times 1</m>? No, it is false. So <m>(1, 0)</m> is on the unwanted side: shade the side of the line containing <m>(1, 0)</m>, below and to the right of it.</p>
+                <figure xml:id="fig-through-the-origin">
+                    <caption>The constraint <m>y \gt 3x</m>: a dashed boundary through the origin, with the side containing <m>(1, 0)</m> shaded.</caption>
+                    <image width="45%">
+                        <shortdescription>The dashed line y = 3x through (0, 0) and (2, 6). The side containing the test point (1, 0), below and to the right of the line, is shaded.</shortdescription>
+                        <latex-image>
+\begin{tikzpicture}
+\begin{axis}[axis lines=middle, axis line style={->}, grid=major, grid style={gray!25}, xlabel style={anchor=north east, at={(axis description cs:1,0)}, yshift=-14pt}, ylabel style={anchor=north east, at={(axis description cs:0,1)}, xshift=-4pt, rotate=90}, tick label style={font=\scriptsize}, clip=false, width=6.5cm, height=7.5cm, xmin=-1, xmax=4, ymin=-2, ymax=10, xtick={1,2,3}, ytick={2,4,6,8}, xlabel={$x$}, ylabel={$y$}]
+\fill[gray!30, fill opacity=0.75] (axis cs:-0.6667,-2) -- (axis cs:4,-2) -- (axis cs:4,10) -- (axis cs:3.3333,10) -- cycle;
+\draw[thick, dashed] (axis cs:-0.6667,-2) -- (axis cs:3.3333,10);
+\fill (axis cs:0,0) circle[radius=2pt];
+\fill (axis cs:2,6) circle[radius=2pt];
+\node[anchor=north west, font=\small, inner sep=2pt] at (axis cs:2,6) {$(2, 6)$};
+\draw (axis cs:1,0) circle[radius=3pt];
+\node[anchor=north west, font=\scriptsize, inner sep=2pt] at (axis cs:1,0) {$(1, 0)$};
+\node[anchor=south east, font=\scriptsize, inner sep=2pt] at (axis cs:2.7,8.1) {$y = 3x$};
+\node[font=\large] at (axis cs:0.6,6) {$R$};
+\node[anchor=north east, font=\small, inner sep=2pt] at (axis cs:0,0) {$O$};
+\end{axis}
+\coordinate (k) at ([yshift=-0.2cm]current axis.outer south west);
+\fill[gray!30, draw=black, thin] (k) rectangle ++(0.45,-0.3);
+\node[anchor=west, font=\small] at ([xshift=0.55cm, yshift=-0.15cm]k) {Shaded, not wanted; unshaded ($R$), the required region.};
+\end{tikzpicture}
+                        </latex-image>
+                    </image>
+                </figure>
+            </solution>
+        </example>
 
-    <!-- [LP] Add information on how to differentiate  -->
+        <example xml:id="example-seedlings-region">
+            <title>The Seedlings Region</title>
+            <statement>
+                <p>Graph the constraints of <xref ref="example-seedlings"/>: <m>50x + 120y \le 6000</m>, <m>x \ge 20</m>, <m>x + y \le 80</m>, <m>y \ge 0</m>, where <m>x</m> is the number of grevillea and <m>y</m> the number of avocado seedlings. Label R.</p>
+            </statement>
+            <solution>
+                <p><m>50x + 120y = 6000</m> passes through <m>(120, 0)</m> and <m>(0, 50)</m>; <m>(0, 0)</m> satisfies <m>0 \le 6000</m>, so shade away from the origin. <m>x + y = 80</m> passes through <m>(80, 0)</m> and <m>(0, 80)</m>; shade away from the origin. <m>x = 20</m> is a vertical line; the wanted side is to its right, so shade the left. <m>y = 0</m> is the <m>x</m>-axis; shade below it. All four lines are solid.</p>
+                <p>R is the clear region. Its corners are <m>(20, 0)</m>, <m>(80, 0)</m>, about <m>(51.43, 28.57)</m> and about <m>(20, 41.67)</m>; <xref ref="subsec-vertices-and-whole-number-points"/> shows how to find them exactly.</p>
+                <figure xml:id="fig-seedlings-region">
+                    <caption>The seedlings region R, bounded by four solid lines.</caption>
+                    <image width="90%">
+                        <shortdescription>Four solid boundaries: 50x + 120y = 6000, x = 20, x + y = 80 and the x-axis, each shaded on its unwanted side. R has corners (20, 0), (80, 0), about (51.4, 28.6) and (20, 41.7).</shortdescription>
+                        <description><p>Horizontal axis x, grevillea, from 0 to 130. Vertical axis y, avocado, from 0 to 90. Boundary 50x + 120y = 6000 through (120, 0) and (0, 50), shaded above. Boundary x + y = 80 through (80, 0) and (0, 80), shaded above. Boundary x = 20, shaded to its left. The region below the x-axis is shaded. R is the clear region with vertices (20, 0), (80, 0), (360/7, 200/7), about (51.43, 28.57), and (20, 125/3), about (20, 41.67). Key: shaded, not wanted; unshaded (R), the required region.</p></description>
+                        <latex-image>
+\begin{tikzpicture}
+\begin{axis}[axis lines=middle, axis line style={->}, grid=major, grid style={gray!25}, xlabel style={anchor=north east, at={(axis description cs:1,0)}, yshift=-14pt}, ylabel style={anchor=north east, at={(axis description cs:0,1)}, xshift=-4pt, rotate=90}, tick label style={font=\scriptsize}, clip=false, width=12cm, height=8cm, xmin=-10, xmax=130, ymin=-10, ymax=90, xtick={20,40,...,120}, ytick={20,40,...,80}, xlabel={$x$ (grevillea)}, ylabel={$y$ (avocado)}]
+\fill[gray!30, fill opacity=0.75] (axis cs:130,-4.1667) -- (axis cs:130,90) -- (axis cs:-10,90) -- (axis cs:-10,54.1667) -- cycle;
+\fill[gray!30, fill opacity=0.75] (axis cs:-10,-10) -- (axis cs:20,-10) -- (axis cs:20,90) -- (axis cs:-10,90) -- cycle;
+\fill[gray!30, fill opacity=0.75] (axis cs:90,-10) -- (axis cs:130,-10) -- (axis cs:130,90) -- (axis cs:-10,90) -- (axis cs:-10,90) -- cycle;
+\fill[gray!30, fill opacity=0.75] (axis cs:-10,-10) -- (axis cs:130,-10) -- (axis cs:130,0) -- (axis cs:-10,0) -- cycle;
+\draw[thick] (axis cs:-10,54.1667) -- (axis cs:130,-4.1667);
+\draw[thick] (axis cs:20,-10) -- (axis cs:20,90);
+\draw[thick] (axis cs:-10,90) -- (axis cs:90,-10);
+\draw[thick] (axis cs:-10,0) -- (axis cs:130,0);
+\fill (axis cs:20,0) circle[radius=2pt];
+\fill (axis cs:80,0) circle[radius=2pt];
+\fill (axis cs:51.4286,28.5714) circle[radius=2pt];
+\fill (axis cs:20,41.6667) circle[radius=2pt];
+\node[anchor=north west, font=\small, inner sep=2pt] at (axis cs:20,0) {$(20, 0)$};
+\node[anchor=north west, font=\small, inner sep=2pt] at (axis cs:80,0) {$(80, 0)$};
+\node[anchor=south west, font=\small, inner sep=2pt] at (axis cs:51.4286,28.5714) {$(51.43, 28.57)$};
+\node[anchor=south west, font=\small, inner sep=2pt] at (axis cs:20,41.6667) {$(20, 41.67)$};
+\node[font=\large] at (axis cs:42,15) {$R$};
+\node[anchor=west, font=\scriptsize, inner sep=2pt] at (axis cs:22,80) {$x = 20$};
+\node[anchor=south west, font=\scriptsize, inner sep=2pt] at (axis cs:4,76) {$x + y = 80$};
+\node[anchor=south west, font=\scriptsize, inner sep=2pt] at (axis cs:95,10) {$50x + 120y = 6000$};
+\end{axis}
+\coordinate (k) at ([yshift=-0.2cm]current axis.outer south west);
+\fill[gray!30, draw=black, thin] (k) rectangle ++(0.45,-0.3);
+\node[anchor=west, font=\small] at ([xshift=0.55cm, yshift=-0.15cm]k) {Shaded, not wanted; unshaded ($R$), the required region.};
+\end{tikzpicture}
+                        </latex-image>
+                    </image>
+                </figure>
+            </solution>
+        </example>
 
-    <!-- <axiom component="lesson-plan">
-        <title>Differentiation</title>
+        <note xml:id="note-lp-graphing-software">
+            <title>Graphing Software</title>
+            <p>Free graphing software such as GeoGebra draws inequalities: type <c>5x+6y&lt;=30</c> and it shades a side of the line. Most programs shade the side that is wanted, the opposite of this chapter, so check which side it has shaded before you copy the picture, and say which in your key.</p>
+        </note>
 
-        <table>
+        <xi:include href="../lesson-plan-templates/assessment-intro.ptx" />
+        <xi:include href="../lesson-plan-templates/checkpoint.ptx" />
+
+        <p>Type <m>\le</m> as <c>&lt;=</c> and <m>\ge</m> as <c>>=</c>, for example <c>4x+9y&lt;=72</c>. Give intercepts as exact values, for example <c>4.5</c>.</p>
+
+                <exercise xml:id="ex-drawing-a-constraint">
+            <!--<title></title>-->
+            <stack label="stk-drawing-a-constraint" source="stack/top/1-numbers-and-algebra/05-linear-programming/02-graphing-linear-inequalities/Drawing-a-constraint.xml"/>
+        </exercise>
+
+        <exercise xml:id="ex-inequalities-from-a-graph">
+            <!--<title></title>-->
+            <stack label="stk-inequalities-from-a-graph" source="stack/top/1-numbers-and-algebra/05-linear-programming/02-graphing-linear-inequalities/Inequalities-from-a-graph.xml"/>
+        </exercise>
+
+        <exercises xml:id="exercises-graphing-constraints">
+            <exercise xml:id="ex-graph-four-nine">
+                <statement><p>Graph <m>4x + 9y \le 36</m>, shading the unwanted side.</p></statement>
+                <answer><p>A solid line through <m>(9, 0)</m> and <m>(0, 4)</m>, shaded on the side away from the origin</p></answer>
+                <solution>
+                    <p>With <m>y = 0</m>, <m>x = 9</m>; with <m>x = 0</m>, <m>y = 4</m>. The line is solid (<m>\le</m>). <m>(0, 0)</m> gives <m>0 \le 36</m>, true, so shade the side away from the origin.</p>
+                    <figure xml:id="fig-graph-four-nine">
+                        <caption>The constraint <m>4x + 9y \le 36</m>.</caption>
+                        <image width="55%">
+                            <shortdescription>The solid line 4x + 9y = 36 through (9, 0) and (0, 4); the side away from the origin is shaded and the side containing the origin is labelled R.</shortdescription>
+                            <latex-image>
+\begin{tikzpicture}
+\begin{axis}[axis lines=middle, axis line style={->}, grid=major, grid style={gray!25}, xlabel style={anchor=north east, at={(axis description cs:1,0)}, yshift=-14pt}, ylabel style={anchor=north east, at={(axis description cs:0,1)}, xshift=-4pt, rotate=90}, tick label style={font=\scriptsize}, clip=false, width=8cm, height=5.5cm, xmin=-1, xmax=11, ymin=-1, ymax=6, xtick={1,...,10}, ytick={1,...,5}, xlabel={$x$}, ylabel={$y$}]
+\fill[gray!30, fill opacity=0.75] (axis cs:11,-0.8889) -- (axis cs:11,6) -- (axis cs:-1,6) -- (axis cs:-1,4.4444) -- cycle;
+\draw[thick] (axis cs:-1,4.4444) -- (axis cs:11,-0.8889);
+\fill (axis cs:9,0) circle[radius=2pt];
+\fill (axis cs:0,4) circle[radius=2pt];
+\node[anchor=south west, font=\small, inner sep=2pt] at (axis cs:9,0) {$(9, 0)$};
+\node[anchor=south west, font=\small, inner sep=2pt] at (axis cs:0,4) {$(0, 4)$};
+\node[anchor=north east, font=\small, inner sep=2pt] at (axis cs:0,0) {$O$};
+\node[font=\large] at (axis cs:2.5,1.3) {$R$};
+\node[anchor=south west, font=\scriptsize, inner sep=2pt] at (axis cs:5.4,2.2) {$4x + 9y = 36$};
+\end{axis}
+\coordinate (k) at ([yshift=-0.2cm]current axis.outer south west);
+\fill[gray!30, draw=black, thin] (k) rectangle ++(0.45,-0.3);
+\node[anchor=west, font=\small] at ([xshift=0.55cm, yshift=-0.15cm]k) {Shaded, not wanted; unshaded ($R$), the required region.};
+\end{tikzpicture}
+                            </latex-image>
+                        </image>
+                    </figure>
+                </solution>
+            </exercise>
+            <exercise xml:id="ex-graph-strict-two-nine">
+                <statement><p>Graph <m>2x + 9y \gt 18</m>, shading the unwanted side.</p></statement>
+                <answer><p>A dashed line through <m>(9, 0)</m> and <m>(0, 2)</m>, shaded on the side containing the origin</p></answer>
+                <solution>
+                    <p>With <m>y = 0</m>, <m>x = 9</m>; with <m>x = 0</m>, <m>y = 2</m>. The line is dashed (<m>\gt</m>). <m>(0, 0)</m> gives <m>0 \gt 18</m>, false, so the origin is on the unwanted side: shade the side containing the origin.</p>
+                    <figure xml:id="fig-graph-strict-two-nine">
+                        <caption>The constraint <m>2x + 9y \gt 18</m>.</caption>
+                        <image width="55%">
+                            <shortdescription>The dashed line 2x + 9y = 18 through (9, 0) and (0, 2); the side containing the origin is shaded and the other side is labelled R.</shortdescription>
+                            <latex-image>
+\begin{tikzpicture}
+\begin{axis}[axis lines=middle, axis line style={->}, grid=major, grid style={gray!25}, xlabel style={anchor=north east, at={(axis description cs:1,0)}, yshift=-14pt}, ylabel style={anchor=north east, at={(axis description cs:0,1)}, xshift=-4pt, rotate=90}, tick label style={font=\scriptsize}, clip=false, width=8cm, height=4.5cm, xmin=-1, xmax=11, ymin=-1, ymax=4, xtick={1,...,10}, ytick={1,2,3}, xlabel={$x$}, ylabel={$y$}]
+\fill[gray!30, fill opacity=0.75] (axis cs:-1,-1) -- (axis cs:11,-1) -- (axis cs:11,-0.4444) -- (axis cs:-1,2.2222) -- cycle;
+\draw[thick, dashed] (axis cs:-1,2.2222) -- (axis cs:11,-0.4444);
+\fill (axis cs:9,0) circle[radius=2pt];
+\fill (axis cs:0,2) circle[radius=2pt];
+\node[anchor=south west, font=\small, inner sep=2pt] at (axis cs:9,0) {$(9, 0)$};
+\node[anchor=south west, font=\small, inner sep=2pt] at (axis cs:0,2) {$(0, 2)$};
+\node[anchor=north east, font=\small, inner sep=2pt] at (axis cs:0,0) {$O$};
+\node[font=\large] at (axis cs:6,2.6) {$R$};
+\node[anchor=south west, font=\scriptsize, inner sep=2pt] at (axis cs:3.2,1.3) {$2x + 9y = 18$};
+\end{axis}
+\coordinate (k) at ([yshift=-0.2cm]current axis.outer south west);
+\fill[gray!30, draw=black, thin] (k) rectangle ++(0.45,-0.3);
+\node[anchor=west, font=\small] at ([xshift=0.55cm, yshift=-0.15cm]k) {Shaded, not wanted; unshaded ($R$), the required region.};
+\end{tikzpicture}
+                            </latex-image>
+                        </image>
+                    </figure>
+                </solution>
+            </exercise>
+            <exercise xml:id="ex-graph-region-r4">
+                <statement><p>Draw the region R given by <m>8x + 7y \le 112</m>, <m>2x + 7y \le 70</m>, <m>x \ge 0</m> and <m>y \ge 0</m>. Label R.</p></statement>
+                <answer><p>Boundaries through <m>(14, 0)</m> and <m>(0, 16)</m>, and through <m>(35, 0)</m> and <m>(0, 10)</m>, both solid; R is the four-sided region next to the origin</p></answer>
+                <solution>
+                    <p><m>8x + 7y = 112</m> passes through <m>(14, 0)</m> and <m>(0, 16)</m>; <m>2x + 7y = 70</m> passes through <m>(35, 0)</m> and <m>(0, 10)</m>. Both are solid, and <m>(0, 0)</m> satisfies both, so shade the side of each away from the origin. Shade left of the <m>y</m>-axis and below the <m>x</m>-axis.</p>
+                    <figure xml:id="fig-graph-region-r4">
+                        <caption>The region R of <xref ref="ex-graph-region-r4"/>.</caption>
+                        <image width="70%">
+                            <shortdescription>Solid lines 8x + 7y = 112 and 2x + 7y = 70, each shaded on the side away from the origin, and the axes. R has corners (0, 0), (14, 0), (7, 8) and (0, 10).</shortdescription>
+                            <latex-image>
+\begin{tikzpicture}
+\begin{axis}[axis lines=middle, axis line style={->}, grid=major, grid style={gray!25}, xlabel style={anchor=north east, at={(axis description cs:1,0)}, yshift=-14pt}, ylabel style={anchor=north east, at={(axis description cs:0,1)}, xshift=-4pt, rotate=90}, tick label style={font=\scriptsize}, clip=false, width=10cm, height=6cm, xmin=-2, xmax=38, ymin=-2, ymax=18, xtick={5,10,...,35}, ytick={5,10,15}, xlabel={$x$}, ylabel={$y$}]
+\fill[gray!30, fill opacity=0.75] (axis cs:15.75,-2) -- (axis cs:38,-2) -- (axis cs:38,18) -- (axis cs:-1.75,18) -- cycle;
+\fill[gray!30, fill opacity=0.75] (axis cs:38,-0.8571) -- (axis cs:38,18) -- (axis cs:-2,18) -- (axis cs:-2,10.5714) -- cycle;
+\fill[gray!30, fill opacity=0.75] (axis cs:-2,-2) -- (axis cs:0,-2) -- (axis cs:0,18) -- (axis cs:-2,18) -- cycle;
+\fill[gray!30, fill opacity=0.75] (axis cs:-2,-2) -- (axis cs:38,-2) -- (axis cs:38,0) -- (axis cs:-2,0) -- cycle;
+\draw[thick] (axis cs:15.75,-2) -- (axis cs:-1.75,18);
+\draw[thick] (axis cs:-2,10.5714) -- (axis cs:38,-0.8571);
+\draw[thick] (axis cs:0,-2) -- (axis cs:0,18);
+\draw[thick] (axis cs:-2,0) -- (axis cs:38,0);
+\fill (axis cs:0,0) circle[radius=2pt];
+\fill (axis cs:14,0) circle[radius=2pt];
+\fill (axis cs:7,8) circle[radius=2pt];
+\fill (axis cs:0,10) circle[radius=2pt];
+\node[anchor=north west, font=\small, inner sep=2pt] at (axis cs:14,0) {$(14, 0)$};
+\node[anchor=south west, font=\small, inner sep=2pt] at (axis cs:7,8) {$(7, 8)$};
+\node[anchor=south west, font=\small, inner sep=2pt] at (axis cs:0,10) {$(0, 10)$};
+\node[anchor=north east, font=\small, inner sep=2pt] at (axis cs:0,0) {$O$};
+\node[font=\large] at (axis cs:4,3.5) {$R$};
+\node[anchor=west, font=\scriptsize, inner sep=2pt] at (axis cs:1.6,15) {$8x + 7y = 112$};
+\node[anchor=south west, font=\scriptsize, inner sep=2pt] at (axis cs:26,2.8) {$2x + 7y = 70$};
+\end{axis}
+\coordinate (k) at ([yshift=-0.2cm]current axis.outer south west);
+\fill[gray!30, draw=black, thin] (k) rectangle ++(0.45,-0.3);
+\node[anchor=west, font=\small] at ([xshift=0.55cm, yshift=-0.15cm]k) {Shaded, not wanted; unshaded ($R$), the required region.};
+\end{tikzpicture}
+                            </latex-image>
+                        </image>
+                    </figure>
+                </solution>
+            </exercise>
+            <exercise xml:id="ex-fundraiser-points">
+                <statement><p>On your graph from <xref ref="act-graphing-the-fundraiser"/>, is the plan of <m>60</m> mandazi and <m>35</m> samosas in R? Is the plan of <m>80</m> mandazi and <m>32</m> samosas? Check each answer by substituting.</p></statement>
+                <answer><p><m>(60, 35)</m>: yes. <m>(80, 32)</m>: no</p></answer>
+                <solution><p><m>(60, 35)</m>: <m>95 \le 100</m>, <m>900 + 1225 = 2125 \le 2520</m>, <m>35 \ge 30</m>: in R. <m>(80, 32)</m>: <m>112 \gt 100</m>, so it lies in the shaded part above <m>x + y = 100</m>: not in R.</p></solution>
+            </exercise>
+            <exercise xml:id="ex-empty-region">
+                <title>Challenge: An Empty Region</title>
+                <statement><p>Show that no point satisfies all of <m>6x + y \le 12</m>, <m>x + 7y \ge 90</m>, <m>x \ge 0</m> and <m>y \ge 0</m>. What does the graph look like?</p></statement>
+                <hint><p>How large can <m>x + 7y</m> be when <m>6x + y \le 12</m>, <m>x \ge 0</m>, <m>y \ge 0</m>?</p></hint>
+                <answer><p>The largest value of <m>x + 7y</m> is <m>84</m>, less than <m>90</m>; the whole graph is shaded.</p></answer>
+                <solution><p>The first constraint with the axes gives the triangle with corners <m>(0, 0)</m>, <m>(2, 0)</m> and <m>(0, 12)</m>. At these corners <m>x + 7y = 0</m>, <m>2</m> and <m>84</m>, so <m>x + 7y</m> is at most <m>84</m> on the triangle. It can never reach <m>90</m>, so no point satisfies every constraint: after shading, nothing is left clear. A model with an empty region has no possible plan, so a condition must be relaxed.</p></solution>
+            </exercise>
+        </exercises>
+
+        <axiom component="lesson-plan">
             <title>Differentiation</title>
-            <tabular halign="left">
-                <row header="yes" bottom="minor">
-                    <cell>Learner Group</cell>
-                    <cell>Strategy &amp; Learning Experience</cell>
-                    <cell></cell>
-                </row>
-                <row>
-                    <cell>Struggling Learners (Support)</cell>
-                    <cell>
-                        XXXX
-                    </cell>
-                    <cell></cell>
-                </row>
-                <row>
-                    <cell>On-Level Learners (Core)</cell>
-                    <cell>
-                        <line>The core lesson activities as described above.</line>
-                    </cell>
-                    <cell></cell>
-                </row>
-                <row>
-                    <cell>Advanced Learners (Challenge)</cell>
-                    <cell>
-                        XXXX
-                    </cell>
-                    <cell></cell>
-                </row>
-            </tabular>
-        </table>
-    </axiom> -->
+            <table xml:id="table-differentiation-graphing-constraints">
+                <title>Differentiation Strategies</title>
+                <tabular halign="left" top="minor" bottom="minor" left="minor" right="minor">
+                    <row header="yes" bottom="medium"><cell>Learner Group</cell><cell>Strategy and Learning Experience</cell></row>
+                    <row><cell>Struggling Learners (Support)</cell><cell>Give pre-drawn axes with a scale. Work through <xref ref="example-graphing-one-constraint"/> and <xref ref="example-boundary-through-origin"/>. Assign <xref ref="ex-graph-four-nine"/> and <xref ref="ex-graph-strict-two-nine"/>.</cell></row>
+                    <row><cell>On-Level Learners (Core)</cell><cell>Full activity and all examples. Assign <xref ref="ex-graph-four-nine"/> to <xref ref="ex-fundraiser-points"/>.</cell></row>
+                    <row><cell>Advanced Learners (Challenge)</cell><cell>All exercises including <xref ref="ex-empty-region"/>. Extension: change one number in <m>x + 7y \ge 90</m> so that R has exactly one point (answer: <m>x + 7y \ge 84</m>, which leaves only <m>(0, 12)</m>).</cell></row>
+                </tabular>
+            </table>
+        </axiom>
 
-    <xi:include href="../lesson-plan-templates/assessment-methods.ptx" />
+        <xi:include href="../lesson-plan-templates/assessment-methods.ptx" />
+        <xi:include href="../lesson-plan-templates/reflection.ptx"/>
+    </subsection>
 
-    <xi:include href="../lesson-plan-templates/reflection.ptx"/>
+    <!-- ============================================================ Lesson 2.2 -->
+    <subsection xml:id="subsec-vertices-and-whole-number-points">
+        <title>Vertices and Whole-Number Points</title>
+
+        <p component="lesson-plan">Upon completion of this lesson, learners will be able to:
+            <ol>
+                <li><p><alert>Know:</alert> a vertex of R is a point where two boundary lines meet; a vertex on a dashed line is not in R; when <m>x</m> and <m>y</m> count things, only the whole-number points of R are possible plans.</p></li>
+                <li><p><alert>Do:</alert> find a vertex exactly by solving two boundary equations together; list the whole-number points of a small region; write the inequalities of a region from its graph.</p></li>
+                <li><p><alert>Apply:</alert> find the corners of the fundraiser and tailor regions and the possible plans of a livestock farmer.</p></li>
+            </ol>
+        </p>
+
+        <axiom component="lesson-plan">
+            <title>Problem-Solving and Discovery</title>
+            <dl>
+                <li><title>Suggested Time</title><p>14 minutes</p></li>
+                <li><title>Objective</title><p>Learners find the corners of the fundraiser region, first by reading the graph and then by solving equations.</p></li>
+                <li><title>Teacher's Role</title><p>Let groups read the corners from their graphs first and compare readings. Then ask: <q>Why is reading <m>(49, 51)</m> off the graph not enough?</q> (Different groups read different values; only solving gives the exact point.)</p></li>
+            </dl>
+        </axiom>
+
+        <activity xml:id="act-corners-of-the-fundraiser-region">
+            <title>Corners of the Fundraiser Region</title>
+            <statement>
+                <p>Use your graph of the fundraiser region R from <xref ref="act-graphing-the-fundraiser"/>, or <xref ref="fig-fundraiser-region"/>.</p>
+                <figure xml:id="fig-fundraiser-region">
+                    <caption>The fundraiser region R. Every boundary is solid; the unwanted side of each is shaded.</caption>
+                    <image width="90%">
+                        <shortdescription>Lines x + y = 100, 15x + 35y = 2520 and y = 30, all solid; the unwanted side of each is shaded, and so is the side of the y-axis where x is negative. R, left clear, has corners (0, 30), (70, 30), (49, 51) and (0, 72).</shortdescription>
+                        <description><p>Horizontal axis x, mandazi, from 0 to 170. Vertical axis y, samosas, from 0 to 110. Boundary x + y = 100, solid, through (100, 0) and (0, 100), shaded above. Boundary 15x + 35y = 2520, solid, through (168, 0) and (0, 72), shaded above. Boundary y = 30, solid, shaded below. The side of the y-axis with x less than 0 is shaded. R is the clear region with vertices (0, 30), (70, 30), (49, 51) and (0, 72). Key: shaded, not wanted; unshaded (R), the required region.</p></description>
+                        <latex-image>
+\begin{tikzpicture}
+\begin{axis}[axis lines=middle, axis line style={->}, grid=major, grid style={gray!25}, xlabel style={anchor=north east, at={(axis description cs:1,0)}, yshift=-14pt}, ylabel style={anchor=north east, at={(axis description cs:0,1)}, xshift=-4pt, rotate=90}, tick label style={font=\scriptsize}, clip=false, width=12cm, height=8.5cm, xmin=-10, xmax=170, ymin=-10, ymax=110, xtick={0,20,...,160}, ytick={0,20,...,100}, minor xtick={10,30,...,170}, minor ytick={10,30,...,110}, minor grid style={gray!15}, grid=both, xlabel={$x$ (mandazi)}, ylabel={$y$ (samosas)}]
+\fill[gray!30, fill opacity=0.75] (axis cs:110,-10) -- (axis cs:170,-10) -- (axis cs:170,110) -- (axis cs:-10,110) -- (axis cs:-10,110) -- cycle;
+\fill[gray!30, fill opacity=0.75] (axis cs:170,-0.8571) -- (axis cs:170,110) -- (axis cs:-10,110) -- (axis cs:-10,76.2857) -- cycle;
+\fill[gray!30, fill opacity=0.75] (axis cs:-10,-10) -- (axis cs:170,-10) -- (axis cs:170,30) -- (axis cs:-10,30) -- cycle;
+\fill[gray!30, fill opacity=0.75] (axis cs:-10,-10) -- (axis cs:0,-10) -- (axis cs:0,110) -- (axis cs:-10,110) -- cycle;
+\draw[thick] (axis cs:-10,110) -- (axis cs:110,-10);
+\draw[thick] (axis cs:-10,76.2857) -- (axis cs:170,-0.8571);
+\draw[thick] (axis cs:-10,30) -- (axis cs:170,30);
+\draw[thick] (axis cs:0,-10) -- (axis cs:0,110);
+\fill (axis cs:0,30) circle[radius=2pt];
+\fill (axis cs:70,30) circle[radius=2pt];
+\fill (axis cs:49,51) circle[radius=2pt];
+\fill (axis cs:0,72) circle[radius=2pt];
+\node[font=\large] at (axis cs:25,45) {$R$};
+\node[anchor=north west, font=\scriptsize, inner sep=2pt] at (axis cs:112,-6) {$x + y = 100$};
+\node[anchor=south west, font=\scriptsize, inner sep=2pt] at (axis cs:125,18) {$15x + 35y = 2520$};
+\node[anchor=south, font=\scriptsize, inner sep=2pt] at (axis cs:140,30) {$y = 30$};
+\end{axis}
+\coordinate (k) at ([yshift=-0.2cm]current axis.outer south west);
+\fill[gray!30, draw=black, thin] (k) rectangle ++(0.45,-0.3);
+\node[anchor=west, font=\small] at ([xshift=0.55cm, yshift=-0.15cm]k) {Shaded, not wanted; unshaded ($R$), the required region.};
+\end{tikzpicture}
+                        </latex-image>
+                    </image>
+                </figure>
+                <p>
+                    <ol marker="(a)">
+                        <li>
+                            <p>Read the coordinates of the four corners of R from your graph.</p>
+                            <solution component="lesson-plan"><p>About <m>(0, 30)</m>, <m>(70, 30)</m>, <m>(50, 50)</m> and <m>(0, 72)</m>; readings of the third corner vary from group to group.</p></solution>
+                        </li>
+                        <li>
+                            <p>The corner near <m>(50, 50)</m> is where <m>x + y = 100</m> meets <m>15x + 35y = 2520</m>. Solve these two equations together.</p>
+                            <solution component="lesson-plan"><p>From the first, <m>x = 100 - y</m>. Then <m>15(100 - y) + 35y = 2520</m>, so <m>1500 + 20y = 2520</m>, <m>y = 51</m> and <m>x = 49</m>. The corner is <m>(49, 51)</m>.</p></solution>
+                        </li>
+                        <li>
+                            <p>Find the other three corners exactly. Which two lines meet at each?</p>
+                            <solution component="lesson-plan"><p><m>x = 0</m> and <m>y = 30</m> meet at <m>(0, 30)</m>. <m>y = 30</m> and <m>x + y = 100</m> meet at <m>(70, 30)</m>. <m>x = 0</m> and <m>15x + 35y = 2520</m> meet at <m>(0, 72)</m>.</p></solution>
+                        </li>
+                        <li>
+                            <p>Is each corner in R?</p>
+                            <solution component="lesson-plan"><p>Yes: every boundary is solid, so points on the lines, and the corners where they meet, are allowed.</p></solution>
+                        </li>
+                    </ol>
+                </p>
+            </statement>
+        </activity>
+
+        <axiom component="lesson-plan">
+            <title>Structured Instruction</title>
+            <p>
+                <dl>
+                    <li><title>Suggested Time</title><p>8 minutes</p></li>
+                    <li><title>Objective</title><p>To define a vertex, show how to find it exactly, and mark the whole-number points of a region.</p></li>
+                </dl>
+            </p>
+            <paragraphs>
+                <title>Key Takeaways &amp; Teacher Connection</title>
+                <ol>
+                    <li><p><alert>Connecting to Learner Work:</alert> solving in part (b) gave <m>(49, 51)</m> exactly, where reading the graph gave only an estimate.</p></li>
+                    <li><p>A vertex is where two boundary lines meet: solve their equations together.</p></li>
+                    <li><p>A vertex on a dashed line is not in R.</p></li>
+                    <li><p>When the unknowns count things, mark the whole-number points of R as dots: these are the possible plans.</p></li>
+                </ol>
+            </paragraphs>
+        </axiom>
+
+        <insight xml:id="insight-vertices-and-whole-number-points">
+            <title>Vertices and Whole-Number Points</title>
+            <p>A corner of the feasible region R is called a <term>vertex</term> (plural <term>vertices</term>). Two boundary lines meet at a vertex, so solve their equations together, by substitution or elimination, to find it exactly. Reading a vertex off a graph gives only an estimate. Give vertices exactly, as fractions, or to <m>2</m> decimal places.</p>
+            <p>A vertex on a dashed boundary is not in R, although points of R come as close to it as you like.</p>
+            <p>When <m>x</m> and <m>y</m> count things, only the <term>whole-number points</term> of R (points whose coordinates are both whole numbers) are possible plans. On a graph we mark them as dots. To list them, take each whole-number value of <m>y</m> in turn and find the whole-number values of <m>x</m> that satisfy every constraint.</p>
+        </insight>
+
+        <xi:include href="../lesson-plan-templates/example-intro.ptx" />
+
+        <example xml:id="example-tailor-vertices">
+            <title>Vertices of the Tailor's Region</title>
+            <statement>
+                <p>Find the vertices of the tailor's region from <xref ref="act-the-tailors-week"/>: <m>3x + 7y \le 126</m>, <m>x + 6y \le 64</m>, <m>x \ge 0</m>, <m>y \ge 0</m>, where <m>x</m> is the number of shirts and <m>y</m> the number of dresses.</p>
+            </statement>
+            <solution>
+                <p>The two sloping boundaries meet where <m>3x + 7y = 126</m> and <m>x + 6y = 64</m>. From the second, <m>x = 64 - 6y</m>. Substituting, <m>3(64 - 6y) + 7y = 126</m>, so <m>192 - 11y = 126</m>, <m>y = 6</m> and <m>x = 28</m>. Check: <m>3(28) + 7(6) = 126</m> and <m>28 + 36 = 64</m>.</p>
+                <p>On the <m>x</m>-axis the cloth line comes first: <m>3x = 126</m> gives <m>(42, 0)</m>, while the machine line meets the axis further out, at <m>(64, 0)</m>. On the <m>y</m>-axis the machine line comes first: <m>6y = 64</m> gives <m>\left(0, \tfrac{32}{3}\right) \approx (0, 10.67)</m>, while the cloth line meets it at <m>(0, 18)</m>.</p>
+                <p>The vertices are <m>(0, 0)</m>, <m>(42, 0)</m>, <m>(28, 6)</m> and <m>\left(0, \tfrac{32}{3}\right)</m>.</p>
+                <figure xml:id="fig-tailor-region">
+                    <caption>The tailor's region R with its four vertices.</caption>
+                    <image width="80%">
+                        <shortdescription>Solid lines 3x + 7y = 126 and x + 6y = 64 meet at (28, 6); the side of each away from the origin is shaded. R has corners (0, 0), (42, 0), (28, 6) and (0, 10.67).</shortdescription>
+                        <description><p>Horizontal axis x, shirts, from 0 to 70. Vertical axis y, dresses, from 0 to 20. Boundary 3x + 7y = 126, solid, through (42, 0) and (0, 18). Boundary x + 6y = 64, solid, through (64, 0) and (0, 10.67). The side of each away from the origin is shaded, and so are the parts with x or y negative. R is the clear region with vertices (0, 0), (42, 0), (28, 6) and (0, 32/3), about (0, 10.67). Key: shaded, not wanted; unshaded (R), the required region.</p></description>
+                        <latex-image>
+\begin{tikzpicture}
+\begin{axis}[axis lines=middle, axis line style={->}, grid=major, grid style={gray!25}, xlabel style={anchor=north east, at={(axis description cs:1,0)}, yshift=-14pt}, ylabel style={anchor=north east, at={(axis description cs:0,1)}, xshift=-4pt, rotate=90}, tick label style={font=\scriptsize}, clip=false, width=11cm, height=7cm, xmin=-4, xmax=70, ymin=-2, ymax=20, xtick={10,20,...,60}, ytick={4,8,...,16}, xlabel={$x$ (shirts)}, ylabel={$y$ (dresses)}]
+\fill[gray!30, fill opacity=0.75] (axis cs:46.6667,-2) -- (axis cs:70,-2) -- (axis cs:70,20) -- (axis cs:-4,20) -- (axis cs:-4,19.7143) -- cycle;
+\fill[gray!30, fill opacity=0.75] (axis cs:70,-1) -- (axis cs:70,20) -- (axis cs:-4,20) -- (axis cs:-4,11.3333) -- cycle;
+\fill[gray!30, fill opacity=0.75] (axis cs:-4,-2) -- (axis cs:0,-2) -- (axis cs:0,20) -- (axis cs:-4,20) -- cycle;
+\fill[gray!30, fill opacity=0.75] (axis cs:-4,-2) -- (axis cs:70,-2) -- (axis cs:70,0) -- (axis cs:-4,0) -- cycle;
+\draw[thick] (axis cs:-4,19.7143) -- (axis cs:46.6667,-2);
+\draw[thick] (axis cs:-4,11.3333) -- (axis cs:70,-1);
+\draw[thick] (axis cs:0,-2) -- (axis cs:0,20);
+\draw[thick] (axis cs:-4,0) -- (axis cs:70,0);
+\fill (axis cs:0,0) circle[radius=2pt];
+\fill (axis cs:42,0) circle[radius=2pt];
+\fill (axis cs:28,6) circle[radius=2pt];
+\fill (axis cs:0,10.6667) circle[radius=2pt];
+\node[anchor=north east, font=\small, inner sep=2pt] at (axis cs:0,0) {$(0, 0)$};
+\node[anchor=north west, font=\small, inner sep=2pt] at (axis cs:42,0) {$(42, 0)$};
+\node[anchor=south west, font=\small, inner sep=2pt] at (axis cs:28,6) {$(28, 6)$};
+\node[anchor=south west, font=\small, inner sep=2pt] at (axis cs:0,10.6667) {$(0, 10.67)$};
+\node[font=\large] at (axis cs:12,4) {$R$};
+\node[anchor=south west, font=\scriptsize, inner sep=2pt] at (axis cs:4,16.5) {$3x + 7y = 126$};
+\node[anchor=south west, font=\scriptsize, inner sep=2pt] at (axis cs:56,1.4) {$x + 6y = 64$};
+\end{axis}
+\coordinate (k) at ([yshift=-0.2cm]current axis.outer south west);
+\fill[gray!30, draw=black, thin] (k) rectangle ++(0.45,-0.3);
+\node[anchor=west, font=\small] at ([xshift=0.55cm, yshift=-0.15cm]k) {Shaded, not wanted; unshaded ($R$), the required region.};
+\end{tikzpicture}
+                        </latex-image>
+                    </image>
+                </figure>
+            </solution>
+        </example>
+
+        <example xml:id="example-goats-and-sheep">
+            <title>Goats and Sheep</title>
+            <statement>
+                <p>A farmer in Kajiado has Ksh <m>35\,000</m> to buy goats at Ksh <m>6000</m> each and sheep at Ksh <m>5000</m> each. Her pen has <m>26</m> square metres of floor; a goat needs <m>2</m> square metres and a sheep <m>7</m>. She wants at least one of each. List every plan she could choose.</p>
+            </statement>
+            <solution>
+                <p>Let <m>x</m> be the number of goats and <m>y</m> the number of sheep she buys. Money: <m>6000x + 5000y \le 35\,000</m>, that is <m>6x + 5y \le 35</m>. Space: <m>2x + 7y \le 26</m>. Also <m>x \ge 1</m> and <m>y \ge 1</m>, whole numbers.</p>
+                <p>Take each value of <m>y</m> in turn.
+                    <ul>
+                        <li><p><m>y = 1</m>: <m>6x \le 30</m> and <m>2x \le 19</m>, so <m>x \le 5</m>: <m>x = 1, 2, 3, 4, 5</m>.</p></li>
+                        <li><p><m>y = 2</m>: <m>6x \le 25</m> and <m>2x \le 12</m>, so <m>x \le 4</m>: <m>x = 1, 2, 3, 4</m>.</p></li>
+                        <li><p><m>y = 3</m>: <m>6x \le 20</m> and <m>2x \le 5</m>, so <m>x \le 2</m>: <m>x = 1, 2</m>.</p></li>
+                        <li><p><m>y = 4</m>: <m>2x \le -2</m>, impossible.</p></li>
+                    </ul>
+                </p>
+                <p>There are <m>11</m> plans: <m>(1, 1)</m>, <m>(2, 1)</m>, <m>(3, 1)</m>, <m>(4, 1)</m>, <m>(5, 1)</m>, <m>(1, 2)</m>, <m>(2, 2)</m>, <m>(3, 2)</m>, <m>(4, 2)</m>, <m>(1, 3)</m> and <m>(2, 3)</m>.</p>
+                <figure xml:id="fig-goats-and-sheep">
+                    <caption>The farmer's region with its <m>11</m> whole-number points marked as dots.</caption>
+                    <image width="60%">
+                        <shortdescription>Solid lines 6x + 5y = 35, 2x + 7y = 26, x = 1 and y = 1 with their unwanted sides shaded. Eleven dots in the clear region: (1, 1) to (5, 1), (1, 2) to (4, 2), (1, 3) and (2, 3).</shortdescription>
+                        <latex-image>
+\begin{tikzpicture}
+\begin{axis}[axis lines=middle, axis line style={->}, grid=major, grid style={gray!25}, xlabel style={anchor=north east, at={(axis description cs:1,0)}, yshift=-14pt}, ylabel style={anchor=north east, at={(axis description cs:0,1)}, xshift=-4pt, rotate=90}, tick label style={font=\scriptsize}, clip=false, width=9cm, height=7cm, xmin=-0.5, xmax=8, ymin=-0.5, ymax=6, xtick={1,...,7}, ytick={1,...,5}, xlabel={$x$ (goats)}, ylabel={$y$ (sheep)}]
+\fill[gray!30, fill opacity=0.75] (axis cs:6.25,-0.5) -- (axis cs:8,-0.5) -- (axis cs:8,6) -- (axis cs:0.8333,6) -- cycle;
+\fill[gray!30, fill opacity=0.75] (axis cs:8,1.4286) -- (axis cs:8,6) -- (axis cs:-0.5,6) -- (axis cs:-0.5,3.8571) -- cycle;
+\fill[gray!30, fill opacity=0.75] (axis cs:-0.5,-0.5) -- (axis cs:1,-0.5) -- (axis cs:1,6) -- (axis cs:-0.5,6) -- cycle;
+\fill[gray!30, fill opacity=0.75] (axis cs:-0.5,-0.5) -- (axis cs:8,-0.5) -- (axis cs:8,1) -- (axis cs:-0.5,1) -- cycle;
+\draw[thick] (axis cs:6.25,-0.5) -- (axis cs:0.8333,6);
+\draw[thick] (axis cs:-0.5,3.8571) -- (axis cs:8,1.4286);
+\draw[thick] (axis cs:1,-0.5) -- (axis cs:1,6);
+\draw[thick] (axis cs:-0.5,1) -- (axis cs:8,1);
+\fill (axis cs:1,1) circle[radius=2pt];
+\fill (axis cs:1,2) circle[radius=2pt];
+\fill (axis cs:1,3) circle[radius=2pt];
+\fill (axis cs:2,1) circle[radius=2pt];
+\fill (axis cs:2,2) circle[radius=2pt];
+\fill (axis cs:2,3) circle[radius=2pt];
+\fill (axis cs:3,1) circle[radius=2pt];
+\fill (axis cs:3,2) circle[radius=2pt];
+\fill (axis cs:4,1) circle[radius=2pt];
+\fill (axis cs:4,2) circle[radius=2pt];
+\fill (axis cs:5,1) circle[radius=2pt];
+\node[anchor=west, font=\scriptsize, inner sep=2pt] at (axis cs:2.3,4.4) {$6x + 5y = 35$};
+\node[anchor=south west, font=\scriptsize, inner sep=2pt] at (axis cs:6.1,2.05) {$2x + 7y = 26$};
+\node[anchor=west, font=\scriptsize, inner sep=2pt] at (axis cs:1,5.6) {$x = 1$};
+\node[anchor=south, font=\scriptsize, inner sep=2pt] at (axis cs:6.8,1) {$y = 1$};
+\node[font=\large] at (axis cs:2.5,2.5) {$R$};
+\end{axis}
+\coordinate (k) at ([yshift=-0.2cm]current axis.outer south west);
+\fill[gray!30, draw=black, thin] (k) rectangle ++(0.45,-0.3);
+\node[anchor=west, font=\small] at ([xshift=0.55cm, yshift=-0.15cm]k) {Shaded, not wanted; unshaded ($R$), the required region.};
+\end{tikzpicture}
+                        </latex-image>
+                    </image>
+                </figure>
+            </solution>
+        </example>
+
+        <example xml:id="example-reading-a-region">
+            <title>Reading a Region</title>
+            <statement>
+                <p>Write the inequalities that describe the region R left clear in <xref ref="fig-reading-a-region"/>. Which of its corners are not in R?</p>
+                <figure xml:id="fig-reading-a-region">
+                    <caption>A region R bounded by <m>5x + 6y = 60</m> (solid), <m>y = 1</m> (dashed), <m>x = 6</m> (solid) and the <m>y</m>-axis.</caption>
+                    <image width="60%">
+                        <shortdescription>Solid line 5x + 6y = 60 through (12, 0) and (0, 10), shaded above. Dashed line y = 1, shaded below. Solid line x = 6, shaded to the right. The side of the y-axis with x negative is shaded. R is the clear region with corners (0, 1), (6, 1), (6, 5) and (0, 10).</shortdescription>
+                        <latex-image>
+\begin{tikzpicture}
+\begin{axis}[axis lines=middle, axis line style={->}, grid=major, grid style={gray!25}, xlabel style={anchor=north east, at={(axis description cs:1,0)}, yshift=-14pt}, ylabel style={anchor=north east, at={(axis description cs:0,1)}, xshift=-4pt, rotate=90}, tick label style={font=\scriptsize}, clip=false, width=8.5cm, height=7cm, xmin=-1, xmax=13, ymin=-1, ymax=11, xtick={2,4,...,12}, ytick={2,4,...,10}, xlabel={$x$}, ylabel={$y$}]
+\fill[gray!30, fill opacity=0.75] (axis cs:13,-0.8333) -- (axis cs:13,11) -- (axis cs:-1,11) -- (axis cs:-1,10.8333) -- cycle;
+\fill[gray!30, fill opacity=0.75] (axis cs:-1,-1) -- (axis cs:13,-1) -- (axis cs:13,1) -- (axis cs:-1,1) -- cycle;
+\fill[gray!30, fill opacity=0.75] (axis cs:6,-1) -- (axis cs:13,-1) -- (axis cs:13,11) -- (axis cs:6,11) -- cycle;
+\fill[gray!30, fill opacity=0.75] (axis cs:-1,-1) -- (axis cs:0,-1) -- (axis cs:0,11) -- (axis cs:-1,11) -- cycle;
+\draw[thick] (axis cs:-1,10.8333) -- (axis cs:13,-0.8333);
+\draw[thick, dashed] (axis cs:-1,1) -- (axis cs:13,1);
+\draw[thick] (axis cs:6,-1) -- (axis cs:6,11);
+\draw[thick] (axis cs:0,-1) -- (axis cs:0,11);
+\node[font=\large] at (axis cs:2.5,4) {$R$};
+\node[anchor=south west, font=\scriptsize, inner sep=2pt] at (axis cs:7.5,3.9) {$5x + 6y = 60$};
+\node[anchor=west, font=\scriptsize, inner sep=2pt] at (axis cs:6,10.4) {$x = 6$};
+\node[anchor=south, font=\scriptsize, inner sep=2pt] at (axis cs:12.2,1) {$y = 1$};
+\node[anchor=north east, font=\small, inner sep=2pt] at (axis cs:0,0) {$O$};
+\end{axis}
+\coordinate (k) at ([yshift=-0.2cm]current axis.outer south west);
+\fill[gray!30, draw=black, thin] (k) rectangle ++(0.45,-0.3);
+\node[anchor=west, font=\small] at ([xshift=0.55cm, yshift=-0.15cm]k) {Shaded, not wanted; unshaded ($R$), the required region.};
+\end{tikzpicture}
+                        </latex-image>
+                    </image>
+                </figure>
+            </statement>
+            <solution>
+                <p>R is on the origin's side of <m>5x + 6y = 60</m>, and the line is solid: <m>5x + 6y \le 60</m>. R is above <m>y = 1</m>, which is dashed: <m>y \gt 1</m>. R is to the left of <m>x = 6</m>, which is solid: <m>x \le 6</m>. R is to the right of the <m>y</m>-axis: <m>x \ge 0</m>.</p>
+                <p>The corners <m>(0, 1)</m> and <m>(6, 1)</m> lie on the dashed line, so they are not in R. The corners <m>(6, 5)</m> and <m>(0, 10)</m> are in R.</p>
+            </solution>
+        </example>
+
+        <xi:include href="../lesson-plan-templates/assessment-intro.ptx" />
+        <xi:include href="../lesson-plan-templates/checkpoint.ptx" />
+
+        <p>Type exact values, for example <c>11/2</c> or <c>5.5</c>, and whole numbers for whole-number points.</p>
+
+                <exercise xml:id="ex-vertices-of-a-feasible-region">
+            <!--<title></title>-->
+            <stack label="stk-vertices-of-a-feasible-region" source="stack/top/1-numbers-and-algebra/05-linear-programming/02-graphing-linear-inequalities/Vertices-of-a-feasible-region.xml"/>
+        </exercise>
+
+        <exercise xml:id="ex-whole-number-points-in-a-region">
+            <!--<title></title>-->
+            <stack label="stk-whole-number-points-in-a-region" source="stack/top/1-numbers-and-algebra/05-linear-programming/02-graphing-linear-inequalities/Whole-number-points-in-a-region.xml"/>
+        </exercise>
+
+        <exercises xml:id="exercises-vertices-and-points">
+            <exercise xml:id="ex-vertices-r4">
+                <statement><p>Find the vertices of the region R of <xref ref="ex-graph-region-r4"/>: <m>8x + 7y \le 112</m>, <m>2x + 7y \le 70</m>, <m>x \ge 0</m>, <m>y \ge 0</m>.</p></statement>
+                <answer><p><m>(0, 0)</m>, <m>(14, 0)</m>, <m>(7, 8)</m>, <m>(0, 10)</m></p></answer>
+                <solution><p>Subtracting <m>2x + 7y = 70</m> from <m>8x + 7y = 112</m> gives <m>6x = 42</m>, so <m>x = 7</m> and <m>y = 8</m>. On the <m>x</m>-axis the first line comes first, at <m>(14, 0)</m>; on the <m>y</m>-axis the second comes first, at <m>(0, 10)</m>. The vertices are <m>(0, 0)</m>, <m>(14, 0)</m>, <m>(7, 8)</m> and <m>(0, 10)</m>.</p></solution>
+            </exercise>
+            <exercise xml:id="ex-vertices-r5">
+                <statement><p>Find the vertices of the region <m>7x + 4y \le 84</m>, <m>x + 8y \le 64</m>, <m>x \ge 0</m>, <m>y \ge 0</m>.</p></statement>
+                <answer><p><m>(0, 0)</m>, <m>(12, 0)</m>, <m>(8, 7)</m>, <m>(0, 8)</m></p></answer>
+                <solution><p>Double the first equation: <m>14x + 8y = 168</m>. Subtract <m>x + 8y = 64</m>: <m>13x = 104</m>, so <m>x = 8</m> and <m>y = 7</m>. The axis intercepts that bound R are <m>(12, 0)</m> on <m>7x + 4y = 84</m> and <m>(0, 8)</m> on <m>x + 8y = 64</m>. The vertices are <m>(0, 0)</m>, <m>(12, 0)</m>, <m>(8, 7)</m> and <m>(0, 8)</m>.</p></solution>
+            </exercise>
+            <exercise xml:id="ex-fraction-vertex">
+                <statement><p>Find where the lines <m>4x + 9y = 72</m> and <m>7x + 2y = 42</m> meet. Give the coordinates as fractions and to <m>2</m> decimal places.</p></statement>
+                <answer><p><m>\left(\tfrac{234}{55}, \tfrac{336}{55}\right) \approx (4.25, 6.11)</m></p></answer>
+                <solution><p>Multiply the first equation by <m>2</m> and the second by <m>9</m>: <m>8x + 18y = 144</m> and <m>63x + 18y = 378</m>. Subtract: <m>55x = 234</m>, so <m>x = \tfrac{234}{55} \approx 4.25</m>. Then <m>9y = 72 - \tfrac{936}{55} = \tfrac{3024}{55}</m>, so <m>y = \tfrac{336}{55} \approx 6.11</m>.</p></solution>
+            </exercise>
+            <exercise xml:id="ex-list-whole-number-points">
+                <statement><p>List the whole-number points of the region <m>x \ge 1</m>, <m>y \ge 1</m>, <m>2x + 7y \le 30</m>, <m>y \lt 3</m>. How many are there?</p></statement>
+                <answer><p><m>19</m> points: <m>(1, 1)</m> to <m>(11, 1)</m> and <m>(1, 2)</m> to <m>(8, 2)</m></p></answer>
+                <solution><p><m>y \lt 3</m> leaves <m>y = 1</m> or <m>y = 2</m>. With <m>y = 1</m>: <m>2x \le 23</m>, so <m>x = 1</m> to <m>11</m>: <m>11</m> points. With <m>y = 2</m>: <m>2x \le 16</m>, so <m>x = 1</m> to <m>8</m>: <m>8</m> points. Altogether <m>19</m> points.</p></solution>
+            </exercise>
+            <exercise xml:id="ex-vertex-on-a-dashed-line">
+                <title>Challenge: A Vertex on a Dashed Line</title>
+                <statement><p>In the fundraiser, the class changes <q>at least <m>30</m> samosas</q> to <q>more than <m>30</m> samosas</q>, so <m>y \ge 30</m> becomes <m>y \gt 30</m>. Which vertices of R are no longer in R? Can the class still make a plan close to them?</p></statement>
+                <hint><p>Which boundary becomes dashed?</p></hint>
+                <answer><p><m>(0, 30)</m> and <m>(70, 30)</m>; yes, for example <m>(69, 31)</m></p></answer>
+                <solution><p>The line <m>y = 30</m> becomes dashed, so its points, including the vertices <m>(0, 30)</m> and <m>(70, 30)</m>, are not in R. Whole-number plans just above the line still work: <m>(69, 31)</m> has <m>100</m> items, costs <m>1035 + 1085 = 2120 \le 2520</m> and has <m>31 \gt 30</m> samosas. The other two vertices are on solid lines and stay in R.</p></solution>
+            </exercise>
+        </exercises>
+
+        <axiom component="lesson-plan">
+            <title>Differentiation</title>
+            <table xml:id="table-differentiation-vertices-and-points">
+                <title>Differentiation Strategies</title>
+                <tabular halign="left" top="minor" bottom="minor" left="minor" right="minor">
+                    <row header="yes" bottom="medium"><cell>Learner Group</cell><cell>Strategy and Learning Experience</cell></row>
+                    <row><cell>Struggling Learners (Support)</cell><cell>Give a solving template (write both equations, make one letter the subject, substitute, check in both). Work through <xref ref="example-tailor-vertices"/> and <xref ref="example-goats-and-sheep"/>. Assign <xref ref="ex-vertices-r4"/> and <xref ref="ex-vertices-r5"/>.</cell></row>
+                    <row><cell>On-Level Learners (Core)</cell><cell>Full activity and all examples. Assign <xref ref="ex-vertices-r4"/> to <xref ref="ex-list-whole-number-points"/>.</cell></row>
+                    <row><cell>Advanced Learners (Challenge)</cell><cell>All exercises including <xref ref="ex-vertex-on-a-dashed-line"/>. Extension: how many whole-number points has the triangle <m>x \ge 0</m>, <m>y \ge 0</m>, <m>2x + 7y \le 14</m>? (Answer: <m>13</m>: eight with <m>y = 0</m>, four with <m>y = 1</m>, and <m>(0, 2)</m>.)</cell></row>
+                </tabular>
+            </table>
+        </axiom>
+
+        <xi:include href="../lesson-plan-templates/assessment-methods.ptx" />
+        <xi:include href="../lesson-plan-templates/reflection.ptx"/>
+    </subsection>
 </section>

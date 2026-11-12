@@ -33,7 +33,7 @@
                 <li component="lesson-plan">
                     <title>Estimated Duration</title>
                     <p>
-                        40 minutes
+                        2 lessons of 40 minutes
                     </p>
                 </li>
             </dl>
@@ -46,163 +46,509 @@
          Suggested activity: Learners build Pascal's triangle to the 11th row using bottle tops or number cards on the floor, then read off coefficients for (a+b)¹⁰.
          Interactive (JSXGraph): Pascal's triangle that builds row by row with a slider; clicking a row highlights the matching coefficients in (a+b)ⁿ. -->
 
-    <!-- [LP] Add guidance on activity -->
+    <!-- Section notes (2026-11)
+         SLOs: Core (b). Lessons 2.1 and 2.2 as subsections.
+         Activity: as planning notes (bottle tops or number cards, to the row for power 10, the design's 11th row)
+         JSXGraph: interactive-pascals-triangle | as planning notes (slider builds the rows; the row for power n is boxed and (a + b)^n written out; clicking an inside number shows the two numbers that make it)
+         STACK: assets/stack/top/1-numbers-and-algebra/02-binomial-expansions/02-coefficients-in-binomial-expansions/ -->
 
-    <!-- <axiom component="lesson-plan">
+    <!-- ============================================================ Lesson 2.1 -->
+    <subsection xml:id="subsec-pascals-triangle">
+        <title>Pascal's Triangle</title>
+
+        <p component="lesson-plan">Upon completion of this lesson, learners will be able to:
+            <ol>
+                <li><p><alert>Know:</alert> Pascal's triangle and its addition rule; the row for power <m>n</m> gives the coefficients of <m>(a + b)^n</m>; the numbers in the row for power <m>n</m> add up to <m>2^n</m>.</p></li>
+                <li><p><alert>Do:</alert> build the rows up to power 10; expand <m>(a + b)^n</m> and <m>(p + qx)^n</m> for <m>n</m> up to 10 (in full to power 7, the first terms beyond).</p></li>
+                <li><p><alert>Apply:</alert> find and explain patterns in the triangle.</p></li>
+            </ol>
+        </p>
+
+        <axiom component="lesson-plan">
             <title>Problem-Solving and Discovery</title>
             <dl>
-                <li>
-                    <title>Suggested Time</title>
-                    <p>
-                        XX minutes
-                    </p>
-                </li>
-                <li>
-                    <title>Objective</title>
-                    <p>
-                        XXX
-                    </p>
-                </li>
-                <li>
-                    <title>Teacher's Role</title>
-                    <p>
-                        XXX
-                    </p>
-                </li>
+                <li><title>Suggested Time</title><p>14 minutes</p></li>
+                <li><title>Objective</title><p>Learners build Pascal's triangle to the row for power 10 and read off the coefficients of <m>(a + b)^{10}</m>.</p></li>
+                <li><title>Teacher's Role</title><p>Groups of four lay out bottle tops or number cards on the floor, or fill in the classroom Pascal's triangle chart. Give each learner a role: one adds, one checks, one records and one places the cards; rotate roles after every two rows (collaboration). Ask <q>Why does the rule work?</q> only after part (c) (critical thinking).</p></li>
             </dl>
-        </axiom> -->
+        </axiom>
 
-    <!-- Add Activity -->
-
-    <!-- <activity>
-        <statement>
-        </statement>
-    </activity> -->
-
-    <!-- [LP] Add guidance on structured lesson plan-->
-
-    <!-- <axiom component="lesson-plan">
-        <title>Structured Instruction</title>
-        <p>
-            <dl>
-            <li>
-                <title>Suggested Time</title>
+        <activity xml:id="act-bottle-top-triangle">
+            <title>A Bottle-Top Triangle</title>
+            <statement>
                 <p>
-                    XX minutes
+                    Work in a group of four with bottle tops (write a number on each with a marker) or number cards.
+                    <ol marker="(a)">
+                        <li>
+                            <p>Lay out the rows of coefficients for powers 0 to 4 from <xref ref="act-multiplying-out-on-manila-paper"/>, with a single 1 at the top for power 0, since <m>(a + b)^0 = 1</m>.</p>
+                            <solution component="lesson-plan"><p>1; 1, 1; 1, 2, 1; 1, 3, 3, 1; 1, 4, 6, 4, 1, centred one under another.</p></solution>
+                        </li>
+                        <li>
+                            <p>Each new number is the sum of the two numbers above it, and each row starts and ends with 1. Build the triangle down to the row for power 10 (that is 11 rows in all).</p>
+                            <solution component="lesson-plan"><p>Power 5: 1, 5, 10, 10, 5, 1. Power 6: 1, 6, 15, 20, 15, 6, 1. Power 7: 1, 7, 21, 35, 35, 21, 7, 1. Power 8: 1, 8, 28, 56, 70, 56, 28, 8, 1. Power 9: 1, 9, 36, 84, 126, 126, 84, 36, 9, 1. Power 10: 1, 10, 45, 120, 210, 252, 210, 120, 45, 10, 1.</p></solution>
+                        </li>
+                        <li>
+                            <p>Add the numbers in each row. What do you notice?</p>
+                            <solution component="lesson-plan"><p>The sums are 1, 2, 4, 8, 16, ..., 1024: each sum is double the one before, so the row for power <m>n</m> adds up to <m>2^n</m>.</p></solution>
+                        </li>
+                        <li>
+                            <p>Write down the coefficients of <m>(a + b)^{10}</m>.</p>
+                            <solution component="lesson-plan"><p>1, 10, 45, 120, 210, 252, 210, 120, 45, 10, 1.</p></solution>
+                        </li>
+                        <li>
+                            <p>Find a slanting line of numbers that are the counting numbers 1, 2, 3, ..., and a slanting line that reads 1, 3, 6, 10, 15, 21.</p>
+                            <solution component="lesson-plan"><p>The second slanting line (just inside the edge of 1s) gives 1, 2, 3, 4, ...; the third gives 1, 3, 6, 10, 15, 21, ...</p></solution>
+                        </li>
+                    </ol>
                 </p>
-            </li>
-            <li>
-                <title>Objective</title>
-                <p>
-                    To formalize the concepts and properties learners discovered in the anchor task.
-                </p>
-            </li>
-            </dl>
-        </p>
-        <paragraphs>
-            <title>Key Takeaways &amp; Teacher Connection</title>
-            <ol>
-                <li>
+            </statement>
+        </activity>
+
+        <axiom component="lesson-plan">
+            <title>Structured Instruction</title>
+            <p>
+                <dl>
+                    <li><title>Suggested Time</title><p>8 minutes</p></li>
+                    <li><title>Objective</title><p>To formalise Pascal's triangle and its link with the coefficients of <m>(a + b)^n</m>.</p></li>
+                </dl>
+            </p>
+            <paragraphs>
+                <title>Key Takeaways &amp; Teacher Connection</title>
+                <ol>
+                    <li><p><alert>Connecting to Learner Work:</alert> name the rows by power: the single 1 is the row for power 0, so the row for power 10 is the 11th row.</p></li>
+                    <li><p>The addition rule builds every row from the one above; the row for power <m>n</m> gives the coefficients of <m>(a + b)^n</m>.</p></li>
+                    <li><p>Keep the triangle (or the chart) on the wall: it is used in every lesson to the end of the chapter.</p></li>
+                </ol>
+            </paragraphs>
+        </axiom>
+
+        <insight xml:id="insight-pascals-triangle">
+            <title>Pascal's Triangle</title>
+            <p>
+                <term>Pascal's triangle</term> is built row by row: every row starts and ends with 1, and each number inside is the sum of the two numbers above it. We name each row by its power: the single 1 at the top is the row for power 0, and the row for power <m>n</m> gives the coefficients of <m>(a + b)^n</m>. The row for power 10 is the 11th row if you count the top 1 as the first.
+            </p>
+            <p>
+                Each row reads the same forwards and backwards, and the numbers in the row for power <m>n</m> add up to <m>2^n</m>.
+            </p>
+            <p>
+                The triangle is named after the French mathematician Blaise Pascal (1623 to 1662), but it was known centuries earlier to mathematicians in China, India and Persia.
+            </p>
+        </insight>
+
+        <figure xml:id="fig-pascals-triangle-to-row-10">
+            <caption>Pascal's triangle from the row for power 0 to the row for power 10.</caption>
+            <image width="90%">
+                <shortdescription>Pascal's triangle from the single 1 for power 0 to the row 1, 10, 45, 120, 210, 252, 210, 120, 45, 10, 1 for power 10. Each row is labelled n = 0 to n = 10 on the left.</shortdescription>
+                <description><p>Power 0: 1; power 1: 1, 1; power 2: 1, 2, 1; power 3: 1, 3, 3, 1; power 4: 1, 4, 6, 4, 1; power 5: 1, 5, 10, 10, 5, 1; power 6: 1, 6, 15, 20, 15, 6, 1; power 7: 1, 7, 21, 35, 35, 21, 7, 1; power 8: 1, 8, 28, 56, 70, 56, 28, 8, 1; power 9: 1, 9, 36, 84, 126, 126, 84, 36, 9, 1; power 10: 1, 10, 45, 120, 210, 252, 210, 120, 45, 10, 1.</p></description>
+                <latex-image>
+\begin{tikzpicture}[x=0.62cm,y=0.62cm]
+  \node[left] at (-7.6,0) {$n = 0$};
+  \node at (0.0,0) {1};
+  \node[left] at (-7.6,-1) {$n = 1$};
+  \node at (-0.6,-1) {1};
+  \node at (0.6,-1) {1};
+  \node[left] at (-7.6,-2) {$n = 2$};
+  \node at (-1.2,-2) {1};
+  \node at (0.0,-2) {2};
+  \node at (1.2,-2) {1};
+  \node[left] at (-7.6,-3) {$n = 3$};
+  \node at (-1.8,-3) {1};
+  \node at (-0.6,-3) {3};
+  \node at (0.6,-3) {3};
+  \node at (1.8,-3) {1};
+  \node[left] at (-7.6,-4) {$n = 4$};
+  \node at (-2.4,-4) {1};
+  \node at (-1.2,-4) {4};
+  \node at (0.0,-4) {6};
+  \node at (1.2,-4) {4};
+  \node at (2.4,-4) {1};
+  \node[left] at (-7.6,-5) {$n = 5$};
+  \node at (-3.0,-5) {1};
+  \node at (-1.8,-5) {5};
+  \node at (-0.6,-5) {10};
+  \node at (0.6,-5) {10};
+  \node at (1.8,-5) {5};
+  \node at (3.0,-5) {1};
+  \node[left] at (-7.6,-6) {$n = 6$};
+  \node at (-3.6,-6) {1};
+  \node at (-2.4,-6) {6};
+  \node at (-1.2,-6) {15};
+  \node at (0.0,-6) {20};
+  \node at (1.2,-6) {15};
+  \node at (2.4,-6) {6};
+  \node at (3.6,-6) {1};
+  \node[left] at (-7.6,-7) {$n = 7$};
+  \node at (-4.2,-7) {1};
+  \node at (-3.0,-7) {7};
+  \node at (-1.8,-7) {21};
+  \node at (-0.6,-7) {35};
+  \node at (0.6,-7) {35};
+  \node at (1.8,-7) {21};
+  \node at (3.0,-7) {7};
+  \node at (4.2,-7) {1};
+  \node[left] at (-7.6,-8) {$n = 8$};
+  \node at (-4.8,-8) {1};
+  \node at (-3.6,-8) {8};
+  \node at (-2.4,-8) {28};
+  \node at (-1.2,-8) {56};
+  \node at (0.0,-8) {70};
+  \node at (1.2,-8) {56};
+  \node at (2.4,-8) {28};
+  \node at (3.6,-8) {8};
+  \node at (4.8,-8) {1};
+  \node[left] at (-7.6,-9) {$n = 9$};
+  \node at (-5.4,-9) {1};
+  \node at (-4.2,-9) {9};
+  \node at (-3.0,-9) {36};
+  \node at (-1.8,-9) {84};
+  \node at (-0.6,-9) {126};
+  \node at (0.6,-9) {126};
+  \node at (1.8,-9) {84};
+  \node at (3.0,-9) {36};
+  \node at (4.2,-9) {9};
+  \node at (5.4,-9) {1};
+  \node[left] at (-7.6,-10) {$n = 10$};
+  \node at (-6.0,-10) {1};
+  \node at (-4.8,-10) {10};
+  \node at (-3.6,-10) {45};
+  \node at (-2.4,-10) {120};
+  \node at (-1.2,-10) {210};
+  \node at (0.0,-10) {252};
+  \node at (1.2,-10) {210};
+  \node at (2.4,-10) {120};
+  \node at (3.6,-10) {45};
+  \node at (4.8,-10) {10};
+  \node at (6.0,-10) {1};
+\end{tikzpicture}
+                </latex-image>
+            </image>
+        </figure>
+
+        <figure xml:id="fig-pascals-triangle-interactive">
+            <caption>Drag <m>n</m> to build the triangle row by row. The row for power <m>n</m> is boxed and <m>(a + b)^n</m> is written out below it. Click a number inside the triangle to see the two numbers that make it.</caption>
+            <interactive xml:id="interactive-pascals-triangle" platform="jsxgraph" width="90%" aspect="16:12" source="jsxgraph/pascals-triangle.js">
+                <slate xml:id="jsxgraph-pascals-triangle" surface="jsxboard" aspect="16:12"/>
+                <instructions>
                     <p>
-                        <alert>Connecting to Learner Work:</alert> XXXX
+                        <ul>
+                            <li><p>Drag <alert>n</alert> to 10 and read the coefficients of <m>(a + b)^{10}</m>.</p></li>
+                            <li><p>Click 252 to see which two numbers make it.</p></li>
+                        </ul>
                     </p>
-                </li>
-            </ol>
-        </paragraphs>
-    </axiom> -->
+                </instructions>
+            </interactive>
+        </figure>
 
-    <!-- Add insight / key takeaway directly related to activity / learner experience -->
+        <note xml:id="note-why-the-addition-rule-works">
+            <title>Why the Rule Works</title>
+            <p>
+                <m>(a + b)^{n+1} = (a + b)^n(a + b)</m>. Each term of the new expansion comes from two terms of the old one: one multiplied by <m>a</m> and one multiplied by <m>b</m>. For example, from <m>(a + b)^3 = a^3 + 3a^2b + 3ab^2 + b^3</m>, the term in <m>a^2b^2</m> of <m>(a + b)^4</m> comes from <m>3ab^2 \times a</m> and <m>3a^2b \times b</m>, so its coefficient is <m>3 + 3 = 6</m>. That is why each number is the sum of its two neighbours above.
+            </p>
+        </note>
 
-    <!-- <insight>
-    </insight> -->
+        <xi:include href="../lesson-plan-templates/example-intro.ptx" />
 
-    <!-- Add further instruction (not in a block) to develop ideas as needed -->
-
-    <xi:include href="../lesson-plan-templates/example-intro.ptx" />
-
-    <!-- Add at least 3 examples -->
-
-    <!-- <example>
-        <statement>
-        </statement>
-        <solution>
-        </solution>
-    </example>
-
-    <example>
-        <statement>
-        </statement>
-        <solution>
-        </solution>
-    </example>
-
-    <example>
-        <statement>
-        </statement>
-        <solution>
-        </solution>
-    </example> -->
-
-    <xi:include href="../lesson-plan-templates/assessment-intro.ptx" />
-
-    <!-- If STACK questions are included, uncomment this: -->
-
-    <!-- <xi:include href="../lesson-plan-templates/checkpoint.ptx" /> -->
-
-    <!-- Add STACK exercises if made -->
-
-    <!-- Add static exercises -->
-
-    <!-- <exercises>
-        <exercise>
-            <statement>   
-
-            </statement>   
+        <example xml:id="example-the-next-row-of-pascals-triangle">
+            <title>The Next Row</title>
+            <statement><p>The row for power 6 is 1, 6, 15, 20, 15, 6, 1. Find the row for power 7 and use it to expand <m>(a + b)^7</m>.</p></statement>
             <solution>
+                <p>Add neighbours: <m>1</m>, <m>1 + 6 = 7</m>, <m>6 + 15 = 21</m>, <m>15 + 20 = 35</m>, <m>20 + 15 = 35</m>, <m>15 + 6 = 21</m>, <m>6 + 1 = 7</m>, <m>1</m>. So the row for power 7 is 1, 7, 21, 35, 35, 21, 7, 1, and
+                    <md>(a + b)^7 = a^7 + 7a^6b + 21a^5b^2 + 35a^4b^3 + 35a^3b^4 + 21a^2b^5 + 7ab^6 + b^7</md></p>
+            </solution>
+        </example>
 
-            </solution>             
-        </exercise>        
-    </exercises> -->
+        <example xml:id="example-expanding-x-minus-2-to-the-fifth">
+            <title>Expanding <m>(x - 2)^5</m></title>
+            <statement><p>Expand <m>(x - 2)^5</m>.</p></statement>
+            <solution>
+                <p>The row for power 5 is 1, 5, 10, 10, 5, 1. Put <m>a = x</m> and <m>b = -2</m>:
+                    <md>
+                        <mrow>(x - 2)^5 \amp = x^5 + 5x^4(-2) + 10x^3(-2)^2 + 10x^2(-2)^3 + 5x(-2)^4 + (-2)^5</mrow>
+                        <mrow>\amp = x^5 - 10x^4 + 40x^3 - 80x^2 + 80x - 32</mrow>
+                    </md>
+                Check with <m>x = 1</m>: <m>(1 - 2)^5 = -1</m> and <m>1 - 10 + 40 - 80 + 80 - 32 = -1</m>.</p>
+            </solution>
+        </example>
 
-    <!-- [LP] Add information on how to differentiate  -->
+        <example xml:id="example-first-four-terms-of-1-plus-2x-to-the-eighth">
+            <title>The First Four Terms</title>
+            <statement><p>Find the first four terms of the expansion of <m>(1 + 2x)^8</m> in ascending powers of <m>x</m>.</p></statement>
+            <solution>
+                <p>The row for power 8 starts 1, 8, 28, 56. Every power of 1 is 1, so
+                    <md>
+                        <mrow>(1 + 2x)^8 \amp = 1 + 8(2x) + 28(2x)^2 + 56(2x)^3 + \cdots</mrow>
+                        <mrow>\amp = 1 + 16x + 112x^2 + 448x^3 + \cdots</mrow>
+                    </md></p>
+            </solution>
+        </example>
 
-    <!-- <axiom component="lesson-plan">
-        <title>Differentiation</title>
+        <xi:include href="../lesson-plan-templates/assessment-intro.ptx" />
+        <xi:include href="../lesson-plan-templates/checkpoint.ptx" />
 
-        <table>
+        <p>Type powers with <c>^</c> and fractions with <c>/</c>, for example <c>8x^3-12x^2+3/2*x-1</c>. Type a list in square brackets, for example <c>[1,3,3,1]</c>.</p>
+
+        <exercise xml:id="ex-row-of-pascal-triangle-and-its-sum">
+            <!--<title></title>-->
+            <stack label="stk-row-of-pascal-triangle-and-its-sum" source="stack/top/1-numbers-and-algebra/02-binomial-expansions/02-coefficients-in-binomial-expansions/Row-of-Pascal-triangle-and-its-sum.xml"/>
+        </exercise>
+        <exercise xml:id="ex-first-four-terms-of-a-binomial-expansion">
+            <!--<title></title>-->
+            <stack label="stk-first-four-terms-of-a-binomial-expansion" source="stack/top/1-numbers-and-algebra/02-binomial-expansions/02-coefficients-in-binomial-expansions/First-four-terms-of-a-binomial-expansion.xml"/>
+        </exercise>
+        <exercises xml:id="exercises-pascals-triangle">
+            <exercise xml:id="ex-rows-for-powers-8-and-9">
+                <statement><p>Write down the rows of Pascal's triangle for powers 8 and 9.</p></statement>
+                <answer><p>1, 8, 28, 56, 70, 56, 28, 8, 1 and 1, 9, 36, 84, 126, 126, 84, 36, 9, 1</p></answer>
+            </exercise>
+            <exercise xml:id="ex-expand-1-plus-x-to-the-sixth">
+                <statement><p>Expand <m>(1 + x)^6</m>.</p></statement>
+                <answer><p><m>1 + 6x + 15x^2 + 20x^3 + 15x^4 + 6x^5 + x^6</m></p></answer>
+            </exercise>
+            <exercise xml:id="ex-expand-2-minus-x-to-the-fifth">
+                <statement><p>Expand <m>(2 - x)^5</m> in ascending powers of <m>x</m>.</p></statement>
+                <answer><p><m>32 - 80x + 80x^2 - 40x^3 + 10x^4 - x^5</m></p></answer>
+                <solution><p>Row 1, 5, 10, 10, 5, 1 with <m>a = 2</m>, <m>b = -x</m>: <m>32 + 5(16)(-x) + 10(8)(-x)^2 + 10(4)(-x)^3 + 5(2)(-x)^4 + (-x)^5 = 32 - 80x + 80x^2 - 40x^3 + 10x^4 - x^5</m>.</p></solution>
+            </exercise>
+            <exercise xml:id="ex-first-four-terms-of-1-minus-3x-to-the-seventh">
+                <statement><p>Find the first four terms of <m>(1 - 3x)^7</m> in ascending powers of <m>x</m>.</p></statement>
+                <answer><p><m>1 - 21x + 189x^2 - 945x^3</m></p></answer>
+                <solution><p>The row for power 7 starts 1, 7, 21, 35: <m>1 + 7(-3x) + 21(-3x)^2 + 35(-3x)^3 = 1 - 21x + 189x^2 - 945x^3</m>.</p></solution>
+            </exercise>
+            <exercise xml:id="ex-sum-of-row-10">
+                <statement><p>Add the numbers in the row for power 10. Explain your answer by putting <m>a = b = 1</m> in <m>(a + b)^{10}</m>.</p></statement>
+                <answer><p><m>1024 = 2^{10}</m></p></answer>
+                <solution><p><m>1 + 10 + 45 + 120 + 210 + 252 + 210 + 120 + 45 + 10 + 1 = 1024</m>. With <m>a = b = 1</m> every term of the expansion is just its coefficient, so the sum of the row is <m>(1 + 1)^{10} = 2^{10} = 1024</m>.</p></solution>
+            </exercise>
+            <exercise xml:id="ex-which-row-starts-1-9">
+                <statement><p>A row of Pascal's triangle starts 1, 9, ... Which power is it the row for, and what is its third number?</p></statement>
+                <answer><p>Power 9; <m>36</m></p></answer>
+                <solution><p>The second number of the row for power <m>n</m> is <m>n</m>, so this is the row for power 9. Its third number is <m>8 + 28 = 36</m>, from the row for power 8.</p></solution>
+            </exercise>
+            <exercise xml:id="ex-hockey-stick-pattern">
+                <title>Challenge: A Hockey Stick</title>
+                <statement><p>Work out <m>1 + 3 + 6 + 10 + 15</m>. Where does the answer appear in the triangle?</p></statement>
+                <hint><p>Look one row below the last number, on the other side of the slanting line.</p></hint>
+                <answer><p><m>35</m>, in the row for power 7</p></answer>
+                <solution><p><m>1 + 3 + 6 + 10 + 15 = 35</m>. The numbers lie on the third slanting line, ending at 15 in the row for power 6; one row below, and one place inwards, is 35 in the row for power 7. The shape of the numbers used looks like a hockey stick.</p></solution>
+            </exercise>
+        </exercises>
+
+        <axiom component="lesson-plan">
             <title>Differentiation</title>
-            <tabular halign="left">
-                <row header="yes" bottom="minor">
-                    <cell>Learner Group</cell>
-                    <cell>Strategy &amp; Learning Experience</cell>
-                    <cell></cell>
-                </row>
-                <row>
-                    <cell>Struggling Learners (Support)</cell>
-                    <cell>
-                        XXXX
-                    </cell>
-                    <cell></cell>
-                </row>
-                <row>
-                    <cell>On-Level Learners (Core)</cell>
-                    <cell>
-                        <line>The core lesson activities as described above.</line>
-                    </cell>
-                    <cell></cell>
-                </row>
-                <row>
-                    <cell>Advanced Learners (Challenge)</cell>
-                    <cell>
-                        XXXX
-                    </cell>
-                    <cell></cell>
-                </row>
-            </tabular>
-        </table>
-    </axiom> -->
+            <table xml:id="table-differentiation-pascals-triangle">
+                <title>Differentiation Strategies</title>
+                <tabular halign="left" top="minor" bottom="minor" left="minor" right="minor">
+                    <row header="yes" bottom="medium"><cell>Learner Group</cell><cell>Strategy and Learning Experience</cell></row>
+                    <row><cell>Struggling Learners (Support)</cell><cell>Provide a printed triangle with gaps to fill. Focus on <xref ref="example-the-next-row-of-pascals-triangle"/> and <xref ref="example-expanding-x-minus-2-to-the-fifth"/>. Assign <xref ref="ex-rows-for-powers-8-and-9"/> and <xref ref="ex-expand-1-plus-x-to-the-sixth"/>.</cell></row>
+                    <row><cell>On-Level Learners (Core)</cell><cell>Full activity and all examples. Assign <xref ref="ex-rows-for-powers-8-and-9"/> to <xref ref="ex-which-row-starts-1-9"/>.</cell></row>
+                    <row><cell>Advanced Learners (Challenge)</cell><cell>All exercises including <xref ref="ex-hockey-stick-pattern"/>. Extension: shade the odd numbers in the rows for powers 0 to 7. What shape appears? (Answer: a pattern of triangles inside the triangle; the row for power 7 is all odd.)</cell></row>
+                </tabular>
+            </table>
+        </axiom>
 
-    <xi:include href="../lesson-plan-templates/assessment-methods.ptx" />
+        <xi:include href="../lesson-plan-templates/assessment-methods.ptx" />
+        <xi:include href="../lesson-plan-templates/reflection.ptx"/>
+    </subsection>
 
-    <xi:include href="../lesson-plan-templates/reflection.ptx"/>
+    <!-- ============================================================ Lesson 2.2 -->
+    <subsection xml:id="subsec-coefficients-of-particular-terms">
+        <title>Coefficients of Particular Terms</title>
+
+        <p component="lesson-plan">Upon completion of this lesson, learners will be able to:
+            <ol>
+                <li><p><alert>Know:</alert> one term of an expansion can be found without the others.</p></li>
+                <li><p><alert>Do:</alert> find the coefficient of <m>x^r</m> in <m>(a + bx)^n</m> for <m>n</m> up to 10; find an unknown in a bracket from a given coefficient.</p></li>
+                <li><p><alert>Apply:</alert> count routes on a street grid.</p></li>
+            </ol>
+        </p>
+
+        <axiom component="lesson-plan">
+            <title>Problem-Solving and Discovery</title>
+            <dl>
+                <li><title>Suggested Time</title><p>14 minutes</p></li>
+                <li><title>Objective</title><p>Learners see that a single coefficient is the product of three numbers: a number from the row, a power of the first term and a power of the second.</p></li>
+                <li><title>Teacher's Role</title><p>Work in groups. After part (b), ask: <q>Do we need the whole expansion to find one term?</q></p></li>
+            </dl>
+        </axiom>
+
+        <activity xml:id="act-hunting-for-one-term">
+            <title>Hunting for One Term</title>
+            <statement>
+                <p>
+                    <ol marker="(a)">
+                        <li>
+                            <p>Write the first four terms of <m>(1 + 3x)^6</m> in ascending powers of <m>x</m>.</p>
+                            <solution component="lesson-plan"><p><m>1 + 18x + 135x^2 + 540x^3</m>.</p></solution>
+                        </li>
+                        <li>
+                            <p>Which three numbers multiply to give the coefficient 540?</p>
+                            <solution component="lesson-plan"><p><m>20</m> (number 3 of the row for power 6, counting from 0), <m>1^3 = 1</m> and <m>3^3 = 27</m>: <m>20 \times 1 \times 27 = 540</m>.</p></solution>
+                        </li>
+                        <li>
+                            <p>Without writing the whole expansion, find the coefficient of <m>x^4</m> in <m>(1 + 3x)^6</m>.</p>
+                            <solution component="lesson-plan"><p><m>15 \times 1 \times 3^4 = 1215</m>.</p></solution>
+                        </li>
+                        <li>
+                            <p>Find the coefficient of <m>x^2</m> in <m>(2 + 3x)^5</m>.</p>
+                            <solution component="lesson-plan"><p><m>10 \times 2^3 \times 3^2 = 720</m>.</p></solution>
+                        </li>
+                    </ol>
+                </p>
+            </statement>
+        </activity>
+
+        <axiom component="lesson-plan">
+            <title>Structured Instruction</title>
+            <p>
+                <dl>
+                    <li><title>Suggested Time</title><p>8 minutes</p></li>
+                    <li><title>Objective</title><p>To formalise finding one term of an expansion.</p></li>
+                </dl>
+            </p>
+            <paragraphs>
+                <title>Key Takeaways &amp; Teacher Connection</title>
+                <ol>
+                    <li><p><alert>Connecting to Learner Work:</alert> the three numbers from part (b) are the row number, a power of the first term and a power of the second term.</p></li>
+                    <li><p>The sign of the term comes from the power of <m>b</m>.</p></li>
+                    <li><p>A term includes the letters (<m>280x^3</m>); its coefficient is the number (<m>280</m>).</p></li>
+                </ol>
+            </paragraphs>
+        </axiom>
+
+        <insight xml:id="insight-the-term-in-x-to-the-r">
+            <title>The Term in <m>x^r</m></title>
+            <p>
+                In the expansion of <m>(a + bx)^n</m>, the term in <m>x^r</m> takes number <m>r</m> of the row for power <m>n</m> (counting from 0), the first term to the power <m>n - r</m> and the second term to the power <m>r</m>:
+                <md>\text{term in } x^r = (\text{number } r \text{ of the row}) \times a^{n-r} \times (bx)^r</md>
+                Its coefficient is that number <m>\times\, a^{n-r} \times b^r</m>. The term in <m>x^r</m> is the <m>(r + 1)</m>th term, because the first term is the term in <m>x^0</m>.
+            </p>
+        </insight>
+
+        <note xml:id="note-pascals-triangle-and-ncr">
+            <title>Pascal's Triangle and <m>{}_nC_r</m></title>
+            <p>
+                In Grade 11 you met <m>{}_nC_r</m>, the number of ways of choosing <m>r</m> objects from <m>n</m> (also written <m>\binom{n}{r}</m>). Number <m>r</m> of the row for power <m>n</m> is exactly <m>{}_nC_r</m>: for example <m>{}_{10}C_4 = 210</m>, the fifth number in the row for power 10. The <c>nCr</c> key on a calculator gives it. Use whichever you prefer.
+            </p>
+        </note>
+
+        <warning xml:id="warning-term-or-coefficient">
+            <title>Term or Coefficient?</title>
+            <p>
+                The term in <m>x^3</m> in the expansion of <m>(1 + 2x)^7</m> is <m>280x^3</m>; its coefficient is <m>280</m>. The term in <m>x^3</m> is the fourth term, not the third.
+            </p>
+        </warning>
+
+        <xi:include href="../lesson-plan-templates/example-intro.ptx" />
+
+        <example xml:id="example-coefficient-of-x3-in-1-plus-2x-to-the-seventh">
+            <title>The Coefficient of <m>x^3</m> in <m>(1 + 2x)^7</m></title>
+            <statement><p>Find the coefficient of <m>x^3</m> in the expansion of <m>(1 + 2x)^7</m>.</p></statement>
+            <solution>
+                <p>The row for power 7 is 1, 7, 21, 35, 35, 21, 7, 1; number 3 (counting from 0) is <m>35</m>. The term is <m>35 \times 1^4 \times (2x)^3 = 35 \times 8x^3 = 280x^3</m>, so the coefficient is <m>280</m>.</p>
+            </solution>
+        </example>
+
+        <example xml:id="example-coefficient-of-x4-in-3-minus-x-to-the-sixth">
+            <title>The Coefficient of <m>x^4</m> in <m>(3 - x)^6</m></title>
+            <statement><p>Find the coefficient of <m>x^4</m> in the expansion of <m>(3 - x)^6</m>.</p></statement>
+            <solution>
+                <p>Number 4 of the row for power 6 is <m>15</m>. The term is <m>15 \times 3^2 \times (-x)^4 = 15 \times 9 \times x^4 = 135x^4</m>, so the coefficient is <m>135</m>. An even power of <m>-1</m> is <m>+1</m>.</p>
+            </solution>
+        </example>
+
+        <example xml:id="example-finding-k-from-a-coefficient">
+            <title>Finding <m>k</m></title>
+            <statement><p>The coefficient of <m>x^2</m> in the expansion of <m>(1 + kx)^6</m> is <m>135</m>, and <m>k</m> is positive. Find <m>k</m>.</p></statement>
+            <solution>
+                <p>Number 2 of the row for power 6 is <m>15</m>, so the term in <m>x^2</m> is <m>15(kx)^2 = 15k^2x^2</m>. Then <m>15k^2 = 135</m>, <m>k^2 = 9</m> and <m>k = 3</m>. (<m>k = -3</m> also gives <m>135</m>, but <m>k</m> is positive.)</p>
+            </solution>
+        </example>
+
+        <example xml:id="example-coefficient-of-x5-in-2x-minus-1-to-the-eighth">
+            <title>When <m>x</m> Comes First</title>
+            <statement><p>Find the coefficient of <m>x^5</m> in the expansion of <m>(2x - 1)^8</m>.</p></statement>
+            <solution>
+                <p>Here the first term is <m>2x</m>, so the power of <m>x</m> is the power of <m>2x</m>. The term in <m>x^5</m> has <m>(2x)^5</m> and therefore <m>(-1)^3</m>, and uses number 3 of the row for power 8, which is <m>56</m>:
+                    <md>56 \times (2x)^5 \times (-1)^3 = 56 \times 32x^5 \times (-1) = -1792x^5</md>
+                The coefficient is <m>-1792</m>.</p>
+            </solution>
+        </example>
+
+        <xi:include href="../lesson-plan-templates/assessment-intro.ptx" />
+        <xi:include href="../lesson-plan-templates/checkpoint.ptx" />
+
+        <p>Type powers with <c>^</c> and fractions with <c>/</c>, for example <c>8x^3-12x^2+3/2*x-1</c>.</p>
+
+        <exercise xml:id="ex-coefficient-of-a-term-in-a-binomial-expansion">
+            <!--<title></title>-->
+            <stack label="stk-coefficient-of-a-term-in-a-binomial-expansion" source="stack/top/1-numbers-and-algebra/02-binomial-expansions/02-coefficients-in-binomial-expansions/Coefficient-of-a-term-in-a-binomial-expansion.xml"/>
+        </exercise>
+        <exercise xml:id="ex-finding-an-unknown-from-a-coefficient">
+            <!--<title></title>-->
+            <stack label="stk-finding-an-unknown-from-a-coefficient" source="stack/top/1-numbers-and-algebra/02-binomial-expansions/02-coefficients-in-binomial-expansions/Finding-an-unknown-from-a-coefficient.xml"/>
+        </exercise>
+        <exercise xml:id="ex-building-a-binomial-with-a-given-coefficient">
+            <!--<title></title>-->
+            <stack label="stk-building-a-binomial-with-a-given-coefficient" source="stack/top/1-numbers-and-algebra/02-binomial-expansions/02-coefficients-in-binomial-expansions/Building-a-binomial-with-a-given-coefficient.xml"/>
+        </exercise>
+        <exercises xml:id="exercises-coefficients-of-particular-terms">
+            <exercise xml:id="ex-coefficient-of-x3-in-1-plus-x-to-the-ninth">
+                <statement><p>Find the coefficient of <m>x^3</m> in the expansion of <m>(1 + x)^9</m>.</p></statement>
+                <answer><p><m>84</m></p></answer>
+            </exercise>
+            <exercise xml:id="ex-coefficient-of-x2-in-1-minus-4x-to-the-ninth">
+                <statement><p>Find the coefficient of <m>x^2</m> in the expansion of <m>(1 - 4x)^9</m>.</p></statement>
+                <answer><p><m>576</m></p></answer>
+                <solution><p><m>36 \times (-4)^2 = 36 \times 16 = 576</m>.</p></solution>
+            </exercise>
+            <exercise xml:id="ex-coefficient-of-x5-in-2-plus-x-to-the-eighth">
+                <statement><p>Find the coefficient of <m>x^5</m> in the expansion of <m>(2 + x)^8</m>.</p></statement>
+                <answer><p><m>448</m></p></answer>
+                <solution><p><m>56 \times 2^3 = 448</m>.</p></solution>
+            </exercise>
+            <exercise xml:id="ex-coefficient-of-x3-in-3-minus-2x-to-the-sixth">
+                <statement><p>Find the coefficient of <m>x^3</m> in the expansion of <m>(3 - 2x)^6</m>.</p></statement>
+                <answer><p><m>-4320</m></p></answer>
+                <solution><p><m>20 \times 3^3 \times (-2)^3 = 20 \times 27 \times (-8) = -4320</m>.</p></solution>
+            </exercise>
+            <exercise xml:id="ex-routes-on-a-street-grid">
+                <statement><p>A boda boda rider in Eldoret goes from the stage to a shop that is 6 blocks east and 4 blocks north, always riding east or north. Each route is 10 blocks long, and choosing which 4 of the 10 blocks go north fixes the route, so the number of routes is a number in the row for power 10. Which number is it, and how many routes are there?</p></statement>
+                <answer><p>Number 4 (or number 6) of the row for power 10; <m>210</m> routes</p></answer>
+                <solution><p>Number 4 of the row for power 10, counting from 0, is <m>210</m> (and so is number 6). There are <m>210</m> routes.</p></solution>
+            </exercise>
+            <exercise xml:id="ex-find-k-from-the-x3-coefficient">
+                <statement><p>The coefficient of <m>x^3</m> in the expansion of <m>(1 + kx)^7</m> is <m>280</m>. Find <m>k</m>.</p></statement>
+                <answer><p><m>k = 2</m></p></answer>
+                <solution><p><m>35k^3 = 280</m>, so <m>k^3 = 8</m> and <m>k = 2</m>.</p></solution>
+            </exercise>
+            <exercise xml:id="ex-find-n-from-the-x-coefficient">
+                <statement><p>The coefficient of <m>x</m> in the expansion of <m>(1 + 2x)^n</m> is <m>16</m>. Find <m>n</m>, and then the coefficient of <m>x^2</m>.</p></statement>
+                <answer><p><m>n = 8</m>; <m>112</m></p></answer>
+                <solution><p>The term in <m>x</m> is <m>n(2x) = 2nx</m>, so <m>2n = 16</m> and <m>n = 8</m>. The term in <m>x^2</m> is <m>28(2x)^2 = 112x^2</m>.</p></solution>
+            </exercise>
+            <exercise xml:id="ex-constant-term-of-x-plus-2-over-x">
+                <title>Challenge: The Middle Term</title>
+                <statement><p>Find the term that does not contain <m>x</m> in the expansion of <m>\left(x + \dfrac{2}{x}\right)^6</m>.</p></statement>
+                <hint><p>The powers of <m>x</m> in the terms are <m>6, 4, 2, 0, \ldots</m></p></hint>
+                <answer><p><m>160</m></p></answer>
+                <solution><p>The term without <m>x</m> is number 3 of the row for power 6: <m>20 \times x^3 \times \left(\dfrac{2}{x}\right)^3 = 20 \times 8 = 160</m>.</p></solution>
+            </exercise>
+        </exercises>
+
+        <axiom component="lesson-plan">
+            <title>Differentiation</title>
+            <table xml:id="table-differentiation-coefficients-of-particular-terms">
+                <title>Differentiation Strategies</title>
+                <tabular halign="left" top="minor" bottom="minor" left="minor" right="minor">
+                    <row header="yes" bottom="medium"><cell>Learner Group</cell><cell>Strategy and Learning Experience</cell></row>
+                    <row><cell>Struggling Learners (Support)</cell><cell>Provide a three-box card: row number <m>\times</m> power of the first term <m>\times</m> power of the second term. Focus on <xref ref="example-coefficient-of-x3-in-1-plus-2x-to-the-seventh"/> and <xref ref="example-coefficient-of-x4-in-3-minus-x-to-the-sixth"/>. Assign <xref ref="ex-coefficient-of-x3-in-1-plus-x-to-the-ninth"/> to <xref ref="ex-coefficient-of-x5-in-2-plus-x-to-the-eighth"/>.</cell></row>
+                    <row><cell>On-Level Learners (Core)</cell><cell>Full activity and all examples. Assign <xref ref="ex-coefficient-of-x3-in-1-plus-x-to-the-ninth"/> to <xref ref="ex-find-n-from-the-x-coefficient"/>.</cell></row>
+                    <row><cell>Advanced Learners (Challenge)</cell><cell>All exercises including <xref ref="ex-constant-term-of-x-plus-2-over-x"/>. Extension: which term of <m>(1 + x)^{10}</m> has the largest coefficient? (Answer: the term in <m>x^5</m>, <m>252x^5</m>.)</cell></row>
+                </tabular>
+            </table>
+        </axiom>
+
+        <xi:include href="../lesson-plan-templates/assessment-methods.ptx" />
+        <xi:include href="../lesson-plan-templates/reflection.ptx"/>
+    </subsection>
 </section>

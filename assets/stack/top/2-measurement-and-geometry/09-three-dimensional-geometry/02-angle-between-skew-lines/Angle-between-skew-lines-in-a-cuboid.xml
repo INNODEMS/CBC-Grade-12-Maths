@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<quiz>
+<question type="stack">
+  <name><text>Angle between skew lines in a cuboid</text></name>
+  <questiontext format="html">
+    <text><![CDATA[<p>In the cuboid ABCDEFGH, AB = {@ll@} cm, BC = {@ww@} cm and AE = {@hh@} cm. The lines {@L1@} and {@L2@} are skew.</p><div style="text-align:center;" role="img" aria-label="A cuboid ABCDEFGH. ABCD is the base and E, F, G, H are above A, B, C, D. The hidden corner D and its three edges are dashed.">
+[[jsxgraph width="360px" height="280px"]]
+(function() {
+  var b = JXG.JSXGraph.initBoard(divid, {boundingbox: [-1.2, 6.2, 8.9, -1.6], axis: false, grid: false, keepaspectratio: true,
+    showNavigation: false, showCopyright: false, pan: {enabled: false}, zoom: {enabled: false}});
+  // oblique projection: receding edges at 30 degrees, half length
+  function P(x, y, z) { return [x + 0.5*y*Math.cos(Math.PI/6), z + 0.5*y*Math.sin(Math.PI/6)]; }
+  var solid = {strokeColor: '#000000', strokeWidth: 2, fixed: true, highlight: false};
+  var hid = {strokeColor: '#000000', strokeWidth: 1.5, dash: 2, fixed: true, highlight: false};
+  var dot = {strokeColor: '#000000', strokeWidth: 1.5, dash: 1, fixed: true, highlight: false};
+  var tx = {fixed: true, highlight: false, useMathJax: false, fontSize: 15, anchorX: 'middle', anchorY: 'middle'};
+  var cx = 3.87, cy = 2.0;
+  function lab(Q, s) { var dx = Q[0]-cx, dy = Q[1]-cy, r = Math.sqrt(dx*dx+dy*dy) || 1;
+    b.create('text', [Q[0]+0.42*dx/r, Q[1]+0.42*dy/r, s], tx); }
+  function seg(Q, R, o) { b.create('segment', [Q, R], o); }
+  function mark(Q, R, S) { // right-angle mark at Q between QR and QS
+    function u(X) { var dx = X[0]-Q[0], dy = X[1]-Q[1], r = Math.sqrt(dx*dx+dy*dy); return [0.3*dx/r, 0.3*dy/r]; }
+    var a = u(R), c = u(S);
+    b.create('polygon', [[Q[0]+a[0], Q[1]+a[1]], [Q[0]+a[0]+c[0], Q[1]+a[1]+c[1]], [Q[0]+c[0], Q[1]+c[1]]],
+      {fixed: true, highlight: false, fillOpacity: 0, vertices: {visible: false},
+       borders: {strokeColor: '#000000', strokeWidth: 1, fixed: true, highlight: false}});
+  }
+  // cuboid ABCDEFGH: l = 6, w = 4, h = 3 (shape only)
+  var A = P(0,0,0), B = P(6,0,0), C = P(6,4,0), D = P(0,4,0), E = P(0,0,3), F = P(6,0,3), G = P(6,4,3), H = P(0,4,3);
+  seg(A,B,solid); seg(B,C,solid); seg(B,F,solid); seg(C,G,solid); seg(A,E,solid);
+  seg(E,F,solid); seg(F,G,solid); seg(G,H,solid); seg(H,E,solid);
+  // hidden corner D: its three edges dashed
+  seg(A,D,hid); seg(D,C,hid); seg(D,H,hid);
+  lab(A,'A'); lab(B,'B'); lab(C,'C'); lab(D,'D'); lab(E,'E'); lab(F,'F'); lab(G,'G'); lab(H,'H');
+})();
+[[/jsxgraph]]
+</div><p>The diagram is not drawn to scale.</p><p>(a) The angle between them is equal to angle</p><div>[[input:ans1]] [[validation:ans1]] [[feedback:prt1]]</div><p>(b) Find the angle between {@L1@} and {@L2@}.</p><div>[[input:ans2]] \(^\circ\) [[validation:ans2]] [[feedback:prt2]]</div><p>Give lengths correct to 2 decimal places and angles correct to 1 decimal place. Keep full calculator accuracy until the final answer.</p>]]></text>
+  </questiontext>
+  <generalfeedback format="html">
+    <text><![CDATA[<p>Slide one line, without turning it, until it meets the other. {@XP@} is parallel to {@L1@} and meets {@L2@} at {@PV@}, so the angle between {@L1@} and {@L2@} is angle {@nm@}.</p><p>Triangle {@XPY@} has a right angle at {@XX@}, with {@XY@} = {@vv2@} cm opposite angle {@nm@} and {@XP@} = {@uu@} cm next to it: \(\tan {@nm@} = \frac{{@vv2@}}{{@uu@}}\), so angle {@nm@} = \({@d1(th)@}^\circ\).</p>]]></text>
+  </generalfeedback>
+  <defaultgrade>2</defaultgrade>
+  <penalty>0.1</penalty>
+  <hidden>0</hidden>
+  <idnumber></idnumber>
+  <stackversion><text>2026063000</text></stackversion>
+  <questionvariables>
+    <text><![CDATA[slist: [["AD","BG",8,13,5,["CBG","FGB"],["CGB","ABG","DBG","CBG"],[["CGB","Angle CGB is the other acute angle of triangle CBG: it is between GC and GB. Move AD to CB, which is parallel to it and meets BG at B."],["ABG","The lines that make angle ABG are AB and BG; AB is not parallel to AD. Move AD to CB, which is parallel to it and meets BG at B."],["DBG","The lines that make angle DBG are DB and BG; DB is not parallel to AD. Move AD to CB, which is parallel to it and meets BG at B."]]],["AD","FH",18,4,12,["EHF","GFH"],["DHF","EFH","EHF","AHF"],[["EFH","Angle EFH is the other acute angle of triangle EHF: it is between FE and FH. Move AD to EH, which is parallel to it and meets FH at H."],["DHF","The lines that make angle DHF are DH and HF; DH is not parallel to AD. Move AD to EH, which is parallel to it and meets FH at H."],["AHF","The lines that make angle AHF are AH and HF; AH is not parallel to AD. Move AD to EH, which is parallel to it and meets FH at H."]]],["BC","DE",19,14,9,["ADE","HED"],["AED","BDE","CDE","ADE"],[["AED","Angle AED is the other acute angle of triangle ADE: it is between EA and ED. Move BC to AD, which is parallel to it and meets DE at D."],["BDE","The lines that make angle BDE are BD and DE; BD is not parallel to BC. Move BC to AD, which is parallel to it and meets DE at D."],["CDE","The lines that make angle CDE are CD and DE; CD is not parallel to BC. Move BC to AD, which is parallel to it and meets DE at D."]]],["EF","BD",23,17,15,["ABD","CDB"],["FBD","ADB","ABD","EBD"],[["ADB","Angle ADB is the other acute angle of triangle ABD: it is between DA and DB. Move EF to AB, which is parallel to it and meets BD at B."],["FBD","The lines that make angle FBD are FB and BD; FB is not parallel to EF. Move EF to AB, which is parallel to it and meets BD at B."],["EBD","The lines that make angle EBD are EB and BD; EB is not parallel to EF. Move EF to AB, which is parallel to it and meets BD at B."]]],["EH","AC",24,16,13,["BCA","DAC"],["ECA","BCA","BAC"],[["BAC","Angle BAC is the other acute angle of triangle BCA: it is between AB and AC. Move EH to BC, which is parallel to it and meets AC at C."],["ECA","The lines that make angle ECA are EC and CA; EC is not parallel to EH. Move EH to BC, which is parallel to it and meets AC at C."]]],["FG","AH",8,11,7,["DAH","EHA"],["FAH","DHA","DAH"],[["DHA","Angle DHA is the other acute angle of triangle DAH: it is between HD and HA. Move FG to DA, which is parallel to it and meets AH at A."],["FAH","The lines that make angle FAH are FA and AH; FA is not parallel to FG. Move FG to DA, which is parallel to it and meets AH at A."]]],["DC","AF",10,18,13,["BAF","EFA"],["CAF","BFA","DAF","BAF"],[["BFA","Angle BFA is the other acute angle of triangle BAF: it is between FB and FA. Move DC to BA, which is parallel to it and meets AF at A."],["CAF","The lines that make angle CAF are CA and AF; CA is not parallel to DC. Move DC to BA, which is parallel to it and meets AF at A."],["DAF","The lines that make angle DAF are DA and AF; DA is not parallel to DC. Move DC to BA, which is parallel to it and meets AF at A."]]],["GH","BE",25,16,5,["ABE","FEB"],["AEB","GBE","ABE"],[["AEB","Angle AEB is the other acute angle of triangle ABE: it is between EA and EB. Move GH to AB, which is parallel to it and meets BE at B."],["GBE","The lines that make angle GBE are GB and BE; GB is not parallel to GH. Move GH to AB, which is parallel to it and meets BE at B."]]],["BF","DG",6,13,8,["CGD","HDG"],["CDG","BGD","FGD","CGD"],[["CDG","Angle CDG is the other acute angle of triangle CGD: it is between DC and DG. Move BF to CG, which is parallel to it and meets DG at G."],["BGD","The lines that make angle BGD are BG and GD; BG is not parallel to BF. Move BF to CG, which is parallel to it and meets DG at G."],["FGD","The lines that make angle FGD are FG and GD; FG is not parallel to BF. Move BF to CG, which is parallel to it and meets DG at G."]]],["AE","CH",6,11,9,["DHC","GCH"],["DCH","EHC","AHC","DHC"],[["DCH","Angle DCH is the other acute angle of triangle DHC: it is between CD and CH. Move AE to DH, which is parallel to it and meets CH at H."],["EHC","The lines that make angle EHC are EH and HC; EH is not parallel to AE. Move AE to DH, which is parallel to it and meets CH at H."],["AHC","The lines that make angle AHC are AH and HC; AH is not parallel to AE. Move AE to DH, which is parallel to it and meets CH at H."]]]];
+/* Design: angle between skew lines in a cuboid (translate one line until it meets the other). Every angle sits in a right-angled face triangle XPY (right angle at X) whose two shorter sides are edges, so no Pythagoras is needed. Source: adapted from SMP Book 5 (Metric), Chapter 13, 2.5. */
+ix: 1+rand(10); SS: slist[ix];
+L1: SS[1]; L2: SS[2]; ll: SS[3]; ww: SS[4]; hh: SS[5]; good: SS[6]; OP: SS[7]; DF: SS[8];
+LS: "ABCDEFGH"; LT: [[0,0,0],[ll,0,0],[ll,ww,0],[0,ww,0],[0,0,hh],[ll,0,hh],[ll,ww,hh],[0,ww,hh]];
+pt(c) := LT[ssearch(c, LS)];
+vv(s) := pt(charat(s,2)) - pt(charat(s,1));
+sq(s) := vv(s) . vv(s);
+dst(s) := float(sqrt(sq(s)));
+angd(s) := block([u,w], u: pt(charat(s,1))-pt(charat(s,2)), w: pt(charat(s,3))-pt(charat(s,2)), float(acos((u . w)/sqrt((u . u)*(w . w)))*180/%pi));
+r1(v) := float(floor(10*v+1/2)/10); r2(v) := float(floor(100*v+1/2)/100);
+d1(v) := dispdp(r1(v),1); d2(v) := dispdp(r2(v),2); d4(v) := dispdp(float(floor(10000*v+1/2)/10000),4);
+NA: -999; NB: -888; NC: -777;
+nf(v) := if integerp(v) then v else float(v);
+nm: first(sublist(OP, lambda([o], member(o, good))));
+XX: charat(nm,1); PV: charat(nm,2); YY: charat(nm,3);
+XP: sconcat(XX,PV); XY: sconcat(XX,YY); XPY: sconcat(XX,PV,YY); PY: sconcat(PV,YY);
+uu: sqrt(sq(XP)); vv2: sqrt(sq(XY));
+th: angd(nm); cp: 90-th; thr: r1(th); tha: th+0.2; thg: th+1.0; thrad: float(th*%pi/180);
+opts: makelist([o, is(o = nm), o], o, OP);
+o1: DF[1][1]; o2: DF[2][1]; o3: last(DF)[1];
+]]></text>
+  </questionvariables>
+  <specificfeedback format="html"><text><![CDATA[]]></text></specificfeedback>
+  <questionnote format="moodle_auto_format">
+    <text>ix={@ix@}, {@L1@} and {@L2@}, {@ll@} by {@ww@} by {@hh@}, angle {@nm@} = {@d1(th)@}</text>
+  </questionnote>
+  <questiondescription format="html"><text><![CDATA[<p id="concept">Three-Dimensional Geometry: angle between skew lines in a cuboid</p><p id="description">Grade 12 CBE Core 2.4: Name the angle equal to the angle between two skew lines of a cuboid, then calculate it in a right-angled face triangle.</p><p id="edition">Core</p><p id="provenance">This question is adapted from Chapter 13, Section 2.5 (the angle between skew lines, found by translating one line) of School Mathematics Project, SMP Book 5 (Metric), ed. P. G. Bowie, Cambridge University Press, 1969: new skew pairs, cuboids and wording, randomised, with a naming step and named feedback.</p><p id="citation">INNODEMS CBC Grade 12 Mathematics, first draft by Ben Davies, 2026. Aligned to the KICD Senior School Curriculum Design, Core Mathematics Grade 12 (draft).</p>]]></text></questiondescription>
+  <questionsimplify>1</questionsimplify>
+  <assumepositive>0</assumepositive>
+  <assumereal>0</assumereal>
+  <prtcorrect format="html"><text><![CDATA[[[commonstring key="symbolicprtcorrectfeedback"/]] [[commonstring key="defaultprtcorrectfeedback"/]]]]></text></prtcorrect>
+  <prtpartiallycorrect format="html"><text><![CDATA[[[commonstring key="symbolicprtpartiallycorrectfeedback"/]] [[commonstring key="defaultprtpartiallycorrectfeedback"/]]]]></text></prtpartiallycorrect>
+  <prtincorrect format="html"><text><![CDATA[[[commonstring key="symbolicprtincorrectfeedback"/]] [[commonstring key="defaultprtincorrectfeedback"/]]]]></text></prtincorrect>
+  <decimals>.</decimals>
+  <scientificnotation>*10</scientificnotation>
+  <multiplicationsign>none</multiplicationsign>
+  <sqrtsign>1</sqrtsign>
+  <complexno>i</complexno>
+  <inversetrig>cos-1</inversetrig>
+  <logicsymbol>lang</logicsymbol>
+  <matrixparens>[</matrixparens>
+  <isbroken>0</isbroken>
+  <variantsselectionseed></variantsselectionseed>
+
+  <input><name>ans1</name><type>dropdown</type><tans>opts</tans><boxsize>15</boxsize><strictsyntax>1</strictsyntax><insertstars>0</insertstars><syntaxhint></syntaxhint><syntaxattribute>0</syntaxattribute><forbidwords></forbidwords><allowwords></allowwords><forbidfloat>1</forbidfloat><requirelowestterms>0</requirelowestterms><checkanswertype>0</checkanswertype><mustverify>0</mustverify><showvalidation>0</showvalidation><options></options></input>
+  <input><name>ans2</name><type>numerical</type><tans>th</tans><boxsize>6</boxsize><strictsyntax>1</strictsyntax><insertstars>0</insertstars><syntaxhint></syntaxhint><syntaxattribute>0</syntaxattribute><forbidwords></forbidwords><allowwords></allowwords><forbidfloat>0</forbidfloat><requirelowestterms>0</requirelowestterms><checkanswertype>0</checkanswertype><mustverify>0</mustverify><showvalidation>0</showvalidation><options></options></input>
+
+  <prt><name>prt1</name><value>1.0000000</value><autosimplify>1</autosimplify><feedbackstyle>1</feedbackstyle><feedbackvariables><text><![CDATA[rvs(s) := sconcat(charat(s,2), charat(s,1));
+a1: sconcat(charat(ans1,2), charat(ans1,1)); a3: sconcat(charat(ans1,2), charat(ans1,3));
+oarm: if is(a3 = L2 or a3 = rvs(L2)) then a1 else a3;
+]]></text></feedbackvariables>
+    <node><name>0</name><description>Angle name</description><answertest>AlgEquiv</answertest><sans>ans1</sans><tans>nm</tans><testoptions></testoptions><quiet>1</quiet><truescoremode>=</truescoremode><truescore>1.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt1-1-T</trueanswernote><truefeedback format="html"><text><![CDATA[]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>-1</falsenextnode><falseanswernote>prt1-1-F</falseanswernote><falsefeedback format="html"><text><![CDATA[<p>Angle {@ans1@} is between {@oarm@} and {@L2@}. {@oarm@} is not parallel to {@L1@}, so this is not the angle between {@L1@} and {@L2@}. Slide {@L1@}, without turning it, until it meets {@L2@}: which line through an end of {@L2@} is parallel to {@L1@}?</p>]]></text></falsefeedback></node>
+  </prt>
+  <prt><name>prt2</name><value>1.0000000</value><autosimplify>1</autosimplify><feedbackstyle>1</feedbackstyle><feedbackvariables><text><![CDATA[d3(v) := dispdp(float(floor(1000*v+1/2)/1000),3);
+okr: is(ans2 > 0 and ans2 < 90); rdn: float(ans2*%pi/180);
+tn: if okr then float(tan(rdn)) else NA;
+]]></text></feedbackvariables>
+    <node><name>0</name><description>Answer</description><answertest>NumAbsolute</answertest><sans>ans2</sans><tans>th</tans><testoptions>0.0501</testoptions><quiet>1</quiet><truescoremode>=</truescoremode><truescore>1.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt2-1-T</trueanswernote><truefeedback format="html"><text><![CDATA[]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>1</falsenextnode><falseanswernote>prt2-1-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>1</name><description>Other acute angle</description><answertest>NumAbsolute</answertest><sans>ans2</sans><tans>cp</tans><testoptions>0.0501</testoptions><quiet>1</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt2-2-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>That is the other acute angle of the right-angled triangle: you have the opposite and adjacent sides the wrong way round. For the angle you want, which edge is opposite it and which is next to it?</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>2</falsenextnode><falseanswernote>prt2-2-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>2</name><description>Calculator in radians</description><answertest>NumAbsolute</answertest><sans>ans2</sans><tans>float((th)*%pi/180)</tans><testoptions>0.00501</testoptions><quiet>1</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt2-3-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>Your calculator is set to radians. Set it to degrees (DEG) and work out the angle again.</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>3</falsenextnode><falseanswernote>prt2-3-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>3</name><description>Close but not accurate</description><answertest>NumAbsolute</answertest><sans>ans2</sans><tans>th</tans><testoptions>0.3</testoptions><quiet>1</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt2-4-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>Your answer is close but not accurate to 1 decimal place. Keep full calculator accuracy until the end, then round the angle once.</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>-1</falsenextnode><falseanswernote>prt2-4-F</falseanswernote><falsefeedback format="html"><text><![CDATA[[[if test="okr"]]<p>The tangent of your angle is {@d3(tn)@}. Slide {@L1@} until it meets {@L2@}: the angle is then in a right-angled triangle whose two shorter sides are edges of the cuboid, so its tangent is one of {@ll@}, {@ww@} and {@hh@} divided by another. Which two edges, and which is opposite the angle?</p>[[else]]<p>An angle between two lines, or between a line or plane and a plane, is between \(0^\circ\) and \(90^\circ\). Check your working and your calculator mode.</p>[[/if]]]]></text></falsefeedback></node>
+  </prt>
+
+  <deployedseed>4</deployedseed>
+  <deployedseed>5</deployedseed>
+  <deployedseed>15</deployedseed>
+  <deployedseed>8</deployedseed>
+  <deployedseed>24</deployedseed>
+  <deployedseed>1</deployedseed>
+  <deployedseed>3</deployedseed>
+  <deployedseed>10</deployedseed>
+  <deployedseed>2</deployedseed>
+  <deployedseed>17</deployedseed>
+  <qtest><testcase>1</testcase><description>Correct</description>
+    <testinput><name>ans1</name><value>nm</value></testinput>
+    <testinput><name>ans2</name><value>th</value></testinput>
+    <expected><name>prt1</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt1-1-T</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt2-1-T</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>2</testcase><description>Correct, rounded to 1 d.p.</description>
+    <testinput><name>ans1</name><value>nm</value></testinput>
+    <testinput><name>ans2</name><value>thr</value></testinput>
+    <expected><name>prt1</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt1-1-T</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt2-1-T</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>3</testcase><description>Other acute angle, named and calculated</description>
+    <testinput><name>ans1</name><value>o1</value></testinput>
+    <testinput><name>ans2</name><value>cp</value></testinput>
+    <expected><name>prt1</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt1-1-F</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt2-1-F | prt2-2-T</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>4</testcase><description>A non-parallel line; radians</description>
+    <testinput><name>ans1</name><value>o2</value></testinput>
+    <testinput><name>ans2</name><value>thrad</value></testinput>
+    <expected><name>prt1</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt1-1-F</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt2-1-F | prt2-2-F | prt2-3-T</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>5</testcase><description>Last option; close but not accurate</description>
+    <testinput><name>ans1</name><value>o3</value></testinput>
+    <testinput><name>ans2</name><value>tha</value></testinput>
+    <expected><name>prt1</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt1-1-F</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt2-1-F | prt2-2-F | prt2-3-F | prt2-4-T</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>6</testcase><description>Correct; generic wrong</description>
+    <testinput><name>ans1</name><value>nm</value></testinput>
+    <testinput><name>ans2</name><value>thg</value></testinput>
+    <expected><name>prt1</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt1-1-T</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt2-1-F | prt2-2-F | prt2-3-F | prt2-4-F</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>7</testcase><description>Invalid: a letter in (b)</description>
+    <testinput><name>ans1</name><value>nm</value></testinput>
+    <testinput><name>ans2</name><value>x</value></testinput>
+    <expected><name>prt1</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt1-1-T</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore></expectedscore><expectedpenalty></expectedpenalty><expectedanswernote>NULL</expectedanswernote></expected>
+  </qtest>
+</question>
+</quiz>

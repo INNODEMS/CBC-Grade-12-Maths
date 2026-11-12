@@ -19,7 +19,7 @@
                     </p>
                 </li>
                 <li>
-                    <title>Specific Learning Outcomes</title> 
+                    <title>Specific Learning Outcomes</title>
                     <p>
                         Solve trigonometric equations using the identity sin²x+cos²x = 1 analytically
                     </p>
@@ -33,7 +33,7 @@
                 <li component="lesson-plan">
                     <title>Estimated Duration</title>
                     <p>
-                        40 minutes
+                        2 lessons of 40 minutes
                     </p>
                 </li>
             </dl>
@@ -46,163 +46,427 @@
          Suggested activity: Learners solve equations such as 2 sin²x + cos x = 1 for 0° ≤ x ≤ 360° and check the solutions on their graph.
          Interactive (JSXGraph): Graph of both sides of an equation with intersection points marked; learners compare analytical solutions with the intersections. -->
 
-    <!-- [LP] Add guidance on activity -->
+    <!-- Section notes (2026-11)
+         SLOs: Core 2.5 (b). Lessons 3.1 and 3.2 as subsections.
+         Activity: as planning notes (solve 2 sin²x + cos x = 1 and check on the graph) in 3.1; 3.2 adds three equations, three methods
+         JSXGraph: interactive-equation-intersections (assets/jsxgraph/equation-intersections.js, lesson 3.1), as planning notes
+         STACK: assets/stack/top/2-measurement-and-geometry/10-trigonometry-iii/03-solving-trigonometric-equations-using-identities/ -->
 
-    <!-- <axiom component="lesson-plan">
+    <!-- ============================================================ Lesson 3.1 -->
+    <subsection xml:id="subsec-equations-that-become-quadratics">
+        <title>Equations That Become Quadratics</title>
+
+        <p component="lesson-plan">Upon completion of this lesson, learners will be able to:
+            <ol>
+                <li><p><alert>Know:</alert> an equation with <m>\sin^2 x</m> and <m>\cos x</m> (or <m>\cos^2 x</m> and <m>\sin x</m>) becomes a quadratic in one ratio; roots outside <m>-1</m> to <m>1</m> give no angles.</p></li>
+                <li><p><alert>Do:</alert> substitute, rearrange, factorise, reject impossible roots, and find all the angles in <m>0^\circ \le x \le 360^\circ</m>.</p></li>
+                <li><p><alert>Apply:</alert> check solutions on a graph.</p></li>
+            </ol>
+        </p>
+
+        <axiom component="lesson-plan">
             <title>Problem-Solving and Discovery</title>
             <dl>
-                <li>
-                    <title>Suggested Time</title>
-                    <p>
-                        XX minutes
-                    </p>
-                </li>
-                <li>
-                    <title>Objective</title>
-                    <p>
-                        XXX
-                    </p>
-                </li>
-                <li>
-                    <title>Teacher's Role</title>
-                    <p>
-                        XXX
-                    </p>
-                </li>
+                <li><title>Suggested Time</title><p>14 minutes</p></li>
+                <li><title>Objective</title><p>Learners solve <m>2\sin^2 x + \cos x = 1</m> and check the solutions on a graph.</p></li>
+                <li><title>Teacher's Role</title><p>Before part (a) ask: <q>Grade 11 solved <m>2\sin^2 x - \sin x = 0</m>. Why can't we factorise this one straight away?</q> Learners work in pairs and share their answers with the next pair before part (e), which uses the interactive.</p></li>
             </dl>
-        </axiom> -->
+        </axiom>
 
-    <!-- Add Activity -->
-
-    <!-- <activity>
-        <statement>
-        </statement>
-    </activity> -->
-
-    <!-- [LP] Add guidance on structured lesson plan-->
-
-    <!-- <axiom component="lesson-plan">
-        <title>Structured Instruction</title>
-        <p>
-            <dl>
-            <li>
-                <title>Suggested Time</title>
+        <activity xml:id="act-two-ratios-become-one">
+            <title>Two Ratios Become One</title>
+            <statement>
+                <p>Solve <m>2\sin^2 x + \cos x = 1</m> for <m>0^\circ \le x \le 360^\circ</m>.</p>
                 <p>
-                    XX minutes
+                    <ol marker="(a)">
+                        <li>
+                            <p>Replace <m>\sin^2 x</m> using the identity.</p>
+                            <solution component="lesson-plan"><p><m>2(1 - \cos^2 x) + \cos x = 1</m>.</p></solution>
+                        </li>
+                        <li>
+                            <p>Rearrange into a quadratic equation in <m>\cos x</m>. Write <m>c</m> for <m>\cos x</m>.</p>
+                            <solution component="lesson-plan"><p><m>2 - 2c^2 + c = 1</m>, so <m>2c^2 - c - 1 = 0</m>.</p></solution>
+                        </li>
+                        <li>
+                            <p>Factorise and solve for <m>c</m>.</p>
+                            <solution component="lesson-plan"><p><m>(2c + 1)(c - 1) = 0</m>, so <m>c = -\dfrac{1}{2}</m> or <m>c = 1</m>.</p></solution>
+                        </li>
+                        <li>
+                            <p>Find every <m>x</m> with <m>0^\circ \le x \le 360^\circ</m>.</p>
+                            <solution component="lesson-plan"><p><m>\cos x = -\dfrac{1}{2}</m>: <m>120^\circ</m> and <m>240^\circ</m>. <m>\cos x = 1</m>: <m>0^\circ</m> and <m>360^\circ</m>. So <m>x \in \{0^\circ, 120^\circ, 240^\circ, 360^\circ\}</m>.</p></solution>
+                        </li>
+                        <li>
+                            <p>In the interactive in <xref ref="fig-equation-intersections"/>, set <m>k = 1</m> and compare the meeting points with your answers.</p>
+                            <solution component="lesson-plan"><p>Four points, at <m>0^\circ</m>, <m>120^\circ</m>, <m>240^\circ</m> and <m>360^\circ</m>.</p></solution>
+                        </li>
+                    </ol>
                 </p>
-            </li>
-            <li>
-                <title>Objective</title>
-                <p>
-                    To formalize the concepts and properties learners discovered in the anchor task.
-                </p>
-            </li>
-            </dl>
-        </p>
-        <paragraphs>
-            <title>Key Takeaways &amp; Teacher Connection</title>
-            <ol>
-                <li>
+            </statement>
+        </activity>
+
+        <axiom component="lesson-plan">
+            <title>Structured Instruction</title>
+            <p>
+                <dl>
+                    <li><title>Suggested Time</title><p>8 minutes</p></li>
+                    <li><title>Objective</title><p>To set out the five steps for solving with the identity.</p></li>
+                </dl>
+            </p>
+            <paragraphs>
+                <title>Key Takeaways &amp; Teacher Connection</title>
+                <ol>
+                    <li><p><alert>Connecting to Learner Work:</alert> part (a) changed two ratios into one; part (c) was a quadratic the learners already knew how to solve.</p></li>
+                    <li><p>Reject any root outside <m>-1</m> to <m>1</m>; find both angles for each root; check the ends of the interval.</p></li>
+                </ol>
+            </paragraphs>
+        </axiom>
+
+        <insight xml:id="insight-solving-with-the-identity">
+            <title>Solving with the Identity</title>
+            <p>Change every ratio into the same ratio: then it is a quadratic you already know how to solve.
+                <ol>
+                    <li><p>Replace: if the equation has <m>\cos x</m>, replace <m>\sin^2 x</m> by <m>1 - \cos^2 x</m>; if it has <m>\sin x</m>, replace <m>\cos^2 x</m> by <m>1 - \sin^2 x</m>.</p></li>
+                    <li><p>Rearrange into a quadratic in that ratio, with every term on one side.</p></li>
+                    <li><p>Solve the quadratic.</p></li>
+                    <li><p>Reject any value outside <m>-1</m> to <m>1</m>: <m>\cos x</m> and <m>\sin x</m> can never be bigger than 1 or smaller than <m>-1</m>.</p></li>
+                    <li><p>Find all the angles in <m>0^\circ \le x \le 360^\circ</m> for each value that is left.</p></li>
+                </ol>
+            </p>
+        </insight>
+
+        <figure xml:id="fig-equation-both-sides">
+            <caption><m>y = 2\sin^2 x + \cos x</m> (solid) and <m>y = 1</m> (dashed).</caption>
+            <image width="90%">
+                <shortdescription>The curve meets the line y = 1 at 0, 120, 240 and 360 degrees.</shortdescription>
+                <description><p>The solid curve starts at 1 when x = 0, rises to 2.125 at about 75.5 degrees, falls to -1 at 180 degrees, rises to 2.125 at about 284.5 degrees and returns to 1 at 360 degrees. The dashed line y = 1 meets it at 0, 120, 240 and 360 degrees.</p></description>
+                <latex-image>
+\begin{tikzpicture}
+% pgfplots sin and cos take degrees by default
+\begin{axis}[width=13cm, height=6cm, axis lines=middle, xmin=0, xmax=380, ymin=-1.4, ymax=2.5,
+  xtick={0,30,...,360}, xticklabel={$\pgfmathprintnumber{\tick}^\circ$}, ytick={-1,1,2}, grid=both, grid style={gray!25},
+  xlabel={$x$}, ylabel={$y$}, tick label style={font=\scriptsize}]
+\addplot[thick, domain=0:360, samples=181] {2*sin(x)^2+cos(x)};
+\addplot[thick, dashed, domain=0:360] {1};
+\addplot[only marks, mark=*] coordinates {(0,1) (120,1) (240,1) (360,1)};
+\end{axis}
+\end{tikzpicture}
+                </latex-image>
+            </image>
+        </figure>
+
+        <figure xml:id="fig-equation-intersections">
+            <caption>The <m>x</m>-values where the curve <m>y = 2\sin^2 x + \cos x</m> meets the line <m>y = k</m> solve <m>2\sin^2 x + \cos x = k</m>.</caption>
+            <interactive xml:id="interactive-equation-intersections" platform="jsxgraph" width="90%" aspect="16:10" source="jsxgraph/equation-intersections.js">
+                <slate xml:id="jsxgraph-equation-intersections" surface="jsxboard" aspect="16:10"/>
+                <instructions>
                     <p>
-                        <alert>Connecting to Learner Work:</alert> XXXX
+                        <ul>
+                            <li><p>Set <alert>k</alert> <m>= 1</m> and compare the meeting points with your answers to <xref ref="act-two-ratios-become-one"/>.</p></li>
+                            <li><p>Find the value of <alert>k</alert> where there are exactly two meeting points, with the line touching the top of the curve.</p></li>
+                        </ul>
                     </p>
-                </li>
-            </ol>
-        </paragraphs>
-    </axiom> -->
+                </instructions>
+            </interactive>
+        </figure>
 
-    <!-- Add insight / key takeaway directly related to activity / learner experience -->
+        <xi:include href="../lesson-plan-templates/example-intro.ptx" />
 
-    <!-- <insight>
-    </insight> -->
-
-    <!-- Add further instruction (not in a block) to develop ideas as needed -->
-
-    <xi:include href="../lesson-plan-templates/example-intro.ptx" />
-
-    <!-- Add at least 3 examples -->
-
-    <!-- <example>
-        <statement>
-        </statement>
-        <solution>
-        </solution>
-    </example>
-
-    <example>
-        <statement>
-        </statement>
-        <solution>
-        </solution>
-    </example>
-
-    <example>
-        <statement>
-        </statement>
-        <solution>
-        </solution>
-    </example> -->
-
-    <xi:include href="../lesson-plan-templates/assessment-intro.ptx" />
-
-    <!-- If STACK questions are included, uncomment this: -->
-
-    <!-- <xi:include href="../lesson-plan-templates/checkpoint.ptx" /> -->
-
-    <!-- Add STACK exercises if made -->
-
-    <!-- Add static exercises -->
-
-    <!-- <exercises>
-        <exercise>
-            <statement>   
-
-            </statement>   
+        <example xml:id="example-replacing-cos-squared">
+            <title>Replacing <m>\cos^2 x</m></title>
+            <statement><p>Solve <m>3\cos^2 x + 2\sin x = 2</m> for <m>0^\circ \le x \le 360^\circ</m>.</p></statement>
             <solution>
+                <p>The equation has <m>\sin x</m>, so replace <m>\cos^2 x</m> by <m>1 - \sin^2 x</m>:
+                    <md>
+                        <mrow>3(1 - \sin^2 x) + 2\sin x \amp = 2</mrow>
+                        <mrow>3\sin^2 x - 2\sin x - 1 \amp = 0</mrow>
+                        <mrow>(3\sin x + 1)(\sin x - 1) \amp = 0</mrow>
+                    </md>
+                    <m>\sin x = 1</m> gives <m>90^\circ</m>. <m>\sin x = -\dfrac{1}{3}</m>: the calculator gives <m>-19.5^\circ</m>; sine is negative in the third and fourth quadrants, so <m>x = 180^\circ + 19.5^\circ = 199.5^\circ</m> or <m>360^\circ - 19.5^\circ = 340.5^\circ</m>. So <m>x \in \{90^\circ, 199.5^\circ, 340.5^\circ\}</m>.</p>
+            </solution>
+        </example>
 
-            </solution>             
-        </exercise>        
-    </exercises> -->
+        <example xml:id="example-four-solutions">
+            <title>Four Solutions</title>
+            <statement><p>Solve <m>6\sin^2 x + \cos x = 4</m> for <m>0^\circ \le x \le 360^\circ</m>.</p></statement>
+            <solution>
+                <p>Replace <m>\sin^2 x</m> by <m>1 - \cos^2 x</m>:
+                    <md>
+                        <mrow>6 - 6\cos^2 x + \cos x \amp = 4</mrow>
+                        <mrow>6\cos^2 x - \cos x - 2 \amp = 0</mrow>
+                        <mrow>(3\cos x - 2)(2\cos x + 1) \amp = 0</mrow>
+                    </md>
+                    <m>\cos x = \dfrac{2}{3}</m> gives <m>48.2^\circ</m> and <m>360^\circ - 48.2^\circ = 311.8^\circ</m>; <m>\cos x = -\dfrac{1}{2}</m> gives <m>120^\circ</m> and <m>240^\circ</m>. So <m>x \in \{48.2^\circ, 120^\circ, 240^\circ, 311.8^\circ\}</m>.</p>
+            </solution>
+        </example>
 
-    <!-- [LP] Add information on how to differentiate  -->
+        <example xml:id="example-a-root-to-reject">
+            <title>A Root to Reject</title>
+            <statement><p>Solve <m>3\sin^2 x + 7\cos x + 3 = 0</m> for <m>0^\circ \le x \le 360^\circ</m>.</p></statement>
+            <solution>
+                <p>Replace <m>\sin^2 x</m> by <m>1 - \cos^2 x</m>:
+                    <md>
+                        <mrow>3 - 3\cos^2 x + 7\cos x + 3 \amp = 0</mrow>
+                        <mrow>3\cos^2 x - 7\cos x - 6 \amp = 0</mrow>
+                        <mrow>(3\cos x + 2)(\cos x - 3) \amp = 0</mrow>
+                    </md>
+                    <m>\cos x = 3</m> is impossible, because <m>\cos x</m> is never bigger than 1. <m>\cos x = -\dfrac{2}{3}</m> gives <m>131.8^\circ</m> and <m>360^\circ - 131.8^\circ = 228.2^\circ</m>. So <m>x \in \{131.8^\circ, 228.2^\circ\}</m>.</p>
+            </solution>
+        </example>
 
-    <!-- <axiom component="lesson-plan">
-        <title>Differentiation</title>
+        <warning xml:id="warning-both-ends-count">
+            <title>Both Ends Count</title>
+            <p>The interval <m>0^\circ \le x \le 360^\circ</m> includes both ends. So <m>\cos x = 1</m> gives two solutions, <m>0^\circ</m> and <m>360^\circ</m>. But <m>\cos x = -1</m> gives only <m>180^\circ</m>.</p>
+        </warning>
 
-        <table>
+        <note xml:id="note-check-with-a-graph">
+            <title>Check with a Graph</title>
+            <p>Graphing software can check your answers: plot both sides of the equation, with the angle unit set to degrees, and read the <m>x</m>-values where the graphs cross. Use the apps your school has approved.</p>
+        </note>
+
+        <xi:include href="../lesson-plan-templates/assessment-intro.ptx" />
+        <xi:include href="../lesson-plan-templates/checkpoint.ptx" />
+
+        <p>Type angles in degrees as numbers, without the degree sign. Type a set of angles in curly brackets, separated by commas, in any order, for example <c>{30, 150, 270}</c>. On most phone keyboards the curly brackets are on the second page of symbols: tap <c>?123</c> (or <c>123</c>), then <c>=\&lt;</c> (or <c>#+=</c>). Give angles that are not whole numbers to 1 decimal place. Type powers with <c>^</c>, for example <c>2c^2-7c+3=0</c>.</p>
+
+        <exercise xml:id="ex-solving-an-equation-with-the-identity-step-by-step">
+            <!--<title></title>-->
+            <stack label="stk-solving-an-equation-with-the-identity-step-by-step" source="stack/top/2-measurement-and-geometry/10-trigonometry-iii/03-solving-trigonometric-equations-using-identities/Solving-an-equation-with-the-identity-step-by-step.xml"/>
+        </exercise>
+
+        <exercise xml:id="ex-finding-the-mistake-in-a-trigonometric-equation">
+            <!--<title></title>-->
+            <stack label="stk-finding-the-mistake-in-a-trigonometric-equation" source="stack/top/2-measurement-and-geometry/10-trigonometry-iii/03-solving-trigonometric-equations-using-identities/Finding-the-mistake-in-a-trigonometric-equation.xml"/>
+        </exercise>
+
+        <exercises xml:id="exercises-equations-that-become-quadratics">
+            <exercise xml:id="ex-solve-quadratic-six">
+                <statement><p>Solve each equation for <m>0^\circ \le x \le 360^\circ</m>.
+                    <ol marker="(a)">
+                        <li><p><m>2\cos^2 x + 9\sin x + 3 = 0</m></p></li>
+                        <li><p><m>3\sin^2 x + 4\cos x = 4</m></p></li>
+                        <li><p><m>\cos^2 x + \sin x + 1 = 0</m></p></li>
+                        <li><p><m>4\sin^2 x + 4\cos x = 5</m></p></li>
+                        <li><p><m>4\cos^2 x = 3\sin x + 3</m></p></li>
+                    </ol></p></statement>
+                <answer><p>(a) <m>\{210^\circ, 330^\circ\}</m> (b) <m>\{0^\circ, 70.5^\circ, 289.5^\circ, 360^\circ\}</m> (c) <m>\{270^\circ\}</m> (d) <m>\{60^\circ, 300^\circ\}</m> (e) <m>\{14.5^\circ, 165.5^\circ, 270^\circ\}</m></p></answer>
+                <solution><p>(a) <m>2\sin^2 x - 9\sin x - 5 = (2\sin x + 1)(\sin x - 5) = 0</m>; <m>\sin x = 5</m> is impossible. (b) <m>3\cos^2 x - 4\cos x + 1 = (3\cos x - 1)(\cos x - 1) = 0</m>. (c) <m>\sin^2 x - \sin x - 2 = (\sin x - 2)(\sin x + 1) = 0</m>; <m>\sin x = 2</m> is impossible. (d) <m>4\cos^2 x - 4\cos x + 1 = (2\cos x - 1)^2 = 0</m>. (e) <m>4\sin^2 x + 3\sin x - 1 = (4\sin x - 1)(\sin x + 1) = 0</m>.</p></solution>
+            </exercise>
+            <exercise xml:id="ex-show-then-solve">
+                <statement><p>
+                    <ol marker="(a)">
+                        <li><p>Show that <m>3\sin^2 x - \cos^2 x = \cos x</m> can be written as <m>4\cos^2 x + \cos x - 3 = 0</m>.</p></li>
+                        <li><p>Factorise <m>4\cos^2 x + \cos x - 3</m>.</p></li>
+                        <li><p>Solve <m>3\sin^2 x - \cos^2 x = \cos x</m> for <m>0^\circ \le x \le 360^\circ</m>.</p></li>
+                    </ol></p></statement>
+                <answer><p>(b) <m>(4\cos x - 3)(\cos x + 1)</m> (c) <m>\{41.4^\circ, 180^\circ, 318.6^\circ\}</m></p></answer>
+                <solution><p>(a) <m>3(1 - \cos^2 x) - \cos^2 x = \cos x</m>, so <m>3 - 4\cos^2 x = \cos x</m> and <m>4\cos^2 x + \cos x - 3 = 0</m>. (c) <m>\cos x = \dfrac{3}{4}</m> gives <m>41.4^\circ</m> and <m>318.6^\circ</m>; <m>\cos x = -1</m> gives <m>180^\circ</m>.</p></solution>
+            </exercise>
+            <exercise xml:id="ex-solve-reject-two">
+                <title>Challenge: Only Two Angles</title>
+                <statement><p>Solve <m>2\cos^2 x + 5\sin x = 4</m> for <m>0^\circ \le x \le 360^\circ</m>, and explain why only two angles appear.</p></statement>
+                <hint><p>Replace <m>\cos^2 x</m>, then factorise.</p></hint>
+                <answer><p><m>\{30^\circ, 150^\circ\}</m>. The quadratic <m>2\sin^2 x - 5\sin x + 2 = (2\sin x - 1)(\sin x - 2) = 0</m> has a root <m>\sin x = 2</m>, which is impossible.</p></answer>
+            </exercise>
+        </exercises>
+
+        <axiom component="lesson-plan">
             <title>Differentiation</title>
-            <tabular halign="left">
-                <row header="yes" bottom="minor">
-                    <cell>Learner Group</cell>
-                    <cell>Strategy &amp; Learning Experience</cell>
-                    <cell></cell>
-                </row>
-                <row>
-                    <cell>Struggling Learners (Support)</cell>
-                    <cell>
-                        XXXX
-                    </cell>
-                    <cell></cell>
-                </row>
-                <row>
-                    <cell>On-Level Learners (Core)</cell>
-                    <cell>
-                        <line>The core lesson activities as described above.</line>
-                    </cell>
-                    <cell></cell>
-                </row>
-                <row>
-                    <cell>Advanced Learners (Challenge)</cell>
-                    <cell>
-                        XXXX
-                    </cell>
-                    <cell></cell>
-                </row>
-            </tabular>
-        </table>
-    </axiom> -->
+            <table xml:id="table-differentiation-equations-that-become-quadratics">
+                <title>Differentiation Strategies</title>
+                <tabular halign="left" top="minor" bottom="minor" left="minor" right="minor">
+                    <row header="yes" bottom="medium"><cell>Learner Group</cell><cell>Strategy and Learning Experience</cell></row>
+                    <row><cell>Struggling Learners (Support)</cell><cell>Provide a step frame (replace, rearrange, factorise, reject, angles). Work through <xref ref="example-replacing-cos-squared"/>. Assign parts (a) and (b) of <xref ref="ex-solve-quadratic-six"/>.</cell></row>
+                    <row><cell>On-Level Learners (Core)</cell><cell>Full activity and all examples. Assign <xref ref="ex-solve-quadratic-six"/> and <xref ref="ex-show-then-solve"/>.</cell></row>
+                    <row><cell>Advanced Learners (Challenge)</cell><cell>All exercises including <xref ref="ex-solve-reject-two"/>. Extension: use the interactive to find the greatest <m>k</m> for which <m>2\sin^2 x + \cos x = k</m> has a solution. (Answer: <m>k = 2.125</m>, where <m>\cos x = \dfrac{1}{4}</m>: <m>x = 75.5^\circ</m> and <m>284.5^\circ</m>.)</cell></row>
+                </tabular>
+            </table>
+        </axiom>
 
-    <xi:include href="../lesson-plan-templates/assessment-methods.ptx" />
+        <xi:include href="../lesson-plan-templates/assessment-methods.ptx" />
+        <xi:include href="../lesson-plan-templates/reflection.ptx"/>
+    </subsection>
 
-    <xi:include href="../lesson-plan-templates/reflection.ptx"/>
+    <!-- ============================================================ Lesson 3.2 -->
+    <subsection xml:id="subsec-further-trigonometric-equations">
+        <title>Further Trigonometric Equations</title>
+
+        <p component="lesson-plan">Upon completion of this lesson, learners will be able to:
+            <ol>
+                <li><p><alert>Know:</alert> dividing by <m>\cos^2 x</m> turns <m>\sin^2 x</m> and <m>\cos^2 x</m> into <m>\tan^2 x</m>; never divide by an expression that can be zero (factorise instead); use the formula when a quadratic does not factorise.</p></li>
+                <li><p><alert>Do:</alert> solve such equations in <m>0^\circ \le x \le 360^\circ</m>.</p></li>
+                <li><p><alert>Apply:</alert> choose the right method for an equation.</p></li>
+            </ol>
+        </p>
+
+        <axiom component="lesson-plan">
+            <title>Problem-Solving and Discovery</title>
+            <dl>
+                <li><title>Suggested Time</title><p>14 minutes</p></li>
+                <li><title>Objective</title><p>Groups each solve one of three equations and present their method to the class.</p></li>
+                <li><title>Teacher's Role</title><p>Give no method. Each group presents its equation, and the class checks each other's answers together. After the presentations ask: <q>Group B: did anyone divide by <m>\sin x</m>? What did they lose?</q></p></li>
+            </dl>
+        </axiom>
+
+        <activity xml:id="act-three-equations-three-tricks">
+            <title>Three Equations, Three Tricks</title>
+            <statement>
+                <p>Each group solves one equation for <m>0^\circ \le x \le 360^\circ</m> and explains its method to the class.</p>
+                <p>
+                    <ol marker="(a)">
+                        <li>
+                            <p>Group A: <m>7\sin^2 x = 2\cos^2 x</m>.</p>
+                            <solution component="lesson-plan"><p>Divide by <m>7\cos^2 x</m>: <m>\tan^2 x = \dfrac{2}{7}</m>, so <m>\tan x = \pm 0.5345</m> and <m>x \in \{28.1^\circ, 151.9^\circ, 208.1^\circ, 331.9^\circ\}</m>.</p></solution>
+                        </li>
+                        <li>
+                            <p>Group B: <m>\sin x = 3\sin x\cos x</m>.</p>
+                            <solution component="lesson-plan"><p><m>\sin x(1 - 3\cos x) = 0</m>. <m>\sin x = 0</m> gives <m>0^\circ</m>, <m>180^\circ</m>, <m>360^\circ</m>; <m>\cos x = \dfrac{1}{3}</m> gives <m>70.5^\circ</m> and <m>289.5^\circ</m>. Dividing by <m>\sin x</m> would lose <m>0^\circ</m>, <m>180^\circ</m> and <m>360^\circ</m>.</p></solution>
+                        </li>
+                        <li>
+                            <p>Group C: <m>\cos^2 x + 4\sin x - 2 = 0</m>.</p>
+                            <solution component="lesson-plan"><p><m>\sin^2 x - 4\sin x + 1 = 0</m> does not factorise. The formula gives <m>\sin x = 2 \pm \sqrt{3}</m>; <m>2 + \sqrt{3}</m> is rejected, and <m>\sin x = 2 - \sqrt{3} = 0.268</m> gives <m>x \in \{15.5^\circ, 164.5^\circ\}</m>.</p></solution>
+                        </li>
+                    </ol>
+                </p>
+            </statement>
+        </activity>
+
+        <axiom component="lesson-plan">
+            <title>Structured Instruction</title>
+            <p>
+                <dl>
+                    <li><title>Suggested Time</title><p>8 minutes</p></li>
+                    <li><title>Objective</title><p>To name the three methods and when each is safe.</p></li>
+                </dl>
+            </p>
+            <paragraphs>
+                <title>Key Takeaways &amp; Teacher Connection</title>
+                <ol>
+                    <li><p><alert>Connecting to Learner Work:</alert> Group A divided safely, Group B had to factorise, Group C needed the formula.</p></li>
+                    <li><p>Dividing by <m>\cos^2 x</m> is safe when <m>\cos x = 0</m> is not a solution: check it.</p></li>
+                    <li><p>Keep full calculator accuracy until the last step, then give angles to 1 decimal place.</p></li>
+                </ol>
+            </paragraphs>
+        </axiom>
+
+        <insight xml:id="insight-three-more-methods">
+            <title>Three More Methods</title>
+            <p>
+                <ol>
+                    <li><p><m>a\sin^2 x = b\cos^2 x</m>: divide by <m>a\cos^2 x</m> to get <m>\tan^2 x = \dfrac{b}{a}</m>. Take both square roots; each gives two angles, so there are four solutions.</p></li>
+                    <li><p>A common factor such as <m>\sin x</m>: factorise it out; never cancel it, or the solutions of <m>\sin x = 0</m> are lost.</p></li>
+                    <li><p>A quadratic that does not factorise: use the quadratic formula, keep full accuracy, and reject roots outside <m>-1</m> to <m>1</m>.</p></li>
+                </ol>
+            </p>
+        </insight>
+
+        <xi:include href="../lesson-plan-templates/example-intro.ptx" />
+
+        <example xml:id="example-dividing-by-cos-squared">
+            <title>Dividing by <m>\cos^2 x</m></title>
+            <statement><p>Solve <m>3\sin^2 x = \cos^2 x</m> for <m>0^\circ \le x \le 360^\circ</m>.</p></statement>
+            <solution>
+                <p>Divide by <m>3\cos^2 x</m>: <m>\tan^2 x = \dfrac{1}{3}</m>, so <m>\tan x = \dfrac{1}{\sqrt{3}}</m> or <m>\tan x = -\dfrac{1}{\sqrt{3}}</m>. The first gives <m>30^\circ</m> and <m>210^\circ</m>; the second gives <m>150^\circ</m> and <m>330^\circ</m>. So <m>x \in \{30^\circ, 150^\circ, 210^\circ, 330^\circ\}</m>.</p>
+                <p>No solution is lost by dividing: if <m>\cos x = 0</m> then <m>\sin^2 x = 1</m>, and <m>3 \ne 0</m>.</p>
+            </solution>
+        </example>
+
+        <example xml:id="example-using-the-formula">
+            <title>Using the Formula</title>
+            <statement><p>Solve <m>3\cos^2 x + 5\sin x = 4</m> for <m>0^\circ \le x \le 360^\circ</m>.</p></statement>
+            <solution>
+                <p>Replace <m>\cos^2 x</m>: <m>3 - 3\sin^2 x + 5\sin x = 4</m>, so <m>3\sin^2 x - 5\sin x + 1 = 0</m>. This does not factorise, so use the formula:
+                    <md>\sin x = \frac{5 \pm \sqrt{25 - 12}}{6} = \frac{5 \pm \sqrt{13}}{6} = 1.4343 \text{ or } 0.2324</md>
+                    <m>1.4343</m> is rejected. <m>\sin x = 0.2324</m> gives <m>13.4^\circ</m> and <m>180^\circ - 13.4^\circ = 166.6^\circ</m>. So <m>x \in \{13.4^\circ, 166.6^\circ\}</m>.</p>
+            </solution>
+        </example>
+
+        <example xml:id="example-tan-equals-two-sin">
+            <title>Do Not Divide by <m>\sin x</m></title>
+            <statement><p>Solve <m>\tan x = 2\sin x</m> for <m>0^\circ \le x \le 360^\circ</m>.</p></statement>
+            <solution>
+                <p>Write <m>\tan x = \dfrac{\sin x}{\cos x}</m> and multiply by <m>\cos x</m>: <m>\sin x = 2\sin x\cos x</m>. Factorise:
+                    <md>\sin x(1 - 2\cos x) = 0</md>
+                    <m>\sin x = 0</m> gives <m>0^\circ</m>, <m>180^\circ</m>, <m>360^\circ</m>; <m>\cos x = \dfrac{1}{2}</m> gives <m>60^\circ</m> and <m>300^\circ</m>. So <m>x \in \{0^\circ, 60^\circ, 180^\circ, 300^\circ, 360^\circ\}</m>.</p>
+            </solution>
+        </example>
+
+        <warning xml:id="warning-do-not-divide-by-sin">
+            <title>Dividing Loses Solutions</title>
+            <p>In <xref ref="example-tan-equals-two-sin"/>, dividing <m>\sin x = 2\sin x\cos x</m> by <m>\sin x</m> gives only <m>60^\circ</m> and <m>300^\circ</m>. The three solutions of <m>\sin x = 0</m> are lost. Factorise instead.</p>
+        </warning>
+
+        <xi:include href="../lesson-plan-templates/assessment-intro.ptx" />
+        <xi:include href="../lesson-plan-templates/checkpoint.ptx" />
+
+        <p>Type angles in degrees as numbers, without the degree sign. Type a set of angles in curly brackets, separated by commas, in any order, for example <c>{30, 150, 270}</c>. On most phone keyboards the curly brackets are on the second page of symbols: tap <c>?123</c> (or <c>123</c>), then <c>=\&lt;</c> (or <c>#+=</c>). Give angles that are not whole numbers to 1 decimal place.</p>
+
+        <exercise xml:id="ex-solving-a-quadratic-trigonometric-equation">
+            <!--<title></title>-->
+            <stack label="stk-solving-a-quadratic-trigonometric-equation" source="stack/top/2-measurement-and-geometry/10-trigonometry-iii/03-solving-trigonometric-equations-using-identities/Solving-a-quadratic-trigonometric-equation.xml"/>
+        </exercise>
+
+        <exercise xml:id="ex-equations-in-sin-squared-and-cos-squared">
+            <!--<title></title>-->
+            <stack label="stk-equations-in-sin-squared-and-cos-squared" source="stack/top/2-measurement-and-geometry/10-trigonometry-iii/03-solving-trigonometric-equations-using-identities/Equations-in-sin-squared-and-cos-squared.xml"/>
+        </exercise>
+
+        <exercise xml:id="ex-constructing-an-equation-with-given-solutions">
+            <!--<title></title>-->
+            <stack label="stk-constructing-an-equation-with-given-solutions" source="stack/top/2-measurement-and-geometry/10-trigonometry-iii/03-solving-trigonometric-equations-using-identities/Constructing-an-equation-with-given-solutions.xml"/>
+        </exercise>
+
+        <exercises xml:id="exercises-further-trigonometric-equations">
+            <introduction><p>Solve each equation for <m>0^\circ \le x \le 360^\circ</m>.</p></introduction>
+            <exercise xml:id="ex-tan-squared-four-thirds">
+                <statement><p><m>3\sin^2 x = 4\cos^2 x</m></p></statement>
+                <answer><p><m>\{49.1^\circ, 130.9^\circ, 229.1^\circ, 310.9^\circ\}</m></p></answer>
+            </exercise>
+            <exercise xml:id="ex-tan-squared-nine-quarters">
+                <statement><p><m>4\sin^2 x = 9\cos^2 x</m></p></statement>
+                <answer><p><m>\{56.3^\circ, 123.7^\circ, 236.3^\circ, 303.7^\circ\}</m></p></answer>
+            </exercise>
+            <exercise xml:id="ex-formula-cos-squared-plus-two-sin">
+                <statement><p><m>\cos^2 x + 2\sin x = 1.5</m></p></statement>
+                <answer><p><m>\{17.0^\circ, 163.0^\circ\}</m></p></answer>
+                <solution><p><m>\sin^2 x - 2\sin x + 0.5 = 0</m>, so <m>\sin x = 1 \pm \sqrt{0.5}</m>. <m>1 + \sqrt{0.5}</m> is rejected; <m>\sin x = 1 - \sqrt{0.5} = 0.2929</m>.</p></solution>
+            </exercise>
+            <exercise xml:id="ex-factorise-two-cos-squared">
+                <statement><p><m>2\cos^2 x - 3\sin x = 0</m></p></statement>
+                <answer><p><m>\{30^\circ, 150^\circ\}</m></p></answer>
+                <solution><p><m>2\sin^2 x + 3\sin x - 2 = (2\sin x - 1)(\sin x + 2) = 0</m>; <m>\sin x = -2</m> is impossible.</p></solution>
+            </exercise>
+            <exercise xml:id="ex-sin-equals-tan">
+                <statement><p><m>\sin x = \tan x</m></p></statement>
+                <answer><p><m>\{0^\circ, 180^\circ, 360^\circ\}</m></p></answer>
+                <solution><p><m>\sin x\cos x = \sin x</m>, so <m>\sin x(\cos x - 1) = 0</m>: <m>\sin x = 0</m> or <m>\cos x = 1</m>.</p></solution>
+            </exercise>
+            <exercise xml:id="ex-two-cos-squared-minus-sin-squared">
+                <statement><p><m>2\cos^2 x - \sin^2 x = 0.5</m></p></statement>
+                <answer><p><m>\{45^\circ, 135^\circ, 225^\circ, 315^\circ\}</m></p></answer>
+                <solution><p><m>2 - 3\sin^2 x = 0.5</m>, so <m>\sin^2 x = 0.5</m> and <m>\sin x = \pm 0.7071</m>.</p></solution>
+            </exercise>
+            <exercise xml:id="ex-no-solution-proof">
+                <title>Challenge: No Solutions</title>
+                <statement><p>Show that <m>2\sin^2 x + \cos x = 3</m> has no solutions.</p></statement>
+                <hint><p>Write the equation as a quadratic in <m>\cos x</m> and look at its discriminant.</p></hint>
+                <answer><p><m>2\cos^2 x - \cos x + 1 = 0</m> has discriminant <m>1 - 8 = -7 \lt 0</m>, so there is no value of <m>\cos x</m>. (Also: the left side is never more than <m>2.125</m>.)</p></answer>
+            </exercise>
+        </exercises>
+
+        <axiom component="lesson-plan">
+            <title>Differentiation</title>
+            <table xml:id="table-differentiation-further-trigonometric-equations">
+                <title>Differentiation Strategies</title>
+                <tabular halign="left" top="minor" bottom="minor" left="minor" right="minor">
+                    <row header="yes" bottom="medium"><cell>Learner Group</cell><cell>Strategy and Learning Experience</cell></row>
+                    <row><cell>Struggling Learners (Support)</cell><cell>Provide a method chooser: squares of both ratios, divide; a common factor, factorise; otherwise the identity, then a quadratic. Work through <xref ref="example-dividing-by-cos-squared"/> and <xref ref="example-using-the-formula"/>. Assign <xref ref="ex-tan-squared-four-thirds"/> and <xref ref="ex-factorise-two-cos-squared"/>.</cell></row>
+                    <row><cell>On-Level Learners (Core)</cell><cell>Full activity and all examples. Assign <xref ref="ex-tan-squared-four-thirds"/> to <xref ref="ex-two-cos-squared-minus-sin-squared"/>.</cell></row>
+                    <row><cell>Advanced Learners (Challenge)</cell><cell>All exercises including <xref ref="ex-no-solution-proof"/>. Extension: solve <m>\sin^2 x = 3\cos^2 x</m> for <m>0^\circ \le x \le 720^\circ</m> and describe the pattern. (Answer: <m>\{60^\circ, 120^\circ, 240^\circ, 300^\circ, 420^\circ, 480^\circ, 600^\circ, 660^\circ\}</m>: add <m>360^\circ</m> to each of the first four.)</cell></row>
+                </tabular>
+            </table>
+        </axiom>
+
+        <xi:include href="../lesson-plan-templates/assessment-methods.ptx" />
+        <xi:include href="../lesson-plan-templates/reflection.ptx"/>
+    </subsection>
 </section>

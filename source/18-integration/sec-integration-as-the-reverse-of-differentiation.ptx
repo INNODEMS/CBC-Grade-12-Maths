@@ -33,7 +33,7 @@
                 <li component="lesson-plan">
                     <title>Estimated Duration</title>
                     <p>
-                        40 minutes
+                        2 lessons of 40 minutes
                     </p>
                 </li>
             </dl>
@@ -46,163 +46,427 @@
          Suggested activity: Learners differentiate a set of functions, then work backwards from the derivatives to the original functions to discover integration.
          Interactive (JSXGraph): Graph of f'(x) and a family of antiderivatives f(x) + C with a slider for C, showing the constant of integration. -->
 
-    <!-- [LP] Add guidance on activity -->
+    <!-- Section notes (2026-11)
+         SLOs: Core (a). Lessons 1.1 and 1.2 as subsections. The section introduction carries the chapter's key inquiry question.
+         Activity: as planning notes (differentiate, then work backwards) in lesson 1.1 | changed: lesson 1.2 adds its own activity (seedlings)
+         JSXGraph: fig-family-of-integrals (assets/jsxgraph/family-of-integrals.js), as planning notes
+         STACK: assets/stack/top/4-calculus/18-integration/01-integration-as-the-reverse-of-differentiation/ -->
 
-    <!-- <axiom component="lesson-plan">
+    <introduction>
+        <question xml:id="kiq-integration">
+            <p><em>How is integration used in real life?</em></p>
+        </question>
+        <p>
+            In Grade 11 and in the previous chapter you differentiated functions to find gradients and rates of change. In this chapter you learn to go the other way. Integration undoes differentiation: from a rate of change it recovers the quantity that was changing. It also finds exact areas of regions with curved edges, checks the estimates given by the trapezoidal and mid-ordinate rules, and links acceleration, velocity and displacement in moving objects.
+        </p>
+        <p>
+            Think of a surveyor in Nyeri measuring a shamba whose one side follows a curving river, or of a matatu whose speedometer is recorded every second: how far has it gone? Both questions are answered by integration. As you work through the chapter, look out for other places where it helps people measure and decide.
+        </p>
+    </introduction>
+
+    <!-- ============================================================ Lesson 1.1 -->
+    <subsection xml:id="subsec-reversing-differentiation">
+        <title>Reversing Differentiation</title>
+
+        <p component="lesson-plan">Upon completion of this lesson, learners will be able to:
+            <ol>
+                <li><p><alert>Know:</alert> integration reverses differentiation; a function has many integrals, which differ by a constant.</p></li>
+                <li><p><alert>Do:</alert> integrate constants and single powers of <m>x</m>, and check the answer by differentiating.</p></li>
+                <li><p><alert>Apply:</alert> recognise which functions are integrals of a given function.</p></li>
+            </ol>
+        </p>
+
+        <axiom component="lesson-plan">
             <title>Problem-Solving and Discovery</title>
             <dl>
-                <li>
-                    <title>Suggested Time</title>
-                    <p>
-                        XX minutes
-                    </p>
-                </li>
-                <li>
-                    <title>Objective</title>
-                    <p>
-                        XXX
-                    </p>
-                </li>
-                <li>
-                    <title>Teacher's Role</title>
-                    <p>
-                        XXX
-                    </p>
-                </li>
+                <li><title>Suggested Time</title><p>14 minutes</p></li>
+                <li><title>Objective</title><p>Learners discover integration by working backwards from derivatives, and see why a constant appears.</p></li>
+                <li><title>Teacher's Role</title><p>Do not name <q>integration</q> until after part (c). After part (b), ask: <q>Is there only one answer?</q></p></li>
             </dl>
-        </axiom> -->
+        </axiom>
 
-    <!-- Add Activity -->
-
-    <!-- <activity>
-        <statement>
-        </statement>
-    </activity> -->
-
-    <!-- [LP] Add guidance on structured lesson plan-->
-
-    <!-- <axiom component="lesson-plan">
-        <title>Structured Instruction</title>
-        <p>
-            <dl>
-            <li>
-                <title>Suggested Time</title>
+        <activity xml:id="act-working-backwards">
+            <title>Working Backwards</title>
+            <statement>
                 <p>
-                    XX minutes
+                    <ol marker="(a)">
+                        <li>
+                            <p>Differentiate each function: <m>x^2</m>, <m>x^2 + 5</m>, <m>x^2 - 3</m>, <m>4x^3</m>, <m>4x^3 + 1</m>, <m>3x</m>, <m>7</m>.</p>
+                            <solution component="lesson-plan"><p><m>2x</m>, <m>2x</m>, <m>2x</m>, <m>12x^2</m>, <m>12x^2</m>, <m>3</m>, <m>0</m>.</p></solution>
+                        </li>
+                        <li>
+                            <p>Which functions have derivative <m>2x</m>? Can you find any more?</p>
+                            <solution component="lesson-plan"><p><m>x^2</m>, <m>x^2 + 5</m> and <m>x^2 - 3</m>; in fact <m>x^2</m> plus any constant.</p></solution>
+                        </li>
+                        <li>
+                            <p>Find a function whose derivative is <m>6x^2</m>; <m>10x</m>; <m>8x^3</m>; <m>5</m>.</p>
+                            <solution component="lesson-plan"><p><m>2x^3</m>, <m>5x^2</m>, <m>2x^4</m>, <m>5x</m>, each plus any constant.</p></solution>
+                        </li>
+                        <li>
+                            <p>Spot the rule: which function has derivative <m>x^n</m>?</p>
+                            <solution component="lesson-plan"><p><m>\dfrac{x^{n+1}}{n+1}</m>, because the derivative of <m>x^{n+1}</m> is <m>(n+1)x^n</m>; dividing by <m>n + 1</m> leaves <m>x^n</m>.</p></solution>
+                        </li>
+                        <li>
+                            <p>Water flows into a tank at a school in Kitui. After <m>t</m> minutes the volume <m>V</m> litres is increasing at <m>\dfrac{dV}{dt} = 6t</m> litres per minute. Give a formula for <m>V</m>. Why could <m>V = 3t^2 + 200</m> also be right?</p>
+                            <solution component="lesson-plan"><p><m>V = 3t^2</m> fits. <m>V = 3t^2 + 200</m> has the same rate of change: the tank may already have held <m>200\,\text{litres}</m> at the start.</p></solution>
+                            <note component="lesson-plan"><p>Ask learners what extra fact would tell them which formula is right (the volume at <m>t = 0</m>). This leads into <xref ref="subsec-finding-the-constant-of-integration"/>.</p></note>
+                        </li>
+                    </ol>
                 </p>
-            </li>
-            <li>
-                <title>Objective</title>
-                <p>
-                    To formalize the concepts and properties learners discovered in the anchor task.
-                </p>
-            </li>
-            </dl>
-        </p>
-        <paragraphs>
-            <title>Key Takeaways &amp; Teacher Connection</title>
-            <ol>
-                <li>
+            </statement>
+        </activity>
+
+        <axiom component="lesson-plan">
+            <title>Structured Instruction</title>
+            <p>
+                <dl>
+                    <li><title>Suggested Time</title><p>8 minutes</p></li>
+                    <li><title>Objective</title><p>To name integration as the reverse of differentiation and state the rule for powers of <m>x</m>.</p></li>
+                </dl>
+            </p>
+            <paragraphs>
+                <title>Key Takeaways &amp; Teacher Connection</title>
+                <ol>
+                    <li><p><alert>Connecting to Learner Work:</alert> part (b) shows that a derivative does not fix the function: we write <m>+\,c</m>.</p></li>
+                    <li><p>The rule in words: raise the power by <m>1</m>, then divide by the new power.</p></li>
+                    <li><p>Every integral can be checked by differentiating it.</p></li>
+                </ol>
+            </paragraphs>
+        </axiom>
+
+        <insight xml:id="insight-integration">
+            <title>Integration</title>
+            <p>
+                <term>Integration</term> undoes differentiation: if <m>F'(x) = f(x)</m>, then
+                <md>\int f(x)\,dx = F(x) + c</md>.
+                This is the <term>indefinite integral</term> of <m>f(x)</m>. The function being integrated, <m>f(x)</m>, is the <term>integrand</term>, and <m>c</m> is the <term>constant of integration</term>. Differentiating a constant gives <m>0</m>, so we cannot tell which constant was there: write <m>+\,c</m>.
+            </p>
+            <p>
+                For <m>n = 0, 1, 2, 3</m> and any number <m>k</m>,
+                <md>\int x^n\,dx = \frac{x^{n+1}}{n+1} + c, \qquad \int k\,dx = kx + c, \qquad \int kx^n\,dx = \frac{kx^{n+1}}{n+1} + c</md>.
+                Check every answer by differentiating it: you should get the integrand back.
+            </p>
+        </insight>
+
+        <note xml:id="note-other-powers">
+            <title>Other Powers</title>
+            <p>
+                The rule works for any power of <m>x</m> except <m>n = -1</m>, where it would divide by zero. This chapter needs only the powers <m>0</m> to <m>3</m>.
+            </p>
+        </note>
+
+        <figure xml:id="fig-family-of-integrals">
+            <caption>Drag <m>C</m>: the curve <m>y = \frac{x^3}{3} - x + C</m> moves up and down, but its gradient at every <m>x</m> stays the same. That is why an integral needs <m>+\,c</m>.</caption>
+            <interactive xml:id="interactive-family-of-integrals" platform="jsxgraph" width="90%" aspect="16:12" source="jsxgraph/family-of-integrals.js">
+                <slate xml:id="jsxgraph-family-of-integrals" surface="jsxboard" aspect="16:12"/>
+                <instructions>
                     <p>
-                        <alert>Connecting to Learner Work:</alert> XXXX
+                        <ul>
+                            <li><p>The dashed curve is <m>y = x^2 - 1</m>. The solid curve is <m>y = \frac{x^3}{3} - x + C</m>, whose derivative is <m>x^2 - 1</m>.</p></li>
+                            <li><p>Drag the point <alert>P</alert> along the solid curve. Its tangent and gradient are shown. Compare the gradient with the height of the dashed curve at the same <m>x</m>.</p></li>
+                            <li><p>Drag the <alert>C</alert> slider. Does the gradient at <alert>P</alert> change? How many functions have derivative <m>x^2 - 1</m>?</p></li>
+                        </ul>
                     </p>
-                </li>
-            </ol>
-        </paragraphs>
-    </axiom> -->
+                </instructions>
+            </interactive>
+        </figure>
 
-    <!-- Add insight / key takeaway directly related to activity / learner experience -->
+        <xi:include href="../lesson-plan-templates/example-intro.ptx" />
 
-    <!-- <insight>
-    </insight> -->
-
-    <!-- Add further instruction (not in a block) to develop ideas as needed -->
-
-    <xi:include href="../lesson-plan-templates/example-intro.ptx" />
-
-    <!-- Add at least 3 examples -->
-
-    <!-- <example>
-        <statement>
-        </statement>
-        <solution>
-        </solution>
-    </example>
-
-    <example>
-        <statement>
-        </statement>
-        <solution>
-        </solution>
-    </example>
-
-    <example>
-        <statement>
-        </statement>
-        <solution>
-        </solution>
-    </example> -->
-
-    <xi:include href="../lesson-plan-templates/assessment-intro.ptx" />
-
-    <!-- If STACK questions are included, uncomment this: -->
-
-    <!-- <xi:include href="../lesson-plan-templates/checkpoint.ptx" /> -->
-
-    <!-- Add STACK exercises if made -->
-
-    <!-- Add static exercises -->
-
-    <!-- <exercises>
-        <exercise>
-            <statement>   
-
-            </statement>   
+        <example xml:id="example-integrating-a-single-power">
+            <title>Integrating a Single Power</title>
+            <statement><p>Find <m>\displaystyle\int 8x^3\,dx</m>.</p></statement>
             <solution>
+                <p>Raise the power by <m>1</m> to <m>4</m> and divide by the new power:
+                    <md>\int 8x^3\,dx = \frac{8x^4}{4} + c = 2x^4 + c</md>
+                    Check: <m>\dfrac{d}{dx}\left(2x^4 + c\right) = 8x^3</m>.</p>
+            </solution>
+        </example>
 
-            </solution>             
-        </exercise>        
-    </exercises> -->
+        <example xml:id="example-constants-and-linear-terms">
+            <title>Constants and Linear Terms</title>
+            <statement><p>Find (a) <m>\displaystyle\int 5\,dx</m> and (b) <m>\displaystyle\int 3x\,dx</m>.</p></statement>
+            <solution>
+                <p>(a) <m>5 = 5x^0</m>, so <m>\displaystyle\int 5\,dx = 5x + c</m>. Check: the derivative of <m>5x + c</m> is <m>5</m>.</p>
+                <p>(b) <m>3x = 3x^1</m>, so <m>\displaystyle\int 3x\,dx = \frac{3x^2}{2} + c</m>. Check: the derivative of <m>\frac{3x^2}{2}</m> is <m>\frac{3 \times 2x}{2} = 3x</m>.</p>
+            </solution>
+        </example>
 
-    <!-- [LP] Add information on how to differentiate  -->
+        <example xml:id="example-which-are-integrals">
+            <title>Which Are Integrals?</title>
+            <statement><p>Which of these functions are integrals of <m>6x^2 + 2</m>? <m>2x^3 + 2x</m>, <m>2x^3 + 2x - 7</m>, <m>6x^3 + 2x</m>, <m>2x^3 + 2</m>.</p></statement>
+            <solution>
+                <p>Differentiate each: <m>6x^2 + 2</m>, <m>6x^2 + 2</m>, <m>18x^2 + 2</m> and <m>6x^2</m>. So <m>2x^3 + 2x</m> and <m>2x^3 + 2x - 7</m> are integrals of <m>6x^2 + 2</m>; the other two are not. Both integrals have the form <m>2x^3 + 2x + c</m>.</p>
+            </solution>
+        </example>
 
-    <!-- <axiom component="lesson-plan">
-        <title>Differentiation</title>
+        <xi:include href="../lesson-plan-templates/assessment-intro.ptx" />
+        <xi:include href="../lesson-plan-templates/checkpoint.ptx" />
 
-        <table>
+        <p>Type powers with <c>^</c> and the constant of integration as <c>c</c>, for example <c>x^3/3+2x+c</c>.</p>
+
+        <exercise xml:id="ex-reversing-a-derivative">
+            <!--<title></title>-->
+            <stack label="stk-reversing-a-derivative" source="stack/top/4-calculus/18-integration/01-integration-as-the-reverse-of-differentiation/Reversing-a-derivative.xml"/>
+        </exercise>
+
+        <exercise xml:id="ex-which-functions-are-integrals">
+            <!--<title></title>-->
+            <stack label="stk-which-functions-are-integrals" source="stack/top/4-calculus/18-integration/01-integration-as-the-reverse-of-differentiation/Which-functions-are-integrals.xml"/>
+        </exercise>
+
+        <exercises xml:id="exercises-reversing-differentiation">
+            <exercise xml:id="ex-integrate-single-terms">
+                <statement><p>Find (a) <m>\displaystyle\int 6x\,dx</m> (b) <m>\displaystyle\int 9x^2\,dx</m> (c) <m>\displaystyle\int x^3\,dx</m> (d) <m>\displaystyle\int 4\,dx</m>.</p></statement>
+                <answer><p>(a) <m>3x^2 + c</m> (b) <m>3x^3 + c</m> (c) <m>\frac{x^4}{4} + c</m> (d) <m>4x + c</m></p></answer>
+            </exercise>
+            <exercise xml:id="ex-integrate-and-check">
+                <statement><p>Find <m>\displaystyle\int 2x^3\,dx</m> and check your answer by differentiating.</p></statement>
+                <answer><p><m>\frac{x^4}{2} + c</m></p></answer>
+                <solution><p><m>\displaystyle\int 2x^3\,dx = \frac{2x^4}{4} + c = \frac{x^4}{2} + c</m>. Check: <m>\dfrac{d}{dx}\left(\frac{x^4}{2}\right) = \frac{4x^3}{2} = 2x^3</m>.</p></solution>
+            </exercise>
+            <exercise xml:id="ex-complete-the-table">
+                <statement><p>Copy and complete the table, then write the rule for <m>\int x^n\,dx</m>.</p>
+                    <table xml:id="table-complete-the-table">
+                    <title>Integrals of Powers of <m>x</m></title>
+                    <tabular halign="center" top="minor" bottom="minor" left="minor" right="minor">
+                        <row><cell>Function</cell><cell><m>1</m></cell><cell><m>x</m></cell><cell><m>x^2</m></cell><cell><m>x^3</m></cell></row>
+                        <row><cell>Integral</cell><cell></cell><cell></cell><cell></cell><cell></cell></row>
+                    </tabular>
+                    </table>
+                </statement>
+                <answer><p><m>x</m>, <m>\frac{x^2}{2}</m>, <m>\frac{x^3}{3}</m>, <m>\frac{x^4}{4}</m> (each <m>+\,c</m>); <m>\int x^n\,dx = \frac{x^{n+1}}{n+1} + c</m></p></answer>
+            </exercise>
+            <exercise xml:id="ex-two-functions-same-derivative">
+                <statement><p>The derivative of a function is <m>20x^3</m>. Write down two different functions with this derivative.</p></statement>
+                <answer><p>For example <m>5x^4</m> and <m>5x^4 + 1</m>: any <m>5x^4 + c</m>.</p></answer>
+            </exercise>
+            <exercise xml:id="ex-tank-volume-formula">
+                <statement><p>Water flows into a tank at <m>\dfrac{dV}{dt} = 10t</m> litres per minute. Write down <m>V</m> if the tank was empty at <m>t = 0</m>, and if it held <m>150\,\text{litres}</m> at <m>t = 0</m>.</p></statement>
+                <answer><p><m>V = 5t^2</m>; <m>V = 5t^2 + 150</m></p></answer>
+                <solution><p><m>\int 10t\,dt = 5t^2 + c</m>. At <m>t = 0</m>, <m>V = c</m>, so <m>c = 0</m> for an empty tank and <m>c = 150</m> otherwise.</p></solution>
+            </exercise>
+            <exercise xml:id="ex-why-a-constant">
+                <title>Challenge: Why a Constant?</title>
+                <statement><p>The functions <m>F</m> and <m>G</m> both have derivative <m>f</m>. Explain why <m>F(x) - G(x)</m> is a constant.</p></statement>
+                <hint><p>Differentiate <m>F - G</m>.</p></hint>
+                <answer><p>The derivative of <m>F - G</m> is <m>f - f = 0</m>, so its graph is horizontal everywhere: <m>F - G</m> is a constant.</p></answer>
+                <solution><p><m>\dfrac{d}{dx}\bigl(F(x) - G(x)\bigr) = F'(x) - G'(x) = f(x) - f(x) = 0</m>. A function whose gradient is <m>0</m> at every point has a horizontal graph, so it is a constant. So any two integrals of <m>f</m> differ by a constant, which is why one <m>+\,c</m> covers them all.</p></solution>
+            </exercise>
+        </exercises>
+
+        <axiom component="lesson-plan">
             <title>Differentiation</title>
-            <tabular halign="left">
-                <row header="yes" bottom="minor">
-                    <cell>Learner Group</cell>
-                    <cell>Strategy &amp; Learning Experience</cell>
-                    <cell></cell>
-                </row>
-                <row>
-                    <cell>Struggling Learners (Support)</cell>
-                    <cell>
-                        XXXX
-                    </cell>
-                    <cell></cell>
-                </row>
-                <row>
-                    <cell>On-Level Learners (Core)</cell>
-                    <cell>
-                        <line>The core lesson activities as described above.</line>
-                    </cell>
-                    <cell></cell>
-                </row>
-                <row>
-                    <cell>Advanced Learners (Challenge)</cell>
-                    <cell>
-                        XXXX
-                    </cell>
-                    <cell></cell>
-                </row>
-            </tabular>
-        </table>
-    </axiom> -->
+            <table xml:id="table-differentiation-reversing-differentiation">
+                <title>Differentiation Strategies</title>
+                <tabular halign="left" top="minor" bottom="minor" left="minor" right="minor">
+                    <row header="yes" bottom="medium"><cell>Learner Group</cell><cell>Strategy and Learning Experience</cell></row>
+                    <row><cell>Struggling Learners (Support)</cell><cell>Focus on activity parts (a) to (c) and the first two examples. Give a <q>differentiate to check</q> card: write the answer, differentiate it, compare with the integrand. Assign <xref ref="ex-integrate-single-terms"/> and <xref ref="ex-integrate-and-check"/>.</cell></row>
+                    <row><cell>On-Level Learners (Core)</cell><cell>Full activity and all examples. Assign <xref ref="ex-integrate-single-terms"/> to <xref ref="ex-tank-volume-formula"/>.</cell></row>
+                    <row><cell>Advanced Learners (Challenge)</cell><cell>All exercises including <xref ref="ex-why-a-constant"/>. Extension: find all functions <m>F</m> with <m>F'(x) = 3x^2</m> and <m>F(0) = 0</m> (answer: <m>x^3</m> only).</cell></row>
+                </tabular>
+            </table>
+        </axiom>
 
-    <xi:include href="../lesson-plan-templates/assessment-methods.ptx" />
+        <xi:include href="../lesson-plan-templates/assessment-methods.ptx" />
+        <xi:include href="../lesson-plan-templates/reflection.ptx"/>
+    </subsection>
 
-    <xi:include href="../lesson-plan-templates/reflection.ptx"/>
+    <!-- ============================================================ Lesson 1.2 -->
+    <subsection xml:id="subsec-finding-the-constant-of-integration">
+        <title>Finding the Constant of Integration</title>
+
+        <p component="lesson-plan">Upon completion of this lesson, learners will be able to:
+            <ol>
+                <li><p><alert>Know:</alert> one known point picks out one curve from the family <m>F(x) + c</m>.</p></li>
+                <li><p><alert>Do:</alert> integrate, substitute a known pair of values and solve for <m>c</m>.</p></li>
+                <li><p><alert>Apply:</alert> find an amount from its rate of change and its starting value.</p></li>
+            </ol>
+        </p>
+
+        <axiom component="lesson-plan">
+            <title>Problem-Solving and Discovery</title>
+            <dl>
+                <li><title>Suggested Time</title><p>14 minutes</p></li>
+                <li><title>Objective</title><p>Learners see that the same growth rate gives a family of height formulas, and that one measurement fixes the constant.</p></li>
+                <li><title>Teacher's Role</title><p>Show <xref ref="fig-seedling-height-curves"/> and ask: <q>What do the three seedlings have in common?</q></p></li>
+            </dl>
+        </axiom>
+
+        <activity xml:id="act-seedlings-at-a-tree-nursery">
+            <title>Seedlings at a Tree Nursery</title>
+            <statement>
+                <p>At a tree nursery in Kakamega, seedlings of one kind grow at <m>\dfrac{dh}{dt} = 4t + 2</m> centimetres per week, where <m>h</m> cm is the height <m>t</m> weeks after planting.</p>
+                <p>
+                    <ol marker="(a)">
+                        <li>
+                            <p>Integrate to find <m>h</m> in terms of <m>t</m>.</p>
+                            <solution component="lesson-plan"><p><m>h = 2t^2 + 2t + c</m>.</p></solution>
+                        </li>
+                        <li>
+                            <p>Three seedlings were <m>3</m>, <m>5</m> and <m>8\,\text{cm}</m> tall when planted. Find the value of <m>c</m> for each.</p>
+                            <solution component="lesson-plan"><p>At <m>t = 0</m>, <m>h = c</m>, so <m>c = 3</m>, <m>5</m> and <m>8</m>.</p></solution>
+                        </li>
+                        <li>
+                            <p>Find the height of each seedling after <m>4</m> weeks.</p>
+                            <solution component="lesson-plan"><p><m>2(16) + 2(4) = 40</m>, so <m>43</m>, <m>45</m> and <m>48\,\text{cm}</m>.</p></solution>
+                        </li>
+                        <li>
+                            <p>A fourth seedling is <m>30\,\text{cm}</m> tall after <m>3</m> weeks. Find its value of <m>c</m>.</p>
+                            <solution component="lesson-plan"><p><m>30 = 18 + 6 + c</m>, so <m>c = 6</m>.</p></solution>
+                        </li>
+                        <li>
+                            <p>Why can the growth rate alone not tell you a seedling's height?</p>
+                            <solution component="lesson-plan"><p>Every curve in the family has the same rate of growth; we need one height at a known time to choose the curve.</p></solution>
+                        </li>
+                    </ol>
+                </p>
+                <figure xml:id="fig-seedling-height-curves">
+                    <caption>Heights <m>h = 2t^2 + 2t + c</m> of seedlings planted at <m>3</m>, <m>5</m> and <m>8\,\text{cm}</m>.</caption>
+                    <image width="90%">
+                        <shortdescription>Three curves of seedling height against weeks, one above another, starting at 3, 5 and 8 cm at week 0 and reaching 43, 45 and 48 cm at week 4.</shortdescription>
+                        <description><p>Horizontal axis time t in weeks from 0 to 4; vertical axis height h in centimetres from 0 to 50. Three curves h = 2t squared + 2t + c: solid for c = 3 (from 3 to 43 cm), dashed for c = 5 (from 5 to 45 cm), dotted for c = 8 (from 8 to 48 cm). Each curve is the one below moved straight up.</p></description>
+                        <latex-image>
+\begin{tikzpicture}
+\begin{axis}[width=12cm, height=8cm, xmin=0, xmax=4.6, ymin=0, ymax=52,
+  xtick={0,1,2,3,4}, ytick={0,10,...,50}, grid=major, major grid style={gray!30},
+  xlabel={Time $t$ (weeks)}, ylabel={Height $h$ (cm)}]
+\addplot[thick, domain=0:4, samples=60] {2*x^2+2*x+3};
+\addplot[thick, dashed, domain=0:4, samples=60] {2*x^2+2*x+5};
+\addplot[thick, dotted, domain=0:4, samples=60] {2*x^2+2*x+8};
+\node[anchor=west, font=\small] at (axis cs:4.02,41.5) {$c=3$};
+\node[anchor=west, font=\small] at (axis cs:4.02,45) {$c=5$};
+\node[anchor=west, font=\small] at (axis cs:4.02,48.5) {$c=8$};
+\end{axis}
+\end{tikzpicture}
+                        </latex-image>
+                    </image>
+                </figure>
+            </statement>
+        </activity>
+
+        <axiom component="lesson-plan">
+            <title>Structured Instruction</title>
+            <p>
+                <dl>
+                    <li><title>Suggested Time</title><p>8 minutes</p></li>
+                    <li><title>Objective</title><p>To set out the steps for finding the constant of integration.</p></li>
+                </dl>
+            </p>
+            <paragraphs>
+                <title>Key Takeaways &amp; Teacher Connection</title>
+                <ol>
+                    <li><p><alert>Connecting to Learner Work:</alert> part (d): one measured height fixes <m>c</m>.</p></li>
+                    <li><p>Integrate, keep <m>+\,c</m>, substitute the known pair, solve for <m>c</m>, then write the formula again with the value of <m>c</m>.</p></li>
+                </ol>
+            </paragraphs>
+        </axiom>
+
+        <insight xml:id="insight-finding-the-constant">
+            <title>Finding <m>c</m></title>
+            <p>
+                To find the equation of a curve from its gradient function and one point on it:
+                <ol>
+                    <li><p>Integrate the gradient function, including <m>+\,c</m>.</p></li>
+                    <li><p>Substitute the coordinates of the known point.</p></li>
+                    <li><p>Solve for <m>c</m>.</p></li>
+                    <li><p>Write the equation with that value of <m>c</m>.</p></li>
+                </ol>
+                The equation of the curve has no <m>c</m> left in it.
+            </p>
+        </insight>
+
+        <xi:include href="../lesson-plan-templates/example-intro.ptx" />
+
+        <example xml:id="example-curve-through-a-point">
+            <title>A Curve Through a Point</title>
+            <statement><p>A curve has gradient function <m>\dfrac{dy}{dx} = 6x^2 - 2x</m> and passes through <m>(1, 4)</m>. Find its equation.</p></statement>
+            <solution>
+                <p>Integrate: <m>y = 2x^3 - x^2 + c</m>. At <m>(1, 4)</m>: <m>4 = 2 - 1 + c</m>, so <m>c = 3</m>. The curve is <m>y = 2x^3 - x^2 + 3</m>.</p>
+            </solution>
+        </example>
+
+        <example xml:id="example-using-function-notation">
+            <title>Using Function Notation</title>
+            <statement><p>Given <m>f'(x) = 4x^3 - 6x + 1</m> and <m>f(2) = 10</m>, find <m>f(x)</m>.</p></statement>
+            <solution>
+                <p><m>f(x) = x^4 - 3x^2 + x + c</m>. Then <m>f(2) = 16 - 12 + 2 + c = 6 + c = 10</m>, so <m>c = 4</m> and <m>f(x) = x^4 - 3x^2 + x + 4</m>.</p>
+            </solution>
+        </example>
+
+        <example xml:id="example-water-in-a-tank">
+            <title>Water in a Tank</title>
+            <statement><p>Water flows into a tank at a school in Kitui at <m>\dfrac{dV}{dt} = 30 + 4t</m> litres per minute. At <m>t = 0</m> the tank holds <m>500\,\text{litres}</m>. Find <m>V</m> in terms of <m>t</m>, and the volume after <m>10</m> minutes.</p></statement>
+            <solution>
+                <p><m>V = 30t + 2t^2 + c</m>. At <m>t = 0</m>, <m>V = c = 500</m>, so <m>V = 2t^2 + 30t + 500</m>.</p>
+                <p>After <m>10</m> minutes, <m>V = 200 + 300 + 500 = 1000\,\text{litres}</m>.</p>
+            </solution>
+        </example>
+
+        <xi:include href="../lesson-plan-templates/assessment-intro.ptx" />
+        <xi:include href="../lesson-plan-templates/checkpoint.ptx" />
+
+        <p>Type powers with <c>^</c> and the constant of integration as <c>c</c>, for example <c>x^3/3+2x+c</c>. In a formula with time, use <c>t</c>, for example <c>3t^2+2t+5</c>.</p>
+
+        <exercise xml:id="ex-equation-of-a-curve-from-its-gradient-function">
+            <!--<title></title>-->
+            <stack label="stk-equation-of-a-curve-from-its-gradient-function" source="stack/top/4-calculus/18-integration/01-integration-as-the-reverse-of-differentiation/Equation-of-a-curve-from-its-gradient-function.xml"/>
+        </exercise>
+
+        <exercise xml:id="ex-finding-the-constant-of-integration-in-context">
+            <!--<title></title>-->
+            <stack label="stk-finding-the-constant-of-integration-in-context" source="stack/top/4-calculus/18-integration/01-integration-as-the-reverse-of-differentiation/Finding-the-constant-of-integration-in-context.xml"/>
+        </exercise>
+
+        <exercises xml:id="exercises-finding-the-constant">
+            <exercise xml:id="ex-curve-through-1-6">
+                <statement><p>A curve has <m>\dfrac{dy}{dx} = 4x + 3</m> and passes through <m>(1, 6)</m>. Find its equation.</p></statement>
+                <answer><p><m>y = 2x^2 + 3x + 1</m></p></answer>
+                <solution><p><m>y = 2x^2 + 3x + c</m>; <m>6 = 2 + 3 + c</m>, so <m>c = 1</m>.</p></solution>
+            </exercise>
+            <exercise xml:id="ex-f-of-2-equals-5">
+                <statement><p>Given <m>f'(x) = 3x^2 - 4</m> and <m>f(2) = 5</m>, find <m>f(x)</m>.</p></statement>
+                <answer><p><m>f(x) = x^3 - 4x + 5</m></p></answer>
+                <solution><p><m>f(x) = x^3 - 4x + c</m>; <m>f(2) = 8 - 8 + c = 5</m>, so <m>c = 5</m>.</p></solution>
+            </exercise>
+            <exercise xml:id="ex-curve-through-3-2">
+                <statement><p>A curve has <m>\dfrac{dy}{dx} = x^2 - 2x</m> and passes through <m>(3, 2)</m>. Find its equation.</p></statement>
+                <answer><p><m>y = \frac{x^3}{3} - x^2 + 2</m></p></answer>
+                <solution><p><m>y = \frac{x^3}{3} - x^2 + c</m>; at <m>x = 3</m>, <m>9 - 9 + c = 2</m>, so <m>c = 2</m>.</p></solution>
+            </exercise>
+            <exercise xml:id="ex-poultry-flock">
+                <statement><p>A poultry farmer near Thika is growing her flock. After <m>t</m> weeks the number of birds <m>P</m> is increasing at <m>\dfrac{dP}{dt} = 6t + 10</m> birds per week. At <m>t = 0</m> she has <m>120</m> birds. Find <m>P</m> in terms of <m>t</m>, and the number of birds after <m>5</m> weeks.</p></statement>
+                <answer><p><m>P = 3t^2 + 10t + 120</m>; <m>245</m> birds</p></answer>
+                <solution><p><m>P = 3t^2 + 10t + c</m> and <m>P(0) = c = 120</m>. Then <m>P(5) = 75 + 50 + 120 = 245</m>.</p></solution>
+            </exercise>
+            <exercise xml:id="ex-find-k-two-points">
+                <statement><p>A curve has <m>\dfrac{dy}{dx} = 2x + k</m>, where <m>k</m> is a constant. It passes through <m>(0, 1)</m> and <m>(2, 9)</m>. Find <m>k</m> and the equation of the curve.</p></statement>
+                <answer><p><m>k = 2</m>; <m>y = x^2 + 2x + 1</m></p></answer>
+                <solution><p><m>y = x^2 + kx + c</m>. At <m>(0, 1)</m>: <m>c = 1</m>. At <m>(2, 9)</m>: <m>4 + 2k + 1 = 9</m>, so <m>k = 2</m>.</p></solution>
+            </exercise>
+            <exercise xml:id="ex-find-a-two-points">
+                <title>Challenge: Two Points, Two Unknowns</title>
+                <statement><p>A curve has <m>\dfrac{dy}{dx} = ax^2 + 2</m>, where <m>a</m> is a constant. It passes through <m>(0, 1)</m> and <m>(3, 25)</m>. Find <m>a</m>.</p></statement>
+                <hint><p>First use <m>(0, 1)</m> to find the constant of integration.</p></hint>
+                <answer><p><m>a = 2</m></p></answer>
+                <solution><p><m>y = \frac{ax^3}{3} + 2x + c</m>. At <m>(0, 1)</m>: <m>c = 1</m>. At <m>(3, 25)</m>: <m>9a + 6 + 1 = 25</m>, so <m>a = 2</m>.</p></solution>
+            </exercise>
+        </exercises>
+
+        <axiom component="lesson-plan">
+            <title>Differentiation</title>
+            <table xml:id="table-differentiation-finding-the-constant">
+                <title>Differentiation Strategies</title>
+                <tabular halign="left" top="minor" bottom="minor" left="minor" right="minor">
+                    <row header="yes" bottom="medium"><cell>Learner Group</cell><cell>Strategy and Learning Experience</cell></row>
+                    <row><cell>Struggling Learners (Support)</cell><cell>Give a step card: integrate, <m>+\,c</m>, substitute, solve, rewrite. Work through the first two examples together. Assign <xref ref="ex-curve-through-1-6"/> and <xref ref="ex-f-of-2-equals-5"/>.</cell></row>
+                    <row><cell>On-Level Learners (Core)</cell><cell>Full activity and all examples. Assign <xref ref="ex-curve-through-1-6"/> to <xref ref="ex-find-k-two-points"/>.</cell></row>
+                    <row><cell>Advanced Learners (Challenge)</cell><cell>All exercises including <xref ref="ex-find-a-two-points"/>. Extension: explain why one point can never fix two unknown constants (one equation cannot fix two unknowns).</cell></row>
+                </tabular>
+            </table>
+        </axiom>
+
+        <xi:include href="../lesson-plan-templates/assessment-methods.ptx" />
+        <xi:include href="../lesson-plan-templates/reflection.ptx"/>
+    </subsection>
 </section>

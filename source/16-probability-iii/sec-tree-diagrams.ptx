@@ -33,7 +33,7 @@
                 <li component="lesson-plan">
                     <title>Estimated Duration</title>
                     <p>
-                        40 minutes
+                        2 lessons of 40 minutes
                     </p>
                 </li>
             </dl>
@@ -41,169 +41,571 @@
         </introduction>
     </objectives>
 
+
     <!-- Planning notes (from the Combined Mathematics tab of the Grade 12 Book Structure Mapping sheet)
          Sheet title: Tree diagrams (limited to a maximum of three branches; each branch allowed only two possible outcomes)
          Content summary: Tree diagrams for combined events (maximum three branches, two outcomes per branch).
          Suggested activity: Learners draw tree diagrams for two-stage experiments, such as picking two pens from a box with and without replacement.
          Interactive (JSXGraph): Tree diagram with sliders for branch probabilities; the probability of each outcome is computed along the branches. -->
 
-    <!-- [LP] Add guidance on activity -->
+    <!-- Section notes (2026-11)
+         SLO: Essential (d); lesson 5.2 also carries (e), the key inquiry question revisited and the curriculum links. Lessons 5.1 and 5.2 as subsections.
+         Scope read as: at most three stages, exactly two outcomes at every branch point (text, exercises, STACK, interactive).
+         Activity: as planning notes (two pens with and without replacement) in lesson 5.1 | changed: lesson 5.2 adds its own activity (three traffic lights)
+         JSXGraph: interactive-tree-diagram-explorer (assets/jsxgraph/tree-diagram-explorer.js), as planning notes
+         STACK: assets/stack/top/3-statistics-and-probability/16-probability-iii/05-tree-diagrams/ -->
 
-    <axiom component="lesson-plan">
-        <title>Problem-Solving and Discovery</title>
-        <dl>
-            <li>
-                <title>Suggested Time</title>
-                <p>
-                    XXX minutes
-                </p>
-            </li>
-            <li>
-                <title>Objective</title>
-                <p>
-                    XXX
-                </p>
-            </li>
-            <li>
-                <title>Teacher's Role</title>
-                <p>
-                    XXX
-                </p>
-            </li>
-        </dl>
-    </axiom>
+    <!-- ============================================================ Lesson 5.1 -->
+    <subsection xml:id="subsec-two-stage-tree-diagrams">
+        <title>Two-Stage Tree Diagrams</title>
 
-    <!-- Add Activity -->
-
-    <!-- <activity>
-        <statement>
-        </statement>
-    </activity> -->
-
-    <!-- [LP] Add guidance on structured lesson plan-->
-
-    <!-- <axiom component="lesson-plan">
-        <title>Structured Instruction</title>
-        <p>
-            <dl>
-            <li>
-                <title>Suggested Time</title>
-                <p>
-                    XX minutes
-                </p>
-            </li>
-            <li>
-                <title>Objective</title>
-                <p>
-                    To formalize the concepts and properties learners discovered in the anchor task.
-                </p>
-            </li>
-            </dl>
-        </p>
-        <paragraphs>
-            <title>Key Takeaways &amp; Teacher Connection</title>
+        <p component="lesson-plan">Upon completion of this lesson, learners will be able to:
             <ol>
-                <li>
-                    <p>
-                        <alert>Connecting to Learner Work:</alert> XXXX
-                    </p>
-                </li>
+                <li><p><alert>Know:</alert> a tree diagram shows each stage; branches from one point add to 1; multiply along a path and add between paths; with replacement the branches repeat; without replacement count what is left; a second stage can depend on the first.</p></li>
+                <li><p><alert>Do:</alert> draw and read two-stage tree diagrams.</p></li>
+                <li><p><alert>Apply:</alert> pens, snacks and vaccinating calves.</p></li>
             </ol>
-        </paragraphs>
-    </axiom> -->
+        </p>
 
-    <!-- Add insight / key takeaway directly related to activity / learner experience -->
+        <axiom component="lesson-plan">
+            <title>Problem-Solving and Discovery</title>
+            <dl>
+                <li><title>Suggested Time</title><p>14 minutes</p></li>
+                <li><title>Objective</title><p>Learners compare picking two pens with and without replacement.</p></li>
+                <li><title>Teacher's Role</title><p>Give each group a box of <m>6</m> pens, <m>4</m> blue and <m>2</m> red. Do the first round with replacement and the second without. Draw both trees on the board side by side. Critical thinking: ask what changes at the second stage, and why.</p></li>
+            </dl>
+        </axiom>
 
-    <!-- <insight>
-    </insight> -->
+        <activity xml:id="act-picking-two-pens">
+            <title>Picking Two Pens</title>
+            <statement>
+                <p>A box holds <m>6</m> pens: <m>4</m> blue and <m>2</m> red. Two pens are taken at random, one after the other.</p>
+                <p>
+                    <ol marker="(a)">
+                        <li>
+                            <p>The first pen is put back before the second is taken (with replacement). Draw a tree diagram and find the probability that both pens are blue.</p>
+                            <solution component="lesson-plan"><p>Both stages have branches <m>\frac{4}{6}</m> blue and <m>\frac{2}{6}</m> red. <m>P(\text{both blue}) = \frac{4}{6} \times \frac{4}{6} = \frac{4}{9}</m>.</p></solution>
+                        </li>
+                        <li>
+                            <p>Now the first pen is not put back (without replacement). What is left in the box after a blue pen is taken? After a red pen? Draw the tree and find the probability that both are blue.</p>
+                            <solution component="lesson-plan"><p>After blue: <m>3</m> blue and <m>2</m> red, so <m>\frac{3}{5}</m> and <m>\frac{2}{5}</m>. After red: <m>4</m> blue and <m>1</m> red, so <m>\frac{4}{5}</m> and <m>\frac{1}{5}</m>. <m>P(\text{both blue}) = \frac{4}{6} \times \frac{3}{5} = \frac{12}{30} = \frac{2}{5}</m> (see <xref ref="fig-pens-tree"/>).</p></solution>
+                        </li>
+                        <li>
+                            <p>Without replacement, find the probability of one pen of each colour.</p>
+                            <solution component="lesson-plan"><p>Blue then red or red then blue: <m>\frac{8}{30} + \frac{8}{30} = \frac{16}{30} = \frac{8}{15}</m>.</p></solution>
+                        </li>
+                        <li>
+                            <p>Add the probabilities at the ends of all four paths of your second tree. What do you get?</p>
+                            <solution component="lesson-plan"><p><m>\frac{12}{30} + \frac{8}{30} + \frac{8}{30} + \frac{2}{30} = 1</m>.</p></solution>
+                        </li>
+                    </ol>
+                </p>
+            </statement>
+        </activity>
 
-    <!-- Add further instruction (not in a block) to develop ideas as needed -->
+        <axiom component="lesson-plan">
+            <title>Structured Instruction</title>
+            <p>
+                <dl>
+                    <li><title>Suggested Time</title><p>8 minutes</p></li>
+                    <li><title>Objective</title><p>To set out the rules for drawing and using tree diagrams.</p></li>
+                </dl>
+            </p>
+            <paragraphs>
+                <title>Key Takeaways &amp; Teacher Connection</title>
+                <ol>
+                    <li><p><alert>Connecting to Learner Work:</alert> without replacement, the second-stage branches were found by counting what was left.</p></li>
+                    <li><p>Write a probability on every branch.</p></li>
+                    <li><p>Two checks: each pair of branches from one point adds to 1; all the paths add to 1.</p></li>
+                </ol>
+            </paragraphs>
+        </axiom>
 
-    <xi:include href="../lesson-plan-templates/example-intro.ptx" />
+        <insight xml:id="insight-tree-diagrams">
+            <title>Tree Diagrams</title>
+            <p>
+                A <term>tree diagram</term> shows an experiment in <term>stages</term>. Each branch carries a probability, and each route from the start to an end is a <term>path</term>.
+                <ul>
+                    <li><p>The branches from one point add to 1.</p></li>
+                    <li><p>Multiply along a path to find the probability of that path.</p></li>
+                    <li><p>Add the paths that make up an event. All the paths together add to 1.</p></li>
+                </ul>
+            </p>
+            <p>
+                <term>With replacement</term>, every stage has the same branches. <term>Without replacement</term>, count what is left before writing the next stage's branches. In general a second-stage branch may depend on what happened at the first stage, as in <xref ref="example-vaccinating-calves"/>. The trees in this book have at most three stages and exactly two outcomes at each point.
+            </p>
+        </insight>
 
-    <!-- Add at least 3 examples -->
+        <figure xml:id="fig-pens-tree">
+            <caption>Two pens taken without replacement from <m>4</m> blue and <m>2</m> red.</caption>
+            <image width="70%">
+                <shortdescription>A two-stage tree. First pen blue 4/6 or red 2/6. After blue: blue 3/5, red 2/5. After red: blue 4/5, red 1/5. Path probabilities: blue blue 12/30, blue red 8/30, red blue 8/30, red red 2/30.</shortdescription>
+                <latex-image>
+\begin{tikzpicture}[font=\small]
+\draw (0.00,0.00) -- (2.80,1.60) node[pos=0.5, above=1pt, fill=white, inner sep=1pt] {$\frac{4}{6}$};
+\node[anchor=west] at (2.85,1.60) {Blue};
+\draw (0.00,0.00) -- (2.80,-1.60) node[pos=0.5, below=1pt, fill=white, inner sep=1pt] {$\frac{2}{6}$};
+\node[anchor=west] at (2.85,-1.60) {Red};
+\draw (4.10,1.60) -- (6.90,2.40) node[pos=0.5, above=1pt, fill=white, inner sep=1pt] {$\frac{3}{5}$};
+\node[anchor=west] at (6.95,2.40) {Blue};
+\draw (4.10,1.60) -- (6.90,0.80) node[pos=0.5, below=1pt, fill=white, inner sep=1pt] {$\frac{2}{5}$};
+\node[anchor=west] at (6.95,0.80) {Red};
+\draw (4.10,-1.60) -- (6.90,-0.80) node[pos=0.5, above=1pt, fill=white, inner sep=1pt] {$\frac{4}{5}$};
+\node[anchor=west] at (6.95,-0.80) {Blue};
+\draw (4.10,-1.60) -- (6.90,-2.40) node[pos=0.5, below=1pt, fill=white, inner sep=1pt] {$\frac{1}{5}$};
+\node[anchor=west] at (6.95,-2.40) {Red};
+\node[anchor=west] at (8.00,2.40) {BB: $\frac{12}{30}$};
+\node[anchor=west] at (8.00,0.80) {BR: $\frac{8}{30}$};
+\node[anchor=west] at (8.00,-0.80) {RB: $\frac{8}{30}$};
+\node[anchor=west] at (8.00,-2.40) {RR: $\frac{2}{30}$};
+\end{tikzpicture}
+                </latex-image>
+            </image>
+        </figure>
 
-    <!-- <example>
-        <statement>
-        </statement>
-        <solution>
-        </solution>
-    </example>
+        <figure xml:id="fig-tree-diagram-explorer">
+            <caption>Drag the sliders. The branch pairs always add to 1, each path multiplies its branches, and the four paths always add to 1.</caption>
+            <interactive xml:id="interactive-tree-diagram-explorer" platform="jsxgraph" width="90%" aspect="16:12" source="jsxgraph/tree-diagram-explorer.js">
+                <slate xml:id="jsxgraph-tree-diagram-explorer" surface="jsxboard" aspect="16:12"/>
+                <instructions>
+                    <p>
+                        <ul>
+                            <li><p>Drag <alert>P(A)</alert> to set the first-stage branch to <m>A</m>. The other branch shows <m>1</m> minus it.</p></li>
+                            <li><p>Drag <alert>P(B after A)</alert> and <alert>P(B after not A)</alert> to set the second-stage branches. The four path probabilities and <m>P(B)</m> update as you drag.</p></li>
+                            <li><p>Tick <alert>same second stage</alert> to make the second stage the same after <m>A</m> and after not <m>A</m> (independent stages).</p></li>
+                            <li><p>With <alert>same second stage</alert> not ticked, set <alert>P(A)</alert> to <m>0.8</m>, <alert>P(B after A)</alert> to <m>0.05</m> and <alert>P(B after not A)</alert> to <m>0.4</m>. Check that <m>P(B) = 0.12</m>, as in <xref ref="example-vaccinating-calves"/>.</p></li>
+                        </ul>
+                    </p>
+                </instructions>
+            </interactive>
+        </figure>
 
-    <example>
-        <statement>
-        </statement>
-        <solution>
-        </solution>
-    </example>
+        <xi:include href="../lesson-plan-templates/example-intro.ptx" />
 
-    <example>
-        <statement>
-        </statement>
-        <solution>
-        </solution>
-    </example> -->
-
-    <xi:include href="../lesson-plan-templates/assessment-intro.ptx" />
-
-    <!-- If STACK questions are included, uncomment this: -->
-
-    <!-- <xi:include href="../lesson-plan-templates/checkpoint.ptx" /> -->
-
-    <!-- Add STACK exercises if made -->
-
-    <!-- Add static exercises -->
-
-    <!-- <exercises>
-        <exercise>
-            <statement>   
-
-            </statement>   
+        <example xml:id="example-vaccinating-calves">
+            <title>Vaccinating Calves</title>
+            <statement>
+                <p>On a farm in Nyandarua, <m>0.8</m> of the calves are vaccinated against East Coast fever. A vaccinated calf catches the disease with probability <m>0.05</m>; a calf that is not vaccinated catches it with probability <m>0.4</m>. A calf is chosen at random. Find the probability that it (a) is vaccinated and catches the disease, (b) catches the disease, (c) does not catch the disease.</p>
+            </statement>
             <solution>
+                <figure xml:id="fig-calves-tree">
+                    <caption>Vaccination and East Coast fever.</caption>
+                    <image width="70%">
+                        <shortdescription>A two-stage tree. Vaccinated 0.8, not vaccinated 0.2. After vaccinated: ill 0.05, not ill 0.95. After not vaccinated: ill 0.4, not ill 0.6. Path probabilities 0.04, 0.76, 0.08 and 0.12.</shortdescription>
+                        <latex-image>
+\begin{tikzpicture}[font=\small]
+\draw (0.00,0.00) -- (2.80,1.60) node[pos=0.5, above=1pt, fill=white, inner sep=1pt] {$0.8$};
+\node[anchor=west] at (2.85,1.60) {Vaccinated};
+\draw (0.00,0.00) -- (2.80,-1.60) node[pos=0.5, below=1pt, fill=white, inner sep=1pt] {$0.2$};
+\node[anchor=west] at (2.85,-1.60) {Not vaccinated};
+\draw (5.30,1.60) -- (8.10,2.40) node[pos=0.5, above=1pt, fill=white, inner sep=1pt] {$0.05$};
+\node[anchor=west] at (8.15,2.40) {Ill};
+\draw (5.30,1.60) -- (8.10,0.80) node[pos=0.5, below=1pt, fill=white, inner sep=1pt] {$0.95$};
+\node[anchor=west] at (8.15,0.80) {Not ill};
+\draw (5.30,-1.60) -- (8.10,-0.80) node[pos=0.5, above=1pt, fill=white, inner sep=1pt] {$0.4$};
+\node[anchor=west] at (8.15,-0.80) {Ill};
+\draw (5.30,-1.60) -- (8.10,-2.40) node[pos=0.5, below=1pt, fill=white, inner sep=1pt] {$0.6$};
+\node[anchor=west] at (8.15,-2.40) {Not ill};
+\node[anchor=west] at (9.70,2.40) {$0.04$};
+\node[anchor=west] at (9.70,0.80) {$0.76$};
+\node[anchor=west] at (9.70,-0.80) {$0.08$};
+\node[anchor=west] at (9.70,-2.40) {$0.12$};
+\end{tikzpicture}
+                        </latex-image>
+                    </image>
+                </figure>
+                <p>(a) Multiply along the path: <m>0.8 \times 0.05 = 0.04</m>.</p>
+                <p>(b) Two paths end in <q>ill</q>: <m>0.8 \times 0.05 + 0.2 \times 0.4 = 0.04 + 0.08 = 0.12</m>.</p>
+                <p>(c) <m>1 - 0.12 = 0.88</m>, or add the other two paths: <m>0.76 + 0.12 = 0.88</m>.</p>
+            </solution>
+        </example>
 
-            </solution>             
-        </exercise>        
-    </exercises> -->
+        <example xml:id="example-snacks-without-replacement">
+            <title>Snacks Without Replacement</title>
+            <statement>
+                <p>A tin holds <m>8</m> snacks: <m>5</m> mandazi and <m>3</m> chapati. Wafula takes two at random without replacement. Find the probability that he takes (a) two mandazi, (b) one of each, (c) at least one chapati.</p>
+            </statement>
+            <solution>
+                <p>After a mandazi is taken, <m>4</m> mandazi and <m>3</m> chapati are left; after a chapati, <m>5</m> mandazi and <m>2</m> chapati.</p>
+                <p>(a) <m>\dfrac{5}{8} \times \dfrac{4}{7} = \dfrac{20}{56} = \dfrac{5}{14}</m>.</p>
+                <p>(b) <m>\dfrac{5}{8} \times \dfrac{3}{7} + \dfrac{3}{8} \times \dfrac{5}{7} = \dfrac{15}{56} + \dfrac{15}{56} = \dfrac{15}{28}</m>.</p>
+                <p>(c) Everything except two mandazi: <m>1 - \dfrac{5}{14} = \dfrac{9}{14}</m>.</p>
+            </solution>
+        </example>
 
-    <!-- [LP] Add information on how to differentiate  -->
+        <example xml:id="example-walking-to-school-early">
+            <title>Walking to School Early</title>
+            <statement>
+                <p>In a Grade 12 class in Nyeri, <m>40\%</m> of the learners walk to school. Three quarters of those who walk, and half of the others, arrive before 7.30 a.m. A learner is chosen at random. Find the probability that the learner arrives before 7.30 a.m.</p>
+            </statement>
+            <solution>
+                <p>First stage: walks <m>0.4</m>, does not walk <m>0.6</m>. Second stage: early <m>\frac{3}{4}</m> after walking and <m>\frac{1}{2}</m> otherwise.</p>
+                <p><m>P(\text{early}) = 0.4 \times \dfrac{3}{4} + 0.6 \times \dfrac{1}{2} = 0.3 + 0.3 = 0.6</m>.</p>
+            </solution>
+        </example>
 
-    <!-- <axiom component="lesson-plan">
-        <title>Differentiation</title>
+        <xi:include href="../lesson-plan-templates/assessment-intro.ptx" />
+        <xi:include href="../lesson-plan-templates/checkpoint.ptx" />
 
-        <table>
+        <p>Type a fraction with a slash, for example <c>5/12</c>, and a decimal with a point, for example <c>0.35</c>. Give probabilities exactly: do not round.</p>
+
+        <exercise xml:id="ex-completing-a-two-stage-tree-diagram">
+            <!--<title></title>-->
+            <stack label="stk-completing-a-two-stage-tree-diagram" source="stack/top/3-statistics-and-probability/16-probability-iii/05-tree-diagrams/Completing-a-two-stage-tree-diagram.xml"/>
+        </exercise>
+
+        <exercise xml:id="ex-two-draws-without-replacement">
+            <!--<title></title>-->
+            <stack label="stk-two-draws-without-replacement" source="stack/top/3-statistics-and-probability/16-probability-iii/05-tree-diagrams/Two-draws-without-replacement.xml"/>
+        </exercise>
+
+        <exercises xml:id="exercises-two-stage-trees">
+            <exercise xml:id="ex-tomato-pests">
+                <statement><p>The probability that a tomato plant is attacked by pests is <m>0.3</m>. Two plants grow in separate shambas, independently. Draw a tree diagram and find the probability that (a) both are attacked, (b) exactly one is attacked, (c) neither is attacked.</p></statement>
+                <answer><p>(a) <m>0.09</m> (b) <m>0.42</m> (c) <m>0.49</m></p></answer>
+            </exercise>
+            <exercise xml:id="ex-mangoes-without-replacement">
+                <statement><p>A basket holds <m>6</m> green and <m>4</m> yellow mangoes. Two are taken at random without replacement. Find the probability that (a) both are green, (b) there is one of each colour, (c) both are yellow.</p></statement>
+                <answer><p>(a) <m>\frac{1}{3}</m> (b) <m>\frac{8}{15}</m> (c) <m>\frac{2}{15}</m></p></answer>
+                <solution><p>(a) <m>\frac{6}{10} \times \frac{5}{9} = \frac{1}{3}</m>. (b) <m>2 \times \frac{6}{10} \times \frac{4}{9} = \frac{8}{15}</m>. (c) <m>\frac{4}{10} \times \frac{3}{9} = \frac{2}{15}</m>. Check: <m>\frac{5}{15} + \frac{8}{15} + \frac{2}{15} = 1</m>.</p></solution>
+            </exercise>
+            <exercise xml:id="ex-busy-market-day">
+                <statement><p>The probability of rain on market day is <m>0.3</m>. If it rains, the probability that the market is busy is <m>0.4</m>; if it does not rain, it is <m>0.8</m>. Find the probability that the market is busy.</p></statement>
+                <answer><p><m>0.68</m></p></answer>
+                <solution><p><m>0.3 \times 0.4 + 0.7 \times 0.8 = 0.12 + 0.56 = 0.68</m>.</p></solution>
+            </exercise>
+            <exercise xml:id="ex-cards-one-to-seven">
+                <statement><p>Seven cards are numbered 1 to 7. Two are taken at random without replacement. Find the probability that (a) both numbers are odd, (b) one is odd and one is even.</p></statement>
+                <answer><p>(a) <m>\frac{2}{7}</m> (b) <m>\frac{4}{7}</m></p></answer>
+                <solution><p>There are four odd and three even cards. (a) <m>\frac{4}{7} \times \frac{3}{6} = \frac{2}{7}</m>. (b) <m>\frac{4}{7} \times \frac{3}{6} + \frac{3}{7} \times \frac{4}{6} = \frac{4}{7}</m>.</p></solution>
+            </exercise>
+            <exercise xml:id="ex-find-the-blue-counters">
+                <statement><p>A bag holds <m>3</m> red counters and <m>n</m> blue counters. Two counters are drawn with replacement. The probability that both are red is <m>\frac{9}{64}</m>. Find <m>n</m>.</p></statement>
+                <answer><p><m>n = 5</m></p></answer>
+                <solution><p><m>\left(\frac{3}{3 + n}\right)^2 = \frac{9}{64}</m>, so <m>\frac{3}{3 + n} = \frac{3}{8}</m> and <m>n = 5</m>.</p></solution>
+            </exercise>
+            <exercise xml:id="ex-wekesa-two-red">
+                <title>Challenge: Find the Mistake</title>
+                <statement><p>A bag holds <m>2</m> red and <m>3</m> white beads. Two are taken without replacement. Wekesa says the probability that both are red is <m>\left(\frac{2}{5}\right)^2 = \frac{4}{25}</m>. Find his mistake and the correct answer.</p></statement>
+                <hint><p>What is left in the bag after a red bead is taken?</p></hint>
+                <answer><p>He worked as if the first bead were put back. The answer is <m>\frac{1}{10}</m>.</p></answer>
+                <solution><p>After a red bead is taken, <m>1</m> red and <m>3</m> white are left, so the second branch is <m>\frac{1}{4}</m>: <m>\frac{2}{5} \times \frac{1}{4} = \frac{1}{10}</m>.</p></solution>
+            </exercise>
+        </exercises>
+
+        <axiom component="lesson-plan">
             <title>Differentiation</title>
-            <tabular halign="left">
-                <row header="yes" bottom="minor">
-                    <cell>Learner Group</cell>
-                    <cell>Strategy &amp; Learning Experience</cell>
-                    <cell></cell>
-                </row>
-                <row>
-                    <cell>Struggling Learners (Support)</cell>
-                    <cell>
-                        XXXX
-                    </cell>
-                    <cell></cell>
-                </row>
-                <row>
-                    <cell>On-Level Learners (Core)</cell>
-                    <cell>
-                        <line>The core lesson activities as described above.</line>
-                    </cell>
-                    <cell></cell>
-                </row>
-                <row>
-                    <cell>Advanced Learners (Challenge)</cell>
-                    <cell>
-                        XXXX
-                    </cell>
-                    <cell></cell>
-                </row>
-            </tabular>
-        </table>
-    </axiom> -->
+            <table xml:id="table-differentiation-two-stage-trees">
+                <title>Differentiation Strategies</title>
+                <tabular halign="left" top="minor" bottom="minor" left="minor" right="minor">
+                    <row header="yes" bottom="medium"><cell>Learner Group</cell><cell>Strategy and Learning Experience</cell></row>
+                    <row><cell>Struggling Learners (Support)</cell><cell>Give tree skeletons with blank labels, and use the explorer. Focus on the activity and <xref ref="example-vaccinating-calves"/>. Assign <xref ref="ex-tomato-pests"/> and <xref ref="ex-busy-market-day"/>.</cell></row>
+                    <row><cell>On-Level Learners (Core)</cell><cell>Full activity and all examples. Assign <xref ref="ex-tomato-pests"/> to <xref ref="ex-find-the-blue-counters"/>.</cell></row>
+                    <row><cell>Advanced Learners (Challenge)</cell><cell>All exercises including <xref ref="ex-wekesa-two-red"/>. Extension: show that, with the activity's <m>4</m> blue and <m>2</m> red pens, one pen of each colour is more likely without replacement than with replacement. (<m>\frac{8}{15}</m> against <m>2 \times \frac{4}{6} \times \frac{2}{6} = \frac{4}{9}</m>.)</cell></row>
+                </tabular>
+            </table>
+        </axiom>
 
-    <xi:include href="../lesson-plan-templates/assessment-methods.ptx" />
+        <xi:include href="../lesson-plan-templates/assessment-methods.ptx" />
+        <xi:include href="../lesson-plan-templates/reflection.ptx"/>
+    </subsection>
 
-    <xi:include href="../lesson-plan-templates/reflection.ptx"/>
+    <!-- ============================================================ Lesson 5.2 -->
+    <subsection xml:id="subsec-three-stage-tree-diagrams">
+        <title>Three-Stage Tree Diagrams</title>
+
+        <p component="lesson-plan">Upon completion of this lesson, learners will be able to:
+            <ol>
+                <li><p><alert>Know:</alert> a tree with three stages has eight paths; <q>exactly two</q> collects several paths; <q>at least one</q> is found by the complement.</p></li>
+                <li><p><alert>Do:</alert> draw and use three-stage trees, for independent stages and without replacement.</p></li>
+                <li><p><alert>Apply:</alert> traffic lights, guessing, a three-part journey; value probability in daily life.</p></li>
+            </ol>
+        </p>
+
+        <axiom component="lesson-plan">
+            <title>Problem-Solving and Discovery</title>
+            <dl>
+                <li><title>Suggested Time</title><p>14 minutes</p></li>
+                <li><title>Objective</title><p>Learners extend the tree diagram to three stages.</p></li>
+                <li><title>Teacher's Role</title><p>First ask for a guess of the probability that all three lights are green. Then draw the tree together. Point out that real traffic lights are often linked, so independence is a model.</p></li>
+            </dl>
+        </axiom>
+
+        <activity xml:id="act-three-traffic-lights">
+            <title>Three Traffic Lights</title>
+            <statement>
+                <p>Nafula's matatu passes three traffic lights on the way to town. Each light is green when the matatu reaches it with probability <m>0.6</m> and red otherwise, independently.</p>
+                <p>
+                    <ol marker="(a)">
+                        <li>
+                            <p>Draw a tree diagram with three stages. How many paths are there?</p>
+                            <solution component="lesson-plan"><p>Eight paths, from GGG to RRR (see <xref ref="fig-traffic-lights-tree"/>).</p></solution>
+                        </li>
+                        <li>
+                            <p>Find the probability that all three lights are green.</p>
+                            <solution component="lesson-plan"><p><m>0.6^3 = 0.216</m>.</p></solution>
+                        </li>
+                        <li>
+                            <p>Find the probability that no light is green.</p>
+                            <solution component="lesson-plan"><p><m>0.4^3 = 0.064</m>.</p></solution>
+                        </li>
+                        <li>
+                            <p>Find the probability that exactly one light is red.</p>
+                            <solution component="lesson-plan"><p>Paths GGR, GRG, RGG, each <m>0.6 \times 0.6 \times 0.4 = 0.144</m>: <m>3 \times 0.144 = 0.432</m>.</p></solution>
+                        </li>
+                        <li>
+                            <p>Find the probability that at least one light is red.</p>
+                            <solution component="lesson-plan"><p>Everything except GGG: <m>1 - 0.216 = 0.784</m>.</p></solution>
+                        </li>
+                    </ol>
+                </p>
+            </statement>
+        </activity>
+
+        <axiom component="lesson-plan">
+            <title>Structured Instruction</title>
+            <p>
+                <dl>
+                    <li><title>Suggested Time</title><p>8 minutes</p></li>
+                    <li><title>Objective</title><p>To extend the tree rules to three stages.</p></li>
+                </dl>
+            </p>
+            <paragraphs>
+                <title>Key Takeaways &amp; Teacher Connection</title>
+                <ol>
+                    <li><p><alert>Connecting to Learner Work:</alert> part (d) collected three paths; part (e) used the complement.</p></li>
+                    <li><p>Count the paths for <q>exactly</q>; use the complement for <q>at least one</q>.</p></li>
+                    <li><p>Without replacement, the numbers go down by one at every stage.</p></li>
+                </ol>
+            </paragraphs>
+        </axiom>
+
+        <insight xml:id="insight-three-stage-trees">
+            <title>Three-Stage Trees</title>
+            <p>
+                A tree with three stages and two outcomes at each point has <m>2 \times 2 \times 2 = 8</m> paths. The same rules apply: multiply along a path, and add the paths you need. For <q>exactly two</q>, add the three paths with two successes. For <q>at least one</q>, use <m>1 - P(\text{none})</m>: the only path left out is the one with no successes.
+            </p>
+        </insight>
+
+        <figure xml:id="fig-traffic-lights-tree">
+            <caption>Three traffic lights, each green (G) with probability <m>0.6</m> and red (R) with probability <m>0.4</m>.</caption>
+            <image width="75%">
+                <shortdescription>A three-stage tree with branches G 0.6 and R 0.4 at every point. The eight paths and their probabilities: GGG 0.216, GGR 0.144, GRG 0.144, GRR 0.096, RGG 0.144, RGR 0.096, RRG 0.096, RRR 0.064.</shortdescription>
+                <latex-image>
+\begin{tikzpicture}[font=\small]
+\draw (0.00,0.00) -- (2.20,2.40) node[pos=0.5, above=1pt, fill=white, inner sep=1pt] {$0.6$};
+\node[anchor=west] at (2.25,2.40) {G};
+\draw (0.00,0.00) -- (2.20,-2.40) node[pos=0.5, below=1pt, fill=white, inner sep=1pt] {$0.4$};
+\node[anchor=west] at (2.25,-2.40) {R};
+\draw (2.70,2.40) -- (4.90,3.60) node[pos=0.5, above=1pt, fill=white, inner sep=1pt] {$0.6$};
+\node[anchor=west] at (4.95,3.60) {G};
+\draw (2.70,2.40) -- (4.90,1.20) node[pos=0.5, below=1pt, fill=white, inner sep=1pt] {$0.4$};
+\node[anchor=west] at (4.95,1.20) {R};
+\draw (2.70,-2.40) -- (4.90,-1.20) node[pos=0.5, above=1pt, fill=white, inner sep=1pt] {$0.6$};
+\node[anchor=west] at (4.95,-1.20) {G};
+\draw (2.70,-2.40) -- (4.90,-3.60) node[pos=0.5, below=1pt, fill=white, inner sep=1pt] {$0.4$};
+\node[anchor=west] at (4.95,-3.60) {R};
+\draw (5.40,3.60) -- (7.60,4.20) node[pos=0.5, above=1pt, fill=white, inner sep=1pt] {$0.6$};
+\node[anchor=west] at (7.65,4.20) {G};
+\draw (5.40,3.60) -- (7.60,3.00) node[pos=0.5, below=1pt, fill=white, inner sep=1pt] {$0.4$};
+\node[anchor=west] at (7.65,3.00) {R};
+\draw (5.40,1.20) -- (7.60,1.80) node[pos=0.5, above=1pt, fill=white, inner sep=1pt] {$0.6$};
+\node[anchor=west] at (7.65,1.80) {G};
+\draw (5.40,1.20) -- (7.60,0.60) node[pos=0.5, below=1pt, fill=white, inner sep=1pt] {$0.4$};
+\node[anchor=west] at (7.65,0.60) {R};
+\draw (5.40,-1.20) -- (7.60,-0.60) node[pos=0.5, above=1pt, fill=white, inner sep=1pt] {$0.6$};
+\node[anchor=west] at (7.65,-0.60) {G};
+\draw (5.40,-1.20) -- (7.60,-1.80) node[pos=0.5, below=1pt, fill=white, inner sep=1pt] {$0.4$};
+\node[anchor=west] at (7.65,-1.80) {R};
+\draw (5.40,-3.60) -- (7.60,-3.00) node[pos=0.5, above=1pt, fill=white, inner sep=1pt] {$0.6$};
+\node[anchor=west] at (7.65,-3.00) {G};
+\draw (5.40,-3.60) -- (7.60,-4.20) node[pos=0.5, below=1pt, fill=white, inner sep=1pt] {$0.4$};
+\node[anchor=west] at (7.65,-4.20) {R};
+\node[anchor=west] at (8.45,4.20) {GGG: $0.216$};
+\node[anchor=west] at (8.45,3.00) {GGR: $0.144$};
+\node[anchor=west] at (8.45,1.80) {GRG: $0.144$};
+\node[anchor=west] at (8.45,0.60) {GRR: $0.096$};
+\node[anchor=west] at (8.45,-0.60) {RGG: $0.144$};
+\node[anchor=west] at (8.45,-1.80) {RGR: $0.096$};
+\node[anchor=west] at (8.45,-3.00) {RRG: $0.096$};
+\node[anchor=west] at (8.45,-4.20) {RRR: $0.064$};
+\end{tikzpicture}
+                </latex-image>
+            </image>
+        </figure>
+
+        <xi:include href="../lesson-plan-templates/example-intro.ptx" />
+
+        <example xml:id="example-guessing-three-questions">
+            <title>Guessing Three Questions</title>
+            <statement>
+                <p>Kerubo guesses the answers to three multiple-choice questions, each with four options. Find the probability that she gets (a) all three right, (b) none right, (c) exactly one right, (d) at least one right.</p>
+            </statement>
+            <solution>
+                <p>Each guess is right with probability <m>\frac{1}{4}</m> and wrong with probability <m>\frac{3}{4}</m>, independently.</p>
+                <p>(a) <m>\left(\frac{1}{4}\right)^3 = \frac{1}{64}</m>. (b) <m>\left(\frac{3}{4}\right)^3 = \frac{27}{64}</m>.</p>
+                <p>(c) Three paths (RWW, WRW, WWR), each <m>\frac{1}{4} \times \frac{3}{4} \times \frac{3}{4} = \frac{9}{64}</m>: <m>3 \times \frac{9}{64} = \frac{27}{64}</m>.</p>
+                <p>(d) <m>1 - \frac{27}{64} = \frac{37}{64}</m>.</p>
+            </solution>
+        </example>
+
+        <example xml:id="example-three-pens">
+            <title>Three Pens Without Replacement</title>
+            <statement>
+                <p>A box holds <m>7</m> pens: <m>4</m> blue and <m>3</m> red. Three are taken at random without replacement. Find the probability that (a) all three are blue, (b) exactly two are blue, (c) at least one is red.</p>
+            </statement>
+            <solution>
+                <figure xml:id="fig-three-pens-tree">
+                    <caption>Three pens taken without replacement from <m>4</m> blue (B) and <m>3</m> red (R).</caption>
+                    <image width="75%">
+                        <shortdescription>A three-stage tree without replacement. First pen B 4/7 or R 3/7. Second pen after B: B 3/6, R 3/6; after R: B 4/6, R 2/6. Third pen after BB: B 2/5, R 3/5; after BR or RB: B 3/5, R 2/5; after RR: B 4/5, R 1/5. Path probabilities out of 210: BBB 24, BBR 36, BRB 36, BRR 24, RBB 36, RBR 24, RRB 24, RRR 6.</shortdescription>
+                        <latex-image>
+\begin{tikzpicture}[font=\small]
+\draw (0.00,0.00) -- (2.20,2.40) node[pos=0.5, above=1pt, fill=white, inner sep=1pt] {$\frac{4}{7}$};
+\node[anchor=west] at (2.25,2.40) {B};
+\draw (0.00,0.00) -- (2.20,-2.40) node[pos=0.5, below=1pt, fill=white, inner sep=1pt] {$\frac{3}{7}$};
+\node[anchor=west] at (2.25,-2.40) {R};
+\draw (2.70,2.40) -- (4.90,3.60) node[pos=0.5, above=1pt, fill=white, inner sep=1pt] {$\frac{3}{6}$};
+\node[anchor=west] at (4.95,3.60) {B};
+\draw (2.70,2.40) -- (4.90,1.20) node[pos=0.5, below=1pt, fill=white, inner sep=1pt] {$\frac{3}{6}$};
+\node[anchor=west] at (4.95,1.20) {R};
+\draw (2.70,-2.40) -- (4.90,-1.20) node[pos=0.5, above=1pt, fill=white, inner sep=1pt] {$\frac{4}{6}$};
+\node[anchor=west] at (4.95,-1.20) {B};
+\draw (2.70,-2.40) -- (4.90,-3.60) node[pos=0.5, below=1pt, fill=white, inner sep=1pt] {$\frac{2}{6}$};
+\node[anchor=west] at (4.95,-3.60) {R};
+\draw (5.40,3.60) -- (7.60,4.20) node[pos=0.5, above=1pt, fill=white, inner sep=1pt] {$\frac{2}{5}$};
+\node[anchor=west] at (7.65,4.20) {B};
+\draw (5.40,3.60) -- (7.60,3.00) node[pos=0.5, below=1pt, fill=white, inner sep=1pt] {$\frac{3}{5}$};
+\node[anchor=west] at (7.65,3.00) {R};
+\draw (5.40,1.20) -- (7.60,1.80) node[pos=0.5, above=1pt, fill=white, inner sep=1pt] {$\frac{3}{5}$};
+\node[anchor=west] at (7.65,1.80) {B};
+\draw (5.40,1.20) -- (7.60,0.60) node[pos=0.5, below=1pt, fill=white, inner sep=1pt] {$\frac{2}{5}$};
+\node[anchor=west] at (7.65,0.60) {R};
+\draw (5.40,-1.20) -- (7.60,-0.60) node[pos=0.5, above=1pt, fill=white, inner sep=1pt] {$\frac{3}{5}$};
+\node[anchor=west] at (7.65,-0.60) {B};
+\draw (5.40,-1.20) -- (7.60,-1.80) node[pos=0.5, below=1pt, fill=white, inner sep=1pt] {$\frac{2}{5}$};
+\node[anchor=west] at (7.65,-1.80) {R};
+\draw (5.40,-3.60) -- (7.60,-3.00) node[pos=0.5, above=1pt, fill=white, inner sep=1pt] {$\frac{4}{5}$};
+\node[anchor=west] at (7.65,-3.00) {B};
+\draw (5.40,-3.60) -- (7.60,-4.20) node[pos=0.5, below=1pt, fill=white, inner sep=1pt] {$\frac{1}{5}$};
+\node[anchor=west] at (7.65,-4.20) {R};
+\node[anchor=west] at (8.45,4.20) {BBB: $\frac{24}{210}$};
+\node[anchor=west] at (8.45,3.00) {BBR: $\frac{36}{210}$};
+\node[anchor=west] at (8.45,1.80) {BRB: $\frac{36}{210}$};
+\node[anchor=west] at (8.45,0.60) {BRR: $\frac{24}{210}$};
+\node[anchor=west] at (8.45,-0.60) {RBB: $\frac{36}{210}$};
+\node[anchor=west] at (8.45,-1.80) {RBR: $\frac{24}{210}$};
+\node[anchor=west] at (8.45,-3.00) {RRB: $\frac{24}{210}$};
+\node[anchor=west] at (8.45,-4.20) {RRR: $\frac{6}{210}$};
+\end{tikzpicture}
+                        </latex-image>
+                    </image>
+                </figure>
+                <p>(a) <m>\dfrac{4}{7} \times \dfrac{3}{6} \times \dfrac{2}{5} = \dfrac{24}{210} = \dfrac{4}{35}</m>.</p>
+                <p>(b) Paths BBR, BRB and RBB each have probability <m>\dfrac{36}{210}</m>, so the answer is <m>\dfrac{108}{210} = \dfrac{18}{35}</m>.</p>
+                <p>(c) Everything except BBB: <m>1 - \dfrac{4}{35} = \dfrac{31}{35}</m>.</p>
+            </solution>
+        </example>
+
+        <example xml:id="example-three-part-journey">
+            <title>A Three-Part Journey</title>
+            <statement>
+                <p>Kiprono's journey to work has three parts: a boda boda, which is on time with probability <m>0.9</m>; a matatu, on time with probability <m>0.8</m>; and a train, on time with probability <m>0.7</m>. Assume the three parts are independent. Find the probability that (a) all three are on time, (b) exactly one is late, (c) at least one is late.</p>
+            </statement>
+            <solution>
+                <p>(a) <m>0.9 \times 0.8 \times 0.7 = 0.504</m>.</p>
+                <p>(b) Only the boda boda late: <m>0.1 \times 0.8 \times 0.7 = 0.056</m>. Only the matatu: <m>0.9 \times 0.2 \times 0.7 = 0.126</m>. Only the train: <m>0.9 \times 0.8 \times 0.3 = 0.216</m>. Total <m>0.398</m>.</p>
+                <p>(c) <m>1 - 0.504 = 0.496</m>.</p>
+            </solution>
+        </example>
+
+        <paragraphs xml:id="paragraphs-probability-in-our-lives">
+            <title>Probability in Our Lives</title>
+            <p>
+                Probability helps people plan when the future is uncertain. A weather forecast of a <m>70\%</m> chance of rain helps a farmer decide when to plant. The germination rate printed on a seed packet tells the farmer how many seeds to buy. Insurance companies use probabilities to set the price of cover for a matatu or a shamba. Road-safety campaigns compare the probability of serious injury with and without a helmet or a seatbelt, to persuade people to travel more safely.
+            </p>
+            <p>
+                Look back at the question at the start of this chapter: why is probability important in our daily lives? Write two sentences in your own words.
+            </p>
+        </paragraphs>
+
+        <xi:include href="../lesson-plan-templates/assessment-intro.ptx" />
+        <xi:include href="../lesson-plan-templates/checkpoint.ptx" />
+
+        <p>Type a fraction with a slash, for example <c>5/12</c>, and a decimal with a point, for example <c>0.35</c>. Give probabilities exactly: do not round.</p>
+
+        <exercise xml:id="ex-three-stage-tree-diagrams-with-equal-probabilities">
+            <!--<title></title>-->
+            <stack label="stk-three-stage-tree-diagrams-with-equal-probabilities" source="stack/top/3-statistics-and-probability/16-probability-iii/05-tree-diagrams/Three-stage-tree-diagrams-with-equal-probabilities.xml"/>
+        </exercise>
+
+        <exercise xml:id="ex-finding-the-mistake-in-a-three-stage-tree-calculation">
+            <!--<title></title>-->
+            <stack label="stk-finding-the-mistake-in-a-three-stage-tree-calculation" source="stack/top/3-statistics-and-probability/16-probability-iii/05-tree-diagrams/Finding-the-mistake-in-a-three-stage-tree-calculation.xml"/>
+        </exercise>
+
+        <exercises xml:id="exercises-three-stage-trees">
+            <exercise xml:id="ex-three-coins-tree">
+                <statement><p>Use a tree diagram to find the probability of exactly two heads when three coins are tossed. Compare with your list in <xref ref="ex-three-coins-listing"/>.</p></statement>
+                <answer><p><m>\frac{3}{8}</m></p></answer>
+            </exercise>
+            <exercise xml:id="ex-die-three-times">
+                <statement><p>A die is rolled three times. Find the probability of (a) three sixes, (b) no six, (c) at least one six.</p></statement>
+                <answer><p>(a) <m>\frac{1}{216}</m> (b) <m>\frac{125}{216}</m> (c) <m>\frac{91}{216}</m></p></answer>
+            </exercise>
+            <exercise xml:id="ex-three-bean-seeds">
+                <statement><p>Three bean seeds are planted. Each germinates with probability <m>0.8</m>, independently. Find the probability that (a) all three germinate, (b) exactly two germinate, (c) at least one germinates.</p></statement>
+                <answer><p>(a) <m>0.512</m> (b) <m>0.384</m> (c) <m>0.992</m></p></answer>
+                <solution><p>(a) <m>0.8^3 = 0.512</m>. (b) <m>3 \times 0.8 \times 0.8 \times 0.2 = 0.384</m>. (c) <m>1 - 0.2^3 = 0.992</m>.</p></solution>
+            </exercise>
+            <exercise xml:id="ex-choosing-a-committee">
+                <statement><p>Three learners are chosen at random from <m>5</m> girls and <m>3</m> boys to form a committee. Find the probability that (a) all three are girls, (b) exactly two are girls.</p></statement>
+                <answer><p>(a) <m>\frac{5}{28}</m> (b) <m>\frac{15}{28}</m></p></answer>
+                <solution><p>(a) <m>\frac{5}{8} \times \frac{4}{7} \times \frac{3}{6} = \frac{60}{336} = \frac{5}{28}</m>. (b) Three paths (GGB, GBG, BGG), each <m>\frac{60}{336}</m>: <m>\frac{180}{336} = \frac{15}{28}</m>.</p></solution>
+            </exercise>
+            <exercise xml:id="ex-tea-factory-machines">
+                <statement><p>A tea factory has three machines that work on a given day with probabilities <m>0.95</m>, <m>0.9</m> and <m>0.8</m>, independently. Find the probability that (a) all three work, (b) at least one fails.</p></statement>
+                <answer><p>(a) <m>0.684</m> (b) <m>0.316</m></p></answer>
+            </exercise>
+            <exercise xml:id="ex-probability-in-the-news">
+                <statement><p>Find two places where probability is used in Kenya, for example a weather forecast on radio or television, or a road-safety message. Write each as a probability statement and say what decision it helps someone make.</p></statement>
+                <answer><p>Answers vary. A good answer gives the source, a statement such as <q>the probability of rain in Kisumu tomorrow is <m>0.7</m></q>, and a decision, such as whether to plant or to carry an umbrella.</p></answer>
+            </exercise>
+            <exercise xml:id="ex-more-green-than-red">
+                <title>Challenge: More Green Than Red</title>
+                <statement><p>In <xref ref="act-three-traffic-lights"/>, find the probability that the matatu meets more green lights than red.</p></statement>
+                <hint><p>Which paths have more G than R?</p></hint>
+                <answer><p><m>0.648</m></p></answer>
+                <solution><p>Three green (GGG, <m>0.216</m>) or exactly two green (GGR, GRG, RGG, <m>3 \times 0.144 = 0.432</m>): <m>0.216 + 0.432 = 0.648</m>.</p></solution>
+            </exercise>
+        </exercises>
+
+
+        <axiom component="lesson-plan">
+            <title>Curriculum Links</title>
+            <dl>
+                <li><title>Key Inquiry Question</title><p>Why is probability important in our daily lives?</p></li>
+                <li><title>Core Competencies</title><p>Critical thinking, through drawing and checking tree diagrams; communication and collaboration, through the card sort in <xref ref="act-choosing-safe-transport"/> and the pooled class data in <xref ref="act-tossing-bottle-tops"/>; digital literacy, through the simulator, the tree explorer and <xref ref="ex-probability-in-the-news"/>.</p></li>
+                <li><title>Values</title><p>Social justice (equity), through fair draws and fair games in <xref ref="sec-theoretical-probability"/>; respect, through group work and listening to other views.</p></li>
+                <li><title>Pertinent and Contemporary Issues</title><p>Road safety, in <xref ref="act-choosing-safe-transport"/>, the helmet examples and the seatbelt exercise.</p></li>
+                <li><title>Learning Outcome</title><p>This lesson carries the outcome on appreciating probability in daily life, through the paragraphs above and <xref ref="ex-probability-in-the-news"/>.</p></li>
+            </dl>
+        </axiom>
+
+        <axiom component="lesson-plan">
+            <title>Differentiation</title>
+            <table xml:id="table-differentiation-three-stage-trees">
+                <title>Differentiation Strategies</title>
+                <tabular halign="left" top="minor" bottom="minor" left="minor" right="minor">
+                    <row header="yes" bottom="medium"><cell>Learner Group</cell><cell>Strategy and Learning Experience</cell></row>
+                    <row><cell>Struggling Learners (Support)</cell><cell>Give a printed eight-path tree to label. Focus on <xref ref="example-guessing-three-questions"/> and <xref ref="example-three-part-journey"/>. Assign <xref ref="ex-three-coins-tree"/> and <xref ref="ex-three-bean-seeds"/>.</cell></row>
+                    <row><cell>On-Level Learners (Core)</cell><cell>Full activity and all examples. Assign <xref ref="ex-three-coins-tree"/> to <xref ref="ex-probability-in-the-news"/>.</cell></row>
+                    <row><cell>Advanced Learners (Challenge)</cell><cell>All exercises including <xref ref="ex-more-green-than-red"/>. Extension: draw the tree for <q>stop counting as soon as a light is red</q>; it has fewer paths. Find the probability that all three lights are green. (<m>0.216</m>: the same path.)</cell></row>
+                </tabular>
+            </table>
+        </axiom>
+
+        <xi:include href="../lesson-plan-templates/assessment-methods.ptx" />
+        <xi:include href="../lesson-plan-templates/reflection.ptx"/>
+    </subsection>
 </section>

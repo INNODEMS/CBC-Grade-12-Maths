@@ -46,161 +46,290 @@
          Suggested activity: Learners walk given displacements on the school field (e.g. 3 m east then 4 m north) and measure the resultant displacement.
          Interactive (JSXGraph): Two vectors drawn head-to-tail; dragging their end points shows the resultant vector a + b. -->
 
-    <!-- [LP] Add guidance on activity -->
+    <!-- Section notes (2026-11)
+         SLOs: Essential 2.2 (c)
+         Activity: as planning notes (walk on the school field) | changed: 6 m east and 8 m north
+         JSXGraph: fig-head-to-tail-addition (assets/jsxgraph/head-to-tail-addition.js), as planning notes
+         STACK: assets/stack/top/2-measurement-and-geometry/11-vectors/04-addition-of-vectors/ -->
+
+    <p component="lesson-plan">Upon completion of this lesson, learners will be able to:
+        <ol>
+            <li><p><alert>Know:</alert> vectors are added head to tail; the resultant goes from the first tail to the last head; columns are added component by component; the order does not matter.</p></li>
+            <li><p><alert>Do:</alert> add two or three column vectors; find the resultant of a route; combine two pushes.</p></li>
+            <li><p><alert>Apply:</alert> walking, riding and pushing.</p></li>
+        </ol>
+    </p>
 
     <axiom component="lesson-plan">
         <title>Problem-Solving and Discovery</title>
         <dl>
-            <li>
-                <title>Suggested Time</title>
-                <p>
-                    XXX minutes
-                </p>
-            </li>
-            <li>
-                <title>Objective</title>
-                <p>
-                    XXX
-                </p>
-            </li>
-            <li>
-                <title>Teacher's Role</title>
-                <p>
-                    XXX
-                </p>
-            </li>
+            <li><title>Suggested Time</title><p>14 minutes</p></li>
+            <li><title>Objective</title><p>Learners walk two displacements and find that the resultant is the single straight move from start to finish.</p></li>
+            <li><title>Teacher's Role</title><p>Groups of four with a tape measure and a compass (or use a school wall whose direction is known). Mark the start <m>S</m> with a stone. Groups without outside space use the numbers on squared paper. Every learner in a group has a job: walker, measurer, recorder, checker.</p></li>
         </dl>
     </axiom>
 
-    <!-- Add Activity -->
-
-    <!-- <activity>
+    <activity xml:id="act-walking-on-the-school-field">
+        <title>Walking on the School Field</title>
         <statement>
+            <p>
+                <ol marker="(a)">
+                    <li>
+                        <p>From <m>S</m>, walk <m>6\,\text{m}</m> east, then <m>8\,\text{m}</m> north, and mark the finish <m>F</m>. Draw the walk on squared paper with <m>1</m> square for <m>1\,\text{m}</m>.</p>
+                        <solution component="lesson-plan"><p>See <xref ref="fig-school-field-walk"/>.</p></solution>
+                    </li>
+                    <li>
+                        <p>Write each leg as a column vector (east and north positive).</p>
+                        <solution component="lesson-plan"><p><m>\begin{pmatrix} 6 \\ 0 \end{pmatrix}</m> and <m>\begin{pmatrix} 0 \\ 8 \end{pmatrix}</m>.</p></solution>
+                    </li>
+                    <li>
+                        <p>Write <m>\overrightarrow{SF}</m> as a column vector.</p>
+                        <solution component="lesson-plan"><p><m>\begin{pmatrix} 6 \\ 8 \end{pmatrix}</m>.</p></solution>
+                    </li>
+                    <li>
+                        <p>Measure the straight-line distance <m>SF</m>.</p>
+                        <solution component="lesson-plan"><p>About <m>10\,\text{m}</m>.</p></solution>
+                    </li>
+                    <li>
+                        <p>Start at <m>S</m> again and walk <m>8\,\text{m}</m> north first, then <m>6\,\text{m}</m> east. Where do you finish?</p>
+                        <solution component="lesson-plan"><p>At the same point <m>F</m>: the order of the legs does not matter.</p></solution>
+                    </li>
+                    <li>
+                        <p>Add a third leg of <m>2\,\text{m}</m> west to the first walk. What is the resultant now?</p>
+                        <solution component="lesson-plan"><p><m>\begin{pmatrix} 4 \\ 8 \end{pmatrix}</m>.</p></solution>
+                    </li>
+                </ol>
+            </p>
         </statement>
-    </activity> -->
+    </activity>
 
-    <!-- [LP] Add guidance on structured lesson plan-->
+    <figure xml:id="fig-school-field-walk">
+        <caption>A walk on the school field and its resultant.</caption>
+        <image width="45%">
+            <shortdescription>A walk from S: 6 m east, then 8 m north to F; a dashed arrow from S to F is 10 m long.</shortdescription>
+            <latex-image>
+\begin{tikzpicture}[scale=0.5]
+\draw[very thin, gray!40] (0,0) grid (7,9);
+\draw[very thick, -{Stealth}] (0,0) -- node[below] {6 m east} (6,0);
+\draw[very thick, -{Stealth}] (6,0) -- node[right] {8 m north} (6,8);
+\draw[very thick, dashed, -{Stealth}] (0,0) -- node[above left] {10 m} (6,8);
+\fill (0,0) circle (3pt) node[below left] {$S$};
+\fill (6,8) circle (3pt) node[above right] {$F$};
+\draw[-{Stealth}] (8.5,7) -- (8.5,8.5) node[above] {N};
+\end{tikzpicture}
+            </latex-image>
+        </image>
+    </figure>
 
-    <!-- <axiom component="lesson-plan">
+    <axiom component="lesson-plan">
         <title>Structured Instruction</title>
         <p>
             <dl>
-            <li>
-                <title>Suggested Time</title>
-                <p>
-                    XX minutes
-                </p>
-            </li>
-            <li>
-                <title>Objective</title>
-                <p>
-                    To formalize the concepts and properties learners discovered in the anchor task.
-                </p>
-            </li>
+                <li><title>Suggested Time</title><p>8 minutes</p></li>
+                <li><title>Objective</title><p>To formalise the triangle law and adding column vectors.</p></li>
             </dl>
         </p>
         <paragraphs>
             <title>Key Takeaways &amp; Teacher Connection</title>
             <ol>
-                <li>
-                    <p>
-                        <alert>Connecting to Learner Work:</alert> XXXX
-                    </p>
-                </li>
+                <li><p><alert>Connecting to Learner Work:</alert> part (c) is the sum of the two columns in part (b); part (e) shows that the order does not matter.</p></li>
+                <li><p>Head to tail, then from the first tail to the last head.</p></li>
+                <li><p>Add across with across and up with up.</p></li>
+                <li><p>The resultant is shorter than the route unless every leg points the same way: compare <m>10\,\text{m}</m> with <m>14\,\text{m}</m> walked.</p></li>
             </ol>
         </paragraphs>
-    </axiom> -->
+    </axiom>
 
-    <!-- Add insight / key takeaway directly related to activity / learner experience -->
+    <insight xml:id="insight-adding-vectors">
+        <title>Adding Vectors</title>
+        <p>
+            To add <m>\mathbf{a}</m> and <m>\mathbf{b}</m>, draw <m>\mathbf{b}</m> starting at the head of <m>\mathbf{a}</m>. The sum <m>\mathbf{a} + \mathbf{b}</m> goes from the tail of <m>\mathbf{a}</m> to the head of <m>\mathbf{b}</m>. This is the <term>triangle law</term>, and the sum is called the <term>resultant</term>: head to tail, then from the first tail to the last head.
+        </p>
+        <p>
+            Column vectors are added component by component:
+            <md>\begin{pmatrix} a_1 \\ a_2 \end{pmatrix} + \begin{pmatrix} b_1 \\ b_2 \end{pmatrix} = \begin{pmatrix} a_1 + b_1 \\ a_2 + b_2 \end{pmatrix}</md>
+            The order does not matter: <m>\mathbf{a} + \mathbf{b} = \mathbf{b} + \mathbf{a}</m>. A vector and its reverse add up to the zero vector: <m>\mathbf{a} + (-\mathbf{a}) = \mathbf{0}</m>.
+        </p>
+    </insight>
 
-    <!-- <insight>
-    </insight> -->
+    <figure xml:id="fig-head-to-tail">
+        <caption>The triangle law: <m>\mathbf{a}</m>, then <m>\mathbf{b}</m> from the head of <m>\mathbf{a}</m>; the dashed resultant <m>\mathbf{a} + \mathbf{b}</m>.</caption>
+        <image width="45%">
+            <shortdescription>Arrow a, then arrow b starting at the head of a; the dashed arrow a + b goes from the tail of a to the head of b.</shortdescription>
+            <latex-image>
+\begin{tikzpicture}[scale=0.8]
+\draw[very thick, -{Stealth}] (0,0) -- node[below right] {$\mathbf{a}$} (4,1);
+\draw[very thick, -{Stealth}] (4,1) -- node[right] {$\mathbf{b}$} (5,4);
+\draw[very thick, dashed, -{Stealth}] (0,0) -- node[above left] {$\mathbf{a} + \mathbf{b}$} (5,4);
+\end{tikzpicture}
+            </latex-image>
+        </image>
+    </figure>
 
-    <!-- Add further instruction (not in a block) to develop ideas as needed -->
+    <figure xml:id="fig-head-to-tail-addition">
+        <caption>Drag the tips of <m>\mathbf{a}</m> and <m>\mathbf{b}</m>. The dashed resultant <m>\mathbf{a} + \mathbf{b}</m> goes from the start of <m>\mathbf{a}</m> to the end of <m>\mathbf{b}</m>. Its column is the sum of the two columns.</caption>
+        <interactive xml:id="interactive-head-to-tail" platform="jsxgraph" width="90%" aspect="8:9" source="jsxgraph/head-to-tail-addition.js">
+            <slate xml:id="jsxgraph-head-to-tail" surface="jsxboard" aspect="8:9"/>
+            <instructions>
+                <p>
+                    <ul>
+                        <li><p>Drag the tip of <m>\mathbf{a}</m>. The arrow <m>\mathbf{b}</m> moves with it and keeps its column. How does the resultant change?</p></li>
+                        <li><p>Make <m>\mathbf{a} = \begin{pmatrix} 6 \\ 0 \end{pmatrix}</m> and <m>\mathbf{b} = \begin{pmatrix} 0 \\ 8 \end{pmatrix}</m>, the walk from <xref ref="act-walking-on-the-school-field"/>. Check the column of <m>\mathbf{a} + \mathbf{b}</m>.</p></li>
+                        <li><p>Drag the tip of <m>\mathbf{b}</m> to make <m>\mathbf{a} + \mathbf{b}</m> the zero vector. What is <m>\mathbf{b}</m> then?</p></li>
+                    </ul>
+                </p>
+            </instructions>
+        </interactive>
+    </figure>
+
+    <note xml:id="note-forces-add">
+        <title>Forces Add Like Displacements</title>
+        <p>
+            When two pushes act on one object, they have the same effect as a single push equal to their sum, the <term>resultant force</term>. We add forces exactly as we add displacements: component by component.
+        </p>
+    </note>
 
     <xi:include href="../lesson-plan-templates/example-intro.ptx" />
 
-    <!-- Add at least 3 examples -->
-
-    <!-- <example>
+    <example xml:id="example-adding-column-vectors">
+        <title>Adding Column Vectors</title>
         <statement>
+            <p><m>\mathbf{a} = \begin{pmatrix} 5 \\ -3 \end{pmatrix}</m>, <m>\mathbf{b} = \begin{pmatrix} -2 \\ 6 \end{pmatrix}</m> and <m>\mathbf{c} = \begin{pmatrix} -1 \\ 4 \end{pmatrix}</m>. Find <m>\mathbf{a} + \mathbf{b}</m> and <m>\mathbf{a} + \mathbf{b} + \mathbf{c}</m>.</p>
         </statement>
         <solution>
+            <p><md>\mathbf{a} + \mathbf{b} = \begin{pmatrix} 5 + (-2) \\ -3 + 6 \end{pmatrix} = \begin{pmatrix} 3 \\ 3 \end{pmatrix}</md></p>
+            <p>Check by drawing: <m>5</m> right and <m>3</m> down, then <m>2</m> left and <m>6</m> up, ends <m>3</m> right and <m>3</m> up from the start.</p>
+            <p><md>\mathbf{a} + \mathbf{b} + \mathbf{c} = \begin{pmatrix} 3 \\ 3 \end{pmatrix} + \begin{pmatrix} -1 \\ 4 \end{pmatrix} = \begin{pmatrix} 2 \\ 7 \end{pmatrix}</md></p>
         </solution>
     </example>
 
-    <example>
+    <figure xml:id="fig-boda-route">
+        <caption>A boda boda route on a <m>1\,\text{km}</m> grid and its resultant.</caption>
+        <image width="55%">
+            <shortdescription>A route from the stage: 3 km east, 2 km north, 5 km west, 1 km south; the dashed resultant goes from the stage to the finish, 2 km west and 1 km north.</shortdescription>
+            <latex-image>
+\begin{tikzpicture}[scale=0.8]
+\draw[very thin, gray!40] (-3,-1) grid (4,3);
+\draw[very thick, -{Stealth}] (0,0) -- node[below] {3 km E} (3,0);
+\draw[very thick, -{Stealth}] (3,0) -- node[right] {2 km N} (3,2);
+\draw[very thick, -{Stealth}] (3,2) -- node[above] {5 km W} (-2,2);
+\draw[very thick, -{Stealth}] (-2,2) -- node[left] {1 km S} (-2,1);
+\draw[very thick, dashed, -{Stealth}] (0,0) -- node[below left] {resultant} (-2,1);
+\fill (0,0) circle (2.5pt) node[below] {Stage};
+\fill (-2,1) circle (2.5pt) node[below left] {Finish};
+\end{tikzpicture}
+            </latex-image>
+        </image>
+    </figure>
+
+    <example xml:id="example-boda-boda-route">
+        <title>A Boda Boda Route</title>
         <statement>
+            <p>A boda boda rider leaves the stage and rides <m>3\,\text{km}</m> east, <m>2\,\text{km}</m> north, <m>5\,\text{km}</m> west and <m>1\,\text{km}</m> south along roads on a grid (<xref ref="fig-boda-route"/>). Find the resultant displacement from the stage and the distance ridden.</p>
         </statement>
         <solution>
+            <p>With east and north positive, the four legs are <m>\begin{pmatrix} 3 \\ 0 \end{pmatrix}</m>, <m>\begin{pmatrix} 0 \\ 2 \end{pmatrix}</m>, <m>\begin{pmatrix} -5 \\ 0 \end{pmatrix}</m> and <m>\begin{pmatrix} 0 \\ -1 \end{pmatrix}</m>. Adding:</p>
+            <p><md>\begin{pmatrix} 3 + 0 - 5 + 0 \\ 0 + 2 + 0 - 1 \end{pmatrix} = \begin{pmatrix} -2 \\ 1 \end{pmatrix}</md></p>
+            <p>The rider finishes <m>2\,\text{km}</m> west and <m>1\,\text{km}</m> north of the stage. The distance ridden is <m>3 + 2 + 5 + 1 = 11\,\text{km}</m>.</p>
+            <p>A rider keeps to the marked roads for safety, so it is the distance ridden, not the resultant, that decides the fuel used and the time taken.</p>
         </solution>
     </example>
 
-    <example>
+    <figure xml:id="fig-handcart-pushes">
+        <caption>Two pushes on a handcart, seen from above, and their resultant.</caption>
+        <image width="55%">
+            <shortdescription>Two pushes on a handcart drawn from one point: (40, 30) N and (60, −30) N; their resultant (100, 0) N points east.</shortdescription>
+            <latex-image>
+\begin{tikzpicture}[x=0.06cm, y=0.06cm]
+\draw[very thin, gray!40, step=10] (0,-40) grid (110,40);
+\draw[very thick, -{Stealth}] (0,0) -- node[above left] {$\mathbf{F}_1$} (40,30);
+\draw[very thick, -{Stealth}] (0,0) -- node[below left] {$\mathbf{F}_2$} (60,-30);
+\draw[very thick, dashed, -{Stealth}] (0,0) -- node[above, pos=0.8] {resultant} (100,0);
+\draw[thin, dotted] (40,30) -- (100,0) -- (60,-30);
+\fill (0,0) circle (1.5);
+\end{tikzpicture}
+            </latex-image>
+        </image>
+    </figure>
+
+    <example xml:id="example-two-pushes">
+        <title>Two Pushes on a Handcart</title>
         <statement>
+            <p>Two learners push a loaded handcart (mkokoteni) across a flat yard. Seen from above, with east and north positive, their pushes are <m>\mathbf{F}_1 = \begin{pmatrix} 40 \\ 30 \end{pmatrix}</m> N and <m>\mathbf{F}_2 = \begin{pmatrix} 60 \\ -30 \end{pmatrix}</m> N (<xref ref="fig-handcart-pushes"/>). Find the resultant force.</p>
         </statement>
         <solution>
+            <p><md>\mathbf{F}_1 + \mathbf{F}_2 = \begin{pmatrix} 40 + 60 \\ 30 + (-30) \end{pmatrix} = \begin{pmatrix} 100 \\ 0 \end{pmatrix} \text{ N}</md></p>
+            <p>The resultant is <m>100</m> N due east: the north part of one push and the south part of the other cancel out.</p>
         </solution>
-    </example> -->
+    </example>
 
     <xi:include href="../lesson-plan-templates/assessment-intro.ptx" />
+    <xi:include href="../lesson-plan-templates/checkpoint.ptx" />
 
-    <!-- If STACK questions are included, uncomment this: -->
+    <p>Type one number in each box of a column vector: the top box is the move across, the bottom box the move up. Use a minus sign for left or down, for example <c>-3</c>.</p>
 
-    <!-- <xi:include href="../lesson-plan-templates/checkpoint.ptx" /> -->
+    <exercise xml:id="ex-adding-column-vectors">
+        <!--<title></title>-->
+        <stack label="stk-adding-column-vectors" source="stack/top/2-measurement-and-geometry/11-vectors/04-addition-of-vectors/Adding-column-vectors.xml"/>
+    </exercise>
 
-    <!-- Add STACK exercises if made -->
+    <exercise xml:id="ex-resultant-displacement-of-a-walk">
+        <!--<title></title>-->
+        <stack label="stk-resultant-displacement-of-a-walk" source="stack/top/2-measurement-and-geometry/11-vectors/04-addition-of-vectors/Resultant-displacement-of-a-walk.xml"/>
+    </exercise>
 
-    <!-- Add static exercises -->
+    <exercise xml:id="ex-two-vectors-with-a-given-sum">
+        <!--<title></title>-->
+        <stack label="stk-two-vectors-with-a-given-sum" source="stack/top/2-measurement-and-geometry/11-vectors/04-addition-of-vectors/Two-vectors-with-a-given-sum.xml"/>
+    </exercise>
 
-    <!-- <exercises>
-        <exercise>
-            <statement>   
+    <p>
+        <em>Vectors in everyday life:</em> in many computer games a character moves by adding one small vector after another. What single vector takes the character from its start to where it ends?
+    </p>
 
-            </statement>   
-            <solution>
+    <exercises xml:id="exercises-addition-of-vectors">
+        <exercise xml:id="ex-add-pairs">
+            <statement><p>Find (a) <m>\begin{pmatrix} 4 \\ 2 \end{pmatrix} + \begin{pmatrix} 3 \\ -5 \end{pmatrix}</m> (b) <m>\begin{pmatrix} -3 \\ 6 \end{pmatrix} + \begin{pmatrix} -2 \\ -6 \end{pmatrix}</m> (c) <m>\begin{pmatrix} 0 \\ 7 \end{pmatrix} + \begin{pmatrix} 5 \\ -2 \end{pmatrix}</m>.</p></statement>
+            <answer><p>(a) <m>\begin{pmatrix} 7 \\ -3 \end{pmatrix}</m> (b) <m>\begin{pmatrix} -5 \\ 0 \end{pmatrix}</m> (c) <m>\begin{pmatrix} 5 \\ 5 \end{pmatrix}</m></p></answer>
+        </exercise>
+        <exercise xml:id="ex-add-three">
+            <statement><p><m>\mathbf{p} = \begin{pmatrix} 3 \\ -1 \end{pmatrix}</m>, <m>\mathbf{q} = \begin{pmatrix} -5 \\ 3 \end{pmatrix}</m> and <m>\mathbf{r} = \begin{pmatrix} 1 \\ 4 \end{pmatrix}</m>. Find <m>\mathbf{p} + \mathbf{q} + \mathbf{r}</m>, then <m>\mathbf{q} + \mathbf{r} + \mathbf{p}</m>. What do you notice?</p></statement>
+            <answer><p>Both are <m>\begin{pmatrix} -1 \\ 6 \end{pmatrix}</m>: the order does not matter.</p></answer>
+        </exercise>
+        <exercise xml:id="ex-matatu-route">
+            <statement><p>A matatu drives <m>6\,\text{km}</m> north, then <m>4\,\text{km}</m> east, then <m>2\,\text{km}</m> south. Write its resultant displacement as a column vector (east and north positive) and in words. How far did it drive?</p></statement>
+            <answer><p><m>\begin{pmatrix} 4 \\ 4 \end{pmatrix}</m>: <m>4\,\text{km}</m> east and <m>4\,\text{km}</m> north (north-east of the start); <m>12\,\text{km}</m>.</p></answer>
+        </exercise>
+        <exercise xml:id="ex-tug-of-war">
+            <statement><p>At a sports day in Nyeri, with east as the positive direction, one team pulls a rope with a force of <m>\begin{pmatrix} -350 \\ 0 \end{pmatrix}</m> N and the other with <m>\begin{pmatrix} 420 \\ 0 \end{pmatrix}</m> N. Find the resultant force. Which way does the rope move?</p></statement>
+            <answer><p><m>\begin{pmatrix} 70 \\ 0 \end{pmatrix}</m> N; east, towards the second team.</p></answer>
+        </exercise>
+        <exercise xml:id="ex-missing-leg">
+            <statement><p>Halima's first walk has displacement <m>\begin{pmatrix} 3 \\ -2 \end{pmatrix}</m>. After a second walk her total displacement is <m>\begin{pmatrix} -1 \\ 4 \end{pmatrix}</m>. Find the displacement of the second walk.</p></statement>
+            <answer><p><m>\begin{pmatrix} -4 \\ 6 \end{pmatrix}</m></p></answer>
+            <solution><p>The first walk plus the second walk is the total, so the second walk is <m>\begin{pmatrix} -1 - 3 \\ 4 - (-2) \end{pmatrix} = \begin{pmatrix} -4 \\ 6 \end{pmatrix}</m>. Check: <m>\begin{pmatrix} 3 \\ -2 \end{pmatrix} + \begin{pmatrix} -4 \\ 6 \end{pmatrix} = \begin{pmatrix} -1 \\ 4 \end{pmatrix}</m>.</p></solution>
+        </exercise>
+        <exercise xml:id="ex-back-to-the-start">
+            <title>Challenge: Back to the Start</title>
+            <statement><p><m>\mathbf{a} = \begin{pmatrix} 5 \\ 2 \end{pmatrix}</m> and <m>\mathbf{b} = \begin{pmatrix} -1 \\ 4 \end{pmatrix}</m>. Find <m>\mathbf{c}</m> so that <m>\mathbf{a} + \mathbf{b} + \mathbf{c} = \mathbf{0}</m>. Draw <m>\mathbf{a}</m>, <m>\mathbf{b}</m> and <m>\mathbf{c}</m> head to tail. Why do they make a closed triangle?</p></statement>
+            <hint><p>The route ends where it began.</p></hint>
+            <answer><p><m>\mathbf{c} = \begin{pmatrix} -4 \\ -6 \end{pmatrix}</m>; the resultant is zero, so the last head meets the first tail.</p></answer>
+            <solution><p><m>\mathbf{a} + \mathbf{b} = \begin{pmatrix} 4 \\ 6 \end{pmatrix}</m>, so <m>\mathbf{c}</m> must be its reverse, <m>\begin{pmatrix} -4 \\ -6 \end{pmatrix}</m>. Head to tail, the three arrows end where they began, so they close up into a triangle.</p></solution>
+        </exercise>
+    </exercises>
 
-            </solution>             
-        </exercise>        
-    </exercises> -->
-
-    <!-- [LP] Add information on how to differentiate  -->
-
-    <!-- <axiom component="lesson-plan">
+    <axiom component="lesson-plan">
         <title>Differentiation</title>
-
-        <table>
-            <title>Differentiation</title>
-            <tabular halign="left">
-                <row header="yes" bottom="minor">
-                    <cell>Learner Group</cell>
-                    <cell>Strategy &amp; Learning Experience</cell>
-                    <cell></cell>
-                </row>
-                <row>
-                    <cell>Struggling Learners (Support)</cell>
-                    <cell>
-                        XXXX
-                    </cell>
-                    <cell></cell>
-                </row>
-                <row>
-                    <cell>On-Level Learners (Core)</cell>
-                    <cell>
-                        <line>The core lesson activities as described above.</line>
-                    </cell>
-                    <cell></cell>
-                </row>
-                <row>
-                    <cell>Advanced Learners (Challenge)</cell>
-                    <cell>
-                        XXXX
-                    </cell>
-                    <cell></cell>
-                </row>
+        <table xml:id="table-differentiation-addition-of-vectors">
+            <title>Differentiation Strategies</title>
+            <tabular halign="left" top="minor" bottom="minor" left="minor" right="minor">
+                <row header="yes" bottom="medium"><cell>Learner Group</cell><cell>Strategy and Learning Experience</cell></row>
+                <row><cell>Struggling Learners (Support)</cell><cell>Give a two-row <q>across, up</q> grid for adding. Focus on the activity and <xref ref="example-adding-column-vectors"/>. Assign <xref ref="ex-add-pairs"/> and <xref ref="ex-add-three"/>.</cell></row>
+                <row><cell>On-Level Learners (Core)</cell><cell>Full activity and all examples. Assign <xref ref="ex-add-pairs"/> to <xref ref="ex-missing-leg"/>.</cell></row>
+                <row><cell>Advanced Learners (Challenge)</cell><cell>All exercises including <xref ref="ex-back-to-the-start"/>. Extension: find two different routes of three legs, each leg along a grid line, with resultant <m>\begin{pmatrix} 2 \\ 7 \end{pmatrix}</m>. (Answer: any, for example <m>5</m> east, <m>7</m> north, <m>3</m> west.)</cell></row>
             </tabular>
         </table>
-    </axiom> -->
+    </axiom>
 
     <xi:include href="../lesson-plan-templates/assessment-methods.ptx" />
 

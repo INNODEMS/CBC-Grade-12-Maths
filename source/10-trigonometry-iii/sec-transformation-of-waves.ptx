@@ -19,7 +19,7 @@
                     </p>
                 </li>
                 <li>
-                    <title>Specific Learning Outcomes</title> 
+                    <title>Specific Learning Outcomes</title>
                     <p>
                         Transform trigonometric waves using stretch and translation
                     </p>
@@ -33,7 +33,7 @@
                 <li component="lesson-plan">
                     <title>Estimated Duration</title>
                     <p>
-                        40 minutes
+                        2 lessons of 40 minutes
                     </p>
                 </li>
             </dl>
@@ -47,163 +47,432 @@
          Suggested activity: Learners transform a wave drawn on tracing paper by stretching or sliding it along the x-axis and record the new equation.
          Interactive (JSXGraph): Original wave and its transformed copy; separate sliders for stretch (amplitude/period) and translation (phase shift). -->
 
-    <!-- [LP] Add guidance on activity -->
+    <!-- Section notes (2026-11)
+         SLOs: Core 2.5 (e); outcome (f) in lesson 4.2. Lessons 4.1 and 4.2 as subsections.
+         Activity: as planning notes (tracing paper): stretching in 4.1, sliding in 4.2
+         JSXGraph: interactive-wave-transformations (assets/jsxgraph/wave-transformations.js, lesson 4.2), as planning notes
+         STACK: assets/stack/top/2-measurement-and-geometry/10-trigonometry-iii/04-transformation-of-waves/ -->
 
-    <!-- <axiom component="lesson-plan">
+    <!-- ============================================================ Lesson 4.1 -->
+    <subsection xml:id="subsec-stretching-waves">
+        <title>Stretching Waves</title>
+
+        <p component="lesson-plan">Upon completion of this lesson, learners will be able to:
+            <ol>
+                <li><p><alert>Know:</alert> a one-way stretch has an invariant axis and a stretch factor; <m>y = af(x)</m> and <m>y = f(bx)</m> are stretches.</p></li>
+                <li><p><alert>Do:</alert> describe the stretches that map <m>y = \sin x</m> or <m>y = \cos x</m> onto <m>y = a\sin bx</m> or <m>y = a\cos bx</m>; find images of points; write the equation after stretches.</p></li>
+                <li><p><alert>Apply:</alert> change the amplitude and the period of a wave on purpose.</p></li>
+            </ol>
+        </p>
+
+        <axiom component="lesson-plan">
             <title>Problem-Solving and Discovery</title>
             <dl>
-                <li>
-                    <title>Suggested Time</title>
-                    <p>
-                        XX minutes
-                    </p>
-                </li>
-                <li>
-                    <title>Objective</title>
-                    <p>
-                        XXX
-                    </p>
-                </li>
-                <li>
-                    <title>Teacher's Role</title>
-                    <p>
-                        XXX
-                    </p>
-                </li>
+                <li><title>Suggested Time</title><p>14 minutes</p></li>
+                <li><title>Objective</title><p>Learners stretch a traced wave and name the new equation.</p></li>
+                <li><title>Teacher's Role</title><p>Give out tracing paper and the graph of <m>y = \sin x</m> from <xref ref="subsec-drawing-trigonometric-graphs"/>. Pairs share one tracing and check each other's points. After part (a) ask: <q>Which points did not move?</q> (those on the <m>x</m>-axis, the invariant axis). Link to the one-way stretch of <xref ref="ch-matrices-and-transformations"/>.</p></li>
             </dl>
-        </axiom> -->
+        </axiom>
 
-    <!-- Add Activity -->
-
-    <!-- <activity>
-        <statement>
-        </statement>
-    </activity> -->
-
-    <!-- [LP] Add guidance on structured lesson plan-->
-
-    <!-- <axiom component="lesson-plan">
-        <title>Structured Instruction</title>
-        <p>
-            <dl>
-            <li>
-                <title>Suggested Time</title>
+        <activity xml:id="act-stretching-on-tracing-paper">
+            <title>Stretching on Tracing Paper</title>
+            <statement>
                 <p>
-                    XX minutes
+                    <ol marker="(a)">
+                        <li>
+                            <p>Trace <m>y = \sin x</m> for <m>0^\circ \le x \le 360^\circ</m>. Double the height of every point (for example, mark <m>(90^\circ, 2)</m> and <m>(270^\circ, -2)</m>) and draw the new wave. What is its equation?</p>
+                            <solution component="lesson-plan"><p><m>y = 2\sin x</m>. The points on the <m>x</m>-axis stay where they are.</p></solution>
+                        </li>
+                        <li>
+                            <p>Now divide every <m>x</m>-coordinate of the original wave by 3 (for example, <m>(90^\circ, 1)</m> moves to <m>(30^\circ, 1)</m>). What is the equation of the new wave?</p>
+                            <solution component="lesson-plan"><p><m>y = \sin 3x</m>. The points on the <m>y</m>-axis stay where they are.</p></solution>
+                        </li>
+                        <li>
+                            <p>Predict the period of <m>y = \sin\dfrac{x}{2}</m>, and check by tracing.</p>
+                            <solution component="lesson-plan"><p><m>720^\circ</m>: every <m>x</m>-coordinate of <m>y = \sin x</m> is doubled.</p></solution>
+                        </li>
+                    </ol>
                 </p>
-            </li>
-            <li>
-                <title>Objective</title>
-                <p>
-                    To formalize the concepts and properties learners discovered in the anchor task.
-                </p>
-            </li>
-            </dl>
-        </p>
-        <paragraphs>
-            <title>Key Takeaways &amp; Teacher Connection</title>
-            <ol>
-                <li>
-                    <p>
-                        <alert>Connecting to Learner Work:</alert> XXXX
-                    </p>
-                </li>
-            </ol>
-        </paragraphs>
-    </axiom> -->
+            </statement>
+        </activity>
 
-    <!-- Add insight / key takeaway directly related to activity / learner experience -->
+        <axiom component="lesson-plan">
+            <title>Structured Instruction</title>
+            <p>
+                <dl>
+                    <li><title>Suggested Time</title><p>8 minutes</p></li>
+                    <li><title>Objective</title><p>To describe the two stretches of a wave in the language of <xref ref="ch-matrices-and-transformations"/>.</p></li>
+                </dl>
+            </p>
+            <paragraphs>
+                <title>Key Takeaways &amp; Teacher Connection</title>
+                <ol>
+                    <li><p><alert>Connecting to Learner Work:</alert> part (a) kept the <m>x</m>-axis fixed; part (b) kept the <m>y</m>-axis fixed.</p></li>
+                    <li><p>A multiplier outside stretches in the <m>y</m>-direction by that factor.</p></li>
+                    <li><p>A multiplier <m>b</m> inside stretches in the <m>x</m>-direction by <m>\dfrac{1}{b}</m>: the inside factor works backwards.</p></li>
+                </ol>
+            </paragraphs>
+        </axiom>
 
-    <!-- <insight>
-    </insight> -->
+        <insight xml:id="insight-stretching-a-wave">
+            <title>Stretching a Wave</title>
+            <p>In a one-way <term>stretch</term>, every point moves away from the <term>invariant</term> axis by the same factor, the <term>stretch factor</term>.</p>
+            <p>
+                <ul>
+                    <li><p><m>y = af(x)</m> is the image of <m>y = f(x)</m> under a stretch with the <m>x</m>-axis invariant (parallel to the <m>y</m>-axis), stretch factor <m>a</m>: <m>(x, y) \mapsto (x, ay)</m>. The amplitude is multiplied by <m>a</m>.</p></li>
+                    <li><p><m>y = f(bx)</m> is the image of <m>y = f(x)</m> under a stretch with the <m>y</m>-axis invariant, stretch factor <m>\dfrac{1}{b}</m>: <m>(x, y) \mapsto \left(\dfrac{x}{b}, y\right)</m>. The period becomes <m>\dfrac{360^\circ}{b}</m>.</p></li>
+                </ul>
+            </p>
+        </insight>
 
-    <!-- Add further instruction (not in a block) to develop ideas as needed -->
+        <figure xml:id="fig-stretches-of-sine">
+            <caption>Left: <m>y = \sin x</m> (grey) and <m>y = 3\sin x</m>. Right: <m>y = \sin x</m> (grey) and <m>y = \sin 3x</m>. The point <m>(90^\circ, 1)</m> and its image are marked.</caption>
+            <image width="90%">
+                <shortdescription>The point (90 degrees, 1) moves to (90 degrees, 3) in the first panel and to (30 degrees, 1) in the second.</shortdescription>
+                <description><p>Left panel: the grey wave y = sin x and the black wave y = 3 sin x, both crossing the x-axis at 0, 180 and 360 degrees; the black wave reaches 3. Right panel: the grey wave y = sin x and the black wave y = sin 3x, which repeats every 120 degrees and has its first maximum at (30 degrees, 1).</p></description>
+                <latex-image>
+\begin{tikzpicture}
+% pgfplots sin and cos take degrees by default
+\begin{axis}[name=left, width=7.5cm, height=6cm, axis lines=middle, xmin=0, xmax=380, ymin=-3.4, ymax=3.6,
+  xtick={90,180,270,360}, xticklabel={$\pgfmathprintnumber{\tick}^\circ$}, ytick={-3,-1,1,3}, xlabel={$x$}, ylabel={$y$}, tick label style={font=\scriptsize}]
+\addplot[gray, thick, domain=0:360, samples=121] {sin(x)};
+\addplot[thick, domain=0:360, samples=121] {3*sin(x)};
+\addplot[only marks, mark=*] coordinates {(90,1) (90,3)};
+\draw[->] (axis cs:100,1.1) -- (axis cs:100,2.8);
+\end{axis}
+\begin{axis}[at={(left.east)}, anchor=west, xshift=0.8cm, width=7.5cm, height=6cm, axis lines=middle, xmin=0, xmax=380, ymin=-1.6, ymax=1.6,
+  xtick={30,90,180,270,360}, xticklabel={$\pgfmathprintnumber{\tick}^\circ$}, ytick={-1,1}, xlabel={$x$}, ylabel={$y$}, tick label style={font=\scriptsize}]
+\addplot[gray, thick, domain=0:360, samples=121] {sin(x)};
+\addplot[thick, domain=0:360, samples=181] {sin(3*x)};
+\addplot[only marks, mark=*] coordinates {(90,1) (30,1)};
+\draw[->] (axis cs:85,1.15) -- (axis cs:35,1.15);
+\end{axis}
+\end{tikzpicture}
+                </latex-image>
+            </image>
+        </figure>
 
-    <xi:include href="../lesson-plan-templates/example-intro.ptx" />
+        <xi:include href="../lesson-plan-templates/example-intro.ptx" />
 
-    <!-- Add at least 3 examples -->
+        <example xml:id="example-stretch-four-cos">
+            <title>A Stretch Parallel to the <m>y</m>-Axis</title>
+            <statement><p>Describe the transformation that maps <m>y = \cos x</m> onto <m>y = 4\cos x</m>, and find the image of <m>(0, 1)</m>.</p></statement>
+            <solution><p>A stretch with the <m>x</m>-axis invariant, stretch factor 4. The point <m>(0, 1)</m> maps to <m>(0, 4)</m>. The amplitude becomes 4; the period stays <m>360^\circ</m>.</p></solution>
+        </example>
 
-    <!-- <example>
-        <statement>
-        </statement>
-        <solution>
-        </solution>
-    </example>
+        <example xml:id="example-stretch-sin-3x">
+            <title>A Stretch Parallel to the <m>x</m>-Axis</title>
+            <statement><p>Describe the transformation that maps <m>y = \sin x</m> onto <m>y = \sin 3x</m>, and find the image of <m>(90^\circ, 1)</m>.</p></statement>
+            <solution><p>A stretch with the <m>y</m>-axis invariant, stretch factor <m>\dfrac{1}{3}</m>. The point <m>(90^\circ, 1)</m> maps to <m>(30^\circ, 1)</m>. The period becomes <m>120^\circ</m>.</p></solution>
+        </example>
 
-    <example>
-        <statement>
-        </statement>
-        <solution>
-        </solution>
-    </example>
+        <example xml:id="example-two-stretches">
+            <title>Two Stretches</title>
+            <statement><p>Describe the two stretches that map <m>y = \sin x</m> onto <m>y = 2\sin\dfrac{x}{2}</m>, and find the image of <m>(90^\circ, 1)</m>.</p></statement>
+            <solution><p>A stretch with the <m>x</m>-axis invariant, stretch factor 2, and a stretch with the <m>y</m>-axis invariant, stretch factor 2 (since <m>b = \dfrac{1}{2}</m>). <m>(90^\circ, 1) \mapsto (180^\circ, 2)</m>. The amplitude is 2 and the period <m>720^\circ</m>.</p></solution>
+        </example>
 
-    <example>
-        <statement>
-        </statement>
-        <solution>
-        </solution>
-    </example> -->
+        <example xml:id="example-negative-multiplier">
+            <title>A Negative Multiplier</title>
+            <statement><p>Describe how the graph of <m>y = -2\cos x</m> is obtained from <m>y = \cos x</m>.</p></statement>
+            <solution><p>A stretch with the <m>x</m>-axis invariant, stretch factor 2, followed by a reflection in the <m>x</m>-axis (the minus sign). The amplitude is 2.</p></solution>
+        </example>
 
-    <xi:include href="../lesson-plan-templates/assessment-intro.ptx" />
+        <xi:include href="../lesson-plan-templates/assessment-intro.ptx" />
+        <xi:include href="../lesson-plan-templates/checkpoint.ptx" />
 
-    <!-- If STACK questions are included, uncomment this: -->
+        <p>Type decimals with a point, for example <c>1.73</c>, or a fraction such as <c>1/3</c>.</p>
 
-    <!-- <xi:include href="../lesson-plan-templates/checkpoint.ptx" /> -->
+        <exercise xml:id="ex-stretches-of-sine-and-cosine-waves">
+            <!--<title></title>-->
+            <stack label="stk-stretches-of-sine-and-cosine-waves" source="stack/top/2-measurement-and-geometry/10-trigonometry-iii/04-transformation-of-waves/Stretches-of-sine-and-cosine-waves.xml"/>
+        </exercise>
 
-    <!-- Add STACK exercises if made -->
+        <exercises xml:id="exercises-stretching-waves">
+            <exercise xml:id="ex-describe-four-stretches">
+                <statement><p>Describe the stretch that maps <m>y = \sin x</m> or <m>y = \cos x</m> onto
+                    <ol marker="(a)">
+                        <li><p><m>y = 5\sin x</m></p></li>
+                        <li><p><m>y = \cos 4x</m></p></li>
+                        <li><p><m>y = \sin\dfrac{x}{3}</m></p></li>
+                        <li><p><m>y = 0.5\cos x</m></p></li>
+                    </ol></p></statement>
+                <answer><p>(a) <m>x</m>-axis invariant, stretch factor 5 (b) <m>y</m>-axis invariant, stretch factor <m>\dfrac{1}{4}</m> (c) <m>y</m>-axis invariant, stretch factor 3 (d) <m>x</m>-axis invariant, stretch factor 0.5</p></answer>
+            </exercise>
+            <exercise xml:id="ex-equation-after-a-stretch">
+                <statement><p>The graph of <m>y = \cos x</m> is stretched with the <m>y</m>-axis invariant, stretch factor 2. Write down the equation of the image and its period.</p></statement>
+                <answer><p><m>y = \cos\dfrac{x}{2}</m>; period <m>720^\circ</m>.</p></answer>
+            </exercise>
+            <exercise xml:id="ex-image-of-a-minimum">
+                <statement><p>The graph of <m>y = \cos x</m> is mapped onto <m>y = 4\cos 3x</m>. Find the image of the point <m>(180^\circ, -1)</m>.</p></statement>
+                <answer><p><m>(60^\circ, -4)</m></p></answer>
+            </exercise>
+            <exercise xml:id="ex-two-stretches-maximum">
+                <statement><p>The graph of <m>y = \sin x</m> is mapped onto <m>y = 3\sin 2x</m>. Describe both stretches, and find the first maximum point of <m>y = 3\sin 2x</m>.</p></statement>
+                <answer><p>Stretch factor 3 with the <m>x</m>-axis invariant; stretch factor <m>\dfrac{1}{2}</m> with the <m>y</m>-axis invariant. First maximum <m>(45^\circ, 3)</m>.</p></answer>
+            </exercise>
+            <exercise xml:id="ex-amplitude-and-period-after-stretches">
+                <statement><p>A wave with amplitude 2 and period <m>360^\circ</m> is stretched with the <m>x</m>-axis invariant, stretch factor 1.5, then with the <m>y</m>-axis invariant, stretch factor <m>\dfrac{1}{3}</m>. Find the new amplitude and period.</p></statement>
+                <answer><p>Amplitude 3, period <m>120^\circ</m>.</p></answer>
+            </exercise>
+            <exercise xml:id="ex-stretches-in-either-order">
+                <title>Challenge: Does the Order Matter?</title>
+                <statement><p>Show that the two stretches of <xref ref="ex-two-stretches-maximum"/> give the same graph whichever is done first.</p></statement>
+                <hint><p>Follow a general point <m>(x, y)</m> through each order.</p></hint>
+                <answer><p>Each stretch changes only one coordinate: either order sends <m>(x, y)</m> to <m>\left(\dfrac{x}{2}, 3y\right)</m>.</p></answer>
+            </exercise>
+        </exercises>
 
-    <!-- Add static exercises -->
-
-    <!-- <exercises>
-        <exercise>
-            <statement>   
-
-            </statement>   
-            <solution>
-
-            </solution>             
-        </exercise>        
-    </exercises> -->
-
-    <!-- [LP] Add information on how to differentiate  -->
-
-    <!-- <axiom component="lesson-plan">
-        <title>Differentiation</title>
-
-        <table>
+        <axiom component="lesson-plan">
             <title>Differentiation</title>
-            <tabular halign="left">
-                <row header="yes" bottom="minor">
-                    <cell>Learner Group</cell>
-                    <cell>Strategy &amp; Learning Experience</cell>
-                    <cell></cell>
-                </row>
-                <row>
-                    <cell>Struggling Learners (Support)</cell>
-                    <cell>
-                        XXXX
-                    </cell>
-                    <cell></cell>
-                </row>
-                <row>
-                    <cell>On-Level Learners (Core)</cell>
-                    <cell>
-                        <line>The core lesson activities as described above.</line>
-                    </cell>
-                    <cell></cell>
-                </row>
-                <row>
-                    <cell>Advanced Learners (Challenge)</cell>
-                    <cell>
-                        XXXX
-                    </cell>
-                    <cell></cell>
-                </row>
-            </tabular>
-        </table>
-    </axiom> -->
+            <table xml:id="table-differentiation-stretching-waves">
+                <title>Differentiation Strategies</title>
+                <tabular halign="left" top="minor" bottom="minor" left="minor" right="minor">
+                    <row header="yes" bottom="medium"><cell>Learner Group</cell><cell>Strategy and Learning Experience</cell></row>
+                    <row><cell>Struggling Learners (Support)</cell><cell>Plot points on tracing paper only. Work through <xref ref="example-stretch-four-cos"/> and <xref ref="example-stretch-sin-3x"/>. Assign <xref ref="ex-describe-four-stretches"/> and <xref ref="ex-equation-after-a-stretch"/>.</cell></row>
+                    <row><cell>On-Level Learners (Core)</cell><cell>Full activity and all examples. Assign <xref ref="ex-describe-four-stretches"/> to <xref ref="ex-amplitude-and-period-after-stretches"/>.</cell></row>
+                    <row><cell>Advanced Learners (Challenge)</cell><cell>All exercises including <xref ref="ex-stretches-in-either-order"/>. Extension: which single stretch maps <m>y = \sin 2x</m> onto <m>y = \sin 6x</m>? (Answer: a stretch with the <m>y</m>-axis invariant, stretch factor <m>\dfrac{1}{3}</m>.)</cell></row>
+                </tabular>
+            </table>
+        </axiom>
 
-    <xi:include href="../lesson-plan-templates/assessment-methods.ptx" />
+        <xi:include href="../lesson-plan-templates/assessment-methods.ptx" />
+        <xi:include href="../lesson-plan-templates/reflection.ptx"/>
+    </subsection>
 
-    <xi:include href="../lesson-plan-templates/reflection.ptx"/>
+    <!-- ============================================================ Lesson 4.2 -->
+    <subsection xml:id="subsec-translating-and-combining-transformations">
+        <title>Translating Waves and Combining Transformations</title>
+
+        <p component="lesson-plan">Upon completion of this lesson, learners will be able to:
+            <ol>
+                <li><p><alert>Know:</alert> <m>y = f(x + c)</m> and <m>y = f(x) + d</m> are translations; <m>\sin(bx + c) = \sin b\left(x + \dfrac{c}{b}\right)</m>; the order of transformations matters for the translation.</p></li>
+                <li><p><alert>Do:</alert> give translation vectors; describe and apply a sequence of transformations; write the equation after a sequence; find images of points.</p></li>
+                <li><p><alert>Apply:</alert> recognise waves around us.</p></li>
+            </ol>
+        </p>
+
+        <axiom component="lesson-plan">
+            <title>Problem-Solving and Discovery</title>
+            <dl>
+                <li><title>Suggested Time</title><p>14 minutes</p></li>
+                <li><title>Objective</title><p>Learners slide a traced wave and discover the sign rule and the shift <m>\dfrac{c}{b}</m>.</p></li>
+                <li><title>Teacher's Role</title><p>Use tracing paper again. After part (a) ask: <q>Why does <m>+60^\circ</m> move the wave to the left?</q> Pairs do part (c) together and compare with the next pair.</p></li>
+            </dl>
+        </axiom>
+
+        <activity xml:id="act-sliding-on-tracing-paper">
+            <title>Sliding on Tracing Paper</title>
+            <statement>
+                <p>
+                    <ol marker="(a)">
+                        <li>
+                            <p>Trace <m>y = \sin x</m> and slide the tracing <m>60^\circ</m> to the left. Where is the first maximum now? Which equation, <m>y = \sin(x + 60^\circ)</m> or <m>y = \sin(x - 60^\circ)</m>, has its maximum there?</p>
+                            <solution component="lesson-plan"><p>At <m>x = 30^\circ</m>. <m>y = \sin(x + 60^\circ)</m>, since <m>30 + 60 = 90</m>.</p></solution>
+                        </li>
+                        <li>
+                            <p>Slide the tracing <m>360^\circ</m> to the left. What do you notice? Which equation describes the new position?</p>
+                            <solution component="lesson-plan"><p>The wave lands exactly on itself: <m>y = \sin(x + 360^\circ)</m> is the same graph as <m>y = \sin x</m>, because the period is <m>360^\circ</m>.</p></solution>
+                        </li>
+                        <li>
+                            <p>Trace <m>y = \sin 2x</m>. How far must you slide it to get <m>y = \sin(2x + 70^\circ)</m>? Test with the maximum.</p>
+                            <solution component="lesson-plan"><p><m>35^\circ</m> to the left: the maximum of <m>y = \sin 2x</m> at <m>45^\circ</m> must move to where <m>2x + 70 = 90</m>, that is <m>x = 10^\circ</m>.</p></solution>
+                        </li>
+                    </ol>
+                </p>
+            </statement>
+        </activity>
+
+        <axiom component="lesson-plan">
+            <title>Structured Instruction</title>
+            <p>
+                <dl>
+                    <li><title>Suggested Time</title><p>8 minutes</p></li>
+                    <li><title>Objective</title><p>To give translations as column vectors and to combine them with stretches in a fixed order.</p></li>
+                </dl>
+            </p>
+            <paragraphs>
+                <title>Key Takeaways &amp; Teacher Connection</title>
+                <ol>
+                    <li><p><alert>Connecting to Learner Work:</alert> a plus sign inside the bracket moved the wave left (part (a)); the shift was <m>70^\circ \div 2</m> in part (c).</p></li>
+                    <li><p>Adding outside moves the wave up or down (Grade 11).</p></li>
+                    <li><p>Follow one point through each step to check a sequence of transformations.</p></li>
+                </ol>
+            </paragraphs>
+        </axiom>
+
+        <insight xml:id="insight-translating-and-combining">
+            <title>Translating and Combining</title>
+            <p>
+                <ul>
+                    <li><p><m>y = f(x + c)</m> is the image of <m>y = f(x)</m> under the translation <m>\begin{pmatrix} -c \\ 0 \end{pmatrix}</m>: the graph moves the opposite way to the sign.</p></li>
+                    <li><p><m>y = f(x) + d</m> is the image under the translation <m>\begin{pmatrix} 0 \\ d \end{pmatrix}</m>.</p></li>
+                    <li><p>Since <m>a\sin(bx + c) + d = a\sin b\left(x + \dfrac{c}{b}\right) + d</m>, the graph of <m>y = a\sin(bx + c) + d</m> is obtained from <m>y = \sin x</m> by, in order: a stretch with the <m>x</m>-axis invariant, stretch factor <m>a</m>; a stretch with the <m>y</m>-axis invariant, stretch factor <m>\dfrac{1}{b}</m>; the translation <m>\begin{pmatrix} -c/b \\ d \end{pmatrix}</m>. Inside the bracket, the graph moves by the angle divided by <m>b</m>.</p></li>
+                    <li><p>Another order also works for the <m>x</m>-direction: first the translation <m>\begin{pmatrix} -c \\ 0 \end{pmatrix}</m>, then the stretch with stretch factor <m>\dfrac{1}{b}</m>. The size of the translation depends on the order.</p></li>
+                </ul>
+            </p>
+        </insight>
+
+        <figure xml:id="fig-translation-sin2x">
+            <caption><m>y = \sin 2x</m> (grey) and <m>y = \sin(2x + 70^\circ)</m> (black).</caption>
+            <image width="90%">
+                <shortdescription>The maximum moves from 45 degrees to 10 degrees: a translation of 35 degrees to the left.</shortdescription>
+                <description><p>The grey wave y = sin 2x has maxima at 45 and 225 degrees. The black wave y = sin(2x + 70 degrees) has the same shape with maxima at 10 and 190 degrees. An arrow from (45 degrees, 1) to (10 degrees, 1) shows the translation of 35 degrees to the left.</p></description>
+                <latex-image>
+\begin{tikzpicture}
+% pgfplots sin and cos take degrees by default
+\begin{axis}[width=13cm, height=6cm, axis lines=middle, xmin=0, xmax=380, ymin=-1.5, ymax=1.6,
+  xtick={0,10,45,90,...,360}, xticklabel={$\pgfmathprintnumber{\tick}^\circ$}, ytick={-1,1}, grid=both, grid style={gray!25},
+  xlabel={$x$}, ylabel={$y$}, tick label style={font=\scriptsize}]
+\addplot[gray, thick, domain=0:360, samples=181] {sin(2*x)};
+\addplot[thick, domain=0:360, samples=181] {sin(2*x+70)};
+\addplot[only marks, mark=*] coordinates {(45,1) (10,1)};
+\draw[->, thick] (axis cs:43,1.3) -- (axis cs:12,1.3);
+\node[anchor=west] at (axis cs:47,1.3) {\small $35^\circ$ left};
+\end{axis}
+\end{tikzpicture}
+                </latex-image>
+            </image>
+        </figure>
+
+        <figure xml:id="fig-wave-transformations">
+            <caption>The grey wave is <m>y = \sin x</m>. Stretch it, then translate it, and read the equation of the image.</caption>
+            <interactive xml:id="interactive-wave-transformations" platform="jsxgraph" width="90%" aspect="16:10" source="jsxgraph/wave-transformations.js">
+                <slate xml:id="jsxgraph-wave-transformations" surface="jsxboard" aspect="16:10"/>
+                <instructions>
+                    <p>
+                        <ul>
+                            <li><p>Move one slider at a time: <alert>stretch factor, x-axis invariant</alert>, <alert>stretch factor, y-axis invariant</alert>, <alert>translation along x</alert> and <alert>translation along y</alert>. Watch the image of <m>(90^\circ, 1)</m>.</p></li>
+                            <li><p>Make <m>y = 2\sin(2x + 90^\circ) + 1</m>.</p></li>
+                        </ul>
+                    </p>
+                </instructions>
+            </interactive>
+        </figure>
+
+        <xi:include href="../lesson-plan-templates/example-intro.ptx" />
+
+        <example xml:id="example-translation-sin-x-minus-45">
+            <title>A Translation Along the <m>x</m>-Axis</title>
+            <statement><p>Describe the transformation that maps <m>y = \sin x</m> onto <m>y = \sin(x - 45^\circ)</m>.</p></statement>
+            <solution><p>The translation <m>\begin{pmatrix} 45^\circ \\ 0 \end{pmatrix}</m>, that is <m>45^\circ</m> to the right. The phase angle is <m>-45^\circ</m>.</p></solution>
+        </example>
+
+        <example xml:id="example-translation-cos-x-minus-2">
+            <title>A Translation Along the <m>y</m>-Axis</title>
+            <statement><p>Describe the transformation that maps <m>y = \cos x</m> onto <m>y = \cos x - 2</m>.</p></statement>
+            <solution><p>The translation <m>\begin{pmatrix} 0 \\ -2 \end{pmatrix}</m>. The mean line moves from <m>y = 0</m> to <m>y = -2</m>.</p></solution>
+        </example>
+
+        <example xml:id="example-translation-sin-2x-plus-60">
+            <title>The Shift <m>\dfrac{c}{b}</m></title>
+            <statement><p>Describe how <m>y = \sin(2x + 70^\circ)</m> is obtained (a) from <m>y = \sin 2x</m> (b) from <m>y = \sin x</m>.</p></statement>
+            <solution>
+                <p>(a) <m>\sin(2x + 70^\circ) = \sin 2(x + 35^\circ)</m>, so it is the translation <m>\begin{pmatrix} -35^\circ \\ 0 \end{pmatrix}</m> of <m>y = \sin 2x</m> (<xref ref="fig-translation-sin2x"/>).</p>
+                <p>(b) Either a stretch with the <m>y</m>-axis invariant, stretch factor <m>\dfrac{1}{2}</m>, then the translation <m>\begin{pmatrix} -35^\circ \\ 0 \end{pmatrix}</m>; or first the translation <m>\begin{pmatrix} -70^\circ \\ 0 \end{pmatrix}</m> (giving <m>y = \sin(x + 70^\circ)</m>), then the stretch with stretch factor <m>\dfrac{1}{2}</m>.</p>
+            </solution>
+        </example>
+
+        <example xml:id="example-sequence-of-four">
+            <title>A Sequence of Transformations</title>
+            <statement><p>Describe a sequence of transformations that maps <m>y = \sin x</m> onto <m>y = 2\sin(3x - 90^\circ) + 1</m>, and follow the point <m>(90^\circ, 1)</m> through it.</p></statement>
+            <solution>
+                <p><m>2\sin(3x - 90^\circ) + 1 = 2\sin 3(x - 30^\circ) + 1</m>. In order: a stretch with the <m>x</m>-axis invariant, stretch factor 2; a stretch with the <m>y</m>-axis invariant, stretch factor <m>\dfrac{1}{3}</m>; the translation <m>\begin{pmatrix} 30^\circ \\ 1 \end{pmatrix}</m>.</p>
+                <p><m>(90^\circ, 1) \mapsto (90^\circ, 2) \mapsto (30^\circ, 2) \mapsto (60^\circ, 3)</m>. Check: <m>3(60) - 90 = 90</m> and <m>2\sin 90^\circ + 1 = 3</m>.</p>
+            </solution>
+        </example>
+
+        <example xml:id="example-description-to-equation">
+            <title>From a Description to an Equation</title>
+            <statement><p>The graph of <m>y = \cos x</m> is stretched with the <m>x</m>-axis invariant, stretch factor 3, and then translated by <m>\begin{pmatrix} 0 \\ -1 \end{pmatrix}</m>. Write down the equation of the image.</p></statement>
+            <solution><p>The stretch gives <m>y = 3\cos x</m>; the translation subtracts 1: <m>y = 3\cos x - 1</m>.</p></solution>
+        </example>
+
+        <paragraphs xml:id="paragraphs-waves-around-us">
+            <title>Waves Around Us</title>
+            <p>Sine and cosine waves describe many things that repeat. When a nyatiti string vibrates, the air pressure near it rises and falls like a sine wave: a tighter string gives a shorter period and a higher note, and a harder pluck gives a bigger amplitude and a louder sound. Kenya's mains electricity alternates 50 times a second, so the graph of its voltage against time is a wave with period <m>\dfrac{1}{50}</m> of a second. The tide at Mombasa rises and falls about twice a day. Radio and phone signals, and the waves from an earthquake or a tsunami, are waves too. Changing the amplitude, the period or the phase of a wave is exactly the stretching and translating of this section.</p>
+        </paragraphs>
+
+        <axiom component="lesson-plan">
+            <title>Curriculum Links</title>
+            <dl>
+                <li><title>Key Inquiry Question</title><p>How can trigonometric functions describe things that repeat, such as sea waves, tides and sound? Revisit it in the reflection.</p></li>
+                <li><title>Core Competencies</title><p>Critical thinking, in the identity-or-not decisions, the find-the-mistake questions and the choice of method in the three-equations activity; digital literacy, in the four interactives and graphing software.</p></li>
+                <li><title>Values</title><p>Unity, in groups sharing tables of values and presenting methods to each other.</p></li>
+                <li><title>Pertinent and Contemporary Issues</title><p>Safety, in the tsunami note of <xref ref="subsec-amplitude-period-wavelength-and-phase-angle"/>: move to high ground if the sea suddenly draws back.</p></li>
+                <li><title>Learning Outcome</title><p>This lesson, with <xref ref="subsec-amplitude-period-wavelength-and-phase-angle"/>, carries the outcome on appreciating the use of trigonometry in real life.</p></li>
+            </dl>
+        </axiom>
+
+        <xi:include href="../lesson-plan-templates/assessment-intro.ptx" />
+        <xi:include href="../lesson-plan-templates/checkpoint.ptx" />
+
+        <p>Type decimals with a point, for example <c>1.73</c>, or a fraction such as <c>1/3</c>. Type an equation such as <c>y=3*sin(2*x+60)</c>; the angle in the bracket is in degrees.</p>
+
+        <exercise xml:id="ex-translation-vector-of-a-wave">
+            <!--<title></title>-->
+            <stack label="stk-translation-vector-of-a-wave" source="stack/top/2-measurement-and-geometry/10-trigonometry-iii/04-transformation-of-waves/Translation-vector-of-a-wave.xml"/>
+        </exercise>
+
+        <exercise xml:id="ex-equation-of-a-wave-after-transformations">
+            <!--<title></title>-->
+            <stack label="stk-equation-of-a-wave-after-transformations" source="stack/top/2-measurement-and-geometry/10-trigonometry-iii/04-transformation-of-waves/Equation-of-a-wave-after-transformations.xml"/>
+        </exercise>
+
+        <exercise xml:id="ex-finding-the-mistake-in-a-phase-shift">
+            <!--<title></title>-->
+            <stack label="stk-finding-the-mistake-in-a-phase-shift" source="stack/top/2-measurement-and-geometry/10-trigonometry-iii/04-transformation-of-waves/Finding-the-mistake-in-a-phase-shift.xml"/>
+        </exercise>
+
+        <exercises xml:id="exercises-translating-and-combining">
+            <exercise xml:id="ex-translation-vectors">
+                <statement><p>Give the translation vector that maps <m>y = \sin x</m> or <m>y = \cos x</m> onto (a) <m>y = \sin(x + 70^\circ)</m> (b) <m>y = \sin(x - 120^\circ)</m> (c) <m>y = \sin x + 3</m>.</p></statement>
+                <answer><p>(a) <m>\begin{pmatrix} -70^\circ \\ 0 \end{pmatrix}</m> (b) <m>\begin{pmatrix} 120^\circ \\ 0 \end{pmatrix}</m> (c) <m>\begin{pmatrix} 0 \\ 3 \end{pmatrix}</m></p></answer>
+            </exercise>
+            <exercise xml:id="ex-translation-from-sin-3x">
+                <statement><p>Give the translation vector that maps <m>y = \sin 3x</m> onto <m>y = \sin(3x + 45^\circ)</m>.</p></statement>
+                <answer><p><m>\begin{pmatrix} -15^\circ \\ 0 \end{pmatrix}</m></p></answer>
+            </exercise>
+            <exercise xml:id="ex-sequence-four-cos">
+                <statement><p>Describe a sequence of transformations that maps <m>y = \cos x</m> onto <m>y = 4\cos(2x - 60^\circ) - 3</m>, and find the image of <m>(0, 1)</m>.</p></statement>
+                <answer><p>Stretch factor 4 with the <m>x</m>-axis invariant; stretch factor <m>\dfrac{1}{2}</m> with the <m>y</m>-axis invariant; translation <m>\begin{pmatrix} 30^\circ \\ -3 \end{pmatrix}</m>. Image <m>(30^\circ, 1)</m>.</p></answer>
+                <solution><p><m>(0, 1) \mapsto (0, 4) \mapsto (0, 4) \mapsto (30^\circ, 1)</m>. Check: <m>4\cos(60^\circ - 60^\circ) - 3 = 1</m>.</p></solution>
+            </exercise>
+            <exercise xml:id="ex-sin-to-cos">
+                <statement><p>Find the smallest translation to the right, along the <m>x</m>-axis, that maps <m>y = \cos x</m> onto <m>y = \sin x</m>. Check your answer at three angles.</p></statement>
+                <answer><p><m>\begin{pmatrix} 90^\circ \\ 0 \end{pmatrix}</m>: the maximum of <m>y = \cos x</m> at <m>0^\circ</m> moves to the maximum of <m>y = \sin x</m> at <m>90^\circ</m>, and <m>\cos(x - 90^\circ) = \sin x</m>; at <m>90^\circ</m>, <m>180^\circ</m>, <m>270^\circ</m> both give <m>1, 0, -1</m>.</p></answer>
+            </exercise>
+            <exercise xml:id="ex-phase-for-a-maximum">
+                <statement><p>The graph of <m>y = \sin(x + c)</m>, with <m>0^\circ \lt c \lt 180^\circ</m>, has a maximum point at <m>(30^\circ, 1)</m>. Find <m>c</m>.</p></statement>
+                <answer><p><m>c = 60^\circ</m></p></answer>
+            </exercise>
+            <exercise xml:id="ex-kamau-shift">
+                <statement><p>Kamau says that <m>y = \sin(2x - 40^\circ)</m> is <m>y = \sin 2x</m> moved <m>40^\circ</m> to the right. Is he right?</p></statement>
+                <answer><p>No. <m>\sin(2x - 40^\circ) = \sin 2(x - 20^\circ)</m>: it is moved <m>20^\circ</m> to the right.</p></answer>
+            </exercise>
+            <exercise xml:id="ex-minus-sin-as-translation">
+                <title>Challenge: A Reflection That Is a Translation</title>
+                <statement><p>Show that the graph of <m>y = -\sin x</m> is a translation of the graph of <m>y = \sin x</m>.</p></statement>
+                <hint><p>Compare <m>\sin(x - 180^\circ)</m> with <m>-\sin x</m> at a few angles, then think about the unit circle.</p></hint>
+                <answer><p><m>\sin(x - 180^\circ) = -\sin x</m>, so the translation <m>\begin{pmatrix} 180^\circ \\ 0 \end{pmatrix}</m> maps <m>y = \sin x</m> onto <m>y = -\sin x</m>.</p></answer>
+                <solution><p>On the unit circle the point at <m>x - 180^\circ</m> is opposite the point at <m>x</m>, so its <m>y</m>-coordinate is <m>-\sin x</m>.</p></solution>
+            </exercise>
+        </exercises>
+
+        <axiom component="lesson-plan">
+            <title>Differentiation</title>
+            <table xml:id="table-differentiation-translating-and-combining">
+                <title>Differentiation Strategies</title>
+                <tabular halign="left" top="minor" bottom="minor" left="minor" right="minor">
+                    <row header="yes" bottom="medium"><cell>Learner Group</cell><cell>Strategy and Learning Experience</cell></row>
+                    <row><cell>Struggling Learners (Support)</cell><cell>Use the interactive with one slider at a time. Work through <xref ref="example-translation-sin-x-minus-45"/> to <xref ref="example-translation-sin-2x-plus-60"/>. Assign <xref ref="ex-translation-vectors"/> and <xref ref="ex-translation-from-sin-3x"/>.</cell></row>
+                    <row><cell>On-Level Learners (Core)</cell><cell>Full activity and all examples. Assign <xref ref="ex-translation-vectors"/> to <xref ref="ex-kamau-shift"/>.</cell></row>
+                    <row><cell>Advanced Learners (Challenge)</cell><cell>All exercises including <xref ref="ex-minus-sin-as-translation"/>. Extension: find two different sequences of transformations that map <m>y = \sin x</m> onto <m>y = \sin(2x + 70^\circ)</m>. (Answer: stretch factor <m>\dfrac{1}{2}</m> with the <m>y</m>-axis invariant, then <m>\begin{pmatrix} -35^\circ \\ 0 \end{pmatrix}</m>; or <m>\begin{pmatrix} -70^\circ \\ 0 \end{pmatrix}</m>, then the stretch.)</cell></row>
+                </tabular>
+            </table>
+        </axiom>
+
+        <xi:include href="../lesson-plan-templates/assessment-methods.ptx" />
+        <xi:include href="../lesson-plan-templates/reflection.ptx"/>
+    </subsection>
 </section>

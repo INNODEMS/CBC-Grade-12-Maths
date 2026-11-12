@@ -1,0 +1,6 @@
+<stack-static>
+    <statement><p><p>Evaluate <m>\displaystyle \int_{ {-2} }^{ {2} } \left({-2 x^3+9 x^2-2 x+1}\right)dx</m>.</p><p>(a) Write down an integral <m>F(x)</m> of the integrand. Leave out the constant <m>c</m>.</p><div><m>F(x) =</m> <fillin characters="20" name="ans1"/>  </div><p>(b) Give the exact value of the definite integral.</p><div><fillin characters="8" name="ans2"/>  </div></p></statement>
+    <solution><p><p>A definite integral is a number: <m>\int_a^b f(x)\,dx = \left[F(x)\right]_a^b = F(b) - F(a)</m>, upper limit minus lower limit. The constant cancels, so leave it out. Put a negative limit in brackets when you substitute.</p><p>(a) <m>F(x) = {-\frac{x^4}{2}+3 x^3-x^2+x}</m>. Check: <m>F'(x) = {-2 x^3+9 x^2-2 x+1}</m>.</p><p>(b) <m>F({2}) = {14}</m> and <m>F({-2}) = {-38}</m>, so</p><p><me>\int_{ {-2} }^{ {2} } \left({-2 x^3+9 x^2-2 x+1}\right)dx = {14} - \left({-38}\right) = {52}</me></p></p></solution>
+    <answer><p><m>-\frac{x^4}{2}+3 x^3-x^2+x</m></p></answer>
+    <answer><p><m>52</m></p></answer>
+</stack-static>

@@ -41,165 +41,216 @@
         </introduction>
     </objectives>
 
+
     <!-- Planning notes (from the Combined Mathematics tab of the Grade 12 Book Structure Mapping sheet)
          Content summary: Laws of probability (addition and multiplication laws).
          Suggested activity: Learners use cards or coloured beads in a bag to illustrate the addition and multiplication laws of probability. -->
 
-    <!-- [LP] Add guidance on activity -->
+    <!-- Section notes (2026-11)
+         SLO: Essential (b). One lesson, flat anatomy.
+         Activity: as planning notes (coloured beads in two bags, addition then multiplication law)
+         JSXGraph: none named in the planning notes
+         STACK: assets/stack/top/3-statistics-and-probability/16-probability-iii/03-laws-of-probability/ -->
+
+    <p component="lesson-plan">Upon completion of this lesson, learners will be able to:
+        <ol>
+            <li><p><alert>Know:</alert> mutually exclusive events cannot happen together; independent events do not affect each other; the addition law for mutually exclusive events; the multiplication law for independent events; the complement.</p></li>
+            <li><p><alert>Do:</alert> choose the right law and apply it.</p></li>
+            <li><p><alert>Apply:</alert> a transport survey, seedlings, a coin and a die, two dice.</p></li>
+        </ol>
+    </p>
 
     <axiom component="lesson-plan">
         <title>Problem-Solving and Discovery</title>
         <dl>
-            <li>
-                <title>Suggested Time</title>
-                <p>
-                    XXX minutes
-                </p>
-            </li>
-            <li>
-                <title>Objective</title>
-                <p>
-                    XXX
-                </p>
-            </li>
-            <li>
-                <title>Teacher's Role</title>
-                <p>
-                    XXX
-                </p>
-            </li>
+            <li><title>Suggested Time</title><p>14 minutes</p></li>
+            <li><title>Objective</title><p>Learners discover the addition and multiplication laws with coloured beads.</p></li>
+            <li><title>Teacher's Role</title><p>Give each group two bags (or envelopes of coloured paper slips) made up as in the activity. Hold back the words <q>mutually exclusive</q> and <q>independent</q> until after parts (b) and (d), then name the ideas the groups have described.</p></li>
         </dl>
     </axiom>
 
-    <!-- Add Activity -->
-
-    <!-- <activity>
+    <activity xml:id="act-beads-in-two-bags">
+        <title>Beads in Two Bags</title>
         <statement>
+            <p>Bag 1 holds <m>3</m> red, <m>5</m> blue and <m>2</m> yellow beads. Bag 2 holds <m>4</m> white beads and <m>1</m> black bead.</p>
+            <p>
+                <ol marker="(a)">
+                    <li>
+                        <p>One bead is taken from bag 1. Find <m>P(\text{red})</m>, <m>P(\text{yellow})</m>, and <m>P(\text{red or yellow})</m> by counting. Compare the last one with <m>P(\text{red}) + P(\text{yellow})</m>.</p>
+                        <solution component="lesson-plan"><p><m>\frac{3}{10}</m>, <m>\frac{2}{10}</m>, and <m>\frac{5}{10}</m> by counting the <m>5</m> red or yellow beads. The same as <m>\frac{3}{10} + \frac{2}{10}</m>.</p></solution>
+                    </li>
+                    <li>
+                        <p>Why can one bead not be red and yellow at the same time? Why does that make adding work?</p>
+                        <solution component="lesson-plan"><p>Each bead has one colour. No bead is counted twice, so the counts simply add.</p></solution>
+                    </li>
+                    <li>
+                        <p>Now take one bead from each bag. How many different pairs are possible? How many pairs are red and white? Compare <m>P(\text{red and white})</m> with <m>P(\text{red}) \times P(\text{white})</m>.</p>
+                        <solution component="lesson-plan"><p><m>10 \times 5 = 50</m> pairs, of which <m>3 \times 4 = 12</m> are red and white: <m>\frac{12}{50} = \frac{6}{25}</m>. And <m>\frac{3}{10} \times \frac{4}{5} = \frac{12}{50}</m>: the same.</p></solution>
+                    </li>
+                    <li>
+                        <p>Does the bead you take from bag 1 change what can happen with bag 2?</p>
+                        <solution component="lesson-plan"><p>No: the bags are separate, so the probability of white from bag 2 is <m>\frac{4}{5}</m> whatever comes from bag 1.</p></solution>
+                    </li>
+                </ol>
+            </p>
         </statement>
-    </activity> -->
+    </activity>
 
-    <!-- [LP] Add guidance on structured lesson plan-->
-
-    <!-- <axiom component="lesson-plan">
+    <axiom component="lesson-plan">
         <title>Structured Instruction</title>
         <p>
             <dl>
-            <li>
-                <title>Suggested Time</title>
-                <p>
-                    XX minutes
-                </p>
-            </li>
-            <li>
-                <title>Objective</title>
-                <p>
-                    To formalize the concepts and properties learners discovered in the anchor task.
-                </p>
-            </li>
+                <li><title>Suggested Time</title><p>8 minutes</p></li>
+                <li><title>Objective</title><p>To state the addition and multiplication laws and the conditions for each.</p></li>
             </dl>
         </p>
         <paragraphs>
             <title>Key Takeaways &amp; Teacher Connection</title>
             <ol>
-                <li>
-                    <p>
-                        <alert>Connecting to Learner Work:</alert> XXXX
-                    </p>
-                </li>
+                <li><p><alert>Connecting to Learner Work:</alert> part (b) described mutually exclusive events and part (d) independent events.</p></li>
+                <li><p><q>Or</q> with mutually exclusive events: add. <q>And</q> with independent events: multiply.</p></li>
+                <li><p>Check the condition before you use a law.</p></li>
             </ol>
         </paragraphs>
-    </axiom> -->
+    </axiom>
 
-    <!-- Add insight / key takeaway directly related to activity / learner experience -->
+    <insight xml:id="insight-laws-of-probability">
+        <title>Laws of Probability</title>
+        <p>
+            Two events are <term>mutually exclusive</term> if they cannot both happen at the same time, like a bead being red and being yellow. Two events are <term>independent</term> if one happening does not change the probability of the other, like the beads from two separate bags.
+        </p>
+        <p>
+            <ul>
+                <li><p>Complement: <m>P(A') = 1 - P(A)</m>, where <m>A'</m> is read <q>not <m>A</m></q>.</p></li>
+                <li><p>Addition law, for mutually exclusive events <m>A</m> and <m>B</m>: <m>P(A \text{ or } B) = P(A) + P(B)</m>. The different outcomes of one experiment are always mutually exclusive.</p></li>
+                <li><p>Multiplication law, for independent events <m>A</m> and <m>B</m>: <m>P(A \text{ and } B) = P(A) \times P(B)</m>.</p></li>
+            </ul>
+        </p>
+        <p>
+            <q><m>A</m> and <m>B</m></q> is the intersection <m>A \cap B</m> and <q><m>A</m> or <m>B</m></q> is the union <m>A \cup B</m>, as in <xref ref="ch-sets"/>; in this chapter we write the words. <q><m>A</m> or <m>B</m></q> always includes the case where both happen.
+        </p>
+    </insight>
 
-    <!-- <insight>
-    </insight> -->
-
-    <!-- Add further instruction (not in a block) to develop ideas as needed -->
+    <warning xml:id="warning-add-or-multiply">
+        <title>Add or Multiply?</title>
+        <p>
+            If adding two probabilities gives more than 1, you should not have added: the events were not mutually exclusive, and perhaps the question asked for <q>and</q>. If multiplying gives a tiny probability for something that is likely, check whether the question asked for <q>or</q>.
+        </p>
+    </warning>
 
     <xi:include href="../lesson-plan-templates/example-intro.ptx" />
 
-    <!-- Add at least 3 examples -->
-
-    <!-- <example>
+    <example xml:id="example-getting-to-school">
+        <title>Getting to School</title>
         <statement>
+            <p>Each learner at a school in Machakos travels to school in one way only. For a learner chosen at random, <m>P(\text{walks}) = 0.4</m>, <m>P(\text{matatu}) = 0.3</m> and <m>P(\text{boda boda}) = 0.18</m>; the rest cycle. Find (a) <m>P(\text{bicycle})</m>, (b) <m>P(\text{walks or cycles})</m>, (c) <m>P(\text{does not travel by matatu})</m>.</p>
         </statement>
         <solution>
+            <p>The four ways are mutually exclusive and one of them must happen, so their probabilities add to 1.</p>
+            <p>(a) <m>P(\text{bicycle}) = 1 - (0.4 + 0.3 + 0.18) = 1 - 0.88 = 0.12</m>.</p>
+            <p>(b) Addition law: <m>0.4 + 0.12 = 0.52</m>.</p>
+            <p>(c) Complement: <m>1 - 0.3 = 0.7</m>.</p>
         </solution>
     </example>
 
-    <example>
+    <example xml:id="example-coin-and-die-law">
+        <title>A Coin and a Die</title>
         <statement>
+            <p>A coin is tossed and a die is rolled. Find the probability of a head and a number greater than 4.</p>
         </statement>
         <solution>
+            <p>The coin and the die are independent. <m>P(\text{head}) = \frac{1}{2}</m> and <m>P(\text{greater than } 4) = \frac{2}{6} = \frac{1}{3}</m>, so
+                <md>P(\text{head and greater than } 4) = \frac{1}{2} \times \frac{1}{3} = \frac{1}{6}</md>
+                Check with the list of <m>12</m> outcomes in <xref ref="act-a-coin-and-a-die-together"/>: H5 and H6 give <m>\frac{2}{12} = \frac{1}{6}</m>.</p>
         </solution>
     </example>
 
-    <example>
+    <example xml:id="example-passion-fruit-seedlings">
+        <title>Passion-Fruit Seedlings</title>
         <statement>
+            <p>A farmer buys one passion-fruit seedling from nursery A and one from nursery B. A seedling from A survives with probability <m>0.9</m> and one from B with probability <m>0.8</m>, independently. Find the probability that (a) both survive, (b) A's seedling survives and B's does not.</p>
         </statement>
         <solution>
+            <p>(a) <m>0.9 \times 0.8 = 0.72</m>.</p>
+            <p>(b) <m>P(\text{B's does not survive}) = 1 - 0.8 = 0.2</m>, so the probability is <m>0.9 \times 0.2 = 0.18</m>.</p>
         </solution>
-    </example> -->
+    </example>
+
+    <example xml:id="example-same-score-twice">
+        <title>The Same Score Twice</title>
+        <statement>
+            <p>A die is rolled twice. Find the probability of (a) two sixes, (b) the same score both times.</p>
+        </statement>
+        <solution>
+            <p>(a) The rolls are independent: <m>\frac{1}{6} \times \frac{1}{6} = \frac{1}{36}</m>.</p>
+            <p>(b) <q>The same score</q> happens in six mutually exclusive ways: two 1s, two 2s, ..., two 6s. Each has probability <m>\frac{1}{36}</m> by the multiplication law, so by the addition law the probability is <m>6 \times \frac{1}{36} = \frac{1}{6}</m>. Check: the six doubles lie on the diagonal of the <m>36</m>-cell grid.</p>
+        </solution>
+    </example>
+
+    <p>
+        <em>Probability in daily life:</em> a tea factory manager uses the multiplication law to estimate the chance that two machines that work independently both break down on the same day, and so how many spare parts to keep. Where else might two independent risks be combined?
+    </p>
 
     <xi:include href="../lesson-plan-templates/assessment-intro.ptx" />
+    <xi:include href="../lesson-plan-templates/checkpoint.ptx" />
 
-    <!-- If STACK questions are included, uncomment this: -->
+    <p>Type a fraction with a slash, for example <c>5/12</c>, and a decimal with a point, for example <c>0.35</c>. Give probabilities exactly: do not round.</p>
 
-    <!-- <xi:include href="../lesson-plan-templates/checkpoint.ptx" /> -->
+    <exercise xml:id="ex-addition-law-for-mutually-exclusive-events">
+        <!--<title></title>-->
+        <stack label="stk-addition-law-for-mutually-exclusive-events" source="stack/top/3-statistics-and-probability/16-probability-iii/03-laws-of-probability/Addition-law-for-mutually-exclusive-events.xml"/>
+    </exercise>
 
-    <!-- Add STACK exercises if made -->
+    <exercise xml:id="ex-multiplication-law-for-independent-events">
+        <!--<title></title>-->
+        <stack label="stk-multiplication-law-for-independent-events" source="stack/top/3-statistics-and-probability/16-probability-iii/03-laws-of-probability/Multiplication-law-for-independent-events.xml"/>
+    </exercise>
 
-    <!-- Add static exercises -->
+    <exercises xml:id="exercises-laws-of-probability">
+        <exercise xml:id="ex-juice-kiosk-orders">
+            <statement><p>At a juice kiosk in Nakuru, each customer orders one juice. A customer orders mango juice with probability <m>0.25</m> and passion juice with probability <m>0.4</m>; every other customer orders avocado juice. Find (a) <m>P(\text{mango or passion})</m>, (b) <m>P(\text{avocado})</m>.</p></statement>
+            <answer><p>(a) <m>0.65</m> (b) <m>0.35</m></p></answer>
+        </exercise>
+        <exercise xml:id="ex-alarm-and-matatu">
+            <statement><p>The probability that Otieno's alarm fails is <m>0.05</m> and the probability that his matatu is late is <m>0.2</m>, independently. Find the probability that (a) both happen, (b) neither happens.</p></statement>
+            <answer><p>(a) <m>0.01</m> (b) <m>0.76</m></p></answer>
+            <solution><p>(a) <m>0.05 \times 0.2 = 0.01</m>. (b) <m>0.95 \times 0.8 = 0.76</m>.</p></solution>
+        </exercise>
+        <exercise xml:id="ex-coin-and-die-laws">
+            <statement><p>A coin is tossed and a die is rolled. Find the probability of (a) a tail and an odd number, (b) a head and a 6. Check your answers by listing the outcomes.</p></statement>
+            <answer><p>(a) <m>\frac{1}{4}</m> (b) <m>\frac{1}{12}</m></p></answer>
+        </exercise>
+        <exercise xml:id="ex-two-dice-laws">
+            <statement><p>Two dice are rolled. Find the probability that (a) both show an even number, (b) the first shows 1 and the second shows 6.</p></statement>
+            <answer><p>(a) <m>\frac{1}{4}</m> (b) <m>\frac{1}{36}</m></p></answer>
+        </exercise>
+        <exercise xml:id="ex-find-the-other-probability">
+            <statement><p><m>A</m> and <m>B</m> are independent, <m>P(A) = 0.3</m> and <m>P(A \text{ and } B) = 0.12</m>. Find <m>P(B)</m>.</p></statement>
+            <answer><p><m>0.4</m></p></answer>
+            <solution><p><m>0.3 \times P(B) = 0.12</m>, so <m>P(B) = 0.12 \div 0.3 = 0.4</m>.</p></solution>
+        </exercise>
+        <exercise xml:id="ex-kioko-weekend-rain">
+            <title>Challenge: A Wet Weekend?</title>
+            <statement><p>Kioko says: <q>The probability of rain on Saturday is <m>0.6</m> and on Sunday is <m>0.6</m>, so the probability of rain at the weekend is <m>1.2</m>.</q> What is wrong? Assuming the two days are independent, find the probability of rain on at least one of the two days.</p></statement>
+            <hint><p>First find the probability of no rain on either day.</p></hint>
+            <answer><p>The events are not mutually exclusive (it can rain on both days), and no probability can be <m>1.2</m>. The probability is <m>0.84</m>.</p></answer>
+            <solution><p>P(no rain on either day) <m>= 0.4 \times 0.4 = 0.16</m>, so P(rain on at least one day) <m>= 1 - 0.16 = 0.84</m>.</p></solution>
+        </exercise>
+    </exercises>
 
-    <!-- <exercises>
-        <exercise>
-            <statement>   
-
-            </statement>   
-            <solution>
-
-            </solution>             
-        </exercise>        
-    </exercises> -->
-
-    <!-- [LP] Add information on how to differentiate  -->
-
-    <!-- <axiom component="lesson-plan">
+    <axiom component="lesson-plan">
         <title>Differentiation</title>
-
-        <table>
-            <title>Differentiation</title>
-            <tabular halign="left">
-                <row header="yes" bottom="minor">
-                    <cell>Learner Group</cell>
-                    <cell>Strategy &amp; Learning Experience</cell>
-                    <cell></cell>
-                </row>
-                <row>
-                    <cell>Struggling Learners (Support)</cell>
-                    <cell>
-                        XXXX
-                    </cell>
-                    <cell></cell>
-                </row>
-                <row>
-                    <cell>On-Level Learners (Core)</cell>
-                    <cell>
-                        <line>The core lesson activities as described above.</line>
-                    </cell>
-                    <cell></cell>
-                </row>
-                <row>
-                    <cell>Advanced Learners (Challenge)</cell>
-                    <cell>
-                        XXXX
-                    </cell>
-                    <cell></cell>
-                </row>
+        <table xml:id="table-differentiation-laws-of-probability">
+            <title>Differentiation Strategies</title>
+            <tabular halign="left" top="minor" bottom="minor" left="minor" right="minor">
+                <row header="yes" bottom="medium"><cell>Learner Group</cell><cell>Strategy and Learning Experience</cell></row>
+                <row><cell>Struggling Learners (Support)</cell><cell>Give a two-row card: <q>or, and cannot both happen: add</q>; <q>and, and do not affect each other: multiply</q>. Focus on <xref ref="example-getting-to-school"/> and <xref ref="example-coin-and-die-law"/>. Assign <xref ref="ex-juice-kiosk-orders"/> and <xref ref="ex-coin-and-die-laws"/>.</cell></row>
+                <row><cell>On-Level Learners (Core)</cell><cell>Full activity and all examples. Assign <xref ref="ex-juice-kiosk-orders"/> to <xref ref="ex-find-the-other-probability"/>.</cell></row>
+                <row><cell>Advanced Learners (Challenge)</cell><cell>All exercises including <xref ref="ex-kioko-weekend-rain"/>. Extension: is <q>it rains on Saturday</q> really independent of <q>it rains on Sunday</q>? (Probably not: wet spells often last several days, so the model is a simplification.)</cell></row>
             </tabular>
         </table>
-    </axiom> -->
+    </axiom>
+
 
     <xi:include href="../lesson-plan-templates/assessment-methods.ptx" />
 

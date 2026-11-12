@@ -1,0 +1,8 @@
+<stack-static>
+    <statement><p><p>A photo-editing app on a phone distorted a photo with the matrix <m>M = {\left[\begin{array}{cc} 1 &amp; -1 \\ 3 &amp; -1 \end{array}\right]}</m>. One corner of the distorted photo is at <m>({0},\,{10})</m>, and the distorted photo has area <m>{16}</m> square units.</p><p>(a) Find the matrix that restores the photo.</p><div><fillin characters="3" name="ans1"/>  </div><p>(b) Find the original position of that corner.</p><div>( <fillin characters="5" name="ans2"/> , <fillin characters="5" name="ans3"/> )   </div><p>(c) Find the area of the original photo.</p><div><fillin characters="5" name="ans4"/> square units  </div></p></statement>
+    <solution><p><p>(a) The inverse undoes the transformation. <m>\det M = {2}</m>, so <m>M^{-1} = \dfrac{1}{{2}}{\left[\begin{array}{cc} -1 &amp; 1 \\ -3 &amp; 1 \end{array}\right]} = {\left[\begin{array}{cc} -\frac{1}{2} &amp; \frac{1}{2} \\ -\frac{3}{2} &amp; \frac{1}{2} \end{array}\right]}</m>.</p><p>(b) <m>{\left[\begin{array}{cc} -\frac{1}{2} &amp; \frac{1}{2} \\ -\frac{3}{2} &amp; \frac{1}{2} \end{array}\right]}{\left[\begin{array}{c} 0 \\ 10 \end{array}\right]} = {\left[\begin{array}{c} 5 \\ 5 \end{array}\right]}</m>, so the corner was at <m>({5},\,{5})</m>.</p><p>(c) The distortion multiplied every area by <m>|\det M| = {2}</m>. To go back, divide: <m>{16} \div {2} = {8}</m> square units.</p></p></solution>
+    <answer><p><m>\left[\begin{array}{cc} -\frac{1}{2} &amp; \frac{1}{2} \\ -\frac{3}{2} &amp; \frac{1}{2} \end{array}\right]</m></p></answer>
+    <answer><p><m>5</m></p></answer>
+    <answer><p><m>5</m></p></answer>
+    <answer><p><m>8</m></p></answer>
+</stack-static>

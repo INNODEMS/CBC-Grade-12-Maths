@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<quiz>
+<question type="stack">
+  <name><text>Over the pole or along the parallel</text></name>
+  <questiontext format="html">
+    <text><![CDATA[<p>\(P({@phi@}^\circ\,\mathrm{[[if test="nh"]]N[[else]]S[[/if]]}, {@l1@}^\circ\,\mathrm{E})\) and \(Q({@phi@}^\circ\,\mathrm{[[if test="nh"]]N[[else]]S[[/if]]}, {@l2@}^\circ\,\mathrm{W})\) are on opposite meridians. Kamau says: <q>\(P\) and \(Q\) have the same latitude, so the shortest way from \(P\) to \(Q\) is along their parallel.</q></p><p>(a) Find the distance from \(P\) to \(Q\) along the parallel, to the nearest nautical mile.</p><p>[[input:ans1]] nm [[validation:ans1]] [[feedback:prt1]]</p><p>(b) Find the distance from \(P\) to \(Q\) along the great circle through the [[if test="nh"]]North Pole[[else]]South Pole[[/if]], in nautical miles.</p><p>[[input:ans2]] nm [[validation:ans2]] [[feedback:prt2]]</p><p>(c) Which statement is right?</p><p>[[input:ans3]] [[validation:ans3]] [[feedback:prt3]]</p>]]></text>
+  </questiontext>
+  <generalfeedback format="html">
+    <text><![CDATA[<p>(a) The longitudes add to \({@l1@}^\circ + {@l2@}^\circ = 180^\circ\), so \(P\) and \(Q\) are half way round their parallel:</p><p>\[180 \times 60 \times \cos {@phi@}^\circ = {@dispdp(float(par),1)@} \approx {@floor(par+1/2)@} \text{ nm}.\]</p><p>(b) The two meridians are opposite, so together they form a great circle through the poles. From \(P\) to the [[if test="nh"]]North Pole[[else]]South Pole[[/if]] is \(90^\circ - {@phi@}^\circ = {@90-phi@}^\circ\), and the same again on to \(Q\): \({@90-phi@}^\circ + {@90-phi@}^\circ = {@180-2*phi@}^\circ = {@pl@}'\), so \({@pl@}\) nm.</p><p>(c) The route over the pole is shorter. A parallel is a small circle, and the shortest path between two points on the surface follows the great circle through them, so Kamau is wrong.</p>]]></text>
+  </generalfeedback>
+  <defaultgrade>3</defaultgrade>
+  <penalty>0.1</penalty>
+  <hidden>0</hidden>
+  <idnumber></idnumber>
+  <stackversion><text>2026063000</text></stackversion>
+  <questionvariables>
+    <text><![CDATA[cosd(x) := cos(x*%pi/180);
+sind(x) := sin(x*%pi/180);
+atand(x) := 180*atan(x)/%pi;
+asind(x) := 180*asin(x)/%pi;
+two(v) := if v < 10 then sconcat("0", string(v)) else string(v);
+hm(m) := block([q], q: mod(m, 1440), sconcat(two(floor(q/60)), ":", two(mod(q, 60))));
+dmx(m) := sconcat(string(floor(m/60)), "^\\circ", two(mod(m, 60)), "'");
+/* Design: a claim to criticise, comparing the route along a parallel with the route over the pole. Curated list of ten latitudes, one seed per entry. Do not use 30, 45 or 60 degrees: there the diagnostic values collide. Source: adapted from SMP Book 5 (Metric), chapter 3, Exercise E question 3. */
+L: [[15,"N",25],[25,"S",60],[35,"N",110],[40,"S",145],[50,"N",15],[55,"S",90],[65,"N",160],[75,"S",35],[85,"N",125],[10,"S",70]];
+ix: 1+rand(10);
+phi: L[ix][1];
+ns: L[ix][2];
+nh: is(ns="N");
+l1: L[ix][3];
+l2: 180-l1;
+par: 10800*cosd(phi);
+pl: 60*(180-2*phi);
+/* diagnostics */
+nc: 10800; ps: 10800*sind(phi); full: 21600*cosd(phi);
+hp: 60*(90-phi); tp: 120*phi; op: 60*(180-phi);
+opt3: [[1, false, "Kamau is right: points on the same parallel are joined most directly along it."], [2, true, "Kamau is wrong: the route over the pole is part of a great circle, and it is shorter."], [3, false, "Kamau is right: the two routes are the same length."], [4, false, "Kamau is wrong: the parallel route is longer only because it crosses the \(180^\circ\) meridian."]];
+]]></text>
+  </questionvariables>
+  <specificfeedback format="html"><text><![CDATA[]]></text></specificfeedback>
+  <questionnote format="moodle_auto_format">
+    <text>ix={@ix@}, phi={@phi@}{@ns@}, l1={@l1@}, par={@dispdp(float(par),1)@}, pole={@pl@}</text>
+  </questionnote>
+  <questiondescription format="html"><text><![CDATA[<p id="concept">Navigation: route over the pole</p><p id="description">Grade 12 CBE Core 2.7 (c) / Essential 2.3 (d): Compare the distance along a parallel with the great-circle route over a pole for two places on opposite meridians, and judge a claim about the shortest route.</p><p id="edition">Core and Essential</p><p id="provenance">This question is adapted from Chapter 3 (The sphere), Exercise E, question 3 of School Mathematics Project, SMP Book 5 (Metric), ed. P. G. Bowie, Cambridge University Press, 1969: parallel route against the route over the pole; a claim to criticise, new numbers.</p><p id="citation">INNODEMS CBC Grade 12 Mathematics, first draft by Ben Davies, 2026. Aligned to the KICD Senior School Curriculum Design, Core and Essential Mathematics Grade 12 (draft).</p>]]></text></questiondescription>
+  <questionsimplify>1</questionsimplify>
+  <assumepositive>0</assumepositive>
+  <assumereal>0</assumereal>
+  <prtcorrect format="html"><text><![CDATA[[[commonstring key="symbolicprtcorrectfeedback"/]] [[commonstring key="defaultprtcorrectfeedback"/]]]]></text></prtcorrect>
+  <prtpartiallycorrect format="html"><text><![CDATA[[[commonstring key="symbolicprtpartiallycorrectfeedback"/]] [[commonstring key="defaultprtpartiallycorrectfeedback"/]]]]></text></prtpartiallycorrect>
+  <prtincorrect format="html"><text><![CDATA[[[commonstring key="symbolicprtincorrectfeedback"/]] [[commonstring key="defaultprtincorrectfeedback"/]]]]></text></prtincorrect>
+  <decimals>.</decimals>
+  <scientificnotation>*10</scientificnotation>
+  <multiplicationsign>none</multiplicationsign>
+  <sqrtsign>1</sqrtsign>
+  <complexno>i</complexno>
+  <inversetrig>cos-1</inversetrig>
+  <logicsymbol>lang</logicsymbol>
+  <matrixparens>[</matrixparens>
+  <isbroken>0</isbroken>
+  <variantsselectionseed></variantsselectionseed>
+
+  <input><name>ans1</name><type>numerical</type><tans>float(par)</tans><boxsize>8</boxsize><strictsyntax>1</strictsyntax><insertstars>0</insertstars><syntaxhint></syntaxhint><syntaxattribute>0</syntaxattribute><forbidwords></forbidwords><allowwords></allowwords><forbidfloat>0</forbidfloat><requirelowestterms>0</requirelowestterms><checkanswertype>0</checkanswertype><mustverify>0</mustverify><showvalidation>0</showvalidation><options></options></input>
+  <input><name>ans2</name><type>numerical</type><tans>pl</tans><boxsize>8</boxsize><strictsyntax>1</strictsyntax><insertstars>0</insertstars><syntaxhint></syntaxhint><syntaxattribute>0</syntaxattribute><forbidwords></forbidwords><allowwords></allowwords><forbidfloat>0</forbidfloat><requirelowestterms>0</requirelowestterms><checkanswertype>0</checkanswertype><mustverify>0</mustverify><showvalidation>0</showvalidation><options></options></input>
+  <input><name>ans3</name><type>radio</type><tans>opt3</tans><boxsize>15</boxsize><strictsyntax>1</strictsyntax><insertstars>0</insertstars><syntaxhint></syntaxhint><syntaxattribute>0</syntaxattribute><forbidwords></forbidwords><allowwords></allowwords><forbidfloat>1</forbidfloat><requirelowestterms>0</requirelowestterms><checkanswertype>0</checkanswertype><mustverify>0</mustverify><showvalidation>0</showvalidation><options></options></input>
+
+  <prt><name>prt1</name><value>1.0000000</value><autosimplify>1</autosimplify><feedbackstyle>1</feedbackstyle><feedbackvariables><text><![CDATA[yl: float(ans1/(60*cosd(phi)));]]></text></feedbackvariables>
+    <node><name>0</name><description>Parallel route</description><answertest>NumAbsolute</answertest><sans>ans1</sans><tans>par</tans><testoptions>1</testoptions><quiet>0</quiet><truescoremode>=</truescoremode><truescore>1.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt1-1-T</trueanswernote><truefeedback format="html"><text><![CDATA[]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>1</falsenextnode><falseanswernote>prt1-1-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>1</name><description>No cos</description><answertest>NumAbsolute</answertest><sans>ans1</sans><tans>nc</tans><testoptions>1</testoptions><quiet>0</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt1-2-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>That is the distance for \(180^\circ\) along a great circle. The parallel is a small circle, radius \(R\cos\varphi\), so multiply by \(\cos {@phi@}^\circ\).</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>2</falsenextnode><falseanswernote>prt1-2-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>2</name><description>Used sin</description><answertest>NumAbsolute</answertest><sans>ans1</sans><tans>ps</tans><testoptions>1</testoptions><quiet>0</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt1-3-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>Use \(\cos {@phi@}^\circ\), not \(\sin {@phi@}^\circ\): the radius of the parallel is \(R\cos\varphi\).</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>3</falsenextnode><falseanswernote>prt1-3-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>3</name><description>Whole parallel</description><answertest>NumAbsolute</answertest><sans>ans1</sans><tans>full</tans><testoptions>1</testoptions><quiet>0</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt1-4-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>The meridians are opposite, so \(P\) and \(Q\) are half way round the parallel: use \(180^\circ\) of longitude, not \(360^\circ\).</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>-1</falsenextnode><falseanswernote>prt1-4-F</falseanswernote><falsefeedback format="html"><text><![CDATA[<p>On the parallel \({@phi@}^\circ\), a distance of \({@ans1@}\) nm spans \({@dispdp(yl,1)@}^\circ\) of longitude. Compare that with the difference in longitude between \({@l1@}^\circ\,\mathrm{E}\) and \({@l2@}^\circ\,\mathrm{W}\).</p>]]></text></falsefeedback></node>
+  </prt>
+  <prt><name>prt2</name><value>1.0000000</value><autosimplify>1</autosimplify><feedbackstyle>1</feedbackstyle><feedbackvariables><text><![CDATA[]]></text></feedbackvariables>
+    <node><name>0</name><description>Pole route</description><answertest>NumAbsolute</answertest><sans>ans2</sans><tans>pl</tans><testoptions>0.001</testoptions><quiet>0</quiet><truescoremode>=</truescoremode><truescore>1.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt2-1-T</trueanswernote><truefeedback format="html"><text><![CDATA[]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>1</falsenextnode><falseanswernote>prt2-1-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>1</name><description>To the pole only</description><answertest>NumAbsolute</answertest><sans>ans2</sans><tans>hp</tans><testoptions>0.001</testoptions><quiet>0</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt2-2-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>That is \(P\) to the pole only. Go on down to \(Q\): \({@90-phi@}^\circ + {@90-phi@}^\circ\).</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>2</falsenextnode><falseanswernote>prt2-2-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>2</name><description>Used 2 phi</description><answertest>NumAbsolute</answertest><sans>ans2</sans><tans>tp</tans><testoptions>0.001</testoptions><quiet>0</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt2-3-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>You used \(2 \times {@phi@}^\circ\). Latitude is measured from the equator, so \({@phi@}^\circ\) is the angle between the equator and \(P\), not the angle between \(P\) and the pole.</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>3</falsenextnode><falseanswernote>prt2-3-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>3</name><description>180 minus phi</description><answertest>NumAbsolute</answertest><sans>ans2</sans><tans>op</tans><testoptions>0.001</testoptions><quiet>0</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt2-4-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>That is \({@180-phi@}^\circ\) of arc: from \(P\) over the [[if test="nh"]]North Pole[[else]]South Pole[[/if]] and on to the equator on the far side. \(Q\) is not on the equator: it is at latitude \({@phi@}^\circ\), like \(P\).</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>-1</falsenextnode><falseanswernote>prt2-4-F</falseanswernote><falsefeedback format="html"><text><![CDATA[<p>Your \({@ans2@}\) nm is \({@ans2@}'\) of arc, which is \({@dispdp(float(ans2/60),1)@}^\circ\). On the great circle through both poles, how many degrees is it from \(P\) to the [[if test="nh"]]North Pole[[else]]South Pole[[/if]], and from there on to \(Q\)?</p>]]></text></falsefeedback></node>
+  </prt>
+  <prt><name>prt3</name><value>1.0000000</value><autosimplify>1</autosimplify><feedbackstyle>1</feedbackstyle><feedbackvariables><text><![CDATA[]]></text></feedbackvariables>
+    <node><name>0</name><description>Claim</description><answertest>AlgEquiv</answertest><sans>ans3</sans><tans>2</tans><testoptions></testoptions><quiet>0</quiet><truescoremode>=</truescoremode><truescore>1.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt3-1-T</trueanswernote><truefeedback format="html"><text><![CDATA[]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>1</falsenextnode><falseanswernote>prt3-1-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>1</name><description>Agreed with Kamau</description><answertest>AlgEquiv</answertest><sans>ans3</sans><tans>1</tans><testoptions></testoptions><quiet>0</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt3-2-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>You agreed with Kamau. If the parallel were the most direct route, the distance in (a) would be the smaller of the two. Compare your answers to (a) and (b), and ask what kind of circle each route follows.</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>2</falsenextnode><falseanswernote>prt3-2-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>2</name><description>Same length</description><answertest>AlgEquiv</answertest><sans>ans3</sans><tans>3</tans><testoptions></testoptions><quiet>0</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt3-3-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>The two distances are not equal: compare (a) and (b).</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>3</falsenextnode><falseanswernote>prt3-3-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>3</name><description>Crossing the 180 meridian</description><answertest>AlgEquiv</answertest><sans>ans3</sans><tans>4</tans><testoptions></testoptions><quiet>0</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt3-4-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>Crossing the \(180^\circ\) meridian does not change a distance: it is only where the numbering of longitude starts again. Look for a reason that depends on the kind of circle each route follows.</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>-1</falsenextnode><falseanswernote>prt3-4-F</falseanswernote><falsefeedback format="html"><text><![CDATA[<p>Choose one statement.</p>]]></text></falsefeedback></node>
+  </prt>
+
+  <deployedseed>4</deployedseed>
+  <deployedseed>5</deployedseed>
+  <deployedseed>15</deployedseed>
+  <deployedseed>8</deployedseed>
+  <deployedseed>24</deployedseed>
+  <deployedseed>1</deployedseed>
+  <deployedseed>3</deployedseed>
+  <deployedseed>10</deployedseed>
+  <deployedseed>2</deployedseed>
+  <deployedseed>17</deployedseed>
+  <qtest><testcase>1</testcase><description>Correct</description>
+    <testinput><name>ans1</name><value>floor(par+1/2)</value></testinput>
+    <testinput><name>ans2</name><value>pl</value></testinput>
+    <testinput><name>ans3</name><value>2</value></testinput>
+    <expected><name>prt1</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt1-1-T</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt2-1-T</expectedanswernote></expected>
+    <expected><name>prt3</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt3-1-T</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>2</testcase><description>Correct, unrounded</description>
+    <testinput><name>ans1</name><value>float(par)</value></testinput>
+    <testinput><name>ans2</name><value>pl</value></testinput>
+    <testinput><name>ans3</name><value>2</value></testinput>
+    <expected><name>prt1</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt1-1-T</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt2-1-T</expectedanswernote></expected>
+    <expected><name>prt3</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt3-1-T</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>3</testcase><description>Generic wrong; agreed with Kamau</description>
+    <testinput><name>ans1</name><value>floor(par+1/2)+40</value></testinput>
+    <testinput><name>ans2</name><value>pl+120</value></testinput>
+    <testinput><name>ans3</name><value>1</value></testinput>
+    <expected><name>prt1</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt1-1-F | prt1-2-F | prt1-3-F | prt1-4-F</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt2-1-F | prt2-2-F | prt2-3-F | prt2-4-F</expectedanswernote></expected>
+    <expected><name>prt3</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt3-1-F | prt3-2-T</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>4</testcase><description>No cos; to the pole only; same length</description>
+    <testinput><name>ans1</name><value>nc</value></testinput>
+    <testinput><name>ans2</name><value>hp</value></testinput>
+    <testinput><name>ans3</name><value>3</value></testinput>
+    <expected><name>prt1</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt1-1-F | prt1-2-T</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt2-1-F | prt2-2-T</expectedanswernote></expected>
+    <expected><name>prt3</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt3-1-F | prt3-2-F | prt3-3-T</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>5</testcase><description>Used sin; 2 phi; 180 meridian</description>
+    <testinput><name>ans1</name><value>float(ps)</value></testinput>
+    <testinput><name>ans2</name><value>tp</value></testinput>
+    <testinput><name>ans3</name><value>4</value></testinput>
+    <expected><name>prt1</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt1-1-F | prt1-2-F | prt1-3-T</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt2-1-F | prt2-2-F | prt2-3-T</expectedanswernote></expected>
+    <expected><name>prt3</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt3-1-F | prt3-2-F | prt3-3-F | prt3-4-T</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>6</testcase><description>Whole parallel; 180 minus phi</description>
+    <testinput><name>ans1</name><value>float(full)</value></testinput>
+    <testinput><name>ans2</name><value>op</value></testinput>
+    <testinput><name>ans3</name><value>2</value></testinput>
+    <expected><name>prt1</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt1-1-F | prt1-2-F | prt1-3-F | prt1-4-T</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt2-1-F | prt2-2-F | prt2-3-F | prt2-4-T</expectedanswernote></expected>
+    <expected><name>prt3</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt3-1-T</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>7</testcase><description>Invalid: letter in (a)</description>
+    <testinput><name>ans1</name><value>x</value></testinput>
+    <testinput><name>ans2</name><value>pl</value></testinput>
+    <testinput><name>ans3</name><value>2</value></testinput>
+    <expected><name>prt1</name><expectedscore></expectedscore><expectedpenalty></expectedpenalty><expectedanswernote>NULL</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt2-1-T</expectedanswernote></expected>
+    <expected><name>prt3</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt3-1-T</expectedanswernote></expected>
+  </qtest>
+</question>
+</quiz>

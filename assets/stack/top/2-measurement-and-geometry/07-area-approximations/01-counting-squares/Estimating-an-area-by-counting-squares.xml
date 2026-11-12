@@ -1,0 +1,237 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<quiz>
+<question type="stack">
+  <name><text>Estimating an area by counting squares</text></name>
+  <questiontext format="html">
+    <text><![CDATA[<p>The plan shows [[if test="is(cc=0)"]]a fish pond on a farm in Kirinyaga[[elif test="is(cc=1)"]]a patch of papyrus swamp near Kisumu[[else]]a rocky outcrop in a field near Machakos[[/if]] drawn on a grid. Each square stands for \({@s@}\,\text{m}\) by \({@s@}\,\text{m}\).</p><div style="text-align:center;" role="img" aria-label="An irregular shape drawn on a grid of 12 by 9 squares.">[[jsxgraph width="480px" height="360px"]]
+(function() {
+  var b = JXG.JSXGraph.initBoard(divid, {boundingbox: [-0.3, 9.3, 12.3, -0.3], axis: false, grid: false, showNavigation: false, showCopyright: false, pan: {enabled: false}, zoom: {enabled: false}});
+  function blobPoly(cx, cy, R, a, bb, ph) {
+    var p = [], K = 1440, k, t, r;
+    for (k = 0; k < K; k++) { t = 2 * Math.PI * k / K; r = R * (1 + a * Math.cos(2 * (t - ph)) + bb * Math.cos(3 * t)); p.push([cx + r * Math.cos(t), cy + r * Math.sin(t)]); }
+    return p;
+  }
+  var poly = blobPoly({#cx#}, {#cy#}, {#Rr#}, {#aa#}, {#bb#}, {#ph#});
+  for (var g = 0; g <= 12; g++) { b.create('segment', [[g, 0], [g, 9]], {strokeColor: '#999999', strokeWidth: 1, fixed: true, highlight: false}); }
+  for (var h = 0; h <= 9; h++) { b.create('segment', [[0, h], [12, h]], {strokeColor: '#999999', strokeWidth: 1, fixed: true, highlight: false}); }
+  var X = [], Y = [];
+  for (var k = 0; k <= poly.length; k++) { X.push(poly[k % poly.length][0]); Y.push(poly[k % poly.length][1]); }
+  b.create('curve', [X, Y], {strokeColor: '#000000', strokeWidth: 2, fillColor: '#cccccc', fillOpacity: 0.45, fixed: true, highlight: false});
+})();
+[[/jsxgraph]]</div><p>A full square lies wholly inside the shape. A part square has the edge passing through it.</p><p>(a) How many full squares are there?</p><div>[[input:ans1]] [[validation:ans1]]</div><p>(b) How many part squares are there?</p><div>[[input:ans2]] [[validation:ans2]] [[feedback:prt1]]</div><p>(c) Estimate the area of the shape in squares.</p><div>[[input:ans3]] squares [[validation:ans3]] [[feedback:prt2]]</div><p>(d) Estimate the area of the shape in square metres.</p><div>[[input:ans4]] \(\text{m}^2\) [[validation:ans4]] [[feedback:prt3]]</div>]]></text>
+  </questiontext>
+  <generalfeedback format="html">
+    <text><![CDATA[<div style="text-align:center;" role="img" aria-label="The same shape with the full squares shaded and the part squares hatched: {#nF#} full squares and {#nP#} part squares.">[[jsxgraph width="480px" height="360px"]]
+(function() {
+  var b = JXG.JSXGraph.initBoard(divid, {boundingbox: [-0.3, 9.3, 12.3, -0.3], axis: false, grid: false, showNavigation: false, showCopyright: false, pan: {enabled: false}, zoom: {enabled: false}});
+  function blobPoly(cx, cy, R, a, bb, ph) {
+    var p = [], K = 1440, k, t, r;
+    for (k = 0; k < K; k++) { t = 2 * Math.PI * k / K; r = R * (1 + a * Math.cos(2 * (t - ph)) + bb * Math.cos(3 * t)); p.push([cx + r * Math.cos(t), cy + r * Math.sin(t)]); }
+    return p;
+  }
+  function clipFrac(poly, x0, y0) {
+    var p = poly, e, i, P, Q, out, ax, v, ge, t, inP, inQ, A = 0;
+    var edges = [[0, x0, 1], [0, x0 + 1, 0], [1, y0, 1], [1, y0 + 1, 0]];
+    for (e = 0; e < 4; e++) {
+      ax = edges[e][0]; v = edges[e][1]; ge = edges[e][2]; out = [];
+      if (p.length === 0) { break; }
+      for (i = 0; i < p.length; i++) {
+        P = p[(i + p.length - 1) % p.length]; Q = p[i];
+        inQ = ge ? Q[ax] >= v : Q[ax] <= v; inP = ge ? P[ax] >= v : P[ax] <= v;
+        if (inQ) {
+          if (!inP) { t = (v - P[ax]) / (Q[ax] - P[ax]); out.push([P[0] + t * (Q[0] - P[0]), P[1] + t * (Q[1] - P[1])]); }
+          out.push(Q);
+        } else if (inP) { t = (v - P[ax]) / (Q[ax] - P[ax]); out.push([P[0] + t * (Q[0] - P[0]), P[1] + t * (Q[1] - P[1])]); }
+      }
+      p = out;
+    }
+    for (i = 0; i < p.length; i++) { P = p[(i + p.length - 1) % p.length]; Q = p[i]; A += P[0] * Q[1] - Q[0] * P[1]; }
+    return Math.abs(A) / 2;
+  }
+  function shade(b, sq) {
+    for (var q = 0; q < sq.length; q++) {
+      var i = sq[q][0], j = sq[q][1];
+      b.create('polygon', [[i, j], [i + 1, j], [i + 1, j + 1], [i, j + 1]], {fillColor: '#777777', fillOpacity: 0.55, borders: {strokeWidth: 0}, vertices: {visible: false}, fixed: true, highlight: false});
+    }
+  }
+  function hatch(b, sq) {
+    var X = [], Y = [];
+    for (var q = 0; q < sq.length; q++) {
+      var i = sq[q][0], j = sq[q][1];
+      X.push(i, i + 0.5, NaN, i, i + 1, NaN, i + 0.5, i + 1, NaN);
+      Y.push(j + 0.5, j, NaN, j + 1, j, NaN, j + 1, j + 0.5, NaN);
+    }
+    b.create('curve', [X, Y], {strokeColor: '#000000', strokeWidth: 1, fixed: true, highlight: false});
+  }
+  var poly = blobPoly({#cx#}, {#cy#}, {#Rr#}, {#aa#}, {#bb#}, {#ph#});
+  var full = [], part = [], i, j, fr;
+  for (i = 0; i < 12; i++) { for (j = 0; j < 9; j++) { fr = clipFrac(poly, i, j); if (fr > 0.99999) { full.push([i, j]); } else if (fr > 1e-9) { part.push([i, j]); } } }
+  shade(b, full); hatch(b, part);
+  for (var g = 0; g <= 12; g++) { b.create('segment', [[g, 0], [g, 9]], {strokeColor: '#999999', strokeWidth: 1, fixed: true, highlight: false}); }
+  for (var h = 0; h <= 9; h++) { b.create('segment', [[0, h], [12, h]], {strokeColor: '#999999', strokeWidth: 1, fixed: true, highlight: false}); }
+  var X = [], Y = [];
+  for (var k = 0; k <= poly.length; k++) { X.push(poly[k % poly.length][0]); Y.push(poly[k % poly.length][1]); }
+  b.create('curve', [X, Y], {strokeColor: '#000000', strokeWidth: 2, fillColor: '#cccccc', fillOpacity: 0, fixed: true, highlight: false});
+})();
+[[/jsxgraph]]</div><p>There are \(F = {@nF@}\) full squares and \(P = {@nP@}\) part squares. A part square is, on average, about half covered, so each part square counts as \(\tfrac{1}{2}\):</p><p>\[\text{estimate} = F + \tfrac{1}{2}P = {@nF@} + \tfrac{1}{2} \times {@nP@} = {@est@} \text{ squares}\]</p><p>One square has area \({@s@} \times {@s@} = {@sq@}\,\text{m}^2\), so the area is about \({@est@} \times {@sq@} = {@area@}\,\text{m}^2\).</p><p>Hand counts of a drawn shape can differ by a square or two, so counts within \(1\) full square and \(2\) part squares of these were accepted.</p>]]></text>
+  </generalfeedback>
+  <defaultgrade>3</defaultgrade>
+  <penalty>0.1</penalty>
+  <hidden>0</hidden>
+  <idnumber></idnumber>
+  <stackversion><text>2026063000</text></stackversion>
+  <questionvariables>
+    <text><![CDATA[/* Design: estimate an area by counting squares, using F + P/2 (F whole squares, P part squares). Entries [R, a, b, phase, cx, cy, F, P]: a blob r(t) = R(1 + a cos 2(t - phase) + b cos 3t) on a 12 by 9 grid. F and P are exact counts, and the general-feedback board's JavaScript reproduces them on every entry. Source: original; method as in SMP GCSE Foundation 2, Chapter 18, Section A (whole and half squares on squared paper). */
+L: [[2.8,0.1,0.1,1.6,6.49,4.46,14,22],[2.8,0.2,0.12,1.6,5.31,4.46,13,20],[2.6,0.2,0.05,2.4,5.81,4.73,12,20],[3.0,0.1,0.12,2.0,6.76,4.33,16,22],[2.8,0.15,0.05,2.0,5.73,4.54,15,22],[3.2,0.1,0.05,0.8,5.33,4.48,20,24],[2.6,0.15,0.08,0.4,6.26,4.21,13,22],[3.4,0.15,0.08,0.4,5.71,4.65,24,26],[3.2,0.15,0.08,1.6,6.78,4.51,20,26],[2.8,0.25,0.08,0.8,6.15,4.63,15,24]];
+ix: 1+rand(10);
+Rr: L[ix][1]; aa: L[ix][2]; bb: L[ix][3]; ph: L[ix][4]; cx: L[ix][5]; cy: L[ix][6];
+nF: L[ix][7]; nP: L[ix][8];
+cc: rand(3);
+s: rand([2,5,10]);
+sq: s^2;
+est: nF + nP/2;
+area: sq*est;]]></text>
+  </questionvariables>
+  <specificfeedback format="html"><text><![CDATA[]]></text></specificfeedback>
+  <questionnote format="moodle_auto_format">
+    <text>ix={@ix@}, s={@s@}, F={@nF@}, P={@nP@}, est={@est@}, area={@area@}</text>
+  </questionnote>
+  <questiondescription format="html"><text><![CDATA[<p id="concept">Area Approximations: estimating an area by counting squares</p><p id="description">Grade 12 CBE Core 2.2 (a) / Essential 2.1 (a): Count the full and part squares of an irregular shape on a grid, estimate its area as full + half of part squares, and convert to square metres.</p><p id="edition">Core and Essential</p><p id="provenance">This question is original to this project.</p><p id="citation">INNODEMS CBC Grade 12 Mathematics, first draft by Ben Davies, 2026. Aligned to the KICD Senior School Curriculum Design, Core and Essential Mathematics Grade 12 (draft).</p>]]></text></questiondescription>
+  <questionsimplify>1</questionsimplify>
+  <assumepositive>0</assumepositive>
+  <assumereal>0</assumereal>
+  <prtcorrect format="html"><text><![CDATA[[[commonstring key="symbolicprtcorrectfeedback"/]] [[commonstring key="defaultprtcorrectfeedback"/]]]]></text></prtcorrect>
+  <prtpartiallycorrect format="html"><text><![CDATA[[[commonstring key="symbolicprtpartiallycorrectfeedback"/]] [[commonstring key="defaultprtpartiallycorrectfeedback"/]]]]></text></prtpartiallycorrect>
+  <prtincorrect format="html"><text><![CDATA[[[commonstring key="symbolicprtincorrectfeedback"/]] [[commonstring key="defaultprtincorrectfeedback"/]]]]></text></prtincorrect>
+  <decimals>.</decimals>
+  <scientificnotation>*10</scientificnotation>
+  <multiplicationsign>none</multiplicationsign>
+  <sqrtsign>1</sqrtsign>
+  <complexno>i</complexno>
+  <inversetrig>cos-1</inversetrig>
+  <logicsymbol>lang</logicsymbol>
+  <matrixparens>[</matrixparens>
+  <isbroken>0</isbroken>
+  <variantsselectionseed></variantsselectionseed>
+
+  <input><name>ans1</name><type>numerical</type><tans>nF</tans><boxsize>4</boxsize><strictsyntax>1</strictsyntax><insertstars>0</insertstars><syntaxhint></syntaxhint><syntaxattribute>0</syntaxattribute><forbidwords></forbidwords><allowwords></allowwords><forbidfloat>1</forbidfloat><requirelowestterms>0</requirelowestterms><checkanswertype>0</checkanswertype><mustverify>0</mustverify><showvalidation>0</showvalidation><options></options></input>
+  <input><name>ans2</name><type>numerical</type><tans>nP</tans><boxsize>4</boxsize><strictsyntax>1</strictsyntax><insertstars>0</insertstars><syntaxhint></syntaxhint><syntaxattribute>0</syntaxattribute><forbidwords></forbidwords><allowwords></allowwords><forbidfloat>1</forbidfloat><requirelowestterms>0</requirelowestterms><checkanswertype>0</checkanswertype><mustverify>0</mustverify><showvalidation>0</showvalidation><options></options></input>
+  <input><name>ans3</name><type>numerical</type><tans>est</tans><boxsize>8</boxsize><strictsyntax>1</strictsyntax><insertstars>0</insertstars><syntaxhint></syntaxhint><syntaxattribute>0</syntaxattribute><forbidwords></forbidwords><allowwords></allowwords><forbidfloat>0</forbidfloat><requirelowestterms>0</requirelowestterms><checkanswertype>0</checkanswertype><mustverify>0</mustverify><showvalidation>0</showvalidation><options></options></input>
+  <input><name>ans4</name><type>numerical</type><tans>area</tans><boxsize>8</boxsize><strictsyntax>1</strictsyntax><insertstars>0</insertstars><syntaxhint></syntaxhint><syntaxattribute>0</syntaxattribute><forbidwords></forbidwords><allowwords></allowwords><forbidfloat>0</forbidfloat><requirelowestterms>0</requirelowestterms><checkanswertype>0</checkanswertype><mustverify>0</mustverify><showvalidation>0</showvalidation><options></options></input>
+
+  <prt><name>prt1</name><value>1.0000000</value><autosimplify>1</autosimplify><feedbackstyle>1</feedbackstyle><feedbackvariables><text><![CDATA[cok: is(abs(ans1-nF) <= 1 and abs(ans2-nP) <= 2);
+dbl: is(ans1 >= nF+2 and abs(ans1+ans2-(nF+nP)) <= 2);
+mis: is(abs(ans1-nF) <= 1 and ans2 <= nP-3);]]></text></feedbackvariables>
+    <node><name>0</name><description>Counts within tolerance</description><answertest>AlgEquiv</answertest><sans>cok</sans><tans>true</tans><testoptions></testoptions><quiet>0</quiet><truescoremode>=</truescoremode><truescore>1.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt1-1-T</trueanswernote><truefeedback format="html"><text><![CDATA[]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>1</falsenextnode><falseanswernote>prt1-1-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>1</name><description>Part squares counted as full</description><answertest>AlgEquiv</answertest><sans>dbl</sans><tans>true</tans><testoptions></testoptions><quiet>0</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt1-2-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>Some of the squares you counted as full have the edge passing through them. Count those as part squares.</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>2</falsenextnode><falseanswernote>prt1-2-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>2</name><description>Part squares missed</description><answertest>AlgEquiv</answertest><sans>mis</sans><tans>true</tans><testoptions></testoptions><quiet>0</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt1-3-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>You have missed some part squares. Count every square the edge passes through, even if only a little of the shape is inside it.</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>-1</falsenextnode><falseanswernote>prt1-3-F</falseanswernote><falsefeedback format="html"><text><![CDATA[<p>Count again: first the squares wholly inside the shape, then every square the edge passes through.</p>]]></text></falsefeedback></node>
+  </prt>
+  <prt><name>prt2</name><value>1.0000000</value><autosimplify>1</autosimplify><feedbackstyle>1</feedbackstyle><feedbackvariables><text><![CDATA[cok: is(abs(ans1-nF) <= 1 and abs(ans2-nP) <= 2);]]></text></feedbackvariables>
+    <node><name>0</name><description>Estimate from own counts</description><answertest>NumAbsolute</answertest><sans>ans3</sans><tans>ans1+ans2/2</tans><testoptions>0.001</testoptions><quiet>0</quiet><truescoremode>=</truescoremode><truescore>1.0000000</truescore><truepenalty></truepenalty><truenextnode>1</truenextnode><trueanswernote>prt2-1-T</trueanswernote><truefeedback format="html"><text><![CDATA[]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>2</falsenextnode><falseanswernote>prt2-1-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>1</name><description>Counts right</description><answertest>AlgEquiv</answertest><sans>cok</sans><tans>true</tans><testoptions></testoptions><quiet>0</quiet><truescoremode>=</truescoremode><truescore>1.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt2-2-T</trueanswernote><truefeedback format="html"><text><![CDATA[]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>-1</falsenextnode><falseanswernote>prt2-2-F</falseanswernote><falsefeedback format="html"><text><![CDATA[<p>Your estimate follows correctly from your counts, but the counts in (a) and (b) are not right.</p>]]></text></falsefeedback></node>
+    <node><name>2</name><description>Part squares as whole</description><answertest>NumAbsolute</answertest><sans>ans3</sans><tans>ans1+ans2</tans><testoptions>0.001</testoptions><quiet>0</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt2-3-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>You counted each part square as a whole square. Each part square counts as half: \({@ans1@} + \tfrac{1}{2} \times {@ans2@}\).</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>3</falsenextnode><falseanswernote>prt2-3-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>3</name><description>Part squares left out</description><answertest>NumAbsolute</answertest><sans>ans3</sans><tans>ans1</tans><testoptions>0.001</testoptions><quiet>0</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt2-4-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>You left out the part squares. Add half of them to the full squares.</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>4</falsenextnode><falseanswernote>prt2-4-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>4</name><description>Halved the full squares too</description><answertest>NumAbsolute</answertest><sans>ans3</sans><tans>(ans1+ans2)/2</tans><testoptions>0.001</testoptions><quiet>0</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt2-5-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>You halved the full squares as well. Only the part squares are halved.</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>-1</falsenextnode><falseanswernote>prt2-5-F</falseanswernote><falsefeedback format="html"><text><![CDATA[<p>Your counts are \({@ans1@}\) full squares and \({@ans2@}\) part squares. Full squares count \(1\) each and part squares \(\tfrac{1}{2}\) each, and that does not come to \({@ans3@}\).</p>]]></text></falsefeedback></node>
+  </prt>
+  <prt><name>prt3</name><value>1.0000000</value><autosimplify>1</autosimplify><feedbackstyle>1</feedbackstyle><feedbackvariables><text><![CDATA[okc: is(abs(ans1-nF) <= 1 and abs(ans2-nP) <= 2 and abs(ans3-(ans1+ans2/2)) < 1/1000);
+dok: is(abs(ans1-nF) <= 1 and abs(ans2-nP) <= 2 and abs(ans4-sq*(ans1+ans2/2)) < 1/1000);]]></text></feedbackvariables>
+    <node><name>0</name><description>Area from own estimate</description><answertest>NumAbsolute</answertest><sans>ans4</sans><tans>sq*ans3</tans><testoptions>0.001</testoptions><quiet>0</quiet><truescoremode>=</truescoremode><truescore>1.0000000</truescore><truepenalty></truepenalty><truenextnode>1</truenextnode><trueanswernote>prt3-1-T</trueanswernote><truefeedback format="html"><text><![CDATA[]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>4</falsenextnode><falseanswernote>prt3-1-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>1</name><description>Estimate right</description><answertest>AlgEquiv</answertest><sans>okc</sans><tans>true</tans><testoptions></testoptions><quiet>0</quiet><truescoremode>=</truescoremode><truescore>1.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt3-2-T</trueanswernote><truefeedback format="html"><text><![CDATA[]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>-1</falsenextnode><falseanswernote>prt3-2-F</falseanswernote><falsefeedback format="html"><text><![CDATA[<p>Your method is right for your estimate in (c), but that estimate is not right, so check (a) to (c).</p>]]></text></falsefeedback></node>
+    <node><name>2</name><description>Multiplied by the side</description><answertest>NumAbsolute</answertest><sans>ans4</sans><tans>s*ans3</tans><testoptions>0.001</testoptions><quiet>0</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt3-3-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>You multiplied by \({@s@}\), the length of a side. One square has area \({@s@} \times {@s@} = {@sq@}\,\text{m}^2\).</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>3</falsenextnode><falseanswernote>prt3-3-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>3</name><description>Number of squares only</description><answertest>NumAbsolute</answertest><sans>ans4</sans><tans>ans3</tans><testoptions>0.001</testoptions><quiet>0</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt3-4-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>That is the number of squares. Multiply it by the area of one square, \({@sq@}\,\text{m}^2\).</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>-1</falsenextnode><falseanswernote>prt3-4-F</falseanswernote><falsefeedback format="html"><text><![CDATA[<p>One square stands for \({@s@}\,\text{m}\) by \({@s@}\,\text{m}\). Find the area of one square in square metres, then multiply it by your \({@ans3@}\) squares. That does not give \({@ans4@}\,\text{m}^2\).</p>]]></text></falsefeedback></node>
+    <node><name>4</name><description>Area right for own counts although (c) is not</description><answertest>AlgEquiv</answertest><sans>dok</sans><tans>true</tans><testoptions></testoptions><quiet>0</quiet><truescoremode>=</truescoremode><truescore>1.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt3-5-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>Your area is right for your counts in (a) and (b). Your estimate in (c) does not match those counts, so check (c).</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>2</falsenextnode><falseanswernote>prt3-5-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+  </prt>
+
+  <deployedseed>4</deployedseed>
+  <deployedseed>5</deployedseed>
+  <deployedseed>15</deployedseed>
+  <deployedseed>8</deployedseed>
+  <deployedseed>24</deployedseed>
+  <deployedseed>1</deployedseed>
+  <deployedseed>3</deployedseed>
+  <deployedseed>10</deployedseed>
+  <deployedseed>2</deployedseed>
+  <deployedseed>17</deployedseed>
+  <qtest><testcase>1</testcase><description>Correct</description>
+    <testinput><name>ans1</name><value>nF</value></testinput>
+    <testinput><name>ans2</name><value>nP</value></testinput>
+    <testinput><name>ans3</name><value>nF+nP/2</value></testinput>
+    <testinput><name>ans4</name><value>sq*(nF+nP/2)</value></testinput>
+    <expected><name>prt1</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt1-1-T</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt2-1-T | prt2-2-T</expectedanswernote></expected>
+    <expected><name>prt3</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt3-1-T | prt3-2-T</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>2</testcase><description>Within the counting tolerance</description>
+    <testinput><name>ans1</name><value>nF+1</value></testinput>
+    <testinput><name>ans2</name><value>nP-2</value></testinput>
+    <testinput><name>ans3</name><value>nF+1+(nP-2)/2</value></testinput>
+    <testinput><name>ans4</name><value>sq*(nF+1+(nP-2)/2)</value></testinput>
+    <expected><name>prt1</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt1-1-T</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt2-1-T | prt2-2-T</expectedanswernote></expected>
+    <expected><name>prt3</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt3-1-T | prt3-2-T</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>3</testcase><description>Part squares counted as full; whole parts; side</description>
+    <testinput><name>ans1</name><value>nF+3</value></testinput>
+    <testinput><name>ans2</name><value>nP-3</value></testinput>
+    <testinput><name>ans3</name><value>nF+nP</value></testinput>
+    <testinput><name>ans4</name><value>s*(nF+nP)</value></testinput>
+    <expected><name>prt1</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt1-1-F | prt1-2-T</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt2-1-F | prt2-3-T</expectedanswernote></expected>
+    <expected><name>prt3</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt3-1-F | prt3-5-F | prt3-3-T</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>4</testcase><description>Part squares missed; left out; squares only</description>
+    <testinput><name>ans1</name><value>nF</value></testinput>
+    <testinput><name>ans2</name><value>nP-4</value></testinput>
+    <testinput><name>ans3</name><value>nF</value></testinput>
+    <testinput><name>ans4</name><value>nF</value></testinput>
+    <expected><name>prt1</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt1-1-F | prt1-2-F | prt1-3-T</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt2-1-F | prt2-3-F | prt2-4-T</expectedanswernote></expected>
+    <expected><name>prt3</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt3-1-F | prt3-5-F | prt3-3-F | prt3-4-T</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>5</testcase><description>Halved the full squares</description>
+    <testinput><name>ans1</name><value>nF</value></testinput>
+    <testinput><name>ans2</name><value>nP</value></testinput>
+    <testinput><name>ans3</name><value>(nF+nP)/2</value></testinput>
+    <testinput><name>ans4</name><value>sq*(nF+nP)/2</value></testinput>
+    <expected><name>prt1</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt1-1-T</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt2-1-F | prt2-3-F | prt2-4-F | prt2-5-T</expectedanswernote></expected>
+    <expected><name>prt3</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt3-1-T | prt3-2-F</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>6</testcase><description>Follow-through from wrong counts</description>
+    <testinput><name>ans1</name><value>nF-3</value></testinput>
+    <testinput><name>ans2</name><value>nP</value></testinput>
+    <testinput><name>ans3</name><value>nF-3+nP/2</value></testinput>
+    <testinput><name>ans4</name><value>sq*(nF-3+nP/2)</value></testinput>
+    <expected><name>prt1</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt1-1-F | prt1-2-F | prt1-3-F</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt2-1-T | prt2-2-F</expectedanswernote></expected>
+    <expected><name>prt3</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt3-1-T | prt3-2-F</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>7</testcase><description>Generic wrong</description>
+    <testinput><name>ans1</name><value>nF</value></testinput>
+    <testinput><name>ans2</name><value>nP</value></testinput>
+    <testinput><name>ans3</name><value>nF+nP/2+7</value></testinput>
+    <testinput><name>ans4</name><value>sq*(nF+nP/2+7)+1</value></testinput>
+    <expected><name>prt1</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt1-1-T</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt2-1-F | prt2-3-F | prt2-4-F | prt2-5-F</expectedanswernote></expected>
+    <expected><name>prt3</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt3-1-F | prt3-5-F | prt3-3-F | prt3-4-F</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>8</testcase><description>Area right although (c) counts parts as whole</description>
+    <testinput><name>ans1</name><value>nF</value></testinput>
+    <testinput><name>ans2</name><value>nP</value></testinput>
+    <testinput><name>ans3</name><value>nF+nP</value></testinput>
+    <testinput><name>ans4</name><value>sq*(nF+nP/2)</value></testinput>
+    <expected><name>prt1</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt1-1-T</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt2-1-F | prt2-3-T</expectedanswernote></expected>
+    <expected><name>prt3</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt3-1-F | prt3-5-T</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>9</testcase><description>Invalid: letter in (a)</description>
+    <testinput><name>ans1</name><value>x</value></testinput>
+    <testinput><name>ans2</name><value>nP</value></testinput>
+    <testinput><name>ans3</name><value>nF+nP/2</value></testinput>
+    <testinput><name>ans4</name><value>sq*(nF+nP/2)</value></testinput>
+    <expected><name>prt1</name><expectedscore></expectedscore><expectedpenalty></expectedpenalty><expectedanswernote>NULL</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore></expectedscore><expectedpenalty></expectedpenalty><expectedanswernote>NULL</expectedanswernote></expected>
+    <expected><name>prt3</name><expectedscore></expectedscore><expectedpenalty></expectedpenalty><expectedanswernote>NULL</expectedanswernote></expected>
+  </qtest>
+</question>
+</quiz>

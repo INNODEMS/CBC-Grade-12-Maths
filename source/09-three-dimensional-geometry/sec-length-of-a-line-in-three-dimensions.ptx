@@ -46,161 +46,338 @@
          Suggested activity: Learners measure the length, width and height of a carton (or the classroom), calculate the space diagonal, then check it with a string stretched corner to corner.
          Interactive (JSXGraph): Cuboid with sliders for length, width and height; the face diagonal and space diagonal are drawn and their lengths calculated, with the two right-angled triangles shaded. -->
 
-    <!-- [LP] Add guidance on activity -->
+    <!-- Section notes (2026-11)
+         SLOs: Core 2.4 (b): lengths of lines and of their projections in solids
+         Activity: as planning notes, the classroom option (sec-magnitude-of-a-vector-in-three-dimensions already uses the carton and string; a shoebox check in part (f))
+         JSXGraph: fig-cuboid-diagonals (assets/jsxgraph/cuboid-diagonals.js), as planning notes; the triangles ABC and ACG are shaded by 2D polygons over view.project3DTo2D points
+         STACK: assets/stack/top/2-measurement-and-geometry/09-three-dimensional-geometry/03-length-of-a-line-in-three-dimensions/ -->
+
+    <p component="lesson-plan">Upon completion of this lesson, learners will be able to:
+        <ol>
+            <li><p><alert>Know:</alert> every length in a solid sits in a right-angled triangle; Pythagoras twice; the space diagonal <m>\sqrt{l^2 + w^2 + h^2}</m>; a line, its projection and the perpendicular make a right-angled triangle.</p></li>
+            <li><p><alert>Do:</alert> find face and space diagonals, sloping edges and slant heights of pyramids, lengths of projections and a missing edge.</p></li>
+            <li><p><alert>Apply:</alert> rooms, water tanks, pencil boxes and cables.</p></li>
+        </ol>
+    </p>
 
     <axiom component="lesson-plan">
         <title>Problem-Solving and Discovery</title>
         <dl>
-            <li>
-                <title>Suggested Time</title>
-                <p>
-                    XXX minutes
-                </p>
-            </li>
-            <li>
-                <title>Objective</title>
-                <p>
-                    XXX
-                </p>
-            </li>
-            <li>
-                <title>Teacher's Role</title>
-                <p>
-                    XXX
-                </p>
-            </li>
+            <li><title>Suggested Time</title><p>14 minutes</p></li>
+            <li><title>Objective</title><p>Learners find the longest straight line in the classroom by two uses of Pythagoras and check the method on a shoebox.</p></li>
+            <li><title>Teacher's Role</title><p>Groups measure the room with a tape measure; groups without one use the measurements in part (a). One group checks the method with string on a shoebox in part (f). Do not give the formula before part (e).</p></li>
         </dl>
     </axiom>
 
-    <!-- Add Activity -->
-
-    <!-- <activity>
+    <activity xml:id="act-corner-to-corner">
+        <title>Corner to Corner Across the Classroom</title>
         <statement>
+            <p>Label the classroom as a cuboid <m>ABCDEFGH</m>, with <m>A</m> a corner of the floor, <m>ABCD</m> the floor and <m>G</m> the ceiling corner furthest from <m>A</m>.</p>
+            <figure xml:id="fig-two-right-triangles">
+                <caption>The floor diagonal <m>AC</m> and the diagonal <m>AG</m> of a classroom, and the two right-angled triangles that give them.</caption>
+                <image width="90%">
+                    <shortdescription>A classroom drawn as a cuboid ABCDEFGH, 10 m by 7 m by 3.5 m, with the floor diagonal AC dotted and the diagonal AG and the vertical edge CG drawn thick. Beside it, the triangle ABC is drawn flat with AB = 10, BC = 7, a right angle at B and hypotenuse root 149, and the triangle ACG is drawn flat with AC = root 149, CG = 3.5 and a right angle at C.</shortdescription>
+                    <latex-image>
+\tdplotsetmaincoords{70}{120}
+\begin{tikzpicture}
+\begin{scope}[tdplot_main_coords, scale=0.32]
+\coordinate (A) at (7,0,0);
+\coordinate (B) at (7,10,0);
+\coordinate (C) at (0,10,0);
+\coordinate (D) at (0,0,0);
+\coordinate (E) at (7,0,3.5);
+\coordinate (F) at (7,10,3.5);
+\coordinate (G) at (0,10,3.5);
+\coordinate (H) at (0,0,3.5);
+\draw[dashed] (D) -- (A);
+\draw[dashed] (D) -- (C);
+\draw[dashed] (D) -- (H);
+\draw (A) -- (B);
+\draw (B) -- (C);
+\draw (C) -- (G);
+\draw (G) -- (H);
+\draw (H) -- (E);
+\draw (E) -- (A);
+\draw (E) -- (F);
+\draw (F) -- (G);
+\draw (B) -- (F);
+\node[anchor=north east] at (A) {$A$};
+\node[anchor=north] at (B) {$B$};
+\node[anchor=north west] at (C) {$C$};
+\node[anchor=south east] at (D) {$D$};
+\node[anchor=east] at (E) {$E$};
+\node[anchor=south east] at (F) {$F$};
+\node[anchor=south west] at (G) {$G$};
+\node[anchor=south] at (H) {$H$};
+\draw[very thick, densely dotted] (A) -- (C); \draw[very thick] (A) -- (G); \draw[very thick] (C) -- (G);
+\draw (0.459,9.345,0.000) -- (0.459,9.345,0.800) -- (0.000,10.000,0.800);
+\draw (7.000,9.200,0.000) -- (6.200,9.200,0.000) -- (6.200,10.000,0.000);
+\node[anchor=north] at (7,5,0) {$10$}; \node[anchor=north west] at (3.5,10,0) {$7$}; \node[anchor=west] at (0,10,1.75) {$3.5$};
+\end{scope}
+\begin{scope}[shift={(5.2,-1.6)}, scale=0.3]
+\draw[thick] (0,0) node[anchor=north east]{$A$} -- (10,0) node[anchor=north west]{$B$} -- (10,7) node[anchor=south west]{$C$} -- cycle;
+\draw (9.2,0) -- (9.2,0.8) -- (10,0.8);
+\node[anchor=north] at (5,0) {$10$}; \node[anchor=west] at (10,3.5) {$7$}; \node[anchor=south east] at (5,3.5) {$\sqrt{149}$};
+\end{scope}
+\begin{scope}[shift={(9.2,-1.6)}, scale=0.3]
+\draw[thick] (0,0) node[anchor=north east]{$A$} -- (12.207,0) node[anchor=north west]{$C$} -- (12.207,3.5) node[anchor=south west]{$G$} -- cycle;
+\draw (11.407,0) -- (11.407,0.8) -- (12.207,0.8);
+\node[anchor=north] at (6.1,0) {$\sqrt{149}$}; \node[anchor=west] at (12.207,1.75) {$3.5$};
+\end{scope}
+\end{tikzpicture}
+                    </latex-image>
+                </image>
+            </figure>
+            <p>
+                <ol marker="(a)">
+                    <li>
+                        <p>Measure the length, width and height of the classroom. (If you have no tape measure, use <m>AB = 10\,\text{m}</m>, <m>BC = 7\,\text{m}</m> and <m>AE = 3.5\,\text{m}</m>.)</p>
+                        <solution component="lesson-plan"><p>The values in the solutions below use <m>10\,\text{m}</m>, <m>7\,\text{m}</m> and <m>3.5\,\text{m}</m>.</p></solution>
+                    </li>
+                    <li>
+                        <p>Find the length of the floor diagonal <m>AC</m>.</p>
+                        <solution component="lesson-plan"><p><m>AC^2 = 10^2 + 7^2 = 149</m>, so <m>AC = \sqrt{149} \approx 12.21\,\text{m}</m>.</p></solution>
+                    </li>
+                    <li>
+                        <p>Triangle <m>ACG</m> has a right angle at <m>C</m>, because <m>CG</m> is vertical. Find the length of <m>AG</m>.</p>
+                        <solution component="lesson-plan"><p><m>AG^2 = AC^2 + CG^2 = 149 + 3.5^2 = 161.25</m>, so <m>AG = \sqrt{161.25} \approx 12.70\,\text{m}</m>.</p></solution>
+                    </li>
+                    <li>
+                        <p>What is the projection of <m>AG</m> on the floor? On the front wall <m>ABFE</m>? Find the length of the second projection.</p>
+                        <solution component="lesson-plan"><p>On the floor, <m>AC</m>. On the front wall, <m>G</m> projects to <m>F</m>, so the projection is <m>AF</m>: <m>AF^2 = 10^2 + 3.5^2 = 112.25</m>, <m>AF = \sqrt{112.25} \approx 10.59\,\text{m}</m>.</p></solution>
+                    </li>
+                    <li>
+                        <p>Show that <m>AG^2 = AB^2 + BC^2 + CG^2</m>.</p>
+                        <solution component="lesson-plan"><p><m>AG^2 = AC^2 + CG^2</m> and <m>AC^2 = AB^2 + BC^2</m>, so <m>AG^2 = AB^2 + BC^2 + CG^2</m>. Check: <m>100 + 49 + 12.25 = 161.25</m>.</p></solution>
+                    </li>
+                    <li>
+                        <p>Check the method on a shoebox: measure its three edges, calculate the diagonal from one bottom corner to the opposite top corner, then stretch a string between those corners inside the box and measure it.</p>
+                        <solution component="lesson-plan"><p>Answers depend on the box. The string should agree with <m>\sqrt{l^2 + w^2 + h^2}</m> to within a few millimetres; report both values honestly.</p></solution>
+                    </li>
+                </ol>
+            </p>
         </statement>
-    </activity> -->
+    </activity>
 
-    <!-- [LP] Add guidance on structured lesson plan-->
-
-    <!-- <axiom component="lesson-plan">
+    <axiom component="lesson-plan">
         <title>Structured Instruction</title>
         <p>
             <dl>
-            <li>
-                <title>Suggested Time</title>
-                <p>
-                    XX minutes
-                </p>
-            </li>
-            <li>
-                <title>Objective</title>
-                <p>
-                    To formalize the concepts and properties learners discovered in the anchor task.
-                </p>
-            </li>
+                <li><title>Suggested Time</title><p>8 minutes</p></li>
+                <li><title>Objective</title><p>To formalise lengths in solids as Pythagoras in right-angled triangles, used twice where needed.</p></li>
             </dl>
         </p>
         <paragraphs>
             <title>Key Takeaways &amp; Teacher Connection</title>
             <ol>
-                <li>
-                    <p>
-                        <alert>Connecting to Learner Work:</alert> XXXX
-                    </p>
-                </li>
+                <li><p><alert>Connecting to Learner Work:</alert> parts (b) and (c) used Pythagoras twice, first across the floor and then up; part (e) joined the two steps into one formula.</p></li>
+                <li><p>Find the right-angled triangle, draw it flat with its right angle marked, then use Pythagoras.</p></li>
+                <li><p>Keep squares such as <m>149</m> between steps instead of rounded lengths such as <m>12.21</m>.</p></li>
+                <li><p><alert>Real-world link:</alert> builders check that a room is square by measuring its diagonals, and a long pole is carried through a doorway along a diagonal.</p></li>
             </ol>
         </paragraphs>
-    </axiom> -->
+    </axiom>
 
-    <!-- Add insight / key takeaway directly related to activity / learner experience -->
+    <insight xml:id="insight-lengths-in-three-dimensions">
+        <title>Lengths in Three Dimensions</title>
+        <p>
+            Find the right-angled triangle, then use Pythagoras; in a solid you often need it twice. In a cuboid with length <m>l</m>, width <m>w</m> and height <m>h</m>:
+            <ul>
+                <li><p>a <term>face diagonal</term> joins opposite corners of one face, for example <m>AC = \sqrt{l^2 + w^2}</m>;</p></li>
+                <li><p>a <term>space diagonal</term> joins opposite corners of the cuboid, through its inside:
+                    <md>AG = \sqrt{l^2 + w^2 + h^2}</md></p></li>
+            </ul>
+        </p>
+        <p>
+            A line, its projection on a plane and the perpendicular from its end make a right-angled triangle, so
+            <md>(\text{line})^2 = (\text{projection})^2 + (\text{rise})^2</md>
+            In a right pyramid <m>VABCD</m>, the <term>sloping edge</term> <m>VA</m> has projection <m>OA</m> on the base, half a diagonal of the base. The <term>slant height</term> <m>VM</m>, to the midpoint <m>M</m> of <m>BC</m>, has projection <m>OM</m>, half of <m>AB</m>. As in Grade 10, the slant height is the height of a sloping face, which is not the same as the height <m>VO</m> of the pyramid.
+        </p>
+    </insight>
 
-    <!-- <insight>
-    </insight> -->
+    <note xml:id="note-lengths-and-vectors">
+        <title>Lengths and Vectors</title>
+        <p>In <xref ref="sec-magnitude-of-a-vector-in-three-dimensions"/> the same calculation gives the length of a vector from its components.</p>
+    </note>
 
-    <!-- Add further instruction (not in a block) to develop ideas as needed -->
+    <figure xml:id="fig-pyramid-lengths">
+        <caption>The sloping edge <m>VA</m> and the slant height <m>VM</m> of a right pyramid, with the right-angled triangles <m>VOA</m> and <m>VOM</m> drawn flat.</caption>
+        <image width="80%">
+            <shortdescription>A right pyramid VABCD on a square base of side 10 cm with height VO = 12 cm, VO dotted. OA and OM are dashed in the base, with M the midpoint of BC; VA and VM are thick. Beside it, triangle VOA is drawn flat with OA = root 50, VO = 12, VA = root 194 and a right angle at O, and triangle VOM with OM = 5, VO = 12, VM = 13 and a right angle at O.</shortdescription>
+            <latex-image>
+\tdplotsetmaincoords{70}{120}
+\begin{tikzpicture}
+\begin{scope}[tdplot_main_coords, scale=0.27]
+\coordinate (A) at (10,0,0);
+\coordinate (B) at (10,10,0);
+\coordinate (C) at (0,10,0);
+\coordinate (D) at (0,0,0);
+\coordinate (V) at (5,5,12);
+\coordinate (O) at (5,5,0);
+\coordinate (M) at (5,10,0);
+\draw[dashed] (D) -- (A); \draw[dashed] (D) -- (C); \draw[dashed] (D) -- (V);
+\draw (A) -- (B) -- (C) -- (V) -- (B);
+\draw[very thick] (A) -- (V); \draw[very thick] (V) -- (M);
+\draw[dotted, very thick] (V) -- (O); \draw[thick, dashed] (O) -- (A); \draw[thick, dashed] (O) -- (M);
+\fill (O) circle (1.5pt); \fill (M) circle (1.5pt);
+\node[anchor=north east] at (A) {$A$};
+\node[anchor=north west] at (B) {$B$};
+\node[anchor=west] at (C) {$C$};
+\node[anchor=east] at (D) {$D$};
+\node[anchor=south] at (V) {$V$};
+\node[anchor=north] at (O) {$O$};
+\node[anchor=west] at (M) {$M$};
+\node[anchor=north] at (10,5,0) {$10$};
+\end{scope}
+\begin{scope}[shift={(4.2,-1.4)}, scale=0.25]
+\draw[thick] (0,0) node[anchor=north east]{$A$} -- (7.071,0) node[anchor=north west]{$O$} -- (7.071,12) node[anchor=south]{$V$} -- cycle;
+\draw (6.271,0) -- (6.271,0.8) -- (7.071,0.8);
+\node[anchor=north] at (3.5,0) {$\sqrt{50}$}; \node[anchor=west] at (7.071,6) {$12$}; \node[anchor=south east] at (3.5,6) {$\sqrt{194}$};
+\end{scope}
+\begin{scope}[shift={(7.6,-1.4)}, scale=0.25]
+\draw[thick] (0,0) node[anchor=north east]{$M$} -- (5,0) node[anchor=north west]{$O$} -- (5,12) node[anchor=south]{$V$} -- cycle;
+\draw (4.2,0) -- (4.2,0.8) -- (5,0.8);
+\node[anchor=north] at (2.5,0) {$5$}; \node[anchor=west] at (5,6) {$12$}; \node[anchor=south east] at (2.5,6) {$13$};
+\end{scope}
+\end{tikzpicture}
+            </latex-image>
+        </image>
+    </figure>
+
+    <figure xml:id="fig-cuboid-diagonals">
+        <caption>Move the sliders to change the cuboid. The two right-angled triangles give the base diagonal and then the space diagonal.</caption>
+        <interactive xml:id="interactive-cuboid-diagonals" platform="jsxgraph" width="90%" aspect="16:12" source="jsxgraph/cuboid-diagonals.js">
+            <slate xml:id="jsxgraph-cuboid-diagonals" surface="jsxboard" aspect="16:12"/>
+            <instructions>
+                <p>
+                    <ul>
+                        <li><p>Drag the <alert>l</alert>, <alert>w</alert> and <alert>h</alert> sliders. The dashed base diagonal <m>AC</m> is the hypotenuse of triangle <m>ABC</m>, and the space diagonal <m>AG</m> is the hypotenuse of triangle <m>ACG</m>.</p></li>
+                        <li><p>Set <alert>l</alert> to <m>6</m>, <alert>w</alert> to <m>2</m> and <alert>h</alert> to <m>1.5</m>. Check that <m>AG</m> is exactly <m>6.5</m>.</p></li>
+                        <li><p>Keep <alert>l</alert> and <alert>w</alert> fixed and change <alert>h</alert>. Which length changes, and which does not? Turn the cuboid with the view sliders.</p></li>
+                    </ul>
+                </p>
+            </instructions>
+        </interactive>
+    </figure>
 
     <xi:include href="../lesson-plan-templates/example-intro.ptx" />
 
-    <!-- Add at least 3 examples -->
-
-    <!-- <example>
+    <example xml:id="example-diagonals-of-a-water-tank">
+        <title>Diagonals of a Water Tank</title>
         <statement>
+            <p>A water tank at a school in Machakos is a cuboid <m>ABCDEFGH</m> with <m>AB = 3.6\,\text{m}</m>, <m>BC = 2.4\,\text{m}</m> and <m>AE = 1.5\,\text{m}</m>. Find the length of the base diagonal <m>AC</m> and of the space diagonal <m>AG</m>.</p>
         </statement>
         <solution>
+            <p><alert>Step 1:</alert> triangle <m>ABC</m> has a right angle at <m>B</m>:
+                <md>AC^2 = 3.6^2 + 2.4^2 = 18.72, \quad AC = \sqrt{18.72} \approx 4.33 \,\text{m}</md>
+                <m>AC</m> is the projection of <m>AG</m> on the base.</p>
+            <p><alert>Step 2:</alert> triangle <m>ACG</m> has a right angle at <m>C</m>:
+                <md>AG^2 = 18.72 + 1.5^2 = 20.97, \quad AG = \sqrt{20.97} \approx 4.58 \,\text{m}</md>
+                We used <m>AC^2 = 18.72</m>, not the rounded <m>4.33^2</m>, so no accuracy was lost.</p>
         </solution>
     </example>
 
-    <example>
+    <example xml:id="example-edges-of-a-pyramid">
+        <title>Edges of a Pyramid</title>
         <statement>
+            <p>A model of a right pyramid <m>VABCD</m> has a square base of side <m>10\,\text{cm}</m> and height <m>VO = 12\,\text{cm}</m> (<xref ref="fig-pyramid-lengths"/>). <m>M</m> is the midpoint of <m>BC</m>. Find the length of (a) <m>OA</m>, the projection of <m>VA</m> on the base; (b) the sloping edge <m>VA</m>; (c) the slant height <m>VM</m>.</p>
         </statement>
         <solution>
+            <p>(a) <m>AC^2 = 10^2 + 10^2 = 200</m>, and <m>O</m> is the midpoint of <m>AC</m>, so <m>OA = \frac{1}{2}\sqrt{200} = \sqrt{50} \approx 7.07\,\text{cm}</m>.</p>
+            <p>(b) Triangle <m>VOA</m> has a right angle at <m>O</m>: <m>VA^2 = 50 + 12^2 = 194</m>, so <m>VA = \sqrt{194} \approx 13.93\,\text{cm}</m>.</p>
+            <p>(c) <m>OM</m> is half of <m>AB</m>, so <m>OM = 5\,\text{cm}</m>. Triangle <m>VOM</m> has a right angle at <m>O</m>: <m>VM = \sqrt{5^2 + 12^2} = \sqrt{169} = 13\,\text{cm}</m>.</p>
+            <p>The sloping edge <m>VA</m> and the slant height <m>VM</m> are different lengths: <m>VA</m> runs to a corner, <m>VM</m> to the middle of a side.</p>
         </solution>
     </example>
 
-    <example>
+    <example xml:id="example-line-across-a-tent">
+        <title>A Line Across a Tent</title>
         <statement>
+            <p>The tent <m>ABCDEF</m> in <xref ref="fig-tent-prism"/> has <m>AB = 2.4\,\text{m}</m>, <m>CA = CB = 1.5\,\text{m}</m> and <m>AD = 3\,\text{m}</m>, so its height <m>CN</m> is <m>0.9\,\text{m}</m>. Find the length of the line <m>AF</m> from a front corner to the back of the ridge.</p>
         </statement>
         <solution>
+            <p><m>F</m> is directly above <m>P</m>, the midpoint of <m>DE</m>, so the projection of <m>AF</m> on the ground is <m>AP</m>. Triangle <m>ADP</m> has a right angle at <m>D</m>, with <m>DP = 1.2\,\text{m}</m>:
+                <md>AP^2 = 1.2^2 + 3^2 = 10.44, \quad AP = \sqrt{10.44} \approx 3.23 \,\text{m}</md>
+                Triangle <m>APF</m> has a right angle at <m>P</m>, with <m>PF = 0.9\,\text{m}</m>:
+                <md>AF^2 = 10.44 + 0.9^2 = 11.25, \quad AF = \sqrt{11.25} \approx 3.35 \,\text{m}</md></p>
         </solution>
-    </example> -->
+    </example>
 
     <xi:include href="../lesson-plan-templates/assessment-intro.ptx" />
+    <xi:include href="../lesson-plan-templates/checkpoint.ptx" />
 
-    <!-- If STACK questions are included, uncomment this: -->
+    <p>Type decimals with a point, for example <c>13.93</c>. A length may also be typed exactly, for example <c>sqrt(194)</c>. In the last question type whole numbers only.</p>
 
-    <!-- <xi:include href="../lesson-plan-templates/checkpoint.ptx" /> -->
+    <exercise xml:id="ex-diagonals-and-projections-in-a-cuboid">
+        <!--<title></title>-->
+        <stack label="stk-diagonals-and-projections-in-a-cuboid" source="stack/top/2-measurement-and-geometry/09-three-dimensional-geometry/03-length-of-a-line-in-three-dimensions/Diagonals-and-projections-in-a-cuboid.xml"/>
+    </exercise>
+    <exercise xml:id="ex-sloping-edge-and-slant-height-of-a-pyramid">
+        <!--<title></title>-->
+        <stack label="stk-sloping-edge-and-slant-height-of-a-pyramid" source="stack/top/2-measurement-and-geometry/09-three-dimensional-geometry/03-length-of-a-line-in-three-dimensions/Sloping-edge-and-slant-height-of-a-pyramid.xml"/>
+    </exercise>
+    <exercise xml:id="ex-a-box-with-a-given-diagonal">
+        <!--<title></title>-->
+        <stack label="stk-a-box-with-a-given-diagonal" source="stack/top/2-measurement-and-geometry/09-three-dimensional-geometry/03-length-of-a-line-in-three-dimensions/A-box-with-a-given-diagonal.xml"/>
+    </exercise>
 
-    <!-- Add STACK exercises if made -->
+    <exercises xml:id="exercises-length-of-a-line">
+        <exercise xml:id="ex-diagonals-of-a-cuboid">
+            <statement><p>A cuboid measures <m>12\,\text{cm}</m> by <m>9\,\text{cm}</m> by <m>8\,\text{cm}</m>. Find the length of a diagonal of its <m>12\,\text{cm}</m> by <m>9\,\text{cm}</m> base, and of its space diagonal.</p></statement>
+            <answer><p><m>15\,\text{cm}</m>; <m>17\,\text{cm}</m></p></answer>
+            <solution><p>Base diagonal <m>\sqrt{144 + 81} = \sqrt{225} = 15\,\text{cm}</m>. Space diagonal <m>\sqrt{225 + 64} = \sqrt{289} = 17\,\text{cm}</m>.</p></solution>
+        </exercise>
+        <exercise xml:id="ex-diagonals-of-a-cube">
+            <statement><p>A cube has edges of <m>5\,\text{cm}</m>. Find the length of a face diagonal and of a space diagonal.</p></statement>
+            <answer><p><m>\sqrt{50} \approx 7.07\,\text{cm}</m>; <m>\sqrt{75} \approx 8.66\,\text{cm}</m></p></answer>
+        </exercise>
+        <exercise xml:id="ex-edge-of-a-rectangular-pyramid">
+            <statement><p>A right pyramid <m>VABCD</m> has a rectangular base <m>14\,\text{cm}</m> by <m>10\,\text{cm}</m> and height <m>9\,\text{cm}</m>. Find the length of the projection of <m>VA</m> on the base, and the length of <m>VA</m>.</p></statement>
+            <answer><p><m>\sqrt{74} \approx 8.60\,\text{cm}</m>; <m>\sqrt{155} \approx 12.45\,\text{cm}</m></p></answer>
+            <solution><p><m>AC^2 = 14^2 + 10^2 = 296</m>, so <m>OA = \frac{1}{2}\sqrt{296} = \sqrt{74} \approx 8.60\,\text{cm}</m>. Then <m>VA^2 = 74 + 9^2 = 155</m>, so <m>VA = \sqrt{155} \approx 12.45\,\text{cm}</m>.</p></solution>
+        </exercise>
+        <exercise xml:id="ex-pencil-in-a-box">
+            <statement><p>A geometry-set box is <m>18\,\text{cm}</m> by <m>5\,\text{cm}</m> by <m>4\,\text{cm}</m>. Will a pencil <m>19\,\text{cm}</m> long fit inside the closed box, lying straight?</p></statement>
+            <answer><p>Yes, just: the space diagonal is <m>\sqrt{365} \approx 19.10\,\text{cm}</m>.</p></answer>
+            <solution><p>The longest straight line in the box is the space diagonal, <m>\sqrt{18^2 + 5^2 + 4^2} = \sqrt{365} \approx 19.10\,\text{cm}</m>. This is more than <m>19\,\text{cm}</m>, so the pencil fits along the diagonal, with very little to spare.</p></solution>
+        </exercise>
+        <exercise xml:id="ex-height-of-a-store">
+            <statement><p>A store room is <m>6\,\text{m}</m> long and <m>4\,\text{m}</m> wide. A pole <m>9\,\text{m}</m> long just fits from a floor corner to the opposite ceiling corner. Find the height of the room.</p></statement>
+            <answer><p><m>\sqrt{29} \approx 5.39\,\text{m}</m></p></answer>
+            <solution><p><m>9^2 = 6^2 + 4^2 + h^2</m>, so <m>h^2 = 81 - 36 - 16 = 29</m> and <m>h = \sqrt{29} \approx 5.39\,\text{m}</m>.</p></solution>
+        </exercise>
+        <exercise xml:id="ex-floodlight-cable">
+            <statement><p>A floodlight stands on top of a <m>15\,\text{m}</m> pole at the centre of a square playground of side <m>40\,\text{m}</m> in Eldoret. A cable runs straight from the top of the pole to one corner of the playground. Find the length of the projection of the cable on the ground, and the length of the cable.</p></statement>
+            <answer><p><m>\sqrt{800} \approx 28.28\,\text{m}</m>; <m>\sqrt{1025} \approx 32.02\,\text{m}</m></p></answer>
+            <solution><p>The projection runs from the centre of the square to a corner: half a diagonal. The diagonal squared is <m>40^2 + 40^2 = 3200</m>, so the projection is <m>\frac{1}{2}\sqrt{3200} = \sqrt{800} \approx 28.28\,\text{m}</m>. The cable is <m>\sqrt{800 + 15^2} = \sqrt{1025} \approx 32.02\,\text{m}</m>.</p></solution>
+        </exercise>
+        <exercise xml:id="ex-spider-in-a-box">
+            <title>Challenge: A Spider on a Box</title>
+            <statement><p>A closed box is <m>30\,\text{cm}</m> by <m>20\,\text{cm}</m> by <m>10\,\text{cm}</m>.
+                <ol marker="(a)">
+                    <li><p>Find the length of its space diagonal.</p></li>
+                    <li><p>A spider at one corner crawls over the outside of the box to the opposite corner. Find the length of the shortest crawl.</p></li>
+                </ol>
+            </p></statement>
+            <hint><p>Unfold two faces flat, so that the crawl becomes a straight line. There are three ways to choose the two faces.</p></hint>
+            <answer><p>(a) <m>\sqrt{1400} \approx 37.42\,\text{cm}</m> (b) <m>\sqrt{1800} \approx 42.43\,\text{cm}</m></p></answer>
+            <solution><p>(a) <m>\sqrt{30^2 + 20^2 + 10^2} = \sqrt{1400} \approx 37.42\,\text{cm}</m>.</p>
+                <p>(b) Unfolded, the two faces make a rectangle, and the crawl is its diagonal. The three unfoldings give rectangles <m>30</m> by <m>20 + 10</m>, <m>20</m> by <m>30 + 10</m> and <m>10</m> by <m>30 + 20</m>, with diagonals <m>\sqrt{1800} \approx 42.43</m>, <m>\sqrt{2000} \approx 44.72</m> and <m>\sqrt{2600} \approx 50.99\,\text{cm}</m>. The shortest crawl is <m>42.43\,\text{cm}</m>, longer than the space diagonal, as it must be.</p></solution>
+        </exercise>
+    </exercises>
 
-    <!-- Add static exercises -->
-
-    <!-- <exercises>
-        <exercise>
-            <statement>   
-
-            </statement>   
-            <solution>
-
-            </solution>             
-        </exercise>        
-    </exercises> -->
-
-    <!-- [LP] Add information on how to differentiate  -->
-
-    <!-- <axiom component="lesson-plan">
+    <axiom component="lesson-plan">
         <title>Differentiation</title>
-
-        <table>
-            <title>Differentiation</title>
-            <tabular halign="left">
-                <row header="yes" bottom="minor">
-                    <cell>Learner Group</cell>
-                    <cell>Strategy &amp; Learning Experience</cell>
-                    <cell></cell>
-                </row>
-                <row>
-                    <cell>Struggling Learners (Support)</cell>
-                    <cell>
-                        XXXX
-                    </cell>
-                    <cell></cell>
-                </row>
-                <row>
-                    <cell>On-Level Learners (Core)</cell>
-                    <cell>
-                        <line>The core lesson activities as described above.</line>
-                    </cell>
-                    <cell></cell>
-                </row>
-                <row>
-                    <cell>Advanced Learners (Challenge)</cell>
-                    <cell>
-                        XXXX
-                    </cell>
-                    <cell></cell>
-                </row>
+        <table xml:id="table-differentiation-length-of-a-line">
+            <title>Differentiation Strategies</title>
+            <tabular halign="left" top="minor" bottom="minor" left="minor" right="minor">
+                <row header="yes" bottom="medium"><cell>Learner Group</cell><cell>Strategy and Learning Experience</cell></row>
+                <row><cell>Struggling Learners (Support)</cell><cell>Give a table with columns <q>triangle</q>, <q>right angle at</q>, <q>sides known</q> and <q>side wanted</q>. Work through <xref ref="example-diagonals-of-a-water-tank"/> and <xref ref="example-edges-of-a-pyramid"/>. Assign <xref ref="ex-diagonals-of-a-cuboid"/> and <xref ref="ex-diagonals-of-a-cube"/>.</cell></row>
+                <row><cell>On-Level Learners (Core)</cell><cell>Full activity plus all examples. Assign <xref ref="ex-diagonals-of-a-cuboid"/> to <xref ref="ex-floodlight-cable"/>.</cell></row>
+                <row><cell>Advanced Learners (Challenge)</cell><cell>All exercises including <xref ref="ex-spider-in-a-box"/>. Extension: find whole-number edges for a box whose space diagonal is exactly <m>22\,\text{cm}</m>. (Answer: <m>4</m>, <m>12</m> and <m>18\,\text{cm}</m>, or <m>12</m>, <m>12</m> and <m>14\,\text{cm}</m>; for example <m>16 + 144 + 324 = 484 = 22^2</m>.)</cell></row>
             </tabular>
         </table>
-    </axiom> -->
+    </axiom>
 
     <xi:include href="../lesson-plan-templates/assessment-methods.ptx" />
 

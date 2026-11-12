@@ -1,0 +1,8 @@
+<stack-static>
+    <statement><p><p>Baraka estimated <m>\displaystyle \int_{ {2} }^{ {4} } \left({x^3-3 x^2+2 x+2}\right)dx</m> with the trapezoidal rule. With <m>2</m> strips he got <m>T_2 = {22}</m>, and with <m>4</m> strips <m>T_4 = {20.5}</m>.</p><p>Take error <m>=</m> estimate <m>-</m> exact value (it may be negative). Give exact values; you may type fractions.</p><p>(a) Find the exact value of the integral.</p><div>Exact value <m>=</m> <fillin characters="8" name="ans1"/>  </div><p>(b) Find the error of <m>T_2</m>.</p><div>Error of <m>T_2 =</m> <fillin characters="8" name="ans2"/>  </div><p>(c) Find the error of <m>T_4</m>.</p><div>Error of <m>T_4 =</m> <fillin characters="8" name="ans3"/>  </div><p>(d) Use the pattern in the errors to predict <m>T_8</m>, the estimate with <m>8</m> strips, without calculating it.</p><div><m>T_8 =</m> <fillin characters="10" name="ans4"/>  </div></p></statement>
+    <solution><p><p>For a polynomial of degree up to <m>3</m>, doubling the number of strips divides the error of the trapezoidal rule by <m>4</m>, and the error keeps its sign.</p><p>(a) <m>\displaystyle \int_{ {2} }^{ {4} } \left({x^3-3 x^2+2 x+2}\right)dx = \left[{\frac{x^4}{4}-x^3+x^2+2 x}\right]_{ {2} }^{ {4} } = {20}</m>.</p><p>(b) Error of <m>T_2 = {22} - {20} = {2}</m>.</p><p>(c) Error of <m>T_4 = {20.5} - {20} = {0.5}</m>, a quarter of the error of <m>T_2</m>.</p><p>(d) The error of <m>T_8</m> should be <m>{0.5} \div 4 = {\frac{1}{8}}</m>, so <m>T_8 = {20} + {\frac{1}{8}} = {\frac{161}{8}}</m>, which is <m>{20.125}</m>.</p></p></solution>
+    <answer><p><m>20</m></p></answer>
+    <answer><p><m>2</m></p></answer>
+    <answer><p><m>\frac{1}{2}</m></p></answer>
+    <answer><p><m>\frac{161}{8}</m></p></answer>
+</stack-static>

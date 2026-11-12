@@ -46,161 +46,360 @@
          Suggested activity: Learners make a triangular-based pyramid from manila paper, choose two edges or diagonals that meet at a vertex, and calculate the angle between them.
          Interactive (JSXGraph): Rotatable pyramid with two selectable lines meeting at a vertex; the triangle containing them is shaded and the angle is displayed. -->
 
-    <!-- [LP] Add guidance on activity -->
+    <!-- Section notes (2026-11)
+         SLOs: Core 2.4 (c). Skew-line angles that need the cosine rule (deferred from 9.2) are in the exercises here.
+         Activity: as planning notes (a corner pyramid from manila paper; one angle with a right angle, one by the cosine rule)
+         JSXGraph: fig-angle-between-two-lines (assets/jsxgraph/angle-between-two-lines.js), as planning notes; the triangle is shaded by a 2D polygon over view.project3DTo2D points (available in 1.8.0)
+         STACK: assets/stack/top/2-measurement-and-geometry/09-three-dimensional-geometry/04-angle-between-two-lines/ -->
+
+    <p component="lesson-plan">Upon completion of this lesson, learners will be able to:
+        <ol>
+            <li><p><alert>Know:</alert> two lines that meet lie in a triangle; an edge at right angles to a face is at right angles to every line in that face; a triangle with no right angle needs the cosine rule.</p></li>
+            <li><p><alert>Do:</alert> find the angle between edges and diagonals that meet at a vertex of a cuboid, prism or pyramid, with and without a right angle.</p></li>
+            <li><p><alert>Apply:</alert> a manila-paper pyramid, wires in a grain store.</p></li>
+        </ol>
+    </p>
 
     <axiom component="lesson-plan">
         <title>Problem-Solving and Discovery</title>
         <dl>
-            <li>
-                <title>Suggested Time</title>
-                <p>
-                    XXX minutes
-                </p>
-            </li>
-            <li>
-                <title>Objective</title>
-                <p>
-                    XXX
-                </p>
-            </li>
-            <li>
-                <title>Teacher's Role</title>
-                <p>
-                    XXX
-                </p>
-            </li>
+            <li><title>Suggested Time</title><p>14 minutes</p></li>
+            <li><title>Objective</title><p>Learners build a triangular pyramid, measure two angles between its edges and calculate them, one in a triangle with a right angle and one in a triangle without.</p></li>
+            <li><title>Teacher's Role</title><p>Give each group of three a sheet of manila paper, scissors, glue and a protractor, and the net in <xref ref="fig-corner-pyramid-net"/>. After part (c), ask: <q>Which triangle did you use, and did it have a right angle?</q> In part (e), ask groups to report measured and calculated values side by side, without adjusting either.</p></li>
         </dl>
     </axiom>
 
-    <!-- Add Activity -->
-
-    <!-- <activity>
+    <activity xml:id="act-pyramid-from-manila-paper">
+        <title>A Pyramid from Manila Paper</title>
         <statement>
+            <p>The net below makes a pyramid <m>VABC</m>. Its base <m>ABC</m> has a right angle at <m>A</m>, with <m>AB = 9\,\text{cm}</m>, <m>AC = 12\,\text{cm}</m> and <m>BC = 15\,\text{cm}</m>. The faces <m>VAB</m> and <m>VAC</m> also have right angles at <m>A</m>, and <m>VA = 8\,\text{cm}</m>. When the net is folded, the edge <m>VA</m> stands vertically above the corner <m>A</m>, like the corner of a box sliced off.</p>
+            <figure xml:id="fig-corner-pyramid-net">
+                <caption>The net of the pyramid <m>VABC</m> (left) and the folded pyramid (right). Not drawn to scale.</caption>
+                <image width="70%">
+                    <shortdescription>Left: the net of pyramid VABC. The base ABC has a right angle at A, AB 9 cm, AC 12 cm and BC 15 cm. Face VAB is folded out below AB and face VAC to the left of AC, each with a right angle at A and VA 8 cm. Face VBC is folded out beyond BC, with VB the square root of 145 and VC the square root of 208. Right: the folded pyramid with VA vertical above A and right angles at A.</shortdescription>
+                    <latex-image>
+\tdplotsetmaincoords{70}{120}
+\begin{tikzpicture}[scale=0.28]
+\draw[thick] (0,0) -- (9,0) -- (0,12) -- cycle;
+\draw (0,0) -- (0,-8) -- (9,0);
+\draw (0,0) -- (-8,0) -- (0,12);
+\draw (9,0) -- (14.37,10.778) -- (0,12);
+\draw (0.7,0) -- (0.7,0.7) -- (0,0.7);
+\draw (0.7,0) -- (0.7,-0.7) -- (0,-0.7);
+\draw (0,0.7) -- (-0.7,0.7) -- (-0.7,0);
+\node[anchor=north east] at (0,0) {$A$};
+\node[anchor=west] at (9,0) {$B$};
+\node[anchor=south west] at (0,12) {$C$};
+\node[anchor=north] at (0,-8) {$V$};
+\node[anchor=east] at (-8,0) {$V$};
+\node[anchor=south west] at (14.37,10.778) {$V$};
+\node[below] at (4.5,0) {$9$};
+\node[right] at (0,6) {$12$};
+\node[anchor=south west] at (4.5,6) {$15$};
+\node[left] at (0,-4) {$8$};
+\node[below] at (-4,0) {$8$};
+\node[anchor=north west] at (11.685,5.389) {$\sqrt{145}$};
+\node[anchor=south west] at (7.185,11.389) {$\sqrt{208}$};
+\begin{scope}[shift={(26,2)}]
+\begin{scope}[tdplot_main_coords]
+\draw[thick] (0,0,0) -- (0,9,0) -- (-12,0,0) -- cycle;
+\draw[thick] (0,0,8) -- (0,0,0);
+\draw[thick] (0,0,8) -- (0,9,0);
+\draw[thick] (0,0,8) -- (-12,0,0);
+\draw (0,0.9,0) -- (-0.9,0.9,0) -- (-0.9,0,0);
+\draw (0,0.9,0) -- (0,0.9,0.9) -- (0,0,0.9);
+\draw (-0.9,0,0) -- (-0.9,0,0.9) -- (0,0,0.9);
+\node[anchor=north] at (0,0,0) {$A$};
+\node[anchor=west] at (0,9,0) {$B$};
+\node[anchor=east] at (-12,0,0) {$C$};
+\node[anchor=south] at (0,0,8) {$V$};
+\end{scope}
+\end{scope}
+\end{tikzpicture}
+                    </latex-image>
+                </image>
+            </figure>
+            <p>
+                <ol marker="(a)">
+                    <li>
+                        <p>Draw the net on manila paper, cut it out and fold it into the pyramid. Glue the edges with tabs.</p>
+                        <solution component="lesson-plan"><p>The three faces that meet at <m>A</m> fold up so that <m>VA</m> is vertical. The face <m>VBC</m> closes the pyramid.</p></solution>
+                    </li>
+                    <li>
+                        <p>Measure angle <m>VBA</m>, the angle between the edges <m>BV</m> and <m>BA</m>. Then calculate it in triangle <m>VAB</m>.</p>
+                        <solution component="lesson-plan"><p>Triangle <m>VAB</m> has a right angle at <m>A</m>: <m>\tan VBA = \dfrac{8}{9}</m>, so angle <m>VBA \approx 41.6^{\circ}</m>. Measurements of about <m>40^{\circ}</m> to <m>43^{\circ}</m> are good.</p></solution>
+                    </li>
+                    <li>
+                        <p>Measure angle <m>BVC</m>, the angle between the edges <m>VB</m> and <m>VC</m> at the top.</p>
+                        <solution component="lesson-plan"><p>About <m>68^{\circ}</m>. Triangle <m>BVC</m> has no right angle, so tan, sin and cos alone will not give it.</p></solution>
+                    </li>
+                    <li>
+                        <p>Calculate <m>VB</m> and <m>VC</m> by Pythagoras. Then use the cosine rule in triangle <m>BVC</m>, with <m>BC = 15\,\text{cm}</m>, to calculate angle <m>BVC</m>.</p>
+                        <solution component="lesson-plan"><p><m>VB = \sqrt{9^2 + 8^2} = \sqrt{145} \approx 12.04\,\text{cm}</m> and <m>VC = \sqrt{12^2 + 8^2} = \sqrt{208} \approx 14.42\,\text{cm}</m>.
+                        <md>\cos BVC = \frac{145 + 208 - 225}{2\sqrt{145}\sqrt{208}} = \frac{128}{2\sqrt{30\,160}} \approx 0.3685</md>
+                        so angle <m>BVC \approx 68.4^{\circ}</m>.</p></solution>
+                    </li>
+                    <li>
+                        <p>Write your measured and calculated angles side by side. Why might they differ?</p>
+                        <solution component="lesson-plan"><p>Measurements differ by a degree or two because of cutting, folding and reading the protractor. Report the values as found; the calculated values are the more accurate.</p></solution>
+                    </li>
+                </ol>
+            </p>
         </statement>
-    </activity> -->
+    </activity>
 
-    <!-- [LP] Add guidance on structured lesson plan-->
-
-    <!-- <axiom component="lesson-plan">
+    <axiom component="lesson-plan">
         <title>Structured Instruction</title>
         <p>
             <dl>
-            <li>
-                <title>Suggested Time</title>
-                <p>
-                    XX minutes
-                </p>
-            </li>
-            <li>
-                <title>Objective</title>
-                <p>
-                    To formalize the concepts and properties learners discovered in the anchor task.
-                </p>
-            </li>
+                <li><title>Suggested Time</title><p>8 minutes</p></li>
+                <li><title>Objective</title><p>To formalise the method for the angle between two lines that meet: name the triangle, look for a right angle, otherwise use the cosine rule.</p></li>
             </dl>
         </p>
         <paragraphs>
             <title>Key Takeaways &amp; Teacher Connection</title>
             <ol>
-                <li>
-                    <p>
-                        <alert>Connecting to Learner Work:</alert> XXXX
-                    </p>
-                </li>
+                <li><p><alert>Connecting to Learner Work:</alert> in part (b) the triangle <m>VAB</m> had a right angle at <m>A</m>, because <m>VA</m> is at right angles to the base; in part (d) triangle <m>BVC</m> had none.</p></li>
+                <li><p>Name the triangle by its three vertices: the vertex where the lines meet and the other end of each line.</p></li>
+                <li><p>Look for a right angle first. Three known sides and no right angle mean the cosine rule from Grade 11.</p></li>
             </ol>
         </paragraphs>
-    </axiom> -->
+    </axiom>
 
-    <!-- Add insight / key takeaway directly related to activity / learner experience -->
+    <insight xml:id="insight-angle-between-two-lines">
+        <title>Angle Between Two Lines That Meet</title>
+        <p>Two lines that meet at a point lie in one triangle: the point where they meet and the other end of each line. To find the angle between them, <em>find the triangle that contains both lines, then flatten it</em>: sketch the triangle on its own and mark the sides you know.</p>
+        <p>
+            <ul>
+                <li><p>Look for a right angle. An edge that is at right angles to a face is at right angles to every line in that face. In a cuboid, <m>AB</m> is at right angles to the face <m>BCGF</m>, so angle <m>ABG = 90^{\circ}</m>. Then use sine, cosine or tangent.</p></li>
+                <li><p>If the triangle has no right angle, find its three sides by Pythagoras and use the <term>cosine rule</term> from Grade 11. For the angle <m>A</m> opposite the side <m>a</m>:
+                <md>\cos A = \frac{b^2 + c^2 - a^2}{2bc}</md></p></li>
+            </ul>
+        </p>
+        <p>An angle named by three letters, such as angle <m>AVC</m>, has its vertex at the middle letter, <m>V</m>. Such an angle may be obtuse. Two lines make two angles that add up to <m>180^{\circ}</m>; <q>the angle between two lines</q> means the one that is not obtuse, from <m>0^{\circ}</m> to <m>90^{\circ}</m>.</p>
+    </insight>
 
-    <!-- <insight>
-    </insight> -->
-
-    <!-- Add further instruction (not in a block) to develop ideas as needed -->
+    <figure xml:id="fig-angle-between-two-lines">
+        <caption>Choose two lines with the pair slider. The triangle that contains both is outlined and the angle between them is shown. Change the height and watch the angle change.</caption>
+        <interactive xml:id="interactive-angle-between-two-lines" platform="jsxgraph" width="90%" aspect="16:12" source="jsxgraph/angle-between-two-lines.js">
+            <slate xml:id="jsxgraph-angle-between-two-lines" surface="jsxboard" aspect="16:12"/>
+            <instructions>
+                <p>
+                    <ul>
+                        <li><p>Move the <alert>pair</alert> slider from <m>1</m> to <m>4</m>. For each pair of lines, name the triangle that contains them. Which of these triangles have a right angle?</p></li>
+                        <li><p>Set <alert>pair</alert> to <m>1</m> and <alert>h</alert> to <m>7.2</m>. This pyramid has the same shape as the model in <xref ref="example-angles-at-the-top-of-a-pyramid"/>, so angle <m>AVC</m> is the same, <m>61.0^{\circ}</m>.</p></li>
+                        <li><p>Make <alert>h</alert> small. Angle <m>AVC</m> becomes obtuse: what then is the angle between the lines <m>VA</m> and <m>VC</m>? Drag the view sliders to turn the pyramid.</p></li>
+                    </ul>
+                </p>
+            </instructions>
+        </interactive>
+    </figure>
 
     <xi:include href="../lesson-plan-templates/example-intro.ptx" />
 
-    <!-- Add at least 3 examples -->
-
-    <!-- <example>
+    <example xml:id="example-angle-in-a-right-angled-triangle">
+        <title>An Angle in a Right-Angled Triangle</title>
         <statement>
+            <p>The cuboid <m>ABCDEFGH</m> has <m>AB = 12\,\text{cm}</m>, <m>BC = 5\,\text{cm}</m> and <m>AE = 7\,\text{cm}</m>. Find the angle between the space diagonal <m>AG</m> and the edge <m>AB</m>.</p>
         </statement>
         <solution>
+            <p><alert>Step 1: the triangle.</alert> The lines meet at <m>A</m>; their other ends are <m>G</m> and <m>B</m>. So the angle is angle <m>GAB</m> in triangle <m>ABG</m>.</p>
+            <p><alert>Step 2: a right angle?</alert> <m>AB</m> is at right angles to the face <m>BCGF</m>, and <m>BG</m> lies in that face, so angle <m>ABG = 90^{\circ}</m>.</p>
+            <p><alert>Step 3: the sides.</alert> <m>BG^2 = 5^2 + 7^2 = 74</m>, and <m>AG^2 = 12^2 + 74 = 218</m>, so <m>AG = \sqrt{218} \approx 14.76\,\text{cm}</m>.</p>
+            <p><alert>Step 4: the angle.</alert> <m>AB</m> is next to angle <m>GAB</m> and <m>AG</m> is the hypotenuse:
+            <md>\cos GAB = \frac{12}{\sqrt{218}}</md>
+            so angle <m>GAB \approx 35.6^{\circ}</m>.</p>
         </solution>
     </example>
 
-    <example>
+    <example xml:id="example-angle-by-the-cosine-rule">
+        <title>An Angle by the Cosine Rule</title>
         <statement>
+            <p>In the same cuboid (<m>AB = 12\,\text{cm}</m>, <m>BC = 5\,\text{cm}</m>, <m>AE = 7\,\text{cm}</m>), find the angle between the diagonals <m>AC</m> and <m>AF</m>.</p>
+            <figure xml:id="fig-triangle-in-a-cuboid">
+                <caption>Triangle <m>ACF</m> across three faces of the cuboid (dashed), and the same triangle drawn flat.</caption>
+                <image width="70%">
+                    <shortdescription>Left: a cuboid ABCDEFGH, AB 12 cm, BC 5 cm, AE 7 cm, with the triangle ACF drawn in thick dashed lines across the base, the front face and the right-hand face. The hidden corner D and its three edges are dashed. Right: triangle ACF drawn flat, with AC 13, AF the square root of 193, CF the square root of 74, and the angle theta at A marked.</shortdescription>
+                    <latex-image>
+\tdplotsetmaincoords{70}{120}
+\begin{tikzpicture}[scale=0.3]
+\begin{scope}[tdplot_main_coords]
+\draw (5,0,0) -- (5,12,0);
+\draw (5,12,0) -- (0,12,0);
+\draw (5,0,7) -- (5,12,7);
+\draw (5,12,7) -- (0,12,7);
+\draw (0,12,7) -- (0,0,7);
+\draw (0,0,7) -- (5,0,7);
+\draw (5,0,0) -- (5,0,7);
+\draw (5,12,0) -- (5,12,7);
+\draw (0,12,0) -- (0,12,7);
+\draw[dashed] (5,0,0) -- (0,0,0);
+\draw[dashed] (0,0,0) -- (0,12,0);
+\draw[dashed] (0,0,0) -- (0,0,7);
+\node[anchor=north east] at (5,0,0) {$A$};
+\node[anchor=north west] at (5,12,0) {$B$};
+\node[anchor=west] at (0,12,0) {$C$};
+\node[anchor=south east] at (0,0,0) {$D$};
+\node[anchor=east] at (5,0,7) {$E$};
+\node[anchor=north west] at (5,12,7) {$F$};
+\node[anchor=south west] at (0,12,7) {$G$};
+\node[anchor=south east] at (0,0,7) {$H$};
+\draw[very thick,dashed] (5,0,0) -- (0,12,0);
+\draw[very thick,dashed] (5,0,0) -- (5,12,7);
+\draw[very thick,dashed] (0,12,0) -- (5,12,7);
+\node[anchor=north] at (5,6,0) {$12$};
+\node[anchor=north west] at (2.5,12,0) {$5$};
+\node[anchor=east] at (5,0,3.5) {$7$};
+\end{scope}
+\begin{scope}[shift={(13,-6)}]
+\draw[very thick] (0,0) -- (13,0) -- (11.077,8.385) -- cycle;
+\draw (2.2,0) .. controls (2.607,0.875) .. (1.754,1.328);
+\node at (3.337,1.121) {$\theta$};
+\node[below left] at (0,0) {$A$};
+\node[below right] at (13,0) {$C$};
+\node[above] at (11.077,8.385) {$F$};
+\node[below] at (6.5,0) {$13$};
+\node[anchor=south east] at (5.538,4.192) {$\sqrt{193}$};
+\node[anchor=south west] at (12.038,4.192) {$\sqrt{74}$};
+\end{scope}
+\end{tikzpicture}
+                    </latex-image>
+                </image>
+            </figure>
         </statement>
         <solution>
+            <p><alert>Step 1: the triangle.</alert> The lines meet at <m>A</m>, so the angle is angle <m>CAF</m> in triangle <m>ACF</m>. Each side of this triangle is a diagonal of a face.</p>
+            <p><alert>Step 2: the sides.</alert>
+            <md>
+                <mrow>AC^2 \amp = 12^2 + 5^2 = 169, \amp AC \amp = 13</mrow>
+                <mrow>AF^2 \amp = 12^2 + 7^2 = 193, \amp AF \amp = \sqrt{193} \approx 13.89</mrow>
+                <mrow>CF^2 \amp = 5^2 + 7^2 = 74, \amp CF \amp = \sqrt{74} \approx 8.60</mrow>
+            </md></p>
+            <p><alert>Step 3: a right angle?</alert> No: <m>169 + 74 \neq 193</m> and no other pair of squares adds to the third. Use the cosine rule, with <m>CF</m> opposite angle <m>CAF</m>:
+            <md>\cos CAF = \frac{169 + 193 - 74}{2 \times 13 \times \sqrt{193}} = \frac{288}{26\sqrt{193}}</md>
+            so angle <m>CAF \approx 37.1^{\circ}</m>. Keep the squares (<m>169</m>, <m>193</m>, <m>74</m>) exactly; rounding the sides first can change the last digit.</p>
         </solution>
     </example>
 
-    <example>
+    <example xml:id="example-angles-at-the-top-of-a-pyramid">
+        <title>Angles at the Top of a Pyramid</title>
         <statement>
+            <p>A model of a roof is a right pyramid <m>VABCD</m> on a square base of side <m>10\,\text{cm}</m>, with height <m>VO = 12\,\text{cm}</m>. Find (a) angle <m>AVC</m>, between opposite sloping edges; (b) angle <m>AVB</m>, between neighbouring sloping edges.</p>
+            <figure xml:id="fig-pyramid-apex-angles">
+                <caption>The angles <m>AVC</m> and <m>AVB</m> at the top of the pyramid.</caption>
+                <image width="55%">
+                    <shortdescription>A right pyramid VABCD on a square base of side 10 cm with height VO 12 cm drawn dotted. The sloping edges VA, VB and VC are thick; the base diagonal AC is dashed. Angle AVC and angle AVB are marked at V.</shortdescription>
+                    <latex-image>
+\tdplotsetmaincoords{70}{120}
+\begin{tikzpicture}[tdplot_main_coords,scale=0.32]
+\draw (10,0,0) -- (10,10,0);
+\draw (10,10,0) -- (0,10,0);
+\draw (5,5,12) -- (10,0,0);
+\draw (5,5,12) -- (10,10,0);
+\draw (5,5,12) -- (0,10,0);
+\draw[dashed] (10,0,0) -- (0,0,0);
+\draw[dashed] (0,0,0) -- (0,10,0);
+\draw[dashed] (5,5,12) -- (0,0,0);
+\draw[dashed] (10,0,0) -- (0,10,0);
+\draw[dotted] (5,5,12) -- (5,5,0);
+\draw[very thick] (5,5,12) -- (10,0,0);
+\draw[very thick] (5,5,12) -- (0,10,0);
+\draw[very thick] (5,5,12) -- (10,10,0);
+\draw (5.933,4.067,9.76) .. controls (5,5,8.75) .. (4.067,5.933,9.76);
+\draw (5.574,4.426,10.622) .. controls (5.769,5,10.154) .. (5.574,5.574,10.622);
+\node[anchor=north east] at (10,0,0) {$A$};
+\node[anchor=north west] at (10,10,0) {$B$};
+\node[anchor=west] at (0,10,0) {$C$};
+\node[anchor=south east] at (0,0,0) {$D$};
+\node[anchor=south] at (5,5,12) {$V$};
+\node[anchor=north] at (5,5,0) {$O$};
+\node[anchor=north] at (10,5,0) {$10$};
+\node[anchor=west] at (5,5,6) {$12$};
+\end{tikzpicture}
+                    </latex-image>
+                </image>
+            </figure>
         </statement>
         <solution>
+            <p>(a) Triangle <m>AVC</m> is isosceles, and <m>VO</m> cuts it into two right-angled triangles. From <xref ref="example-edges-of-a-pyramid"/>, <m>OA = \sqrt{50} \approx 7.07\,\text{cm}</m>. In triangle <m>VOA</m>, with the right angle at <m>O</m>:
+            <md>\tan AVO = \frac{OA}{VO} = \frac{\sqrt{50}}{12}</md>
+            so angle <m>AVO \approx 30.5^{\circ}</m> and angle <m>AVC = 2 \times AVO \approx 61.0^{\circ}</m> (double before rounding).</p>
+            <p>(b) Triangle <m>AVB</m> has <m>VA = VB = \sqrt{50 + 144} = \sqrt{194}</m> and <m>AB = 10</m>. <m>VO</m> is not in this face, and triangle <m>AVB</m> has no right angle, so use the cosine rule (or split the isosceles triangle at the midpoint of <m>AB</m>, as in <xref ref="sec-angle-between-skew-lines"/>):
+            <md>\cos AVB = \frac{194 + 194 - 100}{2 \times 194} = \frac{288}{388}</md>
+            so angle <m>AVB \approx 42.1^{\circ}</m>.</p>
         </solution>
-    </example> -->
+    </example>
 
     <xi:include href="../lesson-plan-templates/assessment-intro.ptx" />
+    <xi:include href="../lesson-plan-templates/checkpoint.ptx" />
 
-    <!-- If STACK questions are included, uncomment this: -->
+    <p>Choose from each list. Type angles in degrees as numbers, without the degree sign, for example <c>36.9</c>, correct to 1 decimal place.</p>
 
-    <!-- <xi:include href="../lesson-plan-templates/checkpoint.ptx" /> -->
+    <exercise xml:id="ex-angle-between-two-lines-in-a-cuboid">
+        <!--<title></title>-->
+        <stack label="stk-angle-between-two-lines-in-a-cuboid" source="stack/top/2-measurement-and-geometry/09-three-dimensional-geometry/04-angle-between-two-lines/Angle-between-two-lines-in-a-cuboid.xml"/>
+    </exercise>
 
-    <!-- Add STACK exercises if made -->
+    <exercise xml:id="ex-angles-between-the-edges-of-a-pyramid">
+        <!--<title></title>-->
+        <stack label="stk-angles-between-the-edges-of-a-pyramid" source="stack/top/2-measurement-and-geometry/09-three-dimensional-geometry/04-angle-between-two-lines/Angles-between-the-edges-of-a-pyramid.xml"/>
+    </exercise>
 
-    <!-- Add static exercises -->
+    <exercise xml:id="ex-finding-the-mistake-in-an-angle-calculation">
+        <!--<title></title>-->
+        <stack label="stk-finding-the-mistake-in-an-angle-calculation" source="stack/top/2-measurement-and-geometry/09-three-dimensional-geometry/04-angle-between-two-lines/Finding-the-mistake-in-an-angle-calculation.xml"/>
+    </exercise>
 
-    <!-- <exercises>
-        <exercise>
-            <statement>   
+    <exercises xml:id="exercises-angle-between-two-lines">
+        <exercise xml:id="ex-angles-in-a-cuboid">
+            <statement><p>A cuboid <m>ABCDEFGH</m> has <m>AB = 14\,\text{cm}</m>, <m>BC = 8\,\text{cm}</m> and <m>AE = 5\,\text{cm}</m>. Find (a) angle <m>GAB</m>; (b) angle <m>CAH</m>.</p></statement>
+            <answer><p>(a) <m>34.0^{\circ}</m> (b) <m>65.1^{\circ}</m></p></answer>
+            <solution><p>(a) Angle <m>ABG = 90^{\circ}</m>. <m>AG = \sqrt{196 + 64 + 25} = \sqrt{285}</m>, so <m>\cos GAB = \dfrac{14}{\sqrt{285}}</m> and angle <m>GAB \approx 34.0^{\circ}</m>.</p>
+            <p>(b) Triangle <m>ACH</m>: <m>AC^2 = 196 + 64 = 260</m>, <m>AH^2 = 64 + 25 = 89</m>, <m>CH^2 = 196 + 25 = 221</m>. No right angle, so <m>\cos CAH = \dfrac{260 + 89 - 221}{2\sqrt{260}\sqrt{89}}</m> and angle <m>CAH \approx 65.1^{\circ}</m>.</p></solution>
+        </exercise>
+        <exercise xml:id="ex-angle-in-a-tent">
+            <statement><p>For the tent in <xref ref="fig-tent-prism"/> (<m>AB = 2.4\,\text{m}</m>, <m>CA = CB = 1.5\,\text{m}</m>, <m>AD = 3\,\text{m}</m>), find angle <m>DAF</m>, between the bottom edge <m>AD</m> and the line <m>AF</m> from a front corner to the back of the ridge.</p></statement>
+            <answer><p><m>26.6^{\circ}</m></p></answer>
+            <solution><p><m>AD</m> is at right angles to the back end <m>DEF</m>, which contains <m>DF</m>, so angle <m>ADF = 90^{\circ}</m>. <m>DF = 1.5\,\text{m}</m> and <m>AD = 3\,\text{m}</m>, so <m>\tan DAF = \dfrac{1.5}{3}</m> and angle <m>DAF \approx 26.6^{\circ}</m>.</p></solution>
+        </exercise>
+        <exercise xml:id="ex-angles-of-a-rectangular-pyramid">
+            <statement><p>A right pyramid <m>VABCD</m> has a rectangular base with <m>AB = 16\,\text{cm}</m> and <m>BC = 12\,\text{cm}</m>. Each sloping edge is <m>14\,\text{cm}</m> long. Find angles <m>AVB</m> and <m>BVC</m>.</p></statement>
+            <answer><p>Angle <m>AVB \approx 69.7^{\circ}</m>; angle <m>BVC \approx 50.8^{\circ}</m></p></answer>
+            <solution><p>Triangle <m>AVB</m>: <m>\cos AVB = \dfrac{196 + 196 - 256}{2 \times 196} = \dfrac{136}{392}</m>, so angle <m>AVB \approx 69.7^{\circ}</m>. Triangle <m>BVC</m>: <m>\cos BVC = \dfrac{196 + 196 - 144}{392} = \dfrac{248}{392}</m>, so angle <m>BVC \approx 50.8^{\circ}</m>. The longer base edge is opposite the larger angle.</p></solution>
+        </exercise>
+        <exercise xml:id="ex-corner-pyramid-angle">
+            <statement><p>A pyramid <m>VABC</m> has a right angle <m>BAC</m> in its base, <m>AB = AC = 10\,\text{cm}</m>, and the edge <m>VA = 7\,\text{cm}</m> is vertical. Find angle <m>BVC</m>.</p></statement>
+            <answer><p><m>70.8^{\circ}</m></p></answer>
+            <solution><p><m>VB = VC = \sqrt{100 + 49} = \sqrt{149}</m> and <m>BC = \sqrt{100 + 100} = \sqrt{200}</m>. By the cosine rule, <m>\cos BVC = \dfrac{149 + 149 - 200}{2 \times 149} = \dfrac{98}{298}</m>, so angle <m>BVC \approx 70.8^{\circ}</m>.</p></solution>
+        </exercise>
+        <exercise xml:id="ex-grain-store-wires">
+            <statement><p>A grain store at a cereals depot in Eldoret is a cuboid <m>ABCDEFGH</m> with <m>AB = 15\,\text{m}</m>, <m>BC = 9\,\text{m}</m> and <m>AE = 5\,\text{m}</m>. Wires run from the ceiling corner <m>G</m> to the floor corners <m>A</m> and <m>C</m>. Find the angle <m>AGC</m> between the wires.</p></statement>
+            <answer><p><m>74.0^{\circ}</m></p></answer>
+            <solution><p><m>GC</m> is vertical, so triangle <m>AGC</m> has a right angle at <m>C</m>. <m>AC = \sqrt{225 + 81} = \sqrt{306}</m> and <m>GC = 5</m>, so <m>\tan AGC = \dfrac{\sqrt{306}}{5}</m> and angle <m>AGC \approx 74.0^{\circ}</m>.</p></solution>
+        </exercise>
+        <exercise xml:id="ex-angle-between-space-diagonals">
+            <title>Challenge: Two Space Diagonals of a Cube</title>
+            <statement><p>Show that the angle between two space diagonals of a cube, <m>AG</m> and <m>CE</m>, is about <m>70.5^{\circ}</m>, whatever the size of the cube.</p></statement>
+            <hint><p>The diagonals cross at the centre <m>X</m> of the cube. Use the rectangle <m>ACGE</m> and the triangle <m>AXC</m>.</p></hint>
+            <answer><p>Angle <m>AXC \approx 109.5^{\circ}</m>, so the angle between the lines is <m>180^{\circ} - 109.5^{\circ} = 70.5^{\circ}</m>.</p></answer>
+            <solution><p>Let the edge be <m>a</m>. Then <m>AC = a\sqrt{2}</m> and <m>AG = CE = a\sqrt{3}</m>. The diagonals bisect each other at <m>X</m>, so <m>XA = XC = \frac{a\sqrt{3}}{2}</m>. In triangle <m>AXC</m>:
+            <md>\cos AXC = \frac{\frac{3a^2}{4} + \frac{3a^2}{4} - 2a^2}{2 \times \frac{3a^2}{4}} = \frac{-\frac{a^2}{2}}{\frac{3a^2}{2}} = -\frac{1}{3}</md>
+            The <m>a^2</m> cancels, so the angle does not depend on the size of the cube. Angle <m>AXC \approx 109.5^{\circ}</m> is obtuse, so the angle between the two lines is <m>180^{\circ} - 109.5^{\circ} = 70.5^{\circ}</m>.</p></solution>
+        </exercise>
+    </exercises>
 
-            </statement>   
-            <solution>
-
-            </solution>             
-        </exercise>        
-    </exercises> -->
-
-    <!-- [LP] Add information on how to differentiate  -->
-
-    <!-- <axiom component="lesson-plan">
+    <axiom component="lesson-plan">
         <title>Differentiation</title>
-
-        <table>
-            <title>Differentiation</title>
-            <tabular halign="left">
-                <row header="yes" bottom="minor">
-                    <cell>Learner Group</cell>
-                    <cell>Strategy &amp; Learning Experience</cell>
-                    <cell></cell>
-                </row>
-                <row>
-                    <cell>Struggling Learners (Support)</cell>
-                    <cell>
-                        XXXX
-                    </cell>
-                    <cell></cell>
-                </row>
-                <row>
-                    <cell>On-Level Learners (Core)</cell>
-                    <cell>
-                        <line>The core lesson activities as described above.</line>
-                    </cell>
-                    <cell></cell>
-                </row>
-                <row>
-                    <cell>Advanced Learners (Challenge)</cell>
-                    <cell>
-                        XXXX
-                    </cell>
-                    <cell></cell>
-                </row>
+        <table xml:id="table-differentiation-angle-between-two-lines">
+            <title>Differentiation Strategies</title>
+            <tabular halign="left" top="minor" bottom="minor" left="minor" right="minor">
+                <row header="yes" bottom="medium"><cell>Learner Group</cell><cell>Strategy and Learning Experience</cell></row>
+                <row><cell>Struggling Learners (Support)</cell><cell>Work through activity part (b) with the model in hand and <xref ref="example-angle-in-a-right-angled-triangle"/>. Give a <q>triangle finder</q> card: where do the lines meet; where are their other ends; is there a right angle? Assign <xref ref="ex-angles-in-a-cuboid"/> (a) and <xref ref="ex-angle-in-a-tent"/>.</cell></row>
+                <row><cell>On-Level Learners (Core)</cell><cell>Full activity plus all examples. Assign <xref ref="ex-angles-in-a-cuboid"/> to <xref ref="ex-grain-store-wires"/>.</cell></row>
+                <row><cell>Advanced Learners (Challenge)</cell><cell>All exercises including <xref ref="ex-angle-between-space-diagonals"/>. Extension: for the tent in <xref ref="fig-tent-prism"/>, find the angle between the skew lines <m>AB</m> and <m>CE</m>. (Answer: <m>AB</m> is parallel to <m>DE</m>, which meets <m>CE</m> at <m>E</m>. Triangle <m>CDE</m> has <m>DE = 2.4\,\text{m}</m> and <m>CD = CE = \sqrt{1.5^2 + 3^2} = \sqrt{11.25}</m> m, so <m>\cos CED = \dfrac{1.2}{\sqrt{11.25}}</m> and the angle is about <m>69.0^{\circ}</m>.)</cell></row>
             </tabular>
         </table>
-    </axiom> -->
+    </axiom>
 
     <xi:include href="../lesson-plan-templates/assessment-methods.ptx" />
 

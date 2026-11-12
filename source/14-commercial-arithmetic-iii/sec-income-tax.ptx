@@ -33,7 +33,7 @@
                 <li component="lesson-plan">
                     <title>Estimated Duration</title>
                     <p>
-                        40 minutes
+                        2 lessons of 40 minutes
                     </p>
                 </li>
             </dl>
@@ -46,163 +46,433 @@
          Content summary: Income tax: computing PAYE and net income from the current tax table and statutory deductions (reverse taxation not required).
          Suggested activity: Learners use the current KRA PAYE tax bands to compute the net pay of a teacher given gross salary and statutory deductions. -->
 
-    <!-- [LP] Add guidance on activity -->
+    <!-- Section notes (2026-11)
+         SLO: Essential 2.4 (e); outcomes (f) apply and (g) appreciate in lesson 6.2. Lessons 6.1 and 6.2 as subsections. Reverse taxation not taught.
+         Activity: as planning notes (a teacher's net pay from the KRA table in 6.2; slicing a salary into the bands in 6.1)
+         Tax table: KRA PAYE bands, Finance Act 2023 (from 1 July 2023), accessed 2026-11-11. NSSF, SHIF and the housing levy named, never computed.
+         Figure: fig-paye-bands (TikZ); no JSXGraph named in the planning notes
+         STACK: assets/stack/top/2-measurement-and-geometry/14-commercial-arithmetic-iii/06-income-tax/ -->
 
-    <axiom component="lesson-plan">
-        <title>Problem-Solving and Discovery</title>
-        <dl>
-            <li>
-                <title>Suggested Time</title>
-                <p>
-                    XXX minutes
-                </p>
-            </li>
-            <li>
-                <title>Objective</title>
-                <p>
-                    XXX
-                </p>
-            </li>
-            <li>
-                <title>Teacher's Role</title>
-                <p>
-                    XXX
-                </p>
-            </li>
-        </dl>
-    </axiom>
+    <!-- ============================================================ Lesson 6.1 -->
+    <subsection xml:id="subsec-paye-from-the-tax-bands">
+        <title>PAYE from the Tax Bands</title>
 
-    <!-- Add Activity -->
-
-    <!-- <activity>
-        <statement>
-        </statement>
-    </activity> -->
-
-    <!-- [LP] Add guidance on structured lesson plan-->
-
-    <!-- <axiom component="lesson-plan">
-        <title>Structured Instruction</title>
-        <p>
-            <dl>
-            <li>
-                <title>Suggested Time</title>
-                <p>
-                    XX minutes
-                </p>
-            </li>
-            <li>
-                <title>Objective</title>
-                <p>
-                    To formalize the concepts and properties learners discovered in the anchor task.
-                </p>
-            </li>
-            </dl>
-        </p>
-        <paragraphs>
-            <title>Key Takeaways &amp; Teacher Connection</title>
+        <p component="lesson-plan">Upon completion of this lesson, learners will be able to:
             <ol>
-                <li>
-                    <p>
-                        <alert>Connecting to Learner Work:</alert> XXXX
-                    </p>
-                </li>
+                <li><p><alert>Know:</alert> gross pay and taxable pay; tax bands; personal relief; PAYE.</p></li>
+                <li><p><alert>Do:</alert> work out tax band by band, then PAYE after relief; say which is the highest rate a pay reaches.</p></li>
+                <li><p><alert>Apply:</alert> monthly salaries in Kenya.</p></li>
             </ol>
-        </paragraphs>
-    </axiom> -->
+        </p>
 
-    <!-- Add insight / key takeaway directly related to activity / learner experience -->
+        <axiom component="lesson-plan">
+            <title>Problem-Solving and Discovery</title>
+            <dl>
+                <li><title>Suggested Time</title><p>14 minutes</p></li>
+                <li><title>Objective</title><p>Learners split a monthly pay into the KRA tax bands and tax each slice at its own rate.</p></li>
+                <li><title>Teacher's Role</title><p>Put <xref ref="fig-paye-bands"/> on the board. Stress that each slice keeps its own rate; a learner who answers part (e) with <q>yes</q> has met the commonest mistake.</p></li>
+            </dl>
+        </axiom>
 
-    <!-- <insight>
-    </insight> -->
-
-    <!-- Add further instruction (not in a block) to develop ideas as needed -->
-
-    <xi:include href="../lesson-plan-templates/example-intro.ptx" />
-
-    <!-- Add at least 3 examples -->
-
-    <!-- <example>
-        <statement>
-        </statement>
-        <solution>
-        </solution>
-    </example>
-
-    <example>
-        <statement>
-        </statement>
-        <solution>
-        </solution>
-    </example>
-
-    <example>
-        <statement>
-        </statement>
-        <solution>
-        </solution>
-    </example> -->
-
-    <xi:include href="../lesson-plan-templates/assessment-intro.ptx" />
-
-    <!-- If STACK questions are included, uncomment this: -->
-
-    <!-- <xi:include href="../lesson-plan-templates/checkpoint.ptx" /> -->
-
-    <!-- Add STACK exercises if made -->
-
-    <!-- Add static exercises -->
-
-    <!-- <exercises>
-        <exercise>
-            <statement>   
-
-            </statement>   
-            <solution>
-
-            </solution>             
-        </exercise>        
-    </exercises> -->
-
-    <!-- [LP] Add information on how to differentiate  -->
-
-    <!-- <axiom component="lesson-plan">
-        <title>Differentiation</title>
-
-        <table>
-            <title>Differentiation</title>
-            <tabular halign="left">
-                <row header="yes" bottom="minor">
-                    <cell>Learner Group</cell>
-                    <cell>Strategy &amp; Learning Experience</cell>
-                    <cell></cell>
-                </row>
-                <row>
-                    <cell>Struggling Learners (Support)</cell>
-                    <cell>
-                        XXXX
-                    </cell>
-                    <cell></cell>
-                </row>
-                <row>
-                    <cell>On-Level Learners (Core)</cell>
-                    <cell>
-                        <line>The core lesson activities as described above.</line>
-                    </cell>
-                    <cell></cell>
-                </row>
-                <row>
-                    <cell>Advanced Learners (Challenge)</cell>
-                    <cell>
-                        XXXX
-                    </cell>
-                    <cell></cell>
-                </row>
+        <table xml:id="table-paye-bands-2023">
+            <title>PAYE Tax Bands for Resident Individuals, from 1 July 2023 (Kenya Revenue Authority)</title>
+            <tabular halign="center" top="minor" bottom="minor" left="minor" right="minor">
+                <row header="yes" bottom="medium"><cell>Monthly taxable pay (Ksh)</cell><cell>Yearly taxable pay (Ksh)</cell><cell>Rate</cell></row>
+                <row><cell>First <m>24\,000</m></cell><cell>First <m>288\,000</m></cell><cell><m>10\%</m></cell></row>
+                <row><cell>Next <m>8333</m></cell><cell>Next <m>100\,000</m></cell><cell><m>25\%</m></cell></row>
+                <row><cell>Next <m>467\,667</m></cell><cell>Next <m>5\,612\,000</m></cell><cell><m>30\%</m></cell></row>
+                <row><cell>Next <m>300\,000</m></cell><cell>Next <m>3\,600\,000</m></cell><cell><m>32.5\%</m></cell></row>
+                <row><cell>Above <m>800\,000</m></cell><cell>Above <m>9\,600\,000</m></cell><cell><m>35\%</m></cell></row>
+                <row><cell>Personal relief: Ksh <m>2400</m> a month</cell><cell>Ksh <m>28\,800</m> a year</cell><cell></cell></row>
             </tabular>
         </table>
-    </axiom> -->
+        <p>Source: Kenya Revenue Authority, PAYE tax bands (Finance Act 2023, effective 1 July 2023), kra.go.ke, accessed 11 November 2026.</p>
 
-    <xi:include href="../lesson-plan-templates/assessment-methods.ptx" />
+        <activity xml:id="act-slicing-a-salary">
+            <title>Slicing a Salary</title>
+            <statement>
+                <p>Use <xref ref="table-paye-bands-2023"/>. A worker's taxable pay is Ksh <m>50\,000</m> a month.</p>
+                <p>
+                    <ol marker="(a)">
+                        <li>
+                            <p>How much of the Ksh <m>50\,000</m> falls in each band?</p>
+                            <solution component="lesson-plan"><p><m>24\,000</m> in the <m>10\%</m> band, <m>8333</m> in the <m>25\%</m> band and <m>50\,000 - 32\,333 = 17\,667</m> in the <m>30\%</m> band.</p></solution>
+                        </li>
+                        <li>
+                            <p>Find the tax on each slice.</p>
+                            <solution component="lesson-plan"><p><m>2400</m>; <m>8333 \times 0.25 = 2083.25</m>; <m>17\,667 \times 0.3 = 5300.10</m>.</p></solution>
+                        </li>
+                        <li>
+                            <p>Find the total tax.</p>
+                            <solution component="lesson-plan"><p><m>2400 + 2083.25 + 5300.10 = 9783.35</m>, Ksh <m>9783.35</m>.</p></solution>
+                        </li>
+                        <li>
+                            <p>Subtract the personal relief. This is the PAYE.</p>
+                            <solution component="lesson-plan"><p><m>9783.35 - 2400 = 7383.35</m>, Ksh <m>7383.35</m>.</p></solution>
+                        </li>
+                        <li>
+                            <p>Is the PAYE <m>30\%</m> of <m>50\,000</m>? Explain.</p>
+                            <solution component="lesson-plan"><p>No. <m>30\%</m> of <m>50\,000</m> is <m>15\,000</m>. Only the top slice, above <m>32\,333</m>, is taxed at <m>30\%</m>.</p></solution>
+                        </li>
+                    </ol>
+                </p>
+            </statement>
+        </activity>
 
-    <xi:include href="../lesson-plan-templates/reflection.ptx"/>
+        <axiom component="lesson-plan">
+            <title>Structured Instruction</title>
+            <p>
+                <dl>
+                    <li><title>Suggested Time</title><p>8 minutes</p></li>
+                    <li><title>Objective</title><p>To formalise taxable pay, the bands, personal relief and PAYE.</p></li>
+                </dl>
+            </p>
+            <paragraphs>
+                <title>Key Takeaways &amp; Teacher Connection</title>
+                <ol>
+                    <li><p><alert>Connecting to Learner Work:</alert> parts (a) to (d) are the method: slice, tax each slice, add, subtract the relief.</p></li>
+                    <li><p>A rate applies only to the slice of pay inside its band.</p></li>
+                    <li><p>PAYE is never negative: if the tax is less than the relief, the PAYE is <m>0</m>.</p></li>
+                </ol>
+            </paragraphs>
+        </axiom>
+
+        <insight xml:id="insight-income-tax-and-paye">
+            <title>Income Tax and PAYE</title>
+            <p>Your <term>gross pay</term> is all you earn: basic pay plus allowances. Your <term>taxable pay</term> is the part that is taxed; it can be less than gross pay when a deduction, such as a pension contribution, is allowed before tax. Taxable pay is cut into <term>tax bands</term>, and each slice of pay is taxed at its own band's rate, so a rise never lowers take-home pay. Every resident employee then takes off a <term>personal relief</term> of Ksh <m>2400</m> a month. What is left is <term>PAYE</term> (Pay As You Earn): the employer deducts it from your pay and sends it to the Kenya Revenue Authority.</p>
+            <p>A shortcut: the tax on the whole of the first bands is
+                <md>
+                    <mrow>\text{up to } 24\,000\amp: \quad 2400</mrow>
+                    <mrow>\text{up to } 32\,333\amp: \quad 2400 + 2083.25 = 4483.25</mrow>
+                    <mrow>\text{up to } 500\,000\amp: \quad 4483.25 + 467\,667 \times 0.3 = 144\,783.35</mrow>
+                    <mrow>\text{up to } 800\,000\amp: \quad 144\,783.35 + 300\,000 \times 0.325 = 242\,283.35</mrow>
+                </md>
+                so only the slice in the highest band needs working out.</p>
+        </insight>
+
+        <figure xml:id="fig-paye-bands">
+            <caption>A taxable pay of Ksh <m>50\,000</m> cut into slices, each taxed at its own band's rate (<xref ref="act-slicing-a-salary"/>).</caption>
+            <image width="75%">
+                <shortdescription>A pay of 50 000 shillings drawn as one bar cut into three slices: 24 000 at 10 per cent, tax 2400; 8333 at 25 per cent, tax 2083.25; and 17 667 at 30 per cent, tax 5300.10. The total tax is 9783.35; minus relief of 2400 gives PAYE of 7383.35.</shortdescription>
+                <description><p>A horizontal bar from 0 to 50 000 shillings, divided at 24 000 and 32 333. First slice, 0 to 24 000, lightly shaded, labelled 24 000 at 10%, tax 2400. Second slice, 24 000 to 32 333, labelled 8333 at 25%, tax 2083.25. Third slice, 32 333 to 50 000, darker, labelled 17 667 at 30%, tax 5300.10. Below the bar: total tax 9783.35; minus personal relief 2400; PAYE 7383.35.</p></description>
+                <latex-image>
+\begin{tikzpicture}[x=0.24cm, y=1cm]
+% SET: 1 unit = 1000 shillings across
+% DRAW: the three slices
+\draw[fill=gray!10] (0,0) rectangle (24,1.2);
+\draw[fill=gray!30] (24,0) rectangle (32.333,1.2);
+\draw[fill=gray!50] (32.333,0) rectangle (50,1.2);
+% LABEL: slices and their tax
+\node[font=\scriptsize, align=center] at (12,0.6) {$24\,000$ at $10\%$\\tax $2400$};
+\node[font=\scriptsize, align=center] at (28.17,0.6) {$8333$\\at $25\%$};
+\node[font=\scriptsize, align=center] at (41.17,0.6) {$17\,667$ at $30\%$\\tax $5300.10$};
+\node[font=\scriptsize, above] at (28.17,1.2) {tax $2083.25$};
+% MARK: band edges
+\foreach \x/\t in {0/0, 24/24\,000, 32.333/32\,333, 50/50\,000} {\draw (\x,0) -- (\x,-0.15); \node[below, font=\scriptsize] at (\x,-0.15) {$\t$};}
+\node[font=\small, anchor=west] at (0,-1.0) {Total tax $= 2400 + 2083.25 + 5300.10 = 9783.35$};
+\node[font=\small, anchor=west] at (0,-1.6) {PAYE $= 9783.35 - 2400 = 7383.35$};
+\end{tikzpicture}
+                </latex-image>
+            </image>
+        </figure>
+
+        <note xml:id="note-tax-figures-change">
+            <title>These Figures Change</title>
+            <p>The tax bands and the personal relief are set by Parliament in a Finance Act and can change. The figures in this chapter are those in force from 1 July 2023 (checked in November 2026). Find the current table on the Kenya Revenue Authority website.</p>
+        </note>
+
+        <xi:include href="../lesson-plan-templates/example-intro.ptx" />
+
+        <example xml:id="example-just-into-the-second-band">
+            <title>Just into the Second Band</title>
+            <statement>
+                <p>Find the PAYE on a monthly taxable pay of Ksh <m>28\,000</m>.</p>
+            </statement>
+            <solution>
+                <p>The first <m>24\,000</m> is taxed at <m>10\%</m>: <m>2400</m>. The remaining <m>4000</m> is in the <m>25\%</m> band: <m>4000 \times 0.25 = 1000</m>. The tax is <m>2400 + 1000 = 3400</m>, and the PAYE is <m>3400 - 2400 = 1000</m>, Ksh <m>1000</m>.</p>
+            </solution>
+        </example>
+
+        <example xml:id="example-a-bigger-salary">
+            <title>A Bigger Salary</title>
+            <statement>
+                <p>Find the PAYE on a monthly taxable pay of Ksh <m>120\,000</m>.</p>
+            </statement>
+            <solution>
+                <p>The slices are <m>24\,000</m> at <m>10\%</m>, <m>8333</m> at <m>25\%</m> and <m>120\,000 - 32\,333 = 87\,667</m> at <m>30\%</m>.
+                    <md>\text{tax} = 2400 + 2083.25 + 87\,667 \times 0.3 = 2400 + 2083.25 + 26\,300.10 = 30\,783.35</md>
+                    The PAYE is <m>30\,783.35 - 2400 = 28\,383.35</m>, Ksh <m>28\,383.35</m>.</p>
+            </solution>
+        </example>
+
+        <example xml:id="example-no-paye-to-pay">
+            <title>No PAYE to Pay</title>
+            <statement>
+                <p>Find the PAYE on a monthly taxable pay of Ksh <m>20\,000</m>, and on Ksh <m>24\,000</m>.</p>
+            </statement>
+            <solution>
+                <p>On <m>20\,000</m> the tax is <m>2000</m>, less than the relief of <m>2400</m>. Relief cannot make tax negative, so the PAYE is <m>0</m>. On <m>24\,000</m> the tax is exactly <m>2400</m>, so the PAYE is again <m>0</m>.</p>
+            </solution>
+        </example>
+
+        <xi:include href="../lesson-plan-templates/assessment-intro.ptx" />
+        <xi:include href="../lesson-plan-templates/checkpoint.ptx" />
+
+        <p>Type amounts as plain numbers, without Ksh, spaces or commas, for example <c>45326</c>. Give money to the nearest shilling and percentages to 1 decimal place unless the question says otherwise; exact answers in cents are also accepted.</p>
+
+        <exercise xml:id="ex-paye-from-taxable-pay">
+            <!--<title></title>-->
+            <stack label="stk-paye-from-taxable-pay" source="stack/top/2-measurement-and-geometry/14-commercial-arithmetic-iii/06-income-tax/PAYE-from-taxable-pay.xml"/>
+        </exercise>
+
+        <exercise xml:id="ex-highest-tax-band">
+            <!--<title></title>-->
+            <stack label="stk-highest-tax-band" source="stack/top/2-measurement-and-geometry/14-commercial-arithmetic-iii/06-income-tax/Highest-tax-band.xml"/>
+        </exercise>
+
+        <exercises xml:id="exercises-paye-from-the-tax-bands">
+            <exercise xml:id="ex-paye-30000">
+                <statement><p>Find the PAYE on a monthly taxable pay of Ksh <m>30\,000</m>.</p></statement>
+                <answer><p>Tax Ksh <m>3900</m>; PAYE Ksh <m>1500</m></p></answer>
+            </exercise>
+            <exercise xml:id="ex-paye-45500">
+                <statement><p>Find the PAYE on a monthly taxable pay of Ksh <m>45\,500</m>.</p></statement>
+                <answer><p>Tax Ksh <m>8433.35</m>; PAYE Ksh <m>6033.35</m></p></answer>
+                <solution><p><m>2400 + 2083.25 + (45\,500 - 32\,333) \times 0.3 = 4483.25 + 3950.10 = 8433.35</m>; PAYE <m>8433.35 - 2400 = 6033.35</m>.</p></solution>
+            </exercise>
+            <exercise xml:id="ex-paye-82000">
+                <statement><p>Find the PAYE on a monthly taxable pay of Ksh <m>82\,000</m>.</p></statement>
+                <answer><p>Tax Ksh <m>19\,383.35</m>; PAYE Ksh <m>16\,983.35</m></p></answer>
+            </exercise>
+            <exercise xml:id="ex-paye-22500">
+                <statement><p>A security guard's taxable pay is Ksh <m>22\,500</m> a month. How much PAYE is deducted?</p></statement>
+                <answer><p>Ksh <m>0</m></p></answer>
+                <solution><p>The tax is <m>2250</m>, less than the relief of <m>2400</m>, so no PAYE is deducted.</p></solution>
+            </exercise>
+            <exercise xml:id="ex-paye-610000">
+                <statement><p>A company director's taxable pay is Ksh <m>610\,000</m> a month. Find the PAYE.</p></statement>
+                <answer><p>Tax Ksh <m>180\,533.35</m>; PAYE Ksh <m>178\,133.35</m></p></answer>
+                <solution><p>Up to <m>500\,000</m> the tax is <m>144\,783.35</m>. The next <m>110\,000</m> is in the <m>32.5\%</m> band: <m>110\,000 \times 0.325 = 35\,750</m>. Tax <m>180\,533.35</m>; PAYE <m>180\,533.35 - 2400 = 178\,133.35</m>.</p></solution>
+            </exercise>
+            <exercise xml:id="ex-annual-bands">
+                <title>Challenge: Monthly and Yearly Bands</title>
+                <statement><p>Show how the yearly bands and relief in <xref ref="table-paye-bands-2023"/> follow from the monthly ones. Why is the <m>25\%</m> band <m>100\,000</m> a year and not <m>12 \times 8333 = 99\,996</m>, and the <m>30\%</m> band <m>5\,612\,000</m> and not <m>12 \times 467\,667 = 5\,612\,004</m>?</p></statement>
+                <hint><p>Divide the yearly band by <m>12</m>.</p></hint>
+                <answer><p>Multiply by <m>12</m>: <m>12 \times 24\,000 = 288\,000</m>, <m>12 \times 300\,000 = 3\,600\,000</m>, <m>12 \times 800\,000 = 9\,600\,000</m> and relief <m>12 \times 2400 = 28\,800</m>. The <m>25\%</m> band is set at <m>100\,000</m> a year, and <m>100\,000 \div 12 = 8333.33</m> is rounded to <m>8333</m> a month. The <m>30\%</m> band ends at <m>12 \times 500\,000 = 6\,000\,000</m> a year, so it is <m>6\,000\,000 - 288\,000 - 100\,000 = 5\,612\,000</m>; the monthly <m>467\,667 = 500\,000 - 32\,333</m> carries the rounding of <m>8333</m>.</p></answer>
+            </exercise>
+        </exercises>
+
+        <axiom component="lesson-plan">
+            <title>Differentiation</title>
+            <table xml:id="table-differentiation-paye-from-the-tax-bands">
+                <title>Differentiation Strategies</title>
+                <tabular halign="left" top="minor" bottom="minor" left="minor" right="minor">
+                    <row header="yes" bottom="medium"><cell>Learner Group</cell><cell>Strategy and Learning Experience</cell></row>
+                    <row><cell>Struggling Learners (Support)</cell><cell>Work through the activity, <xref ref="example-just-into-the-second-band"/> and <xref ref="example-a-bigger-salary"/>. Give a card with the running totals <m>2400</m>, <m>4483.25</m>, <m>144\,783.35</m>. Assign <xref ref="ex-paye-30000"/> and <xref ref="ex-paye-22500"/>.</cell></row>
+                    <row><cell>On-Level Learners (Core)</cell><cell>Full activity and all examples. Assign <xref ref="ex-paye-30000"/> to <xref ref="ex-paye-610000"/>.</cell></row>
+                    <row><cell>Advanced Learners (Challenge)</cell><cell>All exercises including <xref ref="ex-annual-bands"/>. Extension: what percentage of a taxable pay of Ksh <m>120\,000</m> is paid as PAYE? (Answer: <m>\dfrac{28\,383.35}{120\,000} \times 100 = 23.7\%</m>.)</cell></row>
+                </tabular>
+            </table>
+        </axiom>
+
+        <xi:include href="../lesson-plan-templates/assessment-methods.ptx" />
+        <xi:include href="../lesson-plan-templates/reflection.ptx"/>
+    </subsection>
+
+    <!-- ============================================================ Lesson 6.2 -->
+    <subsection xml:id="subsec-net-pay-and-the-payslip">
+        <title>Net Pay and the Payslip</title>
+
+        <p component="lesson-plan">Upon completion of this lesson, learners will be able to:
+            <ol>
+                <li><p><alert>Know:</alert> deductions before tax and after tax; net pay; what income tax pays for.</p></li>
+                <li><p><alert>Do:</alert> find taxable pay, PAYE and net pay from a payslip; find the effect of a pay rise.</p></li>
+                <li><p><alert>Apply:</alert> the payslips of a teacher and a nurse.</p></li>
+            </ol>
+        </p>
+
+        <axiom component="lesson-plan">
+            <title>Problem-Solving and Discovery</title>
+            <dl>
+                <li><title>Suggested Time</title><p>14 minutes</p></li>
+                <li><title>Objective</title><p>Learners compute a teacher's net pay from a payslip and find the current KRA table online.</p></li>
+                <li><title>Teacher's Role</title><p>Draw a blank payslip on the board and fill it in with the class. If there are no devices in class, set part (e) as homework.</p></li>
+            </dl>
+        </axiom>
+
+        <activity xml:id="act-a-teachers-payslip">
+            <title>A Teacher's Payslip</title>
+            <statement>
+                <p>Ms Jeptoo teaches in Eldoret. Her monthly basic pay is Ksh <m>55\,000</m> and her allowances are Ksh <m>13\,000</m>. Use <xref ref="table-paye-bands-2023"/>.</p>
+                <p>
+                    <ol marker="(a)">
+                        <li>
+                            <p>Find her gross pay.</p>
+                            <solution component="lesson-plan"><p><m>55\,000 + 13\,000 = 68\,000</m>, Ksh <m>68\,000</m>.</p></solution>
+                        </li>
+                        <li>
+                            <p>Her pension contribution of Ksh <m>3000</m> is taken off before tax. Find her taxable pay.</p>
+                            <solution component="lesson-plan"><p><m>68\,000 - 3000 = 65\,000</m>, Ksh <m>65\,000</m>.</p></solution>
+                        </li>
+                        <li>
+                            <p>Find her PAYE.</p>
+                            <solution component="lesson-plan"><p>Tax <m>4483.25 + (65\,000 - 32\,333) \times 0.3 = 4483.25 + 9800.10 = 14\,283.35</m>; PAYE <m>14\,283.35 - 2400 = 11\,883.35</m>.</p></solution>
+                        </li>
+                        <li>
+                            <p>The other deductions on her payslip total Ksh <m>6450</m>. Find her net pay.</p>
+                            <solution component="lesson-plan"><p><m>68\,000 - 3000 - 11\,883.35 - 6450 = 46\,666.65</m>, Ksh <m>46\,666.65</m>.</p></solution>
+                        </li>
+                        <li>
+                            <p>Digital: open the PAYE page of the Kenya Revenue Authority website. Are the bands and relief the same as in <xref ref="table-paye-bands-2023"/>? Write down the date you checked.</p>
+                            <solution component="lesson-plan"><p>It depends on the date. If a later Finance Act has changed the figures, learners redo part (c) with the new table.</p></solution>
+                        </li>
+                    </ol>
+                </p>
+            </statement>
+        </activity>
+
+        <axiom component="lesson-plan">
+            <title>Structured Instruction</title>
+            <p>
+                <dl>
+                    <li><title>Suggested Time</title><p>8 minutes</p></li>
+                    <li><title>Objective</title><p>To set out the steps from gross pay to net pay.</p></li>
+                </dl>
+            </p>
+            <paragraphs>
+                <title>Key Takeaways &amp; Teacher Connection</title>
+                <ol>
+                    <li><p><alert>Connecting to Learner Work:</alert> parts (a) to (d) went gross pay, taxable pay, PAYE, net pay.</p></li>
+                    <li><p>Some deductions come off before tax (here the pension contribution); the rest come off after.</p></li>
+                    <li><p>A pay rise never lowers net pay, because only the extra pay is taxed at the higher rate.</p></li>
+                </ol>
+            </paragraphs>
+        </axiom>
+
+        <insight xml:id="insight-net-pay">
+            <title>Net Pay</title>
+            <p>A <term>deduction</term> is money taken off your pay before you receive it. Your <term>net pay</term>, or take-home pay, is what is left:
+                <md>\text{net pay} = \text{gross pay} - \text{pension contribution} - \text{PAYE} - \text{other deductions}</md>
+                When the pension contribution is taken off before tax, the PAYE is worked out on the gross pay minus the pension contribution.</p>
+        </insight>
+
+        <note xml:id="note-other-deductions">
+            <title>Other Deductions on a Payslip</title>
+            <p>A real payslip also shows statutory deductions such as NSSF (a pension fund), SHIF (health insurance) and the Affordable Housing Levy, and may show a SACCO or loan repayment. Some of these reduce taxable pay, and insurance premiums can earn insurance relief. Their rates and rules are set by their own laws and change from time to time, so in this book they are given as one total, <q>other deductions</q>.</p>
+        </note>
+
+        <xi:include href="../lesson-plan-templates/example-intro.ptx" />
+
+        <example xml:id="example-a-nurses-pay">
+            <title>A Nurse's Pay</title>
+            <statement>
+                <p>A nurse in Mombasa has a gross pay of Ksh <m>92\,000</m> a month. Her pension contribution of Ksh <m>4500</m> is taken off before tax, and her other deductions total Ksh <m>9800</m>. Find her taxable pay, PAYE and net pay.</p>
+            </statement>
+            <solution>
+                <p>Taxable pay <m>= 92\,000 - 4500 = 87\,500</m>.
+                    <md>\text{tax} = 4483.25 + (87\,500 - 32\,333) \times 0.3 = 4483.25 + 16\,550.10 = 21\,033.35</md>
+                    PAYE <m>= 21\,033.35 - 2400 = 18\,633.35</m>. Net pay <m>= 92\,000 - 4500 - 18\,633.35 - 9800 = 59\,066.65</m>, Ksh <m>59\,066.65</m>.</p>
+            </solution>
+        </example>
+
+        <example xml:id="example-a-pay-rise-into-the-30-band">
+            <title>A Pay Rise into the 30% Band</title>
+            <statement>
+                <p>A clerk's taxable pay rises from Ksh <m>30\,000</m> to Ksh <m>36\,000</m> a month; the other deductions do not change. By how much does take-home pay change?</p>
+            </statement>
+            <solution>
+                <p>Before: tax <m>2400 + 6000 \times 0.25 = 3900</m>, PAYE <m>1500</m>. After: tax <m>4483.25 + (36\,000 - 32\,333) \times 0.3 = 4483.25 + 1100.10 = 5583.35</m>, PAYE <m>3183.35</m>.</p>
+                <p>PAYE rises by <m>3183.35 - 1500 = 1683.35</m>, so take-home pay rises by <m>6000 - 1683.35 = 4316.65</m>, Ksh <m>4316.65</m>. Only the slice above <m>32\,333</m> pays <m>30\%</m>.</p>
+            </solution>
+        </example>
+
+        <insight xml:id="insight-money-decisions">
+            <title>Money Decisions</title>
+            <p>What this chapter means for everyday money decisions:
+                <ul>
+                    <li><p>Borrowing costs money: compare yearly rates before you borrow.</p></li>
+                    <li><p>Saving grows money, and compound interest grows it faster the longer you leave it.</p></li>
+                    <li><p>Things you own gain or lose value: land often appreciates; motorbikes, phones and machines depreciate.</p></li>
+                    <li><p>Tax pays for schools, roads and hospitals. Every worker's PAYE, paid honestly, is a share in the public services we all use.</p></li>
+                </ul>
+            </p>
+        </insight>
+
+        <axiom component="lesson-plan">
+            <title>Curriculum Links</title>
+            <dl>
+                <li><title>Key Inquiry Question</title><p>Why should every adult understand interest, value and tax? Revisit it with <xref ref="insight-money-decisions"/>.</p></li>
+                <li><title>Core Competencies</title><p>Digital literacy, in the interactives of this chapter and in looking up the current tax table online (<xref ref="act-a-teachers-payslip"/>); citizenship, in understanding what tax is for.</p></li>
+                <li><title>Values</title><p>Patriotism and unity: tax as every worker's shared contribution to the country; saving together in a chama.</p></li>
+                <li><title>Pertinent and Contemporary Issues</title><p>Good governance and integrity: paying tax honestly and asking how it is spent. Financial literacy throughout the chapter: mobile loans, hire purchase agreements and reading a payslip.</p></li>
+                <li><title>Learning Outcomes</title><p>This lesson also carries the outcomes on applying commercial arithmetic and appreciating its use in real life.</p></li>
+            </dl>
+        </axiom>
+
+        <xi:include href="../lesson-plan-templates/assessment-intro.ptx" />
+        <xi:include href="../lesson-plan-templates/checkpoint.ptx" />
+
+        <p>Type amounts as plain numbers, without Ksh, spaces or commas, for example <c>45326</c>. Give money to the nearest shilling and percentages to 1 decimal place unless the question says otherwise; exact answers in cents are also accepted.</p>
+
+        <exercise xml:id="ex-net-pay-from-a-payslip">
+            <!--<title></title>-->
+            <stack label="stk-net-pay-from-a-payslip" source="stack/top/2-measurement-and-geometry/14-commercial-arithmetic-iii/06-income-tax/Net-pay-from-a-payslip.xml"/>
+        </exercise>
+
+        <exercise xml:id="ex-pay-rise-claim">
+            <!--<title></title>-->
+            <stack label="stk-pay-rise-claim" source="stack/top/2-measurement-and-geometry/14-commercial-arithmetic-iii/06-income-tax/Pay-rise-claim.xml"/>
+        </exercise>
+
+        <exercises xml:id="exercises-net-pay-and-the-payslip">
+            <exercise xml:id="ex-net-pay-47000">
+                <statement><p>A worker's gross pay is Ksh <m>47\,000</m> a month. The pension contribution of Ksh <m>2000</m> is taken off before tax, and other deductions total Ksh <m>3900</m>. Find the PAYE and the net pay.</p></statement>
+                <answer><p>PAYE Ksh <m>5883.35</m>; net pay Ksh <m>35\,216.65</m></p></answer>
+                <solution><p>Taxable pay <m>45\,000</m>; tax <m>4483.25 + 12\,667 \times 0.3 = 8283.35</m>; PAYE <m>5883.35</m>. Net pay <m>47\,000 - 2000 - 5883.35 - 3900 = 35\,216.65</m>.</p></solution>
+            </exercise>
+            <exercise xml:id="ex-net-pay-150000">
+                <statement><p>A manager's basic pay is Ksh <m>130\,000</m> and allowances are Ksh <m>20\,000</m> a month. The pension contribution of Ksh <m>7500</m> is taken off before tax, and other deductions total Ksh <m>12\,400</m>. Find the taxable pay, the PAYE and the net pay.</p></statement>
+                <answer><p>Taxable pay Ksh <m>142\,500</m>; PAYE Ksh <m>35\,133.35</m>; net pay Ksh <m>94\,966.65</m></p></answer>
+                <solution><p>Taxable pay <m>150\,000 - 7500 = 142\,500</m>. Tax <m>4483.25 + 110\,167 \times 0.3 = 37\,533.35</m>; PAYE <m>35\,133.35</m>. Net pay <m>150\,000 - 7500 - 35\,133.35 - 12\,400 = 94\,966.65</m>.</p></solution>
+            </exercise>
+            <exercise xml:id="ex-average-rate">
+                <statement><p>On a monthly taxable pay of Ksh <m>65\,000</m>, what percentage of the pay is paid as PAYE? Compare it with the top rate that applies.</p></statement>
+                <answer><p><m>18.3\%</m>; less than <m>30\%</m>, because the lower slices are taxed at lower rates and the relief comes off.</p></answer>
+            </exercise>
+            <exercise xml:id="ex-rise-40000-to-44000">
+                <statement><p>A taxable pay rises from Ksh <m>40\,000</m> to Ksh <m>44\,000</m> a month. By how much do the PAYE and the take-home pay rise?</p></statement>
+                <answer><p>PAYE rises by Ksh <m>1200</m>; take-home pay rises by Ksh <m>2800</m>.</p></answer>
+                <solution><p>Both pays are in the <m>30\%</m> band, so the extra <m>4000</m> is all taxed at <m>30\%</m>: <m>1200</m>. Take-home pay rises by <m>4000 - 1200 = 2800</m>.</p></solution>
+            </exercise>
+            <exercise xml:id="ex-why-no-paye-below-24000">
+                <statement><p>Explain why nobody with a monthly taxable pay of Ksh <m>24\,000</m> or less pays PAYE.</p></statement>
+                <answer><p>The tax on <m>24\,000</m> is exactly <m>2400</m>, equal to the personal relief; on less pay the tax is smaller still, and PAYE is never negative.</p></answer>
+            </exercise>
+            <exercise xml:id="ex-rise-never-hurts">
+                <title>Challenge: A Rise Never Hurts</title>
+                <statement><p>Explain why a pay rise of Ksh <m>1000</m> a month always raises take-home pay, whatever the band, if the other deductions do not change.</p></statement>
+                <hint><p>What is the highest rate at which any of the extra Ksh <m>1000</m> can be taxed?</p></hint>
+                <answer><p>At most <m>35\%</m> of the rise is taxed, so at least Ksh <m>650</m> of it is kept.</p></answer>
+                <solution><p>Each slice is taxed at its own band's rate, and the highest rate is <m>35\%</m>. So the extra <m>1000</m> adds at most <m>350</m> to the tax, and the relief does not change. Take-home pay rises by at least <m>1000 - 350 = 650</m>.</p></solution>
+            </exercise>
+        </exercises>
+
+        <axiom component="lesson-plan">
+            <title>Differentiation</title>
+            <table xml:id="table-differentiation-net-pay-and-the-payslip">
+                <title>Differentiation Strategies</title>
+                <tabular halign="left" top="minor" bottom="minor" left="minor" right="minor">
+                    <row header="yes" bottom="medium"><cell>Learner Group</cell><cell>Strategy and Learning Experience</cell></row>
+                    <row><cell>Struggling Learners (Support)</cell><cell>Activity parts (a) to (d) and <xref ref="example-a-nurses-pay"/>. Give a payslip template card. Assign <xref ref="ex-net-pay-47000"/> and <xref ref="ex-why-no-paye-below-24000"/>.</cell></row>
+                    <row><cell>On-Level Learners (Core)</cell><cell>Full activity and all examples. Assign <xref ref="ex-net-pay-47000"/> to <xref ref="ex-why-no-paye-below-24000"/>.</cell></row>
+                    <row><cell>Advanced Learners (Challenge)</cell><cell>All exercises including <xref ref="ex-rise-never-hurts"/>. Extension: design a payslip for a job you would like, using the current KRA table.</cell></row>
+                </tabular>
+            </table>
+        </axiom>
+
+        <p component="lesson-plan">Closing question for the class: which public services that you use are paid for by PAYE?</p>
+
+        <xi:include href="../lesson-plan-templates/assessment-methods.ptx" />
+        <xi:include href="../lesson-plan-templates/reflection.ptx"/>
+    </subsection>
 </section>

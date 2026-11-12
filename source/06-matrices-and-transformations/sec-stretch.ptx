@@ -46,161 +46,282 @@
          Suggested activity: Learners apply a one-way stretch to a shape drawn on a grid board using a given stretch factor and invariant line.
          Interactive (JSXGraph): Slider for stretch factor k with the x-axis (or y-axis) as invariant line; the shape stretches smoothly so learners see which points do not move. -->
 
-    <!-- [LP] Add guidance on activity -->
+    <!-- Section notes (2026-11)
+         SLOs: Core 2.1 (g): stretch
+         Activity: as planning notes (one-way stretch of a house shape on a grid board, then a second stretch with the other axis invariant)
+         JSXGraph: fig-stretch-slider (assets/jsxgraph/stretch-slider.js), as planning notes
+         STACK: assets/stack/top/2-measurement-and-geometry/06-matrices-and-transformations/05-stretch/ -->
 
-    <!-- <axiom component="lesson-plan">
-            <title>Problem-Solving and Discovery</title>
-            <dl>
-                <li>
-                    <title>Suggested Time</title>
-                    <p>
-                        XX minutes
-                    </p>
-                </li>
-                <li>
-                    <title>Objective</title>
-                    <p>
-                        XXX
-                    </p>
-                </li>
-                <li>
-                    <title>Teacher's Role</title>
-                    <p>
-                        XXX
-                    </p>
-                </li>
-            </dl>
-        </axiom> -->
+    <p component="lesson-plan">Upon completion of this lesson, learners will be able to:
+        <ol>
+            <li><p><alert>Know:</alert> a one-way stretch has an invariant axis and a stretch factor; its matrix is <m>\begin{bmatrix} 1 \amp 0 \\ 0 \amp k \end{bmatrix}</m> or <m>\begin{bmatrix} k \amp 0 \\ 0 \amp 1 \end{bmatrix}</m>; a two-way stretch combines two; the area scale factor is the product of the stretch factors.</p></li>
+            <li><p><alert>Do:</alert> find images under a stretch; describe a stretch fully from an object and its image or from its matrix.</p></li>
+            <li><p><alert>Apply:</alert> resize a photo or a map.</p></li>
+        </ol>
+    </p>
 
-    <!-- Add Activity -->
+    <axiom component="lesson-plan">
+        <title>Problem-Solving and Discovery</title>
+        <dl>
+            <li><title>Suggested Time</title><p>14 minutes</p></li>
+            <li><title>Objective</title><p>Learners stretch a shape on a grid board and find which points do not move.</p></li>
+            <li><title>Teacher's Role</title><p>Give out grid boards or graph paper; learners work in groups of three. After part (b), ask: <q>Which line stayed where it was?</q></p></li>
+        </dl>
+    </axiom>
 
-    <!-- <activity>
+    <activity xml:id="act-stretching-a-house">
+        <title>Stretching a House</title>
         <statement>
+            <p>A house shape has corners <m>(2, 1)</m>, <m>(4, 1)</m>, <m>(4, 3)</m>, <m>(3, 4)</m> and <m>(2, 3)</m>. Draw it on a grid board or on graph paper, with both axes from <m>0</m> to <m>9</m>.</p>
+            <p>
+                <ol marker="(a)">
+                    <li>
+                        <p>Double every <m>y</m>-coordinate and keep every <m>x</m>-coordinate the same. Draw the image of the house.</p>
+                        <solution component="lesson-plan"><p>The image has corners <m>(2, 2)</m>, <m>(4, 2)</m>, <m>(4, 6)</m>, <m>(3, 8)</m> and <m>(2, 6)</m>. See <xref ref="fig-stretch-house"/>.</p></solution>
+                    </li>
+                    <li>
+                        <p>Which points of the plane do not move under this transformation?</p>
+                        <solution component="lesson-plan"><p>The points on the <m>x</m>-axis: their <m>y</m>-coordinate is <m>0</m>, and doubling <m>0</m> leaves <m>0</m>.</p></solution>
+                    </li>
+                    <li>
+                        <p>Find the images of <m>(1, 0)</m> and <m>(0, 1)</m>, and write down the matrix of the transformation.</p>
+                        <solution component="lesson-plan"><p><m>(1, 0) \to (1, 0)</m> and <m>(0, 1) \to (0, 2)</m>, so the matrix is <m>\begin{bmatrix} 1 \amp 0 \\ 0 \amp 2 \end{bmatrix}</m>.</p></solution>
+                    </li>
+                    <li>
+                        <p>Find the areas of the house and of its image.</p>
+                        <solution component="lesson-plan"><p>The house is a <m>2</m> by <m>2</m> square with a triangle of base <m>2</m> and height <m>1</m> on top: area <m>4 + 1 = 5</m>. The image has area <m>10</m>, twice as much.</p></solution>
+                    </li>
+                    <li>
+                        <p>Start again from the house. Now multiply every <m>x</m>-coordinate by <m>1.5</m> and keep every <m>y</m>-coordinate. Find the image, the matrix and the area of the image.</p>
+                        <solution component="lesson-plan"><p>Image <m>(3, 1)</m>, <m>(6, 1)</m>, <m>(6, 3)</m>, <m>(4.5, 4)</m>, <m>(3, 3)</m>; matrix <m>\begin{bmatrix} 1.5 \amp 0 \\ 0 \amp 1 \end{bmatrix}</m>; area <m>7.5</m>. This time the <m>y</m>-axis does not move.</p></solution>
+                    </li>
+                </ol>
+            </p>
         </statement>
-    </activity> -->
+    </activity>
 
-    <!-- [LP] Add guidance on structured lesson plan-->
-
-    <!-- <axiom component="lesson-plan">
+    <axiom component="lesson-plan">
         <title>Structured Instruction</title>
         <p>
             <dl>
-            <li>
-                <title>Suggested Time</title>
-                <p>
-                    XX minutes
-                </p>
-            </li>
-            <li>
-                <title>Objective</title>
-                <p>
-                    To formalize the concepts and properties learners discovered in the anchor task.
-                </p>
-            </li>
+                <li><title>Suggested Time</title><p>8 minutes</p></li>
+                <li><title>Objective</title><p>To formalise the stretch: its invariant axis, its stretch factor, its matrix and its area scale factor.</p></li>
             </dl>
         </p>
         <paragraphs>
             <title>Key Takeaways &amp; Teacher Connection</title>
             <ol>
-                <li>
-                    <p>
-                        <alert>Connecting to Learner Work:</alert> XXXX
-                    </p>
-                </li>
+                <li><p><alert>Connecting to Learner Work:</alert> in part (a) only the <m>y</m>-coordinates changed, so every point moved straight up or down, away from the <m>x</m>-axis, which stayed fixed. That fixed axis is the invariant axis.</p></li>
+                <li><p>The stretch factor is the number each distance from the invariant axis is multiplied by: <m>2</m> in part (a), <m>1.5</m> in part (e).</p></li>
+                <li><p>The columns rule from <xref ref="sec-matrices-of-transformation"/> gives the matrix, and its determinant is the stretch factor, which is the area scale factor (<xref ref="sec-area-scale-factor-and-determinant-of-a-matrix"/>).</p></li>
             </ol>
         </paragraphs>
-    </axiom> -->
+    </axiom>
 
-    <!-- Add insight / key takeaway directly related to activity / learner experience -->
+    <insight xml:id="insight-stretch">
+        <title>Stretch</title>
+        <p>
+            A <term>stretch</term> with stretch factor <m>k</m> and the <m>x</m>-axis invariant moves every point (parallel to the <m>y</m>-axis) so that its distance from the <m>x</m>-axis is multiplied by <m>k</m>. Points on the <m>x</m>-axis do not move: the <m>x</m>-axis is the <term>invariant axis</term> and <m>k</m> is the <term>stretch factor</term>. A stretch with the <m>y</m>-axis invariant multiplies every distance from the <m>y</m>-axis by <m>k</m> in the same way. When <m>0 \lt k \lt 1</m> the stretch squashes the shape towards the invariant axis.
+        </p>
+        <p>
+            Every point off the invariant axis moves at right angles to it, and its distance from that axis is multiplied by the stretch factor. Using the columns rule:
+            <md>
+                \text{x-axis invariant: } \begin{bmatrix} 1 \amp 0 \\ 0 \amp k \end{bmatrix}, \qquad \text{y-axis invariant: } \begin{bmatrix} k \amp 0 \\ 0 \amp 1 \end{bmatrix}
+            </md>
+            Each has determinant <m>k</m>, so a stretch multiplies every area by <m>k</m>.
+        </p>
+        <p>
+            A <term>two-way stretch</term> is a stretch with factor <m>k_1</m> and the <m>y</m>-axis invariant combined with a stretch with factor <m>k_2</m> and the <m>x</m>-axis invariant. Its matrix is <m>\begin{bmatrix} k_1 \amp 0 \\ 0 \amp k_2 \end{bmatrix}</m> and its area scale factor is <m>k_1 k_2</m>. When <m>k_1 = k_2</m> it is an enlargement, centre <m>O</m>.
+        </p>
+        <p>
+            To describe a stretch fully, give its invariant axis and its stretch factor. Its inverse is the stretch with the same invariant axis and stretch factor <m>\frac{1}{k}</m>.
+        </p>
+    </insight>
 
-    <!-- <insight>
-    </insight> -->
+    <note xml:id="note-negative-stretch-factor">
+        <p>A stretch factor of <m>-1</m> with the <m>x</m>-axis invariant gives the matrix <m>\begin{bmatrix} 1 \amp 0 \\ 0 \amp -1 \end{bmatrix}</m>, which is the reflection in the <m>x</m>-axis. A negative stretch factor is a stretch combined with a reflection. The questions in this book use positive stretch factors.</p>
+    </note>
 
-    <!-- Add further instruction (not in a block) to develop ideas as needed -->
+    <p>You will meet stretches of graphs, with the same words, in <xref ref="sec-transformation-of-waves"/>.</p>
+
+    <figure xml:id="fig-stretch-house">
+        <caption>A stretch with stretch factor <m>2</m> and the <m>x</m>-axis invariant (thick). The image of the house is dashed.</caption>
+        <image width="55%">
+            <shortdescription>A house shape with corners (2, 1), (4, 1), (4, 3), (3, 4), (2, 3) drawn solid, and its dashed image with corners (2, 2), (4, 2), (4, 6), (3, 8), (2, 6). The x-axis is drawn thick. Arrows beside the house show (2, 3) moving up to (2, 6), (3, 4) to (3, 8) and (4, 3) to (4, 6): each height doubles.</shortdescription>
+            <latex-image>
+\begin{tikzpicture}[scale=0.6, >=stealth]
+\draw[very thin, gray!40] (-1,-1) grid (7,9);
+\draw[->] (-1,0) -- (7.3,0) node[right]{$x$};
+\draw[->] (0,-1) -- (0,9.3) node[above]{$y$};
+\draw[line width=2pt] (-1,0) -- (7,0);
+\foreach \x in {2,4,6} \node[below] at (\x,0) {\small $\x$};
+\foreach \y in {2,4,6,8} \node[left] at (0,\y) {\small $\y$};
+\draw[thick] (2,1) -- (4,1) -- (4,3) -- (3,4) -- (2,3) -- cycle;
+\draw[thick, dashed] (2,2) -- (4,2) -- (4,6) -- (3,8) -- (2,6) -- cycle;
+\draw[->, thin] (1.7,3) -- (1.7,5.85);
+\draw[->, thin] (3,4) -- (3,7.85);
+\draw[->, thin] (4.3,3) -- (4.3,5.85);
+\fill (2,3) circle (2pt); \fill (3,4) circle (2pt); \fill (4,3) circle (2pt);
+\node[right] at (4,1) {\small $(4, 1)$};
+\node[right] at (4,2.2) {\small $(4, 2)$};
+\node[above] at (3,8) {\small $(3, 8)$};
+\end{tikzpicture}
+            </latex-image>
+        </image>
+    </figure>
+
+    <figure xml:id="fig-stretch-slider">
+        <caption>Move the slider. Points on the thick invariant axis never move.</caption>
+        <interactive xml:id="interactive-stretch" platform="jsxgraph" width="80%" aspect="1:1" source="jsxgraph/stretch-slider.js">
+            <slate xml:id="jsxgraph-stretch-slider" surface="jsxboard" aspect="1:1"/>
+            <instructions>
+                <p>
+                    <ul>
+                        <li><p>Press <alert>x-axis invariant</alert> and set the <alert>k</alert> slider to <m>2</m>. Compare the image with your drawing in the activity.</p></li>
+                        <li><p>Press <alert>y-axis invariant</alert> and set <alert>k</alert> to <m>1.5</m>. Compare with part (e).</p></li>
+                        <li><p>Find the value of <alert>k</alert> that leaves the house unchanged.</p></li>
+                        <li><p>Watch the area of the image as you move the slider. How is it related to <alert>k</alert>?</p></li>
+                    </ul>
+                </p>
+            </instructions>
+        </interactive>
+    </figure>
 
     <xi:include href="../lesson-plan-templates/example-intro.ptx" />
 
-    <!-- Add at least 3 examples -->
-
-    <!-- <example>
+    <example xml:id="example-stretch-x-axis-invariant">
+        <title>A Stretch With the x-Axis Invariant</title>
         <statement>
+            <p>Triangle <m>ABC</m> has vertices <m>A(2, 1)</m>, <m>B(5, 1)</m> and <m>C(2, 3)</m>. It is mapped by a stretch with stretch factor <m>4</m> and the <m>x</m>-axis invariant. Find the matrix of the stretch, the coordinates of the image and the areas of the triangle and its image.</p>
         </statement>
         <solution>
+            <p>With the <m>x</m>-axis invariant, <m>(1, 0)</m> stays at <m>(1, 0)</m> and <m>(0, 1)</m> goes to <m>(0, 4)</m>. The matrix is <m>\begin{bmatrix} 1 \amp 0 \\ 0 \amp 4 \end{bmatrix}</m>.</p>
+            <p>
+                <md>
+                    \begin{bmatrix} 1 \amp 0 \\ 0 \amp 4 \end{bmatrix} \begin{bmatrix} 2 \amp 5 \amp 2 \\ 1 \amp 1 \amp 3 \end{bmatrix} = \begin{bmatrix} 2 \amp 5 \amp 2 \\ 4 \amp 4 \amp 12 \end{bmatrix}
+                </md>
+                so <m>A'(2, 4)</m>, <m>B'(5, 4)</m> and <m>C'(2, 12)</m>. Every <m>x</m>-coordinate is unchanged and every <m>y</m>-coordinate is multiplied by <m>4</m>.
+            </p>
+            <p>Triangle <m>ABC</m> has a right angle at <m>A</m>, base <m>3</m> and height <m>2</m>: area <m>3</m>. The image has base <m>3</m> and height <m>8</m>: area <m>12 = 4 \times 3</m>, as the determinant <m>4</m> predicts.</p>
         </solution>
     </example>
 
-    <example>
+    <example xml:id="example-describing-a-stretch">
+        <title>Describing a Stretch</title>
         <statement>
+            <p>A stretch maps <m>(1, 2)</m>, <m>(4, 2)</m> and <m>(4, 3)</m> onto <m>(2.5, 2)</m>, <m>(10, 2)</m> and <m>(10, 3)</m>. Describe the stretch fully and write down its matrix.</p>
         </statement>
         <solution>
+            <p>Every <m>y</m>-coordinate is unchanged, so the points move parallel to the <m>x</m>-axis, away from the <m>y</m>-axis: the <m>y</m>-axis is invariant.</p>
+            <p>The distances from the <m>y</m>-axis are multiplied by <m>\frac{2.5}{1} = \frac{10}{4} = 2.5</m>. The transformation is a stretch with stretch factor <m>2.5</m> and the <m>y</m>-axis invariant. Its matrix is <m>\begin{bmatrix} 2.5 \amp 0 \\ 0 \amp 1 \end{bmatrix}</m>.</p>
         </solution>
     </example>
 
-    <example>
+    <example xml:id="example-resizing-a-photo">
+        <title>Resizing a Photo</title>
         <statement>
+            <p>A photo 4 cm wide and 3 cm tall sits with its bottom left corner at <m>O</m> and its sides along the axes (1 unit = 1 cm). An app resizes it with the matrix <m>\begin{bmatrix} 1.5 \amp 0 \\ 0 \amp 2 \end{bmatrix}</m>. Describe the transformation, give the new size of the photo and compare the areas.</p>
         </statement>
         <solution>
+            <p>The matrix is a two-way stretch: stretch factor <m>1.5</m> with the <m>y</m>-axis invariant, and stretch factor <m>2</m> with the <m>x</m>-axis invariant.</p>
+            <p>The corner <m>(4, 3)</m> goes to <m>(1.5 \times 4,\ 2 \times 3) = (6, 6)</m>, so the new photo is 6 cm by 6 cm (<xref ref="fig-two-way-stretch-photo"/>). The photo is no longer the same shape: it has become a square.</p>
+            <p>Areas: <m>4 \times 3 = 12\,\text{cm}^2</m> and <m>6 \times 6 = 36\,\text{cm}^2</m>. The area scale factor is <m>36 \div 12 = 3 = 1.5 \times 2</m>, the determinant of the matrix.</p>
         </solution>
-    </example> -->
+    </example>
+
+    <figure xml:id="fig-two-way-stretch-photo">
+        <caption>A two-way stretch turns a 4 cm by 3 cm photo into a 6 cm by 6 cm square.</caption>
+        <image width="50%">
+            <shortdescription>A rectangle with corners O, (4, 0), (4, 3), (0, 3), marked 4 cm wide and 3 cm tall, drawn solid. Its dashed image has corners O, (6, 0), (6, 6), (0, 6), marked 6 cm by 6 cm.</shortdescription>
+            <latex-image>
+\begin{tikzpicture}[scale=0.6, >=stealth]
+\draw[very thin, gray!40] (-1,-1) grid (8,8);
+\draw[->] (-1,0) -- (8.3,0) node[right]{$x$};
+\draw[->] (0,-1) -- (0,8.3) node[above]{$y$};
+\node[below left] at (0,0) {$O$};
+\draw[thick] (0,0) rectangle (4,3);
+\draw[thick, dashed] (0,0) rectangle (6,6);
+\node at (2,1.5) {photo};
+\node[below] at (2,0) {\small 4 cm};
+\node[left] at (0,1.5) {\small 3 cm};
+\node[above] at (3,6) {\small 6 cm};
+\node[right] at (6,3) {\small 6 cm};
+\node[above right] at (4,3) {\small $(4, 3)$};
+\node[above right] at (6,6) {\small $(6, 6)$};
+\end{tikzpicture}
+            </latex-image>
+        </image>
+    </figure>
 
     <xi:include href="../lesson-plan-templates/assessment-intro.ptx" />
+    <xi:include href="../lesson-plan-templates/checkpoint.ptx" />
 
-    <!-- If STACK questions are included, uncomment this: -->
+    <p>Type one number in each box of a matrix. Type fractions with a slash, for example <c>-3/2</c>, or as exact decimals, for example <c>-1.5</c>. Type each coordinate in its own box.</p>
 
-    <!-- <xi:include href="../lesson-plan-templates/checkpoint.ptx" /> -->
+    <exercise xml:id="ex-matrix-and-image-under-a-stretch">
+        <stack label="stk-matrix-and-image-under-a-stretch" source="stack/top/2-measurement-and-geometry/06-matrices-and-transformations/05-stretch/Matrix-and-image-under-a-stretch.xml"/>
+    </exercise>
 
-    <!-- Add STACK exercises if made -->
+    <exercise xml:id="ex-describing-a-stretch">
+        <stack label="stk-describing-a-stretch" source="stack/top/2-measurement-and-geometry/06-matrices-and-transformations/05-stretch/Describing-a-stretch.xml"/>
+    </exercise>
 
-    <!-- Add static exercises -->
+    <exercises xml:id="exercises-stretch">
+        <exercise xml:id="ex-stretch-images">
+            <statement><p>Write down the matrix of each stretch and find the image of the point.
+                <ol marker="(a)">
+                    <li><p>Stretch factor <m>\frac{1}{2}</m>, <m>x</m>-axis invariant; the point <m>(4, 6)</m>.</p></li>
+                    <li><p>Stretch factor <m>6</m>, <m>y</m>-axis invariant; the point <m>(2, -1)</m>.</p></li>
+                </ol>
+            </p></statement>
+            <answer><p>(a) <m>\begin{bmatrix} 1 \amp 0 \\ 0 \amp \frac{1}{2} \end{bmatrix}</m>, <m>(4, 3)</m> (b) <m>\begin{bmatrix} 6 \amp 0 \\ 0 \amp 1 \end{bmatrix}</m>, <m>(12, -1)</m></p></answer>
+        </exercise>
+        <exercise xml:id="ex-describe-the-stretch">
+            <statement><p>A stretch maps the rectangle <m>(1, 1)</m>, <m>(4, 1)</m>, <m>(4, 2)</m>, <m>(1, 2)</m> onto <m>(1, 3.5)</m>, <m>(4, 3.5)</m>, <m>(4, 7)</m>, <m>(1, 7)</m>. Describe the stretch fully and write down its matrix.</p></statement>
+            <answer><p>A stretch with stretch factor <m>3.5</m> and the <m>x</m>-axis invariant; <m>\begin{bmatrix} 1 \amp 0 \\ 0 \amp 3.5 \end{bmatrix}</m></p></answer>
+            <solution><p>The <m>x</m>-coordinates do not change, so the points move parallel to the <m>y</m>-axis and the <m>x</m>-axis is invariant. Each distance from the <m>x</m>-axis is multiplied by <m>3.5 \div 1 = 7 \div 2 = 3.5</m>.</p></solution>
+        </exercise>
+        <exercise xml:id="ex-two-way-stretch">
+            <statement><p>A two-way stretch is made of a stretch with factor <m>2</m> and the <m>y</m>-axis invariant and a stretch with factor <m>5</m> and the <m>x</m>-axis invariant. Write down its matrix, find the image of <m>(3, 2)</m> and give its area scale factor.</p></statement>
+            <answer><p><m>\begin{bmatrix} 2 \amp 0 \\ 0 \amp 5 \end{bmatrix}</m>; <m>(6, 10)</m>; <m>10</m></p></answer>
+        </exercise>
+        <exercise xml:id="ex-invariant-points-of-a-stretch">
+            <statement><p>Show that every point <m>(t, 0)</m> on the <m>x</m>-axis is mapped onto itself by <m>\begin{bmatrix} 1 \amp 0 \\ 0 \amp 4 \end{bmatrix}</m>. Are any other points mapped onto themselves?</p></statement>
+            <answer><p><m>(t, 0) \to (t, 0)</m>. No other point is fixed.</p></answer>
+            <solution><p><m>\begin{bmatrix} 1 \amp 0 \\ 0 \amp 4 \end{bmatrix} \begin{pmatrix} t \\ 0 \end{pmatrix} = \begin{pmatrix} t \\ 0 \end{pmatrix}</m>. A point <m>(x, y)</m> goes to <m>(x, 4y)</m>, which is the same point only if <m>4y = y</m>, that is <m>y = 0</m>. So the fixed points are exactly the points of the invariant axis.</p></solution>
+        </exercise>
+        <exercise xml:id="ex-stretching-a-county-map">
+            <statement><p>A map of a county is 12 cm wide and 15 cm tall on a phone screen. Amani stretches it to 1.5 times its width, keeping its height. Find the new width, and the areas of the map before and after the stretch.</p></statement>
+            <answer><p><m>18\,\text{cm}</m>; <m>180\,\text{cm}^2</m> and <m>270\,\text{cm}^2</m></p></answer>
+            <solution><p>Put the left edge of the map on the <m>y</m>-axis: this is a stretch with stretch factor <m>1.5</m> and the <m>y</m>-axis invariant. New width <m>1.5 \times 12 = 18\,\text{cm}</m>. Areas <m>12 \times 15 = 180\,\text{cm}^2</m> and <m>18 \times 15 = 270\,\text{cm}^2 = 1.5 \times 180\,\text{cm}^2</m>.</p></solution>
+        </exercise>
+        <exercise xml:id="ex-stretch-then-stretch">
+            <title>Challenge: Stretch Then Stretch</title>
+            <statement><p>
+                <ol marker="(a)">
+                    <li><p>A stretch with factor <m>2</m> and the <m>x</m>-axis invariant is followed by a stretch with factor <m>2</m> and the <m>y</m>-axis invariant. Which single transformation has the same effect?</p></li>
+                    <li><p>A stretch with factor <m>4</m> and the <m>x</m>-axis invariant is followed by a stretch with factor <m>\frac{1}{4}</m> and the <m>x</m>-axis invariant. What is the single transformation?</p></li>
+                </ol>
+            </p></statement>
+            <hint><p>Multiply the matrices, second times first.</p></hint>
+            <answer><p>(a) The enlargement, centre <m>O</m>, scale factor <m>2</m>. (b) The identity: every point ends where it started.</p></answer>
+            <solution><p>(a) <m>\begin{bmatrix} 2 \amp 0 \\ 0 \amp 1 \end{bmatrix} \begin{bmatrix} 1 \amp 0 \\ 0 \amp 2 \end{bmatrix} = \begin{bmatrix} 2 \amp 0 \\ 0 \amp 2 \end{bmatrix}</m>, the enlargement, centre <m>O</m>, scale factor <m>2</m>.</p>
+            <p>(b) <m>\begin{bmatrix} 1 \amp 0 \\ 0 \amp \frac{1}{4} \end{bmatrix} \begin{bmatrix} 1 \amp 0 \\ 0 \amp 4 \end{bmatrix} = \begin{bmatrix} 1 \amp 0 \\ 0 \amp 1 \end{bmatrix}</m>, the identity. The second stretch is the inverse of the first.</p></solution>
+        </exercise>
+    </exercises>
 
-    <!-- <exercises>
-        <exercise>
-            <statement>   
-
-            </statement>   
-            <solution>
-
-            </solution>             
-        </exercise>        
-    </exercises> -->
-
-    <!-- [LP] Add information on how to differentiate  -->
-
-    <!-- <axiom component="lesson-plan">
+    <axiom component="lesson-plan">
         <title>Differentiation</title>
-
-        <table>
-            <title>Differentiation</title>
-            <tabular halign="left">
-                <row header="yes" bottom="minor">
-                    <cell>Learner Group</cell>
-                    <cell>Strategy &amp; Learning Experience</cell>
-                    <cell></cell>
-                </row>
-                <row>
-                    <cell>Struggling Learners (Support)</cell>
-                    <cell>
-                        XXXX
-                    </cell>
-                    <cell></cell>
-                </row>
-                <row>
-                    <cell>On-Level Learners (Core)</cell>
-                    <cell>
-                        <line>The core lesson activities as described above.</line>
-                    </cell>
-                    <cell></cell>
-                </row>
-                <row>
-                    <cell>Advanced Learners (Challenge)</cell>
-                    <cell>
-                        XXXX
-                    </cell>
-                    <cell></cell>
-                </row>
+        <table xml:id="table-differentiation-stretch">
+            <title>Differentiation Strategies</title>
+            <tabular halign="left" top="minor" bottom="minor" left="minor" right="minor">
+                <row header="yes" bottom="medium"><cell>Learner Group</cell><cell>Strategy and Learning Experience</cell></row>
+                <row><cell>Struggling Learners (Support)</cell><cell>Give a card: <q>Which coordinate changes? The other axis is invariant.</q> Focus on activity parts (a) to (c). Assign <xref ref="ex-stretch-images"/> and <xref ref="ex-two-way-stretch"/>.</cell></row>
+                <row><cell>On-Level Learners (Core)</cell><cell>Full activity plus all examples. Assign <xref ref="ex-stretch-images"/> to <xref ref="ex-stretching-a-county-map"/>.</cell></row>
+                <row><cell>Advanced Learners (Challenge)</cell><cell>All exercises including <xref ref="ex-stretch-then-stretch"/>. Extension: which single stretch undoes a stretch with stretch factor <m>\frac{3}{4}</m> and the <m>y</m>-axis invariant? (Answer: the stretch with stretch factor <m>\frac{4}{3}</m> and the <m>y</m>-axis invariant.)</cell></row>
             </tabular>
         </table>
-    </axiom> -->
+    </axiom>
 
     <xi:include href="../lesson-plan-templates/assessment-methods.ptx" />
 

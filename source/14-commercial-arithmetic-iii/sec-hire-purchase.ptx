@@ -46,163 +46,226 @@
          Content summary: Hire purchase: deposit plus instalments and total cost of goods (carrying charge not included).
          Suggested activity: Learners compare the cash price and hire purchase price of an item such as a phone or a fridge from a local shop advert. -->
 
-    <!-- [LP] Add guidance on activity -->
+    <!-- Section notes (2026-11)
+         SLO: Essential 2.4 (d); outcome (f) apply (cash, hire purchase or a SACCO loan). One lesson, flat anatomy. No carrying charge: instalments are stated, never computed from a charge.
+         Activity: as planning notes (cash and hire purchase prices of a fridge from an advert)
+         Figure: fig-hire-purchase-timeline (TikZ); no JSXGraph named in the planning notes
+         STACK: assets/stack/top/2-measurement-and-geometry/14-commercial-arithmetic-iii/05-hire-purchase/ -->
+
+    <p component="lesson-plan">Upon completion of this lesson, learners will be able to:
+        <ol>
+            <li><p><alert>Know:</alert> the cash price, deposit, instalments, hire purchase price and extra paid; the goods belong to the seller until the last instalment.</p></li>
+            <li><p><alert>Do:</alert> find the hire purchase price and the extra paid; find an instalment or a deposit from the other values; compare hire purchase with cash and with a SACCO loan.</p></li>
+            <li><p><alert>Apply:</alert> a fridge, a motorbike, a phone and a solar kit.</p></li>
+        </ol>
+    </p>
 
     <axiom component="lesson-plan">
         <title>Problem-Solving and Discovery</title>
         <dl>
-            <li>
-                <title>Suggested Time</title>
-                <p>
-                    XXX minutes
-                </p>
-            </li>
-            <li>
-                <title>Objective</title>
-                <p>
-                    XXX
-                </p>
-            </li>
-            <li>
-                <title>Teacher's Role</title>
-                <p>
-                    XXX
-                </p>
-            </li>
+            <li><title>Suggested Time</title><p>14 minutes</p></li>
+            <li><title>Objective</title><p>Learners compare a cash price with a hire purchase offer from an advert and find what having the goods now costs.</p></li>
+            <li><title>Teacher's Role</title><p>Show the advert and <xref ref="fig-hire-purchase-timeline"/>. If learners bring real adverts from local shops, compare those too. Ask: <q>What do you pay for having it now?</q></p></li>
         </dl>
     </axiom>
 
-    <!-- Add Activity -->
-
-    <!-- <activity>
+    <activity xml:id="act-the-fridge-advert">
+        <title>The Fridge Advert</title>
         <statement>
+            <p>A shop in Kisumu advertises a fridge: <q>Cash price Ksh <m>38\,500</m>. Or take it home today for a deposit of Ksh <m>7000</m> and <m>12</m> monthly instalments of Ksh <m>3100</m>.</q></p>
+            <p>
+                <ol marker="(a)">
+                    <li>
+                        <p>Find the total of the instalments.</p>
+                        <solution component="lesson-plan"><p><m>12 \times 3100 = 37\,200</m>, Ksh <m>37\,200</m>.</p></solution>
+                    </li>
+                    <li>
+                        <p>Find the total paid on hire purchase.</p>
+                        <solution component="lesson-plan"><p><m>7000 + 37\,200 = 44\,200</m>, Ksh <m>44\,200</m>.</p></solution>
+                    </li>
+                    <li>
+                        <p>How much more than the cash price is this?</p>
+                        <solution component="lesson-plan"><p><m>44\,200 - 38\,500 = 5700</m>, Ksh <m>5700</m>.</p></solution>
+                    </li>
+                    <li>
+                        <p>Write the extra as a percentage of the cash price.</p>
+                        <solution component="lesson-plan"><p><m>\dfrac{5700}{38\,500} \times 100 = 14.8\%</m> to 1 decimal place.</p></solution>
+                    </li>
+                    <li>
+                        <p>Who owns the fridge after the sixth instalment has been paid?</p>
+                        <solution component="lesson-plan"><p>The shop. The fridge belongs to the seller until the last instalment is paid.</p></solution>
+                    </li>
+                </ol>
+            </p>
         </statement>
-    </activity> -->
+    </activity>
 
-    <!-- [LP] Add guidance on structured lesson plan-->
-
-    <!-- <axiom component="lesson-plan">
+    <axiom component="lesson-plan">
         <title>Structured Instruction</title>
         <p>
             <dl>
-            <li>
-                <title>Suggested Time</title>
-                <p>
-                    XX minutes
-                </p>
-            </li>
-            <li>
-                <title>Objective</title>
-                <p>
-                    To formalize the concepts and properties learners discovered in the anchor task.
-                </p>
-            </li>
+                <li><title>Suggested Time</title><p>8 minutes</p></li>
+                <li><title>Objective</title><p>To name the parts of a hire purchase agreement from the activity.</p></li>
             </dl>
         </p>
         <paragraphs>
             <title>Key Takeaways &amp; Teacher Connection</title>
             <ol>
-                <li>
-                    <p>
-                        <alert>Connecting to Learner Work:</alert> XXXX
-                    </p>
-                </li>
+                <li><p><alert>Connecting to Learner Work:</alert> part (b) is the hire purchase price; part (c) is the extra paid for having the fridge now.</p></li>
+                <li><p>Hire purchase price <m>=</m> deposit <m>+</m> total of the instalments; extra paid <m>=</m> hire purchase price <m>-</m> cash price.</p></li>
+                <li><p>Read the agreement: until the last instalment the goods are not yours.</p></li>
             </ol>
         </paragraphs>
-    </axiom> -->
+    </axiom>
 
-    <!-- Add insight / key takeaway directly related to activity / learner experience -->
+    <insight xml:id="insight-hire-purchase">
+        <title>Hire Purchase</title>
+        <p>The <term>cash price</term> is what you pay if you pay everything at once. Under <term>hire purchase</term> you pay a <term>deposit</term> now, take the goods home, and pay the rest in equal <term>instalments</term>, usually monthly. Then
+            <md>\text{hire purchase price} = \text{deposit} + \text{total of the instalments}</md>
+            and the extra paid is the hire purchase price minus the cash price. With hire purchase you use the goods now and pay more than the cash price.</p>
+    </insight>
 
-    <!-- <insight>
-    </insight> -->
+    <figure xml:id="fig-hire-purchase-timeline">
+        <caption>The fridge of <xref ref="act-the-fridge-advert"/> on hire purchase: a deposit today and twelve monthly instalments, compared with the cash price.</caption>
+        <image width="75%">
+            <shortdescription>A time line from today to month 12. A tall bar today is the deposit of 7000 shillings; twelve shorter bars, one each month, are instalments of 3100 shillings. On the right the deposit and the instalments are stacked to 44 200 shillings, beside a bar for the cash price of 38 500 shillings; a double arrow marks the extra 5700 shillings.</shortdescription>
+            <description><p>Horizontal axis: months from today, 0 to 12. At month 0 a bar of height 7000 labelled deposit 7000. At each month from 1 to 12 a bar of height 3100; one label over them reads 12 instalments of 3100. To the right, two columns: a stacked column of 7000 plus twelve blocks of 3100 reaching 44 200, labelled hire purchase 44 200, and a column of height 38 500 labelled cash 38 500. A dashed line at 38 500 runs across to the stacked column, and a double arrow between 38 500 and 44 200 is labelled extra 5700.</p></description>
+            <latex-image>
+\begin{tikzpicture}[x=0.55cm, y=0.12cm]
+% SET: scale 1 unit = 1000 shillings vertically
+% DRAW: time axis
+\draw[->] (-0.8,0) -- (13.6,0) node[right, font=\small] {month};
+\foreach \m in {0,2,...,12} \node[below, font=\scriptsize] at (\m,0) {\m};
+% DRAW: deposit and instalments
+\fill[gray!55] (-0.35,0) rectangle (0.35,7);
+\node[above, font=\scriptsize, align=center] at (0,7) {deposit\\7000};
+\foreach \m in {1,...,12} \fill[gray!25] (\m-0.35,0) rectangle (\m+0.35,3.1);
+\node[above, font=\scriptsize] at (6.5,3.1) {12 instalments of 3100};
+% DRAW: stacked hire purchase total and cash price
+\fill[gray!55] (16,0) rectangle (17.4,7);
+\foreach \k in {0,...,11} \draw[fill=gray!25] (16,7+3.1*\k) rectangle (17.4,7+3.1*\k+3.1);
+\fill[pattern=north east lines] (19,0) rectangle (20.4,38.5);
+\draw (19,0) rectangle (20.4,38.5);
+\draw[->] (15.2,0) -- (21.4,0);
+% MARK: dashed cash-price line and double arrow for the extra
+\draw[dashed] (15.6,38.5) -- (20.4,38.5);
+\draw[stealth-stealth, thick] (15.6,38.5) -- (15.6,44.2) node[midway, left, font=\scriptsize] {extra 5700};
+% LABEL
+\node[above, font=\scriptsize, align=center] at (16.7,44.2) {hire purchase\\44\,200};
+\node[above, font=\scriptsize, align=center] at (19.7,38.5) {cash\\38\,500};
+\end{tikzpicture}
+            </latex-image>
+        </image>
+    </figure>
 
-    <!-- Add further instruction (not in a block) to develop ideas as needed -->
+    <note xml:id="note-hire-purchase-ownership">
+        <title>Who Owns It?</title>
+        <p>Under hire purchase the goods belong to the seller until the final instalment is paid. If you miss payments, the seller can take the goods back, and what you have already paid may be lost. Before you sign, check the hire purchase price, the number of instalments and what happens if you cannot pay.</p>
+    </note>
 
     <xi:include href="../lesson-plan-templates/example-intro.ptx" />
 
-    <!-- Add at least 3 examples -->
-
-    <!-- <example>
+    <example xml:id="example-motorbike-on-hire-purchase">
+        <title>A Motorbike on Hire Purchase</title>
         <statement>
+            <p>A motorbike costs Ksh <m>145\,000</m> cash. On hire purchase the deposit is <m>20\%</m> of the cash price, followed by <m>18</m> monthly instalments of Ksh <m>7800</m>. Find the hire purchase price and the extra paid.</p>
         </statement>
         <solution>
+            <p>Deposit: <m>20\%</m> of <m>145\,000</m> is <m>29\,000</m>. Instalments: <m>18 \times 7800 = 140\,400</m>.
+                <md>\text{hire purchase price} = 29\,000 + 140\,400 = 169\,400</md>
+                The hire purchase price is Ksh <m>169\,400</m> and the extra paid is <m>169\,400 - 145\,000 = 24\,400</m>, Ksh <m>24\,400</m>.</p>
         </solution>
     </example>
 
-    <example>
+    <example xml:id="example-finding-the-instalment">
+        <title>Finding the Instalment</title>
         <statement>
+            <p>A smartphone costs Ksh <m>24\,000</m> cash. Its hire purchase price is Ksh <m>28\,800</m>: a deposit of Ksh <m>4800</m> and then <m>12</m> equal monthly instalments. Find each instalment.</p>
         </statement>
         <solution>
+            <p>The instalments pay the hire purchase price after the deposit: <m>28\,800 - 4800 = 24\,000</m>. Each instalment is <m>24\,000 \div 12 = 2000</m>, Ksh <m>2000</m>.</p>
         </solution>
     </example>
 
-    <example>
+    <example xml:id="example-cash-hp-or-sacco">
+        <title>Cash, Hire Purchase or a SACCO Loan?</title>
         <statement>
+            <p>For the motorbike in <xref ref="example-motorbike-on-hire-purchase"/>, a third choice is to borrow the cash price of Ksh <m>145\,000</m> from a SACCO at <m>14\%</m> per annum simple interest and repay it all over <m>18</m> months. Which choice costs least?</p>
         </statement>
         <solution>
+            <p><m>18</m> months is <m>1.5</m> years. The SACCO is repaid
+                <md>145\,000 + \frac{145\,000 \times 14 \times 1.5}{100} = 145\,000 + 30\,450 = 175\,450</md>
+                Hire purchase costs Ksh <m>169\,400</m>, Ksh <m>6050</m> less than the SACCO loan here. Paying cash, Ksh <m>145\,000</m>, is cheapest of all, if you have the money.</p>
         </solution>
-    </example> -->
+    </example>
 
     <xi:include href="../lesson-plan-templates/assessment-intro.ptx" />
+    <xi:include href="../lesson-plan-templates/checkpoint.ptx" />
 
-    <!-- If STACK questions are included, uncomment this: -->
+    <p>Type amounts as plain numbers, without Ksh, spaces or commas, for example <c>45326</c>. Give money to the nearest shilling and percentages to 1 decimal place unless the question says otherwise; exact answers in cents are also accepted.</p>
 
-    <!-- <xi:include href="../lesson-plan-templates/checkpoint.ptx" /> -->
+    <exercise xml:id="ex-hire-purchase-price-and-extra">
+        <!--<title></title>-->
+        <stack label="stk-hire-purchase-price-and-extra" source="stack/top/2-measurement-and-geometry/14-commercial-arithmetic-iii/05-hire-purchase/Hire-purchase-price-and-extra.xml"/>
+    </exercise>
 
-    <!-- Add STACK exercises if made -->
+    <exercise xml:id="ex-finding-an-instalment">
+        <!--<title></title>-->
+        <stack label="stk-finding-an-instalment" source="stack/top/2-measurement-and-geometry/14-commercial-arithmetic-iii/05-hire-purchase/Finding-an-instalment.xml"/>
+    </exercise>
 
-    <!-- Add static exercises -->
+    <exercise xml:id="ex-hire-purchase-or-sacco-loan">
+        <!--<title></title>-->
+        <stack label="stk-hire-purchase-or-sacco-loan" source="stack/top/2-measurement-and-geometry/14-commercial-arithmetic-iii/05-hire-purchase/Hire-purchase-or-SACCO-loan.xml"/>
+    </exercise>
 
-    <!-- <exercises>
-        <exercise>
-            <statement>   
+    <exercises xml:id="exercises-hire-purchase">
+        <exercise xml:id="ex-hp-television">
+            <statement><p>A television costs Ksh <m>27\,999</m> cash, or Ksh <m>4500</m> deposit and <m>10</m> monthly instalments of Ksh <m>2650</m>. Find the hire purchase price and the extra paid.</p></statement>
+            <answer><p>Hire purchase price Ksh <m>31\,000</m>; extra Ksh <m>3001</m></p></answer>
+        </exercise>
+        <exercise xml:id="ex-hp-water-tank">
+            <statement><p>A water tank costs Ksh <m>32\,000</m> cash. On hire purchase the deposit is <m>15\%</m> of the cash price, followed by <m>9</m> instalments of Ksh <m>3600</m>. Find the deposit, the hire purchase price and the extra paid.</p></statement>
+            <answer><p>Deposit Ksh <m>4800</m>; hire purchase price Ksh <m>37\,200</m>; extra Ksh <m>5200</m></p></answer>
+        </exercise>
+        <exercise xml:id="ex-hp-cooker-instalment">
+            <statement><p>A cooker's hire purchase price is Ksh <m>41\,400</m>: a deposit of Ksh <m>6000</m> and <m>12</m> equal monthly instalments. Find each instalment.</p></statement>
+            <answer><p>Ksh <m>2950</m></p></answer>
+        </exercise>
+        <exercise xml:id="ex-hp-two-offers-solar">
+            <statement><p>A solar kit costs Ksh <m>28\,500</m> cash. Offer A: Ksh <m>5000</m> deposit and <m>6</m> monthly instalments of Ksh <m>4200</m>. Offer B: Ksh <m>2000</m> deposit and <m>12</m> monthly instalments of Ksh <m>2400</m>. Which offer costs less, and how much more than the cash price does each cost?</p></statement>
+            <answer><p>A costs Ksh <m>30\,200</m> and B Ksh <m>30\,800</m>, so A costs Ksh <m>600</m> less; extras Ksh <m>1700</m> and Ksh <m>2300</m></p></answer>
+            <solution><p>A: <m>5000 + 6 \times 4200 = 30\,200</m>, extra <m>30\,200 - 28\,500 = 1700</m>. B: <m>2000 + 12 \times 2400 = 30\,800</m>, extra <m>2300</m>. A is cheaper by <m>600</m>, but B asks for a smaller deposit and smaller monthly payments.</p></solution>
+        </exercise>
+        <exercise xml:id="ex-hp-deposit-needed">
+            <statement><p>A bicycle shop's hire purchase price for a bicycle is Ksh <m>52\,500</m>, with <m>18</m> monthly instalments of Ksh <m>2600</m>. What deposit is paid?</p></statement>
+            <answer><p>Ksh <m>5700</m></p></answer>
+            <solution><p>The instalments total <m>18 \times 2600 = 46\,800</m>, so the deposit is <m>52\,500 - 46\,800 = 5700</m>.</p></solution>
+        </exercise>
+        <exercise xml:id="ex-hp-extra-percentage">
+            <title>Challenge: Is the Extra Worth It?</title>
+            <statement><p>A sewing machine costs Ksh <m>21\,000</m> cash, or Ksh <m>3000</m> deposit and <m>12</m> monthly instalments of Ksh <m>1800</m>. Find the extra as a percentage of the cash price, and give one good reason for choosing hire purchase anyway.</p></statement>
+            <hint><p>Find the hire purchase price first.</p></hint>
+            <answer><p>Extra Ksh <m>3600</m>, <m>17.1\%</m> of the cash price. A tailor can earn money with the machine from the first month instead of saving for a year first.</p></answer>
+            <solution><p>Hire purchase price <m>3000 + 12 \times 1800 = 24\,600</m>; extra <m>24\,600 - 21\,000 = 3600</m>; <m>\dfrac{3600}{21\,000} \times 100 = 17.1\%</m>. A good reason: the machine earns money from the start, which can pay the instalments.</p></solution>
+        </exercise>
+    </exercises>
 
-            </statement>   
-            <solution>
-
-            </solution>             
-        </exercise>        
-    </exercises> -->
-
-    <!-- [LP] Add information on how to differentiate  -->
-
-    <!-- <axiom component="lesson-plan">
+    <axiom component="lesson-plan">
         <title>Differentiation</title>
-
-        <table>
-            <title>Differentiation</title>
-            <tabular halign="left">
-                <row header="yes" bottom="minor">
-                    <cell>Learner Group</cell>
-                    <cell>Strategy &amp; Learning Experience</cell>
-                    <cell></cell>
-                </row>
-                <row>
-                    <cell>Struggling Learners (Support)</cell>
-                    <cell>
-                        XXXX
-                    </cell>
-                    <cell></cell>
-                </row>
-                <row>
-                    <cell>On-Level Learners (Core)</cell>
-                    <cell>
-                        <line>The core lesson activities as described above.</line>
-                    </cell>
-                    <cell></cell>
-                </row>
-                <row>
-                    <cell>Advanced Learners (Challenge)</cell>
-                    <cell>
-                        XXXX
-                    </cell>
-                    <cell></cell>
-                </row>
+        <table xml:id="table-differentiation-hire-purchase">
+            <title>Differentiation Strategies</title>
+            <tabular halign="left" top="minor" bottom="minor" left="minor" right="minor">
+                <row header="yes" bottom="medium"><cell>Learner Group</cell><cell>Strategy and Learning Experience</cell></row>
+                <row><cell>Struggling Learners (Support)</cell><cell>Activity parts (a) to (c) and <xref ref="example-motorbike-on-hire-purchase"/>. Give a card: <q>hire purchase price <m>=</m> deposit <m>+</m> instalments</q>. Assign <xref ref="ex-hp-television"/> and <xref ref="ex-hp-cooker-instalment"/>.</cell></row>
+                <row><cell>On-Level Learners (Core)</cell><cell>Full activity and all examples. Assign <xref ref="ex-hp-television"/> to <xref ref="ex-hp-deposit-needed"/>.</cell></row>
+                <row><cell>Advanced Learners (Challenge)</cell><cell>All exercises including <xref ref="ex-hp-extra-percentage"/>. Extension: for the fridge in <xref ref="act-the-fridge-advert"/>, which is cheaper over a year, hire purchase or saving first and paying cash? What do you lose by waiting? (Discussion: saving first saves Ksh <m>5700</m> but means a year without the fridge.)</cell></row>
             </tabular>
         </table>
-    </axiom> -->
+    </axiom>
+
+    <p component="lesson-plan">Closing question for the class: when is hire purchase a sensible choice, and when is it better to save first?</p>
 
     <xi:include href="../lesson-plan-templates/assessment-methods.ptx" />
-
     <xi:include href="../lesson-plan-templates/reflection.ptx"/>
 </section>

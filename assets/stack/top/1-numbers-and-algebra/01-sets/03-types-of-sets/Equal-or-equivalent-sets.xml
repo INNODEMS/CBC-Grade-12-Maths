@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<quiz>
+<question type="stack">
+  <name><text>Equal or equivalent sets</text></name>
+  <questiontext format="html">
+    <text><![CDATA[<p>\(A = {@As@}\) and \(B = {@Bs@}\).</p><p>(a) Which is true?</p><p>[[input:ans1]] [[validation:ans1]] [[feedback:prt1]]</p><p>(b) Write a set \(C\) of whole numbers less than \(30\) that is equivalent to \(A\) but not equal to \(A\).</p><p>[[input:ans2]] [[validation:ans2]] [[feedback:prt2]]</p>]]></text>
+  </questiontext>
+  <generalfeedback format="html">
+    <text><![CDATA[<p>(a) \(A = {@Al@}\) has \({@nA@}\) elements and \(B = {@Bl@}\) has \({@nB@}\). [[if test="is(ky=1)"]]They have exactly the same elements, so they are equal (and so also equivalent).[[elif test="is(ky=2)"]]They have the same number of elements but different elements, so they are equivalent but not equal.[[else]]They have different numbers of elements, so they are not equivalent (and so not equal).[[/if]]</p><p>(b) \(C\) needs \({@nA@}\) elements, like \(A\), but must differ from \(A\) in at least one element. For example \(C = {@dset(Cs)@}\). Many other answers are correct.</p>]]></text>
+  </generalfeedback>
+  <defaultgrade>2</defaultgrade>
+  <penalty>0.1</penalty>
+  <hidden>0</hidden>
+  <idnumber></idnumber>
+  <stackversion><text>2026063000</text></stackversion>
+  <questionvariables>
+    <text><![CDATA[cardn(S) := length(listify(S));
+dset(S) := if emptyp(S) then "\\{\\,\\}" else sconcat("\\{", simplode(map(string, listify(S)), ", "), "\\}");
+ix: 1+rand(10);
+/* Design: equal, equivalent or not equivalent, then construct an equivalent set. Source: adapted from SMP Book 1, Chapter 2, Exercise A, question 3; the equivalence and construct parts are original.
+   Curated list, one seed per entry; keys 1 equal (3), 2 equivalent (4), 3 not equivalent (3).
+   Cs: a sample C (the top n(A) whole numbers below 30); t3, t4 test sets. */
+L: [["\\{2, 5, 8, 11\\}","\\{11, 8, 5, 2\\}","\\{2, 5, 8, 11\\}","\\{2, 5, 8, 11\\}",{2,5,8,11},4,4,1,2,{26,27,28,29},{26,27,28},{-1,26,27,28}],
+  ["\\{\\text{the factors of 22}\\}","\\{x : x \\text{ is an odd whole number}, x < 8\\}","\\{1, 2, 11, 22\\}","\\{1, 3, 5, 7\\}",{1,2,11,22},4,4,2,3,{26,27,28,29},{26,27,28},{-1,26,27,28}],
+  ["\\{9, 18, 27\\}","\\{\\text{the multiples of 9 between 1 and 30}\\}","\\{9, 18, 27\\}","\\{9, 18, 27\\}",{9,18,27},3,3,1,2,{27,28,29},{27,28},{-1,27,28}],
+  ["\\{x : x \\text{ is a whole number}, x < 8\\}","\\{x : x \\text{ is a natural number}, x \\le 8\\}","\\{0, 1, 2, 3, 4, 5, 6, 7\\}","\\{1, 2, 3, 4, 5, 6, 7, 8\\}",{0,1,2,3,4,5,6,7},8,8,2,3,{22,23,24,25,26,27,28,29},{22,23,24,25,26,27,28},{-1,22,23,24,25,26,27,28}],
+  ["\\{\\text{the factors of 16}\\}","\\{1, 2, 4, 8\\}","\\{1, 2, 4, 8, 16\\}","\\{1, 2, 4, 8\\}",{1,2,4,8,16},5,4,3,1,{25,26,27,28,29},{25,26,27,28},{-1,25,26,27,28}],
+  ["\\{4, 9, 16, 25\\}","\\{\\text{the square numbers between 3 and 30}\\}","\\{4, 9, 16, 25\\}","\\{4, 9, 16, 25\\}",{4,9,16,25},4,4,1,2,{26,27,28,29},{26,27,28},{-1,26,27,28}],
+  ["\\{\\text{the prime numbers less than 12}\\}","\\{\\text{the odd numbers between 10 and 20}\\}","\\{2, 3, 5, 7, 11\\}","\\{11, 13, 15, 17, 19\\}",{2,3,5,7,11},5,5,2,3,{25,26,27,28,29},{25,26,27,28},{-1,25,26,27,28}],
+  ["\\{13, 17, 19, 23\\}","\\{x : x \\text{ is a prime number}, 12 < x < 30\\}","\\{13, 17, 19, 23\\}","\\{13, 17, 19, 23, 29\\}",{13,17,19,23},4,5,3,1,{26,27,28,29},{26,27,28},{-1,26,27,28}],
+  ["\\{4, 8, 12, 16, 20, 24\\}","\\{\\text{the letters of the word GARISSA}\\}","\\{4, 8, 12, 16, 20, 24\\}","\\{\\text{A, G, I, R, S}\\}",{4,8,12,16,20,24},6,5,3,1,{24,25,26,27,28,29},{24,25,26,27,28},{-1,24,25,26,27,28}],
+  ["\\{22, 24, 26, 28\\}","\\{\\text{the letters of the word EMBU}\\}","\\{22, 24, 26, 28\\}","\\{\\text{B, E, M, U}\\}",{22,24,26,28},4,4,2,3,{26,27,28,29},{26,27,28},{-1,26,27,28}]];
+As: L[ix][1]; Bs: L[ix][2]; Al: L[ix][3]; Bl: L[ix][4]; A: L[ix][5]; nA: L[ix][6]; nB: L[ix][7]; ky: L[ix][8]; wk: L[ix][9]; Cs: L[ix][10]; t3: L[ix][11]; t4: L[ix][12]; 
+o1: [[1, is(ky=1), "A and B are equal (so also equivalent)."], [2, is(ky=2), "A and B are equivalent but not equal."], [3, is(ky=3), "A and B are not equivalent."]];
+W: setify(makelist(i,i,0,29));
+]]></text>
+  </questionvariables>
+  <specificfeedback format="html"><text><![CDATA[]]></text></specificfeedback>
+  <questionnote format="moodle_auto_format">
+    <text>ix={@ix@}, ky={@ky@}, n(A)={@nA@}</text>
+  </questionnote>
+  <questiondescription format="html"><text><![CDATA[<p id="concept">Sets: equal and equivalent sets</p><p id="description">Grade 12 CBE Core and Essential 1.1 (a): Decide whether two sets are equal, equivalent or neither, and construct a set equivalent but not equal to a given set.</p><p id="edition">Core and Essential</p><p id="provenance">This question is adapted from Chapter 2 (Sets), Exercise A, question 3 of School Mathematics Project, SMP Book 1 (Metric), Cambridge University Press, 1969: deciding whether two sets are equal; every pair is new, and equivalent sets and the construct part are added.</p><p id="citation">INNODEMS CBC Grade 12 Mathematics, first draft by Ben Davies, 2026. Aligned to the KICD Senior School Curriculum Design, Core and Essential Mathematics Grade 12 (draft).</p>]]></text></questiondescription>
+  <questionsimplify>1</questionsimplify>
+  <assumepositive>0</assumepositive>
+  <assumereal>0</assumereal>
+  <prtcorrect format="html"><text><![CDATA[[[commonstring key="symbolicprtcorrectfeedback"/]] [[commonstring key="defaultprtcorrectfeedback"/]]]]></text></prtcorrect>
+  <prtpartiallycorrect format="html"><text><![CDATA[[[commonstring key="symbolicprtpartiallycorrectfeedback"/]] [[commonstring key="defaultprtpartiallycorrectfeedback"/]]]]></text></prtpartiallycorrect>
+  <prtincorrect format="html"><text><![CDATA[[[commonstring key="symbolicprtincorrectfeedback"/]] [[commonstring key="defaultprtincorrectfeedback"/]]]]></text></prtincorrect>
+  <decimals>.</decimals>
+  <scientificnotation>*10</scientificnotation>
+  <multiplicationsign>none</multiplicationsign>
+  <sqrtsign>1</sqrtsign>
+  <complexno>i</complexno>
+  <inversetrig>cos-1</inversetrig>
+  <logicsymbol>lang</logicsymbol>
+  <matrixparens>[</matrixparens>
+  <isbroken>0</isbroken>
+  <variantsselectionseed></variantsselectionseed>
+
+  <input><name>ans1</name><type>dropdown</type><tans>o1</tans><boxsize>15</boxsize><strictsyntax>1</strictsyntax><insertstars>0</insertstars><syntaxhint></syntaxhint><syntaxattribute>0</syntaxattribute><forbidwords></forbidwords><allowwords></allowwords><forbidfloat>1</forbidfloat><requirelowestterms>0</requirelowestterms><checkanswertype>0</checkanswertype><mustverify>0</mustverify><showvalidation>0</showvalidation><options></options></input>
+  <input><name>ans2</name><type>algebraic</type><tans>Cs</tans><boxsize>25</boxsize><strictsyntax>1</strictsyntax><insertstars>0</insertstars><syntaxhint></syntaxhint><syntaxattribute>0</syntaxattribute><forbidwords></forbidwords><allowwords></allowwords><forbidfloat>1</forbidfloat><requirelowestterms>0</requirelowestterms><checkanswertype>1</checkanswertype><mustverify>0</mustverify><showvalidation>1</showvalidation><options></options></input>
+
+  <prt><name>prt1</name><value>1.0000000</value><autosimplify>1</autosimplify><feedbackstyle>1</feedbackstyle><feedbackvariables><text><![CDATA[]]></text></feedbackvariables>
+    <node><name>0</name><description>Key</description><answertest>AlgEquiv</answertest><sans>ans1</sans><tans>ky</tans><testoptions></testoptions><quiet>0</quiet><truescoremode>=</truescoremode><truescore>1.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt1-1-T</trueanswernote><truefeedback format="html"><text><![CDATA[]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>-1</falsenextnode><falseanswernote>prt1-1-F</falseanswernote><falsefeedback format="html"><text><![CDATA[<p>[[if test="is(ans1=1)"]]You chose <q>equal</q>, so every element of each set should be in the other. List both sets and look for an element of one that is not in the other.[[/if]][[if test="is(ans1=2 and ky=1)"]]You chose <q>equivalent but not equal</q>, so some element of one set should be missing from the other. List both sets and look for one; the order of the elements does not matter.[[/if]][[if test="is(ans1=2 and ky=3)"]]You chose <q>equivalent</q>, so the two sets should have the same number of elements. List both sets, each element once, and count.[[/if]][[if test="is(ans1=3)"]]You chose <q>not equivalent</q>, so the two sets should have different numbers of elements. List both sets, each element once, and count.[[/if]]</p>]]></text></falsefeedback></node>
+  </prt>
+  <prt><name>prt2</name><value>1.0000000</value><autosimplify>1</autosimplify><feedbackstyle>1</feedbackstyle><feedbackvariables><text><![CDATA[]]></text></feedbackvariables>
+    <node><name>0</name><description>Valid C</description><answertest>AlgEquiv</answertest><sans>is(subsetp(ans2,W) and cardn(ans2)=nA and not setequalp(ans2,A))</sans><tans>true</tans><testoptions></testoptions><quiet>0</quiet><truescoremode>=</truescoremode><truescore>1.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt2-1-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>\(C\) has \({@nA@}\) elements, like \(A\), and is a different set.</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>1</falsenextnode><falseanswernote>prt2-1-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>1</name><description>Equal to A</description><answertest>AlgEquiv</answertest><sans>setequalp(ans2,A)</sans><tans>true</tans><testoptions></testoptions><quiet>0</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt2-2-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>\(C\) is equal to \(A\). Change at least one element but keep the number of elements.</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>2</falsenextnode><falseanswernote>prt2-2-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>2</name><description>Wrong count</description><answertest>AlgEquiv</answertest><sans>is(cardn(ans2)#nA)</sans><tans>true</tans><testoptions></testoptions><quiet>0</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt2-3-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>\(C\) has \({@cardn(ans2)@}\) elements; \(A\) has \({@nA@}\).</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>-1</falsenextnode><falseanswernote>prt2-3-F</falseanswernote><falsefeedback format="html"><text><![CDATA[<p>Use whole numbers less than \(30\) only: \({@dset(setdifference(ans2,W))@}\) [[if test="is(cardn(setdifference(ans2,W))=1)"]]is not one[[else]]are not[[/if]].</p>]]></text></falsefeedback></node>
+  </prt>
+
+  <deployedseed>4</deployedseed>
+  <deployedseed>5</deployedseed>
+  <deployedseed>15</deployedseed>
+  <deployedseed>8</deployedseed>
+  <deployedseed>24</deployedseed>
+  <deployedseed>1</deployedseed>
+  <deployedseed>3</deployedseed>
+  <deployedseed>10</deployedseed>
+  <deployedseed>2</deployedseed>
+  <deployedseed>17</deployedseed>
+  <qtest><testcase>1</testcase><description>Correct</description>
+    <testinput><name>ans1</name><value>ky</value></testinput>
+    <testinput><name>ans2</name><value>Cs</value></testinput>
+    <expected><name>prt1</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt1-1-T</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt2-1-T</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>2</testcase><description>Wrong relation; C equal to A</description>
+    <testinput><name>ans1</name><value>wk</value></testinput>
+    <testinput><name>ans2</name><value>A</value></testinput>
+    <expected><name>prt1</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt1-1-F</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt2-1-F | prt2-2-T</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>3</testcase><description>C has the wrong count</description>
+    <testinput><name>ans1</name><value>ky</value></testinput>
+    <testinput><name>ans2</name><value>t3</value></testinput>
+    <expected><name>prt1</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt1-1-T</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt2-1-F | prt2-2-F | prt2-3-T</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>4</testcase><description>C uses a number that is not allowed</description>
+    <testinput><name>ans1</name><value>ky</value></testinput>
+    <testinput><name>ans2</name><value>t4</value></testinput>
+    <expected><name>prt1</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt1-1-T</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt2-1-F | prt2-2-F | prt2-3-F</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>5</testcase><description>Invalid: set not closed in (b)</description>
+    <testinput><name>ans1</name><value>ky</value></testinput>
+    <testinput><name>ans2</name><value>{1,2,</value></testinput>
+    <expected><name>prt1</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt1-1-T</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore></expectedscore><expectedpenalty></expectedpenalty><expectedanswernote>NULL</expectedanswernote></expected>
+  </qtest>
+</question>
+</quiz>

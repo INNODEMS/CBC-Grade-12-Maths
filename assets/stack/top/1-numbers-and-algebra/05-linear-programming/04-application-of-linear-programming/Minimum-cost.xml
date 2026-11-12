@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<quiz>
+<question type="stack">
+  <name><text>Minimum cost</text></name>
+  <questiontext format="html">
+    <text><![CDATA[<p>{@E[1]@}</p><p>Type \(\le\) as <code>&lt;=</code> and \(\ge\) as <code>&gt;=</code>, for example <code>4x+9y&lt;=72</code>. Use the letters x and y as defined in the question.</p><p>(a) Write the inequality that makes sure there is room for enough.</p><div>[[input:ans1]] [[validation:ans1]] [[feedback:prt1]]</div><p>(b) Find the cheapest whole-number plan. \(x =\) [[input:ans2]] [[validation:ans2]] \(y =\) [[input:ans3]] [[validation:ans3]]</p><div>[[feedback:prt2]]</div><p>(c) The least cost is Ksh [[input:ans4]] [[validation:ans4]] [[feedback:prt3]]</p>]]></text>
+  </questiontext>
+  <generalfeedback format="html">
+    <text><![CDATA[<p>(a) \({@ta1@}\). The other conditions are \(y \le {@YY@}\), \(x + y \le {@NN@}\), \(x \ge 0\), \(y \ge 0\).</p><p>(b) The cheapest corner of R for \(C = {@cx@}x + {@cy@}y\) is \({@vd@}\), which is not a whole-number point. With an &lsquo;at least&rsquo; condition, round up and check: the cheapest whole-number plan is \(x = {@bst[1]@}\), \(y = {@bst[2]@}\).</p><p>(c) \(C = {@cx@} \times {@bst[1]@} + {@cy@} \times {@bst[2]@} = {@t@}\): Ksh \({@thou(t)@}\).</p>]]></text>
+  </generalfeedback>
+  <defaultgrade>3</defaultgrade>
+  <penalty>0.1</penalty>
+  <hidden>0</hidden>
+  <idnumber></idnumber>
+  <stackversion><text>2026063000</text></stackversion>
+  <questionvariables>
+    <text><![CDATA[/* Design: an at-least amount, two sizes, the cheapest combination (hiring stores). Source: adapted from SMP Book 5 (Metric), Chapter 8, Sections 2.1 to 2.2. The cheapest vertex is never whole; rounding x down there carries too little. Costs in Ksh. */
+/* lincan(q): canonical form of a linear inequality in x and y: [strict?, [a, b, c]] meaning a*x + b*y + c (< or <=) 0 */
+lincan(q) := block([r, d, s], r: op(q), d: expand(lhs(q) - rhs(q)),
+    if r = ">" or r = ">=" then d: -d,
+    s: is(r = "<" or r = ">"),
+    [s, map(lambda([t], float(t)), [coeff(d, x), coeff(d, y), subst([x = 0, y = 0], d)])]);
+lpar(u, v) := is(abs(u[1]*v[2] - u[2]*v[1]) + abs(u[1]*v[3] - u[3]*v[1]) + abs(u[2]*v[3] - u[3]*v[2]) < 1/10^9 * (abs(u[1]) + abs(u[2]) + abs(u[3])) * (abs(v[1]) + abs(v[2]) + abs(v[3])));
+ldot(u, v) := u[1]*v[1] + u[2]*v[2] + u[3]*v[3];
+/* lcls(L, T): "same" region; "dir" same boundary, other side, same strictness; "strict" same side, other strictness; "both"; "other" */
+lcls(L, T) := block([l: lincan(L), t: lincan(T)],
+    if not lpar(l[2], t[2]) then "other"
+    elseif ldot(l[2], t[2]) > 0 then (if l[1] = t[1] then "same" else "strict")
+    elseif l[1] = t[1] then "dir" else "both");
+/* the validator: an inequality in x and y, linear */
+validate_ineq(ex) := block([e: ev(ex, simp), d],
+    if atom(e) or not member(op(e), ["<", "<=", ">", ">="]) then
+        "Type an inequality using <, <=, > or >=, for example 2*x+3*y<=60. An equation with = is not an inequality."
+    elseif listofvars(e) = [] or not every(lambda([v], member(v, [x, y])), listofvars(e)) then "Use only the letters x and y."
+    else (d: ev(expand(lhs(e) - rhs(e)), simp),
+          if not ev(polynomialp(d, [x, y]), simp) then
+              "This inequality should be linear: only numbers times x and y, added or subtracted."
+          elseif ev(hipow(d, x), simp) > 1 or ev(hipow(d, y), simp) > 1 or not freeof(x, ev(coeff(d, y), simp)) then
+              "This inequality should be linear: no powers or products of x and y." else ""));
+/* mkineq([a, b, rel, c]): the inequality a*x + b*y rel c */
+mkineq(L) := if L[3] = "<=" then L[1]*x + L[2]*y <= L[4] elseif L[3] = "<" then L[1]*x + L[2]*y < L[4]
+    elseif L[3] = ">=" then L[1]*x + L[2]*y >= L[4] else L[1]*x + L[2]*y > L[4];
+Q42L: [["A cooperative in Narok must store at least \\(48\\) tonnes of wheat after the harvest. A small store holds \\(2\\) tonnes and costs Ksh \\(5000\\) to hire; a large store holds \\(7\\) tonnes and costs Ksh \\(9000\\). Only \\(5\\) large stores are free, and there are \\(15\\) watchmen, one for each store. Let \\(x\\) be the number of small stores and \\(y\\) the number of large stores hired.",2,7,48,5,15,5000,9000,[7,5],80000,77500,[6,5],[10,5],[7,6],"tonnes","(6.5, 5)","large stores",95000],
+["A farmers' group in Nyandarua must keep at least \\(61\\) tonnes of potatoes in cold rooms. A small cold room holds \\(5\\) tonnes and costs Ksh \\(9000\\) to hire; a large cold room holds \\(11\\) tonnes and costs Ksh \\(10\\,000\\). Only \\(3\\) large cold rooms are free, and there are \\(14\\) attendants, one for each room. Let \\(x\\) be the number of small cold rooms and \\(y\\) the number of large cold rooms hired.",5,11,61,3,14,9000,10000,[6,3],84000,80400,[5,3],[11,3],[6,4],"tonnes","(5.6, 3)","large cold rooms",129000],
+["A contractor in Machakos must keep at least \\(118\\) tonnes of cement under cover. A small shed holds \\(5\\) tonnes and costs Ksh \\(7000\\) to hire; a large shed holds \\(18\\) tonnes and costs Ksh \\(18\\,000\\). Only \\(5\\) large sheds are free, and there are \\(15\\) guards, one for each shed. Let \\(x\\) be the number of small sheds and \\(y\\) the number of large sheds hired.",5,18,118,5,15,7000,18000,[6,5],132000,129200,[5,5],[10,5],[6,6],"tonnes","(5.6, 5)","large sheds",160000],
+["A traders' group at Wakulima market must keep at least \\(80\\) tonnes of tomatoes in cool stores. A small cool store holds \\(9\\) tonnes and costs Ksh \\(6000\\) to hire; a large cool store holds \\(13\\) tonnes and costs Ksh \\(7000\\). Only \\(3\\) large cool stores are free, and there are \\(10\\) attendants, one for each store. Let \\(x\\) be the number of small cool stores and \\(y\\) the number of large cool stores hired.",9,13,80,3,10,6000,7000,[6,2],50000,145000/3,[4,3],[7,3],[6,4],"tonnes","(\\frac{41}{9}, 3)","large cool stores",63000],
+["A cooperative in Mwea must store at least \\(157\\) tonnes of rice. A small warehouse holds \\(8\\) tonnes and costs Ksh \\(9000\\) to hire; a large warehouse holds \\(19\\) tonnes and costs Ksh \\(13\\,000\\). Only \\(6\\) large warehouses are free, and there are \\(15\\) watchmen, one for each warehouse. Let \\(x\\) be the number of small warehouses and \\(y\\) the number of large warehouses hired.",8,19,157,6,15,9000,13000,[6,6],132000,126375,[5,6],[9,6],[6,7],"tonnes","(5.375, 6)","large warehouses",159000],
+["A dairy farmers' group in Nyandarua must store at least \\(60\\) tonnes of hay for the dry season. A small barn holds \\(3\\) tonnes and costs Ksh \\(5000\\) to hire; a large barn holds \\(8\\) tonnes and costs Ksh \\(8000\\). Only \\(5\\) large barns are free, and there are \\(15\\) workers, one for each barn. Let \\(x\\) be the number of small barns and \\(y\\) the number of large barns hired.",3,8,60,5,15,5000,8000,[7,5],75000,220000/3,[6,5],[10,5],[7,6],"tonnes","(\\frac{20}{3}, 5)","large barns",90000],
+["A county agriculture office in Kitale must store at least \\(77\\) tonnes of fertiliser. A small store holds \\(6\\) tonnes and costs Ksh \\(8000\\) to hire; a large store holds \\(17\\) tonnes and costs Ksh \\(9000\\). Only \\(3\\) large stores are free, and there are \\(15\\) storekeepers, one for each store. Let \\(x\\) be the number of small stores and \\(y\\) the number of large stores hired.",6,17,77,3,15,8000,9000,[5,3],67000,185000/3,[4,3],[12,3],[5,4],"tonnes","(\\frac{13}{3}, 3)","large stores",123000],
+["A farmers' group in Bahati must keep at least \\(125\\) tonnes of cabbages in cold rooms before market day. A small cold room holds \\(7\\) tonnes and costs Ksh \\(5000\\) to hire; a large cold room holds \\(15\\) tonnes and costs Ksh \\(9000\\). Only \\(5\\) large cold rooms are free, and there are \\(16\\) attendants, one for each room. Let \\(x\\) be the number of small cold rooms and \\(y\\) the number of large cold rooms hired.",7,15,125,5,16,5000,9000,[8,5],85000,565000/7,[7,5],[11,5],[8,6],"tonnes","(\\frac{50}{7}, 5)","large cold rooms",100000],
+["A school board in Kitui must keep at least \\(71\\) tonnes of cement dry on a building site. A small container holds \\(3\\) tonnes and costs Ksh \\(9000\\) to hire; a large container holds \\(17\\) tonnes and costs Ksh \\(11\\,000\\). Only \\(3\\) large containers are free, and there are \\(15\\) guards, one for each container. Let \\(x\\) be the number of small containers and \\(y\\) the number of large containers hired.",3,17,71,3,15,9000,11000,[7,3],96000,93000,[6,3],[12,3],[7,4],"tonnes","(\\frac{20}{3}, 3)","large containers",141000],
+["A county water office near Garissa must store at least \\(35\\) drums of water for a village. A small tank holds \\(2\\) drums and costs Ksh \\(7000\\) to hire; a large tank holds \\(13\\) drums and costs Ksh \\(11\\,000\\). Only \\(2\\) large tanks are free, and there is space for \\(15\\) tanks. Let \\(x\\) be the number of small tanks and \\(y\\) the number of large tanks hired.",2,13,35,2,15,7000,11000,[5,2],57000,53500,[4,2],[13,2],[5,3],"drums","(4.5, 2)","large tanks",113000]];
+ix: 1+rand(10);
+E: Q42L[ix];
+ca: E[2]; cb: E[3]; RR: E[4]; YY: E[5]; NN: E[6]; cx: E[7]; cy: E[8]; bst: E[9]; t: E[10]; tv: E[11]; dn: E[12]; wst: E[13]; lb: E[14]; un: E[15]; vd: E[16]; lg: E[17]; tw: E[18];
+ta1: ca*x+cb*y>=RR; sw1: cb*x+ca*y>=RR; dr1: ca*x+cb*y<=RR;
+Cof(u, w) := cx*u + cy*w;
+validate_int(ex) := if integerp(ev(ex, simp)) then "" else "Type whole numbers.";
+g3(v) := block([q,r], if v < 1000 then string(v) else (q: floor(v/1000), r: v - 1000*q, sconcat(g3(q), "\\,", if r < 10 then "00" elseif r < 100 then "0" else "", string(r))));
+thou(v) := if abs(v) < 10000 then string(v) else g3(v);
+]]></text>
+  </questionvariables>
+  <specificfeedback format="html"><text><![CDATA[]]></text></specificfeedback>
+  <questionnote format="moodle_auto_format">
+    <text>ix={@ix@}, vertex {@vd@}, best ({@bst[1]@}, {@bst[2]@}), C={@t@}</text>
+  </questionnote>
+  <questiondescription format="html"><text><![CDATA[<p id="concept">Linear Programming: minimum cost</p><p id="description">Grade 12 CBE Core 1.4 (d) / Essential 1.4 (d): Write an at-least requirement as an inequality and find the cheapest whole-number plan of stores within the limits, and its cost.</p><p id="edition">Core and Essential</p><p id="provenance">This question is adapted from Chapter 8, Sections 2.1 and 2.2 of School Mathematics Project, SMP Book 5 (Metric), ed. P. G. Bowie, Cambridge University Press, 1969: the least-cost way to cover an at-least amount with two sizes, a limit on the large size and on the total; set as hiring stores rather than B5's lorries, with Kenyan contexts and new capacities and costs.</p><p id="citation">INNODEMS CBC Grade 12 Mathematics, first draft by Ben Davies, 2026. Aligned to the KICD Senior School Curriculum Design, Core and Essential Mathematics Grade 12 (draft).</p>]]></text></questiondescription>
+  <questionsimplify>1</questionsimplify>
+  <assumepositive>0</assumepositive>
+  <assumereal>0</assumereal>
+  <prtcorrect format="html"><text><![CDATA[[[commonstring key="symbolicprtcorrectfeedback"/]] [[commonstring key="defaultprtcorrectfeedback"/]]]]></text></prtcorrect>
+  <prtpartiallycorrect format="html"><text><![CDATA[[[commonstring key="symbolicprtpartiallycorrectfeedback"/]] [[commonstring key="defaultprtpartiallycorrectfeedback"/]]]]></text></prtpartiallycorrect>
+  <prtincorrect format="html"><text><![CDATA[[[commonstring key="symbolicprtincorrectfeedback"/]] [[commonstring key="defaultprtincorrectfeedback"/]]]]></text></prtincorrect>
+  <decimals>.</decimals>
+  <scientificnotation>*10</scientificnotation>
+  <multiplicationsign>none</multiplicationsign>
+  <sqrtsign>1</sqrtsign>
+  <complexno>i</complexno>
+  <inversetrig>cos-1</inversetrig>
+  <logicsymbol>lang</logicsymbol>
+  <matrixparens>[</matrixparens>
+  <isbroken>0</isbroken>
+  <variantsselectionseed></variantsselectionseed>
+
+  <input><name>ans1</name><type>algebraic</type><tans>ta1</tans><boxsize>18</boxsize><strictsyntax>1</strictsyntax><insertstars>4</insertstars><syntaxhint></syntaxhint><syntaxattribute>0</syntaxattribute><forbidwords></forbidwords><allowwords></allowwords><forbidfloat>0</forbidfloat><requirelowestterms>0</requirelowestterms><checkanswertype>0</checkanswertype><mustverify>0</mustverify><showvalidation>1</showvalidation><options>validator:validate_ineq</options></input>
+  <input><name>ans2</name><type>numerical</type><tans>bst[1]</tans><boxsize>4</boxsize><strictsyntax>1</strictsyntax><insertstars>0</insertstars><syntaxhint></syntaxhint><syntaxattribute>0</syntaxattribute><forbidwords></forbidwords><allowwords></allowwords><forbidfloat>1</forbidfloat><requirelowestterms>0</requirelowestterms><checkanswertype>0</checkanswertype><mustverify>0</mustverify><showvalidation>0</showvalidation><options>validator:validate_int</options></input>
+  <input><name>ans3</name><type>numerical</type><tans>bst[2]</tans><boxsize>4</boxsize><strictsyntax>1</strictsyntax><insertstars>0</insertstars><syntaxhint></syntaxhint><syntaxattribute>0</syntaxattribute><forbidwords></forbidwords><allowwords></allowwords><forbidfloat>1</forbidfloat><requirelowestterms>0</requirelowestterms><checkanswertype>0</checkanswertype><mustverify>0</mustverify><showvalidation>0</showvalidation><options>validator:validate_int</options></input>
+  <input><name>ans4</name><type>numerical</type><tans>t</tans><boxsize>8</boxsize><strictsyntax>1</strictsyntax><insertstars>0</insertstars><syntaxhint></syntaxhint><syntaxattribute>0</syntaxattribute><forbidwords></forbidwords><allowwords></allowwords><forbidfloat>0</forbidfloat><requirelowestterms>0</requirelowestterms><checkanswertype>0</checkanswertype><mustverify>0</mustverify><showvalidation>0</showvalidation><options></options></input>
+
+  <prt><name>prt1</name><value>1.0000000</value><autosimplify>1</autosimplify><feedbackstyle>1</feedbackstyle><feedbackvariables><text><![CDATA[k1: lcls(ans1, ta1); w1: lcls(ans1, sw1);]]></text></feedbackvariables>
+    <node><name>0</name><description>Requirement</description><answertest>AlgEquiv</answertest><sans>k1</sans><tans>"same"</tans><testoptions></testoptions><quiet>0</quiet><truescoremode>=</truescoremode><truescore>1.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt1-1-T</trueanswernote><truefeedback format="html"><text><![CDATA[]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>1</falsenextnode><falseanswernote>prt1-1-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>1</name><description>Wrong direction</description><answertest>AlgEquiv</answertest><sans>k1</sans><tans>"dir"</tans><testoptions></testoptions><quiet>0</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt1-2-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>Your inequality says there is room for \({@RR@}\) {@un@} or less. &lsquo;At least \({@RR@}\)&rsquo; means the room cannot go below \({@RR@}\).</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>2</falsenextnode><falseanswernote>prt1-2-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>2</name><description>Capacities swapped</description><answertest>AlgEquiv</answertest><sans>w1</sans><tans>"same"</tans><testoptions></testoptions><quiet>0</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt1-3-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>You matched the capacities to the wrong letters: \(x\) counts the stores that hold \({@ca@}\) {@un@}.</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>-1</falsenextnode><falseanswernote>prt1-3-F</falseanswernote><falsefeedback format="html"><text><![CDATA[<p>Amount stored = (capacity of one) \(\times\, x\) + (capacity of the other) \(\times\, y\), and it must be at least \({@RR@}\).</p>]]></text></falsefeedback></node>
+  </prt>
+  <prt><name>prt2</name><value>1.0000000</value><autosimplify>1</autosimplify><feedbackstyle>1</feedbackstyle><feedbackvariables><text><![CDATA[enough: is(ca*ans2 + cb*ans3 >= RR); lim: is(ans3 <= YY and ans2 + ans3 <= NN and ans2 >= 0 and ans3 >= 0);]]></text></feedbackvariables>
+    <node><name>0</name><description>Enough carried</description><answertest>AlgEquiv</answertest><sans>enough</sans><tans>true</tans><testoptions></testoptions><quiet>0</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>2</truenextnode><trueanswernote>prt2-1-T</trueanswernote><truefeedback format="html"><text><![CDATA[]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>1</falsenextnode><falseanswernote>prt2-1-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>1</name><description>Rounded down</description><answertest>AlgEquiv</answertest><sans>[ans2, ans3]</sans><tans>dn</tans><testoptions></testoptions><quiet>1</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt2-2-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>You rounded down: then there is room for only \({@ca*dn[1]+cb*dn[2]@}\) {@un@}, less than \({@RR@}\). With an &lsquo;at least&rsquo; condition, round up.</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>-1</falsenextnode><falseanswernote>prt2-2-F</falseanswernote><falsefeedback format="html"><text><![CDATA[<p>Your plan has room for only \({@ca*ans2+cb*ans3@}\) {@un@}, less than \({@RR@}\).</p>]]></text></falsefeedback></node>
+    <node><name>2</name><description>Within the limits</description><answertest>AlgEquiv</answertest><sans>lim</sans><tans>true</tans><testoptions></testoptions><quiet>0</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>3</truenextnode><trueanswernote>prt2-3-T</trueanswernote><truefeedback format="html"><text><![CDATA[]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>-1</falsenextnode><falseanswernote>prt2-3-F</falseanswernote><falsefeedback format="html"><text><![CDATA[[[if test='is(ans2 < 0 or ans3 < 0)']]<p>The numbers hired cannot be negative.</p>[[else]][[if test='is(ans3 > YY)']]<p>Your plan hires \({@ans3@}\) {@lg@}, but only \({@YY@}\) are free.</p>[[/if]][[if test='is(ans2 + ans3 > NN)']]<p>Your plan hires \({@ans2 + ans3@}\) altogether, but the limit is \({@NN@}\).</p>[[/if]][[/if]]]]></text></falsefeedback></node>
+    <node><name>3</name><description>Cheapest plan</description><answertest>AlgEquiv</answertest><sans>Cof(ans2, ans3)</sans><tans>t</tans><testoptions></testoptions><quiet>0</quiet><truescoremode>=</truescoremode><truescore>1.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt2-4-T</trueanswernote><truefeedback format="html"><text><![CDATA[]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>4</falsenextnode><falseanswernote>prt2-4-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>4</name><description>Most expensive plan</description><answertest>AlgEquiv</answertest><sans>[ans2, ans3]</sans><tans>wst</tans><testoptions></testoptions><quiet>1</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt2-5-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>That is the most expensive plan, Ksh \({@thou(tw)@}\).</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>-1</falsenextnode><falseanswernote>prt2-5-F</falseanswernote><falsefeedback format="html"><text><![CDATA[<p>Your plan works but costs Ksh \({@thou(Cof(ans2, ans3))@}\); another plan near the corner costs less.</p>]]></text></falsefeedback></node>
+  </prt>
+  <prt><name>prt3</name><value>1.0000000</value><autosimplify>1</autosimplify><feedbackstyle>1</feedbackstyle><feedbackvariables><text><![CDATA[]]></text></feedbackvariables>
+    <node><name>0</name><description>Least cost</description><answertest>NumAbsolute</answertest><sans>ans4</sans><tans>t</tans><testoptions>0.501</testoptions><quiet>0</quiet><truescoremode>=</truescoremode><truescore>1.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt3-1-T</trueanswernote><truefeedback format="html"><text><![CDATA[]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>1</falsenextnode><falseanswernote>prt3-1-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>1</name><description>Cost at the vertex</description><answertest>NumAbsolute</answertest><sans>ans4</sans><tans>tv</tans><testoptions>0.501</testoptions><quiet>0</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt3-2-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>That is the cost at the corner of R, which is not a whole-number plan.</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>2</falsenextnode><falseanswernote>prt3-2-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>2</name><description>Follow-through</description><answertest>NumAbsolute</answertest><sans>ans4</sans><tans>Cof(ans2, ans3)</tans><testoptions>0.501</testoptions><quiet>0</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt3-3-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>That is the cost of your plan in (b), but your plan is not the cheapest.</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>-1</falsenextnode><falseanswernote>prt3-3-F</falseanswernote><falsefeedback format="html"><text><![CDATA[<p>That is not the cost of your plan in (b), which is \({@cx@} \times {@ans2@} + {@cy@} \times {@ans3@}\). Work it out again, and check that your plan is the cheapest one.</p>]]></text></falsefeedback></node>
+  </prt>
+
+  <deployedseed>4</deployedseed>
+  <deployedseed>5</deployedseed>
+  <deployedseed>15</deployedseed>
+  <deployedseed>8</deployedseed>
+  <deployedseed>24</deployedseed>
+  <deployedseed>1</deployedseed>
+  <deployedseed>3</deployedseed>
+  <deployedseed>10</deployedseed>
+  <deployedseed>2</deployedseed>
+  <deployedseed>17</deployedseed>
+  <qtest><testcase>1</testcase><description>Correct</description>
+    <testinput><name>ans1</name><value>ta1</value></testinput>
+    <testinput><name>ans2</name><value>bst[1]</value></testinput>
+    <testinput><name>ans3</name><value>bst[2]</value></testinput>
+    <testinput><name>ans4</name><value>t</value></testinput>
+    <expected><name>prt1</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt1-1-T</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt2-1-T | prt2-3-T | prt2-4-T</expectedanswernote></expected>
+    <expected><name>prt3</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt3-1-T</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>2</testcase><description>Wrong direction; rounded down; cost at the vertex</description>
+    <testinput><name>ans1</name><value>dr1</value></testinput>
+    <testinput><name>ans2</name><value>dn[1]</value></testinput>
+    <testinput><name>ans3</name><value>dn[2]</value></testinput>
+    <testinput><name>ans4</name><value>tv</value></testinput>
+    <expected><name>prt1</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt1-1-F | prt1-2-T</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt2-1-F | prt2-2-T</expectedanswernote></expected>
+    <expected><name>prt3</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt3-1-F | prt3-2-T</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>3</testcase><description>Most expensive plan; follow-through</description>
+    <testinput><name>ans1</name><value>RR&lt;=ca*x+cb*y</value></testinput>
+    <testinput><name>ans2</name><value>wst[1]</value></testinput>
+    <testinput><name>ans3</name><value>wst[2]</value></testinput>
+    <testinput><name>ans4</name><value>tw</value></testinput>
+    <expected><name>prt1</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt1-1-T</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt2-1-T | prt2-3-T | prt2-4-F | prt2-5-T</expectedanswernote></expected>
+    <expected><name>prt3</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt3-1-F | prt3-2-F | prt3-3-T</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>4</testcase><description>Capacities swapped; nothing moved; generic cost</description>
+    <testinput><name>ans1</name><value>sw1</value></testinput>
+    <testinput><name>ans2</name><value>0</value></testinput>
+    <testinput><name>ans3</name><value>0</value></testinput>
+    <testinput><name>ans4</name><value>t+1000</value></testinput>
+    <expected><name>prt1</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt1-1-F | prt1-2-F | prt1-3-T</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt2-1-F | prt2-2-F</expectedanswernote></expected>
+    <expected><name>prt3</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt3-1-F | prt3-2-F | prt3-3-F</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>5</testcase><description>Generic inequality; too many large vehicles</description>
+    <testinput><name>ans1</name><value>ca*x+cb*y&gt;=RR+1</value></testinput>
+    <testinput><name>ans2</name><value>lb[1]</value></testinput>
+    <testinput><name>ans3</name><value>lb[2]</value></testinput>
+    <testinput><name>ans4</name><value>t</value></testinput>
+    <expected><name>prt1</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt1-1-F | prt1-2-F | prt1-3-F</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt2-1-T | prt2-3-F</expectedanswernote></expected>
+    <expected><name>prt3</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt3-1-T</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>6</testcase><description>Invalid: an expression in (a)</description>
+    <testinput><name>ans1</name><value>ca*x+cb*y</value></testinput>
+    <testinput><name>ans2</name><value>bst[1]</value></testinput>
+    <testinput><name>ans3</name><value>bst[2]</value></testinput>
+    <testinput><name>ans4</name><value>t</value></testinput>
+    <expected><name>prt1</name><expectedscore></expectedscore><expectedpenalty></expectedpenalty><expectedanswernote>NULL</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt2-1-T | prt2-3-T | prt2-4-T</expectedanswernote></expected>
+    <expected><name>prt3</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt3-1-T</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>7</testcase><description>Invalid: not linear in (a)</description>
+    <testinput><name>ans1</name><value>ca*x+cb*y+2^x&gt;=RR</value></testinput>
+    <testinput><name>ans2</name><value>bst[1]</value></testinput>
+    <testinput><name>ans3</name><value>bst[2]</value></testinput>
+    <testinput><name>ans4</name><value>t</value></testinput>
+    <expected><name>prt1</name><expectedscore></expectedscore><expectedpenalty></expectedpenalty><expectedanswernote>NULL</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt2-1-T | prt2-3-T | prt2-4-T</expectedanswernote></expected>
+    <expected><name>prt3</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt3-1-T</expectedanswernote></expected>
+  </qtest>
+</question>
+</quiz>

@@ -46,161 +46,228 @@
          Suggested activity: Learners find the magnitude of vectors from their components and check by measuring the drawn length.
          Interactive (JSXGraph): Draggable vector on a grid with its horizontal and vertical components and the Pythagoras calculation of its length. -->
 
-    <!-- [LP] Add guidance on activity -->
+    <!-- Section notes (2026-11)
+         SLOs: Essential 2.2 (e)
+         Activity: as planning notes (magnitude from components, checked by measuring the drawn length)
+         JSXGraph: fig-magnitude-grid (assets/jsxgraph/magnitude-grid.js), as planning notes
+         STACK: assets/stack/top/2-measurement-and-geometry/11-vectors/06-magnitude-of-a-vector/ -->
+
+    <p component="lesson-plan">Upon completion of this lesson, learners will be able to:
+        <ol>
+            <li><p><alert>Know:</alert> <m>|\mathbf{a}| = \sqrt{x^2 + y^2}</m> by Pythagoras; the distance between two points is the magnitude of the vector between them; a square is never negative.</p></li>
+            <li><p><alert>Do:</alert> find the magnitude of a column vector and of the vector between two points; find the straight-line distance of a route.</p></li>
+            <li><p><alert>Apply:</alert> how far a walker is from the start; the size of a resultant push.</p></li>
+        </ol>
+    </p>
 
     <axiom component="lesson-plan">
         <title>Problem-Solving and Discovery</title>
         <dl>
-            <li>
-                <title>Suggested Time</title>
-                <p>
-                    XXX minutes
-                </p>
-            </li>
-            <li>
-                <title>Objective</title>
-                <p>
-                    XXX
-                </p>
-            </li>
-            <li>
-                <title>Teacher's Role</title>
-                <p>
-                    XXX
-                </p>
-            </li>
+            <li><title>Suggested Time</title><p>14 minutes</p></li>
+            <li><title>Objective</title><p>Learners measure drawn vectors and match the lengths with Pythagoras' theorem.</p></li>
+            <li><title>Teacher's Role</title><p>Give out <m>1\,\text{cm}</m> squared paper and rulers. Groups of three: one draws, one measures, one calculates; everyone checks the others' work.</p></li>
         </dl>
     </axiom>
 
-    <!-- Add Activity -->
-
-    <!-- <activity>
+    <activity xml:id="act-measure-then-calculate">
+        <title>Measure, Then Calculate</title>
         <statement>
+            <p>
+                <ol marker="(a)">
+                    <li>
+                        <p>Draw <m>\begin{pmatrix} 6 \\ 8 \end{pmatrix}</m>, <m>\begin{pmatrix} -9 \\ 12 \end{pmatrix}</m> and <m>\begin{pmatrix} 2 \\ 3 \end{pmatrix}</m> with <m>1</m> square for <m>1\,\text{cm}</m>. Measure the length of each arrow.</p>
+                        <solution component="lesson-plan"><p><m>10\,\text{cm}</m>, <m>15\,\text{cm}</m> and about <m>3.6\,\text{cm}</m>.</p></solution>
+                    </li>
+                    <li>
+                        <p>Each arrow, with its across move and its up move, makes a right-angled triangle. Use Pythagoras' theorem to calculate each length.</p>
+                        <solution component="lesson-plan"><p><m>\sqrt{36 + 64} = \sqrt{100} = 10</m>; <m>\sqrt{81 + 144} = \sqrt{225} = 15</m>; <m>\sqrt{4 + 9} = \sqrt{13} \approx 3.61</m>.</p></solution>
+                    </li>
+                    <li>
+                        <p>Does the minus sign in <m>\begin{pmatrix} -9 \\ 12 \end{pmatrix}</m> change the length?</p>
+                        <solution component="lesson-plan"><p>No: <m>(-9)^2 = 81</m>, the same as <m>9^2</m>.</p></solution>
+                    </li>
+                    <li>
+                        <p>Mark <m>A(1, 2)</m> and <m>B(4, 6)</m>. Write <m>\overrightarrow{AB}</m> and find its length.</p>
+                        <solution component="lesson-plan"><p><m>\overrightarrow{AB} = \begin{pmatrix} 3 \\ 4 \end{pmatrix}</m>; length <m>\sqrt{9 + 16} = 5</m>.</p></solution>
+                    </li>
+                </ol>
+            </p>
         </statement>
-    </activity> -->
+    </activity>
 
-    <!-- [LP] Add guidance on structured lesson plan-->
-
-    <!-- <axiom component="lesson-plan">
+    <axiom component="lesson-plan">
         <title>Structured Instruction</title>
         <p>
             <dl>
-            <li>
-                <title>Suggested Time</title>
-                <p>
-                    XX minutes
-                </p>
-            </li>
-            <li>
-                <title>Objective</title>
-                <p>
-                    To formalize the concepts and properties learners discovered in the anchor task.
-                </p>
-            </li>
+                <li><title>Suggested Time</title><p>8 minutes</p></li>
+                <li><title>Objective</title><p>To formalise the magnitude of a vector and the distance between two points.</p></li>
             </dl>
         </p>
         <paragraphs>
             <title>Key Takeaways &amp; Teacher Connection</title>
             <ol>
-                <li>
-                    <p>
-                        <alert>Connecting to Learner Work:</alert> XXXX
-                    </p>
-                </li>
+                <li><p><alert>Connecting to Learner Work:</alert> the measured lengths in part (a) match the calculations in part (b).</p></li>
+                <li><p>Square, add, square root. Give exact answers, or decimals to <m>2</m> decimal places.</p></li>
+                <li><p>The distance between two points is the magnitude of the vector between them (part (d)).</p></li>
             </ol>
         </paragraphs>
-    </axiom> -->
+    </axiom>
 
-    <!-- Add insight / key takeaway directly related to activity / learner experience -->
+    <insight xml:id="insight-magnitude">
+        <title>Magnitude</title>
+        <p>
+            The <term>magnitude</term> of a vector (also called its modulus) is its length. It is written <m>|\mathbf{a}|</m>. By Pythagoras on the across and up moves,
+            <md>\left|\begin{pmatrix} x \\ y \end{pmatrix}\right| = \sqrt{x^2 + y^2}</md>
+        </p>
+        <p>
+            The distance between points <m>A</m> and <m>B</m> is <m>|\overrightarrow{AB}|</m>. A multiple <m>k\mathbf{a}</m> has magnitude <m>|k|\,|\mathbf{a}|</m>.
+        </p>
+    </insight>
 
-    <!-- <insight>
-    </insight> -->
+    <figure xml:id="fig-magnitude-right-triangle">
+        <caption>The vector <m>\begin{pmatrix} 4 \\ -7 \end{pmatrix}</m> and its components.</caption>
+        <image width="35%">
+            <shortdescription>The vector (4, −7) with a dashed 4 across and 7 down making a right angle; the vector's length is √65.</shortdescription>
+            <latex-image>
+\begin{tikzpicture}[scale=0.55]
+\draw[very thin, gray!40] (0,-7) grid (5,0);
+\draw[very thick, -{Stealth}] (0,0) -- node[below left] {$\sqrt{65}$} (4,-7);
+\draw[thick, dashed] (0,0) -- node[above] {4} (4,0);
+\draw[thick, dashed] (4,0) -- node[right] {7} (4,-7);
+\draw (3.5,0) -- (3.5,-0.5) -- (4,-0.5);
+\end{tikzpicture}
+            </latex-image>
+        </image>
+    </figure>
 
-    <!-- Add further instruction (not in a block) to develop ideas as needed -->
+    <figure xml:id="fig-magnitude-grid">
+        <caption>Drag the tip of the vector. The dashed lines are its components; Pythagoras gives its length.</caption>
+        <interactive xml:id="interactive-magnitude-grid" platform="jsxgraph" width="90%" aspect="9:10" source="jsxgraph/magnitude-grid.js">
+            <slate xml:id="jsxgraph-magnitude-grid" surface="jsxboard" aspect="9:10"/>
+            <instructions>
+                <p>
+                    <ul>
+                        <li><p>Drag the tip to <m>(6, 8)</m>. Check the length with <xref ref="act-measure-then-calculate"/>.</p></li>
+                        <li><p>Drag the tip to <m>(-6, 8)</m> and then to <m>(-6, -8)</m>. Why does the length not change?</p></li>
+                        <li><p>Drag the tip to <m>(-5, 5)</m>. Is the length a whole number?</p></li>
+                    </ul>
+                </p>
+            </instructions>
+        </interactive>
+    </figure>
+
+    <note xml:id="note-magnitude-spreadsheet">
+        <title>Magnitude in a Spreadsheet</title>
+        <p>
+            Put the <m>x</m>-components in column A and the <m>y</m>-components in column B, starting in row <m>2</m>. In cell C2 type <c>=SQRT(A2^2+B2^2)</c> and copy it down the column: each row gives the magnitude of one vector.
+        </p>
+    </note>
 
     <xi:include href="../lesson-plan-templates/example-intro.ptx" />
 
-    <!-- Add at least 3 examples -->
-
-    <!-- <example>
+    <example xml:id="example-magnitude-from-components">
+        <title>Magnitude from Components</title>
         <statement>
+            <p>Find the magnitudes of <m>\begin{pmatrix} 8 \\ -15 \end{pmatrix}</m> and <m>\begin{pmatrix} 4 \\ -7 \end{pmatrix}</m> (<xref ref="fig-magnitude-right-triangle"/>).</p>
         </statement>
         <solution>
+            <p><md>
+                <mrow>\left|\begin{pmatrix} 8 \\ -15 \end{pmatrix}\right| \amp = \sqrt{8^2 + (-15)^2} = \sqrt{64 + 225} = \sqrt{289} = 17</mrow>
+                <mrow>\left|\begin{pmatrix} 4 \\ -7 \end{pmatrix}\right| \amp = \sqrt{16 + 49} = \sqrt{65} \approx 8.06</mrow>
+            </md></p>
         </solution>
     </example>
 
-    <example>
+    <example xml:id="example-distance-between-places">
+        <title>Distance Between Two Places</title>
         <statement>
+            <p>On a map with <m>1</m> unit to <m>1\,\text{km}</m>, a borehole is at <m>B(-2, 3)</m> and a water point at <m>W(4, -5)</m>. How far is the water point from the borehole in a straight line?</p>
         </statement>
         <solution>
+            <p>End minus start: <m>\overrightarrow{BW} = \begin{pmatrix} 4 - (-2) \\ -5 - 3 \end{pmatrix} = \begin{pmatrix} 6 \\ -8 \end{pmatrix}</m>.</p>
+            <p><m>BW = \sqrt{6^2 + (-8)^2} = \sqrt{100} = 10\,\text{km}</m>.</p>
         </solution>
     </example>
 
-    <example>
+    <example xml:id="example-how-far-from-the-start">
+        <title>How Far from the Start?</title>
         <statement>
+            <p>(a) A learner walks <m>700\,\text{m}</m> east and then <m>2400\,\text{m}</m> north. How far is she from the start?</p>
+            <p>(b) The boda boda rider in <xref ref="example-boda-boda-route"/> finished at <m>\begin{pmatrix} -2 \\ 1 \end{pmatrix}</m> km from the stage after riding <m>11\,\text{km}</m>. How far is the rider from the stage in a straight line?</p>
         </statement>
         <solution>
+            <p>(a) Her displacement is <m>\begin{pmatrix} 700 \\ 2400 \end{pmatrix}</m>, so the distance is <m>\sqrt{700^2 + 2400^2} = \sqrt{6\,250\,000} = 2500\,\text{m}</m>.</p>
+            <p>(b) <m>\sqrt{(-2)^2 + 1^2} = \sqrt{5} \approx 2.24\,\text{km}</m>, much less than the <m>11\,\text{km}</m> ridden.</p>
         </solution>
-    </example> -->
+    </example>
 
     <xi:include href="../lesson-plan-templates/assessment-intro.ptx" />
+    <xi:include href="../lesson-plan-templates/checkpoint.ptx" />
 
-    <!-- If STACK questions are included, uncomment this: -->
+    <p>Type one number in each box of a column vector: the top box is the move across, the bottom box the move up. Use a minus sign for left or down, for example <c>-3</c>. Type a square root as <c>sqrt(73)</c>, or give the decimal to 2 decimal places.</p>
 
-    <!-- <xi:include href="../lesson-plan-templates/checkpoint.ptx" /> -->
+    <exercise xml:id="ex-magnitude-of-a-vector-and-a-distance">
+        <!--<title></title>-->
+        <stack label="stk-magnitude-of-a-vector-and-a-distance" source="stack/top/2-measurement-and-geometry/11-vectors/06-magnitude-of-a-vector/Magnitude-of-a-vector-and-a-distance.xml"/>
+    </exercise>
 
-    <!-- Add STACK exercises if made -->
+    <exercise xml:id="ex-size-of-the-resultant-of-two-pushes">
+        <!--<title></title>-->
+        <stack label="stk-size-of-the-resultant-of-two-pushes" source="stack/top/2-measurement-and-geometry/11-vectors/06-magnitude-of-a-vector/Size-of-the-resultant-of-two-pushes.xml"/>
+    </exercise>
 
-    <!-- Add static exercises -->
+    <exercise xml:id="ex-a-vector-with-a-given-magnitude">
+        <!--<title></title>-->
+        <stack label="stk-a-vector-with-a-given-magnitude" source="stack/top/2-measurement-and-geometry/11-vectors/06-magnitude-of-a-vector/A-vector-with-a-given-magnitude.xml"/>
+    </exercise>
 
-    <!-- <exercises>
-        <exercise>
-            <statement>   
+    <p>
+        <em>Vectors in everyday life:</em> a phone's map shows both the distance by road and the straight-line distance to a place. Which one is the magnitude of a displacement?
+    </p>
 
-            </statement>   
-            <solution>
+    <exercises xml:id="exercises-magnitude-of-a-vector">
+        <exercise xml:id="ex-magnitudes-of-four-columns">
+            <statement><p>Find the magnitude of each vector: <m>\begin{pmatrix} -7 \\ 24 \end{pmatrix}</m>, <m>\begin{pmatrix} 20 \\ 21 \end{pmatrix}</m>, <m>\begin{pmatrix} 0 \\ -9 \end{pmatrix}</m>, <m>\begin{pmatrix} 3 \\ -5 \end{pmatrix}</m>.</p></statement>
+            <answer><p><m>25</m>; <m>29</m>; <m>9</m>; <m>\sqrt{34} \approx 5.83</m></p></answer>
+        </exercise>
+        <exercise xml:id="ex-two-distances">
+            <statement><p>Find the distance <m>PQ</m> for <m>P(-1, 2)</m> and <m>Q(5, 10)</m>, and the distance <m>RS</m> for <m>R(2, -3)</m> and <m>S(-1, 1)</m>.</p></statement>
+            <answer><p><m>PQ = 10</m>; <m>RS = 5</m></p></answer>
+        </exercise>
+        <exercise xml:id="ex-matatu-straight-line">
+            <statement><p>For the matatu in <xref ref="ex-matatu-route"/>, find the straight-line distance from the start to the finish. Compare it with the <m>12\,\text{km}</m> driven.</p></statement>
+            <answer><p><m>\sqrt{32} \approx 5.66\,\text{km}</m>, less than half the distance driven.</p></answer>
+        </exercise>
+        <exercise xml:id="ex-size-of-a-resultant-force">
+            <statement><p>Two learners push a handcart with forces <m>\begin{pmatrix} 30 \\ 0 \end{pmatrix}</m> N and <m>\begin{pmatrix} 0 \\ 40 \end{pmatrix}</m> N. Find the resultant force and its size. Why is the size not <m>70</m> N?</p></statement>
+            <answer><p><m>\begin{pmatrix} 30 \\ 40 \end{pmatrix}</m> N, of size <m>50</m> N. The pushes are at right angles, so their sizes do not simply add.</p></answer>
+        </exercise>
+        <exercise xml:id="ex-unknown-component">
+            <statement><p>The vector <m>\begin{pmatrix} k \\ 12 \end{pmatrix}</m> has magnitude <m>13</m>. What can <m>k</m> be? Give both values.</p></statement>
+            <answer><p><m>k = 5</m> or <m>k = -5</m></p></answer>
+            <solution><p><m>k^2 + 144 = 169</m>, so <m>k^2 = 25</m> and <m>k = 5</m> or <m>k = -5</m>.</p></solution>
+        </exercise>
+        <exercise xml:id="ex-magnitude-of-multiples">
+            <title>Challenge: Magnitudes of Multiples</title>
+            <statement><p><m>\left|\begin{pmatrix} 5 \\ 12 \end{pmatrix}\right| = 13</m>. Without using Pythagoras, find <m>\left|\begin{pmatrix} 10 \\ 24 \end{pmatrix}\right|</m> and <m>\left|\begin{pmatrix} -15 \\ -36 \end{pmatrix}\right|</m>.</p></statement>
+            <hint><p>Write each vector as a multiple of <m>\begin{pmatrix} 5 \\ 12 \end{pmatrix}</m>.</p></hint>
+            <answer><p><m>26</m>; <m>39</m></p></answer>
+            <solution><p><m>\begin{pmatrix} 10 \\ 24 \end{pmatrix} = 2\begin{pmatrix} 5 \\ 12 \end{pmatrix}</m>, so its magnitude is <m>2 \times 13 = 26</m>. <m>\begin{pmatrix} -15 \\ -36 \end{pmatrix} = -3\begin{pmatrix} 5 \\ 12 \end{pmatrix}</m>, so its magnitude is <m>|-3| \times 13 = 39</m>.</p></solution>
+        </exercise>
+    </exercises>
 
-            </solution>             
-        </exercise>        
-    </exercises> -->
-
-    <!-- [LP] Add information on how to differentiate  -->
-
-    <!-- <axiom component="lesson-plan">
+    <axiom component="lesson-plan">
         <title>Differentiation</title>
-
-        <table>
-            <title>Differentiation</title>
-            <tabular halign="left">
-                <row header="yes" bottom="minor">
-                    <cell>Learner Group</cell>
-                    <cell>Strategy &amp; Learning Experience</cell>
-                    <cell></cell>
-                </row>
-                <row>
-                    <cell>Struggling Learners (Support)</cell>
-                    <cell>
-                        XXXX
-                    </cell>
-                    <cell></cell>
-                </row>
-                <row>
-                    <cell>On-Level Learners (Core)</cell>
-                    <cell>
-                        <line>The core lesson activities as described above.</line>
-                    </cell>
-                    <cell></cell>
-                </row>
-                <row>
-                    <cell>Advanced Learners (Challenge)</cell>
-                    <cell>
-                        XXXX
-                    </cell>
-                    <cell></cell>
-                </row>
+        <table xml:id="table-differentiation-magnitude-of-a-vector">
+            <title>Differentiation Strategies</title>
+            <tabular halign="left" top="minor" bottom="minor" left="minor" right="minor">
+                <row header="yes" bottom="medium"><cell>Learner Group</cell><cell>Strategy and Learning Experience</cell></row>
+                <row><cell>Struggling Learners (Support)</cell><cell>Give a <q>square, add, square root</q> table. Work through <xref ref="example-magnitude-from-components"/> and <xref ref="example-distance-between-places"/>. Assign <xref ref="ex-magnitudes-of-four-columns"/> and <xref ref="ex-two-distances"/>.</cell></row>
+                <row><cell>On-Level Learners (Core)</cell><cell>Full activity and all examples. Assign <xref ref="ex-magnitudes-of-four-columns"/> to <xref ref="ex-unknown-component"/>.</cell></row>
+                <row><cell>Advanced Learners (Challenge)</cell><cell>All exercises including <xref ref="ex-magnitude-of-multiples"/>. Extension: find all the vectors with whole-number components and magnitude <m>5</m>. (Answer: twelve vectors: <m>\begin{pmatrix} \pm 5 \\ 0 \end{pmatrix}</m>, <m>\begin{pmatrix} 0 \\ \pm 5 \end{pmatrix}</m>, <m>\begin{pmatrix} \pm 3 \\ \pm 4 \end{pmatrix}</m> and <m>\begin{pmatrix} \pm 4 \\ \pm 3 \end{pmatrix}</m>, taking every choice of signs.)</cell></row>
             </tabular>
         </table>
-    </axiom> -->
+    </axiom>
 
     <xi:include href="../lesson-plan-templates/assessment-methods.ptx" />
 

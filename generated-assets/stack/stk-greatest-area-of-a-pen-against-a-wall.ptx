@@ -1,0 +1,7 @@
+<stack-static>
+    <statement><p><p>Sankale has <m>{24}</m> m of wire fencing to make a rectangular calf pen against the wall of a store in Narok. The wall forms one side, so the fence makes the other three. Let <m>x</m> m be the length of each side that meets the wall.</p><p>(a) Write the area <m>A</m> <m>\text{m}^2</m> in terms of <m>x</m>.</p><div><m>A =</m> <fillin characters="15" name="ans1"/>  </div><p>(b) Find the value of <m>x</m> that gives the greatest area.</p><div><m>x =</m> <fillin characters="5" name="ans2"/> m  </div><p>(c) Find the greatest area.</p><div><fillin characters="6" name="ans3"/> <m>\text{m}^2</m>  </div></p></statement>
+    <solution><p><p>The best value of a quantity is at a stationary point or at an end of its domain.</p><p>(a) Two sides of <m>x</m> m use <m>2x</m> m of fence, so the side along the wall is <m>{24-2 x}</m> m and <m>A = {\left(24-2 x\right) x} = {24 x-2 x^2}</m>, with <m>0 \lt x \lt {12}</m>.</p><p>(b) <m>\dfrac{dA}{dx} = {24-4 x} = 0</m> when <m>x = {6}</m>. <m>\dfrac{d^2A}{dx^2} = -4 \lt 0</m>, so this gives the greatest area.</p><p>(c) The pen is <m>{6}</m> m by <m>{12}</m> m, and <m>A = {6} \times {12} = {72}</m> <m>\text{m}^2</m>.</p></p></solution>
+    <answer><p><m>\left(24-2 x\right) x</m></p></answer>
+    <answer><p><m>6</m></p></answer>
+    <answer><p><m>72</m></p></answer>
+</stack-static>

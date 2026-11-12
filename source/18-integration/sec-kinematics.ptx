@@ -33,7 +33,7 @@
                 <li component="lesson-plan">
                     <title>Estimated Duration</title>
                     <p>
-                        40 minutes
+                        2 lessons of 40 minutes
                     </p>
                 </li>
             </dl>
@@ -47,163 +47,492 @@
          Suggested activity: Learners measure a ball rolling down a ramp and use differentiation and integration to find velocity, acceleration and distance.
          Interactive (JSXGraph): Velocity–time graph with a slider for time t; the distance travelled (area under the graph) and the particle's position update live. -->
 
-    <!-- [LP] Add guidance on activity -->
+    <!-- Section notes (2026-11)
+         SLOs: Core (f). Lessons 6.1 and 6.2 as subsections. Lesson 6.2 also carries outcome (g) (appreciate the use of integration in real life), the key inquiry question revisited and the curriculum links.
+         Activity: as planning notes (ball rolling down a ramp, differentiate then integrate) in lesson 6.1 | changed: lesson 6.2 adds its own activity (ball thrown up)
+         JSXGraph: fig-velocity-time-area (assets/jsxgraph/velocity-time-area.js), as planning notes, in lesson 6.2
+         STACK: assets/stack/top/4-calculus/18-integration/06-kinematics/ -->
 
-    <!-- <axiom component="lesson-plan">
+    <!-- ============================================================ Lesson 6.1 -->
+    <subsection xml:id="subsec-acceleration-velocity-displacement">
+        <title>From Acceleration to Velocity to Displacement</title>
+
+        <p component="lesson-plan">Upon completion of this lesson, learners will be able to:
+            <ol>
+                <li><p><alert>Know:</alert> integrating acceleration gives velocity and integrating velocity gives displacement; the constants are the starting velocity and the starting position.</p></li>
+                <li><p><alert>Do:</alert> move between <m>s</m>, <m>v</m> and <m>a</m> in both directions, using the values at <m>t = 0</m>.</p></li>
+                <li><p><alert>Apply:</alert> describe matatus and boda bodas pulling away.</p></li>
+            </ol>
+        </p>
+
+        <axiom component="lesson-plan">
             <title>Problem-Solving and Discovery</title>
             <dl>
-                <li>
-                    <title>Suggested Time</title>
-                    <p>
-                        XX minutes
-                    </p>
-                </li>
-                <li>
-                    <title>Objective</title>
-                    <p>
-                        XXX
-                    </p>
-                </li>
-                <li>
-                    <title>Teacher's Role</title>
-                    <p>
-                        XXX
-                    </p>
-                </li>
+                <li><title>Suggested Time</title><p>14 minutes</p></li>
+                <li><title>Objective</title><p>Learners check a measured motion by differentiating, then rebuild it by integrating.</p></li>
+                <li><title>Teacher's Role</title><p>Set up a ramp about <m>2.5\,\text{m}</m> long (a plank on a pile of books). Groups release a ball from rest, and mark its position with chalk every <m>0.5\,\text{s}</m> using a stopwatch. Groups without equipment use the table. Pairs check each other's working before the class compares (unity, respect).</p></li>
             </dl>
-        </axiom> -->
+        </axiom>
 
-    <!-- Add Activity -->
-
-    <!-- <activity>
-        <statement>
-        </statement>
-    </activity> -->
-
-    <!-- [LP] Add guidance on structured lesson plan-->
-
-    <!-- <axiom component="lesson-plan">
-        <title>Structured Instruction</title>
-        <p>
-            <dl>
-            <li>
-                <title>Suggested Time</title>
+        <activity xml:id="act-rolling-down-a-ramp">
+            <title>Rolling Down a Ramp</title>
+            <statement>
+                <p>A ball is released from rest at the top of a ramp in the school laboratory. Its distance <m>s</m> metres down the ramp after <m>t</m> seconds is recorded.</p>
+                <table xml:id="table-ball-on-a-ramp">
+                    <title>Distance of the Ball Down the Ramp</title>
+                    <tabular halign="center" top="minor" bottom="minor" left="minor" right="minor">
+                        <row header="yes" bottom="medium"><cell>Time <m>t</m> (s)</cell><cell>0</cell><cell>0.5</cell><cell>1</cell><cell>1.5</cell><cell>2</cell></row>
+                        <row><cell>Distance <m>s</m> (m)</cell><cell>0</cell><cell>0.15</cell><cell>0.6</cell><cell>1.35</cell><cell>2.4</cell></row>
+                    </tabular>
+                </table>
                 <p>
-                    XX minutes
+                    <ol marker="(a)">
+                        <li>
+                            <p>Check that <m>s = 0.6t^2</m> fits every value in the table.</p>
+                            <solution component="lesson-plan"><p><m>0.6 \times 0.25 = 0.15</m>, <m>0.6 \times 1 = 0.6</m>, <m>0.6 \times 2.25 = 1.35</m>, <m>0.6 \times 4 = 2.4</m>.</p></solution>
+                        </li>
+                        <li>
+                            <p>Differentiate to find the velocity <m>v</m> and the acceleration <m>a</m> of the ball.</p>
+                            <solution component="lesson-plan"><p><m>v = \dfrac{ds}{dt} = 1.2t</m> and <m>a = \dfrac{dv}{dt} = 1.2\,\text{m/s}^2</m>.</p></solution>
+                        </li>
+                        <li>
+                            <p>Now work backwards. Start from <m>a = 1.2</m>, and use the facts that the ball starts from rest at <m>s = 0</m>. Integrate twice to find <m>v</m> and <m>s</m>.</p>
+                            <solution component="lesson-plan"><p><m>v = 1.2t + c</m> with <m>v = 0</m> at <m>t = 0</m>, so <m>v = 1.2t</m>. Then <m>s = 0.6t^2 + d</m> with <m>s = 0</m> at <m>t = 0</m>, so <m>s = 0.6t^2</m>.</p></solution>
+                        </li>
+                        <li>
+                            <p>Which facts fixed the two constants of integration?</p>
+                            <solution component="lesson-plan"><p>The starting velocity <m>v(0) = 0</m> and the starting position <m>s(0) = 0</m>.</p></solution>
+                        </li>
+                        <li>
+                            <p>The ball is now pushed so that it starts at <m>0.5\,\text{m/s}</m> from the top of the ramp, with the same acceleration. Find <m>v</m> and <m>s</m>, and how far it travels in <m>2</m> seconds.</p>
+                            <solution component="lesson-plan"><p><m>v = 1.2t + 0.5</m>, <m>s = 0.6t^2 + 0.5t</m>; <m>s(2) = 2.4 + 1 = 3.4\,\text{m}</m>, so the ball would need a longer ramp.</p></solution>
+                        </li>
+                    </ol>
                 </p>
-            </li>
-            <li>
-                <title>Objective</title>
-                <p>
-                    To formalize the concepts and properties learners discovered in the anchor task.
-                </p>
-            </li>
-            </dl>
-        </p>
-        <paragraphs>
-            <title>Key Takeaways &amp; Teacher Connection</title>
-            <ol>
-                <li>
-                    <p>
-                        <alert>Connecting to Learner Work:</alert> XXXX
-                    </p>
-                </li>
-            </ol>
-        </paragraphs>
-    </axiom> -->
+            </statement>
+        </activity>
 
-    <!-- Add insight / key takeaway directly related to activity / learner experience -->
+        <axiom component="lesson-plan">
+            <title>Structured Instruction</title>
+            <p>
+                <dl>
+                    <li><title>Suggested Time</title><p>8 minutes</p></li>
+                    <li><title>Objective</title><p>To formalise moving between displacement, velocity and acceleration in both directions.</p></li>
+                </dl>
+            </p>
+            <paragraphs>
+                <title>Key Takeaways &amp; Teacher Connection</title>
+                <ol>
+                    <li><p><alert>Connecting to Learner Work:</alert> parts (b) and (c) go round the chain in <xref ref="fig-kinematics-chain"/> in both directions.</p></li>
+                    <li><p>Each integration adds a constant; find it from the value at <m>t = 0</m> (or at another known time).</p></li>
+                    <li><p>Differentiation and the notation <m>v = \dfrac{ds}{dt}</m>, <m>a = \dfrac{dv}{dt}</m> are as in <xref ref="ch-differentiation-ii"/>.</p></li>
+                </ol>
+            </paragraphs>
+        </axiom>
 
-    <!-- <insight>
-    </insight> -->
+        <insight xml:id="insight-kinematics-both-directions">
+            <title>Kinematics in Both Directions</title>
+            <p>
+                For motion in a straight line, let <m>s</m> be the displacement (m) from a fixed point, <m>v</m> the velocity (m/s), <m>a</m> the acceleration (<m>\text{m/s}^2</m>) and <m>t</m> the time (s). Then
+                <md>v = \frac{ds}{dt}, \qquad a = \frac{dv}{dt}, \qquad v = \int a\,dt, \qquad s = \int v\,dt</md>.
+                Differentiate to go from <m>s</m> to <m>v</m> to <m>a</m>; integrate to come back, using what you know at the start: the constant in <m>v</m> comes from the starting velocity, and the constant in <m>s</m> from the starting position.
+            </p>
+        </insight>
 
-    <!-- Add further instruction (not in a block) to develop ideas as needed -->
+        <figure xml:id="fig-kinematics-chain">
+            <caption>Differentiate to go from displacement to velocity to acceleration; integrate to come back.</caption>
+            <image width="60%">
+                <shortdescription>Three boxes in a row: displacement s, velocity v, acceleration a. Arrows above point right, labelled differentiate. Arrows below point left, labelled integrate, with the note that each constant comes from the value at t = 0.</shortdescription>
+                <latex-image>
+\begin{tikzpicture}[box/.style={draw, thick, minimum width=2.4cm, minimum height=1cm, align=center}, >=Stealth]
+\node[box] (s) at (0,0) {displacement\\ $s$};
+\node[box] (v) at (5,0) {velocity\\ $v$};
+\node[box] (a) at (10,0) {acceleration\\ $a$};
+\draw[->, thick] ([yshift=0.25cm]s.east) -- node[above, font=\small] {differentiate} ([yshift=0.25cm]v.west);
+\draw[->, thick] ([yshift=0.25cm]v.east) -- node[above, font=\small] {differentiate} ([yshift=0.25cm]a.west);
+\draw[->, thick, dashed] ([yshift=-0.25cm]a.west) -- node[below, font=\small, align=center] {integrate\\ $+$ $v(0)$} ([yshift=-0.25cm]v.east);
+\draw[->, thick, dashed] ([yshift=-0.25cm]v.west) -- node[below, font=\small, align=center] {integrate\\ $+$ $s(0)$} ([yshift=-0.25cm]s.east);
+\end{tikzpicture}
+                </latex-image>
+            </image>
+        </figure>
 
-    <xi:include href="../lesson-plan-templates/example-intro.ptx" />
+        <note xml:id="note-constant-acceleration">
+            <title>Constant Acceleration</title>
+            <p>
+                If the acceleration <m>a</m> is constant and the starting velocity is <m>u</m>, integrating gives <m>v = u + at</m>. Integrating again, from <m>s = 0</m> at <m>t = 0</m>, gives <m>s = ut + \tfrac{1}{2}at^2</m>. These are the constant-acceleration equations met in Physics.
+            </p>
+        </note>
 
-    <!-- Add at least 3 examples -->
+        <xi:include href="../lesson-plan-templates/example-intro.ptx" />
 
-    <!-- <example>
-        <statement>
-        </statement>
-        <solution>
-        </solution>
-    </example>
-
-    <example>
-        <statement>
-        </statement>
-        <solution>
-        </solution>
-    </example>
-
-    <example>
-        <statement>
-        </statement>
-        <solution>
-        </solution>
-    </example> -->
-
-    <xi:include href="../lesson-plan-templates/assessment-intro.ptx" />
-
-    <!-- If STACK questions are included, uncomment this: -->
-
-    <!-- <xi:include href="../lesson-plan-templates/checkpoint.ptx" /> -->
-
-    <!-- Add STACK exercises if made -->
-
-    <!-- Add static exercises -->
-
-    <!-- <exercises>
-        <exercise>
-            <statement>   
-
-            </statement>   
+        <example xml:id="example-matatu-pulling-away">
+            <title>A Matatu Pulling Away</title>
+            <statement>
+                <p>A matatu pulls away from rest at a stage. For the first <m>15</m> seconds its acceleration is <m>a = 1.8 - 0.12t\,\text{m/s}^2</m>. Find its velocity and its distance from the stage when <m>t = 15</m>.</p>
+            </statement>
             <solution>
+                <p><alert>Step 1: Velocity.</alert> <m>v = \int (1.8 - 0.12t)\,dt = 1.8t - 0.06t^2 + c</m>. It starts from rest, so <m>v = 0</m> at <m>t = 0</m> and <m>c = 0</m>: <m>v = 1.8t - 0.06t^2</m>.</p>
+                <p><alert>Step 2: Displacement.</alert> <m>s = \int (1.8t - 0.06t^2)\,dt = 0.9t^2 - 0.02t^3 + d</m>, and <m>s = 0</m> at the stage, so <m>d = 0</m>.</p>
+                <p><alert>Step 3: At <m>t = 15</m>.</alert> <m>a = 1.8 - 1.8 = 0</m>, so the matatu has stopped speeding up. <m>v = 27 - 13.5 = 13.5\,\text{m/s}</m> (<m>48.6\,\text{km/h}</m>) and <m>s = 202.5 - 67.5 = 135\,\text{m}</m>.</p>
+            </solution>
+        </example>
 
-            </solution>             
-        </exercise>        
-    </exercises> -->
+        <example xml:id="example-finding-the-initial-velocity">
+            <title>Finding the Initial Velocity</title>
+            <statement>
+                <p>A particle moves in a straight line with acceleration <m>a = 6t - 4\,\text{m/s}^2</m>. Its velocity is <m>5\,\text{m/s}</m> when <m>t = 1</m>, and it starts at the origin. Find <m>v</m> and <m>s</m> in terms of <m>t</m>.</p>
+            </statement>
+            <solution>
+                <p><m>v = 3t^2 - 4t + c</m>. At <m>t = 1</m>: <m>5 = 3 - 4 + c</m>, so <m>c = 6</m> and <m>v = 3t^2 - 4t + 6</m>. The particle's starting velocity is <m>6\,\text{m/s}</m>.</p>
+                <p><m>s = t^3 - 2t^2 + 6t + d</m>, and <m>s = 0</m> at <m>t = 0</m> gives <m>d = 0</m>: <m>s = t^3 - 2t^2 + 6t</m>.</p>
+            </solution>
+        </example>
 
-    <!-- [LP] Add information on how to differentiate  -->
+        <example xml:id="example-differentiating-and-integrating">
+            <title>Differentiating and Integrating</title>
+            <statement>
+                <p>A particle starts at the origin with velocity <m>v = 3t^2 - 12t + 9\,\text{m/s}</m>. Find when its acceleration is zero, when it is at rest, and its displacement at the first time it is at rest.</p>
+            </statement>
+            <solution>
+                <p><m>a = \dfrac{dv}{dt} = 6t - 12</m>, which is zero at <m>t = 2</m>.</p>
+                <p><m>v = 3(t^2 - 4t + 3) = 3(t - 1)(t - 3) = 0</m> at <m>t = 1</m> and <m>t = 3</m>.</p>
+                <p><m>s = t^3 - 6t^2 + 9t + d</m>, with <m>d = 0</m> since it starts at the origin. At <m>t = 1</m>, <m>s = 1 - 6 + 9 = 4\,\text{m}</m>.</p>
+            </solution>
+        </example>
 
-    <!-- <axiom component="lesson-plan">
-        <title>Differentiation</title>
+        <xi:include href="../lesson-plan-templates/assessment-intro.ptx" />
+        <xi:include href="../lesson-plan-templates/checkpoint.ptx" />
 
-        <table>
+        <p>Type expressions in <m>t</m>, for example <c>3t^2+2t+5</c>.</p>
+
+        <exercise xml:id="ex-velocity-and-displacement-from-acceleration">
+            <!--<title></title>-->
+            <stack label="stk-velocity-and-displacement-from-acceleration" source="stack/top/4-calculus/18-integration/06-kinematics/Velocity-and-displacement-from-acceleration.xml"/>
+        </exercise>
+
+        <exercise xml:id="ex-acceleration-and-displacement-from-velocity">
+            <!--<title></title>-->
+            <stack label="stk-acceleration-and-displacement-from-velocity" source="stack/top/4-calculus/18-integration/06-kinematics/Acceleration-and-displacement-from-velocity.xml"/>
+        </exercise>
+
+        <exercises xml:id="exercises-acceleration-velocity-displacement">
+            <exercise xml:id="ex-constant-acceleration-4">
+                <statement><p>A particle has constant acceleration <m>a = 4\,\text{m/s}^2</m>. When <m>t = 0</m> its velocity is <m>3\,\text{m/s}</m> and it is at the origin. Find <m>v</m> and <m>s</m> in terms of <m>t</m>, and <m>s</m> when <m>t = 5</m>.</p></statement>
+                <answer><p><m>v = 4t + 3</m>; <m>s = 2t^2 + 3t</m>; <m>65\,\text{m}</m></p></answer>
+            </exercise>
+            <exercise xml:id="ex-acceleration-6t">
+                <statement><p>A particle starts from rest at the origin with acceleration <m>a = 6t\,\text{m/s}^2</m>. Find its displacement when <m>t = 2</m>.</p></statement>
+                <answer><p><m>v = 3t^2</m>, <m>s = t^3</m>; <m>8\,\text{m}</m></p></answer>
+            </exercise>
+            <exercise xml:id="ex-velocity-to-both">
+                <statement><p>A particle has velocity <m>v = 4t^3 - 2t + 1\,\text{m/s}</m> and is <m>2\,\text{m}</m> from the origin when <m>t = 0</m>. Find its acceleration in terms of <m>t</m>, and its position when <m>t = 1</m>.</p></statement>
+                <answer><p><m>a = 12t^2 - 2</m>; <m>s = t^4 - t^2 + t + 2</m>, so <m>3\,\text{m}</m> from the origin</p></answer>
+                <solution><p>Differentiate: <m>a = 12t^2 - 2</m>. Integrate: <m>s = t^4 - t^2 + t + d</m> with <m>s(0) = 2</m>, so <m>d = 2</m>; <m>s(1) = 1 - 1 + 1 + 2 = 3</m>.</p></solution>
+            </exercise>
+            <exercise xml:id="ex-boda-boda-accelerating">
+                <statement><p>A boda boda passes a petrol station at <m>2\,\text{m/s}</m> and speeds up with acceleration <m>a = 2.4 - 0.4t\,\text{m/s}^2</m> for <m>0 \le t \le 6</m>. Find its velocity and its distance from the petrol station when <m>t = 6</m>.</p></statement>
+                <answer><p><m>v = 2 + 2.4t - 0.2t^2</m>; <m>9.2\,\text{m/s}</m>; <m>40.8\,\text{m}</m></p></answer>
+                <solution><p><m>v = 2.4t - 0.2t^2 + c</m> with <m>v(0) = 2</m>: <m>v = 2 + 2.4t - 0.2t^2</m>, so <m>v(6) = 2 + 14.4 - 7.2 = 9.2</m>. Then <m>s = 2t + 1.2t^2 - \frac{t^3}{15}</m> (with <m>s(0) = 0</m>), so <m>s(6) = 12 + 43.2 - 14.4 = 40.8</m>.</p></solution>
+            </exercise>
+            <exercise xml:id="ex-find-constant-acceleration">
+                <statement><p>A cyclist starts from rest and moves with constant acceleration <m>a</m>. She covers <m>50\,\text{m}</m> in the first <m>10</m> seconds. Find <m>a</m> by integrating.</p></statement>
+                <answer><p><m>a = 1\,\text{m/s}^2</m></p></answer>
+                <solution><p><m>v = at</m> and <m>s = \frac{1}{2}at^2</m> (both constants are <m>0</m>). At <m>t = 10</m>: <m>50a = 50</m>, so <m>a = 1</m>.</p></solution>
+            </exercise>
+            <exercise xml:id="ex-derive-v-squared">
+                <title>Challenge: Another Constant-Acceleration Equation</title>
+                <statement><p>Starting from <m>v = u + at</m> and <m>s = ut + \frac{1}{2}at^2</m>, show that <m>v^2 = u^2 + 2as</m>.</p></statement>
+                <hint><p>Make <m>t</m> the subject of the first equation and substitute into the second.</p></hint>
+                <answer><p>Shown.</p></answer>
+                <solution><p><m>t = \dfrac{v - u}{a}</m>, so <m>s = \dfrac{u(v - u)}{a} + \dfrac{(v - u)^2}{2a}</m>. Multiply by <m>2a</m>: <m>2as = 2uv - 2u^2 + v^2 - 2uv + u^2 = v^2 - u^2</m>.</p></solution>
+            </exercise>
+        </exercises>
+
+        <axiom component="lesson-plan">
             <title>Differentiation</title>
-            <tabular halign="left">
-                <row header="yes" bottom="minor">
-                    <cell>Learner Group</cell>
-                    <cell>Strategy &amp; Learning Experience</cell>
-                    <cell></cell>
-                </row>
-                <row>
-                    <cell>Struggling Learners (Support)</cell>
-                    <cell>
-                        XXXX
-                    </cell>
-                    <cell></cell>
-                </row>
-                <row>
-                    <cell>On-Level Learners (Core)</cell>
-                    <cell>
-                        <line>The core lesson activities as described above.</line>
-                    </cell>
-                    <cell></cell>
-                </row>
-                <row>
-                    <cell>Advanced Learners (Challenge)</cell>
-                    <cell>
-                        XXXX
-                    </cell>
-                    <cell></cell>
-                </row>
-            </tabular>
-        </table>
-    </axiom> -->
+            <table xml:id="table-differentiation-acceleration-velocity-displacement">
+                <title>Differentiation Strategies</title>
+                <tabular halign="left" top="minor" bottom="minor" left="minor" right="minor">
+                    <row header="yes" bottom="medium"><cell>Learner Group</cell><cell>Strategy and Learning Experience</cell></row>
+                    <row><cell>Struggling Learners (Support)</cell><cell>Give a card with the chain diagram of <xref ref="fig-kinematics-chain"/> and the reminder <q>each integration: add a constant, use t = 0</q>. Work through <xref ref="example-matatu-pulling-away"/> and <xref ref="example-finding-the-initial-velocity"/>. Assign <xref ref="ex-constant-acceleration-4"/> and <xref ref="ex-acceleration-6t"/>.</cell></row>
+                    <row><cell>On-Level Learners (Core)</cell><cell>Full activity and all examples. Assign <xref ref="ex-constant-acceleration-4"/> to <xref ref="ex-find-constant-acceleration"/>.</cell></row>
+                    <row><cell>Advanced Learners (Challenge)</cell><cell>All exercises including <xref ref="ex-derive-v-squared"/>. Extension: a particle has <m>a = -2\,\text{m/s}^2</m> and <m>v(0) = 6\,\text{m/s}</m>, starting at the origin. When does it return to its start? (<m>s = 6t - t^2 = 0</m> at <m>t = 6\,\text{s}</m>.)</cell></row>
+                </tabular>
+            </table>
+        </axiom>
 
-    <xi:include href="../lesson-plan-templates/assessment-methods.ptx" />
+        <xi:include href="../lesson-plan-templates/assessment-methods.ptx" />
+        <xi:include href="../lesson-plan-templates/reflection.ptx"/>
+    </subsection>
 
-    <xi:include href="../lesson-plan-templates/reflection.ptx"/>
+    <!-- ============================================================ Lesson 6.2 -->
+    <subsection xml:id="subsec-displacement-and-distance-travelled">
+        <title>Displacement and Distance Travelled</title>
+
+        <p component="lesson-plan">Upon completion of this lesson, learners will be able to:
+            <ol>
+                <li><p><alert>Know:</alert> the displacement from <m>t_1</m> to <m>t_2</m> is <m>\int_{t_1}^{t_2} v\,dt</m>, which can be negative; the distance travelled is the total area between the velocity-time graph and the <m>t</m>-axis.</p></li>
+                <li><p><alert>Do:</alert> find both, splitting at the times of rest, for formulas and for straight-line velocity-time graphs.</p></li>
+                <li><p><alert>Apply:</alert> journeys of matatus, trains and athletes; value the use of integration in real life.</p></li>
+            </ol>
+        </p>
+
+        <axiom component="lesson-plan">
+            <title>Problem-Solving and Discovery</title>
+            <dl>
+                <li><title>Suggested Time</title><p>14 minutes</p></li>
+                <li><title>Objective</title><p>Learners see that a ball thrown up and caught has displacement <m>0</m> but has travelled <m>40\,\text{m}</m>.</p></li>
+                <li><title>Teacher's Role</title><p>Link to the stone thrown upwards in Grade 11, <m>s = 20t - 5t^2</m>. After part (d), ask: <q>The integral is zero. Did the ball not move?</q> Then use the interactive in <xref ref="fig-velocity-time-area"/>.</p></li>
+            </dl>
+        </axiom>
+
+        <activity xml:id="act-up-and-down-again">
+            <title>Up and Down Again</title>
+            <statement>
+                <p>On a school field in Eldoret, a learner throws a ball straight up and catches it again at the same height. Taking upwards as positive, its velocity after <m>t</m> seconds is <m>v = 20 - 10t\,\text{m/s}</m>, for <m>0 \le t \le 4</m>.</p>
+                <figure xml:id="fig-ball-velocity-time">
+                    <caption>Velocity of the ball against time. The triangle above the axis is the upward journey; the hatched triangle below the axis is the downward journey.</caption>
+                    <image width="70%">
+                        <shortdescription>The straight line v = 20 - 10t from (0, 20) to (4, -20), crossing the t-axis at t = 2. The triangle between the line and the axis from t = 0 to 2 is shaded and labelled 20 m; the triangle from t = 2 to 4, below the axis, is hatched and labelled 20 m.</shortdescription>
+                        <latex-image>
+\begin{tikzpicture}
+\begin{axis}[width=9cm, height=7cm, xmin=0, xmax=4.4, ymin=-22, ymax=22,
+  axis lines=middle, xtick={1,2,3,4}, ytick={-20,-10,10,20},
+  xlabel={$t$ (s)}, ylabel={$v$ (m/s)}, xlabel style={anchor=west}, ylabel style={anchor=south},
+  xticklabel style={fill=white, inner sep=1pt}, axis on top]
+\fill[gray!30] (axis cs:0,0) -- (axis cs:0,20) -- (axis cs:2,0) -- cycle;
+\fill[pattern=north east lines] (axis cs:2,0) -- (axis cs:4,-20) -- (axis cs:4,0) -- cycle;
+\addplot[very thick, domain=0:4] {20-10*x};
+\node[font=\small] at (axis cs:0.65,6) {$20$ m};
+\node[font=\small, fill=white, inner sep=1pt] at (axis cs:3.35,-6) {$20$ m};
+\end{axis}
+\end{tikzpicture}
+                        </latex-image>
+                    </image>
+                </figure>
+                <p>
+                    <ol marker="(a)">
+                        <li>
+                            <p>Sketch the graph of <m>v</m> against <m>t</m>.</p>
+                            <solution component="lesson-plan"><p>A straight line from <m>(0, 20)</m> to <m>(4, -20)</m>, as in <xref ref="fig-ball-velocity-time"/>.</p></solution>
+                        </li>
+                        <li>
+                            <p>When is the ball at rest?</p>
+                            <solution component="lesson-plan"><p><m>20 - 10t = 0</m> at <m>t = 2</m>, the top of its flight.</p></solution>
+                        </li>
+                        <li>
+                            <p>Find the areas of the two triangles between the graph and the <m>t</m>-axis. What does each one mean?</p>
+                            <solution component="lesson-plan"><p>Each is <m>\frac{1}{2} \times 2 \times 20 = 20</m>: <m>20\,\text{m}</m> up, then <m>20\,\text{m}</m> down (the second triangle is below the axis).</p></solution>
+                        </li>
+                        <li>
+                            <p>Find <m>\displaystyle\int_0^4 v\,dt</m>. What does the answer tell you?</p>
+                            <solution component="lesson-plan"><p><m>\left[20t - 5t^2\right]_0^4 = 80 - 80 = 0</m>: the ball is back in the learner's hand, so its displacement is <m>0</m>.</p></solution>
+                        </li>
+                        <li>
+                            <p>How far did the ball travel altogether?</p>
+                            <solution component="lesson-plan"><p><m>20 + 20 = 40\,\text{m}</m>.</p></solution>
+                        </li>
+                    </ol>
+                </p>
+            </statement>
+        </activity>
+
+        <axiom component="lesson-plan">
+            <title>Structured Instruction</title>
+            <p>
+                <dl>
+                    <li><title>Suggested Time</title><p>8 minutes</p></li>
+                    <li><title>Objective</title><p>To distinguish displacement from distance travelled, and to link both to areas under a velocity-time graph.</p></li>
+                </dl>
+            </p>
+            <paragraphs>
+                <title>Key Takeaways &amp; Teacher Connection</title>
+                <ol>
+                    <li><p><alert>Connecting to Learner Work:</alert> parts (d) and (e): the integral gives the displacement, the total area gives the distance.</p></li>
+                    <li><p>Find the times of rest first, and split the integral there, exactly as areas were split at the <m>x</m>-intercepts in <xref ref="subsec-areas-above-and-below-the-x-axis"/>.</p></li>
+                    <li><p>For straight-line velocity-time graphs, the areas of triangles and rectangles give the same results as integration.</p></li>
+                </ol>
+            </paragraphs>
+        </axiom>
+
+        <insight xml:id="insight-displacement-and-distance">
+            <title>Displacement and Distance</title>
+            <p>
+                The displacement from time <m>t_1</m> to time <m>t_2</m> is <md>s(t_2) - s(t_1) = \int_{t_1}^{t_2} v\,dt</md>. Times when the object moves backwards (<m>v \lt 0</m>) count as negative, so the displacement can be zero or negative.
+            </p>
+            <p>
+                The <term>distance travelled</term> is the total area between the velocity-time graph and the <m>t</m>-axis. To find it, find the times when <m>v = 0</m>, integrate over each part separately, and add the sizes. Speed is the size of the velocity.
+            </p>
+        </insight>
+
+        <figure xml:id="fig-velocity-time-area">
+            <caption>Drag <m>t</m>: the dot shows the position. Positive area moves it forward, negative area moves it back.</caption>
+            <interactive xml:id="interactive-velocity-time-area" platform="jsxgraph" width="90%" aspect="16:12" source="jsxgraph/velocity-time-area.js">
+                <slate xml:id="jsxgraph-velocity-time-area" surface="jsxboard" aspect="16:12"/>
+                <instructions>
+                    <p>
+                        <ul>
+                            <li><p>The graph is <m>v = 3t^2 - 12t + 9</m> for <m>0 \le t \le 4</m>. The dot on the line above the graph is the particle's position <m>s</m>, starting at <m>0</m>.</p></li>
+                            <li><p>Drag the <alert>t</alert> slider from <m>0</m> to <m>4</m>. The area from <m>0</m> to <m>t</m> is shaded, marked <m>+</m> above the axis and <m>-</m> below it.</p></li>
+                            <li><p>Set <alert>t</alert> to <m>3</m>. Why is the displacement <m>0</m> although the distance travelled is <m>8\,\text{m}</m>? What are both values at <m>t = 4</m>?</p></li>
+                        </ul>
+                    </p>
+                </instructions>
+            </interactive>
+        </figure>
+
+        <xi:include href="../lesson-plan-templates/example-intro.ptx" />
+
+        <example xml:id="example-displacement-and-distance">
+            <title>Displacement and Distance</title>
+            <statement>
+                <p>A particle has velocity <m>v = 3t^2 - 12t + 9\,\text{m/s}</m>. Find its displacement and the distance it travels from <m>t = 0</m> to <m>t = 4</m>.</p>
+            </statement>
+            <solution>
+                <p>It is at rest when <m>3(t - 1)(t - 3) = 0</m>, at <m>t = 1</m> and <m>t = 3</m>. With <m>F(t) = t^3 - 6t^2 + 9t</m>, <m>F(0) = 0</m>, <m>F(1) = 4</m>, <m>F(3) = 0</m>, <m>F(4) = 4</m>:
+                    <md>
+                        <mrow>\int_0^1 v\,dt \amp = 4, \qquad \int_1^3 v\,dt = -4, \qquad \int_3^4 v\,dt = 4</mrow>
+                    </md>
+                The displacement is <m>4 - 4 + 4 = 4\,\text{m}</m>. The distance travelled is <m>4 + 4 + 4 = 12\,\text{m}</m>.</p>
+            </solution>
+        </example>
+
+        <example xml:id="example-matatu-between-two-stages">
+            <title>A Matatu Between Two Stages</title>
+            <statement>
+                <p>A matatu leaves a stage from rest and speeds up steadily to <m>12\,\text{m/s}</m> in <m>10</m> seconds. It travels at <m>12\,\text{m/s}</m> for <m>30</m> seconds, then slows steadily to rest at the next stage in <m>8</m> seconds. How far apart are the stages?</p>
+                <figure xml:id="fig-matatu-vt-graph">
+                    <caption>Velocity-time graph of the matatu between two stages.</caption>
+                    <image width="80%">
+                        <shortdescription>Velocity rises in a straight line from 0 to 12 m/s in 10 s, stays at 12 m/s until 40 s, and falls in a straight line to 0 at 48 s. The three regions under the graph are labelled 60, 360 and 48.</shortdescription>
+                        <description><p>Horizontal axis time t from 0 to 50 s; vertical axis velocity v from 0 to 14 m/s. Points (0, 0), (10, 12), (40, 12), (48, 0) joined by straight lines. Areas under the graph: a triangle of area 60 from 0 to 10 s, a rectangle of area 360 from 10 to 40 s, a triangle of area 48 from 40 to 48 s.</p></description>
+                        <latex-image>
+\begin{tikzpicture}
+\begin{axis}[width=10cm, height=6cm, xmin=0, xmax=52, ymin=0, ymax=15,
+  axis lines=left, xtick={0,10,20,30,40,48}, ytick={0,4,8,12},
+  xlabel={$t$ (s)}, ylabel={$v$ (m/s)}]
+\fill[gray!20] (axis cs:0,0) -- (axis cs:10,12) -- (axis cs:40,12) -- (axis cs:48,0) -- cycle;
+\addplot[very thick] coordinates {(0,0) (10,12) (40,12) (48,0)};
+\draw[dashed] (axis cs:10,0) -- (axis cs:10,12);
+\draw[dashed] (axis cs:40,0) -- (axis cs:40,12);
+\node[font=\small] at (axis cs:7,4) {$60$};
+\node[font=\small] at (axis cs:25,6) {$360$};
+\node[font=\small] at (axis cs:42.5,4) {$48$};
+\end{axis}
+\end{tikzpicture}
+                        </latex-image>
+                    </image>
+                </figure>
+            </statement>
+            <solution>
+                <p>The velocity is never negative, so the distance is the whole area under the graph in <xref ref="fig-matatu-vt-graph"/>:
+                    <md>\tfrac{1}{2} \times 10 \times 12 + 30 \times 12 + \tfrac{1}{2} \times 8 \times 12 = 60 + 360 + 48 = 468\,\text{m}</md>
+                Integrating each straight-line part of the graph gives the same three areas.</p>
+            </solution>
+        </example>
+
+        <example xml:id="example-commuter-train">
+            <title>A Commuter Train</title>
+            <statement>
+                <p>A commuter train runs between two stations in Nairobi. It starts from rest and stops <m>60</m> seconds later; its velocity is <m>v = 0.02t(60 - t)\,\text{m/s}</m>. Find its top speed and the distance between the stations.</p>
+            </statement>
+            <solution>
+                <p><m>v = 1.2t - 0.02t^2</m>, so <m>\dfrac{dv}{dt} = 1.2 - 0.04t = 0</m> at <m>t = 30</m>. The top speed is <m>v(30) = 0.02 \times 30 \times 30 = 18\,\text{m/s}</m> (<m>64.8\,\text{km/h}</m>).</p>
+                <p>The velocity is positive for <m>0 \lt t \lt 60</m>, so
+                    <md>\text{distance} = \int_0^{60} (1.2t - 0.02t^2)\,dt = \left[0.6t^2 - \frac{0.02t^3}{3}\right]_0^{60} = 2160 - 1440 = 720\,\text{m}</md></p>
+            </solution>
+        </example>
+
+        <paragraphs xml:id="paragraphs-integration-in-real-life">
+            <title>Integration in Real Life</title>
+            <p>
+                We began this chapter with a question: how is integration used in real life? You have now seen several answers. Surveyors find the areas of land with curved boundaries, such as a shamba beside a river, and engineers the cross-sections of channels and furrows. The integral of a rate of flow gives the water that has entered a tank. A record of a vehicle's speed, like the matatu's and the train's, gives the distance it has travelled.
+            </p>
+            <p>
+                Each time, integration adds up many thin strips: of land, of water flowing in a moment, or of distance covered in an instant. Where only measurements are available, the trapezoidal and mid-ordinate rules estimate the same total, and integration tells us how good the estimate is.
+            </p>
+        </paragraphs>
+
+        <axiom component="lesson-plan">
+            <title>Curriculum Links</title>
+            <dl>
+                <li><title>Key Inquiry Question</title><p>How is integration used in real life?</p></li>
+                <li><title>Core Competencies</title><p>Critical thinking and problem solving, through modelling motion with differentiation and integration; learning to learn, through checking estimates of areas against integration in the two previous sections.</p></li>
+                <li><title>Values</title><p>Unity and respect, through pair checking of kinematics answers and group comparison of estimates.</p></li>
+                <li><title>Pertinent and Contemporary Issues</title><p>Life skills: communication, when groups explain their estimates and their kinematics working to each other.</p></li>
+                <li><title>Learning Outcome</title><p>This lesson carries the outcome on appreciating the use of integration in real life (outcome (g) in the Core design), through the paragraphs above and the reflection prompt.</p></li>
+            </dl>
+        </axiom>
+
+        <p>
+            <em>Integration in real life:</em> which journey that you make, by matatu, boda boda or on foot, could you describe with a velocity-time graph? What would the area under it tell you?
+        </p>
+
+        <xi:include href="../lesson-plan-templates/assessment-intro.ptx" />
+        <xi:include href="../lesson-plan-templates/checkpoint.ptx" />
+
+        <p>Type exact values as whole numbers, fractions or decimals, for example <c>27/4</c> or <c>6.75</c>.</p>
+
+        <exercise xml:id="ex-displacement-and-distance-travelled">
+            <!--<title></title>-->
+            <stack label="stk-displacement-and-distance-travelled" source="stack/top/4-calculus/18-integration/06-kinematics/Displacement-and-distance-travelled.xml"/>
+        </exercise>
+
+        <exercise xml:id="ex-maximum-speed-and-distance-between-stages">
+            <!--<title></title>-->
+            <stack label="stk-maximum-speed-and-distance-between-stages" source="stack/top/4-calculus/18-integration/06-kinematics/Maximum-speed-and-distance-between-stages.xml"/>
+        </exercise>
+
+        <exercises xml:id="exercises-displacement-and-distance">
+            <exercise xml:id="ex-displacement-linear-v">
+                <statement><p>A particle has velocity <m>v = 2t + 3\,\text{m/s}</m>. Find its displacement from <m>t = 0</m> to <m>t = 4</m>.</p></statement>
+                <answer><p><m>28\,\text{m}</m></p></answer>
+            </exercise>
+            <exercise xml:id="ex-distance-8-minus-2t">
+                <statement><p>A particle has velocity <m>v = 8 - 2t\,\text{m/s}</m> for <m>0 \le t \le 6</m>. Find its displacement and the distance it travels.</p></statement>
+                <answer><p>Displacement <m>12\,\text{m}</m>; distance <m>20\,\text{m}</m></p></answer>
+                <solution><p>At rest at <m>t = 4</m>. <m>\int_0^4 v\,dt = 16</m> and <m>\int_4^6 v\,dt = -4</m>, so the displacement is <m>12\,\text{m}</m> and the distance <m>16 + 4 = 20\,\text{m}</m>.</p></solution>
+            </exercise>
+            <exercise xml:id="ex-distance-quadratic-v">
+                <statement><p>A particle has velocity <m>v = t^2 - 4t + 3\,\text{m/s}</m> for <m>0 \le t \le 3</m>. Find its displacement and the distance it travels.</p></statement>
+                <answer><p>Displacement <m>0</m>; distance <m>\frac{8}{3} \approx 2.67\,\text{m}</m></p></answer>
+                <solution><p><m>v = (t - 1)(t - 3)</m>, at rest at <m>t = 1</m> and <m>3</m>. With <m>F(t) = \frac{t^3}{3} - 2t^2 + 3t</m>: <m>\int_0^1 v\,dt = \frac{4}{3}</m> and <m>\int_1^3 v\,dt = -\frac{4}{3}</m>. Displacement <m>0</m>; distance <m>\frac{8}{3}</m>.</p></solution>
+            </exercise>
+            <exercise xml:id="ex-athlete-warm-up">
+                <statement><p>An athlete warming up at Iten accelerates steadily from rest to <m>6\,\text{m/s}</m> in <m>4</m> seconds, runs at <m>6\,\text{m/s}</m> for <m>20</m> seconds, then slows steadily to rest in <m>6</m> seconds. Draw the velocity-time graph and find the distance she runs.</p></statement>
+                <answer><p><m>150\,\text{m}</m></p></answer>
+                <solution><p><m>\frac{1}{2} \times 4 \times 6 + 20 \times 6 + \frac{1}{2} \times 6 \times 6 = 12 + 120 + 18 = 150\,\text{m}</m>.</p></solution>
+            </exercise>
+            <exercise xml:id="ex-find-k-stopping">
+                <statement><p>A vehicle's velocity is <m>v = kt(20 - t)\,\text{m/s}</m>. It starts from rest and stops at <m>t = 20</m>, having travelled <m>200\,\text{m}</m>. Find <m>k</m>.</p></statement>
+                <answer><p><m>k = 0.15</m></p></answer>
+                <solution><p><m>\int_0^{20} k(20t - t^2)\,dt = k\left[10t^2 - \frac{t^3}{3}\right]_0^{20} = k\left(4000 - \frac{8000}{3}\right) = \frac{4000k}{3} = 200</m>, so <m>k = 0.15</m>.</p></solution>
+            </exercise>
+            <exercise xml:id="ex-zero-displacement-times">
+                <title>Challenge: Back Where It Started</title>
+                <statement><p>A particle starts at the origin with velocity <m>v = t^2 - 6t + 5\,\text{m/s}</m>. Find every time <m>T \gt 0</m> at which it is back at the origin.</p></statement>
+                <hint><p>The displacement from <m>0</m> to <m>T</m> is <m>\dfrac{T^3}{3} - 3T^2 + 5T</m>.</p></hint>
+                <answer><p><m>T = \frac{9 \pm \sqrt{21}}{2}</m>, about <m>2.21\,\text{s}</m> and <m>6.79\,\text{s}</m></p></answer>
+                <solution><p><m>\frac{T^3}{3} - 3T^2 + 5T = \frac{T}{3}(T^2 - 9T + 15) = 0</m>. With <m>T \gt 0</m>: <m>T^2 - 9T + 15 = 0</m>, so <m>T = \frac{9 \pm \sqrt{21}}{2} \approx 2.21</m> or <m>6.79</m>.</p></solution>
+            </exercise>
+        </exercises>
+
+        <axiom component="lesson-plan">
+            <title>Differentiation</title>
+            <table xml:id="table-differentiation-displacement-and-distance">
+                <title>Differentiation Strategies</title>
+                <tabular halign="left" top="minor" bottom="minor" left="minor" right="minor">
+                    <row header="yes" bottom="medium"><cell>Learner Group</cell><cell>Strategy and Learning Experience</cell></row>
+                    <row><cell>Struggling Learners (Support)</cell><cell>Give a card: <q>sketch <m>v</m>, mark the times of rest, shade the parts and label them <m>+</m> and <m>-</m></q>. Work through <xref ref="example-displacement-and-distance"/> and <xref ref="example-matatu-between-two-stages"/>. Assign <xref ref="ex-displacement-linear-v"/> and <xref ref="ex-athlete-warm-up"/>.</cell></row>
+                    <row><cell>On-Level Learners (Core)</cell><cell>Full activity and all examples. Assign <xref ref="ex-displacement-linear-v"/> to <xref ref="ex-find-k-stopping"/>.</cell></row>
+                    <row><cell>Advanced Learners (Challenge)</cell><cell>All exercises including <xref ref="ex-zero-displacement-times"/>. Extension: find the distance the particle in that exercise travels from <m>t = 0</m> to its second return to the origin.</cell></row>
+                </tabular>
+            </table>
+            <p>Teacher note on the extension: split at the times of rest <m>t = 1</m> and <m>t = 5</m>. With <m>F(T) = \frac{T^3}{3} - 3T^2 + 5T</m>, <m>F(1) = \frac{7}{3}</m>, <m>F(5) = -\frac{25}{3}</m> and <m>F = 0</m> at <m>T \approx 6.79</m>, so the distance is <m>\frac{7}{3} + \frac{32}{3} + \frac{25}{3} = \frac{64}{3} \approx 21.33\,\text{m}</m>.</p>
+        </axiom>
+
+        <xi:include href="../lesson-plan-templates/assessment-methods.ptx" />
+        <xi:include href="../lesson-plan-templates/reflection.ptx"/>
+    </subsection>
 </section>

@@ -46,161 +46,319 @@
          Suggested activity: Learners place two goalposts and find points on the field from which the goal subtends the same angle, using a protractor and string.
          Interactive (JSXGraph): Fixed segment AB and a slider for angle θ; a point P moves so that ∠APB = θ, tracing the circular arcs. -->
 
-    <!-- [LP] Add guidance on activity -->
+    <!-- Section notes (2026-11)
+         SLOs: Core 2.3 (e)
+         Activity: as planning notes, in a classroom form | changed: a card angle sliding against two pins replaces the goalposts, protractor and string (kept as the outdoor version in the teacher's role and as the context of ex-school-goal-angle)
+         JSXGraph: fig-constant-angle-locus (assets/jsxgraph/constant-angle-locus.js), as planning notes, with the centre and the mirror arc added
+         STACK: assets/stack/top/2-measurement-and-geometry/08-loci/05-constant-angle-loci/ -->
 
-    <!-- <axiom component="lesson-plan">
-            <title>Problem-Solving and Discovery</title>
-            <dl>
-                <li>
-                    <title>Suggested Time</title>
-                    <p>
-                        XX minutes
-                    </p>
-                </li>
-                <li>
-                    <title>Objective</title>
-                    <p>
-                        XXX
-                    </p>
-                </li>
-                <li>
-                    <title>Teacher's Role</title>
-                    <p>
-                        XXX
-                    </p>
-                </li>
-            </dl>
-        </axiom> -->
+    <p component="lesson-plan">Upon completion of this lesson, learners will be able to:
+        <ol>
+            <li><p><alert>Know:</alert> the points at which a segment <m>AB</m> subtends a fixed angle lie on arcs through <m>A</m> and <m>B</m>; the centre is on the perpendicular bisector of <m>AB</m>; the angle at the centre is <m>2\theta</m>; the angle in a semicircle is <m>90^{\circ}</m>; points on the other arc of the same circle see <m>AB</m> at <m>180^{\circ} - \theta</m>.</p></li>
+            <li><p><alert>Do:</alert> construct the arc for a given angle; find its centre and radius; find a point at which <m>AB</m> subtends a right angle.</p></li>
+            <li><p><alert>Apply:</alert> the angle a goal makes at a player.</p></li>
+        </ol>
+    </p>
 
-    <!-- Add Activity -->
+    <axiom component="lesson-plan">
+        <title>Problem-Solving and Discovery</title>
+        <dl>
+            <li><title>Suggested Time</title><p>14 minutes</p></li>
+            <li><title>Objective</title><p>Learners slide a card angle against two pins and see that its corner traces an arc of a circle through the pins.</p></li>
+            <li><title>Teacher's Role</title><p>Each pair needs a piece of card cut with a <m>50^{\circ}</m> corner (and one with a <m>90^{\circ}</m> corner), and two drawing pins pushed <m>6\,\text{cm}</m> apart through paper on a piece of cardboard. Outside, the same idea works with two goalposts: learners stand where a protractor held at eye level shows the goal at the same angle, and mark their places with string. After part (b), ask: <q>Where is the centre of the circle your points lie on?</q></p></li>
+        </dl>
+    </axiom>
 
-    <!-- <activity>
+    <activity xml:id="act-card-angle-between-two-pins">
+        <title>A Card Angle Between Two Pins</title>
         <statement>
+            <p>Two pins <m>A</m> and <m>B</m> are <m>6\,\text{cm}</m> apart. A card has a corner of <m>50^{\circ}</m>. Slide the card so that one edge of the corner always touches <m>A</m> and the other edge always touches <m>B</m>.</p>
+            <p>
+                <ol marker="(a)">
+                    <li>
+                        <p>Mark the position of the corner of the card in six different places.</p>
+                        <solution component="lesson-plan"><p>The six marks are all on the same side of <m>AB</m> (until the card is turned over), and each one sees <m>AB</m> at <m>50^{\circ}</m>.</p></solution>
+                    </li>
+                    <li>
+                        <p>Your marks lie on an arc. Find the centre <m>O</m> of the circle it belongs to by constructing the perpendicular bisectors of two chords joining your marks.</p>
+                        <solution component="lesson-plan"><p>The two bisectors meet at <m>O</m>, which also lies on the perpendicular bisector of <m>AB</m>, on the same side as the marks.</p></solution>
+                        <note component="lesson-plan"><p>This reuses the circumcentre construction from Grade 11: the centre of a circle is equidistant from every point on it.</p></note>
+                    </li>
+                    <li>
+                        <p>Measure angle <m>AOB</m>. How does it compare with the angle of the card?</p>
+                        <solution component="lesson-plan"><p>About <m>100^{\circ}</m>, twice <m>50^{\circ}</m>: the angle at the centre is twice the angle at the circumference.</p></solution>
+                    </li>
+                    <li>
+                        <p>Measure the radius <m>OA</m>.</p>
+                        <solution component="lesson-plan"><p>About <m>3.9\,\text{cm}</m>. (In triangle <m>OMA</m>, with <m>M</m> the midpoint of <m>AB</m>, <m>OA = 3 \div \sin 50^{\circ} = 3.92</m>.)</p></solution>
+                    </li>
+                    <li>
+                        <p>Turn the card over and slide it on the other side of <m>AB</m>. What do you find?</p>
+                        <solution component="lesson-plan"><p>A second arc, the mirror image of the first in <m>AB</m>.</p></solution>
+                    </li>
+                    <li>
+                        <p>Repeat with the <m>90^{\circ}</m> card. What kind of arc do you get, and where is its centre?</p>
+                        <solution component="lesson-plan"><p>A semicircle on <m>AB</m> as diameter, with centre the midpoint of <m>AB</m> (the angle in a semicircle).</p></solution>
+                    </li>
+                </ol>
+            </p>
         </statement>
-    </activity> -->
+    </activity>
 
-    <!-- [LP] Add guidance on structured lesson plan-->
-
-    <!-- <axiom component="lesson-plan">
+    <axiom component="lesson-plan">
         <title>Structured Instruction</title>
         <p>
             <dl>
-            <li>
-                <title>Suggested Time</title>
-                <p>
-                    XX minutes
-                </p>
-            </li>
-            <li>
-                <title>Objective</title>
-                <p>
-                    To formalize the concepts and properties learners discovered in the anchor task.
-                </p>
-            </li>
+                <li><title>Suggested Time</title><p>8 minutes</p></li>
+                <li><title>Objective</title><p>To formalise the constant angle locus, its centre and radius, and the construction.</p></li>
             </dl>
         </p>
         <paragraphs>
             <title>Key Takeaways &amp; Teacher Connection</title>
             <ol>
-                <li>
-                    <p>
-                        <alert>Connecting to Learner Work:</alert> XXXX
-                    </p>
-                </li>
+                <li><p><alert>Connecting to Learner Work:</alert> the Grade 11 fact that angles in the same segment are equal, read backwards, says that the corner of the card stays on one arc.</p></li>
+                <li><p>The centre is on the perpendicular bisector of <m>AB</m>, and angle <m>AOB = 2\theta</m>.</p></li>
+                <li><p>The construction: at <m>A</m> draw a line making <m>90^{\circ} - \theta</m> with <m>AB</m> on <m>P</m>'s side (for <m>\theta \gt 90^{\circ}</m>, <m>\theta - 90^{\circ}</m> on the other side); it meets the perpendicular bisector at the centre.</p></li>
+                <li><p>The <m>90^{\circ}</m> card gave a semicircle; an obtuse angle gives the minor arc, with the centre on the other side of <m>AB</m>.</p></li>
             </ol>
         </paragraphs>
-    </axiom> -->
+    </axiom>
 
-    <!-- Add insight / key takeaway directly related to activity / learner experience -->
+    <insight xml:id="insight-constant-angle-loci">
+        <title>Constant Angle Loci</title>
+        <p>
+            Let <m>\theta</m> be an angle between <m>0^{\circ}</m> and <m>180^{\circ}</m>. The locus of a point <m>P</m> on one side of a segment <m>AB</m> such that <m>\angle APB = \theta</m> is an arc of a circle through <m>A</m> and <m>B</m>. We say that <m>AB</m> <term>subtends</term> the angle <m>\theta</m> at every point of the arc: the segment fills the same angle at every point of the arc.
+        </p>
+        <p>
+            <ul>
+                <li><p>The centre <m>O</m> is on the perpendicular bisector of <m>AB</m>.</p></li>
+                <li><p>For <m>\theta \lt 90^{\circ}</m>, <m>O</m> is on the same side as <m>P</m> and <m>P</m> is on the major arc, with <m>\angle AOB = 2\theta</m>, <m>\angle OAB = 90^{\circ} - \theta</m> and radius <m>\dfrac{AB}{2\sin\theta}</m>.</p></li>
+                <li><p>For <m>\theta = 90^{\circ}</m> the arc is a semicircle on <m>AB</m> as diameter, with centre the midpoint of <m>AB</m>.</p></li>
+                <li><p>For <m>\theta \gt 90^{\circ}</m>, <m>O</m> is on the other side of <m>AB</m> and <m>P</m> is on the minor arc; the radius is still <m>\dfrac{AB}{2\sin\theta}</m>.</p></li>
+                <li><p>Points on the other arc of the same circle see <m>AB</m> at <m>180^{\circ} - \theta</m>, because opposite angles of a cyclic quadrilateral add to <m>180^{\circ}</m>.</p></li>
+                <li><p>If <m>P</m> may be on either side of <m>AB</m>, the locus is two arcs, mirror images of each other in <m>AB</m> (not including <m>A</m> and <m>B</m>).</p></li>
+            </ul>
+        </p>
+        <p>
+            To construct the arc for <m>\theta \lt 90^{\circ}</m>: construct the perpendicular bisector of <m>AB</m>; at <m>A</m>, on <m>P</m>'s side, draw a line making an angle of <m>90^{\circ} - \theta</m> with <m>AB</m>; it meets the bisector at <m>O</m>; draw the arc with centre <m>O</m> and radius <m>OA</m>. For <m>\theta \gt 90^{\circ}</m>, draw the line at <m>\theta - 90^{\circ}</m> on the other side of <m>AB</m>.
+        </p>
+    </insight>
 
-    <!-- <insight>
-    </insight> -->
+    <figure xml:id="fig-constant-angle-construction">
+        <caption>Constructing the locus of <m>P</m> with <m>\angle APB = 60^{\circ}</m> on one side of <m>AB</m>.</caption>
+        <image width="60%">
+            <shortdescription>Segment AB of 7 cm with its perpendicular bisector through the midpoint M. At A a line makes 30 degrees with AB and meets the bisector at the centre O, 2.0 cm above M. A solid arc with centre O and radius 4.0 cm runs from A over the top to B; P on it has angle APB of 60 degrees. The mirror arc below AB is dashed.</shortdescription>
+            <latex-image>
+\begin{tikzpicture}[scale=0.55]
+%% --- SET ---
+\tkzDefPoint(0,0){A} \tkzDefPoint(7,0){B}
+%% --- CALCULATE ---
+\tkzDefMidPoint(A,B) \tkzGetPoint{M}
+\tkzDefPoint(3.5,2.0207){O} \tkzDefPoint(3.5,-2.0207){O'}
+\tkzDefPoint(3.5,6.0622){P}
+%% --- DRAW ---
+\draw[gray, thin] (3.5,-6.5) -- (3.5,7);
+\tkzDrawArc[thick](O,B)(A)
+\tkzDrawArc[thick, dashed](O',A)(B)
+\tkzDrawSegments(A,B A,O)
+\tkzDrawSegments[thin](P,A P,B)
+\tkzDrawPoints[size=3pt](A,B,M,O,P)
+%% --- MARK ---
+\tkzMarkRightAngle[size=0.4](B,M,O)
+\tkzMarkAngle[size=1.2](B,A,O)
+\tkzMarkAngle[size=1](A,P,B)
+%% --- LABEL ---
+\tkzLabelPoints[below left](A) \tkzLabelPoints[below right](B) \tkzLabelPoints[below right](M)
+\tkzLabelPoint[right](O){$O$} \tkzLabelPoint[above](P){$P$}
+\tkzLabelAngle[pos=1.8](B,A,O){$30^{\circ}$}
+\tkzLabelAngle[pos=1.6](A,P,B){$60^{\circ}$}
+\end{tikzpicture}
+            </latex-image>
+        </image>
+    </figure>
 
-    <!-- Add further instruction (not in a block) to develop ideas as needed -->
+    <figure xml:id="fig-constant-angle-locus">
+        <caption>Drag <m>P</m> along the arc: the angle stays the same. Move the <m>\theta</m> slider. Tick the boxes to show the centre and the arc on the other side. Drag <m>Q</m> inside and outside the arc.</caption>
+        <interactive xml:id="interactive-constant-angle-locus" platform="jsxgraph" width="90%" aspect="16:12" source="jsxgraph/constant-angle-locus.js">
+            <slate xml:id="jsxgraph-constant-angle-locus" surface="jsxboard" aspect="16:12"/>
+            <instructions>
+                <p>
+                    <ul>
+                        <li><p>Set the <alert>θ</alert> slider to <m>50^{\circ}</m> and drag <m>P</m> along the arc. Does angle <m>APB</m> change?</p></li>
+                        <li><p>Tick <alert>Show centre</alert>. Compare angle <m>AOB</m> with <m>\theta</m>.</p></li>
+                        <li><p>Move <m>\theta</m> to <m>90^{\circ}</m>, then above <m>90^{\circ}</m>. Where is the centre now?</p></li>
+                        <li><p>Drag <m>Q</m> inside the arc and then outside it. When is angle <m>AQB</m> larger than <m>\theta</m>?</p></li>
+                    </ul>
+                </p>
+            </instructions>
+        </interactive>
+    </figure>
 
     <xi:include href="../lesson-plan-templates/example-intro.ptx" />
 
-    <!-- Add at least 3 examples -->
-
-    <!-- <example>
+    <example xml:id="example-locus-for-sixty-degrees">
+        <title>The Locus for <m>60^{\circ}</m></title>
         <statement>
+            <p><m>AB = 7\,\text{cm}</m>. Construct the locus of a point <m>P</m> on one side of <m>AB</m> such that <m>\angle APB = 60^{\circ}</m>. Find the distance of the centre from <m>AB</m> and the radius of the arc.</p>
         </statement>
         <solution>
+            <p>
+                <alert>Step 1:</alert> Construct the perpendicular bisector of <m>AB</m>, meeting it at <m>M</m>.
+            </p>
+            <p>
+                <alert>Step 2:</alert> At <m>A</m>, on <m>P</m>'s side, draw a line making <m>90^{\circ} - 60^{\circ} = 30^{\circ}</m> with <m>AB</m>. It meets the bisector at the centre <m>O</m>.
+            </p>
+            <p>
+                <alert>Step 3:</alert> Draw the arc with centre <m>O</m> through <m>A</m> and <m>B</m>, on <m>P</m>'s side (<xref ref="fig-constant-angle-construction"/>).
+            </p>
+            <p>
+                In the right-angled triangle <m>OMA</m>, <m>AM = 3.5\,\text{cm}</m> and <m>\angle OAM = 30^{\circ}</m>:
+                <md>OM = 3.5\tan 30^{\circ} = 2.02, \qquad OA = \frac{7}{2\sin 60^{\circ}} = 4.04</md>
+                The centre is <m>2.0\,\text{cm}</m> from <m>AB</m> and the radius is <m>4.0\,\text{cm}</m>. Check: <m>\angle AOB = 180^{\circ} - 2 \times 30^{\circ} = 120^{\circ} = 2 \times 60^{\circ}</m>.
+            </p>
         </solution>
     </example>
 
-    <example>
+    <example xml:id="example-right-angle-at-p">
+        <title>A Right Angle at <m>P</m></title>
         <statement>
+            <p><m>AB = 9\,\text{cm}</m>. Describe the locus of a point <m>P</m> on one side of <m>AB</m> such that <m>\angle APB = 90^{\circ}</m>.</p>
         </statement>
         <solution>
+            <p>
+                The angle in a semicircle is <m>90^{\circ}</m>, so <m>P</m> lies on the semicircle with diameter <m>AB</m>: centre the midpoint <m>M</m> of <m>AB</m>, radius <m>4.5\,\text{cm}</m>, not including <m>A</m> and <m>B</m> (panel (a) of <xref ref="fig-semicircle-and-obtuse-arcs"/>). The construction rule agrees: the line at <m>A</m> makes <m>90^{\circ} - 90^{\circ} = 0^{\circ}</m> with <m>AB</m>, so it meets the bisector at <m>M</m> itself.
+            </p>
         </solution>
     </example>
 
-    <example>
+    <example xml:id="example-obtuse-constant-angle">
+        <title>An Obtuse Angle</title>
         <statement>
+            <p><m>AB = 6\,\text{cm}</m>. Construct the locus of a point <m>P</m> on one side of <m>AB</m> such that <m>\angle APB = 120^{\circ}</m>. What angle does <m>AB</m> subtend at points on the rest of the same circle?</p>
         </statement>
         <solution>
+            <p>
+                The angle is more than <m>90^{\circ}</m>, so the centre is on the other side of <m>AB</m>. At <m>A</m>, on the side away from <m>P</m>, draw a line making <m>120^{\circ} - 90^{\circ} = 30^{\circ}</m> with <m>AB</m>. It meets the perpendicular bisector at <m>O</m>, below <m>AB</m>. The radius is
+                <md>OA = \frac{6}{2\sin 120^{\circ}} = 3.46</md>
+                about <m>3.5\,\text{cm}</m>. <m>P</m> lies on the minor arc, on the far side of <m>AB</m> from <m>O</m> (panel (b) of <xref ref="fig-semicircle-and-obtuse-arcs"/>).
+            </p>
+            <p>
+                A point <m>Q</m> on the major arc forms a cyclic quadrilateral <m>APBQ</m>, so <m>\angle AQB = 180^{\circ} - 120^{\circ} = 60^{\circ}</m>.
+            </p>
         </solution>
-    </example> -->
+    </example>
+
+    <figure xml:id="fig-semicircle-and-obtuse-arcs">
+        <caption>(a) The semicircle on <m>AB</m> where <m>\angle APB = 90^{\circ}</m>. (b) The minor arc where <m>\angle APB = 120^{\circ}</m>; on the major arc of the same circle the angle is <m>60^{\circ}</m>.</caption>
+        <image width="90%">
+            <shortdescription>Two panels. (a) AB of 9 cm with a semicircle on it, centre M the midpoint of AB, and a point P on the semicircle with a right angle marked at P. (b) AB of 6 cm; the centre O is below AB, 1.7 cm from its midpoint; a solid minor arc above AB has P on it with angle APB of 120 degrees; the rest of the circle is dashed below AB, with Q on it and angle AQB of 60 degrees.</shortdescription>
+            <latex-image>
+\begin{tikzpicture}[scale=0.5]
+%% --- SET --- panel (a)
+\tkzDefPoint(0,0){A} \tkzDefPoint(9,0){B} \tkzDefPoint(4.5,0){M}
+%% --- CALCULATE ---
+\tkzDefPoint(6.75,3.8971){P}
+%% --- DRAW ---
+\tkzDrawArc[thick](M,B)(A)
+\tkzDrawSegments(A,B) \tkzDrawSegments[thin](P,A P,B)
+\tkzDrawPoints[size=3pt](A,B,M,P)
+%% --- MARK ---
+\tkzMarkRightAngle[size=0.5](A,P,B)
+%% --- LABEL ---
+\tkzLabelPoints[below left](A) \tkzLabelPoints[below right](B) \tkzLabelPoints[below](M) \tkzLabelPoint[above right](P){$P$}
+\node at (4.5,-2.2) {(a)};
+\begin{scope}[xshift=12cm]
+%% --- SET --- panel (b)
+\tkzDefPoint(0,0){A2} \tkzDefPoint(6,0){B2}
+%% --- CALCULATE ---
+\tkzDefPoint(3,-1.7321){O2} \tkzDefPoint(3,1.7321){P2} \tkzDefPoint(3,-5.1962){Q2}
+%% --- DRAW ---
+\tkzDrawArc[thick](O2,B2)(A2)
+\tkzDrawArc[dashed](O2,A2)(B2)
+\tkzDrawSegments(A2,B2 A2,O2) \tkzDrawSegments[thin](P2,A2 P2,B2 Q2,A2 Q2,B2)
+\tkzDrawPoints[size=3pt](A2,B2,O2,P2,Q2)
+%% --- MARK ---
+\tkzMarkAngle[size=0.55](A2,P2,B2)
+\tkzMarkAngle[size=1](B2,Q2,A2)
+\tkzMarkAngle[size=1.4](O2,A2,B2)
+%% --- LABEL ---
+\tkzLabelPoint[left](A2){$A$} \tkzLabelPoint[right](B2){$B$} \tkzLabelPoint[right](O2){$O$}
+\tkzLabelPoint[above](P2){$P$} \tkzLabelPoint[below](Q2){$Q$}
+\tkzLabelAngle[pos=1.0](A2,P2,B2){\scriptsize $120^{\circ}$}
+\tkzLabelAngle[pos=1.7](B2,Q2,A2){$60^{\circ}$}
+\tkzLabelAngle[pos=2.1](O2,A2,B2){$30^{\circ}$}
+\node at (3,-6.6) {(b)};
+\end{scope}
+\end{tikzpicture}
+            </latex-image>
+        </image>
+    </figure>
 
     <xi:include href="../lesson-plan-templates/assessment-intro.ptx" />
+    <xi:include href="../lesson-plan-templates/checkpoint.ptx" />
 
-    <!-- If STACK questions are included, uncomment this: -->
+    <p>Type decimals with a point, for example <c>12.6</c>. Give answers to the accuracy asked for. Type angles in degrees as numbers, without the degree sign, for example <c>74</c>.</p>
 
-    <!-- <xi:include href="../lesson-plan-templates/checkpoint.ptx" /> -->
+    <exercise xml:id="ex-centre-and-radius-of-a-constant-angle-arc">
+        <!--<title></title>-->
+        <stack label="stk-centre-and-radius-of-a-constant-angle-arc" source="stack/top/2-measurement-and-geometry/08-loci/05-constant-angle-loci/Centre-and-radius-of-a-constant-angle-arc.xml"/>
+    </exercise>
 
-    <!-- Add STACK exercises if made -->
+    <exercise xml:id="ex-angles-on-the-circle-of-a-constant-angle-locus">
+        <!--<title></title>-->
+        <stack label="stk-angles-on-the-circle-of-a-constant-angle-locus" source="stack/top/2-measurement-and-geometry/08-loci/05-constant-angle-loci/Angles-on-the-circle-of-a-constant-angle-locus.xml"/>
+    </exercise>
 
-    <!-- Add static exercises -->
+    <exercise xml:id="ex-a-point-where-ab-subtends-a-right-angle">
+        <!--<title></title>-->
+        <stack label="stk-a-point-where-ab-subtends-a-right-angle" source="stack/top/2-measurement-and-geometry/08-loci/05-constant-angle-loci/A-point-where-AB-subtends-a-right-angle.xml"/>
+    </exercise>
 
-    <!-- <exercises>
-        <exercise>
-            <statement>   
+    <exercises xml:id="exercises-constant-angle-loci">
+        <exercise xml:id="ex-construct-45-degree-arc">
+            <statement><p><m>AB = 8\,\text{cm}</m>. Construct the locus of a point <m>P</m> on one side of <m>AB</m> such that <m>\angle APB = 45^{\circ}</m>. Give angle <m>OAB</m>, angle <m>AOB</m> and the radius of the arc.</p></statement>
+            <answer><p><m>\angle OAB = 45^{\circ}</m>, <m>\angle AOB = 90^{\circ}</m>, radius <m>5.7\,\text{cm}</m></p></answer>
+            <solution><p><m>\angle OAB = 90^{\circ} - 45^{\circ} = 45^{\circ}</m> and <m>\angle AOB = 2 \times 45^{\circ} = 90^{\circ}</m>. The radius is <m>\dfrac{8}{2\sin 45^{\circ}} = 5.66\,\text{cm}</m>, about <m>5.7\,\text{cm}</m>.</p></solution>
+        </exercise>
+        <exercise xml:id="ex-right-angle-locus">
+            <statement><p><m>AB = 5\,\text{cm}</m>. Construct the locus of a point <m>P</m>, on either side of <m>AB</m>, such that <m>\angle APB = 90^{\circ}</m>.</p></statement>
+            <answer><p>The circle with diameter <m>AB</m>: centre the midpoint of <m>AB</m>, radius <m>2.5\,\text{cm}</m>, without the points <m>A</m> and <m>B</m>.</p></answer>
+        </exercise>
+        <exercise xml:id="ex-school-goal-angle">
+            <statement><p>The goalposts of a school football pitch are <m>7\,\text{m}</m> apart. Using <m>1\,\text{cm}</m> to represent <m>1\,\text{m}</m>, draw the locus of points on the pitch from which the goal subtends an angle of <m>30^{\circ}</m>. What is the radius of the arc on the ground?</p></statement>
+            <answer><p><m>7\,\text{m}</m> (<m>7\,\text{cm}</m> on the drawing)</p></answer>
+            <solution><p>At one post draw a line at <m>90^{\circ} - 30^{\circ} = 60^{\circ}</m> to the goal line, on the pitch side; it meets the perpendicular bisector of the goal at the centre. The radius is <m>\dfrac{7}{2\sin 30^{\circ}} = 7\,\text{m}</m>, so the centre is as far from each post as the posts are from each other: triangle <m>OAB</m> is equilateral.</p></solution>
+        </exercise>
+        <exercise xml:id="ex-angle-from-the-radius">
+            <statement><p>The arc of a constant angle locus through <m>A</m> and <m>B</m> has radius <m>5\,\text{cm}</m>, and <m>AB = 8\,\text{cm}</m>. Find the angle <m>AB</m> subtends at points on the major arc, and at points on the minor arc.</p></statement>
+            <answer><p><m>53.1^{\circ}</m> on the major arc, <m>126.9^{\circ}</m> on the minor arc</p></answer>
+            <solution><p>From <m>r = \dfrac{AB}{2\sin\theta}</m>, <m>\sin\theta = \dfrac{8}{2 \times 5} = 0.8</m>, so <m>\theta = 53.1^{\circ}</m>. Points on the minor arc see <m>180^{\circ} - 53.1^{\circ} = 126.9^{\circ}</m>.</p></solution>
+        </exercise>
+        <exercise xml:id="ex-angles-of-the-same-circle">
+            <statement><p>Points on the major arc <m>AB</m> of a circle with centre <m>O</m> see <m>AB</m> at <m>35^{\circ}</m>. What angle do points on the minor arc see, and what is angle <m>AOB</m>?</p></statement>
+            <answer><p><m>145^{\circ}</m>; <m>\angle AOB = 70^{\circ}</m></p></answer>
+        </exercise>
+        <exercise xml:id="ex-radius-formula">
+            <title>Challenge: The Radius Formula</title>
+            <statement><p>Show that the radius of the constant angle arc for an angle <m>\theta \lt 90^{\circ}</m> is <m>\dfrac{AB}{2\sin\theta}</m>.</p></statement>
+            <hint><p>Use triangle <m>OMA</m>, where <m>M</m> is the midpoint of <m>AB</m>, and find angle <m>AOM</m>.</p></hint>
+            <answer><p><m>OA = \dfrac{AM}{\sin\theta} = \dfrac{AB}{2\sin\theta}</m></p></answer>
+            <solution><p><m>\angle AOB = 2\theta</m> and <m>OM</m> bisects it (triangle <m>OAB</m> is isosceles), so <m>\angle AOM = \theta</m>. In the right-angled triangle <m>OMA</m>, <m>\sin\theta = \dfrac{AM}{OA}</m> with <m>AM = \dfrac{AB}{2}</m>, so <m>OA = \dfrac{AB}{2\sin\theta}</m>.</p></solution>
+        </exercise>
+    </exercises>
 
-            </statement>   
-            <solution>
-
-            </solution>             
-        </exercise>        
-    </exercises> -->
-
-    <!-- [LP] Add information on how to differentiate  -->
-
-    <!-- <axiom component="lesson-plan">
+    <axiom component="lesson-plan">
         <title>Differentiation</title>
-
-        <table>
-            <title>Differentiation</title>
-            <tabular halign="left">
-                <row header="yes" bottom="minor">
-                    <cell>Learner Group</cell>
-                    <cell>Strategy &amp; Learning Experience</cell>
-                    <cell></cell>
-                </row>
-                <row>
-                    <cell>Struggling Learners (Support)</cell>
-                    <cell>
-                        XXXX
-                    </cell>
-                    <cell></cell>
-                </row>
-                <row>
-                    <cell>On-Level Learners (Core)</cell>
-                    <cell>
-                        <line>The core lesson activities as described above.</line>
-                    </cell>
-                    <cell></cell>
-                </row>
-                <row>
-                    <cell>Advanced Learners (Challenge)</cell>
-                    <cell>
-                        XXXX
-                    </cell>
-                    <cell></cell>
-                </row>
+        <table xml:id="table-differentiation-constant-angle-loci">
+            <title>Differentiation Strategies</title>
+            <tabular halign="left" top="minor" bottom="minor" left="minor" right="minor">
+                <row header="yes" bottom="medium"><cell>Learner Group</cell><cell>Strategy and Learning Experience</cell></row>
+                <row><cell>Struggling Learners (Support)</cell><cell>Start with the <m>90^{\circ}</m> card and <xref ref="example-right-angle-at-p"/> (the semicircle), then the <m>60^{\circ}</m> case of <xref ref="example-locus-for-sixty-degrees"/>. Allow a protractor for the <m>90^{\circ} - \theta</m> angle at <m>A</m>. Assign <xref ref="ex-right-angle-locus"/> and <xref ref="ex-construct-45-degree-arc"/>.</cell></row>
+                <row><cell>On-Level Learners (Core)</cell><cell>Full activity and all examples. Assign <xref ref="ex-construct-45-degree-arc"/> to <xref ref="ex-angles-of-the-same-circle"/>.</cell></row>
+                <row><cell>Advanced Learners (Challenge)</cell><cell>All exercises including <xref ref="ex-radius-formula"/>. Extension: for which angle <m>\theta</m> is the centre <m>O</m> on <m>AB</m> itself? (Answer: <m>\theta = 90^{\circ}</m>, when <m>O</m> is the midpoint of <m>AB</m>.)</cell></row>
             </tabular>
         </table>
-    </axiom> -->
+    </axiom>
 
     <xi:include href="../lesson-plan-templates/assessment-methods.ptx" />
 

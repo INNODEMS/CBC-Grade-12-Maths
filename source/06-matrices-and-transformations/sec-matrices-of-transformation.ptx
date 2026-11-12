@@ -33,7 +33,7 @@
                 <li component="lesson-plan">
                     <title>Estimated Duration</title>
                     <p>
-                        40 minutes
+                        2 lessons of 40 minutes
                     </p>
                 </li>
             </dl>
@@ -46,163 +46,522 @@
          Suggested activity: Learners draw a triangle on graph paper, apply given 2×2 matrices and identify each transformation (reflection, rotation, enlargement).
          Interactive (JSXGraph): Draggable triangle and four input boxes for a 2×2 matrix; the image updates live so learners can try matrices and identify the transformation. -->
 
-    <!-- [LP] Add guidance on activity -->
 
-    <!-- <axiom component="lesson-plan">
+    <!-- Section notes (2026-11)
+         SLOs: Core 2.1 (a), (b). Lessons 1.1 (images, outcome a) and 1.2 (finding a matrix, outcome b) as subsections.
+         Activity: as planning notes (one triangle, four matrices, name each transformation) in 1.1; 1.2 adds "Follow the Unit Square"
+         JSXGraph: interactive-matrix-transformer (assets/jsxgraph/matrix-transformer.js), as planning notes; reused in the 1.2 activity
+         STACK: assets/stack/top/2-measurement-and-geometry/06-matrices-and-transformations/01-matrices-of-transformation/ -->
+
+    <introduction>
+        <question xml:id="kiq-matrices-and-transformations">
+            <p><em>Where do we use transformations, and how can a matrix describe one?</em></p>
+        </question>
+        <p>
+            In Grade 10 you reflected shapes in the lines <m>x = 0</m>, <m>y = 0</m>, <m>y = x</m> and <m>y = -x</m>, rotated them about the origin, enlarged them from a centre with a scale factor, and translated them by a column vector such as <m>\begin{pmatrix} 3 \\ -1 \end{pmatrix}</m>. You labelled each image with primes, <m>A'</m>, <m>B'</m>, <m>C'</m>. In Grade 11 you multiplied a matrix by a column, found determinants and inverses, and watched a picture of a cat turn and stretch when it was multiplied by a matrix.
+        </p>
+        <p>
+            When you turn your phone on its side, the photo on the screen turns with it. A kitenge print repeats one motif again and again, turned and flipped. Both are transformations, and a computer carries them out by multiplying the coordinates of every point by a matrix. In this chapter you use matrices to describe and combine transformations, to undo them, and to say how they change areas.
+        </p>
+    </introduction>
+
+    <!-- ============================================================ Lesson 1.1 -->
+    <subsection xml:id="subsec-images-under-a-matrix">
+        <title>Images Under a Matrix</title>
+
+        <p component="lesson-plan">Upon completion of this lesson, learners will be able to:
+            <ol>
+                <li><p><alert>Know:</alert> a <m>2 \times 2</m> matrix sends each point <m>(x, y)</m> to <m>(ax + by, cx + dy)</m>; the origin never moves; the columns of the matrix are the images of <m>(1, 0)</m> and <m>(0, 1)</m>.</p></li>
+                <li><p><alert>Do:</alert> find the images of points and shapes using an object matrix; draw an object and its image; name the reflections, rotations and enlargements of Grade 10 from their images.</p></li>
+                <li><p><alert>Apply:</alert> describe a kitenge motif and its mirror image with a matrix.</p></li>
+            </ol>
+        </p>
+
+        <axiom component="lesson-plan">
             <title>Problem-Solving and Discovery</title>
             <dl>
-                <li>
-                    <title>Suggested Time</title>
-                    <p>
-                        XX minutes
-                    </p>
-                </li>
-                <li>
-                    <title>Objective</title>
-                    <p>
-                        XXX
-                    </p>
-                </li>
-                <li>
-                    <title>Teacher's Role</title>
-                    <p>
-                        XXX
-                    </p>
-                </li>
+                <li><title>Suggested Time</title><p>14 minutes</p></li>
+                <li><title>Objective</title><p>Learners apply four matrices to one triangle, draw the images and name each transformation.</p></li>
+                <li><title>Teacher's Role</title><p>Put learners in groups of four. Each learner takes one of the four matrices and works on graph paper; the group then draws all four images on one grid and compares. Groups with a device check their images with the interactive in <xref ref="fig-matrix-transformer"/>. After part (c), ask: <q>Which point did not move under any of the four matrices?</q></p></li>
             </dl>
-        </axiom> -->
+        </axiom>
 
-    <!-- Add Activity -->
-
-    <!-- <activity>
-        <statement>
-        </statement>
-    </activity> -->
-
-    <!-- [LP] Add guidance on structured lesson plan-->
-
-    <!-- <axiom component="lesson-plan">
-        <title>Structured Instruction</title>
-        <p>
-            <dl>
-            <li>
-                <title>Suggested Time</title>
-                <p>
-                    XX minutes
+        <activity xml:id="act-one-triangle-four-matrices">
+            <title>One Triangle, Four Matrices</title>
+            <statement>
+                <p>Triangle <m>ABC</m> has vertices <m>A(1, 1)</m>, <m>B(3, 1)</m> and <m>C(1, 2)</m>. Here are four matrices:
+                    <md>M_1 = \begin{bmatrix} -1 \amp 0 \\ 0 \amp 1 \end{bmatrix}, \quad M_2 = \begin{bmatrix} 0 \amp -1 \\ 1 \amp 0 \end{bmatrix}, \quad M_3 = \begin{bmatrix} 2 \amp 0 \\ 0 \amp 2 \end{bmatrix}, \quad M_4 = \begin{bmatrix} 0 \amp 1 \\ 1 \amp 0 \end{bmatrix}</md>
                 </p>
-            </li>
-            <li>
-                <title>Objective</title>
                 <p>
-                    To formalize the concepts and properties learners discovered in the anchor task.
+                    <ol marker="(a)">
+                        <li>
+                            <p>Write the coordinates of <m>A</m>, <m>B</m> and <m>C</m> as the columns of a <m>2 \times 3</m> matrix. Multiply it by each of <m>M_1</m>, <m>M_2</m>, <m>M_3</m> and <m>M_4</m> (the <m>2 \times 2</m> matrix on the left). Each column of the answer is the image of one vertex.</p>
+                            <solution component="lesson-plan">
+                                <p><m>M_1 \begin{bmatrix} 1 \amp 3 \amp 1 \\ 1 \amp 1 \amp 2 \end{bmatrix} = \begin{bmatrix} -1 \amp -3 \amp -1 \\ 1 \amp 1 \amp 2 \end{bmatrix}</m>, <m>M_2 \begin{bmatrix} 1 \amp 3 \amp 1 \\ 1 \amp 1 \amp 2 \end{bmatrix} = \begin{bmatrix} -1 \amp -1 \amp -2 \\ 1 \amp 3 \amp 1 \end{bmatrix}</m>, <m>M_3 \begin{bmatrix} 1 \amp 3 \amp 1 \\ 1 \amp 1 \amp 2 \end{bmatrix} = \begin{bmatrix} 2 \amp 6 \amp 2 \\ 2 \amp 2 \amp 4 \end{bmatrix}</m>, <m>M_4 \begin{bmatrix} 1 \amp 3 \amp 1 \\ 1 \amp 1 \amp 2 \end{bmatrix} = \begin{bmatrix} 1 \amp 1 \amp 2 \\ 1 \amp 3 \amp 1 \end{bmatrix}</m>.</p>
+                            </solution>
+                        </li>
+                        <li>
+                            <p>Draw triangle <m>ABC</m> and its four images on one grid. Label each image with its matrix.</p>
+                            <solution component="lesson-plan">
+                                <figure xml:id="fig-activity-triangle-images">
+                                    <caption>Triangle <m>ABC</m> (solid) and its images (broken lines) under <m>M_1</m>, <m>M_2</m>, <m>M_3</m> and <m>M_4</m>, each labelled with its matrix.</caption>
+                                    <image width="65%">
+                                        <shortdescription>Triangle ABC with A(1, 1), B(3, 1), C(1, 2) and its images under four matrices: under M1 a reflection in the y-axis, (−1, 1), (−3, 1), (−1, 2); under M2 a quarter turn anticlockwise about O, (−1, 1), (−1, 3), (−2, 1); under M3 an enlargement by 2, (2, 2), (6, 2), (2, 4); under M4 a reflection in y = x, (1, 1), (1, 3), (2, 1).</shortdescription>
+                                        <latex-image>
+\begin{tikzpicture}[scale=0.8]
+\draw[very thin, gray!40] (-4,-1) grid (7,5);
+\draw[->] (-4,0) -- (7.4,0) node[right]{$x$};
+\draw[->] (0,-1) -- (0,5.4) node[above]{$y$};
+\node[below left] at (0,0) {$O$};
+% object
+\draw[thick] (1,1) -- (3,1) -- (1,2) -- cycle;
+\node[below] at (1.1,1) {$A$};
+\node[below] at (3,1) {$B$};
+\node[left] at (1,2.1) {$C$};
+% images
+\draw[thick, dashed] (-1,1) -- (-3,1) -- (-1,2) -- cycle;
+\node at (-1.9,0.6) {$M_1$};
+\draw[thick, dotted] (-1,1) -- (-1,3) -- (-2,1) -- cycle;
+\node at (-1.8,3.2) {$M_2$};
+\draw[thick, dashed] (2,2) -- (6,2) -- (2,4) -- cycle;
+\node at (3.6,3.6) {$M_3$};
+\draw[thick, dash dot] (1,1) -- (1,3) -- (2,1) -- cycle;
+\node at (1.6,3.1) {$M_4$};
+\end{tikzpicture}
+                                        </latex-image>
+                                    </image>
+                                </figure>
+                            </solution>
+                        </li>
+                        <li>
+                            <p>Use the words you learnt in Grade 10 to name each transformation.</p>
+                            <solution component="lesson-plan"><p><m>M_1</m>: reflection in the <m>y</m>-axis. <m>M_2</m>: rotation of <m>90^\circ</m> anticlockwise about <m>O</m>. <m>M_3</m>: enlargement, centre <m>O</m>, scale factor <m>2</m>. <m>M_4</m>: reflection in the line <m>y = x</m>.</p></solution>
+                        </li>
+                        <li>
+                            <p>Where does the origin <m>O(0, 0)</m> go under each matrix?</p>
+                            <solution component="lesson-plan"><p>It stays at <m>O</m> every time: any matrix times <m>\begin{pmatrix} 0 \\ 0 \end{pmatrix}</m> is <m>\begin{pmatrix} 0 \\ 0 \end{pmatrix}</m>.</p></solution>
+                        </li>
+                        <li>
+                            <p>Work out <m>M_2 \begin{pmatrix} 1 \\ 0 \end{pmatrix}</m> and <m>M_2 \begin{pmatrix} 0 \\ 1 \end{pmatrix}</m>. Compare your answers with the columns of <m>M_2</m>.</p>
+                            <solution component="lesson-plan"><p><m>\begin{pmatrix} 0 \\ 1 \end{pmatrix}</m> and <m>\begin{pmatrix} -1 \\ 0 \end{pmatrix}</m>: these are the first and second columns of <m>M_2</m>.</p></solution>
+                        </li>
+                    </ol>
                 </p>
-            </li>
-            </dl>
-        </p>
-        <paragraphs>
-            <title>Key Takeaways &amp; Teacher Connection</title>
-            <ol>
-                <li>
+            </statement>
+        </activity>
+
+        <axiom component="lesson-plan">
+            <title>Structured Instruction</title>
+            <p>
+                <dl>
+                    <li><title>Suggested Time</title><p>8 minutes</p></li>
+                    <li><title>Objective</title><p>To formalise how a matrix maps an object onto its image.</p></li>
+                </dl>
+            </p>
+            <paragraphs>
+                <title>Key Takeaways &amp; Teacher Connection</title>
+                <ol>
+                    <li><p><alert>Connecting to Learner Work:</alert> part (a) wrote the vertices as the columns of an object matrix; the image matrix is the transformation matrix times the object matrix.</p></li>
+                    <li><p>Part (d): the origin never moves under a <m>2 \times 2</m> matrix.</p></li>
+                    <li><p>Part (e): the columns of a matrix are the images of <m>(1, 0)</m> and <m>(0, 1)</m>. Lesson 1.2 uses this to find matrices.</p></li>
+                    <li><p>In Grade 11 the cat interactives did exactly this: one matrix applied to every point of a picture.</p></li>
+                </ol>
+            </paragraphs>
+        </axiom>
+
+        <insight xml:id="insight-transforming-with-a-matrix">
+            <title>Transforming With a Matrix</title>
+            <p>
+                The matrix <m>M = \begin{bmatrix} a \amp b \\ c \amp d \end{bmatrix}</m> maps the point <m>P(x, y)</m> onto its <term>image</term> <m>P'(ax + by,\ cx + dy)</m>, because
+                <md>\begin{bmatrix} a \amp b \\ c \amp d \end{bmatrix} \begin{pmatrix} x \\ y \end{pmatrix} = \begin{pmatrix} ax + by \\ cx + dy \end{pmatrix}</md>
+                The shape we start with is the <term>object</term>. To transform a shape, write its vertices, in order, as the columns of an <term>object matrix</term>. Then
+                <md>\text{image matrix} = M \times \text{object matrix}</md>
+                and each column of the image matrix is the image of one vertex.
+            </p>
+            <p>
+                Every <m>2 \times 2</m> matrix maps <m>O</m> onto <m>O</m>. So a translation, which moves <m>O</m>, cannot be done by a <m>2 \times 2</m> matrix. Every transformation in this chapter keeps <m>O</m> fixed.
+            </p>
+            <p>
+                The columns of a matrix are where <m>(1, 0)</m> and <m>(0, 1)</m> go.
+            </p>
+        </insight>
+
+        <figure xml:id="fig-matrix-transformer">
+            <caption>Type numbers in the four boxes of the matrix and drag the corners of the triangle. The dashed triangle is the image.</caption>
+            <interactive xml:id="interactive-matrix-transformer" platform="jsxgraph" width="90%" aspect="4:3" source="jsxgraph/matrix-transformer.js">
+                <slate xml:id="jsxgraph-matrix-transformer" surface="jsxboard" aspect="4:3"/>
+                <instructions>
                     <p>
-                        <alert>Connecting to Learner Work:</alert> XXXX
+                        <ul>
+                            <li><p>Enter each of the four matrices from <xref ref="act-one-triangle-four-matrices"/> in the boxes <alert>a</alert>, <alert>b</alert>, <alert>c</alert>, <alert>d</alert> and check your images.</p></li>
+                            <li><p>Drag the corners <m>A</m>, <m>B</m> and <m>C</m>. Does the matrix still do the same transformation?</p></li>
+                            <li><p>Tick the box to see where the unit square goes. Compare the images of <m>(1, 0)</m> and <m>(0, 1)</m> with the columns of the matrix.</p></li>
+                        </ul>
                     </p>
-                </li>
-            </ol>
-        </paragraphs>
-    </axiom> -->
+                </instructions>
+            </interactive>
+        </figure>
 
-    <!-- Add insight / key takeaway directly related to activity / learner experience -->
+        <xi:include href="../lesson-plan-templates/example-intro.ptx" />
 
-    <!-- <insight>
-    </insight> -->
-
-    <!-- Add further instruction (not in a block) to develop ideas as needed -->
-
-    <xi:include href="../lesson-plan-templates/example-intro.ptx" />
-
-    <!-- Add at least 3 examples -->
-
-    <!-- <example>
-        <statement>
-        </statement>
-        <solution>
-        </solution>
-    </example>
-
-    <example>
-        <statement>
-        </statement>
-        <solution>
-        </solution>
-    </example>
-
-    <example>
-        <statement>
-        </statement>
-        <solution>
-        </solution>
-    </example> -->
-
-    <xi:include href="../lesson-plan-templates/assessment-intro.ptx" />
-
-    <!-- If STACK questions are included, uncomment this: -->
-
-    <!-- <xi:include href="../lesson-plan-templates/checkpoint.ptx" /> -->
-
-    <!-- Add STACK exercises if made -->
-
-    <!-- Add static exercises -->
-
-    <!-- <exercises>
-        <exercise>
-            <statement>   
-
-            </statement>   
+        <example xml:id="example-image-of-a-quadrilateral">
+            <title>Image of a Quadrilateral</title>
+            <statement>
+                <p>The quadrilateral <m>PQRS</m> has vertices <m>P(0, 1)</m>, <m>Q(2, 1)</m>, <m>R(3, 2)</m> and <m>S(1, 2)</m>. Find its image under <m>N = \begin{bmatrix} 2 \amp -1 \\ 1 \amp 1 \end{bmatrix}</m> and draw the object and the image.</p>
+            </statement>
             <solution>
+                <p>Write the vertices as the columns of the object matrix and multiply:
+                    <md>\begin{bmatrix} 2 \amp -1 \\ 1 \amp 1 \end{bmatrix} \begin{bmatrix} 0 \amp 2 \amp 3 \amp 1 \\ 1 \amp 1 \amp 2 \amp 2 \end{bmatrix} = \begin{bmatrix} -1 \amp 3 \amp 4 \amp 0 \\ 1 \amp 3 \amp 5 \amp 3 \end{bmatrix}</md>
+                    For example, the first column is <m>(2 \times 0 + (-1) \times 1,\ 1 \times 0 + 1 \times 1) = (-1, 1)</m>.
+                </p>
+                <p>So <m>P'(-1, 1)</m>, <m>Q'(3, 3)</m>, <m>R'(4, 5)</m> and <m>S'(0, 3)</m>. Plot both quadrilaterals and join the vertices in order. <m>PQRS</m> is a parallelogram, and so is its image: a matrix maps a parallelogram onto a parallelogram (unless it flattens every shape onto a line, which you will meet in a later section).</p>
+            </solution>
+        </example>
 
-            </solution>             
-        </exercise>        
-    </exercises> -->
+        <example xml:id="example-recognising-standard-matrices">
+            <title>Recognising Standard Matrices</title>
+            <statement>
+                <p>Triangle <m>DEF</m> has vertices <m>D(2, 1)</m>, <m>E(4, 1)</m> and <m>F(4, 3)</m>. Find its images under <m>\begin{bmatrix} 0 \amp 1 \\ -1 \amp 0 \end{bmatrix}</m> and under <m>\begin{bmatrix} -1 \amp 0 \\ 0 \amp -1 \end{bmatrix}</m>, and name each transformation.</p>
+            </statement>
+            <solution>
+                <p>
+                    <md>\begin{bmatrix} 0 \amp 1 \\ -1 \amp 0 \end{bmatrix} \begin{bmatrix} 2 \amp 4 \amp 4 \\ 1 \amp 1 \amp 3 \end{bmatrix} = \begin{bmatrix} 1 \amp 1 \amp 3 \\ -2 \amp -4 \amp -4 \end{bmatrix}</md>
+                    The images are <m>(1, -2)</m>, <m>(1, -4)</m>, <m>(3, -4)</m>. Every point <m>(x, y)</m> goes to <m>(y, -x)</m>: by the Grade 10 rule this is a rotation of <m>90^\circ</m> clockwise about <m>O</m>.
+                </p>
+                <p>
+                    <md>\begin{bmatrix} -1 \amp 0 \\ 0 \amp -1 \end{bmatrix} \begin{bmatrix} 2 \amp 4 \amp 4 \\ 1 \amp 1 \amp 3 \end{bmatrix} = \begin{bmatrix} -2 \amp -4 \amp -4 \\ -1 \amp -1 \amp -3 \end{bmatrix}</md>
+                    The images are <m>(-2, -1)</m>, <m>(-4, -1)</m>, <m>(-4, -3)</m>. Every point <m>(x, y)</m> goes to <m>(-x, -y)</m>: a rotation of <m>180^\circ</m> about <m>O</m>.
+                </p>
+            </solution>
+        </example>
 
-    <!-- [LP] Add information on how to differentiate  -->
+        <example xml:id="example-unit-square-and-columns">
+            <title>The Unit Square and the Columns</title>
+            <statement>
+                <p>The <term>unit square</term> <m>OABC</m> has vertices <m>O(0, 0)</m>, <m>A(1, 0)</m>, <m>B(1, 1)</m> and <m>C(0, 1)</m>. Find its image under <m>U = \begin{bmatrix} 2 \amp 1 \\ 1 \amp 4 \end{bmatrix}</m>.</p>
+            </statement>
+            <solution>
+                <p>
+                    <md>\begin{bmatrix} 2 \amp 1 \\ 1 \amp 4 \end{bmatrix} \begin{bmatrix} 0 \amp 1 \amp 1 \amp 0 \\ 0 \amp 0 \amp 1 \amp 1 \end{bmatrix} = \begin{bmatrix} 0 \amp 2 \amp 3 \amp 1 \\ 0 \amp 1 \amp 5 \amp 4 \end{bmatrix}</md>
+                    So <m>O</m> stays at <m>O</m>, <m>A'(2, 1)</m>, <m>B'(3, 5)</m> and <m>C'(1, 4)</m> (<xref ref="fig-unit-square-columns"/>).
+                </p>
+                <p>Look at the matrix: <m>A'(2, 1)</m> is its first column and <m>C'(1, 4)</m> is its second column. Since <m>B = A + C</m>, the image <m>B'</m> is <m>A' + C' = (2 + 1,\ 1 + 4) = (3, 5)</m>. The image of the unit square is a parallelogram.</p>
+                <figure xml:id="fig-unit-square-columns">
+                    <caption>The unit square <m>OABC</m> (solid) and its image <m>OA'B'C'</m> (dashed) under <m>U</m>.</caption>
+                    <image width="55%">
+                        <shortdescription>The unit square OABC and its image OA′B′C′ under the matrix with rows 2, 1 and 1, 4: A′(2, 1) and C′(1, 4) are the columns of the matrix; B′(3, 5) is A′ plus C′. The image is a parallelogram.</shortdescription>
+                        <latex-image>
+\begin{tikzpicture}[scale=0.9]
+\draw[very thin, gray!40] (-1,-1) grid (4,6);
+\draw[->] (-1,0) -- (4.4,0) node[right]{$x$};
+\draw[->] (0,-1) -- (0,6.4) node[above]{$y$};
+\draw[thick] (0,0) -- (1,0) -- (1,1) -- (0,1) -- cycle;
+\node[below left] at (0,0) {$O$};
+\node[below] at (1,0) {$A$};
+\node[above right] at (1,1) {$B$};
+\node[left] at (0,1) {$C$};
+\draw[thick, dashed] (0,0) -- (2,1) -- (3,5) -- (1,4) -- cycle;
+\fill (2,1) circle (2pt) node[right]{$A'(2, 1)$};
+\fill (3,5) circle (2pt) node[right]{$B'(3, 5)$};
+\fill (1,4) circle (2pt) node[left]{$C'(1, 4)$};
+\end{tikzpicture}
+                        </latex-image>
+                    </image>
+                </figure>
+            </solution>
+        </example>
 
-    <!-- <axiom component="lesson-plan">
-        <title>Differentiation</title>
+        <xi:include href="../lesson-plan-templates/assessment-intro.ptx" />
+        <xi:include href="../lesson-plan-templates/checkpoint.ptx" />
 
-        <table>
+        <p>Type one number in each box of a matrix. Type fractions with a slash, for example <c>-3/2</c>, or as decimals, for example <c>-1.5</c>.</p>
+
+        <exercise xml:id="ex-image-of-a-triangle-under-a-matrix">
+            <stack label="stk-image-of-a-triangle-under-a-matrix" source="stack/top/2-measurement-and-geometry/06-matrices-and-transformations/01-matrices-of-transformation/Image-of-a-triangle-under-a-matrix.xml"/>
+        </exercise>
+
+        <exercise xml:id="ex-naming-a-transformation-from-its-matrix">
+            <stack label="stk-naming-a-transformation-from-its-matrix" source="stack/top/2-measurement-and-geometry/06-matrices-and-transformations/01-matrices-of-transformation/Naming-a-transformation-from-its-matrix.xml"/>
+        </exercise>
+
+        <exercises xml:id="exercises-images-under-a-matrix">
+            <exercise xml:id="ex-images-of-a-point">
+                <statement><p>Find the image of the point <m>(3, -2)</m> under each matrix.
+                    <ol marker="(a)">
+                        <li><p><m>\begin{bmatrix} 2 \amp 5 \\ 1 \amp -1 \end{bmatrix}</m></p></li>
+                        <li><p><m>\begin{bmatrix} 0 \amp -1 \\ 1 \amp 0 \end{bmatrix}</m></p></li>
+                        <li><p><m>\begin{bmatrix} -2 \amp 0 \\ 0 \amp -2 \end{bmatrix}</m></p></li>
+                    </ol>
+                </p></statement>
+                <answer><p>(a) <m>(-4, 5)</m> (b) <m>(2, 3)</m> (c) <m>(-6, 4)</m></p></answer>
+            </exercise>
+            <exercise xml:id="ex-image-of-a-triangle">
+                <statement><p>A triangle has vertices <m>(1, 0)</m>, <m>(3, 1)</m> and <m>(2, 3)</m>. Find its image under <m>\begin{bmatrix} 1 \amp -2 \\ 2 \amp 1 \end{bmatrix}</m>, and draw the triangle and its image on one grid.</p></statement>
+                <answer><p><m>(1, 2)</m>, <m>(1, 7)</m>, <m>(-4, 7)</m></p></answer>
+                <solution><p><m>\begin{bmatrix} 1 \amp -2 \\ 2 \amp 1 \end{bmatrix} \begin{bmatrix} 1 \amp 3 \amp 2 \\ 0 \amp 1 \amp 3 \end{bmatrix} = \begin{bmatrix} 1 \amp 1 \amp -4 \\ 2 \amp 7 \amp 7 \end{bmatrix}</m>, so the image has vertices <m>(1, 2)</m>, <m>(1, 7)</m> and <m>(-4, 7)</m>.</p></solution>
+            </exercise>
+            <exercise xml:id="ex-name-from-the-matrix">
+                <statement><p>Use the unit square to name the transformation given by each matrix.
+                    <ol marker="(a)">
+                        <li><p><m>\begin{bmatrix} 0 \amp -1 \\ -1 \amp 0 \end{bmatrix}</m></p></li>
+                        <li><p><m>\begin{bmatrix} 1 \amp 0 \\ 0 \amp -1 \end{bmatrix}</m></p></li>
+                        <li><p><m>\begin{bmatrix} 0.5 \amp 0 \\ 0 \amp 0.5 \end{bmatrix}</m></p></li>
+                        <li><p><m>\begin{bmatrix} 0 \amp 1 \\ -1 \amp 0 \end{bmatrix}</m></p></li>
+                    </ol>
+                </p></statement>
+                <answer><p>(a) reflection in the line <m>y = -x</m> (b) reflection in the <m>x</m>-axis (c) enlargement, centre <m>O</m>, scale factor <m>0.5</m> (d) rotation of <m>90^\circ</m> clockwise about <m>O</m></p></answer>
+                <solution><p>The columns give the images of <m>(1, 0)</m> and <m>(0, 1)</m>. (a) <m>(0, -1)</m> and <m>(-1, 0)</m>: the coordinates swap and change sign, a reflection in <m>y = -x</m>. (b) <m>(1, 0)</m> and <m>(0, -1)</m>: only <m>y</m> changes sign, a reflection in the <m>x</m>-axis. (c) <m>(0.5, 0)</m> and <m>(0, 0.5)</m>: every distance from <m>O</m> is halved. (d) <m>(0, -1)</m> and <m>(1, 0)</m>: a quarter turn clockwise.</p></solution>
+            </exercise>
+            <exercise xml:id="ex-no-matrix-for-a-translation">
+                <statement><p>Explain why no <m>2 \times 2</m> matrix maps every point <m>(x, y)</m> onto <m>(x + 2, y + 1)</m>.</p></statement>
+                <answer><p>Every <m>2 \times 2</m> matrix maps <m>(0, 0)</m> onto <m>(0, 0)</m>, but this translation maps <m>(0, 0)</m> onto <m>(2, 1)</m>.</p></answer>
+            </exercise>
+            <exercise xml:id="ex-kitenge-motif">
+                <statement><p>A kitenge print repeats a motif, the triangle with vertices <m>(2, 1)</m>, <m>(4, 1)</m> and <m>(3, 3)</m>, together with its mirror image in the <m>y</m>-axis. Write down the matrix of the reflection in the <m>y</m>-axis and use it to find the vertices of the mirror image.</p></statement>
+                <answer><p><m>\begin{bmatrix} -1 \amp 0 \\ 0 \amp 1 \end{bmatrix}</m>; <m>(-2, 1)</m>, <m>(-4, 1)</m>, <m>(-3, 3)</m></p></answer>
+                <solution><p><m>\begin{bmatrix} -1 \amp 0 \\ 0 \amp 1 \end{bmatrix} \begin{bmatrix} 2 \amp 4 \amp 3 \\ 1 \amp 1 \amp 3 \end{bmatrix} = \begin{bmatrix} -2 \amp -4 \amp -3 \\ 1 \amp 1 \amp 3 \end{bmatrix}</m>.</p></solution>
+            </exercise>
+            <exercise xml:id="ex-midpoints-map-to-midpoints">
+                <title>Challenge: Midpoints</title>
+                <statement><p>The points <m>A(-1, 3)</m> and <m>B(5, 1)</m> are mapped by <m>W = \begin{bmatrix} 4 \amp 1 \\ -1 \amp 2 \end{bmatrix}</m> onto <m>A'</m> and <m>B'</m>. Show that the image of the midpoint of <m>AB</m> is the midpoint of <m>A'B'</m>.</p></statement>
+                <hint><p>Work out both points and compare them.</p></hint>
+                <answer><p>Both are <m>(10, 2)</m>.</p></answer>
+                <solution><p>The midpoint of <m>AB</m> is <m>\left(\frac{-1 + 5}{2}, \frac{3 + 1}{2}\right) = (2, 2)</m>, and <m>W \begin{pmatrix} 2 \\ 2 \end{pmatrix} = \begin{pmatrix} 10 \\ 2 \end{pmatrix}</m>.</p>
+                <p><m>A' = W \begin{pmatrix} -1 \\ 3 \end{pmatrix} = \begin{pmatrix} -1 \\ 7 \end{pmatrix}</m> and <m>B' = W \begin{pmatrix} 5 \\ 1 \end{pmatrix} = \begin{pmatrix} 21 \\ -3 \end{pmatrix}</m>. The midpoint of <m>A'B'</m> is <m>\left(\frac{-1 + 21}{2}, \frac{7 - 3}{2}\right) = (10, 2)</m>, the same point.</p></solution>
+            </exercise>
+        </exercises>
+
+        <axiom component="lesson-plan">
             <title>Differentiation</title>
-            <tabular halign="left">
-                <row header="yes" bottom="minor">
-                    <cell>Learner Group</cell>
-                    <cell>Strategy &amp; Learning Experience</cell>
-                    <cell></cell>
-                </row>
-                <row>
-                    <cell>Struggling Learners (Support)</cell>
-                    <cell>
-                        XXXX
-                    </cell>
-                    <cell></cell>
-                </row>
-                <row>
-                    <cell>On-Level Learners (Core)</cell>
-                    <cell>
-                        <line>The core lesson activities as described above.</line>
-                    </cell>
-                    <cell></cell>
-                </row>
-                <row>
-                    <cell>Advanced Learners (Challenge)</cell>
-                    <cell>
-                        XXXX
-                    </cell>
-                    <cell></cell>
-                </row>
+            <table xml:id="table-differentiation-images-under-a-matrix">
+                <title>Differentiation Strategies</title>
+                <tabular halign="left" top="minor" bottom="minor" left="minor" right="minor">
+                    <row header="yes" bottom="medium"><cell>Learner Group</cell><cell>Strategy and Learning Experience</cell></row>
+                    <row><cell>Struggling Learners (Support)</cell><cell>Focus on activity parts (a) to (c) with a card: <q><m>x'</m> = top row times <m>(x, y)</m>, <m>y'</m> = bottom row times <m>(x, y)</m></q>. Work through <xref ref="example-image-of-a-quadrilateral"/> and <xref ref="example-recognising-standard-matrices"/>. Assign <xref ref="ex-images-of-a-point"/> and <xref ref="ex-image-of-a-triangle"/>.</cell></row>
+                    <row><cell>On-Level Learners (Core)</cell><cell>Full activity plus all examples. Assign <xref ref="ex-images-of-a-point"/> to <xref ref="ex-kitenge-motif"/>.</cell></row>
+                    <row><cell>Advanced Learners (Challenge)</cell><cell>All exercises including <xref ref="ex-midpoints-map-to-midpoints"/>. Extension: find a matrix that maps <m>(1, 0)</m> onto <m>(0, 2)</m> and <m>(0, 1)</m> onto <m>(3, 0)</m>, and draw the image of the unit square. (Answer: <m>\begin{bmatrix} 0 \amp 3 \\ 2 \amp 0 \end{bmatrix}</m>; the image is the rectangle with vertices <m>O</m>, <m>(0, 2)</m>, <m>(3, 2)</m> and <m>(3, 0)</m>.)</cell></row>
+                </tabular>
+            </table>
+        </axiom>
+
+        <xi:include href="../lesson-plan-templates/assessment-methods.ptx" />
+        <xi:include href="../lesson-plan-templates/reflection.ptx"/>
+    </subsection>
+
+    <!-- ============================================================ Lesson 1.2 -->
+    <subsection xml:id="subsec-finding-the-matrix-of-a-transformation">
+        <title>Finding the Matrix of a Transformation</title>
+
+        <p component="lesson-plan">Upon completion of this lesson, learners will be able to:
+            <ol>
+                <li><p><alert>Know:</alert> the columns rule; the matrices of the standard reflections, rotations and enlargements; a matrix is fixed by the images of two points that are not in line with <m>O</m>.</p></li>
+                <li><p><alert>Do:</alert> write the matrix of a named transformation; find a matrix from the image of the unit square; find a matrix from two points and their images, by simultaneous equations or with an inverse matrix.</p></li>
+                <li><p><alert>Apply:</alert> describe a transformation fully from its matrix.</p></li>
+            </ol>
+        </p>
+
+        <axiom component="lesson-plan">
+            <title>Problem-Solving and Discovery</title>
+            <dl>
+                <li><title>Suggested Time</title><p>14 minutes</p></li>
+                <li><title>Objective</title><p>Learners build matrices from where <m>(1, 0)</m> and <m>(0, 1)</m> go.</p></li>
+                <li><title>Teacher's Role</title><p>Work in pairs: one learner predicts the images on paper, the other checks them in the interactive in <xref ref="fig-matrix-transformer"/>, then they swap. After part (c), ask: <q>Why do you only need two points?</q></p></li>
+            </dl>
+        </axiom>
+
+        <activity xml:id="act-follow-the-unit-square">
+            <title>Follow the Unit Square</title>
+            <statement>
+                <p>The unit square <m>OABC</m> has vertices <m>O(0, 0)</m>, <m>A(1, 0)</m>, <m>B(1, 1)</m> and <m>C(0, 1)</m>.</p>
+                <p>
+                    <ol marker="(a)">
+                        <li>
+                            <p>Reflect the unit square in the <m>x</m>-axis. Where do <m>A</m> and <m>C</m> go? Write their images as the first and second columns of a matrix, and check your matrix with the interactive in <xref ref="fig-matrix-transformer"/>.</p>
+                            <solution component="lesson-plan"><p><m>A'(1, 0)</m> and <m>C'(0, -1)</m>, so the matrix is <m>\begin{bmatrix} 1 \amp 0 \\ 0 \amp -1 \end{bmatrix}</m>.</p></solution>
+                        </li>
+                        <li>
+                            <p>Do the same for the rotation of <m>90^\circ</m> anticlockwise about <m>O</m>.</p>
+                            <solution component="lesson-plan"><p><m>A'(0, 1)</m> and <m>C'(-1, 0)</m>: <m>\begin{bmatrix} 0 \amp -1 \\ 1 \amp 0 \end{bmatrix}</m>.</p></solution>
+                        </li>
+                        <li>
+                            <p>Do the same for the enlargement, centre <m>O</m>, scale factor <m>2</m>.</p>
+                            <solution component="lesson-plan"><p><m>A'(2, 0)</m> and <m>C'(0, 2)</m>: <m>\begin{bmatrix} 2 \amp 0 \\ 0 \amp 2 \end{bmatrix}</m>.</p></solution>
+                        </li>
+                        <li>
+                            <p>A transformation maps <m>A</m> onto <m>(5, 1)</m> and <m>C</m> onto <m>(-1, 2)</m>. Write down its matrix and predict where <m>B</m> goes. Check with the interactive.</p>
+                            <solution component="lesson-plan"><p><m>\begin{bmatrix} 5 \amp -1 \\ 1 \amp 2 \end{bmatrix}</m>, and <m>B'(4, 3)</m>.</p></solution>
+                        </li>
+                        <li>
+                            <p>Explain why <m>B'</m> is always <m>A' + C'</m>.</p>
+                            <solution component="lesson-plan"><p><m>B = A + C</m> as columns, and <m>M(A + C) = MA + MC</m>, so <m>B' = A' + C'</m>.</p></solution>
+                        </li>
+                    </ol>
+                </p>
+            </statement>
+        </activity>
+
+        <axiom component="lesson-plan">
+            <title>Structured Instruction</title>
+            <p>
+                <dl>
+                    <li><title>Suggested Time</title><p>8 minutes</p></li>
+                    <li><title>Objective</title><p>To formalise the columns rule and the two methods for finding a matrix.</p></li>
+                </dl>
+            </p>
+            <paragraphs>
+                <title>Key Takeaways &amp; Teacher Connection</title>
+                <ol>
+                    <li><p><alert>Connecting to Learner Work:</alert> parts (a) to (d) are the columns rule; build <xref ref="table-standard-matrices"/> with the class from it.</p></li>
+                    <li><p>From two general points and their images, find a matrix by simultaneous equations, or by multiplying by the inverse of the object matrix (Grade 11).</p></li>
+                    <li><p>To <q>describe fully</q> a transformation, give every fact that fixes it: the mirror line; the centre, angle and direction; the centre and scale factor.</p></li>
+                </ol>
+            </paragraphs>
+        </axiom>
+
+        <insight xml:id="insight-finding-a-matrix">
+            <title>Finding a Matrix</title>
+            <p>
+                The first column of a matrix is the image of <m>(1, 0)</m>, and the second column is the image of <m>(0, 1)</m>. So to find the matrix of a transformation, find where it sends <m>(1, 0)</m> and <m>(0, 1)</m>, and write those images as the columns.
+            </p>
+            <p>
+                To <term>describe fully</term> a transformation, give every fact that fixes it:
+                <ul>
+                    <li><p>a reflection: the mirror line;</p></li>
+                    <li><p>a rotation: the centre, the angle and the direction (clockwise or anticlockwise);</p></li>
+                    <li><p>an enlargement: the centre and the scale factor.</p></li>
+                </ul>
+                Stretches and shears have their own lists in <xref ref="sec-stretch"/> and <xref ref="sec-shear"/>.
+            </p>
+            <p>
+                If you know the images of two points <m>P</m> and <m>Q</m> that are not in line with <m>O</m>, you can find <m>M = \begin{bmatrix} a \amp b \\ c \amp d \end{bmatrix}</m> in either of two ways:
+                <ul>
+                    <li><p>write <m>M P = P'</m> and <m>M Q = Q'</m> as equations and solve two pairs of simultaneous equations, one pair for <m>a</m> and <m>b</m>, one for <m>c</m> and <m>d</m>;</p></li>
+                    <li><p>since <m>M \times \text{object matrix} = \text{image matrix}</m>, multiply on the right by the inverse: <m>M = (\text{image matrix})(\text{object matrix})^{-1}</m>.</p></li>
+                </ul>
+            </p>
+        </insight>
+
+        <table xml:id="table-standard-matrices">
+            <title>Matrices of Standard Transformations</title>
+            <tabular halign="left" top="minor" bottom="minor" left="minor" right="minor">
+                <row header="yes" bottom="medium"><cell>Transformation</cell><cell>Matrix</cell><cell>Images of <m>(1, 0)</m> and <m>(0, 1)</m></cell></row>
+                <row><cell>Identity (no change)</cell><cell><m>\begin{bmatrix} 1 \amp 0 \\ 0 \amp 1 \end{bmatrix}</m></cell><cell><m>(1, 0)</m>, <m>(0, 1)</m></cell></row>
+                <row><cell>Reflection in the <m>x</m>-axis</cell><cell><m>\begin{bmatrix} 1 \amp 0 \\ 0 \amp -1 \end{bmatrix}</m></cell><cell><m>(1, 0)</m>, <m>(0, -1)</m></cell></row>
+                <row><cell>Reflection in the <m>y</m>-axis</cell><cell><m>\begin{bmatrix} -1 \amp 0 \\ 0 \amp 1 \end{bmatrix}</m></cell><cell><m>(-1, 0)</m>, <m>(0, 1)</m></cell></row>
+                <row><cell>Reflection in the line <m>y = x</m></cell><cell><m>\begin{bmatrix} 0 \amp 1 \\ 1 \amp 0 \end{bmatrix}</m></cell><cell><m>(0, 1)</m>, <m>(1, 0)</m></cell></row>
+                <row><cell>Reflection in the line <m>y = -x</m></cell><cell><m>\begin{bmatrix} 0 \amp -1 \\ -1 \amp 0 \end{bmatrix}</m></cell><cell><m>(0, -1)</m>, <m>(-1, 0)</m></cell></row>
+                <row><cell>Rotation of <m>90^\circ</m> anticlockwise about <m>O</m></cell><cell><m>\begin{bmatrix} 0 \amp -1 \\ 1 \amp 0 \end{bmatrix}</m></cell><cell><m>(0, 1)</m>, <m>(-1, 0)</m></cell></row>
+                <row><cell>Rotation of <m>180^\circ</m> about <m>O</m></cell><cell><m>\begin{bmatrix} -1 \amp 0 \\ 0 \amp -1 \end{bmatrix}</m></cell><cell><m>(-1, 0)</m>, <m>(0, -1)</m></cell></row>
+                <row><cell>Rotation of <m>90^\circ</m> clockwise about <m>O</m> (<m>270^\circ</m> anticlockwise)</cell><cell><m>\begin{bmatrix} 0 \amp 1 \\ -1 \amp 0 \end{bmatrix}</m></cell><cell><m>(0, -1)</m>, <m>(1, 0)</m></cell></row>
+                <row><cell>Enlargement, centre <m>O</m>, scale factor <m>k</m></cell><cell><m>\begin{bmatrix} k \amp 0 \\ 0 \amp k \end{bmatrix}</m></cell><cell><m>(k, 0)</m>, <m>(0, k)</m></cell></row>
             </tabular>
         </table>
-    </axiom> -->
 
-    <xi:include href="../lesson-plan-templates/assessment-methods.ptx" />
+        <p>In Grade 11 you met the rotation through any angle <m>\theta</m> anticlockwise about <m>O</m>, with matrix <m>\begin{bmatrix} \cos\theta \amp -\sin\theta \\ \sin\theta \amp \cos\theta \end{bmatrix}</m>. Put <m>\theta = 90^\circ</m> and you get the matrix in the table.</p>
 
-    <xi:include href="../lesson-plan-templates/reflection.ptx"/>
+        <xi:include href="../lesson-plan-templates/example-intro.ptx" />
+
+        <example xml:id="example-reflection-in-y-equals-minus-x">
+            <title>Reflection in the Line <m>y = -x</m></title>
+            <statement>
+                <p>Find the matrix of the reflection in the line <m>y = -x</m>, and use it to find the image of <m>(3, 1)</m>.</p>
+            </statement>
+            <solution>
+                <p>Reflecting in <m>y = -x</m> sends <m>(1, 0)</m> to <m>(0, -1)</m> and <m>(0, 1)</m> to <m>(-1, 0)</m>. These are the columns:
+                    <md>M = \begin{bmatrix} 0 \amp -1 \\ -1 \amp 0 \end{bmatrix}, \qquad M \begin{pmatrix} 3 \\ 1 \end{pmatrix} = \begin{pmatrix} -1 \\ -3 \end{pmatrix}</md>
+                    The image is <m>(-1, -3)</m>. This agrees with the Grade 10 rule for this mirror line: the coordinates swap and change sign.</p>
+            </solution>
+        </example>
+
+        <example xml:id="example-rotation-90-clockwise">
+            <title>Rotation Through <m>90^\circ</m> Clockwise</title>
+            <statement>
+                <p>Find the matrix of the rotation of <m>90^\circ</m> clockwise about <m>O</m>, and the image of <m>(2, 5)</m>.</p>
+            </statement>
+            <solution>
+                <p>A quarter turn clockwise sends <m>(1, 0)</m> to <m>(0, -1)</m> and <m>(0, 1)</m> to <m>(1, 0)</m>, so
+                    <md>M = \begin{bmatrix} 0 \amp 1 \\ -1 \amp 0 \end{bmatrix}, \qquad M \begin{pmatrix} 2 \\ 5 \end{pmatrix} = \begin{pmatrix} 5 \\ -2 \end{pmatrix}</md>
+                    The image is <m>(5, -2)</m>. Notice that this matrix is the anticlockwise matrix <m>\begin{bmatrix} 0 \amp -1 \\ 1 \amp 0 \end{bmatrix}</m> with its rows written as columns.</p>
+            </solution>
+        </example>
+
+        <example xml:id="example-matrix-from-object-and-image">
+            <title>Matrix From an Object and Its Image</title>
+            <statement>
+                <p>A matrix <m>M</m> maps <m>P(1, 2)</m> onto <m>P'(4, 7)</m> and <m>Q(3, 1)</m> onto <m>Q'(7, 1)</m>. Find <m>M</m>.</p>
+            </statement>
+            <solution>
+                <p><alert>Method 1: equations.</alert> Let <m>M = \begin{bmatrix} a \amp b \\ c \amp d \end{bmatrix}</m>. Then <m>M\begin{pmatrix} 1 \\ 2 \end{pmatrix} = \begin{pmatrix} 4 \\ 7 \end{pmatrix}</m> and <m>M\begin{pmatrix} 3 \\ 1 \end{pmatrix} = \begin{pmatrix} 7 \\ 1 \end{pmatrix}</m>. The top rows give
+                    <md>a + 2b = 4, \qquad 3a + b = 7</md>
+                    so <m>a = 2</m> and <m>b = 1</m>. The bottom rows give
+                    <md>c + 2d = 7, \qquad 3c + d = 1</md>
+                    so <m>c = -1</m> and <m>d = 4</m>.</p>
+                <p><alert>Method 2: the inverse.</alert> The object matrix is <m>\begin{bmatrix} 1 \amp 3 \\ 2 \amp 1 \end{bmatrix}</m>, with determinant <m>1 - 6 = -5</m>, so its inverse is <m>-\frac{1}{5}\begin{bmatrix} 1 \amp -3 \\ -2 \amp 1 \end{bmatrix}</m>. Then
+                    <md>M = \begin{bmatrix} 4 \amp 7 \\ 7 \amp 1 \end{bmatrix} \times \left(-\frac{1}{5}\right)\begin{bmatrix} 1 \amp -3 \\ -2 \amp 1 \end{bmatrix} = -\frac{1}{5}\begin{bmatrix} -10 \amp -5 \\ 5 \amp -20 \end{bmatrix} = \begin{bmatrix} 2 \amp 1 \\ -1 \amp 4 \end{bmatrix}</md>
+                </p>
+                <p>Check with <m>P</m>: <m>\begin{bmatrix} 2 \amp 1 \\ -1 \amp 4 \end{bmatrix}\begin{pmatrix} 1 \\ 2 \end{pmatrix} = \begin{pmatrix} 4 \\ 7 \end{pmatrix}</m>. So <m>M = \begin{bmatrix} 2 \amp 1 \\ -1 \amp 4 \end{bmatrix}</m>.</p>
+            </solution>
+        </example>
+
+        <xi:include href="../lesson-plan-templates/assessment-intro.ptx" />
+        <xi:include href="../lesson-plan-templates/checkpoint.ptx" />
+
+        <p>Type one number in each box of a matrix. Type fractions with a slash, for example <c>-3/2</c>, or as decimals, for example <c>-1.5</c>.</p>
+
+        <exercise xml:id="ex-matrix-from-the-image-of-the-unit-square">
+            <stack label="stk-matrix-from-the-image-of-the-unit-square" source="stack/top/2-measurement-and-geometry/06-matrices-and-transformations/01-matrices-of-transformation/Matrix-from-the-image-of-the-unit-square.xml"/>
+        </exercise>
+
+        <exercise xml:id="ex-matrix-from-an-object-and-its-image">
+            <stack label="stk-matrix-from-an-object-and-its-image" source="stack/top/2-measurement-and-geometry/06-matrices-and-transformations/01-matrices-of-transformation/Matrix-from-an-object-and-its-image.xml"/>
+        </exercise>
+
+        <exercises xml:id="exercises-finding-the-matrix">
+            <exercise xml:id="ex-matrices-of-reflections">
+                <statement><p>Write down the matrices of the reflection in the <m>x</m>-axis and of the reflection in the line <m>y = x</m>. Use them to find the images of <m>(4, -1)</m>.</p></statement>
+                <answer><p><m>\begin{bmatrix} 1 \amp 0 \\ 0 \amp -1 \end{bmatrix}</m>, image <m>(4, 1)</m>; <m>\begin{bmatrix} 0 \amp 1 \\ 1 \amp 0 \end{bmatrix}</m>, image <m>(-1, 4)</m></p></answer>
+            </exercise>
+            <exercise xml:id="ex-matrices-of-rotations">
+                <statement><p>Write down the matrices of the rotations about <m>O</m> of <m>90^\circ</m> anticlockwise and of <m>180^\circ</m>. Use them to find the images of <m>(-3, 2)</m>.</p></statement>
+                <answer><p><m>\begin{bmatrix} 0 \amp -1 \\ 1 \amp 0 \end{bmatrix}</m>, image <m>(-2, -3)</m>; <m>\begin{bmatrix} -1 \amp 0 \\ 0 \amp -1 \end{bmatrix}</m>, image <m>(3, -2)</m></p></answer>
+            </exercise>
+            <exercise xml:id="ex-matrix-from-unit-square-images">
+                <statement><p>A transformation maps <m>A(1, 0)</m> onto <m>(5, -2)</m> and <m>C(0, 1)</m> onto <m>(1, 3)</m>. Find its matrix <m>M</m>, the image of <m>B(1, 1)</m> and the image of <m>(-2, 1)</m>.</p></statement>
+                <answer><p><m>M = \begin{bmatrix} 5 \amp 1 \\ -2 \amp 3 \end{bmatrix}</m>; <m>(6, 1)</m>; <m>(-9, 7)</m></p></answer>
+                <solution><p>The images of <m>(1, 0)</m> and <m>(0, 1)</m> are the columns. <m>B' = A' + C' = (6, 1)</m>. <m>M\begin{pmatrix} -2 \\ 1 \end{pmatrix} = \begin{pmatrix} -10 + 1 \\ 4 + 3 \end{pmatrix} = \begin{pmatrix} -9 \\ 7 \end{pmatrix}</m>.</p></solution>
+            </exercise>
+            <exercise xml:id="ex-matrix-from-two-points">
+                <statement><p>A matrix <m>M</m> maps <m>(1, 1)</m> onto <m>(5, 1)</m> and <m>(2, -1)</m> onto <m>(1, 8)</m>. Find <m>M</m>.</p></statement>
+                <answer><p><m>\begin{bmatrix} 2 \amp 3 \\ 3 \amp -2 \end{bmatrix}</m></p></answer>
+                <solution><p>Let <m>M = \begin{bmatrix} a \amp b \\ c \amp d \end{bmatrix}</m>. Top rows: <m>a + b = 5</m> and <m>2a - b = 1</m>, so <m>a = 2</m>, <m>b = 3</m>. Bottom rows: <m>c + d = 1</m> and <m>2c - d = 8</m>, so <m>c = 3</m>, <m>d = -2</m>.</p></solution>
+            </exercise>
+            <exercise xml:id="ex-enlargement-matrix">
+                <statement><p>Write down the matrix of the enlargement, centre <m>O</m>, scale factor <m>-\frac{1}{2}</m>, and find the image of <m>(6, -4)</m>.</p></statement>
+                <answer><p><m>\begin{bmatrix} -\frac{1}{2} \amp 0 \\ 0 \amp -\frac{1}{2} \end{bmatrix}</m>; <m>(-3, 2)</m></p></answer>
+            </exercise>
+            <exercise xml:id="ex-swap-two-points">
+                <title>Challenge: Swapping Two Points</title>
+                <statement><p>Find the matrix that maps <m>(1, 2)</m> onto <m>(2, 1)</m> and <m>(2, 1)</m> onto <m>(1, 2)</m>, and describe the transformation fully.</p></statement>
+                <hint><p>Write the two conditions as equations.</p></hint>
+                <answer><p><m>\begin{bmatrix} 0 \amp 1 \\ 1 \amp 0 \end{bmatrix}</m>: the reflection in the line <m>y = x</m></p></answer>
+                <solution><p>Let <m>M = \begin{bmatrix} a \amp b \\ c \amp d \end{bmatrix}</m>. Top rows: <m>a + 2b = 2</m> and <m>2a + b = 1</m>, so <m>a = 0</m>, <m>b = 1</m>. Bottom rows: <m>c + 2d = 1</m> and <m>2c + d = 2</m>, so <m>c = 1</m>, <m>d = 0</m>. The matrix sends <m>(1, 0)</m> to <m>(0, 1)</m> and <m>(0, 1)</m> to <m>(1, 0)</m>: it is the reflection in the line <m>y = x</m>.</p></solution>
+            </exercise>
+        </exercises>
+
+        <axiom component="lesson-plan">
+            <title>Differentiation</title>
+            <table xml:id="table-differentiation-finding-the-matrix">
+                <title>Differentiation Strategies</title>
+                <tabular halign="left" top="minor" bottom="minor" left="minor" right="minor">
+                    <row header="yes" bottom="medium"><cell>Learner Group</cell><cell>Strategy and Learning Experience</cell></row>
+                    <row><cell>Struggling Learners (Support)</cell><cell>Give learners <xref ref="table-standard-matrices"/> and a card: <q>column 1 is where <m>(1, 0)</m> goes; column 2 is where <m>(0, 1)</m> goes</q>. Work through <xref ref="example-reflection-in-y-equals-minus-x"/> and <xref ref="example-rotation-90-clockwise"/>. Assign <xref ref="ex-matrices-of-reflections"/> and <xref ref="ex-matrices-of-rotations"/>.</cell></row>
+                    <row><cell>On-Level Learners (Core)</cell><cell>Full activity plus all examples. Assign <xref ref="ex-matrices-of-reflections"/> to <xref ref="ex-enlargement-matrix"/>.</cell></row>
+                    <row><cell>Advanced Learners (Challenge)</cell><cell>All exercises including <xref ref="ex-swap-two-points"/>. Extension: on a careful drawing, find the images of <m>(1, 0)</m> and <m>(0, 1)</m> under the rotation of <m>45^\circ</m> anticlockwise about <m>O</m>, and write down its matrix. Check with the Grade 11 formula. (Answer: <m>\left(\frac{1}{\sqrt{2}}, \frac{1}{\sqrt{2}}\right)</m> and <m>\left(-\frac{1}{\sqrt{2}}, \frac{1}{\sqrt{2}}\right)</m>, so the matrix is <m>\begin{bmatrix} \frac{1}{\sqrt{2}} \amp -\frac{1}{\sqrt{2}} \\ \frac{1}{\sqrt{2}} \amp \frac{1}{\sqrt{2}} \end{bmatrix}</m>, about <m>\begin{bmatrix} 0.71 \amp -0.71 \\ 0.71 \amp 0.71 \end{bmatrix}</m>.)</cell></row>
+                </tabular>
+            </table>
+        </axiom>
+
+        <xi:include href="../lesson-plan-templates/assessment-methods.ptx" />
+        <xi:include href="../lesson-plan-templates/reflection.ptx"/>
+    </subsection>
 </section>

@@ -19,7 +19,7 @@
                     </p>
                 </li>
                 <li>
-                    <title>Specific Learning Outcomes</title> 
+                    <title>Specific Learning Outcomes</title>
                     <p>
                         Apply differentiation to maxima and minima in different situations; Apply differentiation in kinematics
                     </p>
@@ -33,7 +33,7 @@
                 <li component="lesson-plan">
                     <title>Estimated Duration</title>
                     <p>
-                        40 minutes
+                        3 lessons of 40 minutes
                     </p>
                 </li>
             </dl>
@@ -46,163 +46,720 @@
          Suggested activity: Learners find the dimensions of an open box made from a square sheet of manila paper that gives the maximum volume, then build it.
          Interactive (JSXGraph): Square sheet with a slider for the corner cut x; the box folds up and its volume V(x) is plotted, showing the maximum. -->
 
-    <!-- [LP] Add guidance on activity -->
+    <!-- Section notes (2026-11)
+         SLOs: Core 4.1 (c), (d); outcome (e) (appreciate differentiation in real life) in lesson 3.3. Lessons 3.1 to 3.3 as subsections.
+         Activity: as planning notes (open box from a 24 cm square of manila paper, built and then optimised) in lesson 3.1 | changed: lessons 3.2 and 3.3 add their own activities
+         JSXGraph: interactive-open-box-volume (assets/jsxgraph/open-box-volume.js, lesson 3.1), as planning notes
+         STACK: assets/stack/top/4-calculus/17-differentiation-ii/03-application-of-differentiation/ -->
 
-    <!-- <axiom component="lesson-plan">
+    <!-- ============================================================ Lesson 3.1 -->
+    <subsection xml:id="subsec-maxima-and-minima-in-context">
+        <title>Maxima and Minima in Context</title>
+
+        <p component="lesson-plan">Upon completion of this lesson, learners will be able to:
+            <ol>
+                <li><p><alert>Know:</alert> the steps for solving a maximum or minimum problem, and the domain of a model.</p></li>
+                <li><p><alert>Do:</alert> build a one-variable model from a constraint and find its greatest or least value.</p></li>
+                <li><p><alert>Apply:</alert> find best dimensions, best prices and least costs.</p></li>
+            </ol>
+        </p>
+
+        <axiom component="lesson-plan">
             <title>Problem-Solving and Discovery</title>
             <dl>
-                <li>
-                    <title>Suggested Time</title>
-                    <p>
-                        XX minutes
-                    </p>
-                </li>
-                <li>
-                    <title>Objective</title>
-                    <p>
-                        XXX
-                    </p>
-                </li>
-                <li>
-                    <title>Teacher's Role</title>
-                    <p>
-                        XXX
-                    </p>
-                </li>
+                <li><title>Suggested Time</title><p>14 minutes</p></li>
+                <li><title>Objective</title><p>Groups build open boxes from 24 cm squares of manila paper with different corner cuts, find the best by experiment, then confirm it by calculus.</p></li>
+                <li><title>Teacher's Role</title><p>Give each group a 24 cm square of manila paper, a ruler and scissors, and a different cut <m>x</m> from <m>1</m> to <m>6\,\text{cm}</m>. Before any group measures, ask each to predict which cut will win and write the prediction down. Collect all the volumes on the board before any differentiation, and let each group hear the others' results.</p></li>
             </dl>
-        </axiom> -->
+        </axiom>
 
-    <!-- Add Activity -->
-
-    <!-- <activity>
-        <statement>
-        </statement>
-    </activity> -->
-
-    <!-- [LP] Add guidance on structured lesson plan-->
-
-    <!-- <axiom component="lesson-plan">
-        <title>Structured Instruction</title>
-        <p>
-            <dl>
-            <li>
-                <title>Suggested Time</title>
+        <activity xml:id="act-the-best-box">
+            <title>The Best Box</title>
+            <statement>
+                <p>Squares of side <m>x</m> cm are cut from the four corners of a square sheet of manila paper <m>24\,\text{cm}</m> by <m>24\,\text{cm}</m>, and the sides are folded up to make an open box (<xref ref="fig-open-box-net"/>).</p>
                 <p>
-                    XX minutes
+                    <ol marker="(a)">
+                        <li>
+                            <p>Build your group's box. Measure it and work out its volume.</p>
+                            <solution component="lesson-plan"><p>For <m>x = 1, 2, 3, 4, 5, 6</m>: <m>V = 484, 800, 972, 1024, 980, 864\,\text{cm}^3</m>.</p></solution>
+                        </li>
+                        <li>
+                            <p>Which cut gives the largest volume so far?</p>
+                            <solution component="lesson-plan"><p><m>x = 4</m>.</p></solution>
+                        </li>
+                        <li>
+                            <p>Show that <m>V = x(24 - 2x)^2 = 4x^3 - 96x^2 + 576x</m>. Why must <m>0 \lt x \lt 12</m>?</p>
+                            <solution component="lesson-plan"><p>The base is <m>(24 - 2x)</m> cm square and the height is <m>x</m> cm. The cut must be positive, and two cuts must fit along an edge of <m>24\,\text{cm}</m>, so <m>x \lt 12</m>.</p></solution>
+                        </li>
+                        <li>
+                            <p><m>\dfrac{dV}{dx} = 12(x - 4)(x - 12)</m>. Which solution of <m>\dfrac{dV}{dx} = 0</m> gives a box?</p>
+                            <solution component="lesson-plan"><p><m>x = 4</m>. At <m>x = 12</m> the base has side <m>0</m>: there is no box.</p></solution>
+                        </li>
+                        <li>
+                            <p>Use <m>\dfrac{d^2V}{dx^2}</m> to show that <m>x = 4</m> gives the greatest volume. Give the dimensions and volume of the best box.</p>
+                            <solution component="lesson-plan"><p><m>\dfrac{d^2V}{dx^2} = 24x - 192 = -96 \lt 0</m> at <m>x = 4</m>. The best box is <m>16\,\text{cm}</m> by <m>16\,\text{cm}</m> by <m>4\,\text{cm}</m>, with volume <m>1024\,\text{cm}^3</m>.</p></solution>
+                        </li>
+                    </ol>
                 </p>
-            </li>
-            <li>
-                <title>Objective</title>
-                <p>
-                    To formalize the concepts and properties learners discovered in the anchor task.
-                </p>
-            </li>
-            </dl>
-        </p>
-        <paragraphs>
-            <title>Key Takeaways &amp; Teacher Connection</title>
-            <ol>
-                <li>
+            </statement>
+        </activity>
+
+        <figure xml:id="fig-open-box-net">
+            <caption>The 24 cm square with a square of side <m>x</m> cut from each corner. Fold along the dashed lines.</caption>
+            <image width="55%">
+                <shortdescription>A 24 cm square with an x by x square cut from each corner and dashed fold lines; the base is 24 minus 2x on each side.</shortdescription>
+                <latex-image>
+\begin{tikzpicture}[scale=0.22]
+\draw[thick] (4,0) -- (20,0) -- (20,4) -- (24,4) -- (24,20) -- (20,20) -- (20,24) -- (4,24) -- (4,20) -- (0,20) -- (0,4) -- (4,4) -- cycle;
+\draw[dashed] (4,4) -- (20,4) -- (20,20) -- (4,20) -- cycle;
+\draw[gray!60] (0,0) rectangle (4,4); \draw[gray!60] (20,0) rectangle (24,4); \draw[gray!60] (0,20) rectangle (4,24); \draw[gray!60] (20,20) rectangle (24,24);
+\node at (2,2) {$x$}; \node at (22,22) {$x$};
+\node at (12,12) {base};
+\draw[&lt;-&gt;] (4,-1.5) -- (20,-1.5) node[midway, below] {$24 - 2x$};
+\draw[&lt;-&gt;] (-1.5,0) -- (-1.5,24) node[midway, left] {$24$};
+\end{tikzpicture}
+                </latex-image>
+            </image>
+        </figure>
+
+        <axiom component="lesson-plan">
+            <title>Structured Instruction</title>
+            <p>
+                <dl>
+                    <li><title>Suggested Time</title><p>8 minutes</p></li>
+                    <li><title>Objective</title><p>To set out the method for a maximum or minimum problem.</p></li>
+                </dl>
+            </p>
+            <paragraphs>
+                <title>Key Takeaways &amp; Teacher Connection</title>
+                <ol>
+                    <li><p><alert>Connecting to Learner Work:</alert> the activity follows the steps below in order; compare the experimental winner with the calculus answer.</p></li>
+                    <li><p>A solution of <m>\dfrac{dV}{dx} = 0</m> can lie outside the domain: check every solution against the situation.</p></li>
+                </ol>
+            </paragraphs>
+        </axiom>
+
+        <insight xml:id="insight-solving-a-max-min-problem">
+            <title>Solving a Maximum or Minimum Problem</title>
+            <p>The best value of a quantity is at a stationary point or at an end of its domain.
+                <ol>
+                    <li><p>Name the variable and draw a diagram.</p></li>
+                    <li><p>Write the quantity in terms of that one variable, using the constraint.</p></li>
+                    <li><p>State the domain: the values of the variable that make sense.</p></li>
+                    <li><p>Differentiate and solve <m>\text{derivative} = 0</m>.</p></li>
+                    <li><p>Confirm whether it is a maximum or a minimum (by the second derivative or the gradient either side).</p></li>
+                    <li><p>On a closed domain, compare with the values at the ends.</p></li>
+                    <li><p>Answer the question in context, with units.</p></li>
+                </ol>
+            </p>
+        </insight>
+
+        <figure xml:id="fig-open-box-volume">
+            <caption>Drag <m>x</m>. The box folds up and its volume is plotted. Where is <m>V</m> greatest?</caption>
+            <interactive xml:id="interactive-open-box-volume" platform="jsxgraph" width="90%" aspect="16:10" source="jsxgraph/open-box-volume.js">
+                <slate xml:id="jsxgraph-open-box-volume" surface="jsxboard" aspect="16:10"/>
+                <instructions>
                     <p>
-                        <alert>Connecting to Learner Work:</alert> XXXX
+                        <ul>
+                            <li><p>Drag the <alert>x</alert> slider. The corner squares grow on the sheet, the box changes shape, and the point on the graph shows its volume.</p></li>
+                            <li><p>Set <alert>x</alert> to the cut your group used in <xref ref="act-the-best-box"/> and check your volume.</p></li>
+                            <li><p>Find the value of <alert>x</alert> that makes <m>V</m> greatest. Does it agree with <m>x = 4</m>?</p></li>
+                        </ul>
                     </p>
-                </li>
-            </ol>
-        </paragraphs>
-    </axiom> -->
+                </instructions>
+            </interactive>
+        </figure>
 
-    <!-- Add insight / key takeaway directly related to activity / learner experience -->
+        <xi:include href="../lesson-plan-templates/example-intro.ptx" />
 
-    <!-- <insight>
-    </insight> -->
-
-    <!-- Add further instruction (not in a block) to develop ideas as needed -->
-
-    <xi:include href="../lesson-plan-templates/example-intro.ptx" />
-
-    <!-- Add at least 3 examples -->
-
-    <!-- <example>
-        <statement>
-        </statement>
-        <solution>
-        </solution>
-    </example>
-
-    <example>
-        <statement>
-        </statement>
-        <solution>
-        </solution>
-    </example>
-
-    <example>
-        <statement>
-        </statement>
-        <solution>
-        </solution>
-    </example> -->
-
-    <xi:include href="../lesson-plan-templates/assessment-intro.ptx" />
-
-    <!-- If STACK questions are included, uncomment this: -->
-
-    <!-- <xi:include href="../lesson-plan-templates/checkpoint.ptx" /> -->
-
-    <!-- Add STACK exercises if made -->
-
-    <!-- Add static exercises -->
-
-    <!-- <exercises>
-        <exercise>
-            <statement>   
-
-            </statement>   
+        <example xml:id="example-chicken-run-against-a-wall">
+            <title>A Chicken Run Against a Wall</title>
+            <statement><p>Wambui has <m>40\,\text{m}</m> of wire fencing to make a rectangular chicken run against the wall of her house in Nyeri. The wall forms one side. Find the dimensions that give the greatest area.</p></statement>
             <solution>
+                <p>Let each side that meets the wall be <m>x</m> m (<xref ref="fig-chicken-run"/>). The fence makes the other three sides, so the side opposite the wall is <m>(40 - 2x)</m> m and
+                    <md>A = x(40 - 2x) = 40x - 2x^2, \qquad 0 \lt x \lt 20</md></p>
+                <p><m>\dfrac{dA}{dx} = 40 - 4x = 0</m> when <m>x = 10</m>. <m>\dfrac{d^2A}{dx^2} = -4 \lt 0</m>, so this is a maximum.</p>
+                <p>The run is <m>10\,\text{m}</m> by <m>20\,\text{m}</m> (the <m>20\,\text{m}</m> side along the wall), with area <m>200\,\text{m}^2</m>.</p>
+                <figure xml:id="fig-chicken-run">
+                    <caption>A chicken run against a wall.</caption>
+                    <image width="55%">
+                        <shortdescription>A rectangle against a wall; the two sides meeting the wall are x m and the side opposite the wall is 40 minus 2x m.</shortdescription>
+                        <latex-image>
+\begin{tikzpicture}[scale=0.8]
+\fill[pattern=north east lines] (-0.5,3) rectangle (6.5,3.4);
+\draw[very thick] (-0.5,3) -- (6.5,3);
+\node[above] at (3,3.4) {wall};
+\draw[thick] (0,3) -- (0,0) -- (6,0) -- (6,3);
+\node[left] at (0,1.5) {$x$}; \node[right] at (6,1.5) {$x$};
+\node[below] at (3,0) {$40 - 2x$};
+\end{tikzpicture}
+                        </latex-image>
+                    </image>
+                </figure>
+            </solution>
+        </example>
 
-            </solution>             
-        </exercise>        
-    </exercises> -->
+        <example xml:id="example-best-price-for-juice">
+            <title>The Best Price for Juice</title>
+            <statement><p>Mwanajuma sells cups of sugarcane juice at her stall in Mombasa. Each cup costs her Ksh <m>20</m> to make. At a price of Ksh <m>p</m> a cup she sells <m>300 - 2p</m> cups a day. Find the price that gives the greatest daily profit.</p></statement>
+            <solution>
+                <p>The profit on each cup is <m>(p - 20)</m> shillings, so the daily profit is
+                    <md>P = (p - 20)(300 - 2p) = -2p^2 + 340p - 6000</md></p>
+                <p><m>\dfrac{dP}{dp} = -4p + 340 = 0</m> when <m>p = 85</m>, and <m>\dfrac{d^2P}{dp^2} = -4 \lt 0</m>, so this is a maximum.</p>
+                <p>At Ksh <m>85</m> a cup she sells <m>130</m> cups, and her profit is <m>65 \times 130 = 8450</m>: Ksh <m>8450</m> a day.</p>
+                <p>Notice that her takings alone, <m>p(300 - 2p)</m>, are greatest at Ksh <m>75</m>, a different price. The cost of each cup moves the best price up.</p>
+            </solution>
+        </example>
 
-    <!-- [LP] Add information on how to differentiate  -->
+        <example xml:id="example-cheapest-speed-for-a-lorry">
+            <title>The Cheapest Speed for a Lorry</title>
+            <statement><p>The running cost of a lorry on the Nairobi to Mombasa road, <m>C</m> shillings per km, at a steady speed of <m>v</m> km/h, is modelled by <m>C = 0.004v^2 - 0.64v + 70</m> for <m>40 \le v \le 100</m>. Find the cheapest speed and the cost per km at that speed.</p></statement>
+            <solution>
+                <p><m>\dfrac{dC}{dv} = 0.008v - 0.64 = 0</m> when <m>v = 80</m>, which is inside the domain. <m>\dfrac{d^2C}{dv^2} = 0.008 \gt 0</m>, so this is a minimum.</p>
+                <p><m>C = 0.004 \times 6400 - 0.64 \times 80 + 70 = 25.6 - 51.2 + 70 = 44.4</m>. The cheapest speed is <m>80\,\text{km/h}</m>, costing Ksh <m>44.40</m> per km.</p>
+            </solution>
+        </example>
 
-    <!-- <axiom component="lesson-plan">
-        <title>Differentiation</title>
+        <xi:include href="../lesson-plan-templates/assessment-intro.ptx" />
+        <xi:include href="../lesson-plan-templates/checkpoint.ptx" />
 
-        <table>
+        <p>Type whole numbers or fractions, for example <c>-3</c> or <c>5/2</c>. Type powers with <c>^</c>, for example <c>2x^3-5x+1</c>.</p>
+
+        <exercise xml:id="ex-greatest-area-of-a-pen-against-a-wall">
+            <!--<title></title>-->
+            <stack label="stk-greatest-area-of-a-pen-against-a-wall" source="stack/top/4-calculus/17-differentiation-ii/03-application-of-differentiation/Greatest-area-of-a-pen-against-a-wall.xml"/>
+        </exercise>
+
+        <exercise xml:id="ex-greatest-volume-of-an-open-box">
+            <!--<title></title>-->
+            <stack label="stk-greatest-volume-of-an-open-box" source="stack/top/4-calculus/17-differentiation-ii/03-application-of-differentiation/Greatest-volume-of-an-open-box.xml"/>
+        </exercise>
+
+        <exercise xml:id="ex-best-selling-price-for-the-greatest-profit">
+            <!--<title></title>-->
+            <stack label="stk-best-selling-price-for-the-greatest-profit" source="stack/top/4-calculus/17-differentiation-ii/03-application-of-differentiation/Best-selling-price-for-the-greatest-profit.xml"/>
+        </exercise>
+
+        <exercises xml:id="exercises-maxima-and-minima-in-context">
+            <exercise xml:id="ex-greatest-product">
+                <statement><p>Two positive numbers <m>x</m> and <m>y</m> have <m>x + y = 12</m>. Find the greatest value of <m>xy^2</m>.</p></statement>
+                <answer><p><m>256</m>, when <m>x = 4</m> and <m>y = 8</m></p></answer>
+                <solution><p><m>xy^2 = (12 - y)y^2 = 12y^2 - y^3</m>, whose derivative <m>24y - 3y^2 = 3y(8 - y)</m> is <m>0</m> at <m>y = 8</m> (the second derivative <m>24 - 6y = -24 \lt 0</m>). Then <m>x = 4</m> and <m>xy^2 = 256</m>.</p></solution>
+            </exercise>
+            <exercise xml:id="ex-goat-pen-divided">
+                <statement><p>Achieng has <m>48\,\text{m}</m> of fencing to make a rectangular goat pen divided into two equal parts by a fence parallel to one side. This uses three lengths <m>x</m> m and two lengths <m>y</m> m. Find the greatest total area.</p></statement>
+                <answer><p><m>96\,\text{m}^2</m>, with <m>x = 8</m> and <m>y = 12</m></p></answer>
+                <solution><p><m>3x + 2y = 48</m>, so <m>y = 24 - 1.5x</m> and <m>A = xy = 24x - 1.5x^2</m>. <m>\dfrac{dA}{dx} = 24 - 3x = 0</m> at <m>x = 8</m>; <m>y = 12</m>; <m>A = 96</m>.</p></solution>
+            </exercise>
+            <exercise xml:id="ex-tray-from-a-rectangle">
+                <statement><p>An open box is made from a sheet of card <m>21\,\text{cm}</m> by <m>16\,\text{cm}</m> by cutting squares of side <m>x</m> cm from the corners. Find the dimensions of the box with the greatest volume.</p></statement>
+                <answer><p><m>15\,\text{cm}</m> by <m>10\,\text{cm}</m> by <m>3\,\text{cm}</m>; volume <m>450\,\text{cm}^3</m></p></answer>
+                <solution><p><m>V = x(21 - 2x)(16 - 2x) = 4x^3 - 74x^2 + 336x</m> for <m>0 \lt x \lt 8</m>. <m>\dfrac{dV}{dx} = 12x^2 - 148x + 336 = 4(3x - 28)(x - 3)</m>, zero at <m>x = 3</m> or <m>x = \dfrac{28}{3}</m>; but <m>\dfrac{28}{3} \gt 8</m> is outside the domain. <m>\dfrac{d^2V}{dx^2} = 24x - 148 = -76</m> at <m>x = 3</m>: a maximum.</p></solution>
+            </exercise>
+            <exercise xml:id="ex-bus-fare">
+                <statement><p>A bus company charges Ksh <m>p</m> for a ticket from Nairobi to Nakuru, and carries <m>1600 - 2p</m> passengers a day. Find the fare that gives the greatest daily takings, and the takings at that fare.</p></statement>
+                <answer><p>Ksh <m>400</m>; <m>800</m> passengers; Ksh <m>320\,000</m> a day</p></answer>
+            </exercise>
+            <exercise xml:id="ex-stool-workshop-profit">
+                <statement><p>A jua kali workshop in Kamukunji makes <m>x</m> stools a week. Its weekly profit, <m>P</m> hundred shillings, is modelled by <m>P = -x^3 + 18x^2 - 60x - 40</m> for <m>0 \le x \le 12</m>. Find and classify the stationary points. How many stools give the greatest profit?</p></statement>
+                <answer><p><m>(2, -96)</m> minimum point; <m>(10, 160)</m> maximum point. <m>P(0) = -40</m> and <m>P(12) = 104</m>, so <m>10</m> stools give the greatest profit, Ksh <m>16\,000</m> a week.</p></answer>
+                <solution><p><m>\dfrac{dP}{dx} = -3x^2 + 36x - 60 = -3(x - 2)(x - 10)</m>. <m>\dfrac{d^2P}{dx^2} = -6x + 36</m> is <m>24</m> at <m>x = 2</m> and <m>-24</m> at <m>x = 10</m>.</p></solution>
+            </exercise>
+            <exercise xml:id="ex-box-side-from-the-best-cut">
+                <statement><p>The best cut for an open box made from a square sheet of side <m>s</m> cm is <m>x = 5\,\text{cm}</m>. Find <m>s</m>.</p></statement>
+                <answer><p><m>s = 30</m></p></answer>
+                <solution><p><m>V = x(s - 2x)^2</m> gives <m>\dfrac{dV}{dx} = (s - 2x)(s - 6x)</m>, so the best cut is <m>x = \dfrac{s}{6}</m>, and <m>\dfrac{s}{6} = 5</m> gives <m>s = 30</m>.</p></solution>
+            </exercise>
+            <exercise xml:id="ex-square-is-best">
+                <title>Challenge: The Square Is Best</title>
+                <statement><p>Show that of all rectangles with perimeter <m>4k</m>, the square has the greatest area.</p></statement>
+                <hint><p>If one side is <m>x</m>, the other is <m>2k - x</m>.</p></hint>
+                <answer><p><m>A = x(2k - x)</m>; <m>\dfrac{dA}{dx} = 2k - 2x = 0</m> at <m>x = k</m>, and <m>\dfrac{d^2A}{dx^2} = -2 \lt 0</m>. Both sides are then <m>k</m>: a square.</p></answer>
+            </exercise>
+        </exercises>
+
+        <axiom component="lesson-plan">
             <title>Differentiation</title>
-            <tabular halign="left">
-                <row header="yes" bottom="minor">
-                    <cell>Learner Group</cell>
-                    <cell>Strategy &amp; Learning Experience</cell>
-                    <cell></cell>
-                </row>
-                <row>
-                    <cell>Struggling Learners (Support)</cell>
-                    <cell>
-                        XXXX
-                    </cell>
-                    <cell></cell>
-                </row>
-                <row>
-                    <cell>On-Level Learners (Core)</cell>
-                    <cell>
-                        <line>The core lesson activities as described above.</line>
-                    </cell>
-                    <cell></cell>
-                </row>
-                <row>
-                    <cell>Advanced Learners (Challenge)</cell>
-                    <cell>
-                        XXXX
-                    </cell>
-                    <cell></cell>
-                </row>
-            </tabular>
-        </table>
-    </axiom> -->
+            <table xml:id="table-differentiation-maxima-and-minima-in-context">
+                <title>Differentiation Strategies</title>
+                <tabular halign="left" top="minor" bottom="minor" left="minor" right="minor">
+                    <row header="yes" bottom="medium"><cell>Learner Group</cell><cell>Strategy and Learning Experience</cell></row>
+                    <row><cell>Struggling Learners (Support)</cell><cell>Provide a model-building frame: diagram, constraint, quantity in one variable, domain. Work through the activity and the first two examples. Assign <xref ref="ex-greatest-product"/>, <xref ref="ex-goat-pen-divided"/> and <xref ref="ex-bus-fare"/>.</cell></row>
+                    <row><cell>On-Level Learners (Core)</cell><cell>Full activity and all examples. Assign <xref ref="ex-greatest-product"/> to <xref ref="ex-box-side-from-the-best-cut"/>.</cell></row>
+                    <row><cell>Advanced Learners (Challenge)</cell><cell>All exercises including <xref ref="ex-square-is-best"/>. Extension (an investigation with no single answer): a box with a lid is made from a 24 cm square by cutting squares from two corners only and folding the flap over as a lid. Is its best volume larger or smaller than <m>1024\,\text{cm}^3</m>?</cell></row>
+                </tabular>
+            </table>
+        </axiom>
 
-    <xi:include href="../lesson-plan-templates/assessment-methods.ptx" />
+        <xi:include href="../lesson-plan-templates/assessment-methods.ptx" />
+        <xi:include href="../lesson-plan-templates/reflection.ptx"/>
+    </subsection>
 
-    <xi:include href="../lesson-plan-templates/reflection.ptx"/>
+    <!-- ============================================================ Lesson 3.2 -->
+    <subsection xml:id="subsec-greatest-and-least-values">
+        <title>Greatest and Least Values on an Interval</title>
+
+        <p component="lesson-plan">Upon completion of this lesson, learners will be able to:
+            <ol>
+                <li><p><alert>Know:</alert> on a closed interval the greatest or least value may be at an end, and stationary points outside the interval do not count.</p></li>
+                <li><p><alert>Do:</alert> compare the values at the stationary points and at the ends of an interval.</p></li>
+                <li><p><alert>Apply (Extension):</alert> find the least material for a tank or a box, using negative powers.</p></li>
+            </ol>
+        </p>
+
+        <axiom component="lesson-plan">
+            <title>Problem-Solving and Discovery</title>
+            <dl>
+                <li><title>Suggested Time</title><p>14 minutes</p></li>
+                <li><title>Objective</title><p>Learners find that the highest point of a graph on an interval need not be a maximum point.</p></li>
+                <li><title>Teacher's Role</title><p>Recall part (e) of <xref ref="act-walking-the-ngong-hills-path"/>: the path was highest at its end. Ask: <q>Which values must we compare?</q> Let groups compare their lists of candidates before calculating.</p></li>
+            </dl>
+        </axiom>
+
+        <activity xml:id="act-peak-or-edge">
+            <title>Peak or Edge?</title>
+            <statement>
+                <p>Let <m>f(x) = x^3 - 12x^2 + 36x + 10</m>.</p>
+                <p>
+                    <ol marker="(a)">
+                        <li>
+                            <p>Find and classify the stationary points of <m>y = f(x)</m>.</p>
+                            <solution component="lesson-plan"><p><m>f'(x) = 3x^2 - 24x + 36 = 3(x - 2)(x - 6)</m>: <m>(2, 42)</m> maximum point, <m>(6, 10)</m> minimum point.</p></solution>
+                        </li>
+                        <li>
+                            <p>Find <m>f(1)</m> and <m>f(9)</m>.</p>
+                            <solution component="lesson-plan"><p><m>35</m> and <m>91</m>.</p></solution>
+                        </li>
+                        <li>
+                            <p>Find the greatest and least values of <m>f(x)</m> for <m>1 \le x \le 9</m>.</p>
+                            <solution component="lesson-plan"><p>Greatest <m>91</m> at <m>x = 9</m> (an end); least <m>10</m> at <m>x = 6</m>.</p></solution>
+                        </li>
+                        <li>
+                            <p>What are the greatest and least values for <m>1 \le x \le 5</m>?</p>
+                            <solution component="lesson-plan"><p><m>f(5) = 15</m>. The point at <m>x = 6</m> is now outside the interval. Greatest <m>42</m> at <m>x = 2</m>; least <m>15</m> at <m>x = 5</m>.</p></solution>
+                        </li>
+                    </ol>
+                </p>
+            </statement>
+        </activity>
+
+        <axiom component="lesson-plan">
+            <title>Structured Instruction</title>
+            <p>
+                <dl>
+                    <li><title>Suggested Time</title><p>8 minutes</p></li>
+                    <li><title>Objective</title><p>To set out the candidates for the greatest and least values on an interval.</p></li>
+                </dl>
+            </p>
+            <paragraphs>
+                <title>Key Takeaways &amp; Teacher Connection</title>
+                <ol>
+                    <li><p><alert>Connecting to Learner Work:</alert> in part (c) the greatest value is at an end; in part (d) a stationary point drops out.</p></li>
+                    <li><p>List the candidates (stationary points inside the interval, and both ends), then compare.</p></li>
+                </ol>
+            </paragraphs>
+        </axiom>
+
+        <insight xml:id="insight-greatest-and-least-values">
+            <title>Greatest and Least Values</title>
+            <p>
+                The <term>greatest value</term> of <m>f(x)</m> on an interval <m>a \le x \le b</m> is the largest value it takes there; the <term>least value</term> is the smallest. Each occurs either at a stationary point inside the interval or at one of the ends, <m>x = a</m> or <m>x = b</m>. So work out <m>f</m> at each of these candidates and compare. Stationary points outside the interval are ignored.
+            </p>
+            <p>
+                The best value of a quantity is at a stationary point or at an end of its domain.
+            </p>
+        </insight>
+
+        <xi:include href="../lesson-plan-templates/example-intro.ptx" />
+
+        <example xml:id="example-checking-the-ends">
+            <title>Checking the Ends</title>
+            <statement><p>Find the greatest and least values of <m>f(x) = 2x^3 - 3x^2 - 12x + 5</m> for <m>-2 \le x \le 4</m>.</p></statement>
+            <solution>
+                <p><m>f'(x) = 6x^2 - 6x - 12 = 6(x + 1)(x - 2)</m>, so the stationary points are at <m>x = -1</m> and <m>x = 2</m>, both inside the interval.</p>
+                <table xml:id="table-candidates-checking-the-ends">
+                    <title>Candidates for the Greatest and Least Values</title>
+                    <tabular halign="center" top="minor" bottom="minor" left="minor" right="minor">
+                        <row header="yes" bottom="medium"><cell><m>x</m></cell><cell><m>-2</m> (end)</cell><cell><m>-1</m> (maximum point)</cell><cell><m>2</m> (minimum point)</cell><cell><m>4</m> (end)</cell></row>
+                        <row><cell><m>f(x)</m></cell><cell><m>1</m></cell><cell><m>12</m></cell><cell><m>-15</m></cell><cell><m>37</m></cell></row>
+                    </tabular>
+                </table>
+                <p>The greatest value is <m>37</m>, at the end <m>x = 4</m>. The least value is <m>-15</m>, at the minimum point <m>x = 2</m>.</p>
+                <figure xml:id="fig-greatest-least-on-interval">
+                    <caption><m>y = 2x^3 - 3x^2 - 12x + 5</m> for <m>-2 \le x \le 4</m>.</caption>
+                    <image width="80%">
+                        <shortdescription>Endpoints (-2, 1) and (4, 37), maximum point (-1, 12), minimum point (2, -15); the greatest value is at the right end.</shortdescription>
+                        <description><p>Graph on a grid, x from -2 to 4, y from -20 to 40. The curve starts at (-2, 1), rises to the maximum point (-1, 12), falls to the minimum point (2, -15) and rises steeply to (4, 37). All four points are marked.</p></description>
+                        <latex-image>
+\begin{tikzpicture}
+\begin{axis}[clip=false, width=11cm, height=8cm, axis lines=middle, xmin=-2.5, xmax=4.5, ymin=-20, ymax=42, xtick={-2,...,4}, ytick={-20,-10,...,40}, grid=both, major grid style={gray!40}, xlabel={$x$}, ylabel={$y$}]
+\addplot[thick, domain=-2:4, samples=100] {2*x^3-3*x^2-12*x+5};
+\addplot[only marks, mark=*] coordinates {(-2,1) (-1,12) (2,-15) (4,37)};
+\node[anchor=east] at (axis cs:-2.05,3) {$(-2, 1)$};
+\node[anchor=south] at (axis cs:-1,13) {$(-1, 12)$};
+\node[anchor=north] at (axis cs:2,-16) {$(2, -15)$};
+\node[anchor=east] at (axis cs:3.9,37) {$(4, 37)$};
+\end{axis}
+\end{tikzpicture}
+                        </latex-image>
+                    </image>
+                </figure>
+            </solution>
+        </example>
+
+        <example xml:id="example-least-metal-for-a-water-tank">
+            <title>The Least Metal for a Water Tank (Extension)</title>
+            <statement><p>A closed cylindrical water tank for a school in Kitui must hold <m>16\pi\,\text{m}^3</m>. Find the radius and height that use the least metal.</p></statement>
+            <solution>
+                <p>Let the radius be <m>r</m> m and the height <m>h</m> m (<xref ref="fig-cylinder-tank"/>). The volume gives the constraint <m>\pi r^2 h = 16\pi</m>, so <m>h = \dfrac{16}{r^2}</m>.</p>
+                <p>The metal is the surface area: two circles and the curved side.
+                    <md>A = 2\pi r^2 + 2\pi r h = 2\pi r^2 + \frac{32\pi}{r} = 2\pi r^2 + 32\pi r^{-1}, \qquad r \gt 0</md></p>
+                <p>Using the Grade 11 power rule for negative powers, <m>\dfrac{dA}{dr} = 4\pi r - 32\pi r^{-2} = 4\pi r - \dfrac{32\pi}{r^2}</m>. This is <m>0</m> when <m>r^3 = 8</m>, so <m>r = 2</m> and <m>h = \dfrac{16}{4} = 4</m>.</p>
+                <p><m>\dfrac{d^2A}{dr^2} = 4\pi + \dfrac{64\pi}{r^3} \gt 0</m>, so this is a minimum. The tank should have radius <m>2\,\text{m}</m> and height <m>4\,\text{m}</m>, using <m>8\pi + 16\pi = 24\pi \approx 75.4\,\text{m}^2</m> of metal.</p>
+                <figure xml:id="fig-cylinder-tank">
+                    <caption>A closed cylindrical tank of radius <m>r</m> and height <m>h</m>.</caption>
+                    <image width="35%">
+                        <shortdescription>A closed cylinder with radius r and height h labelled.</shortdescription>
+                        <latex-image>
+\begin{tikzpicture}
+\draw[thick] (0,0) ellipse (1.2 and 0.35);
+\draw[thick] (-1.2,0) -- (-1.2,-2.6);
+\draw[thick] (1.2,0) -- (1.2,-2.6);
+\draw[thick] (-1.2,-2.6) arc (180:360:1.2 and 0.35);
+\draw[dashed] (-1.2,-2.6) arc (180:0:1.2 and 0.35);
+\draw (0,0) -- (1.2,0) node[midway, above] {$r$};
+\draw[&lt;-&gt;] (1.6,0) -- (1.6,-2.6) node[midway, right] {$h$};
+\end{tikzpicture}
+                        </latex-image>
+                    </image>
+                </figure>
+            </solution>
+        </example>
+
+        <example xml:id="example-workshop-at-full-capacity">
+            <title>A Workshop at Full Capacity</title>
+            <statement><p>The Kamukunji workshop of <xref ref="ex-stool-workshop-profit"/> can make at most <m>8</m> stools a week, so its profit <m>P = -x^3 + 18x^2 - 60x - 40</m> (hundred shillings) applies for <m>0 \le x \le 8</m>. How many stools give the greatest profit?</p></statement>
+            <solution>
+                <p><m>\dfrac{dP}{dx} = -3(x - 2)(x - 10)</m>. The stationary point at <m>x = 2</m> is inside the interval (<m>P = -96</m>, a minimum point); the one at <m>x = 10</m> is outside it and is ignored.</p>
+                <p>The candidates are <m>P(0) = -40</m>, <m>P(2) = -96</m> and <m>P(8) = -512 + 1152 - 480 - 40 = 120</m>. The greatest profit is <m>120</m> hundred shillings, Ksh <m>12\,000</m> a week, at <m>x = 8</m>: at full capacity, an end of the interval.</p>
+            </solution>
+        </example>
+
+        <xi:include href="../lesson-plan-templates/assessment-intro.ptx" />
+        <xi:include href="../lesson-plan-templates/checkpoint.ptx" />
+
+        <p>Type whole numbers or fractions, for example <c>-3</c> or <c>5/2</c>. Choose the step from the list.</p>
+
+        <exercise xml:id="ex-greatest-and-least-values-on-an-interval">
+            <!--<title></title>-->
+            <stack label="stk-greatest-and-least-values-on-an-interval" source="stack/top/4-calculus/17-differentiation-ii/03-application-of-differentiation/Greatest-and-least-values-on-an-interval.xml"/>
+        </exercise>
+
+        <exercise xml:id="ex-finding-the-mistake-in-a-maximum-volume-calculation">
+            <!--<title></title>-->
+            <stack label="stk-finding-the-mistake-in-a-maximum-volume-calculation" source="stack/top/4-calculus/17-differentiation-ii/03-application-of-differentiation/Finding-the-mistake-in-a-maximum-volume-calculation.xml"/>
+        </exercise>
+
+        <exercises xml:id="exercises-greatest-and-least-values">
+            <exercise xml:id="ex-greatest-least-cubic">
+                <statement><p>Find the greatest and least values of <m>f(x) = x^3 - 6x^2 - 15x + 4</m> for <m>-2 \le x \le 9</m>.</p></statement>
+                <answer><p>Greatest <m>112</m> (at <m>x = 9</m>); least <m>-96</m> (at <m>x = 5</m>)</p></answer>
+                <solution><p>Stationary points at <m>x = -1</m> and <m>x = 5</m>. The candidates <m>f(-2), f(-1), f(5), f(9)</m> are <m>2, 12, -96, 112</m>.</p></solution>
+            </exercise>
+            <exercise xml:id="ex-greatest-least-twelve-x">
+                <statement><p>Find the greatest and least values of <m>f(x) = 12x - x^3</m> for <m>0 \le x \le 3</m>.</p></statement>
+                <answer><p>Greatest <m>16</m> (at <m>x = 2</m>); least <m>0</m> (at <m>x = 0</m>)</p></answer>
+                <solution><p>The stationary point at <m>x = -2</m> is outside the interval. <m>f(0) = 0</m>, <m>f(2) = 16</m>, <m>f(3) = 9</m>.</p></solution>
+            </exercise>
+            <exercise xml:id="ex-least-card-for-a-box">
+                <title>Extension: The Least Card for a Box</title>
+                <statement><p>An open box with a square base must hold <m>500\,\text{cm}^3</m>. Find the dimensions that use the least card, and the area of card used.</p></statement>
+                <answer><p>Base <m>10\,\text{cm}</m> by <m>10\,\text{cm}</m>, height <m>5\,\text{cm}</m>; <m>300\,\text{cm}^2</m></p></answer>
+                <solution><p>With base <m>x</m> cm and height <m>h</m> cm, <m>x^2 h = 500</m>, so <m>A = x^2 + 4xh = x^2 + \dfrac{2000}{x}</m>. <m>\dfrac{dA}{dx} = 2x - \dfrac{2000}{x^2} = 0</m> gives <m>x^3 = 1000</m>, <m>x = 10</m>, <m>h = 5</m>, and <m>\dfrac{d^2A}{dx^2} = 2 + \dfrac{4000}{x^3} \gt 0</m>.</p></solution>
+            </exercise>
+            <exercise xml:id="ex-milk-bucket">
+                <title>Extension: A Milk Bucket</title>
+                <statement><p>An open cylindrical milk bucket must hold <m>1000\pi\,\text{cm}^3</m>. Find the radius and height that use the least metal.</p></statement>
+                <answer><p><m>r = 10\,\text{cm}</m>, <m>h = 10\,\text{cm}</m>; <m>300\pi \approx 942.5\,\text{cm}^2</m> of metal</p></answer>
+                <solution><p><m>\pi r^2 h = 1000\pi</m> gives <m>h = \dfrac{1000}{r^2}</m>, so <m>A = \pi r^2 + 2\pi r h = \pi r^2 + \dfrac{2000\pi}{r}</m>. <m>\dfrac{dA}{dr} = 2\pi r - \dfrac{2000\pi}{r^2} = 0</m> at <m>r^3 = 1000</m>.</p></solution>
+            </exercise>
+            <exercise xml:id="ex-medicine-concentration">
+                <statement><p>The concentration of a medicine in a patient's blood, <m>C</m> mg per litre, <m>t</m> hours after a dose, is modelled by <m>C = 6t^2 - t^3</m>. Find the greatest concentration (a) in the first <m>6</m> hours; (b) in the first <m>3</m> hours.</p></statement>
+                <answer><p>(a) <m>32</m> mg/L at <m>t = 4</m>; (b) <m>27</m> mg/L at <m>t = 3</m>, an end of the interval</p></answer>
+            </exercise>
+            <exercise xml:id="ex-find-k-least-value">
+                <statement><p>The least value of <m>f(x) = x^3 - 12x + k</m> on <m>0 \le x \le 3</m> is <m>3</m>. Find <m>k</m>.</p></statement>
+                <answer><p><m>k = 19</m></p></answer>
+                <solution><p>The candidates are <m>f(0) = k</m>, <m>f(2) = k - 16</m> and <m>f(3) = k - 9</m>. The least is <m>k - 16 = 3</m>, so <m>k = 19</m>.</p></solution>
+            </exercise>
+            <exercise xml:id="ex-closed-cylinder-h-equals-2r">
+                <title>Challenge (Extension): Height Equals Diameter</title>
+                <statement><p>Show that a closed cylinder of fixed volume <m>V</m> uses the least metal when <m>h = 2r</m>.</p></statement>
+                <hint><p>Write the surface area in terms of <m>r</m> only.</p></hint>
+                <answer><p><m>A = 2\pi r^2 + \dfrac{2V}{r}</m>; <m>\dfrac{dA}{dr} = 4\pi r - \dfrac{2V}{r^2} = 0</m> gives <m>V = 2\pi r^3</m>, so <m>h = \dfrac{V}{\pi r^2} = 2r</m>.</p></answer>
+            </exercise>
+        </exercises>
+
+        <axiom component="lesson-plan">
+            <title>Differentiation</title>
+            <table xml:id="table-differentiation-greatest-and-least-values">
+                <title>Differentiation Strategies</title>
+                <tabular halign="left" top="minor" bottom="minor" left="minor" right="minor">
+                    <row header="yes" bottom="medium"><cell>Learner Group</cell><cell>Strategy and Learning Experience</cell></row>
+                    <row><cell>Struggling Learners (Support)</cell><cell>Provide a candidates table (<m>x</m>, <m>f(x)</m>, stationary point or end). Work through the activity and <xref ref="example-checking-the-ends"/>. Assign <xref ref="ex-greatest-least-cubic"/> and <xref ref="ex-greatest-least-twelve-x"/>. Leave out the Extension items.</cell></row>
+                    <row><cell>On-Level Learners (Core)</cell><cell>Full activity and all examples. Assign <xref ref="ex-greatest-least-cubic"/> to <xref ref="ex-find-k-least-value"/>.</cell></row>
+                    <row><cell>Advanced Learners (Challenge)</cell><cell>All exercises including <xref ref="ex-closed-cylinder-h-equals-2r"/>. Extension: does the open bucket of <xref ref="ex-milk-bucket"/> have <m>h = r</m> for every volume? (Answer: yes. <m>A = \pi r^2 + \dfrac{2V}{r}</m> is least when <m>V = \pi r^3</m>, so <m>h = \dfrac{V}{\pi r^2} = r</m>.)</cell></row>
+                </tabular>
+            </table>
+        </axiom>
+
+        <xi:include href="../lesson-plan-templates/assessment-methods.ptx" />
+        <xi:include href="../lesson-plan-templates/reflection.ptx"/>
+    </subsection>
+
+    <!-- ============================================================ Lesson 3.3 -->
+    <subsection xml:id="subsec-kinematics-distance-and-greatest-velocity">
+        <title>Kinematics: Distance, Speed and Greatest Velocity</title>
+
+        <p component="lesson-plan">Upon completion of this lesson, learners will be able to:
+            <ol>
+                <li><p><alert>Know:</alert> the difference between displacement and distance travelled; speed; when the velocity is greatest; when a particle is speeding up or slowing down.</p></li>
+                <li><p><alert>Do:</alert> find the times a particle is at rest, its positions then, the distance travelled and the greatest velocity.</p></li>
+                <li><p><alert>Apply:</alert> describe a motion in words.</p></li>
+            </ol>
+        </p>
+
+        <axiom component="lesson-plan">
+            <title>Problem-Solving and Discovery</title>
+            <dl>
+                <li><title>Suggested Time</title><p>14 minutes</p></li>
+                <li><title>Objective</title><p>Learners find that the distance a drone flies is not the same as its final displacement.</p></li>
+                <li><title>Teacher's Role</title><p>Act out the motion: one learner walks along a tape line on the floor, east positive, following the table in part (a). Before calculating part (d), groups argue whether the answer is <m>36\,\text{m}</m> or <m>44\,\text{m}</m> and listen to each other's reasons (critical thinking).</p></li>
+            </dl>
+        </axiom>
+
+        <activity xml:id="act-drone-over-the-tea">
+            <title>A Drone over the Tea</title>
+            <statement>
+                <p>A drone sprays a row of tea bushes on an estate in Kericho. It flies along the row, and its displacement east of a post, <m>s</m> m, <m>t</m> seconds after it passes the post, is <m>s = \frac{1}{8}t^3 - \frac{9}{4}t^2 + 12t</m> for <m>0 \le t \le 12</m>.</p>
+                <p>
+                    <ol marker="(a)">
+                        <li>
+                            <p>Find the velocity <m>v = \dfrac{ds}{dt}</m>, and complete a table of <m>s</m> and <m>v</m> for <m>t = 0, 2, 4, \ldots, 12</m>.</p>
+                            <solution component="lesson-plan"><p><m>v = \frac{3}{8}t^2 - \frac{9}{2}t + 12</m>. <m>s = 0, 16, 20, 18, 16, 20, 36</m>; <m>v = 12, 4.5, 0, -1.5, 0, 4.5, 12</m>.</p></solution>
+                        </li>
+                        <li>
+                            <p>When is the drone instantaneously at rest?</p>
+                            <solution component="lesson-plan"><p><m>v = \frac{3}{8}(t - 4)(t - 8) = 0</m> at <m>t = 4</m> and <m>t = 8</m>.</p></solution>
+                        </li>
+                        <li>
+                            <p>Where is the drone at <m>t = 12</m>?</p>
+                            <solution component="lesson-plan"><p><m>36\,\text{m}</m> east of the post.</p></solution>
+                        </li>
+                        <li>
+                            <p>How far has it flown in the <m>12</m> seconds?</p>
+                            <solution component="lesson-plan"><p>East <m>20\,\text{m}</m> (to <m>s = 20</m>), back west <m>4\,\text{m}</m> (to <m>s = 16</m>), then east <m>20\,\text{m}</m> (to <m>s = 36</m>): <m>20 + 4 + 20 = 44\,\text{m}</m>.</p></solution>
+                        </li>
+                        <li>
+                            <p>Find the acceleration <m>a = \dfrac{dv}{dt}</m>. When is <m>a = 0</m>, and what is <m>v</m> then?</p>
+                            <solution component="lesson-plan"><p><m>a = \frac{3}{4}t - \frac{9}{2} = 0</m> at <m>t = 6</m>, where <m>v = -1.5</m>: the drone is flying west at its fastest, with speed <m>1.5\,\text{m/s}</m>. (The acceleration stays between <m>-4.5</m> and <m>4.5\,\text{m/s}^2</m>.)</p></solution>
+                        </li>
+                    </ol>
+                </p>
+            </statement>
+        </activity>
+
+        <axiom component="lesson-plan">
+            <title>Structured Instruction</title>
+            <p>
+                <dl>
+                    <li><title>Suggested Time</title><p>8 minutes</p></li>
+                    <li><title>Objective</title><p>To define displacement, distance travelled and speed, and to set out the rules for distance, greatest velocity and speeding up.</p></li>
+                </dl>
+            </p>
+            <paragraphs>
+                <title>Key Takeaways &amp; Teacher Connection</title>
+                <ol>
+                    <li><p><alert>Connecting to Learner Work:</alert> part (d) splits the motion into stages between the rest times.</p></li>
+                    <li><p>Speed is the size of the velocity, <m>|v|</m>.</p></li>
+                    <li><p>The greatest or least velocity is where <m>a = 0</m>, or at an end of the time interval.</p></li>
+                    <li><p>When <m>v</m> and <m>a</m> have the same sign the particle speeds up.</p></li>
+                </ol>
+            </paragraphs>
+        </axiom>
+
+        <insight xml:id="insight-displacement-distance-speed">
+            <title>Displacement, Distance and Speed</title>
+            <p>
+                As in Grade 11, a particle moves along a straight line; <m>s</m> metres is its <term>displacement</term> from a fixed point <m>O</m> at time <m>t</m> seconds (<m>t \ge 0</m>), <m>v = \dfrac{ds}{dt}</m> is its velocity in <m>\text{m/s}</m> and <m>a = \dfrac{dv}{dt} = \dfrac{d^2s}{dt^2}</m> its acceleration in <m>\text{m/s}^2</m>. When <m>v = 0</m> the particle is <term>instantaneously at rest</term>; it may change direction there.
+            </p>
+            <p>
+                Displacement is where you are; <term>distance travelled</term> is how far you went. To find the distance travelled, split the motion at the times when the particle is at rest, and add the distances moved in each stage:
+                <md>\text{distance} = |s(t_1) - s(0)| + |s(t_2) - s(t_1)| + \cdots</md>
+            </p>
+            <p>
+                The <term>speed</term> is the size of the velocity, <m>|v|</m>. The velocity is greatest or least where <m>a = \dfrac{dv}{dt} = 0</m>, or at an end of the time interval. The particle is <term>speeding up</term> when <m>v</m> and <m>a</m> have the same sign (pulling the same way), and <term>slowing down</term> when their signs differ.
+            </p>
+        </insight>
+
+        <warning xml:id="warning-displacement-not-distance">
+            <title>Displacement Is Not Distance</title>
+            <p>
+                After <m>12</m> seconds the drone is <m>36\,\text{m}</m> from the post, but it has flown <m>44\,\text{m}</m>, because it turned back between <m>t = 4</m> and <m>t = 8</m>. Whenever a particle is at rest during the motion, check whether it changes direction there before you find the distance.
+            </p>
+        </warning>
+
+        <figure xml:id="fig-drone-s-and-v">
+            <caption>The drone's displacement (top) and velocity (bottom) against time.</caption>
+            <image width="80%">
+                <shortdescription>Displacement rises to 20 m at t = 4, falls to 16 m at t = 8, rises to 36 m at t = 12. Velocity is 0 at t = 4 and t = 8 and least, -1.5 m/s, at t = 6.</shortdescription>
+                <description><p>Two graphs on the same time axis from 0 to 12 seconds, with dashed vertical lines at t = 4 and t = 8. Top: s against t through (0, 0), (4, 20), (8, 16), (12, 36), with the points (4, 20), (8, 16) and (12, 36) marked. Bottom: v against t, a U-shaped curve from 12 at t = 0 down to its least value -1.5 at t = 6 and back to 12 at t = 12, crossing zero at t = 4 and t = 8.</p></description>
+                <latex-image>
+\begin{tikzpicture}
+\begin{axis}[clip=false, name=top, width=11cm, height=5.5cm, xmin=0, xmax=12.6, ymin=0, ymax=40, xtick={0,2,...,12}, ytick={0,10,...,40}, grid=both, major grid style={gray!40}, ylabel={$s$ (m)}, xticklabels={}]
+\addplot[thick, domain=0:12, samples=100] {(x^3-18*x^2+96*x)/8};
+\addplot[only marks, mark=*] coordinates {(4,20) (8,16) (12,36)};
+\addplot[dashed] coordinates {(4,0) (4,40)}; \addplot[dashed] coordinates {(8,0) (8,40)};
+\node[anchor=south] at (axis cs:4,20.5) {$(4, 20)$};
+\node[anchor=north] at (axis cs:8,15.5) {$(8, 16)$};
+\node[anchor=east] at (axis cs:11.9,36) {$(12, 36)$};
+\end{axis}
+\begin{axis}[clip=false, at={(top.south)}, anchor=north, yshift=-0.4cm, width=11cm, height=5.5cm, xmin=0, xmax=12.6, ymin=-3, ymax=13, xtick={0,2,...,12}, ytick={-2,0,...,12}, grid=both, major grid style={gray!40}, xlabel={$t$ (s)}, ylabel={$v$ (m/s)}]
+\addplot[thick, domain=0:12, samples=100] {(3*x^2-36*x+96)/8};
+\addplot[only marks, mark=*] coordinates {(6,-1.5)};
+\addplot[dashed] coordinates {(4,-3) (4,13)}; \addplot[dashed] coordinates {(8,-3) (8,13)};
+\node[anchor=south] at (axis cs:6,-1.3) {$(6, -1.5)$};
+\end{axis}
+\end{tikzpicture}
+                </latex-image>
+            </image>
+        </figure>
+
+        <xi:include href="../lesson-plan-templates/example-intro.ptx" />
+
+        <example xml:id="example-distance-travelled">
+            <title>Distance Travelled</title>
+            <statement><p>A particle moves so that <m>s = t^3 - 12t^2 + 36t</m> metres after <m>t</m> seconds. Find its displacement at <m>t = 8</m> and the distance it travels in the first <m>8</m> seconds.</p></statement>
+            <solution>
+                <p><m>v = 3t^2 - 24t + 36 = 3(t - 2)(t - 6)</m>, so the particle is at rest at <m>t = 2</m> and <m>t = 6</m>.</p>
+                <p><m>s(0) = 0</m>, <m>s(2) = 8 - 48 + 72 = 32</m>, <m>s(6) = 216 - 432 + 216 = 0</m>, <m>s(8) = 512 - 768 + 288 = 32</m>.</p>
+                <p>The displacement at <m>t = 8</m> is <m>32\,\text{m}</m>. The distance is <m>|32 - 0| + |0 - 32| + |32 - 0| = 32 + 32 + 32 = 96\,\text{m}</m>.</p>
+            </solution>
+        </example>
+
+        <example xml:id="example-sprinters-greatest-velocity">
+            <title>A Sprinter's Greatest Velocity</title>
+            <statement><p>During the first <m>10</m> seconds of a race at Kasarani, a sprinter's velocity is modelled by <m>v = 2.4t - 0.12t^2\,\text{m/s}</m>. Find the sprinter's greatest velocity, and the acceleration at the start.</p></statement>
+            <solution>
+                <p><m>a = \dfrac{dv}{dt} = 2.4 - 0.24t</m>, which is <m>0</m> at <m>t = 10</m>. Before that <m>a \gt 0</m>, so <m>v</m> increases up to <m>t = 10</m>: <m>v(10) = 24 - 12 = 12\,\text{m/s}</m> is the greatest velocity.</p>
+                <p>At the start, <m>a(0) = 2.4\,\text{m/s}^2</m>.</p>
+            </solution>
+        </example>
+
+        <example xml:id="example-speeding-up-or-slowing-down">
+            <title>Speeding Up or Slowing Down?</title>
+            <statement><p>A particle moves so that <m>s = 2t^3 - 15t^2 + 24t</m> metres after <m>t</m> seconds. Describe its motion at <m>t = 2</m>, <m>t = 3</m> and <m>t = 5</m>.</p></statement>
+            <solution>
+                <p><m>v = 6t^2 - 30t + 24 = 6(t - 1)(t - 4)</m> and <m>a = 12t - 30</m>.</p>
+                <p>At <m>t = 2</m>: <m>v = -12</m>, <m>a = -6</m>. Same signs: the particle is moving in the negative direction and speeding up.</p>
+                <p>At <m>t = 3</m>: <m>v = -12</m>, <m>a = 6</m>. Opposite signs: moving in the negative direction and slowing down.</p>
+                <p>At <m>t = 5</m>: <m>v = 24</m>, <m>a = 30</m>. Same signs: moving in the positive direction and speeding up.</p>
+            </solution>
+        </example>
+
+        <paragraphs xml:id="para-where-differentiation-is-used">
+            <title>Where Differentiation Is Used</title>
+            <p>
+                Every example in this chapter is a real kind of decision. Engineers find the least material for a part, as for the water tank in <xref ref="example-least-metal-for-a-water-tank"/>. Traders choose the price that gives the greatest profit. Doctors plan doses so that the concentration of a medicine reaches its greatest value safely. Coaches study when an athlete reaches top speed. In each case the answer comes from where a derivative is zero.
+            </p>
+            <p>
+                Think of one decision in your home or community that could be improved by finding a greatest or least value. What quantity would you differentiate?
+            </p>
+            <p>
+                In the next chapter you will reverse this: from velocity back to displacement.
+            </p>
+        </paragraphs>
+
+        <axiom component="lesson-plan">
+            <title>Curriculum Links</title>
+            <dl>
+                <li><title>Key Inquiry Question</title><p>How can differentiation help us find the best possible value of a quantity, and describe how things move? Revisit it in the reflection.</p></li>
+                <li><title>Core Competencies</title><p>Critical thinking, in deciding between displacement and distance in the drone activity, and in the find-the-mistake questions; self-efficacy, in predicting, building and testing the best box.</p></li>
+                <li><title>Values</title><p>Respect, in listening to other groups' predictions and reasons before judging them.</p></li>
+                <li><title>Pertinent and Contemporary Issues</title><p>Online safety, in using approved graphing apps without sharing personal details or location.</p></li>
+                <li><title>Learning Outcome</title><p>This lesson carries the outcome on appreciating the use of differentiation in real life.</p></li>
+            </dl>
+        </axiom>
+
+        <xi:include href="../lesson-plan-templates/assessment-intro.ptx" />
+        <xi:include href="../lesson-plan-templates/checkpoint.ptx" />
+
+        <p>Type whole numbers or fractions, for example <c>-3</c> or <c>5/2</c>. For each time, choose the description from the list.</p>
+
+        <exercise xml:id="ex-displacement-and-distance-travelled-by-a-particle">
+            <!--<title></title>-->
+            <stack label="stk-displacement-and-distance-travelled-by-a-particle" source="stack/top/4-calculus/17-differentiation-ii/03-application-of-differentiation/Displacement-and-distance-travelled-by-a-particle.xml"/>
+        </exercise>
+
+        <exercise xml:id="ex-greatest-velocity-of-a-particle">
+            <!--<title></title>-->
+            <stack label="stk-greatest-velocity-of-a-particle" source="stack/top/4-calculus/17-differentiation-ii/03-application-of-differentiation/Greatest-velocity-of-a-particle.xml"/>
+        </exercise>
+
+        <exercise xml:id="ex-speeding-up-or-slowing-down">
+            <!--<title></title>-->
+            <stack label="stk-speeding-up-or-slowing-down" source="stack/top/4-calculus/17-differentiation-ii/03-application-of-differentiation/Speeding-up-or-slowing-down.xml"/>
+        </exercise>
+
+        <exercises xml:id="exercises-kinematics-distance-greatest-velocity">
+            <exercise xml:id="ex-rest-times-and-positions">
+                <statement><p>A particle moves so that <m>s = t^3 - 9t^2 + 15t</m> metres after <m>t</m> seconds. When is it at rest? Find its displacement and acceleration at those times.</p></statement>
+                <answer><p><m>t = 1</m>: <m>s = 7\,\text{m}</m>, <m>a = -12\,\text{m/s}^2</m>. <m>t = 5</m>: <m>s = -25\,\text{m}</m>, <m>a = 12\,\text{m/s}^2</m>.</p></answer>
+            </exercise>
+            <exercise xml:id="ex-distance-in-six-seconds">
+                <statement><p>For the particle in <xref ref="ex-rest-times-and-positions"/>, find the displacement at <m>t = 6</m> and the distance travelled in the first <m>6</m> seconds.</p></statement>
+                <answer><p><m>-18\,\text{m}</m>; <m>7 + 32 + 7 = 46\,\text{m}</m></p></answer>
+            </exercise>
+            <exercise xml:id="ex-cyclist-greatest-velocity">
+                <statement><p>A cyclist on the Eldoret to Iten road has velocity <m>v = 0.6t - 0.015t^2\,\text{m/s}</m> for <m>0 \le t \le 40</m>. Find the greatest velocity.</p></statement>
+                <answer><p><m>6\,\text{m/s}</m>, at <m>t = 20</m></p></answer>
+            </exercise>
+            <exercise xml:id="ex-speeding-or-slowing">
+                <statement><p>A particle moves so that <m>s = t^3 - 6t^2 + 5</m> metres after <m>t</m> seconds. Is it speeding up or slowing down at <m>t = 1</m>, <m>t = 3</m> and <m>t = 5</m>?</p></statement>
+                <answer><p><m>t = 1</m>: <m>v = -9</m>, <m>a = -6</m>, speeding up. <m>t = 3</m>: <m>v = -9</m>, <m>a = 6</m>, slowing down. <m>t = 5</m>: <m>v = 15</m>, <m>a = 18</m>, speeding up.</p></answer>
+            </exercise>
+            <exercise xml:id="ex-stone-from-a-building">
+                <statement><p>A stone is thrown upwards from the top of a <m>25\,\text{m}</m> building in Nairobi. Its height above the ground after <m>t</m> seconds is <m>s = 25 + 20t - 5t^2</m> metres (using <m>g = 10\,\text{m/s}^2</m>). Find its greatest height, when it reaches the ground and its speed then, and the total distance it travels.</p></statement>
+                <answer><p>Greatest height <m>45\,\text{m}</m> at <m>t = 2</m>; it reaches the ground at <m>t = 5</m> with speed <m>30\,\text{m/s}</m>; total distance <m>20 + 45 = 65\,\text{m}</m>.</p></answer>
+                <solution><p><m>v = 20 - 10t = 0</m> at <m>t = 2</m>, <m>s(2) = 45</m>. <m>s = 0</m>: <m>5t^2 - 20t - 25 = 5(t - 5)(t + 1) = 0</m>, so <m>t = 5</m>, and <m>v(5) = -30</m>. It rises <m>20\,\text{m}</m> and then falls <m>45\,\text{m}</m>.</p></solution>
+            </exercise>
+            <exercise xml:id="ex-find-p-and-q-rest-times">
+                <statement><p>A particle moves so that <m>s = t^3 + pt^2 + qt</m> metres after <m>t</m> seconds. It is at rest at <m>t = 1</m> and <m>t = 7</m>. Find <m>p</m> and <m>q</m>, and the acceleration at <m>t = 4</m>.</p></statement>
+                <answer><p><m>p = -12</m>, <m>q = 21</m>; <m>a(4) = 0</m></p></answer>
+                <solution><p><m>v = 3t^2 + 2pt + q</m> must be <m>3(t - 1)(t - 7) = 3t^2 - 24t + 21</m>. Then <m>a = 6t - 24</m>, which is <m>0</m> at <m>t = 4</m>.</p></solution>
+            </exercise>
+            <exercise xml:id="ex-at-rest-once-never-turns">
+                <title>Challenge: At Rest but Never Turning</title>
+                <statement><p>Show that a particle with <m>s = t^3 - 3t^2 + 3t</m> is at rest once but never changes direction.</p></statement>
+                <hint><p>Factorise <m>v</m>.</p></hint>
+                <answer><p><m>v = 3t^2 - 6t + 3 = 3(t - 1)^2</m>. It is <m>0</m> only at <m>t = 1</m>, and never negative, so the particle always moves in the positive direction.</p></answer>
+            </exercise>
+        </exercises>
+
+        <axiom component="lesson-plan">
+            <title>Differentiation</title>
+            <table xml:id="table-differentiation-kinematics-distance-greatest-velocity">
+                <title>Differentiation Strategies</title>
+                <tabular halign="left" top="minor" bottom="minor" left="minor" right="minor">
+                    <row header="yes" bottom="medium"><cell>Learner Group</cell><cell>Strategy and Learning Experience</cell></row>
+                    <row><cell>Struggling Learners (Support)</cell><cell>Provide a three-column card (<m>s</m>, <m>v = \dfrac{ds}{dt}</m>, <m>a = \dfrac{dv}{dt}</m>) and a stage table for distance. Work through the activity, <xref ref="example-distance-travelled"/> and <xref ref="example-speeding-up-or-slowing-down"/>. Assign <xref ref="ex-rest-times-and-positions"/>, <xref ref="ex-distance-in-six-seconds"/> and <xref ref="ex-speeding-or-slowing"/>.</cell></row>
+                    <row><cell>On-Level Learners (Core)</cell><cell>Full activity and all examples. Assign <xref ref="ex-rest-times-and-positions"/> to <xref ref="ex-find-p-and-q-rest-times"/>.</cell></row>
+                    <row><cell>Advanced Learners (Challenge)</cell><cell>All exercises including <xref ref="ex-at-rest-once-never-turns"/>. Extension: find a motion <m>s = t^3 + bt^2 + ct</m> that is at rest at <m>t = 2</m> and <m>t = 5</m>. What is its least velocity? (Answer: <m>b = -\dfrac{21}{2}</m>, <m>c = 30</m>; least velocity <m>-6.75\,\text{m/s}</m> at <m>t = 3.5</m>.)</cell></row>
+                </tabular>
+            </table>
+        </axiom>
+
+        <xi:include href="../lesson-plan-templates/assessment-methods.ptx" />
+        <xi:include href="../lesson-plan-templates/reflection.ptx"/>
+    </subsection>
 </section>

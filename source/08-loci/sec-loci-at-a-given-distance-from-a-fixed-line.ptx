@@ -46,161 +46,311 @@
          Suggested activity: Learners mark the path of a learner walking 2 m from a straight wall or edge of a football pitch.
          Interactive (JSXGraph): Draggable line and slider for distance; the two parallel lines forming the locus are drawn. -->
 
-    <!-- [LP] Add guidance on activity -->
+    <!-- Section notes (2026-11)
+         SLOs: Core 2.3 (d)
+         Activity: as planning notes (2 m from the touchline of a football pitch) | added: the semicircle ends of a segment, the area of the strip, a wall
+         JSXGraph: fig-parallel-lines-locus (assets/jsxgraph/parallel-lines-locus.js), as planning notes, with a free point showing its perpendicular distance and a segment-only option
+         STACK: assets/stack/top/2-measurement-and-geometry/08-loci/03-loci-at-a-given-distance-from-a-fixed-line/ -->
 
-    <!-- <axiom component="lesson-plan">
-            <title>Problem-Solving and Discovery</title>
-            <dl>
-                <li>
-                    <title>Suggested Time</title>
-                    <p>
-                        XX minutes
-                    </p>
-                </li>
-                <li>
-                    <title>Objective</title>
-                    <p>
-                        XXX
-                    </p>
-                </li>
-                <li>
-                    <title>Teacher's Role</title>
-                    <p>
-                        XXX
-                    </p>
-                </li>
-            </dl>
-        </axiom> -->
+    <p component="lesson-plan">Upon completion of this lesson, learners will be able to:
+        <ol>
+            <li><p><alert>Know:</alert> the points a fixed distance from a straight line form two parallel lines, one on each side; from a segment, two parallel segments joined by semicircles; points equidistant from two parallel lines form the line halfway between them.</p></li>
+            <li><p><alert>Do:</alert> construct perpendiculars and the parallel lines at a given distance; write these loci as lines on a grid; find the length and the area of the locus round a segment.</p></li>
+            <li><p><alert>Apply:</alert> safety strips along power lines and pipes; the ground watered by a drip pipe.</p></li>
+        </ol>
+    </p>
 
-    <!-- Add Activity -->
+    <axiom component="lesson-plan">
+        <title>Problem-Solving and Discovery</title>
+        <dl>
+            <li><title>Suggested Time</title><p>14 minutes</p></li>
+            <li><title>Objective</title><p>Learners find that <q>2 m from the line</q> gives a line on each side of it, and that round the end of a segment the locus turns in a semicircle.</p></li>
+            <li><title>Teacher's Role</title><p>Use a touchline of the school pitch, or a long chalk line on the ground. Learners stand 2 m from it on both sides, checking the distance with a tape held at right angles to the line. If outside work is impossible, use a 15 cm line on paper for a 15 m stretch of the touchline (1 cm representing 1 m) and a set square. After part (b), ask: <q>What happens beyond the corner flag?</q></p></li>
+        </dl>
+    </axiom>
 
-    <!-- <activity>
+    <activity xml:id="act-two-metres-from-the-touchline">
+        <title>Two Metres from the Touchline</title>
         <statement>
+            <p>The touchline of a football pitch is a straight line <m>90\,\text{m}</m> long between two corner flags. You measure distances from it at right angles.</p>
+            <p>
+                <ol marker="(a)">
+                    <li>
+                        <p>Stand <m>2\,\text{m}</m> from the touchline, inside the pitch. Mark several places where you could stand. What do the marks make?</p>
+                        <solution component="lesson-plan"><p>A straight line parallel to the touchline, <m>2\,\text{m}</m> inside the pitch.</p></solution>
+                    </li>
+                    <li>
+                        <p>Is there anywhere else that is <m>2\,\text{m}</m> from the touchline?</p>
+                        <solution component="lesson-plan"><p>Yes: outside the pitch, a second line parallel to the touchline, <m>2\,\text{m}</m> on the other side.</p></solution>
+                    </li>
+                    <li>
+                        <p>Now treat the touchline as a segment that stops at each corner flag. Beyond a corner flag, the nearest point of the touchline is the flag itself. Where are the points <m>2\,\text{m}</m> from the flag, beyond the end of the line?</p>
+                        <solution component="lesson-plan"><p>On a semicircle of radius <m>2\,\text{m}</m> with centre the corner flag. There is one at each end.</p></solution>
+                    </li>
+                    <li>
+                        <p>Find the area of the region within <m>2\,\text{m}</m> of the touchline, on both sides and round both ends. Give your answer correct to 1 decimal place.</p>
+                        <solution component="lesson-plan"><p>A rectangle <m>90\,\text{m}</m> by <m>4\,\text{m}</m> and two half-discs of radius <m>2\,\text{m}</m>: <m>2 \times 2 \times 90 + \pi \times 2^2 = 360 + 4\pi \approx 372.6\,\text{m}^2</m>.</p></solution>
+                    </li>
+                    <li>
+                        <p>The touchline is replaced by a straight wall. Why can someone standing on one side of the wall reach only one of the two lines of points <m>2\,\text{m}</m> from it?</p>
+                        <solution component="lesson-plan"><p>You cannot stand inside the wall, so each side has only the line on that side; from a line on the ground both sides are open, which gives two lines.</p></solution>
+                        <note component="lesson-plan"><p>Some learners say <q>one line</q> because they only think of the side they stand on. The full locus always has both sides unless the question says otherwise.</p></note>
+                    </li>
+                </ol>
+            </p>
         </statement>
-    </activity> -->
+    </activity>
 
-    <!-- [LP] Add guidance on structured lesson plan-->
-
-    <!-- <axiom component="lesson-plan">
+    <axiom component="lesson-plan">
         <title>Structured Instruction</title>
         <p>
             <dl>
-            <li>
-                <title>Suggested Time</title>
-                <p>
-                    XX minutes
-                </p>
-            </li>
-            <li>
-                <title>Objective</title>
-                <p>
-                    To formalize the concepts and properties learners discovered in the anchor task.
-                </p>
-            </li>
+                <li><title>Suggested Time</title><p>8 minutes</p></li>
+                <li><title>Objective</title><p>To formalise the locus of points a fixed distance from a line and from a segment, and the line halfway between two parallel lines.</p></li>
             </dl>
         </p>
         <paragraphs>
             <title>Key Takeaways &amp; Teacher Connection</title>
             <ol>
-                <li>
-                    <p>
-                        <alert>Connecting to Learner Work:</alert> XXXX
-                    </p>
-                </li>
+                <li><p><alert>Connecting to Learner Work:</alert> the marks in parts (a) and (b) are the two parallel lines; part (c) adds the semicircle ends.</p></li>
+                <li><p>Distance from a line always means the perpendicular distance, the shortest distance.</p></li>
+                <li><p>A whole line gives two parallel lines; a segment gives two parallel segments joined by semicircles; a wall can only be reached on the sides that are open.</p></li>
+                <li><p>Points equidistant from two parallel lines lie on the line halfway between them.</p></li>
             </ol>
         </paragraphs>
-    </axiom> -->
+    </axiom>
 
-    <!-- Add insight / key takeaway directly related to activity / learner experience -->
+    <insight xml:id="insight-loci-from-a-line">
+        <title>Loci from a Line</title>
+        <p>
+            The distance of a point from a straight line is its <term>perpendicular distance</term>: the length of the perpendicular from the point to the line, which is the shortest distance.
+        </p>
+        <p>
+            The locus of points a distance <m>d</m> from a straight line <m>l</m> is a pair of lines parallel to <m>l</m>, one on each side of it, each a distance <m>d</m> from <m>l</m>.
+        </p>
+        <p>
+            The locus of points a distance <m>d</m> from a segment <m>AB</m> is two segments parallel to <m>AB</m> and of the same length, one on each side, joined at <m>A</m> and at <m>B</m> by semicircles of radius <m>d</m>. Its length is <m>2AB + 2\pi d</m>, and the region inside it, the points within <m>d</m> of the segment, has area <m>2d \times AB + \pi d^2</m>.
+        </p>
+        <p>
+            The locus of points equidistant from two parallel lines is the line parallel to both, halfway between them.
+        </p>
+    </insight>
 
-    <!-- <insight>
-    </insight> -->
+    <figure xml:id="fig-parallel-lines-construction">
+        <caption>Constructing the lines <m>2.5\,\text{cm}</m> from a line <m>l</m>: perpendiculars at two points of <m>l</m>, with <m>2.5\,\text{cm}</m> marked on each side.</caption>
+        <image width="65%">
+            <shortdescription>A horizontal line l with two points P and Q on it. At each, a perpendicular is constructed with compass arcs. On each perpendicular a point 2.5 cm above and a point 2.5 cm below l are marked. The two points above are joined by a line parallel to l, and the two points below by another.</shortdescription>
+            <latex-image>
+\begin{tikzpicture}[scale=1]
+% SET
+\tkzDefPoint(-1,0){L1} \tkzDefPoint(9,0){L2}
+\tkzDefPoint(2,0){P} \tkzDefPoint(6,0){Q}
+% CALCULATE
+\tkzDefPoint(2,2.5){P1} \tkzDefPoint(2,-2.5){P2}
+\tkzDefPoint(6,2.5){Q1} \tkzDefPoint(6,-2.5){Q2}
+% DRAW
+\draw[thick] (L1) -- (L2) node[right] {$l$};
+\draw (2,-3.2) -- (2,3.2); \draw (6,-3.2) -- (6,3.2);
+\draw[thin] (0.8,-0.25) -- (0.8,0.25); \draw[thin] (3.2,-0.25) -- (3.2,0.25);
+\draw[thin] (4.8,-0.25) -- (4.8,0.25); \draw[thin] (7.2,-0.25) -- (7.2,0.25);
+\draw[thin] (0.8,0) ++(47:2.1) arc (47:63:2.1);
+\draw[thin] (3.2,0) ++(117:2.1) arc (117:133:2.1);
+\draw[thin] (4.8,0) ++(47:2.1) arc (47:63:2.1);
+\draw[thin] (7.2,0) ++(117:2.1) arc (117:133:2.1);
+\draw[thick, dashed] (-1,2.5) -- (9,2.5);
+\draw[thick, dashed] (-1,-2.5) -- (9,-2.5);
+% MARK
+\tkzMarkRightAngle[size=0.25](Q,P,P1)
+\tkzMarkRightAngle[size=0.25](L2,Q,Q1)
+\tkzDrawPoints(P,Q,P1,P2,Q1,Q2)
+% LABEL
+\tkzLabelPoint[below left](P){$P$}
+\tkzLabelPoint[below left](Q){$Q$}
+\node[right] at (2,1.25) {$2.5$ cm};
+\node[right] at (6,-1.25) {$2.5$ cm};
+\end{tikzpicture}
+            </latex-image>
+        </image>
+    </figure>
 
-    <!-- Add further instruction (not in a block) to develop ideas as needed -->
+    <figure xml:id="fig-parallel-lines-locus">
+        <caption>Drag the two points to move the line and use the <m>d</m> slider. Drag <m>P</m> to read its distance from the line. Tick <q>Segment only</q> to see the locus round a segment.</caption>
+        <interactive xml:id="interactive-parallel-lines-locus" platform="jsxgraph" width="90%" aspect="16:12" source="jsxgraph/parallel-lines-locus.js">
+            <slate xml:id="jsxgraph-parallel-lines-locus" surface="jsxboard" aspect="16:12"/>
+            <instructions>
+                <p>
+                    <ul>
+                        <li><p>Move the <alert>d</alert> slider. How far is each dashed line from the line through <m>A</m> and <m>B</m>?</p></li>
+                        <li><p>Drag <m>P</m> until it lies on one of the dashed lines. What does its distance read?</p></li>
+                        <li><p>Tick <alert>Segment only</alert>. Drag <m>P</m> beyond <m>B</m>: which point of the segment is it now measured from?</p></li>
+                    </ul>
+                </p>
+            </instructions>
+        </interactive>
+    </figure>
 
     <xi:include href="../lesson-plan-templates/example-intro.ptx" />
 
-    <!-- Add at least 3 examples -->
-
-    <!-- <example>
+    <example xml:id="example-constructing-parallel-lines">
+        <title>Constructing Lines at a Fixed Distance</title>
         <statement>
+            <p>Draw a straight line <m>l</m>. Construct the locus of points <m>2.5\,\text{cm}</m> from <m>l</m>.</p>
         </statement>
         <solution>
+            <p>
+                <alert>Step 1:</alert> Mark two points <m>P</m> and <m>Q</m> on <m>l</m>, well apart.
+            </p>
+            <p>
+                <alert>Step 2:</alert> Construct the perpendicular to <m>l</m> at <m>P</m>. With the compass point at <m>P</m>, draw two arcs that cut <m>l</m> on each side of <m>P</m>. Open the compasses wider and, from each of those two points, draw arcs above <m>l</m> that cross. Join <m>P</m> to the crossing point, and extend the line below <m>l</m>. Do the same at <m>Q</m>.
+            </p>
+            <p>
+                <alert>Step 3:</alert> Set the compasses to <m>2.5\,\text{cm}</m>. With the point at <m>P</m>, mark the perpendicular above and below <m>l</m>; do the same at <m>Q</m>.
+            </p>
+            <p>
+                <alert>Step 4:</alert> Join the two marks above <m>l</m>, and the two marks below. These two lines, parallel to <m>l</m>, are the locus (<xref ref="fig-parallel-lines-construction"/>). Keep all the construction arcs.
+            </p>
         </solution>
     </example>
 
-    <example>
+    <example xml:id="example-lines-on-a-grid">
+        <title>Lines on a Grid</title>
         <statement>
+            <p>Write each locus as the equations of lines.</p>
+            <p>
+                <ol marker="(a)">
+                    <li><p>The points <m>3</m> units from the line <m>y = 1</m>.</p></li>
+                    <li><p>The points <m>5</m> units from the line <m>x = -2</m>.</p></li>
+                    <li><p>The points equidistant from the lines <m>y = 1</m> and <m>y = 7</m>.</p></li>
+                </ol>
+            </p>
         </statement>
         <solution>
+            <p>
+                (a) Go <m>3</m> units up and <m>3</m> units down from <m>y = 1</m>: the lines <m>y = 4</m> and <m>y = -2</m>.
+            </p>
+            <p>
+                (b) Go <m>5</m> units right and <m>5</m> units left from <m>x = -2</m>: the lines <m>x = 3</m> and <m>x = -7</m>.
+            </p>
+            <p>
+                (c) The line halfway between them: <m>y = \frac{1 + 7}{2} = 4</m>.
+            </p>
         </solution>
     </example>
 
-    <example>
+    <example xml:id="example-drip-pipe">
+        <title>A Drip Pipe in a Shamba</title>
         <statement>
+            <p>A straight drip-irrigation pipe <m>12\,\text{m}</m> long lies in a shamba in Machakos. It waters the ground within <m>0.5\,\text{m}</m> of the pipe, on both sides and round both ends. Find, correct to 1 decimal place,</p>
+            <p>
+                <ol marker="(a)">
+                    <li><p>the length of the boundary of the watered region;</p></li>
+                    <li><p>the area of the watered region.</p></li>
+                </ol>
+            </p>
         </statement>
         <solution>
+            <p>
+                The boundary is the locus of points <m>0.5\,\text{m}</m> from the pipe: two straight sides of <m>12\,\text{m}</m> and two semicircles of radius <m>0.5\,\text{m}</m> (<xref ref="fig-locus-around-a-segment"/>).
+            </p>
+            <p>
+                (a) <m>2 \times 12 + 2\pi \times 0.5 = 24 + \pi \approx 27.1\,\text{m}</m>.
+            </p>
+            <p>
+                (b) A rectangle <m>12\,\text{m}</m> by <m>1\,\text{m}</m> and two half-discs of radius <m>0.5\,\text{m}</m>: <m>12 \times 1 + \pi \times 0.5^2 = 12 + 0.25\pi \approx 12.8\,\text{m}^2</m>.
+            </p>
+            <figure xml:id="fig-locus-around-a-segment">
+                <caption>The locus of points a distance <m>d</m> from a segment <m>AB</m>, and the region within <m>d</m> of it. Key: shaded, not wanted; unshaded, the points within <m>d</m> of <m>AB</m>.</caption>
+                <image width="60%">
+                    <shortdescription>A horizontal segment AB. Two segments of the same length run parallel to it, a distance d above and below. They are joined round A and round B by semicircles of radius d centred at A and B. Outside this boundary is shaded; the region inside it is left clear. A key: shaded, not in the region; unshaded, within d of AB.</shortdescription>
+                    <latex-image>
+\begin{tikzpicture}[scale=1]
+% SET
+\tkzDefPoint(0,0){A} \tkzDefPoint(5,0){B}
+% CALCULATE
+\tkzDefPoint(0,1){A1} \tkzDefPoint(5,1){B1}
+% DRAW
+\fill[gray!25, even odd rule] (-1.6,-1.6) rectangle (6.6,1.6) (0,1) -- (5,1) arc (90:-90:1) -- (0,-1) arc (270:90:1) -- cycle;
+\draw[gray] (-1.6,-1.6) rectangle (6.6,1.6);
+\draw[thick] (0,1) -- (5,1) arc (90:-90:1) -- (0,-1) arc (270:90:1) -- cycle;
+\draw[very thick] (A) -- (B);
+\draw[dashed] (B) -- (B1);
+% MARK
+\tkzDrawPoints(A,B)
+% LABEL
+\tkzLabelPoint[left](A){$A$}
+\tkzLabelPoint[below](B){$B$}
+\node[right] at (5,0.5) {$d$};
+% KEY
+\fill[gray!25] (-1.6,-2.3) rectangle (-1.2,-1.9); \draw[gray] (-1.6,-2.3) rectangle (-1.2,-1.9);
+\node[right] at (-1.2,-2.1) {\small not in the region};
+\draw[gray] (2.6,-2.3) rectangle (3.0,-1.9);
+\node[right] at (3.0,-2.1) {\small within $d$ of $AB$};
+\end{tikzpicture}
+                    </latex-image>
+                </image>
+            </figure>
         </solution>
-    </example> -->
+    </example>
 
     <xi:include href="../lesson-plan-templates/assessment-intro.ptx" />
+    <xi:include href="../lesson-plan-templates/checkpoint.ptx" />
 
-    <!-- If STACK questions are included, uncomment this: -->
+    <p>Type decimals with a point, for example <c>12.6</c>. Give answers to the accuracy asked for.</p>
 
-    <!-- <xi:include href="../lesson-plan-templates/checkpoint.ptx" /> -->
+    <exercise xml:id="ex-finding-the-mistake-in-a-locus-from-a-line">
+        <!--<title></title>-->
+        <stack label="stk-finding-the-mistake-in-a-locus-from-a-line" source="stack/top/2-measurement-and-geometry/08-loci/03-loci-at-a-given-distance-from-a-fixed-line/Finding-the-mistake-in-a-locus-from-a-line.xml"/>
+    </exercise>
 
-    <!-- Add STACK exercises if made -->
+    <exercise xml:id="ex-length-and-area-of-the-locus-around-a-segment">
+        <!--<title></title>-->
+        <stack label="stk-length-and-area-of-the-locus-around-a-segment" source="stack/top/2-measurement-and-geometry/08-loci/03-loci-at-a-given-distance-from-a-fixed-line/Length-and-area-of-the-locus-around-a-segment.xml"/>
+    </exercise>
 
-    <!-- Add static exercises -->
+    <exercises xml:id="exercises-loci-from-a-line">
+        <exercise xml:id="ex-construct-lines-at-a-distance">
+            <statement><p>Draw a line <m>8\,\text{cm}</m> long and treat it as part of a whole straight line. Construct the locus of points <m>1.5\,\text{cm}</m> from the line.</p></statement>
+            <answer><p>Two lines parallel to the given line, <m>1.5\,\text{cm}</m> from it, one on each side.</p></answer>
+        </exercise>
+        <exercise xml:id="ex-grid-lines-from-a-line">
+            <statement><p>Write the locus of points <m>4</m> units from the line <m>y = -1</m>.</p></statement>
+            <answer><p>The lines <m>y = 3</m> and <m>y = -5</m>.</p></answer>
+        </exercise>
+        <exercise xml:id="ex-midline">
+            <statement><p>Write the locus of points equidistant from the lines <m>x = -3</m> and <m>x = 5</m>.</p></statement>
+            <answer><p>The line <m>x = 1</m>.</p></answer>
+        </exercise>
+        <exercise xml:id="ex-power-line-strip">
+            <statement><p>No building may be put up within <m>15\,\text{m}</m> of a straight power line that crosses a farm near Nakuru. On a plan with <m>1\,\text{cm}</m> representing <m>5\,\text{m}</m>, how far from the line are the two boundaries of the strip? How wide is the strip on the ground?</p></statement>
+            <answer><p><m>3\,\text{cm}</m> on each side of the line on the plan; the strip is <m>30\,\text{m}</m> wide.</p></answer>
+            <solution><p>The boundaries are the locus of points <m>15\,\text{m}</m> from the line: two parallel lines, one on each side. <m>15 \div 5 = 3</m>, so each is <m>3\,\text{cm}</m> from the line on the plan, and the strip is <m>2 \times 15 = 30\,\text{m}</m> wide.</p></solution>
+        </exercise>
+        <exercise xml:id="ex-fence-grass-strip">
+            <statement><p>At a school, the grass is cut within <m>1.5\,\text{m}</m> of a straight fence <m>30\,\text{m}</m> long, on both sides and round its ends. Find the area cut, correct to 1 decimal place.</p></statement>
+            <answer><p><m>97.1\,\text{m}^2</m></p></answer>
+            <solution><p>A rectangle <m>30\,\text{m}</m> by <m>3\,\text{m}</m> and two half-discs of radius <m>1.5\,\text{m}</m>: <m>90 + \pi \times 1.5^2 = 90 + 2.25\pi \approx 97.1\,\text{m}^2</m>.</p></solution>
+        </exercise>
+        <exercise xml:id="ex-locus-around-a-triangle">
+            <title>Challenge: Round a Triangle</title>
+            <statement><p>Find the length of the locus of points outside an equilateral triangle of side <m>5\,\text{cm}</m> that are <m>1\,\text{cm}</m> from the nearest side or corner of the triangle. Give your answer correct to 1 decimal place.</p></statement>
+            <hint><p>What does the locus look like near each corner, and what do the three corner arcs add up to?</p></hint>
+            <answer><p><m>15 + 2\pi \approx 21.3\,\text{cm}</m></p></answer>
+            <solution><p>Along each side the locus is a segment of <m>5\,\text{cm}</m>, parallel to the side and <m>1\,\text{cm}</m> outside it. At each corner the nearest point of the triangle is the corner itself, so the locus is an arc of radius <m>1\,\text{cm}</m> centred at the corner. Each arc turns through <m>360^{\circ} - 90^{\circ} - 90^{\circ} - 60^{\circ} = 120^{\circ}</m>, and the three arcs together make a whole circle. The length is <m>3 \times 5 + 2\pi \times 1 = 15 + 2\pi \approx 21.3\,\text{cm}</m>.</p></solution>
+        </exercise>
+    </exercises>
 
-    <!-- <exercises>
-        <exercise>
-            <statement>   
-
-            </statement>   
-            <solution>
-
-            </solution>             
-        </exercise>        
-    </exercises> -->
-
-    <!-- [LP] Add information on how to differentiate  -->
-
-    <!-- <axiom component="lesson-plan">
+    <axiom component="lesson-plan">
         <title>Differentiation</title>
-
-        <table>
-            <title>Differentiation</title>
-            <tabular halign="left">
-                <row header="yes" bottom="minor">
-                    <cell>Learner Group</cell>
-                    <cell>Strategy &amp; Learning Experience</cell>
-                    <cell></cell>
-                </row>
-                <row>
-                    <cell>Struggling Learners (Support)</cell>
-                    <cell>
-                        XXXX
-                    </cell>
-                    <cell></cell>
-                </row>
-                <row>
-                    <cell>On-Level Learners (Core)</cell>
-                    <cell>
-                        <line>The core lesson activities as described above.</line>
-                    </cell>
-                    <cell></cell>
-                </row>
-                <row>
-                    <cell>Advanced Learners (Challenge)</cell>
-                    <cell>
-                        XXXX
-                    </cell>
-                    <cell></cell>
-                </row>
+        <table xml:id="table-differentiation-loci-from-a-line">
+            <title>Differentiation Strategies</title>
+            <tabular halign="left" top="minor" bottom="minor" left="minor" right="minor">
+                <row header="yes" bottom="medium"><cell>Learner Group</cell><cell>Strategy and Learning Experience</cell></row>
+                <row><cell>Struggling Learners (Support)</cell><cell>Let learners draw the perpendiculars with a set square before using compasses. Work <xref ref="example-constructing-parallel-lines"/> and <xref ref="example-lines-on-a-grid"/>. Assign <xref ref="ex-construct-lines-at-a-distance"/> to <xref ref="ex-midline"/>.</cell></row>
+                <row><cell>On-Level Learners (Core)</cell><cell>Full activity and all examples. Assign <xref ref="ex-construct-lines-at-a-distance"/> to <xref ref="ex-fence-grass-strip"/>.</cell></row>
+                <row><cell>Advanced Learners (Challenge)</cell><cell>All exercises including <xref ref="ex-locus-around-a-triangle"/>. Extension: describe the locus of points <m>2\,\text{cm}</m> from a circle of radius <m>3\,\text{cm}</m>. (Answer: two circles with the same centre, of radii <m>1\,\text{cm}</m> and <m>5\,\text{cm}</m>.)</cell></row>
             </tabular>
         </table>
-    </axiom> -->
+    </axiom>
 
     <xi:include href="../lesson-plan-templates/assessment-methods.ptx" />
 

@@ -4,11 +4,17 @@
 <chapter xml:id="ch-integration" component="core" xmlns:xi="http://www.w3.org/2001/XInclude">
   <title>Integration</title>
 
-  <!-- Add a chapter introduction (e.g. key definitions) here -->
-  <!-- <introduction>
+  <introduction>
     <p>
+      In differentiation you start with a function and find its gradient. Integration is the reverse process: you start with the gradient function and work back to the function it came from.
     </p>
-  </introduction> -->
+    <p>
+      In this chapter you will see how integration reverses differentiation, and find indefinite and definite integrals of polynomials. You will use integration to find the exact area under a curve, compare it with the estimates given by the trapezoidal and mid-ordinate rules, and work out the errors in those estimates. Finally you will apply integration to kinematics, finding velocity from acceleration and displacement from velocity.
+    </p>
+    <p>
+      Integration is used to find areas, volumes and distances exactly. Engineers use it to work out the capacity of a dam, and scientists use it to describe motion.
+    </p>
+  </introduction>
 
   <!-- include sections -->
   <xi:include href="sec-integration-as-the-reverse-of-differentiation.ptx" />

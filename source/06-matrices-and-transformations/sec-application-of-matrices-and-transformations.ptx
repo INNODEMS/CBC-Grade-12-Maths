@@ -45,161 +45,245 @@
          Content summary: Applying matrices of transformation in different real-life and geometric situations.
          Suggested activity: Learners use matrices to design a pattern (e.g. for a school banner) by repeatedly transforming a simple motif. -->
 
-    <!-- [LP] Add guidance on activity -->
+    <!-- Section notes (2026-11)
+         SLOs: Core 2.1 (h); outcome (i), promoting the use of transformations, is placed here (Transformations Around Us)
+         Activity: as planning notes (a school banner made by transforming one motif, one matrix per group)
+         JSXGraph: none (the planning notes name none)
+         STACK: assets/stack/top/2-measurement-and-geometry/06-matrices-and-transformations/07-application-of-matrices-and-transformations/ -->
 
-    <!-- <axiom component="lesson-plan">
-            <title>Problem-Solving and Discovery</title>
-            <dl>
-                <li>
-                    <title>Suggested Time</title>
-                    <p>
-                        XX minutes
-                    </p>
-                </li>
-                <li>
-                    <title>Objective</title>
-                    <p>
-                        XXX
-                    </p>
-                </li>
-                <li>
-                    <title>Teacher's Role</title>
-                    <p>
-                        XXX
-                    </p>
-                </li>
-            </dl>
-        </axiom> -->
+    <p component="lesson-plan">Upon completion of this lesson, learners will be able to:
+        <ol>
+            <li><p><alert>Know:</alert> transformations design patterns, slant letters, and resize and turn images; combined edits multiply matrices; an inverse restores the original; the determinant predicts the area.</p></li>
+            <li><p><alert>Do:</alert> solve problems with several steps that use single matrices, inverses and determinants.</p></li>
+            <li><p><alert>Apply:</alert> a school banner, a photo, italic letters and kanga patterns.</p></li>
+        </ol>
+    </p>
 
-    <!-- Add Activity -->
+    <axiom component="lesson-plan">
+        <title>Problem-Solving and Discovery</title>
+        <dl>
+            <li><title>Suggested Time</title><p>14 minutes</p></li>
+            <li><title>Objective</title><p>Groups design a school banner by transforming one motif with matrices.</p></li>
+            <li><title>Teacher's Role</title><p>Give each group one matrix: the rotations of <m>90^{\circ}</m>, <m>180^{\circ}</m> and <m>270^{\circ}</m> anticlockwise about <m>O</m>, the reflection in the <m>y</m>-axis, the shear with the <m>x</m>-axis invariant and shear factor <m>0.5</m>, and the stretch with the <m>x</m>-axis invariant and stretch factor <m>2</m>. Each group computes and draws its image on a shared banner grid; then the class arranges the banner together. Ask: <q>Which images have the same area as the motif? Which are turned over?</q></p></li>
+        </dl>
+    </axiom>
 
-    <!-- <activity>
+    <activity xml:id="act-designing-a-school-banner">
+        <title>Designing a School Banner</title>
         <statement>
+            <p>The motif for the banner is the L-shape with corners <m>(1, 1)</m>, <m>(4, 1)</m>, <m>(4, 2)</m>, <m>(2, 2)</m>, <m>(2, 5)</m> and <m>(1, 5)</m>. Your group is given one matrix.</p>
+            <p>
+                <ol marker="(a)">
+                    <li>
+                        <p>Find the image of the motif under your matrix and draw it on the banner grid.</p>
+                        <solution component="lesson-plan"><p>For the corner <m>(4, 2)</m>: rotation <m>90^{\circ}</m> gives <m>(-2, 4)</m>; <m>180^{\circ}</m> gives <m>(-4, -2)</m>; <m>270^{\circ}</m> gives <m>(2, -4)</m>; reflection in the <m>y</m>-axis gives <m>(-4, 2)</m>; the shear gives <m>(5, 2)</m>; the stretch gives <m>(4, 4)</m>. The rotation images form the pinwheel in <xref ref="fig-banner-motif"/>.</p></solution>
+                    </li>
+                    <li>
+                        <p>Find the area of your image.</p>
+                        <solution component="lesson-plan"><p>The motif has area <m>3 + 3 = 6</m> (a <m>3</m> by <m>1</m> strip and a <m>1</m> by <m>3</m> strip). Every image has area <m>6</m> except the stretch, whose determinant is <m>2</m>: area <m>12</m>.</p></solution>
+                    </li>
+                    <li>
+                        <p>Which images are oppositely congruent to the motif (turned over)?</p>
+                        <solution component="lesson-plan"><p>Only the reflection: its determinant is <m>-1</m>. The rotations have determinant <m>1</m>; the shear and the stretch are not congruent to the motif at all.</p></solution>
+                    </li>
+                    <li>
+                        <p>Present the banner. Say which matrix made each piece.</p>
+                        <solution component="lesson-plan"><p>Answers vary. Each group names its transformation in full and shows its matrix.</p></solution>
+                    </li>
+                </ol>
+            </p>
         </statement>
-    </activity> -->
+    </activity>
 
-    <!-- [LP] Add guidance on structured lesson plan-->
-
-    <!-- <axiom component="lesson-plan">
+    <axiom component="lesson-plan">
         <title>Structured Instruction</title>
         <p>
             <dl>
-            <li>
-                <title>Suggested Time</title>
-                <p>
-                    XX minutes
-                </p>
-            </li>
-            <li>
-                <title>Objective</title>
-                <p>
-                    To formalize the concepts and properties learners discovered in the anchor task.
-                </p>
-            </li>
+                <li><title>Suggested Time</title><p>8 minutes</p></li>
+                <li><title>Objective</title><p>To bring the chapter's tools together and choose the right one for a problem.</p></li>
             </dl>
         </p>
         <paragraphs>
             <title>Key Takeaways &amp; Teacher Connection</title>
             <ol>
-                <li>
-                    <p>
-                        <alert>Connecting to Learner Work:</alert> XXXX
-                    </p>
-                </li>
+                <li><p><alert>Connecting to Learner Work:</alert> the banner used one matrix per piece; a design program does the same for every point of a picture.</p></li>
+                <li><p>Choosing the tool: two edits in turn, a single matrix (second times first); getting back, the inverse; area, the determinant.</p></li>
+                <li><p>Revisit the key inquiry question of <xref ref="sec-matrices-of-transformation"/> with <xref ref="paragraphs-transformations-around-us" text="title"/>.</p></li>
             </ol>
         </paragraphs>
-    </axiom> -->
+    </axiom>
 
-    <!-- Add insight / key takeaway directly related to activity / learner experience -->
+    <insight xml:id="insight-transformations-at-work">
+        <title>Transformations at Work</title>
+        <p>
+            A design program stores a shape as an object matrix, whose columns are its corners, and transforms the whole shape with one multiplication. Two edits in turn are one edit with the product matrix, the second edit's matrix on the left. Pressing <q>undo</q> applies the inverse matrix. The size of the determinant tells you in advance how the area will change, and its sign tells you whether the picture will be turned over.
+        </p>
+    </insight>
 
-    <!-- <insight>
-    </insight> -->
+    <figure xml:id="fig-banner-motif">
+        <caption>The banner motif (solid) and its images after rotations of <m>90^{\circ}</m>, <m>180^{\circ}</m> and <m>270^{\circ}</m> anticlockwise about <m>O</m> (dashed), forming a pinwheel.</caption>
+        <image width="55%">
+            <shortdescription>An L-shaped motif with corners (1, 1), (4, 1), (4, 2), (2, 2), (2, 5), (1, 5) in the first quadrant, drawn solid, and three dashed copies of it turned through a quarter, a half and three quarters of a turn about the origin, one in each of the other quadrants, forming a pinwheel. The corner (4, 2) and its images (-2, 4), (-4, -2) and (2, -4) are labelled.</shortdescription>
+            <latex-image>
+\begin{tikzpicture}[scale=0.5, >=stealth]
+\draw[very thin, gray!40] (-6,-6) grid (6,6);
+\draw[->] (-6,0) -- (6.4,0) node[right]{$x$};
+\draw[->] (0,-6) -- (0,6.4) node[above]{$y$};
+\node[below left] at (0,0) {\small $O$};
+\draw[thick] (1,1) -- (4,1) -- (4,2) -- (2,2) -- (2,5) -- (1,5) -- cycle;
+\draw[thick, dashed] (-1,1) -- (-1,4) -- (-2,4) -- (-2,2) -- (-5,2) -- (-5,1) -- cycle;
+\draw[thick, dashed] (-1,-1) -- (-4,-1) -- (-4,-2) -- (-2,-2) -- (-2,-5) -- (-1,-5) -- cycle;
+\draw[thick, dashed] (1,-1) -- (1,-4) -- (2,-4) -- (2,-2) -- (5,-2) -- (5,-1) -- cycle;
+\fill (4,2) circle (3pt) node[above right]{\small $(4, 2)$};
+\fill (-2,4) circle (3pt) node[above left]{\small $(-2, 4)$};
+\fill (-4,-2) circle (3pt) node[below left]{\small $(-4, -2)$};
+\fill (2,-4) circle (3pt) node[below right]{\small $(2, -4)$};
+\end{tikzpicture}
+            </latex-image>
+        </image>
+    </figure>
 
-    <!-- Add further instruction (not in a block) to develop ideas as needed -->
+    <paragraphs xml:id="paragraphs-transformations-around-us">
+        <title>Transformations Around Us</title>
+        <p>This chapter began with a question: where do we use transformations, and how can a matrix describe one? Here are some answers.</p>
+        <p>
+            <ul>
+                <li><p>Phones and computers turn, flip, resize and slant pictures, and every one of those edits is a matrix applied to every point of the picture.</p></li>
+                <li><p>Games and animated films move characters by transforming the points of their outlines many times a second.</p></li>
+                <li><p>Kitenge and kanga prints, beadwork and woven baskets repeat one motif by rotating and reflecting it, as in the school banner.</p></li>
+                <li><p>Architects and engineers draw plans to scale, and stretch or shear drawings to show a building from different views.</p></li>
+                <li><p>Map makers shrink the land onto paper; a map that is stretched more one way than the other changes the areas it shows.</p></li>
+                <li><p>A robot arm in a factory turns about its joints, and its controller works out each new position with rotation matrices.</p></li>
+            </ul>
+        </p>
+    </paragraphs>
+
+    <note xml:id="note-transformations-in-software">
+        <p>Photo apps on phones rotate, flip, stretch and shear pictures with exactly the matrices of this chapter. You can try this in a spreadsheet: put the matrix in one block of cells and the object matrix in another, and the function <c>MMULT</c> multiplies them to give the image matrix.</p>
+    </note>
+
+    <note xml:id="note-edited-photos">
+        <p>Because an app can stretch, shear or flip a photo in a moment, a picture shared online may not show people or places as they really are. A face can be made thinner, a crowd made to look bigger, or a scene flipped so that it seems to be somewhere else. Before you believe or share an image, check where it came from, and never edit and share a photo of someone else without their permission.</p>
+    </note>
 
     <xi:include href="../lesson-plan-templates/example-intro.ptx" />
 
-    <!-- Add at least 3 examples -->
-
-    <!-- <example>
+    <example xml:id="example-four-fold-pattern">
+        <title>A Four-Fold Pattern</title>
         <statement>
+            <p><m>R = \begin{bmatrix} 0 \amp -1 \\ 1 \amp 0 \end{bmatrix}</m> is the rotation of <m>90^{\circ}</m> anticlockwise about <m>O</m>. Find <m>R^2</m> and <m>R^3</m>, and the images of the motif's corner <m>(4, 2)</m> under <m>R</m>, <m>R^2</m> and <m>R^3</m>.</p>
         </statement>
         <solution>
+            <p><m>R^2 = \begin{bmatrix} 0 \amp -1 \\ 1 \amp 0 \end{bmatrix}\begin{bmatrix} 0 \amp -1 \\ 1 \amp 0 \end{bmatrix} = \begin{bmatrix} -1 \amp 0 \\ 0 \amp -1 \end{bmatrix}</m>, the rotation of <m>180^{\circ}</m>. <m>R^3 = R^2 R = \begin{bmatrix} 0 \amp 1 \\ -1 \amp 0 \end{bmatrix}</m>, the rotation of <m>270^{\circ}</m> anticlockwise (<m>90^{\circ}</m> clockwise).</p>
+            <p><m>R\begin{pmatrix} 4 \\ 2 \end{pmatrix} = \begin{pmatrix} -2 \\ 4 \end{pmatrix}</m>, <m>R^2\begin{pmatrix} 4 \\ 2 \end{pmatrix} = \begin{pmatrix} -4 \\ -2 \end{pmatrix}</m> and <m>R^3\begin{pmatrix} 4 \\ 2 \end{pmatrix} = \begin{pmatrix} 2 \\ -4 \end{pmatrix}</m>. With the motif these give the four arms of the pinwheel in <xref ref="fig-banner-motif"/>. One more turn, <m>R^4 = I</m>, brings the motif back to the start.</p>
         </solution>
     </example>
 
-    <example>
+    <example xml:id="example-slanting-letters">
+        <title>Slanting Letters</title>
         <statement>
+            <p>A sign-writer paints the letter <q>I</q> as the rectangle <m>(0, 0)</m>, <m>(2, 0)</m>, <m>(2, 8)</m>, <m>(0, 8)</m>. To make it italic, she shears it with the <m>x</m>-axis invariant and shear factor <m>0.25</m>. Find the new top corners and compare the areas.</p>
         </statement>
         <solution>
+            <p>The matrix is <m>\begin{bmatrix} 1 \amp 0.25 \\ 0 \amp 1 \end{bmatrix}</m>. A point at height <m>8</m> moves <m>0.25 \times 8 = 2</m> to the right: <m>(2, 8) \to (4, 8)</m> and <m>(0, 8) \to (2, 8)</m>. The bottom corners are on the invariant axis and stay.</p>
+            <p>The letter has area <m>2 \times 8 = 16</m> before and after: a shear keeps area. Italic print is a shear of upright print.</p>
         </solution>
     </example>
 
-    <example>
+    <example xml:id="example-editing-a-photo">
+        <title>Editing a Photo</title>
         <statement>
+            <p>Wanjiru edits a photo of area <m>6</m> square units. One corner is at <m>(3, 2)</m>. She first applies <m>S</m>, a stretch with stretch factor <m>2</m> and the <m>y</m>-axis invariant, and then <m>R</m>, the rotation of <m>90^{\circ}</m> anticlockwise about <m>O</m>.
+                <ol marker="(a)">
+                    <li><p>Find the single matrix for the two edits.</p></li>
+                    <li><p>Find the image of the corner and the area of the edited photo.</p></li>
+                    <li><p>Find the matrix that restores the original photo.</p></li>
+                </ol>
+            </p>
         </statement>
         <solution>
+            <p>(a) <m>S = \begin{bmatrix} 2 \amp 0 \\ 0 \amp 1 \end{bmatrix}</m> is done first, so it goes on the right:
+                <md>
+                    RS = \begin{bmatrix} 0 \amp -1 \\ 1 \amp 0 \end{bmatrix}\begin{bmatrix} 2 \amp 0 \\ 0 \amp 1 \end{bmatrix} = \begin{bmatrix} 0 \amp -1 \\ 2 \amp 0 \end{bmatrix}
+                </md>
+            </p>
+            <p>(b) <m>\begin{bmatrix} 0 \amp -1 \\ 2 \amp 0 \end{bmatrix}\begin{pmatrix} 3 \\ 2 \end{pmatrix} = \begin{pmatrix} -2 \\ 6 \end{pmatrix}</m>. <m>\det RS = 0 \times 0 - (-1)(2) = 2</m>, so the area becomes <m>2 \times 6 = 12</m> square units.</p>
+            <p>(c) To undo two edits, undo the last one first: <m>R^{-1}</m> then <m>S^{-1}</m>, with matrix
+                <md>
+                    (RS)^{-1} = S^{-1}R^{-1} = \begin{bmatrix} \frac{1}{2} \amp 0 \\ 0 \amp 1 \end{bmatrix}\begin{bmatrix} 0 \amp 1 \\ -1 \amp 0 \end{bmatrix} = \begin{bmatrix} 0 \amp \frac{1}{2} \\ -1 \amp 0 \end{bmatrix}
+                </md>
+                Check: <m>\begin{bmatrix} 0 \amp \frac{1}{2} \\ -1 \amp 0 \end{bmatrix}\begin{pmatrix} -2 \\ 6 \end{pmatrix} = \begin{pmatrix} 3 \\ 2 \end{pmatrix}</m>.</p>
         </solution>
-    </example> -->
+    </example>
+
+    <axiom component="lesson-plan">
+        <title>Curriculum Links</title>
+        <dl>
+            <li><title>Key Inquiry Question</title><p>Where do we use transformations, and how can a matrix describe one? Asked in <xref ref="sec-matrices-of-transformation"/>; revisit it with <xref ref="paragraphs-transformations-around-us" text="title"/> and in the reflection.</p></li>
+            <li><title>Core Competencies</title><p>Digital literacy, in the six interactives of the chapter and <xref ref="note-transformations-in-software"/>; communication and collaboration, in the group activities that pool results (one matrix per group in <xref ref="sec-matrices-of-transformation"/>, <xref ref="sec-area-scale-factor-and-determinant-of-a-matrix"/> and the banner here).</p></li>
+            <li><title>Values</title><p>Unity, in the banner made from every group's piece.</p></li>
+            <li><title>Pertinent and Contemporary Issues</title><p>Online safety, in <xref ref="note-edited-photos"/>: check where an image comes from before believing or sharing it.</p></li>
+            <li><title>Learning Outcome</title><p>This lesson carries the outcome on promoting the use of transformations in real life.</p></li>
+        </dl>
+    </axiom>
 
     <xi:include href="../lesson-plan-templates/assessment-intro.ptx" />
+    <xi:include href="../lesson-plan-templates/checkpoint.ptx" />
 
-    <!-- If STACK questions are included, uncomment this: -->
+    <p>Type one number in each box of a matrix. Type fractions with a slash, for example <c>-3/2</c>, or as exact decimals, for example <c>-1.5</c>. Type each coordinate in its own box.</p>
 
-    <!-- <xi:include href="../lesson-plan-templates/checkpoint.ptx" /> -->
+        <exercise xml:id="ex-transforming-a-school-logo">
+        <stack label="stk-transforming-a-school-logo" source="stack/top/2-measurement-and-geometry/06-matrices-and-transformations/07-application-of-matrices-and-transformations/Transforming-a-school-logo.xml"/>
+    </exercise>
 
-    <!-- Add STACK exercises if made -->
+    <exercise xml:id="ex-restoring-a-distorted-photo">
+        <stack label="stk-restoring-a-distorted-photo" source="stack/top/2-measurement-and-geometry/06-matrices-and-transformations/07-application-of-matrices-and-transformations/Restoring-a-distorted-photo.xml"/>
+    </exercise>
 
-    <!-- Add static exercises -->
+    <exercises xml:id="exercises-application">
+        <exercise xml:id="ex-pinwheel-pattern">
+            <statement><p>The triangle <m>(1, 0)</m>, <m>(3, 0)</m>, <m>(3, 1)</m> is rotated about <m>O</m> through <m>90^{\circ}</m>, <m>180^{\circ}</m> and <m>270^{\circ}</m> anticlockwise to make a pinwheel. Find the three images.</p></statement>
+            <answer><p><m>90^{\circ}</m>: <m>(0, 1)</m>, <m>(0, 3)</m>, <m>(-1, 3)</m>; <m>180^{\circ}</m>: <m>(-1, 0)</m>, <m>(-3, 0)</m>, <m>(-3, -1)</m>; <m>270^{\circ}</m>: <m>(0, -1)</m>, <m>(0, -3)</m>, <m>(1, -3)</m></p></answer>
+        </exercise>
+        <exercise xml:id="ex-kanga-border">
+            <statement><p>A kanga border is made by reflecting a motif in the line <m>y = x</m> and then reflecting the image in the line <m>y = -x</m>. Which single transformation has the same effect?</p></statement>
+            <answer><p>The rotation of <m>180^{\circ}</m> about <m>O</m>.</p></answer>
+            <solution><p><m>\begin{bmatrix} 0 \amp -1 \\ -1 \amp 0 \end{bmatrix}\begin{bmatrix} 0 \amp 1 \\ 1 \amp 0 \end{bmatrix} = \begin{bmatrix} -1 \amp 0 \\ 0 \amp -1 \end{bmatrix}</m>, the rotation of <m>180^{\circ}</m> about <m>O</m>.</p></solution>
+        </exercise>
+        <exercise xml:id="ex-italic-letter">
+            <statement><p>The letter <q>L</q> is 6 units tall, with its upright edge on the <m>y</m>-axis from <m>(0, 0)</m> to <m>(0, 6)</m>. It is sheared with the <m>x</m>-axis invariant and shear factor <m>0.2</m>. Find the image of its top <m>(0, 6)</m>.</p></statement>
+            <answer><p><m>(1.2, 6)</m></p></answer>
+        </exercise>
+        <exercise xml:id="ex-phone-screen-rotation">
+            <statement><p>A phone screen is a rectangle 9 units wide and 16 units tall, with one corner at <m>O</m> and the opposite corner at <m>(9, 16)</m>. The picture is turned through <m>90^{\circ}</m> clockwise about <m>O</m>. Find the image of <m>(9, 16)</m>.</p></statement>
+            <answer><p><m>(16, -9)</m></p></answer>
+        </exercise>
+        <exercise xml:id="ex-restore-a-design">
+            <statement><p>A design was distorted by the matrix <m>\begin{bmatrix} 3 \amp 1 \\ 1 \amp 1 \end{bmatrix}</m>. One corner of the distorted design is <m>(7, 3)</m>, and the distorted design has area <m>18</m> square units. Find the original corner and the original area.</p></statement>
+            <answer><p><m>(2, 1)</m>; <m>9</m> square units</p></answer>
+            <solution><p><m>\det = 3 - 1 = 2</m>, so the inverse is <m>\frac{1}{2}\begin{bmatrix} 1 \amp -1 \\ -1 \amp 3 \end{bmatrix}</m>, and <m>\frac{1}{2}\begin{bmatrix} 1 \amp -1 \\ -1 \amp 3 \end{bmatrix}\begin{pmatrix} 7 \\ 3 \end{pmatrix} = \frac{1}{2}\begin{pmatrix} 4 \\ 2 \end{pmatrix} = \begin{pmatrix} 2 \\ 1 \end{pmatrix}</m>. The distortion multiplied areas by <m>2</m>, so the original area was <m>18 \div 2 = 9</m> square units.</p></solution>
+        </exercise>
+        <exercise xml:id="ex-design-a-transformation">
+            <title>Challenge: Design a Transformation</title>
+            <statement><p>Find the matrix that maps the unit square <m>OABC</m> onto the parallelogram with corners <m>O</m>, <m>(4, 1)</m>, <m>(5, 3)</m> and <m>(1, 2)</m>, with <m>A(1, 0)</m> going to <m>(4, 1)</m>. Find the area of the parallelogram.</p></statement>
+            <hint><p>The columns of the matrix are the images of <m>(1, 0)</m> and <m>(0, 1)</m>.</p></hint>
+            <answer><p><m>\begin{bmatrix} 4 \amp 1 \\ 1 \amp 2 \end{bmatrix}</m>; area <m>7</m></p></answer>
+            <solution><p><m>A(1, 0) \to (4, 1)</m> and <m>C(0, 1) \to (1, 2)</m>, so the matrix is <m>\begin{bmatrix} 4 \amp 1 \\ 1 \amp 2 \end{bmatrix}</m>; check <m>B(1, 1) \to (5, 3)</m>. Its determinant is <m>8 - 1 = 7</m> and the unit square has area <m>1</m>, so the parallelogram has area <m>7</m>.</p></solution>
+        </exercise>
+    </exercises>
 
-    <!-- <exercises>
-        <exercise>
-            <statement>   
-
-            </statement>   
-            <solution>
-
-            </solution>             
-        </exercise>        
-    </exercises> -->
-
-    <!-- [LP] Add information on how to differentiate  -->
-
-    <!-- <axiom component="lesson-plan">
+    <axiom component="lesson-plan">
         <title>Differentiation</title>
-
-        <table>
-            <title>Differentiation</title>
-            <tabular halign="left">
-                <row header="yes" bottom="minor">
-                    <cell>Learner Group</cell>
-                    <cell>Strategy &amp; Learning Experience</cell>
-                    <cell></cell>
-                </row>
-                <row>
-                    <cell>Struggling Learners (Support)</cell>
-                    <cell>
-                        XXXX
-                    </cell>
-                    <cell></cell>
-                </row>
-                <row>
-                    <cell>On-Level Learners (Core)</cell>
-                    <cell>
-                        <line>The core lesson activities as described above.</line>
-                    </cell>
-                    <cell></cell>
-                </row>
-                <row>
-                    <cell>Advanced Learners (Challenge)</cell>
-                    <cell>
-                        XXXX
-                    </cell>
-                    <cell></cell>
-                </row>
+        <table xml:id="table-differentiation-application">
+            <title>Differentiation Strategies</title>
+            <tabular halign="left" top="minor" bottom="minor" left="minor" right="minor">
+                <row header="yes" bottom="medium"><cell>Learner Group</cell><cell>Strategy and Learning Experience</cell></row>
+                <row><cell>Struggling Learners (Support)</cell><cell>Work on the banner with one matrix only, and the first two examples. Assign <xref ref="ex-pinwheel-pattern"/> and <xref ref="ex-italic-letter"/>.</cell></row>
+                <row><cell>On-Level Learners (Core)</cell><cell>Full activity plus all examples. Assign <xref ref="ex-pinwheel-pattern"/> to <xref ref="ex-restore-a-design"/>.</cell></row>
+                <row><cell>Advanced Learners (Challenge)</cell><cell>All exercises including <xref ref="ex-design-a-transformation"/>. Extension: design a motif and two matrices from this chapter whose combination is a reflection, and check with the interactive in <xref ref="sec-successive-transformations"/>. (Answers vary; for example, the rotation of <m>90^{\circ}</m> anticlockwise followed by the reflection in the <m>x</m>-axis is the reflection in <m>y = -x</m>.)</cell></row>
             </tabular>
         </table>
-    </axiom> -->
+    </axiom>
 
     <xi:include href="../lesson-plan-templates/assessment-methods.ptx" />
 

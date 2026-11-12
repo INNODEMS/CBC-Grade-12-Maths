@@ -1,0 +1,7 @@
+<stack-static>
+    <statement><p><p>The numbers of M-Pesa transactions at an agent in Nyeri on <m>{11}</m> days were (not in order)</p><p style="text-align:center;">68, 31, 49, 58, 21, 63, 79, 47, 57, 48, 38</p><p>(a) Find the range.</p><div>Range <m>=</m> <fillin characters="4" name="ans1"/>  </div><p>(b) Find the interquartile range.</p><div>IQR <m>=</m> <fillin characters="4" name="ans2"/>  </div><p>(c) Find the quartile deviation. Give an exact value.</p><div>QD <m>=</m> <fillin characters="5" name="ans3"/>  </div></p></statement>
+    <solution><p><p>Put the data in order first: 21, 31, 38, 47, 48, 49, 57, 58, 63, 68, 79.</p><p>(a) The range is the largest value minus the smallest: <m>{79} - {21} = {58}</m>.</p><p>(b) With <m>n = {11}</m>, <m>Q_1</m> is at position <m>({11} + 1)/4 = {3}</m> and <m>Q_3</m> at <m>3({11} + 1)/4 = {9}</m>, so <m>Q_1 = {38}</m> and <m>Q_3 = {63}</m>. The interquartile range, the spread of the middle half of the data, is <m>{63} - {38} = {25}</m>.</p><p>(c) The quartile deviation (semi-interquartile range) is half the IQR: <m>{25} \div 2 = {12.5}</m>.</p><p>The range uses only the two extreme days, so one unusual day changes it. The IQR and quartile deviation use the middle half and are not affected by extremes.</p></p></solution>
+    <answer><p><m>58</m></p></answer>
+    <answer><p><m>25</m></p></answer>
+    <answer><p><m>\frac{25}{2}</m></p></answer>
+</stack-static>

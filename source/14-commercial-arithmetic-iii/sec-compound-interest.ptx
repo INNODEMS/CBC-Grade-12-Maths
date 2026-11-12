@@ -33,7 +33,7 @@
                 <li component="lesson-plan">
                     <title>Estimated Duration</title>
                     <p>
-                        40 minutes
+                        2 lessons of 40 minutes
                     </p>
                 </li>
             </dl>
@@ -47,163 +47,382 @@
          Suggested activity: Learners use the compound interest formula to compare savings in a bank account over several years.
          Interactive (JSXGraph): Simple and compound interest plotted together over time with sliders for the rate, showing the gap widening. -->
 
-    <!-- [LP] Add guidance on activity -->
+    <!-- Section notes (2026-11)
+         SLO: Essential 2.4 (b); outcome (f) apply in lesson 2.2. Lessons 2.1 and 2.2 as subsections. Rate per annum only; whole years only.
+         Activity: as planning notes (savings in a bank account compared over several years: year by year in 2.1, simple against compound in 2.2)
+         JSXGraph: fig-simple-and-compound-interest (assets/jsxgraph/simple-and-compound-interest.js), as planning notes
+         STACK: assets/stack/top/2-measurement-and-geometry/14-commercial-arithmetic-iii/02-compound-interest/ -->
 
-    <axiom component="lesson-plan">
-        <title>Problem-Solving and Discovery</title>
-        <dl>
-            <li>
-                <title>Suggested Time</title>
-                <p>
-                    XXX minutes
-                </p>
-            </li>
-            <li>
-                <title>Objective</title>
-                <p>
-                    XXX
-                </p>
-            </li>
-            <li>
-                <title>Teacher's Role</title>
-                <p>
-                    XXX
-                </p>
-            </li>
-        </dl>
-    </axiom>
+    <!-- ============================================================ Lesson 2.1 -->
+    <subsection xml:id="subsec-compound-interest-by-formula">
+        <title>Compound Interest Year by Year and by Formula</title>
 
-    <!-- Add Activity -->
-
-    <!-- <activity>
-        <statement>
-        </statement>
-    </activity> -->
-
-    <!-- [LP] Add guidance on structured lesson plan-->
-
-    <!-- <axiom component="lesson-plan">
-        <title>Structured Instruction</title>
-        <p>
-            <dl>
-            <li>
-                <title>Suggested Time</title>
-                <p>
-                    XX minutes
-                </p>
-            </li>
-            <li>
-                <title>Objective</title>
-                <p>
-                    To formalize the concepts and properties learners discovered in the anchor task.
-                </p>
-            </li>
-            </dl>
-        </p>
-        <paragraphs>
-            <title>Key Takeaways &amp; Teacher Connection</title>
+        <p component="lesson-plan">Upon completion of this lesson, learners will be able to:
             <ol>
-                <li>
-                    <p>
-                        <alert>Connecting to Learner Work:</alert> XXXX
-                    </p>
-                </li>
+                <li><p><alert>Know:</alert> interest added to the account earns interest; each year the amount is multiplied by <m>1 + \dfrac{r}{100}</m>.</p></li>
+                <li><p><alert>Do:</alert> make a year-by-year table; use <m>A = P\left(1 + \dfrac{r}{100}\right)^n</m>; find the compound interest <m>A - P</m> and the interest earned in a given year.</p></li>
+                <li><p><alert>Apply:</alert> savings accounts, chama savings and fixed deposits.</p></li>
             </ol>
-        </paragraphs>
-    </axiom> -->
+        </p>
 
-    <!-- Add insight / key takeaway directly related to activity / learner experience -->
+        <axiom component="lesson-plan">
+            <title>Problem-Solving and Discovery</title>
+            <dl>
+                <li><title>Suggested Time</title><p>14 minutes</p></li>
+                <li><title>Objective</title><p>Learners build a year-by-year table for a savings account, spot the single multiplier and arrive at the compound interest formula.</p></li>
+                <li><title>Teacher's Role</title><p>Learners need calculators. Ask for one calculation per year in part (a) before anyone uses a power.</p></li>
+            </dl>
+        </axiom>
 
-    <!-- <insight>
-    </insight> -->
+        <activity xml:id="act-leaving-the-interest-in">
+            <title>Leaving the Interest In</title>
+            <statement>
+                <p>Neema puts Ksh <m>40\,000</m> in a bank savings account that pays <m>10\%</m> per annum compound interest. At the end of each year the interest is added to the account.</p>
+                <table xml:id="table-leaving-the-interest-in">
+                    <title>Neema's Savings Account</title>
+                    <tabular halign="center" top="minor" bottom="minor" left="minor" right="minor">
+                        <row header="yes" bottom="medium"><cell>Year</cell><cell>Balance at the start (Ksh)</cell><cell>Interest (Ksh)</cell><cell>Balance at the end (Ksh)</cell></row>
+                        <row><cell>1</cell><cell><m>40\,000</m></cell><cell><m>4000</m></cell><cell><m>44\,000</m></cell></row>
+                        <row><cell>2</cell><cell><m>44\,000</m></cell><cell></cell><cell></cell></row>
+                        <row><cell>3</cell><cell></cell><cell></cell><cell></cell></row>
+                        <row><cell>4</cell><cell></cell><cell></cell><cell></cell></row>
+                    </tabular>
+                </table>
+                <p>
+                    <ol marker="(a)">
+                        <li>
+                            <p>Complete the table for <m>4</m> years.</p>
+                            <solution component="lesson-plan"><p>Interest <m>4400</m>, <m>4840</m>, <m>5324</m>; balances at the end <m>48\,400</m>, <m>53\,240</m>, <m>58\,564</m>.</p></solution>
+                        </li>
+                        <li>
+                            <p>What single number multiplies the balance each year?</p>
+                            <solution component="lesson-plan"><p><m>1.1</m>: the balance plus <m>10\%</m> of it is <m>1.1</m> times the balance.</p></solution>
+                        </li>
+                        <li>
+                            <p>Check your last balance by working out <m>40\,000 \times 1.1^4</m>.</p>
+                            <solution component="lesson-plan"><p><m>1.1^4 = 1.4641</m> and <m>40\,000 \times 1.4641 = 58\,564</m>.</p></solution>
+                        </li>
+                        <li>
+                            <p>How much would Neema have after <m>4</m> years at <m>10\%</m> per annum simple interest? How much more does compound interest give?</p>
+                            <solution component="lesson-plan"><p>Simple: <m>40\,000 + 4 \times 4000 = 56\,000</m>. Compound gives <m>58\,564 - 56\,000 = 2564</m>, Ksh <m>2564</m> more.</p></solution>
+                        </li>
+                    </ol>
+                </p>
+            </statement>
+        </activity>
 
-    <!-- Add further instruction (not in a block) to develop ideas as needed -->
+        <axiom component="lesson-plan">
+            <title>Structured Instruction</title>
+            <p>
+                <dl>
+                    <li><title>Suggested Time</title><p>8 minutes</p></li>
+                    <li><title>Objective</title><p>To formalise the multiplier and the compound interest formula from the activity.</p></li>
+                </dl>
+            </p>
+            <paragraphs>
+                <title>Key Takeaways &amp; Teacher Connection</title>
+                <ol>
+                    <li><p><alert>Connecting to Learner Work:</alert> each row of the table multiplied the balance by <m>1.1</m>; four rows multiply it by <m>1.1^4</m>.</p></li>
+                    <li><p>The multiplier for a rate of <m>r\%</m> per annum is <m>1 + \dfrac{r}{100}</m>.</p></li>
+                    <li><p><m>A = P\left(1 + \dfrac{r}{100}\right)^n</m>, and the compound interest is <m>A - P</m>. Round only at the end.</p></li>
+                </ol>
+            </paragraphs>
+        </axiom>
 
-    <xi:include href="../lesson-plan-templates/example-intro.ptx" />
+        <insight xml:id="insight-compound-interest">
+            <title>Compound Interest</title>
+            <p>With <term>compound interest</term>, the interest is added to the account at the end of each year, and next year's interest is paid on the bigger sum. Each year the amount is multiplied by the same <term>multiplier</term>, <m>1 + \dfrac{r}{100}</m>, so after <m>n</m> whole years
+                <md>A = P\left(1 + \frac{r}{100}\right)^n</md>
+                where <m>P</m> is the principal and <m>r</m> the rate per cent per annum. The compound interest is <m>A - P</m>.</p>
+            <p>The <m>R</m> in <m>I = \dfrac{PRT}{100}</m> and the <m>r</m> here are the same thing, the rate per cent per annum; we keep the letters in common use.</p>
+        </insight>
 
-    <!-- Add at least 3 examples -->
+        <xi:include href="../lesson-plan-templates/example-intro.ptx" />
 
-    <!-- <example>
-        <statement>
-        </statement>
-        <solution>
-        </solution>
-    </example>
-
-    <example>
-        <statement>
-        </statement>
-        <solution>
-        </solution>
-    </example>
-
-    <example>
-        <statement>
-        </statement>
-        <solution>
-        </solution>
-    </example> -->
-
-    <xi:include href="../lesson-plan-templates/assessment-intro.ptx" />
-
-    <!-- If STACK questions are included, uncomment this: -->
-
-    <!-- <xi:include href="../lesson-plan-templates/checkpoint.ptx" /> -->
-
-    <!-- Add STACK exercises if made -->
-
-    <!-- Add static exercises -->
-
-    <!-- <exercises>
-        <exercise>
-            <statement>   
-
-            </statement>   
+        <example xml:id="example-fixed-deposit-three-years">
+            <title>A Fixed Deposit for Three Years</title>
+            <statement>
+                <p>Ksh <m>150\,000</m> is put in a fixed deposit at <m>8.5\%</m> per annum compound interest for <m>3</m> years. Find the amount and the compound interest, to the nearest shilling.</p>
+            </statement>
             <solution>
+                <p>The multiplier is <m>1.085</m>.
+                    <md>A = 150\,000 \times 1.085^3 = 191\,593.37</md>
+                    The amount is Ksh <m>191\,593</m> to the nearest shilling, and the compound interest is <m>191\,593 - 150\,000 = 41\,593</m>, Ksh <m>41\,593</m>.</p>
+            </solution>
+        </example>
 
-            </solution>             
-        </exercise>        
-    </exercises> -->
+        <example xml:id="example-compound-year-by-year">
+            <title>Year by Year</title>
+            <statement>
+                <p>Ksh <m>25\,000</m> is saved at <m>4\%</m> per annum compound interest. Make a table of the amount at the end of each year for <m>3</m> years, and check the last value by the formula.</p>
+            </statement>
+            <solution>
+                <p>Each year, multiply by <m>1.04</m>, keeping cents.</p>
+                <table xml:id="table-compound-year-by-year">
+                    <title>Ksh <m>25\,000</m> at 4% per annum</title>
+                    <tabular halign="center" top="minor" bottom="minor" left="minor" right="minor">
+                        <row header="yes" bottom="medium"><cell>End of year</cell><cell>Amount (Ksh)</cell></row>
+                        <row><cell>1</cell><cell><m>25\,000 \times 1.04 = 26\,000.00</m></cell></row>
+                        <row><cell>2</cell><cell><m>26\,000 \times 1.04 = 27\,040.00</m></cell></row>
+                        <row><cell>3</cell><cell><m>27\,040 \times 1.04 = 28\,121.60</m></cell></row>
+                    </tabular>
+                </table>
+                <p>Check: <m>25\,000 \times 1.04^3 = 25\,000 \times 1.124864 = 28\,121.60</m>.</p>
+            </solution>
+        </example>
 
-    <!-- [LP] Add information on how to differentiate  -->
+        <example xml:id="example-interest-in-the-third-year">
+            <title>Interest in the Third Year</title>
+            <statement>
+                <p>For the account in <xref ref="example-compound-year-by-year"/>, how much interest is earned in the third year alone?</p>
+            </statement>
+            <solution>
+                <p><m>28\,121.60 - 27\,040.00 = 1081.60</m>, so Ksh <m>1081.60</m>. This is <m>4\%</m> of <m>27\,040</m>, the balance at the start of the third year; it is more than the <m>1000</m> earned in the first year.</p>
+            </solution>
+        </example>
 
-    <!-- <axiom component="lesson-plan">
-        <title>Differentiation</title>
+        <xi:include href="../lesson-plan-templates/assessment-intro.ptx" />
+        <xi:include href="../lesson-plan-templates/checkpoint.ptx" />
 
-        <table>
+        <p>Type amounts as plain numbers, without Ksh, spaces or commas, for example <c>45326</c>. Give money to the nearest shilling and percentages to 1 decimal place unless the question says otherwise; exact answers in cents are also accepted.</p>
+
+        <exercise xml:id="ex-compound-amount-and-interest">
+            <!--<title></title>-->
+            <stack label="stk-compound-amount-and-interest" source="stack/top/2-measurement-and-geometry/14-commercial-arithmetic-iii/02-compound-interest/Compound-amount-and-interest.xml"/>
+        </exercise>
+
+        <exercises xml:id="exercises-compound-interest-by-formula">
+            <exercise xml:id="ex-ci-18000">
+                <statement><p>Find the amount and the compound interest on Ksh <m>18\,000</m> at <m>7\%</m> per annum for <m>2</m> years.</p></statement>
+                <answer><p>Amount Ksh <m>20\,608.20</m>; compound interest Ksh <m>2608.20</m></p></answer>
+            </exercise>
+            <exercise xml:id="ex-ci-64000">
+                <statement><p>Find the amount and the compound interest on Ksh <m>64\,000</m> at <m>12\%</m> per annum for <m>2</m> years.</p></statement>
+                <answer><p>Amount Ksh <m>80\,281.60</m>; compound interest Ksh <m>16\,281.60</m></p></answer>
+            </exercise>
+            <exercise xml:id="ex-ci-220000">
+                <statement><p>A SACCO member leaves Ksh <m>220\,000</m> in a fixed deposit at <m>9.5\%</m> per annum compound interest for <m>5</m> years. Find the amount and the interest, to the nearest shilling.</p></statement>
+                <answer><p>Amount Ksh <m>346\,333</m>; interest Ksh <m>126\,333</m></p></answer>
+                <solution><p><m>A = 220\,000 \times 1.095^5 = 346\,332.52</m>, so Ksh <m>346\,333</m>. The interest is <m>346\,333 - 220\,000 = 126\,333</m>.</p></solution>
+            </exercise>
+            <exercise xml:id="ex-ci-chama-table">
+                <statement><p>A chama deposits Ksh <m>50\,000</m> at <m>11\%</m> per annum compound interest. Make a year-by-year table for <m>3</m> years and find the interest earned in the third year.</p></statement>
+                <answer><p>Amounts <m>55\,500</m>, <m>61\,605</m>, <m>68\,381.55</m>; interest in the third year Ksh <m>6776.55</m></p></answer>
+                <solution><p>Multiply by <m>1.11</m> each year: <m>55\,500</m>, <m>61\,605</m>, <m>68\,381.55</m>. The third year's interest is <m>68\,381.55 - 61\,605 = 6776.55</m>.</p></solution>
+            </exercise>
+            <exercise xml:id="ex-ci-two-years-as-one">
+                <title>Challenge: Two Years as One</title>
+                <statement><p>Interest is <m>6.25\%</m> per annum compound. What single percentage increase is the same as two years of this interest?</p></statement>
+                <hint><p>Square the multiplier.</p></hint>
+                <answer><p><m>12.9\%</m> (not <m>12.5\%</m>)</p></answer>
+                <solution><p><m>1.0625^2 = 1.12890625</m>, an increase of <m>12.890625\%</m>, about <m>12.9\%</m>. It is more than <m>2 \times 6.25 = 12.5\%</m> because the second year's interest is also paid on the first year's interest.</p></solution>
+            </exercise>
+        </exercises>
+
+        <axiom component="lesson-plan">
             <title>Differentiation</title>
-            <tabular halign="left">
-                <row header="yes" bottom="minor">
-                    <cell>Learner Group</cell>
-                    <cell>Strategy &amp; Learning Experience</cell>
-                    <cell></cell>
-                </row>
-                <row>
-                    <cell>Struggling Learners (Support)</cell>
-                    <cell>
-                        XXXX
-                    </cell>
-                    <cell></cell>
-                </row>
-                <row>
-                    <cell>On-Level Learners (Core)</cell>
-                    <cell>
-                        <line>The core lesson activities as described above.</line>
-                    </cell>
-                    <cell></cell>
-                </row>
-                <row>
-                    <cell>Advanced Learners (Challenge)</cell>
-                    <cell>
-                        XXXX
-                    </cell>
-                    <cell></cell>
-                </row>
-            </tabular>
-        </table>
-    </axiom> -->
+            <table xml:id="table-differentiation-compound-interest-by-formula">
+                <title>Differentiation Strategies</title>
+                <tabular halign="left" top="minor" bottom="minor" left="minor" right="minor">
+                    <row header="yes" bottom="medium"><cell>Learner Group</cell><cell>Strategy and Learning Experience</cell></row>
+                    <row><cell>Struggling Learners (Support)</cell><cell>Work through the activity and <xref ref="example-compound-year-by-year"/>. Give a card: <q>multiplier <m>= 1 + \dfrac{r}{100}</m></q>. Assign <xref ref="ex-ci-18000"/> and <xref ref="ex-ci-chama-table"/>.</cell></row>
+                    <row><cell>On-Level Learners (Core)</cell><cell>Full activity and all examples. Assign <xref ref="ex-ci-18000"/> to <xref ref="ex-ci-chama-table"/>.</cell></row>
+                    <row><cell>Advanced Learners (Challenge)</cell><cell>All exercises including <xref ref="ex-ci-two-years-as-one"/>. Extension: find the interest earned in the fifth year of <xref ref="ex-ci-220000"/>. (Answer: <m>220\,000 \times 1.095^4 \times 0.095 = 30\,047.11</m>, Ksh <m>30\,047.11</m>.)</cell></row>
+                </tabular>
+            </table>
+        </axiom>
 
-    <xi:include href="../lesson-plan-templates/assessment-methods.ptx" />
+        <xi:include href="../lesson-plan-templates/assessment-methods.ptx" />
+        <xi:include href="../lesson-plan-templates/reflection.ptx"/>
+    </subsection>
 
-    <xi:include href="../lesson-plan-templates/reflection.ptx"/>
+    <!-- ============================================================ Lesson 2.2 -->
+    <subsection xml:id="subsec-simple-and-compound-compared">
+        <title>Simple and Compound Interest Compared</title>
+
+        <p component="lesson-plan">Upon completion of this lesson, learners will be able to:
+            <ol>
+                <li><p><alert>Know:</alert> simple and compound interest at the same rate give the same amount after one year; after that compound pulls ahead, and the gap widens.</p></li>
+                <li><p><alert>Do:</alert> compare offers at different rates; find, by trial, the first whole year in which a target is passed.</p></li>
+                <li><p><alert>Apply:</alert> choose a savings offer.</p></li>
+            </ol>
+        </p>
+
+        <axiom component="lesson-plan">
+            <title>Problem-Solving and Discovery</title>
+            <dl>
+                <li><title>Suggested Time</title><p>14 minutes</p></li>
+                <li><title>Objective</title><p>Learners use the interactive to compare simple and compound interest on the same savings and explain why the gap widens.</p></li>
+                <li><title>Teacher's Role</title><p>Pairs record the gap after <m>1</m>, <m>2</m>, <m>5</m> and <m>8</m> years before discussing part (c).</p></li>
+            </dl>
+        </axiom>
+
+        <activity xml:id="act-watching-the-gap-grow">
+            <title>Watching the Gap Grow</title>
+            <statement>
+                <p>Ksh <m>70\,000</m> is saved for <m>8</m> years at <m>9\%</m> per annum. Use <xref ref="fig-simple-and-compound-interest"/> or a calculator.</p>
+                <p>
+                    <ol marker="(a)">
+                        <li>
+                            <p>Find the amount after <m>8</m> years with simple interest and with compound interest.</p>
+                            <solution component="lesson-plan"><p>Simple: <m>70\,000 + 8 \times 6300 = 120\,400</m>. Compound: <m>70\,000 \times 1.09^{8} = 139\,479</m> to the nearest shilling.</p></solution>
+                        </li>
+                        <li>
+                            <p>Find the gap between the two amounts after <m>1</m>, <m>2</m>, <m>5</m> and <m>8</m> years.</p>
+                            <solution component="lesson-plan"><p>Ksh <m>0</m>, <m>567</m>, <m>6204</m> and <m>19\,079</m> (to the nearest shilling).</p></solution>
+                        </li>
+                        <li>
+                            <p>Why is there no gap after one year?</p>
+                            <solution component="lesson-plan"><p>In the first year both pay interest on the principal only. Compound interest starts to earn more only when interest has been added to the account.</p></solution>
+                        </li>
+                        <li>
+                            <p>Move the rate slider to <m>5\%</m>. Does compound interest still pull ahead?</p>
+                            <solution component="lesson-plan"><p>Yes, more slowly: the gap after <m>8</m> years is about Ksh <m>5422</m>.</p></solution>
+                        </li>
+                    </ol>
+                </p>
+            </statement>
+        </activity>
+
+        <axiom component="lesson-plan">
+            <title>Structured Instruction</title>
+            <p>
+                <dl>
+                    <li><title>Suggested Time</title><p>8 minutes</p></li>
+                    <li><title>Objective</title><p>To compare the two kinds of interest and to decide between savings offers.</p></li>
+                </dl>
+            </p>
+            <paragraphs>
+                <title>Key Takeaways &amp; Teacher Connection</title>
+                <ol>
+                    <li><p><alert>Connecting to Learner Work:</alert> the gap in part (b) was <m>0</m> after one year and grew every year after that.</p></li>
+                    <li><p>Simple interest adds a fixed sum each year; compound interest multiplies by a fixed number each year.</p></li>
+                    <li><p>A higher simple rate can beat a lower compound rate over a short time; over a long time compound wins.</p></li>
+                </ol>
+            </paragraphs>
+        </axiom>
+
+        <insight xml:id="insight-which-grows-faster">
+            <title>Which Grows Faster?</title>
+            <p>With simple interest the amount grows by the same number of shillings every year, so its graph against time is a straight line. With compound interest the amount is multiplied by the same number every year, so its graph is a curve that gets steeper. At the same rate the two are equal after one year; after that compound interest is always ahead, and the gap keeps growing.</p>
+        </insight>
+
+        <figure xml:id="fig-simple-and-compound-interest">
+            <caption>Simple and compound interest on the same savings. The dashed line is simple interest and the solid curve is compound interest.</caption>
+            <interactive xml:id="interactive-simple-and-compound-interest" platform="jsxgraph" width="90%" aspect="16:12" source="jsxgraph/simple-and-compound-interest.js">
+                <slate xml:id="jsxgraph-simple-and-compound-interest" surface="jsxboard" aspect="16:12"/>
+                <instructions>
+                    <p>
+                        <ul>
+                            <li><p>Drag <alert>P</alert> to set the principal and <alert>r</alert> to set the rate per cent per annum.</p></li>
+                            <li><p>Drag the year marker <alert>n</alert> along the time axis. The vertical segment shows the gap between the two amounts, and the text gives both amounts and the gap.</p></li>
+                            <li><p>After one year the two amounts are equal; then compound interest pulls ahead. The marker starts at <m>n = 3</m>. With <m>P = 70\,000</m>, <m>r = 9</m> and <m>n</m> dragged to <m>8</m> you should see <m>120\,400.00</m>, <m>139\,479.38</m> and a gap of <m>19\,079.38</m>.</p></li>
+                        </ul>
+                    </p>
+                </instructions>
+            </interactive>
+        </figure>
+
+        <xi:include href="../lesson-plan-templates/example-intro.ptx" />
+
+        <example xml:id="example-sacco-or-bank">
+            <title>SACCO or Bank?</title>
+            <statement>
+                <p>Mumbi has Ksh <m>80\,000</m> to save. Her SACCO offers <m>11\%</m> per annum simple interest; a bank offers <m>10\%</m> per annum compound interest. Which is better over <m>2</m> years, over <m>3</m> years and over <m>6</m> years?</p>
+            </statement>
+            <solution>
+                <p>The SACCO adds <m>8800</m> a year; the bank multiplies by <m>1.1</m> a year.</p>
+                <table xml:id="table-sacco-or-bank">
+                    <title>Amounts in Ksh</title>
+                    <tabular halign="center" top="minor" bottom="minor" left="minor" right="minor">
+                        <row header="yes" bottom="medium"><cell>Years</cell><cell>SACCO, simple</cell><cell>Bank, compound</cell><cell>Better</cell></row>
+                        <row><cell>2</cell><cell><m>97\,600</m></cell><cell><m>96\,800</m></cell><cell>SACCO</cell></row>
+                        <row><cell>3</cell><cell><m>106\,400</m></cell><cell><m>106\,480</m></cell><cell>bank, by <m>80</m></cell></row>
+                        <row><cell>6</cell><cell><m>132\,800</m></cell><cell><m>141\,724.88</m></cell><cell>bank</cell></row>
+                    </tabular>
+                </table>
+                <p>Over <m>2</m> years the SACCO's higher rate wins. From <m>3</m> years on, the bank's compound interest is ahead, and the gap grows.</p>
+            </solution>
+        </example>
+
+        <example xml:id="example-how-many-years">
+            <title>How Many Years?</title>
+            <statement>
+                <p>A chama saves Ksh <m>55\,000</m> at <m>9\%</m> per annum compound interest. After how many whole years is the amount first more than Ksh <m>85\,000</m>?</p>
+            </statement>
+            <solution>
+                <p>Try values of <m>n</m> in <m>55\,000 \times 1.09^n</m>:
+                    <md>
+                        <mrow>n = 5\amp: \quad 55\,000 \times 1.09^5 = 84\,624.32</mrow>
+                        <mrow>n = 6\amp: \quad 55\,000 \times 1.09^6 = 92\,240.51</mrow>
+                    </md>
+                    The amount passes Ksh <m>85\,000</m> during the sixth year, so it is first more than Ksh <m>85\,000</m> after <m>6</m> whole years.</p>
+            </solution>
+        </example>
+
+        <xi:include href="../lesson-plan-templates/assessment-intro.ptx" />
+        <xi:include href="../lesson-plan-templates/checkpoint.ptx" />
+
+        <p>Type amounts as plain numbers, without Ksh, spaces or commas, for example <c>45326</c>. Give money to the nearest shilling and percentages to 1 decimal place unless the question says otherwise; exact answers in cents are also accepted.</p>
+
+        <exercise xml:id="ex-simple-or-compound-offer">
+            <!--<title></title>-->
+            <stack label="stk-simple-or-compound-offer" source="stack/top/2-measurement-and-geometry/14-commercial-arithmetic-iii/02-compound-interest/Simple-or-compound-offer.xml"/>
+        </exercise>
+
+        <exercise xml:id="ex-find-the-mistake-compound-interest">
+            <!--<title></title>-->
+            <stack label="stk-find-the-mistake-compound-interest" source="stack/top/2-measurement-and-geometry/14-commercial-arithmetic-iii/02-compound-interest/Find-the-mistake-compound-interest.xml"/>
+        </exercise>
+
+        <exercises xml:id="exercises-simple-and-compound-compared">
+            <exercise xml:id="ex-compare-12-percent">
+                <statement><p>Ksh <m>32\,000</m> is saved for <m>5</m> years at <m>12\%</m> per annum. Find the amount at simple interest and at compound interest, and the difference, to the nearest shilling.</p></statement>
+                <answer><p>Simple Ksh <m>51\,200</m>; compound Ksh <m>56\,395</m>; difference Ksh <m>5195</m></p></answer>
+            </exercise>
+            <exercise xml:id="ex-compare-13-simple-12-compound">
+                <statement><p>Ksh <m>60\,000</m> can be saved at <m>13\%</m> per annum simple interest or at <m>12\%</m> per annum compound interest. Which is better over <m>2</m> years, and which over <m>8</m> years?</p></statement>
+                <answer><p><m>2</m> years: <m>75\,600</m> against <m>75\,264</m>, simple. <m>8</m> years: <m>122\,400</m> against <m>148\,558</m>, compound.</p></answer>
+            </exercise>
+            <exercise xml:id="ex-compare-close-call">
+                <statement><p>Ksh <m>30\,000</m> for <m>4</m> years: is <m>9\%</m> per annum simple interest or <m>8\%</m> per annum compound interest better?</p></statement>
+                <answer><p>Compound, by about Ksh <m>15</m> (<m>40\,800</m> against <m>40\,814.67</m>)</p></answer>
+            </exercise>
+            <exercise xml:id="ex-years-to-double-8">
+                <statement><p>At <m>8\%</m> per annum compound interest, after how many whole years has money first doubled?</p></statement>
+                <answer><p><m>10</m> years</p></answer>
+                <solution><p><m>1.08^9 = 1.999</m>, just short of <m>2</m>; <m>1.08^{10} = 2.159</m>. So the money has first doubled after <m>10</m> years, whatever the principal.</p></solution>
+            </exercise>
+            <exercise xml:id="ex-years-to-pass-20000">
+                <statement><p>Ksh <m>15\,000</m> is saved at <m>7.5\%</m> per annum compound interest. After how many whole years is it first more than Ksh <m>20\,000</m>?</p></statement>
+                <answer><p><m>4</m> years</p></answer>
+                <solution><p>After <m>3</m> years: <m>15\,000 \times 1.075^3 = 18\,634.45</m>. After <m>4</m> years: <m>15\,000 \times 1.075^4 = 20\,032.04</m>.</p></solution>
+            </exercise>
+            <exercise xml:id="ex-same-after-one-year">
+                <title>Challenge: Why the Gap Starts in Year Two</title>
+                <statement><p>Explain why simple and compound interest at the same rate give the same amount after <m>1</m> year, and show that after <m>2</m> years compound interest is ahead by exactly <m>P\left(\dfrac{r}{100}\right)^2</m>.</p></statement>
+                <hint><p>Expand <m>P\left(1 + \dfrac{r}{100}\right)^2</m>.</p></hint>
+                <answer><p>Both pay <m>\dfrac{Pr}{100}</m> in year 1. In year 2 compound interest also pays <m>r\%</m> on the first year's interest.</p></answer>
+                <solution><p>After one year both amounts are <m>P + \dfrac{Pr}{100}</m>. After two years, compound gives <m>P\left(1 + \dfrac{r}{100}\right)^2 = P + \dfrac{2Pr}{100} + P\left(\dfrac{r}{100}\right)^2</m> and simple gives <m>P + \dfrac{2Pr}{100}</m>. The difference is <m>P\left(\dfrac{r}{100}\right)^2</m>: the interest, at <m>r\%</m>, on the first year's interest <m>\dfrac{Pr}{100}</m>.</p></solution>
+            </exercise>
+        </exercises>
+
+        <axiom component="lesson-plan">
+            <title>Differentiation</title>
+            <table xml:id="table-differentiation-simple-and-compound-compared">
+                <title>Differentiation Strategies</title>
+                <tabular halign="left" top="minor" bottom="minor" left="minor" right="minor">
+                    <row header="yes" bottom="medium"><cell>Learner Group</cell><cell>Strategy and Learning Experience</cell></row>
+                    <row><cell>Struggling Learners (Support)</cell><cell>Activity parts (a) to (c) and <xref ref="example-sacco-or-bank"/>. Assign <xref ref="ex-compare-12-percent"/> and <xref ref="ex-years-to-double-8"/>.</cell></row>
+                    <row><cell>On-Level Learners (Core)</cell><cell>Full activity and all examples. Assign <xref ref="ex-compare-12-percent"/> to <xref ref="ex-years-to-pass-20000"/>.</cell></row>
+                    <row><cell>Advanced Learners (Challenge)</cell><cell>All exercises including <xref ref="ex-same-after-one-year"/>. Extension (digital): build a spreadsheet with a column of simple-interest amounts and a column of compound-interest amounts for Ksh <m>70\,000</m> at <m>9\%</m> for <m>20</m> years. (Answer: after <m>20</m> years, <m>196\,000</m> against <m>392\,309</m>.)</cell></row>
+                </tabular>
+            </table>
+        </axiom>
+
+        <p component="lesson-plan">Closing question for the class: a savings offer pays a high simple rate for one year only. When would you choose it over a lower compound rate?</p>
+
+        <xi:include href="../lesson-plan-templates/assessment-methods.ptx" />
+        <xi:include href="../lesson-plan-templates/reflection.ptx"/>
+    </subsection>
 </section>
