@@ -15,7 +15,7 @@ This fork of `INNODEMS/CBC-Grade-12-Maths` holds a first full draft of the Grade
 
 Everything else is your skeleton, unchanged: `project.ptx`, `publication/`, `docinfo.ptx`, `main.ptx`, front and back matter, the lesson-plan templates, `README.md`, `BUILDING.md`, the workflows and the folder layout. Our changes are in the `sec-*.ptx` files, the chapter introductions in `ch-*.ptx`, and the three asset folders above. The whole draft is one commit on top of your `main`, so `git diff` against your repository shows exactly what changed.
 
-The built book is published from the `gh-pages` branch of this fork with the same layout as your deployment (`/core/teachers/`, `/core/students/`, `/core/plans/`, the same three under `/essential/`, and the Core teachers' book at the root). The same site is in the accompanying zip with the PDFs of both teachers' editions.
+The built book is published from the `gh-pages` branch of this fork with the same layout as your deployment (`/core/teachers/`, `/core/students/`, `/core/plans/`, the same three under `/essential/`, and the Core teachers' book at the root), at https://bmjdavies.github.io/CBC-Grade-12-Maths/. The PDFs of both teachers' editions are in the accompanying zip.
 
 | Ch | Title | Edition | Sections | STACK questions |
 |---|---|---|---|---|
