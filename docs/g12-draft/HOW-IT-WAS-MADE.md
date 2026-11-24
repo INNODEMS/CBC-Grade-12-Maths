@@ -2,7 +2,7 @@
 
 Ben Davies, November 2026
 
-This fork of `INNODEMS/CBC-Grade-12-Maths` holds a first full draft of the Grade 12 book in both editions, Core Mathematics and Essential Mathematics. It is built on your Grade 12 skeleton and follows the conventions of your Grade 11 book. This note explains what is here, how it was made and checked, and what is left for you to decide.
+This pull request brings a first full draft of the Grade 12 book in both editions, Core Mathematics and Essential Mathematics. It is built on your Grade 12 skeleton and follows the conventions of your Grade 11 book. This note explains what is here, how it was made and checked, and what is left for you to decide.
 
 ## 1. What is here
 
@@ -13,9 +13,9 @@ This fork of `INNODEMS/CBC-Grade-12-Maths` holds a first full draft of the Grade
 - Static renders of every STACK question in `generated-assets/stack/`, which the print builds need (Grade 11 also tracks these in git).
 - A short introduction for each chapter, in the shape of the Grade 11 introductions.
 
-Everything else is your skeleton, unchanged: `project.ptx`, `publication/`, `docinfo.ptx`, `main.ptx`, front and back matter, the lesson-plan templates, `README.md`, `BUILDING.md`, the workflows and the folder layout. Our changes are in the `sec-*.ptx` files, the chapter introductions in `ch-*.ptx`, and the three asset folders above. The whole draft is one commit on top of your `main`, so `git diff` against your repository shows exactly what changed.
+Everything else is your skeleton, unchanged: `project.ptx`, `publication/`, `docinfo.ptx`, `main.ptx`, front and back matter, the lesson-plan templates, `README.md`, `BUILDING.md`, the workflows and the folder layout. Our changes are in the `sec-*.ptx` files, the chapter introductions in `ch-*.ptx`, and the three asset folders above. The draft sits on top of your `main` as it stood on 2026-11-13 (`dbcfae5`), so the pull request's diff shows exactly what changed. This note and `EDITORIAL-QUESTIONS.md` are in `docs/g12-draft/`.
 
-The built book is published from the `gh-pages` branch of this fork with the same layout as your deployment (`/core/teachers/`, `/core/students/`, `/core/plans/`, the same three under `/essential/`, and the Core teachers' book at the root), at https://bmjdavies.github.io/CBC-Grade-12-Maths/. The PDFs of both teachers' editions are in the accompanying zip.
+A preview of the built book is published from the `gh-pages` branch of our fork with the same layout as your deployment (`/core/teachers/`, `/core/students/`, `/core/plans/`, the same three under `/essential/`, and the Core teachers' book at the root), at https://bmjdavies.github.io/CBC-Grade-12-Maths/. The PDFs of both teachers' editions are in the zip attached to the fork's release, https://github.com/BMJDavies/CBC-Grade-12-Maths/releases/tag/g12-first-draft. Once merged, your own Build and Deploy workflow publishes the book at your usual address.
 
 | Ch | Title | Edition | Sections | STACK questions |
 |---|---|---|---|---|
@@ -92,7 +92,7 @@ Your question bank round-trips through ecampus with qbank_gitsync, so these ques
 
 ### Running without your server
 
-To build or preview without using your server, run the STACK API locally with Docker. The accompanying zip contains a ready `docker-compose.yml` (STACK API 2026062900 with its Maxima service, on port 3083). Start it with `docker compose up -d`, then change the `server` attribute of the `<stack>` line in each `publication/*.ptx` to `http://localhost:3083` for the duration of the build. Change it back afterwards.
+To build or preview without using your server, run the STACK API locally with Docker. The release zip above contains a ready `docker-compose.yml` (STACK API 2026062900 with its Maxima service, on port 3083). Start it with `docker compose up -d`, then change the `server` attribute of the `<stack>` line in each `publication/*.ptx` to `http://localhost:3083` for the duration of the build. Change it back afterwards.
 
 ## 5. Building
 
@@ -119,7 +119,7 @@ There are five, listed in Part 1 of `EDITORIAL-QUESTIONS.md`. The most important
 
 Two of your skeleton's TODOs are left for you, because only you can fill them: the contributors list in the front matter, and the preface's mention of "animations".
 
-The publication files' `<baseurl>` names `innodems.github.io`. We left it, so the copy on this fork's Pages site carries your address in its metadata.
+The publication files' `<baseurl>` names `innodems.github.io`. We left it, so your deployment is correct once merged; the preview on our fork's Pages site carries your address in its metadata.
 
 ## 8. What we used
 
