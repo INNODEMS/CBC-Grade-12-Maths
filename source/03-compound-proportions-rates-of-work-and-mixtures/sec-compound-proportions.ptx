@@ -38,9 +38,8 @@
                 </li>
                 <li component="lesson-plan">
                     <title>Estimated Duration</title>
-                    <p>
-                        40 minutes
-                    </p>
+                    <p component="core">3 lessons of 40 minutes</p>
+                    <p component="essential">2 lessons of 40 minutes</p>
                 </li>
             </dl>
             </p>
@@ -51,163 +50,557 @@
          Content summary: Direct, indirect/inverse and compound proportion. Core uses unitary and ratio methods; Essential uses the unitary method.
          Suggested activity: Using a school context, learners work out how many days a given number of workers need to dig a shamba of a given size, varying both workers and area. -->
 
-    <!-- [LP] Add guidance on activity -->
+    <!-- Section notes (2026-11)
+         SLO: Core 1.3 (b), with compound proportion (c) taught here (listed in EDITORIAL-QUESTIONS.md); Essential 1.2 (b), (c). Lessons 2.1, 2.2 (both), 2.3 (Core only) as subsections.
+         Activity: as planning notes (workers digging the school shamba, varying workers and area)
+         STACK: assets/stack/top/1-numbers-and-algebra/03-compound-proportions-rates-of-work-and-mixtures/02-compound-proportions/ -->
 
-    <!-- <axiom component="lesson-plan">
+    <!-- ============================================================ Lesson 2.1 -->
+    <subsection xml:id="subsec-direct-and-inverse-proportion">
+        <title>Direct and Inverse Proportion</title>
+
+        <p component="lesson-plan">Upon completion of this lesson, learners will be able to:
+            <ol>
+                <li><p><alert>Know:</alert> direct proportion (the ratio stays the same), inverse or indirect proportion (the product stays the same), and relations that are neither.</p></li>
+                <li><p><alert>Do:</alert> test a table for direct or inverse proportion; solve proportion problems by the unitary method.</p></li>
+                <li><p><alert>Apply:</alert> buying, sharing work and transport.</p></li>
+            </ol>
+        </p>
+
+        <axiom component="lesson-plan">
             <title>Problem-Solving and Discovery</title>
             <dl>
-                <li>
-                    <title>Suggested Time</title>
-                    <p>
-                        XX minutes
-                    </p>
-                </li>
-                <li>
-                    <title>Objective</title>
-                    <p>
-                        XXX
-                    </p>
-                </li>
-                <li>
-                    <title>Teacher's Role</title>
-                    <p>
-                        XXX
-                    </p>
-                </li>
+                <li><title>Suggested Time</title><p>14 minutes</p></li>
+                <li><title>Objective</title><p>Learners complete three tables and find what stays the same in each.</p></li>
+                <li><title>Teacher's Role</title><p>For each table ask: <q>What happens to <m>y</m> when <m>x</m> doubles?</q></p></li>
             </dl>
-        </axiom> -->
+        </axiom>
 
-    <!-- Add Activity -->
-
-    <!-- <activity>
-        <statement>
-        </statement>
-    </activity> -->
-
-    <!-- [LP] Add guidance on structured lesson plan-->
-
-    <!-- <axiom component="lesson-plan">
-        <title>Structured Instruction</title>
-        <p>
-            <dl>
-            <li>
-                <title>Suggested Time</title>
+        <activity xml:id="act-what-stays-the-same">
+            <title>What Stays the Same?</title>
+            <statement>
+                <p>Complete each table, then look for something that stays the same.</p>
                 <p>
-                    XX minutes
+                    <ol marker="(a)">
+                        <li>
+                            <p>Exercise books cost Ksh <m>45</m> each. Find the cost of <m>1</m>, <m>2</m>, <m>3</m>, <m>4</m> and <m>6</m> books.</p>
+                            <solution component="lesson-plan"><p>Ksh <m>45</m>, <m>90</m>, <m>135</m>, <m>180</m> and <m>270</m>. Cost <m>\div</m> books is always <m>45</m>.</p></solution>
+                        </li>
+                        <li>
+                            <p>Weeding the school garden takes <m>24</m> learner-hours. How long do <m>2</m>, <m>3</m>, <m>4</m>, <m>8</m> and <m>12</m> learners take?</p>
+                            <solution component="lesson-plan"><p><m>12</m>, <m>8</m>, <m>6</m>, <m>3</m> and <m>2</m> hours. Learners <m>\times</m> hours is always <m>24</m>.</p></solution>
+                        </li>
+                        <li>
+                            <p>Hiring a bus costs Ksh <m>2000</m> plus Ksh <m>150</m> for each kilometre. Find the cost for <m>10</m>, <m>20</m> and <m>40\,\text{km}</m>.</p>
+                            <solution component="lesson-plan"><p>Ksh <m>3500</m>, <m>5000</m> and <m>8000</m>. Neither cost <m>\div</m> km (<m>350</m>, <m>250</m>, <m>200</m>) nor cost <m>\times</m> km stays the same.</p></solution>
+                        </li>
+                        <li>
+                            <p>In which table does <m>y</m> double when <m>x</m> doubles? In which does it halve? In which does it do neither?</p>
+                            <solution component="lesson-plan"><p>Doubles in (a); halves in (b); neither in (c): from <m>10\,\text{km}</m> to <m>20\,\text{km}</m> the cost goes from <m>3500</m> to <m>5000</m>, which is not double.</p></solution>
+                        </li>
+                    </ol>
                 </p>
-            </li>
-            <li>
-                <title>Objective</title>
-                <p>
-                    To formalize the concepts and properties learners discovered in the anchor task.
-                </p>
-            </li>
-            </dl>
-        </p>
-        <paragraphs>
-            <title>Key Takeaways &amp; Teacher Connection</title>
-            <ol>
-                <li>
-                    <p>
-                        <alert>Connecting to Learner Work:</alert> XXXX
-                    </p>
-                </li>
-            </ol>
-        </paragraphs>
-    </axiom> -->
+            </statement>
+        </activity>
 
-    <!-- Add insight / key takeaway directly related to activity / learner experience -->
+        <axiom component="lesson-plan">
+            <title>Structured Instruction</title>
+            <p>
+                <dl>
+                    <li><title>Suggested Time</title><p>8 minutes</p></li>
+                    <li><title>Objective</title><p>To formalise direct and inverse proportion and the unitary method.</p></li>
+                </dl>
+            </p>
+            <paragraphs>
+                <title>Key Takeaways &amp; Teacher Connection</title>
+                <ol>
+                    <li><p><alert>Connecting to Learner Work:</alert> table (a) has a fixed ratio (direct), table (b) a fixed product (inverse), and table (c) neither.</p></li>
+                    <li><p>Test the ratio and the product. <q>One goes up and the other goes down</q> is not enough for inverse proportion.</p></li>
+                    <li><p>The unitary method finds the value for one unit first.</p></li>
+                </ol>
+            </paragraphs>
+        </axiom>
 
-    <!-- <insight>
-    </insight> -->
+        <insight xml:id="insight-direct-and-inverse-proportion">
+            <title>Direct and Inverse Proportion</title>
+            <p><m>y</m> is <term>directly proportional</term> to <m>x</m> when <m>y \div x</m> is the same for every pair, so <m>y = kx</m>: doubling <m>x</m> doubles <m>y</m>. The ratio stays the same.</p>
+            <p><m>y</m> is <term>inversely proportional</term> to <m>x</m> when <m>x \times y</m> is the same for every pair, so <m>xy = k</m>: doubling <m>x</m> halves <m>y</m>. The product stays the same. Inverse proportion is also called <term>indirect proportion</term>; in this book the two names mean the same thing.</p>
+            <p>A relation can be <em>neither</em>: a fixed amount added on (a hire charge plus a rate per kilometre), or a quantity that falls but not inversely (water left in a tank).</p>
+            <p>The <term>unitary method</term> works out the value for one unit first, then builds up: for direct proportion divide then multiply; for inverse proportion multiply then divide.</p>
+        </insight>
 
-    <!-- Add further instruction (not in a block) to develop ideas as needed -->
+        <figure xml:id="fig-proportion-graphs">
+            <caption>Graphs of direct proportion, inverse proportion, and a fixed charge plus a rate.</caption>
+            <image width="75%">
+                <shortdescription>Direct proportion is a straight line through the origin, inverse proportion is a curve that never meets the axes, and a fixed charge gives a line that starts above the origin.</shortdescription>
+                <latex-image>
+% SET: three panels, each 4 wide and 3 high, at x offsets 0, 5.5 and 11.
+% CALCULATE: inverse panel is xy = 48 for x from 2 to 12, drawn as Y = 2/X with X = x/3, Y = y/8.
+% DRAW: axes in each panel; the line y = kx; the curve; the line from (0, 1).
+% LABEL: panel titles below the axes.
+\begin{tikzpicture}[scale=0.8]
+\foreach \o in {0,5.5,11} {
+  \draw[-stealth] (\o,0) -- (\o+4.3,0) node[right] {$x$};
+  \draw[-stealth] (\o,0) -- (\o,3.3) node[above] {$y$};
+  \node[below left] at (\o,0) {$0$};
+}
+\draw[very thick] (0,0) -- (3.8,2.85);
+\node[below] at (2,-0.4) {direct: $y = kx$};
+\draw[very thick, domain=0.67:4, samples=60, smooth] plot ({\x+5.5}, {2/\x});
+\node[below] at (7.5,-0.4) {inverse: $xy = k$};
+\draw[very thick] (11,1) -- (14.8,2.9);
+\fill (11,1) circle (2.5pt);
+\node[below] at (13,-0.4) {neither: fixed charge};
+\end{tikzpicture}
+                </latex-image>
+            </image>
+        </figure>
 
-    <xi:include href="../lesson-plan-templates/example-intro.ptx" />
+        <xi:include href="../lesson-plan-templates/example-intro.ptx" />
 
-    <!-- Add at least 3 examples -->
-
-    <!-- <example>
-        <statement>
-        </statement>
-        <solution>
-        </solution>
-    </example>
-
-    <example>
-        <statement>
-        </statement>
-        <solution>
-        </solution>
-    </example>
-
-    <example>
-        <statement>
-        </statement>
-        <solution>
-        </solution>
-    </example> -->
-
-    <xi:include href="../lesson-plan-templates/assessment-intro.ptx" />
-
-    <!-- If STACK questions are included, uncomment this: -->
-
-    <!-- <xi:include href="../lesson-plan-templates/checkpoint.ptx" /> -->
-
-    <!-- Add STACK exercises if made -->
-
-    <!-- Add static exercises -->
-
-    <!-- <exercises>
-        <exercise>
-            <statement>   
-
-            </statement>   
+        <example xml:id="example-iron-sheets">
+            <title>Iron Sheets</title>
+            <statement>
+                <p><m>6</m> iron sheets cost Ksh <m>5100</m>. Find the cost of <m>14</m> sheets.</p>
+            </statement>
             <solution>
+                <p>More sheets cost more: direct proportion.</p>
+                <p><m>6</m> sheets cost Ksh <m>5100</m>.</p><p>1 sheet costs <m>5100 \div 6 = 850</m>, Ksh <m>850</m>.</p><p><m>14</m> sheets cost <m>14 \times 850 = 11\,900</m>, Ksh <m>11\,900</m>.</p>
+            </solution>
+        </example>
 
-            </solution>             
-        </exercise>        
-    </exercises> -->
+        <example xml:id="example-clearing-the-compound">
+            <title>Clearing the Compound</title>
+            <statement>
+                <p><m>12</m> learners clear the school compound in <m>5</m> hours. How long would <m>20</m> learners take, working at the same rate?</p>
+            </statement>
+            <solution>
+                <p>More learners take less time: inverse proportion.</p>
+                <p><m>12</m> learners take <m>5</m> hours.</p><p>1 learner would take <m>12 \times 5 = 60</m> hours: the job is <m>60</m> learner-hours.</p><p><m>20</m> learners take <m>60 \div 20 = 3</m> hours.</p>
+            </solution>
+        </example>
 
-    <!-- [LP] Add information on how to differentiate  -->
+        <example xml:id="example-which-kind">
+            <title>Which Kind?</title>
+            <statement>
+                <p>Say whether each table shows direct proportion, inverse proportion or neither.</p>
+                <p>(a) Buses <m>x</m> and trips each bus makes <m>y</m>: <m>(2, 24)</m>, <m>(3, 16)</m>, <m>(4, 12)</m>, <m>(6, 8)</m>.</p>
+                <p>(b) Hours a posho mill runs <m>x</m> and kg ground <m>y</m>: <m>(1, 150)</m>, <m>(2, 300)</m>, <m>(3, 450)</m>, <m>(5, 750)</m>.</p>
+                <p>(c) Days <m>x</m> and litres left in a tank <m>y</m>: <m>(0, 5000)</m>, <m>(1, 4600)</m>, <m>(2, 4200)</m>, <m>(3, 3800)</m>.</p>
+            </statement>
+            <solution>
+                <p>(a) <m>x \times y = 48</m> every time: inverse proportion.</p>
+                <p>(b) <m>y \div x = 150</m> every time: direct proportion.</p>
+                <p>(c) <m>y</m> falls as <m>x</m> rises, but the products <m>4600</m>, <m>8400</m>, <m>11\,400</m> change: neither. Falling is not enough for inverse proportion.</p>
+            </solution>
+        </example>
 
-    <!-- <axiom component="lesson-plan">
-        <title>Differentiation</title>
+        <xi:include href="../lesson-plan-templates/assessment-intro.ptx" />
+        <xi:include href="../lesson-plan-templates/checkpoint.ptx" />
 
-        <table>
+        <p>Type numbers only, without Ksh, units, spaces or commas, for example <c>45326</c>. Give a fraction as a fraction, for example <c>7/12</c>, or as a decimal correct to 3 decimal places. Give times, masses and volumes exactly or correct to 1 decimal place, and money to the nearest shilling, unless the question says otherwise.</p>
+
+        <exercise xml:id="ex-direct-inverse-or-neither">
+            <!--<title></title>-->
+            <stack label="stk-direct-inverse-or-neither" source="stack/top/1-numbers-and-algebra/03-compound-proportions-rates-of-work-and-mixtures/02-compound-proportions/Direct-inverse-or-neither.xml"/>
+        </exercise>
+
+        <exercise xml:id="ex-direct-and-inverse-by-the-unitary-method">
+            <!--<title></title>-->
+            <stack label="stk-direct-and-inverse-by-the-unitary-method" source="stack/top/1-numbers-and-algebra/03-compound-proportions-rates-of-work-and-mixtures/02-compound-proportions/Direct-and-inverse-by-the-unitary-method.xml"/>
+        </exercise>
+
+        <exercises xml:id="exercises-direct-and-inverse-proportion">
+            <exercise xml:id="ex-sugar-13kg">
+                <statement><p><m>8\,\text{kg}</m> of sugar cost Ksh <m>1160</m>. Find the cost of <m>13\,\text{kg}</m>.</p></statement>
+                <answer><p>Ksh <m>1885</m></p></answer>
+                <solution><p>1 kg costs <m>1160 \div 8 = 145</m>, so <m>13\,\text{kg}</m> cost <m>13 \times 145 = 1885</m>.</p></solution>
+            </exercise>
+            <exercise xml:id="ex-buses-and-trips">
+                <statement><p><m>4</m> buses each make <m>9</m> trips to take learners to a sports day. How many trips would each of <m>6</m> buses make?</p></statement>
+                <answer><p><m>6</m> trips</p></answer>
+                <solution><p>The job is <m>4 \times 9 = 36</m> bus-trips, so each of <m>6</m> buses makes <m>36 \div 6 = 6</m>.</p></solution>
+            </exercise>
+            <exercise xml:id="ex-feed-for-cows">
+                <statement><p>A store of feed lasts <m>30</m> cows for <m>14</m> days. How long would it last <m>35</m> cows?</p></statement>
+                <answer><p><m>12</m> days</p></answer>
+                <solution><p><m>30 \times 14 = 420</m> cow-days, and <m>420 \div 35 = 12</m>.</p></solution>
+            </exercise>
+            <exercise xml:id="ex-which-kind-of-table">
+                <statement><p>Say whether each table shows direct proportion, inverse proportion or neither.</p>
+                    <p>(a) <m>x</m>: <m>2, 4, 6, 7</m>; <m>y</m>: <m>42, 21, 14, 12</m>.</p>
+                    <p>(b) <m>x</m>: <m>3, 6, 9, 12</m>; <m>y</m>: <m>21, 42, 63, 84</m>.</p>
+                    <p>(c) <m>x</m>: <m>1, 2, 3, 4</m>; <m>y</m>: <m>55, 60, 65, 70</m>.</p></statement>
+                <answer><p>(a) inverse (<m>xy = 84</m>) (b) direct (<m>y = 7x</m>) (c) neither</p></answer>
+            </exercise>
+            <exercise xml:id="ex-tank-for-learners">
+                <statement><p>A school's water tank lasts <m>600</m> learners <m>8</m> days. <m>200</m> more learners join the school. How long does the tank last now?</p></statement>
+                <answer><p><m>6</m> days</p></answer>
+                <solution><p><m>600 \times 8 = 4800</m> learner-days, and <m>4800 \div 800 = 6</m>.</p></solution>
+            </exercise>
+            <exercise xml:id="ex-falling-is-not-inverse">
+                <title>Challenge: Falling Is Not Enough</title>
+                <statement><p>Explain why <q><m>y</m> goes down when <m>x</m> goes up</q> does not prove inverse proportion, and give a table that shows it.</p></statement>
+                <answer><p>For example <m>y = 20 - x</m>: <m>x = 1, 2, 4, 5</m> give <m>y = 19, 18, 16, 15</m>, with products <m>19, 36, 64, 75</m>.</p></answer>
+                <solution><p>Inverse proportion needs <m>x \times y</m> to stay the same. In the table above <m>y</m> falls as <m>x</m> rises, but the products change, so it is not inverse proportion.</p></solution>
+            </exercise>
+        </exercises>
+
+        <axiom component="lesson-plan">
             <title>Differentiation</title>
-            <tabular halign="left">
-                <row header="yes" bottom="minor">
-                    <cell>Learner Group</cell>
-                    <cell>Strategy &amp; Learning Experience</cell>
-                    <cell></cell>
-                </row>
-                <row>
-                    <cell>Struggling Learners (Support)</cell>
-                    <cell>
-                        XXXX
-                    </cell>
-                    <cell></cell>
-                </row>
-                <row>
-                    <cell>On-Level Learners (Core)</cell>
-                    <cell>
-                        <line>The core lesson activities as described above.</line>
-                    </cell>
-                    <cell></cell>
-                </row>
-                <row>
-                    <cell>Advanced Learners (Challenge)</cell>
-                    <cell>
-                        XXXX
-                    </cell>
-                    <cell></cell>
-                </row>
-            </tabular>
-        </table>
-    </axiom> -->
+            <table xml:id="table-differentiation-direct-and-inverse-proportion">
+                <title>Differentiation Strategies</title>
+                <tabular halign="left" top="minor" bottom="minor" left="minor" right="minor">
+                    <row header="yes" bottom="medium"><cell>Learner Group</cell><cell>Strategy and Learning Experience</cell></row>
+                    <row><cell>Struggling Learners (Support)</cell><cell>Activity parts (a) and (b), <xref ref="example-iron-sheets"/> and <xref ref="example-clearing-the-compound"/>. Give a card: <q>ratio fixed: direct; product fixed: inverse</q>. Assign <xref ref="ex-sugar-13kg"/> and <xref ref="ex-feed-for-cows"/>.</cell></row>
+                    <row><cell>On-Level Learners (Core)</cell><cell>Full activity and all examples. Assign <xref ref="ex-sugar-13kg"/> to <xref ref="ex-tank-for-learners"/>.</cell></row>
+                    <row><cell>Advanced Learners (Challenge)</cell><cell>All exercises including <xref ref="ex-falling-is-not-inverse"/>. Extension: if <m>y</m> is inversely proportional to <m>x</m> and <m>x</m> is multiplied by <m>\tfrac{3}{2}</m>, what happens to <m>y</m>? (Answer: it is multiplied by <m>\tfrac{2}{3}</m>.)</cell></row>
+                </tabular>
+            </table>
+        </axiom>
 
-    <xi:include href="../lesson-plan-templates/assessment-methods.ptx" />
+        <xi:include href="../lesson-plan-templates/assessment-methods.ptx" />
+        <xi:include href="../lesson-plan-templates/reflection.ptx"/>
+    </subsection>
 
-    <xi:include href="../lesson-plan-templates/reflection.ptx"/>
+    <!-- ============================================================ Lesson 2.2 -->
+    <subsection xml:id="subsec-compound-proportion-unitary-method">
+        <title>Compound Proportion by the Unitary Method</title>
+
+        <p component="lesson-plan">Upon completion of this lesson, learners will be able to:
+            <ol>
+                <li><p><alert>Know:</alert> compound proportion (three or more quantities change together); worker-hours as the size of a job.</p></li>
+                <li><p><alert>Do:</alert> reduce to one worker, one hour and one day, then build up; decide for each quantity whether it is direct or inverse.</p></li>
+                <li><p><alert>Apply:</alert> road work, jua kali output, water and feed planning.</p></li>
+            </ol>
+        </p>
+
+        <axiom component="lesson-plan">
+            <title>Problem-Solving and Discovery</title>
+            <dl>
+                <li><title>Suggested Time</title><p>14 minutes</p></li>
+                <li><title>Objective</title><p>Learners vary both the number of workers and the area, and find the area one learner digs in one day.</p></li>
+                <li><title>Teacher's Role</title><p>Draw a table on the board with one row for each change. Ask: <q>More learners: more area or less? More days: more area or less?</q></p></li>
+            </dl>
+        </axiom>
+
+        <activity xml:id="act-digging-the-school-shamba">
+            <title>Digging the School Shamba</title>
+            <statement>
+                <p><m>4</m> learners dig <m>60\,\text{m}^2</m> of the school shamba in <m>3</m> days. Everyone digs at the same rate.</p>
+                <p>
+                    <ol marker="(a)">
+                        <li>
+                            <p>What area does one learner dig in one day?</p>
+                            <solution component="lesson-plan"><p><m>60 \div 4 = 15\,\text{m}^2</m> each in <m>3</m> days, so <m>15 \div 3 = 5\,\text{m}^2</m> a day.</p></solution>
+                        </li>
+                        <li>
+                            <p>What area do <m>6</m> learners dig in <m>5</m> days?</p>
+                            <solution component="lesson-plan"><p><m>6 \times 5 \times 5 = 150\,\text{m}^2</m>.</p></solution>
+                        </li>
+                        <li>
+                            <p>How many days do <m>6</m> learners take to dig <m>90\,\text{m}^2</m>?</p>
+                            <solution component="lesson-plan"><p><m>6</m> learners dig <m>30\,\text{m}^2</m> a day, so <m>90 \div 30 = 3</m> days.</p></solution>
+                        </li>
+                        <li>
+                            <p>How many learners are needed to dig <m>120\,\text{m}^2</m> in <m>2</m> days?</p>
+                            <solution component="lesson-plan"><p>One learner digs <m>10\,\text{m}^2</m> in <m>2</m> days, so <m>120 \div 10 = 12</m> learners.</p></solution>
+                        </li>
+                    </ol>
+                </p>
+            </statement>
+        </activity>
+
+        <axiom component="lesson-plan">
+            <title>Structured Instruction</title>
+            <p>
+                <dl>
+                    <li><title>Suggested Time</title><p>8 minutes</p></li>
+                    <li><title>Objective</title><p>To formalise compound proportion by the unitary method.</p></li>
+                </dl>
+            </p>
+            <paragraphs>
+                <title>Key Takeaways &amp; Teacher Connection</title>
+                <ol>
+                    <li><p><alert>Connecting to Learner Work:</alert> part (a) reduced to one learner and one day; parts (b) to (d) built up from that.</p></li>
+                    <li><p>Worker-hours (or learner-days) measure the size of a job.</p></li>
+                    <li><p>More workers mean fewer days (inverse); more work means more days (direct).</p></li>
+                </ol>
+            </paragraphs>
+        </axiom>
+
+        <insight xml:id="insight-compound-proportion">
+            <title>Compound Proportion</title>
+            <p>In <term>compound proportion</term> three or more quantities change together, such as workers, hours a day and days. The size of a job can be measured in <term>worker-hours</term>: workers <m>\times</m> hours a day <m>\times</m> days.</p>
+            <p>By the unitary method, reduce to one unit of each changing quantity, one line per step, then build up. Change one quantity at a time and ask whether the answer gets bigger or smaller.</p>
+        </insight>
+
+        <xi:include href="../lesson-plan-templates/example-intro.ptx" />
+
+        <example xml:id="example-a-road-crew">
+            <title>A Road Crew</title>
+            <statement>
+                <p><m>18</m> workers, working <m>8</m> hours a day, gravel a road in <m>15</m> days. How many days would <m>24</m> workers take, working <m>9</m> hours a day?</p>
+            </statement>
+            <solution>
+                <p><m>18</m> workers working <m>8</m> hours a day take <m>15</m> days.</p><p>
+                    1 worker working <m>8</m> hours a day takes <m>18 \times 15 = 270</m> days (fewer workers, more days).</p><p>
+                    1 worker working 1 hour a day takes <m>8 \times 270 = 2160</m> days (fewer hours, more days).</p>
+                <p>So the job is <m>2160</m> worker-hours. <m>24</m> workers working <m>9</m> hours a day give <m>24 \times 9 = 216</m> worker-hours a day, so they take <m>2160 \div 216 = 10</m> days.</p>
+            </solution>
+        </example>
+
+        <example xml:id="example-jua-kali-window-frames">
+            <title>Jua Kali Window Frames</title>
+            <statement>
+                <p><m>5</m> welders make <m>40</m> window frames in <m>4</m> days. How many frames do <m>8</m> welders make in <m>6</m> days?</p>
+            </statement>
+            <solution>
+                <p><m>5</m> welders make <m>40</m> frames in <m>4</m> days.</p><p>
+                    1 welder makes <m>40 \div 5 = 8</m> frames in <m>4</m> days.</p><p>
+                    1 welder makes <m>8 \div 4 = 2</m> frames in 1 day.</p><p>
+                    <m>8</m> welders make <m>8 \times 2 = 16</m> frames in 1 day, and <m>6 \times 16 = 96</m> frames in <m>6</m> days.</p>
+            </solution>
+        </example>
+
+        <example xml:id="example-finishing-a-trench">
+            <title>Finishing a Trench</title>
+            <statement>
+                <p><m>10</m> workers dig <m>300\,\text{m}</m> of a <m>750\,\text{m}</m> water trench in <m>6</m> days. How many workers are needed to dig the rest in <m>5</m> days?</p>
+            </statement>
+            <solution>
+                <p>The job so far is <m>10 \times 6 = 60</m> worker-days for <m>300\,\text{m}</m>, so one worker digs <m>300 \div 60 = 5\,\text{m}</m> a day.</p>
+                <p>The rest is <m>750 - 300 = 450\,\text{m}</m>. In <m>5</m> days one worker digs <m>25\,\text{m}</m>, so <m>450 \div 25 = 18</m> workers are needed.</p>
+            </solution>
+        </example>
+
+        <xi:include href="../lesson-plan-templates/assessment-intro.ptx" />
+        <xi:include href="../lesson-plan-templates/checkpoint.ptx" />
+
+        <p>Type numbers only, without Ksh, units, spaces or commas, for example <c>45326</c>. Give a fraction as a fraction, for example <c>7/12</c>, or as a decimal correct to 3 decimal places. Give times, masses and volumes exactly or correct to 1 decimal place, and money to the nearest shilling, unless the question says otherwise.</p>
+
+        <exercise xml:id="ex-compound-proportion-worker-hours">
+            <!--<title></title>-->
+            <stack label="stk-compound-proportion-worker-hours" source="stack/top/1-numbers-and-algebra/03-compound-proportions-rates-of-work-and-mixtures/02-compound-proportions/Compound-proportion-worker-hours.xml"/>
+        </exercise>
+
+        <exercise xml:id="ex-find-the-mistake-in-compound-proportion">
+            <!--<title></title>-->
+            <stack label="stk-find-the-mistake-in-compound-proportion" source="stack/top/1-numbers-and-algebra/03-compound-proportions-rates-of-work-and-mixtures/02-compound-proportions/Find-the-mistake-in-compound-proportion.xml"/>
+        </exercise>
+
+        <exercises xml:id="exercises-compound-proportion-unitary-method">
+            <exercise xml:id="ex-crew-14-workers">
+                <statement><p><m>14</m> workers working <m>7</m> hours a day finish a job in <m>12</m> days. How many days would <m>21</m> workers working <m>8</m> hours a day take?</p></statement>
+                <answer><p><m>7</m> days</p></answer>
+                <solution><p><m>14 \times 7 \times 12 = 1176</m> worker-hours, and <m>1176 \div (21 \times 8) = 7</m>.</p></solution>
+            </exercise>
+            <exercise xml:id="ex-carpenters-desks">
+                <statement><p><m>6</m> carpenters make <m>90</m> school desks in <m>5</m> days. How many desks do <m>9</m> carpenters make in <m>8</m> days?</p></statement>
+                <answer><p><m>216</m> desks</p></answer>
+                <solution><p>One carpenter makes <m>90 \div (6 \times 5) = 3</m> desks a day, so <m>9 \times 8 \times 3 = 216</m>.</p></solution>
+            </exercise>
+            <exercise xml:id="ex-dairy-feed-cost">
+                <statement><p>Feed for <m>40</m> dairy cows for <m>15</m> days costs Ksh <m>90\,000</m>. Find the cost for <m>25</m> cows for <m>30</m> days.</p></statement>
+                <answer><p>Ksh <m>112\,500</m></p></answer>
+                <solution><p>One cow for one day costs <m>90\,000 \div (40 \times 15) = 150</m>, so <m>25 \times 30 \times 150 = 112\,500</m>.</p></solution>
+            </exercise>
+            <exercise xml:id="ex-pumps-join-later">
+                <statement><p><m>8</m> equal pumps would empty a flooded quarry in <m>9</m> hours. After <m>3</m> hours, <m>4</m> more pumps join. How much longer does it take?</p></statement>
+                <answer><p><m>4</m> hours</p></answer>
+                <solution><p>The job is <m>8 \times 9 = 72</m> pump-hours. After <m>3</m> hours <m>24</m> are done and <m>48</m> are left, and <m>48 \div 12 = 4</m>.</p></solution>
+            </exercise>
+            <exercise xml:id="ex-school-water-use">
+                <statement><p><m>900</m> learners use <m>27\,000\,\text{litres}</m> of water in <m>5</m> days. How much do <m>1200</m> learners use in <m>7</m> days?</p></statement>
+                <answer><p><m>50\,400\,\text{litres}</m></p></answer>
+                <solution><p>One learner uses <m>27\,000 \div (900 \times 5) = 6\,\text{litres}</m> a day, so <m>1200 \times 7 \times 6 = 50\,400</m>.</p></solution>
+            </exercise>
+            <exercise xml:id="ex-percentage-change-in-days">
+                <title>Challenge: Percentage Changes</title>
+                <statement><p>The number of workers on a job increases by <m>60\%</m> and the hours they work each day fall by <m>25\%</m>. By what percentage does the number of days needed change?</p></statement>
+                <answer><p>It falls by <m>16\tfrac{2}{3}\%</m> (about <m>16.7\%</m>).</p></answer>
+                <solution><p>Worker-hours a day are multiplied by <m>1.6 \times 0.75 = 1.2</m>, so the days are multiplied by <m>\tfrac{1}{1.2} = \tfrac{5}{6}</m>, a fall of <m>\tfrac{1}{6}</m>, that is <m>16\tfrac{2}{3}\%</m>.</p></solution>
+            </exercise>
+        </exercises>
+
+        <axiom component="lesson-plan">
+            <title>Differentiation</title>
+            <table xml:id="table-differentiation-compound-proportion-unitary-method">
+                <title>Differentiation Strategies</title>
+                <tabular halign="left" top="minor" bottom="minor" left="minor" right="minor">
+                    <row header="yes" bottom="medium"><cell>Learner Group</cell><cell>Strategy and Learning Experience</cell></row>
+                    <row><cell>Struggling Learners (Support)</cell><cell>Activity parts (a) to (c) and <xref ref="example-a-road-crew"/>. Give a layout card: <q>1 worker, 1 hour, 1 day</q>. Assign <xref ref="ex-crew-14-workers"/> and <xref ref="ex-carpenters-desks"/>.</cell></row>
+                    <row><cell>On-Level Learners (Core)</cell><cell>Full activity and all examples. Assign <xref ref="ex-crew-14-workers"/> to <xref ref="ex-school-water-use"/>.</cell></row>
+                    <row><cell>Advanced Learners (Challenge)</cell><cell>All exercises including <xref ref="ex-percentage-change-in-days"/>.</cell></row>
+                </tabular>
+            </table>
+            <p component="core">Look ahead: redo <xref ref="example-a-road-crew"/> by multiplying <m>15</m> by two fractions, one for each change.</p>
+            <p component="essential">Check the answer to <xref ref="example-a-road-crew"/> by working backwards: do <m>24</m> workers for <m>9</m> hours a day for <m>10</m> days make <m>2160</m> worker-hours?</p>
+        </axiom>
+
+        <xi:include href="../lesson-plan-templates/assessment-methods.ptx" />
+        <xi:include href="../lesson-plan-templates/reflection.ptx"/>
+    </subsection>
+
+    <!-- ============================================================ Lesson 2.3 (Core only) -->
+    <subsection xml:id="subsec-compound-proportion-ratio-method" component="core">
+        <title>Compound Proportion by the Ratio Method</title>
+
+        <p component="lesson-plan">Upon completion of this lesson, learners will be able to:
+            <ol>
+                <li><p><alert>Know:</alert> each change in a compound proportion multiplies the answer by a fraction greater than or less than <m>1</m>.</p></li>
+                <li><p><alert>Do:</alert> find the answer as the original value times one factor for each change; check with the unitary method.</p></li>
+                <li><p><alert>Apply:</alert> pipe laying, animal feed and haulage.</p></li>
+            </ol>
+        </p>
+
+        <axiom component="lesson-plan">
+            <title>Problem-Solving and Discovery</title>
+            <dl>
+                <li><title>Suggested Time</title><p>14 minutes</p></li>
+                <li><title>Objective</title><p>Learners redo the road crew example with one fraction for each change and see that the answer matches the unitary method.</p></li>
+                <li><title>Teacher's Role</title><p>For each change ask <q>more days or fewer?</q> before anyone writes a fraction.</p></li>
+            </dl>
+        </axiom>
+
+        <activity xml:id="act-two-changes-two-fractions">
+            <title>Two Changes, Two Fractions</title>
+            <statement>
+                <p>In <xref ref="example-a-road-crew"/>, <m>18</m> workers working <m>8</m> hours a day took <m>15</m> days.</p>
+                <p>
+                    <ol marker="(a)">
+                        <li>
+                            <p>The workers increase from <m>18</m> to <m>24</m>. Will the job take more days or fewer? Which fraction, <m>\tfrac{24}{18}</m> or <m>\tfrac{18}{24}</m>, should multiply the days?</p>
+                            <solution component="lesson-plan"><p>Fewer days, so the fraction less than <m>1</m>: <m>\tfrac{18}{24}</m>.</p></solution>
+                        </li>
+                        <li>
+                            <p>The hours a day increase from <m>8</m> to <m>9</m>. Which fraction multiplies the days?</p>
+                            <solution component="lesson-plan"><p>Fewer days again: <m>\tfrac{8}{9}</m>.</p></solution>
+                        </li>
+                        <li>
+                            <p>Work out <m>15 \times \tfrac{18}{24} \times \tfrac{8}{9}</m>. Compare it with the unitary method.</p>
+                            <solution component="lesson-plan"><p><m>15 \times \tfrac{3}{4} \times \tfrac{8}{9} = 10</m> days, as before.</p></solution>
+                        </li>
+                    </ol>
+                </p>
+            </statement>
+        </activity>
+
+        <axiom component="lesson-plan">
+            <title>Structured Instruction</title>
+            <p>
+                <dl>
+                    <li><title>Suggested Time</title><p>8 minutes</p></li>
+                    <li><title>Objective</title><p>To formalise the ratio method for compound proportion.</p></li>
+                </dl>
+            </p>
+            <paragraphs>
+                <title>Key Takeaways &amp; Teacher Connection</title>
+                <ol>
+                    <li><p><alert>Connecting to Learner Work:</alert> each change in the activity gave one fraction.</p></li>
+                    <li><p>The factor is greater than <m>1</m> if the change makes the answer bigger, and less than <m>1</m> if it makes it smaller.</p></li>
+                </ol>
+            </paragraphs>
+        </axiom>
+
+        <insight xml:id="insight-the-ratio-method">
+            <title>The Ratio Method</title>
+            <p>For each quantity that changes, ask whether the change makes the answer bigger or smaller. Multiply by the fraction (new <m>\div</m> old, or old <m>\div</m> new) that is greater than <m>1</m> or less than <m>1</m> to match. The answer is the original value times all the factors.</p>
+            <p>It agrees with the unitary method because each factor does two unitary steps at once: divide by the old value, then multiply by the new one.</p>
+        </insight>
+
+        <xi:include href="../lesson-plan-templates/example-intro.ptx" />
+
+        <example xml:id="example-laying-drainage-pipe">
+            <title>Laying Drainage Pipe</title>
+            <statement>
+                <p><m>12</m> workers lay <m>480\,\text{m}</m> of drainage pipe in <m>8</m> days. How many days would <m>16</m> workers take to lay <m>720\,\text{m}</m>?</p>
+            </statement>
+            <solution>
+                <p>More pipe needs more days: factor <m>\tfrac{720}{480}</m>. More workers need fewer days: factor <m>\tfrac{12}{16}</m>.</p>
+                <p><m>8 \times \tfrac{720}{480} \times \tfrac{12}{16} = 8 \times \tfrac{3}{2} \times \tfrac{3}{4} = 9</m> days.</p>
+            </solution>
+        </example>
+
+        <example xml:id="example-layers-mash">
+            <title>Layers' Mash</title>
+            <statement>
+                <p><m>360</m> hens eat <m>540\,\text{kg}</m> of layers' mash in <m>10</m> days. How long will <m>810\,\text{kg}</m> last <m>450</m> hens?</p>
+            </statement>
+            <solution>
+                <p>More mash lasts more days: factor <m>\tfrac{810}{540}</m>. More hens make it last fewer days: factor <m>\tfrac{360}{450}</m>.</p>
+                <p><m>10 \times \tfrac{810}{540} \times \tfrac{360}{450} = 10 \times \tfrac{3}{2} \times \tfrac{4}{5} = 12</m> days.</p>
+            </solution>
+        </example>
+
+        <example xml:id="example-both-methods">
+            <title>Both Methods</title>
+            <statement>
+                <p>Solve <xref ref="example-finishing-a-trench"/> by the ratio method.</p>
+            </statement>
+            <solution>
+                <p>The answer is a number of workers. More metres need more workers: factor <m>\tfrac{450}{300}</m>. Fewer days need more workers: the days fall from <m>6</m> to <m>5</m>, so the factor is <m>\tfrac{6}{5}</m>.</p>
+                <p><m>10 \times \tfrac{450}{300} \times \tfrac{6}{5} = 10 \times \tfrac{3}{2} \times \tfrac{6}{5} = 18</m> workers, as before.</p>
+            </solution>
+        </example>
+
+        <xi:include href="../lesson-plan-templates/assessment-intro.ptx" />
+        <xi:include href="../lesson-plan-templates/checkpoint.ptx" />
+
+        <p>Type numbers only, without Ksh, units, spaces or commas, for example <c>45326</c>. Give a fraction as a fraction, for example <c>7/12</c>, or as a decimal correct to 3 decimal places. Give times, masses and volumes exactly or correct to 1 decimal place, and money to the nearest shilling, unless the question says otherwise.</p>
+
+        <exercise xml:id="ex-compound-proportion-by-the-ratio-method">
+            <!--<title></title>-->
+            <stack label="stk-compound-proportion-by-the-ratio-method" source="stack/top/1-numbers-and-algebra/03-compound-proportions-rates-of-work-and-mixtures/02-compound-proportions/Compound-proportion-by-the-ratio-method.xml"/>
+        </exercise>
+
+        <exercises xml:id="exercises-compound-proportion-ratio-method">
+            <exercise xml:id="ex-painting-classrooms">
+                <statement><p><m>9</m> workers paint <m>6</m> classrooms in <m>4</m> days. How long do <m>6</m> workers take to paint <m>8</m> classrooms?</p></statement>
+                <answer><p><m>8</m> days</p></answer>
+                <solution><p><m>4 \times \tfrac{8}{6} \times \tfrac{9}{6} = 8</m>.</p></solution>
+            </exercise>
+            <exercise xml:id="ex-tea-pickers">
+                <statement><p><m>20</m> pickers pick <m>1800\,\text{kg}</m> of tea leaves in <m>2</m> days. How much do <m>25</m> pickers pick in <m>3</m> days?</p></statement>
+                <answer><p><m>3375\,\text{kg}</m></p></answer>
+                <solution><p><m>1800 \times \tfrac{25}{20} \times \tfrac{3}{2} = 3375</m>.</p></solution>
+            </exercise>
+            <exercise xml:id="ex-crew-15-workers">
+                <statement><p><m>15</m> workers working <m>8</m> hours a day take <m>12</m> days to build a classroom. How long do <m>20</m> workers working <m>9</m> hours a day take?</p></statement>
+                <answer><p><m>8</m> days</p></answer>
+                <solution><p><m>12 \times \tfrac{15}{20} \times \tfrac{8}{9} = 8</m>.</p></solution>
+            </exercise>
+            <exercise xml:id="ex-borehole-tanks">
+                <statement><p>A borehole pump fills <m>12</m> tanks of <m>5000\,\text{litres}</m> in <m>8</m> hours. How long does it take to fill <m>9</m> tanks of <m>10\,000\,\text{litres}</m>?</p></statement>
+                <answer><p><m>12</m> hours</p></answer>
+                <solution><p><m>8 \times \tfrac{9}{12} \times \tfrac{10\,000}{5000} = 12</m>.</p></solution>
+            </exercise>
+            <exercise xml:id="ex-lorries-and-sand">
+                <statement><p><m>4</m> lorries, each making <m>3</m> trips a day, carry <m>360</m> tonnes of sand in <m>6</m> days. How many days do <m>5</m> lorries making <m>4</m> trips a day take to carry <m>600</m> tonnes?</p></statement>
+                <answer><p><m>6</m> days</p></answer>
+                <solution><p><m>6 \times \tfrac{600}{360} \times \tfrac{4}{5} \times \tfrac{3}{4} = 6</m>.</p></solution>
+            </exercise>
+            <exercise xml:id="ex-why-the-methods-agree">
+                <title>Challenge: Why the Methods Agree</title>
+                <statement><p>Explain why the ratio method and the unitary method always give the same answer.</p></statement>
+                <answer><p>Each factor in the ratio method is the two unitary steps for that quantity: divide by the old value, then multiply by the new one (or the other way round for an inverse change).</p></answer>
+            </exercise>
+        </exercises>
+
+        <axiom component="lesson-plan">
+            <title>Differentiation</title>
+            <table xml:id="table-differentiation-compound-proportion-ratio-method">
+                <title>Differentiation Strategies</title>
+                <tabular halign="left" top="minor" bottom="minor" left="minor" right="minor">
+                    <row header="yes" bottom="medium"><cell>Learner Group</cell><cell>Strategy and Learning Experience</cell></row>
+                    <row><cell>Struggling Learners (Support)</cell><cell>The activity and <xref ref="example-laying-drainage-pipe"/>. Give a card: <q>more? fraction above 1</q>. Assign <xref ref="ex-painting-classrooms"/> and <xref ref="ex-crew-15-workers"/>.</cell></row>
+                    <row><cell>On-Level Learners (Core)</cell><cell>Full activity and all examples. Assign <xref ref="ex-painting-classrooms"/> to <xref ref="ex-lorries-and-sand"/>.</cell></row>
+                    <row><cell>Advanced Learners (Challenge)</cell><cell>All exercises including <xref ref="ex-why-the-methods-agree"/>.</cell></row>
+                </tabular>
+            </table>
+        </axiom>
+
+        <xi:include href="../lesson-plan-templates/assessment-methods.ptx" />
+        <xi:include href="../lesson-plan-templates/reflection.ptx"/>
+    </subsection>
 </section>

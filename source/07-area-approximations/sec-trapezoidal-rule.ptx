@@ -39,7 +39,7 @@
                 <li component="lesson-plan">
                     <title>Estimated Duration</title>
                     <p>
-                        40 minutes
+                        2 lessons of 40 minutes
                     </p>
                 </li>
             </dl>
@@ -52,163 +52,597 @@
          Suggested activity: Learners estimate the area under a curve such as y = x² + 1 using strips of equal width and the trapezoidal rule.
          Interactive (JSXGraph): Curve with a slider for the number of strips n; trapezia are drawn under the curve and the estimated area is shown next to the exact value. -->
 
-    <!-- [LP] Add guidance on activity -->
+    <!-- Section notes (2026-11)
+         SLOs: Core (b), Essential (b). Lessons 2.1 and 2.2 as subsections.
+         Activity: as planning notes (a curve with strips and the trapezoidal rule) | changed: curve y = x^2 + 2x + 3; Core derives the rule, Essential checks the given rule
+         JSXGraph: fig-trapezoidal-strips-interactive (assets/jsxgraph/trapezoidal-strips.js)
+         STACK: assets/stack/top/2-measurement-and-geometry/07-area-approximations/02-trapezoidal-rule/ -->
 
-    <!-- <axiom component="lesson-plan">
+    <!-- ============================================================ Lesson 2.1 -->
+    <subsection xml:id="subsec-the-trapezoidal-rule">
+        <title component="core">Deriving the Trapezoidal Rule</title>
+        <title component="essential">Using the Trapezoidal Rule</title>
+
+        <p component="lesson-plan">Upon completion of this lesson, learners will be able to:
+            <ol>
+                <li><p><alert>Know:</alert> a region under a curve can be cut into strips of equal width; <m>n</m> strips need <m>n + 1</m> ordinates; each strip can be treated as a trapezium.</p></li>
+                <li component="core"><p><alert>Know (Core):</alert> why the inner ordinates are counted twice in the trapezoidal rule.</p></li>
+                <li><p><alert>Do:</alert> use the trapezoidal rule with a table of measurements and with the equation of a curve.</p></li>
+                <li><p><alert>Apply:</alert> estimate the area of a plot measured with offsets from a straight fence.</p></li>
+            </ol>
+        </p>
+
+        <axiom component="lesson-plan">
             <title>Problem-Solving and Discovery</title>
             <dl>
-                <li>
-                    <title>Suggested Time</title>
-                    <p>
-                        XX minutes
-                    </p>
-                </li>
-                <li>
-                    <title>Objective</title>
-                    <p>
-                        XXX
-                    </p>
-                </li>
-                <li>
-                    <title>Teacher's Role</title>
-                    <p>
-                        XXX
-                    </p>
-                </li>
+                <li><title>Suggested Time</title><p>14 minutes</p></li>
+                <li><title>Objective</title><p component="core">Learners replace each strip under a curve by a trapezium and add the areas; pairs then collect the terms into the trapezoidal rule.</p><p component="essential">Learners replace each strip under a curve by a trapezium and add the areas; pairs then check the given rule on the same numbers.</p></li>
+                <li><title>Teacher's Role</title><p component="core">First recall the area of a trapezium, <m>\tfrac{1}{2}(a + b)h</m>, from Grade 10. After part (c), ask <q>Which heights did you use twice?</q></p><p component="essential">First recall the area of a trapezium, <m>\tfrac{1}{2}(a + b)h</m>, from Grade 10. Show the rule in the box only after part (c).</p></li>
             </dl>
-        </axiom> -->
+        </axiom>
 
-    <!-- Add Activity -->
-
-    <!-- <activity>
-        <statement>
-        </statement>
-    </activity> -->
-
-    <!-- [LP] Add guidance on structured lesson plan-->
-
-    <!-- <axiom component="lesson-plan">
-        <title>Structured Instruction</title>
-        <p>
-            <dl>
-            <li>
-                <title>Suggested Time</title>
+        <activity xml:id="act-trapezia-under-a-curve">
+            <title>Trapezia Under a Curve</title>
+            <statement>
+                <p>The region under the curve <m>y = x^2 + 2x + 3</m> from <m>x = 0</m> to <m>x = 4</m> is cut into four strips, each <m>1</m> unit wide. In each strip the curve is replaced by a straight line joining its two ends, so each strip becomes a trapezium.</p>
+                <figure xml:id="fig-trapezia-under-curve">
+                    <caption>The region under <m>y = x^2 + 2x + 3</m> from <m>x = 0</m> to <m>x = 4</m> cut into four trapezia.</caption>
+                    <image width="70%">
+                        <shortdescription>The curve y = x squared plus 2x plus 3 from x = 0 to 4, cut into four strips of width 1. Each strip is a trapezium with a straight top. The vertical sides have heights y0 = 3, y1 = 6, y2 = 11, y3 = 18 and y4 = 27.</shortdescription>
+                        <description><p>Horizontal axis x from 0 to 4, vertical axis y from 0 to 27. The curve y = x squared plus 2x plus 3 rises from 3 to 27. Vertical lines at x = 1, 2, 3 and 4 have heights 6, 11, 18 and 27; the height at x = 0 is 3. Straight lines join the tops of neighbouring vertical lines and lie just above the curve.</p></description>
+                        <latex-image>
+\begin{tikzpicture}
+\begin{axis}[width=9cm, height=7.5cm, xmin=0, xmax=5, ymin=0, ymax=30,
+  axis lines=left, xtick={0,1,2,3,4}, ytick={0,10,20}, xlabel={$x$}, ylabel={$y$}]
+\fill[gray!25] (axis cs:0,0) -- (axis cs:0,3) -- (axis cs:1,6) -- (axis cs:2,11) -- (axis cs:3,18) -- (axis cs:4,27) -- (axis cs:4,0) -- cycle;
+\draw (axis cs:0,3) -- (axis cs:1,6) -- (axis cs:2,11) -- (axis cs:3,18) -- (axis cs:4,27);
+\draw (axis cs:1,0) -- (axis cs:1,6);
+\draw (axis cs:2,0) -- (axis cs:2,11);
+\draw (axis cs:3,0) -- (axis cs:3,18);
+\draw (axis cs:4,0) -- (axis cs:4,27);
+\addplot[very thick, domain=0:4, samples=60] {x^2+2*x+3};
+\node[anchor=west, font=\small, fill=white, inner sep=1pt] at (axis cs:0.03,1.5) {$y_0 = 3$};
+\node[anchor=west, font=\small, fill=white, inner sep=1pt] at (axis cs:1.03,3) {$y_1 = 6$};
+\node[anchor=west, font=\small, fill=white, inner sep=1pt] at (axis cs:2.03,5.5) {$y_2 = 11$};
+\node[anchor=west, font=\small, fill=white, inner sep=1pt] at (axis cs:3.03,9) {$y_3 = 18$};
+\node[anchor=west, font=\small] at (axis cs:4.03,13.5) {$y_4 = 27$};
+\node[font=\small] at (axis cs:1.5,22) {$y = x^2 + 2x + 3$};
+\end{axis}
+\end{tikzpicture}
+                        </latex-image>
+                    </image>
+                </figure>
                 <p>
-                    XX minutes
+                    <ol marker="(a)">
+                        <li>
+                            <p>Copy and complete the table of values of <m>y = x^2 + 2x + 3</m> for <m>x = 0, 1, 2, 3, 4</m>.</p>
+                            <solution component="lesson-plan"><p><m>y = 3, 6, 11, 18, 27</m>.</p></solution>
+                        </li>
+                        <li>
+                            <p>Find the area of each strip as a trapezium.</p>
+                            <solution component="lesson-plan"><p><m>\tfrac{1}{2} \times 1 \times (3 + 6) = 4.5</m>, then <m>8.5</m>, <m>14.5</m> and <m>22.5</m>.</p></solution>
+                        </li>
+                        <li>
+                            <p>Add the four areas to estimate the area of the region.</p>
+                            <solution component="lesson-plan"><p><m>4.5 + 8.5 + 14.5 + 22.5 = 50</m> square units.</p></solution>
+                        </li>
+                        <li component="core">
+                            <p>Work in pairs. Call the strip width <m>h</m> and the heights <m>y_0, y_1, y_2, y_3, y_4</m>. Write the area of each trapezium using these letters, add the four areas and collect the terms. Which heights appear twice?</p>
+                            <solution component="lesson-plan"><p><m>\tfrac{1}{2}h(y_0 + y_1) + \tfrac{1}{2}h(y_1 + y_2) + \tfrac{1}{2}h(y_2 + y_3) + \tfrac{1}{2}h(y_3 + y_4) = \tfrac{1}{2}h[y_0 + y_4 + 2(y_1 + y_2 + y_3)]</m>. The inner heights <m>y_1, y_2, y_3</m> appear twice: each is a side of two trapezia.</p></solution>
+                        </li>
+                        <li component="essential">
+                            <p>Work in pairs. Use the trapezoidal rule in the box after this activity with <m>h = 1</m> and check that you get the same answer as in part (c).</p>
+                            <solution component="lesson-plan"><p><m>\tfrac{1}{2} \times 1 \times [3 + 27 + 2(6 + 11 + 18)] = \tfrac{1}{2} \times 100 = 50</m>, the same as part (c).</p></solution>
+                        </li>
+                        <li>
+                            <p>The exact area of the region is <m>49\tfrac{1}{3}</m>. Use the interactive in <xref ref="fig-trapezoidal-strips-interactive"/> with <m>8</m> strips. Is the estimate closer?</p>
+                            <solution component="lesson-plan"><p>With <m>8</m> strips the estimate is <m>49.5</m>, closer to <m>49\tfrac{1}{3}</m> than <m>50</m> is. Narrower strips hug the curve more closely.</p></solution>
+                        </li>
+                    </ol>
                 </p>
-            </li>
-            <li>
-                <title>Objective</title>
-                <p>
-                    To formalize the concepts and properties learners discovered in the anchor task.
-                </p>
-            </li>
-            </dl>
-        </p>
-        <paragraphs>
-            <title>Key Takeaways &amp; Teacher Connection</title>
-            <ol>
-                <li>
+            </statement>
+        </activity>
+
+        <axiom component="lesson-plan">
+            <title>Structured Instruction</title>
+            <p>
+                <dl>
+                    <li><title>Suggested Time</title><p>8 minutes</p></li>
+                    <li><title>Objective</title><p component="core">To state the trapezoidal rule from the pairs' own working, and the steps for using it.</p><p component="essential">To state the trapezoidal rule and the steps for using it.</p></li>
+                </dl>
+            </p>
+            <paragraphs>
+                <title>Key Takeaways &amp; Teacher Connection</title>
+                <ol>
+                    <li><p><alert>Connecting to Learner Work:</alert> the four trapezia of part (b) are the strips; their vertical sides are the ordinates.</p></li>
+                    <li><p>The strip width is <m>h = (b - a) \div n</m>. There are <m>n + 1</m> ordinates for <m>n</m> strips.</p></li>
+                    <li><p>The rule in words: first plus last plus twice the rest, then multiply by <m>\tfrac{1}{2}h</m>.</p></li>
+                    <li component="core"><p>Use the pairs' answers to part (d): the inner ordinates appear twice because each is shared by two trapezia.</p></li>
+                </ol>
+            </paragraphs>
+        </axiom>
+
+        <insight xml:id="insight-trapezoidal-rule-core" component="core">
+            <title>Deriving the Trapezoidal Rule</title>
+            <p>
+                To estimate the area bounded by a curve, the <m>x</m>-axis and the lines <m>x = a</m> and <m>x = b</m>, cut the region into <m>n</m> <term>strips</term> of equal width
+                <md>h = \frac{b - a}{n}</md>.
+                The heights of the curve at the edges of the strips are the <term>ordinates</term> <m>y_0, y_1, \ldots, y_n</m>, at <m>x_0 = a</m>, <m>x_1 = a + h</m>, and so on up to <m>x_n = b</m>. There are <m>n + 1</m> ordinates: the strips are the gaps between them.
+            </p>
+            <p>
+                In general, strip <m>k</m> lies between the ordinates <m>y_{k-1}</m> and <m>y_k</m>. Replace the curve over the strip by the straight line, or <term>chord</term>, joining its two ends. The strip becomes a trapezium of area <m>\tfrac{1}{2}h(y_{k-1} + y_k)</m>. Adding the <m>n</m> trapezia,
+                <md>
+                    <mrow>A \amp \approx \tfrac{1}{2}h(y_0 + y_1) + \tfrac{1}{2}h(y_1 + y_2) + \cdots + \tfrac{1}{2}h(y_{n-1} + y_n)</mrow>
+                    <mrow>\amp = \tfrac{1}{2}h\,[y_0 + y_1 + y_1 + y_2 + \cdots + y_{n-1} + y_{n-1} + y_n]</mrow>
+                    <mrow>\amp = \tfrac{1}{2}h\,[y_0 + y_n + 2(y_1 + y_2 + \cdots + y_{n-1})]</mrow>
+                </md>.
+            </p>
+            <p>
+                This is the <term>trapezoidal rule</term>: half the strip width times the first plus the last plus twice the rest. Each inner ordinate is a side of two trapezia, so it is counted twice.
+            </p>
+        </insight>
+
+        <insight xml:id="insight-trapezoidal-rule-essential" component="essential">
+            <title>Using the Trapezoidal Rule</title>
+            <p>
+                To estimate the area bounded by a curve, the <m>x</m>-axis and the lines <m>x = a</m> and <m>x = b</m>, cut the region into <m>n</m> <term>strips</term> of equal width <m>h</m>. The heights of the curve at the edges of the strips are the <term>ordinates</term> <m>y_0, y_1, \ldots, y_n</m>. There are <m>n + 1</m> ordinates: the strips are the gaps between them. Each strip is treated as a trapezium whose top is the straight line, or <term>chord</term>, joining two neighbouring points on the curve. The <term>trapezoidal rule</term> is
+                <md>A \approx \tfrac{1}{2}h\,[y_0 + y_n + 2(y_1 + y_2 + \cdots + y_{n-1})]</md>.
+            </p>
+            <p>
+                <ol marker="1.">
+                    <li><p>Find the strip width: <m>h = (b - a) \div n</m>.</p></li>
+                    <li><p>Make a table of the ordinates <m>y_0, y_1, \ldots, y_n</m>.</p></li>
+                    <li><p>Work out the first plus the last plus <m>2 \times</m> (the sum of the others).</p></li>
+                    <li><p>Multiply by <m>\tfrac{1}{2}h</m>.</p></li>
+                </ol>
+            </p>
+            <p>
+                Each inner ordinate is a side of two trapezia, so it is counted twice.
+            </p>
+        </insight>
+
+        <figure xml:id="fig-trapezoidal-strips-interactive">
+            <caption>Drag the slider to change the number of strips. The trapezia and the estimate update; the exact area is <m>49.33</m>.</caption>
+            <interactive xml:id="interactive-trapezoidal-strips" platform="jsxgraph" width="90%" aspect="16:12" source="jsxgraph/trapezoidal-strips.js">
+                <slate xml:id="jsxgraph-trapezoidal-strips" surface="jsxboard" aspect="16:12"/>
+                <instructions>
                     <p>
-                        <alert>Connecting to Learner Work:</alert> XXXX
+                        <ul>
+                            <li><p>The curve is <m>y = x^2 + 2x + 3</m> from <m>x = 0</m> to <m>x = 4</m>, as in <xref ref="act-trapezia-under-a-curve"/>.</p></li>
+                            <li><p>Drag the <alert>n</alert> slider from <m>1</m> to <m>12</m>. Check that <m>1</m> strip gives <m>60</m>, <m>2</m> strips give <m>52</m>, <m>4</m> give <m>50</m>, <m>8</m> give <m>49.5</m> and <m>12</m> give <m>49.41</m>.</p></li>
+                            <li><p>Is the estimate ever below the exact area? Why do narrower strips give a better estimate?</p></li>
+                        </ul>
                     </p>
-                </li>
-            </ol>
-        </paragraphs>
-    </axiom> -->
+                </instructions>
+            </interactive>
+        </figure>
 
-    <!-- Add insight / key takeaway directly related to activity / learner experience -->
+        <xi:include href="../lesson-plan-templates/example-intro.ptx" />
 
-    <!-- <insight>
-    </insight> -->
-
-    <!-- Add further instruction (not in a block) to develop ideas as needed -->
-
-    <xi:include href="../lesson-plan-templates/example-intro.ptx" />
-
-    <!-- Add at least 3 examples -->
-
-    <!-- <example>
-        <statement>
-        </statement>
-        <solution>
-        </solution>
-    </example>
-
-    <example>
-        <statement>
-        </statement>
-        <solution>
-        </solution>
-    </example>
-
-    <example>
-        <statement>
-        </statement>
-        <solution>
-        </solution>
-    </example> -->
-
-    <xi:include href="../lesson-plan-templates/assessment-intro.ptx" />
-
-    <!-- If STACK questions are included, uncomment this: -->
-
-    <!-- <xi:include href="../lesson-plan-templates/checkpoint.ptx" /> -->
-
-    <!-- Add STACK exercises if made -->
-
-    <!-- Add static exercises -->
-
-    <!-- <exercises>
-        <exercise>
-            <statement>   
-
-            </statement>   
+        <example xml:id="example-offsets-from-a-fence">
+            <title>Offsets From a Fence</title>
+            <statement>
+                <p>Wanjiku measured a plot beside a road near Nyeri. Along a straight fence <m>60\,\text{m}</m> long she measured the distance from the fence to the curved edge of the plot (the <term>offset</term>) every <m>10\,\text{m}</m>. Use the trapezoidal rule to estimate the area of the plot.</p>
+                <table xml:id="table-offsets-from-a-fence">
+                    <title>Offsets from the Fence</title>
+                    <tabular halign="center" top="minor" bottom="minor" left="minor" right="minor">
+                        <row header="yes" bottom="medium"><cell>Distance along fence (m)</cell><cell>0</cell><cell>10</cell><cell>20</cell><cell>30</cell><cell>40</cell><cell>50</cell><cell>60</cell></row>
+                        <row><cell>Offset (m)</cell><cell>32</cell><cell>35</cell><cell>37</cell><cell>36</cell><cell>33</cell><cell>29</cell><cell>24</cell></row>
+                    </tabular>
+                </table>
+            </statement>
             <solution>
+                <p>There are <m>7</m> offsets, so there are <m>6</m> strips, each <m>h = 10\,\text{m}</m> wide. The first and last offsets are <m>32</m> and <m>24</m>; the inner ones add to <m>35 + 37 + 36 + 33 + 29 = 170</m>.
+                    <md>A \approx \tfrac{1}{2} \times 10 \times [32 + 24 + 2 \times 170] = 5 \times 396 = 1980</md>
+                    The plot is about <m>1980\,\text{m}^2</m>. Note that <m>7</m> measurements make <m>6</m> strips.</p>
+            </solution>
+        </example>
 
-            </solution>             
-        </exercise>        
-    </exercises> -->
+        <example xml:id="example-strips-two-units-wide">
+            <title>Strips Two Units Wide</title>
+            <statement>
+                <p>Use the trapezoidal rule with <m>3</m> strips to estimate the area bounded by the curve <m>y = 8 + 2x - \tfrac{1}{2}x^2</m>, the <m>x</m>-axis and the lines <m>x = 0</m> and <m>x = 6</m>. Then repeat with <m>6</m> strips.</p>
+            </statement>
+            <solution>
+                <p>With <m>3</m> strips, <m>h = (6 - 0) \div 3 = 2</m>, so the ordinates are at <m>x = 0, 2, 4, 6</m>:</p>
+                <table xml:id="table-strips-two-units-wide">
+                    <title>Ordinates with <m>h = 2</m></title>
+                    <tabular halign="center" top="minor" bottom="minor" left="minor" right="minor">
+                        <row header="yes" bottom="medium"><cell><m>x</m></cell><cell>0</cell><cell>2</cell><cell>4</cell><cell>6</cell></row>
+                        <row><cell><m>y</m></cell><cell>8</cell><cell>10</cell><cell>8</cell><cell>2</cell></row>
+                    </tabular>
+                </table>
+                <p><md>A \approx \tfrac{1}{2} \times 2 \times [8 + 2 + 2(10 + 8)] = 1 \times 46 = 46</md>
+                    With <m>6</m> strips, <m>h = 1</m> and the ordinates at <m>x = 0, 1, \ldots, 6</m> are <m>8, 9.5, 10, 9.5, 8, 5.5, 2</m>:
+                    <md>A \approx \tfrac{1}{2} \times 1 \times [8 + 2 + 2(9.5 + 10 + 9.5 + 8 + 5.5)] = \tfrac{1}{2} \times 95 = 47.5</md></p>
+            </solution>
+        </example>
 
-    <!-- [LP] Add information on how to differentiate  -->
+        <example xml:id="example-weight-column">
+            <title>A Weight Column</title>
+            <statement>
+                <p>The width of a flower bed was measured every <m>2\,\text{m}</m> along a straight path. The widths, in metres, were <m>3.0, 4.2, 4.8, 4.6, 3.8, 2.4</m>. Estimate the area of the flower bed with the trapezoidal rule.</p>
+            </statement>
+            <solution>
+                <p>Give each width a <q>weight</q>: <m>1</m> for the first and last, <m>2</m> for the others. Then add the products.</p>
+                <table xml:id="table-weight-column">
+                    <title>The Trapezoidal Rule as a Table</title>
+                    <tabular halign="center" top="minor" bottom="minor" left="minor" right="minor">
+                        <row header="yes" bottom="medium"><cell>Distance <m>x</m> (m)</cell><cell>Width <m>y</m> (m)</cell><cell>Weight</cell><cell>Weight <m>\times</m> <m>y</m></cell></row>
+                        <row><cell>0</cell><cell>3.0</cell><cell>1</cell><cell>3.0</cell></row>
+                        <row><cell>2</cell><cell>4.2</cell><cell>2</cell><cell>8.4</cell></row>
+                        <row><cell>4</cell><cell>4.8</cell><cell>2</cell><cell>9.6</cell></row>
+                        <row><cell>6</cell><cell>4.6</cell><cell>2</cell><cell>9.2</cell></row>
+                        <row><cell>8</cell><cell>3.8</cell><cell>2</cell><cell>7.6</cell></row>
+                        <row bottom="minor"><cell>10</cell><cell>2.4</cell><cell>1</cell><cell>2.4</cell></row>
+                        <row><cell></cell><cell></cell><cell>Total</cell><cell>40.2</cell></row>
+                    </tabular>
+                </table>
+                <p><md>A \approx \tfrac{1}{2} \times 2 \times 40.2 = 40.2</md>
+                    The flower bed is about <m>40.2\,\text{m}^2</m>. The weight column is the trapezoidal rule written as a table; it is also how a spreadsheet does the calculation.</p>
+            </solution>
+        </example>
 
-    <!-- <axiom component="lesson-plan">
-        <title>Differentiation</title>
+        <xi:include href="../lesson-plan-templates/assessment-intro.ptx" />
+        <xi:include href="../lesson-plan-templates/checkpoint.ptx" />
 
-        <table>
+        <p>Type decimals with a point, for example <c>37.6</c>. Give exact answers unless the question asks you to round.</p>
+
+        <exercise xml:id="ex-trapezoidal-rule-from-a-table-of-offsets">
+            <!--<title></title>-->
+            <stack label="stk-trapezoidal-rule-from-a-table-of-offsets" source="stack/top/2-measurement-and-geometry/07-area-approximations/02-trapezoidal-rule/Trapezoidal-rule-from-a-table-of-offsets.xml"/>
+        </exercise>
+
+        <exercise xml:id="ex-building-the-trapezoidal-rule-from-trapezia" component="core">
+            <!--<title></title>-->
+            <stack label="stk-building-the-trapezoidal-rule-from-trapezia" source="stack/top/2-measurement-and-geometry/07-area-approximations/02-trapezoidal-rule/Building-the-trapezoidal-rule-from-trapezia.xml"/>
+        </exercise>
+
+        <exercise xml:id="ex-trapezoidal-rule-for-a-curve">
+            <!--<title></title>-->
+            <stack label="stk-trapezoidal-rule-for-a-curve" source="stack/top/2-measurement-and-geometry/07-area-approximations/02-trapezoidal-rule/Trapezoidal-rule-for-a-curve.xml"/>
+        </exercise>
+
+        <exercises xml:id="exercises-the-trapezoidal-rule">
+            <exercise xml:id="ex-trapezoidal-five-offsets">
+                <statement><p>The offsets from a straight hedge to the edge of a vegetable garden, measured every <m>5\,\text{m}</m>, are <m>6, 8, 9, 8, 5</m> metres. Use the trapezoidal rule to estimate the area of the garden.</p></statement>
+                <answer><p><m>152.5\,\text{m}^2</m></p></answer>
+                <solution><p><m>5</m> offsets make <m>4</m> strips with <m>h = 5</m>. <m>A \approx \tfrac{1}{2} \times 5 \times [6 + 5 + 2(8 + 9 + 8)] = 2.5 \times 61 = 152.5\,\text{m}^2</m>.</p></solution>
+            </exercise>
+            <exercise xml:id="ex-trapezoidal-arch-in-six-strips">
+                <statement><p>Use the trapezoidal rule with strips <m>0.5</m> wide to estimate the area bounded by <m>y = 12 + 3x - 2x^2</m>, the <m>x</m>-axis and the lines <m>x = 0</m> and <m>x = 3</m>. The exact area is <m>31.5</m>. Is your estimate too big or too small?</p></statement>
+                <answer><p><m>31.25</m>; too small</p></answer>
+                <solution><p><m>6</m> strips. The ordinates at <m>x = 0, 0.5, \ldots, 3</m> are <m>12, 13, 13, 12, 10, 7, 3</m>. <m>A \approx \tfrac{1}{2} \times 0.5 \times [12 + 3 + 2(13 + 13 + 12 + 10 + 7)] = 0.25 \times 125 = 31.25</m>, which is less than <m>31.5</m>: the curve bends downwards, so the chords lie below it.</p></solution>
+            </exercise>
+            <exercise xml:id="ex-seven-measurements">
+                <statement><p>The width of a fish pond was measured every <m>3\,\text{m}</m> along one straight side: <m>4, 6, 7, 7, 6, 5, 3</m> metres. How many strips do these measurements make? How long is the straight side? Estimate the area of the pond.</p></statement>
+                <answer><p><m>6</m> strips; <m>18\,\text{m}</m>; <m>103.5\,\text{m}^2</m></p></answer>
+                <solution><p><m>7</m> measurements make <m>6</m> strips, so the side is <m>6 \times 3 = 18\,\text{m}</m> long. <m>A \approx \tfrac{1}{2} \times 3 \times [4 + 3 + 2(6 + 7 + 7 + 6 + 5)] = 1.5 \times 69 = 103.5\,\text{m}^2</m>.</p></solution>
+            </exercise>
+            <exercise xml:id="ex-missing-offset">
+                <statement><p>Offsets measured every <m>5\,\text{m}</m> along a fence are <m>10, 14, p, 15, 11</m> metres. The trapezoidal estimate of the area is <m>277.5\,\text{m}^2</m>. Find <m>p</m>.</p></statement>
+                <answer><p><m>p = 16</m></p></answer>
+                <solution><p><m>\tfrac{1}{2} \times 5 \times [10 + 11 + 2(14 + p + 15)] = 277.5</m>, so <m>21 + 58 + 2p = 111</m>, <m>2p = 32</m> and <m>p = 16</m>.</p></solution>
+            </exercise>
+            <exercise xml:id="ex-derive-trapezoidal-three-strips" component="core">
+                <statement><p>A region is cut into three strips of width <m>h</m> with ordinates <m>y_0, y_1, y_2, y_3</m>. Add the areas of the three trapezia and show that the total is <m>\tfrac{1}{2}h[y_0 + y_3 + 2(y_1 + y_2)]</m>.</p></statement>
+                <answer><p>Shown.</p></answer>
+                <solution><p><m>\tfrac{1}{2}h(y_0 + y_1) + \tfrac{1}{2}h(y_1 + y_2) + \tfrac{1}{2}h(y_2 + y_3) = \tfrac{1}{2}h(y_0 + 2y_1 + 2y_2 + y_3) = \tfrac{1}{2}h[y_0 + y_3 + 2(y_1 + y_2)]</m>.</p></solution>
+            </exercise>
+            <exercise xml:id="ex-straight-line-any-strips">
+                <title>Challenge: A Straight Line</title>
+                <statement><p>Use the trapezoidal rule to estimate the area bounded by <m>y = 3x + 1</m>, the <m>x</m>-axis and the lines <m>x = 0</m> and <m>x = 4</m>, with <m>1</m>, <m>2</m> and <m>4</m> strips. Explain your results.</p></statement>
+                <hint><p>What shape is the region?</p></hint>
+                <answer><p><m>28</m> each time</p></answer>
+                <solution><p><m>1</m> strip: <m>\tfrac{1}{2} \times 4 \times (1 + 13) = 28</m>. <m>2</m> strips: <m>\tfrac{1}{2} \times 2 \times [1 + 13 + 2 \times 7] = 28</m>. <m>4</m> strips: <m>\tfrac{1}{2} \times 1 \times [1 + 13 + 2(4 + 7 + 10)] = 28</m>. The region is itself a trapezium of area <m>\tfrac{1}{2} \times 4 \times (1 + 13) = 28</m>: every chord lies along the line, so the rule is exact however many strips are used.</p></solution>
+            </exercise>
+        </exercises>
+
+        <axiom component="lesson-plan">
             <title>Differentiation</title>
-            <tabular halign="left">
-                <row header="yes" bottom="minor">
-                    <cell>Learner Group</cell>
-                    <cell>Strategy &amp; Learning Experience</cell>
-                    <cell></cell>
-                </row>
-                <row>
-                    <cell>Struggling Learners (Support)</cell>
-                    <cell>
-                        XXXX
-                    </cell>
-                    <cell></cell>
-                </row>
-                <row>
-                    <cell>On-Level Learners (Core)</cell>
-                    <cell>
-                        <line>The core lesson activities as described above.</line>
-                    </cell>
-                    <cell></cell>
-                </row>
-                <row>
-                    <cell>Advanced Learners (Challenge)</cell>
-                    <cell>
-                        XXXX
-                    </cell>
-                    <cell></cell>
-                </row>
-            </tabular>
-        </table>
-    </axiom> -->
+            <table xml:id="table-differentiation-the-trapezoidal-rule">
+                <title>Differentiation Strategies</title>
+                <tabular halign="left" top="minor" bottom="minor" left="minor" right="minor">
+                    <row header="yes" bottom="medium"><cell>Learner Group</cell><cell>Strategy and Learning Experience</cell></row>
+                    <row><cell>Struggling Learners (Support)</cell><cell>Give an ordinate table with a weight column already headed (1, 2, 2, ..., 2, 1), and the four steps of the trapezoidal rule on a card. Work through <xref ref="example-offsets-from-a-fence"/> and <xref ref="example-weight-column"/>. Assign <xref ref="ex-trapezoidal-five-offsets"/> and <xref ref="ex-seven-measurements"/>.</cell></row>
+                    <row><cell>On-Level Learners (Core)</cell><cell>Full activity and all examples. Assign <xref ref="ex-trapezoidal-five-offsets"/> to <xref ref="ex-missing-offset"/>.</cell></row>
+                    <row><cell>Advanced Learners (Challenge)</cell><cell>All exercises including <xref ref="ex-straight-line-any-strips"/>. Extension: with <m>4</m> strips the estimate for <m>y = x^2 + 2x + 3</m> on <m>0 \le x \le 4</m> is <m>50</m> and with <m>8</m> strips <m>49.5</m>. Predict the estimate with <m>16</m> strips (answer: the error <m>\tfrac{2}{3}</m> becomes <m>\tfrac{1}{6}</m>, a quarter as big, so the next error is <m>\tfrac{1}{24}</m> and the estimate is <m>49.375</m>).</cell></row>
+                </tabular>
+            </table>
+        </axiom>
 
-    <xi:include href="../lesson-plan-templates/assessment-methods.ptx" />
+        <xi:include href="../lesson-plan-templates/assessment-methods.ptx" />
+        <xi:include href="../lesson-plan-templates/reflection.ptx"/>
+    </subsection>
 
-    <xi:include href="../lesson-plan-templates/reflection.ptx"/>
+    <!-- ============================================================ Lesson 2.2 -->
+    <subsection xml:id="subsec-applying-the-trapezoidal-rule">
+        <title>Rivers, Fields and the Size of the Error</title>
+
+        <p component="lesson-plan">Upon completion of this lesson, learners will be able to:
+            <ol>
+                <li><p><alert>Know:</alert> a cross-section of a river; offsets on both sides of a base line; when the trapezoidal rule gives too big or too small an estimate.</p></li>
+                <li><p><alert>Do:</alert> apply the trapezoidal rule to measured data, including zero depths at the banks; find a volume from a cross-section times a length or a speed.</p></li>
+                <li><p><alert>Apply:</alert> estimate the flow of a river, the soil dug from a ditch and the value of a field.</p></li>
+            </ol>
+        </p>
+
+        <axiom component="lesson-plan">
+            <title>Problem-Solving and Discovery</title>
+            <dl>
+                <li><title>Suggested Time</title><p>14 minutes</p></li>
+                <li><title>Objective</title><p>Learners estimate how much water a river carries from depth soundings, then decide whether the estimate is too big or too small.</p></li>
+                <li><title>Teacher's Role</title><p>Sketch the cross-section on the board with the depths drawn downwards from the water surface. After part (c), ask: <q>Where does the river bed lie compared with your straight lines?</q></p></li>
+            </dl>
+        </axiom>
+
+        <activity xml:id="act-across-the-river">
+            <title>Across the River</title>
+            <statement>
+                <p>A water engineering team measures the River Tana near Garissa. They stretch a rope <m>24\,\text{m}</m> across the river from bank to bank and measure the depth every <m>4\,\text{m}</m>. The depths are <m>0, 1.2, 2.0, 2.6, 2.2, 1.4, 0</m> metres. (The measurements are made up for this activity.)</p>
+                <figure xml:id="fig-river-cross-section">
+                    <caption>The cross-section of the river. The depths are measured every <m>4\,\text{m}</m>; the dashed straight lines join the measured points.</caption>
+                    <image width="90%">
+                        <shortdescription>Cross-section of a river 24 m wide. Depths measured every 4 m are 0, 1.2, 2.0, 2.6, 2.2, 1.4 and 0 m. The river bed is a smooth curve; dashed straight lines join the measured depths and lie above the curved bed.</shortdescription>
+                        <description><p>A horizontal line marks the water surface from 0 to 24 m. Vertical lines go down from the surface at 4, 8, 12, 16 and 20 m, of lengths 1.2, 2.0, 2.6, 2.2 and 1.4 m. The bed is a smooth curve through the bottoms of these lines and the two banks; between each pair of neighbouring points it sags slightly below the dashed straight line joining them.</p></description>
+                        <latex-image>
+\begin{tikzpicture}[x=0.5cm, y=1.6cm]
+% water surface and banks
+\draw[thick] (-1,0.4) -- (0,0) -- (24,0) -- (25,0.4);
+\node[above, font=\small] at (12,0) {water surface};
+% smooth bed: chord minus a small sag between soundings
+\draw[very thick, domain=0:4, samples=20, variable=\t] plot ({\t}, {-1.2*\t/4 - 0.04*\t*(4-\t)})
+  -- plot[domain=4:8, samples=20, variable=\t] ({\t}, {-1.2-0.8*(\t-4)/4 - 0.04*(\t-4)*(8-\t)})
+  -- plot[domain=8:12, samples=20, variable=\t] ({\t}, {-2.0-0.6*(\t-8)/4 - 0.04*(\t-8)*(12-\t)})
+  -- plot[domain=12:16, samples=20, variable=\t] ({\t}, {-2.6+0.4*(\t-12)/4 - 0.04*(\t-12)*(16-\t)})
+  -- plot[domain=16:20, samples=20, variable=\t] ({\t}, {-2.2+0.8*(\t-16)/4 - 0.04*(\t-16)*(20-\t)})
+  -- plot[domain=20:24, samples=20, variable=\t] ({\t}, {-1.4+1.4*(\t-20)/4 - 0.04*(\t-20)*(24-\t)});
+\draw[dashed] (0,0) -- (4,-1.2) -- (8,-2.0) -- (12,-2.6) -- (16,-2.2) -- (20,-1.4) -- (24,0);
+\foreach \x/\d in {4/1.2,8/2.0,12/2.6,16/2.2,20/1.4} {
+  \draw[thin] (\x,0) -- (\x,-\d);
+  \node[right, font=\small] at (\x,-\d/2) {$\d$};
+  \fill (\x,-\d) circle (1.5pt);
+}
+\foreach \x in {0,4,...,24} { \node[above, font=\small] at (\x,0.05) {}; \node[below, font=\small] at (\x,-3.0) {$\x$}; \draw[gray] (\x,-2.9) -- (\x,-2.8);}
+\draw[gray] (0,-2.85) -- (24,-2.85);
+\node[below, font=\small] at (12,-3.25) {distance from the bank (m)};
+\end{tikzpicture}
+                        </latex-image>
+                    </image>
+                </figure>
+                <p>
+                    <ol marker="(a)">
+                        <li>
+                            <p>How many strips do the measurements make, and how wide is each strip?</p>
+                            <solution component="lesson-plan"><p><m>7</m> depths make <m>6</m> strips, each <m>4\,\text{m}</m> wide.</p></solution>
+                        </li>
+                        <li>
+                            <p>Use the trapezoidal rule to estimate the area of the cross-section.</p>
+                            <solution component="lesson-plan"><p><m>\tfrac{1}{2} \times 4 \times [0 + 0 + 2(1.2 + 2.0 + 2.6 + 2.2 + 1.4)] = 2 \times 18.8 = 37.6\,\text{m}^2</m>.</p></solution>
+                        </li>
+                        <li>
+                            <p>The water flows at <m>0.5\,\text{m/s}</m>. How many cubic metres of water pass the rope each second, and each minute?</p>
+                            <solution component="lesson-plan"><p>Each second a slice of water <m>0.5\,\text{m}</m> long passes: <m>37.6 \times 0.5 = 18.8\,\text{m}^3</m> each second, and <m>18.8 \times 60 = 1128\,\text{m}^3</m> each minute.</p></solution>
+                        </li>
+                        <li>
+                            <p>The river bed curves smoothly like a bowl between the measured points. Is your estimate of the area too big or too small?</p>
+                            <solution component="lesson-plan"><p>Too small: the straight lines between the measured points lie above the bed, so some water is left out.</p></solution>
+                        </li>
+                        <li>
+                            <p>How could the team improve the estimate?</p>
+                            <solution component="lesson-plan"><p>Measure the depth more often, for example every <m>2\,\text{m}</m>: narrower strips follow the bed more closely.</p></solution>
+                        </li>
+                    </ol>
+                </p>
+            </statement>
+        </activity>
+
+        <axiom component="lesson-plan">
+            <title>Structured Instruction</title>
+            <p>
+                <dl>
+                    <li><title>Suggested Time</title><p>8 minutes</p></li>
+                    <li><title>Objective</title><p>To use the trapezoidal rule with measured data and to decide from a picture whether it overestimates or underestimates.</p></li>
+                </dl>
+            </p>
+            <paragraphs>
+                <title>Key Takeaways &amp; Teacher Connection</title>
+                <ol>
+                    <li><p><alert>Connecting to Learner Work:</alert> the zero depths at the banks are still ordinates; they count in the number of strips even though they add nothing to the sum.</p></li>
+                    <li><p>Volume of water each second = area of the cross-section <m>\times</m> speed.</p></li>
+                    <li><p>Use the answer to part (d): chords lie above a curve that bends upwards, so trapezia overestimate; below a curve that bends downwards, so they underestimate.</p></li>
+                    <li><p>Reflection: ask each learner to name one real job where someone estimates an area from measurements like these (a water engineer planning an intake, a surveyor pricing land).</p></li>
+                </ol>
+            </paragraphs>
+        </axiom>
+
+        <insight xml:id="insight-trapezoidal-over-or-under">
+            <title>Too Big or Too Small?</title>
+            <p>
+                Look at where the chords lie compared with the curve (<xref ref="fig-trapezoidal-over-under"/>).
+                <ul>
+                    <li><p>If the curve <term>bends upwards</term>, like a bowl, the chords lie above it, so the trapezia include extra area: the trapezoidal rule <em>overestimates</em>.</p></li>
+                    <li><p>If the curve <term>bends downwards</term>, like an arch, the chords lie below it, so some area is left out: the rule <em>underestimates</em>.</p></li>
+                    <li><p>If the graph is a straight line, each chord lies along it and the rule is exact.</p></li>
+                </ul>
+                In every case, narrower strips hug the curve more closely and make the error smaller.
+            </p>
+        </insight>
+
+        <figure xml:id="fig-trapezoidal-over-under">
+            <caption>Left: a curve that bends upwards; the dashed tops of the trapezia lie above it. Right: a curve that bends downwards; the dashed tops lie below it.</caption>
+            <image width="90%">
+                <shortdescription>Two graphs, each with two trapezia under a curve from x = 0 to 4. Left: the curve bends upwards like a bowl and the straight dashed tops of the trapezia lie above it, so the trapezia are too big. Right: the curve bends downwards like an arch and the dashed tops lie below it, so the trapezia are too small.</shortdescription>
+                <latex-image>
+\begin{tikzpicture}
+\begin{axis}[name=left, width=6.5cm, height=6cm, xmin=0, xmax=4.4, ymin=0, ymax=6,
+  axis lines=left, xtick={0,2,4}, ytick=\empty, xlabel={$x$}, ylabel={$y$}, title={Bends upwards: too big}]
+\fill[gray!25] (axis cs:0,0) -- (axis cs:0,0.5) -- (axis cs:2,1.7) -- (axis cs:4,5.3) -- (axis cs:4,0) -- cycle;
+\draw[thick, dashed] (axis cs:0,0.5) -- (axis cs:2,1.7) -- (axis cs:4,5.3);
+\draw (axis cs:2,0) -- (axis cs:2,1.7); \draw (axis cs:4,0) -- (axis cs:4,5.3);
+\addplot[very thick, domain=0:4, samples=60] {0.5+0.3*x^2};
+\end{axis}
+\begin{axis}[at={(left.east)}, anchor=west, xshift=1.2cm, width=6.5cm, height=6cm, xmin=0, xmax=4.4, ymin=0, ymax=6,
+  axis lines=left, xtick={0,2,4}, ytick=\empty, xlabel={$x$}, ylabel={$y$}, title={Bends downwards: too small}]
+\fill[gray!25] (axis cs:0,0) -- (axis cs:0,1) -- (axis cs:2,2.6) -- (axis cs:4,1) -- (axis cs:4,0) -- cycle;
+\draw[thick, dashed] (axis cs:0,1) -- (axis cs:2,2.6) -- (axis cs:4,1);
+\draw (axis cs:2,0) -- (axis cs:2,2.6); \draw (axis cs:4,0) -- (axis cs:4,1);
+\addplot[very thick, domain=0:4, samples=60] {1+1.6*x-0.4*x^2};
+\end{axis}
+\end{tikzpicture}
+                </latex-image>
+            </image>
+        </figure>
+
+        <xi:include href="../lesson-plan-templates/example-intro.ptx" />
+
+        <example xml:id="example-drainage-ditch-ahero">
+            <title>A Drainage Ditch at Ahero</title>
+            <statement>
+                <p>A drainage ditch at the Ahero rice scheme is <m>3\,\text{m}</m> wide. Its depth, measured every <m>0.5\,\text{m}</m> across, is <m>0, 0.42, 0.66, 0.72, 0.62, 0.38, 0</m> metres. Estimate the area of the cross-section, and the volume of soil dug out to make <m>50\,\text{m}</m> of ditch.</p>
+            </statement>
+            <solution>
+                <p><m>7</m> depths make <m>6</m> strips with <m>h = 0.5</m>. The inner depths add to <m>0.42 + 0.66 + 0.72 + 0.62 + 0.38 = 2.8</m>.
+                    <md>A \approx \tfrac{1}{2} \times 0.5 \times [0 + 0 + 2 \times 2.8] = 0.25 \times 5.6 = 1.4</md>
+                    The cross-section is about <m>1.4\,\text{m}^2</m>. A ditch <m>50\,\text{m}</m> long is a prism, so the volume of soil is about <m>1.4 \times 50 = 70\,\text{m}^3</m>.</p>
+            </solution>
+        </example>
+
+        <example xml:id="example-irregular-field">
+            <title>An Irregular Field</title>
+            <statement>
+                <p>A surveyor lays a straight base line <m>80\,\text{m}</m> long across an irregular field and measures offsets to the boundary on both sides every <m>20\,\text{m}</m> (<xref ref="fig-field-offsets"/>). Estimate the area of the field. Land here sells at Ksh <m>2\,500\,000</m> per hectare (<m>1\,\text{ha} = 10\,000\,\text{m}^2</m>). Estimate the value of the field.</p>
+                <figure xml:id="fig-field-offsets">
+                    <caption>An irregular field around an <m>80\,\text{m}</m> base line (dashed), with offsets every <m>20\,\text{m}</m>.</caption>
+                    <image width="70%">
+                        <shortdescription>An irregular field around a dashed 80 m base line. Offsets every 20 m: on the upper side 10, 18, 25, 21 and 8 m; on the lower side 6, 12, 16, 14 and 4 m.</shortdescription>
+                        <description><p>The base line runs from 0 to 80 m with marks at 0, 20, 40, 60 and 80. At each mark a line goes up to the upper boundary and down to the lower boundary. Upper offsets: 10, 18, 25, 21, 8 m. Lower offsets: 6, 12, 16, 14, 4 m.</p></description>
+                        <latex-image>
+\begin{tikzpicture}[x=0.11cm, y=0.11cm]
+\draw[very thick] plot[smooth] coordinates {(0,10) (20,18) (40,25) (60,21) (80,8)};
+\draw[very thick] plot[smooth] coordinates {(0,-6) (20,-12) (40,-16) (60,-14) (80,-4)};
+\draw[very thick] (0,-6) -- (0,10); \draw[very thick] (80,-4) -- (80,8);
+\draw[thick, dashed] (0,0) -- (80,0);
+\foreach \x/\l/\r in {0/10/6,20/18/12,40/25/16,60/21/14,80/8/4} {
+  \draw (\x,0) -- (\x,\l); \draw (\x,0) -- (\x,-\r);
+  \node[right, font=\small] at (\x,\l/2) {$\l$};
+  \node[right, font=\small] at (\x,-\r/2) {$\r$};
+  \node[below left, font=\scriptsize] at (\x,0) {$\x$};
+}
+\node[font=\small, anchor=west] at (82,0) {base line (m)};
+\end{tikzpicture}
+                        </latex-image>
+                    </image>
+                </figure>
+            </statement>
+            <solution>
+                <p>Treat each side of the base line separately; each has <m>5</m> offsets, so <m>4</m> strips with <m>h = 20</m>.
+                    <md>
+                        <mrow>\text{upper side} \amp \approx \tfrac{1}{2} \times 20 \times [10 + 8 + 2(18 + 25 + 21)] = 10 \times 146 = 1460</mrow>
+                        <mrow>\text{lower side} \amp \approx \tfrac{1}{2} \times 20 \times [6 + 4 + 2(12 + 16 + 14)] = 10 \times 94 = 940</mrow>
+                    </md>
+                    The field is about <m>1460 + 940 = 2400\,\text{m}^2 = 0.24\,\text{ha}</m>. Its value is about <m>0.24 \times 2\,500\,000 = 600\,000</m>, that is Ksh <m>600\,000</m>.</p>
+            </solution>
+        </example>
+
+        <example xml:id="example-which-way-is-the-error">
+            <title>Which Way Is the Error?</title>
+            <statement>
+                <p>
+                    <ol marker="(a)">
+                        <li><p>In <xref ref="act-trapezia-under-a-curve"/> the trapezoidal estimate for <m>y = x^2 + 2x + 3</m> from <m>x = 0</m> to <m>x = 4</m> with <m>4</m> strips was <m>50</m>. The exact area is <m>49\tfrac{1}{3}</m>. Explain why the estimate is too big.</p></li>
+                        <li><p>In <xref ref="example-strips-two-units-wide"/> the estimate for <m>y = 8 + 2x - \tfrac{1}{2}x^2</m> from <m>x = 0</m> to <m>x = 6</m> with <m>3</m> strips was <m>46</m>. The exact area is <m>48</m>. Explain why the estimate is too small.</p></li>
+                    </ol>
+                </p>
+            </statement>
+            <solution>
+                <p>
+                    <ol marker="(a)">
+                        <li><p><m>y = x^2 + 2x + 3</m> bends upwards like a bowl, so each chord lies above the curve and every trapezium includes a little extra area: <m>50 \gt 49\tfrac{1}{3}</m>.</p></li>
+                        <li><p><m>y = 8 + 2x - \tfrac{1}{2}x^2</m> bends downwards like an arch, so each chord lies below the curve and every trapezium misses a little area: <m>46 \lt 48</m>.</p></li>
+                    </ol>
+                </p>
+            </solution>
+        </example>
+
+        <note xml:id="note-trapezoidal-spreadsheet">
+            <title>With a Spreadsheet</title>
+            <p>
+                Put the values of <m>x</m> in column A, the ordinates <m>y</m> in column B and the weights <m>1, 2, 2, \ldots, 2, 1</m> in column C, as in <xref ref="example-weight-column"/>. With the data in rows 2 to 8 and the strip width in cell E1, the estimate is <c>=SUMPRODUCT(B2:B8,C2:C8)*E1/2</c>. To use more strips, add rows and change the weights.
+            </p>
+        </note>
+
+        <xi:include href="../lesson-plan-templates/assessment-intro.ptx" />
+        <xi:include href="../lesson-plan-templates/checkpoint.ptx" />
+
+        <p>Type decimals with a point, for example <c>37.6</c>. Give exact answers unless the question asks you to round.</p>
+
+        <exercise xml:id="ex-cross-section-of-a-river-by-the-trapezoidal-rule">
+            <!--<title></title>-->
+            <stack label="stk-cross-section-of-a-river-by-the-trapezoidal-rule" source="stack/top/2-measurement-and-geometry/07-area-approximations/02-trapezoidal-rule/Cross-section-of-a-river-by-the-trapezoidal-rule.xml"/>
+        </exercise>
+
+        <exercise xml:id="ex-is-the-trapezoidal-estimate-too-big-or-too-small">
+            <!--<title></title>-->
+            <stack label="stk-is-the-trapezoidal-estimate-too-big-or-too-small" source="stack/top/2-measurement-and-geometry/07-area-approximations/02-trapezoidal-rule/Is-the-trapezoidal-estimate-too-big-or-too-small.xml"/>
+        </exercise>
+
+        <exercises xml:id="exercises-applying-the-trapezoidal-rule">
+            <exercise xml:id="ex-athi-river-flow">
+                <statement><p>At a point near Kibwezi the Athi River is <m>30\,\text{m}</m> wide. Its depth, measured every <m>5\,\text{m}</m> across, is <m>0, 1.5, 2.4, 2.8, 2.5, 1.6, 0</m> metres, and the water flows at <m>0.4\,\text{m/s}</m>. Estimate the area of the cross-section and the volume of water that passes each second.</p></statement>
+                <answer><p><m>54\,\text{m}^2</m>; <m>21.6\,\text{m}^3</m> each second</p></answer>
+                <solution><p><m>A \approx \tfrac{1}{2} \times 5 \times [0 + 0 + 2(1.5 + 2.4 + 2.8 + 2.5 + 1.6)] = 2.5 \times 21.6 = 54\,\text{m}^2</m>. Volume each second <m>= 54 \times 0.4 = 21.6\,\text{m}^3</m>.</p></solution>
+            </exercise>
+            <exercise xml:id="ex-field-on-a-sixty-metre-line">
+                <statement><p>A base line <m>60\,\text{m}</m> long crosses a field. Offsets measured every <m>15\,\text{m}</m> are <m>12, 20, 24, 19, 10</m> metres on one side and <m>8, 15, 18, 13, 5</m> metres on the other. Estimate the area of the field.</p></statement>
+                <answer><p><m>1897.5\,\text{m}^2</m></p></answer>
+                <solution><p>One side: <m>\tfrac{1}{2} \times 15 \times [12 + 10 + 2(20 + 24 + 19)] = 7.5 \times 148 = 1110</m>. Other side: <m>7.5 \times [8 + 5 + 2(15 + 18 + 13)] = 7.5 \times 105 = 787.5</m>. Total <m>1897.5\,\text{m}^2</m>.</p></solution>
+            </exercise>
+            <exercise xml:id="ex-over-or-under-three-curves">
+                <statement>
+                    <p>Without a full calculation, decide whether the trapezoidal rule overestimates, underestimates or is exact for the area under each graph. Then check the first two: their exact areas are <m>4</m> and <m>27</m>.</p>
+                    <p><ol marker="(a)">
+                        <li><p><m>y = \tfrac{1}{2}x^3 + 1</m> from <m>x = 0</m> to <m>x = 2</m>, with <m>2</m> strips</p></li>
+                        <li><p><m>y = 9 + 2x - x^2</m> from <m>x = 0</m> to <m>x = 3</m>, with <m>3</m> strips</p></li>
+                        <li><p><m>y = 5 - x</m> from <m>x = 0</m> to <m>x = 4</m></p></li>
+                    </ol></p>
+                </statement>
+                <answer><p>(a) over (<m>4.5</m>); (b) under (<m>26.5</m>); (c) exact</p></answer>
+                <solution><p>(a) <m>y = \tfrac{1}{2}x^3 + 1</m> bends upwards on this interval: <m>\tfrac{1}{2} \times 1 \times [1 + 5 + 2 \times 1.5] = 4.5 \gt 4</m>. (b) <m>y = 9 + 2x - x^2</m> bends downwards: <m>\tfrac{1}{2} \times 1 \times [9 + 6 + 2(10 + 9)] = 26.5 \lt 27</m>. (c) A straight line: the chords lie along it, so the rule is exact.</p></solution>
+            </exercise>
+            <exercise xml:id="ex-trench-volume">
+                <statement><p>A trench for a water pipe is <m>40\,\text{m}</m> long and <m>1.2\,\text{m}</m> wide. Its depth, measured every <m>0.3\,\text{m}</m> across, is <m>0, 0.5, 0.7, 0.6, 0</m> metres. Estimate the volume of soil removed.</p></statement>
+                <answer><p><m>21.6\,\text{m}^3</m></p></answer>
+                <solution><p>Cross-section: <m>\tfrac{1}{2} \times 0.3 \times [0 + 0 + 2(0.5 + 0.7 + 0.6)] = 0.15 \times 3.6 = 0.54\,\text{m}^2</m>. Volume <m>= 0.54 \times 40 = 21.6\,\text{m}^3</m>.</p></solution>
+            </exercise>
+            <exercise xml:id="ex-otieno-strip-width">
+                <statement><p>Otieno measured the depth of a river <m>12\,\text{m}</m> wide every <m>2\,\text{m}</m>: <m>0, 0.8, 1.4, 1.7, 1.5, 0.9, 0</m> metres. He used the trapezoidal rule with <m>h = 12 \div 7</m>. What did he get, and what is wrong? Find the correct estimate.</p></statement>
+                <answer><p>He got <m>10.8\,\text{m}^2</m>; he divided by the number of depths, not the number of strips; <m>12.6\,\text{m}^2</m></p></answer>
+                <solution><p>The inner depths add to <m>6.3</m>. Otieno: <m>\tfrac{1}{2} \times \tfrac{12}{7} \times 2 \times 6.3 = 10.8</m>. But <m>7</m> depths make <m>6</m> strips, so <m>h = 12 \div 6 = 2</m>, the gap between measurements: <m>\tfrac{1}{2} \times 2 \times 2 \times 6.3 = 12.6\,\text{m}^2</m>.</p></solution>
+            </exercise>
+            <exercise xml:id="ex-more-soundings">
+                <title>Challenge: More Soundings</title>
+                <statement><p>The depth of a river <m>20\,\text{m}</m> wide is <m>d = 0.02x(20 - x)</m> metres at <m>x</m> metres from one bank. Estimate the area of the cross-section with soundings every <m>5\,\text{m}</m>, then every <m>2.5\,\text{m}</m>. The true area is <m>26.67\,\text{m}^2</m> (to 2 decimal places). What happens, and why?</p></statement>
+                <hint><p>Compare the two errors.</p></hint>
+                <answer><p><m>25\,\text{m}^2</m> and <m>26.25\,\text{m}^2</m>; both too small, the second much closer</p></answer>
+                <solution><p>Every <m>5\,\text{m}</m>: depths <m>0, 1.5, 2, 1.5, 0</m>, so <m>\tfrac{1}{2} \times 5 \times 2 \times 5 = 25</m>. Every <m>2.5\,\text{m}</m>: depths <m>0, 0.875, 1.5, 1.875, 2, 1.875, 1.5, 0.875, 0</m>, so <m>\tfrac{1}{2} \times 2.5 \times 2 \times 10.5 = 26.25</m>. Both are too small, because the bed is shaped like a bowl and the chords lie above it. The errors are about <m>1.67</m> and <m>0.42</m>: halving the strip width made the error about a quarter as big.</p></solution>
+            </exercise>
+        </exercises>
+
+        <axiom component="lesson-plan">
+            <title>Differentiation</title>
+            <table xml:id="table-differentiation-applying-the-trapezoidal-rule">
+                <title>Differentiation Strategies</title>
+                <tabular halign="left" top="minor" bottom="minor" left="minor" right="minor">
+                    <row header="yes" bottom="medium"><cell>Learner Group</cell><cell>Strategy and Learning Experience</cell></row>
+                    <row><cell>Struggling Learners (Support)</cell><cell>Give a cross-section template with the depths drawn downwards from the surface. Work through <xref ref="example-drainage-ditch-ahero"/> and <xref ref="example-irregular-field"/>. Assign <xref ref="ex-athi-river-flow"/> and <xref ref="ex-trench-volume"/>.</cell></row>
+                    <row><cell>On-Level Learners (Core)</cell><cell>Full activity and all examples. Assign <xref ref="ex-athi-river-flow"/> to <xref ref="ex-otieno-strip-width"/>.</cell></row>
+                    <row><cell>Advanced Learners (Challenge)</cell><cell>All exercises including <xref ref="ex-more-soundings"/>. Extension: use the spreadsheet method in <xref ref="note-trapezoidal-spreadsheet"/> to estimate the area in <xref ref="ex-more-soundings"/> with <m>20</m> strips (answer: <m>26.6\,\text{m}^2</m> exactly).</cell></row>
+                </tabular>
+            </table>
+        </axiom>
+
+        <xi:include href="../lesson-plan-templates/assessment-methods.ptx" />
+        <xi:include href="../lesson-plan-templates/reflection.ptx"/>
+    </subsection>
 </section>

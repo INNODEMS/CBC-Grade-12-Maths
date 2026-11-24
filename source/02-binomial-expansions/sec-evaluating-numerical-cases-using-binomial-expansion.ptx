@@ -33,7 +33,7 @@
                 <li component="lesson-plan">
                     <title>Estimated Duration</title>
                     <p>
-                        40 minutes
+                        2 lessons of 40 minutes
                     </p>
                 </li>
             </dl>
@@ -46,163 +46,431 @@
          Suggested activity: Learners estimate values such as (1.02)⁵ or (0.98)⁶ with the first three or four terms, then compare with a calculator answer.
          Interactive (JSXGraph): Slider for x near 0 comparing the graph of (1+x)ⁿ with its 2-, 3- and 4-term binomial approximations, showing where each approximation stays accurate. -->
 
-    <!-- [LP] Add guidance on activity -->
+    <!-- Section notes (2026-11)
+         SLOs: Core (c); outcomes (d) apply and (e) appreciate placed in lesson 3.2. Lessons 3.1 and 3.2 as subsections.
+         Activity: as planning notes ((1.02)^5 and (0.98)^6 with three and four terms, compared with a calculator)
+         JSXGraph: interactive-binomial-approximations | as planning notes (sliders x and n; 2-, 3- and 4-term approximations against (1 + x)^n, with a live table)
+         STACK: assets/stack/top/1-numbers-and-algebra/02-binomial-expansions/03-evaluating-numerical-cases-using-binomial-expansion/ -->
 
-    <!-- <axiom component="lesson-plan">
+    <!-- ============================================================ Lesson 3.1 -->
+    <subsection xml:id="subsec-approximating-powers-of-numbers">
+        <title>Approximating Powers of Numbers</title>
+
+        <p component="lesson-plan">Upon completion of this lesson, learners will be able to:
+            <ol>
+                <li><p><alert>Know:</alert> a number near 1 (or near a whole number <m>a</m>) can be written <m>1 + x</m> (or <m>a + x</m>) with <m>x</m> small; the later terms of the expansion shrink fast.</p></li>
+                <li><p><alert>Do:</alert> estimate powers such as <m>(1.03)^5</m>, <m>(0.97)^6</m> and <m>(2.01)^5</m> to 4 decimal places, and decide how many terms are needed.</p></li>
+                <li><p><alert>Apply:</alert> compare an estimate with a calculator value.</p></li>
+            </ol>
+        </p>
+
+        <axiom component="lesson-plan">
             <title>Problem-Solving and Discovery</title>
             <dl>
-                <li>
-                    <title>Suggested Time</title>
-                    <p>
-                        XX minutes
-                    </p>
-                </li>
-                <li>
-                    <title>Objective</title>
-                    <p>
-                        XXX
-                    </p>
-                </li>
-                <li>
-                    <title>Teacher's Role</title>
-                    <p>
-                        XXX
-                    </p>
-                </li>
+                <li><title>Suggested Time</title><p>14 minutes</p></li>
+                <li><title>Objective</title><p>Learners estimate <m>(1.02)^5</m> and <m>(0.98)^6</m> with three and four terms of an expansion and compare with a calculator.</p></li>
+                <li><title>Teacher's Role</title><p>Work in pairs: one learner works out the terms, the other uses the calculator only at the end of each part. Collect the pairs' sums in a table on the board.</p></li>
             </dl>
-        </axiom> -->
+        </axiom>
 
-    <!-- Add Activity -->
-
-    <!-- <activity>
-        <statement>
-        </statement>
-    </activity> -->
-
-    <!-- [LP] Add guidance on structured lesson plan-->
-
-    <!-- <axiom component="lesson-plan">
-        <title>Structured Instruction</title>
-        <p>
-            <dl>
-            <li>
-                <title>Suggested Time</title>
+        <activity xml:id="act-close-to-one">
+            <title>Close to One</title>
+            <statement>
                 <p>
-                    XX minutes
+                    <ol marker="(a)">
+                        <li>
+                            <p>Expand <m>(1 + x)^5</m>.</p>
+                            <solution component="lesson-plan"><p><m>1 + 5x + 10x^2 + 10x^3 + 5x^4 + x^5</m>.</p></solution>
+                        </li>
+                        <li>
+                            <p>Put <m>x = 0.02</m> and work out each term as a decimal.</p>
+                            <solution component="lesson-plan"><p><m>1</m>, <m>0.1</m>, <m>0.004</m>, <m>0.00008</m>, <m>0.0000008</m>, <m>0.0000000032</m>.</p></solution>
+                        </li>
+                        <li>
+                            <p>Add the first two, the first three and the first four terms. Compare each sum with a calculator value of <m>1.02^5</m>.</p>
+                            <solution component="lesson-plan"><p><m>1.1</m>, <m>1.104</m>, <m>1.10408</m>; the calculator gives <m>1.1040808032</m>.</p></solution>
+                        </li>
+                        <li>
+                            <p>Repeat for <m>(0.98)^6</m>, using <m>x = -0.02</m> in <m>(1 + x)^6 = 1 + 6x + 15x^2 + 20x^3 + 15x^4 + \cdots</m>.</p>
+                            <solution component="lesson-plan"><p>The terms are <m>1</m>, <m>-0.12</m>, <m>0.006</m>, <m>-0.00016</m>, <m>0.0000024</m>, ...; the sums are <m>0.88</m>, <m>0.886</m>, <m>0.88584</m>; the calculator gives <m>0.885842380864</m>.</p></solution>
+                        </li>
+                        <li>
+                            <p>How many terms do you need to give each value correct to 4 decimal places?</p>
+                            <solution component="lesson-plan"><p>Four in both cases: <m>1.10408</m> rounds to <m>1.1041</m> like the calculator value, but <m>1.104</m> gives <m>1.1040</m>; <m>0.88584</m> rounds to <m>0.8858</m>, but <m>0.886</m> gives <m>0.8860</m>.</p></solution>
+                        </li>
+                    </ol>
                 </p>
-            </li>
-            <li>
-                <title>Objective</title>
-                <p>
-                    To formalize the concepts and properties learners discovered in the anchor task.
-                </p>
-            </li>
-            </dl>
-        </p>
-        <paragraphs>
-            <title>Key Takeaways &amp; Teacher Connection</title>
-            <ol>
-                <li>
+            </statement>
+        </activity>
+
+        <axiom component="lesson-plan">
+            <title>Structured Instruction</title>
+            <p>
+                <dl>
+                    <li><title>Suggested Time</title><p>8 minutes</p></li>
+                    <li><title>Objective</title><p>To formalise estimating a power from the first few terms of an expansion.</p></li>
+                </dl>
+            </p>
+            <paragraphs>
+                <title>Key Takeaways &amp; Teacher Connection</title>
+                <ol>
+                    <li><p><alert>Connecting to Learner Work:</alert> in the board table each term is much smaller than the one before, so the sums settle quickly.</p></li>
+                    <li><p>Choose <m>x</m> small: <m>1.02 = 1 + 0.02</m>, <m>0.98 = 1 + (-0.02)</m>, <m>2.01 = 2 + 0.01</m>.</p></li>
+                    <li><p>Stopping rule: keep adding terms until the next term is smaller than <m>0.00001</m>, then round to 4 decimal places. Check with a calculator.</p></li>
+                </ol>
+            </paragraphs>
+        </axiom>
+
+        <insight xml:id="insight-using-an-expansion-to-find-a-power">
+            <title>Using an Expansion to Find a Power</title>
+            <p>
+                To estimate a power of a number close to 1 (or close to a whole number <m>a</m>):
+                <ol>
+                    <li><p>write the number as <m>1 + x</m> (or <m>a + x</m>) with <m>x</m> small, keeping its sign;</p></li>
+                    <li><p>expand <m>(1 + x)^n</m> (or <m>(a + x)^n</m>) using Pascal's triangle;</p></li>
+                    <li><p>work out each term exactly as a decimal, and keep adding terms until the next term is smaller than <m>0.00001</m>;</p></li>
+                    <li><p>round the sum to 4 decimal places.</p></li>
+                </ol>
+            </p>
+            <p>
+                When <m>x</m> is small, each term is much smaller than the one before, so a few terms give the value to the accuracy you need.
+            </p>
+        </insight>
+
+        <note xml:id="note-spreadsheet-check-of-terms">
+            <title>Spreadsheet Check</title>
+            <p>
+                In a spreadsheet, put <m>r = 0, 1, \ldots, 6</m> in column A, the numbers from the row of Pascal's triangle in column B, and each term in column C (for <m>(1 + x)^n</m> with <m>x = 0.02</m>, type <c>=B1*0.02^A1</c> and fill down). In column D keep a running total, for example <c>=SUM(C$1:C1)</c>. Watch how the total settles after a few rows.
+            </p>
+        </note>
+
+        <figure xml:id="fig-binomial-approximations-interactive">
+            <caption>Drag <m>x</m> and <m>n</m> to compare <m>(1 + x)^n</m> (solid) with its 2-term (dashed), 3-term (dotted) and 4-term (long dashes) approximations. For large <m>n</m> and <m>x</m> far from 0 the curves leave the graph; the table still gives the values.</caption>
+            <interactive xml:id="interactive-binomial-approximations" platform="jsxgraph" width="90%" aspect="16:12" source="jsxgraph/binomial-approximations.js">
+                <slate xml:id="jsxgraph-binomial-approximations" surface="jsxboard" aspect="16:12"/>
+                <instructions>
                     <p>
-                        <alert>Connecting to Learner Work:</alert> XXXX
+                        <ul>
+                            <li><p>Set <alert>n</alert> to 5 and <alert>x</alert> to 0.02: the 4-term value agrees with <m>(1 + x)^5</m> to 4 decimal places.</p></li>
+                            <li><p>Move <alert>x</alert> to 0.4. Which approximation stays closest to the curve, and how big is its error now?</p></li>
+                        </ul>
                     </p>
-                </li>
-            </ol>
-        </paragraphs>
-    </axiom> -->
+                </instructions>
+            </interactive>
+        </figure>
 
-    <!-- Add insight / key takeaway directly related to activity / learner experience -->
+        <xi:include href="../lesson-plan-templates/example-intro.ptx" />
 
-    <!-- <insight>
-    </insight> -->
-
-    <!-- Add further instruction (not in a block) to develop ideas as needed -->
-
-    <xi:include href="../lesson-plan-templates/example-intro.ptx" />
-
-    <!-- Add at least 3 examples -->
-
-    <!-- <example>
-        <statement>
-        </statement>
-        <solution>
-        </solution>
-    </example>
-
-    <example>
-        <statement>
-        </statement>
-        <solution>
-        </solution>
-    </example>
-
-    <example>
-        <statement>
-        </statement>
-        <solution>
-        </solution>
-    </example> -->
-
-    <xi:include href="../lesson-plan-templates/assessment-intro.ptx" />
-
-    <!-- If STACK questions are included, uncomment this: -->
-
-    <!-- <xi:include href="../lesson-plan-templates/checkpoint.ptx" /> -->
-
-    <!-- Add STACK exercises if made -->
-
-    <!-- Add static exercises -->
-
-    <!-- <exercises>
-        <exercise>
-            <statement>   
-
-            </statement>   
+        <example xml:id="example-estimating-1-point-03-to-the-fifth">
+            <title>Estimating <m>(1.03)^5</m></title>
+            <statement><p>Use the expansion of <m>(1 + x)^5</m> to estimate <m>(1.03)^5</m>, correct to 4 decimal places.</p></statement>
             <solution>
+                <p><m>1.03 = 1 + 0.03</m>, so put <m>x = 0.03</m> into <m>1 + 5x + 10x^2 + 10x^3 + 5x^4 + x^5</m>:
+                    <md>1 + 0.15 + 0.009 + 0.00027 + \cdots</md>
+                The next term is <m>5 \times 0.03^4 = 0.00000405</m>, smaller than <m>0.00001</m>, so stop. The sum is <m>1.15927</m>, so <m>(1.03)^5 \approx 1.1593</m>. A calculator gives <m>1.1592740743</m>, which also rounds to <m>1.1593</m>.</p>
+            </solution>
+        </example>
 
-            </solution>             
-        </exercise>        
-    </exercises> -->
+        <example xml:id="example-estimating-0-point-97-to-the-sixth">
+            <title>Estimating <m>(0.97)^6</m></title>
+            <statement><p>Use the expansion of <m>(1 + x)^6</m> to estimate <m>(0.97)^6</m>, correct to 4 decimal places.</p></statement>
+            <solution>
+                <p><m>0.97 = 1 + (-0.03)</m>, so put <m>x = -0.03</m> into <m>1 + 6x + 15x^2 + 20x^3 + 15x^4 + \cdots</m>:
+                    <md>1 - 0.18 + 0.0135 - 0.00054 + 0.00001215 + \cdots</md>
+                The fifth term, <m>0.00001215</m>, is not smaller than <m>0.00001</m>, so it is included; the next term is <m>6 \times (-0.03)^5 = -0.0000001458</m>, so stop there. The sum is <m>0.83297215</m>, so <m>(0.97)^6 \approx 0.8330</m>. A calculator gives <m>0.832972004929</m>, also <m>0.8330</m>. The terms alternate in sign because <m>x</m> is negative.</p>
+            </solution>
+        </example>
 
-    <!-- [LP] Add information on how to differentiate  -->
+        <example xml:id="example-estimating-2-point-01-to-the-fifth">
+            <title>Estimating <m>(2.01)^5</m></title>
+            <statement><p>Use the expansion of <m>(2 + x)^5</m> to estimate <m>(2.01)^5</m>, correct to 4 decimal places.</p></statement>
+            <solution>
+                <p>Put <m>x = 0.01</m>. Each term has a falling power of 2:
+                    <md>
+                        <mrow>(2 + 0.01)^5 \amp = 2^5 + 5(2^4)(0.01) + 10(2^3)(0.01)^2 + 10(2^2)(0.01)^3 + 5(2)(0.01)^4 + \cdots</mrow>
+                        <mrow>\amp = 32 + 0.8 + 0.008 + 0.00004 + 0.0000001 + \cdots</mrow>
+                    </md>
+                The sum is <m>32.8080401</m>, so <m>(2.01)^5 \approx 32.8080</m>. A calculator gives <m>32.8080401001</m>.</p>
+            </solution>
+        </example>
 
-    <!-- <axiom component="lesson-plan">
-        <title>Differentiation</title>
+        <xi:include href="../lesson-plan-templates/assessment-intro.ptx" />
+        <xi:include href="../lesson-plan-templates/checkpoint.ptx" />
 
-        <table>
+        <p>Type decimals with a point, for example <c>1.1041</c>. Give answers to the accuracy asked for.</p>
+
+        <exercise xml:id="ex-estimating-a-power-of-a-number-just-above-1">
+            <!--<title></title>-->
+            <stack label="stk-estimating-a-power-of-a-number-just-above-1" source="stack/top/1-numbers-and-algebra/02-binomial-expansions/03-evaluating-numerical-cases-using-binomial-expansion/Estimating-a-power-of-a-number-just-above-1.xml"/>
+        </exercise>
+        <exercise xml:id="ex-estimating-a-power-of-a-number-just-below-1">
+            <!--<title></title>-->
+            <stack label="stk-estimating-a-power-of-a-number-just-below-1" source="stack/top/1-numbers-and-algebra/02-binomial-expansions/03-evaluating-numerical-cases-using-binomial-expansion/Estimating-a-power-of-a-number-just-below-1.xml"/>
+        </exercise>
+        <exercise xml:id="ex-estimating-a-power-of-a-number-near-2-or-3">
+            <!--<title></title>-->
+            <stack label="stk-estimating-a-power-of-a-number-near-2-or-3" source="stack/top/1-numbers-and-algebra/02-binomial-expansions/03-evaluating-numerical-cases-using-binomial-expansion/Estimating-a-power-of-a-number-near-2-or-3.xml"/>
+        </exercise>
+        <exercises xml:id="exercises-approximating-powers-of-numbers">
+            <exercise xml:id="ex-estimate-1-point-02-to-the-sixth">
+                <statement><p>Estimate <m>(1.02)^6</m>, correct to 4 decimal places.</p></statement>
+                <answer><p><m>1.1262</m></p></answer>
+                <solution><p><m>1 + 6(0.02) + 15(0.02)^2 + 20(0.02)^3 = 1 + 0.12 + 0.006 + 0.00016 = 1.12616</m>; the next term is <m>0.0000024</m>. So <m>(1.02)^6 \approx 1.1262</m>.</p></solution>
+            </exercise>
+            <exercise xml:id="ex-estimate-0-point-99-to-the-tenth">
+                <statement><p>Estimate <m>(0.99)^{10}</m>, correct to 4 decimal places.</p></statement>
+                <answer><p><m>0.9044</m></p></answer>
+                <solution><p>With <m>x = -0.01</m>: <m>1 - 0.1 + 0.0045 - 0.00012 = 0.90438</m>; the next term is <m>0.0000021</m>. So <m>(0.99)^{10} \approx 0.9044</m>.</p></solution>
+            </exercise>
+            <exercise xml:id="ex-estimate-3-point-02-to-the-fourth">
+                <statement><p>Use the expansion of <m>(3 + x)^4</m> to find <m>(3.02)^4</m>, correct to 4 decimal places. Why is the full sum of the terms exact?</p></statement>
+                <answer><p><m>83.1817</m>; <m>(3 + x)^4</m> has only five terms</p></answer>
+                <solution><p><m>81 + 4(27)(0.02) + 6(9)(0.02)^2 + 4(3)(0.02)^3 + (0.02)^4 = 81 + 2.16 + 0.0216 + 0.000096 + 0.00000016 = 83.18169616</m>, so <m>83.1817</m>. The expansion of a fourth power has only five terms, so adding all of them gives the exact value.</p></solution>
+            </exercise>
+            <exercise xml:id="ex-first-terms-of-1-plus-half-x-to-the-tenth">
+                <statement><p>Expand <m>\left(1 + \dfrac{x}{2}\right)^{10}</m> up to the term in <m>x^3</m>, and use your answer to estimate <m>(1.005)^{10}</m>, correct to 4 decimal places.</p></statement>
+                <answer><p><m>1 + 5x + \dfrac{45}{4}x^2 + 15x^3</m>; <m>1.0511</m></p></answer>
+                <solution><p><m>1 + 10\left(\dfrac{x}{2}\right) + 45\left(\dfrac{x}{2}\right)^2 + 120\left(\dfrac{x}{2}\right)^3 = 1 + 5x + \dfrac{45}{4}x^2 + 15x^3</m>. Since <m>1.005 = 1 + \dfrac{0.01}{2}</m>, put <m>x = 0.01</m>: <m>1 + 0.05 + 0.001125 + 0.000015 = 1.05114</m>, so <m>1.0511</m>.</p></solution>
+            </exercise>
+            <exercise xml:id="ex-which-x-to-use">
+                <statement><p>What value of <m>x</m> would you use to estimate (a) <m>(0.96)^7</m> from <m>(1 + x)^7</m> (b) <m>(1.96)^4</m> from <m>(2 + x)^4</m>?</p></statement>
+                <answer><p>(a) <m>-0.04</m> (b) <m>-0.04</m></p></answer>
+            </exercise>
+            <exercise xml:id="ex-estimate-9-point-98-cubed">
+                <statement><p>Estimate <m>(9.98)^3</m> using <m>(10 - 0.02)^3</m>, correct to 2 decimal places.</p></statement>
+                <answer><p><m>994.01</m></p></answer>
+                <solution><p><m>1000 - 3(100)(0.02) + 3(10)(0.02)^2 - (0.02)^3 = 1000 - 6 + 0.012 - 0.000008 = 994.011992</m>, so <m>994.01</m>.</p></solution>
+            </exercise>
+            <exercise xml:id="ex-when-x-is-not-small">
+                <title>Challenge: When <m>x</m> Is Not Small</title>
+                <statement><p>Use the first four terms of <m>(1 + x)^6</m> to estimate <m>(1.2)^6</m>, and compare with a calculator. Why is this estimate poorer than the one for <m>(1.02)^6</m>?</p></statement>
+                <hint><p>Work out the fifth term.</p></hint>
+                <answer><p><m>2.96</m>; the calculator gives <m>2.985984</m>. With <m>x = 0.2</m> the fifth term is <m>0.024</m>, far from negligible.</p></answer>
+                <solution><p><m>1 + 6(0.2) + 15(0.04) + 20(0.008) = 1 + 1.2 + 0.6 + 0.16 = 2.96</m>. The fifth term is <m>15(0.2)^4 = 0.024</m>, so the later terms still matter: <m>x = 0.2</m> is not small. For <m>(1.02)^6</m> the fifth term is only <m>0.0000024</m>.</p></solution>
+            </exercise>
+        </exercises>
+
+        <axiom component="lesson-plan">
             <title>Differentiation</title>
-            <tabular halign="left">
-                <row header="yes" bottom="minor">
-                    <cell>Learner Group</cell>
-                    <cell>Strategy &amp; Learning Experience</cell>
-                    <cell></cell>
-                </row>
-                <row>
-                    <cell>Struggling Learners (Support)</cell>
-                    <cell>
-                        XXXX
-                    </cell>
-                    <cell></cell>
-                </row>
-                <row>
-                    <cell>On-Level Learners (Core)</cell>
-                    <cell>
-                        <line>The core lesson activities as described above.</line>
-                    </cell>
-                    <cell></cell>
-                </row>
-                <row>
-                    <cell>Advanced Learners (Challenge)</cell>
-                    <cell>
-                        XXXX
-                    </cell>
-                    <cell></cell>
-                </row>
-            </tabular>
-        </table>
-    </axiom> -->
+            <table xml:id="table-differentiation-approximating-powers-of-numbers">
+                <title>Differentiation Strategies</title>
+                <tabular halign="left" top="minor" bottom="minor" left="minor" right="minor">
+                    <row header="yes" bottom="medium"><cell>Learner Group</cell><cell>Strategy and Learning Experience</cell></row>
+                    <row><cell>Struggling Learners (Support)</cell><cell>Provide a term table with columns <m>r</m>, row number, <m>x^r</m> and term. Focus on <xref ref="example-estimating-1-point-03-to-the-fifth"/> and <xref ref="example-estimating-0-point-97-to-the-sixth"/>. Assign <xref ref="ex-estimate-1-point-02-to-the-sixth"/> and <xref ref="ex-estimate-0-point-99-to-the-tenth"/>.</cell></row>
+                    <row><cell>On-Level Learners (Core)</cell><cell>Full activity and all examples. Assign <xref ref="ex-estimate-1-point-02-to-the-sixth"/> to <xref ref="ex-estimate-9-point-98-cubed"/>.</cell></row>
+                    <row><cell>Advanced Learners (Challenge)</cell><cell>All exercises including <xref ref="ex-when-x-is-not-small"/>. Extension: without a calculator, which is larger, <m>1.01^{10}</m> or <m>1.1</m>? (Answer: <m>1.01^{10} = 1.1046\ldots</m> is larger, because of the third and later terms.)</cell></row>
+                </tabular>
+            </table>
+        </axiom>
 
-    <xi:include href="../lesson-plan-templates/assessment-methods.ptx" />
+        <xi:include href="../lesson-plan-templates/assessment-methods.ptx" />
+        <xi:include href="../lesson-plan-templates/reflection.ptx"/>
+    </subsection>
 
-    <xi:include href="../lesson-plan-templates/reflection.ptx"/>
+    <!-- ============================================================ Lesson 3.2 -->
+    <subsection xml:id="subsec-binomial-expansions-at-work">
+        <title>Binomial Expansions at Work</title>
+
+        <p component="lesson-plan">Upon completion of this lesson, learners will be able to:
+            <ol>
+                <li><p><alert>Know:</alert> compound growth and depreciation are powers of <m>1 + x</m>; what each term of the expansion means; where else expansions are used.</p></li>
+                <li><p><alert>Do:</alert> estimate amounts and values from the first three or four terms.</p></li>
+                <li><p><alert>Apply:</alert> savings, loans, depreciation, population growth and measurement.</p></li>
+                <li><p><alert>Appreciate:</alert> why binomial expansions matter in everyday life.</p></li>
+            </ol>
+        </p>
+
+        <axiom component="lesson-plan">
+            <title>Curriculum Links</title>
+            <dl>
+                <li><title>Core Competencies</title><p>Collaboration, in the paired and group activities of <xref ref="subsec-using-the-pattern-of-an-expansion"/> and <xref ref="subsec-pascals-triangle"/>; critical thinking, in finding and explaining the patterns of Pascal's triangle.</p></li>
+                <li><title>Values</title><p>Respect: listening to a partner explain their method before comparing answers.</p></li>
+                <li><title>Pertinent and Contemporary Issues</title><p>Online safety: checking the true cost of a loan taken through a phone app before borrowing (<xref ref="example-a-loan-on-a-phone-app"/>).</p></li>
+            </dl>
+        </axiom>
+
+        <axiom component="lesson-plan">
+            <title>Problem-Solving and Discovery</title>
+            <dl>
+                <li><title>Suggested Time</title><p>14 minutes</p></li>
+                <li><title>Objective</title><p>Learners see that the second term of <m>P(1 + x)^n</m> is the simple interest and the later terms are interest on interest.</p></li>
+                <li><title>Teacher's Role</title><p>Work in small groups. Recall the Grade 11 compound interest formula <m>A = P\left(1 + \dfrac{r}{100}\right)^n</m>. After part (e), ask how a lender's daily rate adds up over a month (online safety).</p></li>
+            </dl>
+        </axiom>
+
+        <activity xml:id="act-growing-savings-in-a-sacco">
+            <title>Growing Savings in a SACCO</title>
+            <statement>
+                <p>
+                    A youth group in Nyeri saves Ksh <m>20\,000</m> in a SACCO account that adds <m>2\%</m> interest at the end of each year.
+                    <ol marker="(a)">
+                        <li>
+                            <p>How much is in the account after one year?</p>
+                            <solution component="lesson-plan"><p>Ksh <m>20\,400</m>.</p></solution>
+                        </li>
+                        <li>
+                            <p>Write the amount after 5 years as a power.</p>
+                            <solution component="lesson-plan"><p>Ksh <m>20\,000(1.02)^5</m>.</p></solution>
+                        </li>
+                        <li>
+                            <p>Use the first three terms of <m>(1 + x)^5</m> with <m>x = 0.02</m> to estimate the amount.</p>
+                            <solution component="lesson-plan"><p><m>20\,000(1 + 0.1 + 0.004) = 20\,000 \times 1.104</m> = Ksh <m>22\,080</m>.</p></solution>
+                        </li>
+                        <li>
+                            <p>The SACCO statement shows Ksh <m>22\,081.62</m>. By how much is your estimate short?</p>
+                            <solution component="lesson-plan"><p>Ksh <m>1.62</m>.</p></solution>
+                        </li>
+                        <li>
+                            <p>Which term would you add next, and what is it worth?</p>
+                            <solution component="lesson-plan"><p>The term <m>10x^3</m>: <m>20\,000 \times 10 \times 0.000008</m> = Ksh <m>1.60</m>.</p></solution>
+                        </li>
+                    </ol>
+                </p>
+            </statement>
+        </activity>
+
+        <axiom component="lesson-plan">
+            <title>Structured Instruction</title>
+            <p>
+                <dl>
+                    <li><title>Suggested Time</title><p>8 minutes</p></li>
+                    <li><title>Objective</title><p>To formalise growth and depreciation as expansions, and the meaning of each term.</p></li>
+                </dl>
+            </p>
+            <paragraphs>
+                <title>Key Takeaways &amp; Teacher Connection</title>
+                <ol>
+                    <li><p><alert>Connecting to Learner Work:</alert> in part (c), <m>20\,000 \times 0.1 = 2000</m> is the simple interest for 5 years; <m>20\,000 \times 0.004 = 80</m> is interest earned on interest.</p></li>
+                    <li><p>Growth is <m>P(1 + r/100)^n</m> and depreciation is <m>P(1 - r/100)^n</m>.</p></li>
+                    <li><p>The accuracy needed decides how many terms to use: to the nearest shilling or hundred shillings, three or four terms are usually enough. Compare with the statement.</p></li>
+                </ol>
+            </paragraphs>
+        </axiom>
+
+        <insight xml:id="insight-growth-and-decay-by-expansion">
+            <title>Growth and Decay by Expansion</title>
+            <p>
+                An amount <m>P</m> that grows by <m>r\%</m> in each period is <m>P\left(1 + \dfrac{r}{100}\right)^n</m> after <m>n</m> periods. A value that falls by <m>r\%</m> in each period is <m>P\left(1 - \dfrac{r}{100}\right)^n</m>. Put <m>x = \dfrac{r}{100}</m> (or <m>x = -\dfrac{r}{100}</m> for a loss) and expand:
+                <md>P(1 + x)^n = P + P \times nx + P \times (\text{number 2 of the row}) \times x^2 + \cdots</md>
+            </p>
+            <p>
+                The first term is the starting amount. The second, <m>P \times nx</m>, is the simple interest (or the simple loss) over <m>n</m> periods. The later terms are the interest earned on interest.
+            </p>
+        </insight>
+
+        <note xml:id="note-where-binomial-expansions-are-used">
+            <title>Where Binomial Expansions Are Used</title>
+            <p>
+                Back to the question at the start of the chapter: where do we use binomial expansions? In savings and loans, as in this lesson; in population growth and in the depreciation of machines and vehicles; in measurement, where a tile or a plank cut slightly too big has an area or volume that an expansion estimates quickly; in quick estimates in engineering and science; and, later in mathematics, in probability. Discuss with your partner: where else does a quantity grow or shrink by the same percentage again and again?
+            </p>
+        </note>
+
+        <xi:include href="../lesson-plan-templates/example-intro.ptx" />
+
+        <example xml:id="example-interest-in-a-sacco">
+            <title>Interest in a SACCO</title>
+            <statement><p>Ksh <m>50\,000</m> is saved in a SACCO in Nyeri at <m>3\%</m> a year, added at the end of each year. Estimate the amount after 4 years using (a) three terms (b) four terms of the expansion.</p></statement>
+            <solution>
+                <p>The amount is <m>50\,000(1.03)^4</m>. With <m>x = 0.03</m>, <m>(1 + x)^4 = 1 + 4x + 6x^2 + 4x^3 + x^4</m>.</p>
+                <p>(a) <m>50\,000(1 + 0.12 + 0.0054) = 50\,000 \times 1.1254</m> = Ksh <m>56\,270</m>.</p>
+                <p>(b) Adding <m>4x^3 = 0.000108</m>: <m>50\,000 \times 1.125508</m> = Ksh <m>56\,275.40</m>. The SACCO statement shows Ksh <m>56\,275.44</m>.</p>
+            </solution>
+        </example>
+
+        <example xml:id="example-a-boda-boda-loses-value">
+            <title>A Boda Boda Loses Value</title>
+            <statement><p>A boda boda bought in Kisumu for Ksh <m>120\,000</m> loses <m>5\%</m> of its value each year. Use four terms of an expansion to estimate its value after 6 years, to the nearest hundred shillings.</p></statement>
+            <solution>
+                <p>The value is <m>120\,000(1 - 0.05)^6</m>. With <m>x = -0.05</m>, the first four terms of <m>(1 + x)^6</m> are
+                    <md>1 + 6(-0.05) + 15(0.0025) + 20(-0.000125) = 1 - 0.3 + 0.0375 - 0.0025 = 0.735</md>
+                so the value is about <m>120\,000 \times 0.735</m> = Ksh <m>88\,200</m>. (The exact value is Ksh <m>88\,211.03</m>, which is also Ksh <m>88\,200</m> to the nearest hundred shillings.)</p>
+            </solution>
+        </example>
+
+        <example xml:id="example-a-loan-on-a-phone-app">
+            <title>A Loan on a Phone App</title>
+            <statement><p>Wanjiku borrows Ksh <m>2000</m> through a phone app that charges <m>1\%</m> interest a day, compounded daily. She repays after 10 days. Estimate the amount she owes, using four terms.</p></statement>
+            <solution>
+                <p>She owes <m>2000(1.01)^{10}</m>. With <m>x = 0.01</m>, the row for power 10 starts 1, 10, 45, 120:
+                    <md>1 + 0.1 + 0.0045 + 0.00012 = 1.10462</md>
+                so she owes about <m>2000 \times 1.10462</m> = Ksh <m>2209.24</m> (a calculator also gives Ksh <m>2209.24</m>). The interest is about Ksh <m>209</m> in only 10 days: more than <m>10 \times 1\% = 10\%</m> of the loan, because of the later terms.</p>
+                <p>Before borrowing on a phone, read the daily rate and work out the real cost. At <m>1\%</m> a day, a loan kept for a month costs about <m>35\%</m> of the amount borrowed.</p>
+            </solution>
+        </example>
+
+        <xi:include href="../lesson-plan-templates/assessment-intro.ptx" />
+        <xi:include href="../lesson-plan-templates/checkpoint.ptx" />
+
+        <p>Type decimals with a point, for example <c>1.1041</c>. Give answers to the accuracy asked for.</p>
+
+        <exercise xml:id="ex-interest-and-depreciation-by-binomial-expansion">
+            <!--<title></title>-->
+            <stack label="stk-interest-and-depreciation-by-binomial-expansion" source="stack/top/1-numbers-and-algebra/02-binomial-expansions/03-evaluating-numerical-cases-using-binomial-expansion/Interest-and-depreciation-by-binomial-expansion.xml"/>
+        </exercise>
+        <exercise xml:id="ex-finding-the-mistake-in-a-binomial-approximation">
+            <!--<title></title>-->
+            <stack label="stk-finding-the-mistake-in-a-binomial-approximation" source="stack/top/1-numbers-and-algebra/02-binomial-expansions/03-evaluating-numerical-cases-using-binomial-expansion/Finding-the-mistake-in-a-binomial-approximation.xml"/>
+        </exercise>
+        <exercises xml:id="exercises-binomial-expansions-at-work">
+            <exercise xml:id="ex-population-of-a-town">
+                <statement><p>A town in Nakuru County has <m>80\,000</m> people, and its population grows by <m>2\%</m> a year. Estimate the population after 5 years using (a) three terms (b) four terms of an expansion.</p></statement>
+                <answer><p>(a) <m>88\,320</m> (b) <m>88\,326.4</m>, about <m>88\,326</m> people</p></answer>
+                <solution><p>(a) <m>80\,000(1 + 0.1 + 0.004) = 88\,320</m>. (b) Adding <m>80\,000 \times 10 \times 0.000008 = 6.4</m> gives <m>88\,326.4</m>, about <m>88\,326</m> people (the exact value is <m>88\,326.46</m>).</p></solution>
+            </exercise>
+            <exercise xml:id="ex-value-of-a-posho-mill">
+                <statement><p>A posho mill bought for Ksh <m>250\,000</m> loses <m>10\%</m> of its value each year. Use the expansion of <m>(1 - x)^3</m> to find its value after 3 years. Why is your answer exact?</p></statement>
+                <answer><p>Ksh <m>182\,250</m>; <m>(1 - x)^3</m> has only four terms</p></answer>
+                <solution><p><m>(1 - 0.1)^3 = 1 - 0.3 + 0.03 - 0.001 = 0.729</m>, so the value is <m>250\,000 \times 0.729</m> = Ksh <m>182\,250</m>. The expansion of a cube has only four terms, and all four were used.</p></solution>
+            </exercise>
+            <exercise xml:id="ex-fixed-deposit">
+                <statement><p>Ksh <m>40\,000</m> is placed in a fixed deposit at <m>1\%</m> a month, compounded monthly, for 8 months. Use four terms to estimate the amount to the nearest shilling.</p></statement>
+                <answer><p>Ksh <m>43\,314</m></p></answer>
+                <solution><p><m>(1.01)^8 \approx 1 + 0.08 + 0.0028 + 0.000056 = 1.082856</m>, so the amount is about <m>40\,000 \times 1.082856</m> = Ksh <m>43\,314.24</m>, that is Ksh <m>43\,314</m> (exact Ksh <m>43\,314.27</m>).</p></solution>
+            </exercise>
+            <exercise xml:id="ex-comparing-a-loan-app-with-simple-interest">
+                <statement>
+                    <p>A phone app lends Ksh <m>5000</m> at <m>1.5\%</m> a day, compounded daily, for 6 days.
+                    <ol marker="(a)">
+                        <li><p>Estimate the amount owed, using four terms.</p></li>
+                        <li><p>A friend says the interest is <m>6 \times 1.5\% = 9\%</m>, so Ksh <m>450</m>. Explain why the app charges more.</p></li>
+                    </ol></p>
+                </statement>
+                <answer><p>(a) About Ksh <m>5467.21</m> (b) the third and fourth terms are interest on interest</p></answer>
+                <solution><p>(a) <m>1 + 6(0.015) + 15(0.015)^2 + 20(0.015)^3 = 1 + 0.09 + 0.003375 + 0.0000675 = 1.0934425</m>, so the amount is about <m>5000 \times 1.0934425</m> = Ksh <m>5467.21</m>, interest about Ksh <m>467</m>. (b) <m>9\%</m> is only the second term (the simple interest); the third and fourth terms add interest charged on interest already owed.</p></solution>
+            </exercise>
+            <exercise xml:id="ex-which-rate-of-interest">
+                <statement><p>The first two terms of an estimate for a savings account after 8 years are <m>60\,000(1 + 0.24 + \cdots)</m>. What is the yearly rate of interest?</p></statement>
+                <answer><p><m>3\%</m></p></answer>
+                <solution><p>The second term is <m>8x</m>, so <m>8x = 0.24</m> and <m>x = 0.03</m>: the rate is <m>3\%</m> a year.</p></solution>
+            </exercise>
+            <exercise xml:id="ex-area-of-a-tile-cut-too-big">
+                <statement><p>A square floor tile should be <m>30\,\text{cm}</m> wide but is cut <m>(30 + 0.2)</m> cm wide. Use <m>(30 + x)^2</m> to find its area and the extra area.</p></statement>
+                <answer><p><m>912.04\,\text{cm}^2</m>; extra <m>12.04\,\text{cm}^2</m></p></answer>
+                <solution><p><m>(30 + 0.2)^2 = 900 + 2(30)(0.2) + 0.2^2 = 900 + 12 + 0.04 = 912.04\,\text{cm}^2</m>. The tile should be <m>900\,\text{cm}^2</m>, so the extra area is <m>12.04\,\text{cm}^2</m>.</p></solution>
+            </exercise>
+            <exercise xml:id="ex-eleven-to-the-fifth-and-101-to-the-fourth">
+                <title>Challenge: Powers of 11 and 101</title>
+                <statement><p>Use <m>(10 + 1)^5</m> to find <m>11^5</m>, and explain why its digits are not 1 5 10 10 5 1. Then find <m>101^4</m> using <m>(100 + 1)^4</m>.</p></statement>
+                <hint><p>Think about carrying.</p></hint>
+                <answer><p><m>11^5 = 161\,051</m>; <m>101^4 = 104\,060\,401</m></p></answer>
+                <solution><p><m>(10 + 1)^5 = 100\,000 + 5(10\,000) + 10(1000) + 10(100) + 5(10) + 1 = 161\,051</m>. The coefficients 10 are two-digit numbers, so they carry into the next place. With <m>(100 + 1)^4</m> each coefficient has two places to itself: <m>100\,000\,000 + 4\,000\,000 + 60\,000 + 400 + 1 = 104\,060\,401</m>, the row 1, 4, 6, 4, 1 with zeros between.</p></solution>
+            </exercise>
+        </exercises>
+
+        <axiom component="lesson-plan">
+            <title>Differentiation</title>
+            <table xml:id="table-differentiation-binomial-expansions-at-work">
+                <title>Differentiation Strategies</title>
+                <tabular halign="left" top="minor" bottom="minor" left="minor" right="minor">
+                    <row header="yes" bottom="medium"><cell>Learner Group</cell><cell>Strategy and Learning Experience</cell></row>
+                    <row><cell>Struggling Learners (Support)</cell><cell>Focus on the activity and <xref ref="example-interest-in-a-sacco"/>. Provide a card <q><m>P \times (1 + nx + \cdots)</m></q> with the meaning of each term. Assign <xref ref="ex-population-of-a-town"/> and <xref ref="ex-value-of-a-posho-mill"/>.</cell></row>
+                    <row><cell>On-Level Learners (Core)</cell><cell>Full activity and all examples. Assign <xref ref="ex-population-of-a-town"/> to <xref ref="ex-area-of-a-tile-cut-too-big"/>.</cell></row>
+                    <row><cell>Advanced Learners (Challenge)</cell><cell>All exercises including <xref ref="ex-eleven-to-the-fifth-and-101-to-the-fourth"/>. Extension: using three terms, find how many years at <m>3\%</m> a year it takes for savings to grow by more than <m>30\%</m> (answer: 9 years; <m>n = 9</m> gives <m>1 + 0.27 + 0.0324 = 1.3024</m>, while <m>n = 8</m> gives <m>1.2652</m>).</cell></row>
+                </tabular>
+            </table>
+        </axiom>
+
+        <xi:include href="../lesson-plan-templates/assessment-methods.ptx" />
+        <xi:include href="../lesson-plan-templates/reflection.ptx"/>
+    </subsection>
 </section>

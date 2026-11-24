@@ -46,161 +46,276 @@
          Suggested activity: Learners translate a shape on squared paper using a given translation vector.
          Interactive (JSXGraph): Draggable triangle with a translation vector set by sliders; the image moves as the vector changes. -->
 
-    <!-- [LP] Add guidance on activity -->
+    <!-- Section notes (2026-11)
+         SLOs: Essential 2.2 (f); (g) in the closing paragraphs
+         Activity: as planning notes (translate a triangle on squared paper)
+         JSXGraph: fig-translation-vector-triangle (assets/jsxgraph/translation-vector-triangle.js), as planning notes
+         STACK: assets/stack/top/2-measurement-and-geometry/11-vectors/07-translation-vector/ -->
+
+    <p component="lesson-plan">Upon completion of this lesson, learners will be able to:
+        <ol>
+            <li><p><alert>Know:</alert> a translation moves every point by the same vector; the translation vector is image minus object; the image is the same size and shape and faces the same way.</p></li>
+            <li><p><alert>Do:</alert> find the image of a point and of a shape; find the translation vector from an object and its image; find an object from its image.</p></li>
+            <li><p><alert>Apply:</alert> road arrows painted along a lane; the stripes of a zebra crossing.</p></li>
+        </ol>
+    </p>
 
     <axiom component="lesson-plan">
         <title>Problem-Solving and Discovery</title>
         <dl>
-            <li>
-                <title>Suggested Time</title>
-                <p>
-                    XXX minutes
-                </p>
-            </li>
-            <li>
-                <title>Objective</title>
-                <p>
-                    XXX
-                </p>
-            </li>
-            <li>
-                <title>Teacher's Role</title>
-                <p>
-                    XXX
-                </p>
-            </li>
+            <li><title>Suggested Time</title><p>14 minutes</p></li>
+            <li><title>Objective</title><p>Learners translate a triangle and see that every vertex moves by the same column vector.</p></li>
+            <li><title>Teacher's Role</title><p>Give out squared paper and a cut-out triangle to slide. After part (b), ask: <q>Did any vertex move differently from the others?</q></p></li>
         </dl>
     </axiom>
 
-    <!-- Add Activity -->
-
-    <!-- <activity>
+    <activity xml:id="act-sliding-a-triangle">
+        <title>Sliding a Triangle</title>
         <statement>
+            <p>Draw the triangle with vertices <m>A(1, 1)</m>, <m>B(4, 1)</m> and <m>C(1, 3)</m>. Slide it <m>5</m> squares right and <m>2</m> squares up: the move <m>\mathbf{T} = \begin{pmatrix} 5 \\ 2 \end{pmatrix}</m>.</p>
+            <p>
+                <ol marker="(a)">
+                    <li>
+                        <p>Draw the new triangle and label its vertices <m>A'</m>, <m>B'</m> and <m>C'</m>.</p>
+                        <solution component="lesson-plan"><p><m>A'(6, 3)</m>, <m>B'(9, 3)</m>, <m>C'(6, 5)</m>; see <xref ref="fig-translation-triangle"/>.</p></solution>
+                    </li>
+                    <li>
+                        <p>Write <m>\overrightarrow{AA'}</m>, <m>\overrightarrow{BB'}</m> and <m>\overrightarrow{CC'}</m> as column vectors.</p>
+                        <solution component="lesson-plan"><p>All three are <m>\begin{pmatrix} 5 \\ 2 \end{pmatrix}</m>.</p></solution>
+                    </li>
+                    <li>
+                        <p>Compare the side lengths of the two triangles, and the way they face.</p>
+                        <solution component="lesson-plan"><p>The sides are the same lengths, and the new triangle faces the same way: it has not turned or flipped.</p></solution>
+                    </li>
+                    <li>
+                        <p>Which move takes the new triangle back to the first one?</p>
+                        <solution component="lesson-plan"><p><m>\begin{pmatrix} -5 \\ -2 \end{pmatrix}</m>.</p></solution>
+                    </li>
+                    <li>
+                        <p>Where on the roads near your school have you seen one painted shape repeated by sliding it?</p>
+                        <solution component="lesson-plan"><p>Arrows painted along a lane; the stripes of a zebra crossing.</p></solution>
+                    </li>
+                </ol>
+            </p>
         </statement>
-    </activity> -->
+    </activity>
 
-    <!-- [LP] Add guidance on structured lesson plan-->
+    <figure xml:id="fig-translation-triangle">
+        <caption>Triangle <m>ABC</m> and its image <m>A'B'C'</m> under the translation by <m>\begin{pmatrix} 5 \\ 2 \end{pmatrix}</m>.</caption>
+        <image width="55%">
+            <shortdescription>Triangle A(1, 1), B(4, 1), C(1, 3) and its image A'(6, 3), B'(9, 3), C'(6, 5), with equal arrows from each vertex to its image.</shortdescription>
+            <latex-image>
+\begin{tikzpicture}[scale=0.6]
+\draw[very thin, gray!40] (0,0) grid (10,6);
+\draw[->] (0,0) -- (10.4,0) node[right] {$x$};
+\draw[->] (0,0) -- (0,6.4) node[above] {$y$};
+\foreach \x in {2,4,6,8,10} \node[below] at (\x,0) {\scriptsize \x};
+\foreach \y in {2,4,6} \node[left] at (0,\y) {\scriptsize \y};
+\draw[very thick] (1,1) -- (4,1) -- (1,3) -- cycle;
+\draw[very thick, dashed] (6,3) -- (9,3) -- (6,5) -- cycle;
+\foreach \p/\q in {{(1,1)}/{(6,3)}, {(4,1)}/{(9,3)}, {(1,3)}/{(6,5)}} \draw[thin, -{Stealth}] \p -- \q;
+\node[below left] at (1,1) {$A$}; \node[below right] at (4,1) {$B$}; \node[above left] at (1,3) {$C$};
+\node[below left] at (6,3) {$A'$}; \node[below right] at (9,3) {$B'$}; \node[above left] at (6,5) {$C'$};
+\end{tikzpicture}
+            </latex-image>
+        </image>
+    </figure>
 
-    <!-- <axiom component="lesson-plan">
+    <axiom component="lesson-plan">
         <title>Structured Instruction</title>
         <p>
             <dl>
-            <li>
-                <title>Suggested Time</title>
-                <p>
-                    XX minutes
-                </p>
-            </li>
-            <li>
-                <title>Objective</title>
-                <p>
-                    To formalize the concepts and properties learners discovered in the anchor task.
-                </p>
-            </li>
+                <li><title>Suggested Time</title><p>8 minutes</p></li>
+                <li><title>Objective</title><p>To formalise translations and the translation vector.</p></li>
             </dl>
         </p>
         <paragraphs>
             <title>Key Takeaways &amp; Teacher Connection</title>
             <ol>
-                <li>
-                    <p>
-                        <alert>Connecting to Learner Work:</alert> XXXX
-                    </p>
-                </li>
+                <li><p><alert>Connecting to Learner Work:</alert> part (b) shows every vertex moves by the same vector <m>\mathbf{T}</m>.</p></li>
+                <li><p>Add <m>\mathbf{T}</m> to every vertex; <m>\mathbf{T}</m> is image minus object; <m>-\mathbf{T}</m> undoes the translation (part (d)).</p></li>
+                <li><p>A translated shape is the same size and shape and is not turned (part (c)).</p></li>
             </ol>
         </paragraphs>
-    </axiom> -->
+    </axiom>
 
-    <!-- Add insight / key takeaway directly related to activity / learner experience -->
+    <insight xml:id="insight-translations">
+        <title>Translations</title>
+        <p>
+            A <term>translation</term> slides a shape without turning it: every point of the shape, the <term>object</term>, moves by the same vector to give the <term>image</term>. That vector is the <term>translation vector</term> <m>\mathbf{T}</m>.
+        </p>
+        <p>
+            Under the translation by the vector <m>\mathbf{T} = \begin{pmatrix} a \\ b \end{pmatrix}</m>, the point <m>P(x, y)</m> moves to <m>P'(x + a, y + b)</m>. Image points are labelled with a dash: <m>P'</m> is read <q>P dash</q>. The translation vector is image minus object, <m>\mathbf{T} = \overrightarrow{PP'}</m>, and the translation by <m>-\mathbf{T}</m> takes the image back to the object.
+        </p>
+        <p>
+            The image has the same size and shape as the object and faces the same way.
+        </p>
+    </insight>
 
-    <!-- <insight>
-    </insight> -->
-
-    <!-- Add further instruction (not in a block) to develop ideas as needed -->
+    <figure xml:id="fig-translation-vector-triangle">
+        <caption>Drag the vertices of the triangle and move the <m>a</m> and <m>b</m> sliders. Every vertex moves by the same vector <m>\mathbf{T}</m>.</caption>
+        <interactive xml:id="interactive-translation" platform="jsxgraph" width="90%" aspect="6:7" source="jsxgraph/translation-vector-triangle.js">
+            <slate xml:id="jsxgraph-translation" surface="jsxboard" aspect="6:7"/>
+            <instructions>
+                <p>
+                    <ul>
+                        <li><p>Move the <alert>a</alert> slider. Which way does the image move when <alert>a</alert> is negative?</p></li>
+                        <li><p>Set <alert>a</alert> and <alert>b</alert> so that the image of <m>A</m> is at the origin.</p></li>
+                        <li><p>Make the image land on the triangle again. What is <m>\mathbf{T}</m> then?</p></li>
+                    </ul>
+                </p>
+            </instructions>
+        </interactive>
+    </figure>
 
     <xi:include href="../lesson-plan-templates/example-intro.ptx" />
 
-    <!-- Add at least 3 examples -->
-
-    <!-- <example>
+    <example xml:id="example-image-of-a-shape">
+        <title>Image of a Shape</title>
         <statement>
+            <p>The quadrilateral <m>PQRS</m> has vertices <m>P(-3, 1)</m>, <m>Q(0, 1)</m>, <m>R(0, 3)</m> and <m>S(-2, 4)</m>. Find its image under the translation by the vector <m>\begin{pmatrix} 4 \\ -3 \end{pmatrix}</m>.</p>
         </statement>
         <solution>
+            <p>Add <m>4</m> to each <m>x</m>-coordinate and <m>-3</m> to each <m>y</m>-coordinate:</p>
+            <p><m>P'(1, -2)</m>, <m>Q'(4, -2)</m>, <m>R'(4, 0)</m>, <m>S'(2, 1)</m>.</p>
         </solution>
     </example>
 
-    <example>
+    <example xml:id="example-finding-the-translation-vector">
+        <title>Finding the Translation Vector</title>
         <statement>
+            <p>A translation maps <m>K(2, -1)</m> to <m>K'(-3, 2)</m>. Find the translation vector, check it with <m>L(4, 0)</m> and <m>L'(-1, 3)</m>, and write the translation that takes the image back.</p>
         </statement>
         <solution>
+            <p>Image minus object: <m>\mathbf{T} = \begin{pmatrix} -3 - 2 \\ 2 - (-1) \end{pmatrix} = \begin{pmatrix} -5 \\ 3 \end{pmatrix}</m>.</p>
+            <p>Check: <m>L(4, 0)</m> moves to <m>(4 - 5, 0 + 3) = (-1, 3)</m>, which is <m>L'</m>.</p>
+            <p>The translation by <m>\begin{pmatrix} 5 \\ -3 \end{pmatrix}</m> takes the image back.</p>
         </solution>
     </example>
 
-    <example>
+    <figure xml:id="fig-road-arrows">
+        <caption>Three arrows painted along a lane, seen from above.</caption>
+        <image width="30%">
+            <shortdescription>A lane drawn from above with three identical painted arrows; the tips are at (3, 4), (3, 19) and (3, 34), each 15 m beyond the last.</shortdescription>
+            <latex-image>
+\begin{tikzpicture}[x=0.3cm, y=0.1cm]
+\fill[gray!15] (0,-2) rectangle (6,38);
+\draw[thick] (0,-2) -- (0,38); \draw[thick] (6,-2) -- (6,38);
+\foreach \t in {4,19,34} {
+  \fill (2.4,\t-9) rectangle (3.6,\t-3);
+  \fill (1.5,\t-3) -- (4.5,\t-3) -- (3,\t) -- cycle;
+  \node[right] at (6.2,\t) {\scriptsize $(3, \t)$};
+}
+\draw[-{Stealth}] (-1.5,26) -- (-1.5,36) node[midway, left] {\scriptsize N};
+\end{tikzpicture}
+            </latex-image>
+        </image>
+    </figure>
+
+    <example xml:id="example-arrows-along-a-lane">
+        <title>Arrows Along a Lane</title>
         <statement>
+            <p>A road crew paints arrows along a lane (<xref ref="fig-road-arrows"/>). On their plan, in metres, the tip of the first arrow is at <m>(3, 4)</m>, and each next arrow is the previous one translated by <m>\mathbf{T} = \begin{pmatrix} 0 \\ 15 \end{pmatrix}</m>. Find the tips of the second and third arrows, and the single translation that takes the first arrow to the third.</p>
         </statement>
         <solution>
+            <p>Second tip: <m>(3, 4 + 15) = (3, 19)</m>. Third tip: <m>(3, 19 + 15) = (3, 34)</m>.</p>
+            <p>The first arrow goes to the third by <m>\mathbf{T} + \mathbf{T} = 2\mathbf{T} = \begin{pmatrix} 0 \\ 30 \end{pmatrix}</m>.</p>
+            <p>Lane arrows tell drivers and riders which way each lane goes. Keeping to them prevents head-on crashes, so they are painted again and again along the road, each one a translation of the last.</p>
         </solution>
-    </example> -->
+    </example>
 
     <xi:include href="../lesson-plan-templates/assessment-intro.ptx" />
+    <xi:include href="../lesson-plan-templates/checkpoint.ptx" />
 
-    <!-- If STACK questions are included, uncomment this: -->
+    <p>Type one number in each box of a column vector: the top box is the move across, the bottom box the move up. Use a minus sign for left or down, for example <c>-3</c>. Drag each point on the grid; it jumps to the nearest grid point. Every point must be moved before you check.</p>
 
-    <!-- <xi:include href="../lesson-plan-templates/checkpoint.ptx" /> -->
+    <exercise xml:id="ex-drawing-the-image-of-a-triangle">
+        <!--<title></title>-->
+        <stack label="stk-drawing-the-image-of-a-triangle" source="stack/top/2-measurement-and-geometry/11-vectors/07-translation-vector/Drawing-the-image-of-a-triangle.xml"/>
+    </exercise>
 
-    <!-- Add STACK exercises if made -->
+    <exercise xml:id="ex-finding-a-translation-vector">
+        <!--<title></title>-->
+        <stack label="stk-finding-a-translation-vector" source="stack/top/2-measurement-and-geometry/11-vectors/07-translation-vector/Finding-a-translation-vector.xml"/>
+    </exercise>
 
-    <!-- Add static exercises -->
+    <exercise xml:id="ex-finding-the-mistake-in-a-translation">
+        <!--<title></title>-->
+        <stack label="stk-finding-the-mistake-in-a-translation" source="stack/top/2-measurement-and-geometry/11-vectors/07-translation-vector/Finding-the-mistake-in-a-translation.xml"/>
+    </exercise>
 
-    <!-- <exercises>
-        <exercise>
-            <statement>   
+    <paragraphs xml:id="paragraphs-vectors-in-everyday-life">
+        <title>Vectors Around Us</title>
+        <p>
+            We began the chapter by asking where vectors are used in everyday life. Here are some answers.
+        </p>
+        <p>
+            <ul>
+                <li><p>Road arrows and direction signs give every road user a direction as well as a distance. The arrows along a lane and the stripes of a zebra crossing are translations of one shape.</p></li>
+                <li><p>Engineers add the forces on a handcart, a bridge or a building to find the resultant force each part must carry.</p></li>
+                <li><p>A weather forecast gives the wind's speed and direction: a velocity. Rain clouds are moved by the wind.</p></li>
+                <li><p>A phone's map gives directions such as <q>in <m>200\,\text{m}</m> turn right</q>, and works out straight-line distances from coordinates.</p></li>
+                <li><p>Computer games move a character on the screen by adding vectors many times a second.</p></li>
+            </ul>
+        </p>
+        <p>
+            Where else in your community could you use a vector to describe a move, a push or a direction?
+        </p>
+    </paragraphs>
 
-            </statement>   
-            <solution>
+    <axiom component="lesson-plan">
+        <title>Curriculum Links</title>
+        <dl>
+            <li><title>Key Inquiry Question</title><p>Where do we use vectors in everyday life?</p></li>
+            <li><title>Core Competencies</title><p>Learning to learn, as learners find the rules for adding, multiplying and translating in the activities; self-efficacy, through the graded exercises and the Challenge items.</p></li>
+            <li><title>Values</title><p>Unity, in group walks and measuring; respect, in pair work on notation and in listening to each group's report.</p></li>
+            <li><title>Pertinent and Contemporary Issues</title><p>Road safety: road signs (<xref ref="sec-vector-and-scalar-quantities"/>), keeping to marked roads (<xref ref="example-boda-boda-route"/>) and lane arrows (<xref ref="example-arrows-along-a-lane"/>).</p></li>
+            <li><title>Learning Outcome</title><p>This lesson and the closing paragraphs carry the outcome on appreciating the use of vectors in real-life situations.</p></li>
+        </dl>
+    </axiom>
 
-            </solution>             
-        </exercise>        
-    </exercises> -->
+    <exercises xml:id="exercises-translation-vector">
+        <exercise xml:id="ex-translate-two-points">
+            <statement><p>Find the image of <m>A(2, 5)</m> under the translation by <m>\begin{pmatrix} 3 \\ -4 \end{pmatrix}</m>, and of <m>B(-1, 0)</m> under the translation by <m>\begin{pmatrix} -2 \\ 6 \end{pmatrix}</m>.</p></statement>
+            <answer><p><m>A'(5, 1)</m>; <m>B'(-3, 6)</m></p></answer>
+        </exercise>
+        <exercise xml:id="ex-translate-a-triangle">
+            <statement><p>Translate the triangle <m>P(1, 2)</m>, <m>Q(4, 2)</m>, <m>R(1, 6)</m> by <m>\begin{pmatrix} -5 \\ -3 \end{pmatrix}</m>. Check that the side lengths are unchanged.</p></statement>
+            <answer><p><m>P'(-4, -1)</m>, <m>Q'(-1, -1)</m>, <m>R'(-4, 3)</m>; the sides are <m>3</m>, <m>4</m> and <m>5</m> in both triangles.</p></answer>
+        </exercise>
+        <exercise xml:id="ex-find-the-translation">
+            <statement><p>A translation maps <m>M(3, -2)</m> to <m>M'(-1, 4)</m>. Find the translation vector.</p></statement>
+            <answer><p><m>\begin{pmatrix} -4 \\ 6 \end{pmatrix}</m></p></answer>
+        </exercise>
+        <exercise xml:id="ex-object-from-image">
+            <statement><p>Under the translation by <m>\begin{pmatrix} 4 \\ -1 \end{pmatrix}</m>, the image of <m>N</m> is <m>N'(0, 3)</m>. Find <m>N</m>.</p></statement>
+            <answer><p><m>N(-4, 4)</m></p></answer>
+        </exercise>
+        <exercise xml:id="ex-lane-arrows">
+            <statement><p>On a road plan in metres, the tip of a lane arrow is at <m>(1, 3)</m>. Each next arrow is the previous one translated by <m>\begin{pmatrix} 0 \\ 12 \end{pmatrix}</m>. Where is the tip of the fourth arrow?</p></statement>
+            <answer><p><m>(1, 39)</m></p></answer>
+        </exercise>
+        <exercise xml:id="ex-two-translations">
+            <title>Challenge: Two Translations</title>
+            <statement><p>Translate <m>A(2, 1)</m> by <m>\begin{pmatrix} 3 \\ 4 \end{pmatrix}</m> to <m>A'</m>, then translate <m>A'</m> by <m>\begin{pmatrix} -5 \\ 2 \end{pmatrix}</m> to <m>A''</m>. Which single translation takes <m>A</m> straight to <m>A''</m>?</p></statement>
+            <hint><p>Add the two vectors.</p></hint>
+            <answer><p><m>A'(5, 5)</m>, <m>A''(0, 7)</m>; the translation by <m>\begin{pmatrix} -2 \\ 6 \end{pmatrix}</m>.</p></answer>
+            <solution><p><m>A'(2 + 3, 1 + 4) = (5, 5)</m> and <m>A''(5 - 5, 5 + 2) = (0, 7)</m>. The single translation is the sum <m>\begin{pmatrix} 3 \\ 4 \end{pmatrix} + \begin{pmatrix} -5 \\ 2 \end{pmatrix} = \begin{pmatrix} -2 \\ 6 \end{pmatrix}</m>; check: <m>(2 - 2, 1 + 6) = (0, 7)</m>.</p></solution>
+        </exercise>
+    </exercises>
 
-    <!-- [LP] Add information on how to differentiate  -->
-
-    <!-- <axiom component="lesson-plan">
+    <axiom component="lesson-plan">
         <title>Differentiation</title>
-
-        <table>
-            <title>Differentiation</title>
-            <tabular halign="left">
-                <row header="yes" bottom="minor">
-                    <cell>Learner Group</cell>
-                    <cell>Strategy &amp; Learning Experience</cell>
-                    <cell></cell>
-                </row>
-                <row>
-                    <cell>Struggling Learners (Support)</cell>
-                    <cell>
-                        XXXX
-                    </cell>
-                    <cell></cell>
-                </row>
-                <row>
-                    <cell>On-Level Learners (Core)</cell>
-                    <cell>
-                        <line>The core lesson activities as described above.</line>
-                    </cell>
-                    <cell></cell>
-                </row>
-                <row>
-                    <cell>Advanced Learners (Challenge)</cell>
-                    <cell>
-                        XXXX
-                    </cell>
-                    <cell></cell>
-                </row>
+        <table xml:id="table-differentiation-translation-vector">
+            <title>Differentiation Strategies</title>
+            <tabular halign="left" top="minor" bottom="minor" left="minor" right="minor">
+                <row header="yes" bottom="medium"><cell>Learner Group</cell><cell>Strategy and Learning Experience</cell></row>
+                <row><cell>Struggling Learners (Support)</cell><cell>Use the cut-out triangle and a <q>+a across, +b up</q> card. Focus on activity parts (a) to (c) and <xref ref="example-image-of-a-shape"/>. Assign <xref ref="ex-translate-two-points"/> and <xref ref="ex-translate-a-triangle"/>.</cell></row>
+                <row><cell>On-Level Learners (Core)</cell><cell>Full activity and all examples. Assign <xref ref="ex-translate-two-points"/> to <xref ref="ex-lane-arrows"/>.</cell></row>
+                <row><cell>Advanced Learners (Challenge)</cell><cell>All exercises including <xref ref="ex-two-translations"/>. Extension: a translation maps <m>(3, -1)</m> to <m>(-2, 4)</m>. Where does it map the origin? (Answer: <m>(-5, 5)</m>.)</cell></row>
             </tabular>
         </table>
-    </axiom> -->
+    </axiom>
 
     <xi:include href="../lesson-plan-templates/assessment-methods.ptx" />
 

@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<quiz>
+<question type="stack">
+  <name><text>Where a cubic is increasing or decreasing</text></name>
+  <questiontext format="html">
+    <text><![CDATA[<p>The function \(f(x) = {@f@}\) is [[if test="is(a0>0)"]]decreasing[[else]]increasing[[/if]] for \(a \lt x \lt b\), and nowhere else.</p><p>(a) Find \(a\) and \(b\).</p><div>\(a =\) [[input:ans1]] [[validation:ans1]] \(\quad b =\) [[input:ans2]] [[validation:ans2]] [[feedback:prt1]]</div><p>(b) For which values of \(x\) is \(f\) [[if test="is(a0>0)"]]increasing[[else]]decreasing[[/if]]?</p><div>[[input:ans3]] [[validation:ans3]] [[feedback:prt2]]</div>]]></text>
+  </questiontext>
+  <generalfeedback format="html">
+    <text><![CDATA[<p>A function is increasing where its gradient is positive and decreasing where its gradient is negative.</p><p>\[f'(x) = {@df@} = {@dfac@}\]so \(f'(x) = 0\) at \(x = {@p0@}\) and \(x = {@q0@}\).</p><p>[[if test="is(a0>0)"]]The coefficient of \(x^2\) in \(f'(x)\) is positive, so \(f'(x)\) is negative between its roots and positive outside them.[[else]]The coefficient of \(x^2\) in \(f'(x)\) is negative, so \(f'(x)\) is positive between its roots and negative outside them.[[/if]]</p><p>(a) \(f\) is [[if test="is(a0>0)"]]decreasing[[else]]increasing[[/if]] for \({@p0@} \lt x \lt {@q0@}\): \(a = {@p0@}\), \(b = {@q0@}\).</p><p>(b) \(f\) is [[if test="is(a0>0)"]]increasing[[else]]decreasing[[/if]] for \(x \lt {@p0@}\) and for \(x \gt {@q0@}\).</p>]]></text>
+  </generalfeedback>
+  <defaultgrade>2</defaultgrade>
+  <penalty>0.1</penalty>
+  <hidden>0</hidden>
+  <idnumber></idnumber>
+  <stackversion><text>2026063000</text></stackversion>
+  <questionvariables>
+    <text><![CDATA[/* Design: interval of increase or decrease. a0 > 0: f decreasing between the roots of f'; a0 < 0: increasing. Source: adapted from SMP AS/A2 Core 1, chapter 9, section B, Example 3 and Exercise B question 1. */
+L: [[1,-1,3,2],[2,-2,1,5],[-1,-3,1,4],[1,1,5,-2],[-2,-1,2,3],[2,-3,-1,1],[-1,2,4,-6],[-1,-4,2,7],[-2,-4,-1,2],[2,2,5,-3]];
+ix: 1+rand(10);
+a0: L[ix][1]; p0: L[ix][2]; q0: L[ix][3]; d0: L[ix][4];
+f: expand((a0)*x^3-3*(a0)*((p0)+(q0))/2*x^2+3*(a0)*(p0)*(q0)*x+(d0));
+df: diff(f,x);
+dfac: 3*a0*(x-p0)*(x-q0);
+opts: [["in",false,"between a and b only"],["out",true,"for x less than a, and for x greater than b"],["right",false,"for x greater than b only"]];]]></text>
+  </questionvariables>
+  <specificfeedback format="html"><text><![CDATA[]]></text></specificfeedback>
+  <questionnote format="moodle_auto_format">
+    <text>ix={@ix@}, f={@f@}, a0={@a0@}, a={@p0@}, b={@q0@}</text>
+  </questionnote>
+  <questiondescription format="html"><text><![CDATA[<p id="concept">Differentiation II: where a function is increasing or decreasing</p><p id="description">Grade 12 CBE Core 4.1: Find the interval where a cubic is decreasing (or increasing) from the roots of its derivative, and where it does the opposite.</p><p id="edition">Core</p><p id="provenance">This question is adapted from Example 3 in Section B and Question 1 in Exercise B of Chapter 9 of Cassell, D., Instone, S., Ling, J., Scruton, P., Shilton, S. and West, H., SMP AS/A2 Mathematics: Core 1 for AQA, Cambridge University Press, 2004: randomised over curated cubics, with the sign of the leading coefficient deciding which interval is asked for.</p><p id="citation">INNODEMS CBC Grade 12 Mathematics, first draft by Ben Davies, 2026. Aligned to the KICD Senior School Curriculum Design, Core Mathematics Grade 12 (draft).</p>]]></text></questiondescription>
+  <questionsimplify>1</questionsimplify>
+  <assumepositive>0</assumepositive>
+  <assumereal>0</assumereal>
+  <prtcorrect format="html"><text><![CDATA[[[commonstring key="symbolicprtcorrectfeedback"/]] [[commonstring key="defaultprtcorrectfeedback"/]]]]></text></prtcorrect>
+  <prtpartiallycorrect format="html"><text><![CDATA[[[commonstring key="symbolicprtpartiallycorrectfeedback"/]] [[commonstring key="defaultprtpartiallycorrectfeedback"/]]]]></text></prtpartiallycorrect>
+  <prtincorrect format="html"><text><![CDATA[[[commonstring key="symbolicprtincorrectfeedback"/]] [[commonstring key="defaultprtincorrectfeedback"/]]]]></text></prtincorrect>
+  <decimals>.</decimals>
+  <scientificnotation>*10</scientificnotation>
+  <multiplicationsign>none</multiplicationsign>
+  <sqrtsign>1</sqrtsign>
+  <complexno>i</complexno>
+  <inversetrig>cos-1</inversetrig>
+  <logicsymbol>lang</logicsymbol>
+  <matrixparens>[</matrixparens>
+  <isbroken>0</isbroken>
+  <variantsselectionseed></variantsselectionseed>
+
+  <input><name>ans1</name><type>numerical</type><tans>p0</tans><boxsize>5</boxsize><strictsyntax>1</strictsyntax><insertstars>0</insertstars><syntaxhint></syntaxhint><syntaxattribute>0</syntaxattribute><forbidwords></forbidwords><allowwords></allowwords><forbidfloat>1</forbidfloat><requirelowestterms>0</requirelowestterms><checkanswertype>0</checkanswertype><mustverify>0</mustverify><showvalidation>0</showvalidation><options></options></input>
+  <input><name>ans2</name><type>numerical</type><tans>q0</tans><boxsize>5</boxsize><strictsyntax>1</strictsyntax><insertstars>0</insertstars><syntaxhint></syntaxhint><syntaxattribute>0</syntaxattribute><forbidwords></forbidwords><allowwords></allowwords><forbidfloat>1</forbidfloat><requirelowestterms>0</requirelowestterms><checkanswertype>0</checkanswertype><mustverify>0</mustverify><showvalidation>0</showvalidation><options></options></input>
+  <input><name>ans3</name><type>radio</type><tans>opts</tans><boxsize>15</boxsize><strictsyntax>1</strictsyntax><insertstars>0</insertstars><syntaxhint></syntaxhint><syntaxattribute>0</syntaxattribute><forbidwords></forbidwords><allowwords></allowwords><forbidfloat>1</forbidfloat><requirelowestterms>0</requirelowestterms><checkanswertype>0</checkanswertype><mustverify>0</mustverify><showvalidation>0</showvalidation><options></options></input>
+
+  <prt><name>prt1</name><value>1.0000000</value><autosimplify>1</autosimplify><feedbackstyle>1</feedbackstyle><feedbackvariables><text><![CDATA[ga: ev(df,x=ans1); gb: ev(df,x=ans2);]]></text></feedbackvariables>
+    <node><name>0</name><description>Interval</description><answertest>AlgEquiv</answertest><sans>[ans1,ans2]</sans><tans>[p0,q0]</tans><testoptions></testoptions><quiet>1</quiet><truescoremode>=</truescoremode><truescore>1.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt1-1-T</trueanswernote><truefeedback format="html"><text><![CDATA[]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>1</falsenextnode><falseanswernote>prt1-1-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>1</name><description>Swapped</description><answertest>AlgEquiv</answertest><sans>[ans1,ans2]</sans><tans>[q0,p0]</tans><testoptions></testoptions><quiet>1</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt1-2-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>Those are the right two numbers, but \(a\) must be the smaller one: the interval is \(a \lt x \lt b\).</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>2</falsenextnode><falseanswernote>prt1-2-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>2</name><description>Signs</description><answertest>AlgEquiv</answertest><sans>[ans1,ans2]</sans><tans>[-q0,-p0]</tans><testoptions></testoptions><quiet>1</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt1-3-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>You have the negatives of the solutions of \(f'(x) = 0\). A factor \((x - r)\) is zero when \(x = r\).</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>-1</falsenextnode><falseanswernote>prt1-3-F</falseanswernote><falsefeedback format="html"><text><![CDATA[<p>\(f\) is [[if test="is(a0>0)"]]decreasing[[else]]increasing[[/if]] where \(f'(x)\) [[if test="is(a0>0)"]]is less than[[else]]is greater than[[/if]] \(0\), so the interval ends where \(f'(x) = 0\). [[if test="is(ga=0 and gb=0)"]]Your \(a\) and \(b\) must be the two different solutions of \(f'(x) = 0\).[[else]]With your values, \(f'({@ans1@}) = {@ga@}\) and \(f'({@ans2@}) = {@gb@}\): both should be \(0\). Find \(f'(x)\) and solve \(f'(x) = 0\).[[/if]]</p>]]></text></falsefeedback></node>
+  </prt>
+  <prt><name>prt2</name><value>1.0000000</value><autosimplify>1</autosimplify><feedbackstyle>1</feedbackstyle><feedbackvariables><text><![CDATA[]]></text></feedbackvariables>
+    <node><name>0</name><description>Other intervals</description><answertest>AlgEquiv</answertest><sans>ans3</sans><tans>first(mcq_correct(opts))</tans><testoptions></testoptions><quiet>1</quiet><truescoremode>=</truescoremode><truescore>1.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt2-1-T</trueanswernote><truefeedback format="html"><text><![CDATA[]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>1</falsenextnode><falseanswernote>prt2-1-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>1</name><description>Chose the given interval</description><answertest>AlgEquiv</answertest><sans>ans3</sans><tans>"in"</tans><testoptions></testoptions><quiet>1</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt2-2-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>Between \(a\) and \(b\) is the interval in the question, where \(f\) is [[if test="is(a0>0)"]]decreasing[[else]]increasing[[/if]]. Where does \(f'(x)\) have the opposite sign?</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>-1</falsenextnode><falseanswernote>prt2-2-F</falseanswernote><falsefeedback format="html"><text><![CDATA[<p>You are right that \(f\) is [[if test="is(a0>0)"]]increasing[[else]]decreasing[[/if]] for \(x \gt b\), but that is not everywhere. Put a value of \(x\) less than \(a\) into \(f'(x)\): what does its sign tell you about \(f\) there?</p>]]></text></falsefeedback></node>
+  </prt>
+
+  <deployedseed>4</deployedseed>
+  <deployedseed>5</deployedseed>
+  <deployedseed>15</deployedseed>
+  <deployedseed>8</deployedseed>
+  <deployedseed>24</deployedseed>
+  <deployedseed>1</deployedseed>
+  <deployedseed>3</deployedseed>
+  <deployedseed>10</deployedseed>
+  <deployedseed>2</deployedseed>
+  <deployedseed>17</deployedseed>
+  <qtest><testcase>1</testcase><description>Correct</description>
+    <testinput><name>ans1</name><value>p0</value></testinput>
+    <testinput><name>ans2</name><value>q0</value></testinput>
+    <testinput><name>ans3</name><value>first(mcq_correct(opts))</value></testinput>
+    <expected><name>prt1</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt1-1-T</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt2-1-T</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>2</testcase><description>Swapped; chose the given interval</description>
+    <testinput><name>ans1</name><value>q0</value></testinput>
+    <testinput><name>ans2</name><value>p0</value></testinput>
+    <testinput><name>ans3</name><value>"in"</value></testinput>
+    <expected><name>prt1</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt1-1-F | prt1-2-T</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt2-1-F | prt2-2-T</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>3</testcase><description>Sign error; right side only</description>
+    <testinput><name>ans1</name><value>-q0</value></testinput>
+    <testinput><name>ans2</name><value>-p0</value></testinput>
+    <testinput><name>ans3</name><value>"right"</value></testinput>
+    <expected><name>prt1</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt1-1-F | prt1-2-F | prt1-3-T</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt2-1-F | prt2-2-F</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>4</testcase><description>Generic wrong</description>
+    <testinput><name>ans1</name><value>p0+100</value></testinput>
+    <testinput><name>ans2</name><value>q0+100</value></testinput>
+    <testinput><name>ans3</name><value>first(mcq_correct(opts))</value></testinput>
+    <expected><name>prt1</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt1-1-F | prt1-2-F | prt1-3-F</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt2-1-T</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>5</testcase><description>Invalid: letter in a</description>
+    <testinput><name>ans1</name><value>x</value></testinput>
+    <testinput><name>ans2</name><value>q0</value></testinput>
+    <testinput><name>ans3</name><value>first(mcq_correct(opts))</value></testinput>
+    <expected><name>prt1</name><expectedscore></expectedscore><expectedpenalty></expectedpenalty><expectedanswernote>NULL</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt2-1-T</expectedanswernote></expected>
+  </qtest>
+</question>
+</quiz>

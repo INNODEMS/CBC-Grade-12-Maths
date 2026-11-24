@@ -49,161 +49,188 @@
          Content summary: Speed in knots and km/h from distance and time travelled.
          Suggested activity: Learners calculate the speed in knots of a ship sailing between two ports given the time taken. -->
 
-    <!-- [LP] Add guidance on activity -->
+    <!-- Section notes (2026-11)
+         SLOs: shared (unmarked in the skeleton; Core (e), Essential (e)). One lesson, flat anatomy.
+         Activity: as planning notes (a ship's speed in knots between two ports: Mombasa to Dar es Salaam)
+         JSXGraph: none named in the planning notes
+         STACK: assets/stack/top/2-measurement-and-geometry/13-navigation/03-distance-and-speed/ -->
 
-    <!-- <axiom component="lesson-plan">
-            <title>Problem-Solving and Discovery</title>
-            <dl>
-                <li>
-                    <title>Suggested Time</title>
-                    <p>
-                        XX minutes
-                    </p>
-                </li>
-                <li>
-                    <title>Objective</title>
-                    <p>
-                        XXX
-                    </p>
-                </li>
-                <li>
-                    <title>Teacher's Role</title>
-                    <p>
-                        XXX
-                    </p>
-                </li>
-            </dl>
-        </axiom> -->
+    <p component="lesson-plan">Upon completion of this lesson, learners will be able to:
+        <ol>
+            <li><p><alert>Know:</alert> a knot is a speed of one nautical mile per hour; speed is distance divided by time; <m>1</m> knot is <m>1.853\,\text{km/h}</m>.</p></li>
+            <li><p><alert>Do:</alert> find speeds, times and new positions for journeys along meridians, along the equator and along parallels; convert between knots and kilometres per hour.</p></li>
+            <li><p><alert>Apply:</alert> ferries, cargo ships and flights in East Africa and across the Indian Ocean.</p></li>
+        </ol>
+    </p>
 
-    <!-- Add Activity -->
+    <axiom component="lesson-plan">
+        <title>Problem-Solving and Discovery</title>
+        <dl>
+            <li><title>Suggested Time</title><p>14 minutes</p></li>
+            <li><title>Objective</title><p>Learners find a ship's speed in knots and in kilometres per hour from the positions of two ports and the times of leaving and arriving.</p></li>
+            <li><title>Teacher's Role</title><p>Before part (b), remind learners that minutes are sixtieths of an hour: <m>13\,\text{h}\ 45\,\text{min} = 13.75\,\text{h}</m>, not <m>13.45\,\text{h}</m>. Introduce the word <q>knot</q> only in part (d).</p></li>
+        </dl>
+    </axiom>
 
-    <!-- <activity>
+    <activity xml:id="act-ship-to-dar-es-salaam">
+        <title>The Ship to Dar es Salaam</title>
         <statement>
+            <p>A passenger ship sails due south from Mombasa to Dar es Salaam. Take both ports to be on the meridian <m>39^\circ 30'\,\text{E}</m>, with Mombasa at latitude <m>4^\circ 03'\,\text{S}</m> and Dar es Salaam at latitude <m>6^\circ 48'\,\text{S}</m>. The ship leaves Mombasa at 18:00 on Monday and arrives in Dar es Salaam at 07:45 on Tuesday.</p>
+            <p>
+                <ol marker="(a)">
+                    <li>
+                        <p>How far does the ship sail, in nautical miles?</p>
+                        <solution component="lesson-plan"><p>Both latitudes are south, so subtract: <m>6^\circ 48' - 4^\circ 03' = 2^\circ 45' = 165'</m>. Along a meridian <m>1'</m> is <m>1</m> nautical mile, so the ship sails <m>165\,\text{nm}</m>.</p></solution>
+                    </li>
+                    <li>
+                        <p>How long does the voyage take? Give your answer in hours as a decimal.</p>
+                        <solution component="lesson-plan"><p>From 18:00 on Monday to midnight is <m>6\,\text{h}</m>; midnight to 07:45 is <m>7\,\text{h}\ 45\,\text{min}</m>. Total <m>13\,\text{h}\ 45\,\text{min} = 13\tfrac{45}{60} = 13.75\,\text{h}</m>.</p></solution>
+                    </li>
+                    <li>
+                        <p>Find the ship's average speed in nautical miles per hour.</p>
+                        <solution component="lesson-plan"><p><m>165 \div 13.75 = 12</m> nautical miles per hour.</p></solution>
+                    </li>
+                    <li>
+                        <p>Sailors call a speed of <m>1</m> nautical mile per hour a <em>knot</em>. One nautical mile is about <m>1.853\,\text{km}</m>. Find the ship's speed in kilometres per hour.</p>
+                        <solution component="lesson-plan"><p><m>12 \times 1.853 = 22.2\,\text{km/h}</m> (to 1 decimal place). The ship's speed is <m>12\,\text{knots}</m>.</p></solution>
+                    </li>
+                </ol>
+            </p>
         </statement>
-    </activity> -->
+    </activity>
 
-    <!-- [LP] Add guidance on structured lesson plan-->
-
-    <!-- <axiom component="lesson-plan">
+    <axiom component="lesson-plan">
         <title>Structured Instruction</title>
         <p>
             <dl>
-            <li>
-                <title>Suggested Time</title>
-                <p>
-                    XX minutes
-                </p>
-            </li>
-            <li>
-                <title>Objective</title>
-                <p>
-                    To formalize the concepts and properties learners discovered in the anchor task.
-                </p>
-            </li>
+                <li><title>Suggested Time</title><p>8 minutes</p></li>
+                <li><title>Objective</title><p>To formalise the knot, the speed formula and the conversions learners used in the activity.</p></li>
             </dl>
         </p>
         <paragraphs>
             <title>Key Takeaways &amp; Teacher Connection</title>
             <ol>
-                <li>
-                    <p>
-                        <alert>Connecting to Learner Work:</alert> XXXX
-                    </p>
-                </li>
+                <li><p><alert>Connecting to Learner Work:</alert> part (c) gave the speed in nautical miles per hour: that is the speed in knots.</p></li>
+                <li><p>Change hours and minutes to hours by dividing the minutes by <m>60</m>. Change a decimal part of an hour back to minutes by multiplying by <m>60</m>.</p></li>
+                <li><p>Knots to kilometres per hour: multiply by <m>1.853</m>. Kilometres per hour to knots: divide by <m>1.853</m>.</p></li>
             </ol>
         </paragraphs>
-    </axiom> -->
+    </axiom>
 
-    <!-- Add insight / key takeaway directly related to activity / learner experience -->
-
-    <!-- <insight>
-    </insight> -->
-
-    <!-- Add further instruction (not in a block) to develop ideas as needed -->
+    <insight xml:id="insight-speed-in-knots">
+        <title>Speed in Knots</title>
+        <p>A <term>knot</term> is a speed of one nautical mile per hour. Ships and aircraft give their speeds in knots because their charts measure distance in nautical miles.</p>
+        <p>
+            <md>
+                <mrow>\text{speed} \amp = \frac{\text{distance}}{\text{time}}, \amp \text{time} \amp = \frac{\text{distance}}{\text{speed}}, \amp \text{distance} \amp = \text{speed} \times \text{time}</mrow>
+            </md>
+            with the distance in nautical miles, the time in hours and the speed in knots.
+        </p>
+        <p>Since <m>1\,\text{nm} = 1.853\,\text{km}</m>, a speed of <m>1</m> knot is <m>1.853\,\text{km/h}</m>. Write a time in hours as a decimal before dividing: <m>3\,\text{h}\ 20\,\text{min} = 3\tfrac{20}{60}\,\text{h} = 3.333\ldots\,\text{h}</m>.</p>
+    </insight>
 
     <xi:include href="../lesson-plan-templates/example-intro.ptx" />
 
-    <!-- Add at least 3 examples -->
-
-    <!-- <example>
+    <example xml:id="example-flight-along-the-equator">
+        <title>A Flight Along the Equator</title>
         <statement>
+            <p>An aircraft flies due west along the equator from longitude <m>37^\circ\,\text{E}</m> to longitude <m>9^\circ\,\text{E}</m>. The flight takes <m>3\,\text{h}\ 30\,\text{min}</m>. Find its speed in knots and in kilometres per hour.</p>
         </statement>
         <solution>
+            <p>Both longitudes are east, so the difference in longitude is <m>37^\circ - 9^\circ = 28^\circ</m>. The equator is a great circle, so the distance is <m>28 \times 60 = 1680\,\text{nm}</m>. The time is <m>3.5\,\text{h}</m>.
+                <md>\text{speed} = \frac{1680}{3.5} = 480\,\text{knots} = 480 \times 1.853 = 889.4\,\text{km/h}</md></p>
         </solution>
     </example>
 
-    <example>
+    <example xml:id="example-sailing-east-along-a-parallel">
+        <title>Sailing East Along a Parallel</title>
         <statement>
+            <p>A cargo ship leaves Mombasa, taken to be at <m>(4^\circ\,\text{S},\ 39^\circ 40'\,\text{E})</m>, and sails due east along the parallel <m>4^\circ\,\text{S}</m> at <m>15\,\text{knots}</m> for <m>30</m> hours. Find its new position, to the nearest minute.</p>
         </statement>
         <solution>
+            <p><alert>Step 1: distance.</alert> <m>15 \times 30 = 450\,\text{nm}</m>.</p>
+            <p><alert>Step 2: change in longitude.</alert> Along the parallel <m>4^\circ\,\text{S}</m>, one degree of longitude is <m>60 \cos 4^\circ\,\text{nm}</m> long. So
+                <md>\text{change in longitude} = \frac{450}{60 \cos 4^\circ} = 7.518^\circ = 7^\circ 31'</md>
+                to the nearest minute (<m>0.518 \times 60 = 31.1</m>).</p>
+            <p><alert>Step 3: new longitude.</alert> Sailing east increases an east longitude: <m>39^\circ 40' + 7^\circ 31' = 47^\circ 11'\,\text{E}</m>. The new position is <m>(4^\circ\,\text{S},\ 47^\circ 11'\,\text{E})</m>.</p>
         </solution>
     </example>
 
-    <example>
+    <example xml:id="example-from-kmh-to-knots">
+        <title>From Kilometres per Hour to Knots</title>
         <statement>
+            <p>An airliner cruises at <m>850\,\text{km/h}</m>. Find its speed in knots, and the time it takes to fly <m>1500\,\text{nm}</m>, to the nearest minute.</p>
         </statement>
         <solution>
+            <p><m>850 \div 1.853 = 458.7\,\text{knots}</m>. Time <m>= 1500 \div 458.7 = 3.27\,\text{h}</m>. The decimal part is <m>0.27 \times 60 = 16</m> minutes, so the flight takes <m>3\,\text{h}\ 16\,\text{min}</m>.</p>
         </solution>
-    </example> -->
+    </example>
 
     <xi:include href="../lesson-plan-templates/assessment-intro.ptx" />
+    <xi:include href="../lesson-plan-templates/checkpoint.ptx" />
 
-    <!-- If STACK questions are included, uncomment this: -->
+    <p>Type decimals with a point, for example <c>36.8</c>. Type angles in degrees as numbers, without the degree sign. Choose N, S, E or W from each list.</p>
+    <p>Give times on the 24-hour clock: type the hours and the minutes in separate boxes, for example 14 and 05 for 14:05.</p>
 
-    <!-- <xi:include href="../lesson-plan-templates/checkpoint.ptx" /> -->
+<exercise xml:id="ex-speed-in-knots-and-kilometres-per-hour">
+    <!--<title></title>-->
+    <stack label="stk-speed-in-knots-and-kilometres-per-hour" source="stack/top/2-measurement-and-geometry/13-navigation/03-distance-and-speed/Speed-in-knots-and-kilometres-per-hour.xml"/>
+</exercise>
 
-    <!-- Add STACK exercises if made -->
+<exercise xml:id="ex-time-for-a-flight-along-a-parallel">
+    <!--<title></title>-->
+    <stack label="stk-time-for-a-flight-along-a-parallel" source="stack/top/2-measurement-and-geometry/13-navigation/03-distance-and-speed/Time-for-a-flight-along-a-parallel.xml"/>
+</exercise>
 
-    <!-- Add static exercises -->
+<exercise xml:id="ex-new-longitude-after-sailing-along-a-parallel">
+    <!--<title></title>-->
+    <stack label="stk-new-longitude-after-sailing-along-a-parallel" source="stack/top/2-measurement-and-geometry/13-navigation/03-distance-and-speed/New-longitude-after-sailing-along-a-parallel.xml"/>
+</exercise>
 
-    <!-- <exercises>
-        <exercise>
-            <statement>   
+    <exercises xml:id="exercises-distance-and-speed">
+        <exercise xml:id="ex-ship-along-meridian-50e">
+            <statement><p>A ship sails along the meridian <m>50^\circ\,\text{E}</m> from latitude <m>10^\circ\,\text{S}</m> to latitude <m>2^\circ\,\text{N}</m> in <m>2</m> days <m>12</m> hours. Find its speed in knots and in kilometres per hour.</p></statement>
+            <answer><p><m>12\,\text{knots}</m>; <m>22.2\,\text{km/h}</m></p></answer>
+            <solution><p>Opposite sides of the equator, so add: <m>10^\circ + 2^\circ = 12^\circ = 720'</m>, so <m>720\,\text{nm}</m>. Time <m>2 \times 24 + 12 = 60\,\text{h}</m>. Speed <m>720 \div 60 = 12\,\text{knots}</m> <m>= 12 \times 1.853 = 22.2\,\text{km/h}</m>.</p></solution>
+        </exercise>
+        <exercise xml:id="ex-knots-to-kmh">
+            <statement><p>Convert <m>520\,\text{knots}</m> to kilometres per hour.</p></statement>
+            <answer><p><m>963.6\,\text{km/h}</m></p></answer>
+            <solution><p>One knot is <m>1\,\text{nm}</m> an hour, and <m>1\,\text{nm} = 1.853\,\text{km}</m>. So <m>520 \times 1.853 = 963.56</m>, which is <m>963.6\,\text{km/h}</m>.</p></solution>
+        </exercise>
+        <exercise xml:id="ex-flight-along-60n">
+            <statement><p>A plane flies along the parallel <m>60^\circ\,\text{N}</m> from longitude <m>10^\circ\,\text{E}</m> to longitude <m>40^\circ\,\text{E}</m> at <m>300\,\text{knots}</m>. How long does the flight take?</p></statement>
+            <answer><p><m>3</m> hours</p></answer>
+            <solution><p>Difference in longitude <m>30^\circ = 1800'</m>. Distance <m>1800 \cos 60^\circ = 900\,\text{nm}</m>. Time <m>900 \div 300 = 3\,\text{h}</m>.</p></solution>
+        </exercise>
+        <exercise xml:id="ex-speed-along-20s">
+            <statement><p>A ship sails along the parallel <m>20^\circ\,\text{S}</m> from longitude <m>30^\circ\,\text{E}</m> to longitude <m>50^\circ\,\text{E}</m> in <m>48</m> hours. Find its speed in knots and in kilometres per hour, to 1 decimal place.</p></statement>
+            <answer><p><m>23.5\,\text{knots}</m>; <m>43.5\,\text{km/h}</m></p></answer>
+            <solution><p>Difference in longitude <m>20^\circ = 1200'</m>. Distance <m>1200 \cos 20^\circ = 1127.6\,\text{nm}</m>. Speed <m>1127.6 \div 48 = 23.5\,\text{knots}</m>; <m>23.49 \times 1.853 = 43.5\,\text{km/h}</m>.</p></solution>
+        </exercise>
+        <exercise xml:id="ex-new-position-25s">
+            <title>Challenge: A New Position</title>
+            <statement><p>A ship at <m>(25^\circ\,\text{S},\ 80^\circ\,\text{E})</m> sails due west along its parallel at <m>18\,\text{knots}</m> for <m>40</m> hours. Find its new position, to the nearest minute.</p></statement>
+            <hint><p>Find the distance first, then divide by the length of one degree of longitude on this parallel.</p></hint>
+            <answer><p><m>(25^\circ\,\text{S},\ 66^\circ 46'\,\text{E})</m></p></answer>
+            <solution><p>Distance <m>18 \times 40 = 720\,\text{nm}</m>. Change in longitude <m>720 \div (60 \cos 25^\circ) = 13.241^\circ = 13^\circ 14'</m>. Sailing west decreases an east longitude: <m>80^\circ - 13^\circ 14' = 66^\circ 46'\,\text{E}</m>.</p></solution>
+        </exercise>
+    </exercises>
 
-            </statement>   
-            <solution>
-
-            </solution>             
-        </exercise>        
-    </exercises> -->
-
-    <!-- [LP] Add information on how to differentiate  -->
-
-    <!-- <axiom component="lesson-plan">
+    <axiom component="lesson-plan">
         <title>Differentiation</title>
-
-        <table>
-            <title>Differentiation</title>
-            <tabular halign="left">
-                <row header="yes" bottom="minor">
-                    <cell>Learner Group</cell>
-                    <cell>Strategy &amp; Learning Experience</cell>
-                    <cell></cell>
-                </row>
-                <row>
-                    <cell>Struggling Learners (Support)</cell>
-                    <cell>
-                        XXXX
-                    </cell>
-                    <cell></cell>
-                </row>
-                <row>
-                    <cell>On-Level Learners (Core)</cell>
-                    <cell>
-                        <line>The core lesson activities as described above.</line>
-                    </cell>
-                    <cell></cell>
-                </row>
-                <row>
-                    <cell>Advanced Learners (Challenge)</cell>
-                    <cell>
-                        XXXX
-                    </cell>
-                    <cell></cell>
-                </row>
+        <table xml:id="table-differentiation-distance-and-speed">
+            <title>Differentiation Strategies</title>
+            <tabular halign="left" top="minor" bottom="minor" left="minor" right="minor">
+                <row header="yes" bottom="medium"><cell>Learner Group</cell><cell>Strategy and Learning Experience</cell></row>
+                <row><cell>Struggling Learners (Support)</cell><cell>Work through the activity and <xref ref="example-flight-along-the-equator"/>. Give a card: <q>h min to hours: divide the minutes by 60</q>. Assign <xref ref="ex-ship-along-meridian-50e"/> and <xref ref="ex-knots-to-kmh"/>.</cell></row>
+                <row><cell>On-Level Learners (Core)</cell><cell>Full activity and all examples. Assign <xref ref="ex-ship-along-meridian-50e"/> to <xref ref="ex-new-position-25s"/>.</cell></row>
+                <row><cell>Advanced Learners (Challenge)</cell><cell>All exercises including <xref ref="ex-new-position-25s"/>. Extension: two ships leave the same point on the parallel <m>25^\circ\,\text{S}</m>, one due east at <m>15\,\text{knots}</m> and one due west at <m>15\,\text{knots}</m>. After <m>24</m> hours, how far apart are they along the parallel, and what is their difference in longitude? (Answer: <m>720\,\text{nm}</m>; <m>720 \div (60 \cos 25^\circ) = 13.24^\circ = 13^\circ 14'</m>.)</cell></row>
             </tabular>
         </table>
-    </axiom> -->
+    </axiom>
+
+    <p component="lesson-plan">Closing question for the class: where in Kenya is speed measured in knots? (Ships at Mombasa and Lamu, aircraft at Jomo Kenyatta and Wilson airports.)</p>
 
     <xi:include href="../lesson-plan-templates/assessment-methods.ptx" />
 

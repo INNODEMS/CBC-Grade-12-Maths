@@ -45,161 +45,282 @@
          Content summary: Distinguishing vector quantities (magnitude and direction) from scalar quantities.
          Suggested activity: Learners sort a list of quantities (mass, speed, displacement, temperature, force) into vectors and scalars. -->
 
-    <!-- [LP] Add guidance on activity -->
+    <!-- Section notes (2026-11)
+         SLOs: Essential 2.2 (a)
+         Key inquiry question: kiq-vectors, placed in the section body (an introduction is not allowed in a section without subsections)
+         Activity: as planning notes (twelve quantity cards sorted into size only and size and direction) | changed: road-sign part added for road safety
+         JSXGraph: none named in the planning notes
+         STACK: assets/stack/top/2-measurement-and-geometry/11-vectors/01-vector-and-scalar-quantities/ -->
+
+    <question xml:id="kiq-vectors">
+        <p><em>Where do we use vectors in everyday life?</em></p>
+    </question>
+    <p>
+        Some quantities are described completely by a number and a unit: a bag of maize has a mass of <m>90\,\text{kg}</m>, a lesson lasts <m>40</m> minutes. Others also need a direction. A boda boda rider told <q>the clinic is <m>2\,\text{km}</m> from here</q> still needs to know which way to go. A road sign with an arrow and a distance gives both. In this chapter you learn to describe, draw, add and measure quantities that have a direction, and to use them to move shapes on a grid.
+    </p>
+    <p>
+        All the vectors in this chapter lie in a flat plane, like a map or a page: they are two-dimensional.
+    </p>
+
+    <p component="lesson-plan">Upon completion of this lesson, learners will be able to:
+        <ol>
+            <li><p><alert>Know:</alert> a scalar quantity has a size only; a vector quantity has a size and a direction; distance and displacement, speed and velocity, mass and weight are pairs of a scalar and a vector.</p></li>
+            <li><p><alert>Do:</alert> sort quantities into scalars and vectors; give the distance travelled and the displacement for a journey along a straight road.</p></li>
+            <li><p><alert>Apply:</alert> read road signs and pushes on a handcart as scalars or vectors.</p></li>
+        </ol>
+    </p>
 
     <axiom component="lesson-plan">
         <title>Problem-Solving and Discovery</title>
         <dl>
-            <li>
-                <title>Suggested Time</title>
-                <p>
-                    XXX minutes
-                </p>
-            </li>
-            <li>
-                <title>Objective</title>
-                <p>
-                    XXX
-                </p>
-            </li>
-            <li>
-                <title>Teacher's Role</title>
-                <p>
-                    XXX
-                </p>
-            </li>
+            <li><title>Suggested Time</title><p>14 minutes</p></li>
+            <li><title>Objective</title><p>Learners sort everyday quantities and discover that some of them need a direction.</p></li>
+            <li><title>Teacher's Role</title><p>Put the twelve cards in an envelope for each group of four. After part (b), ask: <q>If I tell you the clinic is <m>2\,\text{km}</m> away, can you get there?</q> Do not use the word <q>vector</q> until after part (b).</p></li>
         </dl>
     </axiom>
 
-    <!-- Add Activity -->
-
-    <!-- <activity>
+    <activity xml:id="act-sorting-quantities">
+        <title>Sorting Quantities</title>
         <statement>
+            <p>Your group has twelve cards:</p>
+            <p>
+                <ul>
+                    <li><p>the mass of a sack of maize, <m>90\,\text{kg}</m></p></li>
+                    <li><p>the speed of a matatu, <m>60\,\text{km/h}</m></p></li>
+                    <li><p>a displacement of <m>2\,\text{km}</m> north of the school</p></li>
+                    <li><p>the temperature in Eldoret, <m>18\,^{\circ}\text{C}</m></p></li>
+                    <li><p>a push of <m>200</m> N on a handcart, towards the east</p></li>
+                    <li><p>a lesson time of <m>40</m> minutes</p></li>
+                    <li><p>a velocity of <m>15\,\text{m/s}</m> towards the west</p></li>
+                    <li><p>a distance of <m>3\,\text{km}</m></p></li>
+                    <li><p>the weight of a learner, <m>600</m> N</p></li>
+                    <li><p>the area of a shamba, <m>0.5</m> hectares</p></li>
+                    <li><p>the price of a loaf, Ksh <m>65</m></p></li>
+                    <li><p>the capacity of a water tank, <m>5000\,\text{litres}</m></p></li>
+                </ul>
+            </p>
+            <p>
+                <ol marker="(a)">
+                    <li>
+                        <p>Sort the cards into two piles: <q>size only</q> and <q>size and direction</q>.</p>
+                        <solution component="lesson-plan"><p>Size only: mass, speed, temperature, lesson time, distance, area, price, capacity. Size and direction: displacement, push, velocity, weight.</p></solution>
+                        <note component="lesson-plan"><p>Weight is the pull of the earth, so it always points down; that is why the weight card goes in the <q>size and direction</q> pile even though no direction is written on it.</p></note>
+                    </li>
+                    <li>
+                        <p>Some cards measure similar things, one with a direction and one without. Find three such pairs.</p>
+                        <solution component="lesson-plan"><p>Distance and displacement; speed and velocity; mass and weight.</p></solution>
+                    </li>
+                    <li>
+                        <p>Achieng walks <m>200\,\text{m}</m> north from the school gate to the library, then <m>200\,\text{m}</m> back to the gate. How far did she walk? Where is she compared with where she started?</p>
+                        <solution component="lesson-plan"><p>She walked <m>400\,\text{m}</m>, but she is back at the start: her displacement is zero.</p></solution>
+                    </li>
+                    <li>
+                        <p>Look at the two road signs in <xref ref="fig-two-road-signs"/>. Which sign gives a quantity with a direction?</p>
+                        <solution component="lesson-plan"><p>The direction sign: its arrow and distance give a displacement. The <m>50</m> sign is a speed limit, a size only.</p></solution>
+                    </li>
+                </ol>
+            </p>
         </statement>
-    </activity> -->
+    </activity>
 
-    <!-- [LP] Add guidance on structured lesson plan-->
+    <figure xml:id="fig-two-road-signs">
+        <caption>Two road signs: a speed limit and a direction sign.</caption>
+        <image width="55%">
+            <shortdescription>Two road signs: a round sign with the number 50, and a rectangular sign with an arrow pointing left and the words Nakuru 25 km.</shortdescription>
+            <latex-image>
+\begin{tikzpicture}
+\draw[line width=3pt] (0,0) circle (1.1);
+\node at (0,0) {\Huge 50};
+\draw[thick, rounded corners] (2.2,-0.8) rectangle (8.6,0.8);
+\draw[line width=3pt, -{Stealth[length=4mm]}] (4.2,0) -- (2.6,0);
+\node[anchor=west] at (4.4,0) {\Large Nakuru 25 km};
+\end{tikzpicture}
+            </latex-image>
+        </image>
+    </figure>
 
-    <!-- <axiom component="lesson-plan">
+    <axiom component="lesson-plan">
         <title>Structured Instruction</title>
         <p>
             <dl>
-            <li>
-                <title>Suggested Time</title>
-                <p>
-                    XX minutes
-                </p>
-            </li>
-            <li>
-                <title>Objective</title>
-                <p>
-                    To formalize the concepts and properties learners discovered in the anchor task.
-                </p>
-            </li>
+                <li><title>Suggested Time</title><p>8 minutes</p></li>
+                <li><title>Objective</title><p>To formalise scalar and vector quantities from the card sort.</p></li>
             </dl>
         </p>
         <paragraphs>
             <title>Key Takeaways &amp; Teacher Connection</title>
             <ol>
-                <li>
-                    <p>
-                        <alert>Connecting to Learner Work:</alert> XXXX
-                    </p>
-                </li>
+                <li><p><alert>Connecting to Learner Work:</alert> the two piles from part (a) are the scalars and the vectors.</p></li>
+                <li><p>Every quantity has a name, a size and a unit; a vector quantity also has a direction.</p></li>
+                <li><p>The three pairs from part (b): distance and displacement, speed and velocity, mass and weight.</p></li>
+                <li><p>Road signs: an arrow with a distance describes a displacement; a speed limit is a scalar.</p></li>
             </ol>
         </paragraphs>
-    </axiom> -->
+    </axiom>
 
-    <!-- Add insight / key takeaway directly related to activity / learner experience -->
+    <insight xml:id="insight-scalars-and-vectors">
+        <title>Scalars and Vectors</title>
+        <p>
+            A <term>scalar quantity</term> has a size, called its <term>magnitude</term>, and a unit, but no direction: a size and a unit, nothing more. Mass, distance, speed, time, temperature, area and price are scalars.
+        </p>
+        <p>
+            A <term>vector quantity</term> has a magnitude and a direction: a size and a direction. Examples:
+        </p>
+        <p>
+            <ul>
+                <li><p><term>displacement</term>: where you end up compared with where you started, in a straight line, such as <m>300\,\text{m}</m> east of the gate;</p></li>
+                <li><p><term>velocity</term>: speed in a given direction, such as <m>80\,\text{km/h}</m> north;</p></li>
+                <li><p><term>force</term>: a push or a pull in a given direction, measured in newtons (N). Weight is a force: the pull of the earth, which always acts downwards. The weight of a <m>90\,\text{kg}</m> sack of maize is about <m>900</m> N.</p></li>
+            </ul>
+        </p>
+        <p>
+            Distance is a scalar and displacement is the matching vector; speed is a scalar and velocity is the matching vector. Mass and weight are often confused, but they are different quantities: mass, in kg, is a scalar, while weight, the pull of the earth on that mass in newtons, is a vector.
+        </p>
+    </insight>
 
-    <!-- <insight>
-    </insight> -->
-
-    <!-- Add further instruction (not in a block) to develop ideas as needed -->
+    <warning xml:id="warning-distance-not-displacement">
+        <title>Distance Is Not Displacement</title>
+        <p>
+            A walk there and back has a distance but no displacement: you end where you started. The distance counts every step of the route; the displacement compares only the start and the finish.
+        </p>
+    </warning>
 
     <xi:include href="../lesson-plan-templates/example-intro.ptx" />
 
-    <!-- Add at least 3 examples -->
-
-    <!-- <example>
+    <example xml:id="example-vector-or-scalar">
+        <title>Vector or Scalar?</title>
         <statement>
+            <p>Is each quantity a vector or a scalar?</p>
+            <p>
+                <ol marker="(a)">
+                    <li><p>A bag of cement of mass <m>30\,\text{kg}</m>.</p></li>
+                    <li><p>A wind blowing towards the west at <m>20\,\text{km/h}</m>.</p></li>
+                    <li><p>A temperature of <m>25\,^{\circ}\text{C}</m> in Mombasa.</p></li>
+                    <li><p>A boda boda's speed of <m>40\,\text{km/h}</m>.</p></li>
+                    <li><p>A pull of <m>150</m> N on a rope towards the north.</p></li>
+                    <li><p>A journey of <m>2</m> hours.</p></li>
+                </ol>
+            </p>
         </statement>
         <solution>
+            <p>
+                <ol marker="(a)">
+                    <li><p>Scalar: mass has a size and a unit only.</p></li>
+                    <li><p>Vector: the wind's speed is given with a direction, so this is a velocity.</p></li>
+                    <li><p>Scalar: a temperature has no direction.</p></li>
+                    <li><p>Scalar: a speed says how fast, not which way.</p></li>
+                    <li><p>Vector: a force with a direction.</p></li>
+                    <li><p>Scalar: time has no direction.</p></li>
+                </ol>
+            </p>
         </solution>
     </example>
 
-    <example>
+    <figure xml:id="fig-distance-displacement">
+        <caption>Kiprop's jog: two legs along a straight road and the displacement from home.</caption>
+        <image width="70%">
+            <shortdescription>A straight road: from Home, 1.5 km east to the market, then 0.6 km west; a dashed arrow from Home shows the displacement, 0.9 km east.</shortdescription>
+            <latex-image>
+\begin{tikzpicture}[x=6cm, y=1cm]
+\draw[thick] (-0.1,0) -- (1.7,0);
+\foreach \x/\l in {0/Home, 1.5/Market} { \fill (\x,0) circle (2pt); \node[below] at (\x,-0.1) {\l}; }
+\draw[thick, -{Stealth}] (0,0.5) -- node[above] {1.5 km east} (1.5,0.5);
+\draw[thick, -{Stealth}] (1.5,1.3) -- node[above] {0.6 km west} (0.9,1.3);
+\draw[thick, dashed, -{Stealth}] (0,-0.8) -- node[below] {displacement 0.9 km east} (0.9,-0.8);
+\fill (0.9,0) circle (2pt); \node[above] at (0.9,0.05) {Finish};
+\draw[dotted] (0.9,0) -- (0.9,-0.8);
+\node[anchor=west] at (-0.1,1.3) {E $\rightarrow$};
+\end{tikzpicture}
+            </latex-image>
+        </image>
+    </figure>
+
+    <example xml:id="example-there-and-back">
+        <title>There and Back on a Straight Road</title>
         <statement>
+            <p>Kiprop jogs <m>1.5\,\text{km}</m> east along a straight road from his home to the market, then turns and jogs <m>0.6\,\text{km}</m> back west (<xref ref="fig-distance-displacement"/>). Find the distance he jogs and his displacement from home.</p>
         </statement>
         <solution>
+            <p>The distance counts both legs: <m>1.5 + 0.6 = 2.1\,\text{km}</m>.</p>
+            <p>The displacement compares the finish with home. He went <m>1.5\,\text{km}</m> east and came back <m>0.6\,\text{km}</m>, so he finishes <m>1.5 - 0.6 = 0.9\,\text{km}</m> east of home. His displacement is <m>0.9\,\text{km}</m> east: a size and a direction.</p>
         </solution>
     </example>
 
-    <example>
+    <example xml:id="example-walk-with-a-turn">
+        <title>A Walk with a Turn</title>
         <statement>
+            <p>Wanjiru walks <m>500\,\text{m}</m> east and then <m>1200\,\text{m}</m> north. Find the distance she walks. Use a scale drawing with <m>1\,\text{cm}</m> to <m>100\,\text{m}</m> to find her displacement from the start.</p>
         </statement>
         <solution>
+            <p>The distance is <m>500 + 1200 = 1700\,\text{m}</m>.</p>
+            <p>Draw <m>5\,\text{cm}</m> across (east) and then <m>12\,\text{cm}</m> up (north). The straight line from the start to the finish measures <m>13\,\text{cm}</m>, so her displacement is <m>1300\,\text{m}</m>, in the direction of that line (between north and north-east). Two displacements do not add like two distances: <m>500\,\text{m}</m> and <m>1200\,\text{m}</m> make <m>1300\,\text{m}</m>, not <m>1700\,\text{m}</m>, when they point in different directions. <xref ref="sec-magnitude-of-a-vector"/> finds this length without drawing.</p>
         </solution>
-    </example> -->
+    </example>
 
     <xi:include href="../lesson-plan-templates/assessment-intro.ptx" />
+    <xi:include href="../lesson-plan-templates/checkpoint.ptx" />
 
-    <!-- If STACK questions are included, uncomment this: -->
+    <p>Type decimals with a point, for example <c>2.5</c>.</p>
 
-    <!-- <xi:include href="../lesson-plan-templates/checkpoint.ptx" /> -->
+    <exercise xml:id="ex-vector-or-scalar-quantity">
+        <!--<title></title>-->
+        <stack label="stk-vector-or-scalar-quantity" source="stack/top/2-measurement-and-geometry/11-vectors/01-vector-and-scalar-quantities/Vector-or-scalar-quantity.xml"/>
+    </exercise>
 
-    <!-- Add STACK exercises if made -->
+    <exercise xml:id="ex-distance-and-displacement-on-a-straight-road">
+        <!--<title></title>-->
+        <stack label="stk-distance-and-displacement-on-a-straight-road" source="stack/top/2-measurement-and-geometry/11-vectors/01-vector-and-scalar-quantities/Distance-and-displacement-on-a-straight-road.xml"/>
+    </exercise>
 
-    <!-- Add static exercises -->
+    <p>
+        <em>Vectors in everyday life:</em> road signs give drivers and riders a direction as well as a distance. Find a sign near your school that describes a vector quantity.
+    </p>
 
-    <!-- <exercises>
-        <exercise>
-            <statement>   
+    <exercises xml:id="exercises-vector-and-scalar-quantities">
+        <exercise xml:id="ex-sort-eight-quantities">
+            <statement>
+                <p>Sort these into scalar quantities and vector quantities: the length of a football pitch, <m>100\,\text{m}</m>; a river current of <m>2\,\text{m/s}</m> downstream; the wind's force on a sail, <m>300</m> N towards the north; the cost of a litre of milk, Ksh <m>60</m>; a ship <m>40\,\text{km}</m> south-east of Mombasa, measured from Mombasa; the time to boil water, <m>5</m> minutes; the speed of sound, <m>340\,\text{m/s}</m>; the weight of a bag of cement.</p>
+            </statement>
+            <answer><p>Scalars: the length, the cost, the time, the speed of sound. Vectors: the current, the wind's force, the ship's displacement, the weight.</p></answer>
+        </exercise>
+        <exercise xml:id="ex-lap-of-the-track">
+            <statement><p>Chebet runs one full lap of a <m>400\,\text{m}</m> track and stops on the start line. What distance does she run? What is her displacement?</p></statement>
+            <answer><p><m>400\,\text{m}</m>; zero</p></answer>
+        </exercise>
+        <exercise xml:id="ex-matatu-there-and-back">
+            <statement><p>A matatu drives <m>12\,\text{km}</m> north along a straight road, then <m>5\,\text{km}</m> south to drop a passenger. Find the distance it drives and its displacement from the start.</p></statement>
+            <answer><p><m>17\,\text{km}</m>; <m>7\,\text{km}</m> north</p></answer>
+        </exercise>
+        <exercise xml:id="ex-two-road-signs">
+            <statement><p>One road sign shows <q>80</q>. Another shows an arrow pointing left and <q>Kisumu 40 km</q>. Which describes a vector quantity, and which a scalar?</p></statement>
+            <answer><p>The arrow sign describes a displacement, a vector. The <m>80</m> sign is a speed limit, a scalar.</p></answer>
+        </exercise>
+        <exercise xml:id="ex-how-far-before-turning">
+            <statement><p>Kamau walks along a straight east–west road, first east and then back west. He walks <m>8\,\text{km}</m> altogether and ends <m>2\,\text{km}</m> east of home. How far east did he go before turning?</p></statement>
+            <answer><p><m>5\,\text{km}</m></p></answer>
+            <solution><p>If he went <m>x</m> km east, he came back <m>8 - x</m> km, so <m>x - (8 - x) = 2</m>, giving <m>2x = 10</m> and <m>x = 5</m>. Check: <m>5\,\text{km}</m> east and <m>3\,\text{km}</m> back west is <m>8\,\text{km}</m>, ending <m>2\,\text{km}</m> east of home.</p></solution>
+        </exercise>
+        <exercise xml:id="ex-same-displacement-two-walks">
+            <title>Challenge: Two Walks to the Library</title>
+            <statement><p>Akinyi walks straight from the school gate to the library, <m>300\,\text{m}</m> east. Baraka walks <m>200\,\text{m}</m> west first, then turns and walks east to the library. Compare their distances and their displacements.</p></statement>
+            <hint><p>Displacement depends only on the start and the finish.</p></hint>
+            <answer><p>Akinyi walks <m>300\,\text{m}</m> and Baraka <m>700\,\text{m}</m>; both displacements are <m>300\,\text{m}</m> east.</p></answer>
+            <solution><p>Baraka walks <m>200\,\text{m}</m> west and then <m>200 + 300 = 500\,\text{m}</m> east, <m>700\,\text{m}</m> in all. Both start at the gate and finish at the library, so both displacements are <m>300\,\text{m}</m> east.</p></solution>
+        </exercise>
+    </exercises>
 
-            </statement>   
-            <solution>
-
-            </solution>             
-        </exercise>        
-    </exercises> -->
-
-    <!-- [LP] Add information on how to differentiate  -->
-
-    <!-- <axiom component="lesson-plan">
+    <axiom component="lesson-plan">
         <title>Differentiation</title>
-
-        <table>
-            <title>Differentiation</title>
-            <tabular halign="left">
-                <row header="yes" bottom="minor">
-                    <cell>Learner Group</cell>
-                    <cell>Strategy &amp; Learning Experience</cell>
-                    <cell></cell>
-                </row>
-                <row>
-                    <cell>Struggling Learners (Support)</cell>
-                    <cell>
-                        XXXX
-                    </cell>
-                    <cell></cell>
-                </row>
-                <row>
-                    <cell>On-Level Learners (Core)</cell>
-                    <cell>
-                        <line>The core lesson activities as described above.</line>
-                    </cell>
-                    <cell></cell>
-                </row>
-                <row>
-                    <cell>Advanced Learners (Challenge)</cell>
-                    <cell>
-                        XXXX
-                    </cell>
-                    <cell></cell>
-                </row>
+        <table xml:id="table-differentiation-vector-and-scalar-quantities">
+            <title>Differentiation Strategies</title>
+            <tabular halign="left" top="minor" bottom="minor" left="minor" right="minor">
+                <row header="yes" bottom="medium"><cell>Learner Group</cell><cell>Strategy and Learning Experience</cell></row>
+                <row><cell>Struggling Learners (Support)</cell><cell>Give a two-column mat headed <q>size only</q> and <q>size and direction</q> for the card sort. Work through <xref ref="example-vector-or-scalar"/> and <xref ref="example-there-and-back"/>. Assign <xref ref="ex-sort-eight-quantities"/> to <xref ref="ex-matatu-there-and-back"/>.</cell></row>
+                <row><cell>On-Level Learners (Core)</cell><cell>Full activity and all examples. Assign <xref ref="ex-sort-eight-quantities"/> to <xref ref="ex-how-far-before-turning"/>.</cell></row>
+                <row><cell>Advanced Learners (Challenge)</cell><cell>All exercises including <xref ref="ex-same-displacement-two-walks"/>. Extension: give a walk of <m>1\,\text{km}</m> in total whose displacement is zero. (Answer: for example <m>500\,\text{m}</m> north, then <m>500\,\text{m}</m> south.)</cell></row>
             </tabular>
         </table>
-    </axiom> -->
+    </axiom>
 
     <xi:include href="../lesson-plan-templates/assessment-methods.ptx" />
 

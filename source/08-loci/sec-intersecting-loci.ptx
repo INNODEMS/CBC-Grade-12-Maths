@@ -46,161 +46,261 @@
          Suggested activity: Groups solve a problem such as locating a borehole that is equidistant from two villages and within 3 km of a school.
          Interactive (JSXGraph): Two or three loci (bisector, circle, parallel lines) with toggles; the intersection points or region are highlighted. -->
 
-    <!-- [LP] Add guidance on activity -->
+    <!-- Section notes (2026-11)
+         SLOs: Core 2.3 (f)
+         Activity: as planning notes (borehole equidistant from two villages and near a school) | changed: within 5 km of the school, not 3 km, so the ends of the segment are whole numbers; added: part (e), a third condition
+         JSXGraph: fig-intersecting-loci (assets/jsxgraph/intersecting-loci.js), as planning notes, with a second circle and the counting rule
+         STACK: assets/stack/top/2-measurement-and-geometry/08-loci/06-intersecting-loci/ -->
 
-    <!-- <axiom component="lesson-plan">
-            <title>Problem-Solving and Discovery</title>
-            <dl>
-                <li>
-                    <title>Suggested Time</title>
-                    <p>
-                        XX minutes
-                    </p>
-                </li>
-                <li>
-                    <title>Objective</title>
-                    <p>
-                        XXX
-                    </p>
-                </li>
-                <li>
-                    <title>Teacher's Role</title>
-                    <p>
-                        XXX
-                    </p>
-                </li>
-            </dl>
-        </axiom> -->
+    <p component="lesson-plan">Upon completion of this lesson, learners will be able to:
+        <ol>
+            <li><p><alert>Know:</alert> a point that obeys two rules lies on both loci; two loci can share no point, one point, two points or a whole region; the circumcentre and the incentre are intersections of loci.</p></li>
+            <li><p><alert>Do:</alert> construct two loci and mark where both rules hold; count the points two circles, or a circle and a line, share by comparing distances; find intersections on a grid.</p></li>
+            <li><p><alert>Apply:</alert> site a borehole, a kiosk or a water tank fairly.</p></li>
+        </ol>
+    </p>
 
-    <!-- Add Activity -->
+    <axiom component="lesson-plan">
+        <title>Problem-Solving and Discovery</title>
+        <dl>
+            <li><title>Suggested Time</title><p>14 minutes</p></li>
+            <li><title>Objective</title><p>Learners combine two loci, then three, to find the places that satisfy every condition.</p></li>
+            <li><title>Teacher's Role</title><p>Give each group squared paper with <m>1</m> unit representing <m>1\,\text{km}</m>. Groups present their segment and argue which point on it is best for the villages. Ask after part (c): <q>Why is the answer a piece of a line and not a single point?</q></p></li>
+        </dl>
+    </axiom>
 
-    <!-- <activity>
+    <activity xml:id="act-borehole-for-two-villages">
+        <title>A Borehole for Two Villages</title>
         <statement>
+            <p>Two villages are at <m>A(0, 0)</m> and <m>B(8, 0)</m>, and a school is at <m>S(8, 6)</m>. One grid unit represents <m>1\,\text{km}</m>. The straight road <m>AB</m> joins the villages. The county will drill a borehole that is the same distance from both villages and within <m>5\,\text{km}</m> of the school.</p>
+            <p>
+                <ol marker="(a)">
+                    <li>
+                        <p>Construct the locus of points equidistant from <m>A</m> and <m>B</m>.</p>
+                        <solution component="lesson-plan"><p>The perpendicular bisector of <m>AB</m>, the line <m>x = 4</m>.</p></solution>
+                    </li>
+                    <li>
+                        <p>Construct the locus of points <m>5\,\text{km}</m> from the school.</p>
+                        <solution component="lesson-plan"><p>The circle with centre <m>S(8, 6)</m> and radius <m>5</m>.</p></solution>
+                    </li>
+                    <li>
+                        <p>Where can the borehole be?</p>
+                        <solution component="lesson-plan"><p>On <m>x = 4</m> and inside or on the circle: <m>(4 - 8)^2 + (y - 6)^2 \le 25</m> gives <m>(y - 6)^2 \le 9</m>, so the segment of <m>x = 4</m> from <m>(4, 3)</m> to <m>(4, 9)</m>.</p></solution>
+                    </li>
+                    <li>
+                        <p>Which of these places is nearest to the villages, and how far is it from each?</p>
+                        <solution component="lesson-plan"><p><m>(4, 3)</m>, at <m>\sqrt{4^2 + 3^2} = 5\,\text{km}</m> from each village.</p></solution>
+                    </li>
+                    <li>
+                        <p>The county also wants the borehole within <m>4\,\text{km}</m> of the road <m>AB</m>. Where can it be now?</p>
+                        <solution component="lesson-plan"><p>Also <m>y \le 4</m>, so the segment from <m>(4, 3)</m> to <m>(4, 4)</m>.</p></solution>
+                        <note component="lesson-plan"><p>Each new condition cuts the set of places down. Ask groups to invent a fourth condition that leaves exactly one place.</p></note>
+                    </li>
+                </ol>
+            </p>
         </statement>
-    </activity> -->
+    </activity>
 
-    <!-- [LP] Add guidance on structured lesson plan-->
-
-    <!-- <axiom component="lesson-plan">
+    <axiom component="lesson-plan">
         <title>Structured Instruction</title>
         <p>
             <dl>
-            <li>
-                <title>Suggested Time</title>
-                <p>
-                    XX minutes
-                </p>
-            </li>
-            <li>
-                <title>Objective</title>
-                <p>
-                    To formalize the concepts and properties learners discovered in the anchor task.
-                </p>
-            </li>
+                <li><title>Suggested Time</title><p>8 minutes</p></li>
+                <li><title>Objective</title><p>To formalise intersecting loci and the rules for counting the points two loci share.</p></li>
             </dl>
         </p>
         <paragraphs>
             <title>Key Takeaways &amp; Teacher Connection</title>
             <ol>
-                <li>
-                    <p>
-                        <alert>Connecting to Learner Work:</alert> XXXX
-                    </p>
-                </li>
+                <li><p><alert>Connecting to Learner Work:</alert> the borehole had to be on the bisector and in the disc at the same time; the answer is where the two loci overlap.</p></li>
+                <li><p>Two circles: compare the distance between the centres with the sum and the difference of the radii. A circle and a line: compare the distance from the centre to the line with the radius.</p></li>
+                <li><p>The circumcentre and the incentre from Grade 11 are intersections of three loci.</p></li>
+                <li><p>Drawing a triangle from its three sides with two arcs, as learners did in earlier grades, is already the intersection of two circle loci.</p></li>
             </ol>
         </paragraphs>
-    </axiom> -->
+    </axiom>
 
-    <!-- Add insight / key takeaway directly related to activity / learner experience -->
+    <insight xml:id="insight-intersecting-loci">
+        <title>Intersecting Loci</title>
+        <p>
+            A point that obeys two rules lies on both loci: it is at an <term>intersection</term> of the loci. Two loci may share no point, one point, two points or a whole region.
+        </p>
+        <p>
+            <ul>
+                <li><p>Two circles with radii <m>r_1 \ge r_2</m> whose centres are <m>d</m> apart meet at two points if <m>r_1 - r_2 \lt d \lt r_1 + r_2</m>, at one point if <m>d = r_1 + r_2</m> or <m>d = r_1 - r_2</m> (they touch), and nowhere otherwise (apart, or one inside the other).</p></li>
+                <li><p>A circle of radius <m>r</m> and a straight line at a perpendicular distance <m>p</m> from its centre meet at two points if <m>p \lt r</m>, at one point if <m>p = r</m> (the line is a tangent), and nowhere if <m>p \gt r</m>.</p></li>
+                <li><p>The perpendicular bisectors of the three sides of a triangle meet at one point, the circumcentre, equidistant from the three vertices. The three angle bisectors meet at the incentre, equidistant from the three sides.</p></li>
+            </ul>
+        </p>
+    </insight>
 
-    <!-- <insight>
-    </insight> -->
-
-    <!-- Add further instruction (not in a block) to develop ideas as needed -->
+    <figure xml:id="fig-intersecting-loci">
+        <caption>Tick the loci you want. Drag the points and the sliders. Each marked point lies on two of the ticked loci, so it obeys both of their rules; the coordinates of the marked points are listed.</caption>
+        <interactive xml:id="interactive-intersecting-loci" platform="jsxgraph" width="90%" aspect="16:12" source="jsxgraph/intersecting-loci.js">
+            <slate xml:id="jsxgraph-intersecting-loci" surface="jsxboard" aspect="16:12"/>
+            <instructions>
+                <p>
+                    <ul>
+                        <li><p>Tick the perpendicular bisector of <m>AB</m> and the circle with centre <m>C</m>. Change the <alert>r</alert> slider until the two loci meet at exactly one point.</p></li>
+                        <li><p>Tick the lines at distance <alert>d</alert> from <m>AB</m> as well. How many points obey two rules at once now?</p></li>
+                        <li><p>Tick the circle with centre <m>A</m> (radius <alert>s</alert>) and the circle with centre <m>C</m> only. Drag <m>C</m> and read when the circles share two, one or no points.</p></li>
+                    </ul>
+                </p>
+            </instructions>
+        </interactive>
+    </figure>
 
     <xi:include href="../lesson-plan-templates/example-intro.ptx" />
 
-    <!-- Add at least 3 examples -->
-
-    <!-- <example>
+    <example xml:id="example-two-conditions-at-once">
+        <title>Two Conditions at Once</title>
         <statement>
+            <p><m>AB = 5\,\text{cm}</m>. Construct the points that are <m>4\,\text{cm}</m> from <m>A</m> and <m>3\,\text{cm}</m> from <m>B</m>. What is angle <m>APB</m> at each of them?</p>
         </statement>
         <solution>
+            <p>
+                The points <m>4\,\text{cm}</m> from <m>A</m> lie on a circle with centre <m>A</m> and radius <m>4\,\text{cm}</m>; the points <m>3\,\text{cm}</m> from <m>B</m> lie on a circle with centre <m>B</m> and radius <m>3\,\text{cm}</m>. Here <m>4 - 3 \lt 5 \lt 4 + 3</m>, so the circles cross at two points <m>P</m> and <m>P'</m>, one on each side of <m>AB</m> (<xref ref="fig-two-circles-intersecting"/>).
+            </p>
+            <p>
+                In triangle <m>APB</m>, <m>3^2 + 4^2 = 25 = 5^2</m>, so by the converse of Pythagoras <m>\angle APB = 90^{\circ}</m> at both points.
+            </p>
         </solution>
     </example>
 
-    <example>
+    <figure xml:id="fig-two-circles-intersecting">
+        <caption>The circles of radius <m>4\,\text{cm}</m> about <m>A</m> and <m>3\,\text{cm}</m> about <m>B</m> cross at <m>P</m> and <m>P'</m>.</caption>
+        <image width="55%">
+            <shortdescription>A and B are 5 cm apart. A circle of radius 4 cm with centre A and a circle of radius 3 cm with centre B cross at two points, P above AB and P' below it. PA = 4 cm, PB = 3 cm, and angle APB is a right angle.</shortdescription>
+            <latex-image>
+\begin{tikzpicture}[scale=0.6]
+%% --- SET ---
+\tkzDefPoint(0,0){A} \tkzDefPoint(5,0){B}
+%% --- CALCULATE ---
+\tkzDefPoint(3.2,2.4){P} \tkzDefPoint(3.2,-2.4){P'}
+%% --- DRAW ---
+\draw[thick] (A) circle (4);
+\draw[thick, dashed] (B) circle (3);
+\tkzDrawSegments(A,B) \tkzDrawSegments[thin](P,A P,B P',A P',B)
+\tkzDrawPoints[size=3pt](A,B,P,P')
+%% --- MARK ---
+\tkzMarkRightAngle[size=0.35](A,P,B)
+%% --- LABEL ---
+\tkzLabelPoints[below left](A) \tkzLabelPoints[below right](B)
+\tkzLabelPoint[above](P){$P$} \tkzLabelPoint[below](P'){$P'$}
+\tkzLabelSegment[above left](A,P){$4$} \tkzLabelSegment[above right](P,B){$3$}
+\end{tikzpicture}
+            </latex-image>
+        </image>
+    </figure>
+
+    <example xml:id="example-equidistant-from-three-villages">
+        <title>Equidistant from Three Villages</title>
         <statement>
+            <p>Three villages are at <m>(-1, 2)</m>, <m>(7, 2)</m> and <m>(6, -5)</m>, with one grid unit representing <m>1\,\text{km}</m>. Find the point equidistant from all three villages, and its distance from each.</p>
         </statement>
         <solution>
+            <p>
+                <alert>Step 1:</alert> The first two villages have the same <m>y</m>-coordinate, so the perpendicular bisector of the segment joining them is the vertical line through its midpoint: <m>x = 3</m>.
+            </p>
+            <p>
+                <alert>Step 2:</alert> The point is <m>(3, k)</m> for some <m>k</m>, and it must be as far from <m>(-1, 2)</m> as from <m>(6, -5)</m>:
+                <md>
+                    <mrow>(3 + 1)^2 + (k - 2)^2 \amp = (3 - 6)^2 + (k + 5)^2</mrow>
+                    <mrow>16 + k^2 - 4k + 4 \amp = 9 + k^2 + 10k + 25</mrow>
+                    <mrow>-14 \amp = 14k, \quad k = -1</mrow>
+                </md>
+            </p>
+            <p>
+                <alert>Step 3:</alert> The point is <m>(3, -1)</m>, at <m>\sqrt{4^2 + 3^2} = 5\,\text{km}</m> from each village. It is the circumcentre of the triangle of villages.
+            </p>
+            <p>
+                The centroid, <m>\left(\frac{-1 + 7 + 6}{3}, \frac{2 + 2 - 5}{3}\right) = \left(4, -\tfrac{1}{3}\right)</m>, is a different point: it is not equidistant from the villages.
+            </p>
         </solution>
     </example>
 
-    <example>
+    <example xml:id="example-how-many-points">
+        <title>How Many Points?</title>
         <statement>
+            <p>Two circles have radii <m>4\,\text{cm}</m> and <m>3\,\text{cm}</m>. How many points do they share when their centres are (a) <m>8\,\text{cm}</m>, (b) <m>7\,\text{cm}</m>, (c) <m>5\,\text{cm}</m> apart? (d) How many points does a circle of radius <m>5\,\text{cm}</m> share with a straight line <m>5\,\text{cm}</m> from its centre?</p>
         </statement>
         <solution>
+            <p>
+                The sum of the radii is <m>7\,\text{cm}</m> and their difference is <m>1\,\text{cm}</m>.
+                (a) <m>8 \gt 7</m>: the circles are apart, no points.
+                (b) <m>7 = 7</m>: they touch, one point.
+                (c) <m>1 \lt 5 \lt 7</m>: two points.
+                (d) The distance equals the radius, so the line is a tangent: one point.
+            </p>
         </solution>
-    </example> -->
+    </example>
 
     <xi:include href="../lesson-plan-templates/assessment-intro.ptx" />
+    <xi:include href="../lesson-plan-templates/checkpoint.ptx" />
 
-    <!-- If STACK questions are included, uncomment this: -->
+    <p>Choose from each list. Type coordinates as whole numbers, for example <c>-3</c>.</p>
 
-    <!-- <xi:include href="../lesson-plan-templates/checkpoint.ptx" /> -->
+    <exercise xml:id="ex-where-a-perpendicular-bisector-meets-a-circle">
+        <!--<title></title>-->
+        <stack label="stk-where-a-perpendicular-bisector-meets-a-circle" source="stack/top/2-measurement-and-geometry/08-loci/06-intersecting-loci/Where-a-perpendicular-bisector-meets-a-circle.xml"/>
+    </exercise>
 
-    <!-- Add STACK exercises if made -->
+    <exercise xml:id="ex-the-point-equidistant-from-three-points">
+        <!--<title></title>-->
+        <stack label="stk-the-point-equidistant-from-three-points" source="stack/top/2-measurement-and-geometry/08-loci/06-intersecting-loci/The-point-equidistant-from-three-points.xml"/>
+    </exercise>
 
-    <!-- Add static exercises -->
+    <exercise xml:id="ex-how-many-points-two-loci-share">
+        <!--<title></title>-->
+        <stack label="stk-how-many-points-two-loci-share" source="stack/top/2-measurement-and-geometry/08-loci/06-intersecting-loci/How-many-points-two-loci-share.xml"/>
+    </exercise>
 
-    <!-- <exercises>
-        <exercise>
-            <statement>   
+    <exercises xml:id="exercises-intersecting-loci">
+        <exercise xml:id="ex-equidistant-and-five-from-both">
+            <statement><p><m>AB = 6\,\text{cm}</m>. Construct the points that are <m>5\,\text{cm}</m> from both <m>A</m> and <m>B</m>. How far are they from <m>AB</m>?</p></statement>
+            <answer><p>Two points, one on each side of <m>AB</m>, each <m>4\,\text{cm}</m> from <m>AB</m>.</p></answer>
+            <solution><p>Both points are on the perpendicular bisector of <m>AB</m>, <m>3\,\text{cm}</m> from each end along <m>AB</m>, so their distance from <m>AB</m> is <m>\sqrt{5^2 - 3^2} = 4\,\text{cm}</m>.</p></solution>
+        </exercise>
+        <exercise xml:id="ex-grid-bisector-and-circle">
+            <statement><p>Find the points that are equidistant from <m>A(-2, 1)</m> and <m>B(4, 1)</m> and <m>5</m> units from <m>C(4, 5)</m>.</p></statement>
+            <answer><p><m>(1, 9)</m> and <m>(1, 1)</m></p></answer>
+            <solution><p>The perpendicular bisector of <m>AB</m> is <m>x = 1</m>. On it, <m>(1 - 4)^2 + (y - 5)^2 = 25</m> gives <m>(y - 5)^2 = 16</m>, so <m>y = 9</m> or <m>y = 1</m>.</p></solution>
+        </exercise>
+        <exercise xml:id="ex-circle-inside-circle">
+            <statement><p>Circles of radii <m>6\,\text{cm}</m> and <m>2\,\text{cm}</m> have centres <m>3\,\text{cm}</m> apart. How many points do they share, and why?</p></statement>
+            <answer><p>None: <m>3 \lt 6 - 2</m>, so the small circle is inside the large one.</p></answer>
+        </exercise>
+        <exercise xml:id="ex-two-mobile-masts">
+            <statement><p>Two mobile phone masts in Kitui County are <m>15\,\text{km}</m> apart. One covers places up to <m>12\,\text{km}</m> away and the other up to <m>9\,\text{km}</m>. Where do the edges of their coverage cross? Give the distance along the line of the masts from the first mast, and the distance either side of that line.</p></statement>
+            <answer><p><m>9.6\,\text{km}</m> along the line from the first mast, <m>7.2\,\text{km}</m> either side of it</p></answer>
+            <solution><p>Put the first mast at <m>(0, 0)</m> and the second at <m>(15, 0)</m>. A crossing point <m>(x, y)</m> satisfies <m>x^2 + y^2 = 144</m> and <m>(x - 15)^2 + y^2 = 81</m>. Subtracting, <m>30x - 225 = 63</m>, so <m>x = 9.6</m>; then <m>y^2 = 144 - 92.16 = 51.84</m> and <m>y = \pm 7.2</m>.</p></solution>
+        </exercise>
+        <exercise xml:id="ex-incentre-radius">
+            <statement><p>A triangle has sides <m>5\,\text{cm}</m>, <m>12\,\text{cm}</m> and <m>13\,\text{cm}</m> (it is right-angled). Find the distance of its incentre from each side.</p></statement>
+            <answer><p><m>2\,\text{cm}</m></p></answer>
+            <solution><p>Splitting the triangle into three triangles from the incentre, each of height <m>r</m>: <m>\tfrac{1}{2}r(5 + 12 + 13) = \tfrac{1}{2} \times 5 \times 12</m>, so <m>15r = 30</m> and <m>r = 2\,\text{cm}</m>.</p></solution>
+        </exercise>
+        <exercise xml:id="ex-three-bisectors-meet">
+            <title>Challenge: Three Bisectors Meet</title>
+            <statement><p>Explain why the perpendicular bisectors of the three sides of a triangle <m>ABC</m> meet at one point.</p></statement>
+            <hint><p>Start with the point where two of the bisectors meet.</p></hint>
+            <answer><p>The point <m>O</m> on two bisectors has <m>OA = OB = OC</m>, so it is on the third.</p></answer>
+            <solution><p>Let the perpendicular bisectors of <m>AB</m> and <m>BC</m> meet at <m>O</m>. Since <m>O</m> is on the first, <m>OA = OB</m>; since it is on the second, <m>OB = OC</m>. So <m>OA = OC</m>, and <m>O</m> is on the locus of points equidistant from <m>A</m> and <m>C</m>: the perpendicular bisector of <m>AC</m>. All three bisectors pass through <m>O</m>.</p></solution>
+        </exercise>
+    </exercises>
 
-            </statement>   
-            <solution>
-
-            </solution>             
-        </exercise>        
-    </exercises> -->
-
-    <!-- [LP] Add information on how to differentiate  -->
-
-    <!-- <axiom component="lesson-plan">
+    <axiom component="lesson-plan">
         <title>Differentiation</title>
-
-        <table>
-            <title>Differentiation</title>
-            <tabular halign="left">
-                <row header="yes" bottom="minor">
-                    <cell>Learner Group</cell>
-                    <cell>Strategy &amp; Learning Experience</cell>
-                    <cell></cell>
-                </row>
-                <row>
-                    <cell>Struggling Learners (Support)</cell>
-                    <cell>
-                        XXXX
-                    </cell>
-                    <cell></cell>
-                </row>
-                <row>
-                    <cell>On-Level Learners (Core)</cell>
-                    <cell>
-                        <line>The core lesson activities as described above.</line>
-                    </cell>
-                    <cell></cell>
-                </row>
-                <row>
-                    <cell>Advanced Learners (Challenge)</cell>
-                    <cell>
-                        XXXX
-                    </cell>
-                    <cell></cell>
-                </row>
+        <table xml:id="table-differentiation-intersecting-loci">
+            <title>Differentiation Strategies</title>
+            <tabular halign="left" top="minor" bottom="minor" left="minor" right="minor">
+                <row header="yes" bottom="medium"><cell>Learner Group</cell><cell>Strategy and Learning Experience</cell></row>
+                <row><cell>Struggling Learners (Support)</cell><cell>Work the grid version first: activity parts (a) to (c) on squared paper, then <xref ref="example-two-conditions-at-once"/>. Assign <xref ref="ex-equidistant-and-five-from-both"/> to <xref ref="ex-circle-inside-circle"/>.</cell></row>
+                <row><cell>On-Level Learners (Core)</cell><cell>Full activity and all examples. Assign <xref ref="ex-equidistant-and-five-from-both"/> to <xref ref="ex-incentre-radius"/>.</cell></row>
+                <row><cell>Advanced Learners (Challenge)</cell><cell>All exercises including <xref ref="ex-three-bisectors-meet"/>. Extension: two circles of radius <m>5\,\text{cm}</m> have centres <m>6\,\text{cm}</m> apart; how far apart are their two intersection points? (Answer: <m>8\,\text{cm}</m>, since each is <m>\sqrt{5^2 - 3^2} = 4\,\text{cm}</m> from the line of centres.)</cell></row>
             </tabular>
         </table>
-    </axiom> -->
+    </axiom>
 
     <xi:include href="../lesson-plan-templates/assessment-methods.ptx" />
 

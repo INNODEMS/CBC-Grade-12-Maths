@@ -19,7 +19,7 @@
                     </p>
                 </li>
                 <li>
-                    <title>Specific Learning Outcomes</title> 
+                    <title>Specific Learning Outcomes</title>
                     <p>
                         Determine discrete probabilities in different situations
                     </p>
@@ -33,7 +33,7 @@
                 <li component="lesson-plan">
                     <title>Estimated Duration</title>
                     <p>
-                        40 minutes
+                        2 lessons of 40 minutes
                     </p>
                 </li>
             </dl>
@@ -46,163 +46,480 @@
          Suggested activity: Learners toss bottle tops 50 times, record outcomes and compare experimental probability with expectations.
          Interactive (JSXGraph): Simulation button that tosses a coin or rolls a die many times; the experimental probability is plotted and settles towards the theoretical value. -->
 
-    <!-- [LP] Add guidance on activity -->
+    <!-- Section notes (2026-11)
+         SLO: Essential (a). Lessons 2.1 and 2.2 as subsections.
+         Activity: as planning notes (bottle tops, 50 tosses) | changed: class results pooled; lesson 2.2 adds its own activity (heads in two tosses)
+         JSXGraph: interactive-probability-simulator (assets/jsxgraph/probability-simulator.js), as planning notes
+         STACK: assets/stack/top/3-statistics-and-probability/16-probability-iii/02-discrete-probability/ -->
 
-    <axiom component="lesson-plan">
-        <title>Problem-Solving and Discovery</title>
-        <dl>
-            <li>
-                <title>Suggested Time</title>
-                <p>
-                    XXX minutes
-                </p>
-            </li>
-            <li>
-                <title>Objective</title>
-                <p>
-                    XXX
-                </p>
-            </li>
-            <li>
-                <title>Teacher's Role</title>
-                <p>
-                    XXX
-                </p>
-            </li>
-        </dl>
-    </axiom>
+    <!-- ============================================================ Lesson 2.1 -->
+    <subsection xml:id="subsec-experimental-probability">
+        <title>Experimental Probability</title>
 
-    <!-- Add Activity -->
-
-    <!-- <activity>
-        <statement>
-        </statement>
-    </activity> -->
-
-    <!-- [LP] Add guidance on structured lesson plan-->
-
-    <!-- <axiom component="lesson-plan">
-        <title>Structured Instruction</title>
-        <p>
-            <dl>
-            <li>
-                <title>Suggested Time</title>
-                <p>
-                    XX minutes
-                </p>
-            </li>
-            <li>
-                <title>Objective</title>
-                <p>
-                    To formalize the concepts and properties learners discovered in the anchor task.
-                </p>
-            </li>
-            </dl>
-        </p>
-        <paragraphs>
-            <title>Key Takeaways &amp; Teacher Connection</title>
+        <p component="lesson-plan">Upon completion of this lesson, learners will be able to:
             <ol>
-                <li>
-                    <p>
-                        <alert>Connecting to Learner Work:</alert> XXXX
-                    </p>
-                </li>
+                <li><p><alert>Know:</alert> a relative frequency estimates a probability; more trials usually give a better estimate; expected frequency is the number of trials times the probability.</p></li>
+                <li><p><alert>Do:</alert> compute relative frequencies and expected frequencies, and judge whether results suggest bias.</p></li>
+                <li><p><alert>Apply:</alert> seed tests, helmet surveys and dice that may be biased.</p></li>
             </ol>
-        </paragraphs>
-    </axiom> -->
+        </p>
 
-    <!-- Add insight / key takeaway directly related to activity / learner experience -->
+        <axiom component="lesson-plan">
+            <title>Problem-Solving and Discovery</title>
+            <dl>
+                <li><title>Suggested Time</title><p>14 minutes</p></li>
+                <li><title>Objective</title><p>Learners estimate a probability by experiment and watch the estimate settle as the number of trials grows.</p></li>
+                <li><title>Teacher's Role</title><p>Each group of four needs one soda bottle top. Groups toss it <m>50</m> times and tally the results; pool the class results on the board (eight groups make <m>400</m> tosses). If time is short, use the results given in the activity. Road safety: mention that the same method, counting and dividing, gives the helmet estimate in <xref ref="example-helmets-on-boda-bodas"/>. Collaboration: the class total is better than any one group's.</p></li>
+            </dl>
+        </axiom>
 
-    <!-- <insight>
-    </insight> -->
+        <activity xml:id="act-tossing-bottle-tops">
+            <title>Tossing Bottle Tops</title>
+            <statement>
+                <p>Work in groups of four with one soda bottle top. A toss lands either printed side up or printed side down.</p>
+                <p>
+                    <ol marker="(a)">
+                        <li>
+                            <p>Toss the bottle top <m>50</m> times. Tally how often it lands printed side up and printed side down.</p>
+                            <solution component="lesson-plan"><p>Results vary. One group recorded <m>31</m> printed side up and <m>19</m> down.</p></solution>
+                        </li>
+                        <li>
+                            <p>Work out the fraction of your tosses that landed printed side up, as a decimal.</p>
+                            <solution component="lesson-plan"><p>For that group, <m>\frac{31}{50} = 0.62</m>.</p></solution>
+                        </li>
+                        <li>
+                            <p>Add up the results of the whole class and work out the fraction again. Which estimate do you trust more, and why?</p>
+                            <solution component="lesson-plan"><p>One class recorded <m>236</m> printed side up in <m>400</m> tosses: <m>\frac{236}{400} = 0.59</m>. The class figure is more trustworthy because it uses more tosses.</p></solution>
+                        </li>
+                        <li>
+                            <p>Is the probability of landing printed side up equal to <m>\frac{1}{2}</m>? Why can we not find it by counting outcomes, as we did for a coin?</p>
+                            <solution component="lesson-plan"><p>Probably not: the two sides are different shapes, so the outcomes are not equally likely. Counting outcomes only works when they are equally likely, so we must estimate by experiment.</p></solution>
+                        </li>
+                        <li>
+                            <p>Use the class estimate to predict how many times the bottle top would land printed side up in <m>1000</m> tosses.</p>
+                            <solution component="lesson-plan"><p>About <m>1000 \times 0.59 = 590</m> times.</p></solution>
+                        </li>
+                    </ol>
+                </p>
+            </statement>
+        </activity>
 
-    <!-- Add further instruction (not in a block) to develop ideas as needed -->
+        <axiom component="lesson-plan">
+            <title>Structured Instruction</title>
+            <p>
+                <dl>
+                    <li><title>Suggested Time</title><p>8 minutes</p></li>
+                    <li><title>Objective</title><p>To define relative frequency and expected frequency, and compare experimental and theoretical probability.</p></li>
+                </dl>
+            </p>
+            <paragraphs>
+                <title>Key Takeaways &amp; Teacher Connection</title>
+                <ol>
+                    <li><p><alert>Connecting to Learner Work:</alert> the fraction in part (b) is a relative frequency; part (e) is an expected frequency.</p></li>
+                    <li><p>More trials usually give a better estimate: show the simulator below.</p></li>
+                    <li><p>Theoretical probability needs equally likely outcomes; experimental probability needs only data.</p></li>
+                </ol>
+            </paragraphs>
+        </axiom>
 
-    <xi:include href="../lesson-plan-templates/example-intro.ptx" />
+        <insight xml:id="insight-experimental-probability">
+            <title>Experimental Probability</title>
+            <p>
+                Each time an experiment is carried out is a <term>trial</term>. The <term>relative frequency</term> of an event is the fraction of the trials in which the event happened:
+                <md>\text{relative frequency} = \frac{\text{number of times the event happens}}{\text{number of trials}}</md>
+                It is an estimate of the probability, called the <term>experimental probability</term>. More trials usually give a better estimate.
+            </p>
+            <p>
+                If an event has probability <m>P(E)</m>, then in <m>n</m> trials we expect it to happen about <m>n \times P(E)</m> times. This is the <term>expected frequency</term>. The real number of times will usually be close to it, but not exactly equal.
+            </p>
+        </insight>
 
-    <!-- Add at least 3 examples -->
+        <figure xml:id="fig-probability-simulator">
+            <caption>Press a button to run more trials. The relative frequency wanders at first and then settles close to the dashed line.</caption>
+            <interactive xml:id="interactive-probability-simulator" platform="jsxgraph" width="90%" aspect="16:12" source="jsxgraph/probability-simulator.js">
+                <slate xml:id="jsxgraph-probability-simulator" surface="jsxboard" aspect="16:12"/>
+                <instructions>
+                    <p>
+                        <ul>
+                            <li><p>Press <alert>Coin: heads</alert> to toss a fair coin, or <alert>Die: a six</alert> to roll a fair die. Each choice starts again from zero trials.</p></li>
+                            <li><p>Press <alert>1 trial</alert>, <alert>10 trials</alert> or <alert>100 trials</alert> to run more trials. The line shows the relative frequency of a success after each trial; the dashed line is the theoretical probability, <m>\frac{1}{2}</m> or <m>\frac{1}{6}</m>.</p></li>
+                            <li><p>Press <alert>100 trials</alert> ten times to reach <m>1000</m> trials. How close to the dashed line is the relative frequency now? Press <alert>Reset</alert> and try again: is the result the same?</p></li>
+                        </ul>
+                    </p>
+                </instructions>
+            </interactive>
+        </figure>
 
-    <!-- <example>
-        <statement>
-        </statement>
-        <solution>
-        </solution>
-    </example>
+        <p>
+            Real results behave in the same way. <xref ref="fig-bottle-top-relative-frequency"/> shows the running relative frequency for one group that carried on tossing its bottle top to <m>100</m> tosses.
+        </p>
 
-    <example>
-        <statement>
-        </statement>
-        <solution>
-        </solution>
-    </example>
+        <figure xml:id="fig-bottle-top-relative-frequency">
+            <caption>Running relative frequency of printed side up for one bottle top.</caption>
+            <image width="90%">
+                <shortdescription>A line graph of the relative frequency of printed side up after 10 to 100 tosses. The values move from 0.7 down to about 0.6 and then stay near 0.6.</shortdescription>
+                <description><p>Horizontal axis number of tosses from 0 to 100; vertical axis relative frequency from 0.5 to 0.75. Points joined by straight lines: after 10 tosses 0.7, 20 tosses 0.65, 30 tosses 0.63, 40 tosses 0.6, 50 tosses 0.62, 60 tosses 0.6, 80 tosses 0.61, 100 tosses 0.6.</p></description>
+                <latex-image>
+\begin{tikzpicture}
+\begin{axis}[width=12cm, height=6cm, xmin=0, xmax=105, ymin=0.5, ymax=0.75,
+  xtick={0,10,...,100}, ytick={0.5,0.55,...,0.75},
+  yticklabel style={/pgf/number format/fixed, /pgf/number format/precision=2},
+  grid=major, major grid style={gray!30},
+  xlabel={Number of tosses}, ylabel={Relative frequency}]
+\addplot[thick, mark=*] coordinates {(10,0.7) (20,0.65) (30,0.6333) (40,0.6) (50,0.62) (60,0.6) (80,0.6125) (100,0.6)};
+\end{axis}
+\end{tikzpicture}
+                </latex-image>
+            </image>
+        </figure>
 
-    <example>
-        <statement>
-        </statement>
-        <solution>
-        </solution>
-    </example> -->
+        <xi:include href="../lesson-plan-templates/example-intro.ptx" />
 
-    <xi:include href="../lesson-plan-templates/assessment-intro.ptx" />
-
-    <!-- If STACK questions are included, uncomment this: -->
-
-    <!-- <xi:include href="../lesson-plan-templates/checkpoint.ptx" /> -->
-
-    <!-- Add STACK exercises if made -->
-
-    <!-- Add static exercises -->
-
-    <!-- <exercises>
-        <exercise>
-            <statement>   
-
-            </statement>   
+        <example xml:id="example-njeris-bottle-top">
+            <title>Njeri's Bottle Top</title>
+            <statement>
+                <p>Njeri tosses a bottle top <m>120</m> times and it lands printed side up <m>78</m> times. Estimate the probability that it lands (a) printed side up, (b) printed side down. (c) How many times would you expect it to land printed side up in <m>200</m> tosses?</p>
+            </statement>
             <solution>
+                <p>(a) Relative frequency <m>= \dfrac{78}{120} = 0.65</m>.</p>
+                <p>(b) <m>1 - 0.65 = 0.35</m>.</p>
+                <p>(c) Expected frequency <m>= 200 \times 0.65 = 130</m> times.</p>
+            </solution>
+        </example>
 
-            </solution>             
-        </exercise>        
-    </exercises> -->
+        <example xml:id="example-testing-maize-seed">
+            <title>Testing Maize Seed</title>
+            <statement>
+                <p>An agro-dealer in Eldoret tests <m>250</m> maize seeds from a new batch, and <m>215</m> germinate. Estimate the probability that a seed from the batch germinates. A farmer plants <m>2000</m> of these seeds. About how many would you expect to germinate?</p>
+            </statement>
+            <solution>
+                <p>Relative frequency <m>= \dfrac{215}{250} = 0.86</m>. Expected number <m>= 2000 \times 0.86 = 1720</m> seeds.</p>
+            </solution>
+        </example>
 
-    <!-- [LP] Add information on how to differentiate  -->
+        <example xml:id="example-is-this-die-fair">
+            <title>Is This Die Fair?</title>
+            <statement>
+                <p>Two dice, A and B, are each rolled <m>240</m> times.</p>
+                <table xml:id="table-two-dice-240-rolls">
+                    <title>Scores in 240 Rolls</title>
+                    <tabular halign="center" top="minor" bottom="minor" left="minor" right="minor">
+                        <row header="yes" bottom="medium"><cell>Score</cell><cell>1</cell><cell>2</cell><cell>3</cell><cell>4</cell><cell>5</cell><cell>6</cell></row>
+                        <row><cell>Die A</cell><cell>37</cell><cell>42</cell><cell>39</cell><cell>44</cell><cell>38</cell><cell>40</cell></row>
+                        <row><cell>Die B</cell><cell>31</cell><cell>33</cell><cell>35</cell><cell>30</cell><cell>34</cell><cell>77</cell></row>
+                    </tabular>
+                </table>
+                <p>Is either die likely to be biased?</p>
+            </statement>
+            <solution>
+                <p>For a fair die each score has probability <m>\frac{1}{6}</m>, so the expected frequency of each score is <m>240 \times \frac{1}{6} = 40</m>.</p>
+                <p>Every frequency of die A is within <m>4</m> of <m>40</m>. No die gives exactly <m>40</m> of each score, so there is no reason to think die A is biased.</p>
+                <p>Die B gave <m>77</m> sixes, nearly twice the expected <m>40</m>, and fewer of every other score. Die B is probably biased towards six.</p>
+            </solution>
+        </example>
 
-    <!-- <axiom component="lesson-plan">
-        <title>Differentiation</title>
+        <example xml:id="example-helmets-on-boda-bodas">
+            <title>Helmets on Boda Bodas</title>
+            <statement>
+                <p>At a junction in Nakuru, <m>112</m> of <m>160</m> boda boda riders observed were wearing a helmet. Estimate the probability that a rider at this junction (a) wears a helmet, (b) does not. (c) Of <m>500</m> riders passing the junction, about how many would you expect to have no helmet?</p>
+            </statement>
+            <solution>
+                <p>(a) <m>\dfrac{112}{160} = 0.7</m>. (b) <m>1 - 0.7 = 0.3</m>. (c) <m>500 \times 0.3 = 150</m> riders.</p>
+                <p>A helmet greatly reduces the risk of a serious head injury in a crash, so a road-safety campaign might use figures like these to decide where to check riders.</p>
+            </solution>
+        </example>
 
-        <table>
+        <xi:include href="../lesson-plan-templates/assessment-intro.ptx" />
+        <xi:include href="../lesson-plan-templates/checkpoint.ptx" />
+
+        <p>Type a fraction with a slash, for example <c>5/12</c>, and a decimal with a point, for example <c>0.35</c>. Give probabilities exactly: do not round.</p>
+
+        <exercise xml:id="ex-relative-frequency-and-expected-frequency">
+            <!--<title></title>-->
+            <stack label="stk-relative-frequency-and-expected-frequency" source="stack/top/3-statistics-and-probability/16-probability-iii/02-discrete-probability/Relative-frequency-and-expected-frequency.xml"/>
+        </exercise>
+
+        <exercise xml:id="ex-deciding-whether-a-die-is-biased">
+            <!--<title></title>-->
+            <stack label="stk-deciding-whether-a-die-is-biased" source="stack/top/3-statistics-and-probability/16-probability-iii/02-discrete-probability/Deciding-whether-a-die-is-biased.xml"/>
+        </exercise>
+
+        <exercises xml:id="exercises-experimental-probability">
+            <exercise xml:id="ex-airtime-relative-frequency">
+                <statement><p>One week, <m>46</m> of the <m>200</m> customers at a kiosk in Nyeri bought airtime. Find the relative frequency of a customer buying airtime. How many of the next <m>1000</m> customers would you expect to buy airtime?</p></statement>
+                <answer><p><m>0.23</m>; <m>230</m></p></answer>
+            </exercise>
+            <exercise xml:id="ex-seatbelt-survey">
+                <statement><p>At a matatu stage in Thika, <m>40</m> of <m>250</m> matatus checked had a passenger not wearing a seatbelt. Find the relative frequency. Out of <m>1500</m> matatus, how many would you expect to have a passenger without a seatbelt?</p></statement>
+                <answer><p><m>0.16</m>; <m>240</m></p></answer>
+            </exercise>
+            <exercise xml:id="ex-drawing-pin">
+                <statement><p>A drawing pin lands point up <m>33</m> times in <m>60</m> drops. Estimate the probability that it lands (a) point up, (b) point down.</p></statement>
+                <answer><p>(a) <m>0.55</m> (b) <m>0.45</m></p></answer>
+            </exercise>
+            <exercise xml:id="ex-april-rain">
+                <statement><p>It rained in Kisumu on <m>18</m> of the <m>30</m> days of April one year. Estimate the probability of rain on an April day, and the number of rainy April days next year. Why might this estimate be wrong?</p></statement>
+                <answer><p><m>0.6</m>; about <m>18</m> days. One year is a small sample, and years differ.</p></answer>
+            </exercise>
+            <exercise xml:id="ex-how-many-penalties">
+                <statement><p>In a school football league, the relative frequency of scoring from a penalty was <m>0.75</m>. Penalties produced <m>54</m> goals. How many penalties were taken?</p></statement>
+                <answer><p><m>72</m></p></answer>
+                <solution><p><m>\frac{54}{n} = 0.75</m>, so <m>n = 54 \div 0.75 = 72</m>.</p></solution>
+            </exercise>
+            <exercise xml:id="ex-wanjiku-ten-tosses">
+                <title>Challenge: Ten Tosses</title>
+                <statement><p>Wanjiku tossed a coin <m>10</m> times and got <m>7</m> heads. She says the coin is biased, with probability of a head <m>0.7</m>. Comment on her conclusion.</p></statement>
+                <hint><p>What happens to a relative frequency as the number of trials increases?</p></hint>
+                <answer><p>Ten tosses are too few: <m>7</m> heads in <m>10</m> is quite possible with a fair coin. She should toss it many more times.</p></answer>
+                <solution><p>With few trials the relative frequency can be far from the probability. Run the simulator with <m>10</m> trials a few times: results such as <m>0.7</m> or <m>0.3</m> appear often for a fair coin. Only a large number of tosses would show whether the coin is biased.</p></solution>
+            </exercise>
+        </exercises>
+
+        <axiom component="lesson-plan">
             <title>Differentiation</title>
-            <tabular halign="left">
-                <row header="yes" bottom="minor">
-                    <cell>Learner Group</cell>
-                    <cell>Strategy &amp; Learning Experience</cell>
-                    <cell></cell>
-                </row>
-                <row>
-                    <cell>Struggling Learners (Support)</cell>
-                    <cell>
-                        XXXX
-                    </cell>
-                    <cell></cell>
-                </row>
-                <row>
-                    <cell>On-Level Learners (Core)</cell>
-                    <cell>
-                        <line>The core lesson activities as described above.</line>
-                    </cell>
-                    <cell></cell>
-                </row>
-                <row>
-                    <cell>Advanced Learners (Challenge)</cell>
-                    <cell>
-                        XXXX
-                    </cell>
-                    <cell></cell>
-                </row>
-            </tabular>
-        </table>
-    </axiom> -->
+            <table xml:id="table-differentiation-experimental-probability">
+                <title>Differentiation Strategies</title>
+                <tabular halign="left" top="minor" bottom="minor" left="minor" right="minor">
+                    <row header="yes" bottom="medium"><cell>Learner Group</cell><cell>Strategy and Learning Experience</cell></row>
+                    <row><cell>Struggling Learners (Support)</cell><cell>Give a tally chart template with a relative frequency column. Use the simulator with <alert>10 trials</alert> presses. Assign <xref ref="ex-airtime-relative-frequency"/> and <xref ref="ex-drawing-pin"/>.</cell></row>
+                    <row><cell>On-Level Learners (Core)</cell><cell>Full activity and all examples. Assign <xref ref="ex-airtime-relative-frequency"/> to <xref ref="ex-how-many-penalties"/>.</cell></row>
+                    <row><cell>Advanced Learners (Challenge)</cell><cell>All exercises including <xref ref="ex-wanjiku-ten-tosses"/>. Extension: use the simulator to find after how many trials the relative frequency of a six stays within <m>0.02</m> of <m>\frac{1}{6}</m>. (It varies from run to run; usually several hundred trials.)</cell></row>
+                </tabular>
+            </table>
+        </axiom>
 
-    <xi:include href="../lesson-plan-templates/assessment-methods.ptx" />
+        <xi:include href="../lesson-plan-templates/assessment-methods.ptx" />
+        <xi:include href="../lesson-plan-templates/reflection.ptx"/>
+    </subsection>
 
-    <xi:include href="../lesson-plan-templates/reflection.ptx"/>
+    <!-- ============================================================ Lesson 2.2 -->
+    <subsection xml:id="subsec-probability-distributions">
+        <title>Probability Distributions</title>
+
+        <p component="lesson-plan">Upon completion of this lesson, learners will be able to:
+            <ol>
+                <li><p><alert>Know:</alert> a count or score that depends on chance is a discrete random variable <m>X</m>; its probability distribution lists every value with its probability; each probability is from 0 to 1 and they add to 1.</p></li>
+                <li><p><alert>Do:</alert> build a distribution from a sample space, find a missing probability, and add rows for <m>P(X \ge k)</m>.</p></li>
+                <li><p><alert>Apply:</alert> customers at a kiosk and goats sold at market.</p></li>
+            </ol>
+        </p>
+
+        <axiom component="lesson-plan">
+            <title>Problem-Solving and Discovery</title>
+            <dl>
+                <li><title>Suggested Time</title><p>14 minutes</p></li>
+                <li><title>Objective</title><p>Learners build the distribution of the number of heads in two tosses and test it against class data.</p></li>
+                <li><title>Teacher's Role</title><p>Pairs toss two coins <m>40</m> times. After part (b), ask: <q>Why is one head twice as likely as two heads?</q></p></li>
+            </dl>
+        </axiom>
+
+        <activity xml:id="act-heads-in-two-tosses">
+            <title>Heads in Two Tosses</title>
+            <statement>
+                <p>Two coins are tossed. Let <m>X</m> be the number of heads.</p>
+                <p>
+                    <ol marker="(a)">
+                        <li>
+                            <p>List the four outcomes.</p>
+                            <solution component="lesson-plan"><p>HH, HT, TH, TT.</p></solution>
+                        </li>
+                        <li>
+                            <p>Complete a table of the values <m>x = 0, 1, 2</m> and the probability of each.</p>
+                            <solution component="lesson-plan"><p><m>P(X = 0) = \frac{1}{4}</m>, <m>P(X = 1) = \frac{2}{4} = \frac{1}{2}</m>, <m>P(X = 2) = \frac{1}{4}</m>.</p></solution>
+                        </li>
+                        <li>
+                            <p>Add the probabilities in your table. Why must you get this answer?</p>
+                            <solution component="lesson-plan"><p><m>1</m>: every outcome gives exactly one value of <m>X</m>.</p></solution>
+                        </li>
+                        <li>
+                            <p>Toss two coins <m>40</m> times and record <m>X</m> each time. Compare your frequencies with <m>40 \times P(X = x)</m>.</p>
+                            <solution component="lesson-plan"><p>Expected frequencies <m>10</m>, <m>20</m>, <m>10</m>; class results should be close to these.</p></solution>
+                        </li>
+                    </ol>
+                </p>
+            </statement>
+        </activity>
+
+        <axiom component="lesson-plan">
+            <title>Structured Instruction</title>
+            <p>
+                <dl>
+                    <li><title>Suggested Time</title><p>8 minutes</p></li>
+                    <li><title>Objective</title><p>To define a discrete random variable and its probability distribution.</p></li>
+                </dl>
+            </p>
+            <paragraphs>
+                <title>Key Takeaways &amp; Teacher Connection</title>
+                <ol>
+                    <li><p><alert>Connecting to Learner Work:</alert> the table in part (b) is a probability distribution.</p></li>
+                    <li><p>Capital <m>X</m> names the random variable; small <m>x</m> is one of its values.</p></li>
+                    <li><p>Two checks: every probability is from 0 to 1; the probabilities add to 1.</p></li>
+                    <li><p>Add rows for <q>at least</q>, and remember that <q>at least 2</q> includes 2.</p></li>
+                </ol>
+            </paragraphs>
+        </axiom>
+
+        <insight xml:id="insight-probability-distributions">
+            <title>Probability Distributions</title>
+            <p>
+                A <term>discrete random variable</term> <m>X</m> is a count or score that depends on chance and whose values can be listed, such as the number of heads in two tosses. Its <term>probability distribution</term> is a table of each value <m>x</m> with its probability <m>P(X = x)</m>.
+            </p>
+            <p>
+                In every probability distribution, each probability is from 0 to 1, and the probabilities of all the values add to 1. To find the probability of several values, add their rows: for example <m>P(X \ge 2) = P(X = 2) + P(X = 3) + \cdots</m>.
+            </p>
+        </insight>
+
+        <figure xml:id="fig-spinner-distribution">
+            <caption>A spinner with eight equal sectors, and the distribution of its score shown as a stick graph.</caption>
+            <image width="80%">
+                <shortdescription>A spinner with eight equal sectors labelled 1, 1, 1, 2, 2, 3, 3, 4, beside a stick graph of the probability of each score: 3/8 for 1, 1/4 for 2, 1/4 for 3 and 1/8 for 4.</shortdescription>
+                <description><p>Left: a circle divided into eight equal sectors labelled 1, 1, 1, 2, 2, 3, 3 and 4, with an arrow. Right: vertical lines above x = 1, 2, 3, 4 with heights 3/8, 1/4, 1/4 and 1/8.</p></description>
+                <latex-image>
+\begin{tikzpicture}
+\draw (0,0) circle (1.8);
+\foreach \i/\l in {0/1,1/1,2/1,3/2,4/2,5/3,6/3,7/4} {
+  \draw (0,0) -- ({90-45*\i}:1.8);
+  \node at ({67.5-45*\i}:1.25) {\l};
+}
+\draw[->, thick] (0,0) -- (35:1.1);
+\fill (0,0) circle (1.5pt);
+\begin{axis}[at={(3cm,-1.9cm)}, width=7cm, height=5.5cm, xmin=0.5, xmax=4.5, ymin=0, ymax=0.45,
+  xtick={1,2,3,4}, ytick={0,0.125,0.25,0.375}, yticklabels={$0$,$\frac{1}{8}$,$\frac{1}{4}$,$\frac{3}{8}$},
+  xlabel={Score $x$}, ylabel={$P(X = x)$}, grid=major, major grid style={gray!30}]
+\addplot[ycomb, very thick, mark=*] coordinates {(1,0.375) (2,0.25) (3,0.25) (4,0.125)};
+\end{axis}
+\end{tikzpicture}
+                </latex-image>
+            </image>
+        </figure>
+
+        <xi:include href="../lesson-plan-templates/example-intro.ptx" />
+
+        <example xml:id="example-score-on-a-spinner">
+            <title>Score on a Spinner</title>
+            <statement>
+                <p>The spinner in <xref ref="fig-spinner-distribution"/> has eight equal sectors labelled 1, 1, 1, 2, 2, 3, 3, 4. Let <m>X</m> be the score. Write down the probability distribution of <m>X</m> and find <m>P(X \ge 2)</m>.</p>
+            </statement>
+            <solution>
+                <p>Count sectors out of <m>8</m>:</p>
+                <table xml:id="table-spinner-distribution">
+                    <title>Distribution of the Spinner Score</title>
+                    <tabular halign="center" top="minor" bottom="minor" left="minor" right="minor">
+                        <row header="yes" bottom="medium"><cell><m>x</m></cell><cell>1</cell><cell>2</cell><cell>3</cell><cell>4</cell></row>
+                        <row><cell><m>P(X = x)</m></cell><cell><m>\frac{3}{8}</m></cell><cell><m>\frac{1}{4}</m></cell><cell><m>\frac{1}{4}</m></cell><cell><m>\frac{1}{8}</m></cell></row>
+                    </tabular>
+                </table>
+                <p>Check: <m>\frac{3}{8} + \frac{2}{8} + \frac{2}{8} + \frac{1}{8} = 1</m>. Then <m>P(X \ge 2) = \frac{2}{8} + \frac{2}{8} + \frac{1}{8} = \frac{5}{8}</m>.</p>
+            </solution>
+        </example>
+
+        <example xml:id="example-mpesa-kiosk-customers">
+            <title>Customers at an M-Pesa Kiosk</title>
+            <statement>
+                <p>Let <m>X</m> be the number of customers who arrive at an M-Pesa kiosk in Kisumu in a 5-minute period.</p>
+                <table xml:id="table-mpesa-kiosk">
+                    <title>Customers in 5 Minutes</title>
+                    <tabular halign="center" top="minor" bottom="minor" left="minor" right="minor">
+                        <row header="yes" bottom="medium"><cell><m>x</m></cell><cell>0</cell><cell>1</cell><cell>2</cell><cell>3</cell><cell>4</cell></row>
+                        <row><cell><m>P(X = x)</m></cell><cell>0.15</cell><cell>0.3</cell><cell>0.25</cell><cell><m>p</m></cell><cell>0.1</cell></row>
+                    </tabular>
+                </table>
+                <p>Find (a) <m>p</m>, (b) <m>P(X \ge 2)</m>, (c) <m>P(X \lt 2)</m>.</p>
+            </statement>
+            <solution>
+                <p>(a) The probabilities add to 1: <m>0.15 + 0.3 + 0.25 + p + 0.1 = 1</m>, so <m>0.8 + p = 1</m> and <m>p = 0.2</m>.</p>
+                <p>(b) <m>P(X \ge 2) = 0.25 + 0.2 + 0.1 = 0.55</m>.</p>
+                <p>(c) <m>P(X \lt 2) = 0.15 + 0.3 = 0.45</m>, which is also <m>1 - 0.55</m>.</p>
+            </solution>
+        </example>
+
+        <example xml:id="example-goats-sold">
+            <title>Goats Sold on Market Day</title>
+            <statement>
+                <p>A farmer in Narok sells <m>X</m> goats on a market day, with <m>P(X = 0) = 0.2</m>, <m>P(X = 1) = 0.35</m>, <m>P(X = 2) = k</m> and <m>P(X = 3) = 2k</m>. Find <m>k</m>, write out the distribution, and find <m>P(X \ge 2)</m>.</p>
+            </statement>
+            <solution>
+                <p><m>0.2 + 0.35 + k + 2k = 1</m>, so <m>3k = 0.45</m> and <m>k = 0.15</m>. The probabilities are <m>0.2</m>, <m>0.35</m>, <m>0.15</m> and <m>0.3</m>, and <m>P(X \ge 2) = 0.15 + 0.3 = 0.45</m>.</p>
+            </solution>
+        </example>
+
+        <example xml:id="example-number-of-sixes">
+            <title>Number of Sixes with Two Dice</title>
+            <statement>
+                <p>Two dice are rolled. Let <m>X</m> be the number of sixes. Find the probability distribution of <m>X</m>.</p>
+            </statement>
+            <solution>
+                <p>Use the <m>36</m>-cell grid. Only the cell (6, 6) has two sixes. The last row and the last column hold <m>11</m> cells with at least one six, so <m>10</m> cells have exactly one six. The other <m>25</m> cells have none.</p>
+                <p><m>P(X = 0) = \frac{25}{36}</m>, <m>P(X = 1) = \frac{10}{36} = \frac{5}{18}</m>, <m>P(X = 2) = \frac{1}{36}</m>. Check: <m>\frac{25 + 10 + 1}{36} = 1</m>. A tree diagram, as in <xref ref="sec-tree-diagrams"/>, gives the same answers another way.</p>
+            </solution>
+        </example>
+
+        <p>
+            <em>Probability in daily life:</em> seed companies print a germination rate on each packet, found by testing many seeds, as in <xref ref="example-testing-maize-seed"/>. What other estimates from experiments have you seen?
+        </p>
+
+        <xi:include href="../lesson-plan-templates/assessment-intro.ptx" />
+        <xi:include href="../lesson-plan-templates/checkpoint.ptx" />
+
+        <p>Type a fraction with a slash, for example <c>5/12</c>, and a decimal with a point, for example <c>0.35</c>. Give probabilities exactly: do not round.</p>
+
+        <exercise xml:id="ex-missing-probabilities-in-a-probability-distribution">
+            <!--<title></title>-->
+            <stack label="stk-missing-probabilities-in-a-probability-distribution" source="stack/top/3-statistics-and-probability/16-probability-iii/02-discrete-probability/Missing-probabilities-in-a-probability-distribution.xml"/>
+        </exercise>
+
+        <exercise xml:id="ex-recognising-a-probability-distribution">
+            <!--<title></title>-->
+            <stack label="stk-recognising-a-probability-distribution" source="stack/top/3-statistics-and-probability/16-probability-iii/02-discrete-probability/Recognising-a-probability-distribution.xml"/>
+        </exercise>
+
+        <exercises xml:id="exercises-probability-distributions">
+            <exercise xml:id="ex-five-sector-spinner">
+                <statement><p>A spinner has five equal sectors labelled 1, 2, 2, 3, 3. Write down the probability distribution of the score.</p></statement>
+                <answer><p><m>P(X = 1) = \frac{1}{5}</m>, <m>P(X = 2) = \frac{2}{5}</m>, <m>P(X = 3) = \frac{2}{5}</m></p></answer>
+            </exercise>
+            <exercise xml:id="ex-missing-probability-table">
+                <statement><p><m>X</m> takes the values 1 to 5 with probabilities <m>0.1</m>, <m>0.25</m>, <m>0.3</m>, <m>m</m> and <m>0.15</m>. Find <m>m</m>, <m>P(X \le 2)</m> and <m>P(X \gt 3)</m>.</p></statement>
+                <answer><p><m>m = 0.2</m>; <m>0.35</m>; <m>0.35</m></p></answer>
+                <solution><p><m>m = 1 - (0.1 + 0.25 + 0.3 + 0.15) = 0.2</m>. <m>P(X \le 2) = 0.1 + 0.25 = 0.35</m>. <m>P(X \gt 3) = 0.2 + 0.15 = 0.35</m>.</p></solution>
+            </exercise>
+            <exercise xml:id="ex-which-are-distributions">
+                <statement><p>Which of these are probability distributions? Give a reason for each. A: <m>0.2, 0.3, 0.5</m>. B: <m>0.4, 0.4, 0.3</m>. C: <m>0.5, -0.1, 0.6</m>. D: <m>\frac{1}{3}, \frac{1}{3}, \frac{1}{3}</m>.</p></statement>
+                <answer><p>A and D. B adds to <m>1.1</m>; C has a negative value, although it adds to <m>1</m>.</p></answer>
+            </exercise>
+            <exercise xml:id="ex-find-k-in-a-distribution">
+                <statement><p><m>P(X = x) = kx</m> for <m>x = 1, 2, 3, 4, 5</m>. Find <m>k</m> and write out the distribution.</p></statement>
+                <answer><p><m>k = \frac{1}{15}</m>; <m>\frac{1}{15}, \frac{2}{15}, \frac{1}{5}, \frac{4}{15}, \frac{1}{3}</m></p></answer>
+                <solution><p><m>k + 2k + 3k + 4k + 5k = 15k = 1</m>, so <m>k = \frac{1}{15}</m>. The probabilities are <m>\frac{1}{15}, \frac{2}{15}, \frac{3}{15} = \frac{1}{5}, \frac{4}{15}, \frac{5}{15} = \frac{1}{3}</m>.</p></solution>
+            </exercise>
+            <exercise xml:id="ex-three-coins-distribution">
+                <statement><p>Three coins are tossed. Find the probability distribution of the number of heads, and <m>P(X \ge 2)</m>.</p></statement>
+                <answer><p><m>\frac{1}{8}, \frac{3}{8}, \frac{3}{8}, \frac{1}{8}</m> for <m>x = 0, 1, 2, 3</m>; <m>P(X \ge 2) = \frac{1}{2}</m></p></answer>
+            </exercise>
+            <exercise xml:id="ex-fun-day-stall">
+                <title>Challenge: A Fun-Day Stall (Extension)</title>
+                <statement><p>At a school fun-day stall you pay Ksh <m>20</m> to spin the spinner in <xref ref="fig-spinner-distribution"/> and receive Ksh <m>10</m> times your score. Find the average amount paid out per spin in the long run. Does the stall make money?</p></statement>
+                <hint><p>Imagine <m>800</m> spins. About how many of each score would there be?</p></hint>
+                <answer><p>Ksh <m>21.25</m> per spin, so the stall loses Ksh <m>1.25</m> a spin on average.</p></answer>
+                <solution><p>In <m>800</m> spins expect about <m>300</m> ones, <m>200</m> twos, <m>200</m> threes and <m>100</m> fours. The total score is <m>300 + 400 + 600 + 400 = 1700</m>, an average of <m>1700 \div 800 = 2.125</m> per spin. The stall pays out <m>10 \times 2.125 = 21.25</m> shillings a spin on average but takes only Ksh <m>20</m>. (The average score <m>1 \times \frac{3}{8} + 2 \times \frac{1}{4} + 3 \times \frac{1}{4} + 4 \times \frac{1}{8}</m> is called the expected value of <m>X</m>.)</p></solution>
+            </exercise>
+        </exercises>
+
+        <axiom component="lesson-plan">
+            <title>Differentiation</title>
+            <table xml:id="table-differentiation-probability-distributions">
+                <title>Differentiation Strategies</title>
+                <tabular halign="left" top="minor" bottom="minor" left="minor" right="minor">
+                    <row header="yes" bottom="medium"><cell>Learner Group</cell><cell>Strategy and Learning Experience</cell></row>
+                    <row><cell>Struggling Learners (Support)</cell><cell>Give table frames with a total column. Focus on <xref ref="example-score-on-a-spinner"/> and <xref ref="example-mpesa-kiosk-customers"/>. Assign <xref ref="ex-five-sector-spinner"/> and <xref ref="ex-missing-probability-table"/>.</cell></row>
+                    <row><cell>On-Level Learners (Core)</cell><cell>Full activity and all examples. Assign <xref ref="ex-five-sector-spinner"/> to <xref ref="ex-three-coins-distribution"/>.</cell></row>
+                    <row><cell>Advanced Learners (Challenge)</cell><cell>All exercises including <xref ref="ex-fun-day-stall"/>. Extension: change the prize so that the stall makes Ksh <m>3</m> a spin on average. (Ksh <m>8</m> times the score pays out <m>8 \times 2.125 = 17</m> shillings a spin on average.)</cell></row>
+                </tabular>
+            </table>
+        </axiom>
+
+
+        <xi:include href="../lesson-plan-templates/assessment-methods.ptx" />
+        <xi:include href="../lesson-plan-templates/reflection.ptx"/>
+    </subsection>
 </section>

@@ -1,0 +1,10 @@
+<stack-static>
+    <statement><p><p>(a) Give a polynomial <m>f(x)</m> of degree at most <m>3</m> with <m>f(0) = {3}</m> and <m>\displaystyle \int_0^{ {2} } f(x)\,dx = 0</m>.</p><div><m>f(x) =</m> <fillin characters="20" name="ans1"/>  </div><p>(b) Which statement is true for every correct answer to (a)?</p><div><ol marker="(1)">
+<li>The graph of <m>y = f(x)</m> stays on one side of the <m>x</m>-axis for <m>0 \le x \le 2</m>.</li>
+<li>The graph of <m>y = f(x)</m> crosses the <m>x</m>-axis somewhere between <m>x = 0</m> and <m>x = 2</m>.</li>
+<li>The area between the graph and the <m>x</m>-axis from <m>x = 0</m> to <m>x = 2</m> is <m>0</m>.</li>
+</ol>  </div></p></statement>
+    <solution><p><p>(a) Many answers are possible. Try <m>f(x) = {3} + ax</m>: then <m>f(0) = {3}</m> and <m>\displaystyle \int_0^{ {2} } ({3} + ax)\,dx = {6} + {2}a</m>. This is <m>0</m> when <m>a = {-3}</m>, giving <m>f(x) = {3-3 x}</m>. Another answer is <m>f(x) = {3-\frac{3 x^3}{2}}</m>.</p><p>(b) If the graph stayed on one side of the <m>x</m>-axis, every strip would have the same sign and the integral could not be <m>0</m>. So the graph must cross the axis between <m>x = 0</m> and <m>x = {2}</m>: the area above the axis cancels the area below in the integral. The area itself is not <m>0</m>.</p></p></solution>
+    <answer><p><m>3-3 x</m></p></answer>
+    <answer><p><m>(2)</m></p></answer>
+</stack-static>

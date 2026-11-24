@@ -1,0 +1,8 @@
+<stack-static>
+    <statement><p><p>A cooperative in Narok must store at least <m>48</m> tonnes of wheat after the harvest. A small store holds <m>2</m> tonnes and costs Ksh <m>5000</m> to hire; a large store holds <m>7</m> tonnes and costs Ksh <m>9000</m>. Only <m>5</m> large stores are free, and there are <m>15</m> watchmen, one for each store. Let <m>x</m> be the number of small stores and <m>y</m> the number of large stores hired.</p><p>Type <m>\le</m> as <c>&lt;=</c> and <m>\ge</m> as <c>&gt;=</c>, for example <c>4x+9y&lt;=72</c>. Use the letters x and y as defined in the question.</p><p>(a) Write the inequality that makes sure there is room for enough.</p><div><fillin characters="18" name="ans1"/>  </div><p>(b) Find the cheapest whole-number plan. <m>x =</m> <fillin characters="4" name="ans2"/>  <m>y =</m> <fillin characters="4" name="ans3"/> </p><div/><p>(c) The least cost is Ksh <fillin characters="8" name="ans4"/>  </p></p></statement>
+    <solution><p><p>(a) <m>{7 y+2 x\geq 48}</m>. The other conditions are <m>y \le {5}</m>, <m>x + y \le {15}</m>, <m>x \ge 0</m>, <m>y \ge 0</m>.</p><p>(b) The cheapest corner of R for <m>C = {5000}x + {9000}y</m> is <m>{(6.5, 5)}</m>, which is not a whole-number point. With an ‘at least’ condition, round up and check: the cheapest whole-number plan is <m>x = {7}</m>, <m>y = {5}</m>.</p><p>(c) <m>C = {5000} \times {7} + {9000} \times {5} = {80000}</m>: Ksh <m>{80\,000}</m>.</p></p></solution>
+    <answer><p><m>7 y+2 x\geq 48</m></p></answer>
+    <answer><p><m>7</m></p></answer>
+    <answer><p><m>5</m></p></answer>
+    <answer><p><m>80000</m></p></answer>
+</stack-static>

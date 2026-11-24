@@ -33,7 +33,7 @@
                 <li component="lesson-plan">
                     <title>Estimated Duration</title>
                     <p>
-                        40 minutes
+                        2 lessons of 40 minutes
                     </p>
                 </li>
             </dl>
@@ -45,163 +45,461 @@
          Content summary: Forming linear inequalities (constraints) from real-life word problems.
          Suggested activity: Groups write inequalities for a school fundraiser, e.g. making at most 100 mandazi and samosas with a limited budget and time. -->
 
-    <!-- [LP] Add guidance on activity -->
+    <!-- Section notes (2026-11)
+         SLOs: (a) shared. Lessons 1.1 and 1.2 as subsections.
+         Key inquiry question: kiq-linear-programming, in the section introduction
+         Activity: as planning notes (the fundraiser: at most 100 mandazi and samosas, a budget and a minimum of samosas); lesson 1.2 adds a tailor's resource table
+         JSXGraph: none in this section (fig-lp-feasible-region is in 5.2)
+         STACK: assets/stack/top/1-numbers-and-algebra/05-linear-programming/01-forming-linear-inequalities/ -->
 
-    <!-- <axiom component="lesson-plan">
+    <introduction>
+        <question xml:id="kiq-linear-programming">
+            <p><em>How can we make the best use of money, time and materials that are limited?</em></p>
+        </question>
+        <p>
+            A Grade 12 class running a fundraiser has only so much money for ingredients and so many hours to cook. A farmer has a fixed area of land and a fixed number of workers. A transporter has a few vehicles and a load that must be moved. Each of them has limits, and each has a goal: the most profit, the least cost or the least waste. <term>Linear programming</term> is the mathematics of choosing the best plan inside such limits.
+        </p>
+        <p>
+            We work in four steps, one for each section of this chapter. First we <em>form</em> the limits as inequalities in two unknowns. Then we <em>graph</em> them, so that every possible plan is a point of one region. Next we <em>optimise</em>: we find the point of that region that does best. Finally we <em>apply</em> the answer to the real situation and check that it makes sense there. These are the steps of any mathematical model: describe the situation in symbols, work with the symbols, turn the result back into words, and check it.
+        </p>
+    </introduction>
+
+    <!-- ============================================================ Lesson 1.1 -->
+    <subsection xml:id="subsec-constraints-from-words">
+        <title>Constraints from Words</title>
+
+        <p component="lesson-plan">Upon completion of this lesson, learners will be able to:
+            <ol>
+                <li><p><alert>Know:</alert> each limit in a situation is one inequality in two unknowns; the words decide the sign and whether the boundary is included; counted things are whole numbers and not negative.</p></li>
+                <li><p><alert>Do:</alert> define <m>x</m> and <m>y</m>; write budget, capacity, minimum, strict and ratio constraints; check a plan against them.</p></li>
+                <li><p><alert>Apply:</alert> write the constraints of a class fundraiser and test plans against them.</p></li>
+            </ol>
+        </p>
+
+        <axiom component="lesson-plan">
             <title>Problem-Solving and Discovery</title>
             <dl>
-                <li>
-                    <title>Suggested Time</title>
-                    <p>
-                        XX minutes
-                    </p>
-                </li>
-                <li>
-                    <title>Objective</title>
-                    <p>
-                        XXX
-                    </p>
-                </li>
-                <li>
-                    <title>Teacher's Role</title>
-                    <p>
-                        XXX
-                    </p>
-                </li>
+                <li><title>Suggested Time</title><p>14 minutes</p></li>
+                <li><title>Objective</title><p>Learners turn the limits of a fundraiser into inequalities and test plans against them.</p></li>
+                <li><title>Teacher's Role</title><p>Put learners in groups of 3 or 4. Ask each group to propose a plan (how many mandazi, how many samosas) before writing any symbols. After part (c), ask: <q>Which words told you the sign?</q></p></li>
             </dl>
-        </axiom> -->
+        </axiom>
 
-    <!-- Add Activity -->
-
-    <!-- <activity>
-        <statement>
-        </statement>
-    </activity> -->
-
-    <!-- [LP] Add guidance on structured lesson plan-->
-
-    <!-- <axiom component="lesson-plan">
-        <title>Structured Instruction</title>
-        <p>
-            <dl>
-            <li>
-                <title>Suggested Time</title>
+        <activity xml:id="act-planning-the-fundraiser">
+            <title>Planning the Fundraiser</title>
+            <statement>
+                <p>A Grade 12 class in Machakos will cook mandazi and samosas to sell at a school fundraiser. The cooks have time to make at most <m>100</m> items altogether. Ingredients cost Ksh <m>15</m> for a mandazi and Ksh <m>35</m> for a samosa, and the class has Ksh <m>2520</m> to spend. Samosas sell fast, so the class wants at least <m>30</m> of them.</p>
                 <p>
-                    XX minutes
+                    <ol marker="(a)">
+                        <li>
+                            <p>Choose letters for the two numbers the class must decide, and say what each one means.</p>
+                            <solution component="lesson-plan"><p>Let <m>x</m> be the number of mandazi and <m>y</m> the number of samosas made for the fundraiser.</p></solution>
+                        </li>
+                        <li>
+                            <p>Write an inequality for each limit: the time, the money and the number of samosas. What else must be true of <m>x</m>?</p>
+                            <solution component="lesson-plan"><p>Time: <m>x + y \le 100</m>. Money: <m>15x + 35y \le 2520</m>. Samosas: <m>y \ge 30</m>. Also <m>x \ge 0</m>: the class cannot make a negative number of mandazi.</p></solution>
+                        </li>
+                        <li>
+                            <p>Test each plan against your inequalities. Which plans are possible? For each plan that is not, say which limit it breaks.</p>
+                            <p><ol marker="i.">
+                                <li><p><m>60</m> mandazi and <m>30</m> samosas</p></li>
+                                <li><p><m>50</m> mandazi and <m>55</m> samosas</p></li>
+                                <li><p><m>20</m> mandazi and <m>25</m> samosas</p></li>
+                                <li><p><m>30</m> mandazi and <m>70</m> samosas</p></li>
+                            </ol></p>
+                            <solution component="lesson-plan"><p>i. Possible: <m>90</m> items, Ksh <m>1950</m>, <m>30</m> samosas. ii. Not possible: <m>105</m> items breaks the time limit. iii. Not possible: fewer than <m>30</m> samosas. iv. Not possible: Ksh <m>2900</m> breaks the budget (it uses exactly <m>100</m> items, which is allowed).</p></solution>
+                        </li>
+                        <li>
+                            <p>Could the class plan to make <m>40.5</m> mandazi? Explain.</p>
+                            <solution component="lesson-plan"><p>No. Mandazi are counted, so <m>x</m> and <m>y</m> must be whole numbers.</p></solution>
+                        </li>
+                        <li>
+                            <p>Write one more limit that your own class would have, in words and as an inequality.</p>
+                            <solution component="lesson-plan"><p>Answers vary. For example, <q>the cook has one pan, so at most <m>60</m> mandazi</q>, which gives <m>x \le 60</m>. Check that each group's inequality points the right way by trying a number.</p></solution>
+                        </li>
+                    </ol>
                 </p>
-            </li>
-            <li>
-                <title>Objective</title>
-                <p>
-                    To formalize the concepts and properties learners discovered in the anchor task.
-                </p>
-            </li>
-            </dl>
-        </p>
-        <paragraphs>
-            <title>Key Takeaways &amp; Teacher Connection</title>
-            <ol>
-                <li>
-                    <p>
-                        <alert>Connecting to Learner Work:</alert> XXXX
-                    </p>
-                </li>
-            </ol>
-        </paragraphs>
-    </axiom> -->
+            </statement>
+        </activity>
 
-    <!-- Add insight / key takeaway directly related to activity / learner experience -->
+        <axiom component="lesson-plan">
+            <title>Structured Instruction</title>
+            <p>
+                <dl>
+                    <li><title>Suggested Time</title><p>8 minutes</p></li>
+                    <li><title>Objective</title><p>To formalise how a situation in words becomes a set of constraints, using the groups' fundraiser inequalities.</p></li>
+                </dl>
+            </p>
+            <paragraphs>
+                <title>Key Takeaways &amp; Teacher Connection</title>
+                <ol>
+                    <li><p><alert>Connecting to Learner Work:</alert> each limit in the fundraiser gave one inequality in part (b); these are the constraints.</p></li>
+                    <li><p>Define the unknowns in words, with the unit and the time period, before writing any inequality.</p></li>
+                    <li><p>The words decide the sign: use the list in <xref ref="insight-constraints"/>.</p></li>
+                    <li><p>Counted things are whole numbers and never negative.</p></li>
+                    <li><p>To test a plan, substitute it into every constraint; one failure rules it out.</p></li>
+                </ol>
+            </paragraphs>
+        </axiom>
 
-    <!-- <insight>
-    </insight> -->
+        <insight xml:id="insight-constraints">
+            <title>Constraints</title>
+            <p>
+                In a linear programming problem the two unknowns are always called <m>x</m> and <m>y</m>, and each is defined in words with its unit and time period, for example <q>let <m>x</m> be the number of shirts made in a week</q>. Each limit on what is possible becomes one inequality, called a <term>constraint</term>. The words of the limit decide the sign:
+            </p>
+            <p>
+                <ul>
+                    <li><p><q>at most</q>, <q>not more than</q>, <q>no more than</q>, <q>cannot exceed</q>, <q>a maximum of</q> give <m>\le</m>;</p></li>
+                    <li><p><q>at least</q>, <q>not less than</q>, <q>a minimum of</q> give <m>\ge</m>;</p></li>
+                    <li><p><q>more than</q>, <q>exceeds</q> give <m>\gt</m>;</p></li>
+                    <li><p><q>less than</q>, <q>fewer than</q> give <m>\lt</m>;</p></li>
+                    <li><p><q><m>k</m> times as many A as B</q> gives A <m>\ge k \times</m> B. Check with a number: if there are <m>10</m> of B, there must be at least <m>10k</m> of A.</p></li>
+                </ul>
+            </p>
+            <p>
+                Numbers of things cannot be negative, so every model includes the <term>non-negativity</term> constraints <m>x \ge 0</m> and <m>y \ge 0</m>. When <m>x</m> and <m>y</m> count things (people, vehicles, items, animals) we also say in words that they are whole numbers. Areas, masses and volumes need not be whole numbers.
+            </p>
+        </insight>
 
-    <!-- Add further instruction (not in a block) to develop ideas as needed -->
+        <p xml:id="p-forming-recap-core" component="core">In Grade 11 you wrote inequalities for real situations. Linear programming uses several at once: one for every limit.</p>
+        <p xml:id="p-forming-recap-essential" component="essential">You formed inequalities in two unknowns in <xref ref="ch-linear-inequalities"/>; here each situation has several of them at once.</p>
 
-    <xi:include href="../lesson-plan-templates/example-intro.ptx" />
+        <xi:include href="../lesson-plan-templates/example-intro.ptx" />
 
-    <!-- Add at least 3 examples -->
-
-    <!-- <example>
-        <statement>
-        </statement>
-        <solution>
-        </solution>
-    </example>
-
-    <example>
-        <statement>
-        </statement>
-        <solution>
-        </solution>
-    </example>
-
-    <example>
-        <statement>
-        </statement>
-        <solution>
-        </solution>
-    </example> -->
-
-    <xi:include href="../lesson-plan-templates/assessment-intro.ptx" />
-
-    <!-- If STACK questions are included, uncomment this: -->
-
-    <!-- <xi:include href="../lesson-plan-templates/checkpoint.ptx" /> -->
-
-    <!-- Add STACK exercises if made -->
-
-    <!-- Add static exercises -->
-
-    <!-- <exercises>
-        <exercise>
-            <statement>   
-
-            </statement>   
+        <example xml:id="example-seedlings">
+            <title>Seedlings for the School Compound</title>
+            <statement>
+                <p>The environment club of a school is buying tree seedlings for the school compound. Grevillea seedlings cost Ksh <m>50</m> each and avocado seedlings Ksh <m>120</m> each, and the club has Ksh <m>6000</m>. The club wants at least <m>20</m> grevillea for a windbreak, and there is space for <m>80</m> seedlings at most. Write the constraints.</p>
+            </statement>
             <solution>
+                <p>Let <m>x</m> be the number of grevillea seedlings and <m>y</m> the number of avocado seedlings bought.</p>
+                <p>
+                    <ul>
+                        <li><p>Money: the seedlings cost <m>50x + 120y</m> shillings, which is at most <m>6000</m>, so <m>50x + 120y \le 6000</m>. Dividing by <m>10</m> gives <m>5x + 12y \le 600</m>.</p></li>
+                        <li><p>At least <m>20</m> grevillea: <m>x \ge 20</m>.</p></li>
+                        <li><p>Space for at most <m>80</m>: <m>x + y \le 80</m>.</p></li>
+                        <li><p>Non-negativity: <m>y \ge 0</m>. (There is no need to write <m>x \ge 0</m> as well, since <m>x \ge 20</m>.)</p></li>
+                    </ul>
+                </p>
+                <p><m>x</m> and <m>y</m> are whole numbers, because seedlings are counted.</p>
+            </solution>
+        </example>
 
-            </solution>             
-        </exercise>        
-    </exercises> -->
+        <example xml:id="example-tuk-tuk-day">
+            <title>A Tuk-Tuk Driver's Day</title>
+            <statement>
+                <p>A tuk-tuk driver in Malindi charges Ksh <m>100</m> for a short trip and Ksh <m>350</m> for a long trip. Today he wants to earn more than Ksh <m>2000</m>, and he has fuel for fewer than <m>24</m> trips. Write the constraints, and check whether <m>10</m> short trips and <m>5</m> long trips would do.</p>
+            </statement>
+            <solution>
+                <p>Let <m>x</m> be the number of short trips and <m>y</m> the number of long trips today.</p>
+                <p>Earnings: <m>100x + 350y \gt 2000</m>, or, dividing by <m>50</m>, <m>2x + 7y \gt 40</m>. Fuel: <m>x + y \lt 24</m>. Also <m>x \ge 0</m>, <m>y \ge 0</m>, whole numbers.</p>
+                <p>For <m>x = 10</m>, <m>y = 5</m>: earnings <m>100 \times 10 + 350 \times 5 = 2750 \gt 2000</m>, and <m>10 + 5 = 15 \lt 24</m> trips. Both hold, so this plan works.</p>
+                <p>The words <q>more than</q> and <q>fewer than</q> give strict inequalities: earning exactly Ksh <m>2000</m>, or making exactly <m>24</m> trips, is not allowed.</p>
+            </solution>
+        </example>
 
-    <!-- [LP] Add information on how to differentiate  -->
+        <example xml:id="example-hotel-chicken-and-beef">
+            <title>Chicken and Beef for a Hotel</title>
+            <statement>
+                <p>A hotel in Naivasha orders beef and chicken each week. It wants at least three times as much chicken as beef, at most <m>60\,\text{kg}</m> of meat altogether, and at least <m>10\,\text{kg}</m> of beef. Write the constraints. Would <m>12\,\text{kg}</m> of beef and <m>40\,\text{kg}</m> of chicken do? Would <m>15\,\text{kg}</m> of beef and <m>40\,\text{kg}</m> of chicken?</p>
+            </statement>
+            <solution>
+                <p>Let <m>x</m> be the mass of beef and <m>y</m> the mass of chicken ordered in a week, both in kg.</p>
+                <p>Three times as much chicken as beef: <m>y \ge 3x</m>. Check with a number: with <m>x = 12\,\text{kg}</m> of beef the hotel needs at least <m>36\,\text{kg}</m> of chicken, and <m>y \ge 3 \times 12 = 36</m> says exactly that.</p>
+                <p>At most <m>60\,\text{kg}</m>: <m>x + y \le 60</m>. At least <m>10\,\text{kg}</m> of beef: <m>x \ge 10</m>. Also <m>y \ge 0</m>. Masses need not be whole numbers.</p>
+                <p>For <m>(12, 40)</m>: <m>40 \ge 36</m>, <m>12 + 40 = 52 \le 60</m>, <m>12 \ge 10</m>. All hold, so this order works.</p>
+                <p>For <m>(15, 40)</m>: <m>3 \times 15 = 45</m> and <m>40 \lt 45</m>, so there is not enough chicken. This order does not work.</p>
+            </solution>
+        </example>
 
-    <!-- <axiom component="lesson-plan">
-        <title>Differentiation</title>
+        <warning xml:id="warning-times-as-many">
+            <title>Times as Many</title>
+            <p><q>At least three times as much chicken as beef</q> is <m>y \ge 3x</m>, not <m>3y \ge x</m>. The second says the beef is at most three times the chicken, which is a different condition. Always put a number in to check: <m>10\,\text{kg}</m> of beef needs at least <m>30\,\text{kg}</m> of chicken.</p>
+        </warning>
 
-        <table>
+        <xi:include href="../lesson-plan-templates/assessment-intro.ptx" />
+        <xi:include href="../lesson-plan-templates/checkpoint.ptx" />
+
+        <p>Type <m>\le</m> as <c>&lt;=</c> and <m>\ge</m> as <c>>=</c>, for example <c>4x+9y&lt;=72</c>. Use the letters x and y as defined in the question.</p>
+
+                <exercise xml:id="ex-writing-constraints-from-a-situation">
+            <!--<title></title>-->
+            <stack label="stk-writing-constraints-from-a-situation" source="stack/top/1-numbers-and-algebra/05-linear-programming/01-forming-linear-inequalities/Writing-constraints-from-a-situation.xml"/>
+        </exercise>
+
+        <exercise xml:id="ex-finding-the-mistake-in-a-model">
+            <!--<title></title>-->
+            <stack label="stk-finding-the-mistake-in-a-model" source="stack/top/1-numbers-and-algebra/05-linear-programming/01-forming-linear-inequalities/Finding-the-mistake-in-a-model.xml"/>
+        </exercise>
+
+        <exercises xml:id="exercises-constraints-from-words">
+            <exercise xml:id="ex-words-to-symbols">
+                <statement>
+                    <p>A farmer keeps <m>x</m> goats and <m>y</m> sheep. Write each condition as an inequality.</p>
+                    <p><ol marker="(a)">
+                        <li><p>There are at most <m>45</m> animals.</p></li>
+                        <li><p>There are at least <m>8</m> goats.</p></li>
+                        <li><p>There are more than <m>12</m> sheep.</p></li>
+                        <li><p>There are fewer than <m>28</m> animals.</p></li>
+                    </ol></p>
+                </statement>
+                <answer><p>(a) <m>x + y \le 45</m>; (b) <m>x \ge 8</m>; (c) <m>y \gt 12</m>; (d) <m>x + y \lt 28</m></p></answer>
+            </exercise>
+            <exercise xml:id="ex-chama-shares-and-bonds">
+                <statement><p>A chama invests in <m>x</m> shares at Ksh <m>200</m> each and <m>y</m> bonds at Ksh <m>700</m> each. It can spend at most Ksh <m>10\,000</m>. Write this constraint in its simplest form.</p></statement>
+                <answer><p><m>200x + 700y \le 10\,000</m>, or <m>2x + 7y \le 100</m></p></answer>
+                <solution><p>The cost is <m>200x + 700y</m> shillings, at most <m>10\,000</m>: <m>200x + 700y \le 10\,000</m>. Divide by <m>100</m>: <m>2x + 7y \le 100</m>.</p></solution>
+            </exercise>
+            <exercise xml:id="ex-hardware-store-floor">
+                <statement><p>A hardware shop in Nyeri stocks <m>x</m> bags of cement of mass <m>50\,\text{kg}</m> and <m>y</m> bags of lime of mass <m>45\,\text{kg}</m>. The floor of its store can hold at most <m>4500\,\text{kg}</m>. Write the constraint.</p></statement>
+                <answer><p><m>50x + 45y \le 4500</m>, or <m>10x + 9y \le 900</m></p></answer>
+                <solution><p>The bags have mass <m>50x + 45y</m> kg, at most <m>4500</m>: <m>50x + 45y \le 4500</m>. Divide by <m>5</m>: <m>10x + 9y \le 900</m>.</p></solution>
+            </exercise>
+            <exercise xml:id="ex-kales-and-cabbages">
+                <statement><p>A farmer plants <m>x</m> kale seedlings and <m>y</m> cabbage seedlings. She wants at least four times as many kales as cabbages. Write the constraint and check it with a number.</p></statement>
+                <answer><p><m>x \ge 4y</m></p></answer>
+                <solution><p>With <m>10</m> cabbages she needs at least <m>40</m> kales, and <m>x \ge 4 \times 10 = 40</m> says this. So <m>x \ge 4y</m>.</p></solution>
+            </exercise>
+            <exercise xml:id="ex-more-maize-than-beans">
+                <statement><p>A trader in Eldoret stores <m>x</m> bags of maize and <m>y</m> bags of beans. Her store holds at most <m>60</m> bags. She wants more bags of maize than bags of beans, and at least <m>10</m> bags of beans. Write the constraints. Does the plan <m>(35, 25)</m> satisfy all of them? Does <m>(30, 30)</m>?</p></statement>
+                <answer><p><m>x + y \le 60</m>, <m>x \gt y</m>, <m>y \ge 10</m>, <m>x \ge 0</m>, with <m>x</m> and <m>y</m> whole numbers. <m>(35, 25)</m>: yes. <m>(30, 30)</m>: no</p></answer>
+                <solution><p>At most <m>60</m> bags: <m>x + y \le 60</m>. More bags of maize than bags of beans: <m>x \gt y</m>. Check with a number: with <m>20</m> bags of beans she needs <m>21</m> or more bags of maize, and <m>x \gt 20</m> says this. Because bags are counted, <m>x \gt y</m> can also be written <m>x \ge y + 1</m>. At least <m>10</m> bags of beans: <m>y \ge 10</m>. Also <m>x \ge 0</m>, and <m>x</m> and <m>y</m> are whole numbers.</p>
+                <p>For <m>(35, 25)</m>: <m>35 + 25 = 60 \le 60</m>, <m>35 \gt 25</m>, <m>25 \ge 10</m>. All hold. For <m>(30, 30)</m>: <m>30 + 30 = 60 \le 60</m> and <m>30 \ge 10</m>, but <m>30 \gt 30</m> is false, since the numbers of bags are equal. The plan is ruled out.</p></solution>
+            </exercise>
+            <exercise xml:id="ex-check-a-plan">
+                <statement><p>A model has the constraints <m>3x + 7y \le 90</m>, <m>x + y \ge 18</m> and <m>y \ge 5</m>. Does the plan <m>(12, 7)</m> satisfy all of them? Does <m>(14, 8)</m>?</p></statement>
+                <answer><p><m>(12, 7)</m>: yes. <m>(14, 8)</m>: no</p></answer>
+                <solution><p>For <m>(12, 7)</m>: <m>3 \times 12 + 7 \times 7 = 85 \le 90</m>, <m>12 + 7 = 19 \ge 18</m>, <m>7 \ge 5</m>. All hold. For <m>(14, 8)</m>: <m>3 \times 14 + 7 \times 8 = 98 \gt 90</m>, so the first constraint fails and the plan is ruled out.</p></solution>
+            </exercise>
+            <exercise xml:id="ex-between-two-totals">
+                <title>Challenge: Between Two Totals</title>
+                <statement><p>A matatu stage manager wants between <m>22</m> and <m>36</m> passengers in total, inclusive, on a trip. Let <m>x</m> be the number of adults and <m>y</m> the number of children. Write the condition as inequalities and explain why one inequality is not enough.</p></statement>
+                <hint><p><q>Between</q> has two ends.</p></hint>
+                <answer><p><m>x + y \ge 22</m> and <m>x + y \le 36</m></p></answer>
+                <solution><p>The total <m>x + y</m> must be at least <m>22</m> and at most <m>36</m>: <m>x + y \ge 22</m> and <m>x + y \le 36</m>. Each end of <q>between</q> is a separate limit, so it gives a separate constraint. With only <m>x + y \le 36</m>, a trip with <m>5</m> passengers would be allowed; with only <m>x + y \ge 22</m>, a trip with <m>50</m> would be.</p></solution>
+            </exercise>
+        </exercises>
+
+        <axiom component="lesson-plan">
             <title>Differentiation</title>
-            <tabular halign="left">
-                <row header="yes" bottom="minor">
-                    <cell>Learner Group</cell>
-                    <cell>Strategy &amp; Learning Experience</cell>
-                    <cell></cell>
-                </row>
-                <row>
-                    <cell>Struggling Learners (Support)</cell>
-                    <cell>
-                        XXXX
-                    </cell>
-                    <cell></cell>
-                </row>
-                <row>
-                    <cell>On-Level Learners (Core)</cell>
-                    <cell>
-                        <line>The core lesson activities as described above.</line>
-                    </cell>
-                    <cell></cell>
-                </row>
-                <row>
-                    <cell>Advanced Learners (Challenge)</cell>
-                    <cell>
-                        XXXX
-                    </cell>
-                    <cell></cell>
-                </row>
-            </tabular>
-        </table>
-    </axiom> -->
+            <table xml:id="table-differentiation-constraints-from-words">
+                <title>Differentiation Strategies</title>
+                <tabular halign="left" top="minor" bottom="minor" left="minor" right="minor">
+                    <row header="yes" bottom="medium"><cell>Learner Group</cell><cell>Strategy and Learning Experience</cell></row>
+                    <row><cell>Struggling Learners (Support)</cell><cell>Give the list of words and signs from <xref ref="insight-constraints"/> on a card. Work through <xref ref="example-seedlings"/> and <xref ref="example-tuk-tuk-day"/>. Assign <xref ref="ex-words-to-symbols"/> and <xref ref="ex-chama-shares-and-bonds"/>.</cell></row>
+                    <row><cell>On-Level Learners (Core)</cell><cell>Full activity and all examples. Assign <xref ref="ex-words-to-symbols"/> to <xref ref="ex-check-a-plan"/>.</cell></row>
+                    <row><cell>Advanced Learners (Challenge)</cell><cell>All exercises including <xref ref="ex-between-two-totals"/>. Extension: write three constraints of your own for a class trip, and a plan that breaks exactly one of them (one answer: a class trip to a museum sells <m>x</m> adult tickets and <m>y</m> learner tickets, with <m>x + y \le 45</m> seats on the bus, <m>400x + 150y \ge 6000</m> shillings to pay for the bus, and <m>y \ge 30</m>; the plan <m>(20, 25)</m> breaks only <m>y \ge 30</m>).</cell></row>
+                </tabular>
+            </table>
+        </axiom>
 
-    <xi:include href="../lesson-plan-templates/assessment-methods.ptx" />
+        <xi:include href="../lesson-plan-templates/assessment-methods.ptx" />
+        <xi:include href="../lesson-plan-templates/reflection.ptx"/>
+    </subsection>
 
-    <xi:include href="../lesson-plan-templates/reflection.ptx"/>
+    <!-- ============================================================ Lesson 1.2 -->
+    <subsection xml:id="subsec-building-a-linear-programming-model">
+        <title>Building a Model: Constraints and the Objective Function</title>
+
+        <p component="lesson-plan">Upon completion of this lesson, learners will be able to:
+            <ol>
+                <li><p><alert>Know:</alert> a resource table gives one constraint for each row; the objective function is the quantity to make largest or smallest; a model is the variables, the constraints and the objective.</p></li>
+                <li><p><alert>Do:</alert> read a table into inequalities; write the objective function <m>P</m> or <m>C</m>.</p></li>
+                <li><p><alert>Apply:</alert> build models for a tailor, a jua kali workshop and a tour company.</p></li>
+            </ol>
+        </p>
+
+        <axiom component="lesson-plan">
+            <title>Problem-Solving and Discovery</title>
+            <dl>
+                <li><title>Suggested Time</title><p>14 minutes</p></li>
+                <li><title>Objective</title><p>Learners build a full model from a table and see that the profit expression is not a constraint.</p></li>
+                <li><title>Teacher's Role</title><p>Copy the table onto the board. Ask: <q>Which number is the limit in each row?</q> After part (c), ask whether the profit row gives an inequality.</p></li>
+            </dl>
+        </axiom>
+
+        <activity xml:id="act-the-tailors-week">
+            <title>The Tailor's Week</title>
+            <statement>
+                <p>A tailor in Kisumu makes school shirts and dresses. The table shows what each garment needs, what she has in a week, and the profit on each.</p>
+                <table xml:id="table-the-tailors-week">
+                    <title>Resources for the Tailor's Week</title>
+                    <tabular halign="center" top="minor" bottom="minor" left="minor" right="minor">
+                        <row header="yes" bottom="medium"><cell>Resource</cell><cell>One shirt</cell><cell>One dress</cell><cell>Available</cell></row>
+                        <row><cell>Cloth (m)</cell><cell>1.5</cell><cell>3.5</cell><cell>63</cell></row>
+                        <row><cell>Sewing machine time (h)</cell><cell>1</cell><cell>6</cell><cell>64</cell></row>
+                        <row><cell>Profit (Ksh)</cell><cell>300</cell><cell>800</cell><cell></cell></row>
+                    </tabular>
+                </table>
+                <p>Let <m>x</m> be the number of shirts and <m>y</m> the number of dresses she makes in a week.</p>
+                <p>
+                    <ol marker="(a)">
+                        <li>
+                            <p>Write the cloth constraint. Remove the decimals.</p>
+                            <solution component="lesson-plan"><p><m>1.5x + 3.5y \le 63</m>; doubling, <m>3x + 7y \le 126</m>.</p></solution>
+                        </li>
+                        <li>
+                            <p>Write the machine-time constraint.</p>
+                            <solution component="lesson-plan"><p><m>x + 6y \le 64</m>.</p></solution>
+                        </li>
+                        <li>
+                            <p>Write an expression for her weekly profit <m>P</m> in shillings.</p>
+                            <solution component="lesson-plan"><p><m>P = 300x + 800y</m>. There is no limit on profit, so this is not an inequality.</p></solution>
+                        </li>
+                        <li>
+                            <p>Can she make <m>30</m> shirts and <m>5</m> dresses? What profit would that give? Can she make <m>20</m> shirts and <m>8</m> dresses?</p>
+                            <solution component="lesson-plan"><p><m>(30, 5)</m>: cloth <m>90 + 35 = 125 \le 126</m>, machine <m>30 + 30 = 60 \le 64</m>, so yes, with <m>P = 9000 + 4000 = 13\,000</m>. <m>(20, 8)</m>: machine <m>20 + 48 = 68 \gt 64</m>, so no.</p></solution>
+                        </li>
+                        <li>
+                            <p>Which earns more, <m>30</m> shirts and <m>5</m> dresses, or <m>28</m> shirts and <m>6</m> dresses?</p>
+                            <solution component="lesson-plan"><p><m>(28, 6)</m> is possible (cloth <m>126</m>, machine <m>64</m>) and gives <m>P = 8400 + 4800 = 13\,200</m>, more than Ksh <m>13\,000</m>. <xref ref="sec-optimisation-of-linear-inequalities"/> shows how to find the best plan.</p></solution>
+                        </li>
+                    </ol>
+                </p>
+            </statement>
+        </activity>
+
+        <axiom component="lesson-plan">
+            <title>Structured Instruction</title>
+            <p>
+                <dl>
+                    <li><title>Suggested Time</title><p>8 minutes</p></li>
+                    <li><title>Objective</title><p>To name the parts of a linear programming model, using the tailor's table.</p></li>
+                </dl>
+            </p>
+            <paragraphs>
+                <title>Key Takeaways &amp; Teacher Connection</title>
+                <ol>
+                    <li><p><alert>Connecting to Learner Work:</alert> the cloth and machine rows of the table gave the two constraints in parts (a) and (b).</p></li>
+                    <li><p>Each resource row gives one constraint; the <q>Available</q> column is its right-hand side.</p></li>
+                    <li><p>The profit row gives the objective function <m>P</m>, which is not a constraint.</p></li>
+                    <li><p>A model is complete when it has the variables in words, every constraint (with <m>x \ge 0</m>, <m>y \ge 0</m> and whole numbers where needed) and the objective with <q>maximise</q> or <q>minimise</q>.</p></li>
+                </ol>
+            </paragraphs>
+        </axiom>
+
+        <insight xml:id="insight-linear-programming-model">
+            <title>A Linear Programming Model</title>
+            <p>
+                The unknowns <m>x</m> and <m>y</m> are the <term>decision variables</term>: the numbers we are free to choose. The quantity we want to make as large or as small as possible, written in terms of <m>x</m> and <m>y</m>, is the <term>objective function</term>: <m>P = ax + by</m> for a profit, <m>C = ax + by</m> for a cost. A <term>linear programming model</term> is the decision variables, the constraints and the objective function, with the word <q>maximise</q> or <q>minimise</q>.
+            </p>
+            <p>
+                A resource table has one row for each resource, one column for each product and a column <q>Available</q>. Each resource row gives one constraint. The model is called <em>linear</em> because every expression in it has the form <m>ax + by</m>.
+            </p>
+        </insight>
+
+        <xi:include href="../lesson-plan-templates/example-intro.ptx" />
+
+        <example xml:id="example-metal-boxes-and-jikos">
+            <title>Metal Boxes and Jikos</title>
+            <statement>
+                <p>A jua kali workshop in Kamukunji makes metal boxes and jikos. A box needs <m>6</m> hours of welding and a jiko <m>1</m> hour; the welders have <m>96</m> hours a week. Each item needs <m>1</m> hour of painting, and the painter has <m>26</m> hours a week. The profit is Ksh <m>450</m> on a box and Ksh <m>250</m> on a jiko. Write a linear programming model for the week.</p>
+            </statement>
+            <solution>
+                <p>Let <m>x</m> be the number of metal boxes and <m>y</m> the number of jikos made in a week.</p>
+                <table xml:id="table-metal-boxes-and-jikos">
+                    <title>Resources for the Workshop</title>
+                    <tabular halign="center" top="minor" bottom="minor" left="minor" right="minor">
+                        <row header="yes" bottom="medium"><cell>Resource</cell><cell>One box</cell><cell>One jiko</cell><cell>Available</cell></row>
+                        <row><cell>Welding (h)</cell><cell>6</cell><cell>1</cell><cell>96</cell></row>
+                        <row><cell>Painting (h)</cell><cell>1</cell><cell>1</cell><cell>26</cell></row>
+                        <row><cell>Profit (Ksh)</cell><cell>450</cell><cell>250</cell><cell></cell></row>
+                    </tabular>
+                </table>
+                <p>Maximise <m>P = 450x + 250y</m> subject to
+                    <md>
+                        <mrow>6x + y \amp \le 96</mrow>
+                        <mrow>x + y \amp \le 26</mrow>
+                        <mrow>x \ge 0,\quad y \amp \ge 0</mrow>
+                    </md>
+                with <m>x</m> and <m>y</m> whole numbers.</p>
+            </solution>
+        </example>
+
+        <example xml:id="example-tour-to-shimba-hills">
+            <title>A Night at Shimba Hills</title>
+            <statement>
+                <p>A tour company in Mombasa must find beds for <m>160</m> tourists for a night at Shimba Hills. A banda sleeps <m>7</m> and costs Ksh <m>9000</m> a night; a dormitory block sleeps <m>40</m> and costs Ksh <m>30\,000</m> a night. Only <m>2</m> dormitory blocks are free, and the lodge has <m>14</m> caretakers, one for each banda or block that is booked. Write a model for the cheapest way to book the beds.</p>
+            </statement>
+            <solution>
+                <p>Let <m>x</m> be the number of bandas and <m>y</m> the number of dormitory blocks booked.</p>
+                <p>Beds for at least <m>160</m>: <m>7x + 40y \ge 160</m>. At most <m>2</m> dormitory blocks: <m>y \le 2</m>. One caretaker for each banda or block: <m>x + y \le 14</m>. Also <m>x \ge 0</m>, <m>y \ge 0</m>, whole numbers.</p>
+                <p>Minimise <m>C = 9000x + 30\,000y</m>.</p>
+                <p>In a cost problem the key constraint is usually <q>at least</q>: the company must give everyone a bed, and it wants to spend as little as it can while doing so.</p>
+            </solution>
+        </example>
+
+        <example xml:id="example-model-to-words">
+            <title>From a Model to Words</title>
+            <statement>
+                <p>A farmer takes <m>x</m> crates of mangoes and <m>y</m> crates of oranges to market on a pickup. Her model is
+                    <md>
+                        <mrow>x + y \amp \le 32</mrow>
+                        <mrow>y \amp \ge 3x</mrow>
+                        <mrow>P \amp = 50x + 80y</mrow>
+                    </md>
+                with <m>x \ge 0</m> and <m>y \ge 0</m> whole numbers. Say in words what each line means.</p>
+            </statement>
+            <solution>
+                <p><m>x + y \le 32</m>: the pickup carries at most <m>32</m> crates.</p>
+                <p><m>y \ge 3x</m>: she takes at least three times as many crates of oranges as crates of mangoes (with <m>4</m> crates of mangoes, at least <m>12</m> of oranges).</p>
+                <p><m>P = 50x + 80y</m>: her profit in shillings, Ksh <m>50</m> on a crate of mangoes and Ksh <m>80</m> on a crate of oranges. It is the objective function, which she wants to maximise.</p>
+            </solution>
+        </example>
+
+        <xi:include href="../lesson-plan-templates/assessment-intro.ptx" />
+        <xi:include href="../lesson-plan-templates/checkpoint.ptx" />
+
+        <p>Type <m>\le</m> as <c>&lt;=</c> and <m>\ge</m> as <c>>=</c>, for example <c>4x+9y&lt;=72</c>. Use the letters x and y as defined in the question.</p>
+
+                <exercise xml:id="ex-constraints-and-objective-from-a-table">
+            <!--<title></title>-->
+            <stack label="stk-constraints-and-objective-from-a-table" source="stack/top/1-numbers-and-algebra/05-linear-programming/01-forming-linear-inequalities/Constraints-and-objective-from-a-table.xml"/>
+        </exercise>
+
+        <exercises xml:id="exercises-building-a-model">
+            <exercise xml:id="ex-candle-maker-model">
+                <statement><p>A candle maker in Nyeri makes boxes of plain candles and boxes of scented candles. A box of plain candles needs <m>5\,\text{kg}</m> of wax and <m>1</m> hour of work; a box of scented candles needs <m>6\,\text{kg}</m> of wax and <m>7</m> hours. Each week she has <m>136\,\text{kg}</m> of wax and <m>120</m> hours. The profit is Ksh <m>300</m> on a plain box and Ksh <m>500</m> on a scented box. Write the model.</p></statement>
+                <answer><p>Maximise <m>P = 300x + 500y</m> subject to <m>5x + 6y \le 136</m>, <m>x + 7y \le 120</m>, <m>x \ge 0</m>, <m>y \ge 0</m>, whole numbers</p></answer>
+                <solution><p>Let <m>x</m> be the number of boxes of plain candles and <m>y</m> the number of boxes of scented candles made in a week. Wax: <m>5x + 6y \le 136</m>. Time: <m>x + 7y \le 120</m>. Also <m>x \ge 0</m>, <m>y \ge 0</m>, whole numbers. Maximise <m>P = 300x + 500y</m>.</p></solution>
+            </exercise>
+            <exercise xml:id="ex-greenhouse-model">
+                <statement><p>A greenhouse farmer in Naivasha grows tomatoes and capsicum in beds. A bed of tomatoes needs <m>400\,\text{litres}</m> of water and <m>3</m> hours of labour a week; a bed of capsicum needs <m>700\,\text{litres}</m> and <m>8</m> hours. She has <m>7000\,\text{litres}</m> of water and <m>72</m> hours of labour a week. The profit is Ksh <m>2000</m> a bed of tomatoes and Ksh <m>4500</m> a bed of capsicum. Write the model in its simplest form.</p></statement>
+                <answer><p>Maximise <m>P = 2000x + 4500y</m> subject to <m>4x + 7y \le 70</m>, <m>3x + 8y \le 72</m>, <m>x \ge 0</m>, <m>y \ge 0</m>, whole numbers</p></answer>
+                <solution><p>Let <m>x</m> be the number of beds of tomatoes and <m>y</m> the number of beds of capsicum. Water: <m>400x + 700y \le 7000</m>; dividing by <m>100</m>, <m>4x + 7y \le 70</m>. Labour: <m>3x + 8y \le 72</m>. Also <m>x \ge 0</m>, <m>y \ge 0</m>, whole numbers. Maximise <m>P = 2000x + 4500y</m>.</p></solution>
+            </exercise>
+            <exercise xml:id="ex-tents-model">
+                <statement><p>For a prize-giving day a school hires large tents that seat <m>70</m> at Ksh <m>6000</m> each and small tents that seat <m>30</m> at Ksh <m>2400</m> each. It needs at least <m>350</m> seats, and the field has room for at most <m>10</m> tents. Write a model for the cheapest choice.</p></statement>
+                <answer><p>Minimise <m>C = 6000x + 2400y</m> subject to <m>7x + 3y \ge 35</m>, <m>x + y \le 10</m>, <m>x \ge 0</m>, <m>y \ge 0</m>, whole numbers</p></answer>
+                <solution><p>Let <m>x</m> be the number of large tents and <m>y</m> the number of small tents. Seats: <m>70x + 30y \ge 350</m>; dividing by <m>10</m>, <m>7x + 3y \ge 35</m>. Field: <m>x + y \le 10</m>. Also <m>x \ge 0</m>, <m>y \ge 0</m>, whole numbers. Minimise <m>C = 6000x + 2400y</m>.</p></solution>
+            </exercise>
+            <exercise xml:id="ex-what-the-model-says">
+                <statement><p>The constraint <m>x + 6y \le 64</m> and the objective <m>P = 300x + 800y</m> come from <xref ref="act-the-tailors-week"/>. What do the numbers <m>6</m>, <m>64</m> and <m>800</m> mean?</p></statement>
+                <answer><p><m>6</m>: machine hours for one dress; <m>64</m>: machine hours available in a week; <m>800</m>: profit in shillings on one dress</p></answer>
+            </exercise>
+            <exercise xml:id="ex-model-with-three-resources">
+                <title>Challenge: A Third Resource</title>
+                <statement><p>The tailor of <xref ref="act-the-tailors-week"/> finds she has thread for at most <m>40</m> garments a week. Write the new constraint. Are the plans <m>(28, 6)</m> and <m>(30, 5)</m> still possible?</p></statement>
+                <hint><p>Check every constraint, old and new.</p></hint>
+                <answer><p><m>x + y \le 40</m>; both are still possible</p></answer>
+                <solution><p>Thread: <m>x + y \le 40</m>. <m>(28, 6)</m>: <m>34 \le 40</m>, and it already met the cloth and machine constraints, so it is still possible. <m>(30, 5)</m>: <m>35 \le 40</m>, cloth <m>125 \le 126</m> and machine <m>60 \le 64</m>, so it is still possible. The new constraint does not change the best plan here.</p></solution>
+            </exercise>
+        </exercises>
+
+        <axiom component="lesson-plan">
+            <title>Differentiation</title>
+            <table xml:id="table-differentiation-building-a-model">
+                <title>Differentiation Strategies</title>
+                <tabular halign="left" top="minor" bottom="minor" left="minor" right="minor">
+                    <row header="yes" bottom="medium"><cell>Learner Group</cell><cell>Strategy and Learning Experience</cell></row>
+                    <row><cell>Struggling Learners (Support)</cell><cell>Give a blank resource table (rows for resources and profit, columns for the two products and <q>Available</q>). Work through <xref ref="example-metal-boxes-and-jikos"/> and <xref ref="example-tour-to-shimba-hills"/>. Assign <xref ref="ex-candle-maker-model"/> and <xref ref="ex-what-the-model-says"/>.</cell></row>
+                    <row><cell>On-Level Learners (Core)</cell><cell>Full activity and all examples. Assign <xref ref="ex-candle-maker-model"/> to <xref ref="ex-what-the-model-says"/>.</cell></row>
+                    <row><cell>Advanced Learners (Challenge)</cell><cell>All exercises including <xref ref="ex-model-with-three-resources"/>. Extension: write a word problem whose model is <m>5x + 6y \le 60</m>, <m>y \ge 2</m>, maximise <m>P = 40x + 70y</m> (one answer: a carpenter makes <m>x</m> stools and <m>y</m> chairs a week; a stool uses <m>5</m> planks and a chair <m>6</m>, with <m>60</m> planks in stock; a customer has ordered at least <m>2</m> chairs; the profit is Ksh <m>40</m> on a stool and Ksh <m>70</m> on a chair).</cell></row>
+                </tabular>
+            </table>
+        </axiom>
+
+        <xi:include href="../lesson-plan-templates/assessment-methods.ptx" />
+        <xi:include href="../lesson-plan-templates/reflection.ptx"/>
+    </subsection>
 </section>

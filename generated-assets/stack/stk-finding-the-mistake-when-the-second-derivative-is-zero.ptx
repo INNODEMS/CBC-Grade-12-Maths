@@ -1,0 +1,13 @@
+<stack-static>
+    <statement><p><p>Kamau studies the curve <m>y = {x^4-8 x^3+24 x^2-32 x+21}</m>. He writes:</p><p style="margin-left:2em;"><m>\dfrac{dy}{dx} = {4 x^3-24 x^2+48 x-32}</m>, which is <m>0</m> at <m>x = {2}</m>.<br/><m>\dfrac{d^2y}{dx^2} = {12 x^2-48 x+48}</m>, which is also <m>0</m> at <m>x = {2}</m>.<br/>So the stationary point <m>({2}, {5})</m> is a point of inflection.</p><p>(a) Find <m>\dfrac{dy}{dx}</m> at <m>x = {1}</m> and at <m>x = {3}</m>.</p><div>At <m>x = {1}</m>: <fillin characters="5" name="ans1"/>  </div><div>At <m>x = {3}</m>: <fillin characters="5" name="ans2"/>  </div><p>(b) The stationary point at <m>x = {2}</m> is a [ maximum point | minimum point | point of inflection ]  </p><p>(c) What is wrong with Kamau's reasoning?</p><div><ol marker="(1)">
+<li>He should have substituted x = 2 into the equation of the curve, not into the second derivative.</li>
+<li>When the second derivative is 0, the second-derivative test gives no conclusion, so he must test the gradient either side of x = 2.</li>
+<li>Nothing: when the second derivative is 0, the point is always a point of inflection.</li>
+<li>The second derivative can never be 0 at a stationary point, so he has made an arithmetic slip.</li>
+</ol>  </div></p></statement>
+    <solution><p><p>When <m>\dfrac{d^2y}{dx^2} = 0</m> at a stationary point the test is silent, not a verdict. For example, <m>y = x^4</m> and <m>y = x^3</m> both have <m>\dfrac{d^2y}{dx^2} = 0</m> at <m>x = 0</m>: the first has a minimum point there and the second a point of inflection. So test the gradient either side.</p><p>(a) At <m>x = {1}</m>, <m>\dfrac{dy}{dx} = {-4}</m>; at <m>x = {3}</m>, <m>\dfrac{dy}{dx} = {4}</m>.</p><p>(b) The gradient is negative then positive, so the stationary point is a minimum point.</p><p>(c) Kamau's calculations are right, but a zero second derivative gives no conclusion. He should have tested the gradient either side of <m>x = {2}</m>.</p></p></solution>
+    <answer><p><m>-4</m></p></answer>
+    <answer><p><m>4</m></p></answer>
+    <answer><p>minimum point</p></answer>
+    <answer><p><m>(2)</m></p></answer>
+</stack-static>

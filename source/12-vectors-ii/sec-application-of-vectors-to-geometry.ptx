@@ -46,161 +46,324 @@
          Suggested activity: Learners use vectors to show that the line joining the midpoints of two sides of a triangle is parallel to the third side and half its length.
          Interactive (JSXGraph): Draggable triangle with midpoints joined; the vector relationship to the third side stays true as the triangle changes. -->
 
-    <!-- [LP] Add guidance on activity -->
+    <!-- Section notes (2026-11)
+         SLOs: Core 2.6 (h); (i) reflect on the use of vectors placed here (paragraphs "Vectors Around Us")
+         Activity: as planning notes (the midpoint theorem by vectors) | added: part (f), points one third of the way from O
+         JSXGraph: fig-midpoint-theorem-interactive (assets/jsxgraph/midpoint-theorem.js), as planning notes
+         STACK: assets/stack/top/2-measurement-and-geometry/12-vectors-ii/09-application-of-vectors-to-geometry/ -->
 
-    <!-- <axiom component="lesson-plan">
-            <title>Problem-Solving and Discovery</title>
-            <dl>
-                <li>
-                    <title>Suggested Time</title>
-                    <p>
-                        XX minutes
-                    </p>
-                </li>
-                <li>
-                    <title>Objective</title>
-                    <p>
-                        XXX
-                    </p>
-                </li>
-                <li>
-                    <title>Teacher's Role</title>
-                    <p>
-                        XXX
-                    </p>
-                </li>
-            </dl>
-        </axiom> -->
+    <p component="lesson-plan">Upon completion of this lesson, learners will be able to:
+        <ol>
+            <li><p><alert>Know:</alert> how to describe a figure with two non-parallel base vectors; how parallel and collinear proofs work; when coefficients may be equated.</p></li>
+            <li><p><alert>Do:</alert> prove the midpoint theorem and related results with vectors, and find where two lines in a triangle meet.</p></li>
+            <li><p><alert>Apply:</alert> reason about paths in a triangular plot, and reflect on where vectors are used.</p></li>
+        </ol>
+    </p>
 
-    <!-- Add Activity -->
+    <axiom component="lesson-plan">
+        <title>Problem-Solving and Discovery</title>
+        <dl>
+            <li><title>Suggested Time</title><p>14 minutes</p></li>
+            <li><title>Objective</title><p>Learners prove the midpoint theorem with vectors and check it by measuring their own triangle.</p></li>
+            <li><title>Teacher's Role</title><p>Each learner draws a different triangle. After part (e), collect results from around the class: every learner's <m>MN</m> is half of their <m>AB</m>. Use this to show the class that one vector proof covers all their triangles at once.</p></li>
+        </dl>
+    </axiom>
 
-    <!-- <activity>
+    <activity xml:id="act-midpoint-theorem">
+        <title>The Midpoint Theorem</title>
         <statement>
+            <p>Draw any triangle <m>OAB</m> and let <m>\overrightarrow{OA} = \mathbf{a}</m> and <m>\overrightarrow{OB} = \mathbf{b}</m>. Mark <m>M</m>, the midpoint of <m>OA</m>, and <m>N</m>, the midpoint of <m>OB</m>.</p>
+            <figure xml:id="fig-midpoint-theorem">
+                <caption>Triangle <m>OAB</m> with <m>M</m> and <m>N</m> the midpoints of <m>OA</m> and <m>OB</m>.</caption>
+                <image width="55%">
+                    <shortdescription>Triangle OAB with arrow a from O to A and arrow b from O to B. M is the midpoint of OA and N the midpoint of OB. The segment MN is parallel to AB and half as long.</shortdescription>
+                    <latex-image>
+\begin{tikzpicture}[scale=1.1, >=stealth]
+\coordinate (O) at (0,0); \coordinate (A) at (1.5,3.5); \coordinate (B) at (5,0.5);
+\coordinate (M) at (0.75,1.75); \coordinate (N) at (2.5,0.25);
+\draw[thick,->] (O) -- node[left] {$\mathbf{a}$} (A);
+\draw[thick,->] (O) -- node[below] {$\mathbf{b}$} (B);
+\draw[thick] (A) -- (B);
+\draw[thick,dashed] (M) -- (N);
+\foreach \p/\n/\pos in {O/O/below left, A/A/above, B/B/right, M/M/left, N/N/below}
+  {\fill (\p) circle (1.5pt) node[\pos] {$\n$};}
+\end{tikzpicture}
+                    </latex-image>
+                </image>
+            </figure>
+            <p>
+                <ol marker="(a)">
+                    <li>
+                        <p>Write <m>\overrightarrow{OM}</m> and <m>\overrightarrow{ON}</m> in terms of <m>\mathbf{a}</m> and <m>\mathbf{b}</m>.</p>
+                        <solution component="lesson-plan"><p><m>\overrightarrow{OM} = \frac{1}{2}\mathbf{a}</m>, <m>\overrightarrow{ON} = \frac{1}{2}\mathbf{b}</m>.</p></solution>
+                    </li>
+                    <li>
+                        <p>Find <m>\overrightarrow{MN}</m>.</p>
+                        <solution component="lesson-plan"><p><m>\overrightarrow{MN} = \overrightarrow{ON} - \overrightarrow{OM} = \frac{1}{2}\mathbf{b} - \frac{1}{2}\mathbf{a}</m>.</p></solution>
+                    </li>
+                    <li>
+                        <p>Find <m>\overrightarrow{AB}</m>.</p>
+                        <solution component="lesson-plan"><p><m>\overrightarrow{AB} = \mathbf{b} - \mathbf{a}</m>.</p></solution>
+                    </li>
+                    <li>
+                        <p>What do (b) and (c) tell you about the lines <m>MN</m> and <m>AB</m>?</p>
+                        <solution component="lesson-plan"><p><m>\overrightarrow{MN} = \frac{1}{2}(\mathbf{b} - \mathbf{a}) = \frac{1}{2}\overrightarrow{AB}</m>: <m>MN</m> is parallel to <m>AB</m> and half as long.</p></solution>
+                    </li>
+                    <li>
+                        <p>Measure <m>MN</m> and <m>AB</m> in your own triangle. Does your drawing agree?</p>
+                        <solution component="lesson-plan"><p>Every triangle gives <m>MN = \frac{1}{2}AB</m>, up to measuring error, with <m>MN</m> parallel to <m>AB</m>.</p></solution>
+                    </li>
+                    <li>
+                        <p>Now let <m>P</m> and <m>Q</m> be one third of the way from <m>O</m> to <m>A</m> and from <m>O</m> to <m>B</m>. What is <m>\overrightarrow{PQ}</m>?</p>
+                        <solution component="lesson-plan"><p><m>\overrightarrow{PQ} = \frac{1}{3}\mathbf{b} - \frac{1}{3}\mathbf{a} = \frac{1}{3}\overrightarrow{AB}</m>: parallel to <m>AB</m> and a third as long.</p></solution>
+                    </li>
+                </ol>
+            </p>
         </statement>
-    </activity> -->
+    </activity>
 
-    <!-- [LP] Add guidance on structured lesson plan-->
-
-    <!-- <axiom component="lesson-plan">
+    <axiom component="lesson-plan">
         <title>Structured Instruction</title>
         <p>
             <dl>
-            <li>
-                <title>Suggested Time</title>
-                <p>
-                    XX minutes
-                </p>
-            </li>
-            <li>
-                <title>Objective</title>
-                <p>
-                    To formalize the concepts and properties learners discovered in the anchor task.
-                </p>
-            </li>
+                <li><title>Suggested Time</title><p>8 minutes</p></li>
+                <li><title>Objective</title><p>To formalise the strategy for vector proofs in geometry and the rule for equating coefficients.</p></li>
             </dl>
         </p>
         <paragraphs>
             <title>Key Takeaways &amp; Teacher Connection</title>
             <ol>
-                <li>
-                    <p>
-                        <alert>Connecting to Learner Work:</alert> XXXX
-                    </p>
-                </li>
+                <li><p><alert>Connecting to Learner Work:</alert> the activity chose two base vectors <m>\mathbf{a}</m> and <m>\mathbf{b}</m> and wrote every other vector in terms of them.</p></li>
+                <li><p><q>Parallel</q> means one vector is a scalar multiple of the other; <q>collinear</q> adds a shared point.</p></li>
+                <li><p>Equate coefficients only when the base vectors are not zero and not parallel. A proof is a clear argument written for someone else: state which vectors are parallel, and why.</p></li>
             </ol>
         </paragraphs>
-    </axiom> -->
+    </axiom>
 
-    <!-- Add insight / key takeaway directly related to activity / learner experience -->
+    <insight xml:id="insight-proving-with-vectors">
+        <title>Proving with Vectors</title>
+        <p>
+            To prove a result in geometry with vectors:
+            <ol>
+                <li><p>Choose two base vectors, such as <m>\mathbf{a} = \overrightarrow{OA}</m> and <m>\mathbf{b} = \overrightarrow{OB}</m>, that are not parallel.</p></li>
+                <li><p>Write every vector you need in terms of <m>\mathbf{a}</m> and <m>\mathbf{b}</m>, using ratios along lines and <q>end minus start</q>.</p></li>
+                <li><p>To show two lines are parallel, show one vector is a number times the other. To show points are collinear, also show the vectors share a point.</p></li>
+            </ol>
+        </p>
+        <p>
+            <term>Equating coefficients.</term> If <m>\mathbf{a}</m> and <m>\mathbf{b}</m> are not zero and not parallel, and
+            <md>h\mathbf{a} + k\mathbf{b} = p\mathbf{a} + q\mathbf{b},</md>
+            then <m>h = p</m> and <m>k = q</m>. The reason: otherwise <m>(h - p)\mathbf{a} = (q - k)\mathbf{b}</m> would make <m>\mathbf{a}</m> and <m>\mathbf{b}</m> parallel. Since <m>\mathbf{a}</m> and <m>\mathbf{b}</m> point in different directions, neither can make up for the other.
+        </p>
+    </insight>
 
-    <!-- <insight>
-    </insight> -->
-
-    <!-- Add further instruction (not in a block) to develop ideas as needed -->
+    <figure xml:id="fig-midpoint-theorem-interactive">
+        <caption>Drag <m>O</m>, <m>A</m> and <m>B</m> to change the triangle. <m>M</m> and <m>N</m> stay at the midpoints of <m>OA</m> and <m>OB</m>, and the text compares <m>MN</m> with <m>AB</m>.</caption>
+        <interactive xml:id="interactive-midpoint-theorem" platform="jsxgraph" width="90%" aspect="16:12" source="jsxgraph/midpoint-theorem.js">
+            <slate xml:id="jsxgraph-midpoint-theorem" surface="jsxboard" aspect="16:12"/>
+            <instructions>
+                <p>
+                    <ul>
+                        <li><p>Drag <alert>A</alert> and <alert>B</alert> to make a long thin triangle. Is <m>MN</m> still half of <m>AB</m>?</p></li>
+                        <li><p>Drag <alert>O</alert> to the other side of <m>AB</m>. Do the vectors <m>\overrightarrow{MN}</m> and <m>\overrightarrow{AB}</m> still point the same way?</p></li>
+                    </ul>
+                </p>
+            </instructions>
+        </interactive>
+    </figure>
 
     <xi:include href="../lesson-plan-templates/example-intro.ptx" />
 
-    <!-- Add at least 3 examples -->
-
-    <!-- <example>
+    <example xml:id="example-parallelogram-diagonals">
+        <title>Diagonals of a Parallelogram</title>
         <statement>
+            <p><m>OABC</m> is a parallelogram with <m>\overrightarrow{OA} = \mathbf{a}</m> and <m>\overrightarrow{OC} = \mathbf{c}</m>. Prove that its diagonals <m>OB</m> and <m>AC</m> bisect each other.</p>
+            <figure xml:id="fig-parallelogram-diagonals">
+                <caption>Parallelogram <m>OABC</m> with diagonals <m>OB</m> and <m>AC</m>.</caption>
+                <image width="55%">
+                    <shortdescription>Parallelogram OABC with OA = a along the bottom and OC = c up the left side. The diagonals OB and AC cross at their common midpoint.</shortdescription>
+                    <latex-image>
+\begin{tikzpicture}[scale=1.1, >=stealth]
+\coordinate (O) at (0,0); \coordinate (A) at (4,0.5); \coordinate (C) at (1.2,2.5); \coordinate (B) at (5.2,3);
+\draw[thick,->] (O) -- node[below] {$\mathbf{a}$} (A);
+\draw[thick,->] (O) -- node[left] {$\mathbf{c}$} (C);
+\draw[thick] (A) -- (B) -- (C);
+\draw[dashed] (O) -- (B); \draw[dashed] (A) -- (C);
+\foreach \p/\n/\pos in {O/O/below left, A/A/below right, B/B/above right, C/C/above left}
+  {\fill (\p) circle (1.5pt) node[\pos] {$\n$};}
+\fill (2.6,1.5) circle (1.5pt);
+\end{tikzpicture}
+                    </latex-image>
+                </image>
+            </figure>
         </statement>
         <solution>
+            <p>
+                <m>\overrightarrow{OB} = \overrightarrow{OA} + \overrightarrow{AB} = \mathbf{a} + \mathbf{c}</m>, since <m>\overrightarrow{AB} = \overrightarrow{OC}</m>. So the midpoint of <m>OB</m> has position vector <m>\frac{1}{2}(\mathbf{a} + \mathbf{c})</m>.
+            </p>
+            <p>
+                <m>\overrightarrow{AC} = \mathbf{c} - \mathbf{a}</m>, so the midpoint of <m>AC</m> has position vector <m>\mathbf{a} + \frac{1}{2}(\mathbf{c} - \mathbf{a}) = \frac{1}{2}(\mathbf{a} + \mathbf{c})</m>.
+            </p>
+            <p>
+                The two midpoints have the same position vector, so they are the same point: the diagonals meet at the midpoint of each, and bisect each other.
+            </p>
         </solution>
     </example>
 
-    <example>
+    <example xml:id="example-line-parallel-to-a-side">
+        <title>A Line Parallel to a Side</title>
         <statement>
+            <p>In triangle <m>OAB</m>, <m>\overrightarrow{OA} = \mathbf{a}</m> and <m>\overrightarrow{OB} = \mathbf{b}</m>. <m>P</m> is on <m>OA</m> with <m>OP : PA = 2 : 1</m> and <m>Q</m> is on <m>OB</m> with <m>OQ : QB = 2 : 1</m>. Show that <m>PQ</m> is parallel to <m>AB</m> and find the ratio of their lengths.</p>
         </statement>
         <solution>
+            <p>
+                <m>\overrightarrow{OP} = \frac{2}{3}\mathbf{a}</m> and <m>\overrightarrow{OQ} = \frac{2}{3}\mathbf{b}</m>, so
+                <md>\overrightarrow{PQ} = \frac{2}{3}\mathbf{b} - \frac{2}{3}\mathbf{a} = \frac{2}{3}(\mathbf{b} - \mathbf{a}) = \frac{2}{3}\overrightarrow{AB}.</md>
+                <m>\overrightarrow{PQ}</m> is a positive multiple of <m>\overrightarrow{AB}</m>, so <m>PQ</m> is parallel to <m>AB</m>, and <m>PQ : AB = 2 : 3</m>.
+            </p>
         </solution>
     </example>
 
-    <example>
+    <example xml:id="example-where-two-lines-meet">
+        <title>Where Two Lines Meet</title>
         <statement>
+            <p>In triangle <m>OAB</m>, <m>\overrightarrow{OA} = \mathbf{a}</m> and <m>\overrightarrow{OB} = \mathbf{b}</m>. <m>C</m> is on <m>OA</m> with <m>OC : CA = 2 : 1</m>, and <m>D</m> is on <m>AB</m> with <m>AD : DB = 1 : 2</m>. The lines <m>OD</m> and <m>BC</m> meet at <m>X</m>. Find the ratios <m>OX : XD</m> and <m>BX : XC</m>.</p>
+            <figure xml:id="fig-where-two-lines-meet">
+                <caption>Triangle <m>OAB</m> with the lines <m>OD</m> and <m>BC</m> crossing at <m>X</m>.</caption>
+                <image width="55%">
+                    <shortdescription>Triangle OAB. C is two thirds of the way from O to A; D is one third of the way from A to B. The lines OD and BC cross at X.</shortdescription>
+                    <latex-image>
+\begin{tikzpicture}[scale=1.1, >=stealth]
+\coordinate (O) at (0,0); \coordinate (A) at (1.5,4); \coordinate (B) at (6,0);
+\coordinate (C) at (1,2.667); \coordinate (D) at (3,2.667); \coordinate (X) at (2.25,2);
+\draw[thick,->] (O) -- node[left] {$\mathbf{a}$} (A);
+\draw[thick,->] (O) -- node[below] {$\mathbf{b}$} (B);
+\draw[thick] (A) -- (B);
+\draw[dashed] (O) -- (D); \draw[dashed] (B) -- (C);
+\foreach \p/\n/\pos in {O/O/below left, A/A/above, B/B/right, C/C/left, D/D/above right, X/X/below}
+  {\fill (\p) circle (1.5pt) node[\pos] {$\n$};}
+\end{tikzpicture}
+                    </latex-image>
+                </image>
+            </figure>
         </statement>
         <solution>
+            <p>
+                <alert>Step 1: write the vectors.</alert> By the ratio theorem, <m>\overrightarrow{OD} = \dfrac{2\mathbf{a} + \mathbf{b}}{3}</m>. Also <m>\overrightarrow{OC} = \frac{2}{3}\mathbf{a}</m>, so <m>\overrightarrow{BC} = \frac{2}{3}\mathbf{a} - \mathbf{b}</m>.
+            </p>
+            <p>
+                <alert>Step 2: two routes to X.</alert> <m>X</m> is on <m>OD</m>, so <m>\overrightarrow{OX} = h\overrightarrow{OD} = \frac{2h}{3}\mathbf{a} + \frac{h}{3}\mathbf{b}</m> for some number <m>h</m>. <m>X</m> is also on <m>BC</m>, so <m>\overrightarrow{OX} = \overrightarrow{OB} + k\overrightarrow{BC} = \frac{2k}{3}\mathbf{a} + (1 - k)\mathbf{b}</m> for some number <m>k</m>.
+            </p>
+            <p>
+                <alert>Step 3: equate coefficients.</alert> <m>\mathbf{a}</m> and <m>\mathbf{b}</m> are not parallel, so
+                <md>
+                    <mrow>\mathbf{a}:\amp\quad \frac{2h}{3} = \frac{2k}{3}, \text{ so } h = k</mrow>
+                    <mrow>\mathbf{b}:\amp\quad \frac{h}{3} = 1 - k = 1 - h, \text{ so } h = \frac{3}{4}</mrow>
+                </md>
+                Hence <m>h = k = \frac{3}{4}</m>. <m>\overrightarrow{OX} = \frac{3}{4}\overrightarrow{OD}</m>, so <m>OX : XD = 3 : 1</m>; and <m>\overrightarrow{BX} = \frac{3}{4}\overrightarrow{BC}</m>, so <m>BX : XC = 3 : 1</m>.
+            </p>
         </solution>
-    </example> -->
+    </example>
+
+    <paragraphs xml:id="paragraphs-vectors-around-us">
+        <title>Vectors Around Us</title>
+        <p>
+            At the start of this chapter we asked: <em>how do we use vectors to describe positions and movements in space?</em> You can now answer with three numbers for every position and every movement, and the rules for adding, scaling, measuring and dividing them.
+        </p>
+        <p>
+            <ul>
+                <li><p>A drone spraying a shamba, or an aircraft approaching an airport, has a position and a velocity in three dimensions. Its flight computer adds displacement vectors many times a second.</p></li>
+                <li><p>Structural engineers treat the forces in a roof truss or a mast cable as vectors; a roof stands when the force vectors at each joint add to the zero vector.</p></li>
+                <li><p>Computer games and 3D animation move every point of a character by adding a vector, and make it larger or smaller with a scalar multiple.</p></li>
+                <li><p>A GPS receiver works out its position in three dimensions from the distances to several satellites, using the magnitude formula of <xref ref="sec-magnitude-of-a-vector-in-three-dimensions"/>.</p></li>
+                <li><p>Navigation by bearings and distances, in <xref ref="ch-navigation"/>, uses the same ideas in the plane.</p></li>
+            </ul>
+        </p>
+        <p>
+            Which of these uses could you see in your own county? Discuss with a partner, and explain one of them to the class in your own words.
+        </p>
+    </paragraphs>
+
+    <axiom component="lesson-plan">
+        <title>Curriculum Links</title>
+        <dl>
+            <li><title>Key Inquiry Question</title><p>How do we use vectors to describe positions and movements in space? (Revisited in <xref ref="paragraphs-vectors-around-us" text="title"/>.)</p></li>
+            <li><title>Core Competencies</title><p>Self-efficacy, through the graded exercises and the derivation of the ratio theorem; digital literacy, through the interactive figures and the spreadsheet in <xref ref="sec-column-vectors-in-terms-of-unit-vectors"/>.</p></li>
+            <li><title>Values</title><p>Unity, through group work in the measuring activities and through comparing everyone's triangle in <xref ref="act-midpoint-theorem"/>.</p></li>
+            <li><title>Pertinent and Contemporary Issues</title><p>Effective communication: writing a proof as a clear argument for someone else, and explaining a mistake in another person's working.</p></li>
+            <li><title>Learning Outcome</title><p>This lesson carries the outcome on reflecting on the use of vectors in real life (outcome (i) of the sub-strand).</p></li>
+        </dl>
+    </axiom>
 
     <xi:include href="../lesson-plan-templates/assessment-intro.ptx" />
+    <xi:include href="../lesson-plan-templates/checkpoint.ptx" />
 
-    <!-- If STACK questions are included, uncomment this: -->
+    <p>Type answers in terms of a and b like <c>3/5*a+2/5*b</c> or <c>(3a+2b)/5</c>. Type fractions with a slash, for example <c>3/4</c>, not as decimals.</p>
 
-    <!-- <xi:include href="../lesson-plan-templates/checkpoint.ptx" /> -->
+    <exercise xml:id="ex-a-line-joining-points-on-two-sides">
+        <!--<title></title>-->
+        <stack label="stk-a-line-joining-points-on-two-sides" source="stack/top/2-measurement-and-geometry/12-vectors-ii/09-application-of-vectors-to-geometry/A-line-joining-points-on-two-sides.xml"/>
+    </exercise>
 
-    <!-- Add STACK exercises if made -->
+    <exercise xml:id="ex-where-two-lines-meet-in-a-triangle">
+        <!--<title></title>-->
+        <stack label="stk-where-two-lines-meet-in-a-triangle" source="stack/top/2-measurement-and-geometry/12-vectors-ii/09-application-of-vectors-to-geometry/Where-two-lines-meet-in-a-triangle.xml"/>
+    </exercise>
 
-    <!-- Add static exercises -->
+    <exercises xml:id="exercises-vectors-in-geometry">
+        <exercise xml:id="ex-parallelogram-vectors">
+            <statement><p><m>OABC</m> is a parallelogram with <m>\overrightarrow{OA} = \mathbf{a}</m> and <m>\overrightarrow{OC} = \mathbf{c}</m>, and <m>M</m> is the midpoint of <m>AB</m>. Write <m>\overrightarrow{OB}</m>, <m>\overrightarrow{AC}</m> and <m>\overrightarrow{OM}</m> in terms of <m>\mathbf{a}</m> and <m>\mathbf{c}</m>.</p></statement>
+            <answer><p><m>\mathbf{a} + \mathbf{c}</m>; <m>\mathbf{c} - \mathbf{a}</m>; <m>\mathbf{a} + \frac{1}{2}\mathbf{c}</m></p></answer>
+        </exercise>
+        <exercise xml:id="ex-triangle-median-point">
+            <statement><p>In triangle <m>OAB</m>, <m>\overrightarrow{OA} = \mathbf{a}</m>, <m>\overrightarrow{OB} = \mathbf{b}</m> and <m>M</m> is the midpoint of <m>AB</m>. <m>G</m> divides <m>OM</m> internally in the ratio <m>2 : 1</m>. Find <m>\overrightarrow{OM}</m> and <m>\overrightarrow{OG}</m>.</p></statement>
+            <answer><p><m>\frac{1}{2}(\mathbf{a} + \mathbf{b})</m>; <m>\frac{1}{3}(\mathbf{a} + \mathbf{b})</m></p></answer>
+        </exercise>
+        <exercise xml:id="ex-trapezium">
+            <statement>
+                <p><m>KLMN</m> is a trapezium with <m>\overrightarrow{KL} = \mathbf{p}</m>, <m>\overrightarrow{KN} = \mathbf{q}</m> and <m>\overrightarrow{NM} = 3\mathbf{p}</m>. <m>X</m> is on <m>NM</m> with <m>NX : XM = 2 : 1</m>.</p>
+                <p>
+                    <ol marker="(a)">
+                        <li><p>Find <m>\overrightarrow{LM}</m>.</p></li>
+                        <li><p>Find <m>\overrightarrow{KX}</m>.</p></li>
+                        <li><p>What do your answers tell you about the lines <m>KX</m> and <m>LM</m>?</p></li>
+                    </ol>
+                </p>
+            </statement>
+            <answer><p>(a) <m>2\mathbf{p} + \mathbf{q}</m> (b) <m>2\mathbf{p} + \mathbf{q}</m> (c) <m>KX</m> and <m>LM</m> are parallel and the same length.</p></answer>
+            <solution><p>(a) <m>\overrightarrow{LM} = \overrightarrow{LK} + \overrightarrow{KN} + \overrightarrow{NM} = -\mathbf{p} + \mathbf{q} + 3\mathbf{p} = 2\mathbf{p} + \mathbf{q}</m>. (b) <m>\overrightarrow{NX} = \frac{2}{3}\overrightarrow{NM} = 2\mathbf{p}</m>, so <m>\overrightarrow{KX} = \mathbf{q} + 2\mathbf{p}</m>. (c) <m>\overrightarrow{KX} = \overrightarrow{LM}</m>: equal vectors, so <m>KX</m> is parallel to <m>LM</m> and the same length. (So <m>KLMX</m> is a parallelogram.)</p></solution>
+        </exercise>
+        <exercise xml:id="ex-paths-in-a-plot">
+            <statement><p>A farmer near Kitale has a triangular plot. Paths join the midpoints of the three sides. Show that each path is parallel to one side of the plot and half as long.</p></statement>
+            <answer><p>The midpoint theorem, applied three times.</p></answer>
+            <solution><p>Call the corners <m>O</m>, <m>A</m>, <m>B</m>, with <m>\overrightarrow{OA} = \mathbf{a}</m> and <m>\overrightarrow{OB} = \mathbf{b}</m>, and let <m>M</m>, <m>N</m>, <m>L</m> be the midpoints of <m>OA</m>, <m>OB</m>, <m>AB</m>. As in <xref ref="act-midpoint-theorem"/>, <m>\overrightarrow{MN} = \frac{1}{2}\overrightarrow{AB}</m>. Also <m>\overrightarrow{OL} = \frac{1}{2}(\mathbf{a} + \mathbf{b})</m>, so <m>\overrightarrow{ML} = \frac{1}{2}\mathbf{b} = \frac{1}{2}\overrightarrow{OB}</m> and <m>\overrightarrow{NL} = \frac{1}{2}\mathbf{a} = \frac{1}{2}\overrightarrow{OA}</m>. Each path is half of the side it does not touch, and parallel to it.</p></solution>
+        </exercise>
+        <exercise xml:id="ex-find-h-and-k">
+            <statement><p>In triangle <m>OAB</m>, <m>\overrightarrow{OA} = \mathbf{a}</m> and <m>\overrightarrow{OB} = \mathbf{b}</m>. <m>P</m> is the midpoint of <m>OA</m> and <m>Q</m> is on <m>AB</m> with <m>AQ : QB = 2 : 1</m>. The lines <m>BP</m> and <m>OQ</m> meet at <m>X</m>. Find <m>OX : XQ</m> and <m>BX : XP</m>.</p></statement>
+            <answer><p><m>OX : XQ = 3 : 1</m>; <m>BX : XP = 1 : 1</m></p></answer>
+            <solution><p><m>\overrightarrow{OQ} = \frac{1}{3}(\mathbf{a} + 2\mathbf{b})</m>, so <m>\overrightarrow{OX} = h\overrightarrow{OQ} = \frac{h}{3}\mathbf{a} + \frac{2h}{3}\mathbf{b}</m>. <m>\overrightarrow{BP} = \frac{1}{2}\mathbf{a} - \mathbf{b}</m>, so <m>\overrightarrow{OX} = \mathbf{b} + k\overrightarrow{BP} = \frac{k}{2}\mathbf{a} + (1 - k)\mathbf{b}</m>. Equating coefficients: <m>\frac{h}{3} = \frac{k}{2}</m> and <m>\frac{2h}{3} = 1 - k</m>, so <m>k = 1 - k</m>, <m>k = \frac{1}{2}</m> and <m>h = \frac{3}{4}</m>. So <m>OX : XQ = 3 : 1</m> and <m>BX : XP = 1 : 1</m>.</p></solution>
+        </exercise>
+        <exercise xml:id="ex-varignon">
+            <title>Challenge: Midpoints of a Quadrilateral</title>
+            <statement><p>Prove that the midpoints of the four sides of any quadrilateral <m>ABCD</m> are the corners of a parallelogram.</p></statement>
+            <hint><p>Compare each side of the inner shape with a diagonal of <m>ABCD</m>.</p></hint>
+            <answer><p>Each side of the inner shape is half of a diagonal: two sides are <m>\frac{1}{2}\overrightarrow{AC}</m> and two are <m>\frac{1}{2}\overrightarrow{BD}</m>.</p></answer>
+            <solution><p>Let the midpoints of <m>AB</m>, <m>BC</m>, <m>CD</m>, <m>DA</m> be <m>E</m>, <m>F</m>, <m>G</m>, <m>H</m>, with position vectors <m>\mathbf{e} = \frac{1}{2}(\mathbf{a} + \mathbf{b})</m> and so on. Then <m>\overrightarrow{EF} = \mathbf{f} - \mathbf{e} = \frac{1}{2}(\mathbf{c} - \mathbf{a}) = \frac{1}{2}\overrightarrow{AC}</m> and <m>\overrightarrow{HG} = \mathbf{g} - \mathbf{h} = \frac{1}{2}(\mathbf{c} - \mathbf{a})</m>. So <m>\overrightarrow{EF} = \overrightarrow{HG}</m>: one pair of opposite sides is equal and parallel, and <m>EFGH</m> is a parallelogram. (In the same way <m>\overrightarrow{FG} = \overrightarrow{EH} = \frac{1}{2}\overrightarrow{BD}</m>.)</p></solution>
+        </exercise>
+    </exercises>
 
-    <!-- <exercises>
-        <exercise>
-            <statement>   
-
-            </statement>   
-            <solution>
-
-            </solution>             
-        </exercise>        
-    </exercises> -->
-
-    <!-- [LP] Add information on how to differentiate  -->
-
-    <!-- <axiom component="lesson-plan">
+    <axiom component="lesson-plan">
         <title>Differentiation</title>
-
-        <table>
-            <title>Differentiation</title>
-            <tabular halign="left">
-                <row header="yes" bottom="minor">
-                    <cell>Learner Group</cell>
-                    <cell>Strategy &amp; Learning Experience</cell>
-                    <cell></cell>
-                </row>
-                <row>
-                    <cell>Struggling Learners (Support)</cell>
-                    <cell>
-                        XXXX
-                    </cell>
-                    <cell></cell>
-                </row>
-                <row>
-                    <cell>On-Level Learners (Core)</cell>
-                    <cell>
-                        <line>The core lesson activities as described above.</line>
-                    </cell>
-                    <cell></cell>
-                </row>
-                <row>
-                    <cell>Advanced Learners (Challenge)</cell>
-                    <cell>
-                        XXXX
-                    </cell>
-                    <cell></cell>
-                </row>
+        <table xml:id="table-differentiation-vectors-in-geometry">
+            <title>Differentiation Strategies</title>
+            <tabular halign="left" top="minor" bottom="minor" left="minor" right="minor">
+                <row header="yes" bottom="medium"><cell>Learner Group</cell><cell>Strategy and Learning Experience</cell></row>
+                <row><cell>Struggling Learners (Support)</cell><cell>Give a <q>vector ledger</q>: a table listing each vector in the figure with a space for it in terms of <m>\mathbf{a}</m> and <m>\mathbf{b}</m>. Focus on the activity and <xref ref="example-parallelogram-diagonals"/>. Assign <xref ref="ex-parallelogram-vectors"/> and <xref ref="ex-triangle-median-point"/>.</cell></row>
+                <row><cell>On-Level Learners (Core)</cell><cell>Full activity and all examples. Assign <xref ref="ex-parallelogram-vectors"/> to <xref ref="ex-find-h-and-k"/>.</cell></row>
+                <row><cell>Advanced Learners (Challenge)</cell><cell>All exercises including <xref ref="ex-varignon"/>. Extension: in <xref ref="example-where-two-lines-meet"/>, find <m>OX : XD</m> when <m>D</m> is the midpoint of <m>AB</m> instead. (Answer: <m>h = \frac{4}{5}</m>, so <m>OX : XD = 4 : 1</m>.)</cell></row>
             </tabular>
         </table>
-    </axiom> -->
+    </axiom>
 
     <xi:include href="../lesson-plan-templates/assessment-methods.ptx" />
 

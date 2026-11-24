@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<quiz>
+<question type="stack">
+  <name><text>Expanding a binomial in two letters</text></name>
+  <questiontext format="html">
+    <text><![CDATA[<p>Expand \({@brs@}\).</p><div>[[input:ans1]] [[validation:ans1]] [[feedback:prt1]]</div>]]></text>
+  </questiontext>
+  <generalfeedback format="html">
+    <text><![CDATA[<p>The pattern of \((a + b)^{@n@}\) holds whatever \(a\) and \(b\) are. The coefficients for power \({@n@}\) are {@crow@}. Put \(a = {@px@}\) and \(b = {@qy@}\) into each term, with brackets:</p><p>\[{@patt@}\]</p><p>Working out each term gives \({@tad@}\).</p><p>Check: putting \(x = y = 1\) gives \(({@p1q@})^{@n@} = {@chk@}\) on both sides.</p>]]></text>
+  </generalfeedback>
+  <defaultgrade>1</defaultgrade>
+  <penalty>0.1</penalty>
+  <hidden>0</hidden>
+  <idnumber></idnumber>
+  <stackversion><text>2026063000</text></stackversion>
+  <questionvariables>
+    <text><![CDATA[validate_xy(ex) := if every(lambda([v], member(v,[x,y])), listofvars(ex)) then "" else "Use only the letters x and y.";
+/* Design: expand a binomial in two letters. Source: original (compare SMP AS/A2 Core 2, Chapter 5, Section A). */
+L: [[2,1,3],[1,-2,4],[3,-1,3],[1,3,3],[2,-1,4],[3,2,3],[1,-3,4],[2,3,3],[3,-2,3],[1,2,4]];
+ix: 1+rand(10);
+p: L[ix][1];
+q: L[ix][2];
+n: L[ix][3];
+np1: n+1;
+ta: expand((p*x+q*y)^n);
+fresh: p^n*x^n+q^n*y^n;
+notpow: sum(binomial(n,r)*(if r<n then p else 1)*(if r>0 then q else 1)*x^(n-r)*y^r,r,0,n);
+flip: expand((p*x-q*y)^n);
+chk: (p+q)^n;
+crow: if n=3 then "1, 3, 3, 1" else "1, 4, 6, 4, 1";
+px: p*x; qy: q*y; pxqy: p*x+q*y;
+q2y2: q^2*y^2; qy2: q*y^2;
+/* example for the "not powered" feedback. With q = 1 the y term shows nothing ((y)^2 = y^2), so the x term is used. */
+npb: if q=1 then p*x else q*y; npr: if q=1 then p^2*x^2 else q^2*y^2; npw: if q=1 then p*x^2 else q*y^2;
+p1q: p+q;
+pxs: if p=1 then "x" else sconcat(p,"x");
+qys: if q=1 then "y" else if q=-1 then "-y" else sconcat(q,"y");
+brs: sconcat("\\left(",pxs,if q>0 then "+" else "",qys,"\\right)^{",n,"}");
+bpw(s,k) := if k=0 then "" else if s="x" or s="y" then (if k=1 then s else sconcat(s,"^{",k,"}")) else if k=1 then sconcat("\\left(",s,"\\right)") else sconcat("\\left(",s,"\\right)^{",k,"}");
+patt: simplode(makelist(sconcat(if r=0 or r=n then "" else string(binomial(n,r)),bpw(pxs,n-r),bpw(qys,r)),r,0,n)," + ");
+xymon(i,j) := sconcat(if i=0 then "" else if i=1 then "x" else sconcat("x^{",i,"}"), if j=0 then "" else if j=1 then "y" else sconcat("y^{",j,"}"));
+tad: simplode(makelist(block([c], c: binomial(n,r)*p^(n-r)*q^r, sconcat(if r=0 then (if c<0 then "-" else "") else (if c<0 then " - " else " + "), if abs(c)=1 then "" else string(abs(c)), xymon(n-r,r))),r,0,n),"");]]></text>
+  </questionvariables>
+  <specificfeedback format="html"><text><![CDATA[]]></text></specificfeedback>
+  <questionnote format="moodle_auto_format">
+    <text>ix={@ix@}, p={@p@}, q={@q@}, n={@n@}, ta={@ta@}</text>
+  </questionnote>
+  <questiondescription format="html"><text><![CDATA[<p id="concept">Binomial Expansions: expanding in two letters</p><p id="description">Grade 12 CBE Core 1.2: Expand (px + qy)^n, n = 3 or 4, using the pattern of (a + b)^n.</p><p id="edition">Core</p><p id="provenance">This question is original to this project.</p><p id="citation">INNODEMS CBC Grade 12 Mathematics, first draft by Ben Davies, 2026. Aligned to the KICD Senior School Curriculum Design, Core Mathematics Grade 12 (draft).</p>]]></text></questiondescription>
+  <questionsimplify>1</questionsimplify>
+  <assumepositive>0</assumepositive>
+  <assumereal>0</assumereal>
+  <prtcorrect format="html"><text><![CDATA[[[commonstring key="symbolicprtcorrectfeedback"/]] [[commonstring key="defaultprtcorrectfeedback"/]]]]></text></prtcorrect>
+  <prtpartiallycorrect format="html"><text><![CDATA[[[commonstring key="symbolicprtpartiallycorrectfeedback"/]] [[commonstring key="defaultprtpartiallycorrectfeedback"/]]]]></text></prtpartiallycorrect>
+  <prtincorrect format="html"><text><![CDATA[[[commonstring key="symbolicprtincorrectfeedback"/]] [[commonstring key="defaultprtincorrectfeedback"/]]]]></text></prtincorrect>
+  <decimals>.</decimals>
+  <scientificnotation>*10</scientificnotation>
+  <multiplicationsign>none</multiplicationsign>
+  <sqrtsign>1</sqrtsign>
+  <complexno>i</complexno>
+  <inversetrig>cos-1</inversetrig>
+  <logicsymbol>lang</logicsymbol>
+  <matrixparens>[</matrixparens>
+  <isbroken>0</isbroken>
+  <variantsselectionseed></variantsselectionseed>
+
+  <input><name>ans1</name><type>algebraic</type><tans>ta</tans><boxsize>30</boxsize><strictsyntax>1</strictsyntax><insertstars>5</insertstars><syntaxhint></syntaxhint><syntaxattribute>0</syntaxattribute><forbidwords>expand,binomial,ev,subst,taylor</forbidwords><allowwords></allowwords><forbidfloat>1</forbidfloat><requirelowestterms>0</requirelowestterms><checkanswertype>0</checkanswertype><mustverify>0</mustverify><showvalidation>3</showvalidation><options>validator:validate_xy</options></input>
+
+  <prt><name>prt1</name><value>1.0000000</value><autosimplify>0</autosimplify><feedbackstyle>1</feedbackstyle><feedbackvariables><text><![CDATA[]]></text></feedbackvariables>
+    <node><name>0</name><description>Value</description><answertest>AlgEquiv</answertest><sans>ans1</sans><tans>ta</tans><testoptions></testoptions><quiet>1</quiet><truescoremode>=</truescoremode><truescore>1.0000000</truescore><truepenalty></truepenalty><truenextnode>1</truenextnode><trueanswernote>prt1-1-T</trueanswernote><truefeedback format="html"><text><![CDATA[]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>2</falsenextnode><falseanswernote>prt1-1-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>1</name><description>Form: fully expanded</description><answertest>EqualComAssRules</answertest><sans>ans1</sans><tans>ta</tans><testoptions>[oneMul]</testoptions><quiet>1</quiet><truescoremode>=</truescoremode><truescore>1.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt1-2-T</trueanswernote><truefeedback format="html"><text><![CDATA[]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>-1</falsenextnode><falseanswernote>prt1-2-F</falseanswernote><falsefeedback format="html"><text><![CDATA[<p>Your answer has the right value, but it is not fully expanded. Multiply out every bracket and collect like terms, so that there is one term for each power of \(x\).</p>]]></text></falsefeedback></node>
+    <node><name>2</name><description>Powered each term</description><answertest>AlgEquiv</answertest><sans>ans1</sans><tans>fresh</tans><testoptions></testoptions><quiet>1</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt1-3-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>You raised each term to the power \({@n@}\) on its own, but \({@brs@}\) is not \({@fresh@}\). It means \({@n@}\) brackets multiplied together, so there are \({@np1@}\) terms.</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>3</falsenextnode><falseanswernote>prt1-3-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>3</name><description>Did not power the numbers</description><answertest>AlgEquiv</answertest><sans>ans1</sans><tans>notpow</tans><testoptions></testoptions><quiet>1</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt1-4-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>You did not raise the terms of the bracket to the powers: \(({@npb@})^2 = {@npr@}\), not \({@npw@}\). Each whole term, number and letter, is raised to the power.</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>4</falsenextnode><falseanswernote>prt1-4-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>4</name><description>Sign pattern wrong</description><answertest>AlgEquiv</answertest><sans>ans1</sans><tans>flip</tans><testoptions></testoptions><quiet>1</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt1-5-T</trueanswernote><truefeedback format="html"><text><![CDATA[[[if test="is(q<0)"]]<p>All your terms have the same sign, but the bracket contains a minus sign: the terms with an odd power of \(y\) are negative, so the signs alternate.</p>[[else]]<p>Your signs alternate, but the bracket has no minus sign, so every term is positive.</p>[[/if]]]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>-1</falsenextnode><falseanswernote>prt1-5-F</falseanswernote><falsefeedback format="html"><text><![CDATA[<p>Put \(a = {@px@}\) and \(b = {@qy@}\) into the pattern for power \({@n@}\), with brackets. Check: \(x = y = 1\) should give \({@chk@}\).</p>]]></text></falsefeedback></node>
+  </prt>
+
+  <deployedseed>4</deployedseed>
+  <deployedseed>5</deployedseed>
+  <deployedseed>15</deployedseed>
+  <deployedseed>8</deployedseed>
+  <deployedseed>24</deployedseed>
+  <deployedseed>1</deployedseed>
+  <deployedseed>3</deployedseed>
+  <deployedseed>10</deployedseed>
+  <deployedseed>2</deployedseed>
+  <deployedseed>17</deployedseed>
+  <qtest><testcase>1</testcase><description>Correct, derived</description>
+    <testinput><name>ans1</name><value>ev(sum(binomial(n,r)*(p*x)^(n-r)*(q*y)^r,r,0,n),simp)</value></testinput>
+    <expected><name>prt1</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt1-1-T | prt1-2-T</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>2</testcase><description>Unexpanded bracket</description>
+    <testinput><name>ans1</name><value>(p*x+q*y)^n</value></testinput>
+    <expected><name>prt1</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt1-1-T | prt1-2-F</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>3</testcase><description>Generic wrong</description>
+    <testinput><name>ans1</name><value>ta+x</value></testinput>
+    <expected><name>prt1</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt1-1-F | prt1-3-F | prt1-4-F | prt1-5-F</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>4</testcase><description>Powered each term</description>
+    <testinput><name>ans1</name><value>fresh</value></testinput>
+    <expected><name>prt1</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt1-1-F | prt1-3-T</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>5</testcase><description>Did not power the numbers</description>
+    <testinput><name>ans1</name><value>notpow</value></testinput>
+    <expected><name>prt1</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt1-1-F | prt1-3-F | prt1-4-T</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>6</testcase><description>Sign pattern wrong</description>
+    <testinput><name>ans1</name><value>flip</value></testinput>
+    <expected><name>prt1</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt1-1-F | prt1-3-F | prt1-4-F | prt1-5-T</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>7</testcase><description>Invalid: a third letter</description>
+    <testinput><name>ans1</name><value>x^2+z</value></testinput>
+    <expected><name>prt1</name><expectedscore></expectedscore><expectedpenalty></expectedpenalty><expectedanswernote>NULL</expectedanswernote></expected>
+  </qtest>
+</question>
+</quiz>

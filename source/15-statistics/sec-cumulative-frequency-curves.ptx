@@ -53,161 +53,308 @@
          Suggested activity: Learners group their class data into classes and draw an ogive on graph paper.
          Interactive (JSXGraph): Grouped frequency table with editable frequencies; the cumulative frequency curve redraws as frequencies change. -->
 
-    <!-- [LP] Add guidance on activity -->
+    <!-- Section notes (2026-11)
+         SLOs: Core (d); Essential (d). One lesson, flat anatomy.
+         Activity: as planning notes (class journey times grouped and plotted on graph paper; a ready-made table for classes without their own data)
+         JSXGraph: fig-ogive-builder (assets/jsxgraph/ogive-builder.js), as planning notes
+         STACK: assets/stack/top/3-statistics-and-probability/15-statistics/02-cumulative-frequency-curves/ -->
 
-    <!-- <axiom component="lesson-plan">
-            <title>Problem-Solving and Discovery</title>
-            <dl>
-                <li>
-                    <title>Suggested Time</title>
-                    <p>
-                        XX minutes
-                    </p>
-                </li>
-                <li>
-                    <title>Objective</title>
-                    <p>
-                        XXX
-                    </p>
-                </li>
-                <li>
-                    <title>Teacher's Role</title>
-                    <p>
-                        XXX
-                    </p>
-                </li>
-            </dl>
-        </axiom> -->
+    <p component="lesson-plan">Upon completion of this lesson, learners will be able to:
+        <ol>
+            <li><p><alert>Know:</alert> a cumulative frequency counts every value below an upper class boundary, which is why it is plotted there.</p></li>
+            <li><p><alert>Do:</alert> complete a cumulative frequency column, plot the points and join them.</p></li>
+            <li><p><alert>Apply:</alert> read from the curve how many values lie below, or above, a given value.</p></li>
+        </ol>
+    </p>
 
-    <!-- Add Activity -->
+    <axiom component="lesson-plan">
+        <title>Problem-Solving and Discovery</title>
+        <dl>
+            <li><title>Suggested Time</title><p>14 minutes</p></li>
+            <li><title>Objective</title><p>Learners build running totals from a grouped table and plot them on graph paper.</p></li>
+            <li><title>Teacher's Role</title><p>Hand out graph paper. Either collect the class's journey times to school and group them on the board in the classes below, or use the table. After part (b), ask: <q>By 14.5 minutes, how many learners have certainly arrived?</q></p></li>
+        </dl>
+    </axiom>
 
-    <!-- <activity>
+    <activity xml:id="act-getting-to-school">
+        <title>Getting to School</title>
         <statement>
+            <p>The table shows the journey times to school, in minutes (to the nearest minute), of <m>40</m> learners in Nakuru.</p>
+            <table xml:id="table-getting-to-school">
+                <title>Journey Times of 40 Learners</title>
+                <tabular halign="center" top="minor" bottom="minor" left="minor" right="minor">
+                    <row header="yes" bottom="medium"><cell>Time (minutes)</cell><cell>5–14</cell><cell>15–24</cell><cell>25–34</cell><cell>35–44</cell><cell>45–54</cell><cell>55–64</cell></row>
+                    <row><cell>Frequency (<m>f</m>)</cell><cell>4</cell><cell>9</cell><cell>13</cell><cell>8</cell><cell>4</cell><cell>2</cell></row>
+                </tabular>
+            </table>
+            <p>
+                <ol marker="(a)">
+                    <li>
+                        <p>Add a row of running totals: the number of learners in each class and all the classes before it.</p>
+                        <solution component="lesson-plan"><p><m>4, 13, 26, 34, 38, 40</m>.</p></solution>
+                    </li>
+                    <li>
+                        <p>The first running total, <m>4</m>, belongs at a time on the horizontal axis. Why should it go at <m>14.5</m> minutes, and not at <m>10</m> or <m>14</m>?</p>
+                        <solution component="lesson-plan"><p>Every learner in 5–14 took less than <m>14.5</m> minutes (a time of <m>14.4</m> minutes rounds to <m>14</m>), so by <m>14.5</m> minutes all <m>4</m> have certainly arrived. At <m>10</m> or <m>14</m> we cannot be sure all <m>4</m> have.</p></solution>
+                    </li>
+                    <li>
+                        <p>Plot the points <m>(4.5, 0)</m>, <m>(14.5, 4)</m>, <m>(24.5, 13)</m>, <m>(34.5, 26)</m>, <m>(44.5, 34)</m>, <m>(54.5, 38)</m> and <m>(64.5, 40)</m> on graph paper.</p>
+                        <solution component="lesson-plan"><p>Use <m>2\,\text{cm}</m> for <m>10</m> minutes and <m>2\,\text{cm}</m> for <m>10</m> learners. Check that the first point is on the axis and the last at <m>40</m>.</p></solution>
+                    </li>
+                    <li>
+                        <p>Join the points. What shape do you get?</p>
+                        <solution component="lesson-plan"><p>The graph never falls; it rises steeply where the frequencies are large (the class 25–34) and levels off at <m>40</m>.</p></solution>
+                    </li>
+                    <li>
+                        <p>Use your graph to estimate how many learners took less than <m>30</m> minutes.</p>
+                        <solution component="lesson-plan"><p>About <m>20</m> learners. By calculation along the straight segment: <m>13 + 13 \times \dfrac{30 - 24.5}{10} = 20.15</m>.</p></solution>
+                    </li>
+                </ol>
+            </p>
         </statement>
-    </activity> -->
+    </activity>
 
-    <!-- [LP] Add guidance on structured lesson plan-->
-
-    <!-- <axiom component="lesson-plan">
+    <axiom component="lesson-plan">
         <title>Structured Instruction</title>
         <p>
             <dl>
-            <li>
-                <title>Suggested Time</title>
-                <p>
-                    XX minutes
-                </p>
-            </li>
-            <li>
-                <title>Objective</title>
-                <p>
-                    To formalize the concepts and properties learners discovered in the anchor task.
-                </p>
-            </li>
+                <li><title>Suggested Time</title><p>8 minutes</p></li>
+                <li><title>Objective</title><p>To formalise cumulative frequency and the rules for plotting a cumulative frequency curve.</p></li>
             </dl>
         </p>
         <paragraphs>
             <title>Key Takeaways &amp; Teacher Connection</title>
             <ol>
-                <li>
-                    <p>
-                        <alert>Connecting to Learner Work:</alert> XXXX
-                    </p>
-                </li>
+                <li><p><alert>Connecting to Learner Work:</alert> part (b) is the reason for the upper class boundary.</p></li>
+                <li><p>Start at the first lower class boundary with cumulative frequency <m>0</m>.</p></li>
+                <li><p>The graph never falls, and its last point is at the total frequency <m>n</m>.</p></li>
             </ol>
         </paragraphs>
-    </axiom> -->
+    </axiom>
 
-    <!-- Add insight / key takeaway directly related to activity / learner experience -->
+    <insight xml:id="insight-cumulative-frequency-curve">
+        <title>Cumulative Frequency Curves</title>
+        <p>
+            The <term>cumulative frequency</term> of a class is its frequency added to the frequencies of all the classes before it. The cumulative frequency at an upper class boundary counts every value below that boundary.
+        </p>
+        <p>
+            A <term>cumulative frequency curve</term>, or <term>ogive</term>, plots each cumulative frequency at the upper class boundary of its class. It starts at the lower class boundary of the first class, with cumulative frequency <m>0</m>, and ends at the total frequency <m>n</m>.
+        </p>
+        <p>
+            In this book the points are joined with straight line segments, so readings from a graph agree with calculations. When you draw an ogive by hand you may join the points with a smooth curve instead; the readings are almost the same.
+        </p>
+    </insight>
 
-    <!-- <insight>
-    </insight> -->
+    <figure xml:id="fig-ogive-builder">
+        <caption>Drag a frequency slider. The cumulative frequencies and the curve change. The last point always sits at the total frequency.</caption>
+        <interactive xml:id="interactive-ogive-builder" platform="jsxgraph" width="90%" aspect="16:12" source="jsxgraph/ogive-builder.js">
+            <slate xml:id="jsxgraph-ogive-builder" surface="jsxboard" aspect="16:12"/>
+            <instructions>
+                <p>
+                    <ul>
+                        <li><p>The sliders start at the journey times from <xref ref="act-getting-to-school"/>. Drag the <alert>5–14</alert> slider and watch every point of the curve move up or down.</p></li>
+                        <li><p>Drag the <alert>55–64</alert> slider: only the last point moves.</p></li>
+                        <li><p>Make one class much larger than the others. Where is the curve steepest?</p></li>
+                    </ul>
+                </p>
+            </instructions>
+        </interactive>
+    </figure>
 
-    <!-- Add further instruction (not in a block) to develop ideas as needed -->
+    <warning xml:id="warning-ogive-midpoints">
+        <title>Not at the Midpoint</title>
+        <p>
+            Plotting each cumulative frequency at the class midpoint moves the whole curve half a class to the left, so every value read from it is too small. Plot at the upper class boundary.
+        </p>
+    </warning>
 
     <xi:include href="../lesson-plan-templates/example-intro.ptx" />
 
-    <!-- Add at least 3 examples -->
-
-    <!-- <example>
+    <example xml:id="example-goats-ogive">
+        <title>Goats at Garissa Market</title>
         <statement>
+            <p>The masses, in kg (to the nearest kg), of <m>50</m> goats at Garissa livestock market are shown below. Draw a cumulative frequency curve.</p>
+            <table xml:id="table-goats">
+                <title>Masses of 50 Goats</title>
+                <tabular halign="center" top="minor" bottom="minor" left="minor" right="minor">
+                    <row header="yes" bottom="medium"><cell>Mass (kg)</cell><cell>15–19</cell><cell>20–24</cell><cell>25–29</cell><cell>30–34</cell><cell>35–39</cell><cell>40–44</cell></row>
+                    <row><cell>Frequency (<m>f</m>)</cell><cell>3</cell><cell>7</cell><cell>12</cell><cell>14</cell><cell>9</cell><cell>5</cell></row>
+                </tabular>
+            </table>
         </statement>
         <solution>
+            <p>The masses are to the nearest kg, so the class 15–19 runs from <m>14.5</m> to <m>19.5\,\text{kg}</m>, and so on.</p>
+            <table xml:id="table-goats-cf">
+                <title>Cumulative Frequencies of the Goat Masses</title>
+                <tabular halign="center" top="minor" bottom="minor" left="minor" right="minor">
+                    <row header="yes" bottom="medium"><cell>Class</cell><cell>Frequency (<m>f</m>)</cell><cell>Upper class boundary</cell><cell>Cumulative frequency (cf)</cell></row>
+                    <row><cell>15–19</cell><cell>3</cell><cell>19.5</cell><cell>3</cell></row>
+                    <row><cell>20–24</cell><cell>7</cell><cell>24.5</cell><cell>10</cell></row>
+                    <row><cell>25–29</cell><cell>12</cell><cell>29.5</cell><cell>22</cell></row>
+                    <row><cell>30–34</cell><cell>14</cell><cell>34.5</cell><cell>36</cell></row>
+                    <row><cell>35–39</cell><cell>9</cell><cell>39.5</cell><cell>45</cell></row>
+                    <row><cell>40–44</cell><cell>5</cell><cell>44.5</cell><cell>50</cell></row>
+                </tabular>
+            </table>
+            <p>Plot <m>(14.5, 0)</m> and then each upper class boundary against its cumulative frequency, and join the points.</p>
+            <figure xml:id="fig-goats-ogive">
+                <caption>Cumulative frequency curve of the masses of 50 goats.</caption>
+                <image width="90%">
+                    <shortdescription>Cumulative frequency of goat masses: points (14.5, 0), (19.5, 3), (24.5, 10), (29.5, 22), (34.5, 36), (39.5, 45), (44.5, 50) joined by straight lines.</shortdescription>
+                    <description><p>Horizontal axis mass in kg from 10 to 50; vertical axis cumulative frequency from 0 to 50. Plotted points: (14.5, 0), (19.5, 3), (24.5, 10), (29.5, 22), (34.5, 36), (39.5, 45), (44.5, 50), joined by straight line segments.</p></description>
+                    <latex-image>
+\begin{tikzpicture}
+\begin{axis}[width=12cm, height=8cm, xmin=10, xmax=50, ymin=0, ymax=52,
+  xtick={10,15,...,50}, ytick={0,10,...,50}, minor x tick num=4, minor y tick num=4,
+  grid=both, major grid style={gray!50}, minor grid style={gray!20},
+  xlabel={Mass (kg)}, ylabel={Cumulative frequency}]
+\addplot[thick, mark=*] coordinates {(14.5,0) (19.5,3) (24.5,10) (29.5,22) (34.5,36) (39.5,45) (44.5,50)};
+\end{axis}
+\end{tikzpicture}
+                    </latex-image>
+                </image>
+            </figure>
         </solution>
     </example>
 
-    <example>
+    <example xml:id="example-bank-ogive">
+        <title>Waiting at the Bank</title>
         <statement>
+            <p>The waiting times of <m>50</m> customers at a bank in Kisumu are shown below. Draw a cumulative frequency curve and use it to estimate how many customers waited less than <m>12</m> minutes, and how many waited more than <m>12</m> minutes.</p>
+            <table xml:id="table-bank">
+                <title>Waiting Times of 50 Customers</title>
+                <tabular halign="center" top="minor" bottom="minor" left="minor" right="minor">
+                    <row header="yes" bottom="medium"><cell>Time, <m>t</m> (minutes)</cell><cell><m>0 \le t \lt 5</m></cell><cell><m>5 \le t \lt 10</m></cell><cell><m>10 \le t \lt 15</m></cell><cell><m>15 \le t \lt 20</m></cell><cell><m>20 \le t \lt 25</m></cell></row>
+                    <row><cell>Frequency (<m>f</m>)</cell><cell>6</cell><cell>14</cell><cell>18</cell><cell>8</cell><cell>4</cell></row>
+                </tabular>
+            </table>
         </statement>
         <solution>
+            <p>These classes are written with their boundaries, so the upper class boundaries are <m>5, 10, 15, 20, 25</m>. The cumulative frequencies are <m>6, 20, 38, 46, 50</m>, so the points are <m>(0, 0)</m>, <m>(5, 6)</m>, <m>(10, 20)</m>, <m>(15, 38)</m>, <m>(20, 46)</m> and <m>(25, 50)</m>.</p>
+            <figure xml:id="fig-bank-ogive">
+                <caption>Cumulative frequency curve of the waiting times, with the reading at 12 minutes.</caption>
+                <image width="90%">
+                    <shortdescription>Cumulative frequency of waiting times: points (0, 0), (5, 6), (10, 20), (15, 38), (20, 46), (25, 50) joined by straight lines. A dashed line up from 12 minutes meets the curve at about 27 customers.</shortdescription>
+                    <description><p>Horizontal axis time in minutes from 0 to 25; vertical axis cumulative frequency from 0 to 50. Plotted points: (0, 0), (5, 6), (10, 20), (15, 38), (20, 46), (25, 50), joined by straight line segments. A dashed vertical line from 12 on the time axis meets the graph at height 27.2, and a dashed horizontal line goes from there to the cumulative frequency axis.</p></description>
+                    <latex-image>
+\begin{tikzpicture}
+\begin{axis}[width=12cm, height=8cm, xmin=0, xmax=26, ymin=0, ymax=52,
+  xtick={0,5,...,25}, ytick={0,10,...,50}, minor x tick num=4, minor y tick num=4,
+  grid=both, major grid style={gray!50}, minor grid style={gray!20},
+  xlabel={Waiting time (minutes)}, ylabel={Cumulative frequency}]
+\addplot[thick, mark=*] coordinates {(0,0) (5,6) (10,20) (15,38) (20,46) (25,50)};
+\addplot[dashed, thick] coordinates {(12,0) (12,27.2) (0,27.2)};
+\node[anchor=south west] at (axis cs:0.3,27.6) {about 27};
+\node[anchor=north west] at (axis cs:12.2,4) {12};
+\end{axis}
+\end{tikzpicture}
+                    </latex-image>
+                </image>
+            </figure>
+            <p>Go up from <m>12</m> minutes to the graph and across: about <m>27</m> customers waited less than <m>12</m> minutes. (By calculation along the segment from <m>(10, 20)</m> to <m>(15, 38)</m>: <m>20 + 18 \times \dfrac{2}{5} = 27.2</m>.) So about <m>50 - 27 = 23</m> customers waited more than <m>12</m> minutes.</p>
         </solution>
     </example>
 
-    <example>
+    <example xml:id="example-maize-plants-cf">
+        <title>From Cumulative Frequency Back to Frequency</title>
         <statement>
+            <p>An agricultural officer measured <m>80</m> maize plants and recorded how many were shorter than each height.</p>
+            <table xml:id="table-maize-plants">
+                <title>Heights of 80 Maize Plants</title>
+                <tabular halign="center" top="minor" bottom="minor" left="minor" right="minor">
+                    <row header="yes" bottom="medium"><cell>Height less than (cm)</cell><cell>20</cell><cell>40</cell><cell>60</cell><cell>80</cell><cell>100</cell><cell>120</cell></row>
+                    <row><cell>Cumulative frequency</cell><cell>5</cell><cell>17</cell><cell>38</cell><cell>62</cell><cell>74</cell><cell>80</cell></row>
+                </tabular>
+            </table>
+            <p>Find the number of plants in each class <m>0 \le h \lt 20</m>, <m>20 \le h \lt 40</m>, and so on.</p>
         </statement>
         <solution>
+            <p>Each frequency is a cumulative frequency minus the one before it: <m>5</m>, <m>17 - 5 = 12</m>, <m>38 - 17 = 21</m>, <m>62 - 38 = 24</m>, <m>74 - 62 = 12</m> and <m>80 - 74 = 6</m>. Check: <m>5 + 12 + 21 + 24 + 12 + 6 = 80</m>.</p>
         </solution>
-    </example> -->
+    </example>
 
     <xi:include href="../lesson-plan-templates/assessment-intro.ptx" />
+    <xi:include href="../lesson-plan-templates/checkpoint.ptx" />
 
-    <!-- If STACK questions are included, uncomment this: -->
+    <p>Type decimals with a point, for example <c>30.6</c>. Give answers to the accuracy asked for.</p>
 
-    <!-- <xi:include href="../lesson-plan-templates/checkpoint.ptx" /> -->
+    <exercise xml:id="ex-cumulative-frequencies-and-plotting-an-ogive">
+        <!--<title></title>-->
+        <stack label="stk-cumulative-frequencies-and-plotting-an-ogive" source="stack/top/3-statistics-and-probability/15-statistics/02-cumulative-frequency-curves/Cumulative-frequencies-and-plotting-an-ogive.xml"/>
+    </exercise>
 
-    <!-- Add STACK exercises if made -->
+    <exercise xml:id="ex-finding-the-mistake-in-an-ogive">
+        <!--<title></title>-->
+        <stack label="stk-finding-the-mistake-in-an-ogive" source="stack/top/3-statistics-and-probability/15-statistics/02-cumulative-frequency-curves/Finding-the-mistake-in-an-ogive.xml"/>
+    </exercise>
 
-    <!-- Add static exercises -->
+    <exercise xml:id="ex-reading-a-cumulative-frequency-table">
+        <!--<title></title>-->
+        <stack label="stk-reading-a-cumulative-frequency-table" source="stack/top/3-statistics-and-probability/15-statistics/02-cumulative-frequency-curves/Reading-a-cumulative-frequency-table.xml"/>
+    </exercise>
 
-    <!-- <exercises>
-        <exercise>
-            <statement>   
+    <exercises xml:id="exercises-cumulative-frequency-curves">
+        <exercise xml:id="ex-ogive-seedlings">
+            <statement>
+                <p>The heights, in cm (to the nearest cm), of <m>60</m> seedlings at a tree nursery in Kakamega are shown below. Complete a cumulative frequency column, write down the points to plot, and draw the cumulative frequency curve. Keep your graph: you will use it again in <xref ref="sec-quartiles-deciles-and-percentiles-for-grouped-data"/> and <xref ref="sec-measures-of-dispersion"/>.</p>
+                <tabular halign="center" top="minor" bottom="minor" left="minor" right="minor">
+                    <row header="yes" bottom="medium"><cell>Height (cm)</cell><cell>10–14</cell><cell>15–19</cell><cell>20–24</cell><cell>25–29</cell><cell>30–34</cell><cell>35–39</cell></row>
+                    <row><cell>Frequency (<m>f</m>)</cell><cell>4</cell><cell>9</cell><cell>15</cell><cell>18</cell><cell>10</cell><cell>4</cell></row>
+                </tabular>
+            </statement>
+            <answer><p>cf <m>4, 13, 28, 46, 56, 60</m>; points <m>(9.5, 0)</m>, <m>(14.5, 4)</m>, <m>(19.5, 13)</m>, <m>(24.5, 28)</m>, <m>(29.5, 46)</m>, <m>(34.5, 56)</m>, <m>(39.5, 60)</m>.</p></answer>
+        </exercise>
+        <exercise xml:id="ex-ogive-rainfall">
+            <statement>
+                <p>The daily rainfall, <m>r</m> mm, on <m>40</m> wet days at Kericho is shown below. Write down the points to plot and draw the cumulative frequency curve.</p>
+                <tabular halign="center" top="minor" bottom="minor" left="minor" right="minor">
+                    <row header="yes" bottom="medium"><cell>Rainfall (mm)</cell><cell><m>0 \le r \lt 10</m></cell><cell><m>10 \le r \lt 20</m></cell><cell><m>20 \le r \lt 30</m></cell><cell><m>30 \le r \lt 40</m></cell><cell><m>40 \le r \lt 50</m></cell><cell><m>50 \le r \lt 60</m></cell></row>
+                    <row><cell>Frequency (<m>f</m>)</cell><cell>5</cell><cell>8</cell><cell>12</cell><cell>9</cell><cell>4</cell><cell>2</cell></row>
+                </tabular>
+            </statement>
+            <answer><p><m>(0, 0)</m>, <m>(10, 5)</m>, <m>(20, 13)</m>, <m>(30, 25)</m>, <m>(40, 34)</m>, <m>(50, 38)</m>, <m>(60, 40)</m>.</p></answer>
+        </exercise>
+        <exercise xml:id="ex-ogive-reading-counts">
+            <statement><p>Use your table and graph from <xref ref="ex-ogive-seedlings"/>. How many seedlings are shorter than <m>24.5\,\text{cm}</m>? How many are <m>29.5\,\text{cm}</m> or taller? Estimate how many are shorter than <m>27\,\text{cm}</m>.</p></statement>
+            <answer><p><m>28</m>; <m>14</m>; about <m>37</m></p></answer>
+            <solution><p>The cumulative frequency at <m>24.5</m> is <m>28</m>. At <m>29.5</m> it is <m>46</m>, so <m>60 - 46 = 14</m> are <m>29.5\,\text{cm}</m> or taller. Going up from <m>27</m>: <m>28 + 18 \times \dfrac{27 - 24.5}{5} = 37</m>, so about <m>37</m> seedlings.</p></solution>
+        </exercise>
+        <exercise xml:id="ex-ogive-back-to-frequency">
+            <statement><p>The cumulative frequencies for the classes 10–19, 20–29, 30–39, 40–49, 50–59 and 60–69 are <m>3, 11, 26, 44, 54, 60</m>. Find the frequencies.</p></statement>
+            <answer><p><m>3, 8, 15, 18, 10, 6</m></p></answer>
+        </exercise>
+        <exercise xml:id="ex-juma-ogive">
+            <statement><p>Juma drew a cumulative frequency curve for the goat masses in <xref ref="example-goats-ogive"/>, but he plotted the cumulative frequencies <m>3, 10, 22, 36, 45, 50</m> at <m>17, 22, 27, 32, 37, 42</m>. What did he do wrong, and how does it affect a median read from his graph?</p></statement>
+            <answer><p>He plotted at the class midpoints. His curve is half a class (<m>2.5\,\text{kg}</m>) too far left, so his median is about <m>2.5\,\text{kg}</m> too small.</p></answer>
+            <solution><p><m>17, 22, \ldots</m> are the midpoints of the classes, not the upper class boundaries <m>19.5, 24.5, \ldots</m>. Every point is <m>2.5\,\text{kg}</m> to the left of where it should be, so any value read across from the cumulative frequency axis, including the median, comes out about <m>2.5\,\text{kg}</m> too small.</p></solution>
+        </exercise>
+        <exercise xml:id="ex-two-curves-one-grid">
+            <title>Challenge: Two Curves on One Grid</title>
+            <statement>
+                <p>The heights, in cm (to the nearest cm), of <m>30</m> boys and <m>30</m> girls in a Grade 12 class are shown below. Draw both cumulative frequency curves on one grid and compare the two groups.</p>
+                <tabular halign="center" top="minor" bottom="minor" left="minor" right="minor">
+                    <row header="yes" bottom="medium"><cell>Height (cm)</cell><cell>150–154</cell><cell>155–159</cell><cell>160–164</cell><cell>165–169</cell><cell>170–174</cell><cell>175–179</cell></row>
+                    <row><cell>Boys</cell><cell>2</cell><cell>5</cell><cell>9</cell><cell>8</cell><cell>4</cell><cell>2</cell></row>
+                    <row><cell>Girls</cell><cell>4</cell><cell>8</cell><cell>10</cell><cell>5</cell><cell>2</cell><cell>1</cell></row>
+                </tabular>
+            </statement>
+            <hint><p>Read both curves at <m>164.5\,\text{cm}</m>.</p></hint>
+            <answer><p>Boys' cf <m>2, 7, 16, 24, 28, 30</m>; girls' cf <m>4, 12, 22, 27, 29, 30</m>. The girls' curve lies to the left, so the girls are generally shorter: <m>22</m> girls but only <m>16</m> boys are shorter than <m>164.5\,\text{cm}</m>.</p></answer>
+        </exercise>
+    </exercises>
 
-            </statement>   
-            <solution>
-
-            </solution>             
-        </exercise>        
-    </exercises> -->
-
-    <!-- [LP] Add information on how to differentiate  -->
-
-    <!-- <axiom component="lesson-plan">
+    <axiom component="lesson-plan">
         <title>Differentiation</title>
-
-        <table>
-            <title>Differentiation</title>
-            <tabular halign="left">
-                <row header="yes" bottom="minor">
-                    <cell>Learner Group</cell>
-                    <cell>Strategy &amp; Learning Experience</cell>
-                    <cell></cell>
-                </row>
-                <row>
-                    <cell>Struggling Learners (Support)</cell>
-                    <cell>
-                        XXXX
-                    </cell>
-                    <cell></cell>
-                </row>
-                <row>
-                    <cell>On-Level Learners (Core)</cell>
-                    <cell>
-                        <line>The core lesson activities as described above.</line>
-                    </cell>
-                    <cell></cell>
-                </row>
-                <row>
-                    <cell>Advanced Learners (Challenge)</cell>
-                    <cell>
-                        XXXX
-                    </cell>
-                    <cell></cell>
-                </row>
+        <table xml:id="table-differentiation-cumulative-frequency-curves">
+            <title>Differentiation Strategies</title>
+            <tabular halign="left" top="minor" bottom="minor" left="minor" right="minor">
+                <row header="yes" bottom="medium"><cell>Learner Group</cell><cell>Strategy and Learning Experience</cell></row>
+                <row><cell>Struggling Learners (Support)</cell><cell>Provide axes already drawn with scales, and a cumulative frequency column with the first two entries filled in. Assign <xref ref="ex-ogive-seedlings"/> and <xref ref="ex-ogive-back-to-frequency"/>.</cell></row>
+                <row><cell>On-Level Learners (Core)</cell><cell>Full activity and all examples. Assign <xref ref="ex-ogive-seedlings"/> to <xref ref="ex-juma-ogive"/>.</cell></row>
+                <row><cell>Advanced Learners (Challenge)</cell><cell>All exercises including <xref ref="ex-two-curves-one-grid"/>. Extension: which class gives the steepest part of the curve, and why? (Answer: the class with the largest frequency, here the modal class, because the most values are added there.)</cell></row>
             </tabular>
         </table>
-    </axiom> -->
+    </axiom>
 
     <xi:include href="../lesson-plan-templates/assessment-methods.ptx" />
 

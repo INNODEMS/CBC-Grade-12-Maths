@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<quiz>
+<question type="stack">
+  <name><text>Greatest velocity of a particle</text></name>
+  <questiontext format="html">
+    <text><![CDATA[<p>A particle \(P\) moves along a straight line so that its displacement from \(O\) after \(t\) seconds is \(s = {@s@}\) metres, \(t \ge 0\).</p><p>(a) Find the time at which the velocity of \(P\) is greatest.</p><div>\(t =\) [[input:ans1]] [[validation:ans1]] [[feedback:prt1]]</div><p>(b) Find the greatest velocity.</p><div>[[input:ans2]] \(\text{m/s}\) [[validation:ans2]] [[feedback:prt2]]</div><p>(c) \(P\) is at rest when \(t = 0\). When is it next at rest?</p><div>\(t =\) [[input:ans3]] [[validation:ans3]] [[feedback:prt3]]</div><p>(d) Find the acceleration of \(P\) at that moment.</p><div>[[input:ans4]] \(\text{m/s}^2\) [[validation:ans4]] [[feedback:prt4]]</div>]]></text>
+  </questiontext>
+  <generalfeedback format="html">
+    <text><![CDATA[<p>\(v = \dfrac{ds}{dt} = {@v@}\) and \(a = \dfrac{dv}{dt} = {@a@}\).</p><p>(a) The velocity is greatest when its rate of change, the acceleration, is zero: \(a = 0\) at \(t = {@m0@}\). Before that \(a \gt 0\) and \(v\) is increasing; after it \(a \lt 0\) and \(v\) is decreasing, so this is the greatest velocity.</p><p>(b) \(v = {@vmax@}\,\text{m/s}\) at \(t = {@m0@}\).</p><p>(c) \(v = {@3*c0*t*(2*m0-t)@} = 0\) at \(t = 0\) and \(t = {@tr@}\).</p><p>(d) At \(t = {@tr@}\), \(a = {@a2@}\,\text{m/s}^2\). The velocity is \(0\) but the acceleration is negative, so \(P\) is about to move back towards \(O\).</p>]]></text>
+  </generalfeedback>
+  <defaultgrade>4</defaultgrade>
+  <penalty>0.1</penalty>
+  <hidden>0</hidden>
+  <idnumber></idnumber>
+  <stackversion><text>2026063000</text></stackversion>
+  <questionvariables>
+    <text><![CDATA[/* Design: s = c0(3 m0 t^2 - t^3): greatest velocity at t = m0 (a = 0), next at rest at t = 2 m0. Source: original. */
+L: [[1,2],[2,3],[1,4],[2,2],[1,5],[3,2],[1,3],[2,4],[1,6],[3,3]];
+ix: 1+rand(10);
+c0: L[ix][1]; m0: L[ix][2];
+s: expand(c0*(3*m0*t^2-t^3));
+v: diff(s,t); a: diff(v,t);
+vmax: 3*c0*m0^2; tr: 2*m0; a2: -6*c0*m0;
+sm: ev(s,t=m0); a0v: ev(a,t=0);]]></text>
+  </questionvariables>
+  <specificfeedback format="html"><text><![CDATA[]]></text></specificfeedback>
+  <questionnote format="moodle_auto_format">
+    <text>ix={@ix@}, s={@s@}, t*={@m0@}, vmax={@vmax@}, rest {@tr@}, a={@a2@}</text>
+  </questionnote>
+  <questiondescription format="html"><text><![CDATA[<p id="concept">Differentiation II: greatest velocity of a particle</p><p id="description">Grade 12 CBE Core 4.1: Find when the velocity of a particle is greatest and its value, when it is next at rest, and its acceleration then.</p><p id="edition">Core</p><p id="provenance">This question is original to this project.</p><p id="citation">INNODEMS CBC Grade 12 Mathematics, first draft by Ben Davies, 2026. Aligned to the KICD Senior School Curriculum Design, Core Mathematics Grade 12 (draft).</p>]]></text></questiondescription>
+  <questionsimplify>1</questionsimplify>
+  <assumepositive>0</assumepositive>
+  <assumereal>0</assumereal>
+  <prtcorrect format="html"><text><![CDATA[[[commonstring key="symbolicprtcorrectfeedback"/]] [[commonstring key="defaultprtcorrectfeedback"/]]]]></text></prtcorrect>
+  <prtpartiallycorrect format="html"><text><![CDATA[[[commonstring key="symbolicprtpartiallycorrectfeedback"/]] [[commonstring key="defaultprtpartiallycorrectfeedback"/]]]]></text></prtpartiallycorrect>
+  <prtincorrect format="html"><text><![CDATA[[[commonstring key="symbolicprtincorrectfeedback"/]] [[commonstring key="defaultprtincorrectfeedback"/]]]]></text></prtincorrect>
+  <decimals>.</decimals>
+  <scientificnotation>*10</scientificnotation>
+  <multiplicationsign>none</multiplicationsign>
+  <sqrtsign>1</sqrtsign>
+  <complexno>i</complexno>
+  <inversetrig>cos-1</inversetrig>
+  <logicsymbol>lang</logicsymbol>
+  <matrixparens>[</matrixparens>
+  <isbroken>0</isbroken>
+  <variantsselectionseed></variantsselectionseed>
+
+  <input><name>ans1</name><type>numerical</type><tans>m0</tans><boxsize>5</boxsize><strictsyntax>1</strictsyntax><insertstars>0</insertstars><syntaxhint></syntaxhint><syntaxattribute>0</syntaxattribute><forbidwords></forbidwords><allowwords></allowwords><forbidfloat>1</forbidfloat><requirelowestterms>0</requirelowestterms><checkanswertype>0</checkanswertype><mustverify>0</mustverify><showvalidation>0</showvalidation><options></options></input>
+  <input><name>ans2</name><type>numerical</type><tans>vmax</tans><boxsize>5</boxsize><strictsyntax>1</strictsyntax><insertstars>0</insertstars><syntaxhint></syntaxhint><syntaxattribute>0</syntaxattribute><forbidwords></forbidwords><allowwords></allowwords><forbidfloat>1</forbidfloat><requirelowestterms>0</requirelowestterms><checkanswertype>0</checkanswertype><mustverify>0</mustverify><showvalidation>0</showvalidation><options></options></input>
+  <input><name>ans3</name><type>numerical</type><tans>tr</tans><boxsize>5</boxsize><strictsyntax>1</strictsyntax><insertstars>0</insertstars><syntaxhint></syntaxhint><syntaxattribute>0</syntaxattribute><forbidwords></forbidwords><allowwords></allowwords><forbidfloat>1</forbidfloat><requirelowestterms>0</requirelowestterms><checkanswertype>0</checkanswertype><mustverify>0</mustverify><showvalidation>0</showvalidation><options></options></input>
+  <input><name>ans4</name><type>numerical</type><tans>a2</tans><boxsize>5</boxsize><strictsyntax>1</strictsyntax><insertstars>0</insertstars><syntaxhint></syntaxhint><syntaxattribute>0</syntaxattribute><forbidwords></forbidwords><allowwords></allowwords><forbidfloat>1</forbidfloat><requirelowestterms>0</requirelowestterms><checkanswertype>0</checkanswertype><mustverify>0</mustverify><showvalidation>0</showvalidation><options></options></input>
+
+  <prt><name>prt1</name><value>1.0000000</value><autosimplify>1</autosimplify><feedbackstyle>1</feedbackstyle><feedbackvariables><text><![CDATA[al: ev(a,t=ans1);]]></text></feedbackvariables>
+    <node><name>0</name><description>Time of greatest velocity</description><answertest>AlgEquiv</answertest><sans>ans1</sans><tans>m0</tans><testoptions></testoptions><quiet>1</quiet><truescoremode>=</truescoremode><truescore>1.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt1-1-T</trueanswernote><truefeedback format="html"><text><![CDATA[]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>1</falsenextnode><falseanswernote>prt1-1-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>1</name><description>Rest time</description><answertest>AlgEquiv</answertest><sans>ans1</sans><tans>tr</tans><testoptions></testoptions><quiet>1</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt1-2-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>At \(t = {@tr@}\) the velocity is zero, not greatest. The velocity is greatest when its rate of change, the acceleration, is zero.</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>-1</falsenextnode><falseanswernote>prt1-2-F</falseanswernote><falsefeedback format="html"><text><![CDATA[<p>At \(t = {@ans1@}\) the acceleration is \({@al@}\), not \(0\), so the velocity is still changing there. Find \(a = \dfrac{dv}{dt}\) and solve \(a = 0\). Check that \(v\) goes from increasing to decreasing there.</p>]]></text></falsefeedback></node>
+  </prt>
+  <prt><name>prt2</name><value>1.0000000</value><autosimplify>1</autosimplify><feedbackstyle>1</feedbackstyle><feedbackvariables><text><![CDATA[ft: ev(v,t=ans1);]]></text></feedbackvariables>
+    <node><name>0</name><description>Greatest velocity</description><answertest>AlgEquiv</answertest><sans>ans2</sans><tans>vmax</tans><testoptions></testoptions><quiet>1</quiet><truescoremode>=</truescoremode><truescore>1.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt2-1-T</trueanswernote><truefeedback format="html"><text><![CDATA[]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>1</falsenextnode><falseanswernote>prt2-1-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>1</name><description>Displacement</description><answertest>AlgEquiv</answertest><sans>ans2</sans><tans>sm</tans><testoptions></testoptions><quiet>1</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt2-2-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>That is the displacement at that time. Substitute into \(v = \dfrac{ds}{dt}\).</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>2</falsenextnode><falseanswernote>prt2-2-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>2</name><description>Follow-through from (a)</description><answertest>AlgEquiv</answertest><sans>ans2</sans><tans>ft</tans><testoptions></testoptions><quiet>1</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt2-3-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>That is the velocity at your time from (a): check (a).</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>-1</falsenextnode><falseanswernote>prt2-3-F</falseanswernote><falsefeedback format="html"><text><![CDATA[<p>Substitute your time into \(v = \dfrac{ds}{dt}\).</p>]]></text></falsefeedback></node>
+  </prt>
+  <prt><name>prt3</name><value>1.0000000</value><autosimplify>1</autosimplify><feedbackstyle>1</feedbackstyle><feedbackvariables><text><![CDATA[]]></text></feedbackvariables>
+    <node><name>0</name><description>Next rest</description><answertest>AlgEquiv</answertest><sans>ans3</sans><tans>tr</tans><testoptions></testoptions><quiet>1</quiet><truescoremode>=</truescoremode><truescore>1.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt3-1-T</trueanswernote><truefeedback format="html"><text><![CDATA[]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>1</falsenextnode><falseanswernote>prt3-1-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>1</name><description>Zero acceleration time</description><answertest>AlgEquiv</answertest><sans>ans3</sans><tans>m0</tans><testoptions></testoptions><quiet>1</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt3-2-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>At \(t = {@m0@}\) the acceleration is zero. At rest means \(v = 0\).</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>-1</falsenextnode><falseanswernote>prt3-2-F</falseanswernote><falsefeedback format="html"><text><![CDATA[<p>Solve \(v = 0\); one solution is \(t = 0\).</p>]]></text></falsefeedback></node>
+  </prt>
+  <prt><name>prt4</name><value>1.0000000</value><autosimplify>1</autosimplify><feedbackstyle>1</feedbackstyle><feedbackvariables><text><![CDATA[fta: ev(a,t=ans3);]]></text></feedbackvariables>
+    <node><name>0</name><description>Acceleration</description><answertest>AlgEquiv</answertest><sans>ans4</sans><tans>a2</tans><testoptions></testoptions><quiet>1</quiet><truescoremode>=</truescoremode><truescore>1.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt4-1-T</trueanswernote><truefeedback format="html"><text><![CDATA[]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>1</falsenextnode><falseanswernote>prt4-1-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>1</name><description>At t = 0</description><answertest>AlgEquiv</answertest><sans>ans4</sans><tans>a0v</tans><testoptions></testoptions><quiet>1</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt4-2-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>That is the acceleration at \(t = 0\). Use the time when \(P\) is next at rest, and keep the sign of each term.</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>2</falsenextnode><falseanswernote>prt4-2-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>2</name><description>Zero</description><answertest>AlgEquiv</answertest><sans>ans4</sans><tans>0</tans><testoptions></testoptions><quiet>1</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt4-3-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>The velocity is \(0\) at that moment, but the acceleration is not.</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>-1</falsenextnode><falseanswernote>prt4-3-F</falseanswernote><falsefeedback format="html"><text><![CDATA[[[if test="is(ans4=fta)"]]<p>That is the acceleration at your time from (c), so your substitution is right: check (c).</p>[[else]]<p>Find \(a = \dfrac{dv}{dt}\) and substitute the time from (c).</p>[[/if]]]]></text></falsefeedback></node>
+  </prt>
+
+  <deployedseed>4</deployedseed>
+  <deployedseed>5</deployedseed>
+  <deployedseed>15</deployedseed>
+  <deployedseed>8</deployedseed>
+  <deployedseed>24</deployedseed>
+  <deployedseed>1</deployedseed>
+  <deployedseed>3</deployedseed>
+  <deployedseed>10</deployedseed>
+  <deployedseed>2</deployedseed>
+  <deployedseed>17</deployedseed>
+  <qtest><testcase>1</testcase><description>Correct</description>
+    <testinput><name>ans1</name><value>m0</value></testinput>
+    <testinput><name>ans2</name><value>vmax</value></testinput>
+    <testinput><name>ans3</name><value>tr</value></testinput>
+    <testinput><name>ans4</name><value>a2</value></testinput>
+    <expected><name>prt1</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt1-1-T</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt2-1-T</expectedanswernote></expected>
+    <expected><name>prt3</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt3-1-T</expectedanswernote></expected>
+    <expected><name>prt4</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt4-1-T</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>2</testcase><description>Named confusions</description>
+    <testinput><name>ans1</name><value>2*m0</value></testinput>
+    <testinput><name>ans2</name><value>sm</value></testinput>
+    <testinput><name>ans3</name><value>m0</value></testinput>
+    <testinput><name>ans4</name><value>a0v</value></testinput>
+    <expected><name>prt1</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt1-1-F | prt1-2-T</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt2-1-F | prt2-2-T</expectedanswernote></expected>
+    <expected><name>prt3</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt3-1-F | prt3-2-T</expectedanswernote></expected>
+    <expected><name>prt4</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt4-1-F | prt4-2-T</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>3</testcase><description>Follow-through; zero acceleration</description>
+    <testinput><name>ans1</name><value>m0+1</value></testinput>
+    <testinput><name>ans2</name><value>ev(v,t=m0+1)</value></testinput>
+    <testinput><name>ans3</name><value>2*m0</value></testinput>
+    <testinput><name>ans4</name><value>0</value></testinput>
+    <expected><name>prt1</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt1-1-F | prt1-2-F</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt2-1-F | prt2-2-F | prt2-3-T</expectedanswernote></expected>
+    <expected><name>prt3</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt3-1-T</expectedanswernote></expected>
+    <expected><name>prt4</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt4-1-F | prt4-2-F | prt4-3-T</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>4</testcase><description>Generic wrong</description>
+    <testinput><name>ans1</name><value>m0</value></testinput>
+    <testinput><name>ans2</name><value>vmax+100</value></testinput>
+    <testinput><name>ans3</name><value>2*m0+100</value></testinput>
+    <testinput><name>ans4</name><value>a2+100</value></testinput>
+    <expected><name>prt1</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt1-1-T</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt2-1-F | prt2-2-F | prt2-3-F</expectedanswernote></expected>
+    <expected><name>prt3</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt3-1-F | prt3-2-F</expectedanswernote></expected>
+    <expected><name>prt4</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt4-1-F | prt4-2-F | prt4-3-F</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>5</testcase><description>Invalid: letter in (a)</description>
+    <testinput><name>ans1</name><value>x</value></testinput>
+    <testinput><name>ans2</name><value>vmax</value></testinput>
+    <testinput><name>ans3</name><value>tr</value></testinput>
+    <testinput><name>ans4</name><value>a2</value></testinput>
+    <expected><name>prt1</name><expectedscore></expectedscore><expectedpenalty></expectedpenalty><expectedanswernote>NULL</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore></expectedscore><expectedpenalty></expectedpenalty><expectedanswernote>NULL</expectedanswernote></expected>
+    <expected><name>prt3</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt3-1-T</expectedanswernote></expected>
+    <expected><name>prt4</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt4-1-T</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>6</testcase><description>Acceleration at a wrong time from (c)</description>
+    <testinput><name>ans1</name><value>m0</value></testinput>
+    <testinput><name>ans2</name><value>vmax</value></testinput>
+    <testinput><name>ans3</name><value>tr+1</value></testinput>
+    <testinput><name>ans4</name><value>ev(a,t=tr+1)</value></testinput>
+    <expected><name>prt1</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt1-1-T</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt2-1-T</expectedanswernote></expected>
+    <expected><name>prt3</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt3-1-F | prt3-2-F</expectedanswernote></expected>
+    <expected><name>prt4</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt4-1-F | prt4-2-F | prt4-3-F</expectedanswernote></expected>
+  </qtest>
+</question>
+</quiz>

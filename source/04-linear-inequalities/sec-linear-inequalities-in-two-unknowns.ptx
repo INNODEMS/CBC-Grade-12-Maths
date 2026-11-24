@@ -45,161 +45,192 @@
          Content summary: Forming linear inequalities in two unknowns from real-life scenarios.
          Suggested activity: Learners form inequalities in two unknowns from a shop problem, e.g. buying exercise books and pens with KSh 500. -->
 
-    <!-- [LP] Add guidance on activity -->
+    <!-- Section notes (2026-11)
+         SLOs: Essential 1.3 (c)
+         Activity: as planning notes (exercise books and pens with Ksh 500) | added: test pairs, and a second condition (at least 3 books)
+         JSXGraph: none (none in planning notes)
+         STACK: assets/stack/top/1-numbers-and-algebra/04-linear-inequalities/02-linear-inequalities-in-two-unknowns/ -->
+
+    <p component="lesson-plan">Upon completion of this lesson, learners will be able to:
+        <ol>
+            <li><p><alert>Know:</alert> that an inequality can involve two unknowns; that a solution is a pair of values; that counts cannot be negative.</p></li>
+            <li><p><alert>Do:</alert> form an inequality such as <m>ax + by \le c</m> from a budget, a target, a seating need or a <q>times as many</q> condition; test a pair; simplify by dividing by a common factor.</p></li>
+            <li><p><alert>Apply:</alert> decide what a small business or a school can do within its limits.</p></li>
+        </ol>
+    </p>
 
     <axiom component="lesson-plan">
         <title>Problem-Solving and Discovery</title>
         <dl>
-            <li>
-                <title>Suggested Time</title>
-                <p>
-                    XXX minutes
-                </p>
-            </li>
-            <li>
-                <title>Objective</title>
-                <p>
-                    XXX
-                </p>
-            </li>
-            <li>
-                <title>Teacher's Role</title>
-                <p>
-                    XXX
-                </p>
-            </li>
+            <li><title>Suggested Time</title><p>14 minutes</p></li>
+            <li><title>Objective</title><p>Learners find that many pairs of numbers fit one budget.</p></li>
+            <li><title>Teacher's Role</title><p>Give groups four minutes to list as many pairs (books, pens) as they can that Achieng can afford. Collect them on the board, then ask: <q>Is <m>(5, 8)</m> allowed? It uses all the money.</q></p></li>
         </dl>
     </axiom>
 
-    <!-- Add Activity -->
-
-    <!-- <activity>
+    <activity xml:id="act-shopping-for-school">
+        <title>Shopping for School</title>
         <statement>
+            <p>Exercise books cost Ksh <m>60</m> each and pens cost Ksh <m>25</m> each. Achieng has Ksh <m>500</m> to spend.</p>
+            <p>
+                <ol marker="(a)">
+                    <li>
+                        <p>What do <m>3</m> books and <m>4</m> pens cost? Can she afford them?</p>
+                        <solution component="lesson-plan"><p><m>3 \times 60 + 4 \times 25 = 280</m>: Ksh <m>280</m>. Yes, with Ksh <m>220</m> change.</p></solution>
+                    </li>
+                    <li>
+                        <p>Write an expression for the cost of <m>x</m> books and <m>y</m> pens.</p>
+                        <solution component="lesson-plan"><p><m>60x + 25y</m> shillings.</p></solution>
+                    </li>
+                    <li>
+                        <p>Write an inequality that says she can afford them.</p>
+                        <solution component="lesson-plan"><p><m>60x + 25y \le 500</m>.</p></solution>
+                    </li>
+                    <li>
+                        <p>Test the pairs <m>(5, 8)</m>, <m>(6, 6)</m> and <m>(4, 10)</m>.</p>
+                        <solution component="lesson-plan"><p><m>(5, 8)</m>: <m>300 + 200 = 500</m>, allowed (exactly her money). <m>(6, 6)</m>: <m>360 + 150 = 510</m>, not allowed. <m>(4, 10)</m>: <m>240 + 250 = 490</m>, allowed.</p></solution>
+                    </li>
+                    <li>
+                        <p>She needs at least <m>3</m> books. Write this as an inequality.</p>
+                        <solution component="lesson-plan"><p><m>x \ge 3</m>.</p></solution>
+                    </li>
+                    <li>
+                        <p>Give two more pairs that meet both conditions.</p>
+                        <solution component="lesson-plan"><p>For example <m>(3, 12)</m>, costing Ksh <m>480</m>, and <m>(6, 5)</m>, costing Ksh <m>485</m>.</p></solution>
+                    </li>
+                    <li>
+                        <p>Why must <m>x</m> and <m>y</m> be whole numbers that are not negative?</p>
+                        <solution component="lesson-plan"><p>They count books and pens: she cannot buy half a book or a negative number of pens. So <m>x \ge 0</m> and <m>y \ge 0</m>, and both are whole numbers.</p></solution>
+                    </li>
+                </ol>
+            </p>
         </statement>
-    </activity> -->
+    </activity>
 
-    <!-- [LP] Add guidance on structured lesson plan-->
-
-    <!-- <axiom component="lesson-plan">
+    <axiom component="lesson-plan">
         <title>Structured Instruction</title>
         <p>
             <dl>
-            <li>
-                <title>Suggested Time</title>
-                <p>
-                    XX minutes
-                </p>
-            </li>
-            <li>
-                <title>Objective</title>
-                <p>
-                    To formalize the concepts and properties learners discovered in the anchor task.
-                </p>
-            </li>
+                <li><title>Suggested Time</title><p>8 minutes</p></li>
+                <li><title>Objective</title><p>To formalise forming and testing inequalities in two unknowns.</p></li>
             </dl>
         </p>
         <paragraphs>
             <title>Key Takeaways &amp; Teacher Connection</title>
             <ol>
-                <li>
-                    <p>
-                        <alert>Connecting to Learner Work:</alert> XXXX
-                    </p>
-                </li>
+                <li><p><alert>Connecting to Learner Work:</alert> every pair on the board is a solution; the pairs that cost more than Ksh <m>500</m> are not.</p></li>
+                <li><p>Total cost is price times number for each item, added together. The sign comes from the words (<xref ref="table-inequality-words"/>).</p></li>
+                <li><p>A solution is a pair; test it by substitution. Divide by a common factor to simplify.</p></li>
             </ol>
         </paragraphs>
-    </axiom> -->
+    </axiom>
 
-    <!-- Add insight / key takeaway directly related to activity / learner experience -->
-
-    <!-- <insight>
-    </insight> -->
-
-    <!-- Add further instruction (not in a block) to develop ideas as needed -->
+    <insight xml:id="insight-inequalities-in-two-unknowns">
+        <title>Inequalities in Two Unknowns</title>
+        <p>An inequality such as <m>60x + 25y \le 500</m> is a <term>linear inequality in two unknowns</term>. The sign can be any of <m>\lt</m>, <m>\le</m>, <m>\gt</m> or <m>\ge</m>.</p>
+        <p>A <term>solution</term> is a pair of values <m>(x, y)</m> that makes the inequality true. To test a pair, substitute both values and see whether the statement is true. There are usually many solutions.</p>
+        <p>When <m>x</m> and <m>y</m> count things, they are whole numbers and cannot be negative, so we also write <m>x \ge 0</m> and <m>y \ge 0</m>.</p>
+        <p>We write inequalities with whole-number coefficients in their simplest form: if every number has a common factor, divide by it. Dividing both sides by a positive number does not change which pairs make the inequality true.</p>
+    </insight>
 
     <xi:include href="../lesson-plan-templates/example-intro.ptx" />
 
-    <!-- Add at least 3 examples -->
-
-    <!-- <example>
+    <example xml:id="example-mandazi-and-chapati">
+        <title>Mandazi and Chapati</title>
         <statement>
+            <p>Wanjiru sells mandazi and chapati. She makes a profit of Ksh <m>4</m> on each mandazi and Ksh <m>9</m> on each chapati. She wants a profit of at least Ksh <m>360</m> a day. Write an inequality for <m>m</m> mandazi and <m>c</m> chapati. Does selling <m>45</m> mandazi and <m>20</m> chapati meet her target? Does selling <m>30</m> mandazi and <m>25</m> chapati?</p>
         </statement>
         <solution>
+            <p>The profit is <m>4m + 9c</m> shillings, and <q>at least</q> gives <m>\ge</m>: <m>4m + 9c \ge 360</m>.</p>
+            <p><m>(45, 20)</m>: <m>4(45) + 9(20) = 180 + 180 = 360</m>, and <m>360 \ge 360</m> is true: she meets the target exactly.</p>
+            <p><m>(30, 25)</m>: <m>4(30) + 9(25) = 120 + 225 = 345</m>, and <m>345 \ge 360</m> is false: she does not.</p>
         </solution>
     </example>
 
-    <example>
+    <example xml:id="example-seats-for-a-school-trip">
+        <title>Seats for a School Trip</title>
         <statement>
+            <p>A school takes <m>196</m> people on a trip. A bus has <m>49</m> seats and a matatu has <m>14</m> seats. Write an inequality for <m>b</m> buses and <m>m</m> matatus to carry everyone, and simplify it. Are <m>2</m> buses and <m>7</m> matatus enough? Are <m>3</m> buses and <m>3</m> matatus?</p>
         </statement>
         <solution>
+            <p>The seats are <m>49b + 14m</m>, and there must be at least <m>196</m>: <m>49b + 14m \ge 196</m>. Every number is a multiple of <m>7</m>, so divide by <m>7</m>: <m>7b + 2m \ge 28</m>.</p>
+            <p><m>(2, 7)</m>: <m>7(2) + 2(7) = 28</m>, that is <m>196</m> seats: exactly enough.</p>
+            <p><m>(3, 3)</m>: <m>7(3) + 2(3) = 27 \lt 28</m>, that is <m>189</m> seats: not enough.</p>
         </solution>
     </example>
 
-    <example>
+    <example xml:id="example-three-times-as-many">
+        <title>Three Times as Many</title>
         <statement>
+            <p>A juice stall sells <m>m</m> cups of mango juice and <m>p</m> cups of passion juice a day. It always sells at least three times as many cups of mango as of passion. Write an inequality. Do <m>20</m> mango and <m>6</m> passion fit? Do <m>15</m> mango and <m>6</m> passion?</p>
         </statement>
         <solution>
+            <p>Three times the passion cups is <m>3p</m>, and the mango cups are at least that: <m>m \ge 3p</m>.</p>
+            <p>A common mistake is to write <m>3m \ge p</m>. Check with a pair that fits the words, <m>m = 9</m>, <m>p = 3</m>: <m>9 \ge 3(3)</m> is true, as it should be. Now try <m>m = 4</m>, <m>p = 3</m>, which does not fit the words: <m>4 \ge 9</m> is false for <m>m \ge 3p</m>, but <m>12 \ge 3</m> is true for <m>3m \ge p</m>, so <m>3m \ge p</m> is wrong.</p>
+            <p><m>(20, 6)</m>: <m>20 \ge 18</m>, yes. <m>(15, 6)</m>: <m>15 \ge 18</m> is false, no.</p>
         </solution>
-    </example> -->
+    </example>
 
     <xi:include href="../lesson-plan-templates/assessment-intro.ptx" />
+    <xi:include href="../lesson-plan-templates/checkpoint.ptx" />
 
-    <!-- If STACK questions are included, uncomment this: -->
+    <p>Type <m>\le</m> as <c>&lt;=</c> and <m>\ge</m> as <c>&gt;=</c>, for example <c>3x+10y&gt;=30</c>. Use the letters x and y as defined in the question. Type fractions, not decimals, for example <c>y&lt;=2x/3+1</c>.</p>
 
-    <!-- <xi:include href="../lesson-plan-templates/checkpoint.ptx" /> -->
+    <exercise xml:id="ex-forming-an-inequality-in-two-unknowns">
+        <!--<title></title>-->
+        <stack label="stk-forming-an-inequality-in-two-unknowns" source="stack/top/1-numbers-and-algebra/04-linear-inequalities/02-linear-inequalities-in-two-unknowns/Forming-an-inequality-in-two-unknowns.xml"/>
+    </exercise>
 
-    <!-- Add STACK exercises if made -->
+    <exercise xml:id="ex-which-pairs-satisfy-an-inequality-in-two-unknowns">
+        <!--<title></title>-->
+        <stack label="stk-which-pairs-satisfy-an-inequality-in-two-unknowns" source="stack/top/1-numbers-and-algebra/04-linear-inequalities/02-linear-inequalities-in-two-unknowns/Which-pairs-satisfy-an-inequality-in-two-unknowns.xml"/>
+    </exercise>
 
-    <!-- Add static exercises -->
+    <exercises xml:id="exercises-inequalities-in-two-unknowns">
+        <exercise xml:id="ex-school-play-tickets">
+            <statement><p>Adult tickets for a school play cost Ksh <m>200</m> and learner tickets cost Ksh <m>70</m>. The drama club needs takings of at least Ksh <m>7000</m>. Write an inequality for <m>a</m> adult and <m>l</m> learner tickets, and simplify it.</p></statement>
+            <answer><p><m>200a + 70l \ge 7000</m>, which simplifies to <m>20a + 7l \ge 700</m>.</p></answer>
+            <solution><p>Takings are <m>200a</m> from adults and <m>70l</m> from learners. <q>At least</q> gives <m>\ge</m>: <m>200a + 70l \ge 7000</m>. Divide every term by <m>10</m>: <m>20a + 7l \ge 700</m>.</p></solution>
+        </exercise>
+        <exercise xml:id="ex-data-bundles">
+            <statement><p>Daily data bundles cost Ksh <m>20</m> and weekly bundles cost Ksh <m>99</m>. Otieno spends at most Ksh <m>500</m> a month on <m>x</m> daily and <m>y</m> weekly bundles. Write the inequality.</p></statement>
+            <answer><p><m>20x + 99y \le 500</m></p></answer>
+        </exercise>
+        <exercise xml:id="ex-check-ticket-pairs">
+            <statement><p>For the school play in <xref ref="ex-school-play-tickets"/>, which of these pairs <m>(a, l)</m> meet the target: <m>(30, 20)</m>, <m>(25, 25)</m>, <m>(28, 20)</m>?</p></statement>
+            <answer><p><m>(30, 20)</m>: Ksh <m>7400</m>, yes. <m>(25, 25)</m>: Ksh <m>6750</m>, no. <m>(28, 20)</m>: Ksh <m>7000</m>, yes.</p></answer>
+            <solution><p>Substitute into <m>200a + 70l</m>. <m>(30, 20)</m>: <m>6000 + 1400 = 7400 \ge 7000</m>, yes. <m>(25, 25)</m>: <m>5000 + 1750 = 6750</m>, less than <m>7000</m>, no. <m>(28, 20)</m>: <m>5600 + 1400 = 7000</m>; the target is <q>at least</q>, so exactly <m>7000</m> meets it, yes.</p></solution>
+        </exercise>
+        <exercise xml:id="ex-choir">
+            <statement><p>A choir has at least <m>3</m> girls for every <m>2</m> boys. Write an inequality for <m>g</m> girls and <m>b</m> boys.</p></statement>
+            <answer><p><m>2g \ge 3b</m> (or <m>g \ge \frac{3}{2}b</m>)</p></answer>
+        </exercise>
+        <exercise xml:id="ex-highway-and-towns">
+            <statement><p>A lorry driver travels for <m>p</m> hours at <m>80\,\text{km/h}</m> on the highway and <m>q</m> hours at <m>30\,\text{km/h}</m> through towns. The driver covers at most <m>360\,\text{km}</m> in a day. Write the inequality and simplify it.</p></statement>
+            <answer><p><m>80p + 30q \le 360</m>, which simplifies to <m>8p + 3q \le 36</m>.</p></answer>
+            <solution><p>Distance is speed times time, so the distance is <m>80p + 30q\,\text{km}</m>. Divide every number by <m>10</m>. Keeping to the lower limit in towns protects pedestrians and other road users.</p></solution>
+        </exercise>
+        <exercise xml:id="ex-same-inequality">
+            <title>Challenge: The Same Inequality</title>
+            <statement><p>Show that <m>6x + 14y \le 42</m> and <m>3x + 7y \le 21</m> have exactly the same solutions.</p></statement>
+            <hint><p>What happens when you divide by <m>2</m>?</p></hint>
+            <answer><p>Dividing both sides of the first by the positive number <m>2</m> gives the second, so a pair makes one true exactly when it makes the other true.</p></answer>
+            <solution><p>For any pair, <m>6x + 14y = 2(3x + 7y)</m> and <m>42 = 2 \times 21</m>. Dividing both sides of an inequality by a positive number keeps it true or keeps it false, so the two inequalities are true for exactly the same pairs.</p></solution>
+        </exercise>
+    </exercises>
 
-    <!-- <exercises>
-        <exercise>
-            <statement>   
-
-            </statement>   
-            <solution>
-
-            </solution>             
-        </exercise>        
-    </exercises> -->
-
-    <!-- [LP] Add information on how to differentiate  -->
-
-    <!-- <axiom component="lesson-plan">
+    <axiom component="lesson-plan">
         <title>Differentiation</title>
-
-        <table>
-            <title>Differentiation</title>
-            <tabular halign="left">
-                <row header="yes" bottom="minor">
-                    <cell>Learner Group</cell>
-                    <cell>Strategy &amp; Learning Experience</cell>
-                    <cell></cell>
-                </row>
-                <row>
-                    <cell>Struggling Learners (Support)</cell>
-                    <cell>
-                        XXXX
-                    </cell>
-                    <cell></cell>
-                </row>
-                <row>
-                    <cell>On-Level Learners (Core)</cell>
-                    <cell>
-                        <line>The core lesson activities as described above.</line>
-                    </cell>
-                    <cell></cell>
-                </row>
-                <row>
-                    <cell>Advanced Learners (Challenge)</cell>
-                    <cell>
-                        XXXX
-                    </cell>
-                    <cell></cell>
-                </row>
+        <table xml:id="table-differentiation-two-unknowns">
+            <title>Differentiation Strategies</title>
+            <tabular halign="left" top="minor" bottom="minor" left="minor" right="minor">
+                <row header="yes" bottom="medium"><cell>Learner Group</cell><cell>Strategy and Learning Experience</cell></row>
+                <row><cell>Struggling Learners (Support)</cell><cell>Give a price card: <q>number times price, for each item, then add</q>. Work <xref ref="example-mandazi-and-chapati"/>. Assign <xref ref="ex-school-play-tickets"/> and <xref ref="ex-data-bundles"/>.</cell></row>
+                <row><cell>On-Level Learners (Core)</cell><cell>Full activity and all examples. Assign <xref ref="ex-school-play-tickets"/> to <xref ref="ex-highway-and-towns"/>.</cell></row>
+                <row><cell>Advanced Learners (Challenge)</cell><cell>All exercises including <xref ref="ex-same-inequality"/>. Extension: write an inequality in two unknowns for which <m>(2, 3)</m> and <m>(5, 0)</m> are solutions but <m>(4, 4)</m> is not. (Answer: for example <m>x + 6y \le 20</m>, which gives <m>20</m>, <m>5</m> and <m>28</m>.)</cell></row>
             </tabular>
         </table>
-    </axiom> -->
+    </axiom>
 
     <xi:include href="../lesson-plan-templates/assessment-methods.ptx" />
 

@@ -46,161 +46,255 @@
          Suggested activity: Learners tie a goat (or a peg) to a rope of fixed length and mark the region it can graze, then draw the locus on paper to scale.
          Interactive (JSXGraph): Draggable centre with a slider for radius; the locus of points at that distance is traced as a circle. -->
 
-    <!-- [LP] Add guidance on activity -->
+    <!-- Section notes (2026-11)
+         SLOs: Core 2.3 (c)
+         Activity: as planning notes (a goat on a rope, then a scale drawing) | added: the bucket and seedling test, the area grazed
+         JSXGraph: fig-circle-locus (assets/jsxgraph/circle-locus.js), as planning notes, with a traced glider, a shading box and a test point
+         STACK: assets/stack/top/2-measurement-and-geometry/08-loci/02-loci-at-a-given-distance-from-a-fixed-point/ -->
 
-    <!-- <axiom component="lesson-plan">
-            <title>Problem-Solving and Discovery</title>
-            <dl>
-                <li>
-                    <title>Suggested Time</title>
-                    <p>
-                        XX minutes
-                    </p>
-                </li>
-                <li>
-                    <title>Objective</title>
-                    <p>
-                        XXX
-                    </p>
-                </li>
-                <li>
-                    <title>Teacher's Role</title>
-                    <p>
-                        XXX
-                    </p>
-                </li>
-            </dl>
-        </axiom> -->
+    <p component="lesson-plan">Upon completion of this lesson, learners will be able to:
+        <ol>
+            <li><p><alert>Know:</alert> the points at a distance <m>r</m> from a point <m>O</m> form a circle; points closer than <m>r</m> are inside it and points further than <m>r</m> are outside; the circle's equation (Grade 11).</p></li>
+            <li><p><alert>Do:</alert> construct the locus to scale; decide whether a point is inside, on or outside by Pythagoras; write the equation of the locus and read its centre and radius.</p></li>
+            <li><p><alert>Apply:</alert> the region a tethered animal can graze, the area a security light covers.</p></li>
+        </ol>
+    </p>
 
-    <!-- Add Activity -->
+    <axiom component="lesson-plan">
+        <title>Problem-Solving and Discovery</title>
+        <dl>
+            <li><title>Suggested Time</title><p>14 minutes</p></li>
+            <li><title>Objective</title><p>Learners see that a tight rope from a peg traces a circle, and that the region the animal can reach is the disc inside it.</p></li>
+            <li><title>Teacher's Role</title><p>Use a peg and a <m>4\,\text{m}</m> rope on the field, or a pin, a thread and a pencil on paper. After part (b), ask: <q>Which places can the goat reach, and which can it only just reach?</q></p></li>
+        </dl>
+    </axiom>
 
-    <!-- <activity>
+    <activity xml:id="act-goat-on-a-rope">
+        <title>A Goat on a Rope</title>
         <statement>
+            <p>Achieng ties her goat to a peg in the middle of a grassy field with a rope <m>4\,\text{m}</m> long. The goat pulls the rope tight as it grazes.</p>
+            <p>
+                <ol marker="(a)">
+                    <li>
+                        <p>Mark the places where the end of the tight rope can be. What shape do they make?</p>
+                        <solution component="lesson-plan"><p>A circle with centre the peg and radius <m>4\,\text{m}</m>.</p></solution>
+                    </li>
+                    <li>
+                        <p>Shade the ground the goat cannot reach, so that the region where it can graze is left clear. Is the edge of that region included?</p>
+                        <solution component="lesson-plan"><p>Shade outside the circle; the whole disc inside it is left clear. The edge is included: the goat can reach exactly <m>4\,\text{m}</m>.</p></solution>
+                    </li>
+                    <li>
+                        <p>Draw the locus and the region to scale, with <m>1\,\text{cm}</m> representing <m>0.5\,\text{m}</m>.</p>
+                        <solution component="lesson-plan"><p>A circle of radius <m>8\,\text{cm}</m> with a solid edge, shaded outside and clear inside, with a key.</p></solution>
+                    </li>
+                    <li>
+                        <p>A bucket of water stands <m>3.2\,\text{m}</m> from the peg and a young seedling <m>4.5\,\text{m}</m> from it. Which can the goat reach?</p>
+                        <solution component="lesson-plan"><p>The bucket only: <m>3.2 \lt 4</m>, but <m>4.5 \gt 4</m>.</p></solution>
+                    </li>
+                    <li>
+                        <p>Find the area the goat can graze. Use the <m>\pi</m> key on your calculator.</p>
+                        <solution component="lesson-plan"><p><m>\pi \times 4^2 \approx 50.3\,\text{m}^2</m>.</p></solution>
+                    </li>
+                </ol>
+            </p>
         </statement>
-    </activity> -->
+    </activity>
 
-    <!-- [LP] Add guidance on structured lesson plan-->
-
-    <!-- <axiom component="lesson-plan">
+    <axiom component="lesson-plan">
         <title>Structured Instruction</title>
         <p>
             <dl>
-            <li>
-                <title>Suggested Time</title>
-                <p>
-                    XX minutes
-                </p>
-            </li>
-            <li>
-                <title>Objective</title>
-                <p>
-                    To formalize the concepts and properties learners discovered in the anchor task.
-                </p>
-            </li>
+                <li><title>Suggested Time</title><p>8 minutes</p></li>
+                <li><title>Objective</title><p>To formalise the circle locus, the region inside it, the inside, on or outside test, and the equation of the locus.</p></li>
             </dl>
         </p>
         <paragraphs>
             <title>Key Takeaways &amp; Teacher Connection</title>
             <ol>
-                <li>
-                    <p>
-                        <alert>Connecting to Learner Work:</alert> XXXX
-                    </p>
-                </li>
+                <li><p><alert>Connecting to Learner Work:</alert> the end of the tight rope traced the locus; the grazed ground is the region <q>less than or equal to <m>4\,\text{m}</m></q> from the peg.</p></li>
+                <li><p><q>Exactly <m>r</m></q> gives a curve; <q>less than <m>r</m></q> gives a region.</p></li>
+                <li><p>On a grid, compare squares: <m>\Delta x^2 + \Delta y^2</m> against <m>r^2</m>, so nothing is rounded before deciding.</p></li>
+                <li><p>The equation of the circle (Grade 11) is Pythagoras written once for every point of the locus.</p></li>
             </ol>
         </paragraphs>
-    </axiom> -->
+    </axiom>
 
-    <!-- Add insight / key takeaway directly related to activity / learner experience -->
+    <insight xml:id="insight-circle-locus">
+        <title>The Circle Locus</title>
+        <p>
+            The locus of points at a distance <m>r</m> from a fixed point <m>O</m> is the circle with centre <m>O</m> and radius <m>r</m>. A point <m>P</m> with <m>PO \lt r</m> is inside the circle, and a point with <m>PO \gt r</m> is outside it.
+        </p>
+        <p>
+            On a grid, let the centre be <m>C(a, b)</m> and let <m>P</m> be <m>(x, y)</m>. By Pythagoras, <m>PC^2 = (x - a)^2 + (y - b)^2</m>. Compare this with <m>r^2</m>: less means inside, equal means on the circle, more means outside. Every point of the locus obeys
+            <md>(x - a)^2 + (y - b)^2 = r^2,</md>
+            the <term>equation of the locus</term>.
+        </p>
+    </insight>
 
-    <!-- <insight>
-    </insight> -->
+    <note xml:id="note-shading-conventions">
+        <title>Shading a Region</title>
+        <p>In this book, when a diagram shows a region, the parts that are <em>not</em> wanted are shaded and the required region is left clear. A key always says so: <q>shaded, not wanted; unshaded, the required region</q>. This is the usual practice in Kenyan examinations. In Grade 11 the wanted region was shaded instead; both ways are correct when a key says which, so always read the key.</p>
+    </note>
 
-    <!-- Add further instruction (not in a block) to develop ideas as needed -->
+    <figure xml:id="fig-circle-locus">
+        <caption>Drag <m>P</m> round to trace the locus. Move the <m>r</m> slider and the centre. Tick the box to shade the points that are not nearer than <m>r</m>, leaving the points nearer than <m>r</m> clear.</caption>
+        <interactive xml:id="interactive-circle-locus" platform="jsxgraph" width="90%" aspect="16:12" source="jsxgraph/circle-locus.js">
+            <slate xml:id="jsxgraph-circle-locus" surface="jsxboard" aspect="16:12"/>
+            <instructions>
+                <p>
+                    <ul>
+                        <li><p>Drag <m>P</m> all the way round. It stays the same distance from <m>C</m> and its trail is the locus.</p></li>
+                        <li><p>Change the <alert>r</alert> slider and drag <m>C</m>. Press <alert>Clear trace</alert> to start again.</p></li>
+                        <li><p>Tick <alert>Show PC &lt; r</alert>. The region left clear is the points nearer to <m>C</m> than <m>r</m>. Why is the circle now drawn dashed?</p></li>
+                        <li><p>Drag <m>Q</m> and read whether it is inside, on or outside the circle.</p></li>
+                    </ul>
+                </p>
+            </instructions>
+        </interactive>
+    </figure>
 
     <xi:include href="../lesson-plan-templates/example-intro.ptx" />
 
-    <!-- Add at least 3 examples -->
-
-    <!-- <example>
+    <example xml:id="example-security-light">
+        <title>A Security Light at a Gate</title>
         <statement>
+            <p>A security light at the gate <m>G</m> of a school in Nakuru lights everything within <m>15\,\text{m}</m> of it. Draw the lit region on a plan with <m>1\,\text{cm}</m> representing <m>5\,\text{m}</m>. Is a car parked <m>12\,\text{m}</m> from the gate lit?</p>
         </statement>
         <solution>
+            <p>
+                <alert>Step 1:</alert> On the plan, <m>15\,\text{m}</m> is <m>15 \div 5 = 3\,\text{cm}</m>. Mark <m>G</m> and draw the circle with centre <m>G</m> and radius <m>3\,\text{cm}</m>.
+            </p>
+            <p>
+                <alert>Step 2:</alert> Shade the outside of the circle, leaving the lit region clear. <q>Within <m>15\,\text{m}</m></q> includes exactly <m>15\,\text{m}</m>, so draw the circle solid. Key: shaded, not wanted; unshaded, the lit region.
+            </p>
+            <p>
+                <alert>Step 3:</alert> The car is <m>12 \div 5 = 2.4\,\text{cm}</m> from <m>G</m> on the plan, less than <m>3\,\text{cm}</m>, so it is inside the region: the car is lit.
+            </p>
         </solution>
     </example>
 
-    <example>
+    <example xml:id="example-inside-on-or-outside">
+        <title>Inside, On or Outside</title>
         <statement>
+            <p>The locus of points <m>10</m> units from <m>C(-2, 4)</m> is a circle. Decide whether each of <m>P(4, 12)</m>, <m>Q(6, -1)</m> and <m>R(-10, -3)</m> is inside, on or outside it.</p>
         </statement>
         <solution>
+            <p>
+                Compare <m>\Delta x^2 + \Delta y^2</m> with <m>r^2 = 100</m>:
+                <md>
+                    <mrow>P: \amp\quad 6^2 + 8^2 = 36 + 64 = 100, \amp \text{on the circle}</mrow>
+                    <mrow>Q: \amp\quad 8^2 + 5^2 = 64 + 25 = 89, \amp \text{inside}</mrow>
+                    <mrow>R: \amp\quad 8^2 + 7^2 = 64 + 49 = 113, \amp \text{outside}</mrow>
+                </md>
+                <xref ref="fig-grid-circle-locus"/> shows the circle and the three points.
+            </p>
+            <figure xml:id="fig-grid-circle-locus">
+                <caption>The circle with centre <m>C(-2, 4)</m> and radius <m>10</m>.</caption>
+                <image width="55%">
+                    <shortdescription>A grid with the circle of centre C(-2, 4) and radius 10. P(4, 12) lies on the circle, Q(6, -1) inside it and R(-10, -3) outside it.</shortdescription>
+                    <latex-image>
+\begin{tikzpicture}[scale=0.25]
+% SET
+\coordinate (C) at (-2,4); \coordinate (P) at (4,12); \coordinate (Q) at (6,-1); \coordinate (R) at (-10,-3);
+% DRAW
+\draw[gray!30] (-13,-7) grid (9,15);
+\draw[->] (-13,0) -- (9.8,0) node[right] {$x$};
+\draw[->] (0,-7) -- (0,15.8) node[above] {$y$};
+\foreach \k in {-10,-5,5} { \node[below] at (\k,0) {\scriptsize $\k$}; }
+\foreach \k in {-5,5,10} { \node[left] at (0,\k) {\scriptsize $\k$}; }
+\draw[thick] (C) circle (10);
+\draw[dashed] (C) -- (P);
+% MARK
+\foreach \p in {C,P,Q,R} \fill (\p) circle (6pt);
+% LABEL
+\node[below left] at (C) {$C$}; \node[above right] at (P) {$P$};
+\node[below right] at (Q) {$Q$}; \node[left] at (R) {$R$};
+\end{tikzpicture}
+                    </latex-image>
+                </image>
+            </figure>
         </solution>
     </example>
 
-    <example>
+    <example xml:id="example-equation-of-circle-locus">
+        <title>The Equation of the Locus</title>
         <statement>
+            <p>Write the equation of the locus of points <m>10</m> units from <m>C(-2, 4)</m>. The point <m>(6, k)</m> is on the locus. Find the possible values of <m>k</m>.</p>
         </statement>
         <solution>
+            <p>
+                With <m>a = -2</m>, <m>b = 4</m> and <m>r = 10</m>, the equation is
+                <md>(x + 2)^2 + (y - 4)^2 = 100.</md>
+                Substitute <m>x = 6</m>:
+                <md>
+                    <mrow>8^2 + (k - 4)^2 \amp = 100</mrow>
+                    <mrow>(k - 4)^2 \amp = 36</mrow>
+                    <mrow>k - 4 \amp = 6 \text{ or } -6</mrow>
+                </md>
+                so <m>k = 10</m> or <m>k = -2</m>. There are two points, because the line <m>x = 6</m> crosses the circle twice.
+            </p>
         </solution>
-    </example> -->
+    </example>
 
     <xi:include href="../lesson-plan-templates/assessment-intro.ptx" />
+    <xi:include href="../lesson-plan-templates/checkpoint.ptx" />
 
-    <!-- If STACK questions are included, uncomment this: -->
+    <p>Choose from each list. Type coordinates as whole numbers, for example <c>-3</c>. Type an equation like <c>(x+5)^2+(y-2)^2=16</c>.</p>
 
-    <!-- <xi:include href="../lesson-plan-templates/checkpoint.ptx" /> -->
+    <exercise xml:id="ex-points-inside-on-or-outside-a-circle">
+        <!--<title></title>-->
+        <stack label="stk-points-inside-on-or-outside-a-circle" source="stack/top/2-measurement-and-geometry/08-loci/02-loci-at-a-given-distance-from-a-fixed-point/Points-inside-on-or-outside-a-circle.xml"/>
+    </exercise>
 
-    <!-- Add STACK exercises if made -->
+    <exercise xml:id="ex-equation-of-the-locus-at-a-distance-from-a-point">
+        <!--<title></title>-->
+        <stack label="stk-equation-of-the-locus-at-a-distance-from-a-point" source="stack/top/2-measurement-and-geometry/08-loci/02-loci-at-a-given-distance-from-a-fixed-point/Equation-of-the-locus-at-a-distance-from-a-point.xml"/>
+    </exercise>
 
-    <!-- Add static exercises -->
+    <exercises xml:id="exercises-circle-loci">
+        <exercise xml:id="ex-construct-circle-locus">
+            <statement><p>Mark a point <m>O</m>. Construct the locus of points <m>3.5\,\text{cm}</m> from <m>O</m>, and show the points less than <m>3.5\,\text{cm}</m> from <m>O</m> by shading the points that are not. Should the boundary be solid or dashed?</p></statement>
+            <answer><p>A circle, centre <m>O</m>, radius <m>3.5\,\text{cm}</m>, with the outside shaded, the inside left clear and the circle dashed (points exactly <m>3.5\,\text{cm}</m> away are not included).</p></answer>
+        </exercise>
+        <exercise xml:id="ex-grid-inside-outside">
+            <statement><p>A circle has centre <m>(1, -3)</m> and radius <m>17</m>. Decide whether each point is inside, on or outside it: <m>(9, 12)</m>, <m>(-7, 5)</m>, <m>(16, 6)</m>.</p></statement>
+            <answer><p><m>(9, 12)</m> on; <m>(-7, 5)</m> inside; <m>(16, 6)</m> outside.</p></answer>
+            <solution><p>Compare with <m>17^2 = 289</m>: <m>8^2 + 15^2 = 289</m> (on); <m>8^2 + 8^2 = 128</m> (inside); <m>15^2 + 9^2 = 306</m> (outside).</p></solution>
+        </exercise>
+        <exercise xml:id="ex-write-the-equation">
+            <statement><p>Write the equation of the locus of points <m>6</m> units from <m>(4, -5)</m>.</p></statement>
+            <answer><p><m>(x - 4)^2 + (y + 5)^2 = 36</m></p></answer>
+        </exercise>
+        <exercise xml:id="ex-radio-coverage">
+            <statement><p>A radio transmitter in Nyeri County reaches places up to <m>40\,\text{km}</m> away. Town <m>X</m> is <m>24\,\text{km}</m> east and <m>30\,\text{km}</m> north of the transmitter; town <m>Y</m> is <m>35\,\text{km}</m> east and <m>20\,\text{km}</m> south of it. Which town is reached?</p></statement>
+            <answer><p><m>X</m> only (<m>X</m> is about <m>38.4\,\text{km}</m> away, <m>Y</m> about <m>40.3\,\text{km}</m>).</p></answer>
+            <solution><p><m>24^2 + 30^2 = 1476 \lt 1600 = 40^2</m>, so <m>X</m> is inside the coverage circle (<m>\sqrt{1476} \approx 38.4\,\text{km}</m>). <m>35^2 + 20^2 = 1625 \gt 1600</m>, so <m>Y</m> is just outside (<m>\sqrt{1625} \approx 40.3\,\text{km}</m>).</p></solution>
+        </exercise>
+        <exercise xml:id="ex-centre-and-radius">
+            <statement><p>Give the centre and the radius of the locus <m>(x - 3)^2 + (y + 1)^2 = 49</m>.</p></statement>
+            <answer><p>Centre <m>(3, -1)</m>, radius <m>7</m></p></answer>
+        </exercise>
+        <exercise xml:id="ex-lattice-points-on-a-circle">
+            <title>Challenge: Whole-Number Points on a Circle</title>
+            <statement><p>How many points with whole-number coordinates are exactly <m>5</m> units from the origin? List them.</p></statement>
+            <hint><p>Which two squares add to <m>25</m>?</p></hint>
+            <answer><p><m>12</m>: <m>(\pm 5, 0)</m>, <m>(0, \pm 5)</m>, <m>(\pm 3, \pm 4)</m>, <m>(\pm 4, \pm 3)</m></p></answer>
+            <solution><p>We need <m>x^2 + y^2 = 25</m> with whole numbers. The only ways are <m>25 + 0</m> and <m>9 + 16</m>. <m>25 + 0</m> gives <m>(\pm 5, 0)</m> and <m>(0, \pm 5)</m>: four points. <m>9 + 16</m> gives <m>(\pm 3, \pm 4)</m> and <m>(\pm 4, \pm 3)</m>: eight points. That is <m>12</m> in all.</p></solution>
+        </exercise>
+    </exercises>
 
-    <!-- <exercises>
-        <exercise>
-            <statement>   
-
-            </statement>   
-            <solution>
-
-            </solution>             
-        </exercise>        
-    </exercises> -->
-
-    <!-- [LP] Add information on how to differentiate  -->
-
-    <!-- <axiom component="lesson-plan">
+    <axiom component="lesson-plan">
         <title>Differentiation</title>
-
-        <table>
-            <title>Differentiation</title>
-            <tabular halign="left">
-                <row header="yes" bottom="minor">
-                    <cell>Learner Group</cell>
-                    <cell>Strategy &amp; Learning Experience</cell>
-                    <cell></cell>
-                </row>
-                <row>
-                    <cell>Struggling Learners (Support)</cell>
-                    <cell>
-                        XXXX
-                    </cell>
-                    <cell></cell>
-                </row>
-                <row>
-                    <cell>On-Level Learners (Core)</cell>
-                    <cell>
-                        <line>The core lesson activities as described above.</line>
-                    </cell>
-                    <cell></cell>
-                </row>
-                <row>
-                    <cell>Advanced Learners (Challenge)</cell>
-                    <cell>
-                        XXXX
-                    </cell>
-                    <cell></cell>
-                </row>
+        <table xml:id="table-differentiation-circle-loci">
+            <title>Differentiation Strategies</title>
+            <tabular halign="left" top="minor" bottom="minor" left="minor" right="minor">
+                <row header="yes" bottom="medium"><cell>Learner Group</cell><cell>Strategy and Learning Experience</cell></row>
+                <row><cell>Struggling Learners (Support)</cell><cell>Give a grid with <m>C</m> marked and a card: <q>moves across, moves up, square each, add, compare with <m>r^2</m></q>. Work <xref ref="example-security-light"/> and <xref ref="example-inside-on-or-outside"/>. Assign <xref ref="ex-construct-circle-locus"/> and <xref ref="ex-grid-inside-outside"/>.</cell></row>
+                <row><cell>On-Level Learners (Core)</cell><cell>Full activity and all examples. Assign <xref ref="ex-construct-circle-locus"/> to <xref ref="ex-centre-and-radius"/>.</cell></row>
+                <row><cell>Advanced Learners (Challenge)</cell><cell>All exercises including <xref ref="ex-lattice-points-on-a-circle"/>. Extension: find the equation of the locus of points <m>4</m> units from <m>(-3, 5)</m> and say whether the origin is inside it. (Answer: <m>(x + 3)^2 + (y - 5)^2 = 16</m>; the origin gives <m>9 + 25 = 34 \gt 16</m>, so it is outside.)</cell></row>
             </tabular>
         </table>
-    </axiom> -->
+    </axiom>
 
     <xi:include href="../lesson-plan-templates/assessment-methods.ptx" />
 

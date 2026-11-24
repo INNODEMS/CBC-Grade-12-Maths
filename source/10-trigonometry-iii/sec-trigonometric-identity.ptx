@@ -19,7 +19,7 @@
                     </p>
                 </li>
                 <li>
-                    <title>Specific Learning Outcomes</title> 
+                    <title>Specific Learning Outcomes</title>
                     <p>
                         Derive the trigonometric identity sin²x+cos²x = 1 from trigonometric ratios
                     </p>
@@ -33,7 +33,7 @@
                 <li component="lesson-plan">
                     <title>Estimated Duration</title>
                     <p>
-                        40 minutes
+                        2 lessons of 40 minutes
                     </p>
                 </li>
             </dl>
@@ -46,163 +46,483 @@
          Suggested activity: Learners draw right-angled triangles with hypotenuse 1 unit and verify sin²x + cos²x = 1 for several angles with a protractor and ruler.
          Interactive (JSXGraph): Unit circle with a draggable point; sin x and cos x appear as the sides of a right triangle and the values of sin²x, cos²x and their sum update live. -->
 
-    <!-- [LP] Add guidance on activity -->
+    <!-- Section notes (2026-11)
+         SLOs: Core 2.5 (a). Lessons 1.1 and 1.2 as subsections.
+         Activity: as planning notes (triangles with hypotenuse 1 unit, measured, sum of squares) in 1.1; 1.2 adds the roof activity
+         JSXGraph: interactive-unit-circle-identity (assets/jsxgraph/unit-circle-identity.js, lesson 1.1), as planning notes
+         STACK: assets/stack/top/2-measurement-and-geometry/10-trigonometry-iii/01-trigonometric-identity/ -->
 
-    <!-- <axiom component="lesson-plan">
+    <introduction>
+        <question xml:id="kiq-trigonometry-iii">
+            <p><em>How can trigonometric functions describe things that repeat, such as sea waves, tides and sound?</em></p>
+        </question>
+        <p>
+            In Grade 11 you met the unit circle: the point at angle <m>x</m> on a circle of radius 1 has coordinates <m>(\cos x, \sin x)</m>. That let you find the sine, cosine and tangent of any angle, positive or negative, and draw the graphs of <m>y = \sin x</m> and <m>y = \cos x</m>. You also solved equations such as <m>\sin x = 0.5</m> for <m>0^\circ \le x \le 360^\circ</m>. Grade 11 wrote the angle as <m>\theta</m>; in this chapter we use <m>x</m>.
+        </p>
+        <p>
+            At the Kilindini harbour in Mombasa the sea rises and falls twice a day. When a nyatiti string is plucked, it vibrates back and forth hundreds of times a second. Both are waves, and both can be described by sine and cosine graphs. In this chapter you prove the identity that links sine and cosine, use it to solve harder equations, and learn to read and change the graphs that describe waves.
+        </p>
+    </introduction>
+
+    <!-- ============================================================ Lesson 1.1 -->
+    <subsection xml:id="subsec-deriving-the-identity">
+        <title>Deriving the Identity <m>\sin^2 x + \cos^2 x = 1</m></title>
+
+        <p component="lesson-plan">Upon completion of this lesson, learners will be able to:
+            <ol>
+                <li><p><alert>Know:</alert> sine and cosine as ratios of sides and as unit-circle coordinates; why their squares add to 1; the difference between an identity and an equation.</p></li>
+                <li><p><alert>Do:</alert> derive the identity from any right-angled triangle; check it at any angle; obtain <m>\tan x = \dfrac{\sin x}{\cos x}</m> and <m>1 + \tan^2 x = \dfrac{1}{\cos^2 x}</m>.</p></li>
+                <li><p><alert>Apply:</alert> decide whether a statement is an identity.</p></li>
+            </ol>
+        </p>
+
+        <axiom component="lesson-plan">
             <title>Problem-Solving and Discovery</title>
             <dl>
-                <li>
-                    <title>Suggested Time</title>
-                    <p>
-                        XX minutes
-                    </p>
-                </li>
-                <li>
-                    <title>Objective</title>
-                    <p>
-                        XXX
-                    </p>
-                </li>
-                <li>
-                    <title>Teacher's Role</title>
-                    <p>
-                        XXX
-                    </p>
-                </li>
+                <li><title>Suggested Time</title><p>14 minutes</p></li>
+                <li><title>Objective</title><p>Learners measure and discover that <m>\sin^2 x + \cos^2 x = 1</m>, then explain it with Pythagoras.</p></li>
+                <li><title>Teacher's Role</title><p>Put learners in groups of four, each learner with one angle (<m>20^\circ</m>, <m>35^\circ</m>, <m>50^\circ</m> or <m>70^\circ</m>), a ruler and a protractor. A hypotenuse of <m>10\,\text{cm}</m> stands for 1 unit. After part (b) ask: <q>Why is your answer not exactly 1?</q> (measurement). Combine the four results of each group on the board, so every group sees all four angles.</p></li>
             </dl>
-        </axiom> -->
+        </axiom>
 
-    <!-- Add Activity -->
-
-    <!-- <activity>
-        <statement>
-        </statement>
-    </activity> -->
-
-    <!-- [LP] Add guidance on structured lesson plan-->
-
-    <!-- <axiom component="lesson-plan">
-        <title>Structured Instruction</title>
-        <p>
-            <dl>
-            <li>
-                <title>Suggested Time</title>
+        <activity xml:id="act-triangles-with-hypotenuse-one">
+            <title>Triangles with Hypotenuse 1</title>
+            <statement>
+                <p>Each learner in your group takes one angle <m>x</m>: <m>20^\circ</m>, <m>35^\circ</m>, <m>50^\circ</m> or <m>70^\circ</m>.</p>
                 <p>
-                    XX minutes
+                    <ol marker="(a)">
+                        <li>
+                            <p>Draw a right-angled triangle with hypotenuse <m>10\,\text{cm}</m> and one angle equal to your angle <m>x</m>. Measure the side opposite <m>x</m> and the side adjacent to <m>x</m>, to the nearest <m>0.1\,\text{cm}</m>.</p>
+                            <solution component="lesson-plan"><p>Opposite and adjacent: <m>3.4</m> and <m>9.4</m> for <m>20^\circ</m>; <m>5.7</m> and <m>8.2</m> for <m>35^\circ</m>; <m>7.7</m> and <m>6.4</m> for <m>50^\circ</m>; <m>9.4</m> and <m>3.4</m> for <m>70^\circ</m> (all in cm).</p></solution>
+                        </li>
+                        <li>
+                            <p>Take <m>10\,\text{cm}</m> as 1 unit, so <m>\sin x = \dfrac{\text{opposite}}{10}</m> and <m>\cos x = \dfrac{\text{adjacent}}{10}</m>. Work out <m>\sin^2 x + \cos^2 x</m>.</p>
+                            <solution component="lesson-plan"><p><m>0.9992</m>, <m>0.9973</m>, <m>1.0025</m> and <m>0.9992</m>: each is very close to 1. The small differences come from measuring.</p></solution>
+                        </li>
+                        <li>
+                            <p>Write <m>o</m>, <m>a</m> and <m>h</m> for the opposite side, the adjacent side and the hypotenuse of any right-angled triangle. Use Pythagoras to show that <m>\left(\dfrac{o}{h}\right)^2 + \left(\dfrac{a}{h}\right)^2 = 1</m>.</p>
+                            <solution component="lesson-plan"><p><m>\left(\dfrac{o}{h}\right)^2 + \left(\dfrac{a}{h}\right)^2 = \dfrac{o^2 + a^2}{h^2} = \dfrac{h^2}{h^2} = 1</m>, because <m>o^2 + a^2 = h^2</m>.</p></solution>
+                        </li>
+                        <li>
+                            <p>A right-angled triangle cannot have an angle of <m>150^\circ</m>. Use the unit circle from Grade 11 (<xref ref="fig-unit-circle-150"/>) to check the result at <m>150^\circ</m>.</p>
+                            <solution component="lesson-plan"><p>The point is <m>(\cos 150^\circ, \sin 150^\circ) = (-0.866, 0.5)</m>, and <m>0.75 + 0.25 = 1</m>.</p></solution>
+                        </li>
+                        <li>
+                            <p>Use the interactive in <xref ref="fig-unit-circle-identity"/>: drag the point all the way round the circle. Does the sum ever change?</p>
+                            <solution component="lesson-plan"><p>No. It stays 1, even when <m>\sin x</m> or <m>\cos x</m> is negative, because squares are never negative.</p></solution>
+                        </li>
+                    </ol>
                 </p>
-            </li>
-            <li>
-                <title>Objective</title>
-                <p>
-                    To formalize the concepts and properties learners discovered in the anchor task.
-                </p>
-            </li>
-            </dl>
-        </p>
-        <paragraphs>
-            <title>Key Takeaways &amp; Teacher Connection</title>
-            <ol>
-                <li>
+            </statement>
+        </activity>
+
+        <axiom component="lesson-plan">
+            <title>Structured Instruction</title>
+            <p>
+                <dl>
+                    <li><title>Suggested Time</title><p>8 minutes</p></li>
+                    <li><title>Objective</title><p>To formalise the identity the learners measured, prove it, and extend it to every angle.</p></li>
+                </dl>
+            </p>
+            <paragraphs>
+                <title>Key Takeaways &amp; Teacher Connection</title>
+                <ol>
+                    <li><p><alert>Connecting to Learner Work:</alert> the four measured sums are close to 1 only because of measurement; the algebra in part (c) shows the sum is exactly 1.</p></li>
+                    <li><p>The unit circle in parts (d) and (e) extends the result from acute angles to every angle.</p></li>
+                    <li><p>An identity is true for every angle; checking a few angles never proves one, but one angle that fails disproves one.</p></li>
+                </ol>
+            </paragraphs>
+        </axiom>
+
+        <insight xml:id="insight-pythagorean-identity">
+            <title>The Pythagorean Identity</title>
+            <p>
+                An <term>identity</term> is a statement that is true for every value of <m>x</m> for which both sides are defined. For every angle <m>x</m>,
+                <md>\sin^2 x + \cos^2 x = 1</md>
+                This is the <term>Pythagorean identity</term>: the three sides of a right-angled triangle obey Pythagoras, so the squares of sine and cosine always add to one.
+            </p>
+            <p>
+                <m>\sin^2 x</m> means <m>(\sin x)^2</m>, the square of the sine. It is not <m>\sin x^2</m>, which is the sine of <m>x^2</m>. The identity can be rearranged as <m>\sin^2 x = 1 - \cos^2 x</m> or <m>\cos^2 x = 1 - \sin^2 x</m>.
+            </p>
+        </insight>
+
+        <figure xml:id="fig-identity-triangle">
+            <caption>A right-angled triangle with sides <m>o</m>, <m>a</m> and <m>h</m>, and the same shape with hypotenuse 1.</caption>
+            <image width="60%">
+                <shortdescription>A right-angled triangle with angle x, opposite side o, adjacent side a and hypotenuse h; beside it the same shape with hypotenuse 1, adjacent side cos x and opposite side sin x.</shortdescription>
+                <latex-image>
+\begin{tikzpicture}
+% SET and DRAW: triangle with sides o, a, h
+\draw[thick] (0,0) -- (4,0) -- (4,2.6) -- cycle;
+\draw (3.7,0) -- (3.7,0.3) -- (4,0.3);
+\draw (0.9,0) arc (0:33:0.9);
+% LABEL
+\node at (1.15,0.28) {$x$};
+\node[below] at (2,0) {$a$};
+\node[right] at (4,1.3) {$o$};
+\node[above left] at (2,1.35) {$h$};
+% SECOND TRIANGLE: hypotenuse 1
+\begin{scope}[xshift=5.5cm]
+\draw[thick] (0,0) -- (4,0) -- (4,2.6) -- cycle;
+\draw (3.7,0) -- (3.7,0.3) -- (4,0.3);
+\draw (0.9,0) arc (0:33:0.9);
+\node at (1.15,0.28) {$x$};
+\node[below] at (2,0) {$\cos x$};
+\node[right] at (4,1.3) {$\sin x$};
+\node[above left] at (2,1.35) {$1$};
+\end{scope}
+\end{tikzpicture}
+                </latex-image>
+            </image>
+        </figure>
+
+        <figure xml:id="fig-unit-circle-150">
+            <caption>The point at <m>150^\circ</m> on the unit circle.</caption>
+            <image width="55%">
+                <shortdescription>The point at 150 degrees on a circle of radius 1 has coordinates (-0.87, 0.5). Dashed lines run from the point to each axis.</shortdescription>
+                <latex-image>
+\begin{tikzpicture}[scale=2.2]
+\draw[->] (-1.3,0) -- (1.3,0) node[right] {$x$};
+\draw[->] (0,-1.2) -- (0,1.25) node[above] {$y$};
+\draw (0,0) circle (1);
+\coordinate (P) at ({cos(150)},{sin(150)});
+\draw[thick] (0,0) -- (P);
+\fill (P) circle (0.03);
+\draw[dashed] (P) -- ({cos(150)},0);
+\draw[dashed] (P) -- (0,{sin(150)});
+\draw (0.25,0) arc (0:150:0.25);
+\node at (0.22,0.28) {$150^\circ$};
+\node[above left] at (P) {$(-0.87, 0.5)$};
+\node[below] at ({cos(150)},0) {$-0.87$};
+\node[right] at (0,{sin(150)}) {$0.5$};
+\end{tikzpicture}
+                </latex-image>
+            </image>
+        </figure>
+
+        <figure xml:id="fig-unit-circle-identity">
+            <caption>Drag <m>P</m> round the circle. The sides of the triangle change, and so do their signs, but <m>\sin^2 x + \cos^2 x</m> stays 1.</caption>
+            <interactive xml:id="interactive-unit-circle-identity" platform="jsxgraph" width="90%" aspect="16:10" source="jsxgraph/unit-circle-identity.js">
+                <slate xml:id="jsxgraph-unit-circle-identity" surface="jsxboard" aspect="16:10"/>
+                <instructions>
                     <p>
-                        <alert>Connecting to Learner Work:</alert> XXXX
+                        <ul>
+                            <li><p>Drag the point <alert>P</alert> to <m>30^\circ</m>, <m>150^\circ</m>, <m>230^\circ</m> and <m>300^\circ</m>.</p></li>
+                            <li><p>Record <m>\sin x</m> and <m>\cos x</m> each time, and check that their squares add to 1.</p></li>
+                        </ul>
                     </p>
-                </li>
-            </ol>
-        </paragraphs>
-    </axiom> -->
+                </instructions>
+            </interactive>
+        </figure>
 
-    <!-- Add insight / key takeaway directly related to activity / learner experience -->
+        <xi:include href="../lesson-plan-templates/example-intro.ptx" />
 
-    <!-- <insight>
-    </insight> -->
-
-    <!-- Add further instruction (not in a block) to develop ideas as needed -->
-
-    <xi:include href="../lesson-plan-templates/example-intro.ptx" />
-
-    <!-- Add at least 3 examples -->
-
-    <!-- <example>
-        <statement>
-        </statement>
-        <solution>
-        </solution>
-    </example>
-
-    <example>
-        <statement>
-        </statement>
-        <solution>
-        </solution>
-    </example>
-
-    <example>
-        <statement>
-        </statement>
-        <solution>
-        </solution>
-    </example> -->
-
-    <xi:include href="../lesson-plan-templates/assessment-intro.ptx" />
-
-    <!-- If STACK questions are included, uncomment this: -->
-
-    <!-- <xi:include href="../lesson-plan-templates/checkpoint.ptx" /> -->
-
-    <!-- Add STACK exercises if made -->
-
-    <!-- Add static exercises -->
-
-    <!-- <exercises>
-        <exercise>
-            <statement>   
-
-            </statement>   
+        <example xml:id="example-identity-at-230">
+            <title>Checking the Identity at <m>230^\circ</m></title>
+            <statement><p>Use a calculator to check that <m>\sin^2 x + \cos^2 x = 1</m> when <m>x = 230^\circ</m>.</p></statement>
             <solution>
+                <p><m>\sin 230^\circ = -0.7660</m> and <m>\cos 230^\circ = -0.6428</m> (to 4 decimal places).
+                    <md>\sin^2 230^\circ + \cos^2 230^\circ = 0.5868 + 0.4132 = 1.0000</md>
+                    Both ratios are negative at <m>230^\circ</m>, but their squares are positive, so the identity still holds.</p>
+            </solution>
+        </example>
 
-            </solution>             
-        </exercise>        
-    </exercises> -->
+        <example xml:id="example-identity-7-24-25">
+            <title>Deriving the Identity from a Triangle</title>
+            <statement><p>A right-angled triangle has sides <m>7</m>, <m>24</m> and <m>25</m>. The angle <m>x</m> is opposite the side <m>7</m>. Show that <m>\sin^2 x + \cos^2 x = 1</m>, then show the same for any right-angled triangle.</p></statement>
+            <solution>
+                <p><m>\sin x = \dfrac{7}{25}</m> and <m>\cos x = \dfrac{24}{25}</m>, so
+                    <md>\sin^2 x + \cos^2 x = \frac{49}{625} + \frac{576}{625} = \frac{625}{625} = 1</md>
+                    It works because <m>7^2 + 24^2 = 25^2</m>. In any right-angled triangle with sides <m>o</m>, <m>a</m> and hypotenuse <m>h</m>, Pythagoras gives <m>o^2 + a^2 = h^2</m>, so
+                    <md>\sin^2 x + \cos^2 x = \frac{o^2}{h^2} + \frac{a^2}{h^2} = \frac{o^2 + a^2}{h^2} = \frac{h^2}{h^2} = 1</md></p>
+            </solution>
+        </example>
 
-    <!-- [LP] Add information on how to differentiate  -->
+        <example xml:id="example-two-more-identities">
+            <title>Two More Identities</title>
+            <statement><p>Show that <m>\tan x = \dfrac{\sin x}{\cos x}</m> and that <m>1 + \tan^2 x = \dfrac{1}{\cos^2 x}</m> whenever <m>\cos x \ne 0</m>. Check the second at <m>x = 60^\circ</m>.</p></statement>
+            <solution>
+                <p>In the triangle, <m>\tan x = \dfrac{o}{a} = \dfrac{o/h}{a/h} = \dfrac{\sin x}{\cos x}</m>. Grade 11 found the same result on the unit circle.</p>
+                <p>Divide every term of <m>\sin^2 x + \cos^2 x = 1</m> by <m>\cos^2 x</m>:
+                    <md>\frac{\sin^2 x}{\cos^2 x} + 1 = \frac{1}{\cos^2 x}, \quad\text{that is}\quad \tan^2 x + 1 = \frac{1}{\cos^2 x}</md>
+                    At <m>60^\circ</m>: <m>\tan 60^\circ = \sqrt{3}</m> and <m>\cos 60^\circ = 0.5</m>, so the left side is <m>1 + 3 = 4</m> and the right side is <m>\dfrac{1}{0.25} = 4</m>.</p>
+            </solution>
+        </example>
 
-    <!-- <axiom component="lesson-plan">
-        <title>Differentiation</title>
+        <note xml:id="note-identity-or-equation">
+            <title>Identity or Equation?</title>
+            <p>
+                <m>\sin x + \cos x = 1</m> is true at <m>0^\circ</m>, <m>90^\circ</m> and <m>360^\circ</m>, but at <m>45^\circ</m> the left side is <m>1.41</m>. So it is an equation, not an identity. One value of <m>x</m> where the two sides differ is enough to show a statement is not an identity. Trying a few values that work proves nothing: to show a statement is an identity, use algebra.
+            </p>
+        </note>
 
-        <table>
+        <xi:include href="../lesson-plan-templates/assessment-intro.ptx" />
+        <xi:include href="../lesson-plan-templates/checkpoint.ptx" />
+
+        <p>Choose from each list.</p>
+
+        <exercise xml:id="ex-identity-or-not-an-identity">
+            <!--<title></title>-->
+            <stack label="stk-identity-or-not-an-identity" source="stack/top/2-measurement-and-geometry/10-trigonometry-iii/01-trigonometric-identity/Identity-or-not-an-identity.xml"/>
+        </exercise>
+
+        <exercises xml:id="exercises-deriving-the-identity">
+            <exercise xml:id="ex-verify-identity-three-angles">
+                <statement><p>Verify that <m>\sin^2 x + \cos^2 x = 1</m> for <m>x = 40^\circ</m>, <m>125^\circ</m> and <m>300^\circ</m>. Give each ratio to 4 decimal places.</p></statement>
+                <answer><p><m>40^\circ</m>: <m>0.6428</m>, <m>0.7660</m>; <m>125^\circ</m>: <m>0.8192</m>, <m>-0.5736</m>; <m>300^\circ</m>: <m>-0.8660</m>, <m>0.5000</m>. Each sum of squares is <m>1.0000</m> to 4 decimal places.</p></answer>
+            </exercise>
+            <exercise xml:id="ex-identity-9-40-41">
+                <statement><p>A right-angled triangle has sides <m>9</m>, <m>40</m> and <m>41</m>, and <m>x</m> is the angle opposite the side <m>9</m>. Write down <m>\sin x</m> and <m>\cos x</m>, and show that <m>\sin^2 x + \cos^2 x = 1</m>.</p></statement>
+                <answer><p><m>\sin x = \dfrac{9}{41}</m>, <m>\cos x = \dfrac{40}{41}</m>; <m>\dfrac{81}{1681} + \dfrac{1600}{1681} = \dfrac{1681}{1681} = 1</m>.</p></answer>
+            </exercise>
+            <exercise xml:id="ex-sine-at-most-one">
+                <statement><p>Use the identity to explain why <m>-1 \le \sin x \le 1</m> for every angle <m>x</m>.</p></statement>
+                <answer><p><m>\sin^2 x = 1 - \cos^2 x \le 1</m> because <m>\cos^2 x \ge 0</m>. A number whose square is at most 1 lies between <m>-1</m> and <m>1</m>.</p></answer>
+            </exercise>
+            <exercise xml:id="ex-identity-divide-by-sin">
+                <statement><p>Divide <m>\sin^2 x + \cos^2 x = 1</m> by <m>\sin^2 x</m> to obtain a third identity. Check it at <m>x = 30^\circ</m>.</p></statement>
+                <answer><p><m>1 + \dfrac{1}{\tan^2 x} = \dfrac{1}{\sin^2 x}</m> (where <m>\sin x \ne 0</m>). At <m>30^\circ</m>: <m>1 + 3 = 4</m> and <m>\dfrac{1}{0.25} = 4</m>.</p></answer>
+                <solution><p><m>\dfrac{\sin^2 x}{\sin^2 x} + \dfrac{\cos^2 x}{\sin^2 x} = \dfrac{1}{\sin^2 x}</m>, and <m>\dfrac{\cos x}{\sin x} = \dfrac{1}{\tan x}</m>. At <m>30^\circ</m>, <m>\tan^2 30^\circ = \dfrac{1}{3}</m>.</p></solution>
+            </exercise>
+            <exercise xml:id="ex-is-it-an-identity">
+                <statement><p>Show that <m>\sin x + \cos x = 1</m> is not an identity.</p></statement>
+                <answer><p>At <m>x = 45^\circ</m> the left side is <m>0.71 + 0.71 = 1.41</m>, not 1. One counterexample is enough.</p></answer>
+            </exercise>
+            <exercise xml:id="ex-point-on-circle-radius-13">
+                <title>Challenge: A Point on a Circle</title>
+                <statement><p>The point <m>P(-5, 12)</m> lies on a circle of radius 13 with centre <m>O</m>. Show that <m>\left(-\dfrac{5}{13}\right)^2 + \left(\dfrac{12}{13}\right)^2 = 1</m>, and find the angle <m>x</m> measured from the positive <m>x</m>-axis to <m>OP</m>.</p></statement>
+                <hint><p><m>\cos x = -\dfrac{5}{13}</m> and <m>\sin x = \dfrac{12}{13}</m>. Which quadrant is <m>P</m> in?</p></hint>
+                <answer><p><m>\dfrac{25}{169} + \dfrac{144}{169} = 1</m>; <m>x = 112.6^\circ</m>.</p></answer>
+                <solution><p><m>P</m> is in the second quadrant. <m>\cos^{-1}\left(-\dfrac{5}{13}\right) = 112.6^\circ</m>, and <m>\sin 112.6^\circ = 0.923 = \dfrac{12}{13}</m>, as it should be.</p></solution>
+            </exercise>
+        </exercises>
+
+        <axiom component="lesson-plan">
             <title>Differentiation</title>
-            <tabular halign="left">
-                <row header="yes" bottom="minor">
-                    <cell>Learner Group</cell>
-                    <cell>Strategy &amp; Learning Experience</cell>
-                    <cell></cell>
-                </row>
-                <row>
-                    <cell>Struggling Learners (Support)</cell>
-                    <cell>
-                        XXXX
-                    </cell>
-                    <cell></cell>
-                </row>
-                <row>
-                    <cell>On-Level Learners (Core)</cell>
-                    <cell>
-                        <line>The core lesson activities as described above.</line>
-                    </cell>
-                    <cell></cell>
-                </row>
-                <row>
-                    <cell>Advanced Learners (Challenge)</cell>
-                    <cell>
-                        XXXX
-                    </cell>
-                    <cell></cell>
-                </row>
-            </tabular>
-        </table>
-    </axiom> -->
+            <table xml:id="table-differentiation-deriving-the-identity">
+                <title>Differentiation Strategies</title>
+                <tabular halign="left" top="minor" bottom="minor" left="minor" right="minor">
+                    <row header="yes" bottom="medium"><cell>Learner Group</cell><cell>Strategy and Learning Experience</cell></row>
+                    <row><cell>Struggling Learners (Support)</cell><cell>Provide a triangle template with <m>o</m>, <m>a</m> and <m>h</m> marked. Work through activity parts (a) to (c) and <xref ref="example-identity-7-24-25"/> only. Assign <xref ref="ex-verify-identity-three-angles"/> and <xref ref="ex-identity-9-40-41"/>.</cell></row>
+                    <row><cell>On-Level Learners (Core)</cell><cell>Full activity and all examples. Assign <xref ref="ex-verify-identity-three-angles"/> to <xref ref="ex-is-it-an-identity"/>.</cell></row>
+                    <row><cell>Advanced Learners (Challenge)</cell><cell>All exercises including <xref ref="ex-point-on-circle-radius-13"/>. Extension: find <m>\sin x</m> and <m>\cos x</m> when <m>\tan x = 2</m> and <m>x</m> is acute, using <m>1 + \tan^2 x = \dfrac{1}{\cos^2 x}</m>. (Answer: <m>\cos^2 x = \dfrac{1}{5}</m>, so <m>\cos x = \dfrac{1}{\sqrt{5}} \approx 0.447</m> and <m>\sin x = \dfrac{2}{\sqrt{5}} \approx 0.894</m>.)</cell></row>
+                </tabular>
+            </table>
+        </axiom>
 
-    <xi:include href="../lesson-plan-templates/assessment-methods.ptx" />
+        <xi:include href="../lesson-plan-templates/assessment-methods.ptx" />
+        <xi:include href="../lesson-plan-templates/reflection.ptx"/>
+    </subsection>
 
-    <xi:include href="../lesson-plan-templates/reflection.ptx"/>
+    <!-- ============================================================ Lesson 1.2 -->
+    <subsection xml:id="subsec-using-the-identity">
+        <title>Using the Identity</title>
+
+        <p component="lesson-plan">Upon completion of this lesson, learners will be able to:
+            <ol>
+                <li><p><alert>Know:</alert> one ratio and the quadrant fix the other ratios; the identity changes <m>\sin^2 x</m> into <m>1 - \cos^2 x</m> and back.</p></li>
+                <li><p><alert>Do:</alert> find the other ratios exactly in any quadrant; simplify expressions; prove short identities.</p></li>
+                <li><p><alert>Apply:</alert> find the ratios of the pitch of a roof without finding the angle.</p></li>
+            </ol>
+        </p>
+
+        <axiom component="lesson-plan">
+            <title>Problem-Solving and Discovery</title>
+            <dl>
+                <li><title>Suggested Time</title><p>14 minutes</p></li>
+                <li><title>Objective</title><p>Learners find <m>\cos x</m> and <m>\tan x</m> from <m>\sin x</m> without finding <m>x</m>, then see that the quadrant decides the sign.</p></li>
+                <li><title>Teacher's Role</title><p>Put the quadrant signs from Grade 11 on the board. Learners work in pairs. After part (b) ask: <q>Could the roof angle be obtuse? What would change?</q></p></li>
+            </dl>
+        </axiom>
+
+        <activity xml:id="act-pitch-of-a-roof">
+            <title>The Pitch of a Roof</title>
+            <statement>
+                <p>A fundi building a classroom in Eldoret sets the roof so that its pitch angle <m>x</m> has <m>\sin x = 0.28</m>.</p>
+                <p>
+                    <ol marker="(a)">
+                        <li>
+                            <p>Without finding <m>x</m>, use the identity to find <m>\cos x</m>.</p>
+                            <solution component="lesson-plan"><p><m>\cos^2 x = 1 - 0.0784 = 0.9216</m>, so <m>\cos x = 0.96</m> (the pitch angle is acute).</p></solution>
+                        </li>
+                        <li>
+                            <p>Find <m>\tan x</m> as a fraction.</p>
+                            <solution component="lesson-plan"><p><m>\tan x = \dfrac{0.28}{0.96} = \dfrac{7}{24}</m>.</p></solution>
+                        </li>
+                        <li>
+                            <p>An obtuse angle has the same sine, <m>0.28</m>. Find its cosine.</p>
+                            <solution component="lesson-plan"><p><m>-0.96</m>: cosine is negative in the second quadrant.</p></solution>
+                        </li>
+                        <li>
+                            <p>Find both angles between <m>0^\circ</m> and <m>360^\circ</m> whose sine is <m>0.28</m>, and say in which quadrant each lies.</p>
+                            <solution component="lesson-plan"><p><m>16.3^\circ</m> (first quadrant) and <m>180^\circ - 16.3^\circ = 163.7^\circ</m> (second quadrant).</p></solution>
+                        </li>
+                    </ol>
+                </p>
+            </statement>
+        </activity>
+
+        <axiom component="lesson-plan">
+            <title>Structured Instruction</title>
+            <p>
+                <dl>
+                    <li><title>Suggested Time</title><p>8 minutes</p></li>
+                    <li><title>Objective</title><p>To set out the steps from one ratio to the others, and how to simplify and prove with the identity.</p></li>
+                </dl>
+            </p>
+            <paragraphs>
+                <title>Key Takeaways &amp; Teacher Connection</title>
+                <ol>
+                    <li><p><alert>Connecting to Learner Work:</alert> parts (a) and (c) gave the same size of cosine with different signs: the quadrant decides.</p></li>
+                    <li><p>Square, subtract from 1, take the square root with <m>\pm</m>, choose the sign by the quadrant; then <m>\tan x</m> from the two values.</p></li>
+                    <li><p>To prove an identity, start from the more complicated side.</p></li>
+                </ol>
+            </paragraphs>
+        </axiom>
+
+        <insight xml:id="insight-one-ratio-to-the-others">
+            <title>From One Ratio to the Others</title>
+            <p>If you know <m>\sin x</m> (or <m>\cos x</m>) and the quadrant of <m>x</m>:
+                <ol>
+                    <li><p>square the ratio you know;</p></li>
+                    <li><p>subtract from 1 to get the square of the other ratio;</p></li>
+                    <li><p>take the square root, remembering <m>\pm</m>;</p></li>
+                    <li><p>choose the sign for the quadrant: sine is positive in the first and second quadrants, cosine in the first and fourth, tangent in the first and third. Then <m>\tan x = \dfrac{\sin x}{\cos x}</m>.</p></li>
+                </ol>
+            </p>
+            <p>To <term>simplify</term> with the identity, look for <m>1 - \sin^2 x</m>, <m>1 - \cos^2 x</m> or <m>\sin^2 x + \cos^2 x</m> and replace it. To prove an identity, start from the more complicated side and turn it into the other side; never work on both sides at once.</p>
+        </insight>
+
+        <xi:include href="../lesson-plan-templates/example-intro.ptx" />
+
+        <example xml:id="example-cosine-known-second-quadrant">
+            <title>Cosine Known, Second Quadrant</title>
+            <statement><p>Given that <m>\cos x = -0.6</m> and <m>90^\circ \lt x \lt 180^\circ</m>, find <m>\sin x</m> and <m>\tan x</m>.</p></statement>
+            <solution>
+                <p><m>\sin^2 x = 1 - (-0.6)^2 = 1 - 0.36 = 0.64</m>, so <m>\sin x = \pm 0.8</m>. In the second quadrant sine is positive: <m>\sin x = 0.8</m>.
+                    <md>\tan x = \frac{0.8}{-0.6} = -\frac{4}{3}</md></p>
+            </solution>
+        </example>
+
+        <example xml:id="example-sine-known-third-quadrant">
+            <title>Sine Known, Third Quadrant</title>
+            <statement><p>Given that <m>\sin x = -\dfrac{5}{13}</m> and <m>180^\circ \lt x \lt 270^\circ</m>, find the exact values of <m>\cos x</m> and <m>\tan x</m>.</p></statement>
+            <solution>
+                <p><m>\cos^2 x = 1 - \dfrac{25}{169} = \dfrac{144}{169}</m>, so <m>\cos x = \pm\dfrac{12}{13}</m>. In the third quadrant cosine is negative: <m>\cos x = -\dfrac{12}{13}</m>.
+                    <md>\tan x = \frac{-5/13}{-12/13} = \frac{5}{12}</md>
+                    Tangent is positive in the third quadrant, as it should be.</p>
+            </solution>
+        </example>
+
+        <example xml:id="example-simplifying-with-the-identity">
+            <title>Simplifying with the Identity</title>
+            <statement><p>Simplify <m>\dfrac{1 - \cos^2 x}{\sin x \cos x}</m>.</p></statement>
+            <solution>
+                <p>Replace <m>1 - \cos^2 x</m> by <m>\sin^2 x</m>:
+                    <md>\frac{1 - \cos^2 x}{\sin x \cos x} = \frac{\sin^2 x}{\sin x \cos x} = \frac{\sin x}{\cos x} = \tan x</md>
+                    Check at <m>200^\circ</m>: <m>\dfrac{1 - 0.8830}{(-0.3420)(-0.9397)} = \dfrac{0.1170}{0.3214} = 0.364</m> and <m>\tan 200^\circ = 0.364</m> (to 3 decimal places).</p>
+            </solution>
+        </example>
+
+        <example xml:id="example-proving-sum-of-squares">
+            <title>Proving an Identity</title>
+            <statement><p>Prove that <m>(\sin x + \cos x)^2 + (\sin x - \cos x)^2 = 2</m>.</p></statement>
+            <solution>
+                <p>Start with the left side and expand both brackets:
+                    <md>
+                        <mrow>(\sin x + \cos x)^2 + (\sin x - \cos x)^2 \amp = (\sin^2 x + 2\sin x\cos x + \cos^2 x) + (\sin^2 x - 2\sin x\cos x + \cos^2 x)</mrow>
+                        <mrow>\amp = 2\sin^2 x + 2\cos^2 x</mrow>
+                        <mrow>\amp = 2(\sin^2 x + \cos^2 x) = 2</mrow>
+                    </md>
+                    The terms <m>2\sin x \cos x</m> cancel, and the identity finishes the proof.</p>
+            </solution>
+        </example>
+
+        <warning xml:id="warning-choose-the-sign">
+            <title>Choose the Sign</title>
+            <p><m>\sqrt{0.64}</m> gives <m>0.8</m>, but <m>(-0.8)^2 = 0.64</m> too. The quadrant decides which sign is right. A calculator's inverse key gives only one angle, and so only one sign.</p>
+        </warning>
+
+        <xi:include href="../lesson-plan-templates/assessment-intro.ptx" />
+        <xi:include href="../lesson-plan-templates/checkpoint.ptx" />
+
+        <p>Type fractions with a slash, for example <c>-12/13</c>. Type <m>\sin^2 x</m> as <c>sin(x)^2</c>, for example <c>3*cos(x)^2</c>. Type decimals with a point, for example <c>-0.8</c>.</p>
+
+        <exercise xml:id="ex-other-ratios-from-one-ratio-in-a-quadrant">
+            <!--<title></title>-->
+            <stack label="stk-other-ratios-from-one-ratio-in-a-quadrant" source="stack/top/2-measurement-and-geometry/10-trigonometry-iii/01-trigonometric-identity/Other-ratios-from-one-ratio-in-a-quadrant.xml"/>
+        </exercise>
+
+        <exercise xml:id="ex-simplifying-with-the-pythagorean-identity">
+            <!--<title></title>-->
+            <stack label="stk-simplifying-with-the-pythagorean-identity" source="stack/top/2-measurement-and-geometry/10-trigonometry-iii/01-trigonometric-identity/Simplifying-with-the-Pythagorean-identity.xml"/>
+        </exercise>
+
+        <exercise xml:id="ex-finding-the-mistake-in-a-sine-calculation">
+            <!--<title></title>-->
+            <stack label="stk-finding-the-mistake-in-a-sine-calculation" source="stack/top/2-measurement-and-geometry/10-trigonometry-iii/01-trigonometric-identity/Finding-the-mistake-in-a-sine-calculation.xml"/>
+        </exercise>
+
+        <exercises xml:id="exercises-using-the-identity">
+            <exercise xml:id="ex-other-ratios-second-quadrant">
+                <statement><p>Given that <m>\sin x = \dfrac{8}{17}</m> and <m>90^\circ \lt x \lt 180^\circ</m>, find the exact values of <m>\cos x</m> and <m>\tan x</m>.</p></statement>
+                <answer><p><m>\cos x = -\dfrac{15}{17}</m>, <m>\tan x = -\dfrac{8}{15}</m>.</p></answer>
+            </exercise>
+            <exercise xml:id="ex-other-ratios-fourth-quadrant">
+                <statement><p>Given that <m>\cos x = 0.28</m> and <m>270^\circ \lt x \lt 360^\circ</m>, find <m>\sin x</m> and <m>\tan x</m>.</p></statement>
+                <answer><p><m>\sin x = -0.96</m>, <m>\tan x = -\dfrac{24}{7}</m>.</p></answer>
+            </exercise>
+            <exercise xml:id="ex-other-ratios-from-tan">
+                <statement><p>Given that <m>\tan x = \dfrac{3}{4}</m> and <m>180^\circ \lt x \lt 270^\circ</m>, find <m>\sin x</m> and <m>\cos x</m>.</p></statement>
+                <answer><p><m>\sin x = -\dfrac{3}{5}</m>, <m>\cos x = -\dfrac{4}{5}</m>.</p></answer>
+                <solution><p>A 3, 4, 5 triangle gives the sizes <m>\dfrac{3}{5}</m> and <m>\dfrac{4}{5}</m>; in the third quadrant sine and cosine are both negative.</p></solution>
+            </exercise>
+            <exercise xml:id="ex-simplify-four-expressions">
+                <statement><p>Simplify
+                    <ol marker="(a)">
+                        <li><p><m>6 - 6\cos^2 x</m></p></li>
+                        <li><p><m>\sin x \cos^2 x + \sin^3 x</m></p></li>
+                        <li><p><m>\dfrac{\cos^2 x - 1}{\sin x}</m></p></li>
+                        <li><p><m>2\sin^2 x + \cos^2 x - 1</m></p></li>
+                    </ol></p></statement>
+                <answer><p>(a) <m>6\sin^2 x</m> (b) <m>\sin x</m> (c) <m>-\sin x</m> (d) <m>\sin^2 x</m></p></answer>
+                <solution><p>(b) <m>\sin x(\cos^2 x + \sin^2 x) = \sin x</m>. (c) <m>\cos^2 x - 1 = -\sin^2 x</m>. (d) <m>\sin^2 x + (\sin^2 x + \cos^2 x) - 1 = \sin^2 x</m>.</p></solution>
+            </exercise>
+            <exercise xml:id="ex-prove-difference-of-squares">
+                <statement><p>Prove that <m>(1 - \sin x)(1 + \sin x) = \cos^2 x</m>.</p></statement>
+                <answer><p><m>(1 - \sin x)(1 + \sin x) = 1 - \sin^2 x = \cos^2 x</m>.</p></answer>
+            </exercise>
+            <exercise xml:id="ex-prove-fourth-powers">
+                <statement><p>Prove that <m>\sin^4 x - \cos^4 x = \sin^2 x - \cos^2 x</m>.</p></statement>
+                <answer><p><m>\sin^4 x - \cos^4 x = (\sin^2 x - \cos^2 x)(\sin^2 x + \cos^2 x) = \sin^2 x - \cos^2 x</m>.</p></answer>
+            </exercise>
+            <exercise xml:id="ex-express-in-cos-only">
+                <statement><p>Write <m>3\sin^2 x + 2\cos x</m> in terms of <m>\cos x</m> only.</p></statement>
+                <answer><p><m>3 - 3\cos^2 x + 2\cos x</m>.</p></answer>
+            </exercise>
+            <exercise xml:id="ex-sin-plus-cos-given">
+                <title>Challenge: Sum Given, Product Wanted</title>
+                <statement><p>An angle <m>x</m> has <m>\sin x + \cos x = 1.2</m>. Find <m>\sin x \cos x</m>.</p></statement>
+                <hint><p>Square both sides.</p></hint>
+                <answer><p><m>0.22</m></p></answer>
+                <solution><p><m>(\sin x + \cos x)^2 = \sin^2 x + \cos^2 x + 2\sin x\cos x = 1 + 2\sin x\cos x = 1.44</m>, so <m>\sin x\cos x = 0.22</m>.</p></solution>
+            </exercise>
+        </exercises>
+
+        <axiom component="lesson-plan">
+            <title>Differentiation</title>
+            <table xml:id="table-differentiation-using-the-identity">
+                <title>Differentiation Strategies</title>
+                <tabular halign="left" top="minor" bottom="minor" left="minor" right="minor">
+                    <row header="yes" bottom="medium"><cell>Learner Group</cell><cell>Strategy and Learning Experience</cell></row>
+                    <row><cell>Struggling Learners (Support)</cell><cell>Provide a four-step card (square, subtract from 1, square root with <m>\pm</m>, sign from the quadrant). Work through <xref ref="example-cosine-known-second-quadrant"/> and <xref ref="example-sine-known-third-quadrant"/>. Assign <xref ref="ex-other-ratios-second-quadrant"/> and <xref ref="ex-other-ratios-fourth-quadrant"/>.</cell></row>
+                    <row><cell>On-Level Learners (Core)</cell><cell>Full activity and all examples. Assign <xref ref="ex-other-ratios-second-quadrant"/> to <xref ref="ex-express-in-cos-only"/>.</cell></row>
+                    <row><cell>Advanced Learners (Challenge)</cell><cell>All exercises including <xref ref="ex-sin-plus-cos-given"/>. Extension: prove that <m>(1 + \tan^2 x)\cos^2 x = 1</m>. (Answer: by <xref ref="example-two-more-identities"/>, <m>1 + \tan^2 x = \dfrac{1}{\cos^2 x}</m>; or write <m>\tan x = \dfrac{\sin x}{\cos x}</m> and get <m>\cos^2 x + \sin^2 x = 1</m>.)</cell></row>
+                </tabular>
+            </table>
+        </axiom>
+
+        <xi:include href="../lesson-plan-templates/assessment-methods.ptx" />
+        <xi:include href="../lesson-plan-templates/reflection.ptx"/>
+    </subsection>
 </section>

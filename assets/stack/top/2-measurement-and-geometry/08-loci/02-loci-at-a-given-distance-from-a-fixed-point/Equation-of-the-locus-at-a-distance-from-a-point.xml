@@ -1,0 +1,202 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<quiz>
+<question type="stack">
+  <name><text>Equation of the locus at a distance from a point</text></name>
+  <questiontext format="html">
+    <text><![CDATA[<p>(a) Write an equation for the locus of points \({@r@}\) units from \(C({@a@}, {@b@})\).</p><div>[[input:ans1]] [[validation:ans1]] [[feedback:prt1]]</div><p>(b) The locus of a point \(P\) is \({@eqb@}\). Give the centre and the radius of the circle, the radius correct to 1 decimal place where it is not a whole number.</p><div>Centre \(\big(\)[[input:ans2]], [[input:ans3]]\(\big)\) [[validation:ans2]] [[validation:ans3]] [[feedback:prt2]]</div><div>Radius [[input:ans4]] [[validation:ans4]] [[feedback:prt3]]</div>]]></text>
+  </questiontext>
+  <generalfeedback format="html">
+    <text><![CDATA[<p>(a) By Pythagoras, the distance from \(P(x, y)\) to \(C({@a@}, {@b@})\) is \(\sqrt{(x - a)^2 + (y - b)^2}\) with \(a = {@a@}\) and \(b = {@b@}\). Setting it equal to \({@r@}\) and squaring both sides gives</p><p>\[{@tas@}\]</p><p>Any equivalent equation is accepted, for example the expanded form.</p><p>(b) In \((x - h)^2 + (y - k)^2 = r^2\) the centre is \((h, k)\) and the right-hand side is the square of the radius. So the centre is \(({@c@}, {@dd@})\) and the radius is [[if test="integerp(rk)"]]\(\sqrt{{@k@}} = {@rk@}\)[[else]]\(\sqrt{{@k@}} \approx {@dispdp(float(floor(10^1*(rk)+1/2)/10^1),1)@}\)[[/if]].</p>]]></text>
+  </generalfeedback>
+  <defaultgrade>3</defaultgrade>
+  <penalty>0.1</penalty>
+  <hidden>0</hidden>
+  <idnumber></idnumber>
+  <stackversion><text>2026063000</text></stackversion>
+  <questionvariables>
+    <text><![CDATA[/* Design: equation of a circle from its centre and radius, and back. Source: adapted from SMP AS/A2 Core 1, Chapter 7, A9 and A10. */
+a: rand_with_prohib(-6,6,[0]);
+b: rand_with_prohib(-6,6,[0,a,-a]);
+/* bn: excluded circles [centre x, centre y, r^2]: those in this chapter (examples, exercises, the how-to-type line) and in the source textbook. Part (a) never gives one of them, part (b) never prints one. */
+bn: [[0,0,169],[0,0,49],[2,1,25],[5,-2,16],[-4,7,36],[1,-2,4],[6,3,16],[-2,0,25],[1,-6,9],[-2,-2,49],[2,6,16],[-3,4,25],[4,0,7],[-2,-3,25],[3,-5,194],[-4,-2,10],[1,4,9],[2,1,4],[1,-3,9],[-5,2,11],[0,5,49],[-4,3,36],[0,3,9],[2,6,40],[8,1,50],[6,0,16],[-3,2,13],[2,3,50],[3,3,4],[-2,1,20],[-3,1,117],[-1,3,10],[1,8,16],[4,2,17],[2,1,100],[0,2,10],[3,0,9],[0,0,6],[4,2,5],[3,2,9],[-2,-1,17],[4,4,10],[-2,0,12],[3,1,10],[1,2,1],[5,-1,50],[-4,-1,8],[1,0,10],[0,1,85],[4,1,4],[-2,-3,9],[1,-7,49],[1,-7,7],[2,1,36],[0,-3,25],[-2,-4,3],[-1,-2,13],[-2,7,49],[4,1,8],[-2,4,100],[1,-3,289],[4,5,25],[4,-5,36],[3,-1,49],[15,0,81],[0,0,144],[-5,2,16],[1,-4,9],[-3,5,16],[2,-1,100]];
+exr: map(lambda([t], sqrt(t[3])), sublist(bn, lambda([t], is(t[1]=a) and is(t[2]=b))));
+r: rand_with_prohib(2,9,exr);
+ta1: (x-a)^2+(y-b)^2=r^2;
+/* diagnostics: radius not squared; signs of the centre kept; coordinates swapped */
+dr: (x-a)^2+(y-b)^2=r;
+ds: (x+a)^2+(y+b)^2=r^2;
+dsw: (x-b)^2+(y-a)^2=r^2;
+sg(v) := if is(v<0) then sconcat("+",-v) else sconcat("-",v);
+tas: sconcat("(x",sg(a),")^2+(y",sg(b),")^2=",r^2);
+c: rand_with_prohib(-6,6,[0]);
+dd: rand_with_prohib(-6,6,[0,c,-c]);
+k: rand(sublist([3,5,7,10,12,13,16,20,25,29,34,36,40,45,49], lambda([z], not member([c,dd,z], bn))));
+rk: sqrt(k);
+eqb: sconcat("(x",sg(c),")^2+(y",sg(dd),")^2=",k);]]></text>
+  </questionvariables>
+  <specificfeedback format="html"><text><![CDATA[]]></text></specificfeedback>
+  <questionnote format="moodle_auto_format">
+    <text>a={@a@}, b={@b@}, r={@r@}, c={@c@}, dd={@dd@}, k={@k@}</text>
+  </questionnote>
+  <questiondescription format="html"><text><![CDATA[<p id="concept">Loci: equation of a circle locus</p><p id="description">Grade 12 CBE Core 2.3: Write the equation of the locus of points a fixed distance from a point, and read the centre and radius from such an equation.</p><p id="edition">Core</p><p id="provenance">This question is adapted from Chapter 7, Section A, questions A9 and A10 of Cassell, D., Instone, S., Ling, J., Scruton, P., Shilton, S. and West, H., SMP AS/A2 Mathematics: Core 1 for AQA, Cambridge University Press, 2004: equation from centre and radius and back, framed as a locus; new random centres and radii, with C1's own excluded.</p><p id="citation">INNODEMS CBC Grade 12 Mathematics, first draft by Ben Davies, 2026. Aligned to the KICD Senior School Curriculum Design, Core Mathematics Grade 12 (draft).</p>]]></text></questiondescription>
+  <questionsimplify>1</questionsimplify>
+  <assumepositive>0</assumepositive>
+  <assumereal>0</assumereal>
+  <prtcorrect format="html"><text><![CDATA[[[commonstring key="symbolicprtcorrectfeedback"/]] [[commonstring key="defaultprtcorrectfeedback"/]]]]></text></prtcorrect>
+  <prtpartiallycorrect format="html"><text><![CDATA[[[commonstring key="symbolicprtpartiallycorrectfeedback"/]] [[commonstring key="defaultprtpartiallycorrectfeedback"/]]]]></text></prtpartiallycorrect>
+  <prtincorrect format="html"><text><![CDATA[[[commonstring key="symbolicprtincorrectfeedback"/]] [[commonstring key="defaultprtincorrectfeedback"/]]]]></text></prtincorrect>
+  <decimals>.</decimals>
+  <scientificnotation>*10</scientificnotation>
+  <multiplicationsign>none</multiplicationsign>
+  <sqrtsign>1</sqrtsign>
+  <complexno>i</complexno>
+  <inversetrig>cos-1</inversetrig>
+  <logicsymbol>lang</logicsymbol>
+  <matrixparens>[</matrixparens>
+  <isbroken>0</isbroken>
+  <variantsselectionseed></variantsselectionseed>
+
+  <input><name>ans1</name><type>algebraic</type><tans>ta1</tans><boxsize>22</boxsize><strictsyntax>1</strictsyntax><insertstars>4</insertstars><syntaxhint></syntaxhint><syntaxattribute>0</syntaxattribute><forbidwords></forbidwords><allowwords></allowwords><forbidfloat>1</forbidfloat><requirelowestterms>0</requirelowestterms><checkanswertype>1</checkanswertype><mustverify>0</mustverify><showvalidation>0</showvalidation><options></options></input>
+  <input><name>ans2</name><type>numerical</type><tans>c</tans><boxsize>4</boxsize><strictsyntax>1</strictsyntax><insertstars>0</insertstars><syntaxhint></syntaxhint><syntaxattribute>0</syntaxattribute><forbidwords></forbidwords><allowwords></allowwords><forbidfloat>0</forbidfloat><requirelowestterms>0</requirelowestterms><checkanswertype>0</checkanswertype><mustverify>0</mustverify><showvalidation>0</showvalidation><options></options></input>
+  <input><name>ans3</name><type>numerical</type><tans>dd</tans><boxsize>4</boxsize><strictsyntax>1</strictsyntax><insertstars>0</insertstars><syntaxhint></syntaxhint><syntaxattribute>0</syntaxattribute><forbidwords></forbidwords><allowwords></allowwords><forbidfloat>0</forbidfloat><requirelowestterms>0</requirelowestterms><checkanswertype>0</checkanswertype><mustverify>0</mustverify><showvalidation>0</showvalidation><options></options></input>
+  <input><name>ans4</name><type>numerical</type><tans>float(rk)</tans><boxsize>6</boxsize><strictsyntax>1</strictsyntax><insertstars>0</insertstars><syntaxhint></syntaxhint><syntaxattribute>0</syntaxattribute><forbidwords></forbidwords><allowwords></allowwords><forbidfloat>0</forbidfloat><requirelowestterms>0</requirelowestterms><checkanswertype>0</checkanswertype><mustverify>0</mustverify><showvalidation>0</showvalidation><options></options></input>
+
+  <prt><name>prt1</name><value>1.0000000</value><autosimplify>1</autosimplify><feedbackstyle>1</feedbackstyle><feedbackvariables><text><![CDATA[dsx: sconcat("(x",sg(-a),")^2");
+/* a point of the true locus that the learner's equation misses (polynomial equations only, so the substitution cannot fail) */
+dfe: lhs(ans1)-rhs(ans1);
+pol: polynomialp(dfe, [x,y]);
+tpl: [[a+r,b],[a-r,b],[a,b+r],[a,b-r]];
+fl: if pol then sublist(tpl, lambda([q], is(ev(subst([x=q[1],y=q[2]], dfe), simp)#0))) else [];
+tst: is(length(fl)>0);
+tp0: if tst then first(fl) else tpl[1];
+lv0: if tst then ev(subst([x=tp0[1],y=tp0[2]], lhs(ans1)), simp) else 0;
+rv0: if tst then ev(subst([x=tp0[1],y=tp0[2]], rhs(ans1)), simp) else 0;]]></text></feedbackvariables>
+    <node><name>0</name><description>Equation of the circle</description><answertest>AlgEquiv</answertest><sans>ans1</sans><tans>ta1</tans><testoptions></testoptions><quiet>0</quiet><truescoremode>=</truescoremode><truescore>1.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt1-1-T</trueanswernote><truefeedback format="html"><text><![CDATA[]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>1</falsenextnode><falseanswernote>prt1-1-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>1</name><description>Radius not squared</description><answertest>AlgEquiv</answertest><sans>ans1</sans><tans>dr</tans><testoptions></testoptions><quiet>0</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt1-2-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>Your equation is a circle with centre \(({@a@}, {@b@})\), but its radius is [[if test="integerp(sqrt(r))"]]\(\sqrt{ {@r@} } = {@sqrt(r)@}\)[[else]]\(\sqrt{ {@r@} }\), about \({@dispdp(float(floor(10^1*(sqrt(r))+1/2)/10^1),1)@}\)[[/if]], not \({@r@}\). The right-hand side of the equation is the square of the distance, not the distance.</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>2</falsenextnode><falseanswernote>prt1-2-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>2</name><description>Signs of the centre</description><answertest>AlgEquiv</answertest><sans>ans1</sans><tans>ds</tans><testoptions></testoptions><quiet>0</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt1-3-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>Your equation is the locus of points \({@r@}\) units from \(({@-a@}, {@-b@})\), not from \(C({@a@}, {@b@})\). Your bracket \({@dsx@}\) is zero when \(x = {@-a@}\), and the brackets are zero at the centre.</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>3</falsenextnode><falseanswernote>prt1-3-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>3</name><description>Coordinates swapped</description><answertest>AlgEquiv</answertest><sans>ans1</sans><tans>dsw</tans><testoptions></testoptions><quiet>0</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt1-4-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>Your equation is the locus of points \({@r@}\) units from \(({@b@}, {@a@})\), not from \(C({@a@}, {@b@})\). The \(x\)-coordinate of \(C\) goes in the bracket with \(x\) and the \(y\)-coordinate in the bracket with \(y\).</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>4</falsenextnode><falseanswernote>prt1-4-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>4</name><description>Correct equation with the square root kept</description><answertest>AlgEquiv</answertest><sans>ans1</sans><tans>sqrt((x-a)^2+(y-b)^2)=r</tans><testoptions></testoptions><quiet>0</quiet><truescoremode>=</truescoremode><truescore>1.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt1-5-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>Squaring both sides gives the usual form \({@tas@}\).</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>-1</falsenextnode><falseanswernote>prt1-5-F</falseanswernote><falsefeedback format="html"><text><![CDATA[<p>[[if test="tst"]]Test your equation with a point that must be on the locus: \(({@tp0[1]@}, {@tp0[2]@})\) is \({@r@}\) units from \(C({@a@}, {@b@})\), straight across or straight up or down from it. At that point your left-hand side is \({@lv0@}\) and your right-hand side is \({@rv0@}\), so the point is not on your locus. Write the distance from \((x, y)\) to \(C\) by Pythagoras and set it equal to \({@r@}\).[[else]]By Pythagoras the distance from \((x, y)\) to \((a, b)\) is \(\sqrt{(x - a)^2 + (y - b)^2}\). Set it equal to the distance and square both sides.[[/if]]</p>]]></text></falsefeedback></node>
+  </prt>
+  <prt><name>prt2</name><value>1.0000000</value><autosimplify>1</autosimplify><feedbackstyle>1</feedbackstyle><feedbackvariables><text><![CDATA[nd(v) := if integerp(v) then v else float(floor(1000*v+1/2)/1000);
+bxs: sconcat("(x",sg(c),")");
+bys: sconcat("(y",sg(dd),")");]]></text></feedbackvariables>
+    <node><name>0</name><description>Centre</description><answertest>NumAbsolute</answertest><sans>abs(ans2-c)+abs(ans3-dd)</sans><tans>0</tans><testoptions>0.001</testoptions><quiet>0</quiet><truescoremode>=</truescoremode><truescore>1.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt2-1-T</trueanswernote><truefeedback format="html"><text><![CDATA[]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>1</falsenextnode><falseanswernote>prt2-1-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>1</name><description>Both signs changed</description><answertest>NumAbsolute</answertest><sans>abs(ans2+c)+abs(ans3+dd)</sans><tans>0</tans><testoptions>0.001</testoptions><quiet>0</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt2-2-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>You have copied the numbers in the brackets with their signs. At the centre each bracket is zero, but with \(x = {@ans2@}\) the bracket \({@bxs@}\) is \({@nd(ans2-c)@}\).</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>2</falsenextnode><falseanswernote>prt2-2-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>2</name><description>One coordinate right</description><answertest>AlgEquiv</answertest><sans>is(abs(ans2-c)&lt;0.001 or abs(ans3-dd)&lt;0.001)</sans><tans>true</tans><testoptions></testoptions><quiet>0</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt2-3-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>[[if test="is(abs(ans2-c)<0.001)"]]Your \(x\)-coordinate is right. With \(y = {@ans3@}\) the bracket \({@bys@}\) is \({@nd(ans3-dd)@}\), and at the centre it is zero.[[else]]Your \(y\)-coordinate is right. With \(x = {@ans2@}\) the bracket \({@bxs@}\) is \({@nd(ans2-c)@}\), and at the centre it is zero.[[/if]]</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>-1</falsenextnode><falseanswernote>prt2-3-F</falseanswernote><falsefeedback format="html"><text><![CDATA[<p>At the centre both brackets are zero. At your point \({@bxs@}\) is \({@nd(ans2-c)@}\) and \({@bys@}\) is \({@nd(ans3-dd)@}\).</p>]]></text></falsefeedback></node>
+  </prt>
+  <prt><name>prt3</name><value>1.0000000</value><autosimplify>1</autosimplify><feedbackstyle>1</feedbackstyle><feedbackvariables><text><![CDATA[]]></text></feedbackvariables>
+    <node><name>0</name><description>Radius</description><answertest>NumAbsolute</answertest><sans>ans4</sans><tans>rk</tans><testoptions>0.0501</testoptions><quiet>0</quiet><truescoremode>=</truescoremode><truescore>1.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt3-1-T</trueanswernote><truefeedback format="html"><text><![CDATA[]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>1</falsenextnode><falseanswernote>prt3-1-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>1</name><description>Gave r squared</description><answertest>NumAbsolute</answertest><sans>ans4</sans><tans>k</tans><testoptions>0.0501</testoptions><quiet>0</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt3-2-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>That is \(r^2\), the number on the right. The radius is its square root.</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>-1</falsenextnode><falseanswernote>prt3-2-F</falseanswernote><falsefeedback format="html"><text><![CDATA[<p>The right-hand side is the radius squared. A radius of \({@ans4@}\) would put [[if test="integerp(ans4)"]]\({@ans4^2@}\)[[else]]about \({@dispdp(float(floor(10^2*(ans4^2)+1/2)/10^2),2)@}\)[[/if]] on the right, and the equation has \({@k@}\).</p>]]></text></falsefeedback></node>
+  </prt>
+
+  <deployedseed>1</deployedseed>
+  <deployedseed>2</deployedseed>
+  <deployedseed>3</deployedseed>
+  <deployedseed>4</deployedseed>
+  <deployedseed>5</deployedseed>
+  <deployedseed>6</deployedseed>
+  <deployedseed>7</deployedseed>
+  <deployedseed>8</deployedseed>
+  <deployedseed>9</deployedseed>
+  <deployedseed>10</deployedseed>
+  <qtest><testcase>1</testcase><description>Correct</description>
+    <testinput><name>ans1</name><value>ta1</value></testinput>
+    <testinput><name>ans2</name><value>c</value></testinput>
+    <testinput><name>ans3</name><value>dd</value></testinput>
+    <testinput><name>ans4</name><value>float(rk)</value></testinput>
+    <expected><name>prt1</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt1-1-T</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt2-1-T</expectedanswernote></expected>
+    <expected><name>prt3</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt3-1-T</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>2</testcase><description>Expanded equation; radius rounded</description>
+    <testinput><name>ans1</name><value>ev(expand(lhs(ta1)),simp)=ev(r^2,simp)</value></testinput>
+    <testinput><name>ans2</name><value>c</value></testinput>
+    <testinput><name>ans3</name><value>dd</value></testinput>
+    <testinput><name>ans4</name><value>ev(float(floor(10^1*(rk)+1/2)/10^1),simp)</value></testinput>
+    <expected><name>prt1</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt1-1-T</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt2-1-T</expectedanswernote></expected>
+    <expected><name>prt3</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt3-1-T</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>3</testcase><description>Radius not squared; both signs changed; r squared</description>
+    <testinput><name>ans1</name><value>dr</value></testinput>
+    <testinput><name>ans2</name><value>-c</value></testinput>
+    <testinput><name>ans3</name><value>-dd</value></testinput>
+    <testinput><name>ans4</name><value>k</value></testinput>
+    <expected><name>prt1</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt1-1-F | prt1-2-T</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt2-1-F | prt2-2-T</expectedanswernote></expected>
+    <expected><name>prt3</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt3-1-F | prt3-2-T</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>4</testcase><description>Signs of the centre kept; one coordinate right</description>
+    <testinput><name>ans1</name><value>ds</value></testinput>
+    <testinput><name>ans2</name><value>c</value></testinput>
+    <testinput><name>ans3</name><value>-dd</value></testinput>
+    <testinput><name>ans4</name><value>float(rk)</value></testinput>
+    <expected><name>prt1</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt1-1-F | prt1-2-F | prt1-3-T</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt2-1-F | prt2-2-F | prt2-3-T</expectedanswernote></expected>
+    <expected><name>prt3</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt3-1-T</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>5</testcase><description>Coordinates swapped</description>
+    <testinput><name>ans1</name><value>dsw</value></testinput>
+    <testinput><name>ans2</name><value>c</value></testinput>
+    <testinput><name>ans3</name><value>dd</value></testinput>
+    <testinput><name>ans4</name><value>float(rk)</value></testinput>
+    <expected><name>prt1</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt1-1-F | prt1-2-F | prt1-3-F | prt1-4-T</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt2-1-T</expectedanswernote></expected>
+    <expected><name>prt3</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt3-1-T</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>6</testcase><description>Generic wrong</description>
+    <testinput><name>ans1</name><value>(x-a)^2+(y-b)^2=r^2+1</value></testinput>
+    <testinput><name>ans2</name><value>c+1</value></testinput>
+    <testinput><name>ans3</name><value>dd+1</value></testinput>
+    <testinput><name>ans4</name><value>float(rk)+1</value></testinput>
+    <expected><name>prt1</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt1-1-F | prt1-2-F | prt1-3-F | prt1-4-F | prt1-5-F</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt2-1-F | prt2-2-F | prt2-3-F</expectedanswernote></expected>
+    <expected><name>prt3</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt3-1-F | prt3-2-F</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>7</testcase><description>Square root kept</description>
+    <testinput><name>ans1</name><value>sqrt((x-a)^2+(y-b)^2)=r</value></testinput>
+    <testinput><name>ans2</name><value>c</value></testinput>
+    <testinput><name>ans3</name><value>dd</value></testinput>
+    <testinput><name>ans4</name><value>float(rk)</value></testinput>
+    <expected><name>prt1</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt1-1-F | prt1-2-F | prt1-3-F | prt1-4-F | prt1-5-T</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt2-1-T</expectedanswernote></expected>
+    <expected><name>prt3</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt3-1-T</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>8</testcase><description>Square root kept, everything on the left</description>
+    <testinput><name>ans1</name><value>sqrt((x-a)^2+(y-b)^2)-r=0</value></testinput>
+    <testinput><name>ans2</name><value>c</value></testinput>
+    <testinput><name>ans3</name><value>dd</value></testinput>
+    <testinput><name>ans4</name><value>float(rk)</value></testinput>
+    <expected><name>prt1</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt1-1-F | prt1-2-F | prt1-3-F | prt1-4-F | prt1-5-T</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt2-1-T</expectedanswernote></expected>
+    <expected><name>prt3</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt3-1-T</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>9</testcase><description>Square root equal to minus r (no points)</description>
+    <testinput><name>ans1</name><value>sqrt((x-a)^2+(y-b)^2)=-r</value></testinput>
+    <testinput><name>ans2</name><value>c</value></testinput>
+    <testinput><name>ans3</name><value>dd</value></testinput>
+    <testinput><name>ans4</name><value>float(rk)</value></testinput>
+    <expected><name>prt1</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt1-1-F | prt1-2-F | prt1-3-F | prt1-4-F | prt1-5-F</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt2-1-T</expectedanswernote></expected>
+    <expected><name>prt3</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt3-1-T</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>10</testcase><description>Half circle only</description>
+    <testinput><name>ans1</name><value>x-a=sqrt(r^2-(y-b)^2)</value></testinput>
+    <testinput><name>ans2</name><value>c</value></testinput>
+    <testinput><name>ans3</name><value>dd</value></testinput>
+    <testinput><name>ans4</name><value>float(rk)</value></testinput>
+    <expected><name>prt1</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt1-1-F | prt1-2-F | prt1-3-F | prt1-4-F | prt1-5-F</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt2-1-T</expectedanswernote></expected>
+    <expected><name>prt3</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt3-1-T</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>11</testcase><description>Invalid: an expression, not an equation</description>
+    <testinput><name>ans1</name><value>(x-a)^2+(y-b)^2</value></testinput>
+    <testinput><name>ans2</name><value>c</value></testinput>
+    <testinput><name>ans3</name><value>dd</value></testinput>
+    <testinput><name>ans4</name><value>float(rk)</value></testinput>
+    <expected><name>prt1</name><expectedscore></expectedscore><expectedpenalty></expectedpenalty><expectedanswernote>NULL</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt2-1-T</expectedanswernote></expected>
+    <expected><name>prt3</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt3-1-T</expectedanswernote></expected>
+  </qtest>
+</question>
+</quiz>

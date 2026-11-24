@@ -1,0 +1,7 @@
+<stack-static>
+    <statement><p><p>A bag holds <m>{8}</m> red, <m>{4}</m> green, <m>{3}</m> white and <m>{7}</m> yellow bottle tops. Akoth takes one bottle top at random.</p><p>Give each probability exactly, as a fraction or an exact decimal.</p><p>(a) Find <m>P(\text{red})</m>.</p><div><fillin characters="8" name="ans1"/>  </div><p>(b) Find <m>P(\text{not green})</m>.</p><div><fillin characters="8" name="ans2"/>  </div><p>(c) Find <m>P(\text{red or white})</m>.</p><div><fillin characters="8" name="ans3"/>  </div></p></statement>
+    <solution><p><p>There are <m>{8} + {4} + {3} + {7} = {22}</m> bottle tops, and each is equally likely to be taken. Count the bottle tops that make the event happen and divide by <m>{22}</m>.</p><p>(a) <m>P(\text{red}) = \dfrac{{8}}{{22}} = {\frac{4}{11}}</m>.</p><p>(b) An event either happens or it does not, so the two probabilities add to 1. <m>P(\text{not green}) = 1 - \dfrac{{4}}{{22}} = \dfrac{{18}}{{22}} = {\frac{9}{11}}</m>.</p><p>(c) One bottle top cannot be both red and white, so count both colours together: <m>P(\text{red or white}) = \dfrac{{8} + {3}}{{22}} = \dfrac{{11}}{{22}} = {\frac{1}{2}}</m>.</p></p></solution>
+    <answer><p><m>\frac{4}{11}</m></p></answer>
+    <answer><p><m>\frac{9}{11}</m></p></answer>
+    <answer><p><m>\frac{1}{2}</m></p></answer>
+</stack-static>

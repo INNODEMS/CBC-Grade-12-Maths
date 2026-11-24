@@ -49,161 +49,233 @@
          Content summary: Core: null, universal, finite, infinite, equal, equivalent sets and subsets. Essential adds singleton, proper subsets, supersets and disjoint sets.
          Suggested activity: Give groups cards with sets written on them (e.g. odd numbers between 2 and 3, days of the week, counting numbers); groups classify each as null, finite, infinite, equal or equivalent and justify. -->
 
-    <!-- [LP] Add guidance on activity -->
+    <!-- Section notes (2026-11)
+         SLO: Core and Essential 1.1 (a). One lesson.
+         Activity: as planning notes (set cards classified as empty, finite, infinite, equal or equivalent)
+         Essential-only: insight-more-types-of-sets, example-naming-the-relationship, exercises-more-types-of-sets,
+         ex-subsets-supersets-and-disjoint-sets (STACK); singleton, proper subset, superset, disjoint (skeleton split)
+         STACK: assets/stack/top/1-numbers-and-algebra/01-sets/03-types-of-sets/ -->
 
-    <!-- <axiom component="lesson-plan">
-            <title>Problem-Solving and Discovery</title>
-            <dl>
-                <li>
-                    <title>Suggested Time</title>
-                    <p>
-                        XX minutes
-                    </p>
-                </li>
-                <li>
-                    <title>Objective</title>
-                    <p>
-                        XXX
-                    </p>
-                </li>
-                <li>
-                    <title>Teacher's Role</title>
-                    <p>
-                        XXX
-                    </p>
-                </li>
-            </dl>
-        </axiom> -->
+    <p component="lesson-plan">Upon completion of this lesson, learners will be able to:
+        <ol>
+            <li><p><alert>Know:</alert> the empty set, finite and infinite sets, the universal set, equal and equivalent sets, and subsets.</p></li>
+            <li component="essential"><p><alert>Know (Essential):</alert> singletons, proper subsets, supersets and disjoint sets.</p></li>
+            <li><p><alert>Do:</alert> classify sets, compare two sets, and list the subsets of a small set.</p></li>
+            <li><p><alert>Apply:</alert> grouping cards; names of towns and counties.</p></li>
+        </ol>
+    </p>
 
-    <!-- Add Activity -->
+    <axiom component="lesson-plan">
+        <title>Problem-Solving and Discovery</title>
+        <dl>
+            <li><title>Suggested Time</title><p>14 minutes</p></li>
+            <li><title>Objective</title><p>Groups classify set cards and justify each choice.</p></li>
+            <li><title>Teacher's Role</title><p>Give each group the six cards below. Ask: <q>Can a set have nothing in it? Can it go on for ever?</q></p></li>
+        </dl>
+    </axiom>
 
-    <!-- <activity>
+    <activity xml:id="act-sorting-set-cards">
+        <title>Sorting Set Cards</title>
         <statement>
+            <p>Six cards show these sets: <m>\{\text{odd numbers between 2 and 3}\}</m>, <m>\{\text{days of the week}\}</m>, <m>\{\text{counting numbers}\}</m>, <m>P = \{1, 2, 3, 4, 5, 6, 7\}</m>, <m>\{\text{letters of the word TEA}\}</m> and <m>\{\text{letters of the word EAT}\}</m>.</p>
+            <p>
+                <ol marker="(a)">
+                    <li>
+                        <p>Which of the first three cards has no elements, which has a number of elements you can count to the end, and which goes on for ever?</p>
+                        <solution component="lesson-plan"><p>There is no odd number between <m>2</m> and <m>3</m>, so that set has no elements; the days of the week can be counted (<m>7</m>); the counting numbers go on for ever.</p></solution>
+                    </li>
+                    <li>
+                        <p>Compare <m>P</m> with <m>\{\text{days of the week}\}</m>. What is the same, and what is different?</p>
+                        <solution component="lesson-plan"><p>Both have <m>7</m> elements, but the elements are different: the sets are equivalent, not equal.</p></solution>
+                    </li>
+                    <li>
+                        <p>Compare the two letter cards.</p>
+                        <solution component="lesson-plan"><p>Both are <m>\{\text{T}, \text{E}, \text{A}\}</m>: the same elements, so the sets are equal.</p></solution>
+                    </li>
+                </ol>
+            </p>
         </statement>
-    </activity> -->
+    </activity>
 
-    <!-- [LP] Add guidance on structured lesson plan-->
-
-    <!-- <axiom component="lesson-plan">
+    <axiom component="lesson-plan">
         <title>Structured Instruction</title>
         <p>
             <dl>
-            <li>
-                <title>Suggested Time</title>
-                <p>
-                    XX minutes
-                </p>
-            </li>
-            <li>
-                <title>Objective</title>
-                <p>
-                    To formalize the concepts and properties learners discovered in the anchor task.
-                </p>
-            </li>
+                <li><title>Suggested Time</title><p>8 minutes</p></li>
+                <li><title>Objective</title><p>To name the types of sets met in the activity.</p></li>
             </dl>
         </p>
         <paragraphs>
             <title>Key Takeaways &amp; Teacher Connection</title>
             <ol>
-                <li>
-                    <p>
-                        <alert>Connecting to Learner Work:</alert> XXXX
-                    </p>
-                </li>
+                <li><p><alert>Connecting to Learner Work:</alert> part (a) gave an empty, a finite and an infinite set; parts (b) and (c) separated equivalent from equal.</p></li>
+                <li><p>Count first: no elements (empty), a number you can reach (finite), or no end (infinite).</p></li>
+                <li><p>Equal means the same elements; equivalent means the same number of elements.</p></li>
             </ol>
         </paragraphs>
-    </axiom> -->
+    </axiom>
 
-    <!-- Add insight / key takeaway directly related to activity / learner experience -->
+    <insight xml:id="insight-types-of-sets">
+        <title>Types of Sets</title>
+        <p>
+            <ul>
+                <li><p>The <term>empty set</term> (or null set) has no elements. It is written <m>\varnothing</m> or <m>\{\ \}</m>, and <m>n(\varnothing) = 0</m>. Note that <m>\{0\}</m> is not empty: it has one element, <m>0</m>.</p></li>
+                <li><p>A <term>finite</term> set has a number of elements that can be counted to the end. An <term>infinite</term> set goes on for ever.</p></li>
+                <li><p>The <term>universal set</term>, <m>\xi</m> (read <q>xi</q>), is the set of all the elements being considered in a problem. Some books write <m>U</m> or <m>\mathcal{E}</m>.</p></li>
+                <li><p><term>Equal sets</term> have exactly the same elements: <m>A = B</m>. <term>Equivalent sets</term> have the same number of elements: <m>n(A) = n(B)</m>. Equal sets are always equivalent.</p></li>
+                <li><p><m>A \subseteq B</m> means <m>A</m> is a <term>subset</term> of <m>B</m>: every element of <m>A</m> is also in <m>B</m>. Every set is a subset of itself, and <m>\varnothing</m> is a subset of every set.</p></li>
+            </ul>
+        </p>
+        <p>The subsets of <m>\{a, b\}</m> are <m>\varnothing</m>, <m>\{a\}</m>, <m>\{b\}</m> and <m>\{a, b\}</m>: <m>4 = 2^2</m>. The subsets of <m>\{a, b, c\}</m> are <m>\varnothing</m>, <m>\{a\}</m>, <m>\{b\}</m>, <m>\{c\}</m>, <m>\{a, b\}</m>, <m>\{a, c\}</m>, <m>\{b, c\}</m> and <m>\{a, b, c\}</m>: <m>8 = 2^3</m>. Each element is either in a subset or not, so a set with <m>n</m> elements has <m>2^n</m> subsets.</p>
+    </insight>
 
-    <!-- <insight>
-    </insight> -->
-
-    <!-- Add further instruction (not in a block) to develop ideas as needed -->
+    <p>The symbols <m>\varnothing</m>, <m>\xi</m> and <m>\subseteq</m> join the list in <xref ref="note-set-symbols"/>.</p>
 
     <xi:include href="../lesson-plan-templates/example-intro.ptx" />
 
-    <!-- Add at least 3 examples -->
-
-    <!-- <example>
+    <example xml:id="example-empty-finite-or-infinite">
+        <title>Empty, Finite or Infinite</title>
         <statement>
+            <p>Is each set empty, finite (but not empty) or infinite?</p>
+            <p>
+                <ol marker="(a)">
+                    <li><p><m>\{x : x \text{ is a natural number}, x^2 = 0\}</m></p></li>
+                    <li><p><m>\{x : x \text{ is a whole number}, x^2 = 0\}</m></p></li>
+                    <li><p><m>\{x : x \text{ is an integer}, x \gt -3\}</m></p></li>
+                </ol>
+            </p>
         </statement>
         <solution>
+            <p>(a) <m>x^2 = 0</m> only for <m>x = 0</m>, which is not a natural number: the set is <m>\varnothing</m>. (b) <m>0</m> is a whole number, so the set is <m>\{0\}</m>: finite, not empty. (c) <m>\{-2, -1, 0, 1, 2, \ldots\}</m> goes on for ever: infinite.</p>
         </solution>
     </example>
 
-    <example>
+    <example xml:id="example-equal-or-equivalent">
+        <title>Equal or Equivalent</title>
         <statement>
+            <p><m>A = \{\text{factors of } 10\}</m>, <m>B = \{x : x \text{ is a whole number}, x \lt 4\}</m> and <m>C = \{10, 5, 2, 1\}</m>. Compare <m>A</m> with <m>B</m>, and <m>A</m> with <m>C</m>.</p>
         </statement>
         <solution>
+            <p><m>A = \{1, 2, 5, 10\}</m> and <m>B = \{0, 1, 2, 3\}</m>: both have <m>4</m> elements but the elements differ, so <m>A</m> and <m>B</m> are equivalent but not equal. <m>C</m> has exactly the elements of <m>A</m> in a different order, so <m>C = A</m>.</p>
         </solution>
     </example>
 
-    <example>
+    <example xml:id="example-listing-subsets">
+        <title>Listing Subsets</title>
         <statement>
+            <p>List the subsets of <m>\{\text{Kisumu}, \text{Nakuru}\}</m>. Is <m>\{2, 4\} \subseteq \{2, 3, 4, 5\}</m>? Is <m>\{2, 6\} \subseteq \{2, 3, 4, 5\}</m>?</p>
         </statement>
         <solution>
+            <p>The subsets are <m>\varnothing</m>, <m>\{\text{Kisumu}\}</m>, <m>\{\text{Nakuru}\}</m> and <m>\{\text{Kisumu}, \text{Nakuru}\}</m>: four subsets. <m>\{2, 4\} \subseteq \{2, 3, 4, 5\}</m> because <m>2</m> and <m>4</m> are both in the larger set. <m>\{2, 6\}</m> is not a subset, because <m>6 \notin \{2, 3, 4, 5\}</m>.</p>
         </solution>
-    </example> -->
+    </example>
+
+    <insight xml:id="insight-more-types-of-sets" component="essential">
+        <title>More Types of Sets</title>
+        <p>
+            <ul>
+                <li><p>A <term>singleton</term> is a set with exactly one element, such as <m>\{7\}</m> or <m>\{0\}</m>.</p></li>
+                <li><p><m>A \subset B</m> means <m>A</m> is a <term>proper subset</term> of <m>B</m>: <m>A \subseteq B</m> and <m>A \neq B</m>, so <m>B</m> has at least one element that is not in <m>A</m>.</p></li>
+                <li><p><m>B \supseteq A</m> means <m>B</m> is a <term>superset</term> of <m>A</m>: it says the same as <m>A \subseteq B</m>, read the other way round.</p></li>
+                <li><p><term>Disjoint sets</term> have no element in common.</p></li>
+            </ul>
+        </p>
+        <p>Some books use <m>\subset</m> for any subset. In this book <m>\subset</m> always means a proper subset.</p>
+    </insight>
+
+    <example xml:id="example-naming-the-relationship" component="essential">
+        <title>Naming the Relationship</title>
+        <statement>
+            <p><m>P = \{1, 2, 5, 7\}</m>, <m>Q = \{1, 2, 3, 4, 5, 6, 7\}</m>, <m>R = \{4, 6, 8, 9, 10\}</m> and <m>S = \{x : x \text{ is a natural number}, 2x = 18\}</m>. Describe how <m>P</m>, <m>Q</m> and <m>R</m> are related, and say what type of set <m>S</m> is.</p>
+        </statement>
+        <solution>
+            <p>Every element of <m>P</m> is in <m>Q</m>, and <m>Q</m> has elements not in <m>P</m>, so <m>P \subset Q</m> and <m>Q \supseteq P</m>. <m>P</m> and <m>R</m> have no element in common, so they are disjoint. <m>2x = 18</m> gives <m>x = 9</m>, so <m>S = \{9\}</m>, a singleton.</p>
+        </solution>
+    </example>
 
     <xi:include href="../lesson-plan-templates/assessment-intro.ptx" />
+    <xi:include href="../lesson-plan-templates/checkpoint.ptx" />
 
-    <!-- If STACK questions are included, uncomment this: -->
+    <p>Type a set inside curly brackets with commas between the elements, for example <c>{2, 5, 9}</c>. On most phone keyboards the curly brackets are on the second page of symbols: tap <c>?123</c> (or <c>123</c>), then <c>=\&lt;</c> (or <c>#+=</c>). Type the empty set as <c>{}</c>. Type a count as a whole number.</p>
 
-    <!-- <xi:include href="../lesson-plan-templates/checkpoint.ptx" /> -->
+    <exercise xml:id="ex-empty-finite-or-infinite">
+        <!--<title></title>-->
+        <stack label="stk-empty-finite-or-infinite" source="stack/top/1-numbers-and-algebra/01-sets/03-types-of-sets/Empty-finite-or-infinite.xml"/>
+    </exercise>
 
-    <!-- Add STACK exercises if made -->
+    <exercise xml:id="ex-equal-or-equivalent-sets">
+        <!--<title></title>-->
+        <stack label="stk-equal-or-equivalent-sets" source="stack/top/1-numbers-and-algebra/01-sets/03-types-of-sets/Equal-or-equivalent-sets.xml"/>
+    </exercise>
 
-    <!-- Add static exercises -->
+    <exercise xml:id="ex-subsets-supersets-and-disjoint-sets" component="essential">
+        <!--<title></title>-->
+        <stack label="stk-subsets-supersets-and-disjoint-sets" source="stack/top/1-numbers-and-algebra/01-sets/03-types-of-sets/Subsets-supersets-and-disjoint-sets.xml"/>
+    </exercise>
 
-    <!-- <exercises>
-        <exercise>
-            <statement>   
+    <exercises xml:id="exercises-types-of-sets">
+        <exercise xml:id="ex-classify-three-sets">
+            <statement>
+                <p>Is each set empty, finite (but not empty) or infinite?</p>
+                <p>
+                    <ol marker="(a)">
+                        <li><p><m>\{x : x \text{ is a natural number between } 6 \text{ and } 7\}</m></p></li>
+                        <li><p><m>\{\text{the counties of Kenya}\}</m></p></li>
+                        <li><p><m>\{x : x \text{ is an even number}\}</m></p></li>
+                    </ol>
+                </p>
+            </statement>
+            <answer><p>(a) Empty. (b) Finite (<m>47</m> elements). (c) Infinite.</p></answer>
+        </exercise>
+        <exercise xml:id="ex-kitui-letters">
+            <statement><p><m>A = \{\text{letters of the word KITUI}\}</m> and <m>B = \{5, 10, 15, 20\}</m>. Are <m>A</m> and <m>B</m> equal, equivalent or neither?</p></statement>
+            <answer><p>Equivalent, not equal: <m>A = \{\text{K}, \text{I}, \text{T}, \text{U}\}</m> has <m>4</m> elements, like <m>B</m>.</p></answer>
+        </exercise>
+        <exercise xml:id="ex-subsets-of-two-crops">
+            <statement><p>List all the subsets of <m>\{\text{maize}, \text{beans}\}</m>. How many subsets does <m>\{\text{maize}, \text{beans}, \text{rice}\}</m> have?</p></statement>
+            <answer><p><m>\varnothing</m>, <m>\{\text{maize}\}</m>, <m>\{\text{beans}\}</m>, <m>\{\text{maize}, \text{beans}\}</m>; <m>8</m> subsets</p></answer>
+        </exercise>
+        <exercise xml:id="ex-subset-or-not">
+            <statement><p><m>\xi = \{x : x \text{ is a natural number}, x \le 12\}</m>, <m>A</m> is the set of multiples of <m>5</m> in <m>\xi</m>, and <m>B</m> is the set of even numbers in <m>\xi</m>. List <m>A</m>. Is <m>A \subseteq B</m>?</p></statement>
+            <answer><p><m>A = \{5, 10\}</m>. No: <m>5 \notin B</m>.</p></answer>
+        </exercise>
+        <exercise xml:id="ex-true-or-false-types">
+            <statement><p>True or false? (a) <m>\varnothing \subseteq \{1, 2\}</m> (b) <m>\{1, 2\} \subseteq \{1, 2\}</m> (c) <m>\{0\} = \varnothing</m></p></statement>
+            <answer><p>(a) True. (b) True. (c) False.</p></answer>
+        </exercise>
+        <exercise xml:id="ex-how-many-subsets">
+            <title>Challenge: Counting Subsets</title>
+            <statement><p>How many subsets does a set with <m>5</m> elements have? A set has <m>64</m> subsets: how many elements does it have?</p></statement>
+            <answer><p><m>2^5 = 32</m>; <m>6</m>, because <m>2^6 = 64</m>.</p></answer>
+        </exercise>
+    </exercises>
 
-            </statement>   
-            <solution>
+    <exercises xml:id="exercises-more-types-of-sets" component="essential">
+        <title>More Types of Sets</title>
+        <exercise xml:id="ex-singleton-multiple-of-nine">
+            <statement><p>List <m>\{x : x \text{ is a multiple of } 9 \text{ between } 20 \text{ and } 30\}</m>. What type of set is it?</p></statement>
+            <answer><p><m>\{27\}</m>; a singleton</p></answer>
+        </exercise>
+        <exercise xml:id="ex-proper-subset-and-disjoint">
+            <statement><p><m>A = \{7, 14, 21\}</m>, <m>B = \{7, 14, 21, 28\}</m> and <m>C = \{10, 11, 12\}</m>. Write one true statement using <m>\subset</m>, one using <m>\supseteq</m>, and one about <m>A</m> and <m>C</m>.</p></statement>
+            <answer><p><m>A \subset B</m>; <m>B \supseteq A</m>; <m>A</m> and <m>C</m> are disjoint.</p></answer>
+        </exercise>
+    </exercises>
 
-            </solution>             
-        </exercise>        
-    </exercises> -->
-
-    <!-- [LP] Add information on how to differentiate  -->
-
-    <!-- <axiom component="lesson-plan">
+    <axiom component="lesson-plan">
         <title>Differentiation</title>
-
-        <table>
-            <title>Differentiation</title>
-            <tabular halign="left">
-                <row header="yes" bottom="minor">
-                    <cell>Learner Group</cell>
-                    <cell>Strategy &amp; Learning Experience</cell>
-                    <cell></cell>
-                </row>
-                <row>
-                    <cell>Struggling Learners (Support)</cell>
-                    <cell>
-                        XXXX
-                    </cell>
-                    <cell></cell>
-                </row>
-                <row>
-                    <cell>On-Level Learners (Core)</cell>
-                    <cell>
-                        <line>The core lesson activities as described above.</line>
-                    </cell>
-                    <cell></cell>
-                </row>
-                <row>
-                    <cell>Advanced Learners (Challenge)</cell>
-                    <cell>
-                        XXXX
-                    </cell>
-                    <cell></cell>
-                </row>
+        <table xml:id="table-differentiation-types-of-sets">
+            <title>Differentiation Strategies</title>
+            <tabular halign="left" top="minor" bottom="minor" left="minor" right="minor">
+                <row header="yes" bottom="medium"><cell>Learner Group</cell><cell>Strategy and Learning Experience</cell></row>
+                <row><cell>Struggling Learners (Support)</cell><cell>Work through the activity, <xref ref="example-empty-finite-or-infinite"/> and <xref ref="example-equal-or-equivalent"/>. Assign <xref ref="ex-classify-three-sets"/> and <xref ref="ex-kitui-letters"/>.</cell></row>
+                <row><cell>On-Level Learners (Core)</cell><cell>Full activity and all examples. Assign all the exercises.</cell></row>
+                <row><cell>Advanced Learners (Challenge)</cell><cell>All exercises including <xref ref="ex-how-many-subsets"/>.</cell></row>
             </tabular>
         </table>
-    </axiom> -->
+        <p component="core">Extension for advanced learners: list the subsets of <m>\{5, 6, 7, 8\}</m> that have exactly two elements. How many are there? (Answer: <m>\{5, 6\}</m>, <m>\{5, 7\}</m>, <m>\{5, 8\}</m>, <m>\{6, 7\}</m>, <m>\{6, 8\}</m>, <m>\{7, 8\}</m>: <m>6</m>.)</p>
+        <p component="essential">Extension for advanced learners: is every set a superset of itself? Is it a proper superset of itself? (Answer: yes; no.)</p>
+    </axiom>
 
     <xi:include href="../lesson-plan-templates/assessment-methods.ptx" />
 

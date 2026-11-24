@@ -1,0 +1,7 @@
+<stack-static>
+    <statement><p><p>The rectangle with vertices <m>({0},\,{-2})</m>, <m>({3},\,{-2})</m>, <m>({3},\,{2})</m> and <m>({0},\,{2})</m> is mapped by <m>M = {\left[\begin{array}{cc} 1 &amp; 3 \\ 5 &amp; 5 \end{array}\right]}</m>.</p><p>(a) Find <m>\det M</m>.</p><div><fillin characters="5" name="ans1"/>  </div><p>(b) Find the area of the image.</p><div><fillin characters="5" name="ans2"/> square units  </div><p>(c) The orientation of the image is</p><div>[ impossible to tell from M | the same as the object's | reversed ]  </div></p></statement>
+    <solution><p><p>(a) <m>\det M = ad - bc = {-10}</m>.</p><p>(b) The rectangle is <m>{3}</m> by <m>{4}</m>, so its area is <m>{12}</m>. The area scale factor is <m>|\det M| = {10}</m>, so the area of the image is <m>{10} \times {12} = {120}</m> square units.</p><p>(c) The determinant tells you how many times bigger every area becomes, and its sign tells you whether the shape has been turned over. Here <m>\det M \lt 0</m>, so the orientation is reversed.</p></p></solution>
+    <answer><p><m>-10</m></p></answer>
+    <answer><p><m>120</m></p></answer>
+    <answer><p>reversed</p></answer>
+</stack-static>

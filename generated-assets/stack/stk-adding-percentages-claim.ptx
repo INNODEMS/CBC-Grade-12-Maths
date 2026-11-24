@@ -1,0 +1,11 @@
+<stack-static>
+    <statement><p><p>A delivery van loses <m>{10}\%</m> of its value every year; each year's loss is <m>{10}\%</m> of its value at the start of that year. Achieng says: <q>After <m>{4}</m> years it has lost <m>{40}\%</m> of its value.</q></p><p>(a) Which statement is right?</p><p/><ol marker="(1)">
+<li>Achieng is right: the yearly percentages add up.</li>
+<li>Achieng is wrong: the actual loss is more than 40%.</li>
+<li>Achieng is wrong: the actual loss is less than 40%.</li>
+<li>You cannot tell without knowing the price.</li>
+</ol>  <p>(b) Find the actual percentage lost over the <m>{4}</m> years, correct to 1 decimal place.</p><p><fillin characters="5" name="ans2"/> %  </p></p></statement>
+    <solution><p><p>Each year the value is multiplied by <m>{0.9}</m>, so after <m>{4}</m> years it is multiplied by <m>{0.9}^{ {4} } = {0.6561}</m>, whatever the price.</p><p>The value is <m>{65.61}\%</m> of the price, so it has lost <m>100\% - {65.61}\% = {34.39}\% \approx {34.4}\%</m>: less than <m>{40}\%</m>. Each year's <m>{10}\%</m> is taken from a smaller value, so the losses shrink.</p><p>So Achieng is wrong: percentages for successive years do not add.</p></p></solution>
+    <answer><p><m>(3)</m></p></answer>
+    <answer><p><m>34.39</m></p></answer>
+</stack-static>

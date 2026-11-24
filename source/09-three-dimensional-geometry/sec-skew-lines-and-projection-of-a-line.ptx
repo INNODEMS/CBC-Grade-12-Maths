@@ -46,161 +46,402 @@
          Suggested activity: Using a cuboid made from sticks and plasticine (or the edges of the classroom), learners identify pairs of skew edges, then hang a string with a stone from a point on a slanting stick to the floor to show the projection of the stick onto the floor.
          Interactive (JSXGraph): Rotatable 3D cuboid (JSXGraph view3d) with a draggable line from a top vertex; its projection onto the base is drawn as a dashed line, and two skew edges can be highlighted. -->
 
-    <!-- [LP] Add guidance on activity -->
+    <!-- Section notes (2026-11)
+         SLOs: Core 2.4 (a): parallel, intersecting and skew lines; projection of a point and of a line onto a plane
+         Activity: as planning notes (a stick-and-plasticine cuboid, or the classroom's edges; a plumb line shows the projection)
+         JSXGraph: fig-skew-lines-and-projection (assets/jsxgraph/skew-lines-and-projection.js) | changed: sliders p and q place P on the base instead of a draggable line (a JSXGraph 1.8.0 3D point drags only within a plane); a pair slider highlights skew, parallel and intersecting edges
+         Key inquiry question: kiq-three-dimensional-geometry, placed in the section body (an introduction is not allowed in a section without subsections)
+         STACK: assets/stack/top/2-measurement-and-geometry/09-three-dimensional-geometry/01-skew-lines-and-projection-of-a-line/ -->
+
+    <question xml:id="kiq-three-dimensional-geometry">
+        <p><em>Where do we use the lengths and angles of solid shapes in everyday life?</em></p>
+    </question>
+
+    <p>
+        In Grade 10 you used sine, cosine and tangent to find sides and angles of right-angled triangles, including angles of elevation, and you found the surface area and volume of prisms and pyramids, where the slant height of a pyramid is not the same as its height. In Grade 11 you used the sine rule and the cosine rule in triangles with no right angle. This chapter puts these tools to work inside solid shapes.
+    </p>
+    <p>
+        A fundi in Nyeri cutting rafters for a hip roof needs the length of each sloping edge and the slope of each face before the first piece of timber is cut. A tent maker needs the length of a guy rope from the top of a pole to a peg. In each case the line we want lies inside a solid. The method of this chapter is always the same: find a triangle that contains the line, then flatten it and use the trigonometry you already know.
+    </p>
+
+    <p component="lesson-plan">Upon completion of this lesson, learners will be able to:
+        <ol>
+            <li><p><alert>Know:</alert> two lines in space are parallel, intersecting or skew; skew lines lie in no common plane; a line perpendicular to a plane; the projection of a point and of a line onto a plane.</p></li>
+            <li><p><alert>Do:</alert> classify pairs of edges and diagonals of cuboids, prisms and pyramids, and name the projection of a line on a face or on the base.</p></li>
+            <li><p><alert>Apply:</alert> edges of a classroom, a plumb line and a flagpole wire.</p></li>
+        </ol>
+    </p>
 
     <axiom component="lesson-plan">
         <title>Problem-Solving and Discovery</title>
         <dl>
-            <li>
-                <title>Suggested Time</title>
-                <p>
-                    XXX minutes
-                </p>
-            </li>
-            <li>
-                <title>Objective</title>
-                <p>
-                    XXX
-                </p>
-            </li>
-            <li>
-                <title>Teacher's Role</title>
-                <p>
-                    XXX
-                </p>
-            </li>
+            <li><title>Suggested Time</title><p>14 minutes</p></li>
+            <li><title>Objective</title><p>Learners find pairs of edges that neither meet nor are parallel, and see a projection as the <q>shadow</q> found with a plumb line.</p></li>
+            <li><title>Teacher's Role</title><p>Put learners in groups of four. Each group builds a cuboid <m>30\,\text{cm}</m> by <m>20\,\text{cm}</m> by <m>15\,\text{cm}</m> from twelve sticks (or straws) joined with plasticine, and labels the corners <m>ABCDEFGH</m> with paper flags: <m>ABCD</m> on the table and <m>E</m>, <m>F</m>, <m>G</m>, <m>H</m> above <m>A</m>, <m>B</m>, <m>C</m>, <m>D</m>. Groups without sticks use the edges of the classroom for parts (a) and (b). After part (b), ask: <q>Can you lay a flat sheet of card so that it touches both of these edges along their whole length?</q></p></li>
         </dl>
     </axiom>
 
-    <!-- Add Activity -->
-
-    <!-- <activity>
+    <activity xml:id="act-edges-in-the-classroom">
+        <title>Edges in the Classroom</title>
         <statement>
+            <p>Look at the edges of your classroom, where two walls meet, or a wall meets the floor or the ceiling. Then use your stick model of the cuboid <m>ABCDEFGH</m>.</p>
+            <p>
+                <ol marker="(a)">
+                    <li>
+                        <p>Name two edges of the classroom that are parallel, and two that meet.</p>
+                        <solution component="lesson-plan"><p>For example, the four vertical corners of the room are parallel to each other; the edge where the front wall meets the floor meets each vertical corner of the front wall.</p></solution>
+                    </li>
+                    <li>
+                        <p>Look at the edge where the front wall meets the ceiling and the edge where the left-hand wall meets the floor. Do they meet? Are they parallel?</p>
+                        <solution component="lesson-plan"><p>Neither. They never meet, and they point in different directions. No flat sheet can touch both along their whole length: they are skew.</p></solution>
+                    </li>
+                    <li>
+                        <p>On your model, list every edge that neither meets <m>AB</m> nor is parallel to it.</p>
+                        <solution component="lesson-plan"><p><m>CG</m>, <m>DH</m>, <m>FG</m> and <m>HE</m>: four edges. The other edges either meet <m>AB</m> (at <m>A</m> or <m>B</m>) or are parallel to it (<m>DC</m>, <m>EF</m>, <m>HG</m>).</p></solution>
+                    </li>
+                    <li>
+                        <p>Push a straw through the model from <m>A</m> to <m>G</m>. Hang a small stone on a thread from <m>G</m>. Where does the thread touch the base? Which line on the base lies directly below <m>AG</m>?</p>
+                        <solution component="lesson-plan"><p>The thread touches the base at <m>C</m>, so the line on the base directly below <m>AG</m> is <m>AC</m>.</p></solution>
+                    </li>
+                    <li>
+                        <p>Hang the thread from the midpoint of <m>AG</m>. Where does it touch the base?</p>
+                        <solution component="lesson-plan"><p>At the midpoint of <m>AC</m>. Every point of <m>AG</m> lies directly above a point of <m>AC</m>.</p></solution>
+                    </li>
+                    <li>
+                        <p>Hang the thread from <m>G</m> again and look at the edge <m>CG</m>. What lies directly below the whole edge?</p>
+                        <solution component="lesson-plan"><p>Only the single point <m>C</m>: the edge is vertical.</p></solution>
+                    </li>
+                </ol>
+            </p>
         </statement>
-    </activity> -->
+    </activity>
 
-    <!-- [LP] Add guidance on structured lesson plan-->
-
-    <!-- <axiom component="lesson-plan">
+    <axiom component="lesson-plan">
         <title>Structured Instruction</title>
         <p>
             <dl>
-            <li>
-                <title>Suggested Time</title>
-                <p>
-                    XX minutes
-                </p>
-            </li>
-            <li>
-                <title>Objective</title>
-                <p>
-                    To formalize the concepts and properties learners discovered in the anchor task.
-                </p>
-            </li>
+                <li><title>Suggested Time</title><p>8 minutes</p></li>
+                <li><title>Objective</title><p>To formalise parallel, intersecting and skew lines, and the projection of a line onto a plane.</p></li>
             </dl>
         </p>
         <paragraphs>
             <title>Key Takeaways &amp; Teacher Connection</title>
             <ol>
-                <li>
-                    <p>
-                        <alert>Connecting to Learner Work:</alert> XXXX
-                    </p>
-                </li>
+                <li><p><alert>Connecting to Learner Work:</alert> part (b) and part (c) found skew lines; part (d) and part (e) found a projection with the plumb line.</p></li>
+                <li><p>Two lines can sit in three ways: parallel, intersecting or skew. Skew lines are only possible in three dimensions.</p></li>
+                <li><p>The projection of a line joins the feet of the perpendiculars from its ends. A vertical line projects onto a horizontal plane as a single point.</p></li>
+                <li><p><alert>Real-world link:</alert> at noon near the equator the sun is almost straight overhead, so the shadow of a leaning pole on level ground is close to its projection on the ground.</p></li>
             </ol>
         </paragraphs>
-    </axiom> -->
+    </axiom>
 
-    <!-- Add insight / key takeaway directly related to activity / learner experience -->
+    <insight xml:id="insight-lines-in-space">
+        <title>Lines in Space</title>
+        <p>
+            Two straight lines in space are
+            <ul>
+                <li><p><term>parallel</term> if they point in the same direction and never meet;</p></li>
+                <li><p><term>intersecting</term> if they meet at one point;</p></li>
+                <li><p><term>skew</term> if they never meet and are not parallel.</p></li>
+            </ul>
+            Parallel lines lie in one plane, and so do intersecting lines. Skew lines never meet and are not parallel: no flat surface holds both. <q>Line <m>AB</m></q> means the whole straight line through <m>A</m> and <m>B</m>, not only the segment between them.
+        </p>
+    </insight>
 
-    <!-- <insight>
-    </insight> -->
+    <insight xml:id="insight-projection-of-a-line">
+        <title>Projection of a Line onto a Plane</title>
+        <p>
+            A line is <term>perpendicular to a plane</term> when it is at right angles to every line in the plane that passes through its <term>foot</term>, the point where it meets the plane. A vertical pole on level ground and a plumb line are perpendicular to the ground.
+        </p>
+        <p>
+            The <term>projection</term> of a point on a plane is the foot of the perpendicular from the point to the plane. The projection of a line segment on a plane joins the projections of its ends. It is where the line's shadow falls when the light is straight above the plane. A segment that lies in the plane is its own projection; a segment perpendicular to the plane projects to a single point.
+        </p>
+    </insight>
 
-    <!-- Add further instruction (not in a block) to develop ideas as needed -->
+    <p>
+        In this chapter a cuboid is always lettered <m>ABCDEFGH</m>: the base is <m>ABCD</m>, going round, and <m>E</m>, <m>F</m>, <m>G</m>, <m>H</m> are directly above <m>A</m>, <m>B</m>, <m>C</m>, <m>D</m>. <m>AB</m> is the length, <m>BC</m> the width and <m>AE</m> the height. In the drawings the face <m>ABFE</m> is at the front and the corner <m>D</m> is hidden, so the edges <m>DA</m>, <m>DC</m> and <m>DH</m> are dashed. A cube is a cuboid whose edges are all equal.
+    </p>
+    <p>
+        A pyramid <m>VABCD</m> has its base <m>ABCD</m> lettered like the base of a cuboid, and <m>O</m> is the centre of the base, where its diagonals cross. It is a <term>right pyramid</term> when its vertex <m>V</m> is directly above <m>O</m>; then <m>VO</m> is its height.
+    </p>
+
+    <figure xml:id="fig-lines-in-a-cuboid">
+        <caption>A cuboid <m>ABCDEFGH</m> with a parallel pair (thick), an intersecting pair (thick dashed) and a skew pair (thick dotted) of lines.</caption>
+        <image width="55%">
+            <shortdescription>Cuboid ABCDEFGH with base ABCD and E, F, G, H above A, B, C, D. AB and HG are parallel (thick lines), the diagonals AG and CE cross at the centre of the cuboid (thick dashed lines), and the face diagonals AF and CH are skew (thick dotted lines).</shortdescription>
+            <latex-image>
+\tdplotsetmaincoords{70}{120}
+\begin{tikzpicture}[tdplot_main_coords, scale=0.75]
+\coordinate (A) at (4,0,0);
+\coordinate (B) at (4,6,0);
+\coordinate (C) at (0,6,0);
+\coordinate (D) at (0,0,0);
+\coordinate (E) at (4,0,3);
+\coordinate (F) at (4,6,3);
+\coordinate (G) at (0,6,3);
+\coordinate (H) at (0,0,3);
+\draw[dashed] (D) -- (A);
+\draw[dashed] (D) -- (C);
+\draw[dashed] (D) -- (H);
+\draw (B) -- (C);
+\draw (C) -- (G);
+\draw (H) -- (E);
+\draw (E) -- (A);
+\draw (E) -- (F);
+\draw (F) -- (G);
+\draw (B) -- (F);
+\node[anchor=north east] at (A) {$A$};
+\node[anchor=north] at (B) {$B$};
+\node[anchor=north west] at (C) {$C$};
+\node[anchor=south east] at (D) {$D$};
+\node[anchor=east] at (E) {$E$};
+\node[anchor=north west] at (F) {$F$};
+\node[anchor=south west] at (G) {$G$};
+\node[anchor=south] at (H) {$H$};
+\draw[very thick] (A) -- (B); \draw[very thick] (H) -- (G);
+\draw[very thick, dashed] (A) -- (G); \draw[very thick, dashed] (C) -- (E);
+\draw[very thick, dotted] (A) -- (F); \draw[very thick, dotted] (C) -- (H);
+\end{tikzpicture}
+            </latex-image>
+        </image>
+    </figure>
+
+    <figure xml:id="fig-projection-of-a-diagonal">
+        <caption>Left: the perpendicular <m>GC</m> from <m>G</m> to the base, and the projection <m>AC</m> of <m>AG</m> on the base. Right: the perpendicular <m>AB</m> from <m>A</m> to the face <m>BCGF</m>, and the projection <m>BG</m> of <m>AG</m> on that face.</caption>
+        <image width="70%">
+            <shortdescription>Two copies of a cuboid ABCDEFGH. In the first, the space diagonal AG, the dashed vertical edge GC with a right angle at C, and the projection AC on the base are drawn. In the second, AG, the dashed edge AB with a right angle at B, and the projection BG on the face BCGF are drawn.</shortdescription>
+            <latex-image>
+\tdplotsetmaincoords{70}{120}
+\begin{tikzpicture}[tdplot_main_coords, scale=0.55]
+\begin{scope}
+\coordinate (A) at (4,0,0);
+\coordinate (B) at (4,6,0);
+\coordinate (C) at (0,6,0);
+\coordinate (D) at (0,0,0);
+\coordinate (E) at (4,0,3);
+\coordinate (F) at (4,6,3);
+\coordinate (G) at (0,6,3);
+\coordinate (H) at (0,0,3);
+\draw[dashed] (D) -- (A);
+\draw[dashed] (D) -- (C);
+\draw[dashed] (D) -- (H);
+\draw (A) -- (B);
+\draw (B) -- (C);
+\draw (G) -- (H);
+\draw (H) -- (E);
+\draw (E) -- (A);
+\draw (E) -- (F);
+\draw (F) -- (G);
+\draw (B) -- (F);
+\node[anchor=north east] at (A) {$A$};
+\node[anchor=north] at (B) {$B$};
+\node[anchor=north west] at (C) {$C$};
+\node[anchor=south east] at (D) {$D$};
+\node[anchor=east] at (E) {$E$};
+\node[anchor=south east] at (F) {$F$};
+\node[anchor=south west] at (G) {$G$};
+\node[anchor=south] at (H) {$H$};
+\draw[very thick] (A) -- (G); \draw[very thick] (A) -- (C); \draw[thick, dashed] (G) -- (C);
+\draw (0.250,5.626,0.000) -- (0.250,5.626,0.450) -- (0.000,6.000,0.450);
+\end{scope}
+\begin{scope}[shift={(0,11,0)}]
+\coordinate (A) at (4,0,0);
+\coordinate (B) at (4,6,0);
+\coordinate (C) at (0,6,0);
+\coordinate (D) at (0,0,0);
+\coordinate (E) at (4,0,3);
+\coordinate (F) at (4,6,3);
+\coordinate (G) at (0,6,3);
+\coordinate (H) at (0,0,3);
+\draw[dashed] (D) -- (A);
+\draw[dashed] (D) -- (C);
+\draw[dashed] (D) -- (H);
+\draw (B) -- (C);
+\draw (C) -- (G);
+\draw (G) -- (H);
+\draw (H) -- (E);
+\draw (E) -- (A);
+\draw (E) -- (F);
+\draw (F) -- (G);
+\draw (B) -- (F);
+\node[anchor=north east] at (A) {$A$};
+\node[anchor=north] at (B) {$B$};
+\node[anchor=north west] at (C) {$C$};
+\node[anchor=south east] at (D) {$D$};
+\node[anchor=east] at (E) {$E$};
+\node[anchor=south east] at (F) {$F$};
+\node[anchor=south west] at (G) {$G$};
+\node[anchor=south] at (H) {$H$};
+\draw[very thick] (A) -- (G); \draw[very thick] (B) -- (G); \draw[thick, dashed] (A) -- (B);
+\draw (4.000,5.550,0.000) -- (3.640,5.550,0.270) -- (3.640,6.000,0.270);
+\end{scope}
+\end{tikzpicture}
+            </latex-image>
+        </image>
+    </figure>
+
+    <figure xml:id="fig-skew-lines-and-projection">
+        <caption>Move the <m>p</m> and <m>q</m> sliders to move <m>P</m> on the base. The dashed line <m>CP</m> is the projection of <m>GP</m>. Use the pair slider to see skew, parallel and intersecting lines; turn the cuboid with the view sliders.</caption>
+        <interactive xml:id="interactive-skew-lines-and-projection" platform="jsxgraph" width="90%" aspect="16:12" source="jsxgraph/skew-lines-and-projection.js">
+            <slate xml:id="jsxgraph-skew-lines-and-projection" surface="jsxboard" aspect="16:12"/>
+            <instructions>
+                <p>
+                    <ul>
+                        <li><p>Drag the <alert>p</alert> and <alert>q</alert> sliders. The thick line runs from <m>G</m> to <m>P</m> on the base; the dotted line <m>GC</m> is the plumb line from <m>G</m>, and the dashed line <m>CP</m> is the projection of <m>GP</m> on the base.</p></li>
+                        <li><p>Set <alert>p</alert> to <m>0</m> and <alert>q</alert> to <m>0</m>, so <m>P</m> is at <m>A</m>. Which line is the projection of <m>GA</m>? Now set <alert>p</alert> to <m>6</m> and <alert>q</alert> to <m>4</m>. What happens to the projection, and why?</p></li>
+                        <li><p>Set the <alert>pair</alert> slider to <m>1</m>, <m>2</m> and <m>3</m> in turn. Turn the cuboid with the view sliders and check that the skew pair never meets.</p></li>
+                    </ul>
+                </p>
+            </instructions>
+        </interactive>
+    </figure>
 
     <xi:include href="../lesson-plan-templates/example-intro.ptx" />
 
-    <!-- Add at least 3 examples -->
-
-    <!-- <example>
+    <example xml:id="example-parallel-intersecting-or-skew">
+        <title>Parallel, Intersecting or Skew</title>
         <statement>
+            <p>In the cuboid <m>ABCDEFGH</m> of <xref ref="fig-lines-in-a-cuboid"/>, decide whether each pair of lines is parallel, intersecting or skew.
+                (a) <m>AB</m> and <m>HG</m> (b) <m>AG</m> and <m>CE</m> (c) <m>BC</m> and <m>AE</m> (d) <m>AF</m> and <m>DG</m> (e) <m>AF</m> and <m>CH</m></p>
         </statement>
         <solution>
+            <p>(a) <m>HG</m> is the top edge directly above and behind <m>AB</m>, pointing the same way: parallel.</p>
+            <p>(b) <m>A</m>, <m>C</m>, <m>G</m> and <m>E</m> are the corners of the rectangle <m>ACGE</m>, which stands upright inside the cuboid. <m>AG</m> and <m>CE</m> are its diagonals, so they cross at its centre, which is the centre of the cuboid: intersecting.</p>
+            <p>(c) <m>AE</m> is the vertical edge through <m>A</m>. <m>BC</m> lies in the base and does not pass through <m>A</m>, so the lines never meet; one is vertical and the other horizontal, so they are not parallel: skew.</p>
+            <p>(d) <m>AF</m> and <m>DG</m> are diagonals of the opposite faces <m>ABFE</m> and <m>DCGH</m>, both rising from left to right in the same way: parallel.</p>
+            <p>(e) <m>AF</m> and <m>CH</m> lie in the parallel faces <m>ABFE</m> and <m>DCGH</m>, so they never meet, but they slope in opposite ways, so they are not parallel: skew.</p>
         </solution>
     </example>
 
-    <example>
+    <example xml:id="example-skew-edges-of-a-pyramid">
+        <title>Skew Edges of a Pyramid</title>
         <statement>
+            <p><m>VABCD</m> is a right pyramid on a square base <m>ABCD</m>, so its vertex <m>V</m> is directly above the centre <m>O</m> of the base. Which edges of the pyramid are skew to <m>VA</m>? Is the base diagonal <m>BD</m> skew to <m>VA</m>?</p>
         </statement>
         <solution>
+            <p>The edges <m>VB</m>, <m>VC</m> and <m>VD</m> meet <m>VA</m> at <m>V</m>, and the base edges <m>AB</m> and <m>AD</m> meet it at <m>A</m>. The remaining edges, <m>BC</m> and <m>CD</m>, never meet <m>VA</m> and are not parallel to it: they are skew to <m>VA</m>.</p>
+            <p><m>VA</m> lies in the upright plane <m>VAC</m>. <m>BD</m> crosses that plane only at <m>O</m>, the centre of the base, and <m>O</m> is not on <m>VA</m>. So <m>BD</m> never meets <m>VA</m>, and it is not parallel to it: <m>BD</m> is skew to <m>VA</m>.</p>
         </solution>
     </example>
 
-    <example>
+    <example xml:id="example-naming-projections">
+        <title>Naming Projections</title>
         <statement>
+            <p>(a) In the cuboid <m>ABCDEFGH</m>, name the projection of
+                (i) <m>AG</m> on the base <m>ABCD</m>; (ii) <m>AG</m> on the face <m>BCGF</m>; (iii) <m>HB</m> on the base; (iv) <m>EC</m> on the face <m>ABFE</m>.</p>
+            <p>(b) A tent at a scouts' camp near Naro Moru is a triangular prism <m>ABCDEF</m>, shown in <xref ref="fig-tent-prism"/>. Its ends <m>ABC</m> and <m>DEF</m> are triangles with <m>CA = CB</m>, it rests on the rectangle <m>ABED</m>, and <m>CF</m> is the ridge. <m>N</m> and <m>P</m> are the midpoints of <m>AB</m> and <m>DE</m>. Name the projection of <m>AF</m> on the ground.</p>
+            <figure xml:id="fig-tent-prism">
+                <caption>The tent <m>ABCDEF</m>, with <m>N</m> and <m>P</m> the midpoints of <m>AB</m> and <m>DE</m>.</caption>
+                <image width="60%">
+                    <shortdescription>A tent shaped as a triangular prism ABCDEF: triangular ends ABC and DEF, ridge CF, ground ABED. N and P are the midpoints of AB and DE; CN and FP are dotted vertical lines. AB is 2.4 m, CA = CB = 1.5 m and AD is 3 m. The line AF is drawn thick and its projection AP on the ground is drawn thick dashed.</shortdescription>
+                    <latex-image>
+\tdplotsetmaincoords{70}{120}
+\begin{tikzpicture}[tdplot_main_coords, scale=1.9]
+\coordinate (A) at (2.4,3,0);
+\coordinate (B) at (0,3,0);
+\coordinate (C) at (1.2,3,0.9);
+\coordinate (D) at (2.4,0,0);
+\coordinate (E) at (0,0,0);
+\coordinate (F) at (1.2,0,0.9);
+\coordinate (N) at (1.2,3,0);
+\coordinate (P) at (1.2,0,0);
+\draw[dashed] (D) -- (E) -- (B); \draw[dashed] (E) -- (F);
+\draw (A) -- (B) -- (C) -- cycle; \draw (A) -- (D) -- (F) -- (C);
+\node[anchor=north] at (A) {$A$};
+\node[anchor=west] at (B) {$B$};
+\node[anchor=south west] at (C) {$C$};
+\node[anchor=north east] at (D) {$D$};
+\node[anchor=south] at (E) {$E$};
+\node[anchor=south] at (F) {$F$};
+\node[anchor=north west] at (N) {$N$};
+\node[anchor=north west] at (P) {$P$};
+\draw[dotted, thick] (C) -- (N); \draw[dotted, thick] (F) -- (P); \fill (N) circle (1.2pt); \fill (P) circle (1.2pt);
+\draw[very thick] (A) -- (F); \draw[very thick, dashed] (A) -- (P);
+\draw (1.200,3.000,0.150) -- (1.350,3.000,0.150) -- (1.350,3.000,0.000);
+\node[anchor=north] at (2.4,1.5,0) {$3$ m}; \node[anchor=north west] at (0.6,3,0) {$2.4$ m}; \node[anchor=west] at (0.6,3,0.45) {$1.5$ m};
+\end{tikzpicture}
+                    </latex-image>
+                </image>
+            </figure>
         </statement>
         <solution>
+            <p>For each line, drop a perpendicular from each end to the plane and join the feet.</p>
+            <p>(a) (i) <m>A</m> is in the base and <m>G</m> is above <m>C</m>: the projection is <m>AC</m>. (ii) <m>G</m> is in the face <m>BCGF</m>, and the perpendicular from <m>A</m> to that face is the edge <m>AB</m>, so <m>A</m> projects to <m>B</m>: the projection is <m>BG</m>. (iii) <m>H</m> is above <m>D</m> and <m>B</m> is in the base: <m>DB</m>. (iv) <m>E</m> is in the face <m>ABFE</m> and the perpendicular from <m>C</m> to that face is the edge <m>CB</m>: <m>EB</m>.</p>
+            <p>(b) <m>A</m> is on the ground. <m>F</m> is the top of the back end; the end <m>DEF</m> is isosceles, so <m>F</m> is directly above <m>P</m>, the midpoint of <m>DE</m>. The projection of <m>AF</m> on the ground is <m>AP</m>.</p>
         </solution>
-    </example> -->
+    </example>
 
     <xi:include href="../lesson-plan-templates/assessment-intro.ptx" />
+    <xi:include href="../lesson-plan-templates/checkpoint.ptx" />
 
-    <!-- If STACK questions are included, uncomment this: -->
+    <p>Choose from each list. Type decimals with a point, for example <c>8.94</c>. A length may also be typed exactly, for example <c>sqrt(194)</c>.</p>
 
-    <!-- <xi:include href="../lesson-plan-templates/checkpoint.ptx" /> -->
+    <exercise xml:id="ex-parallel-intersecting-or-skew-lines">
+        <!--<title></title>-->
+        <stack label="stk-parallel-intersecting-or-skew-lines" source="stack/top/2-measurement-and-geometry/09-three-dimensional-geometry/01-skew-lines-and-projection-of-a-line/Parallel-intersecting-or-skew-lines.xml"/>
+    </exercise>
+    <exercise xml:id="ex-projection-of-a-line-onto-a-plane">
+        <!--<title></title>-->
+        <stack label="stk-projection-of-a-line-onto-a-plane" source="stack/top/2-measurement-and-geometry/09-three-dimensional-geometry/01-skew-lines-and-projection-of-a-line/Projection-of-a-line-onto-a-plane.xml"/>
+    </exercise>
+    <exercise xml:id="ex-an-edge-skew-to-a-given-line">
+        <!--<title></title>-->
+        <stack label="stk-an-edge-skew-to-a-given-line" source="stack/top/2-measurement-and-geometry/09-three-dimensional-geometry/01-skew-lines-and-projection-of-a-line/An-edge-skew-to-a-given-line.xml"/>
+    </exercise>
 
-    <!-- Add STACK exercises if made -->
+    <exercises xml:id="exercises-skew-lines-and-projection">
+        <exercise xml:id="ex-classify-lines-in-a-cuboid">
+            <statement><p>In the cuboid <m>ABCDEFGH</m>, decide whether each pair of lines is parallel, intersecting or skew.
+                (a) <m>DH</m> and <m>BF</m> (b) <m>AC</m> and <m>BD</m> (c) <m>EG</m> and <m>BC</m> (d) <m>HB</m> and <m>DF</m></p></statement>
+            <answer><p>(a) parallel (b) intersecting, at the centre of the base (c) skew (d) intersecting, at the centre of the cuboid</p></answer>
+        </exercise>
+        <exercise xml:id="ex-edges-skew-to-fg">
+            <statement><p>List every edge of the cuboid <m>ABCDEFGH</m> that is skew to <m>FG</m>.</p></statement>
+            <answer><p><m>AB</m>, <m>AE</m>, <m>DC</m>, <m>DH</m></p></answer>
+        </exercise>
+        <exercise xml:id="ex-tent-edges-skew-to-ac">
+            <statement><p>For the tent <m>ABCDEF</m> in <xref ref="fig-tent-prism"/>, list every edge that is skew to <m>AC</m>.</p></statement>
+            <answer><p><m>BE</m>, <m>DE</m>, <m>EF</m></p></answer>
+            <solution><p>The tent has nine edges. <m>AB</m>, <m>AD</m>, <m>BC</m> and <m>CF</m> meet <m>AC</m> at <m>A</m> or <m>C</m>, and <m>DF</m> is parallel to <m>AC</m>. The other three, <m>BE</m>, <m>DE</m> and <m>EF</m>, never meet <m>AC</m> and are not parallel to it.</p></solution>
+        </exercise>
+        <exercise xml:id="ex-name-the-projections">
+            <statement><p>Name the projection of
+                (a) <m>BH</m> on the base <m>ABCD</m> of the cuboid <m>ABCDEFGH</m>; (b) <m>AG</m> on the face <m>ADHE</m>; (c) <m>FD</m> on the face <m>DCGH</m>; (d) <m>VB</m> on the base of a right pyramid <m>VABCD</m>.</p></statement>
+            <answer><p>(a) <m>BD</m> (b) <m>AH</m> (c) <m>DG</m> (d) <m>OB</m></p></answer>
+        </exercise>
+        <exercise xml:id="ex-flagpole-and-wire">
+            <statement><p>A flagpole <m>QR</m> stands vertically on level ground at a school in Nyeri, with <m>Q</m> at the top. A wire runs from <m>Q</m> to a peg <m>S</m> on the ground.
+                <ol marker="(a)">
+                    <li><p>Name the projection of the wire <m>QS</m> on the ground.</p></li>
+                    <li><p>What is the projection of the pole itself?</p></li>
+                    <li><p>A straight path on the ground does not pass through <m>S</m> or <m>R</m>. Is the wire skew to the path? Explain.</p></li>
+                </ol>
+            </p></statement>
+            <answer><p>(a) <m>RS</m> (b) the point <m>R</m> (c) yes</p></answer>
+            <solution><p>(a) <m>S</m> is on the ground and <m>Q</m> is directly above <m>R</m>, so the projection is <m>RS</m>. (b) The pole is perpendicular to the ground, so it projects to its foot, the point <m>R</m>. (c) The wire meets the ground only at <m>S</m>, which is not on the path, so the wire and the path never meet. The wire rises while the path is level, so they are not parallel. They are skew.</p></solution>
+        </exercise>
+        <exercise xml:id="ex-counting-skew-pairs">
+            <title>Challenge: Counting Skew Pairs</title>
+            <statement><p>How many pairs of edges of a cube are skew? How many pairs of edges of a square-based pyramid are skew?</p></statement>
+            <hint><p>Count the edges skew to one edge, then share out, remembering that each pair is counted twice.</p></hint>
+            <answer><p><m>24</m>; <m>8</m></p></answer>
+            <solution><p>Each of the <m>12</m> edges of a cube is skew to <m>4</m> others (as <m>AB</m> is skew to <m>CG</m>, <m>DH</m>, <m>FG</m> and <m>HE</m>). That counts each pair twice, so there are <m>12 \times 4 \div 2 = 24</m> skew pairs.</p>
+            <p>In the pyramid <m>VABCD</m>, a base edge meets every other base edge or is parallel to it, and two sloping edges always meet at <m>V</m>. Each sloping edge is skew to the two base edges that do not touch its foot (for <m>VA</m>: <m>BC</m> and <m>CD</m>). So there are <m>4 \times 2 = 8</m> skew pairs.</p></solution>
+        </exercise>
+    </exercises>
 
-    <!-- Add static exercises -->
-
-    <!-- <exercises>
-        <exercise>
-            <statement>   
-
-            </statement>   
-            <solution>
-
-            </solution>             
-        </exercise>        
-    </exercises> -->
-
-    <!-- [LP] Add information on how to differentiate  -->
-
-    <!-- <axiom component="lesson-plan">
+    <axiom component="lesson-plan">
         <title>Differentiation</title>
-
-        <table>
-            <title>Differentiation</title>
-            <tabular halign="left">
-                <row header="yes" bottom="minor">
-                    <cell>Learner Group</cell>
-                    <cell>Strategy &amp; Learning Experience</cell>
-                    <cell></cell>
-                </row>
-                <row>
-                    <cell>Struggling Learners (Support)</cell>
-                    <cell>
-                        XXXX
-                    </cell>
-                    <cell></cell>
-                </row>
-                <row>
-                    <cell>On-Level Learners (Core)</cell>
-                    <cell>
-                        <line>The core lesson activities as described above.</line>
-                    </cell>
-                    <cell></cell>
-                </row>
-                <row>
-                    <cell>Advanced Learners (Challenge)</cell>
-                    <cell>
-                        XXXX
-                    </cell>
-                    <cell></cell>
-                </row>
+        <table xml:id="table-differentiation-skew-lines-and-projection">
+            <title>Differentiation Strategies</title>
+            <tabular halign="left" top="minor" bottom="minor" left="minor" right="minor">
+                <row header="yes" bottom="medium"><cell>Learner Group</cell><cell>Strategy and Learning Experience</cell></row>
+                <row><cell>Struggling Learners (Support)</cell><cell>Work through activity parts (a) to (d) with the model in hand. Give a card: <q>Do they meet? Are they parallel? If neither, they are skew.</q> Work through <xref ref="example-parallel-intersecting-or-skew"/> only. Assign <xref ref="ex-classify-lines-in-a-cuboid"/> and <xref ref="ex-edges-skew-to-fg"/>.</cell></row>
+                <row><cell>On-Level Learners (Core)</cell><cell>Full activity plus all examples. Assign <xref ref="ex-classify-lines-in-a-cuboid"/> to <xref ref="ex-flagpole-and-wire"/>.</cell></row>
+                <row><cell>Advanced Learners (Challenge)</cell><cell>All exercises including <xref ref="ex-counting-skew-pairs"/>. Extension: how many pairs of edges of a triangular prism are skew? (Answer: <m>12</m>. Each of the <m>6</m> edges of the two ends is skew to <m>3</m> edges and each of the <m>3</m> parallel edges is skew to <m>2</m>, so <m>(6 \times 3 + 3 \times 2) \div 2 = 12</m>.)</cell></row>
             </tabular>
         </table>
-    </axiom> -->
+    </axiom>
 
     <xi:include href="../lesson-plan-templates/assessment-methods.ptx" />
 

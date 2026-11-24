@@ -19,7 +19,7 @@
                     </p>
                 </li>
                 <li>
-                    <title>Specific Learning Outcomes</title> 
+                    <title>Specific Learning Outcomes</title>
                     <p>
                         Determine discrete probabilities in different situations
                     </p>
@@ -33,7 +33,7 @@
                 <li component="lesson-plan">
                     <title>Estimated Duration</title>
                     <p>
-                        40 minutes
+                        2 lessons of 40 minutes
                     </p>
                 </li>
             </dl>
@@ -45,163 +45,442 @@
          Content summary: Theoretical probability: P(E) = favourable outcomes ÷ total possible outcomes.
          Suggested activity: Learners list the outcomes of tossing a coin and rolling a die and find theoretical probabilities of given events. -->
 
-    <!-- [LP] Add guidance on activity -->
+    <!-- Section notes (2026-11)
+         SLO: Essential (a) (the skeleton's SLO line; theoretical probability has no outcome of its own). Lessons 1.1 and 1.2 as subsections.
+         The chapter's key inquiry question is placed in this section's introduction.
+         Activity: as planning notes (coin and die outcomes, then probabilities by counting) | changed: continued in lesson 1.2 with a coin and a die together and two dice
+         JSXGraph: none named in the planning notes
+         STACK: assets/stack/top/3-statistics-and-probability/16-probability-iii/01-theoretical-probability/ -->
 
-    <axiom component="lesson-plan">
-        <title>Problem-Solving and Discovery</title>
-        <dl>
-            <li>
-                <title>Suggested Time</title>
-                <p>
-                    XXX minutes
-                </p>
-            </li>
-            <li>
-                <title>Objective</title>
-                <p>
-                    XXX
-                </p>
-            </li>
-            <li>
-                <title>Teacher's Role</title>
-                <p>
-                    XXX
-                </p>
-            </li>
-        </dl>
-    </axiom>
-
-    <!-- Add Activity -->
-
-    <!-- <activity>
-        <statement>
-        </statement>
-    </activity> -->
-
-    <!-- [LP] Add guidance on structured lesson plan-->
-
-    <!-- <axiom component="lesson-plan">
-        <title>Structured Instruction</title>
+    <introduction>
+        <question xml:id="kiq-probability-iii">
+            <p><em>Why is probability important in our daily lives?</em></p>
+        </question>
         <p>
-            <dl>
-            <li>
-                <title>Suggested Time</title>
-                <p>
-                    XX minutes
-                </p>
-            </li>
-            <li>
-                <title>Objective</title>
-                <p>
-                    To formalize the concepts and properties learners discovered in the anchor task.
-                </p>
-            </li>
-            </dl>
+            Probability measures how likely something is to happen, on a scale from 0 (impossible) to 1 (certain). In this chapter you find probabilities by counting equally likely outcomes and by experiment, build probability distribution tables, use the laws for combining events, and draw tree diagrams for experiments with two or three stages.
         </p>
-        <paragraphs>
-            <title>Key Takeaways &amp; Teacher Connection</title>
+        <p>
+            Probability is all around us in Kenya. A weather forecast may give <q>a <m>70\%</m> chance of rain</q> in Kisumu tomorrow. A county may share new school laboratories by a fair draw, so that every school has the same chance. Road-safety campaigns compare the risk of serious injury for boda boda riders with and without a helmet. As you work through the chapter, look out for other places where probability helps people make decisions.
+        </p>
+    </introduction>
+
+    <!-- ============================================================ Lesson 1.1 -->
+    <subsection xml:id="subsec-equally-likely-outcomes">
+        <title>Equally Likely Outcomes</title>
+
+        <p component="lesson-plan">Upon completion of this lesson, learners will be able to:
             <ol>
-                <li>
-                    <p>
-                        <alert>Connecting to Learner Work:</alert> XXXX
-                    </p>
-                </li>
+                <li><p><alert>Know:</alert> outcome, sample space and event; when outcomes are equally likely, <m>P(E) = \dfrac{n(E)}{n(S)}</m>; probabilities run from 0 to 1; <m>P(E') = 1 - P(E)</m>.</p></li>
+                <li><p><alert>Do:</alert> list a sample space, count the favourable outcomes and write the probability as a fraction in lowest terms.</p></li>
+                <li><p><alert>Apply:</alert> raffles, fair draws and bags of objects, including reverse problems.</p></li>
             </ol>
-        </paragraphs>
-    </axiom> -->
+        </p>
 
-    <!-- Add insight / key takeaway directly related to activity / learner experience -->
+        <axiom component="lesson-plan">
+            <title>Problem-Solving and Discovery</title>
+            <dl>
+                <li><title>Suggested Time</title><p>14 minutes</p></li>
+                <li><title>Objective</title><p>Learners list the outcomes of tossing a coin and rolling a die and find probabilities by counting.</p></li>
+                <li><title>Teacher's Role</title><p>Give each pair one coin and one die. Do not give the formula until after part (c). After part (d), ask: <q>Can a probability be 2? Can it be negative?</q> Equity: ask why drawing names from a hat is a fair way to share a chance.</p></li>
+            </dl>
+        </axiom>
 
-    <!-- <insight>
-    </insight> -->
+        <activity xml:id="act-coins-and-dice">
+            <title>Coins and Dice</title>
+            <statement>
+                <p>Work in pairs with one coin and one die.</p>
+                <p>
+                    <ol marker="(a)">
+                        <li>
+                            <p>List all the possible results of tossing the coin. What fraction of them are heads?</p>
+                            <solution component="lesson-plan"><p>Head or tail: <m>\{H, T\}</m>. One of the two results is a head, so the probability of a head is <m>\frac{1}{2}</m>.</p></solution>
+                        </li>
+                        <li>
+                            <p>List all the possible results of rolling the die. What fraction of them are even? Greater than 4? A 7? Less than 7?</p>
+                            <solution component="lesson-plan"><p><m>\{1, 2, 3, 4, 5, 6\}</m>. Even: <m>\frac{3}{6} = \frac{1}{2}</m>. Greater than 4: <m>\frac{2}{6} = \frac{1}{3}</m>. A 7: <m>0</m>. Less than 7: <m>\frac{6}{6} = 1</m>.</p></solution>
+                        </li>
+                        <li>
+                            <p>Find the probability of <em>not</em> rolling a 6 by counting. Then work out <m>1 - P(6)</m>. What do you notice?</p>
+                            <solution component="lesson-plan"><p>Five results are not 6, so <m>\frac{5}{6}</m>; and <m>1 - \frac{1}{6} = \frac{5}{6}</m>. The two ways agree.</p></solution>
+                            <note component="lesson-plan"><p>Ask learners to say in words why the two answers must agree: a 6 either happens or it does not.</p></note>
+                        </li>
+                        <li>
+                            <p>Which numbers could never be probabilities? Explain.</p>
+                            <solution component="lesson-plan"><p>Any number below 0 or above 1: the number of favourable results cannot be negative or more than the number of results.</p></solution>
+                        </li>
+                    </ol>
+                </p>
+            </statement>
+        </activity>
 
-    <!-- Add further instruction (not in a block) to develop ideas as needed -->
+        <axiom component="lesson-plan">
+            <title>Structured Instruction</title>
+            <p>
+                <dl>
+                    <li><title>Suggested Time</title><p>8 minutes</p></li>
+                    <li><title>Objective</title><p>To define outcome, sample space, event and theoretical probability, and the complement.</p></li>
+                </dl>
+            </p>
+            <paragraphs>
+                <title>Key Takeaways &amp; Teacher Connection</title>
+                <ol>
+                    <li><p><alert>Connecting to Learner Work:</alert> learners counted results and divided by the number of results; that is the definition.</p></li>
+                    <li><p>List first, then count.</p></li>
+                    <li><p>Equally likely is an assumption: we assume the coin and the die are fair.</p></li>
+                    <li><p>0 and 1 are the extremes; part (c) is the complement rule.</p></li>
+                </ol>
+            </paragraphs>
+        </axiom>
 
-    <xi:include href="../lesson-plan-templates/example-intro.ptx" />
+        <insight xml:id="insight-theoretical-probability">
+            <title>Theoretical Probability</title>
+            <p>
+                An <term>experiment</term> is an action with results that depend on chance, such as rolling a die. Each possible result is an <term>outcome</term>, and the list of all the outcomes is the <term>sample space</term>, <m>S</m>. An <term>event</term> is a set of outcomes, such as <q>an even number</q>. Outcomes are <term>equally likely</term> when each has the same chance; a coin or die for which this is true is <term>fair</term> (unbiased).
+            </p>
+            <p>
+                When the outcomes are equally likely, count the outcomes that make the event happen and divide by the number of equally likely outcomes:
+                <md>P(E) = \frac{n(E)}{n(S)}</md>
+                For every event, <m>0 \le P(E) \le 1</m>: an impossible event has probability <m>0</m> and a certain event has probability <m>1</m>.
+            </p>
+            <p>
+                The event <m>E'</m>, read <q>not <m>E</m></q>, happens exactly when <m>E</m> does not. An event either happens or it does not, so the two probabilities add to 1:
+                <md>P(E') = 1 - P(E)</md>
+            </p>
+        </insight>
 
-    <!-- Add at least 3 examples -->
+        <note xml:id="note-fair-draws">
+            <title>Fair Draws</title>
+            <p>
+                When every outcome is equally likely, every person in a draw has the same chance. That is why counties and schools often share scarce places, such as bursaries or seats on a trip, by drawing names or numbers. A fair draw treats everyone equally.
+            </p>
+        </note>
 
-    <!-- <example>
-        <statement>
-        </statement>
-        <solution>
-        </solution>
-    </example>
+        <xi:include href="../lesson-plan-templates/example-intro.ptx" />
 
-    <example>
-        <statement>
-        </statement>
-        <solution>
-        </solution>
-    </example>
-
-    <example>
-        <statement>
-        </statement>
-        <solution>
-        </solution>
-    </example> -->
-
-    <xi:include href="../lesson-plan-templates/assessment-intro.ptx" />
-
-    <!-- If STACK questions are included, uncomment this: -->
-
-    <!-- <xi:include href="../lesson-plan-templates/checkpoint.ptx" /> -->
-
-    <!-- Add STACK exercises if made -->
-
-    <!-- Add static exercises -->
-
-    <!-- <exercises>
-        <exercise>
-            <statement>   
-
-            </statement>   
+        <example xml:id="example-bottle-tops-in-a-bag">
+            <title>Bottle Tops in a Bag</title>
+            <statement>
+                <p>A bag holds <m>15</m> soda bottle tops: <m>6</m> red, <m>5</m> green and <m>4</m> white. One is taken at random. Find the probability that it is (a) red, (b) not white, (c) blue.</p>
+            </statement>
             <solution>
+                <p>There are <m>15</m> equally likely outcomes.</p>
+                <p>(a) <m>P(\text{red}) = \dfrac{6}{15} = \dfrac{2}{5}</m>.</p>
+                <p>(b) <m>15 - 4 = 11</m> bottle tops are not white, so <m>P(\text{not white}) = \dfrac{11}{15}</m>. Check: <m>1 - \dfrac{4}{15} = \dfrac{11}{15}</m>.</p>
+                <p>(c) There are no blue bottle tops, so <m>P(\text{blue}) = 0</m>: the event is impossible.</p>
+            </solution>
+        </example>
 
-            </solution>             
-        </exercise>        
-    </exercises> -->
+        <example xml:id="example-school-raffle">
+            <title>A School Raffle</title>
+            <statement>
+                <p>A school sells <m>400</m> raffle tickets, numbered 1 to 400, to raise money for its library. Akinyi buys <m>8</m> tickets and her brother Kevin buys <m>5</m>. One winning number is drawn at random. Find the probability that (a) Akinyi wins, (b) neither Akinyi nor Kevin wins, (c) the winning number is a multiple of 25.</p>
+            </statement>
+            <solution>
+                <p>(a) <m>P(\text{Akinyi wins}) = \dfrac{8}{400} = \dfrac{1}{50}</m>.</p>
+                <p>(b) Between them they hold <m>13</m> tickets, so <m>400 - 13 = 387</m> tickets belong to other people: <m>P(\text{neither wins}) = \dfrac{387}{400}</m>.</p>
+                <p>(c) The multiples of 25 up to 400 are <m>25, 50, 75, \ldots, 400</m>, and <m>400 \div 25 = 16</m>, so there are <m>16</m> of them: the probability is <m>\dfrac{16}{400} = \dfrac{1}{25}</m>.</p>
+            </solution>
+        </example>
 
-    <!-- [LP] Add information on how to differentiate  -->
+        <example xml:id="example-numbered-cards">
+            <title>Numbered Cards</title>
+            <statement>
+                <p>Twenty cards are numbered 1 to 20. One card is taken at random. Find the probability that the number is (a) prime, (b) a multiple of 3, (c) not a multiple of 3.</p>
+            </statement>
+            <solution>
+                <p>(a) The primes are <m>2, 3, 5, 7, 11, 13, 17, 19</m> (1 is not prime): <m>P(\text{prime}) = \dfrac{8}{20} = \dfrac{2}{5}</m>.</p>
+                <p>(b) The multiples of 3 are <m>3, 6, 9, 12, 15, 18</m>: <m>\dfrac{6}{20} = \dfrac{3}{10}</m>.</p>
+                <p>(c) By the complement, <m>1 - \dfrac{3}{10} = \dfrac{7}{10}</m>.</p>
+            </solution>
+        </example>
 
-    <!-- <axiom component="lesson-plan">
-        <title>Differentiation</title>
+        <xi:include href="../lesson-plan-templates/assessment-intro.ptx" />
+        <xi:include href="../lesson-plan-templates/checkpoint.ptx" />
 
-        <table>
+        <p>Type a fraction with a slash, for example <c>5/12</c>, and a decimal with a point, for example <c>0.35</c>. Give probabilities exactly: do not round. Type a list in square brackets, for example <c>[1,2,2,5,8,9]</c>.</p>
+
+        <exercise xml:id="ex-probability-of-an-event-from-a-bag-of-bottle-tops">
+            <!--<title></title>-->
+            <stack label="stk-probability-of-an-event-from-a-bag-of-bottle-tops" source="stack/top/3-statistics-and-probability/16-probability-iii/01-theoretical-probability/Probability-of-an-event-from-a-bag-of-bottle-tops.xml"/>
+        </exercise>
+
+        <exercise xml:id="ex-numbering-the-faces-of-a-die-to-give-probabilities">
+            <!--<title></title>-->
+            <stack label="stk-numbering-the-faces-of-a-die-to-give-probabilities" source="stack/top/3-statistics-and-probability/16-probability-iii/01-theoretical-probability/Numbering-the-faces-of-a-die-to-give-probabilities.xml"/>
+        </exercise>
+
+        <exercises xml:id="exercises-equally-likely-outcomes">
+            <exercise xml:id="ex-fair-die-events">
+                <statement><p>A fair die is rolled. Find the probability that the score is (a) odd, (b) less than 3, (c) not 5.</p></statement>
+                <answer><p>(a) <m>\frac{1}{2}</m> (b) <m>\frac{1}{3}</m> (c) <m>\frac{5}{6}</m></p></answer>
+            </exercise>
+            <exercise xml:id="ex-letters-of-kakamega">
+                <statement><p>The letters of the word KAKAMEGA are written on eight cards, one letter on each. One card is taken at random. Find the probability that it shows (a) A, (b) K, (c) a vowel.</p></statement>
+                <answer><p>(a) <m>\frac{3}{8}</m> (b) <m>\frac{1}{4}</m> (c) <m>\frac{1}{2}</m></p></answer>
+                <solution><p>The letters are K, A, K, A, M, E, G, A. There are three A's, two K's, and four vowels (A, A, A, E): <m>\frac{3}{8}</m>, <m>\frac{2}{8} = \frac{1}{4}</m> and <m>\frac{4}{8} = \frac{1}{2}</m>.</p></solution>
+            </exercise>
+            <exercise xml:id="ex-wekesa-two-bags">
+                <statement><p>Bag A holds <m>3</m> green and <m>2</m> white beads. Bag B holds <m>5</m> green and <m>5</m> white beads. Wekesa says bag B gives a better chance of taking a green bead because it has more green beads. Is he right? Explain.</p></statement>
+                <answer><p>No: bag A gives <m>\frac{3}{5}</m> and bag B gives <m>\frac{1}{2}</m>.</p></answer>
+                <solution><p><m>P(\text{green from A}) = \frac{3}{5} = 0.6</m> and <m>P(\text{green from B}) = \frac{5}{10} = 0.5</m>. Bag A is better. What matters is the fraction of beads that are green, not how many there are.</p></solution>
+            </exercise>
+            <exercise xml:id="ex-how-many-raffle-tickets">
+                <statement><p>Baraka buys <m>6</m> raffle tickets. The probability that he wins is <m>\frac{1}{50}</m>. How many tickets were sold?</p></statement>
+                <answer><p><m>300</m></p></answer>
+                <solution><p><m>\frac{6}{n} = \frac{1}{50}</m>, so <m>n = 6 \times 50 = 300</m>.</p></solution>
+            </exercise>
+            <exercise xml:id="ex-how-many-red-beads">
+                <statement><p>A bag holds red and blue beads only. The probability of taking a red bead is <m>\frac{3}{8}</m>, and there are <m>15</m> blue beads. How many red beads are there?</p></statement>
+                <answer><p><m>9</m></p></answer>
+                <solution><p><m>P(\text{blue}) = 1 - \frac{3}{8} = \frac{5}{8}</m>, so <m>15</m> beads are <m>\frac{5}{8}</m> of the bag. The bag holds <m>15 \div 5 \times 8 = 24</m> beads, of which <m>24 - 15 = 9</m> are red.</p></solution>
+            </exercise>
+            <exercise xml:id="ex-design-a-spinner">
+                <title>Challenge: Design a Spinner</title>
+                <statement><p>A spinner has <m>8</m> equal sectors. Colour each sector red, blue or white so that <m>P(\text{red}) = 2 \times P(\text{blue})</m> and <m>P(\text{not white}) = \frac{3}{4}</m>.</p></statement>
+                <hint><p>Count sectors: how many are not white?</p></hint>
+                <answer><p><m>4</m> red, <m>2</m> blue, <m>2</m> white</p></answer>
+                <solution><p><m>\frac{3}{4}</m> of <m>8</m> is <m>6</m>, so <m>6</m> sectors are red or blue and <m>2</m> are white. Red has twice as many sectors as blue, so <m>4</m> red and <m>2</m> blue.</p></solution>
+            </exercise>
+        </exercises>
+
+        <axiom component="lesson-plan">
             <title>Differentiation</title>
-            <tabular halign="left">
-                <row header="yes" bottom="minor">
-                    <cell>Learner Group</cell>
-                    <cell>Strategy &amp; Learning Experience</cell>
-                    <cell></cell>
-                </row>
-                <row>
-                    <cell>Struggling Learners (Support)</cell>
-                    <cell>
-                        XXXX
-                    </cell>
-                    <cell></cell>
-                </row>
-                <row>
-                    <cell>On-Level Learners (Core)</cell>
-                    <cell>
-                        <line>The core lesson activities as described above.</line>
-                    </cell>
-                    <cell></cell>
-                </row>
-                <row>
-                    <cell>Advanced Learners (Challenge)</cell>
-                    <cell>
-                        XXXX
-                    </cell>
-                    <cell></cell>
-                </row>
-            </tabular>
-        </table>
-    </axiom> -->
+            <table xml:id="table-differentiation-equally-likely-outcomes">
+                <title>Differentiation Strategies</title>
+                <tabular halign="left" top="minor" bottom="minor" left="minor" right="minor">
+                    <row header="yes" bottom="medium"><cell>Learner Group</cell><cell>Strategy and Learning Experience</cell></row>
+                    <row><cell>Struggling Learners (Support)</cell><cell>Give an outcome-listing frame (<q>The outcomes are ... There are ... of them. The event happens for ...</q>). Focus on activity parts (a) to (c) and <xref ref="example-bottle-tops-in-a-bag"/>. Assign <xref ref="ex-fair-die-events"/> and <xref ref="ex-letters-of-kakamega"/>.</cell></row>
+                    <row><cell>On-Level Learners (Core)</cell><cell>Full activity and all examples. Assign <xref ref="ex-fair-die-events"/> to <xref ref="ex-how-many-red-beads"/>.</cell></row>
+                    <row><cell>Advanced Learners (Challenge)</cell><cell>All exercises including <xref ref="ex-design-a-spinner"/>. Extension: can a spinner with <m>5</m> equal sectors give <m>P(\text{red}) = \frac{1}{2}</m>? (No: the probability is a number of sectors divided by <m>5</m>, which is never <m>\frac{1}{2}</m>.)</cell></row>
+                </tabular>
+            </table>
+        </axiom>
 
-    <xi:include href="../lesson-plan-templates/assessment-methods.ptx" />
+        <xi:include href="../lesson-plan-templates/assessment-methods.ptx" />
+        <xi:include href="../lesson-plan-templates/reflection.ptx"/>
+    </subsection>
 
-    <xi:include href="../lesson-plan-templates/reflection.ptx"/>
+    <!-- ============================================================ Lesson 1.2 -->
+    <subsection xml:id="subsec-sample-spaces-for-two-experiments">
+        <title>Listing Outcomes for Two Experiments</title>
+
+        <p component="lesson-plan">Upon completion of this lesson, learners will be able to:
+            <ol>
+                <li><p><alert>Know:</alert> the outcomes of two experiments can be listed systematically or in a grid; the number of outcomes is the product of the numbers for each experiment; the totals of two dice are not equally likely.</p></li>
+                <li><p><alert>Do:</alert> draw a grid and count cells.</p></li>
+                <li><p><alert>Apply:</alert> decide whether a game is fair.</p></li>
+            </ol>
+        </p>
+
+        <axiom component="lesson-plan">
+            <title>Problem-Solving and Discovery</title>
+            <dl>
+                <li><title>Suggested Time</title><p>14 minutes</p></li>
+                <li><title>Objective</title><p>Learners list all the outcomes of a coin and a die, then of two dice, and find that the totals of two dice are not equally likely.</p></li>
+                <li><title>Teacher's Role</title><p>Write Otieno's claim from part (e) on the board at the start. Let groups argue about it before they compute. Fairness: a game is fair only when each player has the same chance of winning.</p></li>
+            </dl>
+        </axiom>
+
+        <activity xml:id="act-a-coin-and-a-die-together">
+            <title>A Coin and a Die Together</title>
+            <statement>
+                <p>Toss a coin and roll a die at the same time.</p>
+                <p>
+                    <ol marker="(a)">
+                        <li>
+                            <p>List all the possible outcomes, such as H1 (head and 1). How many are there?</p>
+                            <solution component="lesson-plan"><p>H1, H2, H3, H4, H5, H6, T1, T2, T3, T4, T5, T6: <m>12</m> outcomes, <m>2 \times 6</m>.</p></solution>
+                        </li>
+                        <li>
+                            <p>Find the probability of a head and a 6.</p>
+                            <solution component="lesson-plan"><p>One outcome, H6: <m>\frac{1}{12}</m>.</p></solution>
+                        </li>
+                        <li>
+                            <p>Find the probability of a tail and an even number.</p>
+                            <solution component="lesson-plan"><p>T2, T4, T6: <m>\frac{3}{12} = \frac{1}{4}</m>.</p></solution>
+                        </li>
+                        <li>
+                            <p>Now roll two dice and add the scores. Draw a grid of all the totals. How many outcomes are there?</p>
+                            <solution component="lesson-plan"><p>A <m>6 \times 6</m> grid: <m>36</m> outcomes (see <xref ref="fig-two-dice-totals"/>).</p></solution>
+                        </li>
+                        <li>
+                            <p>Otieno says: <q>There are 11 possible totals, from 2 to 12, so the probability of a total of 7 is <m>\frac{1}{11}</m>.</q> Is he right?</p>
+                            <solution component="lesson-plan"><p>No. The totals are not equally likely: six of the <m>36</m> cells have total 7, so <m>P(7) = \frac{6}{36} = \frac{1}{6}</m>, while only one cell has total 2.</p></solution>
+                        </li>
+                    </ol>
+                </p>
+            </statement>
+        </activity>
+
+        <axiom component="lesson-plan">
+            <title>Structured Instruction</title>
+            <p>
+                <dl>
+                    <li><title>Suggested Time</title><p>8 minutes</p></li>
+                    <li><title>Objective</title><p>To set out systematic lists and grids for two experiments.</p></li>
+                </dl>
+            </p>
+            <paragraphs>
+                <title>Key Takeaways &amp; Teacher Connection</title>
+                <ol>
+                    <li><p><alert>Connecting to Learner Work:</alert> part (e) shows why we count cells, not scores.</p></li>
+                    <li><p>List systematically: fix the first result and run through every result of the second.</p></li>
+                    <li><p>A grid shows every outcome once; count the cells for the event.</p></li>
+                </ol>
+            </paragraphs>
+        </axiom>
+
+        <insight xml:id="insight-sample-spaces-two-experiments">
+            <title>Sample Spaces for Two Experiments</title>
+            <p>
+                To list the outcomes of two experiments, work systematically: fix one result of the first experiment and go through every result of the second, then move on. A grid does the same job, with the first experiment across the top and the second down the side.
+            </p>
+            <p>
+                If the first experiment has <m>a</m> outcomes and the second has <m>b</m>, there are <m>a \times b</m> outcomes together. When both experiments are fair, every cell of the grid is equally likely, so count cells. Scores such as the totals of two dice are <em>not</em> equally likely: different totals fill different numbers of cells.
+            </p>
+        </insight>
+
+        <figure xml:id="fig-two-dice-totals">
+            <caption>The <m>36</m> totals of two dice. The six cells with total 7 are shaded.</caption>
+            <image width="60%">
+                <shortdescription>A six by six grid of the totals of two dice, first die across the top and second die down the side. The six cells with total 7 lie on one diagonal and are shaded.</shortdescription>
+                <description><p>Rows are the second die from 1 to 6, columns the first die from 1 to 6. Row 1: 2, 3, 4, 5, 6, 7. Row 2: 3, 4, 5, 6, 7, 8. Row 3: 4, 5, 6, 7, 8, 9. Row 4: 5, 6, 7, 8, 9, 10. Row 5: 6, 7, 8, 9, 10, 11. Row 6: 7, 8, 9, 10, 11, 12. The cells with total 7 are shaded and outlined.</p></description>
+                <latex-image>
+\begin{tikzpicture}[scale=0.8]
+\foreach \a in {1,...,6} \foreach \b in {1,...,6} {
+  \pgfmathtruncatemacro{\s}{\a+\b}
+  \ifnum\s=7 \fill[gray!35] (\a-1, 6-\b) rectangle (\a, 7-\b); \fi
+}
+\draw (0,0) grid (6,6);
+\foreach \a in {1,...,6} \foreach \b in {1,...,6} {
+  \pgfmathtruncatemacro{\s}{\a+\b}
+  \ifnum\s=7 \draw[very thick] (\a-1, 6-\b) rectangle (\a, 7-\b); \fi
+  \node at (\a-0.5, 6.5-\b) {\s};
+}
+\foreach \a in {1,...,6} { \node at (\a-0.5, 6.4) {\a}; }
+\foreach \b in {1,...,6} { \node at (-0.4, 6.5-\b) {\b}; }
+\node at (3, 7.1) {First die};
+\node[rotate=90] at (-1.1, 3) {Second die};
+\end{tikzpicture}
+                </latex-image>
+            </image>
+        </figure>
+
+        <xi:include href="../lesson-plan-templates/example-intro.ptx" />
+
+        <example xml:id="example-two-spinners-product">
+            <title>Two Spinners at a Fun Day</title>
+            <statement>
+                <p>At a school fun day, spinner A has three equal sectors numbered 1 to 3 and spinner B has four equal sectors numbered 1 to 4. Both are spun and the two numbers are multiplied to give a score. Find (a) the number of outcomes, (b) the probability that the score is even, (c) the probability that the score is greater than 6.</p>
+            </statement>
+            <solution>
+                <p>(a) <m>3 \times 4 = 12</m> equally likely outcomes. The grid of scores is</p>
+                <table xml:id="table-two-spinners-product">
+                    <title>Products of Two Spinners</title>
+                    <tabular halign="center" top="minor" bottom="minor" left="minor" right="minor">
+                        <row header="yes" bottom="medium"><cell>A \ B</cell><cell>1</cell><cell>2</cell><cell>3</cell><cell>4</cell></row>
+                        <row><cell>1</cell><cell>1</cell><cell>2</cell><cell>3</cell><cell>4</cell></row>
+                        <row><cell>2</cell><cell>2</cell><cell>4</cell><cell>6</cell><cell>8</cell></row>
+                        <row><cell>3</cell><cell>3</cell><cell>6</cell><cell>9</cell><cell>12</cell></row>
+                    </tabular>
+                </table>
+                <p>(b) <m>8</m> cells are even (2, 4; 2, 4, 6, 8; 6, 12), so <m>P(\text{even}) = \dfrac{8}{12} = \dfrac{2}{3}</m>.</p>
+                <p>(c) The scores greater than 6 are 8, 9 and 12: <m>\dfrac{3}{12} = \dfrac{1}{4}</m>.</p>
+            </solution>
+        </example>
+
+        <example xml:id="example-choosing-a-lunch">
+            <title>Choosing a Lunch</title>
+            <statement>
+                <p>A school canteen offers githeri, pilau, or ugali with sukuma wiki, and a drink of tea or juice. A learner who likes everything chooses one food and one drink at random. List the possible meals, and find the probability that the learner chooses (a) pilau and juice, (b) a meal without githeri.</p>
+            </statement>
+            <solution>
+                <p>Fix the food and run through the drinks: githeri and tea, githeri and juice, pilau and tea, pilau and juice, ugali and tea, ugali and juice. There are <m>3 \times 2 = 6</m> meals.</p>
+                <p>(a) One meal: <m>\dfrac{1}{6}</m>.</p>
+                <p>(b) Four meals have no githeri: <m>\dfrac{4}{6} = \dfrac{2}{3}</m>.</p>
+            </solution>
+        </example>
+
+        <example xml:id="example-is-the-game-fair">
+            <title>Is the Game Fair?</title>
+            <statement>
+                <p>Amina and Juma roll two dice and find the difference between the scores (the larger minus the smaller). Amina wins if the difference is 0 or 1; otherwise Juma wins. Is the game fair? Find also the probability that the difference is (a) 0, (b) 3 or more.</p>
+            </statement>
+            <solution>
+                <p>Draw the <m>6 \times 6</m> grid of differences. Counting cells: difference 0 in <m>6</m> cells, 1 in <m>10</m>, 2 in <m>8</m>, 3 in <m>6</m>, 4 in <m>4</m> and 5 in <m>2</m> (total <m>36</m>).</p>
+                <p><m>P(\text{Amina wins}) = \dfrac{6 + 10}{36} = \dfrac{16}{36} = \dfrac{4}{9}</m>, so Juma wins with probability <m>\dfrac{5}{9}</m>. The game is not fair: it favours Juma.</p>
+                <p>(a) <m>\dfrac{6}{36} = \dfrac{1}{6}</m>. (b) <m>\dfrac{6 + 4 + 2}{36} = \dfrac{12}{36} = \dfrac{1}{3}</m>.</p>
+            </solution>
+        </example>
+
+        <p>
+            <em>Probability in daily life:</em> when a school draws the names of learners for a few places on a trip, every name has the same chance, so the draw is fair. Where else are draws used to share something fairly?
+        </p>
+
+        <xi:include href="../lesson-plan-templates/assessment-intro.ptx" />
+        <xi:include href="../lesson-plan-templates/checkpoint.ptx" />
+
+        <p>Type a fraction with a slash, for example <c>5/12</c>, and a decimal with a point, for example <c>0.35</c>. Give probabilities exactly: do not round.</p>
+
+        <exercise xml:id="ex-probabilities-from-a-sample-space-grid">
+            <!--<title></title>-->
+            <stack label="stk-probabilities-from-a-sample-space-grid" source="stack/top/3-statistics-and-probability/16-probability-iii/01-theoretical-probability/Probabilities-from-a-sample-space-grid.xml"/>
+        </exercise>
+
+        <exercise xml:id="ex-listing-outcomes-for-two-or-three-coins">
+            <!--<title></title>-->
+            <stack label="stk-listing-outcomes-for-two-or-three-coins" source="stack/top/3-statistics-and-probability/16-probability-iii/01-theoretical-probability/Listing-outcomes-for-two-or-three-coins.xml"/>
+        </exercise>
+
+        <exercises xml:id="exercises-two-experiments">
+            <exercise xml:id="ex-two-coins">
+                <statement><p>Two coins are tossed. List the outcomes. Find the probability of (a) no heads, (b) at least one head.</p></statement>
+                <answer><p>HH, HT, TH, TT; (a) <m>\frac{1}{4}</m> (b) <m>\frac{3}{4}</m></p></answer>
+            </exercise>
+            <exercise xml:id="ex-die-and-four-sided-spinner">
+                <statement><p>A die is rolled and a spinner numbered 1 to 4 is spun. The score is the sum of the two numbers. Find the probability that the sum is (a) 5, (b) greater than 8.</p></statement>
+                <answer><p>(a) <m>\frac{1}{6}</m> (b) <m>\frac{1}{8}</m></p></answer>
+                <solution><p>There are <m>6 \times 4 = 24</m> outcomes. (a) Sum 5: (1, 4), (2, 3), (3, 2), (4, 1), so <m>\frac{4}{24} = \frac{1}{6}</m>. (b) Sum 9 or 10: (5, 4), (6, 3), (6, 4), so <m>\frac{3}{24} = \frac{1}{8}</m>.</p></solution>
+            </exercise>
+            <exercise xml:id="ex-two-dice-doubles">
+                <statement><p>Two dice are rolled. Find the probability of (a) a double, (b) a total of 10 or more.</p></statement>
+                <answer><p>(a) <m>\frac{1}{6}</m> (b) <m>\frac{1}{6}</m></p></answer>
+                <solution><p>(a) Six doubles out of <m>36</m>. (b) Totals 10, 11, 12 fill <m>3 + 2 + 1 = 6</m> cells: <m>\frac{6}{36} = \frac{1}{6}</m>.</p></solution>
+            </exercise>
+            <exercise xml:id="ex-three-coins-listing">
+                <statement><p>Three coins are tossed. List the <m>8</m> outcomes. Find the probability of (a) exactly two heads, (b) at least one tail.</p></statement>
+                <answer><p>HHH, HHT, HTH, HTT, THH, THT, TTH, TTT; (a) <m>\frac{3}{8}</m> (b) <m>\frac{7}{8}</m></p></answer>
+                <solution><p>(a) HHT, HTH, THH. (b) Every outcome except HHH: <m>1 - \frac{1}{8} = \frac{7}{8}</m>.</p></solution>
+            </exercise>
+            <exercise xml:id="ex-find-the-number-of-sectors">
+                <statement><p>A coin is tossed and a spinner with <m>n</m> equal sectors numbered 1 to <m>n</m> is spun. The probability of a head and a 1 is <m>\frac{1}{16}</m>. Find <m>n</m>.</p></statement>
+                <answer><p><m>n = 8</m></p></answer>
+                <solution><p>There are <m>2n</m> outcomes and one of them is a head and a 1, so <m>\frac{1}{2n} = \frac{1}{16}</m> and <m>n = 8</m>.</p></solution>
+            </exercise>
+            <exercise xml:id="ex-design-a-fair-game">
+                <title>Challenge: Design a Fair Game</title>
+                <statement><p>Two players roll two dice. Show that the rule <q>A wins if the total is even, otherwise B wins</q> gives a fair game. Then find a fair rule that uses the difference between the scores instead. Is the rule <q>A wins if the total is 7 or less</q> fair?</p></statement>
+                <hint><p>Count cells in the grid.</p></hint>
+                <answer><p>Even total: <m>\frac{18}{36}</m>, fair. <q>A wins if the difference is odd</q> is fair (<m>10 + 6 + 2 = 18</m> cells). <q>Total 7 or less</q> is not fair: <m>\frac{21}{36}</m>.</p></answer>
+                <solution><p>Even totals 2, 4, 6, 8, 10, 12 fill <m>1 + 3 + 5 + 5 + 3 + 1 = 18</m> cells, half of <m>36</m>. Differences 1, 3, 5 fill <m>10 + 6 + 2 = 18</m> cells. Totals 2 to 7 fill <m>1 + 2 + 3 + 4 + 5 + 6 = 21</m> cells, so A wins with probability <m>\frac{21}{36} = \frac{7}{12}</m>.</p></solution>
+            </exercise>
+        </exercises>
+
+        <axiom component="lesson-plan">
+            <title>Differentiation</title>
+            <table xml:id="table-differentiation-two-experiments">
+                <title>Differentiation Strategies</title>
+                <tabular halign="left" top="minor" bottom="minor" left="minor" right="minor">
+                    <row header="yes" bottom="medium"><cell>Learner Group</cell><cell>Strategy and Learning Experience</cell></row>
+                    <row><cell>Struggling Learners (Support)</cell><cell>Give blank <m>6 \times 6</m> grids and the coin-and-die list started (H1, H2, ...). Focus on activity parts (a) to (d) and <xref ref="example-choosing-a-lunch"/>. Assign <xref ref="ex-two-coins"/> and <xref ref="ex-two-dice-doubles"/>.</cell></row>
+                    <row><cell>On-Level Learners (Core)</cell><cell>Full activity and all examples. Assign <xref ref="ex-two-coins"/> to <xref ref="ex-find-the-number-of-sectors"/>.</cell></row>
+                    <row><cell>Advanced Learners (Challenge)</cell><cell>All exercises including <xref ref="ex-design-a-fair-game"/>. Extension: which total of two dice is most likely, and why? (7: it fills six cells, the whole diagonal.)</cell></row>
+                </tabular>
+            </table>
+        </axiom>
+
+
+        <xi:include href="../lesson-plan-templates/assessment-methods.ptx" />
+        <xi:include href="../lesson-plan-templates/reflection.ptx"/>
+    </subsection>
 </section>

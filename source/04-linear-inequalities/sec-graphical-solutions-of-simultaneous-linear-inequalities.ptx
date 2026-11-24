@@ -46,161 +46,350 @@
          Suggested activity: Learners draw several inequalities on the same axes and identify the region that satisfies all of them.
          Interactive (JSXGraph): Two or three inequalities shown together; the region satisfying all of them is highlighted. -->
 
-    <!-- [LP] Add guidance on activity -->
+    <!-- Section notes (2026-11)
+         SLOs: Essential 1.3 (d), as INNODEMS wrote it (repeats 4.3's outcome; 4.3 does one inequality, this section several at once)
+         Activity: as planning notes (several inequalities on one set of axes, find the region) | added: test points and count whole-number points
+         JSXGraph: fig-three-inequalities (assets/jsxgraph/three-inequalities.js), as planning notes, with four preset systems and whole-number points
+         STACK: assets/stack/top/1-numbers-and-algebra/04-linear-inequalities/04-graphical-solutions-of-simultaneous-linear-inequalities/ -->
+
+    <p component="lesson-plan">Upon completion of this lesson, learners will be able to:
+        <ol>
+            <li><p><alert>Know:</alert> that several inequalities can be drawn together; that the clear region <m>R</m> satisfies all of them; that solid edges belong to <m>R</m> and dashed edges do not.</p></li>
+            <li><p><alert>Do:</alert> draw two to four inequalities on one set of axes, find <m>R</m>, test points against every inequality, and list or count the whole-number points in <m>R</m>.</p></li>
+            <li><p><alert>Apply:</alert> find the possible choices of vehicles for a school trip.</p></li>
+        </ol>
+    </p>
 
     <axiom component="lesson-plan">
         <title>Problem-Solving and Discovery</title>
         <dl>
-            <li>
-                <title>Suggested Time</title>
-                <p>
-                    XXX minutes
-                </p>
-            </li>
-            <li>
-                <title>Objective</title>
-                <p>
-                    XXX
-                </p>
-            </li>
-            <li>
-                <title>Teacher's Role</title>
-                <p>
-                    XXX
-                </p>
-            </li>
+            <li><title>Suggested Time</title><p>14 minutes</p></li>
+            <li><title>Objective</title><p>Learners see the required region appear as each unwanted side is shaded.</p></li>
+            <li><title>Teacher's Role</title><p>In groups, each learner shades one inequality on tracing paper laid over one grid (or uses one colour of pencil hatching each). After each layer, ask: <q>Which part is still clear?</q></p></li>
         </dl>
     </axiom>
 
-    <!-- Add Activity -->
-
-    <!-- <activity>
+    <activity xml:id="act-three-rules-one-region">
+        <title>Three Rules, One Region</title>
         <statement>
+            <p>Work in a group, on one grid with <m>x</m> and <m>y</m> from <m>0</m> to <m>8</m>.</p>
+            <p>
+                <ol marker="(a)">
+                    <li>
+                        <p>Draw <m>x \ge 0</m>, <m>y \ge 0</m>, <m>x \lt 6</m> and <m>5x + 7y \le 35</m> on the grid, shading the unwanted side of each.</p>
+                        <solution component="lesson-plan">
+                            <p><m>x = 0</m>, <m>y = 0</m> and <m>5x + 7y = 35</m> (through <m>(7, 0)</m> and <m>(0, 5)</m>) are solid; <m>x = 6</m> is dashed. Shade left of <m>x = 0</m>, below <m>y = 0</m>, right of <m>x = 6</m> and above the sloping line.</p>
+                            <figure xml:id="fig-three-rules-one-region">
+                                <caption>The region <m>x \ge 0</m>, <m>y \ge 0</m>, <m>x \lt 6</m>, <m>5x + 7y \le 35</m>.</caption>
+                                <image width="60%">
+                                    <shortdescription>x = 0, y = 0 and 5x + 7y = 35 solid, x = 6 dashed; unwanted sides shaded; R the clear quadrilateral with corners (0, 0), (6, 0), (6, 5/7), (0, 5). Key: shaded, not wanted; unshaded (R), the required region.</shortdescription>
+                                    <latex-image>
+\begin{tikzpicture}[scale=0.5]
+\draw[gray!40, very thin] (-1,-1) grid (8,6);
+\fill[gray!45, fill opacity=0.6] (-1,-1) -- (0,-1) -- (0,6) -- (-1,6) -- cycle;
+\fill[gray!45, fill opacity=0.6] (-1,-1) -- (8,-1) -- (8,0) -- (-1,0) -- cycle;
+\fill[gray!45, fill opacity=0.6] (6,-1) -- (8,-1) -- (8,6) -- (6,6) -- cycle;
+\fill[gray!45, fill opacity=0.6] (8,-0.7143) -- (8,6) -- (-1,6) -- (-1,5.7143) -- cycle;
+\draw[-stealth] (-1,0) -- (8+0.6,0) node[right] {$x$};
+\draw[-stealth] (0,-1) -- (0,6+0.6) node[above] {$y$};
+\node[below, font=\scriptsize] at (-1,0) {$-1$};
+\node[below, font=\scriptsize] at (1,0) {$1$};
+\node[below, font=\scriptsize] at (2,0) {$2$};
+\node[below, font=\scriptsize] at (3,0) {$3$};
+\node[below, font=\scriptsize] at (4,0) {$4$};
+\node[below, font=\scriptsize] at (5,0) {$5$};
+\node[below, font=\scriptsize] at (6,0) {$6$};
+\node[below, font=\scriptsize] at (7,0) {$7$};
+\node[below, font=\scriptsize] at (8,0) {$8$};
+\node[left, font=\scriptsize] at (0,-1) {$-1$};
+\node[left, font=\scriptsize] at (0,1) {$1$};
+\node[left, font=\scriptsize] at (0,2) {$2$};
+\node[left, font=\scriptsize] at (0,3) {$3$};
+\node[left, font=\scriptsize] at (0,4) {$4$};
+\node[left, font=\scriptsize] at (0,5) {$5$};
+\node[left, font=\scriptsize] at (0,6) {$6$};
+\draw[very thick] (0,-1) -- (0,6);
+\draw[very thick] (-1,0) -- (8,0);
+\draw[very thick, dashed] (6,-1) -- (6,6);
+\draw[very thick] (-1,5.7143) -- (8,-0.7143);
+\node[font=\Large] at (2.5,2) {$R$};
+
+\fill[gray!45, fill opacity=0.6] (-1,-2.6) rectangle (-1+0.8,-2.6+0.6); \draw (-1,-2.6) rectangle (-1+0.8,-2.6+0.6);
+\node[right, font=\small] at (-1+0.8,-2.6+0.3) {Shaded, not wanted; unshaded ($R$), the required region.};
+\end{tikzpicture}
+                                    </latex-image>
+                                </image>
+                            </figure>
+                        </solution>
+                    </li>
+                    <li>
+                        <p>Label the clear region <m>R</m>.</p>
+                        <solution component="lesson-plan"><p><m>R</m> is the four-sided region with corners <m>(0, 0)</m>, <m>(6, 0)</m>, <m>(6, \tfrac{5}{7})</m> and <m>(0, 5)</m>.</p></solution>
+                    </li>
+                    <li>
+                        <p>Test the points <m>(3, 2)</m>, <m>(6, 0)</m>, <m>(0, 5)</m> and <m>(4, 3)</m>. Which are in <m>R</m>?</p>
+                        <solution component="lesson-plan"><p><m>(3, 2)</m>: in <m>R</m> (<m>5x + 7y = 29</m>). <m>(6, 0)</m>: not in <m>R</m>, it is on the dashed line <m>x = 6</m>. <m>(0, 5)</m>: in <m>R</m>, on a solid edge (<m>35</m>). <m>(4, 3)</m>: not in <m>R</m> (<m>41 \gt 35</m>).</p></solution>
+                    </li>
+                    <li>
+                        <p>How many whole-number points are in <m>R</m>?</p>
+                        <solution component="lesson-plan"><p><m>23</m>: for <m>x = 0</m>, <m>y = 0</m> to <m>5</m> (<m>6</m> points); <m>x = 1</m>, <m>y = 0</m> to <m>4</m> (<m>5</m>); <m>x = 2</m>, <m>y = 0</m> to <m>3</m> (<m>4</m>); <m>x = 3</m>, <m>y = 0</m> to <m>2</m> (<m>3</m>); <m>x = 4</m>, <m>y = 0</m> to <m>2</m> (<m>3</m>); <m>x = 5</m>, <m>y = 0</m> to <m>1</m> (<m>2</m>).</p></solution>
+                    </li>
+                    <li>
+                        <p>Explain to your partner why <m>(6, 0)</m> is not in <m>R</m>, although <m>5(6) + 7(0) \le 35</m>.</p>
+                        <solution component="lesson-plan"><p>A point must satisfy every inequality. <m>(6, 0)</m> satisfies <m>5x + 7y \le 35</m> but not <m>x \lt 6</m>.</p></solution>
+                    </li>
+                </ol>
+            </p>
         </statement>
-    </activity> -->
+    </activity>
 
-    <!-- [LP] Add guidance on structured lesson plan-->
-
-    <!-- <axiom component="lesson-plan">
+    <axiom component="lesson-plan">
         <title>Structured Instruction</title>
         <p>
             <dl>
-            <li>
-                <title>Suggested Time</title>
-                <p>
-                    XX minutes
-                </p>
-            </li>
-            <li>
-                <title>Objective</title>
-                <p>
-                    To formalize the concepts and properties learners discovered in the anchor task.
-                </p>
-            </li>
+                <li><title>Suggested Time</title><p>8 minutes</p></li>
+                <li><title>Objective</title><p>To formalise the required region of several inequalities.</p></li>
             </dl>
         </p>
         <paragraphs>
             <title>Key Takeaways &amp; Teacher Connection</title>
             <ol>
-                <li>
-                    <p>
-                        <alert>Connecting to Learner Work:</alert> XXXX
-                    </p>
-                </li>
+                <li><p><alert>Connecting to Learner Work:</alert> the part of the grid still clear after every layer of shading is <m>R</m>.</p></li>
+                <li><p>A point is in <m>R</m> only if it passes every test. Points on solid edges are in <m>R</m>; points on dashed edges are not.</p></li>
+                <li><p>Whole-number points in <m>R</m> are marked as dots.</p></li>
             </ol>
         </paragraphs>
-    </axiom> -->
+    </axiom>
 
-    <!-- Add insight / key takeaway directly related to activity / learner experience -->
+    <insight xml:id="insight-several-inequalities-together">
+        <title>Several Inequalities Together</title>
+        <p>To show several inequalities at once, draw every boundary on one set of axes and shade the unwanted side of each. The region left clear is the <term>required region</term> <m>R</m>: it satisfies all the inequalities.</p>
+        <p>A point is in <m>R</m> only if it satisfies every inequality. Points on a solid edge of <m>R</m> belong to <m>R</m>; points on a dashed edge do not.</p>
+        <p>When the unknowns count things, only points with whole-number coordinates make sense. We call them <term>whole-number points</term> and mark the ones in <m>R</m> as dots.</p>
+    </insight>
 
-    <!-- <insight>
-    </insight> -->
+    <figure xml:id="fig-three-inequalities">
+        <caption>Tick each inequality to shade its unwanted side. The clear region <m>R</m> satisfies all of them. Tick Whole-number points to count them.</caption>
+        <interactive xml:id="interactive-three-inequalities" platform="jsxgraph" width="90%" aspect="4:3" source="jsxgraph/three-inequalities.js">
+            <slate xml:id="jsxgraph-three-inequalities" surface="jsxboard" aspect="4:3"/>
+            <instructions>
+                <p>
+                    <ul>
+                        <li><p>Untick every inequality, then tick them one at a time and watch the clear region shrink to <m>R</m>.</p></li>
+                        <li><p>Tick <alert>Whole-number points</alert> to mark the whole-number points in <m>R</m> and count them. Are points on the dashed edges counted?</p></li>
+                        <li><p>Press <alert>Next system</alert> to see another system. The fourth is the school trip, with <m>b</m> across and <m>m</m> up.</p></li>
+                    </ul>
+                </p>
+            </instructions>
+        </interactive>
+    </figure>
 
-    <!-- Add further instruction (not in a block) to develop ideas as needed -->
+    <note xml:id="note-graphing-software-for-inequalities">
+        <title>Graphing Software</title>
+        <p>Free graphing software such as GeoGebra or Desmos can draw inequalities for you. Most of these programs shade the <em>wanted</em> side, so read the key or test a point before you trust the picture.</p>
+    </note>
 
     <xi:include href="../lesson-plan-templates/example-intro.ptx" />
 
-    <!-- Add at least 3 examples -->
-
-    <!-- <example>
+    <example xml:id="example-finding-the-required-region">
+        <title>Finding the Required Region</title>
         <statement>
+            <p>Show the region <m>x \ge 1</m>, <m>y \gt 0</m>, <m>3x + 8y \le 24</m>, and list its whole-number points.</p>
         </statement>
         <solution>
+            <p><m>x = 1</m> is a solid vertical line; shade to its left. <m>y = 0</m> is the <m>x</m>-axis, dashed; shade below it. <m>3x + 8y = 24</m> crosses the axes at <m>(8, 0)</m> and <m>(0, 3)</m>; it is solid, and <m>(0, 0)</m> gives <m>0 \le 24</m>, true, so shade the side away from the origin.</p>
+            <p><m>R</m> is the clear triangle with corners <m>(1, 0)</m>, <m>(8, 0)</m> and <m>(1, 2.625)</m>; its bottom edge is dashed.</p>
+            <p>Whole-number points: <m>y</m> must be at least <m>1</m>. For <m>y = 1</m>, <m>3x \le 16</m>, so <m>x = 1</m> to <m>5</m>. For <m>y = 2</m>, <m>3x \le 8</m>, so <m>x = 1</m> or <m>2</m>. That is <m>7</m> points: <m>(1, 1)</m>, <m>(2, 1)</m>, <m>(3, 1)</m>, <m>(4, 1)</m>, <m>(5, 1)</m>, <m>(1, 2)</m> and <m>(2, 2)</m>.</p>
+            <figure xml:id="fig-required-region-triangle">
+                <caption>The region <m>x \ge 1</m>, <m>y \gt 0</m>, <m>3x + 8y \le 24</m> and its whole-number points.</caption>
+                <image width="70%">
+                    <shortdescription>x = 1 solid, y = 0 dashed, 3x + 8y = 24 solid through (8, 0) and (0, 3); R the clear triangle with corners (1, 0), (8, 0), (1, 2.625); its 7 whole-number points marked as dots. Key: shaded, not wanted; unshaded (R), the required region.</shortdescription>
+                    <latex-image>
+\begin{tikzpicture}[scale=0.6]
+\draw[gray!40, very thin] (-1,-1) grid (9,4);
+\fill[gray!45, fill opacity=0.6] (-1,-1) -- (1,-1) -- (1,4) -- (-1,4) -- cycle;
+\fill[gray!45, fill opacity=0.6] (-1,-1) -- (9,-1) -- (9,0) -- (-1,0) -- cycle;
+\fill[gray!45, fill opacity=0.6] (9,-0.375) -- (9,4) -- (-1,4) -- (-1,3.375) -- cycle;
+\draw[-stealth] (-1,0) -- (9+0.6,0) node[right] {$x$};
+\draw[-stealth] (0,-1) -- (0,4+0.6) node[above] {$y$};
+\node[below, font=\scriptsize] at (-1,0) {$-1$};
+\node[below, font=\scriptsize] at (1,0) {$1$};
+\node[below, font=\scriptsize] at (2,0) {$2$};
+\node[below, font=\scriptsize] at (3,0) {$3$};
+\node[below, font=\scriptsize] at (4,0) {$4$};
+\node[below, font=\scriptsize] at (5,0) {$5$};
+\node[below, font=\scriptsize] at (6,0) {$6$};
+\node[below, font=\scriptsize] at (7,0) {$7$};
+\node[below, font=\scriptsize] at (8,0) {$8$};
+\node[below, font=\scriptsize] at (9,0) {$9$};
+\node[left, font=\scriptsize] at (0,-1) {$-1$};
+\node[left, font=\scriptsize] at (0,1) {$1$};
+\node[left, font=\scriptsize] at (0,2) {$2$};
+\node[left, font=\scriptsize] at (0,3) {$3$};
+\node[left, font=\scriptsize] at (0,4) {$4$};
+\draw[very thick] (1,-1) -- (1,4);
+\draw[very thick, dashed] (-1,0) -- (9,0);
+\draw[very thick] (-1,3.375) -- (9,-0.375);
+\fill (1,1) circle (3pt);
+\fill (1,2) circle (3pt);
+\fill (2,1) circle (3pt);
+\fill (2,2) circle (3pt);
+\fill (3,1) circle (3pt);
+\fill (4,1) circle (3pt);
+\fill (5,1) circle (3pt);
+\node[font=\Large] at (2.6,0.55) {$R$};
+
+\fill[gray!45, fill opacity=0.6] (-1,-2.6) rectangle (-1+0.8,-2.6+0.6); \draw (-1,-2.6) rectangle (-1+0.8,-2.6+0.6);
+\node[right, font=\small] at (-1+0.8,-2.6+0.3) {Shaded, not wanted; unshaded ($R$), the required region.};
+\end{tikzpicture}
+                    </latex-image>
+                </image>
+            </figure>
         </solution>
     </example>
 
-    <example>
+    <example xml:id="example-testing-points">
+        <title>Testing Points Against Every Inequality</title>
         <statement>
+            <p>For the region in <xref ref="example-finding-the-required-region"/>, decide whether each point is in <m>R</m>: <m>(2, 2)</m>, <m>(4, 1.5)</m>, <m>(5, 0)</m>, <m>(0, 1)</m>.</p>
         </statement>
         <solution>
+            <table xml:id="table-testing-points">
+                <title>Testing Four Points</title>
+                <tabular halign="center" top="minor" bottom="minor" left="minor" right="minor">
+                    <row header="yes" bottom="medium"><cell>Point</cell><cell><m>x \ge 1</m></cell><cell><m>y \gt 0</m></cell><cell><m>3x + 8y \le 24</m></cell><cell>In <m>R</m>?</cell></row>
+                    <row><cell><m>(2, 2)</m></cell><cell>yes</cell><cell>yes</cell><cell><m>22</m>: yes</cell><cell>yes, inside</cell></row>
+                    <row><cell><m>(4, 1.5)</m></cell><cell>yes</cell><cell>yes</cell><cell><m>24</m>: yes</cell><cell>yes, on the solid edge</cell></row>
+                    <row><cell><m>(5, 0)</m></cell><cell>yes</cell><cell>no</cell><cell><m>15</m>: yes</cell><cell>no, on the dashed edge</cell></row>
+                    <row><cell><m>(0, 1)</m></cell><cell>no</cell><cell>yes</cell><cell><m>8</m>: yes</cell><cell>no, outside</cell></row>
+                </tabular>
+            </table>
+            <p>A point that fails even one inequality is not in <m>R</m>.</p>
         </solution>
     </example>
 
-    <example>
+    <example xml:id="example-vehicles-for-a-school-trip">
+        <title>Vehicles for a School Trip</title>
         <statement>
+            <p>In <xref ref="example-seats-for-a-school-trip"/> the school needed <m>7b + 2m \ge 28</m> for <m>b</m> buses and <m>m</m> matatus. Only <m>3</m> buses and <m>10</m> matatus are available. Show the region and list the possible choices.</p>
         </statement>
         <solution>
+            <p>The inequalities are <m>7b + 2m \ge 28</m>, <m>b \le 3</m> and <m>m \le 10</m>, all with solid boundaries. <m>7b + 2m = 28</m> crosses the axes at <m>(4, 0)</m> and <m>(0, 14)</m>; <m>(0, 0)</m> gives <m>0 \ge 28</m>, false, so shade the side containing the origin. Shade to the right of <m>b = 3</m> and above <m>m = 10</m>.</p>
+            <p>The whole-number points in <m>R</m> are <m>b = 2</m> with <m>m = 7, 8, 9, 10</m>, and <m>b = 3</m> with <m>m = 4, 5, \ldots, 10</m>: <m>11</m> choices. For <m>b = 0</m> or <m>1</m> the school would need more than <m>10</m> matatus. <m>(2, 6)</m> is not a choice: <m>7(2) + 2(6) = 26 \lt 28</m>, too few seats.</p>
+            <p>Which of the <m>11</m> choices is cheapest is a question for linear programming.</p>
+            <figure xml:id="fig-school-trip-region">
+                <caption>The school trip region with <m>b</m> across and <m>m</m> up.</caption>
+                <image width="55%">
+                    <shortdescription>b across, m up; the solid line through (4, 0) and (0, 14), b = 3 and m = 10 solid; the side of the sloping line containing the origin shaded, the parts right of b = 3 and above m = 10 shaded; R the clear triangle with corners (8/7, 10), (3, 3.5), (3, 10); 11 whole-number points marked as dots. Key: shaded, not wanted; unshaded (R), the required region.</shortdescription>
+                    <latex-image>
+\begin{tikzpicture}[scale=0.4]
+\draw[gray!40, very thin] (0,0) grid (5,14);
+\fill[gray!45, fill opacity=0.6] (0,0) -- (4,0) -- (0,14) -- (0,14) -- cycle;
+\fill[gray!45, fill opacity=0.6] (3,0) -- (5,0) -- (5,14) -- (3,14) -- cycle;
+\fill[gray!45, fill opacity=0.6] (5,10) -- (5,14) -- (0,14) -- (0,10) -- cycle;
+\draw[-stealth] (0,0) -- (5+0.6,0) node[right] {$b$};
+\draw[-stealth] (0,0) -- (0,14+0.6) node[above] {$m$};
+\node[below, font=\scriptsize] at (2,0) {$2$};
+\node[below, font=\scriptsize] at (4,0) {$4$};
+\node[left, font=\scriptsize] at (0,2) {$2$};
+\node[left, font=\scriptsize] at (0,4) {$4$};
+\node[left, font=\scriptsize] at (0,6) {$6$};
+\node[left, font=\scriptsize] at (0,8) {$8$};
+\node[left, font=\scriptsize] at (0,10) {$10$};
+\node[left, font=\scriptsize] at (0,12) {$12$};
+\node[left, font=\scriptsize] at (0,14) {$14$};
+\node[below left, font=\scriptsize] at (0,0) {$0$};
+\draw[very thick] (0,14) -- (4,0);
+\draw[very thick] (3,0) -- (3,14);
+\draw[very thick] (0,10) -- (5,10);
+\fill (2,7) circle (3pt);
+\fill (2,8) circle (3pt);
+\fill (2,9) circle (3pt);
+\fill (2,10) circle (3pt);
+\fill (3,4) circle (3pt);
+\fill (3,5) circle (3pt);
+\fill (3,6) circle (3pt);
+\fill (3,7) circle (3pt);
+\fill (3,8) circle (3pt);
+\fill (3,9) circle (3pt);
+\fill (3,10) circle (3pt);
+\node[font=\Large] at (2.55,8.5) {$R$};
+
+\fill[gray!45, fill opacity=0.6] (0,-1.6) rectangle (0+0.8,-1.6+0.6); \draw (0,-1.6) rectangle (0+0.8,-1.6+0.6);
+\node[right, font=\small] at (0+0.8,-1.6+0.3) {Shaded, not wanted; unshaded ($R$), the required region.};
+\end{tikzpicture}
+                    </latex-image>
+                </image>
+            </figure>
         </solution>
-    </example> -->
+    </example>
 
     <xi:include href="../lesson-plan-templates/assessment-intro.ptx" />
+    <xi:include href="../lesson-plan-templates/checkpoint.ptx" />
 
-    <!-- If STACK questions are included, uncomment this: -->
+    <p>Choose from each list. Type coordinates and counts as whole numbers, for example <c>-2</c>.</p>
 
-    <!-- <xi:include href="../lesson-plan-templates/checkpoint.ptx" /> -->
+    <exercise xml:id="ex-which-region-satisfies-three-inequalities">
+        <!--<title></title>-->
+        <stack label="stk-which-region-satisfies-three-inequalities" source="stack/top/1-numbers-and-algebra/04-linear-inequalities/04-graphical-solutions-of-simultaneous-linear-inequalities/Which-region-satisfies-three-inequalities.xml"/>
+    </exercise>
 
-    <!-- Add STACK exercises if made -->
+    <exercise xml:id="ex-points-and-a-region-defined-by-three-inequalities">
+        <!--<title></title>-->
+        <stack label="stk-points-and-a-region-defined-by-three-inequalities" source="stack/top/1-numbers-and-algebra/04-linear-inequalities/04-graphical-solutions-of-simultaneous-linear-inequalities/Points-and-a-region-defined-by-three-inequalities.xml"/>
+    </exercise>
 
-    <!-- Add static exercises -->
+    <exercise xml:id="ex-whole-number-points-in-a-required-region">
+        <!--<title></title>-->
+        <stack label="stk-whole-number-points-in-a-required-region" source="stack/top/1-numbers-and-algebra/04-linear-inequalities/04-graphical-solutions-of-simultaneous-linear-inequalities/Whole-number-points-in-a-required-region.xml"/>
+    </exercise>
 
-    <!-- <exercises>
-        <exercise>
-            <statement>   
+    <exercises xml:id="exercises-simultaneous-inequalities">
+        <exercise xml:id="ex-draw-four-inequalities">
+            <statement><p>Draw <m>x \ge 0</m>, <m>y \ge -1</m>, <m>x \lt 4</m> and <m>4x + 9y \le 36</m> on one set of axes, shading the unwanted sides, and label <m>R</m>.</p></statement>
+            <answer><p><m>R</m> has corners <m>(0, -1)</m>, <m>(4, -1)</m>, <m>(4, \tfrac{20}{9})</m> and <m>(0, 4)</m>. The edge on <m>x = 4</m> is dashed; the others are solid.</p></answer>
+            <solution><p>Draw <m>x = 0</m>, <m>y = -1</m> and <m>4x + 9y = 36</m> solid (the signs include equality) and <m>x = 4</m> dashed. For <m>4x + 9y = 36</m> use <m>(0, 4)</m> and <m>(9, 0)</m>. Test <m>(0, 0)</m>: <m>0 \le 36</m> is true, so shade the side away from the origin. Shade left of <m>x = 0</m>, below <m>y = -1</m> and right of <m>x = 4</m>. On <m>x = 4</m>: <m>16 + 9y = 36</m>, so <m>y = \tfrac{20}{9}</m>. On <m>y = -1</m> the sloping line is at <m>x = 11.25</m>, beyond <m>x = 4</m>, so the bottom corners are <m>(0, -1)</m> and <m>(4, -1)</m>.</p></solution>
+        </exercise>
+        <exercise xml:id="ex-points-in-four-region">
+            <statement><p>For the region in <xref ref="ex-draw-four-inequalities"/>, which of <m>(1, 1)</m>, <m>(4, 0)</m>, <m>(0, 4)</m> and <m>(2, 3)</m> are in <m>R</m>?</p></statement>
+            <answer><p><m>(1, 1)</m>: yes. <m>(4, 0)</m>: no, it is on the dashed edge. <m>(0, 4)</m>: yes, on a solid edge (<m>36</m>). <m>(2, 3)</m>: yes (<m>35</m>).</p></answer>
+        </exercise>
+        <exercise xml:id="ex-small-region-points">
+            <statement><p>Draw the region <m>x \ge 1</m>, <m>y \ge 1</m>, <m>2x + 7y \lt 14</m> and list its whole-number points.</p></statement>
+            <answer><p><m>(1, 1)</m>, <m>(2, 1)</m> and <m>(3, 1)</m>.</p></answer>
+            <solution><p>With <m>y = 1</m>: <m>2x \lt 7</m>, so <m>x \lt 3.5</m>: <m>x = 1, 2, 3</m>. With <m>y = 2</m>: <m>2x \lt 0</m>, impossible with <m>x \ge 1</m>.</p></solution>
+        </exercise>
+        <exercise xml:id="ex-bakery">
+            <statement><p>A bakery makes <m>x</m> loaves and <m>y</m> cakes a day. It can bake at most <m>40</m> items, must make at least <m>8</m> cakes, and makes at least three times as many loaves as cakes. Write three inequalities, draw <m>R</m> with <m>x</m> across from <m>0</m> to <m>40</m>, and count the whole-number combinations.</p></statement>
+            <answer><p><m>x + y \le 40</m>, <m>y \ge 8</m>, <m>x \ge 3y</m>. <m>R</m> is the triangle with corners <m>(24, 8)</m>, <m>(32, 8)</m> and <m>(30, 10)</m>. There are <m>15</m> combinations.</p></answer>
+            <solution><p><m>y = 8</m>: <m>x</m> from <m>24</m> to <m>32</m> (<m>9</m>). <m>y = 9</m>: <m>x</m> from <m>27</m> to <m>31</m> (<m>5</m>). <m>y = 10</m>: <m>x = 30</m> (<m>1</m>). Total <m>15</m>.</p></solution>
+        </exercise>
+        <exercise xml:id="ex-give-two-points">
+            <statement><p>Give two whole-number points in the region of <xref ref="ex-small-region-points"/> and one whole-number point that is not in it, with a reason.</p></statement>
+            <answer><p>For example <m>(1, 1)</m> and <m>(2, 1)</m> are in it; <m>(4, 1)</m> is not, because <m>2(4) + 7(1) = 15</m>, which is not less than <m>14</m>.</p></answer>
+        </exercise>
+        <exercise xml:id="ex-no-region-left-clear">
+            <title>Challenge: An Empty Region</title>
+            <statement><p>Draw <m>x \gt 3</m>, <m>y \ge 0</m> and <m>2x + 7y \le 4</m>. What do you notice?</p></statement>
+            <hint><p>Where does <m>2x + 7y = 4</m> cross the <m>x</m>-axis?</p></hint>
+            <answer><p>No region is left clear: no point satisfies all three.</p></answer>
+            <solution><p><m>2x + 7y = 4</m> crosses the <m>x</m>-axis at <m>(2, 0)</m>. With <m>y \ge 0</m>, <m>2x + 7y \le 4</m> needs <m>2x \le 4</m>, so <m>x \le 2</m>, which contradicts <m>x \gt 3</m>.</p></solution>
+        </exercise>
+    </exercises>
 
-            </statement>   
-            <solution>
-
-            </solution>             
-        </exercise>        
-    </exercises> -->
-
-    <!-- [LP] Add information on how to differentiate  -->
-
-    <!-- <axiom component="lesson-plan">
+    <axiom component="lesson-plan">
         <title>Differentiation</title>
-
-        <table>
-            <title>Differentiation</title>
-            <tabular halign="left">
-                <row header="yes" bottom="minor">
-                    <cell>Learner Group</cell>
-                    <cell>Strategy &amp; Learning Experience</cell>
-                    <cell></cell>
-                </row>
-                <row>
-                    <cell>Struggling Learners (Support)</cell>
-                    <cell>
-                        XXXX
-                    </cell>
-                    <cell></cell>
-                </row>
-                <row>
-                    <cell>On-Level Learners (Core)</cell>
-                    <cell>
-                        <line>The core lesson activities as described above.</line>
-                    </cell>
-                    <cell></cell>
-                </row>
-                <row>
-                    <cell>Advanced Learners (Challenge)</cell>
-                    <cell>
-                        XXXX
-                    </cell>
-                    <cell></cell>
-                </row>
+        <table xml:id="table-differentiation-simultaneous-inequalities">
+            <title>Differentiation Strategies</title>
+            <tabular halign="left" top="minor" bottom="minor" left="minor" right="minor">
+                <row header="yes" bottom="medium"><cell>Learner Group</cell><cell>Strategy and Learning Experience</cell></row>
+                <row><cell>Struggling Learners (Support)</cell><cell>Use one colour of hatching for each inequality. Work <xref ref="example-finding-the-required-region"/>. Assign <xref ref="ex-draw-four-inequalities"/> to <xref ref="ex-small-region-points"/>.</cell></row>
+                <row><cell>On-Level Learners (Core)</cell><cell>Full activity and all examples. Assign <xref ref="ex-draw-four-inequalities"/> to <xref ref="ex-give-two-points"/>.</cell></row>
+                <row><cell>Advanced Learners (Challenge)</cell><cell>All exercises including <xref ref="ex-no-region-left-clear"/>. Extension: in <xref ref="example-vehicles-for-a-school-trip"/>, replace <m>m \le 10</m> by a tighter limit on matatus so that exactly <m>5</m> choices remain. (Answer: <m>m \le 7</m>, leaving <m>(2, 7)</m>, <m>(3, 4)</m>, <m>(3, 5)</m>, <m>(3, 6)</m>, <m>(3, 7)</m>.)</cell></row>
+                <row><cell>Assessment levels</cell><cell>Exceeds: forms the inequalities, draws them and tests points on the edges. Meets: draws every inequality with the correct line style and shading and finds <m>R</m>. Approaches: draws the boundaries, but some shading or line styles are wrong. Below: a boundary is wrong.</cell></row>
             </tabular>
         </table>
-    </axiom> -->
+    </axiom>
 
     <xi:include href="../lesson-plan-templates/assessment-methods.ptx" />
 

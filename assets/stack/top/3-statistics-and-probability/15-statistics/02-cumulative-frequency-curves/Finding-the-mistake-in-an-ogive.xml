@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<quiz>
+<question type="stack">
+  <name><text>Finding the mistake in an ogive</text></name>
+  <questiontext format="html">
+    <text><![CDATA[<p>The table shows [[if test="is(lo1=10)"]]the marks out of 70 of \({@n@}\) learners in a test[[else]]the masses, in kg (to the nearest kg), of \({@n@}\) sacks of charcoal at a market in Kitui[[/if]].</p><table border="1" style="border-collapse:collapse;text-align:center;"><tr><th style="padding:4px 10px;">[[if test="is(lo1=10)"]]Mark[[else]]Mass (kg)[[/if]]</th><th style="padding:4px 10px;">{@lo[1]@}–{@hi[1]@}</th><th style="padding:4px 10px;">{@lo[2]@}–{@hi[2]@}</th><th style="padding:4px 10px;">{@lo[3]@}–{@hi[3]@}</th><th style="padding:4px 10px;">{@lo[4]@}–{@hi[4]@}</th><th style="padding:4px 10px;">{@lo[5]@}–{@hi[5]@}</th><th style="padding:4px 10px;">{@lo[6]@}–{@hi[6]@}</th></tr><tr><td style="padding:4px 10px;">Frequency (\(f\))</td><td style="padding:4px 10px;">{@f[1]@}</td><td style="padding:4px 10px;">{@f[2]@}</td><td style="padding:4px 10px;">{@f[3]@}</td><td style="padding:4px 10px;">{@f[4]@}</td><td style="padding:4px 10px;">{@f[5]@}</td><td style="padding:4px 10px;">{@f[6]@}</td></tr></table><p>Juma drew this cumulative frequency curve for the data.</p><div style="text-align:center;" role="img" aria-label="Juma's graph: the points ({#jx[1]#}, {#jy[1]#}), ({#jx[2]#}, {#jy[2]#}), ({#jx[3]#}, {#jy[3]#}), ({#jx[4]#}, {#jy[4]#}), ({#jx[5]#}, {#jy[5]#}), ({#jx[6]#}, {#jy[6]#}) and ({#jx[7]#}, {#jy[7]#}) joined by straight lines. Horizontal axis [[if test="is(lo1=10)"]]mark[[else]]mass in kg[[/if]], vertical axis cumulative frequency.">
+[[jsxgraph width="480px" height="320px"]]
+(function() {
+  var jx = {#jx#};
+  var jy = {#jy#};
+  var xmax = {#xmax#};
+  var ymax = {#ymax#};
+  var b = JXG.JSXGraph.initBoard(divid, {
+    boundingbox: [-0.1*xmax, 1.15*ymax, 1.03*xmax, -0.14*ymax],
+    axis: false, grid: false, pan: {enabled: false}, zoom: {enabled: false},
+    showNavigation: false, showCopyright: false
+  });
+  // light grid every 2 units
+  for (var gx = 0; gx <= xmax; gx += 2) {
+    b.create('segment', [[gx, 0], [gx, ymax]], {strokeColor: '#dddddd', strokeWidth: (gx % 10 === 0) ? 1.2 : 0.6, fixed: true, highlight: false});
+  }
+  for (var gy = 0; gy <= ymax; gy += 2) {
+    b.create('segment', [[0, gy], [xmax, gy]], {strokeColor: '#dddddd', strokeWidth: (gy % 10 === 0) ? 1.2 : 0.6, fixed: true, highlight: false});
+  }
+  b.create('segment', [[0, 0], [xmax, 0]], {strokeColor: '#000000', strokeWidth: 1.5, fixed: true, highlight: false});
+  b.create('segment', [[0, 0], [0, ymax]], {strokeColor: '#000000', strokeWidth: 1.5, fixed: true, highlight: false});
+  for (var tx = 0; tx <= xmax; tx += 10) {
+    b.create('text', [tx, -0.05*ymax, String(tx)], {anchorX: 'middle', anchorY: 'middle', fixed: true, highlight: false, fontSize: 12});
+  }
+  for (var ty = 0; ty <= ymax; ty += 10) {
+    b.create('text', [-0.02*xmax, ty, String(ty)], {anchorX: 'right', anchorY: 'middle', fixed: true, highlight: false, fontSize: 12});
+  }
+  b.create('text', [xmax/2, -0.11*ymax, {#xlab#}], {anchorX: 'middle', anchorY: 'middle', fixed: true, highlight: false, fontSize: 13});
+  b.create('text', [0.02*xmax, 1.09*ymax, 'Cumulative frequency'], {anchorX: 'left', anchorY: 'middle', fixed: true, highlight: false, fontSize: 13});
+  var pts = [];
+  for (var i = 0; i < jx.length; i++) {
+    pts.push(b.create('point', [jx[i], jy[i]], {name: '', size: 3, face: 'x', strokeColor: '#1f4e9c', fixed: true, highlight: false, showInfobox: false}));
+  }
+  b.create('polygonalchain', pts, {borders: {strokeColor: '#1f4e9c', strokeWidth: 2, highlight: false}, fixed: true});
+})();
+[[/jsxgraph]]
+</div><p>(a) What did Juma do wrong?</p><div>[[input:ans1]] [[validation:ans1]] [[feedback:prt1]]</div><p>(b) Where should the cumulative frequency for the class {@lo[j]@}–{@hi[j]@} be plotted?</p><div>\(x =\) [[input:ans2]] [[validation:ans2]] [[feedback:prt2]]</div>]]></text>
+  </questiontext>
+  <generalfeedback format="html">
+    <text><![CDATA[<p>Check two things for each of Juma's points: is its height a running total, and is it plotted at an upper class boundary? The cumulative frequency at an upper class boundary counts every value below that boundary, so each running total belongs at the upper class boundary of its class, and the curve starts at \(({@exd(lcb1)@},\ 0)\). Joining the points with straight lines is fine.</p>[[if test="is(er=1)"]]<p>(a) Juma's heights go up and down: they are the frequencies \({@f@}\), not the running totals \({@cf@}\).</p>[[elif test="is(er=2)"]]<p>(a) Juma's points are at the class midpoints, such as \({@exd(mid[1])@}\) for the first class, half a class to the left of the upper class boundaries.</p>[[else]]<p>(a) Juma's points are at the lower class boundaries, such as \({@exd(lcb[1])@}\) for the first class, a whole class to the left of the upper class boundaries.</p>[[/if]]<p>(b) The class {@lo[j]@}–{@hi[j]@} has upper class boundary \({@exd(ucbj)@}\), so its cumulative frequency, \({@cf[j]@}\), is plotted at \(x = {@exd(ucbj)@}\).</p>]]></text>
+  </generalfeedback>
+  <defaultgrade>2</defaultgrade>
+  <penalty>0.1</penalty>
+  <hidden>0</hidden>
+  <idnumber></idnumber>
+  <stackversion><text>2026063000</text></stackversion>
+  <questionvariables>
+    <text><![CDATA[/* exd: shortest exact decimal display of a terminating value (up to 3 d.p.) */
+exd(v) := if integerp(v) then v else if integerp(10*v) then dispdp(float(v),1) else if integerp(100*v) then dispdp(float(v),2) else dispdp(float(v),3);
+/* Design: find-the-mistake pattern for an ogive. er 1: frequencies at upper boundaries; er 2: cf at midpoints; er 3: cf at lower boundaries. Source: adapted from SMP AS/A2 Statistics 1, chapter 1, section D. */
+flist: [[2,8,11,12,11,2],[2,2,12,12,15,11],[7,7,11,13,9,9],[14,11,7,6,6,2],[3,5,8,11,10,6],[2,10,14,7,7,6],[3,5,11,4,4,3],[6,6,10,15,2,2],[3,6,7,12,4,3],[4,6,8,11,6,6]];
+ix: 1+rand(10);
+f: flist[ix];
+lo1: rand([10,20]);
+er: rand([1,2,3]);
+j: 2+rand(4);
+w: 10;
+lo: makelist(lo1+(t-1)*w,t,1,6);
+hi: makelist(lo1+t*w-1,t,1,6);
+cf: makelist(sum(f[i],i,1,t),t,1,6);
+n: cf[6];
+lcb1: lo1-1/2;
+ucb: makelist(lo1+t*w-1/2,t,1,6);
+mid: makelist(lo1+(t-1)*w+(w-1)/2,t,1,6);
+lcb: makelist(lo1+(t-1)*w-1/2,t,1,6);
+ucbj: ucb[j];
+jx: float(if er=1 then append([lcb1],ucb) elseif er=2 then append([lcb1-5],mid) else append([lcb1-10],lcb));
+jy: if er=1 then append([0],f) else append([0],cf);
+xmax: lo1+70;
+ymax: 2*ceiling(n/2);
+xlab: if lo1=10 then "Mark" else "Mass (kg)";
+opts: [["o1",false,"He joined the points with straight lines instead of a smooth curve."],["o2",is(er=1),"He plotted the frequencies instead of the cumulative frequencies."],["o3",is(er=2),"He plotted each cumulative frequency at the class midpoint instead of the upper class boundary."],["o4",is(er=3),"He plotted each cumulative frequency at the lower class boundary instead of the upper class boundary."]];
+wr1: if er=2 then "o4" else "o3";
+/* diagnostics */
+midj: mid[j];
+lcbj: lcb[j];
+hij: hi[j];
+ucbp: ucbj+2;]]></text>
+  </questionvariables>
+  <specificfeedback format="html"><text><![CDATA[]]></text></specificfeedback>
+  <questionnote format="moodle_auto_format">
+    <text>ix={@ix@}, lo1={@lo1@}, er={@er@}, j={@j@}</text>
+  </questionnote>
+  <questiondescription format="html"><text><![CDATA[<p id="concept">Statistics II: finding the mistake in an ogive</p><p id="description">Grade 12 CBE Core and Essential 3.1: Identify the plotting error in a drawn cumulative frequency curve and give the correct plotting position.</p><p id="edition">Core and Essential</p><p id="provenance">This question is original to this project and does not come from Cassell, D., Instone, S., Ling, J., Scruton, P. and Shilton, S., SMP AS/A2 Mathematics: Statistics 1 for Edexcel, Cambridge University Press, 2004.</p><p id="citation">INNODEMS CBC Grade 12 Mathematics, first draft by Ben Davies, 2026. Aligned to the KICD Senior School Curriculum Design, Core and Essential Mathematics Grade 12 (draft).</p>]]></text></questiondescription>
+  <questionsimplify>1</questionsimplify>
+  <assumepositive>0</assumepositive>
+  <assumereal>0</assumereal>
+  <prtcorrect format="html"><text><![CDATA[[[commonstring key="symbolicprtcorrectfeedback"/]] [[commonstring key="defaultprtcorrectfeedback"/]]]]></text></prtcorrect>
+  <prtpartiallycorrect format="html"><text><![CDATA[[[commonstring key="symbolicprtpartiallycorrectfeedback"/]] [[commonstring key="defaultprtpartiallycorrectfeedback"/]]]]></text></prtpartiallycorrect>
+  <prtincorrect format="html"><text><![CDATA[[[commonstring key="symbolicprtincorrectfeedback"/]] [[commonstring key="defaultprtincorrectfeedback"/]]]]></text></prtincorrect>
+  <decimals>.</decimals>
+  <scientificnotation>*10</scientificnotation>
+  <multiplicationsign>none</multiplicationsign>
+  <sqrtsign>1</sqrtsign>
+  <complexno>i</complexno>
+  <inversetrig>cos-1</inversetrig>
+  <logicsymbol>lang</logicsymbol>
+  <matrixparens>[</matrixparens>
+  <isbroken>0</isbroken>
+  <variantsselectionseed></variantsselectionseed>
+
+  <input><name>ans1</name><type>radio</type><tans>opts</tans><boxsize>15</boxsize><strictsyntax>1</strictsyntax><insertstars>0</insertstars><syntaxhint></syntaxhint><syntaxattribute>0</syntaxattribute><forbidwords></forbidwords><allowwords></allowwords><forbidfloat>1</forbidfloat><requirelowestterms>0</requirelowestterms><checkanswertype>0</checkanswertype><mustverify>0</mustverify><showvalidation>0</showvalidation><options></options></input>
+  <input><name>ans2</name><type>numerical</type><tans>ucbj</tans><boxsize>5</boxsize><strictsyntax>1</strictsyntax><insertstars>0</insertstars><syntaxhint></syntaxhint><syntaxattribute>0</syntaxattribute><forbidwords></forbidwords><allowwords></allowwords><forbidfloat>0</forbidfloat><requirelowestterms>0</requirelowestterms><checkanswertype>0</checkanswertype><mustverify>0</mustverify><showvalidation>0</showvalidation><options></options></input>
+
+  <prt><name>prt1</name><value>1.0000000</value><autosimplify>1</autosimplify><feedbackstyle>1</feedbackstyle><feedbackvariables><text><![CDATA[ch: if is(ans1="o2") then 2 elseif is(ans1="o3") then 3 elseif is(ans1="o4") then 4 else 0;
+sl(L) := simplode(map(lambda([u], if integerp(u) then string(u) else string(float(u))), L), ", ");]]></text></feedbackvariables>
+    <node><name>0</name><description>Juma's mistake</description><answertest>AlgEquiv</answertest><sans>ans1</sans><tans>first(mcq_correct(opts))</tans><testoptions></testoptions><quiet>1</quiet><truescoremode>=</truescoremode><truescore>1.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt1-1-T</trueanswernote><truefeedback format="html"><text><![CDATA[]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>1</falsenextnode><falseanswernote>prt1-1-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>1</name><description>Blamed straight lines</description><answertest>AlgEquiv</answertest><sans>ans1</sans><tans>"o1"</tans><testoptions></testoptions><quiet>1</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt1-2-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>Straight lines are fine. Look at where each point is plotted, and at its height.</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>-1</falsenextnode><falseanswernote>prt1-2-F</falseanswernote><falsefeedback format="html"><text><![CDATA[[[if test="is(ch=2)"]]<p>If Juma had plotted the frequencies, his heights would be {@sl(f)@}. They are {@sl(cf)@}: they never go down, and the last is the total, \({@n@}\). So the heights are running totals. Look at where each point is placed.</p>[[elif test="is(ch=3) and is(er=1)"]]<p>The class midpoints are {@sl(mid)@}. Juma's points are at \(x =\) {@sl(ucb)@}, the ends of the classes, so his points are in the right places. Look at their heights.</p>[[elif test="is(ch=3)"]]<p>The class midpoints are {@sl(mid)@}. Juma's points are at \(x =\) {@sl(rest(jx))@}. Compare these with the classes in the table.</p>[[elif test="is(ch=4) and is(er=1)"]]<p>The lower class boundaries are {@sl(lcb)@}. Juma's points are at \(x =\) {@sl(ucb)@}, the ends of the classes, so his points are in the right places. Look at their heights.</p>[[elif test="is(ch=4)"]]<p>The lower class boundaries are {@sl(lcb)@}. Juma's points are at \(x =\) {@sl(rest(jx))@}. Compare these with the classes in the table.</p>[[else]]<p>Check two things for each of Juma's points: is its height a running total, and is it plotted at an upper class boundary?</p>[[/if]]]]></text></falsefeedback></node>
+  </prt>
+  <prt><name>prt2</name><value>1.0000000</value><autosimplify>1</autosimplify><feedbackstyle>1</feedbackstyle><feedbackvariables><text><![CDATA[]]></text></feedbackvariables>
+    <node><name>0</name><description>Upper class boundary</description><answertest>NumAbsolute</answertest><sans>ans2</sans><tans>ucbj</tans><testoptions>0.001</testoptions><quiet>0</quiet><truescoremode>=</truescoremode><truescore>1.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt2-1-T</trueanswernote><truefeedback format="html"><text><![CDATA[]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>1</falsenextnode><falseanswernote>prt2-1-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>1</name><description>Midpoint</description><answertest>NumAbsolute</answertest><sans>ans2</sans><tans>midj</tans><testoptions>0.001</testoptions><quiet>0</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt2-2-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>That is the midpoint. A cumulative frequency counts every value up to the end of the class: plot at the upper class boundary.</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>2</falsenextnode><falseanswernote>prt2-2-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>2</name><description>Lower class boundary</description><answertest>NumAbsolute</answertest><sans>ans2</sans><tans>lcbj</tans><testoptions>0.001</testoptions><quiet>0</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt2-3-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>That is the lower class boundary. By then only \({@cf[j-1]@}\) values have been counted, not \({@cf[j]@}\).</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>3</falsenextnode><falseanswernote>prt2-3-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>3</name><description>Upper class limit</description><answertest>NumAbsolute</answertest><sans>ans2</sans><tans>hij</tans><testoptions>0.001</testoptions><quiet>0</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt2-4-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>\({@hij@}\) is the upper class limit. The values are rounded to the nearest whole number, so some values a little above \({@hij@}\) also round into this class. Where does the class really end?</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>-1</falsenextnode><falseanswernote>prt2-4-F</falseanswernote><falsefeedback format="html"><text><![CDATA[<p>A cumulative frequency is plotted at the upper class boundary of its class.</p>]]></text></falsefeedback></node>
+  </prt>
+
+  <deployedseed>4</deployedseed>
+  <deployedseed>11</deployedseed>
+  <deployedseed>15</deployedseed>
+  <deployedseed>34</deployedseed>
+  <deployedseed>24</deployedseed>
+  <deployedseed>7</deployedseed>
+  <deployedseed>3</deployedseed>
+  <deployedseed>10</deployedseed>
+  <deployedseed>2</deployedseed>
+  <deployedseed>17</deployedseed>
+  <qtest><testcase>1</testcase><description>Correct</description>
+    <testinput><name>ans1</name><value>first(mcq_correct(opts))</value></testinput>
+    <testinput><name>ans2</name><value>float(lo1+j*10-1/2)</value></testinput>
+    <expected><name>prt1</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt1-1-T</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt2-1-T</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>2</testcase><description>Generic wrong</description>
+    <testinput><name>ans1</name><value>wr1</value></testinput>
+    <testinput><name>ans2</name><value>ucbp</value></testinput>
+    <expected><name>prt1</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt1-1-F | prt1-2-F</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt2-1-F | prt2-2-F | prt2-3-F | prt2-4-F</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>3</testcase><description>Blamed straight lines; midpoint</description>
+    <testinput><name>ans1</name><value>"o1"</value></testinput>
+    <testinput><name>ans2</name><value>midj</value></testinput>
+    <expected><name>prt1</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt1-1-F | prt1-2-T</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt2-1-F | prt2-2-T</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>4</testcase><description>Lower class boundary</description>
+    <testinput><name>ans1</name><value>first(mcq_correct(opts))</value></testinput>
+    <testinput><name>ans2</name><value>lcbj</value></testinput>
+    <expected><name>prt1</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt1-1-T</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt2-1-F | prt2-2-F | prt2-3-T</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>5</testcase><description>Upper class limit</description>
+    <testinput><name>ans1</name><value>first(mcq_correct(opts))</value></testinput>
+    <testinput><name>ans2</name><value>hij</value></testinput>
+    <expected><name>prt1</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt1-1-T</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt2-1-F | prt2-2-F | prt2-3-F | prt2-4-T</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>6</testcase><description>Invalid: letter in (b)</description>
+    <testinput><name>ans1</name><value>first(mcq_correct(opts))</value></testinput>
+    <testinput><name>ans2</name><value>x</value></testinput>
+    <expected><name>prt1</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt1-1-T</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore></expectedscore><expectedpenalty></expectedpenalty><expectedanswernote>NULL</expectedanswernote></expected>
+  </qtest>
+</question>
+</quiz>

@@ -19,7 +19,7 @@
                     </p>
                 </li>
                 <li>
-                    <title>Specific Learning Outcomes</title> 
+                    <title>Specific Learning Outcomes</title>
                     <p>
                         Draw graphs of trigonometric functions in degrees; Determine amplitude, period, wavelength and phase angle from trigonometric graphs drawn in degrees
                     </p>
@@ -33,7 +33,7 @@
                 <li component="lesson-plan">
                     <title>Estimated Duration</title>
                     <p>
-                        40 minutes
+                        2 lessons of 40 minutes
                     </p>
                 </li>
             </dl>
@@ -47,163 +47,550 @@
          Suggested activity: Learners generate a table of values for y = sin x and y = 2 sin x, plot both on graph paper and compare amplitude and period.
          Interactive (JSXGraph): Sliders for a, b and c in y = a sin(bx + c); the graph updates live and amplitude, period and phase angle are labelled. -->
 
-    <!-- [LP] Add guidance on activity -->
+    <!-- Section notes (2026-11)
+         SLOs: Core 2.5 (c), (d); outcome (f) in lesson 2.2. Lessons 2.1 and 2.2 as subsections.
+         Activity: as planning notes (tables and plots of y = sin x and y = 2 sin x) in 2.1; 2.2 adds reading a drawn wave
+         JSXGraph: interactive-wave-sliders (assets/jsxgraph/wave-sliders.js, lesson 2.2), as planning notes
+         STACK: assets/stack/top/2-measurement-and-geometry/10-trigonometry-iii/02-trigonometric-graphs-and-waves/ -->
 
-    <!-- <axiom component="lesson-plan">
+    <!-- ============================================================ Lesson 2.1 -->
+    <subsection xml:id="subsec-drawing-trigonometric-graphs">
+        <title>Drawing Trigonometric Graphs</title>
+
+        <p component="lesson-plan">Upon completion of this lesson, learners will be able to:
+            <ol>
+                <li><p><alert>Know:</alert> a table of values uses equal steps; work out the bracket first, then the ratio (in degree mode), then multiply.</p></li>
+                <li><p><alert>Do:</alert> make tables and accurate plots of <m>y = a\sin(bx + c)</m> and <m>y = a\cos(bx + c)</m>; read the solutions of an equation where two graphs meet.</p></li>
+                <li><p><alert>Apply:</alert> compare the height and repeat length of two waves from a plot.</p></li>
+            </ol>
+        </p>
+
+        <axiom component="lesson-plan">
             <title>Problem-Solving and Discovery</title>
             <dl>
-                <li>
-                    <title>Suggested Time</title>
-                    <p>
-                        XX minutes
-                    </p>
-                </li>
-                <li>
-                    <title>Objective</title>
-                    <p>
-                        XXX
-                    </p>
-                </li>
-                <li>
-                    <title>Teacher's Role</title>
-                    <p>
-                        XXX
-                    </p>
-                </li>
+                <li><title>Suggested Time</title><p>14 minutes</p></li>
+                <li><title>Objective</title><p>Learners tabulate and plot <m>y = \sin x</m> and <m>y = 2\sin x</m> and compare them.</p></li>
+                <li><title>Teacher's Role</title><p>Hand out graph paper; suggest a scale of 1 cm to <m>30^\circ</m> and 2 cm to 1 unit. In each group, learners split the columns of the table and share their values, so the group finishes the table together. Ask: <q>What stayed the same, and what changed?</q></p></li>
             </dl>
-        </axiom> -->
+        </axiom>
 
-    <!-- Add Activity -->
-
-    <!-- <activity>
-        <statement>
-        </statement>
-    </activity> -->
-
-    <!-- [LP] Add guidance on structured lesson plan-->
-
-    <!-- <axiom component="lesson-plan">
-        <title>Structured Instruction</title>
-        <p>
-            <dl>
-            <li>
-                <title>Suggested Time</title>
+        <activity xml:id="act-doubling-the-sine">
+            <title>Doubling the Sine</title>
+            <statement>
                 <p>
-                    XX minutes
+                    <ol marker="(a)">
+                        <li>
+                            <p>Copy and complete a table of values of <m>y = \sin x</m> and <m>y = 2\sin x</m> for <m>x = 0^\circ, 30^\circ, 60^\circ, \ldots, 360^\circ</m>. Give values to 2 decimal places.</p>
+                            <solution component="lesson-plan">
+                                <p><tabular halign="center" top="minor" bottom="minor" left="minor" right="minor">
+<row header="yes" bottom="medium"><cell><m>x</m></cell><cell><m>0^\circ</m></cell><cell><m>30^\circ</m></cell><cell><m>60^\circ</m></cell><cell><m>90^\circ</m></cell><cell><m>120^\circ</m></cell><cell><m>150^\circ</m></cell><cell><m>180^\circ</m></cell><cell><m>210^\circ</m></cell><cell><m>240^\circ</m></cell><cell><m>270^\circ</m></cell><cell><m>300^\circ</m></cell><cell><m>330^\circ</m></cell><cell><m>360^\circ</m></cell></row>
+<row><cell><m>\sin x</m></cell><cell><m>0</m></cell><cell><m>0.5</m></cell><cell><m>0.87</m></cell><cell><m>1</m></cell><cell><m>0.87</m></cell><cell><m>0.5</m></cell><cell><m>0</m></cell><cell><m>-0.5</m></cell><cell><m>-0.87</m></cell><cell><m>-1</m></cell><cell><m>-0.87</m></cell><cell><m>-0.5</m></cell><cell><m>0</m></cell></row>
+<row><cell><m>2\sin x</m></cell><cell><m>0</m></cell><cell><m>1</m></cell><cell><m>1.73</m></cell><cell><m>2</m></cell><cell><m>1.73</m></cell><cell><m>1</m></cell><cell><m>0</m></cell><cell><m>-1</m></cell><cell><m>-1.73</m></cell><cell><m>-2</m></cell><cell><m>-1.73</m></cell><cell><m>-1</m></cell><cell><m>0</m></cell></row>
+</tabular></p>
+                            </solution>
+                        </li>
+                        <li>
+                            <p>Plot both graphs on one grid and join each set of points with a smooth curve.</p>
+                            <solution component="lesson-plan"><p>See <xref ref="fig-sin-and-2sin"/>.</p></solution>
+                        </li>
+                        <li>
+                            <p>Write down the greatest and least values of each graph. After what length along the <m>x</m>-axis does each graph repeat itself?</p>
+                            <solution component="lesson-plan"><p><m>y = \sin x</m>: greatest 1, least <m>-1</m>. <m>y = 2\sin x</m>: greatest 2, least <m>-2</m>. Both repeat after <m>360^\circ</m>.</p></solution>
+                        </li>
+                        <li>
+                            <p>Predict how the graph of <m>y = \sin 3x</m> differs from <m>y = \sin x</m>. Check with a table at steps of <m>15^\circ</m> from <m>0^\circ</m> to <m>180^\circ</m>.</p>
+                            <solution component="lesson-plan"><p>Same height (greatest 1, least <m>-1</m>), but it repeats after <m>120^\circ</m>: <m>\sin 3x</m> at <m>0^\circ, 15^\circ, \ldots, 180^\circ</m> is <m>0, 0.71, 1, 0.71, 0, -0.71, -1, -0.71, 0, 0.71, 1, 0.71, 0</m>.</p></solution>
+                        </li>
+                    </ol>
                 </p>
-            </li>
-            <li>
-                <title>Objective</title>
-                <p>
-                    To formalize the concepts and properties learners discovered in the anchor task.
-                </p>
-            </li>
-            </dl>
-        </p>
-        <paragraphs>
-            <title>Key Takeaways &amp; Teacher Connection</title>
-            <ol>
-                <li>
-                    <p>
-                        <alert>Connecting to Learner Work:</alert> XXXX
-                    </p>
-                </li>
-            </ol>
-        </paragraphs>
-    </axiom> -->
+            </statement>
+        </activity>
 
-    <!-- Add insight / key takeaway directly related to activity / learner experience -->
+        <axiom component="lesson-plan">
+            <title>Structured Instruction</title>
+            <p>
+                <dl>
+                    <li><title>Suggested Time</title><p>8 minutes</p></li>
+                    <li><title>Objective</title><p>To set out how to draw a trigonometric graph accurately, and to name amplitude and period.</p></li>
+                </dl>
+            </p>
+            <paragraphs>
+                <title>Key Takeaways &amp; Teacher Connection</title>
+                <ol>
+                    <li><p><alert>Connecting to Learner Work:</alert> the 2 in <m>2\sin x</m> doubled the height; the 3 in <m>\sin 3x</m> cut the repeat length to a third.</p></li>
+                    <li><p>Order of working: the angle in the bracket, then the ratio in degree mode, then multiply.</p></li>
+                    <li><p>Join the points with a smooth curve, not straight segments.</p></li>
+                </ol>
+            </paragraphs>
+        </axiom>
 
-    <!-- <insight>
-    </insight> -->
+        <insight xml:id="insight-drawing-trigonometric-graphs">
+            <title>Drawing a Trigonometric Graph</title>
+            <p>To draw <m>y = a\sin(bx + c) + d</m> or <m>y = a\cos(bx + c) + d</m>:
+                <ol>
+                    <li><p>choose a step for <m>x</m>, such as <m>30^\circ</m> or <m>15^\circ</m>;</p></li>
+                    <li><p>for each <m>x</m> work out the angle <m>bx + c</m>, take its sine or cosine (calculator in degree mode), multiply by <m>a</m> and add <m>d</m>;</p></li>
+                    <li><p>plot the points and join them with a smooth curve.</p></li>
+                </ol>
+            </p>
+            <p>The greatest height of the wave above its middle is its <term>amplitude</term>; the length along the axis after which it repeats is its <term>period</term>. Both are defined fully in <xref ref="subsec-amplitude-period-wavelength-and-phase-angle"/>.</p>
+        </insight>
 
-    <!-- Add further instruction (not in a block) to develop ideas as needed -->
+        <figure xml:id="fig-sin-and-2sin">
+            <caption><m>y = \sin x</m> (solid) and <m>y = 2\sin x</m> (dashed) for <m>0^\circ \le x \le 360^\circ</m>.</caption>
+            <image width="90%">
+                <shortdescription>Both waves cross the x-axis at 0, 180 and 360 degrees; y = sin x reaches 1 and -1, y = 2 sin x reaches 2 and -2.</shortdescription>
+                <description><p>Both curves start at 0. The solid curve y = sin x rises to 1 at 90 degrees, falls to -1 at 270 degrees and returns to 0 at 360 degrees. The dashed curve y = 2 sin x does the same with greatest value 2 and least value -2.</p></description>
+                <latex-image>
+\begin{tikzpicture}
+% pgfplots sin and cos take degrees by default
+\begin{axis}[width=13cm, height=6.5cm, axis lines=middle, xmin=0, xmax=380, ymin=-2.5, ymax=2.5,
+  xtick={0,30,...,360}, xticklabel={$\pgfmathprintnumber{\tick}^\circ$}, ytick={-2,-1,1,2}, grid=both, grid style={gray!25},
+  xlabel={$x$}, ylabel={$y$}, tick label style={font=\scriptsize}]
+\addplot[thick, domain=0:360, samples=145] {sin(x)};
+\addplot[thick, dashed, domain=0:360, samples=145] {2*sin(x)};
+\node[anchor=south west] at (axis cs:95,1) {$y = \sin x$};
+\node[anchor=south west] at (axis cs:95,2) {$y = 2\sin x$};
+\end{axis}
+\end{tikzpicture}
+                </latex-image>
+            </image>
+        </figure>
 
-    <xi:include href="../lesson-plan-templates/example-intro.ptx" />
+        <xi:include href="../lesson-plan-templates/example-intro.ptx" />
 
-    <!-- Add at least 3 examples -->
-
-    <!-- <example>
-        <statement>
-        </statement>
-        <solution>
-        </solution>
-    </example>
-
-    <example>
-        <statement>
-        </statement>
-        <solution>
-        </solution>
-    </example>
-
-    <example>
-        <statement>
-        </statement>
-        <solution>
-        </solution>
-    </example> -->
-
-    <xi:include href="../lesson-plan-templates/assessment-intro.ptx" />
-
-    <!-- If STACK questions are included, uncomment this: -->
-
-    <!-- <xi:include href="../lesson-plan-templates/checkpoint.ptx" /> -->
-
-    <!-- Add STACK exercises if made -->
-
-    <!-- Add static exercises -->
-
-    <!-- <exercises>
-        <exercise>
-            <statement>   
-
-            </statement>   
+        <example xml:id="example-table-cosine">
+            <title>A Cosine Table</title>
+            <statement><p>Make a table of values of <m>y = 2.5\cos x</m> for <m>0^\circ \le x \le 360^\circ</m> at steps of <m>30^\circ</m>. State the amplitude and the period.</p></statement>
             <solution>
+                <p><tabular halign="center" top="minor" bottom="minor" left="minor" right="minor">
+<row header="yes" bottom="medium"><cell><m>x</m></cell><cell><m>0^\circ</m></cell><cell><m>30^\circ</m></cell><cell><m>60^\circ</m></cell><cell><m>90^\circ</m></cell><cell><m>120^\circ</m></cell><cell><m>150^\circ</m></cell><cell><m>180^\circ</m></cell><cell><m>210^\circ</m></cell><cell><m>240^\circ</m></cell><cell><m>270^\circ</m></cell><cell><m>300^\circ</m></cell><cell><m>330^\circ</m></cell><cell><m>360^\circ</m></cell></row>
+<row><cell><m>2.5\cos x</m></cell><cell><m>2.5</m></cell><cell><m>2.17</m></cell><cell><m>1.25</m></cell><cell><m>0</m></cell><cell><m>-1.25</m></cell><cell><m>-2.17</m></cell><cell><m>-2.5</m></cell><cell><m>-2.17</m></cell><cell><m>-1.25</m></cell><cell><m>0</m></cell><cell><m>1.25</m></cell><cell><m>2.17</m></cell><cell><m>2.5</m></cell></row>
+</tabular></p>
+                <p>The graph rises to 2.5 and falls to <m>-2.5</m>: the amplitude is 2.5. It repeats after <m>360^\circ</m>: the period is <m>360^\circ</m>.</p>
+            </solution>
+        </example>
 
-            </solution>             
-        </exercise>        
-    </exercises> -->
+        <example xml:id="example-table-two-sin-x-plus-30">
+            <title>A Table with a Phase Angle</title>
+            <statement><p>Make a table of values of <m>y = 2\sin(x + 30^\circ)</m> for <m>0^\circ \le x \le 360^\circ</m> at steps of <m>30^\circ</m>.</p></statement>
+            <solution>
+                <p>Work out <m>x + 30^\circ</m> first (from <m>30^\circ</m> to <m>390^\circ</m>), then its sine, then multiply by 2.</p>
+                <p><tabular halign="center" top="minor" bottom="minor" left="minor" right="minor">
+<row header="yes" bottom="medium"><cell><m>x</m></cell><cell><m>0^\circ</m></cell><cell><m>30^\circ</m></cell><cell><m>60^\circ</m></cell><cell><m>90^\circ</m></cell><cell><m>120^\circ</m></cell><cell><m>150^\circ</m></cell><cell><m>180^\circ</m></cell><cell><m>210^\circ</m></cell><cell><m>240^\circ</m></cell><cell><m>270^\circ</m></cell><cell><m>300^\circ</m></cell><cell><m>330^\circ</m></cell><cell><m>360^\circ</m></cell></row>
+<row><cell><m>x + 30^\circ</m></cell><cell><m>30</m></cell><cell><m>60</m></cell><cell><m>90</m></cell><cell><m>120</m></cell><cell><m>150</m></cell><cell><m>180</m></cell><cell><m>210</m></cell><cell><m>240</m></cell><cell><m>270</m></cell><cell><m>300</m></cell><cell><m>330</m></cell><cell><m>360</m></cell><cell><m>390</m></cell></row>
+<row><cell><m>2\sin(x + 30^\circ)</m></cell><cell><m>1</m></cell><cell><m>1.73</m></cell><cell><m>2</m></cell><cell><m>1.73</m></cell><cell><m>1</m></cell><cell><m>0</m></cell><cell><m>-1</m></cell><cell><m>-1.73</m></cell><cell><m>-2</m></cell><cell><m>-1.73</m></cell><cell><m>-1</m></cell><cell><m>0</m></cell><cell><m>1</m></cell></row>
+</tabular></p>
+                <p>The values are those of <m>2\sin x</m> moved one column to the left: the curve is the <m>2\sin x</m> curve moved <m>30^\circ</m> to the left. This is made exact in <xref ref="subsec-amplitude-period-wavelength-and-phase-angle"/> and <xref ref="subsec-translating-and-combining-transformations"/>.</p>
+            </solution>
+        </example>
 
-    <!-- [LP] Add information on how to differentiate  -->
+        <example xml:id="example-sin-2x-equals-sin-x-graphs">
+            <title>Solving an Equation with Two Graphs</title>
+            <statement><p>Plot <m>y = \sin 2x</m> and <m>y = \sin x</m> for <m>0^\circ \le x \le 360^\circ</m> on one grid and use the graphs to solve <m>\sin 2x = \sin x</m>.</p></statement>
+            <solution>
+                <p><tabular halign="center" top="minor" bottom="minor" left="minor" right="minor">
+<row header="yes" bottom="medium"><cell><m>x</m></cell><cell><m>0^\circ</m></cell><cell><m>30^\circ</m></cell><cell><m>60^\circ</m></cell><cell><m>90^\circ</m></cell><cell><m>120^\circ</m></cell><cell><m>150^\circ</m></cell><cell><m>180^\circ</m></cell><cell><m>210^\circ</m></cell><cell><m>240^\circ</m></cell><cell><m>270^\circ</m></cell><cell><m>300^\circ</m></cell><cell><m>330^\circ</m></cell><cell><m>360^\circ</m></cell></row>
+<row><cell><m>\sin 2x</m></cell><cell><m>0</m></cell><cell><m>0.87</m></cell><cell><m>0.87</m></cell><cell><m>0</m></cell><cell><m>-0.87</m></cell><cell><m>-0.87</m></cell><cell><m>0</m></cell><cell><m>0.87</m></cell><cell><m>0.87</m></cell><cell><m>0</m></cell><cell><m>-0.87</m></cell><cell><m>-0.87</m></cell><cell><m>0</m></cell></row>
+<row><cell><m>\sin x</m></cell><cell><m>0</m></cell><cell><m>0.5</m></cell><cell><m>0.87</m></cell><cell><m>1</m></cell><cell><m>0.87</m></cell><cell><m>0.5</m></cell><cell><m>0</m></cell><cell><m>-0.5</m></cell><cell><m>-0.87</m></cell><cell><m>-1</m></cell><cell><m>-0.87</m></cell><cell><m>-0.5</m></cell><cell><m>0</m></cell></row>
+</tabular></p>
+                <p>The graphs (<xref ref="fig-sin2x-and-sinx"/>) meet at <m>x = 0^\circ</m>, <m>60^\circ</m>, <m>180^\circ</m>, <m>300^\circ</m> and <m>360^\circ</m>. These are the solutions of <m>\sin 2x = \sin x</m> in <m>0^\circ \le x \le 360^\circ</m>. The graphs give the solutions; <xref ref="sec-solving-trigonometric-equations-using-identities"/> finds solutions like these by algebra.</p>
+                <figure xml:id="fig-sin2x-and-sinx">
+                    <caption><m>y = \sin 2x</m> (solid) and <m>y = \sin x</m> (dashed) with their meeting points.</caption>
+                    <image width="90%">
+                        <shortdescription>The graphs meet at 0, 60, 180, 300 and 360 degrees.</shortdescription>
+                        <description><p>The solid curve y = sin 2x completes two waves between 0 and 360 degrees; the dashed curve y = sin x completes one. They meet at (0, 0), (60 degrees, 0.87), (180 degrees, 0), (300 degrees, -0.87) and (360 degrees, 0).</p></description>
+                        <latex-image>
+\begin{tikzpicture}
+% pgfplots sin and cos take degrees by default
+\begin{axis}[width=13cm, height=6cm, axis lines=middle, xmin=0, xmax=380, ymin=-1.4, ymax=1.4,
+  xtick={0,30,...,360}, xticklabel={$\pgfmathprintnumber{\tick}^\circ$}, ytick={-1,-0.5,0.5,1}, grid=both, grid style={gray!25},
+  xlabel={$x$}, ylabel={$y$}, tick label style={font=\scriptsize}]
+\addplot[thick, domain=0:360, samples=181] {sin(2*x)};
+\addplot[thick, dashed, domain=0:360, samples=145] {sin(x)};
+\addplot[only marks, mark=*] coordinates {(0,0) (60,0.866) (180,0) (300,-0.866) (360,0)};
+\end{axis}
+\end{tikzpicture}
+                        </latex-image>
+                    </image>
+                </figure>
+            </solution>
+        </example>
 
-    <!-- <axiom component="lesson-plan">
-        <title>Differentiation</title>
+        <warning xml:id="warning-degree-mode">
+            <title>Degree Mode</title>
+            <p>In radian mode a calculator gives <m>\sin 30 = -0.99</m>. Check that <m>\sin 30 = 0.5</m> before you start every table.</p>
+        </warning>
 
-        <table>
+        <note xml:id="note-graphing-software-waves">
+            <title>Graphing Software</title>
+            <p>Graphing software can check a hand-drawn graph. In GeoGebra type <c>2sin(x+30°)</c> with the angle unit set to degrees, and compare the curve with your plot. Use the apps your school has approved.</p>
+        </note>
+
+        <xi:include href="../lesson-plan-templates/assessment-intro.ptx" />
+        <xi:include href="../lesson-plan-templates/checkpoint.ptx" />
+
+        <p>Type decimals with a point, for example <c>1.73</c>, or a fraction such as <c>1/3</c>.</p>
+
+        <exercise xml:id="ex-table-of-values-for-a-trigonometric-graph">
+            <!--<title></title>-->
+            <stack label="stk-table-of-values-for-a-trigonometric-graph" source="stack/top/2-measurement-and-geometry/10-trigonometry-iii/02-trigonometric-graphs-and-waves/Table-of-values-for-a-trigonometric-graph.xml"/>
+        </exercise>
+
+        <exercise xml:id="ex-amplitude-and-period-from-an-equation">
+            <!--<title></title>-->
+            <stack label="stk-amplitude-and-period-from-an-equation" source="stack/top/2-measurement-and-geometry/10-trigonometry-iii/02-trigonometric-graphs-and-waves/Amplitude-and-period-from-an-equation.xml"/>
+        </exercise>
+
+        <exercises xml:id="exercises-drawing-trigonometric-graphs">
+            <exercise xml:id="ex-table-four-sin">
+                <statement><p>Make a table of values of <m>y = 4\sin x</m> for <m>0^\circ \le x \le 360^\circ</m> at steps of <m>45^\circ</m> (2 decimal places), and plot the graph.</p></statement>
+                <answer><p><m>0, 2.83, 4, 2.83, 0, -2.83, -4, -2.83, 0</m></p></answer>
+            </exercise>
+            <exercise xml:id="ex-table-cos-2x">
+                <statement><p>Make a table of values of <m>y = \cos 2x</m> for <m>0^\circ \le x \le 360^\circ</m> at steps of <m>30^\circ</m>. How many complete waves are there?</p></statement>
+                <answer><p><m>1, 0.5, -0.5, -1, -0.5, 0.5, 1, 0.5, -0.5, -1, -0.5, 0.5, 1</m>; two complete waves.</p></answer>
+            </exercise>
+            <exercise xml:id="ex-table-two-cos-x-minus-60">
+                <statement><p>Make a table of values of <m>y = 2\cos(x - 60^\circ)</m> for <m>0^\circ \le x \le 360^\circ</m> at steps of <m>30^\circ</m>. What is the greatest value of <m>y</m>, and where does it occur?</p></statement>
+                <answer><p><m>1, 1.73, 2, 1.73, 1, 0, -1, -1.73, -2, -1.73, -1, 0, 1</m>; greatest value 2 at <m>x = 60^\circ</m>.</p></answer>
+            </exercise>
+            <exercise xml:id="ex-graphs-sin-x-plus-60-cos-x">
+                <statement><p>Plot <m>y = \sin(x + 60^\circ)</m> and <m>y = \cos x</m> for <m>0^\circ \le x \le 360^\circ</m> at steps of <m>15^\circ</m>, and estimate where the graphs meet.</p></statement>
+                <answer><p>At <m>x = 15^\circ</m> and <m>x = 195^\circ</m>.</p></answer>
+            </exercise>
+            <exercise xml:id="ex-radian-mode-error">
+                <statement><p>Juma's table for <m>y = \sin x</m> gives <m>-0.99</m> at <m>x = 30^\circ</m>. What went wrong?</p></statement>
+                <answer><p>His calculator was in radian mode: <m>\sin 30</m> radians <m>= -0.99</m>. In degree mode <m>\sin 30^\circ = 0.5</m>.</p></answer>
+            </exercise>
+            <exercise xml:id="ex-table-two-sin-plus-cos">
+                <title>Challenge: Adding Two Waves</title>
+                <statement><p>Make a table of values of <m>y = 2\sin x + \cos x</m> for <m>0^\circ \le x \le 360^\circ</m> at steps of <m>45^\circ</m> (2 decimal places) and plot it. What kind of graph is it? Use your plot to estimate its greatest value and where it occurs.</p></statement>
+                <hint><p>Plot the points and look at the shape.</p></hint>
+                <answer><p><m>1, 2.12, 2, 0.71, -1, -2.12, -2, -0.71, 1</m>. The graph is a single wave, like a sine wave. Its greatest value is about <m>2.2</m>, at about <m>x = 63^\circ</m> (exactly <m>\sqrt{5} \approx 2.24</m> at <m>63.4^\circ</m>).</p></answer>
+            </exercise>
+        </exercises>
+
+        <axiom component="lesson-plan">
             <title>Differentiation</title>
-            <tabular halign="left">
-                <row header="yes" bottom="minor">
-                    <cell>Learner Group</cell>
-                    <cell>Strategy &amp; Learning Experience</cell>
-                    <cell></cell>
-                </row>
-                <row>
-                    <cell>Struggling Learners (Support)</cell>
-                    <cell>
-                        XXXX
-                    </cell>
-                    <cell></cell>
-                </row>
-                <row>
-                    <cell>On-Level Learners (Core)</cell>
-                    <cell>
-                        <line>The core lesson activities as described above.</line>
-                    </cell>
-                    <cell></cell>
-                </row>
-                <row>
-                    <cell>Advanced Learners (Challenge)</cell>
-                    <cell>
-                        XXXX
-                    </cell>
-                    <cell></cell>
-                </row>
-            </tabular>
-        </table>
-    </axiom> -->
+            <table xml:id="table-differentiation-drawing-trigonometric-graphs">
+                <title>Differentiation Strategies</title>
+                <tabular halign="left" top="minor" bottom="minor" left="minor" right="minor">
+                    <row header="yes" bottom="medium"><cell>Learner Group</cell><cell>Strategy and Learning Experience</cell></row>
+                    <row><cell>Struggling Learners (Support)</cell><cell>Provide half-completed tables and a ready-scaled grid. Work through <xref ref="example-table-cosine"/>. Assign <xref ref="ex-table-four-sin"/> and <xref ref="ex-radian-mode-error"/>.</cell></row>
+                    <row><cell>On-Level Learners (Core)</cell><cell>Full activity and all examples. Assign <xref ref="ex-table-four-sin"/> to <xref ref="ex-radian-mode-error"/>.</cell></row>
+                    <row><cell>Advanced Learners (Challenge)</cell><cell>All exercises including <xref ref="ex-table-two-sin-plus-cos"/>. Extension: from the plot of <m>y = 2\sin x + \cos x</m>, find the amplitude and the first maximum, and suggest an equation of the form <m>y = a\sin(x + c)</m>. (Answer: <m>a \approx 2.24</m>; the first maximum is at about <m>63^\circ</m>, so <m>c \approx 90^\circ - 63^\circ = 27^\circ</m>: <m>y \approx 2.24\sin(x + 27^\circ)</m>.)</cell></row>
+                </tabular>
+            </table>
+        </axiom>
 
-    <xi:include href="../lesson-plan-templates/assessment-methods.ptx" />
+        <xi:include href="../lesson-plan-templates/assessment-methods.ptx" />
+        <xi:include href="../lesson-plan-templates/reflection.ptx"/>
+    </subsection>
 
-    <xi:include href="../lesson-plan-templates/reflection.ptx"/>
+    <!-- ============================================================ Lesson 2.2 -->
+    <subsection xml:id="subsec-amplitude-period-wavelength-and-phase-angle">
+        <title>Amplitude, Period, Wavelength and Phase Angle</title>
+
+        <p component="lesson-plan">Upon completion of this lesson, learners will be able to:
+            <ol>
+                <li><p><alert>Know:</alert> amplitude, period, wavelength, mean line and phase angle, and how each shows in <m>y = a\sin(bx + c) + d</m>; the difference between period and wavelength for real waves.</p></li>
+                <li><p><alert>Do:</alert> read the features of a wave from its graph and from its equation.</p></li>
+                <li><p><alert>Apply:</alert> describe tides at Mombasa and a tsunami.</p></li>
+            </ol>
+        </p>
+
+        <axiom component="lesson-plan">
+            <title>Problem-Solving and Discovery</title>
+            <dl>
+                <li><title>Suggested Time</title><p>14 minutes</p></li>
+                <li><title>Objective</title><p>Learners read the features of a drawn wave and find out what each slider of the interactive changes.</p></li>
+                <li><title>Teacher's Role</title><p>Project <xref ref="fig-wave-features"/> with its labels covered for Part A. Then use the interactive in <xref ref="fig-wave-sliders"/> for Part B. Ask: <q>Which slider moves the wave without changing its shape?</q> Groups compare their recorded periods.</p></li>
+            </dl>
+        </axiom>
+
+        <activity xml:id="act-reading-a-wave">
+            <title>Reading a Wave</title>
+            <statement>
+                <paragraphs>
+                    <title>Part A: A Wave on the Board</title>
+                    <p>Your teacher shows the graph of <m>y = 3\sin(x + 50^\circ)</m> for <m>-180^\circ \le x \le 360^\circ</m>.</p>
+                </paragraphs>
+                <p>
+                    <ol marker="(a)">
+                        <li>
+                            <p>Write down the greatest and least values of <m>y</m>, and half their difference.</p>
+                            <solution component="lesson-plan"><p>3 and <m>-3</m>; half the difference is 3.</p></solution>
+                        </li>
+                        <li>
+                            <p>How far along the <m>x</m>-axis is one complete wave?</p>
+                            <solution component="lesson-plan"><p><m>360^\circ</m>, for example from the trough at <m>-140^\circ</m> to the trough at <m>220^\circ</m>, or from <m>-50^\circ</m> to <m>310^\circ</m> where the wave crosses its mean line going up.</p></solution>
+                        </li>
+                        <li>
+                            <p>Where does the wave cross its middle line going up? Compare with <m>y = \sin x</m>.</p>
+                            <solution component="lesson-plan"><p>At <m>x = -50^\circ</m> (and <m>310^\circ</m>). <m>y = \sin x</m> crosses going up at <m>0^\circ</m>, so this wave is <m>50^\circ</m> ahead.</p></solution>
+                        </li>
+                        <li>
+                            <p>Part B. In the interactive in <xref ref="fig-wave-sliders"/>, set <m>a = 2</m>, <m>b = 1</m> and <m>c = 0</m>. Now change only <m>b</m>, to 2, 3 and 4, and record the period each time.</p>
+                            <solution component="lesson-plan"><p><m>180^\circ</m>, <m>120^\circ</m>, <m>90^\circ</m>: the period is <m>360^\circ \div b</m>.</p></solution>
+                        </li>
+                        <li>
+                            <p>Change only <m>c</m>. What happens to the wave?</p>
+                            <solution component="lesson-plan"><p>The wave slides along the axis; its shape does not change.</p></solution>
+                        </li>
+                    </ol>
+                </p>
+            </statement>
+        </activity>
+
+        <axiom component="lesson-plan">
+            <title>Structured Instruction</title>
+            <p>
+                <dl>
+                    <li><title>Suggested Time</title><p>8 minutes</p></li>
+                    <li><title>Objective</title><p>To name the five features of a wave and read each from a graph and from an equation.</p></li>
+                </dl>
+            </p>
+            <paragraphs>
+                <title>Key Takeaways &amp; Teacher Connection</title>
+                <ol>
+                    <li><p><alert>Connecting to Learner Work:</alert> part (a) found the amplitude, part (b) the period (and wavelength), part (c) the phase angle.</p></li>
+                    <li><p>Amplitude from the greatest and least values; period <m>360^\circ \div b</m>; for a graph drawn in degrees the wavelength is the same length.</p></li>
+                    <li><p>The phase angle is <m>c</m>; the graph is <m>y = a\sin bx</m> translated <m>c \div b</m> to the left (to the right when <m>c \lt 0</m>).</p></li>
+                </ol>
+            </paragraphs>
+        </axiom>
+
+        <insight xml:id="insight-features-of-a-wave">
+            <title>Features of a Wave</title>
+            <p>For <m>y = a\sin(bx + c) + d</m> or <m>y = a\cos(bx + c) + d</m>, with <m>b \gt 0</m> and <m>x</m> in degrees:</p>
+            <p>
+                <ul>
+                    <li><p>the <term>mean line</term> is <m>y = d</m>, halfway between the greatest and least values;</p></li>
+                    <li><p>the <term>amplitude</term> is <m>|a| = \dfrac{\text{greatest} - \text{least}}{2}</m>: how far the wave rises above its mean line;</p></li>
+                    <li><p>the <term>period</term> is <m>\dfrac{360^\circ}{b}</m>: how far along the axis before the wave repeats itself;</p></li>
+                    <li><p>the <term>wavelength</term> is the length of one complete wave measured along the horizontal axis, for example from one crest to the next. For a graph drawn against an angle in degrees, period and wavelength are the same number of degrees. For a real wave drawn against time, the repeat length is a period (in seconds or hours); drawn against distance, it is a wavelength (in metres or km);</p></li>
+                    <li><p>the <term>phase angle</term> is <m>c</m>, the angle added inside the bracket, which measures how far ahead of <m>y = a\sin bx</m> the wave starts, in degrees of the angle <m>bx + c</m>. Along the <m>x</m>-axis the lead is <m>\dfrac{c}{b}</m>: since <m>bx + c = b\left(x + \dfrac{c}{b}\right)</m>, the graph is that of <m>y = a\sin bx</m> moved <m>\dfrac{c}{b}</m> to the left (to the right when <m>c \lt 0</m>).</p></li>
+                </ul>
+            </p>
+        </insight>
+
+        <figure xml:id="fig-wave-features">
+            <caption>The features of <m>y = 3\sin(x + 50^\circ)</m> (solid), with <m>y = \sin x</m> dotted.</caption>
+            <image width="90%">
+                <shortdescription>Amplitude 3 from the mean line y = 0; one wavelength of 360 degrees from crest to crest; the wave crosses its mean line going up at -50 degrees, 50 degrees ahead of y = sin x.</shortdescription>
+                <description><p>The solid wave y = 3 sin(x + 50 degrees) is drawn from -180 to 400 degrees. Its crests are at 40 and 400 degrees (height 3) and its troughs at -140 and 220 degrees (height -3). A double arrow from the mean line up to the crest at 40 degrees is labelled amplitude 3. A double arrow from the crest at 40 degrees to 400 degrees is labelled wavelength 360 degrees. The dotted wave y = sin x crosses the axis going up at 0 degrees; an arrow from 0 back to -50 degrees is labelled phase angle 50 degrees.</p></description>
+                <latex-image>
+\begin{tikzpicture}
+% pgfplots sin and cos take degrees by default
+\begin{axis}[width=14cm, height=7cm, axis lines=middle, xmin=-190, xmax=415, ymin=-4, ymax=4.6,
+  xtick={-180,-90,...,360}, xticklabel={$\pgfmathprintnumber{\tick}^\circ$}, ytick={-3,-2,-1,1,2,3}, grid=both, grid style={gray!25},
+  xlabel={$x$}, ylabel={$y$}, tick label style={font=\scriptsize}]
+\addplot[thick, domain=-180:400, samples=200] {3*sin(x+50)};
+\addplot[dotted, thick, domain=-180:360, samples=150] {sin(x)};
+\draw[dashed] (axis cs:-180,0) -- (axis cs:400,0);
+\draw[&lt;-&gt;] (axis cs:40,0) -- (axis cs:40,3) node[midway, right] {\small amplitude 3};
+\draw[&lt;-&gt;] (axis cs:40,3.6) -- (axis cs:400,3.6) node[midway, above] {\small wavelength $360^\circ$};
+\draw[->, thick] (axis cs:0,-1.2) -- (axis cs:-50,-1.2) node[midway, below] {\small phase angle $50^\circ$};
+\node[anchor=south west] at (axis cs:190,0.1) {\small mean line $y = 0$};
+\end{axis}
+\end{tikzpicture}
+                </latex-image>
+            </image>
+        </figure>
+
+        <figure xml:id="fig-wave-sliders">
+            <caption>Change one slider at a time and watch which feature of the wave changes. The dotted wave is <m>y = \sin x</m>.</caption>
+            <interactive xml:id="interactive-wave-sliders" platform="jsxgraph" width="90%" aspect="16:10" source="jsxgraph/wave-sliders.js">
+                <slate xml:id="jsxgraph-wave-sliders" surface="jsxboard" aspect="16:10"/>
+                <instructions>
+                    <p>
+                        <ul>
+                            <li><p>Set <alert>a</alert> <m>= 2</m>, <alert>b</alert> <m>= 1</m> and <alert>c</alert> <m>= 0</m>.</p></li>
+                            <li><p>Now change only <alert>b</alert>, to 2, 3 and 4, and record the period each time.</p></li>
+                            <li><p>Then change only <alert>c</alert>, and watch the phase angle and the translation.</p></li>
+                        </ul>
+                    </p>
+                </instructions>
+            </interactive>
+        </figure>
+
+        <xi:include href="../lesson-plan-templates/example-intro.ptx" />
+
+        <example xml:id="example-amplitude-period-five-sin-3x">
+            <title>Amplitude and Period from an Equation</title>
+            <statement><p>Find the amplitude and the period of <m>y = 5\sin 3x</m>.</p></statement>
+            <solution><p>The amplitude is <m>5</m>. The period is <m>360^\circ \div 3 = 120^\circ</m>: three complete waves fit into <m>360^\circ</m>.</p></solution>
+        </example>
+
+        <example xml:id="example-amplitude-negative-a">
+            <title>A Negative Multiplier</title>
+            <statement><p>Find the amplitude and the period of <m>y = -2\cos\dfrac{x}{2}</m>.</p></statement>
+            <solution><p>The amplitude is <m>2</m>: a distance is never negative, and the minus sign only turns the wave upside down. Here <m>b = \dfrac{1}{2}</m>, so the period is <m>360^\circ \div \dfrac{1}{2} = 720^\circ</m>.</p></solution>
+        </example>
+
+        <example xml:id="example-reading-a-wave-graph">
+            <title>Reading a Graph</title>
+            <statement><p><xref ref="fig-wave-reading-example"/> shows a wave of the form <m>y = a\sin(x + c) + d</m>. Find its amplitude, mean line, wavelength and phase angle, and write its equation.</p></statement>
+            <solution>
+                <p>The greatest value is <m>4</m> and the least is <m>-2</m>. The amplitude is <m>\dfrac{4 - (-2)}{2} = 3</m> and the mean line is <m>y = \dfrac{4 + (-2)}{2} = 1</m>. One complete wave is <m>360^\circ</m> long.</p>
+                <p>The wave rises through its mean line at <m>x = 30^\circ</m>, where <m>y = \sin x</m> would rise through its mean line at <m>0^\circ</m>. So the wave is <m>30^\circ</m> behind: the phase angle is <m>-30^\circ</m>, and <m>y = 3\sin(x - 30^\circ) + 1</m>.</p>
+                <figure xml:id="fig-wave-reading-example">
+                    <caption>A wave of the form <m>y = a\sin(x + c) + d</m>.</caption>
+                    <image width="90%">
+                        <shortdescription>Greatest value 4, least -2, mean line y = 1; the wave rises through the mean line at 30 degrees.</shortdescription>
+                        <description><p>The wave is drawn from 0 to 360 degrees on a grid. It starts at y = -0.5, rises through y = 1 at 30 degrees, reaches 4 at 120 degrees, falls through 1 at 210 degrees, reaches -2 at 300 degrees and is at -0.5 again at 360 degrees.</p></description>
+                        <latex-image>
+\begin{tikzpicture}
+% pgfplots sin and cos take degrees by default
+\begin{axis}[width=13cm, height=6.5cm, axis lines=middle, xmin=0, xmax=380, ymin=-2.6, ymax=4.6,
+  xtick={0,30,...,360}, xticklabel={$\pgfmathprintnumber{\tick}^\circ$}, ytick={-2,-1,...,4}, grid=both, grid style={gray!25},
+  xlabel={$x$}, ylabel={$y$}, tick label style={font=\scriptsize}]
+\addplot[thick, domain=0:360, samples=145] {3*sin(x-30)+1};
+\end{axis}
+\end{tikzpicture}
+                        </latex-image>
+                    </image>
+                </figure>
+            </solution>
+        </example>
+
+        <example xml:id="example-phase-angle-four-sin">
+            <title>Phase Angle and Translation</title>
+            <statement><p>For <m>y = 4\sin(3x + 45^\circ)</m>, find the amplitude, the period and the phase angle, and describe how the graph is related to <m>y = 4\sin 3x</m>.</p></statement>
+            <solution><p>The amplitude is <m>4</m>, the period <m>360^\circ \div 3 = 120^\circ</m> and the phase angle <m>45^\circ</m>. Since <m>3x + 45^\circ = 3(x + 15^\circ)</m>, the graph is <m>y = 4\sin 3x</m> moved <m>15^\circ</m> to the left.</p></solution>
+        </example>
+
+        <example xml:id="example-tides-at-mombasa">
+            <title>Tides at Mombasa</title>
+            <statement><p>A simple model of the depth of water at a jetty in Kilindini harbour, Mombasa, is <m>h = 2 + 1.5\sin(30t)^\circ</m>, where <m>h</m> is the depth in metres and <m>t</m> is the time in hours after midnight, <m>0 \le t \le 24</m>. Find the greatest and least depths, when the water is deepest, and the period.</p></statement>
+            <solution>
+                <p>The sine is at most 1 and at least <m>-1</m>, so the greatest depth is <m>2 + 1.5 = 3.5\,\text{m}</m> and the least is <m>2 - 1.5 = 0.5\,\text{m}</m>. The water is deepest when <m>30t = 90</m> or <m>450</m>, that is at <m>t = 3</m> and <m>t = 15</m> (3 a.m. and 3 p.m.).</p>
+                <p>The period is <m>360 \div 30 = 12</m> hours: two high tides a day (<xref ref="fig-mombasa-tide"/>). The graph is drawn against time, so its repeat length is a period, not a wavelength.</p>
+                <figure xml:id="fig-mombasa-tide">
+                    <caption>The model depth of water at the jetty over one day.</caption>
+                    <image width="90%">
+                        <shortdescription>Depth of water against time: highest 3.5 m at 3 and 15 hours, lowest 0.5 m at 9 and 21 hours.</shortdescription>
+                        <description><p>Depth h in metres against time t in hours from 0 to 24. The curve starts at 2 m, rises to 3.5 m at t = 3, falls to 0.5 m at t = 9, rises to 3.5 m at t = 15, falls to 0.5 m at t = 21 and is at 2 m again at t = 24.</p></description>
+                        <latex-image>
+\begin{tikzpicture}
+% pgfplots sin takes degrees by default: sin(30*x) with x in hours
+\begin{axis}[width=13cm, height=6cm, axis lines=left, xmin=0, xmax=24.5, ymin=0, ymax=4,
+  xtick={0,3,...,24}, ytick={0,0.5,...,4}, grid=both, grid style={gray!25},
+  xlabel={$t$ (hours)}, ylabel={$h$ (m)}, tick label style={font=\scriptsize}]
+\addplot[thick, domain=0:24, samples=145] {2+1.5*sin(30*x)};
+\end{axis}
+\end{tikzpicture}
+                        </latex-image>
+                    </image>
+                </figure>
+            </solution>
+        </example>
+
+        <note xml:id="note-tsunami-safety">
+            <title>Tsunami Waves</title>
+            <p>
+                Far out at sea a tsunami has a wavelength of hundreds of kilometres and a height of less than a metre, so ships hardly notice it. Near the shore the wave slows down and grows much taller. The Indian Ocean tsunami of December 2004 reached the Kenyan coast. If you are at the coast and the sea suddenly draws back, move at once to high ground and stay there until it is safe.
+            </p>
+        </note>
+
+        <xi:include href="../lesson-plan-templates/assessment-intro.ptx" />
+        <xi:include href="../lesson-plan-templates/checkpoint.ptx" />
+
+        <p>Type decimals with a point, for example <c>1.73</c>, or a fraction such as <c>1/3</c>. Type an equation such as <c>y=3*sin(2*x+60)</c>; the angle in the bracket is in degrees.</p>
+
+        <exercise xml:id="ex-amplitude-phase-angle-and-mean-line-from-a-graph">
+            <!--<title></title>-->
+            <stack label="stk-amplitude-phase-angle-and-mean-line-from-a-graph" source="stack/top/2-measurement-and-geometry/10-trigonometry-iii/02-trigonometric-graphs-and-waves/Amplitude-phase-angle-and-mean-line-from-a-graph.xml"/>
+        </exercise>
+
+        <exercise xml:id="ex-equation-of-a-wave-from-its-graph">
+            <!--<title></title>-->
+            <stack label="stk-equation-of-a-wave-from-its-graph" source="stack/top/2-measurement-and-geometry/10-trigonometry-iii/02-trigonometric-graphs-and-waves/Equation-of-a-wave-from-its-graph.xml"/>
+        </exercise>
+
+        <exercise xml:id="ex-tides-and-tsunami-waves">
+            <!--<title></title>-->
+            <stack label="stk-tides-and-tsunami-waves" source="stack/top/2-measurement-and-geometry/10-trigonometry-iii/02-trigonometric-graphs-and-waves/Tides-and-tsunami-waves.xml"/>
+        </exercise>
+
+        <exercises xml:id="exercises-features-of-waves">
+            <exercise xml:id="ex-amplitude-period-four-waves">
+                <statement><p>Find the amplitude and the period of
+                    <ol marker="(a)">
+                        <li><p><m>y = 6\sin 2x</m></p></li>
+                        <li><p><m>y = 0.5\cos 4x</m></p></li>
+                        <li><p><m>y = -3\sin\dfrac{x}{3}</m></p></li>
+                        <li><p><m>y = 2\sin 1.5x</m></p></li>
+                    </ol></p></statement>
+                <answer><p>(a) 6, <m>180^\circ</m> (b) 0.5, <m>90^\circ</m> (c) 3, <m>1080^\circ</m> (d) 2, <m>240^\circ</m></p></answer>
+            </exercise>
+            <exercise xml:id="ex-wave-from-amplitude-and-period">
+                <statement><p>The wave <m>y = a\sin bx</m>, with <m>a \gt 0</m>, has amplitude 4 and period <m>90^\circ</m>. Find <m>a</m> and <m>b</m>.</p></statement>
+                <answer><p><m>a = 4</m>, <m>b = 4</m>.</p></answer>
+            </exercise>
+            <exercise xml:id="ex-phase-angles">
+                <statement><p>Write down the phase angle of (a) <m>y = \sin(x + 50^\circ)</m> (b) <m>y = 2\cos(x - 20^\circ)</m>.</p></statement>
+                <answer><p>(a) <m>50^\circ</m> (b) <m>-20^\circ</m></p></answer>
+            </exercise>
+            <exercise xml:id="ex-read-a-wave-graph">
+                <statement><p><xref ref="fig-exercise-wave-reading"/> shows a wave of the form <m>y = a\sin(x + c)</m>. Find its amplitude, wavelength and phase angle.</p>
+                    <figure xml:id="fig-exercise-wave-reading">
+                        <caption>A wave of the form <m>y = a\sin(x + c)</m>.</caption>
+                        <image width="90%">
+                            <shortdescription>A wave between 2 and -2 that rises through 0 at -45 degrees and at 315 degrees.</shortdescription>
+                            <description><p>The wave is drawn from -180 to 360 degrees on a grid. It reaches 2 at 45 degrees and -2 at -135 and 225 degrees, and rises through 0 at -45 and 315 degrees.</p></description>
+                            <latex-image>
+\begin{tikzpicture}
+% pgfplots sin and cos take degrees by default
+\begin{axis}[width=13cm, height=6cm, axis lines=middle, xmin=-190, xmax=380, ymin=-2.6, ymax=2.6,
+  xtick={-180,-135,...,360}, xticklabel={$\pgfmathprintnumber{\tick}^\circ$}, ytick={-2,-1,1,2}, grid=both, grid style={gray!25},
+  xlabel={$x$}, ylabel={$y$}, tick label style={font=\scriptsize}]
+\addplot[thick, domain=-180:360, samples=200] {2*sin(x+45)};
+\end{axis}
+\end{tikzpicture}
+                            </latex-image>
+                        </image>
+                    </figure>
+                </statement>
+                <answer><p>Amplitude 2, wavelength <m>360^\circ</m>, phase angle <m>45^\circ</m>.</p></answer>
+            </exercise>
+            <exercise xml:id="ex-tide-model">
+                <statement><p>At another jetty the depth of water is <m>h = 1.8 + 1.2\sin\left(30(t - 2)\right)^\circ</m> metres, <m>t</m> hours after midnight. Find the greatest and least depths, the times of high tide in one day, and the period.</p></statement>
+                <answer><p>Greatest <m>3.0\,\text{m}</m>, least <m>0.6\,\text{m}</m>; high tide at <m>t = 5</m> and <m>t = 17</m>; period 12 hours.</p></answer>
+                <solution><p>High tide when <m>30(t - 2) = 90</m> or <m>450</m>, so <m>t = 5</m> or <m>t = 17</m>.</p></solution>
+            </exercise>
+            <exercise xml:id="ex-tsunami-wavelength">
+                <statement><p>The height <m>h</m> metres of a model tsunami wave at a distance <m>x</m> km along its path is <m>h = 0.4\sin(0.75x)^\circ</m>. Find the amplitude and the wavelength.</p></statement>
+                <answer><p>Amplitude <m>0.4\,\text{m}</m>, wavelength <m>360 \div 0.75 = 480\,\text{km}</m>.</p></answer>
+            </exercise>
+            <exercise xml:id="ex-four-features">
+                <statement><p>For <m>y = 3\sin(2x + 70^\circ)</m>, find the amplitude, the period, the phase angle, and the translation that maps <m>y = 3\sin 2x</m> onto it.</p></statement>
+                <answer><p>Amplitude 3, period <m>180^\circ</m>, phase angle <m>70^\circ</m>; a translation of <m>35^\circ</m> to the left.</p></answer>
+                <solution><p><m>2x + 70^\circ = 2(x + 35^\circ)</m>.</p></solution>
+            </exercise>
+            <exercise xml:id="ex-wave-through-a-maximum">
+                <title>Challenge: A Wave Through a Maximum</title>
+                <statement><p>The wave <m>y = a\sin bx</m> has greatest value 2.5, and its first maximum after <m>x = 0</m> is at <m>x = 30^\circ</m>. Find <m>a</m>, <m>b</m> and the period.</p></statement>
+                <hint><p>The first maximum of <m>y = \sin bx</m> is where <m>bx = 90^\circ</m>.</p></hint>
+                <answer><p><m>a = 2.5</m>, <m>b = 3</m>, period <m>120^\circ</m>.</p></answer>
+            </exercise>
+        </exercises>
+
+        <axiom component="lesson-plan">
+            <title>Differentiation</title>
+            <table xml:id="table-differentiation-features-of-waves">
+                <title>Differentiation Strategies</title>
+                <tabular halign="left" top="minor" bottom="minor" left="minor" right="minor">
+                    <row header="yes" bottom="medium"><cell>Learner Group</cell><cell>Strategy and Learning Experience</cell></row>
+                    <row><cell>Struggling Learners (Support)</cell><cell>Provide a feature card showing where to look for each feature on a graph. Work through <xref ref="example-amplitude-period-five-sin-3x"/> and <xref ref="example-reading-a-wave-graph"/>. Assign <xref ref="ex-amplitude-period-four-waves"/> and <xref ref="ex-phase-angles"/>.</cell></row>
+                    <row><cell>On-Level Learners (Core)</cell><cell>Full activity and all examples. Assign <xref ref="ex-amplitude-period-four-waves"/> to <xref ref="ex-four-features"/>.</cell></row>
+                    <row><cell>Advanced Learners (Challenge)</cell><cell>All exercises including <xref ref="ex-wave-through-a-maximum"/>. Extension: two waves have the same amplitude and period, and one is <m>90^\circ</m> ahead of the other. Write equations for both using sine only, then using sine and cosine. (Answer: for example <m>y = \sin x</m> and <m>y = \sin(x + 90^\circ)</m>, which is <m>y = \cos x</m>.)</cell></row>
+                </tabular>
+            </table>
+        </axiom>
+
+        <xi:include href="../lesson-plan-templates/assessment-methods.ptx" />
+        <xi:include href="../lesson-plan-templates/reflection.ptx"/>
+    </subsection>
 </section>

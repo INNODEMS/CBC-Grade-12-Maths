@@ -33,7 +33,7 @@
                 <li component="lesson-plan">
                     <title>Estimated Duration</title>
                     <p>
-                        40 minutes
+                        2 lessons of 40 minutes
                     </p>
                 </li>
             </dl>
@@ -45,163 +45,396 @@
          Content summary: Indefinite integrals with the constant of integration; definite integrals of polynomials up to the 3rd degree using limits.
          Suggested activity: Learners evaluate indefinite and definite integrals of polynomials up to degree 3. -->
 
-    <!-- [LP] Add guidance on activity -->
+    <!-- Section notes (2026-11)
+         SLOs: Core (b). Lessons 2.1 and 2.2 as subsections.
+         Activity: as planning notes (indefinite, then definite integrals of polynomials up to degree 3) | changed: split into two discovery activities, term by term (2.1) and the constant cancelling (2.2)
+         JSXGraph: none named in the planning notes
+         STACK: assets/stack/top/4-calculus/18-integration/02-indefinite-and-definite-integrals/ -->
 
-    <!-- <axiom component="lesson-plan">
+    <!-- ============================================================ Lesson 2.1 -->
+    <subsection xml:id="subsec-indefinite-integrals-of-polynomials">
+        <title>Indefinite Integrals of Polynomials</title>
+
+        <p component="lesson-plan">Upon completion of this lesson, learners will be able to:
+            <ol>
+                <li><p><alert>Know:</alert> a polynomial is integrated term by term; a constant multiple comes outside; products must be expanded first; one <m>c</m> serves the whole answer.</p></li>
+                <li><p><alert>Do:</alert> integrate polynomials of degree up to <m>3</m>, including products and squares of brackets.</p></li>
+                <li><p><alert>Apply:</alert> find a cost function from a rate of change of cost.</p></li>
+            </ol>
+        </p>
+
+        <axiom component="lesson-plan">
             <title>Problem-Solving and Discovery</title>
             <dl>
-                <li>
-                    <title>Suggested Time</title>
-                    <p>
-                        XX minutes
-                    </p>
-                </li>
-                <li>
-                    <title>Objective</title>
-                    <p>
-                        XXX
-                    </p>
-                </li>
-                <li>
-                    <title>Teacher's Role</title>
-                    <p>
-                        XXX
-                    </p>
-                </li>
+                <li><title>Suggested Time</title><p>14 minutes</p></li>
+                <li><title>Objective</title><p>Learners find that polynomials integrate term by term, and that products do not.</p></li>
+                <li><title>Teacher's Role</title><p>In part (e), let pairs test Wanjiru's claim by differentiating before you show the right method.</p></li>
             </dl>
-        </axiom> -->
+        </axiom>
 
-    <!-- Add Activity -->
-
-    <!-- <activity>
-        <statement>
-        </statement>
-    </activity> -->
-
-    <!-- [LP] Add guidance on structured lesson plan-->
-
-    <!-- <axiom component="lesson-plan">
-        <title>Structured Instruction</title>
-        <p>
-            <dl>
-            <li>
-                <title>Suggested Time</title>
+        <activity xml:id="act-term-by-term">
+            <title>Term by Term</title>
+            <statement>
                 <p>
-                    XX minutes
+                    <ol marker="(a)">
+                        <li>
+                            <p>Differentiate <m>x^3 + 2x^2 - 5x + 7</m>.</p>
+                            <solution component="lesson-plan"><p><m>3x^2 + 4x - 5</m>.</p></solution>
+                        </li>
+                        <li>
+                            <p>Hence write down <m>\displaystyle\int (3x^2 + 4x - 5)\,dx</m>.</p>
+                            <solution component="lesson-plan"><p><m>x^3 + 2x^2 - 5x + c</m>.</p></solution>
+                        </li>
+                        <li>
+                            <p>Now integrate each term of <m>3x^2 + 4x - 5</m> separately and add the results. Do you get the same answer?</p>
+                            <solution component="lesson-plan"><p><m>x^3</m>, <m>2x^2</m> and <m>-5x</m>: yes, the same, with one <m>+\,c</m>.</p></solution>
+                        </li>
+                        <li>
+                            <p>Is <m>\displaystyle\int 4x^2\,dx</m> equal to <m>4\displaystyle\int x^2\,dx</m>?</p>
+                            <solution component="lesson-plan"><p>Yes: both are <m>\frac{4x^3}{3} + c</m>.</p></solution>
+                        </li>
+                        <li>
+                            <p>Wanjiru says <m>\displaystyle\int (x + 1)(x + 2)\,dx = \left(\frac{x^2}{2} + x\right)\left(\frac{x^2}{2} + 2x\right) + c</m>. Expand her answer and differentiate it. Is she right?</p>
+                            <solution component="lesson-plan"><p>Her answer is <m>\frac{x^4}{4} + \frac{3x^3}{2} + 2x^2 + c</m>, whose derivative is <m>x^3 + \frac{9x^2}{2} + 4x</m>, not <m>(x + 1)(x + 2) = x^2 + 3x + 2</m>. She is wrong. Expanding first gives <m>\frac{x^3}{3} + \frac{3x^2}{2} + 2x + c</m>.</p></solution>
+                        </li>
+                    </ol>
                 </p>
-            </li>
-            <li>
-                <title>Objective</title>
-                <p>
-                    To formalize the concepts and properties learners discovered in the anchor task.
-                </p>
-            </li>
-            </dl>
-        </p>
-        <paragraphs>
-            <title>Key Takeaways &amp; Teacher Connection</title>
-            <ol>
-                <li>
-                    <p>
-                        <alert>Connecting to Learner Work:</alert> XXXX
-                    </p>
-                </li>
-            </ol>
-        </paragraphs>
-    </axiom> -->
+            </statement>
+        </activity>
 
-    <!-- Add insight / key takeaway directly related to activity / learner experience -->
+        <axiom component="lesson-plan">
+            <title>Structured Instruction</title>
+            <p>
+                <dl>
+                    <li><title>Suggested Time</title><p>8 minutes</p></li>
+                    <li><title>Objective</title><p>To state the sum and multiple rules and the need to expand products first.</p></li>
+                </dl>
+            </p>
+            <paragraphs>
+                <title>Key Takeaways &amp; Teacher Connection</title>
+                <ol>
+                    <li><p><alert>Connecting to Learner Work:</alert> parts (c) and (d) give the sum and multiple rules; part (e) shows why we expand first.</p></li>
+                    <li><p>Write one <m>+\,c</m> for the whole answer, not one per term.</p></li>
+                </ol>
+            </paragraphs>
+        </axiom>
 
-    <!-- <insight>
-    </insight> -->
+        <insight xml:id="insight-integrating-polynomials">
+            <title>Integrating Polynomials</title>
+            <p>
+                <md>\int \bigl(f(x) + g(x)\bigr)\,dx = \int f(x)\,dx + \int g(x)\,dx, \qquad \int k f(x)\,dx = k\int f(x)\,dx</md>
+                So a polynomial is integrated term by term, with one constant of integration for the whole answer. Multiply out any brackets before you integrate.
+            </p>
+        </insight>
 
-    <!-- Add further instruction (not in a block) to develop ideas as needed -->
+        <warning xml:id="warning-expand-first">
+            <title>Expand First</title>
+            <p>
+                The integral of a product is not the product of the integrals. Wanjiru's answer in <xref ref="act-term-by-term"/> differentiates to a cubic, not to <m>(x + 1)(x + 2)</m>. Multiply out first, then integrate term by term.
+            </p>
+        </warning>
 
-    <xi:include href="../lesson-plan-templates/example-intro.ptx" />
+        <xi:include href="../lesson-plan-templates/example-intro.ptx" />
 
-    <!-- Add at least 3 examples -->
-
-    <!-- <example>
-        <statement>
-        </statement>
-        <solution>
-        </solution>
-    </example>
-
-    <example>
-        <statement>
-        </statement>
-        <solution>
-        </solution>
-    </example>
-
-    <example>
-        <statement>
-        </statement>
-        <solution>
-        </solution>
-    </example> -->
-
-    <xi:include href="../lesson-plan-templates/assessment-intro.ptx" />
-
-    <!-- If STACK questions are included, uncomment this: -->
-
-    <!-- <xi:include href="../lesson-plan-templates/checkpoint.ptx" /> -->
-
-    <!-- Add STACK exercises if made -->
-
-    <!-- Add static exercises -->
-
-    <!-- <exercises>
-        <exercise>
-            <statement>   
-
-            </statement>   
+        <example xml:id="example-cubic-term-by-term">
+            <title>A Cubic Term by Term</title>
+            <statement><p>Find <m>\displaystyle\int (4x^3 - 6x^2 + 2x - 7)\,dx</m>.</p></statement>
             <solution>
+                <p>Integrate each term:
+                    <md>\int (4x^3 - 6x^2 + 2x - 7)\,dx = \frac{4x^4}{4} - \frac{6x^3}{3} + \frac{2x^2}{2} - 7x + c = x^4 - 2x^3 + x^2 - 7x + c</md>
+                    Check: the derivative is <m>4x^3 - 6x^2 + 2x - 7</m>.</p>
+            </solution>
+        </example>
 
-            </solution>             
-        </exercise>        
-    </exercises> -->
+        <example xml:id="example-expanding-a-product">
+            <title>Expanding a Product</title>
+            <statement><p>Find <m>\displaystyle\int (x - 2)(3x + 1)\,dx</m>.</p></statement>
+            <solution>
+                <p>Expand first: <m>(x - 2)(3x + 1) = 3x^2 + x - 6x - 2 = 3x^2 - 5x - 2</m>. Then
+                    <md>\int (3x^2 - 5x - 2)\,dx = x^3 - \frac{5x^2}{2} - 2x + c</md></p>
+            </solution>
+        </example>
 
-    <!-- [LP] Add information on how to differentiate  -->
+        <example xml:id="example-a-squared-bracket">
+            <title>A Squared Bracket</title>
+            <statement><p>Find <m>\displaystyle\int (2x + 3)^2\,dx</m>.</p></statement>
+            <solution>
+                <p><m>(2x + 3)^2 = 4x^2 + 12x + 9</m>, so
+                    <md>\int (2x + 3)^2\,dx = \frac{4x^3}{3} + 6x^2 + 9x + c</md></p>
+                <p>A tempting answer is <m>\frac{(2x + 3)^3}{3}</m>. Its derivative is <m>2(2x + 3)^2</m>, twice the integrand, so it is wrong.</p>
+            </solution>
+        </example>
 
-    <!-- <axiom component="lesson-plan">
-        <title>Differentiation</title>
+        <xi:include href="../lesson-plan-templates/assessment-intro.ptx" />
+        <xi:include href="../lesson-plan-templates/checkpoint.ptx" />
 
-        <table>
+        <p>Type powers with <c>^</c> and the constant of integration as <c>c</c>, for example <c>x^3/3+2x+c</c>.</p>
+
+        <exercise xml:id="ex-indefinite-integral-of-a-cubic-polynomial">
+            <!--<title></title>-->
+            <stack label="stk-indefinite-integral-of-a-cubic-polynomial" source="stack/top/4-calculus/18-integration/02-indefinite-and-definite-integrals/Indefinite-integral-of-a-cubic-polynomial.xml"/>
+        </exercise>
+
+        <exercise xml:id="ex-expanding-brackets-before-integrating">
+            <!--<title></title>-->
+            <stack label="stk-expanding-brackets-before-integrating" source="stack/top/4-calculus/18-integration/02-indefinite-and-definite-integrals/Expanding-brackets-before-integrating.xml"/>
+        </exercise>
+
+        <exercises xml:id="exercises-integrating-polynomials">
+            <exercise xml:id="ex-integrate-quadratic">
+                <statement><p>Find <m>\displaystyle\int (x^2 + 4x - 3)\,dx</m>.</p></statement>
+                <answer><p><m>\frac{x^3}{3} + 2x^2 - 3x + c</m></p></answer>
+            </exercise>
+            <exercise xml:id="ex-integrate-cubic">
+                <statement><p>Find <m>\displaystyle\int (8x^3 + 3x^2 - 10x)\,dx</m>.</p></statement>
+                <answer><p><m>2x^4 + x^3 - 5x^2 + c</m></p></answer>
+            </exercise>
+            <exercise xml:id="ex-integrate-x-times-bracket">
+                <statement><p>Find <m>\displaystyle\int x(x + 6)\,dx</m>.</p></statement>
+                <answer><p><m>\frac{x^3}{3} + 3x^2 + c</m></p></answer>
+                <solution><p><m>x(x + 6) = x^2 + 6x</m>, which integrates to <m>\frac{x^3}{3} + 3x^2 + c</m>.</p></solution>
+            </exercise>
+            <exercise xml:id="ex-integrate-two-brackets">
+                <statement><p>Find <m>\displaystyle\int (x + 4)(x - 1)\,dx</m>.</p></statement>
+                <answer><p><m>\frac{x^3}{3} + \frac{3x^2}{2} - 4x + c</m></p></answer>
+                <solution><p><m>(x + 4)(x - 1) = x^2 + 3x - 4</m>, which integrates to <m>\frac{x^3}{3} + \frac{3x^2}{2} - 4x + c</m>.</p></solution>
+            </exercise>
+            <exercise xml:id="ex-integrate-square">
+                <statement><p>Find <m>\displaystyle\int (1 - 3x)^2\,dx</m>.</p></statement>
+                <answer><p><m>3x^3 - 3x^2 + x + c</m></p></answer>
+                <solution><p><m>(1 - 3x)^2 = 1 - 6x + 9x^2</m>, which integrates to <m>x - 3x^2 + 3x^3 + c</m>.</p></solution>
+            </exercise>
+            <exercise xml:id="ex-integrate-three-brackets">
+                <statement><p>Find <m>\displaystyle\int (x - 1)(x + 1)(x + 2)\,dx</m>.</p></statement>
+                <answer><p><m>\frac{x^4}{4} + \frac{2x^3}{3} - \frac{x^2}{2} - 2x + c</m></p></answer>
+                <solution><p><m>(x - 1)(x + 1) = x^2 - 1</m>, and <m>(x^2 - 1)(x + 2) = x^3 + 2x^2 - x - 2</m>. Integrate term by term.</p></solution>
+            </exercise>
+            <exercise xml:id="ex-maize-miller-costs">
+                <statement><p>A maize miller in Eldoret finds that the cost <m>C</m> (in thousands of Ksh) of milling <m>x</m> tonnes changes at the rate <m>\dfrac{dC}{dx} = 3x^2 - 12x + 40</m>. Her fixed costs, when <m>x = 0</m>, are <m>50</m> thousand Ksh. Find <m>C</m> in terms of <m>x</m>, and the cost of milling <m>5</m> tonnes.</p></statement>
+                <answer><p><m>C = x^3 - 6x^2 + 40x + 50</m>; Ksh <m>225\,000</m></p></answer>
+                <solution><p><m>C = x^3 - 6x^2 + 40x + c</m> and <m>C(0) = c = 50</m>. Then <m>C(5) = 125 - 150 + 200 + 50 = 225</m> thousand Ksh, that is Ksh <m>225\,000</m>.</p></solution>
+            </exercise>
+            <exercise xml:id="ex-integrate-with-a-letter">
+                <title>Challenge: A Letter in the Bracket</title>
+                <statement><p>Find <m>\displaystyle\int (x + a)^2\,dx</m>, where <m>a</m> is a constant, and check your answer by differentiating.</p></statement>
+                <hint><p>Expand the bracket first; treat <m>a</m> as a number.</p></hint>
+                <answer><p><m>\frac{x^3}{3} + ax^2 + a^2x + c</m></p></answer>
+                <solution><p><m>(x + a)^2 = x^2 + 2ax + a^2</m>, which integrates to <m>\frac{x^3}{3} + ax^2 + a^2x + c</m>. Check: the derivative is <m>x^2 + 2ax + a^2</m>.</p></solution>
+            </exercise>
+        </exercises>
+
+        <axiom component="lesson-plan">
             <title>Differentiation</title>
-            <tabular halign="left">
-                <row header="yes" bottom="minor">
-                    <cell>Learner Group</cell>
-                    <cell>Strategy &amp; Learning Experience</cell>
-                    <cell></cell>
-                </row>
-                <row>
-                    <cell>Struggling Learners (Support)</cell>
-                    <cell>
-                        XXXX
-                    </cell>
-                    <cell></cell>
-                </row>
-                <row>
-                    <cell>On-Level Learners (Core)</cell>
-                    <cell>
-                        <line>The core lesson activities as described above.</line>
-                    </cell>
-                    <cell></cell>
-                </row>
-                <row>
-                    <cell>Advanced Learners (Challenge)</cell>
-                    <cell>
-                        XXXX
-                    </cell>
-                    <cell></cell>
-                </row>
-            </tabular>
-        </table>
-    </axiom> -->
+            <table xml:id="table-differentiation-integrating-polynomials">
+                <title>Differentiation Strategies</title>
+                <tabular halign="left" top="minor" bottom="minor" left="minor" right="minor">
+                    <row header="yes" bottom="medium"><cell>Learner Group</cell><cell>Strategy and Learning Experience</cell></row>
+                    <row><cell>Struggling Learners (Support)</cell><cell>Give an expansion grid for multiplying brackets. Work through the first two examples. Assign <xref ref="ex-integrate-quadratic"/> to <xref ref="ex-integrate-x-times-bracket"/>.</cell></row>
+                    <row><cell>On-Level Learners (Core)</cell><cell>Full activity and all examples. Assign <xref ref="ex-integrate-quadratic"/> to <xref ref="ex-maize-miller-costs"/>.</cell></row>
+                    <row><cell>Advanced Learners (Challenge)</cell><cell>All exercises including <xref ref="ex-integrate-with-a-letter"/>. Extension: find <m>\int (x + 1)^3\,dx</m> two ways (expand; or guess <m>\frac{(x + 1)^4}{4}</m> and check by differentiating) and explain why the answers differ by a constant (they differ by <m>\frac{1}{4}</m>).</cell></row>
+                </tabular>
+            </table>
+        </axiom>
 
-    <xi:include href="../lesson-plan-templates/assessment-methods.ptx" />
+        <xi:include href="../lesson-plan-templates/assessment-methods.ptx" />
+        <xi:include href="../lesson-plan-templates/reflection.ptx"/>
+    </subsection>
 
-    <xi:include href="../lesson-plan-templates/reflection.ptx"/>
+    <!-- ============================================================ Lesson 2.2 -->
+    <subsection xml:id="subsec-definite-integrals">
+        <title>Definite Integrals</title>
+
+        <p component="lesson-plan">Upon completion of this lesson, learners will be able to:
+            <ol>
+                <li><p><alert>Know:</alert> a definite integral is a number, <m>F(b) - F(a)</m>; the constant of integration cancels; swapping the limits changes the sign.</p></li>
+                <li><p><alert>Do:</alert> evaluate definite integrals, using brackets round negative limits, and find an unknown limit.</p></li>
+                <li><p><alert>Apply:</alert> find the amount of water that flows into a tank between two times.</p></li>
+            </ol>
+        </p>
+
+        <axiom component="lesson-plan">
+            <title>Problem-Solving and Discovery</title>
+            <dl>
+                <li><title>Suggested Time</title><p>14 minutes</p></li>
+                <li><title>Objective</title><p>Learners see that the change <m>V(3) - V(1)</m> does not depend on the constant of integration.</p></li>
+                <li><title>Teacher's Role</title><p>Give different groups different values of <m>c</m> in part (a) and compare their answers on the board.</p></li>
+            </dl>
+        </axiom>
+
+        <activity xml:id="act-does-the-constant-matter">
+            <title>Does the Constant Matter?</title>
+            <statement>
+                <p>Water flows into a tank in Machakos at <m>\dfrac{dV}{dt} = 2t</m> litres per minute, so <m>V = t^2 + c</m>.</p>
+                <p>
+                    <ol marker="(a)">
+                        <li>
+                            <p>Find the amount of water that flows in between <m>t = 1</m> and <m>t = 3</m>, that is <m>V(3) - V(1)</m>, when <m>c = 0</m>, when <m>c = 5</m> and when <m>c = -2</m>.</p>
+                            <solution component="lesson-plan"><p><m>9 - 1 = 8</m>, <m>14 - 6 = 8</m>, <m>7 - (-1) = 8</m>: <m>8\,\text{litres}</m> each time.</p></solution>
+                        </li>
+                        <li>
+                            <p>Explain why the answer does not depend on <m>c</m>.</p>
+                            <solution component="lesson-plan"><p><m>(9 + c) - (1 + c) = 8</m>: the <m>c</m> cancels.</p></solution>
+                        </li>
+                        <li>
+                            <p>Find <m>F(2) - F(1)</m> where <m>F(x) = x^3</m> is an integral of <m>3x^2</m>.</p>
+                            <solution component="lesson-plan"><p><m>8 - 1 = 7</m>.</p></solution>
+                        </li>
+                        <li>
+                            <p>Now find <m>F(1) - F(2)</m>. What do you notice?</p>
+                            <solution component="lesson-plan"><p><m>-7</m>: swapping the two values changes the sign.</p></solution>
+                        </li>
+                    </ol>
+                </p>
+            </statement>
+        </activity>
+
+        <axiom component="lesson-plan">
+            <title>Structured Instruction</title>
+            <p>
+                <dl>
+                    <li><title>Suggested Time</title><p>8 minutes</p></li>
+                    <li><title>Objective</title><p>To introduce the notation and layout of a definite integral.</p></li>
+                </dl>
+            </p>
+            <paragraphs>
+                <title>Key Takeaways &amp; Teacher Connection</title>
+                <ol>
+                    <li><p><alert>Connecting to Learner Work:</alert> part (b) is why we leave out <m>c</m> in a definite integral.</p></li>
+                    <li><p>Write <m>\left[ F(x) \right]_{a}^{b}</m>, then upper limit minus lower limit, with each substitution in brackets.</p></li>
+                    <li><p>Section <xref ref="sec-area-under-a-curve-by-integration"/> shows what a definite integral measures.</p></li>
+                </ol>
+            </paragraphs>
+        </axiom>
+
+        <insight xml:id="insight-definite-integrals">
+            <title>Definite Integrals</title>
+            <p>
+                If <m>F(x)</m> is any integral of <m>f(x)</m>, the <term>definite integral</term> of <m>f(x)</m> from <m>a</m> to <m>b</m> is
+                <md>\int_{a}^{b} f(x)\,dx = \left[ F(x) \right]_{a}^{b} = F(b) - F(a)</md>.
+                Here <m>a</m> is the <term>lower limit</term> and <m>b</m> the <term>upper limit</term>. The answer is a number: the constant of integration cancels, so leave it out. Swapping the limits changes the sign: <m>\int_{b}^{a} f(x)\,dx = -\int_{a}^{b} f(x)\,dx</m>.
+            </p>
+        </insight>
+
+        <xi:include href="../lesson-plan-templates/example-intro.ptx" />
+
+        <example xml:id="example-evaluating-a-definite-integral">
+            <title>Evaluating a Definite Integral</title>
+            <statement><p>Evaluate <m>\displaystyle\int_{1}^{3} (3x^2 - 2x)\,dx</m>.</p></statement>
+            <solution>
+                <p><md>\int_{1}^{3} (3x^2 - 2x)\,dx = \left[ x^3 - x^2 \right]_{1}^{3} = (27 - 9) - (1 - 1) = 18 - 0 = 18</md></p>
+            </solution>
+        </example>
+
+        <example xml:id="example-a-negative-lower-limit">
+            <title>A Negative Lower Limit</title>
+            <statement><p>Evaluate <m>\displaystyle\int_{-1}^{2} (x^3 + 2x)\,dx</m>.</p></statement>
+            <solution>
+                <p><md>\int_{-1}^{2} (x^3 + 2x)\,dx = \left[ \frac{x^4}{4} + x^2 \right]_{-1}^{2} = \left(\frac{16}{4} + 4\right) - \left(\frac{(-1)^4}{4} + (-1)^2\right) = 8 - \frac{5}{4} = \frac{27}{4} = 6.75</md>
+                    Put the negative limit in brackets: <m>(-1)^4 = 1</m> and <m>(-1)^2 = 1</m>.</p>
+            </solution>
+        </example>
+
+        <example xml:id="example-expanding-before-evaluating">
+            <title>Expanding Before Evaluating</title>
+            <statement><p>Evaluate <m>\displaystyle\int_{0}^{2} (x + 1)(x - 3)\,dx</m>.</p></statement>
+            <solution>
+                <p><m>(x + 1)(x - 3) = x^2 - 2x - 3</m>, so
+                    <md>\int_{0}^{2} (x^2 - 2x - 3)\,dx = \left[ \frac{x^3}{3} - x^2 - 3x \right]_{0}^{2} = \left(\frac{8}{3} - 4 - 6\right) - 0 = -\frac{22}{3} \approx -7.33</md>
+                    A definite integral can be negative. Section <xref ref="sec-area-under-a-curve-by-integration"/> explains what that means.</p>
+            </solution>
+        </example>
+
+        <example xml:id="example-finding-a-limit">
+            <title>Finding a Limit</title>
+            <statement><p>Given that <m>\displaystyle\int_{1}^{k} (2x + 1)\,dx = 10</m>, where <m>k \gt 1</m>, find <m>k</m>.</p></statement>
+            <solution>
+                <p><m>\left[ x^2 + x \right]_{1}^{k} = (k^2 + k) - 2</m>. So <m>k^2 + k - 2 = 10</m>, that is <m>k^2 + k - 12 = 0</m>, and <m>(k + 4)(k - 3) = 0</m>.</p>
+                <p>Since <m>k \gt 1</m>, <m>k = 3</m>. (The root <m>k = -4</m> is rejected.)</p>
+            </solution>
+        </example>
+
+        <xi:include href="../lesson-plan-templates/assessment-intro.ptx" />
+        <xi:include href="../lesson-plan-templates/checkpoint.ptx" />
+
+        <p>Type exact values as whole numbers, fractions or decimals, for example <c>27/4</c> or <c>6.75</c>. Type an expression in <c>k</c> with <c>^</c> for powers, for example <c>k^2+3k-4</c>.</p>
+
+        <exercise xml:id="ex-evaluating-a-definite-integral">
+            <!--<title></title>-->
+            <stack label="stk-evaluating-a-definite-integral" source="stack/top/4-calculus/18-integration/02-indefinite-and-definite-integrals/Evaluating-a-definite-integral.xml"/>
+        </exercise>
+
+        <exercise xml:id="ex-finding-a-limit-of-a-definite-integral">
+            <!--<title></title>-->
+            <stack label="stk-finding-a-limit-of-a-definite-integral" source="stack/top/4-calculus/18-integration/02-indefinite-and-definite-integrals/Finding-a-limit-of-a-definite-integral.xml"/>
+        </exercise>
+
+        <exercise xml:id="ex-finding-the-mistake-in-a-definite-integral">
+            <!--<title></title>-->
+            <stack label="stk-finding-the-mistake-in-a-definite-integral" source="stack/top/4-calculus/18-integration/02-indefinite-and-definite-integrals/Finding-the-mistake-in-a-definite-integral.xml"/>
+        </exercise>
+
+        <exercises xml:id="exercises-definite-integrals">
+            <exercise xml:id="ex-definite-0-to-2">
+                <statement><p>Evaluate <m>\displaystyle\int_{0}^{2} (3x^2 + 1)\,dx</m>.</p></statement>
+                <answer><p><m>10</m></p></answer>
+            </exercise>
+            <exercise xml:id="ex-definite-1-to-4">
+                <statement><p>Evaluate <m>\displaystyle\int_{1}^{4} (2x - 1)\,dx</m>.</p></statement>
+                <answer><p><m>12</m></p></answer>
+            </exercise>
+            <exercise xml:id="ex-definite-negative-lower">
+                <statement><p>Evaluate <m>\displaystyle\int_{-2}^{1} (x^2 + 2)\,dx</m>.</p></statement>
+                <answer><p><m>9</m></p></answer>
+                <solution><p><m>\left[ \frac{x^3}{3} + 2x \right]_{-2}^{1} = \left(\frac{1}{3} + 2\right) - \left(-\frac{8}{3} - 4\right) = \frac{7}{3} + \frac{20}{3} = 9</m>.</p></solution>
+            </exercise>
+            <exercise xml:id="ex-definite-cubic">
+                <statement><p>Evaluate <m>\displaystyle\int_{1}^{3} (x^3 - 2x)\,dx</m>.</p></statement>
+                <answer><p><m>12</m></p></answer>
+                <solution><p><m>\left[ \frac{x^4}{4} - x^2 \right]_{1}^{3} = \left(\frac{81}{4} - 9\right) - \left(\frac{1}{4} - 1\right) = \frac{45}{4} + \frac{3}{4} = 12</m>.</p></solution>
+            </exercise>
+            <exercise xml:id="ex-definite-product">
+                <statement><p>Evaluate <m>\displaystyle\int_{0}^{3} (x - 1)(x + 2)\,dx</m>.</p></statement>
+                <answer><p><m>\frac{15}{2} = 7.5</m></p></answer>
+                <solution><p><m>(x - 1)(x + 2) = x^2 + x - 2</m>; <m>\left[ \frac{x^3}{3} + \frac{x^2}{2} - 2x \right]_{0}^{3} = 9 + \frac{9}{2} - 6 = \frac{15}{2}</m>.</p></solution>
+            </exercise>
+            <exercise xml:id="ex-find-k-cubic">
+                <statement><p>Given that <m>\displaystyle\int_{0}^{k} (3x^2 + 2)\,dx = 12</m>, find <m>k</m>.</p></statement>
+                <answer><p><m>k = 2</m></p></answer>
+                <solution><p><m>k^3 + 2k = 12</m>. Trying <m>k = 2</m>: <m>8 + 4 = 12</m>. Since <m>k^3 + 2k</m> increases as <m>k</m> increases, this is the only solution.</p></solution>
+            </exercise>
+            <exercise xml:id="ex-tank-first-ten-minutes">
+                <statement><p>A tank is filled through a valve. After <m>t</m> minutes water flows in at <m>\dfrac{dV}{dt} = 40 - 2t</m> litres per minute, for <m>0 \le t \le 10</m>. How much water flows in during the first <m>10</m> minutes?</p></statement>
+                <answer><p><m>300\,\text{litres}</m></p></answer>
+                <solution><p><m>\displaystyle\int_{0}^{10} (40 - 2t)\,dt = \left[ 40t - t^2 \right]_{0}^{10} = 400 - 100 = 300\,\text{litres}</m>.</p></solution>
+            </exercise>
+            <exercise xml:id="ex-symmetric-limits">
+                <statement><p>Show that <m>\displaystyle\int_{-a}^{a} x^3\,dx = 0</m> for every number <m>a</m>.</p></statement>
+                <answer><p><m>\frac{a^4}{4} - \frac{(-a)^4}{4} = 0</m></p></answer>
+                <solution><p><m>\left[ \frac{x^4}{4} \right]_{-a}^{a} = \frac{a^4}{4} - \frac{(-a)^4}{4} = \frac{a^4}{4} - \frac{a^4}{4} = 0</m>, because <m>(-a)^4 = a^4</m>.</p></solution>
+            </exercise>
+            <exercise xml:id="ex-find-a-coefficient">
+                <title>Challenge: An Unknown Coefficient</title>
+                <statement><p>Given that <m>\displaystyle\int_{1}^{3} (ax + 2)\,dx = 20</m>, find the constant <m>a</m>.</p></statement>
+                <hint><p>The integral works out to <m>4a + 4</m>.</p></hint>
+                <answer><p><m>a = 4</m></p></answer>
+                <solution><p><m>\left[ \frac{ax^2}{2} + 2x \right]_{1}^{3} = \left(\frac{9a}{2} + 6\right) - \left(\frac{a}{2} + 2\right) = 4a + 4</m>. So <m>4a + 4 = 20</m> and <m>a = 4</m>.</p></solution>
+            </exercise>
+        </exercises>
+
+        <axiom component="lesson-plan">
+            <title>Differentiation</title>
+            <table xml:id="table-differentiation-definite-integrals">
+                <title>Differentiation Strategies</title>
+                <tabular halign="left" top="minor" bottom="minor" left="minor" right="minor">
+                    <row header="yes" bottom="medium"><cell>Learner Group</cell><cell>Strategy and Learning Experience</cell></row>
+                    <row><cell>Struggling Learners (Support)</cell><cell>Give an evaluation template with brackets: <q>( <m>F(b)</m> ) <m>-</m> ( <m>F(a)</m> )</q>. Work through the first two examples. Assign <xref ref="ex-definite-0-to-2"/> to <xref ref="ex-definite-negative-lower"/>.</cell></row>
+                    <row><cell>On-Level Learners (Core)</cell><cell>Full activity and all examples. Assign <xref ref="ex-definite-0-to-2"/> to <xref ref="ex-symmetric-limits"/>.</cell></row>
+                    <row><cell>Advanced Learners (Challenge)</cell><cell>All exercises including <xref ref="ex-find-a-coefficient"/>. Extension: for <m>f(x) = 2x</m>, find <m>\int_{0}^{2} f(x)\,dx + \int_{2}^{5} f(x)\,dx</m> and explain the answer (<m>4 + 21 = 25 = \int_{0}^{5} f(x)\,dx</m>).</cell></row>
+                </tabular>
+            </table>
+        </axiom>
+
+        <xi:include href="../lesson-plan-templates/assessment-methods.ptx" />
+        <xi:include href="../lesson-plan-templates/reflection.ptx"/>
+    </subsection>
 </section>

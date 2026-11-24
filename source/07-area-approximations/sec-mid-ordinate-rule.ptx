@@ -39,7 +39,7 @@
                 <li component="lesson-plan">
                     <title>Estimated Duration</title>
                     <p>
-                        40 minutes
+                        2 lessons of 40 minutes
                     </p>
                 </li>
             </dl>
@@ -52,163 +52,558 @@
          Suggested activity: Learners repeat the area estimate with the mid-ordinate rule and compare the result with the trapezoidal rule.
          Interactive (JSXGraph): Same curve with rectangles at mid-ordinates; a slider for n shows how the estimate changes compared with the trapezoidal rule. -->
 
-    <!-- [LP] Add guidance on activity -->
+    <!-- Section notes (2026-11)
+         SLOs: Core (c), Essential (c). Lessons 3.1 and 3.2 as subsections.
+         Activity: as planning notes (repeat the 7.2 estimate, curve y = x^2 + 2x + 3, with mid-ordinates and compare with the trapezoidal rule) | changed: Core derives the middle of strip k, Essential checks the given rule; lesson 3.2 compares all three methods
+         JSXGraph: fig-mid-ordinate-rectangles-interactive (assets/jsxgraph/mid-ordinate-rectangles.js)
+         STACK: assets/stack/top/2-measurement-and-geometry/07-area-approximations/03-mid-ordinate-rule/ -->
 
-    <!-- <axiom component="lesson-plan">
+    <!-- ============================================================ Lesson 3.1 -->
+    <subsection xml:id="subsec-the-mid-ordinate-rule">
+        <title component="core">Deriving the Mid-ordinate Rule</title>
+        <title component="essential">Using the Mid-ordinate Rule</title>
+
+        <p component="lesson-plan">Upon completion of this lesson, learners will be able to:
+            <ol>
+                <li><p><alert>Know:</alert> a mid-ordinate is the height at the middle of a strip; each strip is replaced by one rectangle of that height.</p></li>
+                <li component="core"><p><alert>Know (Core):</alert> the middle of strip <m>k</m> is at <m>x = a + (k - \tfrac{1}{2})h</m>.</p></li>
+                <li><p><alert>Do:</alert> use the mid-ordinate rule for a curve and for widths measured at the middles of strips.</p></li>
+                <li><p><alert>Apply:</alert> estimate the areas of plots and compare the result with the trapezoidal rule.</p></li>
+            </ol>
+        </p>
+
+        <axiom component="lesson-plan">
             <title>Problem-Solving and Discovery</title>
             <dl>
-                <li>
-                    <title>Suggested Time</title>
-                    <p>
-                        XX minutes
-                    </p>
-                </li>
-                <li>
-                    <title>Objective</title>
-                    <p>
-                        XXX
-                    </p>
-                </li>
-                <li>
-                    <title>Teacher's Role</title>
-                    <p>
-                        XXX
-                    </p>
-                </li>
+                <li><title>Suggested Time</title><p>14 minutes</p></li>
+                <li><title>Objective</title><p>Learners repeat the estimate of <xref ref="act-trapezia-under-a-curve"/> with rectangles whose heights are taken at the middles of the strips, and compare it with the trapezoidal value.</p></li>
+                <li><title>Teacher's Role</title><p>Use the same curve and strips as in the trapezoidal lesson. Ask: <q>Is the top of the rectangle above or below the curve on the left half of the strip? On the right half?</q></p></li>
             </dl>
-        </axiom> -->
+        </axiom>
 
-    <!-- Add Activity -->
-
-    <!-- <activity>
-        <statement>
-        </statement>
-    </activity> -->
-
-    <!-- [LP] Add guidance on structured lesson plan-->
-
-    <!-- <axiom component="lesson-plan">
-        <title>Structured Instruction</title>
-        <p>
-            <dl>
-            <li>
-                <title>Suggested Time</title>
+        <activity xml:id="act-rectangles-at-the-middles">
+            <title>Rectangles at the Middles</title>
+            <statement>
+                <p>The region under <m>y = x^2 + 2x + 3</m> from <m>x = 0</m> to <m>x = 4</m> is cut into four strips of width <m>1</m>, as before. This time each strip is replaced by a rectangle whose height is the height of the curve at the middle of the strip.</p>
+                <figure xml:id="fig-mid-ordinate-rectangles">
+                    <caption>The region under <m>y = x^2 + 2x + 3</m> with four rectangles. Each height (dashed) is taken at the middle of its strip.</caption>
+                    <image width="70%">
+                        <shortdescription>The curve y = x squared plus 2x plus 3 from x = 0 to 4 with four rectangles of width 1. Their heights, 4.25, 8.25, 14.25 and 22.25, are taken at x = 0.5, 1.5, 2.5 and 3.5 and drawn as dashed lines.</shortdescription>
+                        <description><p>Horizontal axis x from 0 to 4 marked every 0.5, vertical axis y from 0 to 27. The curve y = x squared plus 2x plus 3 rises from 3 to 27. Four rectangles stand on the axis: from 0 to 1 with height 4.25, from 1 to 2 with height 8.25, from 2 to 3 with height 14.25 and from 3 to 4 with height 22.25. The top of each rectangle crosses the curve at the middle of the strip: the rectangle is above the curve on the left half and below it on the right half.</p></description>
+                        <latex-image>
+\begin{tikzpicture}
+\begin{axis}[width=9cm, height=7.5cm, xmin=0, xmax=4.5, ymin=0, ymax=30,
+  axis lines=left, xtick={0,0.5,1,1.5,2,2.5,3,3.5,4}, xticklabels={$0$,$0.5$,$1$,$1.5$,$2$,$2.5$,$3$,$3.5$,$4$}, ytick={0,10,20}, xlabel={$x$}, ylabel={$y$}, tick label style={font=\small}]
+\fill[gray!25] (axis cs:0,0) rectangle (axis cs:1,4.25);
+\draw (axis cs:0,0) rectangle (axis cs:1,4.25);
+\draw[dashed, thick] (axis cs:0.5,0) -- (axis cs:0.5,4.25);
+\node[anchor=west, font=\small, fill=gray!25, inner sep=1pt] at (axis cs:0.52,2.125) {$4.25$};
+\fill[gray!25] (axis cs:1,0) rectangle (axis cs:2,8.25);
+\draw (axis cs:1,0) rectangle (axis cs:2,8.25);
+\draw[dashed, thick] (axis cs:1.5,0) -- (axis cs:1.5,8.25);
+\node[anchor=west, font=\small, fill=gray!25, inner sep=1pt] at (axis cs:1.52,4.125) {$8.25$};
+\fill[gray!25] (axis cs:2,0) rectangle (axis cs:3,14.25);
+\draw (axis cs:2,0) rectangle (axis cs:3,14.25);
+\draw[dashed, thick] (axis cs:2.5,0) -- (axis cs:2.5,14.25);
+\node[anchor=west, font=\small, fill=gray!25, inner sep=1pt] at (axis cs:2.52,7.125) {$14.25$};
+\fill[gray!25] (axis cs:3,0) rectangle (axis cs:4,22.25);
+\draw (axis cs:3,0) rectangle (axis cs:4,22.25);
+\draw[dashed, thick] (axis cs:3.5,0) -- (axis cs:3.5,22.25);
+\node[anchor=west, font=\small, fill=gray!25, inner sep=1pt] at (axis cs:3.52,11.125) {$22.25$};
+\addplot[very thick, domain=0:4, samples=60] {x^2+2*x+3};
+\node[font=\small] at (axis cs:1.3,22) {$y = x^2 + 2x + 3$};
+\end{axis}
+\end{tikzpicture}
+                        </latex-image>
+                    </image>
+                </figure>
                 <p>
-                    XX minutes
+                    <ol marker="(a)">
+                        <li>
+                            <p>Write down the value of <m>x</m> at the middle of each strip.</p>
+                            <solution component="lesson-plan"><p><m>x = 0.5, 1.5, 2.5, 3.5</m>.</p></solution>
+                        </li>
+                        <li>
+                            <p>Find the height of the curve at each of these values of <m>x</m>.</p>
+                            <solution component="lesson-plan"><p><m>4.25, 8.25, 14.25, 22.25</m>.</p></solution>
+                        </li>
+                        <li>
+                            <p>Find the total area of the four rectangles.</p>
+                            <solution component="lesson-plan"><p><m>1 \times (4.25 + 8.25 + 14.25 + 22.25) = 49</m> square units.</p></solution>
+                        </li>
+                        <li component="core">
+                            <p>Work in pairs. A region from <m>x = a</m> is cut into strips of width <m>h</m>. Strip <m>k</m> runs from <m>x = a + (k - 1)h</m> to <m>x = a + ih</m>. Show that its middle is at <m>x = a + (k - \tfrac{1}{2})h</m>. If the height there is <m>m_k</m>, show that the total area of <m>n</m> rectangles is <m>h(m_1 + m_2 + \cdots + m_n)</m>.</p>
+                            <solution component="lesson-plan"><p>The middle is the average of the two edges: <m>\tfrac{1}{2}[a + (k - 1)h + a + kh] = a + (k - \tfrac{1}{2})h</m>. Each rectangle has area <m>h \times m_k</m>; adding gives <m>hm_1 + hm_2 + \cdots + hm_n = h(m_1 + m_2 + \cdots + m_n)</m>.</p></solution>
+                        </li>
+                        <li component="essential">
+                            <p>Work in pairs. Use the mid-ordinate rule in the box after this activity with <m>h = 1</m> and check that you get the same answer as in part (c).</p>
+                            <solution component="lesson-plan"><p><m>1 \times (4.25 + 8.25 + 14.25 + 22.25) = 49</m>.</p></solution>
+                        </li>
+                        <li>
+                            <p>The trapezoidal rule with the same strips gave <m>50</m>, and the exact area is <m>49\tfrac{1}{3}</m>. Compare the two estimates with the exact area.</p>
+                            <solution component="lesson-plan"><p>The mid-ordinate estimate is too small by <m>\tfrac{1}{3}</m>; the trapezoidal estimate is too big by <m>\tfrac{2}{3}</m>. The exact area lies between them.</p></solution>
+                        </li>
+                    </ol>
                 </p>
-            </li>
-            <li>
-                <title>Objective</title>
-                <p>
-                    To formalize the concepts and properties learners discovered in the anchor task.
-                </p>
-            </li>
-            </dl>
-        </p>
-        <paragraphs>
-            <title>Key Takeaways &amp; Teacher Connection</title>
-            <ol>
-                <li>
+            </statement>
+        </activity>
+
+        <axiom component="lesson-plan">
+            <title>Structured Instruction</title>
+            <p>
+                <dl>
+                    <li><title>Suggested Time</title><p>8 minutes</p></li>
+                    <li><title>Objective</title><p component="core">To state the mid-ordinate rule, with the general middle of strip <m>k</m>, and compare its error with the trapezoidal rule's.</p><p component="essential">To state the mid-ordinate rule and compare its error with the trapezoidal rule's.</p></li>
+                </dl>
+            </p>
+            <paragraphs>
+                <title>Key Takeaways &amp; Teacher Connection</title>
+                <ol>
+                    <li><p><alert>Connecting to Learner Work:</alert> the heights in part (b) are the mid-ordinates; they are taken at the middles, not the edges.</p></li>
+                    <li><p>There is no <m>\tfrac{1}{2}</m> in this rule: each rectangle is simply width <m>\times</m> height.</p></li>
+                    <li><p>Use part (e): for a curve that bends one way, the mid-ordinate and trapezoidal estimates err in opposite directions.</p></li>
+                    <li><p>Reflection: ask learners where heights at the middles of strips might be the easiest measurements to make (a pond whose edges are muddy, a plot whose corners are hard to reach).</p></li>
+                </ol>
+            </paragraphs>
+        </axiom>
+
+        <insight xml:id="insight-mid-ordinate-rule-core" component="core">
+            <title>Deriving the Mid-ordinate Rule</title>
+            <p>
+                Cut the region from <m>x = a</m> to <m>x = b</m> into <m>n</m> strips of width <m>h = \dfrac{b - a}{n}</m>. Strip <m>k</m> runs from <m>x = a + (k - 1)h</m> to <m>x = a + ih</m>, so its middle is at
+                <md>x = a + \left(i - \tfrac{1}{2}\right)h</md>.
+                The height of the curve there is the <term>mid-ordinate</term> <m>m_k</m>. Replace each strip by a rectangle of height <m>m_k</m> and width <m>h</m>, and add:
+                <md>A \approx hm_1 + hm_2 + \cdots + hm_n = h(m_1 + m_2 + \cdots + m_n)</md>.
+                This is the <term>mid-ordinate rule</term>. The height at the middle of a strip stands for the whole strip.
+            </p>
+            <p>
+                If the curve bends upwards, the mid-ordinate rule underestimates; if it bends downwards, it overestimates. This is the opposite of the trapezoidal rule, so for a curve that bends one way the exact area lies between the two estimates.
+            </p>
+        </insight>
+
+        <insight xml:id="insight-mid-ordinate-rule-essential" component="essential">
+            <title>Using the Mid-ordinate Rule</title>
+            <p>
+                Cut the region into <m>n</m> strips of equal width <m>h</m>. The height of the curve at the middle of a strip is a <term>mid-ordinate</term>; the mid-ordinates are <m>m_1, m_2, \ldots, m_n</m>. Each strip is replaced by a rectangle of that height. The <term>mid-ordinate rule</term> is
+                <md>A \approx h(m_1 + m_2 + \cdots + m_n)</md>.
+            </p>
+            <p>
+                <ol marker="1.">
+                    <li><p>Find the strip width: <m>h = (b - a) \div n</m>.</p></li>
+                    <li><p>Find the middle of each strip, halfway between its edges.</p></li>
+                    <li><p>Find the height of the curve at each middle.</p></li>
+                    <li><p>Add the heights and multiply by <m>h</m>.</p></li>
+                </ol>
+            </p>
+            <p>
+                The height at the middle of a strip stands for the whole strip. If the curve bends upwards, the mid-ordinate rule underestimates; if it bends downwards, it overestimates: the opposite of the trapezoidal rule.
+            </p>
+        </insight>
+
+        <figure xml:id="fig-mid-ordinate-rectangles-interactive">
+            <caption>Drag the slider to change the number of strips. Tick the box to draw the trapezia as well. <m>M</m> is below the exact area <m>49.33</m> and <m>T</m> above it.</caption>
+            <interactive xml:id="interactive-mid-ordinate-rectangles" platform="jsxgraph" width="90%" aspect="16:12" source="jsxgraph/mid-ordinate-rectangles.js">
+                <slate xml:id="jsxgraph-mid-ordinate-rectangles" surface="jsxboard" aspect="16:12"/>
+                <instructions>
                     <p>
-                        <alert>Connecting to Learner Work:</alert> XXXX
+                        <ul>
+                            <li><p>The curve is <m>y = x^2 + 2x + 3</m> from <m>x = 0</m> to <m>x = 4</m>, as in <xref ref="act-rectangles-at-the-middles"/>. The dashed lines are the mid-ordinates.</p></li>
+                            <li><p>Drag the <alert>n</alert> slider from <m>1</m> to <m>12</m> and tick <alert>show trapezia</alert>. Check that <m>n = 1</m> gives <m>M = 44</m> and <m>T = 60</m>, <m>n = 4</m> gives <m>49</m> and <m>50</m>, and <m>n = 12</m> gives <m>49.3</m> and <m>49.41</m>.</p></li>
+                            <li><p>Which estimate is closer to the exact area for each <m>n</m>?</p></li>
+                        </ul>
                     </p>
-                </li>
-            </ol>
-        </paragraphs>
-    </axiom> -->
+                </instructions>
+            </interactive>
+        </figure>
 
-    <!-- Add insight / key takeaway directly related to activity / learner experience -->
+        <xi:include href="../lesson-plan-templates/example-intro.ptx" />
 
-    <!-- <insight>
-    </insight> -->
-
-    <!-- Add further instruction (not in a block) to develop ideas as needed -->
-
-    <xi:include href="../lesson-plan-templates/example-intro.ptx" />
-
-    <!-- Add at least 3 examples -->
-
-    <!-- <example>
-        <statement>
-        </statement>
-        <solution>
-        </solution>
-    </example>
-
-    <example>
-        <statement>
-        </statement>
-        <solution>
-        </solution>
-    </example>
-
-    <example>
-        <statement>
-        </statement>
-        <solution>
-        </solution>
-    </example> -->
-
-    <xi:include href="../lesson-plan-templates/assessment-intro.ptx" />
-
-    <!-- If STACK questions are included, uncomment this: -->
-
-    <!-- <xi:include href="../lesson-plan-templates/checkpoint.ptx" /> -->
-
-    <!-- Add STACK exercises if made -->
-
-    <!-- Add static exercises -->
-
-    <!-- <exercises>
-        <exercise>
-            <statement>   
-
-            </statement>   
+        <example xml:id="example-the-arch-again">
+            <title>The Arch Again</title>
+            <statement>
+                <p>Use the mid-ordinate rule with <m>3</m> strips to estimate the area bounded by <m>y = 8 + 2x - \tfrac{1}{2}x^2</m>, the <m>x</m>-axis and the lines <m>x = 0</m> and <m>x = 6</m>. The exact area is <m>48</m> and the trapezoidal estimate in <xref ref="example-strips-two-units-wide"/> was <m>46</m>. Compare.</p>
+            </statement>
             <solution>
+                <p><m>h = (6 - 0) \div 3 = 2</m>. The strips are <m>0</m> to <m>2</m>, <m>2</m> to <m>4</m> and <m>4</m> to <m>6</m>, with middles at <m>x = 1, 3, 5</m>.</p>
+                <table xml:id="table-the-arch-again">
+                    <title>Mid-ordinates with <m>h = 2</m></title>
+                    <tabular halign="center" top="minor" bottom="minor" left="minor" right="minor">
+                        <row header="yes" bottom="medium"><cell>Middle <m>x</m></cell><cell>1</cell><cell>3</cell><cell>5</cell></row>
+                        <row><cell>Mid-ordinate <m>y</m></cell><cell>9.5</cell><cell>9.5</cell><cell>5.5</cell></row>
+                    </tabular>
+                </table>
+                <p><md>A \approx 2 \times (9.5 + 9.5 + 5.5) = 2 \times 24.5 = 49</md>
+                    The curve bends downwards, so the mid-ordinate estimate <m>49</m> is too big and the trapezoidal estimate <m>46</m> too small; the exact area <m>48</m> lies between them, nearer the mid-ordinate value.</p>
+            </solution>
+        </example>
 
-            </solution>             
-        </exercise>        
-    </exercises> -->
+        <example xml:id="example-widths-at-the-middles">
+            <title>Widths at the Middles</title>
+            <statement>
+                <p>A banana plot lies beside a straight path <m>50\,\text{m}</m> long. Its width was measured at the middles of five strips, each <m>10\,\text{m}</m> wide, that is at <m>5, 15, 25, 35</m> and <m>45\,\text{m}</m> along the path: <m>22, 26, 27, 24, 18</m> metres. Estimate the area of the plot.</p>
+            </statement>
+            <solution>
+                <p>The widths are already the mid-ordinates, with <m>h = 10</m>:
+                    <md>A \approx 10 \times (22 + 26 + 27 + 24 + 18) = 10 \times 117 = 1170</md>
+                    The plot is about <m>1170\,\text{m}^2</m>. No widths at the ends of the path are needed for this rule.</p>
+            </solution>
+        </example>
 
-    <!-- [LP] Add information on how to differentiate  -->
+        <example xml:id="example-not-starting-at-zero">
+            <title>Not Starting at Zero</title>
+            <statement>
+                <p>Use the mid-ordinate rule with <m>4</m> strips to estimate the area bounded by <m>y = 30 + 2x - x^2</m>, the <m>x</m>-axis and the lines <m>x = 1</m> and <m>x = 5</m>. The trapezoidal estimate with the same strips is <m>102</m>, and a computer gives the exact area as <m>102.67</m> (to 2 decimal places).</p>
+            </statement>
+            <solution>
+                <p><m>h = (5 - 1) \div 4 = 1</m>. The first strip runs from <m>1</m> to <m>2</m>, so its middle is at <m>1.5</m>, not <m>0.5</m>. The middles are <m>x = 1.5, 2.5, 3.5, 4.5</m>, and the mid-ordinates are <m>30.75, 28.75, 24.75, 18.75</m>.
+                    <md>A \approx 1 \times (30.75 + 28.75 + 24.75 + 18.75) = 103</md>
+                    The mid-ordinate estimate <m>103</m> is a little too big and the trapezoidal estimate <m>102</m> a little too small.</p>
+            </solution>
+        </example>
 
-    <!-- <axiom component="lesson-plan">
-        <title>Differentiation</title>
+        <example xml:id="example-middle-of-strip-i-core" component="core">
+            <title>The Middle of Strip <m>k</m></title>
+            <statement>
+                <p>A region starts at <m>x = 2</m> and is cut into strips of width <m>h = 3</m>. Find the middle of strip <m>5</m>, and check the general formula for strip <m>1</m>.</p>
+            </statement>
+            <solution>
+                <p>The middle of strip <m>k</m> is at <m>a + (k - \tfrac{1}{2})h</m>. For <m>k = 5</m>: <m>2 + 4.5 \times 3 = 15.5</m>. Check: strip <m>5</m> runs from <m>2 + 4 \times 3 = 14</m> to <m>2 + 5 \times 3 = 17</m>, whose middle is <m>15.5</m>. For <m>k = 1</m> the formula gives <m>a + \tfrac{1}{2}h = 3.5</m>, halfway between <m>2</m> and <m>5</m>.</p>
+            </solution>
+        </example>
 
-        <table>
+        <xi:include href="../lesson-plan-templates/assessment-intro.ptx" />
+        <xi:include href="../lesson-plan-templates/checkpoint.ptx" />
+
+        <p>Type decimals with a point, for example <c>37.6</c>. Give exact answers unless the question asks you to round.</p>
+
+        <exercise xml:id="ex-mid-ordinate-rule-for-a-curve">
+            <!--<title></title>-->
+            <stack label="stk-mid-ordinate-rule-for-a-curve" source="stack/top/2-measurement-and-geometry/07-area-approximations/03-mid-ordinate-rule/Mid-ordinate-rule-for-a-curve.xml"/>
+        </exercise>
+
+        <exercise xml:id="ex-where-the-mid-ordinates-are" component="core">
+            <!--<title></title>-->
+            <stack label="stk-where-the-mid-ordinates-are" source="stack/top/2-measurement-and-geometry/07-area-approximations/03-mid-ordinate-rule/Where-the-mid-ordinates-are.xml"/>
+        </exercise>
+
+        <exercises xml:id="exercises-the-mid-ordinate-rule">
+            <exercise xml:id="ex-mid-ordinate-three-strips-from-zero">
+                <statement><p>Use the mid-ordinate rule with <m>3</m> strips to estimate the area bounded by <m>y = x^2 + x + 1</m>, the <m>x</m>-axis and the lines <m>x = 0</m> and <m>x = 3</m>. The exact area is <m>16.5</m>. Is your estimate too big or too small?</p></statement>
+                <answer><p><m>16.25</m>; too small</p></answer>
+                <solution><p><m>h = 1</m>; middles <m>0.5, 1.5, 2.5</m>; mid-ordinates <m>1.75, 4.75, 9.75</m>. <m>A \approx 1 \times 16.25 = 16.25 \lt 16.5</m>: the curve bends upwards, so the mid-ordinate rule underestimates.</p></solution>
+            </exercise>
+            <exercise xml:id="ex-widths-at-five-metre-middles">
+                <statement><p>The widths of a plot were measured at the middles of six strips, each <m>5\,\text{m}</m> wide: <m>14, 17, 19, 18, 15, 11</m> metres. Estimate the area of the plot.</p></statement>
+                <answer><p><m>470\,\text{m}^2</m></p></answer>
+                <solution><p><m>A \approx 5 \times (14 + 17 + 19 + 18 + 15 + 11) = 5 \times 94 = 470\,\text{m}^2</m>.</p></solution>
+            </exercise>
+            <exercise xml:id="ex-mid-ordinate-straight-line">
+                <statement><p>For <m>y = \tfrac{1}{2}x + 3</m> from <m>x = 2</m> to <m>x = 10</m>, use <m>4</m> strips to find the mid-ordinate estimate and the trapezoidal estimate. Compare both with the area of the trapezium.</p></statement>
+                <answer><p><m>48</m>, <m>48</m>, <m>48</m></p></answer>
+                <solution><p><m>h = 2</m>. Middles <m>3, 5, 7, 9</m>: heights <m>4.5, 5.5, 6.5, 7.5</m>, so <m>M = 2 \times 24 = 48</m>. Ordinates at <m>2, 4, 6, 8, 10</m>: <m>4, 5, 6, 7, 8</m>, so <m>T = \tfrac{1}{2} \times 2 \times [4 + 8 + 2 \times 18] = 48</m>. Trapezium: <m>\tfrac{1}{2} \times 8 \times (4 + 8) = 48</m>. Both rules are exact for a straight line.</p></solution>
+            </exercise>
+            <exercise xml:id="ex-kiprop-left-edges">
+                <statement><p>Kiprop estimated the area under <m>y = x^2 + x + 1</m> from <m>x = 0</m> to <m>x = 3</m> with <m>3</m> strips, using the heights at <m>x = 0, 1, 2</m>. What did he get, and what is wrong?</p></statement>
+                <answer><p><m>11</m>; he used the left edges of the strips, not the middles; the mid-ordinate estimate is <m>16.25</m></p></answer>
+                <solution><p>Kiprop: <m>1 \times (1 + 3 + 7) = 11</m>. These are the heights at the left edges of the strips, which for a rising curve are the lowest points of each strip. The mid-ordinates are at <m>0.5, 1.5, 2.5</m>, giving <m>16.25</m> (<xref ref="ex-mid-ordinate-three-strips-from-zero"/>).</p></solution>
+            </exercise>
+            <exercise xml:id="ex-middle-of-strip-seven" component="core">
+                <statement><p>Strip <m>k</m> runs from <m>x = a + (k - 1)h</m> to <m>x = a + ih</m>. Show that its middle is at <m>x = a + (k - \tfrac{1}{2})h</m>. Find the middle of strip <m>7</m> when <m>a = 4</m> and <m>h = 2.5</m>.</p></statement>
+                <answer><p><m>20.25</m></p></answer>
+                <solution><p>The middle is the average of the edges: <m>\tfrac{1}{2}[a + (k - 1)h + a + kh] = a + (k - \tfrac{1}{2})h</m>. For <m>k = 7</m>: <m>4 + 6.5 \times 2.5 = 20.25</m>.</p></solution>
+            </exercise>
+            <exercise xml:id="ex-widest-mid-ordinate-strips">
+                <title>Challenge: Only Some Heights</title>
+                <statement><p>The heights of a curve are known only at <m>x = 0, 1, 2, \ldots, 8</m>: <m>5, 7, 8, 8, 7, 6, 5, 3, 2</m>. What are the narrowest strips that let you use the mid-ordinate rule? Estimate the area under the curve from <m>x = 0</m> to <m>x = 8</m> with the mid-ordinate rule, and with the trapezoidal rule using all the heights.</p></statement>
+                <hint><p>Each mid-ordinate must be one of the known heights.</p></hint>
+                <answer><p>Strips <m>2</m> wide; <m>M = 48</m>; <m>T = 47.5</m></p></answer>
+                <solution><p>With strips <m>1</m> wide the middles <m>0.5, 1.5, \ldots</m> have no known heights. Strips <m>2</m> wide have middles <m>1, 3, 5, 7</m>: <m>M = 2 \times (7 + 8 + 6 + 3) = 48</m>. With <m>8</m> strips of width <m>1</m>: <m>T = \tfrac{1}{2} \times 1 \times [5 + 2 + 2(7 + 8 + 8 + 7 + 6 + 5 + 3)] = \tfrac{1}{2} \times 95 = 47.5</m>.</p></solution>
+            </exercise>
+        </exercises>
+
+        <axiom component="lesson-plan">
             <title>Differentiation</title>
-            <tabular halign="left">
-                <row header="yes" bottom="minor">
-                    <cell>Learner Group</cell>
-                    <cell>Strategy &amp; Learning Experience</cell>
-                    <cell></cell>
-                </row>
-                <row>
-                    <cell>Struggling Learners (Support)</cell>
-                    <cell>
-                        XXXX
-                    </cell>
-                    <cell></cell>
-                </row>
-                <row>
-                    <cell>On-Level Learners (Core)</cell>
-                    <cell>
-                        <line>The core lesson activities as described above.</line>
-                    </cell>
-                    <cell></cell>
-                </row>
-                <row>
-                    <cell>Advanced Learners (Challenge)</cell>
-                    <cell>
-                        XXXX
-                    </cell>
-                    <cell></cell>
-                </row>
-            </tabular>
-        </table>
-    </axiom> -->
+            <table xml:id="table-differentiation-the-mid-ordinate-rule">
+                <title>Differentiation Strategies</title>
+                <tabular halign="left" top="minor" bottom="minor" left="minor" right="minor">
+                    <row header="yes" bottom="medium"><cell>Learner Group</cell><cell>Strategy and Learning Experience</cell></row>
+                    <row><cell>Struggling Learners (Support)</cell><cell>Give a table with an <q>edge</q> row and a <q>middle</q> row to fill in, and the four steps of the mid-ordinate rule on a card. Work through <xref ref="example-the-arch-again"/> and <xref ref="example-widths-at-the-middles"/>. Assign <xref ref="ex-mid-ordinate-three-strips-from-zero"/> and <xref ref="ex-widths-at-five-metre-middles"/>.</cell></row>
+                    <row><cell>On-Level Learners (Core)</cell><cell>Full activity and all examples. Assign <xref ref="ex-mid-ordinate-three-strips-from-zero"/> to <xref ref="ex-kiprop-left-edges"/>.</cell></row>
+                    <row><cell>Advanced Learners (Challenge)</cell><cell>All exercises including <xref ref="ex-widest-mid-ordinate-strips"/>. Extension: for <m>y = x^2 + 2x + 3</m> on <m>0 \le x \le 4</m> the mid-ordinate estimates are <m>49</m> with <m>4</m> strips and <m>49.25</m> with <m>8</m>. How far is each from <m>49\tfrac{1}{3}</m>, and what do you notice? (Answer: <m>\tfrac{1}{3}</m> and <m>\tfrac{1}{12}</m>; doubling the number of strips makes the error a quarter as big.)</cell></row>
+                </tabular>
+            </table>
+        </axiom>
 
-    <xi:include href="../lesson-plan-templates/assessment-methods.ptx" />
+        <xi:include href="../lesson-plan-templates/assessment-methods.ptx" />
+        <xi:include href="../lesson-plan-templates/reflection.ptx"/>
+    </subsection>
 
-    <xi:include href="../lesson-plan-templates/reflection.ptx"/>
+    <!-- ============================================================ Lesson 3.2 -->
+    <subsection xml:id="subsec-comparing-the-methods">
+        <title>Comparing the Three Methods</title>
+
+        <p component="lesson-plan">Upon completion of this lesson, learners will be able to:
+            <ol>
+                <li><p><alert>Know:</alert> which method fits which information; for a curve that bends one way, the trapezoidal and mid-ordinate estimates lie on either side of the true area.</p></li>
+                <li><p><alert>Do:</alert> use both rules on one table of measurements and choose a method.</p></li>
+                <li><p><alert>Apply:</alert> value a plot of land, settle a boundary question by agreed measurement, and plan a survey of the school compound.</p></li>
+            </ol>
+        </p>
+
+        <axiom component="lesson-plan">
+            <title>Problem-Solving and Discovery</title>
+            <dl>
+                <li><title>Suggested Time</title><p>14 minutes</p></li>
+                <li><title>Objective</title><p>Groups estimate one plot three ways and report which estimate they trust, and why.</p></li>
+                <li><title>Teacher's Role</title><p>Give each group the table and a sheet of squared paper with <m>5\,\text{m}</m> squares. Within each group, give counting squares, the trapezoidal rule and the mid-ordinate rule to different members. Each group reports in two minutes; listen for how they explain their choice.</p></li>
+            </dl>
+        </axiom>
+
+        <activity xml:id="act-three-ways-to-measure-a-plot">
+            <title>Three Ways to Measure a Plot</title>
+            <statement>
+                <p>A plot lies between a straight road <m>40\,\text{m}</m> long and a stream (<xref ref="fig-plot-road-and-stream"/>). Starting at one corner, a surveyor measured the width of the plot every <m>5\,\text{m}</m> along the road.</p>
+                <table xml:id="table-three-ways-to-measure-a-plot">
+                    <title>Widths of the Plot</title>
+                    <tabular halign="center" top="minor" bottom="minor" left="minor" right="minor">
+                        <row header="yes" bottom="medium"><cell>Distance along road (m)</cell><cell>0</cell><cell>5</cell><cell>10</cell><cell>15</cell><cell>20</cell><cell>25</cell><cell>30</cell><cell>35</cell><cell>40</cell></row>
+                        <row><cell>Width (m)</cell><cell>20</cell><cell>23</cell><cell>25</cell><cell>26</cell><cell>26</cell><cell>24</cell><cell>21</cell><cell>17</cell><cell>12</cell></row>
+                    </tabular>
+                </table>
+                <figure xml:id="fig-plot-road-and-stream">
+                    <caption>The plot between the road and the stream. Solid lines: widths at the edges of <m>10\,\text{m}</m> strips. Dashed lines: widths at their middles.</caption>
+                    <image width="90%">
+                        <shortdescription>A plot along a 40 m road with a curved stream on the far side. Widths every 5 m are 20, 23, 25, 26, 26, 24, 21, 17 and 12 m. The widths at 0, 10, 20, 30 and 40 m are drawn solid; those at 5, 15, 25 and 35 m are dashed.</shortdescription>
+                        <description><p>The road runs along the bottom from 0 to 40 m. Solid vertical lines at 0, 10, 20, 30 and 40 m have lengths 20, 25, 26, 21 and 12 m. Dashed vertical lines at 5, 15, 25 and 35 m have lengths 23, 26, 24 and 17 m. A smooth curve, the stream, joins the tops of all the lines; it rises to about 26 m near the middle and falls to 12 m at the far end.</p></description>
+                        <latex-image>
+\begin{tikzpicture}[x=0.3cm, y=0.3cm]
+\fill[gray!15] (0,0) -- plot[smooth] coordinates {(0,20) (5,23) (10,25) (15,26) (20,26) (25,24) (30,21) (35,17) (40,12)} -- (40,0) -- cycle;
+\draw[very thick] plot[smooth] coordinates {(0,20) (5,23) (10,25) (15,26) (20,26) (25,24) (30,21) (35,17) (40,12)};
+\draw[very thick] (0,0) -- (40,0);
+\node[below, font=\small] at (20,-2.2) {road (m)};
+\node[font=\small] at (28,27) {stream};
+\draw[thick] (0,0) -- (0,20); \node[font=\small, fill=gray!15, inner sep=1pt] at (1.6,10) {$20$}; \node[below, font=\small] at (0,0) {$0$};
+\foreach \x/\w in {10/25,20/26,30/21,40/12} { \draw[thick] (\x,0) -- (\x,\w); \node[font=\small, fill=gray!15, inner sep=1pt] at (\x-1.6,\w/2) {$\w$}; \node[below, font=\small] at (\x,0) {$\x$}; }
+\foreach \x/\w in {5/23,15/26,25/24,35/17} { \draw[dashed] (\x,0) -- (\x,\w); \node[font=\small, fill=gray!15, inner sep=1pt] at (\x-1.6,\w/2-3) {$\w$}; \node[below, font=\small] at (\x,0) {$\x$}; }
+\end{tikzpicture}
+                        </latex-image>
+                    </image>
+                </figure>
+                <p>
+                    <ol marker="(a)">
+                        <li>
+                            <p>Plot the widths on squared paper with <m>5\,\text{m}</m> squares, join the tops with a smooth curve and estimate the area by counting squares.</p>
+                            <solution component="lesson-plan"><p>About <m>880</m> to <m>900\,\text{m}^2</m>; hand-drawn curves vary.</p></solution>
+                        </li>
+                        <li>
+                            <p>Use the trapezoidal rule with strips <m>10\,\text{m}</m> wide.</p>
+                            <solution component="lesson-plan"><p>Ordinates at <m>0, 10, 20, 30, 40</m>: <m>\tfrac{1}{2} \times 10 \times [20 + 12 + 2(25 + 26 + 21)] = 5 \times 176 = 880\,\text{m}^2</m>.</p></solution>
+                        </li>
+                        <li>
+                            <p>Use the mid-ordinate rule with strips <m>10\,\text{m}</m> wide.</p>
+                            <solution component="lesson-plan"><p>Middles at <m>5, 15, 25, 35</m>: <m>10 \times (23 + 26 + 24 + 17) = 10 \times 90 = 900\,\text{m}^2</m>.</p></solution>
+                        </li>
+                        <li>
+                            <p>Use the trapezoidal rule with strips <m>5\,\text{m}</m> wide.</p>
+                            <solution component="lesson-plan"><p><m>\tfrac{1}{2} \times 5 \times [20 + 12 + 2(23 + 25 + 26 + 26 + 24 + 21 + 17)] = 2.5 \times 356 = 890\,\text{m}^2</m>.</p></solution>
+                        </li>
+                        <li>
+                            <p>Which estimate would you report, and why?</p>
+                            <solution component="lesson-plan"><p>The area lies between <m>880</m> and <m>900\,\text{m}^2</m> (the stream bends downwards, so <m>T</m> is too small and <m>M</m> too big). The value <m>890\,\text{m}^2</m> from <m>5\,\text{m}</m> strips uses every measurement.</p></solution>
+                        </li>
+                        <li>
+                            <p>Two neighbours disagree by <m>20\,\text{m}^2</m> about the area of this plot. How could measurement help them agree?</p>
+                            <solution component="lesson-plan"><p>They agree on one method and take more measurements together, so both trust the result. Settling the question by fair, shared measurement avoids a quarrel.</p></solution>
+                        </li>
+                    </ol>
+                </p>
+            </statement>
+        </activity>
+
+        <axiom component="lesson-plan">
+            <title>Structured Instruction</title>
+            <p>
+                <dl>
+                    <li><title>Suggested Time</title><p>8 minutes</p></li>
+                    <li><title>Objective</title><p>To compare the three methods and decide which suits the information available.</p></li>
+                </dl>
+            </p>
+            <paragraphs>
+                <title>Key Takeaways &amp; Teacher Connection</title>
+                <ol>
+                    <li><p><alert>Connecting to Learner Work:</alert> counting squares needs only an outline on a grid; the trapezoidal rule needs heights at the edges of the strips; the mid-ordinate rule needs heights at their middles.</p></li>
+                    <li><p>For a curve that bends one way, the true area lies between the trapezoidal and mid-ordinate estimates.</p></li>
+                    <li><p>More measurements (smaller squares, narrower strips) give a better estimate.</p></li>
+                </ol>
+            </paragraphs>
+        </axiom>
+
+        <insight xml:id="insight-choosing-a-method">
+            <title>Choosing a Method</title>
+            <table xml:id="table-choosing-a-method">
+                <title>Which Method Fits the Information</title>
+                <tabular halign="left" top="minor" bottom="minor" left="minor" right="minor">
+                    <row header="yes" bottom="medium"><cell>Information available</cell><cell>Method</cell></row>
+                    <row><cell>An outline drawn on a grid or a map, with no measurements</cell><cell>Counting squares</cell></row>
+                    <row><cell>Heights at equal steps, including both ends</cell><cell>The trapezoidal rule</cell></row>
+                    <row><cell>Heights only at the middles of equal strips</cell><cell>The mid-ordinate rule</cell></row>
+                    <row><cell>The equation of the curve</cell><cell>Either rule: any height can be worked out</cell></row>
+                </tabular>
+            </table>
+            <p>
+                If a curve bends one way between <m>x = a</m> and <m>x = b</m>, one rule overestimates and the other underestimates, so the true area lies between the two estimates. With any method, more measurements give a better estimate.
+            </p>
+        </insight>
+
+        <xi:include href="../lesson-plan-templates/example-intro.ptx" />
+
+        <example xml:id="example-which-method-fits">
+            <title>Which Method Fits?</title>
+            <statement>
+                <p>Choose a method for each situation.
+                    <ol marker="(a)">
+                        <li><p>The outline of a lake traced from a county map onto squared paper.</p></li>
+                        <li><p>The depth of a river measured at both banks and every <m>2\,\text{m}</m> across.</p></li>
+                        <li><p>The width of a plot measured at the middle of each <m>10\,\text{m}</m> strip along a road.</p></li>
+                        <li><p>The area under a curve whose equation is given.</p></li>
+                    </ol>
+                </p>
+            </statement>
+            <solution>
+                <p>
+                    <ol marker="(a)">
+                        <li><p>Counting squares: there is an outline but no measurements.</p></li>
+                        <li><p>The trapezoidal rule: the depths are at the edges of equal strips, including both ends.</p></li>
+                        <li><p>The mid-ordinate rule: the widths are at the middles of the strips.</p></li>
+                        <li><p>Either rule: the equation gives the height anywhere, at the edges or at the middles.</p></li>
+                    </ol>
+                </p>
+            </solution>
+        </example>
+
+        <example xml:id="example-value-of-a-plot">
+            <title>The Value of a Plot</title>
+            <statement>
+                <p>The width of a plot along a road <m>60\,\text{m}</m> long was measured every <m>10\,\text{m}</m>: <m>30, 34, 37, 38, 36, 33, 28</m> metres. Land here is valued at Ksh <m>1500</m> per square metre. Estimate the area with the trapezoidal rule (strips <m>10\,\text{m}</m> wide) and with the mid-ordinate rule (strips <m>20\,\text{m}</m> wide). By how much do the two values of the plot differ?</p>
+            </statement>
+            <solution>
+                <p>Trapezoidal rule, <m>h = 10</m>:
+                    <md>T = \tfrac{1}{2} \times 10 \times [30 + 28 + 2(34 + 37 + 38 + 36 + 33)] = 5 \times 414 = 2070</md>
+                    Mid-ordinate rule, <m>h = 20</m>: the strips are <m>0</m> to <m>20</m>, <m>20</m> to <m>40</m> and <m>40</m> to <m>60</m>, with middles at <m>10, 30, 50\,\text{m}</m>, where the widths are <m>34, 38, 33</m>:
+                    <md>M = 20 \times (34 + 38 + 33) = 20 \times 105 = 2100</md>
+                    Values: <m>2070 \times 1500 = 3\,105\,000</m> and <m>2100 \times 1500 = 3\,150\,000</m>, that is Ksh <m>3\,105\,000</m> and Ksh <m>3\,150\,000</m>. They differ by Ksh <m>45\,000</m>, enough to matter to a buyer.</p>
+            </solution>
+        </example>
+
+        <example xml:id="example-true-area-lies-between">
+            <title>The True Area Lies Between</title>
+            <statement>
+                <p>For <m>y = 30 + 2x - x^2</m> from <m>x = 1</m> to <m>x = 5</m> with <m>4</m> strips, the trapezoidal estimate is <m>102</m> (<xref ref="example-not-starting-at-zero"/>) and the mid-ordinate estimate is <m>103</m>. Without knowing the exact area, what can you say about it?</p>
+            </statement>
+            <solution>
+                <p>The ordinates are <m>31, 30, 27, 22, 15</m>: <m>T = \tfrac{1}{2} \times 1 \times [31 + 15 + 2(30 + 27 + 22)] = 102</m>. The curve bends downwards like an arch, so <m>T</m> underestimates and <m>M</m> overestimates. The true area lies between <m>102</m> and <m>103</m>. (A computer gives <m>102.67</m> to 2 decimal places.)</p>
+            </solution>
+        </example>
+
+        <p component="core">In <xref ref="ch-integration"/> you will find areas like these exactly and measure the errors of the two rules.</p>
+
+        <paragraphs>
+            <title>Area Approximation in Real Life</title>
+            <p>
+                Surveyors estimate the areas of plots with curved boundaries before land is sold or shared, and county land registries record those areas. Water engineers estimate the cross-section of a river, and so its flow, before they build an intake or a bridge. Farmers buy fertiliser and seed by the hectare, so they need the area of an irregular shamba. In each case the three methods of this chapter turn a few measurements into a reliable estimate.
+            </p>
+        </paragraphs>
+
+        <axiom component="lesson-plan">
+            <title>Curriculum Links</title>
+            <dl>
+                <li><title>Key Inquiry Question</title><p>Where do we need to find areas of shapes with curved or irregular edges? Learners answer it in their group reports in the activity; revisit it with the closing paragraphs, Area Approximation in Real Life.</p></li>
+                <li>
+                    <title>Core Competencies</title>
+                    <p component="core">Creativity and imagination: learners design their own counting grid and choose the method that suits the measurements they have.</p>
+                    <p component="essential">Creativity and imagination: learners design their own counting grid and choose the method that suits the measurements they have. Communication and collaboration: groups share out the three methods, compare their estimates and report together.</p>
+                </li>
+                <li><title>Values</title><p>Respect: learners listen to each member's estimate and settle differences by agreed measurement.</p></li>
+                <li><title>Pertinent and Contemporary Issues</title><p>Citizenship (promoting peace): fair, shared measurement of land helps neighbours settle boundary questions without conflict (activity part (f), <xref ref="ex-neighbours-in-kisii"/>).</p></li>
+                <li><title>Assessment Rubric</title><p>One criterion covers the three methods: does the learner estimate an area correctly by counting squares, by the trapezoidal rule and by the mid-ordinate rule, and choose a sensible method for given information?</p></li>
+            </dl>
+        </axiom>
+
+        <xi:include href="../lesson-plan-templates/assessment-intro.ptx" />
+        <xi:include href="../lesson-plan-templates/checkpoint.ptx" />
+
+        <p>Type decimals with a point, for example <c>37.6</c>. Give exact answers unless the question asks you to round.</p>
+
+        <exercise xml:id="ex-mid-ordinate-and-trapezoidal-estimates-of-a-plot">
+            <!--<title></title>-->
+            <stack label="stk-mid-ordinate-and-trapezoidal-estimates-of-a-plot" source="stack/top/2-measurement-and-geometry/07-area-approximations/03-mid-ordinate-rule/Mid-ordinate-and-trapezoidal-estimates-of-a-plot.xml"/>
+        </exercise>
+
+        <exercise xml:id="ex-choosing-a-method-to-estimate-an-area">
+            <!--<title></title>-->
+            <stack label="stk-choosing-a-method-to-estimate-an-area" source="stack/top/2-measurement-and-geometry/07-area-approximations/03-mid-ordinate-rule/Choosing-a-method-to-estimate-an-area.xml"/>
+        </exercise>
+
+        <exercise xml:id="ex-comparing-trapezoidal-and-mid-ordinate-estimates">
+            <!--<title></title>-->
+            <stack label="stk-comparing-trapezoidal-and-mid-ordinate-estimates" source="stack/top/2-measurement-and-geometry/07-area-approximations/03-mid-ordinate-rule/Comparing-trapezoidal-and-mid-ordinate-estimates.xml"/>
+        </exercise>
+
+        <exercises xml:id="exercises-comparing-the-methods">
+            <exercise xml:id="ex-which-method-four-situations">
+                <statement>
+                    <p>Choose a method for each situation.</p>
+                    <p><ol marker="(a)">
+                        <li><p>A patch of spilt paint on a floor of square tiles.</p></li>
+                        <li><p>The width of a field measured at both ends and every <m>10\,\text{m}</m> along a fence <m>30\,\text{m}</m> long.</p></li>
+                        <li><p>The depth of a pond measured at the middle of each <m>3\,\text{m}</m> strip across it.</p></li>
+                        <li><p>The outline of a forest on a map.</p></li>
+                    </ol></p>
+                </statement>
+                <answer><p>(a) counting squares; (b) the trapezoidal rule; (c) the mid-ordinate rule; (d) counting squares</p></answer>
+            </exercise>
+            <exercise xml:id="ex-lake-on-a-county-map">
+                <statement><p>A lake on a map of scale <m>1 : 15\,000</m> covers <m>22</m> full and <m>18</m> part squares of a <m>1\,\text{cm}</m> grid. Estimate the area of the lake in hectares.</p></statement>
+                <answer><p><m>69.75\,\text{ha}</m></p></answer>
+                <solution><p><m>1\,\text{cm}</m> on the map stands for <m>15\,000\,\text{cm} = 150\,\text{m}</m>, so one square stands for <m>150 \times 150 = 22\,500\,\text{m}^2 = 2.25\,\text{ha}</m>. Estimate <m>22 + \tfrac{1}{2} \times 18 = 31</m> squares, so about <m>31 \times 2.25 = 69.75\,\text{ha}</m>.</p></solution>
+            </exercise>
+            <exercise xml:id="ex-river-depths-at-middles">
+                <statement><p>A river is <m>15\,\text{m}</m> wide. Its depths at the middles of five strips, each <m>3\,\text{m}</m> wide, are <m>0.6, 1.4, 1.8, 1.5, 0.7</m> metres. Estimate the area of the cross-section.</p></statement>
+                <answer><p><m>18\,\text{m}^2</m></p></answer>
+                <solution><p><m>A \approx 3 \times (0.6 + 1.4 + 1.8 + 1.5 + 0.7) = 3 \times 6 = 18\,\text{m}^2</m>.</p></solution>
+            </exercise>
+            <exercise xml:id="ex-thirty-metre-plot-both-rules">
+                <statement><p>The width of a plot, measured every <m>5\,\text{m}</m> along a road <m>30\,\text{m}</m> long, is <m>14, 17, 19, 20, 19, 16, 12</m> metres. Estimate the area with the trapezoidal rule using <m>5\,\text{m}</m> strips, with the mid-ordinate rule using <m>10\,\text{m}</m> strips, and find the mean of the two estimates.</p></statement>
+                <answer><p><m>520\,\text{m}^2</m>; <m>530\,\text{m}^2</m>; <m>525\,\text{m}^2</m></p></answer>
+                <solution><p><m>T = \tfrac{1}{2} \times 5 \times [14 + 12 + 2(17 + 19 + 20 + 19 + 16)] = 2.5 \times 208 = 520</m>. With <m>10\,\text{m}</m> strips the middles are at <m>5, 15, 25\,\text{m}</m>: <m>M = 10 \times (17 + 20 + 16) = 530</m>. Mean <m>525\,\text{m}^2</m>.</p></solution>
+            </exercise>
+            <exercise xml:id="ex-school-field-project">
+                <statement><p>Group project. Choose a straight edge of the school field. With a tape, measure the width of the field at right angles to that edge every <m>5\,\text{m}</m>, including both ends. Estimate the area with both rules, draw the field to scale on squared paper and count squares. Present your three estimates and say which you trust most.</p></statement>
+                <answer><p>Answers depend on the field. Check: equal spacing, both rules used, a scale drawing, and a sentence comparing the estimates.</p></answer>
+            </exercise>
+            <exercise xml:id="ex-neighbours-in-kisii">
+                <title>Challenge: Neighbours in Kisii</title>
+                <statement><p>Two neighbours in Kisii disagree about the area of a plot. One counted squares on a map of scale <m>1 : 1000</m> with <m>1\,\text{cm}</m> squares: <m>28</m> full and <m>18</m> part squares. The other measured the width of the plot every <m>10\,\text{m}</m> along the <m>60\,\text{m}</m> boundary road: <m>55, 60, 64, 66, 63, 58, 52</m> metres. Find both estimates and suggest how they can agree.</p></statement>
+                <hint><p>Which estimate used measurements made on the ground?</p></hint>
+                <answer><p><m>3700\,\text{m}^2</m> and <m>3645\,\text{m}^2</m>, about <m>1.5\%</m> apart</p></answer>
+                <solution><p>Map: <m>1\,\text{cm}</m> stands for <m>10\,\text{m}</m>, so one square is <m>100\,\text{m}^2</m>; <m>28 + 9 = 37</m> squares give <m>3700\,\text{m}^2</m>. Offsets: <m>\tfrac{1}{2} \times 10 \times [55 + 52 + 2(60 + 64 + 66 + 63 + 58)] = 5 \times 729 = 3645\,\text{m}^2</m>. The difference, <m>55\,\text{m}^2</m>, is about <m>1.5\%</m>. The offsets were measured on the ground, so they are more trustworthy than a count on a small map; the neighbours could also measure more often, together, and agree to use the result.</p></solution>
+            </exercise>
+        </exercises>
+
+        <axiom component="lesson-plan">
+            <title>Differentiation</title>
+            <table xml:id="table-differentiation-comparing-the-methods">
+                <title>Differentiation Strategies</title>
+                <tabular halign="left" top="minor" bottom="minor" left="minor" right="minor">
+                    <row header="yes" bottom="medium"><cell>Learner Group</cell><cell>Strategy and Learning Experience</cell></row>
+                    <row><cell>Struggling Learners (Support)</cell><cell>Give a method-choice card: outline only, counting squares; heights at the edges, the trapezoidal rule; heights at the middles, the mid-ordinate rule. Work through <xref ref="example-which-method-fits"/> and <xref ref="example-value-of-a-plot"/>. Assign <xref ref="ex-which-method-four-situations"/> and <xref ref="ex-river-depths-at-middles"/>.</cell></row>
+                    <row><cell>On-Level Learners (Core)</cell><cell>Full activity and all examples. Assign <xref ref="ex-which-method-four-situations"/> to <xref ref="ex-school-field-project"/>.</cell></row>
+                    <row><cell>Advanced Learners (Challenge)</cell><cell>All exercises including <xref ref="ex-neighbours-in-kisii"/>. Extension: design a measuring plan for the school compound that lets you use both rules (answer: an odd number of equally spaced measurements including both ends, so that the even-numbered ones are the middles of strips twice as wide).</cell></row>
+                </tabular>
+            </table>
+        </axiom>
+
+        <xi:include href="../lesson-plan-templates/assessment-methods.ptx" />
+        <xi:include href="../lesson-plan-templates/reflection.ptx"/>
+    </subsection>
 </section>

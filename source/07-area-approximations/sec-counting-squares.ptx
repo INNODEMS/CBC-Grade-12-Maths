@@ -22,7 +22,7 @@
                     </p>
                 </li>
                 <li>
-                    <title>Specific Learning Outcomes</title> 
+                    <title>Specific Learning Outcomes</title>
                     <p component="core">
                         Estimate area of irregular shapes by counting squares technique
                     </p>
@@ -39,7 +39,7 @@
                 <li component="lesson-plan">
                     <title>Estimated Duration</title>
                     <p>
-                        40 minutes
+                        2 lessons of 40 minutes
                     </p>
                 </li>
             </dl>
@@ -52,163 +52,799 @@
          Suggested activity: Learners trace a leaf or the outline of the school compound from a map onto squared paper and estimate its area by counting squares.
          Interactive (JSXGraph): Irregular shape over a grid with a slider for grid size; the count of full and partial squares updates, showing the estimate improving as squares get smaller. -->
 
-    <!-- [LP] Add guidance on activity -->
+    <!-- Section notes (2026-11)
+         SLOs: Core (a), Essential (a). Lessons 1.1 and 1.2 as subsections.
+         Activity: as planning notes (a traced leaf; the school compound is an exercise) | changed: lesson 1.2 adds a plot under a curve (Essential names curves)
+         JSXGraph: fig-counting-squares-interactive (assets/jsxgraph/counting-squares-grid.js)
+         STACK: assets/stack/top/2-measurement-and-geometry/07-area-approximations/01-counting-squares/ -->
 
-    <!-- <axiom component="lesson-plan">
+    <introduction>
+        <question xml:id="kiq-area-approximations">
+            <p><em>Where do we need to find areas of shapes with curved or irregular edges?</em></p>
+        </question>
+        <p>
+            Few pieces of land in Kenya are perfect rectangles. A shamba may have a river along one side, a plot may follow a winding road, and the lakes and forests on a county map have edges that no formula describes. Water engineers need the area of a river's cross-section to know how much water it carries to an intake or under a bridge.
+        </p>
+        <p>
+            This chapter gives three ways to estimate such areas. Counting squares works for any outline drawn on a grid. The trapezoidal rule replaces narrow strips of the region by trapezia. The mid-ordinate rule replaces them by rectangles whose heights are measured at the middle of each strip. As you work through the chapter, look out for places in your county where these methods would help.
+        </p>
+    </introduction>
+
+    <!-- ============================================================ Lesson 1.1 -->
+    <subsection xml:id="subsec-counting-squares-for-irregular-shapes">
+        <title>Counting Squares for Irregular Shapes</title>
+
+        <p component="lesson-plan">Upon completion of this lesson, learners will be able to:
+            <ol>
+                <li><p><alert>Know:</alert> what full squares and part squares are; why a part square counts as a half; that a square on a map stands for a square on the ground.</p></li>
+                <li><p><alert>Do:</alert> count full and part squares, estimate an area as full squares <m>+ \tfrac{1}{2} \times</m> part squares, and convert with the size of a square or a map scale.</p></li>
+                <li><p><alert>Apply:</alert> estimate the areas of ponds, forests and plots from plans and maps.</p></li>
+            </ol>
+        </p>
+
+        <axiom component="lesson-plan">
             <title>Problem-Solving and Discovery</title>
             <dl>
-                <li>
-                    <title>Suggested Time</title>
-                    <p>
-                        XX minutes
-                    </p>
-                </li>
-                <li>
-                    <title>Objective</title>
-                    <p>
-                        XXX
-                    </p>
-                </li>
-                <li>
-                    <title>Teacher's Role</title>
-                    <p>
-                        XXX
-                    </p>
-                </li>
+                <li><title>Suggested Time</title><p>14 minutes</p></li>
+                <li><title>Objective</title><p>Learners estimate the area of a leaf by counting squares and see that smaller squares give a steadier answer.</p></li>
+                <li><title>Teacher's Role</title><p>Each learner traces a leaf on 1 cm squared paper; groups without leaves use <xref ref="fig-leaf-on-grid"/>. Collect five estimates on the board before part (d). Do not give the rule until learners have argued about the part squares.</p></li>
             </dl>
-        </axiom> -->
+        </axiom>
 
-    <!-- Add Activity -->
-
-    <!-- <activity>
-        <statement>
-        </statement>
-    </activity> -->
-
-    <!-- [LP] Add guidance on structured lesson plan-->
-
-    <!-- <axiom component="lesson-plan">
-        <title>Structured Instruction</title>
-        <p>
-            <dl>
-            <li>
-                <title>Suggested Time</title>
+        <activity xml:id="act-tracing-a-leaf">
+            <title>Tracing a Leaf</title>
+            <statement>
                 <p>
-                    XX minutes
+                    On a walk in Kakamega Forest, Nekesa picked a leaf and traced round it on 1 cm squared paper.
                 </p>
-            </li>
-            <li>
-                <title>Objective</title>
+                <figure xml:id="fig-leaf-on-grid">
+                    <caption>Nekesa's leaf on 1 cm squares.</caption>
+                    <image width="60%">
+                        <shortdescription>A leaf about 8 cm long and 4.8 cm wide drawn on 1 cm squares. 14 squares lie wholly inside it and its edge passes through 23 more.</shortdescription>
+                        <latex-image>
+\begin{tikzpicture}[x=0.8cm,y=0.8cm]
+  \draw[step=1, gray!60, very thin] (0,0) grid (11,9);
+  \draw[very thick] plot coordinates {(1.100,4.400) (1.140,4.448) (1.180,4.495) (1.220,4.542) (1.260,4.588) (1.300,4.634) (1.340,4.679) (1.380,4.724) (1.420,4.769) (1.460,4.813) (1.500,4.856) (1.540,4.899) (1.580,4.941) (1.620,4.983) (1.660,5.025) (1.700,5.066) (1.740,5.107) (1.780,5.147) (1.820,5.186) (1.860,5.225) (1.900,5.264) (1.940,5.302) (1.980,5.340) (2.020,5.377) (2.060,5.414) (2.100,5.450) (2.140,5.486) (2.180,5.521) (2.220,5.556) (2.260,5.590) (2.300,5.624) (2.340,5.657) (2.380,5.690) (2.420,5.723) (2.460,5.755) (2.500,5.786) (2.540,5.817) (2.580,5.847) (2.620,5.877) (2.660,5.907) (2.700,5.936) (2.740,5.965) (2.780,5.993) (2.820,6.020) (2.860,6.047) (2.900,6.074) (2.940,6.100) (2.980,6.126) (3.020,6.151) (3.060,6.176) (3.100,6.200) (3.140,6.224) (3.180,6.247) (3.220,6.270) (3.260,6.292) (3.300,6.314) (3.340,6.335) (3.380,6.356) (3.420,6.377) (3.460,6.397) (3.500,6.416) (3.540,6.435) (3.580,6.453) (3.620,6.471) (3.660,6.489) (3.700,6.506) (3.740,6.523) (3.780,6.539) (3.820,6.554) (3.860,6.569) (3.900,6.584) (3.940,6.598) (3.980,6.612) (4.020,6.625) (4.060,6.638) (4.100,6.650) (4.140,6.662) (4.180,6.673) (4.220,6.684) (4.260,6.694) (4.300,6.704) (4.340,6.713) (4.380,6.722) (4.420,6.731) (4.460,6.739) (4.500,6.746) (4.540,6.753) (4.580,6.759) (4.620,6.765) (4.660,6.771) (4.700,6.776) (4.740,6.781) (4.780,6.785) (4.820,6.788) (4.860,6.791) (4.900,6.794) (4.940,6.796) (4.980,6.798) (5.020,6.799) (5.060,6.800) (5.100,6.800) (5.140,6.800) (5.180,6.799) (5.220,6.798) (5.260,6.796) (5.300,6.794) (5.340,6.791) (5.380,6.788) (5.420,6.785) (5.460,6.781) (5.500,6.776) (5.540,6.771) (5.580,6.765) (5.620,6.759) (5.660,6.753) (5.700,6.746) (5.740,6.739) (5.780,6.731) (5.820,6.722) (5.860,6.713) (5.900,6.704) (5.940,6.694) (5.980,6.684) (6.020,6.673) (6.060,6.662) (6.100,6.650) (6.140,6.638) (6.180,6.625) (6.220,6.612) (6.260,6.598) (6.300,6.584) (6.340,6.569) (6.380,6.554) (6.420,6.539) (6.460,6.523) (6.500,6.506) (6.540,6.489) (6.580,6.471) (6.620,6.453) (6.660,6.435) (6.700,6.416) (6.740,6.397) (6.780,6.377) (6.820,6.356) (6.860,6.335) (6.900,6.314) (6.940,6.292) (6.980,6.270) (7.020,6.247) (7.060,6.224) (7.100,6.200) (7.140,6.176) (7.180,6.151) (7.220,6.126) (7.260,6.100) (7.300,6.074) (7.340,6.047) (7.380,6.020) (7.420,5.993) (7.460,5.965) (7.500,5.936) (7.540,5.907) (7.580,5.877) (7.620,5.847) (7.660,5.817) (7.700,5.786) (7.740,5.755) (7.780,5.723) (7.820,5.690) (7.860,5.657) (7.900,5.624) (7.940,5.590) (7.980,5.556) (8.020,5.521) (8.060,5.486) (8.100,5.450) (8.140,5.414) (8.180,5.377) (8.220,5.340) (8.260,5.302) (8.300,5.264) (8.340,5.225) (8.380,5.186) (8.420,5.147) (8.460,5.107) (8.500,5.066) (8.540,5.025) (8.580,4.983) (8.620,4.941) (8.660,4.899) (8.700,4.856) (8.740,4.813) (8.780,4.769) (8.820,4.724) (8.860,4.679) (8.900,4.634) (8.940,4.588) (8.980,4.542) (9.020,4.495) (9.060,4.448) (9.100,4.400) (9.100,4.400) (9.060,4.352) (9.020,4.305) (8.980,4.258) (8.940,4.212) (8.900,4.166) (8.860,4.121) (8.820,4.076) (8.780,4.031) (8.740,3.987) (8.700,3.944) (8.660,3.901) (8.620,3.859) (8.580,3.817) (8.540,3.775) (8.500,3.734) (8.460,3.693) (8.420,3.653) (8.380,3.614) (8.340,3.575) (8.300,3.536) (8.260,3.498) (8.220,3.460) (8.180,3.423) (8.140,3.386) (8.100,3.350) (8.060,3.314) (8.020,3.279) (7.980,3.244) (7.940,3.210) (7.900,3.176) (7.860,3.143) (7.820,3.110) (7.780,3.077) (7.740,3.045) (7.700,3.014) (7.660,2.983) (7.620,2.953) (7.580,2.923) (7.540,2.893) (7.500,2.864) (7.460,2.835) (7.420,2.807) (7.380,2.780) (7.340,2.753) (7.300,2.726) (7.260,2.700) (7.220,2.674) (7.180,2.649) (7.140,2.624) (7.100,2.600) (7.060,2.576) (7.020,2.553) (6.980,2.530) (6.940,2.508) (6.900,2.486) (6.860,2.465) (6.820,2.444) (6.780,2.423) (6.740,2.403) (6.700,2.384) (6.660,2.365) (6.620,2.347) (6.580,2.329) (6.540,2.311) (6.500,2.294) (6.460,2.277) (6.420,2.261) (6.380,2.246) (6.340,2.231) (6.300,2.216) (6.260,2.202) (6.220,2.188) (6.180,2.175) (6.140,2.162) (6.100,2.150) (6.060,2.138) (6.020,2.127) (5.980,2.116) (5.940,2.106) (5.900,2.096) (5.860,2.087) (5.820,2.078) (5.780,2.069) (5.740,2.061) (5.700,2.054) (5.660,2.047) (5.620,2.041) (5.580,2.035) (5.540,2.029) (5.500,2.024) (5.460,2.019) (5.420,2.015) (5.380,2.012) (5.340,2.009) (5.300,2.006) (5.260,2.004) (5.220,2.002) (5.180,2.001) (5.140,2.000) (5.100,2.000) (5.060,2.000) (5.020,2.001) (4.980,2.002) (4.940,2.004) (4.900,2.006) (4.860,2.009) (4.820,2.012) (4.780,2.015) (4.740,2.019) (4.700,2.024) (4.660,2.029) (4.620,2.035) (4.580,2.041) (4.540,2.047) (4.500,2.054) (4.460,2.061) (4.420,2.069) (4.380,2.078) (4.340,2.087) (4.300,2.096) (4.260,2.106) (4.220,2.116) (4.180,2.127) (4.140,2.138) (4.100,2.150) (4.060,2.162) (4.020,2.175) (3.980,2.188) (3.940,2.202) (3.900,2.216) (3.860,2.231) (3.820,2.246) (3.780,2.261) (3.740,2.277) (3.700,2.294) (3.660,2.311) (3.620,2.329) (3.580,2.347) (3.540,2.365) (3.500,2.384) (3.460,2.403) (3.420,2.423) (3.380,2.444) (3.340,2.465) (3.300,2.486) (3.260,2.508) (3.220,2.530) (3.180,2.553) (3.140,2.576) (3.100,2.600) (3.060,2.624) (3.020,2.649) (2.980,2.674) (2.940,2.700) (2.900,2.726) (2.860,2.753) (2.820,2.780) (2.780,2.807) (2.740,2.835) (2.700,2.864) (2.660,2.893) (2.620,2.923) (2.580,2.953) (2.540,2.983) (2.500,3.014) (2.460,3.045) (2.420,3.077) (2.380,3.110) (2.340,3.143) (2.300,3.176) (2.260,3.210) (2.220,3.244) (2.180,3.279) (2.140,3.314) (2.100,3.350) (2.060,3.386) (2.020,3.423) (1.980,3.460) (1.940,3.498) (1.900,3.536) (1.860,3.575) (1.820,3.614) (1.780,3.653) (1.740,3.693) (1.700,3.734) (1.660,3.775) (1.620,3.817) (1.580,3.859) (1.540,3.901) (1.500,3.944) (1.460,3.987) (1.420,4.031) (1.380,4.076) (1.340,4.121) (1.300,4.166) (1.260,4.212) (1.220,4.258) (1.180,4.305) (1.140,4.352) (1.100,4.400)} -- cycle;
+  \draw[thick] (1.1,4.4) -- (0.4,3.6);
+\end{tikzpicture}
+                        </latex-image>
+                    </image>
+                </figure>
                 <p>
-                    To formalize the concepts and properties learners discovered in the anchor task.
+                    <ol marker="(a)">
+                        <li>
+                            <p>Count the squares that lie wholly inside the outline of the leaf.</p>
+                            <solution component="lesson-plan"><p><m>14</m> for the leaf in the figure. Learners' own leaves give their own counts.</p></solution>
+                        </li>
+                        <li>
+                            <p>Count the squares that the outline passes through.</p>
+                            <solution component="lesson-plan"><p><m>23</m> for the leaf in the figure.</p></solution>
+                        </li>
+                        <li>
+                            <p>Some of the squares in part (b) are almost full and some are almost empty. What single number could each of them count as?</p>
+                            <solution component="lesson-plan"><p>About <m>\tfrac{1}{2}</m>: on average such a square is about half covered, so the nearly full ones and the nearly empty ones balance.</p></solution>
+                        </li>
+                        <li>
+                            <p>Estimate the area of the leaf as (number in part (a)) <m>+ \tfrac{1}{2} \times</m> (number in part (b)) square centimetres.</p>
+                            <solution component="lesson-plan"><p><m>14 + \tfrac{1}{2} \times 23 = 14 + 11.5 = 25.5\,\text{cm}^2</m>.</p></solution>
+                        </li>
+                        <li>
+                            <p>Repeat parts (a), (b) and (d) on the grid of 0.5 cm squares below. Each small square has area <m>0.5 \times 0.5 = 0.25\,\text{cm}^2</m>.</p>
+                            <figure xml:id="fig-leaf-on-fine-grid">
+                                <caption>The same leaf on 0.5 cm squares.</caption>
+                                <image width="60%">
+                                    <shortdescription>The same leaf on 0.5 cm squares: 78 small squares wholly inside, about 50 cut by the edge.</shortdescription>
+                                    <latex-image>
+\begin{tikzpicture}[x=0.8cm,y=0.8cm]
+  \draw[step=0.5, gray!60, very thin] (0,0) grid (11,9);
+  \draw[very thick] plot coordinates {(1.100,4.400) (1.140,4.448) (1.180,4.495) (1.220,4.542) (1.260,4.588) (1.300,4.634) (1.340,4.679) (1.380,4.724) (1.420,4.769) (1.460,4.813) (1.500,4.856) (1.540,4.899) (1.580,4.941) (1.620,4.983) (1.660,5.025) (1.700,5.066) (1.740,5.107) (1.780,5.147) (1.820,5.186) (1.860,5.225) (1.900,5.264) (1.940,5.302) (1.980,5.340) (2.020,5.377) (2.060,5.414) (2.100,5.450) (2.140,5.486) (2.180,5.521) (2.220,5.556) (2.260,5.590) (2.300,5.624) (2.340,5.657) (2.380,5.690) (2.420,5.723) (2.460,5.755) (2.500,5.786) (2.540,5.817) (2.580,5.847) (2.620,5.877) (2.660,5.907) (2.700,5.936) (2.740,5.965) (2.780,5.993) (2.820,6.020) (2.860,6.047) (2.900,6.074) (2.940,6.100) (2.980,6.126) (3.020,6.151) (3.060,6.176) (3.100,6.200) (3.140,6.224) (3.180,6.247) (3.220,6.270) (3.260,6.292) (3.300,6.314) (3.340,6.335) (3.380,6.356) (3.420,6.377) (3.460,6.397) (3.500,6.416) (3.540,6.435) (3.580,6.453) (3.620,6.471) (3.660,6.489) (3.700,6.506) (3.740,6.523) (3.780,6.539) (3.820,6.554) (3.860,6.569) (3.900,6.584) (3.940,6.598) (3.980,6.612) (4.020,6.625) (4.060,6.638) (4.100,6.650) (4.140,6.662) (4.180,6.673) (4.220,6.684) (4.260,6.694) (4.300,6.704) (4.340,6.713) (4.380,6.722) (4.420,6.731) (4.460,6.739) (4.500,6.746) (4.540,6.753) (4.580,6.759) (4.620,6.765) (4.660,6.771) (4.700,6.776) (4.740,6.781) (4.780,6.785) (4.820,6.788) (4.860,6.791) (4.900,6.794) (4.940,6.796) (4.980,6.798) (5.020,6.799) (5.060,6.800) (5.100,6.800) (5.140,6.800) (5.180,6.799) (5.220,6.798) (5.260,6.796) (5.300,6.794) (5.340,6.791) (5.380,6.788) (5.420,6.785) (5.460,6.781) (5.500,6.776) (5.540,6.771) (5.580,6.765) (5.620,6.759) (5.660,6.753) (5.700,6.746) (5.740,6.739) (5.780,6.731) (5.820,6.722) (5.860,6.713) (5.900,6.704) (5.940,6.694) (5.980,6.684) (6.020,6.673) (6.060,6.662) (6.100,6.650) (6.140,6.638) (6.180,6.625) (6.220,6.612) (6.260,6.598) (6.300,6.584) (6.340,6.569) (6.380,6.554) (6.420,6.539) (6.460,6.523) (6.500,6.506) (6.540,6.489) (6.580,6.471) (6.620,6.453) (6.660,6.435) (6.700,6.416) (6.740,6.397) (6.780,6.377) (6.820,6.356) (6.860,6.335) (6.900,6.314) (6.940,6.292) (6.980,6.270) (7.020,6.247) (7.060,6.224) (7.100,6.200) (7.140,6.176) (7.180,6.151) (7.220,6.126) (7.260,6.100) (7.300,6.074) (7.340,6.047) (7.380,6.020) (7.420,5.993) (7.460,5.965) (7.500,5.936) (7.540,5.907) (7.580,5.877) (7.620,5.847) (7.660,5.817) (7.700,5.786) (7.740,5.755) (7.780,5.723) (7.820,5.690) (7.860,5.657) (7.900,5.624) (7.940,5.590) (7.980,5.556) (8.020,5.521) (8.060,5.486) (8.100,5.450) (8.140,5.414) (8.180,5.377) (8.220,5.340) (8.260,5.302) (8.300,5.264) (8.340,5.225) (8.380,5.186) (8.420,5.147) (8.460,5.107) (8.500,5.066) (8.540,5.025) (8.580,4.983) (8.620,4.941) (8.660,4.899) (8.700,4.856) (8.740,4.813) (8.780,4.769) (8.820,4.724) (8.860,4.679) (8.900,4.634) (8.940,4.588) (8.980,4.542) (9.020,4.495) (9.060,4.448) (9.100,4.400) (9.100,4.400) (9.060,4.352) (9.020,4.305) (8.980,4.258) (8.940,4.212) (8.900,4.166) (8.860,4.121) (8.820,4.076) (8.780,4.031) (8.740,3.987) (8.700,3.944) (8.660,3.901) (8.620,3.859) (8.580,3.817) (8.540,3.775) (8.500,3.734) (8.460,3.693) (8.420,3.653) (8.380,3.614) (8.340,3.575) (8.300,3.536) (8.260,3.498) (8.220,3.460) (8.180,3.423) (8.140,3.386) (8.100,3.350) (8.060,3.314) (8.020,3.279) (7.980,3.244) (7.940,3.210) (7.900,3.176) (7.860,3.143) (7.820,3.110) (7.780,3.077) (7.740,3.045) (7.700,3.014) (7.660,2.983) (7.620,2.953) (7.580,2.923) (7.540,2.893) (7.500,2.864) (7.460,2.835) (7.420,2.807) (7.380,2.780) (7.340,2.753) (7.300,2.726) (7.260,2.700) (7.220,2.674) (7.180,2.649) (7.140,2.624) (7.100,2.600) (7.060,2.576) (7.020,2.553) (6.980,2.530) (6.940,2.508) (6.900,2.486) (6.860,2.465) (6.820,2.444) (6.780,2.423) (6.740,2.403) (6.700,2.384) (6.660,2.365) (6.620,2.347) (6.580,2.329) (6.540,2.311) (6.500,2.294) (6.460,2.277) (6.420,2.261) (6.380,2.246) (6.340,2.231) (6.300,2.216) (6.260,2.202) (6.220,2.188) (6.180,2.175) (6.140,2.162) (6.100,2.150) (6.060,2.138) (6.020,2.127) (5.980,2.116) (5.940,2.106) (5.900,2.096) (5.860,2.087) (5.820,2.078) (5.780,2.069) (5.740,2.061) (5.700,2.054) (5.660,2.047) (5.620,2.041) (5.580,2.035) (5.540,2.029) (5.500,2.024) (5.460,2.019) (5.420,2.015) (5.380,2.012) (5.340,2.009) (5.300,2.006) (5.260,2.004) (5.220,2.002) (5.180,2.001) (5.140,2.000) (5.100,2.000) (5.060,2.000) (5.020,2.001) (4.980,2.002) (4.940,2.004) (4.900,2.006) (4.860,2.009) (4.820,2.012) (4.780,2.015) (4.740,2.019) (4.700,2.024) (4.660,2.029) (4.620,2.035) (4.580,2.041) (4.540,2.047) (4.500,2.054) (4.460,2.061) (4.420,2.069) (4.380,2.078) (4.340,2.087) (4.300,2.096) (4.260,2.106) (4.220,2.116) (4.180,2.127) (4.140,2.138) (4.100,2.150) (4.060,2.162) (4.020,2.175) (3.980,2.188) (3.940,2.202) (3.900,2.216) (3.860,2.231) (3.820,2.246) (3.780,2.261) (3.740,2.277) (3.700,2.294) (3.660,2.311) (3.620,2.329) (3.580,2.347) (3.540,2.365) (3.500,2.384) (3.460,2.403) (3.420,2.423) (3.380,2.444) (3.340,2.465) (3.300,2.486) (3.260,2.508) (3.220,2.530) (3.180,2.553) (3.140,2.576) (3.100,2.600) (3.060,2.624) (3.020,2.649) (2.980,2.674) (2.940,2.700) (2.900,2.726) (2.860,2.753) (2.820,2.780) (2.780,2.807) (2.740,2.835) (2.700,2.864) (2.660,2.893) (2.620,2.923) (2.580,2.953) (2.540,2.983) (2.500,3.014) (2.460,3.045) (2.420,3.077) (2.380,3.110) (2.340,3.143) (2.300,3.176) (2.260,3.210) (2.220,3.244) (2.180,3.279) (2.140,3.314) (2.100,3.350) (2.060,3.386) (2.020,3.423) (1.980,3.460) (1.940,3.498) (1.900,3.536) (1.860,3.575) (1.820,3.614) (1.780,3.653) (1.740,3.693) (1.700,3.734) (1.660,3.775) (1.620,3.817) (1.580,3.859) (1.540,3.901) (1.500,3.944) (1.460,3.987) (1.420,4.031) (1.380,4.076) (1.340,4.121) (1.300,4.166) (1.260,4.212) (1.220,4.258) (1.180,4.305) (1.140,4.352) (1.100,4.400)} -- cycle;
+  \draw[thick] (1.1,4.4) -- (0.4,3.6);
+\end{tikzpicture}
+                                    </latex-image>
+                                </image>
+                            </figure>
+                            <solution component="lesson-plan"><p><m>78</m> full and about <m>50</m> part squares: <m>(78 + 25) \times 0.25 = 25.75\,\text{cm}^2</m>.</p></solution>
+                        </li>
+                        <li>
+                            <p>The true area of the leaf is <m>25.6\,\text{cm}^2</m>. Which grid gave the closer estimate? Use the interactive in <xref ref="fig-counting-squares-interactive"/> to try other grid sizes.</p>
+                            <solution component="lesson-plan"><p>For this leaf the 1 cm grid happens to be slightly closer (<m>0.1\,\text{cm}^2</m> out, against <m>0.15\,\text{cm}^2</m>): for one shape, luck plays a part. The interactive shows the trend: 2 cm squares give <m>28\,\text{cm}^2</m>, then <m>25.5</m>, <m>25.75</m> and <m>25.75\,\text{cm}^2</m>. Once the squares are small the estimate settles close to the true area and no longer jumps about.</p></solution>
+                        </li>
+                    </ol>
                 </p>
-            </li>
-            </dl>
-        </p>
-        <paragraphs>
-            <title>Key Takeaways &amp; Teacher Connection</title>
-            <ol>
-                <li>
+            </statement>
+        </activity>
+
+        <axiom component="lesson-plan">
+            <title>Structured Instruction</title>
+            <p>
+                <dl>
+                    <li><title>Suggested Time</title><p>8 minutes</p></li>
+                    <li><title>Objective</title><p>To formalise the counting rule, the area of one square, and why finer grids help.</p></li>
+                </dl>
+            </p>
+            <paragraphs>
+                <title>Key Takeaways &amp; Teacher Connection</title>
+                <ol>
+                    <li><p><alert>Connecting to Learner Work:</alert> use two learners' counts for their own leaves to name full squares and part squares.</p></li>
+                    <li><p>Each part square counts as a half, because on average a part square is about half covered.</p></li>
+                    <li><p>The estimate in squares is multiplied by the area of one square: <m>1\,\text{cm}^2</m> on 1 cm paper, <m>0.25\,\text{cm}^2</m> on 0.5 cm paper.</p></li>
+                    <li><p>Smaller squares give a better estimate; show the interactive at each grid size.</p></li>
+                </ol>
+            </paragraphs>
+        </axiom>
+
+        <insight xml:id="insight-counting-squares">
+            <title>Counting Squares</title>
+            <p>
+                Draw the shape on a grid of squares. A <term>full square</term> lies wholly inside the shape. A <term>part square</term> is any other square that the edge of the shape passes through, however little of the shape is inside it. If there are <m>F</m> full squares and <m>P</m> part squares, then
+                <md>\text{estimate} = F + \tfrac{1}{2}P \text{ squares}</md>
+                because a part square is, on average, about half covered. Multiply the number of squares by the area that one square stands for to get the area.
+            </p>
+            <p>
+                Smaller squares usually give a better estimate: the part squares cover a smaller share of the shape, and each one can be wrong by less.
+            </p>
+        </insight>
+
+        <note xml:id="note-another-way-to-count">
+            <title>Another Way to Count</title>
+            <p>
+                Some people count a part square as <m>1</m> if at least half of it is inside the shape and as <m>0</m> otherwise. The two ways usually give similar estimates. This book uses <m>F + \tfrac{1}{2}P</m>, because it needs no judgement about how full each square is.
+            </p>
+        </note>
+
+        <figure xml:id="fig-counting-squares-interactive">
+            <caption>Drag the slider to change the size of the squares. Full squares are shaded and part squares have a dotted outline; the counts and the estimate update. Compare the estimate with the true area, <m>25.6\,\text{cm}^2</m>.</caption>
+            <interactive xml:id="interactive-counting-squares-grid" platform="jsxgraph" width="90%" aspect="16:12" source="jsxgraph/counting-squares-grid.js">
+                <slate xml:id="jsxgraph-counting-squares-grid" surface="jsxboard" aspect="16:12"/>
+                <instructions>
                     <p>
-                        <alert>Connecting to Learner Work:</alert> XXXX
+                        <ul>
+                            <li><p>The leaf is the one in <xref ref="act-tracing-a-leaf"/>. Drag the <alert>grid size</alert> slider from 2 cm to 0.25 cm.</p></li>
+                            <li><p>Read the estimate at each size: you should see <m>28</m>, <m>25.5</m>, <m>25.75</m> and <m>25.75\,\text{cm}^2</m>. Which sizes give estimates close to <m>25.6\,\text{cm}^2</m>?</p></li>
+                            <li><p>At 0.25 cm, how many part squares are there compared with full squares? Why does that make the estimate more reliable?</p></li>
+                        </ul>
                     </p>
-                </li>
-            </ol>
-        </paragraphs>
-    </axiom> -->
+                </instructions>
+            </interactive>
+        </figure>
 
-    <!-- Add insight / key takeaway directly related to activity / learner experience -->
+        <xi:include href="../lesson-plan-templates/example-intro.ptx" />
 
-    <!-- <insight>
-    </insight> -->
-
-    <!-- Add further instruction (not in a block) to develop ideas as needed -->
-
-    <xi:include href="../lesson-plan-templates/example-intro.ptx" />
-
-    <!-- Add at least 3 examples -->
-
-    <!-- <example>
-        <statement>
-        </statement>
-        <solution>
-        </solution>
-    </example>
-
-    <example>
-        <statement>
-        </statement>
-        <solution>
-        </solution>
-    </example>
-
-    <example>
-        <statement>
-        </statement>
-        <solution>
-        </solution>
-    </example> -->
-
-    <xi:include href="../lesson-plan-templates/assessment-intro.ptx" />
-
-    <!-- If STACK questions are included, uncomment this: -->
-
-    <!-- <xi:include href="../lesson-plan-templates/checkpoint.ptx" /> -->
-
-    <!-- Add STACK exercises if made -->
-
-    <!-- Add static exercises -->
-
-    <!-- <exercises>
-        <exercise>
-            <statement>   
-
-            </statement>   
+        <example xml:id="example-fish-pond">
+            <title>A Fish Pond in Kirinyaga</title>
+            <statement>
+                <p>A farmer in Kirinyaga draws the plan of her fish pond on a grid. Each square stands for <m>2\,\text{m}</m> by <m>2\,\text{m}</m>. Estimate the area of the pond.</p>
+                <figure xml:id="fig-pond-on-grid">
+                    <caption>The fish pond on squares of <m>2\,\text{m}</m> by <m>2\,\text{m}</m>. Full squares are shaded; part squares are dotted.</caption>
+                    <image width="60%">
+                        <shortdescription>A pond outline on a grid of 12 by 9 squares: 18 squares wholly inside are shaded and 26 squares cut by the edge are dotted. Each square is 2 m by 2 m.</shortdescription>
+                        <description><p>Full squares: 18. Part squares: 26. Each square stands for 2 m by 2 m.</p></description>
+                        <latex-image>
+\begin{tikzpicture}[x=0.6cm,y=0.6cm]
+  \fill[pattern=dots, pattern color=gray] (2,2) rectangle ++(1,1);
+  \fill[pattern=dots, pattern color=gray] (2,3) rectangle ++(1,1);
+  \fill[pattern=dots, pattern color=gray] (2,4) rectangle ++(1,1);
+  \fill[pattern=dots, pattern color=gray] (2,5) rectangle ++(1,1);
+  \fill[pattern=dots, pattern color=gray] (3,1) rectangle ++(1,1);
+  \fill[pattern=dots, pattern color=gray] (3,2) rectangle ++(1,1);
+  \fill[gray!45] (3,3) rectangle ++(1,1);
+  \fill[gray!45] (3,4) rectangle ++(1,1);
+  \fill[pattern=dots, pattern color=gray] (3,5) rectangle ++(1,1);
+  \fill[pattern=dots, pattern color=gray] (3,6) rectangle ++(1,1);
+  \fill[pattern=dots, pattern color=gray] (4,1) rectangle ++(1,1);
+  \fill[gray!45] (4,2) rectangle ++(1,1);
+  \fill[gray!45] (4,3) rectangle ++(1,1);
+  \fill[gray!45] (4,4) rectangle ++(1,1);
+  \fill[gray!45] (4,5) rectangle ++(1,1);
+  \fill[pattern=dots, pattern color=gray] (4,6) rectangle ++(1,1);
+  \fill[pattern=dots, pattern color=gray] (4,7) rectangle ++(1,1);
+  \fill[pattern=dots, pattern color=gray] (5,1) rectangle ++(1,1);
+  \fill[pattern=dots, pattern color=gray] (5,2) rectangle ++(1,1);
+  \fill[gray!45] (5,3) rectangle ++(1,1);
+  \fill[gray!45] (5,4) rectangle ++(1,1);
+  \fill[gray!45] (5,5) rectangle ++(1,1);
+  \fill[gray!45] (5,6) rectangle ++(1,1);
+  \fill[pattern=dots, pattern color=gray] (5,7) rectangle ++(1,1);
+  \fill[pattern=dots, pattern color=gray] (6,2) rectangle ++(1,1);
+  \fill[pattern=dots, pattern color=gray] (6,3) rectangle ++(1,1);
+  \fill[gray!45] (6,4) rectangle ++(1,1);
+  \fill[gray!45] (6,5) rectangle ++(1,1);
+  \fill[gray!45] (6,6) rectangle ++(1,1);
+  \fill[pattern=dots, pattern color=gray] (6,7) rectangle ++(1,1);
+  \fill[pattern=dots, pattern color=gray] (7,3) rectangle ++(1,1);
+  \fill[gray!45] (7,4) rectangle ++(1,1);
+  \fill[gray!45] (7,5) rectangle ++(1,1);
+  \fill[gray!45] (7,6) rectangle ++(1,1);
+  \fill[pattern=dots, pattern color=gray] (7,7) rectangle ++(1,1);
+  \fill[pattern=dots, pattern color=gray] (8,3) rectangle ++(1,1);
+  \fill[gray!45] (8,4) rectangle ++(1,1);
+  \fill[gray!45] (8,5) rectangle ++(1,1);
+  \fill[pattern=dots, pattern color=gray] (8,6) rectangle ++(1,1);
+  \fill[pattern=dots, pattern color=gray] (8,7) rectangle ++(1,1);
+  \fill[pattern=dots, pattern color=gray] (9,3) rectangle ++(1,1);
+  \fill[pattern=dots, pattern color=gray] (9,4) rectangle ++(1,1);
+  \fill[pattern=dots, pattern color=gray] (9,5) rectangle ++(1,1);
+  \fill[pattern=dots, pattern color=gray] (9,6) rectangle ++(1,1);
+  \draw[step=1, gray!60, very thin] (0,0) grid (12,9);
+  \draw[very thick] plot coordinates {(9.713,4.760) (9.730,4.827) (9.745,4.895) (9.757,4.963) (9.766,5.031) (9.773,5.100) (9.777,5.169) (9.778,5.237) (9.776,5.306) (9.772,5.375) (9.765,5.443) (9.755,5.511) (9.743,5.579) (9.728,5.646) (9.710,5.712) (9.690,5.778) (9.667,5.843) (9.641,5.907) (9.614,5.970) (9.584,6.032) (9.551,6.093) (9.517,6.152) (9.480,6.210) (9.441,6.267) (9.400,6.323) (9.357,6.377) (9.313,6.429) (9.266,6.480) (9.218,6.530) (9.169,6.577) (9.118,6.624) (9.066,6.668) (9.012,6.711) (8.957,6.752) (8.901,6.791) (8.844,6.829) (8.787,6.865) (8.728,6.899) (8.669,6.931) (8.609,6.962) (8.549,6.991) (8.488,7.018) (8.427,7.044) (8.365,7.068) (8.304,7.091) (8.242,7.112) (8.180,7.131) (8.118,7.149) (8.056,7.166) (7.995,7.181) (7.934,7.195) (7.873,7.208) (7.812,7.220) (7.751,7.230) (7.692,7.240) (7.632,7.248) (7.573,7.255) (7.514,7.261) (7.457,7.267) (7.399,7.272) (7.342,7.276) (7.286,7.279) (7.231,7.281) (7.176,7.283) (7.121,7.285) (7.068,7.285) (7.015,7.286) (6.962,7.286) (6.910,7.285) (6.859,7.285) (6.809,7.284) (6.759,7.283) (6.709,7.281) (6.660,7.279) (6.612,7.278) (6.564,7.276) (6.517,7.274) (6.470,7.271) (6.423,7.269) (6.377,7.267) (6.332,7.264) (6.286,7.262) (6.241,7.259) (6.197,7.257) (6.152,7.254) (6.108,7.252) (6.064,7.249) (6.020,7.246) (5.977,7.243) (5.933,7.240) (5.890,7.237) (5.847,7.234) (5.804,7.231) (5.761,7.228) (5.718,7.224) (5.675,7.220) (5.632,7.216) (5.589,7.212) (5.546,7.207) (5.503,7.203) (5.460,7.197) (5.417,7.192) (5.374,7.186) (5.331,7.180) (5.288,7.173) (5.245,7.166) (5.202,7.158) (5.159,7.150) (5.116,7.141) (5.073,7.132) (5.030,7.122) (4.987,7.112) (4.944,7.101) (4.901,7.089) (4.859,7.077) (4.816,7.064) (4.773,7.050) (4.731,7.036) (4.688,7.020) (4.646,7.005) (4.604,6.988) (4.562,6.971) (4.520,6.953) (4.478,6.934) (4.437,6.915) (4.396,6.894) (4.355,6.873) (4.314,6.852) (4.274,6.829) (4.233,6.806) (4.194,6.782) (4.154,6.757) (4.115,6.732) (4.076,6.705) (4.037,6.678) (3.999,6.651) (3.961,6.623) (3.924,6.594) (3.887,6.564) (3.850,6.534) (3.813,6.503) (3.777,6.471) (3.742,6.439) (3.706,6.406) (3.671,6.372) (3.637,6.338) (3.602,6.303) (3.569,6.268) (3.535,6.232) (3.502,6.195) (3.469,6.158) (3.437,6.120) (3.405,6.081) (3.373,6.042) (3.342,6.003) (3.311,5.963) (3.280,5.922) (3.250,5.881) (3.220,5.839) (3.190,5.796) (3.161,5.753) (3.132,5.710) (3.103,5.665) (3.075,5.621) (3.047,5.575) (3.020,5.529) (2.993,5.482) (2.966,5.435) (2.940,5.387) (2.914,5.338) (2.889,5.289) (2.864,5.239) (2.840,5.189) (2.816,5.137) (2.793,5.085) (2.771,5.033) (2.749,4.980) (2.727,4.926) (2.707,4.871) (2.687,4.816) (2.667,4.760) (2.649,4.703) (2.632,4.646) (2.615,4.588) (2.599,4.530) (2.584,4.471) (2.571,4.411) (2.558,4.351) (2.546,4.290) (2.536,4.229) (2.527,4.167) (2.519,4.105) (2.512,4.042) (2.507,3.979) (2.503,3.915) (2.500,3.852) (2.499,3.788) (2.500,3.723) (2.502,3.659) (2.505,3.595) (2.511,3.530) (2.518,3.466) (2.527,3.401) (2.537,3.337) (2.549,3.273) (2.564,3.209) (2.579,3.145) (2.597,3.082) (2.617,3.020) (2.639,2.958) (2.662,2.896) (2.688,2.836) (2.715,2.776) (2.744,2.717) (2.775,2.659) (2.808,2.602) (2.843,2.546) (2.880,2.492) (2.919,2.439) (2.959,2.387) (3.002,2.336) (3.046,2.287) (3.091,2.240) (3.139,2.194) (3.188,2.150) (3.238,2.108) (3.290,2.068) (3.344,2.030) (3.399,1.993) (3.455,1.959) (3.512,1.926) (3.571,1.896) (3.631,1.868) (3.691,1.842) (3.753,1.819) (3.816,1.797) (3.879,1.778) (3.943,1.762) (4.007,1.747) (4.072,1.735) (4.138,1.725) (4.203,1.717) (4.269,1.712) (4.335,1.709) (4.401,1.708) (4.467,1.709) (4.533,1.713) (4.599,1.719) (4.664,1.726) (4.729,1.736) (4.794,1.748) (4.858,1.762) (4.921,1.777) (4.983,1.795) (5.045,1.814) (5.106,1.835) (5.166,1.857) (5.225,1.881) (5.283,1.906) (5.340,1.932) (5.396,1.960) (5.451,1.989) (5.505,2.019) (5.557,2.050) (5.608,2.081) (5.658,2.114) (5.707,2.147) (5.755,2.180) (5.801,2.214) (5.846,2.248) (5.890,2.283) (5.933,2.317) (5.974,2.352) (6.014,2.386) (6.054,2.420) (6.092,2.454) (6.129,2.488) (6.165,2.521) (6.200,2.554) (6.234,2.587) (6.268,2.618) (6.300,2.649) (6.332,2.679) (6.364,2.708) (6.394,2.737) (6.425,2.764) (6.455,2.791) (6.484,2.816) (6.514,2.840) (6.543,2.864) (6.572,2.886) (6.601,2.907) (6.630,2.928) (6.660,2.947) (6.689,2.965) (6.719,2.982) (6.750,2.998) (6.780,3.012) (6.812,3.026) (6.844,3.039) (6.876,3.052) (6.910,3.063) (6.944,3.073) (6.979,3.083) (7.015,3.092) (7.052,3.100) (7.090,3.108) (7.129,3.116) (7.169,3.123) (7.210,3.130) (7.252,3.136) (7.296,3.143) (7.340,3.149) (7.386,3.156) (7.433,3.162) (7.481,3.169) (7.530,3.176) (7.580,3.184) (7.631,3.192) (7.684,3.201) (7.737,3.210) (7.791,3.221) (7.846,3.232) (7.902,3.244) (7.959,3.257) (8.016,3.271) (8.074,3.287) (8.133,3.304) (8.192,3.322) (8.251,3.341) (8.311,3.362) (8.371,3.385) (8.431,3.409) (8.491,3.435) (8.551,3.462) (8.610,3.492) (8.669,3.522) (8.728,3.555) (8.787,3.590) (8.844,3.626) (8.901,3.664) (8.957,3.704) (9.012,3.746) (9.066,3.789) (9.119,3.834) (9.170,3.881) (9.220,3.930) (9.268,3.980) (9.315,4.032) (9.360,4.086) (9.403,4.141) (9.444,4.197) (9.483,4.255) (9.520,4.314) (9.554,4.375) (9.587,4.437) (9.617,4.499) (9.645,4.563) (9.670,4.628) (9.692,4.694)} -- cycle;
+\end{tikzpicture}
+                        </latex-image>
+                    </image>
+                </figure>
+            </statement>
             <solution>
+                <p>There are <m>F = 18</m> full squares and <m>P = 26</m> part squares, so
+                    <md>\text{estimate} = 18 + \tfrac{1}{2} \times 26 = 18 + 13 = 31 \text{ squares}</md>
+                    One square stands for <m>2 \times 2 = 4\,\text{m}^2</m>, so the area of the pond is about <m>31 \times 4 = 124\,\text{m}^2</m>.</p>
+            </solution>
+        </example>
 
-            </solution>             
-        </exercise>        
-    </exercises> -->
+        <example xml:id="example-forest-on-a-map">
+            <title>A Forest on a Map</title>
+            <statement>
+                <p>A forest block near Kakamega is drawn on a map of scale <m>1 : 40\,000</m> with a grid of 1 cm squares. Its outline covers <m>18</m> full squares and <m>14</m> part squares. Estimate the area of the forest in hectares (<m>1 \text{ hectare} = 10\,000\,\text{m}^2</m>).</p>
+            </statement>
+            <solution>
+                <p><alert>Step 1:</alert> the estimate in squares is <m>18 + \tfrac{1}{2} \times 14 = 18 + 7 = 25</m> squares.</p>
+                <p><alert>Step 2:</alert> at a scale of <m>1 : 40\,000</m>, <m>1\,\text{cm}</m> on the map stands for <m>40\,000\,\text{cm}</m> <m>= 400\,\text{m}</m> on the ground. So one square on the map stands for a square of side <m>400\,\text{m}</m>:
+                    <md>400 \times 400 = 160\,000\,\text{m}^2 = 16 \text{ hectares}</md></p>
+                <p><alert>Step 3:</alert> the area is about <m>25 \times 16 = 400</m> hectares.</p>
+                <p>A square on the map stands for a square on the ground, so square the real length of its side. Multiplying the <m>25</m> squares by <m>400</m> alone would give a length, not an area.</p>
+            </solution>
+        </example>
 
-    <!-- [LP] Add information on how to differentiate  -->
+        <example xml:id="example-two-grids-one-reservoir">
+            <title>Two Grids, One Reservoir</title>
+            <statement>
+                <p>A reservoir is drawn on a county map of scale <m>1 : 200\,000</m>. On a grid of 1 cm squares it covers <m>12</m> full and <m>16</m> part squares. On a grid of 0.5 cm squares it covers <m>62</m> full and <m>34</m> part squares. Find both estimates of its area in square kilometres. Which is more reliable?</p>
+            </statement>
+            <solution>
+                <p>At <m>1 : 200\,000</m>, <m>1\,\text{cm}</m> on the map stands for <m>200\,000\,\text{cm}</m> <m>= 2\,\text{km}</m>, so a 1 cm square stands for <m>2 \times 2 = 4\,\text{km}^2</m>.</p>
+                <p>1 cm grid: <m>12 + \tfrac{1}{2} \times 16 = 20</m> squares, so about <m>20 \times 4 = 80\,\text{km}^2</m>.</p>
+                <p>0.5 cm grid: a small square stands for <m>1\,\text{km}</m> by <m>1\,\text{km}</m>, that is <m>1\,\text{km}^2</m>. The estimate is <m>62 + \tfrac{1}{2} \times 34 = 79</m> small squares, so about <m>79\,\text{km}^2</m>.</p>
+                <p>The two estimates agree to within about <m>1\,\text{km}^2</m>. The finer count is more reliable, because its part squares are smaller.</p>
+            </solution>
+        </example>
 
-    <!-- <axiom component="lesson-plan">
-        <title>Differentiation</title>
+        <xi:include href="../lesson-plan-templates/assessment-intro.ptx" />
+        <xi:include href="../lesson-plan-templates/checkpoint.ptx" />
 
-        <table>
+        <p>Type decimals with a point, for example <c>37.6</c>. Give exact answers unless the question asks you to round.</p>
+
+        <exercise xml:id="ex-estimating-an-area-by-counting-squares">
+            <!--<title></title>-->
+            <stack label="stk-estimating-an-area-by-counting-squares" source="stack/top/2-measurement-and-geometry/07-area-approximations/01-counting-squares/Estimating-an-area-by-counting-squares.xml"/>
+        </exercise>
+
+        <exercise xml:id="ex-area-of-a-plot-from-a-map-grid">
+            <!--<title></title>-->
+            <stack label="stk-area-of-a-plot-from-a-map-grid" source="stack/top/2-measurement-and-geometry/07-area-approximations/01-counting-squares/Area-of-a-plot-from-a-map-grid.xml"/>
+        </exercise>
+
+        <exercises xml:id="exercises-counting-squares-irregular">
+            <exercise xml:id="ex-count-the-blot">
+                <statement>
+                    <p>An ink blot is drawn on 1 cm squares. Count the full squares and the part squares, and estimate the area of the blot.</p>
+                    <figure xml:id="fig-ink-blot-on-grid">
+                        <caption>An ink blot on 1 cm squares.</caption>
+                        <image width="60%">
+                            <shortdescription>An irregular ink blot drawn on a grid of 12 by 9 squares of side 1 cm.</shortdescription>
+                            <latex-image>
+\begin{tikzpicture}[x=0.6cm,y=0.6cm]
+  \draw[step=1, gray!60, very thin] (0,0) grid (12,9);
+  \draw[very thick] plot coordinates {(10.230,4.440) (10.229,4.508) (10.225,4.576) (10.219,4.644) (10.210,4.711) (10.199,4.778) (10.185,4.845) (10.169,4.911) (10.150,4.977) (10.130,5.042) (10.106,5.106) (10.081,5.169) (10.053,5.231) (10.024,5.293) (9.992,5.353) (9.958,5.412) (9.922,5.470) (9.884,5.527) (9.844,5.582) (9.803,5.636) (9.759,5.688) (9.715,5.739) (9.668,5.789) (9.621,5.837) (9.571,5.883) (9.521,5.928) (9.469,5.971) (9.417,6.013) (9.363,6.053) (9.308,6.091) (9.253,6.128) (9.197,6.162) (9.140,6.196) (9.082,6.227) (9.024,6.257) (8.966,6.286) (8.907,6.312) (8.848,6.338) (8.789,6.361) (8.730,6.383) (8.670,6.404) (8.611,6.423) (8.552,6.441) (8.493,6.457) (8.435,6.472) (8.376,6.486) (8.318,6.499) (8.261,6.511) (8.204,6.521) (8.147,6.530) (8.091,6.539) (8.036,6.546) (7.981,6.553) (7.927,6.559) (7.873,6.564) (7.820,6.569) (7.768,6.573) (7.717,6.576) (7.666,6.579) (7.617,6.581) (7.567,6.583) (7.519,6.585) (7.471,6.587) (7.425,6.588) (7.378,6.589) (7.333,6.591) (7.288,6.592) (7.244,6.593) (7.200,6.594) (7.157,6.596) (7.115,6.597) (7.073,6.599) (7.032,6.601) (6.991,6.603) (6.951,6.605) (6.911,6.608) (6.871,6.611) (6.832,6.614) (6.793,6.618) (6.754,6.622) (6.716,6.627) (6.677,6.631) (6.639,6.636) (6.600,6.642) (6.562,6.648) (6.524,6.654) (6.485,6.661) (6.447,6.668) (6.408,6.675) (6.369,6.682) (6.330,6.690) (6.291,6.698) (6.251,6.706) (6.211,6.714) (6.170,6.723) (6.130,6.731) (6.088,6.740) (6.047,6.749) (6.004,6.757) (5.962,6.766) (5.918,6.774) (5.875,6.782) (5.830,6.790) (5.786,6.798) (5.740,6.806) (5.694,6.813) (5.648,6.820) (5.601,6.826) (5.553,6.832) (5.505,6.837) (5.456,6.841) (5.407,6.845) (5.357,6.848) (5.307,6.851) (5.256,6.853) (5.205,6.853) (5.153,6.853) (5.101,6.852) (5.048,6.850) (4.996,6.847) (4.943,6.843) (4.889,6.838) (4.835,6.832) (4.782,6.824) (4.727,6.816) (4.673,6.806) (4.619,6.795) (4.565,6.783) (4.510,6.769) (4.456,6.754) (4.402,6.738) (4.348,6.720) (4.294,6.701) (4.240,6.681) (4.187,6.659) (4.134,6.636) (4.081,6.612) (4.029,6.586) (3.977,6.559) (3.925,6.530) (3.875,6.500) (3.824,6.469) (3.775,6.436) (3.726,6.402) (3.678,6.367) (3.631,6.330) (3.584,6.292) (3.538,6.253) (3.494,6.212) (3.450,6.171) (3.407,6.128) (3.365,6.083) (3.325,6.038) (3.285,5.991) (3.247,5.944) (3.209,5.895) (3.173,5.845) (3.138,5.795) (3.105,5.743) (3.072,5.690) (3.042,5.637) (3.012,5.583) (2.984,5.527) (2.957,5.471) (2.931,5.415) (2.907,5.357) (2.885,5.299) (2.864,5.240) (2.844,5.181) (2.826,5.121) (2.809,5.061) (2.794,5.000) (2.781,4.939) (2.769,4.877) (2.759,4.815) (2.750,4.753) (2.743,4.691) (2.737,4.628) (2.733,4.566) (2.731,4.503) (2.730,4.440) (2.731,4.377) (2.733,4.314) (2.737,4.252) (2.743,4.189) (2.750,4.127) (2.759,4.065) (2.769,4.003) (2.781,3.941) (2.794,3.880) (2.809,3.819) (2.826,3.759) (2.844,3.699) (2.864,3.640) (2.885,3.581) (2.907,3.523) (2.931,3.465) (2.957,3.409) (2.984,3.353) (3.012,3.297) (3.042,3.243) (3.072,3.190) (3.105,3.137) (3.138,3.085) (3.173,3.035) (3.209,2.985) (3.247,2.936) (3.285,2.889) (3.325,2.842) (3.365,2.797) (3.407,2.752) (3.450,2.709) (3.494,2.668) (3.538,2.627) (3.584,2.588) (3.631,2.550) (3.678,2.513) (3.726,2.478) (3.775,2.444) (3.824,2.411) (3.875,2.380) (3.925,2.350) (3.977,2.321) (4.029,2.294) (4.081,2.268) (4.134,2.244) (4.187,2.221) (4.240,2.199) (4.294,2.179) (4.348,2.160) (4.402,2.142) (4.456,2.126) (4.510,2.111) (4.565,2.097) (4.619,2.085) (4.673,2.074) (4.727,2.064) (4.782,2.056) (4.835,2.048) (4.889,2.042) (4.942,2.037) (4.996,2.033) (5.048,2.030) (5.101,2.028) (5.153,2.027) (5.205,2.027) (5.256,2.027) (5.307,2.029) (5.357,2.032) (5.407,2.035) (5.456,2.039) (5.505,2.043) (5.553,2.048) (5.601,2.054) (5.648,2.060) (5.694,2.067) (5.740,2.074) (5.786,2.082) (5.830,2.090) (5.875,2.098) (5.918,2.106) (5.962,2.114) (6.004,2.123) (6.047,2.131) (6.088,2.140) (6.130,2.149) (6.170,2.157) (6.211,2.166) (6.251,2.174) (6.291,2.182) (6.330,2.190) (6.369,2.198) (6.408,2.205) (6.447,2.212) (6.485,2.219) (6.524,2.226) (6.562,2.232) (6.600,2.238) (6.639,2.244) (6.677,2.249) (6.716,2.253) (6.754,2.258) (6.793,2.262) (6.832,2.266) (6.871,2.269) (6.911,2.272) (6.951,2.275) (6.991,2.277) (7.032,2.279) (7.073,2.281) (7.115,2.283) (7.157,2.284) (7.200,2.286) (7.244,2.287) (7.288,2.288) (7.333,2.289) (7.378,2.291) (7.425,2.292) (7.471,2.293) (7.519,2.295) (7.567,2.297) (7.617,2.299) (7.666,2.301) (7.717,2.304) (7.768,2.307) (7.820,2.311) (7.873,2.316) (7.927,2.321) (7.981,2.327) (8.036,2.334) (8.091,2.341) (8.147,2.350) (8.204,2.359) (8.261,2.369) (8.318,2.381) (8.376,2.394) (8.435,2.408) (8.493,2.423) (8.552,2.439) (8.611,2.457) (8.670,2.476) (8.730,2.497) (8.789,2.519) (8.848,2.542) (8.907,2.568) (8.966,2.594) (9.024,2.623) (9.082,2.653) (9.140,2.684) (9.197,2.718) (9.253,2.752) (9.308,2.789) (9.363,2.827) (9.417,2.867) (9.469,2.909) (9.521,2.952) (9.571,2.997) (9.621,3.043) (9.668,3.091) (9.715,3.141) (9.759,3.192) (9.803,3.244) (9.844,3.298) (9.884,3.353) (9.922,3.410) (9.958,3.468) (9.992,3.527) (10.024,3.587) (10.053,3.649) (10.081,3.711) (10.106,3.774) (10.130,3.838) (10.150,3.903) (10.169,3.969) (10.185,4.035) (10.199,4.102) (10.210,4.169) (10.219,4.236) (10.225,4.304) (10.229,4.372)} -- cycle;
+\end{tikzpicture}
+                            </latex-image>
+                        </image>
+                    </figure>
+                </statement>
+                <answer><p>About <m>29\,\text{cm}^2</m> (<m>17</m> full and about <m>24</m> part squares).</p></answer>
+                <solution><p><m>F = 17</m> and <m>P = 24</m> (a count within one or two squares of these is fine), so the estimate is <m>17 + \tfrac{1}{2} \times 24 = 29</m> squares, about <m>29\,\text{cm}^2</m>.</p></solution>
+            </exercise>
+            <exercise xml:id="ex-plot-on-five-metre-squares">
+                <statement><p>A plan of a plot in Embu is drawn on squares that stand for <m>5\,\text{m}</m> by <m>5\,\text{m}</m>. The plot covers <m>40</m> full and <m>26</m> part squares. Estimate its area.</p></statement>
+                <answer><p><m>1325\,\text{m}^2</m></p></answer>
+                <solution><p><m>40 + \tfrac{1}{2} \times 26 = 53</m> squares; one square is <m>5 \times 5 = 25\,\text{m}^2</m>; area about <m>53 \times 25 = 1325\,\text{m}^2</m>.</p></solution>
+            </exercise>
+            <exercise xml:id="ex-plot-on-a-1-to-2500-map">
+                <statement><p>On a map of scale <m>1 : 2500</m> with a grid of 1 cm squares, a shamba covers <m>36</m> full and <m>20</m> part squares. Estimate its area in square metres and in hectares.</p></statement>
+                <answer><p><m>28\,750\,\text{m}^2 = 2.875</m> hectares</p></answer>
+                <solution><p><m>1\,\text{cm}</m> on the map stands for <m>2500\,\text{cm}</m> <m>= 25\,\text{m}</m>, so one square stands for <m>25 \times 25 = 625\,\text{m}^2</m>. The estimate is <m>36 + 10 = 46</m> squares, so the area is about <m>46 \times 625 = 28\,750\,\text{m}^2</m>, which is <m>28\,750 \div 10\,000 = 2.875</m> hectares.</p></solution>
+            </exercise>
+            <exercise xml:id="ex-how-many-part-squares">
+                <statement><p>Using 1 cm squares, Kiprono estimates the area of a shape as <m>60\,\text{cm}^2</m>. He counted <m>48</m> full squares. How many part squares did he count?</p></statement>
+                <answer><p><m>24</m></p></answer>
+                <solution><p><m>48 + \tfrac{1}{2}P = 60</m>, so <m>\tfrac{1}{2}P = 12</m> and <m>P = 24</m>.</p></solution>
+            </exercise>
+            <exercise xml:id="ex-our-school-compound">
+                <statement><p>Find your school compound on a printed county map or an online map that shows a scale. Trace its outline onto squared paper, count the full and part squares, and use the scale of the map to estimate the area of the compound in square metres and in hectares.</p></statement>
+                <answer><p>Answers depend on the school.</p></answer>
+                <solution><p>Check the scale step: <m>1\,\text{cm}</m> on a map of scale <m>1 : S</m> stands for <m>S \div 100\,\text{m}</m>, so one 1 cm square stands for <m>(S \div 100)^2\,\text{m}^2</m>. Then area <m>\approx (F + \tfrac{1}{2}P) \times (S \div 100)^2\,\text{m}^2</m>, and divide by <m>10\,000</m> for hectares.</p></solution>
+            </exercise>
+            <exercise xml:id="ex-offset-square-challenge">
+                <title>Challenge: A Square Off the Grid</title>
+                <statement><p>A square of side <m>3.5\,\text{cm}</m> is drawn with opposite corners at <m>(0.25, 0.25)</m> and <m>(3.75, 3.75)</m> on a grid of 1 cm squares. Count the full and part squares, estimate the area, and compare with the true area. Explain the difference.</p></statement>
+                <hint><p>How much of each part square is covered?</p></hint>
+                <answer><p><m>F = 4</m>, <m>P = 12</m>, estimate <m>10\,\text{cm}^2</m>; true area <m>12.25\,\text{cm}^2</m>.</p></answer>
+                <solution><p>The squares from <m>1</m> to <m>3</m> in both directions are full: <m>2 \times 2 = 4</m>. The other <m>12</m> squares of the <m>4 \times 4</m> block are part squares. Estimate <m>4 + 6 = 10\,\text{cm}^2</m>; true area <m>3.5^2 = 12.25\,\text{cm}^2</m>. Every part square here is more than half covered (the edge squares are <m>\tfrac{3}{4}</m> covered and the corner squares <m>\tfrac{9}{16}</m>), so counting each as <m>\tfrac{1}{2}</m> gives too little. The <q>half</q> works on average only when the edge cuts squares in all sorts of ways.</p></solution>
+            </exercise>
+        </exercises>
+
+        <axiom component="lesson-plan">
             <title>Differentiation</title>
-            <tabular halign="left">
-                <row header="yes" bottom="minor">
-                    <cell>Learner Group</cell>
-                    <cell>Strategy &amp; Learning Experience</cell>
-                    <cell></cell>
-                </row>
-                <row>
-                    <cell>Struggling Learners (Support)</cell>
-                    <cell>
-                        XXXX
-                    </cell>
-                    <cell></cell>
-                </row>
-                <row>
-                    <cell>On-Level Learners (Core)</cell>
-                    <cell>
-                        <line>The core lesson activities as described above.</line>
-                    </cell>
-                    <cell></cell>
-                </row>
-                <row>
-                    <cell>Advanced Learners (Challenge)</cell>
-                    <cell>
-                        XXXX
-                    </cell>
-                    <cell></cell>
-                </row>
-            </tabular>
-        </table>
-    </axiom> -->
+            <table xml:id="table-differentiation-counting-squares-irregular">
+                <title>Differentiation Strategies</title>
+                <tabular halign="left" top="minor" bottom="minor" left="minor" right="minor">
+                    <row header="yes" bottom="medium"><cell>Learner Group</cell><cell>Strategy and Learning Experience</cell></row>
+                    <row><cell>Struggling Learners (Support)</cell><cell>Give a grid with the full squares already shaded, so learners count only the part squares. Work through <xref ref="example-fish-pond"/> and <xref ref="example-forest-on-a-map"/>. Assign <xref ref="ex-count-the-blot"/> and <xref ref="ex-plot-on-five-metre-squares"/>.</cell></row>
+                    <row><cell>On-Level Learners (Core)</cell><cell>Full activity and all examples. Assign <xref ref="ex-count-the-blot"/> to <xref ref="ex-our-school-compound"/>.</cell></row>
+                    <row><cell>Advanced Learners (Challenge)</cell><cell>All exercises including <xref ref="ex-offset-square-challenge"/>. Extension: draw a shape on 1 cm squares for which <m>F + \tfrac{1}{2}P</m> is exact (one answer: a right-angled triangle with legs of <m>4\,\text{cm}</m> along grid lines, so the hypotenuse passes through grid corners; <m>F = 6</m>, <m>P = 4</m>, estimate <m>8 = \tfrac{1}{2} \times 4 \times 4</m>, because every part square is cut exactly in half).</cell></row>
+                </tabular>
+            </table>
+        </axiom>
 
-    <xi:include href="../lesson-plan-templates/assessment-methods.ptx" />
+        <xi:include href="../lesson-plan-templates/assessment-methods.ptx" />
+        <xi:include href="../lesson-plan-templates/reflection.ptx"/>
+    </subsection>
 
-    <xi:include href="../lesson-plan-templates/reflection.ptx"/>
+    <!-- ============================================================ Lesson 1.2 -->
+    <subsection xml:id="subsec-counting-squares-under-a-curve">
+        <title>Counting Squares Under a Curve</title>
+
+        <p component="lesson-plan">Upon completion of this lesson, learners will be able to:
+            <ol>
+                <li><p><alert>Know:</alert> what is meant by a region bounded by a curve, the <m>x</m>-axis and two vertical lines; that the sides of a square may stand for different lengths.</p></li>
+                <li><p><alert>Do:</alert> count squares under a curve, and find the area one square stands for from both scales.</p></li>
+                <li><p><alert>Apply:</alert> estimate the areas of plots bounded by a stream and of flower beds, and check the method against shapes whose areas are known.</p></li>
+            </ol>
+        </p>
+
+        <axiom component="lesson-plan">
+            <title>Problem-Solving and Discovery</title>
+            <dl>
+                <li><title>Suggested Time</title><p>14 minutes</p></li>
+                <li><title>Objective</title><p>Learners estimate the area of a shamba bounded by a road, two fences and a stream, then improve the estimate on a finer grid.</p></li>
+                <li><title>Teacher's Role</title><p>Give out <xref ref="fig-shamba-by-stream"/> and <xref ref="fig-shamba-fine-grid"/> on paper. Half the class counts on the 10 m grid and half on the 5 m grid; then compare. Ask: <q>Why might a surveyor prefer narrow strips?</q> This leads to <xref ref="sec-trapezoidal-rule"/>.</p></li>
+            </dl>
+        </axiom>
+
+        <activity xml:id="act-shamba-by-the-stream">
+            <title>A Shamba by the Stream</title>
+            <statement>
+                <p>
+                    A shamba near Nyeri lies between a straight road, two straight fences at right angles to the road, and a stream. The plan shows it on squares of <m>10\,\text{m}</m> by <m>10\,\text{m}</m>.
+                </p>
+                <figure xml:id="fig-shamba-by-stream">
+                    <caption>The shamba on squares of <m>10\,\text{m}</m> by <m>10\,\text{m}</m>. The road runs along the bottom and the stream forms the curved edge.</caption>
+                    <image width="70%">
+                        <shortdescription>A plot between a road along the bottom, two fences and a curved stream, 80 m long, drawn on 10 m squares. The stream is 23 m from the road at each fence and about 39 m from it in the middle.</shortdescription>
+                        <latex-image>
+\begin{tikzpicture}[x=0.7cm,y=0.7cm]
+  \draw[step=1, gray!60, very thin] (0,0) grid (8,5);
+  \draw[very thick] plot coordinates {(0.000,0.000) (0.000,2.300) (0.040,2.332) (0.080,2.363) (0.120,2.395) (0.160,2.425) (0.200,2.456) (0.240,2.486) (0.280,2.516) (0.320,2.546) (0.360,2.575) (0.400,2.604) (0.440,2.633) (0.480,2.661) (0.520,2.689) (0.560,2.717) (0.600,2.744) (0.640,2.771) (0.680,2.798) (0.720,2.824) (0.760,2.850) (0.800,2.876) (0.840,2.901) (0.880,2.927) (0.920,2.951) (0.960,2.976) (1.000,3.000) (1.040,3.024) (1.080,3.047) (1.120,3.071) (1.160,3.093) (1.200,3.116) (1.240,3.138) (1.280,3.160) (1.320,3.182) (1.360,3.203) (1.400,3.224) (1.440,3.245) (1.480,3.265) (1.520,3.285) (1.560,3.305) (1.600,3.324) (1.640,3.343) (1.680,3.362) (1.720,3.380) (1.760,3.398) (1.800,3.416) (1.840,3.433) (1.880,3.451) (1.920,3.467) (1.960,3.484) (2.000,3.500) (2.040,3.516) (2.080,3.531) (2.120,3.547) (2.160,3.561) (2.200,3.576) (2.240,3.590) (2.280,3.604) (2.320,3.618) (2.360,3.631) (2.400,3.644) (2.440,3.657) (2.480,3.669) (2.520,3.681) (2.560,3.693) (2.600,3.704) (2.640,3.715) (2.680,3.726) (2.720,3.736) (2.760,3.746) (2.800,3.756) (2.840,3.765) (2.880,3.775) (2.920,3.783) (2.960,3.792) (3.000,3.800) (3.040,3.808) (3.080,3.815) (3.120,3.823) (3.160,3.829) (3.200,3.836) (3.240,3.842) (3.280,3.848) (3.320,3.854) (3.360,3.859) (3.400,3.864) (3.440,3.869) (3.480,3.873) (3.520,3.877) (3.560,3.881) (3.600,3.884) (3.640,3.887) (3.680,3.890) (3.720,3.892) (3.760,3.894) (3.800,3.896) (3.840,3.897) (3.880,3.899) (3.920,3.899) (3.960,3.900) (4.000,3.900) (4.040,3.900) (4.080,3.899) (4.120,3.899) (4.160,3.897) (4.200,3.896) (4.240,3.894) (4.280,3.892) (4.320,3.890) (4.360,3.887) (4.400,3.884) (4.440,3.881) (4.480,3.877) (4.520,3.873) (4.560,3.869) (4.600,3.864) (4.640,3.859) (4.680,3.854) (4.720,3.848) (4.760,3.842) (4.800,3.836) (4.840,3.829) (4.880,3.823) (4.920,3.815) (4.960,3.808) (5.000,3.800) (5.040,3.792) (5.080,3.783) (5.120,3.775) (5.160,3.765) (5.200,3.756) (5.240,3.746) (5.280,3.736) (5.320,3.726) (5.360,3.715) (5.400,3.704) (5.440,3.693) (5.480,3.681) (5.520,3.669) (5.560,3.657) (5.600,3.644) (5.640,3.631) (5.680,3.618) (5.720,3.604) (5.760,3.590) (5.800,3.576) (5.840,3.561) (5.880,3.547) (5.920,3.531) (5.960,3.516) (6.000,3.500) (6.040,3.484) (6.080,3.467) (6.120,3.451) (6.160,3.433) (6.200,3.416) (6.240,3.398) (6.280,3.380) (6.320,3.362) (6.360,3.343) (6.400,3.324) (6.440,3.305) (6.480,3.285) (6.520,3.265) (6.560,3.245) (6.600,3.224) (6.640,3.203) (6.680,3.182) (6.720,3.160) (6.760,3.138) (6.800,3.116) (6.840,3.093) (6.880,3.071) (6.920,3.047) (6.960,3.024) (7.000,3.000) (7.040,2.976) (7.080,2.951) (7.120,2.927) (7.160,2.901) (7.200,2.876) (7.240,2.850) (7.280,2.824) (7.320,2.798) (7.360,2.771) (7.400,2.744) (7.440,2.717) (7.480,2.689) (7.520,2.661) (7.560,2.633) (7.600,2.604) (7.640,2.575) (7.680,2.546) (7.720,2.516) (7.760,2.486) (7.800,2.456) (7.840,2.425) (7.880,2.395) (7.920,2.363) (7.960,2.332) (8.000,2.300) (8.000,0.000)} -- cycle;
+  \node[below, font=\small] at (0,0) {$0$};
+  \node[below, font=\small] at (1,0) {$10$};
+  \node[below, font=\small] at (2,0) {$20$};
+  \node[below, font=\small] at (3,0) {$30$};
+  \node[below, font=\small] at (4,0) {$40$};
+  \node[below, font=\small] at (5,0) {$50$};
+  \node[below, font=\small] at (6,0) {$60$};
+  \node[below, font=\small] at (7,0) {$70$};
+  \node[below, font=\small] at (8,0) {$80$};
+  \node[left, font=\small] at (0,0) {$0$};
+  \node[left, font=\small] at (0,1) {$10$};
+  \node[left, font=\small] at (0,2) {$20$};
+  \node[left, font=\small] at (0,3) {$30$};
+  \node[left, font=\small] at (0,4) {$40$};
+  \node[left, font=\small] at (0,5) {$50$};
+  \node[below=12pt] at (4,0) {distance along the road (m)};
+  \node[rotate=90] at (-1.3,2.5) {distance from the road (m)};
+\end{tikzpicture}
+                        </latex-image>
+                    </image>
+                </figure>
+                <p>
+                    <ol marker="(a)">
+                        <li>
+                            <p>How many full squares and how many part squares does the shamba cover?</p>
+                            <solution component="lesson-plan"><p><m>22</m> full and <m>8</m> part squares.</p></solution>
+                        </li>
+                        <li>
+                            <p>Each square is <m>10\,\text{m}</m> by <m>10\,\text{m}</m>. Estimate the area of the shamba in square metres.</p>
+                            <solution component="lesson-plan"><p><m>(22 + 4) \times 100 = 2600\,\text{m}^2</m>.</p></solution>
+                        </li>
+                        <li>
+                            <p>Repeat parts (a) and (b) on the grid of <m>5\,\text{m}</m> squares.</p>
+                            <figure xml:id="fig-shamba-fine-grid">
+                                <caption>The same shamba on squares of <m>5\,\text{m}</m> by <m>5\,\text{m}</m>.</caption>
+                                <image width="70%">
+                                    <shortdescription>The same plot between a road, two fences and a curved stream, 80 m long, drawn on 5 m squares.</shortdescription>
+                                    <latex-image>
+\begin{tikzpicture}[x=0.7cm,y=0.7cm]
+  \draw[step=0.5, gray!60, very thin] (0,0) grid (8,5);
+  \draw[very thick] plot coordinates {(0.000,0.000) (0.000,2.300) (0.040,2.332) (0.080,2.363) (0.120,2.395) (0.160,2.425) (0.200,2.456) (0.240,2.486) (0.280,2.516) (0.320,2.546) (0.360,2.575) (0.400,2.604) (0.440,2.633) (0.480,2.661) (0.520,2.689) (0.560,2.717) (0.600,2.744) (0.640,2.771) (0.680,2.798) (0.720,2.824) (0.760,2.850) (0.800,2.876) (0.840,2.901) (0.880,2.927) (0.920,2.951) (0.960,2.976) (1.000,3.000) (1.040,3.024) (1.080,3.047) (1.120,3.071) (1.160,3.093) (1.200,3.116) (1.240,3.138) (1.280,3.160) (1.320,3.182) (1.360,3.203) (1.400,3.224) (1.440,3.245) (1.480,3.265) (1.520,3.285) (1.560,3.305) (1.600,3.324) (1.640,3.343) (1.680,3.362) (1.720,3.380) (1.760,3.398) (1.800,3.416) (1.840,3.433) (1.880,3.451) (1.920,3.467) (1.960,3.484) (2.000,3.500) (2.040,3.516) (2.080,3.531) (2.120,3.547) (2.160,3.561) (2.200,3.576) (2.240,3.590) (2.280,3.604) (2.320,3.618) (2.360,3.631) (2.400,3.644) (2.440,3.657) (2.480,3.669) (2.520,3.681) (2.560,3.693) (2.600,3.704) (2.640,3.715) (2.680,3.726) (2.720,3.736) (2.760,3.746) (2.800,3.756) (2.840,3.765) (2.880,3.775) (2.920,3.783) (2.960,3.792) (3.000,3.800) (3.040,3.808) (3.080,3.815) (3.120,3.823) (3.160,3.829) (3.200,3.836) (3.240,3.842) (3.280,3.848) (3.320,3.854) (3.360,3.859) (3.400,3.864) (3.440,3.869) (3.480,3.873) (3.520,3.877) (3.560,3.881) (3.600,3.884) (3.640,3.887) (3.680,3.890) (3.720,3.892) (3.760,3.894) (3.800,3.896) (3.840,3.897) (3.880,3.899) (3.920,3.899) (3.960,3.900) (4.000,3.900) (4.040,3.900) (4.080,3.899) (4.120,3.899) (4.160,3.897) (4.200,3.896) (4.240,3.894) (4.280,3.892) (4.320,3.890) (4.360,3.887) (4.400,3.884) (4.440,3.881) (4.480,3.877) (4.520,3.873) (4.560,3.869) (4.600,3.864) (4.640,3.859) (4.680,3.854) (4.720,3.848) (4.760,3.842) (4.800,3.836) (4.840,3.829) (4.880,3.823) (4.920,3.815) (4.960,3.808) (5.000,3.800) (5.040,3.792) (5.080,3.783) (5.120,3.775) (5.160,3.765) (5.200,3.756) (5.240,3.746) (5.280,3.736) (5.320,3.726) (5.360,3.715) (5.400,3.704) (5.440,3.693) (5.480,3.681) (5.520,3.669) (5.560,3.657) (5.600,3.644) (5.640,3.631) (5.680,3.618) (5.720,3.604) (5.760,3.590) (5.800,3.576) (5.840,3.561) (5.880,3.547) (5.920,3.531) (5.960,3.516) (6.000,3.500) (6.040,3.484) (6.080,3.467) (6.120,3.451) (6.160,3.433) (6.200,3.416) (6.240,3.398) (6.280,3.380) (6.320,3.362) (6.360,3.343) (6.400,3.324) (6.440,3.305) (6.480,3.285) (6.520,3.265) (6.560,3.245) (6.600,3.224) (6.640,3.203) (6.680,3.182) (6.720,3.160) (6.760,3.138) (6.800,3.116) (6.840,3.093) (6.880,3.071) (6.920,3.047) (6.960,3.024) (7.000,3.000) (7.040,2.976) (7.080,2.951) (7.120,2.927) (7.160,2.901) (7.200,2.876) (7.240,2.850) (7.280,2.824) (7.320,2.798) (7.360,2.771) (7.400,2.744) (7.440,2.717) (7.480,2.689) (7.520,2.661) (7.560,2.633) (7.600,2.604) (7.640,2.575) (7.680,2.546) (7.720,2.516) (7.760,2.486) (7.800,2.456) (7.840,2.425) (7.880,2.395) (7.920,2.363) (7.960,2.332) (8.000,2.300) (8.000,0.000)} -- cycle;
+  \node[below, font=\small] at (0,0) {$0$};
+  \node[below, font=\small] at (1,0) {$10$};
+  \node[below, font=\small] at (2,0) {$20$};
+  \node[below, font=\small] at (3,0) {$30$};
+  \node[below, font=\small] at (4,0) {$40$};
+  \node[below, font=\small] at (5,0) {$50$};
+  \node[below, font=\small] at (6,0) {$60$};
+  \node[below, font=\small] at (7,0) {$70$};
+  \node[below, font=\small] at (8,0) {$80$};
+  \node[left, font=\small] at (0,0) {$0$};
+  \node[left, font=\small] at (0,1) {$10$};
+  \node[left, font=\small] at (0,2) {$20$};
+  \node[left, font=\small] at (0,3) {$30$};
+  \node[left, font=\small] at (0,4) {$40$};
+  \node[left, font=\small] at (0,5) {$50$};
+  \node[below=12pt] at (4,0) {distance along the road (m)};
+  \node[rotate=90] at (-1.3,2.5) {distance from the road (m)};
+\end{tikzpicture}
+                                    </latex-image>
+                                </image>
+                            </figure>
+                            <solution component="lesson-plan"><p><m>98</m> full and <m>18</m> part squares; <m>(98 + 9) \times 25 = 2675\,\text{m}^2</m>.</p></solution>
+                        </li>
+                        <li>
+                            <p>A surveyor's computer gives the area as about <m>2693\,\text{m}^2</m>. Which grid gave the closer estimate, and why?</p>
+                            <solution component="lesson-plan"><p>The 5 m grid (<m>18\,\text{m}^2</m> out, against <m>93\,\text{m}^2</m>): smaller squares follow the stream more closely.</p></solution>
+                        </li>
+                        <li>
+                            <p>Look at one column of squares on the 10 m grid. Which shape would fit a whole column better than full squares and half squares?</p>
+                            <solution component="lesson-plan"><p>A strip with a sloping straight top: a trapezium. This prepares <xref ref="sec-trapezoidal-rule"/>.</p></solution>
+                        </li>
+                    </ol>
+                </p>
+            </statement>
+        </activity>
+
+        <axiom component="lesson-plan">
+            <title>Structured Instruction</title>
+            <p>
+                <dl>
+                    <li><title>Suggested Time</title><p>8 minutes</p></li>
+                    <li><title>Objective</title><p>To apply the counting rule to a region under a curve and to find the area of one square from two scales.</p></li>
+                </dl>
+            </p>
+            <paragraphs>
+                <title>Key Takeaways &amp; Teacher Connection</title>
+                <ol>
+                    <li><p><alert>Connecting to Learner Work:</alert> the two halves of the class used the same rule, <m>F + \tfrac{1}{2}P</m>, on different grids; the finer grid was closer.</p></li>
+                    <li><p>The area one square stands for is its width times its height in real units. The two may differ, as on a plan drawn with different scales across and up.</p></li>
+                    <li><p>A column of squares under a curve is a strip; in the next section each strip becomes a trapezium.</p></li>
+                </ol>
+            </paragraphs>
+        </axiom>
+
+        <insight xml:id="insight-counting-squares-under-a-curve">
+            <title>Counting Squares Under a Curve</title>
+            <p>
+                The region <term>bounded by</term> the curve <m>y = f(x)</m>, the <m>x</m>-axis and the lines <m>x = a</m> and <m>x = b</m> is the region enclosed by those four edges: it lies above the <m>x</m>-axis, below the curve, and between the two vertical lines.
+            </p>
+            <p>
+                Count full and part squares in it as before: estimate <m>= F + \tfrac{1}{2}P</m> squares. One square stands for (width of a square) <m>\times</m> (height of a square), each in the units on its axis. The two may be different: on a plan with squares <m>5\,\text{m}</m> wide and <m>2\,\text{m}</m> tall, one square stands for <m>5 \times 2 = 10\,\text{m}^2</m>.
+            </p>
+        </insight>
+
+        <xi:include href="../lesson-plan-templates/example-intro.ptx" />
+
+        <example xml:id="example-under-a-curve-unit-squares">
+            <title>Under a Curve on Unit Squares</title>
+            <statement>
+                <p>Estimate the area of the region bounded by the curve <m>y = 4.6 + 0.9x - 0.18x^2</m>, the <m>x</m>-axis and the lines <m>x = 0</m> and <m>x = 6</m>, by counting the unit squares in <xref ref="fig-under-curve-unit-squares"/>.</p>
+                <figure xml:id="fig-under-curve-unit-squares">
+                    <caption>The region under <m>y = 4.6 + 0.9x - 0.18x^2</m> from <m>x = 0</m> to <m>x = 6</m>. Full squares are shaded; part squares are dotted.</caption>
+                    <image width="60%">
+                        <shortdescription>The region under a curve from x = 0 to x = 6 on unit squares: 26 full squares shaded and 9 part squares dotted.</shortdescription>
+                        <description><p>Column by column from x = 0: full squares 4, 5, 5, 5, 4, 3 and part squares 2, 1, 1, 1, 2, 2.</p></description>
+                        <latex-image>
+\begin{tikzpicture}[x=0.7cm,y=0.7cm]
+  \fill[gray!45] (0,0) rectangle ++(1,1);
+  \fill[gray!45] (0,1) rectangle ++(1,1);
+  \fill[gray!45] (0,2) rectangle ++(1,1);
+  \fill[gray!45] (0,3) rectangle ++(1,1);
+  \fill[pattern=dots, pattern color=gray] (0,4) rectangle ++(1,1);
+  \fill[pattern=dots, pattern color=gray] (0,5) rectangle ++(1,1);
+  \fill[gray!45] (1,0) rectangle ++(1,1);
+  \fill[gray!45] (1,1) rectangle ++(1,1);
+  \fill[gray!45] (1,2) rectangle ++(1,1);
+  \fill[gray!45] (1,3) rectangle ++(1,1);
+  \fill[gray!45] (1,4) rectangle ++(1,1);
+  \fill[pattern=dots, pattern color=gray] (1,5) rectangle ++(1,1);
+  \fill[gray!45] (2,0) rectangle ++(1,1);
+  \fill[gray!45] (2,1) rectangle ++(1,1);
+  \fill[gray!45] (2,2) rectangle ++(1,1);
+  \fill[gray!45] (2,3) rectangle ++(1,1);
+  \fill[gray!45] (2,4) rectangle ++(1,1);
+  \fill[pattern=dots, pattern color=gray] (2,5) rectangle ++(1,1);
+  \fill[gray!45] (3,0) rectangle ++(1,1);
+  \fill[gray!45] (3,1) rectangle ++(1,1);
+  \fill[gray!45] (3,2) rectangle ++(1,1);
+  \fill[gray!45] (3,3) rectangle ++(1,1);
+  \fill[gray!45] (3,4) rectangle ++(1,1);
+  \fill[pattern=dots, pattern color=gray] (3,5) rectangle ++(1,1);
+  \fill[gray!45] (4,0) rectangle ++(1,1);
+  \fill[gray!45] (4,1) rectangle ++(1,1);
+  \fill[gray!45] (4,2) rectangle ++(1,1);
+  \fill[gray!45] (4,3) rectangle ++(1,1);
+  \fill[pattern=dots, pattern color=gray] (4,4) rectangle ++(1,1);
+  \fill[pattern=dots, pattern color=gray] (4,5) rectangle ++(1,1);
+  \fill[gray!45] (5,0) rectangle ++(1,1);
+  \fill[gray!45] (5,1) rectangle ++(1,1);
+  \fill[gray!45] (5,2) rectangle ++(1,1);
+  \fill[pattern=dots, pattern color=gray] (5,3) rectangle ++(1,1);
+  \fill[pattern=dots, pattern color=gray] (5,4) rectangle ++(1,1);
+  \draw[step=1, gray!60, very thin] (0,0) grid (6,6);
+  \draw[very thick] plot coordinates {(0.000,0.000) (0.000,4.600) (0.030,4.627) (0.060,4.653) (0.090,4.680) (0.120,4.705) (0.150,4.731) (0.180,4.756) (0.210,4.781) (0.240,4.806) (0.270,4.830) (0.300,4.854) (0.330,4.877) (0.360,4.901) (0.390,4.924) (0.420,4.946) (0.450,4.969) (0.480,4.991) (0.510,5.012) (0.540,5.034) (0.570,5.055) (0.600,5.075) (0.630,5.096) (0.660,5.116) (0.690,5.135) (0.720,5.155) (0.750,5.174) (0.780,5.192) (0.810,5.211) (0.840,5.229) (0.870,5.247) (0.900,5.264) (0.930,5.281) (0.960,5.298) (0.990,5.315) (1.020,5.331) (1.050,5.347) (1.080,5.362) (1.110,5.377) (1.140,5.392) (1.170,5.407) (1.200,5.421) (1.230,5.435) (1.260,5.448) (1.290,5.461) (1.320,5.474) (1.350,5.487) (1.380,5.499) (1.410,5.511) (1.440,5.523) (1.470,5.534) (1.500,5.545) (1.530,5.556) (1.560,5.566) (1.590,5.576) (1.620,5.586) (1.650,5.595) (1.680,5.604) (1.710,5.613) (1.740,5.621) (1.770,5.629) (1.800,5.637) (1.830,5.644) (1.860,5.651) (1.890,5.658) (1.920,5.664) (1.950,5.671) (1.980,5.676) (2.010,5.682) (2.040,5.687) (2.070,5.692) (2.100,5.696) (2.130,5.700) (2.160,5.704) (2.190,5.708) (2.220,5.711) (2.250,5.714) (2.280,5.716) (2.310,5.719) (2.340,5.720) (2.370,5.722) (2.400,5.723) (2.430,5.724) (2.460,5.725) (2.490,5.725) (2.520,5.725) (2.550,5.725) (2.580,5.724) (2.610,5.723) (2.640,5.721) (2.670,5.720) (2.700,5.718) (2.730,5.715) (2.760,5.713) (2.790,5.710) (2.820,5.707) (2.850,5.703) (2.880,5.699) (2.910,5.695) (2.940,5.690) (2.970,5.685) (3.000,5.680) (3.030,5.674) (3.060,5.669) (3.090,5.662) (3.120,5.656) (3.150,5.649) (3.180,5.642) (3.210,5.634) (3.240,5.626) (3.270,5.618) (3.300,5.610) (3.330,5.601) (3.360,5.592) (3.390,5.582) (3.420,5.573) (3.450,5.563) (3.480,5.552) (3.510,5.541) (3.540,5.530) (3.570,5.519) (3.600,5.507) (3.630,5.495) (3.660,5.483) (3.690,5.470) (3.720,5.457) (3.750,5.444) (3.780,5.430) (3.810,5.416) (3.840,5.402) (3.870,5.387) (3.900,5.372) (3.930,5.357) (3.960,5.341) (3.990,5.325) (4.020,5.309) (4.050,5.293) (4.080,5.276) (4.110,5.258) (4.140,5.241) (4.170,5.223) (4.200,5.205) (4.230,5.186) (4.260,5.167) (4.290,5.148) (4.320,5.129) (4.350,5.109) (4.380,5.089) (4.410,5.068) (4.440,5.048) (4.470,5.026) (4.500,5.005) (4.530,4.983) (4.560,4.961) (4.590,4.939) (4.620,4.916) (4.650,4.893) (4.680,4.870) (4.710,4.846) (4.740,4.822) (4.770,4.797) (4.800,4.773) (4.830,4.748) (4.860,4.722) (4.890,4.697) (4.920,4.671) (4.950,4.645) (4.980,4.618) (5.010,4.591) (5.040,4.564) (5.070,4.536) (5.100,4.508) (5.130,4.480) (5.160,4.451) (5.190,4.423) (5.220,4.393) (5.250,4.364) (5.280,4.334) (5.310,4.304) (5.340,4.273) (5.370,4.242) (5.400,4.211) (5.430,4.180) (5.460,4.148) (5.490,4.116) (5.520,4.083) (5.550,4.051) (5.580,4.017) (5.610,3.984) (5.640,3.950) (5.670,3.916) (5.700,3.882) (5.730,3.847) (5.760,3.812) (5.790,3.777) (5.820,3.741) (5.850,3.705) (5.880,3.669) (5.910,3.632) (5.940,3.595) (5.970,3.558) (6.000,3.520) (6.000,0.000)} -- cycle;
+  \node[below, font=\small] at (0,0) {$0$};
+  \node[below, font=\small] at (1,0) {$1$};
+  \node[below, font=\small] at (2,0) {$2$};
+  \node[below, font=\small] at (3,0) {$3$};
+  \node[below, font=\small] at (4,0) {$4$};
+  \node[below, font=\small] at (5,0) {$5$};
+  \node[below, font=\small] at (6,0) {$6$};
+  \node[left, font=\small] at (0,0) {$0$};
+  \node[left, font=\small] at (0,1) {$1$};
+  \node[left, font=\small] at (0,2) {$2$};
+  \node[left, font=\small] at (0,3) {$3$};
+  \node[left, font=\small] at (0,4) {$4$};
+  \node[left, font=\small] at (0,5) {$5$};
+  \node[left, font=\small] at (0,6) {$6$};
+  \node[below=12pt] at (3,0) {$x$};
+  \node[rotate=90] at (-1.3,3) {$y$};
+\end{tikzpicture}
+                        </latex-image>
+                    </image>
+                </figure>
+            </statement>
+            <solution>
+                <p>Count column by column. The full squares are <m>4 + 5 + 5 + 5 + 4 + 3 = 26</m> and the part squares <m>2 + 1 + 1 + 1 + 2 + 2 = 9</m>. So
+                    <md>\text{estimate} = 26 + \tfrac{1}{2} \times 9 = 30.5 \text{ square units}</md></p>
+            </solution>
+        </example>
+
+        <example xml:id="example-flower-bed-nakuru">
+            <title>A Flower Bed in Nakuru</title>
+            <statement>
+                <p>A flower bed in a park in Nakuru lies between a straight path and a curved hedge. On the plan, each square stands for <m>5\,\text{m}</m> along the path and <m>2\,\text{m}</m> across it. Estimate the area of the flower bed.</p>
+                <figure xml:id="fig-flower-bed-grid">
+                    <caption>The flower bed on squares <m>5\,\text{m}</m> wide and <m>2\,\text{m}</m> tall. Full squares are shaded; part squares are dotted.</caption>
+                    <image width="60%">
+                        <shortdescription>A flower bed between a straight path along the bottom and a curved hedge, 35 m long, on squares 5 m wide and 2 m tall: 22 full squares shaded and 9 part squares dotted.</shortdescription>
+                        <description><p>Full squares: 22. Part squares: 9. Each square is 5 m along the path and 2 m across.</p></description>
+                        <latex-image>
+\begin{tikzpicture}[x=0.7cm,y=0.7cm]
+  \fill[gray!45] (0,0) rectangle ++(1,1);
+  \fill[pattern=dots, pattern color=gray] (0,1) rectangle ++(1,1);
+  \fill[pattern=dots, pattern color=gray] (0,2) rectangle ++(1,1);
+  \fill[gray!45] (1,0) rectangle ++(1,1);
+  \fill[gray!45] (1,1) rectangle ++(1,1);
+  \fill[pattern=dots, pattern color=gray] (1,2) rectangle ++(1,1);
+  \fill[pattern=dots, pattern color=gray] (1,3) rectangle ++(1,1);
+  \fill[gray!45] (2,0) rectangle ++(1,1);
+  \fill[gray!45] (2,1) rectangle ++(1,1);
+  \fill[gray!45] (2,2) rectangle ++(1,1);
+  \fill[pattern=dots, pattern color=gray] (2,3) rectangle ++(1,1);
+  \fill[gray!45] (3,0) rectangle ++(1,1);
+  \fill[gray!45] (3,1) rectangle ++(1,1);
+  \fill[gray!45] (3,2) rectangle ++(1,1);
+  \fill[gray!45] (3,3) rectangle ++(1,1);
+  \fill[pattern=dots, pattern color=gray] (3,4) rectangle ++(1,1);
+  \fill[gray!45] (4,0) rectangle ++(1,1);
+  \fill[gray!45] (4,1) rectangle ++(1,1);
+  \fill[gray!45] (4,2) rectangle ++(1,1);
+  \fill[gray!45] (4,3) rectangle ++(1,1);
+  \fill[pattern=dots, pattern color=gray] (4,4) rectangle ++(1,1);
+  \fill[gray!45] (5,0) rectangle ++(1,1);
+  \fill[gray!45] (5,1) rectangle ++(1,1);
+  \fill[gray!45] (5,2) rectangle ++(1,1);
+  \fill[gray!45] (5,3) rectangle ++(1,1);
+  \fill[pattern=dots, pattern color=gray] (5,4) rectangle ++(1,1);
+  \fill[gray!45] (6,0) rectangle ++(1,1);
+  \fill[gray!45] (6,1) rectangle ++(1,1);
+  \fill[gray!45] (6,2) rectangle ++(1,1);
+  \fill[gray!45] (6,3) rectangle ++(1,1);
+  \fill[pattern=dots, pattern color=gray] (6,4) rectangle ++(1,1);
+  \draw[step=1, gray!60, very thin] (0,0) grid (7,5);
+  \draw[very thick] plot coordinates {(0.000,0.000) (0.000,1.500) (0.035,1.538) (0.070,1.577) (0.105,1.615) (0.140,1.652) (0.175,1.690) (0.210,1.727) (0.245,1.764) (0.280,1.801) (0.315,1.838) (0.350,1.874) (0.385,1.910) (0.420,1.946) (0.455,1.982) (0.490,2.017) (0.525,2.053) (0.560,2.088) (0.595,2.123) (0.630,2.157) (0.665,2.192) (0.700,2.226) (0.735,2.260) (0.770,2.294) (0.805,2.327) (0.840,2.360) (0.875,2.394) (0.910,2.426) (0.945,2.459) (0.980,2.492) (1.015,2.524) (1.050,2.556) (1.085,2.588) (1.120,2.619) (1.155,2.650) (1.190,2.682) (1.225,2.712) (1.260,2.743) (1.295,2.774) (1.330,2.804) (1.365,2.834) (1.400,2.864) (1.435,2.893) (1.470,2.923) (1.505,2.952) (1.540,2.981) (1.575,3.009) (1.610,3.038) (1.645,3.066) (1.680,3.094) (1.715,3.122) (1.750,3.149) (1.785,3.177) (1.820,3.204) (1.855,3.231) (1.890,3.258) (1.925,3.284) (1.960,3.310) (1.995,3.336) (2.030,3.362) (2.065,3.388) (2.100,3.413) (2.135,3.438) (2.170,3.463) (2.205,3.488) (2.240,3.512) (2.275,3.537) (2.310,3.561) (2.345,3.585) (2.380,3.608) (2.415,3.632) (2.450,3.655) (2.485,3.678) (2.520,3.700) (2.555,3.723) (2.590,3.745) (2.625,3.767) (2.660,3.789) (2.695,3.811) (2.730,3.832) (2.765,3.853) (2.800,3.874) (2.835,3.895) (2.870,3.916) (2.905,3.936) (2.940,3.956) (2.975,3.976) (3.010,3.996) (3.045,4.015) (3.080,4.034) (3.115,4.053) (3.150,4.072) (3.185,4.091) (3.220,4.109) (3.255,4.127) (3.290,4.145) (3.325,4.162) (3.360,4.180) (3.395,4.197) (3.430,4.214) (3.465,4.231) (3.500,4.248) (3.535,4.264) (3.570,4.280) (3.605,4.296) (3.640,4.312) (3.675,4.327) (3.710,4.342) (3.745,4.357) (3.780,4.372) (3.815,4.387) (3.850,4.401) (3.885,4.415) (3.920,4.429) (3.955,4.443) (3.990,4.456) (4.025,4.469) (4.060,4.482) (4.095,4.495) (4.130,4.508) (4.165,4.520) (4.200,4.532) (4.235,4.544) (4.270,4.556) (4.305,4.568) (4.340,4.579) (4.375,4.590) (4.410,4.601) (4.445,4.611) (4.480,4.622) (4.515,4.632) (4.550,4.642) (4.585,4.651) (4.620,4.661) (4.655,4.670) (4.690,4.679) (4.725,4.688) (4.760,4.697) (4.795,4.705) (4.830,4.713) (4.865,4.721) (4.900,4.729) (4.935,4.737) (4.970,4.744) (5.005,4.751) (5.040,4.758) (5.075,4.764) (5.110,4.771) (5.145,4.777) (5.180,4.783) (5.215,4.789) (5.250,4.794) (5.285,4.800) (5.320,4.805) (5.355,4.810) (5.390,4.814) (5.425,4.819) (5.460,4.823) (5.495,4.827) (5.530,4.831) (5.565,4.834) (5.600,4.838) (5.635,4.841) (5.670,4.844) (5.705,4.846) (5.740,4.849) (5.775,4.851) (5.810,4.853) (5.845,4.855) (5.880,4.856) (5.915,4.858) (5.950,4.859) (5.985,4.860) (6.020,4.860) (6.055,4.861) (6.090,4.861) (6.125,4.861) (6.160,4.861) (6.195,4.860) (6.230,4.860) (6.265,4.859) (6.300,4.858) (6.335,4.857) (6.370,4.855) (6.405,4.853) (6.440,4.851) (6.475,4.849) (6.510,4.847) (6.545,4.844) (6.580,4.841) (6.615,4.838) (6.650,4.835) (6.685,4.831) (6.720,4.828) (6.755,4.824) (6.790,4.820) (6.825,4.815) (6.860,4.811) (6.895,4.806) (6.930,4.801) (6.965,4.795) (7.000,4.790) (7.000,0.000)} -- cycle;
+  \node[below, font=\small] at (0,0) {$0$};
+  \node[below, font=\small] at (1,0) {$5$};
+  \node[below, font=\small] at (2,0) {$10$};
+  \node[below, font=\small] at (3,0) {$15$};
+  \node[below, font=\small] at (4,0) {$20$};
+  \node[below, font=\small] at (5,0) {$25$};
+  \node[below, font=\small] at (6,0) {$30$};
+  \node[below, font=\small] at (7,0) {$35$};
+  \node[left, font=\small] at (0,0) {$0$};
+  \node[left, font=\small] at (0,1) {$2$};
+  \node[left, font=\small] at (0,2) {$4$};
+  \node[left, font=\small] at (0,3) {$6$};
+  \node[left, font=\small] at (0,4) {$8$};
+  \node[left, font=\small] at (0,5) {$10$};
+  \node[below=12pt] at (3.5,0) {distance along the path (m)};
+  \node[rotate=90] at (-1.3,2.5) {distance across (m)};
+\end{tikzpicture}
+                        </latex-image>
+                    </image>
+                </figure>
+            </statement>
+            <solution>
+                <p>There are <m>22</m> full and <m>9</m> part squares, so the estimate is <m>22 + 4.5 = 26.5</m> squares. One square stands for <m>5 \times 2 = 10\,\text{m}^2</m>, so the area is about <m>26.5 \times 10 = 265\,\text{m}^2</m>.</p>
+            </solution>
+        </example>
+
+        <example xml:id="example-quarter-circle-check">
+            <title>Checking With a Shape We Know</title>
+            <statement>
+                <p>A quarter circle of radius <m>6.2\,\text{cm}</m> is drawn on 1 cm squares with its centre on a grid corner. Estimate its area by counting squares, and compare with the area from <m>\tfrac{1}{4}\pi r^2</m>.</p>
+                <figure xml:id="fig-quarter-circle-grid">
+                    <caption>A quarter circle of radius <m>6.2\,\text{cm}</m> on 1 cm squares. Full squares are shaded; part squares are dotted.</caption>
+                    <image width="50%">
+                        <shortdescription>A quarter circle of radius 6.2 cm on 1 cm squares: 24 full squares shaded and 13 part squares dotted.</shortdescription>
+                        <description><p>Full squares: 24. Part squares: 13.</p></description>
+                        <latex-image>
+\begin{tikzpicture}[x=0.7cm,y=0.7cm]
+  \fill[gray!45] (0,0) rectangle ++(1,1);
+  \fill[gray!45] (0,1) rectangle ++(1,1);
+  \fill[gray!45] (0,2) rectangle ++(1,1);
+  \fill[gray!45] (0,3) rectangle ++(1,1);
+  \fill[gray!45] (0,4) rectangle ++(1,1);
+  \fill[gray!45] (0,5) rectangle ++(1,1);
+  \fill[pattern=dots, pattern color=gray] (0,6) rectangle ++(1,1);
+  \fill[gray!45] (1,0) rectangle ++(1,1);
+  \fill[gray!45] (1,1) rectangle ++(1,1);
+  \fill[gray!45] (1,2) rectangle ++(1,1);
+  \fill[gray!45] (1,3) rectangle ++(1,1);
+  \fill[gray!45] (1,4) rectangle ++(1,1);
+  \fill[pattern=dots, pattern color=gray] (1,5) rectangle ++(1,1);
+  \fill[pattern=dots, pattern color=gray] (1,6) rectangle ++(1,1);
+  \fill[gray!45] (2,0) rectangle ++(1,1);
+  \fill[gray!45] (2,1) rectangle ++(1,1);
+  \fill[gray!45] (2,2) rectangle ++(1,1);
+  \fill[gray!45] (2,3) rectangle ++(1,1);
+  \fill[gray!45] (2,4) rectangle ++(1,1);
+  \fill[pattern=dots, pattern color=gray] (2,5) rectangle ++(1,1);
+  \fill[gray!45] (3,0) rectangle ++(1,1);
+  \fill[gray!45] (3,1) rectangle ++(1,1);
+  \fill[gray!45] (3,2) rectangle ++(1,1);
+  \fill[gray!45] (3,3) rectangle ++(1,1);
+  \fill[pattern=dots, pattern color=gray] (3,4) rectangle ++(1,1);
+  \fill[pattern=dots, pattern color=gray] (3,5) rectangle ++(1,1);
+  \fill[gray!45] (4,0) rectangle ++(1,1);
+  \fill[gray!45] (4,1) rectangle ++(1,1);
+  \fill[gray!45] (4,2) rectangle ++(1,1);
+  \fill[pattern=dots, pattern color=gray] (4,3) rectangle ++(1,1);
+  \fill[pattern=dots, pattern color=gray] (4,4) rectangle ++(1,1);
+  \fill[gray!45] (5,0) rectangle ++(1,1);
+  \fill[pattern=dots, pattern color=gray] (5,1) rectangle ++(1,1);
+  \fill[pattern=dots, pattern color=gray] (5,2) rectangle ++(1,1);
+  \fill[pattern=dots, pattern color=gray] (5,3) rectangle ++(1,1);
+  \fill[pattern=dots, pattern color=gray] (6,0) rectangle ++(1,1);
+  \fill[pattern=dots, pattern color=gray] (6,1) rectangle ++(1,1);
+  \draw[step=1, gray!60, very thin] (0,0) grid (7,7);
+  \draw[very thick] plot coordinates {(0.000,0.000) (0.000,6.200) (0.000,6.200) (0.049,6.200) (0.097,6.199) (0.146,6.198) (0.195,6.197) (0.243,6.195) (0.292,6.193) (0.341,6.191) (0.389,6.188) (0.438,6.185) (0.486,6.181) (0.535,6.177) (0.583,6.172) (0.632,6.168) (0.680,6.163) (0.729,6.157) (0.777,6.151) (0.825,6.145) (0.874,6.138) (0.922,6.131) (0.970,6.124) (1.018,6.116) (1.066,6.108) (1.114,6.099) (1.162,6.090) (1.210,6.081) (1.257,6.071) (1.305,6.061) (1.352,6.051) (1.400,6.040) (1.447,6.029) (1.495,6.017) (1.542,6.005) (1.589,5.993) (1.636,5.980) (1.683,5.967) (1.730,5.954) (1.776,5.940) (1.823,5.926) (1.870,5.911) (1.916,5.897) (1.962,5.881) (2.008,5.866) (2.054,5.850) (2.100,5.833) (2.146,5.817) (2.192,5.800) (2.237,5.782) (2.282,5.765) (2.328,5.747) (2.373,5.728) (2.418,5.709) (2.462,5.690) (2.507,5.671) (2.551,5.651) (2.596,5.630) (2.640,5.610) (2.684,5.589) (2.728,5.568) (2.771,5.546) (2.815,5.524) (2.858,5.502) (2.901,5.479) (2.944,5.456) (2.987,5.433) (3.029,5.409) (3.072,5.386) (3.114,5.361) (3.156,5.337) (3.198,5.312) (3.239,5.286) (3.281,5.261) (3.322,5.235) (3.363,5.209) (3.404,5.182) (3.445,5.155) (3.485,5.128) (3.525,5.100) (3.565,5.073) (3.605,5.044) (3.644,5.016) (3.684,4.987) (3.723,4.958) (3.761,4.929) (3.800,4.899) (3.838,4.869) (3.877,4.839) (3.914,4.808) (3.952,4.777) (3.989,4.746) (4.027,4.715) (4.063,4.683) (4.100,4.651) (4.137,4.618) (4.173,4.586) (4.209,4.553) (4.244,4.520) (4.280,4.486) (4.315,4.452) (4.349,4.418) (4.384,4.384) (4.418,4.349) (4.452,4.315) (4.486,4.280) (4.520,4.244) (4.553,4.209) (4.586,4.173) (4.618,4.137) (4.651,4.100) (4.683,4.063) (4.715,4.027) (4.746,3.989) (4.777,3.952) (4.808,3.914) (4.839,3.877) (4.869,3.838) (4.899,3.800) (4.929,3.761) (4.958,3.723) (4.987,3.684) (5.016,3.644) (5.044,3.605) (5.073,3.565) (5.100,3.525) (5.128,3.485) (5.155,3.445) (5.182,3.404) (5.209,3.363) (5.235,3.322) (5.261,3.281) (5.286,3.239) (5.312,3.198) (5.337,3.156) (5.361,3.114) (5.386,3.072) (5.409,3.029) (5.433,2.987) (5.456,2.944) (5.479,2.901) (5.502,2.858) (5.524,2.815) (5.546,2.771) (5.568,2.728) (5.589,2.684) (5.610,2.640) (5.630,2.596) (5.651,2.551) (5.671,2.507) (5.690,2.462) (5.709,2.418) (5.728,2.373) (5.747,2.328) (5.765,2.282) (5.782,2.237) (5.800,2.192) (5.817,2.146) (5.833,2.100) (5.850,2.054) (5.866,2.008) (5.881,1.962) (5.897,1.916) (5.911,1.870) (5.926,1.823) (5.940,1.776) (5.954,1.730) (5.967,1.683) (5.980,1.636) (5.993,1.589) (6.005,1.542) (6.017,1.495) (6.029,1.447) (6.040,1.400) (6.051,1.352) (6.061,1.305) (6.071,1.257) (6.081,1.210) (6.090,1.162) (6.099,1.114) (6.108,1.066) (6.116,1.018) (6.124,0.970) (6.131,0.922) (6.138,0.874) (6.145,0.825) (6.151,0.777) (6.157,0.729) (6.163,0.680) (6.168,0.632) (6.172,0.583) (6.177,0.535) (6.181,0.486) (6.185,0.438) (6.188,0.389) (6.191,0.341) (6.193,0.292) (6.195,0.243) (6.197,0.195) (6.198,0.146) (6.199,0.097) (6.200,0.049) (6.200,0.000)} -- cycle;
+  \node[below, font=\small] at (0,0) {$0$};
+  \node[below, font=\small] at (1,0) {$1$};
+  \node[below, font=\small] at (2,0) {$2$};
+  \node[below, font=\small] at (3,0) {$3$};
+  \node[below, font=\small] at (4,0) {$4$};
+  \node[below, font=\small] at (5,0) {$5$};
+  \node[below, font=\small] at (6,0) {$6$};
+  \node[below, font=\small] at (7,0) {$7$};
+  \node[left, font=\small] at (0,0) {$0$};
+  \node[left, font=\small] at (0,1) {$1$};
+  \node[left, font=\small] at (0,2) {$2$};
+  \node[left, font=\small] at (0,3) {$3$};
+  \node[left, font=\small] at (0,4) {$4$};
+  \node[left, font=\small] at (0,5) {$5$};
+  \node[left, font=\small] at (0,6) {$6$};
+  \node[left, font=\small] at (0,7) {$7$};
+  \node[below=12pt] at (3.5,0) {cm};
+  \draw[->, thick] (0,0) -- (4.384,4.384) node[midway, above left, fill=white, inner sep=1pt, font=\small] {$6.2$ cm};
+\end{tikzpicture}
+                        </latex-image>
+                    </image>
+                </figure>
+            </statement>
+            <solution>
+                <p>There are <m>24</m> full and <m>13</m> part squares, so the estimate is <m>24 + 6.5 = 30.5\,\text{cm}^2</m>.</p>
+                <p>The formula gives <m>\tfrac{1}{4} \times \pi \times 6.2^2 = 30.19\,\text{cm}^2</m> (to 2 decimal places). The count is about <m>0.3\,\text{cm}^2</m> too big, about <m>1</m> per cent: counting squares works well for a curved edge.</p>
+            </solution>
+        </example>
+
+        <xi:include href="../lesson-plan-templates/assessment-intro.ptx" />
+        <xi:include href="../lesson-plan-templates/checkpoint.ptx" />
+
+        <p>Type decimals with a point, for example <c>37.6</c>. Give exact answers unless the question asks you to round.</p>
+
+        <exercise xml:id="ex-counting-squares-under-a-curve">
+            <!--<title></title>-->
+            <stack label="stk-counting-squares-under-a-curve" source="stack/top/2-measurement-and-geometry/07-area-approximations/01-counting-squares/Counting-squares-under-a-curve.xml"/>
+        </exercise>
+
+        <exercise xml:id="ex-finding-the-mistake-in-a-square-count">
+            <!--<title></title>-->
+            <stack label="stk-finding-the-mistake-in-a-square-count" source="stack/top/2-measurement-and-geometry/07-area-approximations/01-counting-squares/Finding-the-mistake-in-a-square-count.xml"/>
+        </exercise>
+
+        <exercises xml:id="exercises-counting-squares-under-a-curve">
+            <exercise xml:id="ex-count-under-curve">
+                <statement>
+                    <p>Estimate the area of the region bounded by the curve <m>y = 4 + 0.3x - 0.1x^2</m>, the <m>x</m>-axis and the lines <m>x = 0</m> and <m>x = 6</m>, by counting the unit squares.</p>
+                    <figure xml:id="fig-exercise-under-curve">
+                        <caption>The region under <m>y = 4 + 0.3x - 0.1x^2</m> from <m>x = 0</m> to <m>x = 6</m>.</caption>
+                        <image width="60%">
+                            <shortdescription>A region under a curve from x = 0 to x = 6 on unit squares. The curve starts at height 4, rises a little, then falls to 2.2 at x = 6.</shortdescription>
+                            <latex-image>
+\begin{tikzpicture}[x=0.7cm,y=0.7cm]
+  \draw[step=1, gray!60, very thin] (0,0) grid (6,5);
+  \draw[very thick] plot coordinates {(0.000,0.000) (0.000,4.000) (0.030,4.009) (0.060,4.018) (0.090,4.026) (0.120,4.035) (0.150,4.043) (0.180,4.051) (0.210,4.059) (0.240,4.066) (0.270,4.074) (0.300,4.081) (0.330,4.088) (0.360,4.095) (0.390,4.102) (0.420,4.108) (0.450,4.115) (0.480,4.121) (0.510,4.127) (0.540,4.133) (0.570,4.139) (0.600,4.144) (0.630,4.149) (0.660,4.154) (0.690,4.159) (0.720,4.164) (0.750,4.169) (0.780,4.173) (0.810,4.177) (0.840,4.181) (0.870,4.185) (0.900,4.189) (0.930,4.193) (0.960,4.196) (0.990,4.199) (1.020,4.202) (1.050,4.205) (1.080,4.207) (1.110,4.210) (1.140,4.212) (1.170,4.214) (1.200,4.216) (1.230,4.218) (1.260,4.219) (1.290,4.221) (1.320,4.222) (1.350,4.223) (1.380,4.224) (1.410,4.224) (1.440,4.225) (1.470,4.225) (1.500,4.225) (1.530,4.225) (1.560,4.225) (1.590,4.224) (1.620,4.224) (1.650,4.223) (1.680,4.222) (1.710,4.221) (1.740,4.219) (1.770,4.218) (1.800,4.216) (1.830,4.214) (1.860,4.212) (1.890,4.210) (1.920,4.207) (1.950,4.205) (1.980,4.202) (2.010,4.199) (2.040,4.196) (2.070,4.193) (2.100,4.189) (2.130,4.185) (2.160,4.181) (2.190,4.177) (2.220,4.173) (2.250,4.169) (2.280,4.164) (2.310,4.159) (2.340,4.154) (2.370,4.149) (2.400,4.144) (2.430,4.139) (2.460,4.133) (2.490,4.127) (2.520,4.121) (2.550,4.115) (2.580,4.108) (2.610,4.102) (2.640,4.095) (2.670,4.088) (2.700,4.081) (2.730,4.074) (2.760,4.066) (2.790,4.059) (2.820,4.051) (2.850,4.043) (2.880,4.035) (2.910,4.026) (2.940,4.018) (2.970,4.009) (3.000,4.000) (3.030,3.991) (3.060,3.982) (3.090,3.972) (3.120,3.963) (3.150,3.953) (3.180,3.943) (3.210,3.933) (3.240,3.922) (3.270,3.912) (3.300,3.901) (3.330,3.890) (3.360,3.879) (3.390,3.868) (3.420,3.856) (3.450,3.845) (3.480,3.833) (3.510,3.821) (3.540,3.809) (3.570,3.797) (3.600,3.784) (3.630,3.771) (3.660,3.758) (3.690,3.745) (3.720,3.732) (3.750,3.719) (3.780,3.705) (3.810,3.691) (3.840,3.677) (3.870,3.663) (3.900,3.649) (3.930,3.635) (3.960,3.620) (3.990,3.605) (4.020,3.590) (4.050,3.575) (4.080,3.559) (4.110,3.544) (4.140,3.528) (4.170,3.512) (4.200,3.496) (4.230,3.480) (4.260,3.463) (4.290,3.447) (4.320,3.430) (4.350,3.413) (4.380,3.396) (4.410,3.378) (4.440,3.361) (4.470,3.343) (4.500,3.325) (4.530,3.307) (4.560,3.289) (4.590,3.270) (4.620,3.252) (4.650,3.233) (4.680,3.214) (4.710,3.195) (4.740,3.175) (4.770,3.156) (4.800,3.136) (4.830,3.116) (4.860,3.096) (4.890,3.076) (4.920,3.055) (4.950,3.035) (4.980,3.014) (5.010,2.993) (5.040,2.972) (5.070,2.951) (5.100,2.929) (5.130,2.907) (5.160,2.885) (5.190,2.863) (5.220,2.841) (5.250,2.819) (5.280,2.796) (5.310,2.773) (5.340,2.750) (5.370,2.727) (5.400,2.704) (5.430,2.681) (5.460,2.657) (5.490,2.633) (5.520,2.609) (5.550,2.585) (5.580,2.560) (5.610,2.536) (5.640,2.511) (5.670,2.486) (5.700,2.461) (5.730,2.436) (5.760,2.410) (5.790,2.385) (5.820,2.359) (5.850,2.333) (5.880,2.307) (5.910,2.280) (5.940,2.254) (5.970,2.227) (6.000,2.200) (6.000,0.000)} -- cycle;
+  \node[below, font=\small] at (0,0) {$0$};
+  \node[below, font=\small] at (1,0) {$1$};
+  \node[below, font=\small] at (2,0) {$2$};
+  \node[below, font=\small] at (3,0) {$3$};
+  \node[below, font=\small] at (4,0) {$4$};
+  \node[below, font=\small] at (5,0) {$5$};
+  \node[below, font=\small] at (6,0) {$6$};
+  \node[left, font=\small] at (0,0) {$0$};
+  \node[left, font=\small] at (0,1) {$1$};
+  \node[left, font=\small] at (0,2) {$2$};
+  \node[left, font=\small] at (0,3) {$3$};
+  \node[left, font=\small] at (0,4) {$4$};
+  \node[left, font=\small] at (0,5) {$5$};
+  \node[below=12pt] at (3,0) {$x$};
+  \node[rotate=90] at (-1.3,2.5) {$y$};
+\end{tikzpicture}
+                            </latex-image>
+                        </image>
+                    </figure>
+                </statement>
+                <answer><p>About <m>23</m> square units (<m>20</m> full, <m>6</m> part).</p></answer>
+                <solution><p><m>F = 20</m>, <m>P = 6</m>: estimate <m>20 + 3 = 23</m> square units.</p></solution>
+            </exercise>
+            <exercise xml:id="ex-plot-twenty-by-ten">
+                <statement><p>A plan uses squares that stand for <m>20\,\text{m}</m> along a road and <m>10\,\text{m}</m> across it. A plot covers <m>31</m> full and <m>11</m> part squares. Estimate its area in square metres and in hectares.</p></statement>
+                <answer><p><m>7300\,\text{m}^2 = 0.73</m> hectares</p></answer>
+                <solution><p><m>31 + 5.5 = 36.5</m> squares; one square is <m>20 \times 10 = 200\,\text{m}^2</m>; area about <m>36.5 \times 200 = 7300\,\text{m}^2 = 0.73</m> hectares.</p></solution>
+            </exercise>
+            <exercise xml:id="ex-circle-by-counting">
+                <statement><p>A circle of radius <m>5.5\,\text{cm}</m> is drawn with its centre on a grid corner of 1 cm squares. It covers <m>76</m> full and <m>44</m> part squares. Estimate its area, and compare with <m>\pi r^2</m>.</p></statement>
+                <answer><p><m>98\,\text{cm}^2</m>; <m>\pi r^2 = 95.03\,\text{cm}^2</m>.</p></answer>
+                <solution><p>Estimate <m>76 + 22 = 98\,\text{cm}^2</m>. <m>\pi \times 5.5^2 = 95.03\,\text{cm}^2</m> (to 2 decimal places). The estimate is about <m>3\,\text{cm}^2</m> too big, about <m>3</m> per cent.</p></solution>
+            </exercise>
+            <exercise xml:id="ex-why-finer-squares">
+                <statement><p>Explain, in two sentences, why smaller squares usually give a better estimate of an area.</p></statement>
+                <answer><p>With smaller squares the part squares make up a smaller share of the shape, and each part square, counted as a half, can be wrong by at most half of a smaller area.</p></answer>
+            </exercise>
+            <exercise xml:id="ex-squares-of-different-shapes">
+                <statement><p>On a plan, each square stands for <m>4\,\text{m}</m> across and <m>3\,\text{m}</m> up. A region covers <m>18</m> full and <m>10</m> part squares. Estimate its area. Why does one square not stand for <m>7\,\text{m}^2</m> or <m>14\,\text{m}^2</m>?</p></statement>
+                <answer><p><m>276\,\text{m}^2</m></p></answer>
+                <solution><p><m>18 + 5 = 23</m> squares; one square stands for <m>4 \times 3 = 12\,\text{m}^2</m>; area about <m>23 \times 12 = 276\,\text{m}^2</m>. <m>7</m> is the sum of the two sides and <m>14</m> is the perimeter of a square; area is width times height.</p></solution>
+            </exercise>
+            <exercise xml:id="ex-triangle-counts-exactly">
+                <title>Challenge: When Counting Is Exact</title>
+                <statement><p>Count the unit squares under the line <m>y = 2x</m> from <m>x = 0</m> to <m>x = 4</m>, and compare the estimate with the area of the triangle. Explain why the estimate is exact here.</p></statement>
+                <hint><p>Look at the two part squares in each column together.</p></hint>
+                <answer><p><m>F = 12</m>, <m>P = 8</m>, estimate <m>16</m>, the same as <m>\tfrac{1}{2} \times 4 \times 8 = 16</m>.</p></answer>
+                <solution><p>In the column from <m>x = c</m> to <m>x = c + 1</m> the line rises from <m>2c</m> to <m>2c + 2</m>, so it passes through two squares. The lower one is <m>\tfrac{3}{4}</m> covered and the upper one <m>\tfrac{1}{4}</m> covered: together they hold <m>1</m> square of area, exactly what <m>2 \times \tfrac{1}{2}</m> counts. Columns: full <m>0, 2, 4, 6</m>, so <m>F = 12</m>; <m>P = 8</m>; estimate <m>12 + 4 = 16</m>.</p></solution>
+            </exercise>
+        </exercises>
+
+        <axiom component="lesson-plan">
+            <title>Differentiation</title>
+            <table xml:id="table-differentiation-counting-squares-under-a-curve">
+                <title>Differentiation Strategies</title>
+                <tabular halign="left" top="minor" bottom="minor" left="minor" right="minor">
+                    <row header="yes" bottom="medium"><cell>Learner Group</cell><cell>Strategy and Learning Experience</cell></row>
+                    <row><cell>Struggling Learners (Support)</cell><cell>Number the columns on the grid in advance and work out the area of one square together first. Work through <xref ref="example-under-a-curve-unit-squares"/> and <xref ref="example-flower-bed-nakuru"/>. Assign <xref ref="ex-count-under-curve"/> and <xref ref="ex-plot-twenty-by-ten"/>.</cell></row>
+                    <row><cell>On-Level Learners (Core)</cell><cell>Full activity and all examples. Assign <xref ref="ex-count-under-curve"/> to <xref ref="ex-squares-of-different-shapes"/>.</cell></row>
+                    <row><cell>Advanced Learners (Challenge)</cell><cell>All exercises including <xref ref="ex-triangle-counts-exactly"/>. Extension: find a straight line through <m>(0, 1)</m> for which counting squares over <m>0 \le x \le 4</m> is not exact (one answer: <m>y = 1 + 0.6x</m> gives <m>F = 6</m>, <m>P = 6</m>, estimate <m>9</m>, against the trapezium's area <m>8.8</m>, because the part squares in a column no longer pair to make <m>1</m>).</cell></row>
+                </tabular>
+            </table>
+        </axiom>
+
+        <xi:include href="../lesson-plan-templates/assessment-methods.ptx" />
+        <xi:include href="../lesson-plan-templates/reflection.ptx"/>
+    </subsection>
 </section>

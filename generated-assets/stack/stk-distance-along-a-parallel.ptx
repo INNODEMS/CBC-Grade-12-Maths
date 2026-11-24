@@ -1,0 +1,7 @@
+<stack-static>
+    <statement><p><p><m>P(35^\circ\,\mathrm{N}, 10^\circ\,\mathrm{E})</m> and <m>Q(35^\circ\,\mathrm{N}, 48^\circ\,\mathrm{E})</m> are on the same parallel of latitude. Take <m>\pi = \tfrac{22}{7}</m> and <m>R = 6370\,\text{km}</m>. Distances in km within 0.1% of the exact value are accepted.</p><p>(a) Find the difference in longitude.</p><p><fillin characters="4" name="ans1"/> <m>^\circ</m>  </p><p>(b) Find the distance <m>PQ</m> along the parallel, to the nearest nautical mile.</p><p><fillin characters="8" name="ans2"/> nm  </p><p>(c) Find the distance <m>PQ</m> along the parallel, to the nearest km.</p><p><fillin characters="8" name="ans3"/> km  </p></p></statement>
+    <solution><p><p>(a) <m>P</m> and <m>Q</m> are on the same side of the Greenwich meridian, so subtract the longitudes. <m>|{10}^\circ - {48}^\circ| = {38}^\circ</m>.</p><p>(b) The parallel is a small circle of radius <m>R\cos {35}^\circ</m>: the same angle of longitude, on a smaller circle, so multiply by <m>\cos {35}^\circ</m>:</p><p><me>PQ = {38} \times 60 \times \cos {35}^\circ = {1867.7} \approx {1868} \text{ nm}.</me></p><p>(c) <me>PQ = \frac{ {38} }{360} \times 2 \times \frac{22}{7} \times 6370 \times \cos {35}^\circ = {3462.1} \approx {3462}\,\text{km}.</me></p></p></solution>
+    <answer><p><m>38</m></p></answer>
+    <answer><p><m>1867.66666098</m></p></answer>
+    <answer><p><m>3462.10060674</m></p></answer>
+</stack-static>

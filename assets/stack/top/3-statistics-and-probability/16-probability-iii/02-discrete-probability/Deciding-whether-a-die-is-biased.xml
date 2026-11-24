@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<quiz>
+<question type="stack">
+  <name><text>Deciding whether a die is biased</text></name>
+  <questiontext format="html">
+    <text><![CDATA[<p>Two dice, A and B, were each rolled \({@nr@}\) times. The tables show the frequency of each score.</p><table border="1" style="border-collapse:collapse;text-align:center;"><tr><th style="padding:4px 10px;">Score</th><th style="padding:4px 10px;">1</th><th style="padding:4px 10px;">2</th><th style="padding:4px 10px;">3</th><th style="padding:4px 10px;">4</th><th style="padding:4px 10px;">5</th><th style="padding:4px 10px;">6</th></tr><tr><td style="padding:4px 10px;">Frequency, die A</td><td style="padding:4px 10px;">{@fA[1]@}</td><td style="padding:4px 10px;">{@fA[2]@}</td><td style="padding:4px 10px;">{@fA[3]@}</td><td style="padding:4px 10px;">{@fA[4]@}</td><td style="padding:4px 10px;">{@fA[5]@}</td><td style="padding:4px 10px;">{@fA[6]@}</td></tr></table><p></p><table border="1" style="border-collapse:collapse;text-align:center;"><tr><th style="padding:4px 10px;">Score</th><th style="padding:4px 10px;">1</th><th style="padding:4px 10px;">2</th><th style="padding:4px 10px;">3</th><th style="padding:4px 10px;">4</th><th style="padding:4px 10px;">5</th><th style="padding:4px 10px;">6</th></tr><tr><td style="padding:4px 10px;">Frequency, die B</td><td style="padding:4px 10px;">{@fB[1]@}</td><td style="padding:4px 10px;">{@fB[2]@}</td><td style="padding:4px 10px;">{@fB[3]@}</td><td style="padding:4px 10px;">{@fB[4]@}</td><td style="padding:4px 10px;">{@fB[5]@}</td><td style="padding:4px 10px;">{@fB[6]@}</td></tr></table><p>(a) If a die is fair, how many times would you expect each score in \({@nr@}\) rolls?</p><div>[[input:ans1]] [[validation:ans1]] [[feedback:prt1]]</div><p>(b) Which die is more likely to be biased?</p><div>[[input:ans2]] [[validation:ans2]] [[feedback:prt2]]</div><p>(c) Which reason supports your answer?</p><div>[[input:ans3]] [[validation:ans3]] [[feedback:prt3]]</div>]]></text>
+  </questiontext>
+  <generalfeedback format="html">
+    <text><![CDATA[<p>(a) A fair die gives each of the 6 scores with probability \(\dfrac{1}{6}\), so the expected frequency is \({@nr@} \times \dfrac{1}{6} = {@E@}\).</p><p>(b) On die [[if test="is(sw=1)"]]A[[else]]B[[/if]], score \({@bf@}\) came up \({@bias[bf]@}\) times, about twice the expected \({@E@}\). Every frequency of die [[if test="is(sw=1)"]]B[[else]]A[[/if]] is close to \({@E@}\). So die [[if test="is(sw=1)"]]A[[else]]B[[/if]] is more likely to be biased.</p><p>(c) Small differences from \({@E@}\) are normal: no fair die gives exactly the expected number every time. Bias shows as a frequency far from the expected one, as on die [[if test="is(sw=1)"]]A[[else]]B[[/if]]. Both dice were rolled \({@nr@}\) times, so both sets of frequencies add to \({@nr@}\).</p>]]></text>
+  </generalfeedback>
+  <defaultgrade>3</defaultgrade>
+  <penalty>0.1</penalty>
+  <hidden>0</hidden>
+  <idnumber></idnumber>
+  <stackversion><text>2026063000</text></stackversion>
+  <questionvariables>
+    <text><![CDATA[/* Design: two dice, a conclusion and a reason. sw 0: die B is biased; sw 1: die A is biased. Curated tables. Source: adapted from SMP GCSE Foundation book 2, chapter 5, section C, C4. */
+L: [[120,[18,19,22,20,19,22],[16,14,38,16,16,20],3,0],[180,[27,29,32,29,31,32],[60,26,21,22,21,30],1,1],[240,[37,43,37,43,44,36],[32,29,75,32,32,40],3,1],[300,[46,46,53,54,52,49],[40,35,42,100,41,42],4,0],[360,[59,56,61,63,58,63],[49,110,55,55,44,47],2,1],[600,[92,106,99,110,92,101],[194,88,74,71,85,88],1,0],[120,[22,21,20,19,19,19],[17,16,37,15,16,19],3,0],[240,[38,38,42,41,44,37],[29,72,31,37,29,42],2,1],[300,[47,52,54,48,51,48],[45,41,40,45,30,99],6,1],[600,[89,107,87,105,100,112],[89,75,85,78,93,180],6,0]];
+ix: 1+rand(10);
+nr: L[ix][1]; fair: L[ix][2]; bias: L[ix][3]; bf: L[ix][4]; sw: L[ix][5];
+fA: if sw=0 then fair else bias;
+fB: if sw=0 then bias else fair;
+E: nr/6;
+kb: if sw=1 then "dA" else "dB";
+ko: if sw=1 then "dB" else "dA";
+opts2: [["d0",false,"Neither: both sets of results are close to what a fair die gives."],["dA",is(sw=1),"Die A"],["dB",is(sw=0),"Die B"]];
+opts3: [["r0",false,sconcat("A fair die gives exactly ",string(E)," of each score in ",string(nr)," rolls.")],["r1",true,sconcat("On that die one score came up about twice as often as expected, while every frequency of the other die is close to ",string(E),".")],["r2",false,sconcat("The frequencies of that die add up to more than ",string(nr),".")]];]]></text>
+  </questionvariables>
+  <specificfeedback format="html"><text><![CDATA[]]></text></specificfeedback>
+  <questionnote format="moodle_auto_format">
+    <text>ix={@ix@}, nr={@nr@}, sw={@sw@}, bf={@bf@}</text>
+  </questionnote>
+  <questiondescription format="html"><text><![CDATA[<p id="concept">Probability III: deciding whether a die is biased</p><p id="description">Grade 12 CBE Essential 3.2: Find an expected frequency and use it to decide which of two dice is more likely to be biased, with a reason.</p><p id="edition">Essential</p><p id="provenance">This question is adapted from Chapter 5, Section C, question C4 of Ling, J., Scruton, P., Shilton, S. and West, H., SMP GCSE Mathematics: Foundation 2 for AQA, Edexcel and OCR two-tier GCSE mathematics, Cambridge University Press, 2007: two dice instead of spinners, randomised curated data, with a conclusion and a reason to choose.</p><p id="citation">INNODEMS CBC Grade 12 Mathematics, first draft by Ben Davies, 2026. Aligned to the KICD Senior School Curriculum Design, Essential Mathematics Grade 12 (draft).</p>]]></text></questiondescription>
+  <questionsimplify>1</questionsimplify>
+  <assumepositive>0</assumepositive>
+  <assumereal>0</assumereal>
+  <prtcorrect format="html"><text><![CDATA[[[commonstring key="symbolicprtcorrectfeedback"/]] [[commonstring key="defaultprtcorrectfeedback"/]]]]></text></prtcorrect>
+  <prtpartiallycorrect format="html"><text><![CDATA[[[commonstring key="symbolicprtpartiallycorrectfeedback"/]] [[commonstring key="defaultprtpartiallycorrectfeedback"/]]]]></text></prtpartiallycorrect>
+  <prtincorrect format="html"><text><![CDATA[[[commonstring key="symbolicprtincorrectfeedback"/]] [[commonstring key="defaultprtincorrectfeedback"/]]]]></text></prtincorrect>
+  <decimals>.</decimals>
+  <scientificnotation>*10</scientificnotation>
+  <multiplicationsign>none</multiplicationsign>
+  <sqrtsign>1</sqrtsign>
+  <complexno>i</complexno>
+  <inversetrig>cos-1</inversetrig>
+  <logicsymbol>lang</logicsymbol>
+  <matrixparens>[</matrixparens>
+  <isbroken>0</isbroken>
+  <variantsselectionseed></variantsselectionseed>
+
+  <input><name>ans1</name><type>numerical</type><tans>E</tans><boxsize>6</boxsize><strictsyntax>1</strictsyntax><insertstars>0</insertstars><syntaxhint></syntaxhint><syntaxattribute>0</syntaxattribute><forbidwords></forbidwords><allowwords></allowwords><forbidfloat>1</forbidfloat><requirelowestterms>0</requirelowestterms><checkanswertype>0</checkanswertype><mustverify>0</mustverify><showvalidation>0</showvalidation><options></options></input>
+  <input><name>ans2</name><type>radio</type><tans>opts2</tans><boxsize>15</boxsize><strictsyntax>1</strictsyntax><insertstars>0</insertstars><syntaxhint></syntaxhint><syntaxattribute>0</syntaxattribute><forbidwords></forbidwords><allowwords></allowwords><forbidfloat>1</forbidfloat><requirelowestterms>0</requirelowestterms><checkanswertype>0</checkanswertype><mustverify>0</mustverify><showvalidation>0</showvalidation><options></options></input>
+  <input><name>ans3</name><type>radio</type><tans>opts3</tans><boxsize>15</boxsize><strictsyntax>1</strictsyntax><insertstars>0</insertstars><syntaxhint></syntaxhint><syntaxattribute>0</syntaxattribute><forbidwords></forbidwords><allowwords></allowwords><forbidfloat>1</forbidfloat><requirelowestterms>0</requirelowestterms><checkanswertype>0</checkanswertype><mustverify>0</mustverify><showvalidation>0</showvalidation><options></options></input>
+
+  <prt><name>prt1</name><value>1.0000000</value><autosimplify>1</autosimplify><feedbackstyle>1</feedbackstyle><feedbackvariables><text><![CDATA[]]></text></feedbackvariables>
+    <node><name>0</name><description>ok</description><answertest>AlgEquiv</answertest><sans>ans1</sans><tans>E</tans><testoptions></testoptions><quiet>1</quiet><truescoremode>=</truescoremode><truescore>1.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt1-1-T</trueanswernote><truefeedback format="html"><text><![CDATA[]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>1</falsenextnode><falseanswernote>prt1-1-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>1</name><description>prob</description><answertest>AlgEquiv</answertest><sans>ans1</sans><tans>1/6</tans><testoptions></testoptions><quiet>1</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt1-2-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>That is the probability of each score, not a number of rolls. How many of the \({@nr@}\) rolls would you expect to show each score?</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>2</falsenextnode><falseanswernote>prt1-2-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>2</name><description>six</description><answertest>AlgEquiv</answertest><sans>ans1</sans><tans>6</tans><testoptions></testoptions><quiet>1</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt1-3-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>6 is the number of faces. Share the \({@nr@}\) rolls equally between the 6 scores.</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>-1</falsenextnode><falseanswernote>prt1-3-F</falseanswernote><falsefeedback format="html"><text><![CDATA[<p>Expected number \(=\) number of rolls \(\times\) probability of each score.</p>]]></text></falsefeedback></node>
+  </prt>
+  <prt><name>prt2</name><value>1.0000000</value><autosimplify>1</autosimplify><feedbackstyle>1</feedbackstyle><feedbackvariables><text><![CDATA[]]></text></feedbackvariables>
+    <node><name>0</name><description>ok</description><answertest>AlgEquiv</answertest><sans>ans2</sans><tans>kb</tans><testoptions></testoptions><quiet>1</quiet><truescoremode>=</truescoremode><truescore>1.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt2-1-T</trueanswernote><truefeedback format="html"><text><![CDATA[]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>1</falsenextnode><falseanswernote>prt2-1-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>1</name><description>neither</description><answertest>AlgEquiv</answertest><sans>ans2</sans><tans>"d0"</tans><testoptions></testoptions><quiet>1</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt2-2-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>The differences are not all small: on one die a score came up about twice as often as the expected \({@E@}\). Compare every frequency in both tables with \({@E@}\).</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>-1</falsenextnode><falseanswernote>prt2-2-F</falseanswernote><falsefeedback format="html"><text><![CDATA[<p>Compare every frequency with \({@E@}\). Which die has a score far from it? The frequencies of die [[if test="is(sw=1)"]]B[[else]]A[[/if]] are all close to \({@E@}\).</p>]]></text></falsefeedback></node>
+  </prt>
+  <prt><name>prt3</name><value>1.0000000</value><autosimplify>1</autosimplify><feedbackstyle>1</feedbackstyle><feedbackvariables><text><![CDATA[]]></text></feedbackvariables>
+    <node><name>0</name><description>ok</description><answertest>AlgEquiv</answertest><sans>ans3</sans><tans>"r1"</tans><testoptions></testoptions><quiet>1</quiet><truescoremode>=</truescoremode><truescore>1.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt3-1-T</trueanswernote><truefeedback format="html"><text><![CDATA[]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>1</falsenextnode><falseanswernote>prt3-1-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>1</name><description>exact</description><answertest>AlgEquiv</answertest><sans>ans3</sans><tans>"r0"</tans><testoptions></testoptions><quiet>1</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt3-2-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>No die gives exactly the expected number every time: small differences are normal. Bias shows as a frequency far from \({@E@}\).</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>-1</falsenextnode><falseanswernote>prt3-2-F</falseanswernote><falsefeedback format="html"><text><![CDATA[<p>Both dice were rolled \({@nr@}\) times, so both totals are \({@nr@}\). Look for a single frequency far from \({@E@}\).</p>]]></text></falsefeedback></node>
+  </prt>
+
+  <deployedseed>4</deployedseed>
+  <deployedseed>5</deployedseed>
+  <deployedseed>15</deployedseed>
+  <deployedseed>8</deployedseed>
+  <deployedseed>24</deployedseed>
+  <deployedseed>1</deployedseed>
+  <deployedseed>3</deployedseed>
+  <deployedseed>10</deployedseed>
+  <deployedseed>2</deployedseed>
+  <deployedseed>17</deployedseed>
+  <qtest><testcase>1</testcase><description>Correct</description>
+    <testinput><name>ans1</name><value>ev(nr/6,simp)</value></testinput>
+    <testinput><name>ans2</name><value>kb</value></testinput>
+    <testinput><name>ans3</name><value>"r1"</value></testinput>
+    <expected><name>prt1</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt1-1-T</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt2-1-T</expectedanswernote></expected>
+    <expected><name>prt3</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt3-1-T</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>2</testcase><description>Probability; neither; exactly expected</description>
+    <testinput><name>ans1</name><value>1/6</value></testinput>
+    <testinput><name>ans2</name><value>"d0"</value></testinput>
+    <testinput><name>ans3</name><value>"r0"</value></testinput>
+    <expected><name>prt1</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt1-1-F | prt1-2-T</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt2-1-F | prt2-2-T</expectedanswernote></expected>
+    <expected><name>prt3</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt3-1-F | prt3-2-T</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>3</testcase><description>Number of faces; the other die; totals</description>
+    <testinput><name>ans1</name><value>6</value></testinput>
+    <testinput><name>ans2</name><value>ko</value></testinput>
+    <testinput><name>ans3</name><value>"r2"</value></testinput>
+    <expected><name>prt1</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt1-1-F | prt1-2-F | prt1-3-T</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt2-1-F | prt2-2-F</expectedanswernote></expected>
+    <expected><name>prt3</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt3-1-F | prt3-2-F</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>4</testcase><description>Generic wrong (a)</description>
+    <testinput><name>ans1</name><value>E+1</value></testinput>
+    <testinput><name>ans2</name><value>kb</value></testinput>
+    <testinput><name>ans3</name><value>"r1"</value></testinput>
+    <expected><name>prt1</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt1-1-F | prt1-2-F | prt1-3-F</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt2-1-T</expectedanswernote></expected>
+    <expected><name>prt3</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt3-1-T</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>5</testcase><description>Invalid: letter in (a)</description>
+    <testinput><name>ans1</name><value>x</value></testinput>
+    <testinput><name>ans2</name><value>kb</value></testinput>
+    <testinput><name>ans3</name><value>"r1"</value></testinput>
+    <expected><name>prt1</name><expectedscore></expectedscore><expectedpenalty></expectedpenalty><expectedanswernote>NULL</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt2-1-T</expectedanswernote></expected>
+    <expected><name>prt3</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt3-1-T</expectedanswernote></expected>
+  </qtest>
+</question>
+</quiz>

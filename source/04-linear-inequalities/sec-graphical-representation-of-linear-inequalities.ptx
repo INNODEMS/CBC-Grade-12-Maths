@@ -46,161 +46,386 @@
          Suggested activity: Learners draw linear inequalities on graph paper and shade the unwanted region.
          Interactive (JSXGraph): Sliders for the coefficients of ax + by ≤ c; the boundary line and the shaded unwanted region update live. -->
 
-    <!-- [LP] Add guidance on activity -->
+    <!-- Section notes (2026-11)
+         SLOs: Essential 1.3 (d), one inequality (4.4 does several)
+         Activity: as planning notes (draw and shade the unwanted region) | added: test six points first
+         JSXGraph: fig-shade-unwanted-region (assets/jsxgraph/shade-unwanted-region.js), as planning notes, with a Sign button and a draggable test point
+         STACK: assets/stack/top/1-numbers-and-algebra/04-linear-inequalities/03-graphical-representation-of-linear-inequalities/ -->
+
+    <p component="lesson-plan">Upon completion of this lesson, learners will be able to:
+        <ol>
+            <li><p><alert>Know:</alert> the boundary line of an inequality; solid and dashed boundaries; that one test point decides the side; that we shade the unwanted side.</p></li>
+            <li><p><alert>Do:</alert> draw <m>ax + by \le c</m>, <m>x \ge k</m>, <m>y \lt h</m> and boundaries through the origin, and shade the unwanted side.</p></li>
+            <li><p><alert>Apply:</alert> show a budget or a sales rule as a region.</p></li>
+        </ol>
+    </p>
 
     <axiom component="lesson-plan">
         <title>Problem-Solving and Discovery</title>
         <dl>
-            <li>
-                <title>Suggested Time</title>
-                <p>
-                    XXX minutes
-                </p>
-            </li>
-            <li>
-                <title>Objective</title>
-                <p>
-                    XXX
-                </p>
-            </li>
-            <li>
-                <title>Teacher's Role</title>
-                <p>
-                    XXX
-                </p>
-            </li>
+            <li><title>Suggested Time</title><p>14 minutes</p></li>
+            <li><title>Objective</title><p>Learners discover that the line <m>5x + 6y = 30</m> splits the grid into a side where <m>5x + 6y</m> is less than <m>30</m> and a side where it is more.</p></li>
+            <li><title>Teacher's Role</title><p>Give out graph paper. Pairs work out <m>5x + 6y</m> at the six points before drawing anything. Ask: <q>Which points make it exactly <m>30</m>? Where are they?</q></p></li>
         </dl>
     </axiom>
 
-    <!-- Add Activity -->
-
-    <!-- <activity>
+    <activity xml:id="act-which-side-of-the-line">
+        <title>Which Side of the Line?</title>
         <statement>
+            <p>Work with a partner on graph paper, with <m>x</m> and <m>y</m> from <m>0</m> to <m>8</m>.</p>
+            <p>
+                <ol marker="(a)">
+                    <li>
+                        <p>Work out <m>5x + 6y</m> at <m>A(2, 2)</m>, <m>B(4, 3)</m>, <m>C(0, 5)</m>, <m>D(0, 0)</m>, <m>E(5, 1)</m> and <m>F(3, 1)</m>.</p>
+                        <solution component="lesson-plan"><p><m>A</m>: <m>22</m>; <m>B</m>: <m>38</m>; <m>C</m>: <m>30</m>; <m>D</m>: <m>0</m>; <m>E</m>: <m>31</m>; <m>F</m>: <m>21</m>.</p></solution>
+                    </li>
+                    <li>
+                        <p>Draw the line <m>5x + 6y = 30</m> through <m>(6, 0)</m> and <m>(0, 5)</m>.</p>
+                        <solution component="lesson-plan"><p>A straight line through the two points.</p></solution>
+                    </li>
+                    <li>
+                        <p>Plot the six points. Which are on the line, which are below it and which are above it?</p>
+                        <solution component="lesson-plan"><p><m>C</m> is on the line (<m>30</m>). <m>A</m>, <m>D</m> and <m>F</m> are below it (less than <m>30</m>). <m>B</m> and <m>E</m> are above it (more than <m>30</m>).</p></solution>
+                    </li>
+                    <li>
+                        <p>Shade the side where <m>5x + 6y \le 30</m> is false.</p>
+                        <solution component="lesson-plan">
+                            <p>The side above the line, away from the origin.</p>
+                            <figure xml:id="fig-which-side-of-the-line">
+                                <caption>The line <m>5x + 6y = 30</m>, the six points, and the unwanted side shaded.</caption>
+                                <image width="60%">
+                                    <shortdescription>The solid line through (6, 0) and (0, 5), points A(2, 2), B(4, 3), C(0, 5), D(0, 0), E(5, 1), F(3, 1); the side away from the origin shaded; R on the origin's side. Key: shaded, not wanted; unshaded (R), the required region.</shortdescription>
+                                    <latex-image>
+\begin{tikzpicture}[scale=0.5]
+\draw[gray!40, very thin] (-1,-1) grid (8,7);
+\fill[gray!45, fill opacity=0.6] (7.2,-1) -- (8,-1) -- (8,7) -- (-1,7) -- (-1,5.8333) -- cycle;
+\draw[-stealth] (-1,0) -- (8+0.6,0) node[right] {$x$};
+\draw[-stealth] (0,-1) -- (0,7+0.6) node[above] {$y$};
+\node[below, font=\scriptsize] at (-1,0) {$-1$};
+\node[below, font=\scriptsize] at (1,0) {$1$};
+\node[below, font=\scriptsize] at (2,0) {$2$};
+\node[below, font=\scriptsize] at (3,0) {$3$};
+\node[below, font=\scriptsize] at (4,0) {$4$};
+\node[below, font=\scriptsize] at (5,0) {$5$};
+\node[below, font=\scriptsize] at (6,0) {$6$};
+\node[below, font=\scriptsize] at (7,0) {$7$};
+\node[below, font=\scriptsize] at (8,0) {$8$};
+\node[left, font=\scriptsize] at (0,-1) {$-1$};
+\node[left, font=\scriptsize] at (0,1) {$1$};
+\node[left, font=\scriptsize] at (0,2) {$2$};
+\node[left, font=\scriptsize] at (0,3) {$3$};
+\node[left, font=\scriptsize] at (0,4) {$4$};
+\node[left, font=\scriptsize] at (0,5) {$5$};
+\node[left, font=\scriptsize] at (0,6) {$6$};
+\node[left, font=\scriptsize] at (0,7) {$7$};
+\draw[very thick] (-1,5.8333) -- (7.2,-1);
+\fill (2,2) circle (2.5pt) node[below left, font=\small] {$A$};
+\fill (4,3) circle (2.5pt) node[above right, font=\small] {$B$};
+\fill (0,5) circle (2.5pt) node[above right, font=\small] {$C$};
+\fill (0,0) circle (2.5pt) node[above right, font=\small] {$D$};
+\fill (5,1) circle (2.5pt) node[above right, font=\small] {$E$};
+\fill (3,1) circle (2.5pt) node[below, font=\small] {$F$};
+\node[font=\Large] at (1,3) {$R$};
+
+\fill[gray!45, fill opacity=0.6] (-1,-2.6) rectangle (-1+0.8,-2.6+0.6); \draw (-1,-2.6) rectangle (-1+0.8,-2.6+0.6);
+\node[right, font=\small] at (-1+0.8,-2.6+0.3) {Shaded, not wanted; unshaded ($R$), the required region.};
+\end{tikzpicture}
+                                    </latex-image>
+                                </image>
+                            </figure>
+                        </solution>
+                    </li>
+                    <li>
+                        <p>Should the line be solid or dashed for <m>5x + 6y \le 30</m>? For <m>5x + 6y \lt 30</m>?</p>
+                        <solution component="lesson-plan"><p>Solid for <m>\le</m>, because points on the line, such as <m>C</m>, are included. Dashed for <m>\lt</m>, because they are not.</p></solution>
+                    </li>
+                    <li>
+                        <p>Why is one test point enough to decide which side to shade?</p>
+                        <solution component="lesson-plan"><p>On one side of the line every point gives less than <m>30</m>, and on the other side every point gives more. The value only reaches <m>30</m> on the line itself, so one point tells you the whole side.</p></solution>
+                    </li>
+                </ol>
+            </p>
         </statement>
-    </activity> -->
+    </activity>
 
-    <!-- [LP] Add guidance on structured lesson plan-->
-
-    <!-- <axiom component="lesson-plan">
+    <axiom component="lesson-plan">
         <title>Structured Instruction</title>
         <p>
             <dl>
-            <li>
-                <title>Suggested Time</title>
-                <p>
-                    XX minutes
-                </p>
-            </li>
-            <li>
-                <title>Objective</title>
-                <p>
-                    To formalize the concepts and properties learners discovered in the anchor task.
-                </p>
-            </li>
+                <li><title>Suggested Time</title><p>8 minutes</p></li>
+                <li><title>Objective</title><p>To fix the four steps for drawing an inequality and the shading convention.</p></li>
             </dl>
         </p>
         <paragraphs>
             <title>Key Takeaways &amp; Teacher Connection</title>
             <ol>
-                <li>
-                    <p>
-                        <alert>Connecting to Learner Work:</alert> XXXX
-                    </p>
-                </li>
+                <li><p><alert>Connecting to Learner Work:</alert> the points below the line all gave less than <m>30</m>; this is why one test point is enough.</p></li>
+                <li><p>Four steps: boundary, solid or dashed, test point, shade the unwanted side. Every graph gets a key.</p></li>
+                <li><p><m>x = k</m> is a vertical line and <m>y = h</m> is a horizontal line.</p></li>
             </ol>
         </paragraphs>
-    </axiom> -->
+    </axiom>
 
-    <!-- Add insight / key takeaway directly related to activity / learner experience -->
+    <insight xml:id="insight-drawing-an-inequality">
+        <title>Drawing an Inequality</title>
+        <p>
+            <ol>
+                <li><p>Draw the <term>boundary</term> line: replace the sign by <m>=</m>. This is the line where the two sides are equal. Find where it crosses the axes: put <m>x = 0</m> to find where it crosses the <m>y</m>-axis, then put <m>y = 0</m> to find where it crosses the <m>x</m>-axis. Draw the line through these two points.</p></li>
+                <li><p>Draw the line <em>solid</em> for <m>\le</m> or <m>\ge</m> (points on the line are included) and <em>dashed</em> for <m>\lt</m> or <m>\gt</m> (they are not). Solid means the line is included, dashed means it is not.</p></li>
+                <li><p>Choose a <term>test point</term> that is not on the line: <m>(0, 0)</m>, or <m>(1, 0)</m> or <m>(0, 1)</m> if the line passes through the origin. Substitute it. If the inequality is true, the test point is on the wanted side; if it is false, it is on the unwanted side. One point tells you the whole side.</p></li>
+                <li><p>Shade the side where the inequality is false. Leave the wanted side clear and label it <m>R</m>, the <term>required region</term>. Add the key <q>Shaded, not wanted; unshaded (<m>R</m>), the required region.</q></p></li>
+            </ol>
+        </p>
+        <p>An inequality with one letter has a vertical or horizontal boundary. For <m>x \ge k</m>, draw the vertical line <m>x = k</m>; <m>R</m> is on the right. For <m>y \lt h</m>, draw the horizontal line <m>y = h</m>, dashed; <m>R</m> is below.</p>
+    </insight>
 
-    <!-- <insight>
-    </insight> -->
+    <note xml:id="note-shading-the-unwanted-region">
+        <title>Shading Conventions</title>
+        <p>In Grade 11, and in some books, the region you want is shaded. In this book, as in many Kenyan textbooks, we shade the region we do <em>not</em> want, so that the required region stays clear. This helps when several inequalities are drawn together, and in linear programming. Either way is correct if the diagram has a key that says which.</p>
+    </note>
 
-    <!-- Add further instruction (not in a block) to develop ideas as needed -->
+    <figure xml:id="fig-shade-unwanted-region">
+        <caption>Move the sliders and press Sign. The shaded side is not wanted; <m>R</m> is left clear. Drag <m>Q</m> to test points.</caption>
+        <interactive xml:id="interactive-shade-unwanted-region" platform="jsxgraph" width="90%" aspect="1:1" source="jsxgraph/shade-unwanted-region.js">
+            <slate xml:id="jsxgraph-shade-unwanted-region" surface="jsxboard" aspect="1:1"/>
+            <instructions>
+                <p>
+                    <ul>
+                        <li><p>Set the <alert>a</alert>, <alert>b</alert> and <alert>c</alert> sliders for <m>ax + by \le c</m>. Press <alert>Sign</alert> to change the sign and watch the line change between solid and dashed.</p></li>
+                        <li><p>Drag <m>Q</m> to a point on the line, a point in the shaded region and a point in <m>R</m>, and read the value of <m>ax + by</m> each time.</p></li>
+                        <li><p>Set <alert>a</alert> or <alert>b</alert> to <m>0</m>. What kind of line do you get?</p></li>
+                        <li><p>Set both <alert>a</alert> and <alert>b</alert> to <m>0</m> and read the message.</p></li>
+                    </ul>
+                </p>
+            </instructions>
+        </interactive>
+    </figure>
 
     <xi:include href="../lesson-plan-templates/example-intro.ptx" />
 
-    <!-- Add at least 3 examples -->
-
-    <!-- <example>
+    <example xml:id="example-vertical-and-horizontal-boundaries">
+        <title>Vertical and Horizontal Boundaries</title>
         <statement>
+            <p>On separate axes, show (a) <m>y \lt 3</m>; (b) <m>x \ge -1</m>, shading the unwanted region.</p>
         </statement>
         <solution>
+            <p>(a) The boundary is the horizontal line <m>y = 3</m>, drawn dashed because the sign is <m>\lt</m>. The points with <m>y \lt 3</m> are below it, so shade above the line, where <m>y \ge 3</m>.</p>
+            <p>(b) The boundary is the vertical line <m>x = -1</m>, drawn solid because the sign is <m>\ge</m>. The points with <m>x \ge -1</m> are on and to the right of it, so shade to the left, where <m>x \lt -1</m>.</p>
+            <figure xml:id="fig-vertical-and-horizontal-boundaries">
+                <caption>(a) <m>y \lt 3</m>; (b) <m>x \ge -1</m>.</caption>
+                <image width="80%">
+                    <shortdescription>Left: a dashed horizontal line y = 3, the part above shaded, R below. Right: a solid vertical line x = -1, the part to its left shaded, R to the right. Key: shaded, not wanted; unshaded (R), the required region.</shortdescription>
+                    <latex-image>
+\begin{tikzpicture}
+\node at (0,0) {\begin{tikzpicture}[scale=0.4]
+\draw[gray!40, very thin] (-4,-2) grid (4,6);
+\fill[gray!45, fill opacity=0.6] (4,3) -- (4,6) -- (-4,6) -- (-4,3) -- cycle;
+\draw[-stealth] (-4,0) -- (4+0.6,0) node[right] {$x$};
+\draw[-stealth] (0,-2) -- (0,6+0.6) node[above] {$y$};
+\node[below, font=\scriptsize] at (-4,0) {$-4$};
+\node[below, font=\scriptsize] at (-3,0) {$-3$};
+\node[below, font=\scriptsize] at (-2,0) {$-2$};
+\node[below, font=\scriptsize] at (-1,0) {$-1$};
+\node[below, font=\scriptsize] at (1,0) {$1$};
+\node[below, font=\scriptsize] at (2,0) {$2$};
+\node[below, font=\scriptsize] at (3,0) {$3$};
+\node[below, font=\scriptsize] at (4,0) {$4$};
+\node[left, font=\scriptsize] at (0,-2) {$-2$};
+\node[left, font=\scriptsize] at (0,-1) {$-1$};
+\node[left, font=\scriptsize] at (0,1) {$1$};
+\node[left, font=\scriptsize] at (0,2) {$2$};
+\node[left, font=\scriptsize] at (0,3) {$3$};
+\node[left, font=\scriptsize] at (0,4) {$4$};
+\node[left, font=\scriptsize] at (0,5) {$5$};
+\node[left, font=\scriptsize] at (0,6) {$6$};
+\draw[very thick, dashed] (-4,3) -- (4,3);
+\node[font=\Large] at (2,1) {$R$};
+
+\end{tikzpicture}};
+\node at (6,0) {\begin{tikzpicture}[scale=0.4]
+\draw[gray!40, very thin] (-4,-3) grid (4,4);
+\fill[gray!45, fill opacity=0.6] (-4,-3) -- (-1,-3) -- (-1,4) -- (-4,4) -- cycle;
+\draw[-stealth] (-4,0) -- (4+0.6,0) node[right] {$x$};
+\draw[-stealth] (0,-3) -- (0,4+0.6) node[above] {$y$};
+\node[below, font=\scriptsize] at (-4,0) {$-4$};
+\node[below, font=\scriptsize] at (-3,0) {$-3$};
+\node[below, font=\scriptsize] at (-2,0) {$-2$};
+\node[below, font=\scriptsize] at (-1,0) {$-1$};
+\node[below, font=\scriptsize] at (1,0) {$1$};
+\node[below, font=\scriptsize] at (2,0) {$2$};
+\node[below, font=\scriptsize] at (3,0) {$3$};
+\node[below, font=\scriptsize] at (4,0) {$4$};
+\node[left, font=\scriptsize] at (0,-3) {$-3$};
+\node[left, font=\scriptsize] at (0,-2) {$-2$};
+\node[left, font=\scriptsize] at (0,-1) {$-1$};
+\node[left, font=\scriptsize] at (0,1) {$1$};
+\node[left, font=\scriptsize] at (0,2) {$2$};
+\node[left, font=\scriptsize] at (0,3) {$3$};
+\node[left, font=\scriptsize] at (0,4) {$4$};
+\draw[very thick] (-1,-3) -- (-1,4);
+\node[font=\Large] at (2,2) {$R$};
+
+\end{tikzpicture}};
+\node[below] at (0,-2.4) {$y &lt; 3$}; \node[below] at (6,-2.4) {$x \ge -1$};
+\fill[gray!45, fill opacity=0.6] (0,-3.4) rectangle (0.4,-3.1); \draw (0,-3.4) rectangle (0.4,-3.1); \node[right, font=\small] at (0.4,-3.25) {Shaded, not wanted; unshaded ($R$), the required region.};
+\end{tikzpicture}
+                    </latex-image>
+                </image>
+            </figure>
         </solution>
     </example>
 
-    <example>
+    <example xml:id="example-a-sloping-boundary">
+        <title>A Sloping Boundary</title>
         <statement>
+            <p>Show the region <m>3x + 7y \le 21</m>.</p>
         </statement>
         <solution>
+            <p>Boundary <m>3x + 7y = 21</m>. Put <m>x = 0</m>: <m>7y = 21</m>, <m>y = 3</m>, so it crosses the <m>y</m>-axis at <m>(0, 3)</m>. Put <m>y = 0</m>: <m>3x = 21</m>, <m>x = 7</m>, so it crosses the <m>x</m>-axis at <m>(7, 0)</m>.</p>
+            <p>The sign is <m>\le</m>, so the line is solid.</p>
+            <p>Test <m>(0, 0)</m>: <m>3(0) + 7(0) = 0</m> and <m>0 \le 21</m> is true. The origin is in <m>R</m>, so shade the side away from the origin.</p>
+            <figure xml:id="fig-sloping-boundary">
+                <caption>The region <m>3x + 7y \le 21</m>.</caption>
+                <image width="60%">
+                    <shortdescription>A solid line through (7, 0) and (0, 3); the side away from the origin shaded; R contains the origin. Key: shaded, not wanted; unshaded (R), the required region.</shortdescription>
+                    <latex-image>
+\begin{tikzpicture}[scale=0.5]
+\draw[gray!40, very thin] (-1,-1) grid (8,5);
+\fill[gray!45, fill opacity=0.6] (8,-0.4286) -- (8,5) -- (-1,5) -- (-1,3.4286) -- cycle;
+\draw[-stealth] (-1,0) -- (8+0.6,0) node[right] {$x$};
+\draw[-stealth] (0,-1) -- (0,5+0.6) node[above] {$y$};
+\node[below, font=\scriptsize] at (-1,0) {$-1$};
+\node[below, font=\scriptsize] at (1,0) {$1$};
+\node[below, font=\scriptsize] at (2,0) {$2$};
+\node[below, font=\scriptsize] at (3,0) {$3$};
+\node[below, font=\scriptsize] at (4,0) {$4$};
+\node[below, font=\scriptsize] at (5,0) {$5$};
+\node[below, font=\scriptsize] at (6,0) {$6$};
+\node[below, font=\scriptsize] at (7,0) {$7$};
+\node[below, font=\scriptsize] at (8,0) {$8$};
+\node[left, font=\scriptsize] at (0,-1) {$-1$};
+\node[left, font=\scriptsize] at (0,1) {$1$};
+\node[left, font=\scriptsize] at (0,2) {$2$};
+\node[left, font=\scriptsize] at (0,3) {$3$};
+\node[left, font=\scriptsize] at (0,4) {$4$};
+\node[left, font=\scriptsize] at (0,5) {$5$};
+\draw[very thick] (-1,3.4286) -- (8,-0.4286);
+\node[font=\Large] at (2,1) {$R$};
+
+\fill[gray!45, fill opacity=0.6] (-1,-2.6) rectangle (-1+0.8,-2.6+0.6); \draw (-1,-2.6) rectangle (-1+0.8,-2.6+0.6);
+\node[right, font=\small] at (-1+0.8,-2.6+0.3) {Shaded, not wanted; unshaded ($R$), the required region.};
+\end{tikzpicture}
+                    </latex-image>
+                </image>
+            </figure>
         </solution>
     </example>
 
-    <example>
+    <example xml:id="example-a-boundary-through-the-origin">
+        <title>A Boundary Through the Origin</title>
         <statement>
+            <p>Show the region <m>2y \gt 7x</m>.</p>
         </statement>
         <solution>
+            <p>Boundary <m>2y = 7x</m>. When <m>x = 0</m>, <m>y = 0</m>, so the line passes through the origin. Find a second point: when <m>x = 2</m>, <m>2y = 14</m>, <m>y = 7</m>, giving <m>(2, 7)</m>.</p>
+            <p>The sign is <m>\gt</m>, so the line is dashed.</p>
+            <p>The origin is on the line, so it cannot be the test point. Test <m>(1, 0)</m>: <m>2(0) = 0</m> and <m>7(1) = 7</m>; <m>0 \gt 7</m> is false. So <m>(1, 0)</m> is on the unwanted side: shade the side that contains <m>(1, 0)</m>.</p>
+            <figure xml:id="fig-boundary-through-origin">
+                <caption>The region <m>2y \gt 7x</m>.</caption>
+                <image width="50%">
+                    <shortdescription>A dashed line through (0, 0) and (2, 7); the side containing (1, 0) shaded; R on the other side, above and to the left of the line. Key: shaded, not wanted; unshaded (R), the required region.</shortdescription>
+                    <latex-image>
+\begin{tikzpicture}[scale=0.5]
+\draw[gray!40, very thin] (-2,-2) grid (4,8);
+\fill[gray!45, fill opacity=0.6] (-0.5714,-2) -- (4,-2) -- (4,8) -- (2.2857,8) -- cycle;
+\draw[-stealth] (-2,0) -- (4+0.6,0) node[right] {$x$};
+\draw[-stealth] (0,-2) -- (0,8+0.6) node[above] {$y$};
+\node[below, font=\scriptsize] at (-2,0) {$-2$};
+\node[below, font=\scriptsize] at (-1,0) {$-1$};
+\node[below, font=\scriptsize] at (1,0) {$1$};
+\node[below, font=\scriptsize] at (2,0) {$2$};
+\node[below, font=\scriptsize] at (3,0) {$3$};
+\node[below, font=\scriptsize] at (4,0) {$4$};
+\node[left, font=\scriptsize] at (0,-2) {$-2$};
+\node[left, font=\scriptsize] at (0,-1) {$-1$};
+\node[left, font=\scriptsize] at (0,1) {$1$};
+\node[left, font=\scriptsize] at (0,2) {$2$};
+\node[left, font=\scriptsize] at (0,3) {$3$};
+\node[left, font=\scriptsize] at (0,4) {$4$};
+\node[left, font=\scriptsize] at (0,5) {$5$};
+\node[left, font=\scriptsize] at (0,6) {$6$};
+\node[left, font=\scriptsize] at (0,7) {$7$};
+\node[left, font=\scriptsize] at (0,8) {$8$};
+\draw[very thick, dashed] (-0.5714,-2) -- (2.2857,8);
+\fill (1,0) circle (2.5pt) node[above right, font=\small] {$(1, 0)$};
+\node[font=\Large] at (0.8,6.5) {$R$};
+
+\fill[gray!45, fill opacity=0.6] (-2,-3.6) rectangle (-2+0.8,-3.6+0.6); \draw (-2,-3.6) rectangle (-2+0.8,-3.6+0.6);
+\node[right, font=\small] at (-2+0.8,-3.6+0.3) {Shaded, not wanted; unshaded ($R$), the required region.};
+\end{tikzpicture}
+                    </latex-image>
+                </image>
+            </figure>
         </solution>
-    </example> -->
+    </example>
 
     <xi:include href="../lesson-plan-templates/assessment-intro.ptx" />
+    <xi:include href="../lesson-plan-templates/checkpoint.ptx" />
 
-    <!-- If STACK questions are included, uncomment this: -->
+    <p>Choose from each list. Type where a line crosses an axis as a whole number, for example <c>-4</c>.</p>
 
-    <!-- <xi:include href="../lesson-plan-templates/checkpoint.ptx" /> -->
+    <exercise xml:id="ex-drawing-an-inequality-step-by-step">
+        <!--<title></title>-->
+        <stack label="stk-drawing-an-inequality-step-by-step" source="stack/top/1-numbers-and-algebra/04-linear-inequalities/03-graphical-representation-of-linear-inequalities/Drawing-an-inequality-step-by-step.xml"/>
+    </exercise>
 
-    <!-- Add STACK exercises if made -->
+    <exercise xml:id="ex-which-graph-shows-the-inequality">
+        <!--<title></title>-->
+        <stack label="stk-which-graph-shows-the-inequality" source="stack/top/1-numbers-and-algebra/04-linear-inequalities/03-graphical-representation-of-linear-inequalities/Which-graph-shows-the-inequality.xml"/>
+    </exercise>
 
-    <!-- Add static exercises -->
+    <exercises xml:id="exercises-graphical-representation">
+        <exercise xml:id="ex-draw-two-axis-lines">
+            <statement><p>On separate axes, draw each inequality and shade the unwanted region: (a) <m>x \le 4</m>; (b) <m>y \gt -2</m>.</p></statement>
+            <answer><p>(a) A solid vertical line <m>x = 4</m>, shade to the right. (b) A dashed horizontal line <m>y = -2</m>, shade below.</p></answer>
+        </exercise>
+        <exercise xml:id="ex-draw-dashed-sloping">
+            <statement><p>Draw the region <m>2x + 9y \gt 18</m>.</p></statement>
+            <answer><p>A dashed line through <m>(9, 0)</m> and <m>(0, 2)</m>. Test <m>(0, 0)</m>: <m>0 \gt 18</m> is false, so shade the side containing the origin.</p></answer>
+        </exercise>
+        <exercise xml:id="ex-draw-negative-crossing">
+            <statement><p>Draw the region <m>x - 6y \ge 6</m>.</p></statement>
+            <answer><p>A solid line through <m>(6, 0)</m> and <m>(0, -1)</m>. Test <m>(0, 0)</m>: <m>0 \ge 6</m> is false, so shade the side containing the origin.</p></answer>
+        </exercise>
+        <exercise xml:id="ex-test-without-drawing">
+            <statement><p>Without drawing, decide whether <m>(2, 3)</m> is in the required region of <m>4x - 7y \lt 1</m>.</p></statement>
+            <answer><p>Yes: <m>4(2) - 7(3) = 8 - 21 = -13</m>, and <m>-13 \lt 1</m>.</p></answer>
+        </exercise>
+        <exercise xml:id="ex-juice-graph">
+            <statement><p>Draw the region for the juice stall in <xref ref="example-three-times-as-many"/>, <m>m \ge 3p</m>, with <m>m</m> across and <m>p</m> up, from <m>0</m> to <m>12</m> on each axis.</p></statement>
+            <answer><p>A solid line through <m>(0, 0)</m> and <m>(12, 4)</m>. Test <m>(1, 0)</m>: <m>1 \ge 0</m> is true, so shade the other side, the side containing <m>(0, 1)</m>, above the line.</p></answer>
+        </exercise>
+        <exercise xml:id="ex-choose-a-test-point">
+            <title>Challenge: Choosing a Test Point</title>
+            <statement><p>Explain why <m>(0, 0)</m> cannot be the test point for <m>5x - 9y \gt 0</m>, and draw the region.</p></statement>
+            <hint><p>Substitute <m>(0, 0)</m> into <m>5x - 9y</m>.</p></hint>
+            <answer><p><m>(0, 0)</m> is on the boundary <m>5x - 9y = 0</m>, so it is on neither side. Test <m>(1, 0)</m>: <m>5 \gt 0</m> is true. Draw a dashed line through <m>(0, 0)</m> and <m>(9, 5)</m> and shade the side containing <m>(0, 1)</m>.</p></answer>
+        </exercise>
+    </exercises>
 
-    <!-- <exercises>
-        <exercise>
-            <statement>   
-
-            </statement>   
-            <solution>
-
-            </solution>             
-        </exercise>        
-    </exercises> -->
-
-    <!-- [LP] Add information on how to differentiate  -->
-
-    <!-- <axiom component="lesson-plan">
+    <axiom component="lesson-plan">
         <title>Differentiation</title>
-
-        <table>
-            <title>Differentiation</title>
-            <tabular halign="left">
-                <row header="yes" bottom="minor">
-                    <cell>Learner Group</cell>
-                    <cell>Strategy &amp; Learning Experience</cell>
-                    <cell></cell>
-                </row>
-                <row>
-                    <cell>Struggling Learners (Support)</cell>
-                    <cell>
-                        XXXX
-                    </cell>
-                    <cell></cell>
-                </row>
-                <row>
-                    <cell>On-Level Learners (Core)</cell>
-                    <cell>
-                        <line>The core lesson activities as described above.</line>
-                    </cell>
-                    <cell></cell>
-                </row>
-                <row>
-                    <cell>Advanced Learners (Challenge)</cell>
-                    <cell>
-                        XXXX
-                    </cell>
-                    <cell></cell>
-                </row>
+        <table xml:id="table-differentiation-graphical-representation">
+            <title>Differentiation Strategies</title>
+            <tabular halign="left" top="minor" bottom="minor" left="minor" right="minor">
+                <row header="yes" bottom="medium"><cell>Learner Group</cell><cell>Strategy and Learning Experience</cell></row>
+                <row><cell>Struggling Learners (Support)</cell><cell>Give a four-step card (boundary, solid or dashed, test point, shade) and graph paper with the axes drawn. Work <xref ref="example-vertical-and-horizontal-boundaries"/> and <xref ref="example-a-sloping-boundary"/>. Assign <xref ref="ex-draw-two-axis-lines"/> and <xref ref="ex-draw-dashed-sloping"/>.</cell></row>
+                <row><cell>On-Level Learners (Core)</cell><cell>Full activity and all examples. Assign <xref ref="ex-draw-two-axis-lines"/> to <xref ref="ex-juice-graph"/>.</cell></row>
+                <row><cell>Advanced Learners (Challenge)</cell><cell>All exercises including <xref ref="ex-choose-a-test-point"/>. Extension: find an inequality whose required region contains <m>(0, 0)</m> and <m>(5, 5)</m> but not <m>(8, 0)</m>. (Answer: for example <m>x \lt 6</m>; check any answer by substituting the three points.)</cell></row>
+                <row><cell>Assessment levels</cell><cell>Exceeds: forms the inequality, draws it and tests points on the boundary. Meets: forms and draws it with the correct line style and shading. Approaches: draws the boundary, but the shading or the line style is wrong. Below: the boundary is wrong.</cell></row>
             </tabular>
         </table>
-    </axiom> -->
+    </axiom>
 
     <xi:include href="../lesson-plan-templates/assessment-methods.ptx" />
 

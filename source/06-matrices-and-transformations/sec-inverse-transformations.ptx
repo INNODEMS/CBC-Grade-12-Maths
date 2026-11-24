@@ -46,161 +46,231 @@
          Suggested activity: Learners are given an image and the transformation matrix, find the inverse matrix and use it to recover the original object.
          Interactive (JSXGraph): Object, image and transformation matrix shown; a button applies the inverse matrix and the image moves back onto the object. -->
 
-    <!-- [LP] Add guidance on activity -->
+    <!-- Section notes (2026-11)
+         SLOs: Core 2.1 (e)
+         Activity: as planning notes (an image and its matrix; the inverse matrix recovers the object)
+         JSXGraph: interactive-inverse-undo (assets/jsxgraph/inverse-undo.js), as planning notes
+         STACK: assets/stack/top/2-measurement-and-geometry/06-matrices-and-transformations/03-inverse-transformations/ -->
+
+    <p component="lesson-plan">Upon completion of this lesson, learners will be able to:
+        <ol>
+            <li><p><alert>Know:</alert> the inverse transformation undoes a transformation <m>M</m> and has matrix <m>M^{-1}</m>; there is none when <m>\det M = 0</m>; to undo two transformations, undo the last one first.</p></li>
+            <li><p><alert>Do:</alert> find an object from its image; state the inverses of the standard transformations; undo two transformations.</p></li>
+            <li><p><alert>Apply:</alert> recover a design from a faulty printer's output.</p></li>
+        </ol>
+    </p>
 
     <axiom component="lesson-plan">
         <title>Problem-Solving and Discovery</title>
         <dl>
-            <li>
-                <title>Suggested Time</title>
-                <p>
-                    XXX minutes
-                </p>
-            </li>
-            <li>
-                <title>Objective</title>
-                <p>
-                    XXX
-                </p>
-            </li>
-            <li>
-                <title>Teacher's Role</title>
-                <p>
-                    XXX
-                </p>
-            </li>
+            <li><title>Suggested Time</title><p>14 minutes</p></li>
+            <li><title>Objective</title><p>Learners recover an object from its image by using the inverse matrix.</p></li>
+            <li><title>Teacher's Role</title><p>Work in pairs. Give only the image and the matrix <m>M</m>. Before part (a), ask: <q>We know where the points went. How could we get back to where they started?</q> Let pairs suggest ideas before naming the inverse. Remind learners of the Grade 11 inverse formula if needed. Show the interactive only after part (c): it draws the object, which is the answer to part (b).</p></li>
         </dl>
     </axiom>
 
-    <!-- Add Activity -->
-
-    <!-- <activity>
+    <activity xml:id="act-back-to-the-start">
+        <title>Back to the Start</title>
         <statement>
+            <p>A triangle was transformed by the matrix <m>M = \begin{bmatrix} 3 \amp 1 \\ 5 \amp 2 \end{bmatrix}</m>. Its image has vertices <m>(4, 7)</m>, <m>(5, 8)</m> and <m>(2, 4)</m>. Nobody wrote down the original triangle.</p>
+            <p>
+                <ol marker="(a)">
+                    <li>
+                        <p>Find <m>M^{-1}</m>, using the Grade 11 formula.</p>
+                        <solution component="lesson-plan"><p><m>\det M = 6 - 5 = 1</m>, so <m>M^{-1} = \begin{bmatrix} 2 \amp -1 \\ -5 \amp 3 \end{bmatrix}</m>.</p></solution>
+                    </li>
+                    <li>
+                        <p>Write the image vertices as the columns of a matrix and multiply it by <m>M^{-1}</m>.</p>
+                        <solution component="lesson-plan"><p><m>\begin{bmatrix} 2 \amp -1 \\ -5 \amp 3 \end{bmatrix}\begin{bmatrix} 4 \amp 5 \amp 2 \\ 7 \amp 8 \amp 4 \end{bmatrix} = \begin{bmatrix} 1 \amp 2 \amp 0 \\ 1 \amp -1 \amp 2 \end{bmatrix}</m>: the object is <m>(1, 1)</m>, <m>(2, -1)</m>, <m>(0, 2)</m>.</p></solution>
+                    </li>
+                    <li>
+                        <p>Check your answer: apply <m>M</m> to your three points.</p>
+                        <solution component="lesson-plan"><p>For example <m>\begin{bmatrix} 3 \amp 1 \\ 5 \amp 2 \end{bmatrix}\begin{pmatrix} 2 \\ -1 \end{pmatrix} = \begin{pmatrix} 5 \\ 8 \end{pmatrix}</m>, a vertex of the image.</p></solution>
+                    </li>
+                    <li>
+                        <p>Work out <m>M^{-1}M</m>. Why does this mean that <m>M^{-1}</m> <q>undoes</q> <m>M</m>?</p>
+                        <solution component="lesson-plan"><p><m>M^{-1}M = I</m>, the identity, which leaves every point where it is. So doing <m>M</m> and then <m>M^{-1}</m> puts every point back where it started.</p></solution>
+                    </li>
+                </ol>
+            </p>
         </statement>
-    </activity> -->
+    </activity>
 
-    <!-- [LP] Add guidance on structured lesson plan-->
-
-    <!-- <axiom component="lesson-plan">
+    <axiom component="lesson-plan">
         <title>Structured Instruction</title>
         <p>
             <dl>
-            <li>
-                <title>Suggested Time</title>
-                <p>
-                    XX minutes
-                </p>
-            </li>
-            <li>
-                <title>Objective</title>
-                <p>
-                    To formalize the concepts and properties learners discovered in the anchor task.
-                </p>
-            </li>
+                <li><title>Suggested Time</title><p>8 minutes</p></li>
+                <li><title>Objective</title><p>To formalise the inverse transformation, the inverses of the standard transformations and the order for undoing two transformations.</p></li>
             </dl>
         </p>
         <paragraphs>
             <title>Key Takeaways &amp; Teacher Connection</title>
             <ol>
-                <li>
-                    <p>
-                        <alert>Connecting to Learner Work:</alert> XXXX
-                    </p>
-                </li>
+                <li><p><alert>Connecting to Learner Work:</alert> part (d) shows why the inverse matrix works: <m>M^{-1}M = I</m>, so the image goes back to the object.</p></li>
+                <li><p>The inverses of the standard transformations can be stated in words without any calculation: a reflection undoes itself, a quarter turn is undone by a quarter turn the other way, and an enlargement by <m>k</m> is undone by an enlargement by <m>\frac{1}{k}</m>.</p></li>
+                <li><p>To undo two transformations, undo them in reverse order: the last one first. Compare taking off shoes and socks.</p></li>
             </ol>
         </paragraphs>
-    </axiom> -->
+    </axiom>
 
-    <!-- Add insight / key takeaway directly related to activity / learner experience -->
+    <insight xml:id="insight-inverse-transformation">
+        <title>The Inverse Transformation</title>
+        <p>
+            The <term>inverse transformation</term> of a transformation with matrix <m>M</m> sends every image point back onto its object. Its matrix is the inverse matrix
+            <md>M^{-1} = \frac{1}{\det M}\begin{bmatrix} d \amp -b \\ -c \amp a \end{bmatrix} \quad \text{for } M = \begin{bmatrix} a \amp b \\ c \amp d \end{bmatrix}</md>
+            The inverse undoes the transformation, so it sends every image point back to where it came from. If <m>\det M = 0</m> there is no inverse matrix and no inverse transformation (<xref ref="sec-area-scale-factor-and-determinant-of-a-matrix"/> shows why).
+        </p>
+        <p>
+            Inverses of the standard transformations: a reflection is its own inverse; a rotation through <m>\theta</m> anticlockwise about <m>O</m> is undone by a rotation through <m>\theta</m> clockwise; the enlargement, centre <m>O</m>, scale factor <m>k</m> is undone by the enlargement, centre <m>O</m>, scale factor <m>\frac{1}{k}</m>.
+        </p>
+        <p>
+            To undo two transformations, undo the last one first. If <m>P</m> is followed by <m>Q</m>, the single matrix is <m>QP</m>, and the transformation that undoes both is <m>Q^{-1}</m> followed by <m>P^{-1}</m>:
+            <md>(QP)^{-1} = P^{-1}Q^{-1}</md>
+        </p>
+    </insight>
 
-    <!-- <insight>
-    </insight> -->
-
-    <!-- Add further instruction (not in a block) to develop ideas as needed -->
+    <figure xml:id="fig-inverse-undo">
+        <caption>Press the button: the inverse matrix moves the image back onto the object.</caption>
+        <interactive xml:id="interactive-inverse-undo" platform="jsxgraph" width="90%" aspect="4:3" source="jsxgraph/inverse-undo.js">
+            <slate xml:id="jsxgraph-inverse-undo" surface="jsxboard" aspect="4:3"/>
+            <instructions>
+                <p>
+                    <ul>
+                        <li><p>The boxes start with the activity's matrix <m>M = \begin{bmatrix} 3 \amp 1 \\ 5 \amp 2 \end{bmatrix}</m>. Press <alert>Apply the inverse</alert> and watch the image move back onto the object.</p></li>
+                        <li><p>Now type the matrix <m>\begin{bmatrix} 3 \amp 1 \\ 3 \amp 1 \end{bmatrix}</m>. What happens to the image, and what happens when you press the button?</p></li>
+                    </ul>
+                </p>
+            </instructions>
+        </interactive>
+    </figure>
 
     <xi:include href="../lesson-plan-templates/example-intro.ptx" />
 
-    <!-- Add at least 3 examples -->
-
-    <!-- <example>
+    <example xml:id="example-finding-the-object">
+        <title>Finding the Object</title>
         <statement>
+            <p>The matrix <m>M = \begin{bmatrix} 4 \amp 2 \\ 3 \amp 2 \end{bmatrix}</m> maps <m>P</m> onto <m>P'(10, 8)</m> and <m>Q</m> onto <m>Q'(0, 1)</m>. Find <m>P</m> and <m>Q</m>.</p>
         </statement>
         <solution>
+            <p><alert>Step 1: the inverse.</alert> <m>\det M = 4 \times 2 - 2 \times 3 = 2</m>, so
+                <md>M^{-1} = \frac{1}{2}\begin{bmatrix} 2 \amp -2 \\ -3 \amp 4 \end{bmatrix} = \begin{bmatrix} 1 \amp -1 \\ -\frac{3}{2} \amp 2 \end{bmatrix}</md>
+            </p>
+            <p><alert>Step 2: apply it to the images.</alert>
+                <md>\begin{bmatrix} 1 \amp -1 \\ -\frac{3}{2} \amp 2 \end{bmatrix}\begin{bmatrix} 10 \amp 0 \\ 8 \amp 1 \end{bmatrix} = \begin{bmatrix} 2 \amp -1 \\ 1 \amp 2 \end{bmatrix}</md>
+            So <m>P(2, 1)</m> and <m>Q(-1, 2)</m>.</p>
+            <p><alert>Step 3: check.</alert> <m>\begin{bmatrix} 4 \amp 2 \\ 3 \amp 2 \end{bmatrix}\begin{pmatrix} 2 \\ 1 \end{pmatrix} = \begin{pmatrix} 10 \\ 8 \end{pmatrix}</m>, which is <m>P'</m>.</p>
         </solution>
     </example>
 
-    <example>
+    <example xml:id="example-inverses-of-standard-transformations">
+        <title>Inverses of Standard Transformations</title>
         <statement>
+            <p>State the inverse of each transformation in words, and check it by multiplying the matrices.
+                <ol marker="(a)">
+                    <li><p>The rotation of <m>90^{\circ}</m> anticlockwise about <m>O</m>.</p></li>
+                    <li><p>The reflection in the <m>x</m>-axis.</p></li>
+                    <li><p>The enlargement, centre <m>O</m>, scale factor <m>2</m>.</p></li>
+                </ol>
+            </p>
         </statement>
         <solution>
+            <p>(a) The inverse is the rotation of <m>90^{\circ}</m> clockwise about <m>O</m>:
+                <md>\begin{bmatrix} 0 \amp -1 \\ 1 \amp 0 \end{bmatrix}\begin{bmatrix} 0 \amp 1 \\ -1 \amp 0 \end{bmatrix} = \begin{bmatrix} 1 \amp 0 \\ 0 \amp 1 \end{bmatrix}</md>
+            </p>
+            <p>(b) The reflection is its own inverse: reflecting twice in the same line brings every point back.
+                <md>\begin{bmatrix} 1 \amp 0 \\ 0 \amp -1 \end{bmatrix}\begin{bmatrix} 1 \amp 0 \\ 0 \amp -1 \end{bmatrix} = \begin{bmatrix} 1 \amp 0 \\ 0 \amp 1 \end{bmatrix}</md>
+            </p>
+            <p>(c) The inverse is the enlargement, centre <m>O</m>, scale factor <m>\frac{1}{2}</m>:
+                <md>\begin{bmatrix} 2 \amp 0 \\ 0 \amp 2 \end{bmatrix}\begin{bmatrix} \frac{1}{2} \amp 0 \\ 0 \amp \frac{1}{2} \end{bmatrix} = \begin{bmatrix} 1 \amp 0 \\ 0 \amp 1 \end{bmatrix}</md>
+            Each product is the identity <m>I</m>, so the two matrices in each pair undo each other.</p>
         </solution>
     </example>
 
-    <example>
+    <example xml:id="example-undoing-two-transformations">
+        <title>Undoing Two Transformations</title>
         <statement>
+            <p>A point is transformed by <m>A = \begin{bmatrix} 2 \amp 1 \\ 1 \amp 1 \end{bmatrix}</m>, and its image is then reflected in the line <m>y = x</m> (matrix <m>B</m>). The final image is <m>(5, 8)</m>. Find the matrix that undoes both transformations, and the original point.</p>
         </statement>
         <solution>
+            <p><alert>Method 1: invert the single matrix.</alert> <m>A</m> is done first, so the single matrix is
+                <md>BA = \begin{bmatrix} 0 \amp 1 \\ 1 \amp 0 \end{bmatrix}\begin{bmatrix} 2 \amp 1 \\ 1 \amp 1 \end{bmatrix} = \begin{bmatrix} 1 \amp 1 \\ 2 \amp 1 \end{bmatrix}</md>
+            Its determinant is <m>1 - 2 = -1</m>, so <m>(BA)^{-1} = \frac{1}{-1}\begin{bmatrix} 1 \amp -1 \\ -2 \amp 1 \end{bmatrix} = \begin{bmatrix} -1 \amp 1 \\ 2 \amp -1 \end{bmatrix}</m>.</p>
+            <p><alert>Method 2: undo the last one first.</alert> <m>B</m> is its own inverse, and <m>A^{-1} = \begin{bmatrix} 1 \amp -1 \\ -1 \amp 2 \end{bmatrix}</m>. Undo <m>B</m> first, then <m>A</m>:
+                <md>A^{-1}B^{-1} = \begin{bmatrix} 1 \amp -1 \\ -1 \amp 2 \end{bmatrix}\begin{bmatrix} 0 \amp 1 \\ 1 \amp 0 \end{bmatrix} = \begin{bmatrix} -1 \amp 1 \\ 2 \amp -1 \end{bmatrix}</md>
+            the same matrix.</p>
+            <p>The original point is <m>\begin{bmatrix} -1 \amp 1 \\ 2 \amp -1 \end{bmatrix}\begin{pmatrix} 5 \\ 8 \end{pmatrix} = \begin{pmatrix} 3 \\ 2 \end{pmatrix}</m>. Check: <m>BA\begin{pmatrix} 3 \\ 2 \end{pmatrix} = \begin{pmatrix} 5 \\ 8 \end{pmatrix}</m>.</p>
         </solution>
-    </example> -->
+    </example>
 
     <xi:include href="../lesson-plan-templates/assessment-intro.ptx" />
+    <xi:include href="../lesson-plan-templates/checkpoint.ptx" />
 
-    <!-- If STACK questions are included, uncomment this: -->
+    <p>Type one number in each box of a matrix. Type fractions with a slash, for example <c>-3/2</c>, or as decimals, for example <c>-1.5</c>. Type each coordinate in its own box.</p>
 
-    <!-- <xi:include href="../lesson-plan-templates/checkpoint.ptx" /> -->
+        <exercise xml:id="ex-finding-an-object-from-its-image">
+        <stack label="stk-finding-an-object-from-its-image" source="stack/top/2-measurement-and-geometry/06-matrices-and-transformations/03-inverse-transformations/Finding-an-object-from-its-image.xml"/>
+    </exercise>
 
-    <!-- Add STACK exercises if made -->
+    <exercise xml:id="ex-inverses-of-named-transformations">
+        <stack label="stk-inverses-of-named-transformations" source="stack/top/2-measurement-and-geometry/06-matrices-and-transformations/03-inverse-transformations/Inverses-of-named-transformations.xml"/>
+    </exercise>
 
-    <!-- Add static exercises -->
+    <exercise xml:id="ex-undoing-two-transformations">
+        <stack label="stk-undoing-two-transformations" source="stack/top/2-measurement-and-geometry/06-matrices-and-transformations/03-inverse-transformations/Undoing-two-transformations.xml"/>
+    </exercise>
 
-    <!-- <exercises>
-        <exercise>
-            <statement>   
+    <exercises xml:id="exercises-inverse-transformations">
+        <exercise xml:id="ex-inverse-and-object">
+            <statement><p><m>M = \begin{bmatrix} 5 \amp 2 \\ 2 \amp 1 \end{bmatrix}</m>. Find <m>M^{-1}</m>, and the object whose image under <m>M</m> is <m>(9, 4)</m>.</p></statement>
+            <answer><p><m>M^{-1} = \begin{bmatrix} 1 \amp -2 \\ -2 \amp 5 \end{bmatrix}</m>; <m>(1, 2)</m></p></answer>
+        </exercise>
+        <exercise xml:id="ex-describe-inverses">
+            <statement><p>Describe fully the inverse of each transformation.
+                <ol marker="(a)">
+                    <li><p>The rotation of <m>90^{\circ}</m> clockwise about <m>O</m>.</p></li>
+                    <li><p>The reflection in the line <m>y = x</m>.</p></li>
+                    <li><p>The enlargement, centre <m>O</m>, scale factor <m>6</m>.</p></li>
+                </ol>
+            </p></statement>
+            <answer><p>(a) the rotation of <m>90^{\circ}</m> anticlockwise about <m>O</m> (b) the reflection in the line <m>y = x</m> itself (c) the enlargement, centre <m>O</m>, scale factor <m>\frac{1}{6}</m></p></answer>
+        </exercise>
+        <exercise xml:id="ex-no-inverse">
+            <statement><p><m>M = \begin{bmatrix} 6 \amp 3 \\ 4 \amp 2 \end{bmatrix}</m>. Find the images of <m>(1, 0)</m>, <m>(0, 1)</m> and <m>(1, 1)</m>. Explain why <m>M</m> has no inverse transformation.</p></statement>
+            <answer><p><m>(6, 4)</m>, <m>(3, 2)</m>, <m>(9, 6)</m>, all on the line <m>y = \frac{2}{3}x</m>; <m>\det M = 0</m>, so there is no inverse.</p></answer>
+            <solution><p>Each image has <m>y = \frac{2}{3}x</m>, and so does the image of every point, because <m>\begin{bmatrix} 6 \amp 3 \\ 4 \amp 2 \end{bmatrix}\begin{pmatrix} x \\ y \end{pmatrix} = \begin{pmatrix} 6x + 3y \\ 4x + 2y \end{pmatrix}</m> and <m>4x + 2y = \frac{2}{3}(6x + 3y)</m>. Many different points have the same image (for example <m>(1, 0)</m> and <m>(0, 2)</m> both go to <m>(6, 4)</m>), so from an image there is no way to tell which point it came from. Also <m>\det M = 12 - 12 = 0</m>, so <m>M^{-1}</m> does not exist.</p></solution>
+        </exercise>
+        <exercise xml:id="ex-undo-rotation-and-enlargement">
+            <statement><p>A point is rotated <m>90^{\circ}</m> anticlockwise about <m>O</m> and then enlarged, centre <m>O</m>, scale factor <m>2</m>. Its final image is <m>(4, -6)</m>. Find the matrix that undoes both transformations, and the original point.</p></statement>
+            <answer><p><m>\begin{bmatrix} 0 \amp \frac{1}{2} \\ -\frac{1}{2} \amp 0 \end{bmatrix}</m>; <m>(-3, -2)</m></p></answer>
+            <solution><p>Undo the last one first: the enlargement by <m>\frac{1}{2}</m>, then the rotation of <m>90^{\circ}</m> clockwise. The matrix is <m>\begin{bmatrix} 0 \amp 1 \\ -1 \amp 0 \end{bmatrix}\begin{bmatrix} \frac{1}{2} \amp 0 \\ 0 \amp \frac{1}{2} \end{bmatrix} = \begin{bmatrix} 0 \amp \frac{1}{2} \\ -\frac{1}{2} \amp 0 \end{bmatrix}</m>, and it sends <m>(4, -6)</m> to <m>(-3, -2)</m>.</p></solution>
+        </exercise>
+        <exercise xml:id="ex-cyber-cafe-printer">
+            <statement><p>A faulty printer at a cyber café in Kisumu distorts every design by the matrix <m>\begin{bmatrix} 5 \amp 3 \\ 3 \amp 2 \end{bmatrix}</m>. Two corners of a printed design are at <m>(8, 5)</m> and <m>(13, 8)</m>. Where were these corners in the original design?</p></statement>
+            <answer><p><m>(1, 1)</m> and <m>(2, 1)</m></p></answer>
+            <solution><p>The determinant is <m>10 - 9 = 1</m>, so the inverse is <m>\begin{bmatrix} 2 \amp -3 \\ -3 \amp 5 \end{bmatrix}</m>. Then <m>\begin{bmatrix} 2 \amp -3 \\ -3 \amp 5 \end{bmatrix}\begin{bmatrix} 8 \amp 13 \\ 5 \amp 8 \end{bmatrix} = \begin{bmatrix} 1 \amp 2 \\ 1 \amp 1 \end{bmatrix}</m>.</p></solution>
+        </exercise>
+        <exercise xml:id="ex-self-inverse-matrix">
+            <title>Challenge: A Matrix That Undoes Itself</title>
+            <statement><p>Show that <m>\begin{bmatrix} 7 \amp -12 \\ 4 \amp -7 \end{bmatrix}</m> is its own inverse. What happens to a point that is transformed by this matrix twice?</p></statement>
+            <hint><p>Work out the square of the matrix.</p></hint>
+            <answer><p>Its square is <m>I</m>; the point returns to where it started.</p></answer>
+            <solution><p><m>\begin{bmatrix} 7 \amp -12 \\ 4 \amp -7 \end{bmatrix}\begin{bmatrix} 7 \amp -12 \\ 4 \amp -7 \end{bmatrix} = \begin{bmatrix} 49 - 48 \amp -84 + 84 \\ 28 - 28 \amp -48 + 49 \end{bmatrix} = \begin{bmatrix} 1 \amp 0 \\ 0 \amp 1 \end{bmatrix}</m>. So the matrix times itself is <m>I</m>, which means it is its own inverse: the second transformation undoes the first and the point returns to its start.</p></solution>
+        </exercise>
+    </exercises>
 
-            </statement>   
-            <solution>
-
-            </solution>             
-        </exercise>        
-    </exercises> -->
-
-    <!-- [LP] Add information on how to differentiate  -->
-
-    <!-- <axiom component="lesson-plan">
+    <axiom component="lesson-plan">
         <title>Differentiation</title>
-
-        <table>
-            <title>Differentiation</title>
-            <tabular halign="left">
-                <row header="yes" bottom="minor">
-                    <cell>Learner Group</cell>
-                    <cell>Strategy &amp; Learning Experience</cell>
-                    <cell></cell>
-                </row>
-                <row>
-                    <cell>Struggling Learners (Support)</cell>
-                    <cell>
-                        XXXX
-                    </cell>
-                    <cell></cell>
-                </row>
-                <row>
-                    <cell>On-Level Learners (Core)</cell>
-                    <cell>
-                        <line>The core lesson activities as described above.</line>
-                    </cell>
-                    <cell></cell>
-                </row>
-                <row>
-                    <cell>Advanced Learners (Challenge)</cell>
-                    <cell>
-                        XXXX
-                    </cell>
-                    <cell></cell>
-                </row>
+        <table xml:id="table-differentiation-inverse-transformations">
+            <title>Differentiation Strategies</title>
+            <tabular halign="left" top="minor" bottom="minor" left="minor" right="minor">
+                <row header="yes" bottom="medium"><cell>Learner Group</cell><cell>Strategy and Learning Experience</cell></row>
+                <row><cell>Struggling Learners (Support)</cell><cell>Give a card with the Grade 11 inverse formula: swap <m>a</m> and <m>d</m>, change the signs of <m>b</m> and <m>c</m>, divide by the determinant. Work through the activity and <xref ref="example-finding-the-object"/>. Assign <xref ref="ex-inverse-and-object"/> and <xref ref="ex-describe-inverses"/>.</cell></row>
+                <row><cell>On-Level Learners (Core)</cell><cell>Full activity plus all examples. Assign <xref ref="ex-inverse-and-object"/> to <xref ref="ex-cyber-cafe-printer"/>.</cell></row>
+                <row><cell>Advanced Learners (Challenge)</cell><cell>All exercises including <xref ref="ex-self-inverse-matrix"/>. Extension: find all values of <m>a</m> for which <m>\begin{bmatrix} a \amp 1 \\ 0 \amp -a \end{bmatrix}</m> is its own inverse. (Answer: <m>a = 1</m> or <m>a = -1</m>, since the square is <m>\begin{bmatrix} a^2 \amp 0 \\ 0 \amp a^2 \end{bmatrix}</m>.)</cell></row>
             </tabular>
         </table>
-    </axiom> -->
+    </axiom>
 
     <xi:include href="../lesson-plan-templates/assessment-methods.ptx" />
 

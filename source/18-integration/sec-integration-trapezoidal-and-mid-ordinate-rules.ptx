@@ -46,161 +46,286 @@
          Suggested activity: Learners compare areas found by the trapezoidal rule, mid-ordinate rule and integration for the same curve.
          Interactive (JSXGraph): Same curve with a slider for n and toggles for trapezoidal, mid-ordinate and exact area; the three values are shown together. -->
 
-    <!-- [LP] Add guidance on activity -->
+    <!-- Section notes (2026-11)
+         SLOs: Core (c), repeated from the previous section: here the exact integral is related to the trapezoidal and mid-ordinate estimates. One lesson, flat anatomy.
+         Activity: as planning notes (one curve, three areas: trapezoidal, mid-ordinate and integration) | changed: none
+         JSXGraph: fig-trapezoidal-mid-ordinate-exact (assets/jsxgraph/trapezoidal-mid-ordinate-exact.js), as planning notes
+         STACK: assets/stack/top/4-calculus/18-integration/04-integration-trapezoidal-and-mid-ordinate-rules/ -->
 
-    <!-- <axiom component="lesson-plan">
-            <title>Problem-Solving and Discovery</title>
-            <dl>
-                <li>
-                    <title>Suggested Time</title>
-                    <p>
-                        XX minutes
-                    </p>
-                </li>
-                <li>
-                    <title>Objective</title>
-                    <p>
-                        XXX
-                    </p>
-                </li>
-                <li>
-                    <title>Teacher's Role</title>
-                    <p>
-                        XXX
-                    </p>
-                </li>
-            </dl>
-        </axiom> -->
+    <p component="lesson-plan">Upon completion of this lesson, learners will be able to:
+        <ol>
+            <li><p><alert>Know:</alert> integration gives the exact area; the trapezoidal and mid-ordinate rules estimate it; the way the curve bends decides which estimate is too big.</p></li>
+            <li><p><alert>Do:</alert> compute both estimates and the exact value for the same region.</p></li>
+            <li><p><alert>Apply:</alert> compare estimates of land areas and channel cross-sections with the exact value.</p></li>
+        </ol>
+    </p>
 
-    <!-- Add Activity -->
+    <paragraphs>
+        <title>Recap: The Two Rules</title>
+        <p>
+            In <xref ref="sec-trapezoidal-rule"/> and <xref ref="sec-mid-ordinate-rule"/> you estimated the area under a curve <m>y = f(x)</m> from <m>x = a</m> to <m>x = b</m> by cutting it into <m>n</m> strips of equal width <m>h = \dfrac{b - a}{n}</m>. The heights at the strip edges are the ordinates <m>y_0, y_1, \ldots, y_n</m>.
+        </p>
+        <p>
+            The trapezoidal rule replaces each strip by a trapezium whose top is the straight line (chord) joining two neighbouring points on the curve. The mid-ordinate rule replaces each strip by a rectangle whose height <m>m_i</m> is the height of the curve at the middle of strip <m>i</m>.
+            <md>
+                <mrow>\text{Trapezoidal rule:} \amp \quad A \approx \tfrac{1}{2}h\left[y_0 + y_n + 2(y_1 + y_2 + \cdots + y_{n-1})\right]</mrow>
+                <mrow>\text{Mid-ordinate rule:} \amp \quad A \approx h(m_1 + m_2 + \cdots + m_n)</mrow>
+            </md>
+        </p>
+    </paragraphs>
 
-    <!-- <activity>
+    <axiom component="lesson-plan">
+        <title>Problem-Solving and Discovery</title>
+        <dl>
+            <li><title>Suggested Time</title><p>14 minutes</p></li>
+            <li><title>Objective</title><p>Learners compute three areas for one plot and explain why the trapezoidal value is the largest and the mid-ordinate value the smallest.</p></li>
+            <li><title>Teacher's Role</title><p>Let groups compute parts (a) to (c), then use the interactive for 8 strips. Ask: <q>Why is the trapezoidal value too big here?</q> Learners who explain the reason to their group practise learning to learn and communication.</p></li>
+        </dl>
+    </axiom>
+
+    <activity xml:id="act-three-ways-to-one-area">
+        <title>Three Ways to One Area</title>
         <statement>
+            <p>A plot in Machakos is drawn on a grid in which one unit is <m>10\,\text{m}</m>. It is bounded by a straight road (the <m>x</m>-axis), two straight fences <m>x = 0</m> and <m>x = 4</m>, and a footpath along the curve <m>y = x^2 + 3</m>.</p>
+            <figure xml:id="fig-trapezia-and-mid-ordinates">
+                <caption>The plot under <m>y = x^2 + 3</m>. Left: four trapezia. Right: four mid-ordinate rectangles.</caption>
+                <image width="90%">
+                    <shortdescription>Two copies of the curve y = x squared plus 3 from x = 0 to 4. On the left the region is cut into four trapezia with vertical sides of heights 3, 4, 7, 12 and 19. On the right it is cut into four rectangles of heights 3.25, 5.25, 9.25 and 15.25 measured at x = 0.5, 1.5, 2.5 and 3.5.</shortdescription>
+                    <description><p>Both panels: horizontal axis x from 0 to 4, vertical axis y from 0 to 20, the curve y = x squared plus 3 drawn as a solid line. Left panel: trapezia with ordinates 3, 4, 7, 12, 19 at x = 0, 1, 2, 3, 4, their tops are straight chords lying just above the curve. Right panel: rectangles of width 1 with heights 3.25, 5.25, 9.25, 15.25 taken at x = 0.5, 1.5, 2.5, 3.5; each rectangle's top crosses the curve at the middle of the strip.</p></description>
+                    <latex-image>
+\begin{tikzpicture}
+\begin{axis}[name=left, width=7cm, height=7cm, xmin=0, xmax=4.4, ymin=0, ymax=21,
+  axis lines=left, xtick={0,1,2,3,4}, ytick={0,5,10,15,20}, xlabel={$x$}, ylabel={$y$}, title={Trapezia}]
+\fill[gray!25] (axis cs:0,0) -- (axis cs:0,3) -- (axis cs:1,4) -- (axis cs:2,7) -- (axis cs:3,12) -- (axis cs:4,19) -- (axis cs:4,0) -- cycle;
+\draw (axis cs:0,3) -- (axis cs:1,4) -- (axis cs:2,7) -- (axis cs:3,12) -- (axis cs:4,19);
+\draw (axis cs:1,0) -- (axis cs:1,4);
+\draw (axis cs:2,0) -- (axis cs:2,7);
+\draw (axis cs:3,0) -- (axis cs:3,12);
+\draw (axis cs:4,0) -- (axis cs:4,19);
+\addplot[thick, domain=0:4, samples=60] {x^2+3};
+\node[anchor=south east, font=\small] at (axis cs:0,3) {$3$};
+\node[anchor=south east, font=\small] at (axis cs:1,4) {$4$};
+\node[anchor=south east, font=\small] at (axis cs:2,7) {$7$};
+\node[anchor=south east, font=\small] at (axis cs:3,12) {$12$};
+\node[anchor=south east, font=\small] at (axis cs:4,19) {$19$};
+\end{axis}
+\begin{axis}[at={(left.east)}, anchor=west, xshift=1.2cm, width=7cm, height=7cm, xmin=0, xmax=4.4, ymin=0, ymax=21,
+  axis lines=left, xtick={0,1,2,3,4}, ytick={0,5,10,15,20}, xlabel={$x$}, ylabel={$y$}, title={Mid-ordinate rectangles}]
+\fill[gray!25] (axis cs:0,0) rectangle (axis cs:1,3.25);
+\draw (axis cs:0,0) rectangle (axis cs:1,3.25);
+\draw[dashed] (axis cs:0.5,0) -- (axis cs:0.5,3.25);
+\node[anchor=south, font=\small] at (axis cs:0.5,3.25) {$3.25$};
+\fill[gray!25] (axis cs:1,0) rectangle (axis cs:2,5.25);
+\draw (axis cs:1,0) rectangle (axis cs:2,5.25);
+\draw[dashed] (axis cs:1.5,0) -- (axis cs:1.5,5.25);
+\node[anchor=south, font=\small] at (axis cs:1.5,5.25) {$5.25$};
+\fill[gray!25] (axis cs:2,0) rectangle (axis cs:3,9.25);
+\draw (axis cs:2,0) rectangle (axis cs:3,9.25);
+\draw[dashed] (axis cs:2.5,0) -- (axis cs:2.5,9.25);
+\node[anchor=south, font=\small] at (axis cs:2.5,9.25) {$9.25$};
+\fill[gray!25] (axis cs:3,0) rectangle (axis cs:4,15.25);
+\draw (axis cs:3,0) rectangle (axis cs:4,15.25);
+\draw[dashed] (axis cs:3.5,0) -- (axis cs:3.5,15.25);
+\node[anchor=south, font=\small] at (axis cs:3.5,15.25) {$15.25$};
+\addplot[thick, domain=0:4, samples=60] {x^2+3};
+\end{axis}
+\end{tikzpicture}
+                    </latex-image>
+                </image>
+            </figure>
+            <p>
+                <ol marker="(a)">
+                    <li>
+                        <p>Use the trapezoidal rule with <m>4</m> strips to estimate the area under the curve, in grid units.</p>
+                        <solution component="lesson-plan"><p><m>h = 1</m>; ordinates <m>3, 4, 7, 12, 19</m>; <m>A \approx \tfrac{1}{2}(3 + 19 + 2 \times 23) = 34</m>.</p></solution>
+                    </li>
+                    <li>
+                        <p>Use the mid-ordinate rule with <m>4</m> strips.</p>
+                        <solution component="lesson-plan"><p>Mid-ordinates at <m>x = 0.5, 1.5, 2.5, 3.5</m>: <m>3.25, 5.25, 9.25, 15.25</m>; <m>A \approx 1 \times 33 = 33</m>.</p></solution>
+                    </li>
+                    <li>
+                        <p>Find the exact area by integration.</p>
+                        <solution component="lesson-plan"><p><m>\displaystyle\int_0^4 (x^2 + 3)\,dx = \left[\frac{x^3}{3} + 3x\right]_0^4 = \frac{64}{3} + 12 = \frac{100}{3} \approx 33.33</m>.</p></solution>
+                    </li>
+                    <li>
+                        <p>Which estimate is too big and which is too small? Explain why, looking at the chords and at the corners of the rectangles in <xref ref="fig-trapezia-and-mid-ordinates"/>.</p>
+                        <solution component="lesson-plan"><p>The trapezoidal estimate is too big and the mid-ordinate estimate too small. The curve bends upwards, so every chord lies above the curve and each trapezium includes a thin sliver above it. Each rectangle loses more area on the side where the curve rises steeply than it gains on the other side.</p></solution>
+                    </li>
+                    <li>
+                        <p>Use the interactive in <xref ref="fig-trapezoidal-mid-ordinate-exact"/> with <m>8</m> strips. What happens to the two estimates?</p>
+                        <solution component="lesson-plan"><p><m>T = 33.5</m> and <m>M = 33.25</m>: both are closer to <m>33.33</m>, and still on the same sides.</p></solution>
+                    </li>
+                </ol>
+            </p>
         </statement>
-    </activity> -->
+    </activity>
 
-    <!-- [LP] Add guidance on structured lesson plan-->
-
-    <!-- <axiom component="lesson-plan">
+    <axiom component="lesson-plan">
         <title>Structured Instruction</title>
         <p>
             <dl>
-            <li>
-                <title>Suggested Time</title>
-                <p>
-                    XX minutes
-                </p>
-            </li>
-            <li>
-                <title>Objective</title>
-                <p>
-                    To formalize the concepts and properties learners discovered in the anchor task.
-                </p>
-            </li>
+                <li><title>Suggested Time</title><p>8 minutes</p></li>
+                <li><title>Objective</title><p>To relate the two estimates to the exact area found by integration, and to predict over- and underestimates from the bend of the curve.</p></li>
             </dl>
         </p>
         <paragraphs>
             <title>Key Takeaways &amp; Teacher Connection</title>
             <ol>
-                <li>
-                    <p>
-                        <alert>Connecting to Learner Work:</alert> XXXX
-                    </p>
-                </li>
+                <li><p><alert>Connecting to Learner Work:</alert> part (d): the chords lie above a curve that bends upwards, so trapezia overestimate.</p></li>
+                <li><p>The bend can be read from the second derivative met in <xref ref="ch-differentiation-ii"/>: <m>\dfrac{d^2y}{dx^2} \ge 0</m> on the interval means the curve bends upwards.</p></li>
+                <li><p>More strips give closer estimates; integration gives the exact value.</p></li>
             </ol>
         </paragraphs>
-    </axiom> -->
+    </axiom>
 
-    <!-- Add insight / key takeaway directly related to activity / learner experience -->
+    <insight xml:id="insight-comparing-estimates">
+        <title>Comparing Estimates With the Exact Area</title>
+        <p>
+            Integration gives the exact area under a curve; the trapezoidal and mid-ordinate rules give estimates. Which way each estimate is wrong depends on how the curve bends on the interval.
+        </p>
+        <p>
+            <ul>
+                <li><p>The curve <term>bends upwards</term> (like a bowl, <m>\dfrac{d^2y}{dx^2} \ge 0</m>): the trapezoidal rule overestimates and the mid-ordinate rule underestimates.</p></li>
+                <li><p>The curve <term>bends downwards</term> (like a hill, <m>\dfrac{d^2y}{dx^2} \le 0</m>): the trapezoidal rule underestimates and the mid-ordinate rule overestimates.</p></li>
+                <li><p>The graph is a straight line: both rules give the exact area.</p></li>
+            </ul>
+        </p>
+        <p>
+            Chords lie above a curve that bends upwards, so trapezia overestimate. With more strips, both estimates move closer to the exact value.
+        </p>
+    </insight>
 
-    <!-- <insight>
-    </insight> -->
+    <figure xml:id="fig-trapezoidal-mid-ordinate-exact">
+        <caption>Change <m>n</m> and compare the three values. Tick the second curve to see the estimates swap sides.</caption>
+        <interactive xml:id="interactive-trapezoidal-mid-ordinate-exact" platform="jsxgraph" width="90%" aspect="16:12" source="jsxgraph/trapezoidal-mid-ordinate-exact.js">
+            <slate xml:id="jsxgraph-trapezoidal-mid-ordinate-exact" surface="jsxboard" aspect="16:12"/>
+            <instructions>
+                <p>
+                    <ul>
+                        <li><p>The curve is <m>y = x^2 + 3</m> from <m>x = 0</m> to <m>x = 4</m>, the plot in <xref ref="act-three-ways-to-one-area"/>. Use the boxes to show the trapezia, the mid-ordinate rectangles or the exact region.</p></li>
+                        <li><p>Drag the <alert>n</alert> slider from <m>1</m> to <m>10</m>. Which estimate is always above the exact value? How do the gaps change as <m>n</m> grows?</p></li>
+                        <li><p>Tick <alert>bends downwards</alert> to switch to <m>y = 19 - x^2</m>. Which estimate is now too big?</p></li>
+                    </ul>
+                </p>
+            </instructions>
+        </interactive>
+    </figure>
 
-    <!-- Add further instruction (not in a block) to develop ideas as needed -->
+    <p>
+        <em>Integration in real life:</em> a surveyor who estimates a plot from a few measured widths can test the method on a curve whose equation is known, and the bend of the boundary tells her which way the estimate errs.
+    </p>
 
     <xi:include href="../lesson-plan-templates/example-intro.ptx" />
 
-    <!-- Add at least 3 examples -->
-
-    <!-- <example>
+    <example xml:id="example-a-curve-that-bends-down">
+        <title>A Curve That Bends Down</title>
         <statement>
+            <p>For <m>y = 4x - x^2</m> from <m>x = 0</m> to <m>x = 4</m>, use <m>4</m> strips to find the trapezoidal and mid-ordinate estimates of the area, and the exact area. Say which estimate is too big.</p>
         </statement>
         <solution>
+            <p><alert>Step 1: Ordinates.</alert> With <m>h = 1</m>, the heights at <m>x = 0, 1, 2, 3, 4</m> are <m>0, 3, 4, 3, 0</m>, and the mid-ordinates at <m>x = 0.5, 1.5, 2.5, 3.5</m> are <m>1.75, 3.75, 3.75, 1.75</m>.</p>
+            <p><alert>Step 2: Estimates.</alert>
+                <md>
+                    <mrow>T \amp = \tfrac{1}{2} \times 1 \times \left[0 + 0 + 2(3 + 4 + 3)\right] = 10</mrow>
+                    <mrow>M \amp = 1 \times (1.75 + 3.75 + 3.75 + 1.75) = 11</mrow>
+                </md>
+            </p>
+            <p><alert>Step 3: Exact area.</alert>
+                <md>\int_0^4 (4x - x^2)\,dx = \left[2x^2 - \frac{x^3}{3}\right]_0^4 = 32 - \frac{64}{3} = \frac{32}{3} \approx 10.67</md>
+            </p>
+            <p>Here <m>\dfrac{d^2y}{dx^2} = -2</m>, so the curve bends downwards: the trapezoidal estimate <m>10</m> is too small and the mid-ordinate estimate <m>11</m> is too big.</p>
         </solution>
     </example>
 
-    <example>
+    <example xml:id="example-estimates-for-a-cubic">
+        <title>A Cubic</title>
         <statement>
+            <p>For <m>y = x^3 + 2</m> from <m>x = 0</m> to <m>x = 2</m>, use <m>4</m> strips to find both estimates and the exact area.</p>
         </statement>
         <solution>
+            <p>Here <m>h = 0.5</m>. The ordinates at <m>x = 0, 0.5, 1, 1.5, 2</m> are <m>2, 2.125, 3, 5.375, 10</m>, so
+                <md>T = \tfrac{1}{2} \times 0.5 \times \left[2 + 10 + 2(2.125 + 3 + 5.375)\right] = 0.25 \times 33 = 8.25</md>
+            The mid-ordinates at <m>x = 0.25, 0.75, 1.25, 1.75</m> are <m>2.015625, 2.421875, 3.953125, 7.359375</m>, which add to <m>15.75</m>, so <m>M = 0.5 \times 15.75 = 7.875</m>.</p>
+            <p>Exactly, <m>\displaystyle\int_0^2 (x^3 + 2)\,dx = \left[\frac{x^4}{4} + 2x\right]_0^2 = 4 + 4 = 8</m>.</p>
+            <p>On <m>0 \le x \le 2</m>, <m>\dfrac{d^2y}{dx^2} = 6x \ge 0</m>: the curve bends upwards, and indeed <m>T = 8.25</m> is too big and <m>M = 7.875</m> too small.</p>
         </solution>
     </example>
 
-    <example>
+    <example xml:id="example-bend-from-second-derivative">
+        <title>Reading the Bend From the Second Derivative</title>
         <statement>
+            <p>Without drawing the curve, decide whether the trapezoidal rule overestimates or underestimates the area under <m>y = 12 + 3x - x^3</m> from <m>x = 0</m> to <m>x = 2</m>. Check with <m>2</m> strips and the exact value.</p>
         </statement>
         <solution>
+            <p><m>\dfrac{dy}{dx} = 3 - 3x^2</m> and <m>\dfrac{d^2y}{dx^2} = -6x \le 0</m> on the interval, so the curve bends downwards: the trapezoidal rule underestimates and the mid-ordinate rule overestimates.</p>
+            <p>Check, with <m>h = 1</m>: the ordinates are <m>12, 14, 10</m>, so <m>T = \tfrac{1}{2}(12 + 10 + 2 \times 14) = 25</m>. The mid-ordinates at <m>x = 0.5</m> and <m>1.5</m> are <m>13.375</m> and <m>13.125</m>, so <m>M = 26.5</m>. Exactly,
+                <md>\int_0^2 (12 + 3x - x^3)\,dx = \left[12x + \frac{3x^2}{2} - \frac{x^4}{4}\right]_0^2 = 24 + 6 - 4 = 26</md>
+            and indeed <m>25 \lt 26 \lt 26.5</m>.</p>
         </solution>
-    </example> -->
+    </example>
 
     <xi:include href="../lesson-plan-templates/assessment-intro.ptx" />
+    <xi:include href="../lesson-plan-templates/checkpoint.ptx" />
 
-    <!-- If STACK questions are included, uncomment this: -->
+    <p>Type exact values as whole numbers, fractions or decimals, for example <c>27/4</c> or <c>6.75</c>.</p>
 
-    <!-- <xi:include href="../lesson-plan-templates/checkpoint.ptx" /> -->
+    <exercise xml:id="ex-trapezoidal-and-mid-ordinate-estimates-and-the-exact-area">
+        <!--<title></title>-->
+        <stack label="stk-trapezoidal-and-mid-ordinate-estimates-and-the-exact-area" source="stack/top/4-calculus/18-integration/04-integration-trapezoidal-and-mid-ordinate-rules/Trapezoidal-and-mid-ordinate-estimates-and-the-exact-area.xml"/>
+    </exercise>
 
-    <!-- Add STACK exercises if made -->
+    <exercise xml:id="ex-overestimate-or-underestimate">
+        <!--<title></title>-->
+        <stack label="stk-overestimate-or-underestimate" source="stack/top/4-calculus/18-integration/04-integration-trapezoidal-and-mid-ordinate-rules/Overestimate-or-underestimate.xml"/>
+    </exercise>
 
-    <!-- Add static exercises -->
+    <exercises xml:id="exercises-integration-and-the-rules">
+        <exercise xml:id="ex-rules-x-squared">
+            <statement><p>For <m>y = x^2</m> from <m>x = 0</m> to <m>x = 2</m>, use <m>2</m> strips to find the trapezoidal and mid-ordinate estimates of the area. Then find the exact area.</p></statement>
+            <answer><p><m>T = 3</m>, <m>M = 2.5</m>, exact <m>\frac{8}{3} \approx 2.67</m></p></answer>
+            <solution><p>Ordinates <m>0, 1, 4</m>: <m>T = \tfrac{1}{2}(0 + 4 + 2) = 3</m>. Mid-ordinates <m>0.25, 2.25</m>: <m>M = 2.5</m>. Exact: <m>\left[\frac{x^3}{3}\right]_0^2 = \frac{8}{3}</m>.</p></solution>
+        </exercise>
+        <exercise xml:id="ex-rules-bends-down">
+            <statement><p>For <m>y = 6 + x - x^2</m> from <m>x = 0</m> to <m>x = 2</m>, use <m>4</m> strips to find both estimates, and find the exact area.</p></statement>
+            <answer><p><m>T = 11.25</m>, <m>M = 11.375</m>, exact <m>\frac{34}{3} \approx 11.33</m></p></answer>
+            <solution><p><m>h = 0.5</m>. Ordinates <m>6, 6.25, 6, 5.25, 4</m>: <m>T = 0.25 \times (10 + 2 \times 17.5) = 11.25</m>. Mid-ordinates <m>6.1875, 6.1875, 5.6875, 4.6875</m>, total <m>22.75</m>: <m>M = 11.375</m>. Exact: <m>\left[6x + \frac{x^2}{2} - \frac{x^3}{3}\right]_0^2 = 12 + 2 - \frac{8}{3} = \frac{34}{3}</m>. The curve bends downwards, so <m>T</m> is under and <m>M</m> over.</p></solution>
+        </exercise>
+        <exercise xml:id="ex-over-or-under-no-calculation">
+            <statement><p>Without calculating, say whether the trapezoidal rule overestimates, underestimates or gives the exact area for:
+                <ol marker="(a)">
+                    <li><p><m>y = 2x^3</m> from <m>x = 1</m> to <m>x = 3</m>;</p></li>
+                    <li><p><m>y = 5 - 2x</m> from <m>x = 0</m> to <m>x = 2</m>;</p></li>
+                    <li><p><m>y = 9 - x^2</m> from <m>x = 0</m> to <m>x = 3</m>.</p></li>
+                </ol></p></statement>
+            <answer><p>(a) overestimates; (b) exact; (c) underestimates</p></answer>
+            <solution><p>(a) <m>\frac{d^2y}{dx^2} = 12x \gt 0</m>: bends upwards. (b) A straight line. (c) <m>\frac{d^2y}{dx^2} = -2</m>: bends downwards.</p></solution>
+        </exercise>
+        <exercise xml:id="ex-irrigation-furrow">
+            <statement><p>An irrigation furrow at Mwea is <m>2\,\text{m}</m> wide. Its depth <m>x</m> metres from one edge is <m>d = 0.3x(2 - x)</m> metres. Use <m>4</m> strips to find the trapezoidal and mid-ordinate estimates of its cross-section area, and find the exact area by integration.</p></statement>
+            <answer><p><m>T = 0.375\,\text{m}^2</m>, <m>M = 0.4125\,\text{m}^2</m>, exact <m>0.4\,\text{m}^2</m></p></answer>
+            <solution><p><m>h = 0.5</m>. Depths <m>0, 0.225, 0.3, 0.225, 0</m>: <m>T = 0.25 \times 2 \times 0.75 = 0.375</m>. Mid-depths <m>0.13125, 0.28125, 0.28125, 0.13125</m>, total <m>0.825</m>: <m>M = 0.4125</m>. Exact: <m>\int_0^2 (0.6x - 0.3x^2)\,dx = \left[0.3x^2 - 0.1x^3\right]_0^2 = 1.2 - 0.8 = 0.4</m>.</p></solution>
+        </exercise>
+        <exercise xml:id="ex-trapezium-exact-for-lines">
+            <title>Challenge: Exact for Straight Lines</title>
+            <statement><p>Show that one trapezium from <m>x = a</m> to <m>x = b</m> gives exactly <m>\displaystyle\int_a^b (mx + k)\,dx</m>.</p></statement>
+            <hint><p>Show that both are equal to <m>(b - a)\left(\dfrac{m(a + b)}{2} + k\right)</m>.</p></hint>
+            <answer><p>Both equal <m>(b - a)\left(\frac{m(a + b)}{2} + k\right)</m>.</p></answer>
+            <solution><p>Trapezium: <m>\tfrac{1}{2}(b - a)\left[(ma + k) + (mb + k)\right] = (b - a)\left(\frac{m(a + b)}{2} + k\right)</m>. Integral: <m>\left[\frac{mx^2}{2} + kx\right]_a^b = \frac{m(b^2 - a^2)}{2} + k(b - a)</m>, and <m>b^2 - a^2 = (b - a)(b + a)</m>, which gives the same.</p></solution>
+        </exercise>
+    </exercises>
 
-    <!-- <exercises>
-        <exercise>
-            <statement>   
-
-            </statement>   
-            <solution>
-
-            </solution>             
-        </exercise>        
-    </exercises> -->
-
-    <!-- [LP] Add information on how to differentiate  -->
-
-    <!-- <axiom component="lesson-plan">
+    <axiom component="lesson-plan">
         <title>Differentiation</title>
-
-        <table>
-            <title>Differentiation</title>
-            <tabular halign="left">
-                <row header="yes" bottom="minor">
-                    <cell>Learner Group</cell>
-                    <cell>Strategy &amp; Learning Experience</cell>
-                    <cell></cell>
-                </row>
-                <row>
-                    <cell>Struggling Learners (Support)</cell>
-                    <cell>
-                        XXXX
-                    </cell>
-                    <cell></cell>
-                </row>
-                <row>
-                    <cell>On-Level Learners (Core)</cell>
-                    <cell>
-                        <line>The core lesson activities as described above.</line>
-                    </cell>
-                    <cell></cell>
-                </row>
-                <row>
-                    <cell>Advanced Learners (Challenge)</cell>
-                    <cell>
-                        XXXX
-                    </cell>
-                    <cell></cell>
-                </row>
+        <table xml:id="table-differentiation-integration-and-the-rules">
+            <title>Differentiation Strategies</title>
+            <tabular halign="left" top="minor" bottom="minor" left="minor" right="minor">
+                <row header="yes" bottom="medium"><cell>Learner Group</cell><cell>Strategy and Learning Experience</cell></row>
+                <row><cell>Struggling Learners (Support)</cell><cell>Give an ordinate table template with columns <m>x</m>, <m>y</m> and weight (<m>1</m> or <m>2</m>). Work through <xref ref="example-a-curve-that-bends-down"/> and <xref ref="example-estimates-for-a-cubic"/>. Assign <xref ref="ex-rules-x-squared"/> and <xref ref="ex-over-or-under-no-calculation"/>.</cell></row>
+                <row><cell>On-Level Learners (Core)</cell><cell>Full activity and all examples. Assign <xref ref="ex-rules-x-squared"/> to <xref ref="ex-irrigation-furrow"/>.</cell></row>
+                <row><cell>Advanced Learners (Challenge)</cell><cell>All exercises including <xref ref="ex-trapezium-exact-for-lines"/>. Extension: find a curve on <m>0 \le x \le 2</m> that is not a straight line but for which the trapezoidal rule with <m>2</m> strips is exact. (One answer: <m>y = (x - 1)^3 + 1</m>; the ordinates <m>0, 1, 2</m> give <m>T = 2</m>, and the exact area is <m>2</m>.)</cell></row>
             </tabular>
         </table>
-    </axiom> -->
+    </axiom>
 
     <xi:include href="../lesson-plan-templates/assessment-methods.ptx" />
 

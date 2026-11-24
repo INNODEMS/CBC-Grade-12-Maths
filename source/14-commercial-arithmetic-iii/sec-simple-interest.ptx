@@ -33,7 +33,7 @@
                 <li component="lesson-plan">
                     <title>Estimated Duration</title>
                     <p>
-                        40 minutes
+                        2 lessons of 40 minutes
                     </p>
                 </li>
             </dl>
@@ -46,163 +46,402 @@
          Suggested activity: Learners compare simple interest charged on a loan from a SACCO, a bank and a mobile lender for the same principal and period.
          Interactive (JSXGraph): Sliders for principal, rate and time; simple interest grows as a straight line over the years. -->
 
-    <!-- [LP] Add guidance on activity -->
 
-    <axiom component="lesson-plan">
-        <title>Problem-Solving and Discovery</title>
-        <dl>
-            <li>
-                <title>Suggested Time</title>
-                <p>
-                    XXX minutes
-                </p>
-            </li>
-            <li>
-                <title>Objective</title>
-                <p>
-                    XXX
-                </p>
-            </li>
-            <li>
-                <title>Teacher's Role</title>
-                <p>
-                    XXX
-                </p>
-            </li>
-        </dl>
-    </axiom>
+    <!-- Section notes (2026-11)
+         SLO: Essential 2.4 (a); outcome (f) apply in lesson 1.2. Lessons 1.1 and 1.2 as subsections.
+         Activity: as planning notes (interest year by year on SACCO savings in 1.1; a SACCO, a bank and a mobile lender compared in 1.2)
+         JSXGraph: fig-simple-interest-line (assets/jsxgraph/simple-interest-line.js), as planning notes
+         STACK: assets/stack/top/2-measurement-and-geometry/14-commercial-arithmetic-iii/01-simple-interest/ -->
 
-    <!-- Add Activity -->
-
-    <!-- <activity>
-        <statement>
-        </statement>
-    </activity> -->
-
-    <!-- [LP] Add guidance on structured lesson plan-->
-
-    <!-- <axiom component="lesson-plan">
-        <title>Structured Instruction</title>
+    <introduction>
+        <question xml:id="kiq-commercial-arithmetic">
+            <p><em>Why should every adult understand interest, value and tax?</em></p>
+        </question>
         <p>
-            <dl>
-            <li>
-                <title>Suggested Time</title>
-                <p>
-                    XX minutes
-                </p>
-            </li>
-            <li>
-                <title>Objective</title>
-                <p>
-                    To formalize the concepts and properties learners discovered in the anchor task.
-                </p>
-            </li>
-            </dl>
+            Money decisions come early. A chama saves together and lends to its members; a parent borrows from a SACCO to pay school fees; a family buys a plot for the future; a boda boda rider buys a motorbike that is worth less every year; and one day you will open your first payslip and see how much has been taken off in tax.
         </p>
-        <paragraphs>
-            <title>Key Takeaways &amp; Teacher Connection</title>
+        <p>
+            This chapter gives you the arithmetic behind those decisions: simple and compound interest, appreciation and depreciation, hire purchase, and income tax. As you work, ask who gains and who pays in each case, and keep the key inquiry question in mind.
+        </p>
+        <note xml:id="note-money-in-this-chapter">
+            <title>Money in This Chapter</title>
+            <p>
+                <ul>
+                    <li><p>Amounts are in Kenya shillings, written <q>Ksh</q> before the number. Prices, values, rates and salaries in this chapter are invented, at about 2026 levels; the tax bands are the real ones from the Kenya Revenue Authority.</p></li>
+                    <li><p>Rates of interest are <em>per cent per annum</em> (p.a.), that is, per year. <m>R</m> in the simple interest formula and <m>r</m> in the compound interest formula are the same thing, the rate per cent per annum; we keep the letters in common use.</p></li>
+                    <li><p>Round only at the end. Give money to the nearest shilling unless the work is exact; tax is worked to the cent, as the Kenya Revenue Authority does. Give rates and percentages to 1 decimal place.</p></li>
+                </ul>
+            </p>
+        </note>
+    </introduction>
+
+    <!-- ============================================================ Lesson 1.1 -->
+    <subsection xml:id="subsec-simple-interest-and-amount">
+        <title>Simple Interest and the Amount</title>
+
+        <p component="lesson-plan">Upon completion of this lesson, learners will be able to:
             <ol>
-                <li>
-                    <p>
-                        <alert>Connecting to Learner Work:</alert> XXXX
-                    </p>
-                </li>
+                <li><p><alert>Know:</alert> the principal, the rate per cent per annum, the time, the interest and the amount.</p></li>
+                <li><p><alert>Do:</alert> find simple interest with <m>I = \dfrac{PRT}{100}</m> and the amount with <m>A = P + I</m>, with the time in years or in months.</p></li>
+                <li><p><alert>Apply:</alert> SACCO savings and loans, chama loans and fixed deposits.</p></li>
             </ol>
-        </paragraphs>
-    </axiom> -->
+        </p>
 
-    <!-- Add insight / key takeaway directly related to activity / learner experience -->
+        <axiom component="lesson-plan">
+            <title>Problem-Solving and Discovery</title>
+            <dl>
+                <li><title>Suggested Time</title><p>14 minutes</p></li>
+                <li><title>Objective</title><p>Learners find the interest year by year, see that it is the same each year, and build the rule <m>I = \dfrac{PRT}{100}</m> from the pattern.</p></li>
+                <li><title>Teacher's Role</title><p>Draw the table of years and interest on the board. Before naming simple interest, ask: <q>Why is the interest the same every year?</q></p></li>
+            </dl>
+        </axiom>
 
-    <!-- <insight>
-    </insight> -->
+        <activity xml:id="act-interest-year-by-year">
+            <title>Interest Year by Year</title>
+            <statement>
+                <p>Kamau saves Ksh <m>20\,000</m> in a SACCO account that pays <m>8\%</m> per annum simple interest. The interest is paid to his phone each year and is not added to the account.</p>
+                <p>
+                    <ol marker="(a)">
+                        <li>
+                            <p>How much interest does Kamau receive in the first year?</p>
+                            <solution component="lesson-plan"><p><m>8\%</m> of <m>20\,000</m> is <m>\dfrac{8}{100} \times 20\,000 = 1600</m>, so Ksh <m>1600</m>.</p></solution>
+                        </li>
+                        <li>
+                            <p>Find the total interest he has received after <m>1</m>, <m>2</m>, <m>3</m> and <m>4</m> years.</p>
+                            <solution component="lesson-plan"><p>Ksh <m>1600</m>, <m>3200</m>, <m>4800</m> and <m>6400</m>: the same <m>1600</m> is added each year.</p></solution>
+                        </li>
+                        <li>
+                            <p>Write a rule for the total interest after <m>T</m> years.</p>
+                            <solution component="lesson-plan"><p><m>20\,000 \times \dfrac{8}{100} \times T</m>, that is <m>1600T</m> shillings.</p></solution>
+                        </li>
+                        <li>
+                            <p>How much has Kamau received altogether after <m>4</m> years, savings plus interest?</p>
+                            <solution component="lesson-plan"><p><m>20\,000 + 6400 = 26\,400</m>, so Ksh <m>26\,400</m>.</p></solution>
+                        </li>
+                    </ol>
+                </p>
+            </statement>
+        </activity>
 
-    <!-- Add further instruction (not in a block) to develop ideas as needed -->
+        <axiom component="lesson-plan">
+            <title>Structured Instruction</title>
+            <p>
+                <dl>
+                    <li><title>Suggested Time</title><p>8 minutes</p></li>
+                    <li><title>Objective</title><p>To formalise simple interest and the amount from the activity.</p></li>
+                </dl>
+            </p>
+            <paragraphs>
+                <title>Key Takeaways &amp; Teacher Connection</title>
+                <ol>
+                    <li><p><alert>Connecting to Learner Work:</alert> part (c) is the formula <m>I = \dfrac{PRT}{100}</m> with <m>P = 20\,000</m> and <m>R = 8</m>.</p></li>
+                    <li><p>Simple interest is paid on the principal only, so it is the same every year.</p></li>
+                    <li><p>The time must be in years: <m>8</m> months is <m>\dfrac{8}{12}</m> of a year.</p></li>
+                </ol>
+            </paragraphs>
+        </axiom>
 
-    <xi:include href="../lesson-plan-templates/example-intro.ptx" />
+        <insight xml:id="insight-simple-interest">
+            <title>Simple Interest</title>
+            <p>The sum saved or borrowed is the <term>principal</term>, <m>P</m>. The <term>rate of interest</term>, <m>R</m>, is a percentage per year (per annum, <q>p.a.</q>), and the <term>time</term>, <m>T</m>, is in years. <term>Simple interest</term> is interest on the principal only, the same every year:
+                <md>I = \frac{PRT}{100}</md>
+                The <term>amount</term> is the principal plus the interest, <m>A = P + I</m>. For a time in months, divide the number of months by <m>12</m> to get <m>T</m>.</p>
+        </insight>
 
-    <!-- Add at least 3 examples -->
+        <figure xml:id="fig-simple-interest-line">
+            <caption>The amount on a simple interest account, year by year. Change the principal, the rate and the time with the sliders.</caption>
+            <interactive xml:id="interactive-simple-interest-line" platform="jsxgraph" width="90%" aspect="16:12" source="jsxgraph/simple-interest-line.js">
+                <slate xml:id="jsxgraph-simple-interest-line" surface="jsxboard" aspect="16:12"/>
+                <instructions>
+                    <p>
+                        <ul>
+                            <li><p>Drag <alert>P</alert> to set the principal, <alert>R</alert> to set the rate per cent per annum and <alert>T</alert> to set the time in years.</p></li>
+                            <li><p>The line shows the amount <m>A = P + \dfrac{PRT}{100}</m> after each year. The marked point and the text give the interest and the amount after <m>T</m> years.</p></li>
+                            <li><p>The amount grows by the same number of shillings every year, so the graph is a straight line. Set <m>P = 20\,000</m>, <m>R = 8</m> and <m>T = 4</m> and check your answers to <xref ref="act-interest-year-by-year"/>.</p></li>
+                        </ul>
+                    </p>
+                </instructions>
+            </interactive>
+        </figure>
 
-    <!-- <example>
-        <statement>
-        </statement>
-        <solution>
-        </solution>
-    </example>
+        <xi:include href="../lesson-plan-templates/example-intro.ptx" />
 
-    <example>
-        <statement>
-        </statement>
-        <solution>
-        </solution>
-    </example>
-
-    <example>
-        <statement>
-        </statement>
-        <solution>
-        </solution>
-    </example> -->
-
-    <xi:include href="../lesson-plan-templates/assessment-intro.ptx" />
-
-    <!-- If STACK questions are included, uncomment this: -->
-
-    <!-- <xi:include href="../lesson-plan-templates/checkpoint.ptx" /> -->
-
-    <!-- Add STACK exercises if made -->
-
-    <!-- Add static exercises -->
-
-    <!-- <exercises>
-        <exercise>
-            <statement>   
-
-            </statement>   
+        <example xml:id="example-a-sacco-loan">
+            <title>A SACCO Loan</title>
+            <statement>
+                <p>Achieng borrows Ksh <m>45\,000</m> from her SACCO at <m>12\%</m> per annum simple interest for <m>2</m> years. She repays the amount in <m>24</m> equal monthly instalments. Find the interest, the amount and each instalment.</p>
+            </statement>
             <solution>
+                <p><md>I = \frac{PRT}{100} = \frac{45\,000 \times 12 \times 2}{100} = 10\,800</md>
+                    The interest is Ksh <m>10\,800</m> and the amount is <m>45\,000 + 10\,800 = 55\,800</m>, so Ksh <m>55\,800</m>. Each instalment is <m>55\,800 \div 24 = 2325</m>, so Ksh <m>2325</m>.</p>
+            </solution>
+        </example>
 
-            </solution>             
-        </exercise>        
-    </exercises> -->
+        <example xml:id="example-interest-for-part-of-a-year">
+            <title>Interest for Part of a Year</title>
+            <statement>
+                <p>Find the simple interest and the amount on Ksh <m>18\,000</m> at <m>9.5\%</m> per annum for <m>10</m> months.</p>
+            </statement>
+            <solution>
+                <p>The time in years is <m>T = \dfrac{10}{12}</m>.
+                    <md>I = \frac{18\,000 \times 9.5 \times 10}{100 \times 12} = 1425</md>
+                    The interest is Ksh <m>1425</m> and the amount is Ksh <m>19\,425</m>.</p>
+            </solution>
+        </example>
 
-    <!-- [LP] Add information on how to differentiate  -->
+        <example xml:id="example-a-fixed-deposit">
+            <title>A Fixed Deposit</title>
+            <statement>
+                <p>A farmer puts Ksh <m>7500</m> in a fixed deposit at <m>6.4\%</m> per annum simple interest for <m>5</m> years. Find the interest and the amount.</p>
+            </statement>
+            <solution>
+                <p><md>I = \frac{7500 \times 6.4 \times 5}{100} = 2400</md>
+                    The interest is Ksh <m>2400</m> and the amount is <m>7500 + 2400 = 9900</m>, so Ksh <m>9900</m>.</p>
+            </solution>
+        </example>
 
-    <!-- <axiom component="lesson-plan">
-        <title>Differentiation</title>
+        <xi:include href="../lesson-plan-templates/assessment-intro.ptx" />
+        <xi:include href="../lesson-plan-templates/checkpoint.ptx" />
 
-        <table>
+        <p>Type amounts as plain numbers, without Ksh, spaces or commas, for example <c>45326</c>. Give money to the nearest shilling and percentages to 1 decimal place unless the question says otherwise; exact answers in cents are also accepted.</p>
+
+        <exercise xml:id="ex-simple-interest-and-amount">
+            <!--<title></title>-->
+            <stack label="stk-simple-interest-and-amount" source="stack/top/2-measurement-and-geometry/14-commercial-arithmetic-iii/01-simple-interest/Simple-interest-and-amount.xml"/>
+        </exercise>
+
+        <exercises xml:id="exercises-simple-interest-and-amount">
+            <exercise xml:id="ex-si-twelve-thousand">
+                <statement><p>Find the simple interest and the amount on Ksh <m>13\,000</m> at <m>7\%</m> per annum for <m>4</m> years.</p></statement>
+                <answer><p>Interest Ksh <m>3640</m>; amount Ksh <m>16\,640</m></p></answer>
+            </exercise>
+            <exercise xml:id="ex-si-quarter-million">
+                <statement><p>A business deposits Ksh <m>250\,000</m> at <m>11.5\%</m> per annum simple interest for <m>2</m> years. Find the interest and the amount.</p></statement>
+                <answer><p>Interest Ksh <m>57\,500</m>; amount Ksh <m>307\,500</m></p></answer>
+            </exercise>
+            <exercise xml:id="ex-si-nine-months">
+                <statement><p>Find the simple interest on Ksh <m>8400</m> at <m>10\%</m> per annum for <m>9</m> months, and the amount.</p></statement>
+                <answer><p>Interest Ksh <m>630</m>; amount Ksh <m>9030</m></p></answer>
+                <solution><p><m>T = \dfrac{9}{12}</m>, so <m>I = \dfrac{8400 \times 10 \times 9}{100 \times 12} = 630</m>. The amount is <m>8400 + 630 = 9030</m>.</p></solution>
+            </exercise>
+            <exercise xml:id="ex-si-teacher-loan">
+                <statement><p>A teacher borrows Ksh <m>90\,000</m> from a SACCO at <m>13\%</m> per annum simple interest for <m>2\tfrac{1}{2}</m> years and repays the amount in <m>30</m> equal monthly instalments. Find each instalment.</p></statement>
+                <answer><p>Ksh <m>3975</m></p></answer>
+                <solution><p><m>I = \dfrac{90\,000 \times 13 \times 2.5}{100} = 29\,250</m>. The amount is <m>90\,000 + 29\,250 = 119\,250</m>, and <m>119\,250 \div 30 = 3975</m>.</p></solution>
+            </exercise>
+            <exercise xml:id="ex-si-chama-loan">
+                <statement><p>A chama lends a member Ksh <m>30\,000</m> at <m>15\%</m> per annum simple interest for <m>18</m> months. Find the interest.</p></statement>
+                <answer><p>Ksh <m>6750</m></p></answer>
+                <solution><p><m>T = \dfrac{18}{12} = 1.5</m>, so <m>I = \dfrac{30\,000 \times 15 \times 1.5}{100} = 6750</m>.</p></solution>
+            </exercise>
+            <exercise xml:id="ex-si-double-the-time">
+                <title>Challenge: Double the Time</title>
+                <statement><p>Ksh <m>10\,000</m> is invested at <m>10\%</m> per annum simple interest. Show that doubling the time from <m>2</m> years to <m>4</m> years doubles the interest but does not double the amount.</p></statement>
+                <hint><p>Work out the interest and the amount for each time. Which part of the amount does not change?</p></hint>
+                <answer><p>Interest Ksh <m>2000</m> then Ksh <m>4000</m>; amount Ksh <m>12\,000</m> then Ksh <m>14\,000</m>.</p></answer>
+                <solution><p>For <m>2</m> years, <m>I = \dfrac{10\,000 \times 10 \times 2}{100} = 2000</m> and <m>A = 12\,000</m>. For <m>4</m> years, <m>I = 4000</m> and <m>A = 14\,000</m>. The interest is proportional to the time, so it doubles; the amount includes the principal, which stays at <m>10\,000</m>, so the amount does not double.</p></solution>
+            </exercise>
+        </exercises>
+
+        <axiom component="lesson-plan">
             <title>Differentiation</title>
-            <tabular halign="left">
-                <row header="yes" bottom="minor">
-                    <cell>Learner Group</cell>
-                    <cell>Strategy &amp; Learning Experience</cell>
-                    <cell></cell>
-                </row>
-                <row>
-                    <cell>Struggling Learners (Support)</cell>
-                    <cell>
-                        XXXX
-                    </cell>
-                    <cell></cell>
-                </row>
-                <row>
-                    <cell>On-Level Learners (Core)</cell>
-                    <cell>
-                        <line>The core lesson activities as described above.</line>
-                    </cell>
-                    <cell></cell>
-                </row>
-                <row>
-                    <cell>Advanced Learners (Challenge)</cell>
-                    <cell>
-                        XXXX
-                    </cell>
-                    <cell></cell>
-                </row>
-            </tabular>
-        </table>
-    </axiom> -->
+            <table xml:id="table-differentiation-simple-interest-and-amount">
+                <title>Differentiation Strategies</title>
+                <tabular halign="left" top="minor" bottom="minor" left="minor" right="minor">
+                    <row header="yes" bottom="medium"><cell>Learner Group</cell><cell>Strategy and Learning Experience</cell></row>
+                    <row><cell>Struggling Learners (Support)</cell><cell>Work through the activity and <xref ref="example-a-sacco-loan"/>. Give a card: <q><m>I = P \times \dfrac{R}{100} \times T</m>; months: divide by 12</q>. Assign <xref ref="ex-si-twelve-thousand"/> and <xref ref="ex-si-nine-months"/>.</cell></row>
+                    <row><cell>On-Level Learners (Core)</cell><cell>Full activity and all examples. Assign <xref ref="ex-si-twelve-thousand"/> to <xref ref="ex-si-chama-loan"/>.</cell></row>
+                    <row><cell>Advanced Learners (Challenge)</cell><cell>All exercises including <xref ref="ex-si-double-the-time"/>. Extension: after how many years does the simple interest equal the principal at <m>8\%</m> per annum? (Answer: <m>12.5</m> years, since <m>RT = 100</m>.)</cell></row>
+                </tabular>
+            </table>
+        </axiom>
 
-    <xi:include href="../lesson-plan-templates/assessment-methods.ptx" />
+        <xi:include href="../lesson-plan-templates/assessment-methods.ptx" />
+        <xi:include href="../lesson-plan-templates/reflection.ptx"/>
+    </subsection>
 
-    <xi:include href="../lesson-plan-templates/reflection.ptx"/>
+    <!-- ============================================================ Lesson 1.2 -->
+    <subsection xml:id="subsec-finding-rate-time-principal">
+        <title>Finding the Rate, the Time or the Principal</title>
+
+        <p component="lesson-plan">Upon completion of this lesson, learners will be able to:
+            <ol>
+                <li><p><alert>Know:</alert> the simple interest formula can be rearranged; a rate per month is not a rate per annum.</p></li>
+                <li><p><alert>Do:</alert> find the rate, the time or the principal; compare lenders by their yearly rates.</p></li>
+                <li><p><alert>Apply:</alert> choose between a SACCO, a bank and a mobile lender.</p></li>
+            </ol>
+        </p>
+
+        <axiom component="lesson-plan">
+            <title>Problem-Solving and Discovery</title>
+            <dl>
+                <li><title>Suggested Time</title><p>14 minutes</p></li>
+                <li><title>Objective</title><p>Learners compare the cost of borrowing the same sum from three lenders and discover that a monthly charge hides a high yearly rate.</p></li>
+                <li><title>Teacher's Role</title><p>Give each group one lender for parts (a) to (c), then let the groups share. Ask part (e) of the whole class.</p></li>
+            </dl>
+        </axiom>
+
+        <activity xml:id="act-sacco-bank-or-phone">
+            <title>SACCO, Bank or Phone?</title>
+            <statement>
+                <p>Wafula needs Ksh <m>10\,000</m> for <m>6</m> months.</p>
+                <p>
+                    <ol marker="(a)">
+                        <li>
+                            <p>His SACCO charges <m>12\%</m> per annum simple interest. How much interest would he pay?</p>
+                            <solution component="lesson-plan"><p><m>\dfrac{10\,000 \times 12 \times 0.5}{100} = 600</m>, so Ksh <m>600</m>.</p></solution>
+                        </li>
+                        <li>
+                            <p>A bank charges <m>16\%</m> per annum simple interest. How much interest would he pay?</p>
+                            <solution component="lesson-plan"><p><m>\dfrac{10\,000 \times 16 \times 0.5}{100} = 800</m>, so Ksh <m>800</m>.</p></solution>
+                        </li>
+                        <li>
+                            <p>A mobile lender charges <m>7.5\%</m> of the loan for each month. How much would he pay for <m>6</m> months?</p>
+                            <solution component="lesson-plan"><p><m>7.5\%</m> of <m>10\,000</m> is <m>750</m> a month, so <m>6 \times 750 = 4500</m>, Ksh <m>4500</m>.</p></solution>
+                        </li>
+                        <li>
+                            <p>What yearly rate is the mobile lender's charge?</p>
+                            <solution component="lesson-plan"><p><m>7.5 \times 12 = 90\%</m> per annum.</p></solution>
+                        </li>
+                        <li>
+                            <p>Which would you choose, and why might someone still use the mobile lender?</p>
+                            <solution component="lesson-plan"><p>The SACCO is cheapest. Some people use the mobile lender because it is quick and needs no guarantor, but they pay a very high price for that.</p></solution>
+                        </li>
+                    </ol>
+                </p>
+            </statement>
+        </activity>
+
+        <axiom component="lesson-plan">
+            <title>Structured Instruction</title>
+            <p>
+                <dl>
+                    <li><title>Suggested Time</title><p>8 minutes</p></li>
+                    <li><title>Objective</title><p>To rearrange the simple interest formula and to compare rates per annum.</p></li>
+                </dl>
+            </p>
+            <paragraphs>
+                <title>Key Takeaways &amp; Teacher Connection</title>
+                <ol>
+                    <li><p><alert>Connecting to Learner Work:</alert> part (d) turned a monthly charge into a yearly rate so that the three lenders could be compared fairly.</p></li>
+                    <li><p>Any one of <m>P</m>, <m>R</m> and <m>T</m> can be found when the other two and the interest are known.</p></li>
+                    <li><p>Always compare rates per annum.</p></li>
+                </ol>
+            </paragraphs>
+        </axiom>
+
+        <insight xml:id="insight-rearranging-simple-interest">
+            <title>Rearranging the Formula</title>
+            <p>From <m>I = \dfrac{PRT}{100}</m>, multiply both sides by <m>100</m> and divide by the other two letters:
+                <md>R = \frac{100I}{PT}, \qquad T = \frac{100I}{PR}, \qquad P = \frac{100I}{RT}</md>
+                When the amount is given instead of the interest, find the interest first: <m>I = A - P</m>.</p>
+        </insight>
+
+        <note xml:id="note-mobile-loans">
+            <title>Mobile Loans</title>
+            <p>Loans on a mobile phone are quick, but they usually charge a fee for each month, often several per cent. Multiply a monthly rate by <m>12</m> to compare it with a yearly rate. Borrow only what you can repay on time.</p>
+        </note>
+
+        <xi:include href="../lesson-plan-templates/example-intro.ptx" />
+
+        <example xml:id="example-finding-the-rate">
+            <title>Finding the Rate</title>
+            <statement>
+                <p>Ksh <m>60\,000</m> grew to Ksh <m>74\,400</m> in <m>3</m> years at simple interest. Find the rate.</p>
+            </statement>
+            <solution>
+                <p>The interest is <m>I = 74\,400 - 60\,000 = 14\,400</m>.
+                    <md>R = \frac{100I}{PT} = \frac{100 \times 14\,400}{60\,000 \times 3} = 8</md>
+                    The rate is <m>8\%</m> per annum.</p>
+            </solution>
+        </example>
+
+        <example xml:id="example-how-long">
+            <title>How Long?</title>
+            <statement>
+                <p>Ksh <m>25\,000</m> is invested at <m>9\%</m> per annum simple interest and earns Ksh <m>6750</m>. For how long was it invested?</p>
+            </statement>
+            <solution>
+                <p><md>T = \frac{100I}{PR} = \frac{100 \times 6750}{25\,000 \times 9} = 3</md>
+                    It was invested for <m>3</m> years.</p>
+            </solution>
+        </example>
+
+        <example xml:id="example-finding-the-principal">
+            <title>Finding the Principal</title>
+            <statement>
+                <p>How much must be saved at <m>7.5\%</m> per annum simple interest to earn Ksh <m>12\,000</m> in <m>4</m> years?</p>
+            </statement>
+            <solution>
+                <p><md>P = \frac{100I}{RT} = \frac{100 \times 12\,000}{7.5 \times 4} = 40\,000</md>
+                    Ksh <m>40\,000</m> must be saved.</p>
+            </solution>
+        </example>
+
+        <xi:include href="../lesson-plan-templates/assessment-intro.ptx" />
+        <xi:include href="../lesson-plan-templates/checkpoint.ptx" />
+
+        <p>Type amounts as plain numbers, without Ksh, spaces or commas, for example <c>45326</c>. Give money to the nearest shilling and percentages to 1 decimal place unless the question says otherwise; exact answers in cents are also accepted.</p>
+
+        <exercise xml:id="ex-finding-the-rate-and-the-time">
+            <!--<title></title>-->
+            <stack label="stk-finding-the-rate-and-the-time" source="stack/top/2-measurement-and-geometry/14-commercial-arithmetic-iii/01-simple-interest/Finding-the-rate-and-the-time.xml"/>
+        </exercise>
+
+        <exercise xml:id="ex-choose-a-loan-for-the-interest">
+            <!--<title></title>-->
+            <stack label="stk-choose-a-loan-for-the-interest" source="stack/top/2-measurement-and-geometry/14-commercial-arithmetic-iii/01-simple-interest/Choose-a-loan-for-the-interest.xml"/>
+        </exercise>
+
+        <exercises xml:id="exercises-finding-rate-time-principal">
+            <exercise xml:id="ex-find-rate-35000">
+                <statement><p>Ksh <m>35\,000</m> becomes Ksh <m>43\,400</m> in <m>4</m> years at simple interest. Find the rate.</p></statement>
+                <answer><p><m>6\%</m> per annum</p></answer>
+                <solution><p><m>I = 43\,400 - 35\,000 = 8400</m>, so <m>R = \dfrac{100 \times 8400}{35\,000 \times 4} = 6</m>.</p></solution>
+            </exercise>
+            <exercise xml:id="ex-find-time-16000">
+                <statement><p>How long does Ksh <m>16\,000</m> take to earn Ksh <m>6000</m> at <m>12.5\%</m> per annum simple interest?</p></statement>
+                <answer><p><m>3</m> years</p></answer>
+            </exercise>
+            <exercise xml:id="ex-find-principal-4620">
+                <statement><p>What principal earns Ksh <m>4620</m> in <m>2</m> years at <m>11\%</m> per annum simple interest?</p></statement>
+                <answer><p>Ksh <m>21\,000</m></p></answer>
+            </exercise>
+            <exercise xml:id="ex-principal-from-amount">
+                <statement><p>A sum invested at <m>7\%</m> per annum simple interest amounts to Ksh <m>48\,600</m> after <m>5</m> years. Find the sum.</p></statement>
+                <answer><p>Ksh <m>36\,000</m></p></answer>
+                <solution><p><m>A = P + \dfrac{PRT}{100} = P\left(1 + \dfrac{RT}{100}\right) = P \times 1.35</m>. So <m>P = 48\,600 \div 1.35 = 36\,000</m>.</p></solution>
+            </exercise>
+            <exercise xml:id="ex-mobile-loan-rate">
+                <statement><p>A mobile lender charges Ksh <m>180</m> on a one-month loan of Ksh <m>2400</m>. Find the rate per month and the equivalent simple rate per annum.</p></statement>
+                <answer><p><m>7.5\%</m> per month; <m>90\%</m> per annum</p></answer>
+                <solution><p><m>\dfrac{180}{2400} \times 100 = 7.5\%</m> per month, and <m>7.5 \times 12 = 90\%</m> per annum.</p></solution>
+            </exercise>
+            <exercise xml:id="ex-doubling-at-simple-interest">
+                <title>Challenge: Doubling Your Money</title>
+                <statement><p>At what simple rate of interest does money double in <m>8</m> years? Explain why the principal does not matter.</p></statement>
+                <hint><p>Doubling means the interest equals the principal: <m>I = P</m>.</p></hint>
+                <answer><p><m>12.5\%</m> per annum</p></answer>
+                <solution><p>Money doubles when <m>I = P</m>, that is <m>\dfrac{PRT}{100} = P</m>. Dividing by <m>P</m> gives <m>RT = 100</m>, whatever <m>P</m> is. With <m>T = 8</m>, <m>R = 100 \div 8 = 12.5</m>.</p></solution>
+            </exercise>
+        </exercises>
+
+        <axiom component="lesson-plan">
+            <title>Differentiation</title>
+            <table xml:id="table-differentiation-finding-rate-time-principal">
+                <title>Differentiation Strategies</title>
+                <tabular halign="left" top="minor" bottom="minor" left="minor" right="minor">
+                    <row header="yes" bottom="medium"><cell>Learner Group</cell><cell>Strategy and Learning Experience</cell></row>
+                    <row><cell>Struggling Learners (Support)</cell><cell>Activity parts (a) to (c), <xref ref="example-finding-the-rate"/> and <xref ref="example-how-long"/>. Give a card with the three rearranged forms. Assign <xref ref="ex-find-rate-35000"/> and <xref ref="ex-find-time-16000"/>.</cell></row>
+                    <row><cell>On-Level Learners (Core)</cell><cell>Full activity and all examples. Assign <xref ref="ex-find-rate-35000"/> to <xref ref="ex-mobile-loan-rate"/>.</cell></row>
+                    <row><cell>Advanced Learners (Challenge)</cell><cell>All exercises including <xref ref="ex-doubling-at-simple-interest"/>. Extension: a lender charges <m>5\%</m> per fortnight. What is that per year? (Answer: <m>5 \times 26 = 130\%</m> per annum.)</cell></row>
+                </tabular>
+            </table>
+        </axiom>
+
+        <p component="lesson-plan">Closing question for the class: which lender in <xref ref="act-sacco-bank-or-phone"/> would you advise a friend to use, and what would you tell them about the others?</p>
+
+        <xi:include href="../lesson-plan-templates/assessment-methods.ptx" />
+        <xi:include href="../lesson-plan-templates/reflection.ptx"/>
+    </subsection>
 </section>

@@ -1,0 +1,262 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<quiz>
+<question type="stack">
+  <name><text>Finding the mistake in the inequalities of a region</text></name>
+  <questiontext format="html">
+    <text><![CDATA[<p>The graph shows three boundary lines, numbered 1, 2 and 3, with the unwanted side of each shaded.</p><div style="text-align:center;" role="img" aria-label="{@arl@}">
+[[jsxgraph width="400px" height="400px"]]
+(function () {
+
+  function clip(P, a, b, c, s) {
+    var out = [], i, p, q, fp, fq, t;
+    for (i = 0; i < P.length; i++) {
+      p = P[i]; q = P[(i + 1) % P.length];
+      fp = s * (a * p[0] + b * p[1] - c); fq = s * (a * q[0] + b * q[1] - c);
+      if (fp >= 0) { out.push(p); }
+      if ((fp >= 0) !== (fq >= 0)) { t = fp / (fp - fq); out.push([p[0] + t * (q[0] - p[0]), p[1] + t * (q[1] - p[1])]); }
+    }
+    return out;
+  }
+  function frame(x0, x1, y0, y1) { return [[x0, y0], [x1, y0], [x1, y1], [x0, y1]]; }
+  function unwanted(L, R) { var s = (L[3] === 'lt' || L[3] === 'le') ? 1 : -1; return clip(R, L[0], L[1], L[2], s); }
+  function shade(b, P) {
+    if (P.length < 3) { return; }
+    b.create('polygon', P, {fillColor: '#808080', fillOpacity: 0.3, borders: {strokeWidth: 0, visible: false},
+      vertices: {visible: false}, fixed: true, highlight: false, withLines: false, hasInnerPoints: false});
+  }
+  function boundary(b, L, dashedOverride) {
+    var strict = (L[3] === 'lt' || L[3] === 'gt');
+    if (dashedOverride !== undefined) { strict = dashedOverride; }
+    // A dashed boundary on an axis (x = 0 or y = 0) would be hidden by the solid axis drawn
+    // under it; a white line underneath breaks the axis so the dashes show.
+    if (strict && L[2] === 0 && (L[0] === 0 || L[1] === 0)) {
+      b.create('line', [0, L[0], L[1]], {strokeColor: '#ffffff', strokeWidth: 4, fixed: true, highlight: false});
+    }
+    b.create('line', [-L[2], L[0], L[1]], {strokeColor: '#000000', strokeWidth: 2, dash: strict ? 2 : 0,
+      fixed: true, highlight: false, straightFirst: true, straightLast: true});
+  }
+  function grid(b, x0, x1, y0, y1, step) {
+    var g = {strokeColor: '#d0d0d0', strokeWidth: 1, fixed: true, highlight: false}, k, ax = {strokeColor: '#000000', strokeWidth: 1.5, fixed: true, highlight: false, lastArrow: {type: 2, size: 6}};
+    for (k = Math.ceil(x0); k <= x1; k++) { b.create('segment', [[k, y0], [k, y1]], g); }
+    for (k = Math.ceil(y0); k <= y1; k++) { b.create('segment', [[x0, k], [x1, k]], g); }
+    b.create('arrow', [[x0, 0], [x1, 0]], ax); b.create('arrow', [[0, y0], [0, y1]], ax);
+    var t = {fixed: true, highlight: false, fontSize: 11, anchorX: 'middle', anchorY: 'top'};
+    for (k = Math.ceil(x0); k < x1; k++) { if (k !== 0 && k % step === 0) { b.create('text', [k, -0.15, String(k)], t); } }
+    for (k = Math.ceil(y0); k < y1; k++) { if (k !== 0 && k % step === 0) { b.create('text', [-0.2, k, String(k)], {fixed: true, highlight: false, fontSize: 11, anchorX: 'right', anchorY: 'middle'}); } }
+    b.create('text', [-0.2, -0.15, '0'], {fixed: true, highlight: false, fontSize: 11, anchorX: 'right', anchorY: 'top'});
+    b.create('text', [x1 - 0.1, 0.25, 'x'], {fixed: true, highlight: false, fontSize: 14, anchorX: 'right', anchorY: 'bottom'});
+    b.create('text', [0.25, y1 - 0.1, 'y'], {fixed: true, highlight: false, fontSize: 14, anchorX: 'left', anchorY: 'top'});
+  }
+  function opts(bb) {
+    return {boundingbox: bb, keepAspectRatio: true, axis: false, grid: false, showNavigation: false,
+      showCopyright: false, pan: {enabled: false}, zoom: {enabled: false}};
+  }
+
+  var S = {#S#}, lo = -3, hi = 10, i;
+  var b = JXG.JSXGraph.initBoard(divid, opts([lo - 0.5, hi + 0.5, hi + 0.5, lo - 0.5]));
+  var R = frame(lo, hi, lo, hi);
+  grid(b, lo, hi, lo, hi, 1);
+  for (i = 0; i < S.length; i++) { shade(b, unwanted(S[i], R)); }
+  for (i = 0; i < S.length; i++) { boundary(b, S[i]); }
+  function meet(P, Q) { var d = P[0] * Q[1] - Q[0] * P[1]; return [(P[2] * Q[1] - Q[2] * P[1]) / d, (P[0] * Q[2] - Q[0] * P[2]) / d]; }
+  var V = [meet(S[1], S[2]), meet(S[0], S[2]), meet(S[0], S[1])], gx = (V[0][0] + V[1][0] + V[2][0]) / 3, gy = (V[0][1] + V[1][1] + V[2][1]) / 3;
+  b.create('text', [gx, gy, 'R'], {fixed: true, highlight: false, fontSize: 20, anchorX: 'middle', anchorY: 'middle', cssStyle: 'font-weight:bold;'});
+  // Circled line numbers. Placing them at edge midpoints would collide with tick labels and, for thin
+  // triangles, put two numbers side by side. Each number goes beside its own line, outside R, at the sampled
+  // point farthest from the other lines and the axes (and near R when that is a tie).
+  var NUM = ['\u2460', '\u2461', '\u2462'], k, j, m, best, bs, P, sc, d, nn, ux, uy, sg, placed = [];
+  function inR(p) { var q; for (q = 0; q < 3; q++) { var v = S[q][0] * p[0] + S[q][1] * p[1] - S[q][2]; if ((S[q][3] === 'lt' || S[q][3] === 'le') ? v > 0.01 : v < -0.01) { return false; } } return true; }
+  function dl(p, L) { return Math.abs(L[0] * p[0] + L[1] * p[1] - L[2]) / Math.sqrt(L[0] * L[0] + L[1] * L[1]); }
+  for (k = 0; k < 3; k++) {
+    nn = Math.sqrt(S[k][0] * S[k][0] + S[k][1] * S[k][1]); ux = -S[k][1] / nn; uy = S[k][0] / nn;
+    var px = S[k][0] * S[k][2] / (nn * nn), py = S[k][1] * S[k][2] / (nn * nn);
+    best = null; bs = -1e9;
+    for (m = -40; m <= 40; m++) {
+      for (sg = -1; sg <= 1; sg += 2) {
+        P = [px + ux * m * 0.5 + sg * 0.6 * S[k][0] / nn, py + uy * m * 0.5 + sg * 0.6 * S[k][1] / nn];
+        if (P[0] < lo + 0.4 || P[0] > hi - 0.4 || P[1] < lo + 0.4 || P[1] > hi - 0.4 || inR(P)) { continue; }
+        d = Math.min(Math.abs(P[0]), Math.abs(P[1])) + 0.3;
+        for (j = 0; j < 3; j++) { if (j !== k) { d = Math.min(d, dl(P, S[j])); } }
+        for (j = 0; j < placed.length; j++) { d = Math.min(d, Math.sqrt(Math.pow(P[0] - placed[j][0], 2) + Math.pow(P[1] - placed[j][1], 2)) - 0.3); }
+        sc = 10 * Math.min(d, 1.3) - Math.sqrt(Math.pow(P[0] - gx, 2) + Math.pow(P[1] - gy, 2));
+        if (sc > bs) { bs = sc; best = P; }
+      }
+    }
+    placed.push(best);
+    b.create('text', [best[0], best[1], NUM[k]], {fixed: true, highlight: false, fontSize: 20, anchorX: 'middle', anchorY: 'middle'});
+  }
+})();
+[[/jsxgraph]]
+</div><p>Key: shaded, not wanted; unshaded (\(R\)), the required region.</p><p>Wafula wrote these inequalities for \(R\), one for each line: (1) {@wd[1]@}, (2) {@wd[2]@}, (3) {@wd[3]@}. One of them is wrong.</p><p>(a) Which one?</p><div>[[input:ans1]] [[validation:ans1]] [[feedback:prt1]]</div><p>(b) Write it correctly.</p><div>[[input:ans2]] [[validation:ans2]] [[feedback:prt2]]</div>]]></text>
+  </questiontext>
+  <generalfeedback format="html">
+    <text><![CDATA[<p>(a) Inequality ({@wi@}) is wrong. [[if test="is(ek=\"rev\")"]]It describes the shaded side, which is the unwanted one.[[elif test="is(ek=\"strict\")"]]Its sign does not match the line: line {@wi@} is [[if test="strictp(Lw[4])"]]dashed[[else]]solid[[/if]].[[else]]Its boundary crosses the axes in the wrong places: line {@wi@} is {@lind(Lw[1], Lw[2], Lw[3])@}.[[/if]] Test with a point in \(R\), such as \(({@nd(G[1])@}, {@nd(G[2])@})\), the centre of the triangle.</p><p>(b) The correct inequality is {@rd@}.</p>]]></text>
+  </generalfeedback>
+  <defaultgrade>2</defaultgrade>
+  <penalty>0.1</penalty>
+  <hidden>0</hidden>
+  <idnumber></idnumber>
+  <stackversion><text>2026063000</text></stackversion>
+  <questionvariables>
+    <text><![CDATA[/* helpers: relation tokens, display strings, inequality builders */
+relt(r) := if r="lt" then "\\lt" else if r="le" then "\\le" else if r="gt" then "\\gt" else "\\ge";
+reluc(r) := if r="lt" then "<" else if r="le" then "≤" else if r="gt" then ">" else "≥";
+relflip(r) := if r="lt" then "gt" else if r="le" then "ge" else if r="gt" then "lt" else "le";
+relother(r) := if r="lt" then "le" else if r="le" then "lt" else if r="gt" then "ge" else "gt";
+relcomp(r) := if r="lt" then "ge" else if r="le" then "gt" else if r="gt" then "le" else "lt";
+strictp(r) := is(r="lt" or r="gt");
+/* Typed answers must be one inequality; "and"/"or" statements are rejected at validation. */
+vsingle(ex) := if not atom(ex) and member(op(ex), ["and", "or", "nounand", "nounor"]) then "Type a single inequality, without the words and or or." else "";
+mkin(u, r, w) := if r="lt" then u<w else if r="le" then u<=w else if r="gt" then u>w else u>=w;
+holds(u, r, w) := if r="lt" then is(u<w) else if r="le" then is(u<=w) else if r="gt" then is(u>w) else is(u>=w);
+relopts(c) := [["lt",is(c="lt"),"<"],["le",is(c="le"),"≤"],["gt",is(c="gt"),">"],["ge",is(c="ge"),"≥"]];
+termp(v) := block([dd], dd: denom(v), while is(mod(dd,2)=0) do dd: dd/2, while is(mod(dd,5)=0) do dd: dd/5, is(dd=1));
+nd(v) := if integerp(v) then string(v) else if termp(v) then string(float(v))
+  else sconcat(if is(v<0) then "-" else "", "\\frac{", string(abs(num(v))), "}{", string(denom(v)), "}");
+ndm(v) := sconcat("\\(", nd(v), "\\)");
+/* plain-text number for aria-labels (nd gives TeX fractions, which a screen reader reads raw) */
+ndt(v) := if integerp(v) then string(v) else if termp(v) then string(float(v)) else sconcat(string(num(v)), "/", string(denom(v)));
+trm(k, v, fst) := block([m, s], m: abs(k), s: if v="" then nd(m) else if m=1 then v else sconcat(nd(m), v),
+  if fst then (if k<0 then sconcat("-", s) else s) else (if k<0 then sconcat(" - ", s) else sconcat(" + ", s)));
+lfs(L) := block([s, t], s: "", for t in L do (if t[1]#0 then s: sconcat(s, trm(t[1], t[2], is(s="")))), if s="" then "0" else s);
+ins(a, b, c, r) := sconcat(lfs([[a,"x"],[b,"y"]]), " ", relt(r), " ", nd(c));
+ineqd(a, b, c, r) := sconcat("\\(", ins(a, b, c, r), "\\)");
+lind(a, b, c) := sconcat("\\(", lfs([[a,"x"],[b,"y"]]), " = ", nd(c), "\\)");
+ineqm(a, b, c, r) := mkin(a*x+b*y, r, c);
+/* region helpers: corners of the triangle cut out by three lines, centroid */
+meet(L1, L2) := block([d], d: L1[1]*L2[2]-L2[1]*L1[2], [(L1[3]*L2[2]-L2[3]*L1[2])/d, (L1[1]*L2[3]-L2[1]*L1[3])/d]);
+ptd(P) := sconcat("(", ndt(P[1]), ", ", ndt(P[2]), ")");
+/* system helpers */
+spl(L) := sconcat(lfs([[L[1],"x"],[L[2],"y"]]), " = ", ndt(L[3]), if strictp(L[4]) then " (dashed)" else " (solid)");
+lkind(L) := if is(L[2]=0) then "vertical" else if is(L[1]=0) then "horizontal" else "sloping";
+/* guard test input: the wrong letter(s) for a line */
+gk(L) := if is(L[2]=0) then mkin(y, L[4], L[3]) else if is(L[1]=0) then mkin(x, L[4], L[3]) else mkin(L[1]*x, L[4], L[3]);
+/* Design: find-the-mistake pattern. Source: original. q53 [[3 correct inequalities], index of Wafula's wrong one, error kind, Wafula's version];
+   error kinds rev (described the shaded side), strict (wrong style), swap (crossings swapped, sloping line only); each kind and index at least 3 times. */
+q53: [[[[1,0,-2,"gt"],[0,1,0,"ge"],[1,8,8,"le"]],3,"rev",[1,8,8,"gt"]],[[[0,1,-2,"gt"],[1,0,5,"lt"],[-8,3,-24,"le"]],1,"strict",[0,1,-2,"ge"]],[[[1,0,2,"lt"],[-6,5,30,"le"],[0,1,5,"gt"]],2,"rev",[-6,5,30,"gt"]],[[[1,0,3,"le"],[0,1,5,"le"],[7,4,28,"gt"]],2,"rev",[0,1,5,"gt"]],[[[0,1,2,"ge"],[-7,2,-14,"lt"],[1,0,4,"le"]],3,"strict",[1,0,4,"lt"]],[[[0,1,4,"lt"],[-2,7,14,"gt"],[1,0,-1,"gt"]],2,"rev",[-2,7,14,"le"]],[[[0,1,-2,"ge"],[1,8,-8,"lt"],[1,0,-2,"gt"]],2,"swap",[8,1,-8,"lt"]],[[[7,8,56,"le"],[1,0,2,"ge"],[0,1,0,"ge"]],1,"strict",[7,8,56,"lt"]],[[[0,1,-2,"gt"],[1,0,-1,"ge"],[7,5,35,"le"]],3,"swap",[5,7,35,"le"]],[[[-7,4,28,"le"],[1,0,1,"le"],[0,1,4,"ge"]],1,"swap",[4,-7,28,"le"]]];
+ix: 1+rand(10);
+S: q53[ix][1]; wi: q53[ix][2]; ek: q53[ix][3]; WL: q53[ix][4];
+W: makelist(if is(j=wi) then WL else S[j], j, 1, 3);
+wd: makelist(ineqd(W[j][1], W[j][2], W[j][3], W[j][4]), j, 1, 3);
+Lw: S[wi];
+tright: ineqm(Lw[1], Lw[2], Lw[3], Lw[4]);
+twaf: ineqm(WL[1], WL[2], WL[3], WL[4]);
+cs: ["i1","i2","i3"][wi];
+o1: [["none",false,"None: all three are correct"],["i1",is(wi=1),"Inequality (1)"],["i2",is(wi=2),"Inequality (2)"],["i3",is(wi=3),"Inequality (3)"]];
+/* test values */
+wst: if is(wi=1) then "i2" else "i1";
+tgen: ineqm(Lw[1], Lw[2], Lw[3]+1, Lw[4]);
+tgd: gk(Lw);
+teq: Lw[1]*x+Lw[2]*y=Lw[3];
+V: [meet(S[2], S[3]), meet(S[1], S[3]), meet(S[1], S[2])];
+G: [(V[1][1]+V[2][1]+V[3][1])/3, (V[1][2]+V[2][2]+V[3][2])/3];
+rd: ineqd(Lw[1], Lw[2], Lw[3], Lw[4]);
+arl: sconcat("A grid from -3 to 10. Line 1: ", spl(S[1]), ". Line 2: ", spl(S[2]), ". Line 3: ", spl(S[3]),
+  ". The unwanted side of each line is shaded. R is the clear triangle with corners ", ptd(V[1]), ", ", ptd(V[2]), " and ", ptd(V[3]), ".");]]></text>
+  </questionvariables>
+  <specificfeedback format="html"><text><![CDATA[]]></text></specificfeedback>
+  <questionnote format="moodle_auto_format">
+    <text>ix={@ix@}, wrong {@wi@}, {@ek@}</text>
+  </questionnote>
+  <questiondescription format="html"><text><![CDATA[<p id="concept">Linear Inequalities: finding the mistake in the inequalities of a region</p><p id="description">Grade 12 CBE Essential 1.3: Find the wrong inequality in a description of a clear region and write it correctly.</p><p id="edition">Essential</p><p id="provenance">This question is original to this project.</p><p id="citation">INNODEMS CBC Grade 12 Mathematics, first draft by Ben Davies, 2026. Aligned to the KICD Senior School Curriculum Design, Essential Mathematics Grade 12 (draft).</p>]]></text></questiondescription>
+  <questionsimplify>1</questionsimplify>
+  <assumepositive>0</assumepositive>
+  <assumereal>0</assumereal>
+  <prtcorrect format="html"><text><![CDATA[[[commonstring key="symbolicprtcorrectfeedback"/]] [[commonstring key="defaultprtcorrectfeedback"/]]]]></text></prtcorrect>
+  <prtpartiallycorrect format="html"><text><![CDATA[[[commonstring key="symbolicprtpartiallycorrectfeedback"/]] [[commonstring key="defaultprtpartiallycorrectfeedback"/]]]]></text></prtpartiallycorrect>
+  <prtincorrect format="html"><text><![CDATA[[[commonstring key="symbolicprtincorrectfeedback"/]] [[commonstring key="defaultprtincorrectfeedback"/]]]]></text></prtincorrect>
+  <decimals>.</decimals>
+  <scientificnotation>*10</scientificnotation>
+  <multiplicationsign>none</multiplicationsign>
+  <sqrtsign>1</sqrtsign>
+  <complexno>i</complexno>
+  <inversetrig>cos-1</inversetrig>
+  <logicsymbol>lang</logicsymbol>
+  <matrixparens>[</matrixparens>
+  <isbroken>0</isbroken>
+  <variantsselectionseed></variantsselectionseed>
+
+  <input><name>ans1</name><type>radio</type><tans>o1</tans><boxsize>15</boxsize><strictsyntax>1</strictsyntax><insertstars>0</insertstars><syntaxhint></syntaxhint><syntaxattribute>0</syntaxattribute><forbidwords></forbidwords><allowwords></allowwords><forbidfloat>1</forbidfloat><requirelowestterms>0</requirelowestterms><checkanswertype>0</checkanswertype><mustverify>0</mustverify><showvalidation>0</showvalidation><options></options></input>
+  <input><name>ans2</name><type>algebraic</type><tans>tright</tans><boxsize>18</boxsize><strictsyntax>1</strictsyntax><insertstars>4</insertstars><syntaxhint></syntaxhint><syntaxattribute>0</syntaxattribute><forbidwords></forbidwords><allowwords></allowwords><forbidfloat>1</forbidfloat><requirelowestterms>0</requirelowestterms><checkanswertype>1</checkanswertype><mustverify>0</mustverify><showvalidation>3</showvalidation><options>validator:vsingle</options></input>
+
+  <prt><name>prt1</name><value>1.0000000</value><autosimplify>1</autosimplify><feedbackstyle>1</feedbackstyle><feedbackvariables><text><![CDATA[ipt: sublist(create_list([u, w], u, -3, 10, w, -3, 10), lambda([z], every(lambda([L], holds(L[1]*z[1]+L[2]*z[2], L[4], L[3]) and not is(L[1]*z[1]+L[2]*z[2]=L[3])), S)));
+tp: if is(ipt=[]) then G else first(ipt);
+tpd: sconcat("\\((", nd(tp[1]), ", ", nd(tp[2]), ")\\)");
+chs: if ans1="i1" then 1 else if ans1="i2" then 2 else 3;
+gv: W[chs][1]*tp[1]+W[chs][2]*tp[2];
+gst: sconcat("\\(", nd(gv), " ", relt(W[chs][4]), " ", nd(W[chs][3]), "\\)");]]></text></feedbackvariables>
+    <node><name>0</name><description>Wrong inequality found</description><answertest>AlgEquiv</answertest><sans>ans1</sans><tans>cs</tans><testoptions></testoptions><quiet>0</quiet><truescoremode>=</truescoremode><truescore>1.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt1-1-T</trueanswernote><truefeedback format="html"><text><![CDATA[]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>1</falsenextnode><falseanswernote>prt1-1-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>1</name><description>Said all are correct</description><answertest>AlgEquiv</answertest><sans>ans1</sans><tans>"none"</tans><testoptions></testoptions><quiet>0</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt1-2-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>One is wrong. Test a point in \(R\) in each inequality, and check each line's style and crossings.</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>-1</falsenextnode><falseanswernote>prt1-2-F</falseanswernote><falsefeedback format="html"><text><![CDATA[<p>Inequality ({@chs@}), {@wd[chs]@}, is right. Test it with a point in \(R\), such as {@tpd@}: {@gst@} is true. Its sign also matches line {@chs@}, which is [[if test="strictp(W[chs][4])"]]dashed[[else]]solid[[/if]]. Check the others.</p>]]></text></falsefeedback></node>
+  </prt>
+  <prt><name>prt2</name><value>1.0000000</value><autosimplify>1</autosimplify><feedbackstyle>1</feedbackstyle><feedbackvariables><text><![CDATA[/* guard: same letters as the teacher's answer (AlgEquiv ignores the name of a lone variable) */
+gsd: ev(lhs(ans2)-rhs(ans2),simp);
+gsv: sort(listofvars(gsd));
+gtv: sort(listofvars(ev(lhs(tright)-rhs(tright),simp)));
+samevars: is(gsv = gtv);
+lok: polynomialp(gsd, [x, y]);
+lca: if lok then coeff(expand(gsd), x) else 0;
+lcb: if lok then coeff(expand(gsd), y) else 0;
+lc0: if lok then ev(expand(gsd), x=0, y=0) else 0;
+llin: is(lok and numberp(lca) and numberp(lcb) and numberp(lc0) and not is(lca=0 and lcb=0) and is(expand(gsd-lca*x-lcb*y-lc0)=0));
+lbd: if not llin then "" else if is(lcb=0) then sconcat("the vertical line \\(x = ", nd(-lc0/lca), "\\)")
+  else if is(lca=0) then sconcat("the horizontal line \\(y = ", nd(-lc0/lcb), "\\)")
+  else if is(lc0=0) then "a sloping line through \\((0, 0)\\)"
+  else sconcat("a sloping line that crosses the axes at \\((", nd(-lc0/lca), ", 0)\\) and \\((0, ", nd(-lc0/lcb), ")\\)");
+ldr: Lw[1]*x+Lw[2]*y-Lw[3];
+lrat: if llin then ratsimp(gsd/ldr) else 0;
+lsame: is(llin and numberp(lrat) and not is(lrat=0));
+lop: if lsame then op(ans2) else "";
+ldl: is(lop="<" or lop="<=");
+rdl: is(Lw[4]="lt" or Lw[4]="le");
+lside: if not lsame then false else if is(lrat>0) then is(ldl=rdl) else is(ldl#rdl);
+ipt: sublist(create_list([u, w], u, -3, 10, w, -3, 10), lambda([z], every(lambda([L], holds(L[1]*z[1]+L[2]*z[2], L[4], L[3]) and not is(L[1]*z[1]+L[2]*z[2]=L[3])), S)));
+tp: if is(ipt=[]) then G else first(ipt);
+tpd: sconcat("\\((", nd(tp[1]), ", ", nd(tp[2]), ")\\)");
+]]></text></feedbackvariables>
+    <node><name>0</name><description>Guard: right letters</description><answertest>AlgEquiv</answertest><sans>samevars</sans><tans>true</tans><testoptions></testoptions><quiet>1</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>1</truenextnode><trueanswernote>prt2-1-T</trueanswernote><truefeedback format="html"><text><![CDATA[]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>-1</falsenextnode><falseanswernote>prt2-1-F</falseanswernote><falsefeedback format="html"><text><![CDATA[<p>[[if test="is(lkind(Lw)=\"vertical\")"]]Line {@wi@} is vertical: every point on it has \(x = {@Lw[3]@}\), so its inequality uses only \(x\).[[elif test="is(lkind(Lw)=\"horizontal\")"]]Line {@wi@} is horizontal: every point on it has \(y = {@Lw[3]@}\), so its inequality uses only \(y\).[[else]]Line {@wi@} is sloping, so its inequality needs both \(x\) and \(y\).[[/if]]</p>]]></text></falsefeedback></node>
+    <node><name>1</name><description>Corrected inequality</description><answertest>AlgEquiv</answertest><sans>ans2</sans><tans>tright</tans><testoptions></testoptions><quiet>1</quiet><truescoremode>=</truescoremode><truescore>1.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt2-2-T</trueanswernote><truefeedback format="html"><text><![CDATA[]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>2</falsenextnode><falseanswernote>prt2-2-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>2</name><description>Wafula's inequality again</description><answertest>AlgEquiv</answertest><sans>ans2</sans><tans>twaf</tans><testoptions></testoptions><quiet>1</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt2-3-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>That is Wafula's inequality, the one with the mistake.</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>-1</falsenextnode><falseanswernote>prt2-3-F</falseanswernote><falsefeedback format="html"><text><![CDATA[<p>[[if test="lsame and lside"]]Your inequality is now on the right side of line {@wi@}. Check whether that line is solid or dashed: are the points on it part of \(R\)?[[elif test="lsame"]]Your inequality describes the shaded side of line {@wi@}. Test it with a point in \(R\), such as {@tpd@}.[[elif test="llin"]]Your inequality has {@lbd@} as its boundary, which is not line {@wi@}. [[if test="is(ek=\"swap\")"]]Check where line {@wi@} crosses the axes.[[else]]Wafula's boundary was right: look again at his sign.[[/if]][[elif test="is(ek=\"rev\")"]]The shaded side is the unwanted one: \(R\) is on the other side.[[elif test="is(ek=\"strict\")"]]Check whether line {@wi@} is solid or dashed.[[else]]Check where line {@wi@} crosses the axes.[[/if]]</p>]]></text></falsefeedback></node>
+  </prt>
+
+  <deployedseed>4</deployedseed>
+  <deployedseed>5</deployedseed>
+  <deployedseed>15</deployedseed>
+  <deployedseed>8</deployedseed>
+  <deployedseed>24</deployedseed>
+  <deployedseed>1</deployedseed>
+  <deployedseed>3</deployedseed>
+  <deployedseed>10</deployedseed>
+  <deployedseed>2</deployedseed>
+  <deployedseed>17</deployedseed>
+  <qtest><testcase>1</testcase><description>Correct</description>
+    <testinput><name>ans1</name><value>cs</value></testinput>
+    <testinput><name>ans2</name><value>tright</value></testinput>
+    <expected><name>prt1</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt1-1-T</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt2-1-T | prt2-2-T</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>2</testcase><description>None; Wafula's version</description>
+    <testinput><name>ans1</name><value>"none"</value></testinput>
+    <testinput><name>ans2</name><value>twaf</value></testinput>
+    <expected><name>prt1</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt1-1-F | prt1-2-T</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt2-1-T | prt2-2-F | prt2-3-T</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>3</testcase><description>Wrong index; generic</description>
+    <testinput><name>ans1</name><value>wst</value></testinput>
+    <testinput><name>ans2</name><value>tgen</value></testinput>
+    <expected><name>prt1</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt1-1-F | prt1-2-F</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt2-1-T | prt2-2-F | prt2-3-F</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>4</testcase><description>Guard</description>
+    <testinput><name>ans1</name><value>cs</value></testinput>
+    <testinput><name>ans2</name><value>tgd</value></testinput>
+    <expected><name>prt1</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt1-1-T</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt2-1-F</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>5</testcase><description>Invalid: an equation</description>
+    <testinput><name>ans1</name><value>cs</value></testinput>
+    <testinput><name>ans2</name><value>teq</value></testinput>
+    <expected><name>prt1</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt1-1-T</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore></expectedscore><expectedpenalty></expectedpenalty><expectedanswernote>NULL</expectedanswernote></expected>
+  </qtest>
+</question>
+</quiz>

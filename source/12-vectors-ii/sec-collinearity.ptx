@@ -46,161 +46,254 @@
          Suggested activity: Learners mark three points on a straight road on a map, find vectors AB and BC, and show the points are collinear.
          Interactive (JSXGraph): Three draggable points; the display shows whether AB = k·BC and turns the points green when they are collinear. -->
 
-    <!-- [LP] Add guidance on activity -->
+    <!-- Section notes (2026-11)
+         SLOs: Core 2.6 (f), in two and three dimensions
+         Activity: as planning notes (points on a straight road on a map) | added: part (d), a parallel road through F and G, so that parallel alone is seen not to be enough
+         JSXGraph: fig-collinearity (assets/jsxgraph/collinearity.js) | changed: collinear points become large squares rather than turning green (shape, not colour alone)
+         STACK: assets/stack/top/2-measurement-and-geometry/12-vectors-ii/06-collinearity/ -->
 
-    <!-- <axiom component="lesson-plan">
-            <title>Problem-Solving and Discovery</title>
-            <dl>
-                <li>
-                    <title>Suggested Time</title>
-                    <p>
-                        XX minutes
-                    </p>
-                </li>
-                <li>
-                    <title>Objective</title>
-                    <p>
-                        XXX
-                    </p>
-                </li>
-                <li>
-                    <title>Teacher's Role</title>
-                    <p>
-                        XXX
-                    </p>
-                </li>
-            </dl>
-        </axiom> -->
+    <p component="lesson-plan">Upon completion of this lesson, learners will be able to:
+        <ol>
+            <li><p><alert>Know:</alert> three points are collinear when two of the vectors joining them are parallel and share a point.</p></li>
+            <li><p><alert>Do:</alert> test three points for collinearity in two and three dimensions, find an unknown coordinate of a collinear point, and give the ratio <m>AB : BC</m>.</p></li>
+            <li><p><alert>Apply:</alert> decide whether points on a road or boreholes on a pipeline lie on one straight line.</p></li>
+        </ol>
+    </p>
 
-    <!-- Add Activity -->
+    <axiom component="lesson-plan">
+        <title>Problem-Solving and Discovery</title>
+        <dl>
+            <li><title>Suggested Time</title><p>14 minutes</p></li>
+            <li><title>Objective</title><p>Learners test points on a road with vectors and see that two parallel vectors are not enough on their own: the vectors must also share a point.</p></li>
+            <li><title>Teacher's Role</title><p>Hand out squared paper and let learners plot the points first. After part (d), ask: <q><m>\overrightarrow{FG}</m> is parallel to <m>\overrightarrow{AB}</m>; is <m>F</m> on the road?</q></p></li>
+        </dl>
+    </axiom>
 
-    <!-- <activity>
+    <activity xml:id="act-points-on-a-straight-road">
+        <title>Points on a Straight Road</title>
         <statement>
+            <p>A county map of the area near Nakuru has a grid in kilometres. A straight road passes through the points <m>A(1, 2)</m> and <m>B(4, 4)</m>. A school is at <m>C(10, 8)</m> and a dispensary at <m>D(7, 7)</m>. A footpath runs from a borehole at <m>F(2, 5)</m> to a shop at <m>G(5, 7)</m>.</p>
+            <figure xml:id="fig-collinear-road">
+                <caption>The road through <m>A</m> and <m>B</m>, the points <m>C</m> and <m>D</m>, and the footpath <m>FG</m> (dashed).</caption>
+                <image width="65%">
+                    <shortdescription>A grid with a straight road (solid line) through A(1, 2), B(4, 4) and C(10, 8). D(7, 7) lies above the road. A dashed footpath runs from F(2, 5) to G(5, 7), parallel to the road.</shortdescription>
+                    <latex-image>
+\begin{tikzpicture}[scale=0.6]
+\draw[gray!40] (0,0) grid (11,9);
+\draw[->] (0,0) -- (11.5,0) node[right] {$x$};
+\draw[->] (0,0) -- (0,9.5) node[above] {$y$};
+\foreach \x in {2,4,...,10} \node[below] at (\x,0) {\small $\x$};
+\foreach \y in {2,4,...,8} \node[left] at (0,\y) {\small $\y$};
+\draw[thick] (-0.5,1) -- (11,8.667);
+\draw[thick, dashed] (2,5) -- (5,7);
+\foreach \p/\n/\pos in {(1,2)/A/below right, (4,4)/B/below right, (10,8)/C/below right, (7,7)/D/above left, (2,5)/F/above left, (5,7)/G/above left}
+  {\fill \p circle (3pt); \node[\pos] at \p {$\n$};}
+\end{tikzpicture}
+                    </latex-image>
+                </image>
+            </figure>
+            <p>
+                <ol marker="(a)">
+                    <li>
+                        <p>Write <m>\overrightarrow{AB}</m> and <m>\overrightarrow{BC}</m> as column vectors. How is <m>\overrightarrow{BC}</m> related to <m>\overrightarrow{AB}</m>? Is the school on the road?</p>
+                        <solution component="lesson-plan"><p><m>\overrightarrow{AB} = \begin{pmatrix} 3 \\ 2 \end{pmatrix}</m> and <m>\overrightarrow{BC} = \begin{pmatrix} 6 \\ 4 \end{pmatrix} = 2\overrightarrow{AB}</m>. The two vectors are parallel and both pass through <m>B</m>, so <m>A</m>, <m>B</m> and <m>C</m> are on one straight line: the school is on the road.</p></solution>
+                    </li>
+                    <li>
+                        <p>Find <m>\overrightarrow{BD}</m>. Is the dispensary on the road?</p>
+                        <solution component="lesson-plan"><p><m>\overrightarrow{BD} = \begin{pmatrix} 3 \\ 3 \end{pmatrix}</m>. Comparing with <m>\overrightarrow{AB}</m>: <m>3 \div 3 = 1</m> but <m>3 \div 2 = 1.5</m>, so <m>\overrightarrow{BD}</m> is not a multiple of <m>\overrightarrow{AB}</m>. <m>D</m> is off the road.</p></solution>
+                    </li>
+                    <li>
+                        <p>Use your answer to (a) to give the ratio <m>AB : BC</m>.</p>
+                        <solution component="lesson-plan"><p><m>\overrightarrow{BC} = 2\overrightarrow{AB}</m>, so <m>BC</m> is twice as long as <m>AB</m>: <m>AB : BC = 1 : 2</m>.</p></solution>
+                    </li>
+                    <li>
+                        <p>Find <m>\overrightarrow{FG}</m> and compare it with <m>\overrightarrow{AB}</m>. Then find <m>\overrightarrow{AF}</m>. Is the footpath part of the road?</p>
+                        <solution component="lesson-plan"><p><m>\overrightarrow{FG} = \begin{pmatrix} 3 \\ 2 \end{pmatrix} = \overrightarrow{AB}</m>, so the footpath is parallel to the road. But <m>\overrightarrow{AF} = \begin{pmatrix} 1 \\ 3 \end{pmatrix}</m> is not a multiple of <m>\overrightarrow{AB}</m>, so <m>F</m> is not on the road. The footpath is a parallel path, not part of the same road.</p></solution>
+                        <note component="lesson-plan"><p>This is the key point of the lesson: parallel vectors on their own do not show that points are collinear. Ask learners to name the extra fact that made (a) work (the shared point <m>B</m>).</p></note>
+                    </li>
+                </ol>
+            </p>
         </statement>
-    </activity> -->
+    </activity>
 
-    <!-- [LP] Add guidance on structured lesson plan-->
-
-    <!-- <axiom component="lesson-plan">
+    <axiom component="lesson-plan">
         <title>Structured Instruction</title>
         <p>
             <dl>
-            <li>
-                <title>Suggested Time</title>
-                <p>
-                    XX minutes
-                </p>
-            </li>
-            <li>
-                <title>Objective</title>
-                <p>
-                    To formalize the concepts and properties learners discovered in the anchor task.
-                </p>
-            </li>
+                <li><title>Suggested Time</title><p>8 minutes</p></li>
+                <li><title>Objective</title><p>To formalise the collinearity test and the ratio it gives.</p></li>
             </dl>
         </p>
         <paragraphs>
             <title>Key Takeaways &amp; Teacher Connection</title>
             <ol>
-                <li>
-                    <p>
-                        <alert>Connecting to Learner Work:</alert> XXXX
-                    </p>
-                </li>
+                <li><p><alert>Connecting to Learner Work:</alert> part (a) used two facts, parallel vectors and the shared point <m>B</m>; part (d) had only the first, and the points were not on one line.</p></li>
+                <li><p>The scalar in <m>\overrightarrow{BC} = k\overrightarrow{AB}</m> gives the ratio of the lengths: <m>AB : BC = 1 : k</m> when <m>k \gt 0</m>.</p></li>
+                <li><p>The test is the same in three dimensions: one more component to compare.</p></li>
             </ol>
         </paragraphs>
-    </axiom> -->
+    </axiom>
 
-    <!-- Add insight / key takeaway directly related to activity / learner experience -->
+    <insight xml:id="insight-collinear-points">
+        <title>Collinear Points</title>
+        <p>
+            Points that lie on one straight line are <term>collinear</term>. The points <m>A</m>, <m>B</m> and <m>C</m> are collinear when
+            <md>\overrightarrow{BC} = k\overrightarrow{AB}</md>
+            for some number <m>k</m>. Two facts make the argument: the vectors are parallel, and they share the point <m>B</m>, so they lie on the same line, not on two parallel lines. Collinear means <em>parallel and sharing a point</em>.
+        </p>
+        <p>
+            Any two of the three vectors will do, as long as they share a point: <m>\overrightarrow{AB} = t\overrightarrow{AC}</m> (sharing <m>A</m>) or <m>\overrightarrow{AC} = s\overrightarrow{BC}</m> (sharing <m>C</m>) works just as well.
+        </p>
+        <p>
+            If <m>\overrightarrow{BC} = k\overrightarrow{AB}</m> with <m>k \gt 0</m>, then <m>B</m> lies between <m>A</m> and <m>C</m>, and <m>AB : BC = 1 : k</m>.
+        </p>
+    </insight>
 
-    <!-- <insight>
-    </insight> -->
-
-    <!-- Add further instruction (not in a block) to develop ideas as needed -->
+    <figure xml:id="fig-collinearity">
+        <caption>Drag <m>A</m>, <m>B</m> and <m>C</m>. When the three points are on one straight line, the text shows the scalar <m>k</m> and the points become squares.</caption>
+        <interactive xml:id="interactive-collinearity" platform="jsxgraph" width="90%" aspect="16:12" source="jsxgraph/collinearity.js">
+            <slate xml:id="jsxgraph-collinearity" surface="jsxboard" aspect="16:12"/>
+            <instructions>
+                <p>
+                    <ul>
+                        <li><p>The points start at <m>A(1, 2)</m>, <m>B(4, 4)</m> and <m>C(10, 8)</m> from <xref ref="act-points-on-a-straight-road"/>. Check that the text gives <m>k = 2</m>.</p></li>
+                        <li><p>Drag <alert>C</alert> to <m>(7, 7)</m>, the dispensary <m>D</m>. What does the text say now?</p></li>
+                        <li><p>Drag <alert>C</alert> to <m>(-2, 0)</m>. The points are collinear again. Why is <m>k</m> negative?</p></li>
+                    </ul>
+                </p>
+            </instructions>
+        </interactive>
+    </figure>
 
     <xi:include href="../lesson-plan-templates/example-intro.ptx" />
 
-    <!-- Add at least 3 examples -->
-
-    <!-- <example>
+    <example xml:id="example-collinear-in-2d">
+        <title>Three Points in a Plane</title>
         <statement>
+            <p>Show that <m>A(-2, 1)</m>, <m>B(1, 3)</m> and <m>C(7, 7)</m> are collinear, and find the ratio <m>AB : BC</m>.</p>
         </statement>
         <solution>
+            <p>
+                <md>
+                    <mrow>\overrightarrow{AB} \amp = \begin{pmatrix} 1 - (-2) \\ 3 - 1 \end{pmatrix} = \begin{pmatrix} 3 \\ 2 \end{pmatrix}</mrow>
+                    <mrow>\overrightarrow{BC} \amp = \begin{pmatrix} 7 - 1 \\ 7 - 3 \end{pmatrix} = \begin{pmatrix} 6 \\ 4 \end{pmatrix} = 2\begin{pmatrix} 3 \\ 2 \end{pmatrix} = 2\overrightarrow{AB}</mrow>
+                </md>
+                <m>\overrightarrow{BC}</m> is parallel to <m>\overrightarrow{AB}</m>, and the two vectors share the point <m>B</m>, so <m>A</m>, <m>B</m> and <m>C</m> are collinear. Since <m>\overrightarrow{BC} = 2\overrightarrow{AB}</m>, <m>AB : BC = 1 : 2</m>.
+            </p>
         </solution>
     </example>
 
-    <example>
+    <example xml:id="example-collinear-in-3d">
+        <title>Three Points in Space</title>
         <statement>
+            <p><m>A(1, -2, 3)</m>, <m>B(3, 1, 2)</m> and <m>C(7, 7, 0)</m> are three points.</p>
+            <p>
+                <ol marker="(a)">
+                    <li><p>Show that <m>A</m>, <m>B</m> and <m>C</m> are collinear.</p></li>
+                    <li><p>Is <m>D(5, 4, 2)</m> on the same line?</p></li>
+                </ol>
+            </p>
         </statement>
         <solution>
+            <p>
+                (a) <m>\overrightarrow{AB} = \begin{pmatrix} 2 \\ 3 \\ -1 \end{pmatrix}</m> and <m>\overrightarrow{BC} = \begin{pmatrix} 4 \\ 6 \\ -2 \end{pmatrix} = 2\overrightarrow{AB}</m>. The vectors are parallel and share <m>B</m>, so the points are collinear.
+            </p>
+            <p>
+                (b) <m>\overrightarrow{BD} = \begin{pmatrix} 2 \\ 3 \\ 0 \end{pmatrix}</m>. The first two components equal those of <m>\overrightarrow{AB}</m> (<m>k = 1</m>), but the third would need <m>0 = 1 \times (-1)</m>, which is false. <m>\overrightarrow{BD}</m> is not a multiple of <m>\overrightarrow{AB}</m>, so <m>D</m> is not on the line.
+            </p>
         </solution>
     </example>
 
-    <example>
+    <example xml:id="example-unknown-coordinate-collinear">
+        <title>An Unknown Coordinate</title>
         <statement>
+            <p>The points <m>A(2, 1, -3)</m>, <m>B(4, 5, -1)</m> and <m>C(u, v, 2)</m> are collinear. Find <m>u</m> and <m>v</m>.</p>
         </statement>
         <solution>
+            <p>
+                <m>\overrightarrow{AB} = \begin{pmatrix} 2 \\ 4 \\ 2 \end{pmatrix}</m> and <m>\overrightarrow{AC} = \begin{pmatrix} u - 2 \\ v - 1 \\ 5 \end{pmatrix}</m>. Collinear with the shared point <m>A</m> means <m>\overrightarrow{AC} = k\overrightarrow{AB}</m>.
+            </p>
+            <p>
+                The third components are both known: <m>5 = 2k</m>, so <m>k = \dfrac{5}{2}</m>. Then
+                <md>
+                    <mrow>u - 2 \amp = \dfrac{5}{2} \times 2 = 5, \amp u \amp = 7</mrow>
+                    <mrow>v - 1 \amp = \dfrac{5}{2} \times 4 = 10, \amp v \amp = 11</mrow>
+                </md>
+                Check: <m>C(7, 11, 2)</m> gives <m>\overrightarrow{BC} = \begin{pmatrix} 3 \\ 6 \\ 3 \end{pmatrix} = 1.5\overrightarrow{AB}</m>.
+            </p>
         </solution>
-    </example> -->
+    </example>
+
+    <p>
+        <em>Vectors in use:</em> surveyors setting out a straight pipeline or power line check that marker posts are collinear in exactly this way, using the coordinates of each post.
+    </p>
 
     <xi:include href="../lesson-plan-templates/assessment-intro.ptx" />
+    <xi:include href="../lesson-plan-templates/checkpoint.ptx" />
 
-    <!-- If STACK questions are included, uncomment this: -->
+    <p>Type one number in each box of a column vector. Fractions may be typed with a slash, for example <c>5/2</c>.</p>
 
-    <!-- <xi:include href="../lesson-plan-templates/checkpoint.ptx" /> -->
+    <exercise xml:id="ex-testing-three-points-for-collinearity">
+        <!--<title></title>-->
+        <stack label="stk-testing-three-points-for-collinearity" source="stack/top/2-measurement-and-geometry/12-vectors-ii/06-collinearity/Testing-three-points-for-collinearity.xml"/>
+    </exercise>
 
-    <!-- Add STACK exercises if made -->
+    <exercise xml:id="ex-unknown-coordinates-for-collinear-points">
+        <!--<title></title>-->
+        <stack label="stk-unknown-coordinates-for-collinear-points" source="stack/top/2-measurement-and-geometry/12-vectors-ii/06-collinearity/Unknown-coordinates-for-collinear-points.xml"/>
+    </exercise>
 
-    <!-- Add static exercises -->
+    <exercise xml:id="ex-finding-the-mistake-in-a-collinearity-argument">
+        <!--<title></title>-->
+        <stack label="stk-finding-the-mistake-in-a-collinearity-argument" source="stack/top/2-measurement-and-geometry/12-vectors-ii/06-collinearity/Finding-the-mistake-in-a-collinearity-argument.xml"/>
+    </exercise>
 
-    <!-- <exercises>
-        <exercise>
-            <statement>   
+    <exercises xml:id="exercises-collinearity">
+        <exercise xml:id="ex-collinear-2d">
+            <statement><p>Show that <m>P(1, 1)</m>, <m>Q(3, 4)</m> and <m>R(7, 10)</m> are collinear.</p></statement>
+            <answer><p><m>\overrightarrow{PQ} = \begin{pmatrix} 2 \\ 3 \end{pmatrix}</m>, <m>\overrightarrow{QR} = \begin{pmatrix} 4 \\ 6 \end{pmatrix} = 2\overrightarrow{PQ}</m>, sharing <m>Q</m>: collinear.</p></answer>
+        </exercise>
+        <exercise xml:id="ex-not-collinear-3d">
+            <statement><p>Are <m>A(0, 2, -1)</m>, <m>B(2, 3, 1)</m> and <m>C(6, 5, 4)</m> collinear?</p></statement>
+            <answer><p>No.</p></answer>
+            <solution><p><m>\overrightarrow{AB} = \begin{pmatrix} 2 \\ 1 \\ 2 \end{pmatrix}</m> and <m>\overrightarrow{BC} = \begin{pmatrix} 4 \\ 2 \\ 3 \end{pmatrix}</m>. The first two components give <m>k = 2</m>, but <m>3 \ne 2 \times 2</m>. <m>\overrightarrow{BC}</m> is not a multiple of <m>\overrightarrow{AB}</m>, so the points are not collinear.</p></solution>
+        </exercise>
+        <exercise xml:id="ex-collinear-ratio">
+            <statement><p>Show that <m>L(-1, 4, 2)</m>, <m>M(1, 3, 5)</m> and <m>N(7, 0, 14)</m> are collinear, and find <m>LM : MN</m>.</p></statement>
+            <answer><p><m>\overrightarrow{MN} = 3\overrightarrow{LM}</m>; <m>LM : MN = 1 : 3</m>.</p></answer>
+            <solution><p><m>\overrightarrow{LM} = \begin{pmatrix} 2 \\ -1 \\ 3 \end{pmatrix}</m> and <m>\overrightarrow{MN} = \begin{pmatrix} 6 \\ -3 \\ 9 \end{pmatrix} = 3\overrightarrow{LM}</m>. The vectors are parallel and share <m>M</m>, so <m>L</m>, <m>M</m>, <m>N</m> are collinear, and <m>LM : MN = 1 : 3</m>.</p></solution>
+        </exercise>
+        <exercise xml:id="ex-boreholes">
+            <statement><p>Three boreholes are at <m>K(2, 3)</m>, <m>L(5, 7)</m> and <m>M(11, 15)</m> on a county map with a grid in kilometres. Can one straight pipe pass through all three? How long is the pipe from <m>K</m> to <m>M</m>?</p></statement>
+            <answer><p>Yes; <m>15\,\text{km}</m>.</p></answer>
+            <solution><p><m>\overrightarrow{KL} = \begin{pmatrix} 3 \\ 4 \end{pmatrix}</m> and <m>\overrightarrow{LM} = \begin{pmatrix} 6 \\ 8 \end{pmatrix} = 2\overrightarrow{KL}</m>, sharing <m>L</m>, so the boreholes are collinear and one straight pipe can pass through all three. <m>\overrightarrow{KM} = \begin{pmatrix} 9 \\ 12 \end{pmatrix}</m>, so <m>KM = \sqrt{81 + 144} = 15\,\text{km}</m>.</p></solution>
+        </exercise>
+        <exercise xml:id="ex-find-m-n-collinear">
+            <statement><p><m>A(1, 2, 3)</m>, <m>B(3, 3, 1)</m> and <m>C(9, m, n)</m> are collinear. Find <m>m</m> and <m>n</m>.</p></statement>
+            <answer><p><m>m = 6</m>, <m>n = -5</m></p></answer>
+            <solution><p><m>\overrightarrow{AB} = \begin{pmatrix} 2 \\ 1 \\ -2 \end{pmatrix}</m> and <m>\overrightarrow{AC} = \begin{pmatrix} 8 \\ m - 2 \\ n - 3 \end{pmatrix} = k\overrightarrow{AB}</m>. The first components give <m>k = 4</m>, so <m>m - 2 = 4</m> and <m>n - 3 = -8</m>: <m>m = 6</m>, <m>n = -5</m>.</p></solution>
+        </exercise>
+        <exercise xml:id="ex-general-collinear">
+            <title>Challenge: Collinear for Any a and b</title>
+            <statement><p>The points <m>A</m>, <m>B</m> and <m>C</m> have position vectors <m>\mathbf{a}</m>, <m>\mathbf{b}</m> and <m>3\mathbf{b} - 2\mathbf{a}</m>. Show that <m>A</m>, <m>B</m> and <m>C</m> are collinear for any <m>\mathbf{a}</m> and <m>\mathbf{b}</m>.</p></statement>
+            <hint><p>Find <m>\overrightarrow{BC}</m> in terms of <m>\mathbf{a}</m> and <m>\mathbf{b}</m>.</p></hint>
+            <answer><p><m>\overrightarrow{BC} = 2\overrightarrow{AB}</m>.</p></answer>
+            <solution><p><m>\overrightarrow{AB} = \mathbf{b} - \mathbf{a}</m> and <m>\overrightarrow{BC} = (3\mathbf{b} - 2\mathbf{a}) - \mathbf{b} = 2\mathbf{b} - 2\mathbf{a} = 2(\mathbf{b} - \mathbf{a}) = 2\overrightarrow{AB}</m>. The vectors are parallel and share <m>B</m>, so the points are collinear, whatever <m>\mathbf{a}</m> and <m>\mathbf{b}</m> are.</p></solution>
+        </exercise>
+    </exercises>
 
-            </statement>   
-            <solution>
-
-            </solution>             
-        </exercise>        
-    </exercises> -->
-
-    <!-- [LP] Add information on how to differentiate  -->
-
-    <!-- <axiom component="lesson-plan">
+    <axiom component="lesson-plan">
         <title>Differentiation</title>
-
-        <table>
-            <title>Differentiation</title>
-            <tabular halign="left">
-                <row header="yes" bottom="minor">
-                    <cell>Learner Group</cell>
-                    <cell>Strategy &amp; Learning Experience</cell>
-                    <cell></cell>
-                </row>
-                <row>
-                    <cell>Struggling Learners (Support)</cell>
-                    <cell>
-                        XXXX
-                    </cell>
-                    <cell></cell>
-                </row>
-                <row>
-                    <cell>On-Level Learners (Core)</cell>
-                    <cell>
-                        <line>The core lesson activities as described above.</line>
-                    </cell>
-                    <cell></cell>
-                </row>
-                <row>
-                    <cell>Advanced Learners (Challenge)</cell>
-                    <cell>
-                        XXXX
-                    </cell>
-                    <cell></cell>
-                </row>
+        <table xml:id="table-differentiation-collinearity">
+            <title>Differentiation Strategies</title>
+            <tabular halign="left" top="minor" bottom="minor" left="minor" right="minor">
+                <row header="yes" bottom="medium"><cell>Learner Group</cell><cell>Strategy and Learning Experience</cell></row>
+                <row><cell>Struggling Learners (Support)</cell><cell>Give the activity with the grid and points already printed, and a ratio table (component of <m>\overrightarrow{BC}</m> divided by component of <m>\overrightarrow{AB}</m>). Work through <xref ref="example-collinear-in-2d"/> and <xref ref="example-collinear-in-3d"/>. Assign <xref ref="ex-collinear-2d"/> and <xref ref="ex-not-collinear-3d"/>.</cell></row>
+                <row><cell>On-Level Learners (Core)</cell><cell>Full activity and all examples. Assign <xref ref="ex-collinear-2d"/> to <xref ref="ex-find-m-n-collinear"/>.</cell></row>
+                <row><cell>Advanced Learners (Challenge)</cell><cell>All exercises including <xref ref="ex-general-collinear"/>. Extension: find a point <m>D</m> on the line through <m>A</m> and <m>B</m> of <xref ref="example-collinear-in-3d"/> with <m>z</m>-coordinate <m>10</m>. (Answer: <m>D(-13, -23, 10)</m>, with <m>\overrightarrow{AD} = -7\overrightarrow{AB}</m>.)</cell></row>
             </tabular>
         </table>
-    </axiom> -->
+    </axiom>
 
     <xi:include href="../lesson-plan-templates/assessment-methods.ptx" />
 

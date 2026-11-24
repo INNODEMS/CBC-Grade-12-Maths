@@ -33,7 +33,7 @@
                 <li component="lesson-plan">
                     <title>Estimated Duration</title>
                     <p>
-                        40 minutes
+                        2 lessons of 40 minutes
                     </p>
                 </li>
             </dl>
@@ -45,163 +45,444 @@
          Content summary: Solving real-life optimisation problems (profit, cost, minimising wastage).
          Suggested activity: Groups solve a real optimisation problem, e.g. a farmer choosing acres of maize and beans to maximise profit with limited land and labour. -->
 
-    <!-- [LP] Add guidance on activity -->
+    <!-- Section notes (2026-11)
+         SLOs: (d) shared; outcome e (appreciate) and the waste-reduction PCI in lesson 4.2. Lessons 4.1 and 4.2 as subsections.
+         Activity: as planning notes (a farmer in Trans Nzoia choosing hectares of maize and beans with limited land and labour); lesson 4.2 stores a cooperative's harvest
+         JSXGraph: none in this section (static figures fig-maize-beans-region, fig-harvest-region)
+         STACK: assets/stack/top/1-numbers-and-algebra/05-linear-programming/04-application-of-linear-programming/ -->
 
-    <!-- <axiom component="lesson-plan">
+    <!-- ============================================================ Lesson 4.1 -->
+    <subsection xml:id="subsec-maximum-profit">
+        <title>Solving a Problem: Maximum Profit</title>
+
+        <p component="lesson-plan">Upon completion of this lesson, learners will be able to:
+            <ol>
+                <li><p><alert>Know:</alert> a linear programming problem is solved in five steps, from the words to a decision that is checked against every constraint.</p></li>
+                <li><p><alert>Do:</alert> model a profit problem, graph it, find the vertices, test them and, when whole numbers are needed, sample the whole-number points near the best vertex.</p></li>
+                <li><p><alert>Apply:</alert> advise a farmer, a workshop and a school funds day on the most profitable plan.</p></li>
+            </ol>
+        </p>
+
+        <axiom component="lesson-plan">
             <title>Problem-Solving and Discovery</title>
             <dl>
-                <li>
-                    <title>Suggested Time</title>
-                    <p>
-                        XX minutes
-                    </p>
-                </li>
-                <li>
-                    <title>Objective</title>
-                    <p>
-                        XXX
-                    </p>
-                </li>
-                <li>
-                    <title>Teacher's Role</title>
-                    <p>
-                        XXX
-                    </p>
-                </li>
+                <li><title>Suggested Time</title><p>14 minutes</p></li>
+                <li><title>Objective</title><p>Groups carry a whole problem from words to a decision about how much maize and how many beans to plant.</p></li>
+                <li><title>Teacher's Role</title><p>Give each group graph paper and one part of the work to lead. At the end, each group presents its plan and one check that the plan keeps every limit.</p></li>
             </dl>
-        </axiom> -->
+        </axiom>
 
-    <!-- Add Activity -->
-
-    <!-- <activity>
-        <statement>
-        </statement>
-    </activity> -->
-
-    <!-- [LP] Add guidance on structured lesson plan-->
-
-    <!-- <axiom component="lesson-plan">
-        <title>Structured Instruction</title>
-        <p>
-            <dl>
-            <li>
-                <title>Suggested Time</title>
+        <activity xml:id="act-maize-or-beans">
+            <title>Maize or Beans?</title>
+            <statement>
+                <p>A farmer in Trans Nzoia has <m>10</m> hectares of land for maize and beans this season. A hectare of maize needs <m>7</m> person-days of labour and a hectare of beans <m>12</m> person-days; she can hire <m>100</m> person-days in all. She has promised a buyer the beans from at least <m>2</m> hectares. She expects a profit of Ksh <m>40\,000</m> a hectare on maize and Ksh <m>50\,000</m> a hectare on beans. Let <m>x</m> be the number of hectares of maize and <m>y</m> the number of hectares of beans.</p>
                 <p>
-                    XX minutes
+                    <ol marker="(a)">
+                        <li>
+                            <p>Write the constraints and the profit <m>P</m>.</p>
+                            <solution component="lesson-plan"><p>Land: <m>x + y \le 10</m>. Labour: <m>7x + 12y \le 100</m>. Beans: <m>y \ge 2</m>. Also <m>x \ge 0</m>. <m>P = 40\,000x + 50\,000y</m>.</p></solution>
+                        </li>
+                        <li>
+                            <p>Graph the constraints, shading the unwanted side of each line.</p>
+                            <solution component="lesson-plan"><p>As in <xref ref="fig-maize-beans-region"/>: four solid boundaries, with the unwanted side of each shaded.</p></solution>
+                        </li>
+                        <li>
+                            <p>Check your graph against <xref ref="fig-maize-beans-region"/>. Find the vertices of R exactly.</p>
+                            <figure xml:id="fig-maize-beans-region">
+                                <caption>The farmer's region R. All boundaries are solid.</caption>
+                                <image width="80%">
+                                    <shortdescription>Solid lines x + y = 10, 7x + 12y = 100 and y = 2, with the unwanted side of each shaded, and the side of the y-axis with x negative shaded. R has corners (0, 2), (8, 2), (4, 6) and (0, 8.33).</shortdescription>
+                                    <description><p>Horizontal axis x, hectares of maize, from 0 to 16. Vertical axis y, hectares of beans, from 0 to 11. Boundary x + y = 10 through (10, 0) and (0, 10), shaded above. Boundary 7x + 12y = 100 through (14.29, 0) and (0, 8.33), shaded above. Boundary y = 2, shaded below. R is the clear region with vertices (0, 2), (8, 2), (4, 6) and (0, 25/3), about (0, 8.33). Key: shaded, not wanted; unshaded (R), the required region.</p></description>
+                                    <latex-image>
+\begin{tikzpicture}
+\begin{axis}[axis lines=middle, axis line style={->}, grid=major, grid style={gray!25}, xlabel style={anchor=north east, at={(axis description cs:1,0)}, yshift=-14pt}, ylabel style={anchor=north east, at={(axis description cs:0,1)}, xshift=-4pt, rotate=90}, tick label style={font=\scriptsize}, clip=false, width=10cm, height=7cm, xmin=-1, xmax=16, ymin=-1, ymax=11, xtick={2,4,...,14}, ytick={2,4,...,10}, xlabel={$x$ (hectares of maize)}, ylabel={$y$ (hectares of beans)}]
+\fill[gray!30, fill opacity=0.75] (axis cs:11,-1) -- (axis cs:16,-1) -- (axis cs:16,11) -- (axis cs:-1,11) -- (axis cs:-1,11) -- cycle;
+\fill[gray!30, fill opacity=0.75] (axis cs:16,-1) -- (axis cs:16,-1) -- (axis cs:16,11) -- (axis cs:-1,11) -- (axis cs:-1,8.9167) -- cycle;
+\fill[gray!30, fill opacity=0.75] (axis cs:-1,-1) -- (axis cs:16,-1) -- (axis cs:16,2) -- (axis cs:-1,2) -- cycle;
+\fill[gray!30, fill opacity=0.75] (axis cs:-1,-1) -- (axis cs:0,-1) -- (axis cs:0,11) -- (axis cs:-1,11) -- cycle;
+\draw[thick] (axis cs:-1,11) -- (axis cs:11,-1);
+\draw[thick] (axis cs:-1,8.9167) -- (axis cs:16,-1);
+\draw[thick] (axis cs:-1,2) -- (axis cs:16,2);
+\draw[thick] (axis cs:0,-1) -- (axis cs:0,11);
+\fill (axis cs:0,2) circle[radius=2pt];
+\fill (axis cs:8,2) circle[radius=2pt];
+\fill (axis cs:4,6) circle[radius=2pt];
+\fill (axis cs:0,8.3333) circle[radius=2pt];
+\node[anchor=north west, font=\small, inner sep=2pt] at (axis cs:0,2) {$(0, 2)$};
+\node[anchor=north west, font=\small, inner sep=2pt] at (axis cs:8,2) {$(8, 2)$};
+\node[anchor=south west, font=\small, inner sep=2pt] at (axis cs:4,6) {$(4, 6)$};
+\node[anchor=south west, font=\small, inner sep=2pt] at (axis cs:0,8.3333) {$(0, 8.33)$};
+\node[font=\large] at (axis cs:2.5,4) {$R$};
+\node[anchor=south west, font=\scriptsize, inner sep=2pt] at (axis cs:9.3,0.9) {$x + y = 10$};
+\node[anchor=south west, font=\scriptsize, inner sep=2pt] at (axis cs:11.2,2.4) {$7x + 12y = 100$};
+\node[anchor=south, font=\scriptsize, inner sep=2pt] at (axis cs:14,2) {$y = 2$};
+\end{axis}
+\coordinate (k) at ([yshift=-0.2cm]current axis.outer south west);
+\fill[gray!30, draw=black, thin] (k) rectangle ++(0.45,-0.3);
+\node[anchor=west, font=\small] at ([xshift=0.55cm, yshift=-0.15cm]k) {Shaded, not wanted; unshaded ($R$), the required region.};
+\end{tikzpicture}
+                                    </latex-image>
+                                </image>
+                            </figure>
+                            <solution component="lesson-plan"><p><m>x + y = 10</m> and <m>7x + 12y = 100</m>: <m>7(10 - y) + 12y = 100</m>, so <m>5y = 30</m>, <m>y = 6</m>, <m>x = 4</m>. The others are <m>(0, 2)</m>, <m>(8, 2)</m> (where <m>y = 2</m> meets <m>x + y = 10</m>) and <m>\left(0, \tfrac{25}{3}\right) \approx (0, 8.33)</m>.</p></solution>
+                        </li>
+                        <li>
+                            <p>Work out <m>P</m> at each vertex.</p>
+                            <solution component="lesson-plan"><p><m>(0, 2)</m>: Ksh <m>100\,000</m>. <m>(8, 2)</m>: Ksh <m>420\,000</m>. <m>(4, 6)</m>: Ksh <m>460\,000</m>. <m>(0, 8.33)</m>: about Ksh <m>416\,667</m>.</p></solution>
+                        </li>
+                        <li>
+                            <p>What should the farmer plant? Check that your plan keeps every limit.</p>
+                            <solution component="lesson-plan"><p><m>4</m> hectares of maize and <m>6</m> hectares of beans, for a profit of Ksh <m>460\,000</m>. Check: <m>10</m> hectares, <m>28 + 72 = 100</m> person-days, <m>6 \ge 2</m> hectares of beans.</p></solution>
+                        </li>
+                        <li>
+                            <p>Must <m>x</m> and <m>y</m> be whole numbers here?</p>
+                            <solution component="lesson-plan"><p>No: land can be divided, so a plan such as <m>4.5</m> hectares is possible. Here the best vertex happens to be a whole-number point anyway.</p></solution>
+                        </li>
+                    </ol>
                 </p>
-            </li>
-            <li>
-                <title>Objective</title>
-                <p>
-                    To formalize the concepts and properties learners discovered in the anchor task.
-                </p>
-            </li>
-            </dl>
-        </p>
-        <paragraphs>
-            <title>Key Takeaways &amp; Teacher Connection</title>
-            <ol>
-                <li>
-                    <p>
-                        <alert>Connecting to Learner Work:</alert> XXXX
-                    </p>
-                </li>
-            </ol>
-        </paragraphs>
-    </axiom> -->
+            </statement>
+        </activity>
 
-    <!-- Add insight / key takeaway directly related to activity / learner experience -->
+        <axiom component="lesson-plan">
+            <title>Structured Instruction</title>
+            <p>
+                <dl>
+                    <li><title>Suggested Time</title><p>8 minutes</p></li>
+                    <li><title>Objective</title><p>To set out the five steps of solving a linear programming problem, using the farmer's problem.</p></li>
+                </dl>
+            </p>
+            <paragraphs>
+                <title>Key Takeaways &amp; Teacher Connection</title>
+                <ol>
+                    <li><p><alert>Connecting to Learner Work:</alert> parts (a) to (e) of the activity were the five steps.</p></li>
+                    <li><p>Model, graph, find the vertices, test them, then answer in words and check.</p></li>
+                    <li><p>Decide early whether the unknowns must be whole numbers.</p></li>
+                    <li><p>The answer is a plan in the words of the question, not a pair of coordinates.</p></li>
+                </ol>
+            </paragraphs>
+        </axiom>
 
-    <!-- <insight>
-    </insight> -->
+        <insight xml:id="insight-solving-a-problem">
+            <title>Solving a Linear Programming Problem</title>
+            <p>
+                <ol marker="1.">
+                    <li><p><alert>Model.</alert> Define <m>x</m> and <m>y</m> in words; write every constraint and the objective function; say whether <m>x</m> and <m>y</m> must be whole numbers.</p></li>
+                    <li><p><alert>Graph.</alert> Draw each boundary, shade its unwanted side, and label R.</p></li>
+                    <li><p><alert>Vertices.</alert> Solve the equations of the two boundaries that meet at each corner of R.</p></li>
+                    <li><p><alert>Test.</alert> Work out the objective at each vertex. If whole numbers are needed and the best vertex is not a whole-number point, sample the whole-number points of R near it, then check that no whole-number point further away does better.</p></li>
+                    <li><p><alert>Answer and check.</alert> State the plan in the words of the question, with its profit or cost, and check it against every constraint. Ask whether the answer makes sense in the real situation.</p></li>
+                </ol>
+            </p>
+            <p>These are the steps of any mathematical model: describe the situation in symbols, work with the symbols, turn the result back into words, and check it.</p>
+        </insight>
 
-    <!-- Add further instruction (not in a block) to develop ideas as needed -->
+        <xi:include href="../lesson-plan-templates/example-intro.ptx" />
 
-    <xi:include href="../lesson-plan-templates/example-intro.ptx" />
-
-    <!-- Add at least 3 examples -->
-
-    <!-- <example>
-        <statement>
-        </statement>
-        <solution>
-        </solution>
-    </example>
-
-    <example>
-        <statement>
-        </statement>
-        <solution>
-        </solution>
-    </example>
-
-    <example>
-        <statement>
-        </statement>
-        <solution>
-        </solution>
-    </example> -->
-
-    <xi:include href="../lesson-plan-templates/assessment-intro.ptx" />
-
-    <!-- If STACK questions are included, uncomment this: -->
-
-    <!-- <xi:include href="../lesson-plan-templates/checkpoint.ptx" /> -->
-
-    <!-- Add STACK exercises if made -->
-
-    <!-- Add static exercises -->
-
-    <!-- <exercises>
-        <exercise>
-            <statement>   
-
-            </statement>   
+        <example xml:id="example-tables-and-benches">
+            <title>Tables and Benches</title>
+            <statement>
+                <p>A workshop in Eldoret makes tables and benches. A table uses <m>5</m> planks and a bench <m>7</m> planks; there are <m>37</m> planks in stock this week. A table needs <m>1</m> hour of finishing and a bench <m>7</m> hours; the finisher has <m>27</m> hours. The profit is Ksh <m>500</m> on a table and Ksh <m>800</m> on a bench. How many of each should the workshop make?</p>
+            </statement>
             <solution>
+                <p><alert>Model.</alert> Let <m>x</m> be the number of tables and <m>y</m> the number of benches made this week. Planks: <m>5x + 7y \le 37</m>. Finishing: <m>x + 7y \le 27</m>. Also <m>x \ge 0</m>, <m>y \ge 0</m>, whole numbers. Maximise <m>P = 500x + 800y</m>.</p>
+                <p><alert>Vertices.</alert> Subtracting <m>x + 7y = 27</m> from <m>5x + 7y = 37</m> gives <m>4x = 10</m>, so <m>x = 2.5</m> and <m>y = 3.5</m>. The other vertices are <m>(0, 0)</m>, <m>(7.4, 0)</m> and <m>\left(0, \tfrac{27}{7}\right) \approx (0, 3.86)</m>.</p>
+                <p><alert>Test.</alert> <m>P = 0</m>, <m>3700</m>, <m>4050</m> and about <m>3086</m>. The best vertex is <m>(2.5, 3.5)</m>, which is not a whole-number point. Rounding up to <m>(3, 4)</m> needs <m>15 + 28 = 43</m> planks, so it is outside R. Sample the whole-number points near the vertex:
+                    <md>(2, 3)\colon 3400, \quad (3, 3)\colon 3900, \quad (4, 2)\colon 3600, \quad (4, 1)\colon 2800.</md>
+                    The point <m>(2, 4)</m> needs <m>38</m> planks and <m>(5, 2)</m> needs <m>39</m>, so they are outside R.</p>
+                <p><alert>Answer and check.</alert> The workshop should make <m>3</m> tables and <m>3</m> benches, for a profit of Ksh <m>3900</m>. Check: <m>15 + 21 = 36 \le 37</m> planks and <m>3 + 21 = 24 \le 27</m> hours.</p>
+                <p component="core">Check with a search line: the lines <m>500x + 800y = k</m> have gradient <m>-\tfrac{5}{8}</m>, which lies between the gradients <m>-\tfrac{5}{7}</m> and <m>-\tfrac{1}{7}</m> of the two edges at <m>(2.5, 3.5)</m>, so that vertex is the best point of R. Sliding the line back from it, the first whole-number point of R it meets is <m>(3, 3)</m>.</p>
+            </solution>
+        </example>
 
-            </solution>             
-        </exercise>        
-    </exercises> -->
+        <example xml:id="example-school-funds-day">
+            <title>School Funds Day</title>
+            <statement>
+                <p>For a school funds day, the student council buys crates of soda at Ksh <m>700</m> each, which make a profit of Ksh <m>400</m> each, and cartons of juice at Ksh <m>900</m> each, which make a profit of Ksh <m>450</m> each. It has Ksh <m>6300</m> to spend and space in the store for <m>8</m> crates and cartons. What should it buy?</p>
+            </statement>
+            <solution>
+                <p>Let <m>x</m> be the number of crates of soda and <m>y</m> the number of cartons of juice. Money: <m>700x + 900y \le 6300</m>, that is <m>7x + 9y \le 63</m>. Space: <m>x + y \le 8</m>. Also <m>x \ge 0</m>, <m>y \ge 0</m>, whole numbers. Maximise <m>P = 400x + 450y</m>.</p>
+                <p>The sloping boundaries meet where <m>7x + 9(8 - x) = 63</m>, so <m>2x = 9</m>: <m>(4.5, 3.5)</m>. The vertices are <m>(0, 0)</m>, <m>(8, 0)</m>, <m>(4.5, 3.5)</m> and <m>(0, 7)</m>, with <m>P = 0</m>, <m>3200</m>, <m>3375</m> and <m>3150</m>.</p>
+                <p>The best vertex is not a whole-number point. <m>(4, 4)</m> costs Ksh <m>6400</m>, more than the money available. Near the vertex: <m>(4, 3)\colon 2950</m>, <m>(5, 3)\colon 3350</m>, <m>(3, 4)\colon 3000</m>, <m>(5, 2)\colon 2900</m>.</p>
+                <p>The council should buy <m>5</m> crates of soda and <m>3</m> cartons of juice, for a profit of Ksh <m>3350</m>. Check: <m>3500 + 2700 = 6200 \le 6300</m> shillings and <m>8</m> items.</p>
+                <p component="core">Check with a search line: the gradient of <m>400x + 450y = k</m> is <m>-\tfrac{8}{9}</m>, between <m>-1</m> (space) and <m>-\tfrac{7}{9}</m> (money), so <m>(4.5, 3.5)</m> is the best vertex, and <m>(5, 3)</m> is the first whole-number point of R the line meets as it slides back.</p>
+            </solution>
+        </example>
 
-    <!-- [LP] Add information on how to differentiate  -->
+        <xi:include href="../lesson-plan-templates/assessment-intro.ptx" />
+        <xi:include href="../lesson-plan-templates/checkpoint.ptx" />
 
-    <!-- <axiom component="lesson-plan">
-        <title>Differentiation</title>
+        <p>Type <m>\le</m> as <c>&lt;=</c> and <m>\ge</m> as <c>>=</c>, for example <c>4x+9y&lt;=72</c>. Use the letters x and y as defined in the question. Type numbers of items as whole numbers.</p>
 
-        <table>
+                <exercise xml:id="ex-maximum-profit-from-a-situation">
+            <!--<title></title>-->
+            <stack label="stk-maximum-profit-from-a-situation" source="stack/top/1-numbers-and-algebra/05-linear-programming/04-application-of-linear-programming/Maximum-profit-from-a-situation.xml"/>
+        </exercise>
+
+        <exercise xml:id="ex-a-plan-that-meets-a-profit-target">
+            <!--<title></title>-->
+            <stack label="stk-a-plan-that-meets-a-profit-target" source="stack/top/1-numbers-and-algebra/05-linear-programming/04-application-of-linear-programming/A-plan-that-meets-a-profit-target.xml"/>
+        </exercise>
+
+        <exercises xml:id="exercises-maximum-profit">
+            <exercise xml:id="ex-solve-candle-maker">
+                <statement><p>Solve the candle maker's model of <xref ref="ex-candle-maker-model"/>: maximise <m>P = 300x + 500y</m> subject to <m>5x + 6y \le 136</m>, <m>x + 7y \le 120</m>, <m>x \ge 0</m>, <m>y \ge 0</m>, whole numbers.</p></statement>
+                <answer><p><m>8</m> boxes of plain and <m>16</m> boxes of scented candles, Ksh <m>10\,400</m></p></answer>
+                <solution><p>From <m>x + 7y = 120</m>, <m>x = 120 - 7y</m>; then <m>5(120 - 7y) + 6y = 136</m>, so <m>29y = 464</m>, <m>y = 16</m>, <m>x = 8</m>. The vertices are <m>(0, 0)</m>, <m>(27.2, 0)</m>, <m>(8, 16)</m> and <m>\left(0, \tfrac{120}{7}\right)</m>, with <m>P = 0</m>, <m>8160</m>, <m>10\,400</m> and about <m>8571</m>. The best is <m>(8, 16)</m>, already whole: Ksh <m>10\,400</m>.</p></solution>
+            </exercise>
+            <exercise xml:id="ex-solve-greenhouse">
+                <statement><p>Solve the greenhouse model of <xref ref="ex-greenhouse-model"/>: maximise <m>P = 2000x + 4500y</m> subject to <m>4x + 7y \le 70</m>, <m>3x + 8y \le 72</m>, <m>x \ge 0</m>, <m>y \ge 0</m>, with whole numbers of beds.</p></statement>
+                <answer><p><m>5</m> beds of tomatoes and <m>7</m> of capsicum, Ksh <m>41\,500</m></p></answer>
+                <solution><p>The sloping lines meet where <m>4x + 7y = 70</m> and <m>3x + 8y = 72</m>: <m>11y = 78</m>, so <m>y = \tfrac{78}{11} \approx 7.09</m> and <m>x = \tfrac{56}{11} \approx 5.09</m>. The vertices are <m>(0, 0)</m>, <m>(17.5, 0)</m>, <m>(5.09, 7.09)</m> and <m>(0, 9)</m>, with <m>P = 0</m>, <m>35\,000</m>, about <m>42\,091</m> and <m>40\,500</m>. Near the best vertex: <m>(5, 7)</m> uses <m>69 \le 70\,\text{litres}</m> (in hundreds) and <m>71 \le 72</m> hours, with <m>P = 41\,500</m>; <m>(6, 7)</m> and <m>(5, 8)</m> break the water constraint; <m>(4, 7)\colon 39\,500</m>, <m>(6, 6)\colon 39\,000</m>, <m>(6, 5)\colon 34\,500</m>. Best: <m>(5, 7)</m>, Ksh <m>41\,500</m>.</p></solution>
+            </exercise>
+            <exercise xml:id="ex-solve-tailor">
+                <statement><p>Use the five steps to solve the tailor's problem of <xref ref="act-the-tailors-week"/> from the start. Set out every step.</p></statement>
+                <answer><p><m>28</m> shirts and <m>6</m> dresses, Ksh <m>13\,200</m></p></answer>
+                <solution><p>Model: <m>3x + 7y \le 126</m>, <m>x + 6y \le 64</m>, <m>x, y \ge 0</m>, whole; <m>P = 300x + 800y</m>. Vertices (<xref ref="example-tailor-vertices"/>): <m>(0, 0)</m>, <m>(42, 0)</m>, <m>(28, 6)</m>, <m>(0, 10.67)</m>. Test: <m>0</m>, <m>12\,600</m>, <m>13\,200</m>, <m>8533.33</m>. Answer: <m>28</m> shirts and <m>6</m> dresses a week, Ksh <m>13\,200</m>. Check: cloth <m>84 + 42 = 126</m>, machine <m>28 + 36 = 64</m>.</p></solution>
+            </exercise>
+            <exercise xml:id="ex-maize-beans-price-change">
+                <statement><p>In <xref ref="act-maize-or-beans"/>, the price of beans falls, so the profit on beans is only Ksh <m>35\,000</m> a hectare. What is the best plan now?</p></statement>
+                <answer><p><m>8</m> hectares of maize and <m>2</m> of beans, Ksh <m>390\,000</m></p></answer>
+                <solution><p><m>P = 40\,000x + 35\,000y</m> at the vertices: <m>(0, 2)\colon 70\,000</m>, <m>(8, 2)\colon 390\,000</m>, <m>(4, 6)\colon 370\,000</m>, <m>(0, 8.33)\colon</m> about <m>291\,667</m>. The best plan is now <m>8</m> hectares of maize and <m>2</m> of beans, the least beans her promise allows.</p></solution>
+            </exercise>
+            <exercise xml:id="ex-design-your-own">
+                <title>Challenge: Design Your Own Problem</title>
+                <statement><p>Write a linear programming problem about two products of a business in your area, with two resource constraints and a profit. Solve it and check your answer.</p></statement>
+                <hint><p>Choose the answer first: pick a vertex such as <m>(5, 4)</m>, then choose two lines through it.</p></hint>
+                <answer><p>Answers vary.</p></answer>
+                <solution><p>Any problem is acceptable if its model, vertices and best plan are correct and the answer is checked against every constraint. One answer: a roadside kiosk makes <m>x</m> cups of uji and <m>y</m> plates of chips a morning; its cooking gas allows <m>7x + 2y \le 43</m> and the cook's time allows <m>x + 6y \le 29</m>; the profit is <m>P = 20x + 25y</m> shillings. The vertices are <m>(0, 0)</m>, <m>\left(\tfrac{43}{7}, 0\right)</m>, <m>(5, 4)</m> and <m>\left(0, \tfrac{29}{6}\right)</m>, with <m>P = 0</m>, about <m>123</m>, <m>200</m> and about <m>121</m>, so the best plan is <m>5</m> cups of uji and <m>4</m> plates of chips, Ksh <m>200</m>.</p></solution>
+            </exercise>
+        </exercises>
+
+        <axiom component="lesson-plan">
             <title>Differentiation</title>
-            <tabular halign="left">
-                <row header="yes" bottom="minor">
-                    <cell>Learner Group</cell>
-                    <cell>Strategy &amp; Learning Experience</cell>
-                    <cell></cell>
-                </row>
-                <row>
-                    <cell>Struggling Learners (Support)</cell>
-                    <cell>
-                        XXXX
-                    </cell>
-                    <cell></cell>
-                </row>
-                <row>
-                    <cell>On-Level Learners (Core)</cell>
-                    <cell>
-                        <line>The core lesson activities as described above.</line>
-                    </cell>
-                    <cell></cell>
-                </row>
-                <row>
-                    <cell>Advanced Learners (Challenge)</cell>
-                    <cell>
-                        XXXX
-                    </cell>
-                    <cell></cell>
-                </row>
-            </tabular>
-        </table>
-    </axiom> -->
+            <table xml:id="table-differentiation-maximum-profit">
+                <title>Differentiation Strategies</title>
+                <tabular halign="left" top="minor" bottom="minor" left="minor" right="minor">
+                    <row header="yes" bottom="medium"><cell>Learner Group</cell><cell>Strategy and Learning Experience</cell></row>
+                    <row><cell>Struggling Learners (Support)</cell><cell>Give a card with the five steps of <xref ref="insight-solving-a-problem"/>. Work through the activity and <xref ref="example-tables-and-benches"/>. Assign <xref ref="ex-solve-candle-maker"/> and <xref ref="ex-solve-tailor"/>.</cell></row>
+                    <row><cell>On-Level Learners (Core)</cell><cell>Full activity and both examples. Assign <xref ref="ex-solve-candle-maker"/> to <xref ref="ex-maize-beans-price-change"/>.</cell></row>
+                    <row><cell>Advanced Learners (Challenge)</cell><cell>All exercises including <xref ref="ex-design-your-own"/>.</cell></row>
+                </tabular>
+            </table>
+        </axiom>
 
-    <xi:include href="../lesson-plan-templates/assessment-methods.ptx" />
+        <xi:include href="../lesson-plan-templates/assessment-methods.ptx" />
+        <xi:include href="../lesson-plan-templates/reflection.ptx"/>
+    </subsection>
 
-    <xi:include href="../lesson-plan-templates/reflection.ptx"/>
+    <!-- ============================================================ Lesson 4.2 -->
+    <subsection xml:id="subsec-minimum-cost-and-least-waste">
+        <title>Minimum Cost and Least Waste</title>
+
+        <p component="lesson-plan">Upon completion of this lesson, learners will be able to:
+            <ol>
+                <li><p><alert>Know:</alert> a minimum cost is found at a vertex of R, as a maximum profit is; with an <q>at least</q> condition a whole-number answer is found by rounding up and checking; waste is what is made beyond what is needed.</p></li>
+                <li><p><alert>Do:</alert> model and solve problems of least cost and least waste.</p></li>
+                <li><p><alert>Apply:</alert> store a harvest, feed a school and mix a dairy ration at least cost or with least waste, and recognise linear programming in Kenyan life.</p></li>
+            </ol>
+        </p>
+
+        <axiom component="lesson-plan">
+            <title>Problem-Solving and Discovery</title>
+            <dl>
+                <li><title>Suggested Time</title><p>14 minutes</p></li>
+                <li><title>Objective</title><p>Learners solve a cost problem and see why the cheapest vehicle cannot simply be used for everything.</p></li>
+                <li><title>Teacher's Role</title><p>Before any graphing, ask: <q>Large stores hold more for each shilling. Why can't the cooperative use large stores only?</q> Let groups decide the plan together and agree on one answer.</p></li>
+            </dl>
+        </axiom>
+
+        <activity xml:id="act-moving-the-harvest">
+            <title>Storing the Harvest</title>
+            <statement>
+                <p>A farmers' cooperative in Bungoma must store at least <m>60</m> tonnes of maize after the harvest. A small store holds <m>3</m> tonnes and costs Ksh <m>6000</m> for the season; a large store holds <m>7</m> tonnes and costs Ksh <m>13\,000</m>. The cooperative has <m>14</m> watchmen, one for each store, and only <m>6</m> large stores can be hired. Let <m>x</m> be the number of small stores and <m>y</m> the number of large stores hired.</p>
+                <p>
+                    <ol marker="(a)">
+                        <li>
+                            <p>Write the constraints and the cost <m>C</m>.</p>
+                            <solution component="lesson-plan"><p>Tonnage: <m>3x + 7y \ge 60</m>. Watchmen: <m>x + y \le 14</m>. Large stores: <m>y \le 6</m>. Also <m>x \ge 0</m>, whole numbers. <m>C = 6000x + 13\,000y</m>.</p></solution>
+                        </li>
+                        <li>
+                            <p>Graph the constraints and find the vertices of R.</p>
+                            <solution component="lesson-plan">
+                                <p>R is a small triangle. <m>y = 6</m> meets <m>3x + 7y = 60</m> at <m>(6, 6)</m> and <m>x + y = 14</m> at <m>(8, 6)</m>; <m>x + y = 14</m> meets <m>3x + 7y = 60</m> where <m>3x + 7(14 - x) = 60</m>, so <m>x = 9.5</m>: <m>(9.5, 4.5)</m>.</p>
+                            </solution>
+                        </li>
+                        <li>
+                            <p>Check your graph against <xref ref="fig-harvest-region"/>. Work out <m>C</m> at each vertex. What should the cooperative hire?</p>
+                            <figure xml:id="fig-harvest-region">
+                                <caption>The cooperative's region R, a small triangle.</caption>
+                                <image width="70%">
+                                    <shortdescription>Solid lines 3x + 7y = 60, x + y = 14 and y = 6, each shaded on its unwanted side. R is a small clear triangle with corners (6, 6), (8, 6) and (9.5, 4.5).</shortdescription>
+                                    <description><p>Horizontal axis x, small stores, from 0 to 16. Vertical axis y, large stores, from 0 to 11. Boundary 3x + 7y = 60 through (20, 0) and (0, 8.57), shaded on the origin's side. Boundary x + y = 14 through (14, 0) and (0, 14), shaded on the side away from the origin. Boundary y = 6, shaded above. R is the clear triangle with vertices (6, 6), (8, 6) and (9.5, 4.5). Key: shaded, not wanted; unshaded (R), the required region.</p></description>
+                                    <latex-image>
+\begin{tikzpicture}
+\begin{axis}[axis lines=middle, axis line style={->}, grid=major, grid style={gray!25}, xlabel style={anchor=north east, at={(axis description cs:1,0)}, yshift=-14pt}, ylabel style={anchor=north east, at={(axis description cs:0,1)}, xshift=-4pt, rotate=90}, tick label style={font=\scriptsize}, clip=false, width=10cm, height=7cm, xmin=-1, xmax=16, ymin=-1, ymax=11, xtick={2,4,...,14}, ytick={2,4,...,10}, xlabel={$x$ (small stores)}, ylabel={$y$ (large stores)}]
+\fill[gray!30, fill opacity=0.75] (axis cs:-1,-1) -- (axis cs:16,-1) -- (axis cs:16,1.7143) -- (axis cs:-1,9) -- cycle;
+\fill[gray!30, fill opacity=0.75] (axis cs:15,-1) -- (axis cs:16,-1) -- (axis cs:16,11) -- (axis cs:3,11) -- cycle;
+\fill[gray!30, fill opacity=0.75] (axis cs:16,6) -- (axis cs:16,11) -- (axis cs:-1,11) -- (axis cs:-1,6) -- cycle;
+\fill[gray!30, fill opacity=0.75] (axis cs:-1,-1) -- (axis cs:0,-1) -- (axis cs:0,11) -- (axis cs:-1,11) -- cycle;
+\draw[thick] (axis cs:-1,9) -- (axis cs:16,1.7143);
+\draw[thick] (axis cs:15,-1) -- (axis cs:3,11);
+\draw[thick] (axis cs:-1,6) -- (axis cs:16,6);
+\draw[thick] (axis cs:0,-1) -- (axis cs:0,11);
+\fill (axis cs:6,6) circle[radius=2pt];
+\fill (axis cs:8,6) circle[radius=2pt];
+\fill (axis cs:9.5,4.5) circle[radius=2pt];
+\node[anchor=south east, font=\small, inner sep=2pt] at (axis cs:6,6) {$(6, 6)$};
+\node[anchor=south west, font=\small, inner sep=2pt] at (axis cs:8,6) {$(8, 6)$};
+\node[anchor=north west, font=\small, inner sep=2pt] at (axis cs:9.5,4.5) {$(9.5, 4.5)$};
+\node[font=\large] at (axis cs:7.9,5.5) {$R$};
+\node[anchor=west, font=\scriptsize, inner sep=2pt] at (axis cs:13.3,0.3) {$x + y = 14$};
+\node[anchor=south west, font=\scriptsize, inner sep=2pt] at (axis cs:1,7.4) {$3x + 7y = 60$};
+\node[anchor=south, font=\scriptsize, inner sep=2pt] at (axis cs:14.5,6) {$y = 6$};
+\end{axis}
+\coordinate (k) at ([yshift=-0.2cm]current axis.outer south west);
+\fill[gray!30, draw=black, thin] (k) rectangle ++(0.45,-0.3);
+\node[anchor=west, font=\small] at ([xshift=0.55cm, yshift=-0.15cm]k) {Shaded, not wanted; unshaded ($R$), the required region.};
+\end{tikzpicture}
+                                    </latex-image>
+                                </image>
+                            </figure>
+                            <solution component="lesson-plan"><p><m>(6, 6)\colon</m> Ksh <m>114\,000</m>; <m>(8, 6)\colon</m> Ksh <m>126\,000</m>; <m>(9.5, 4.5)\colon</m> Ksh <m>115\,500</m>. Hire <m>6</m> small and <m>6</m> large stores for Ksh <m>114\,000</m>; they hold exactly <m>60</m> tonnes.</p></solution>
+                        </li>
+                        <li>
+                            <p>Why does the answer use every large store?</p>
+                            <solution component="lesson-plan"><p>A large store costs Ksh <m>13\,000 \div 7 \approx 1857</m> a tonne and a small store Ksh <m>2000</m> a tonne, so large stores are cheaper for each tonne. The cooperative hires as many as it can, <m>6</m>, and small stores hold the rest.</p></solution>
+                        </li>
+                    </ol>
+                </p>
+            </statement>
+        </activity>
+
+        <axiom component="lesson-plan">
+            <title>Structured Instruction</title>
+            <p>
+                <dl>
+                    <li><title>Suggested Time</title><p>8 minutes</p></li>
+                    <li><title>Objective</title><p>To extend the method to minimum cost and least waste, with the care that <q>at least</q> conditions need.</p></li>
+                </dl>
+            </p>
+            <paragraphs>
+                <title>Key Takeaways &amp; Teacher Connection</title>
+                <ol>
+                    <li><p><alert>Connecting to Learner Work:</alert> the cheapest plan was a vertex of R, just as the most profitable plans were.</p></li>
+                    <li><p>For a cost, choose the vertex with the smallest value.</p></li>
+                    <li><p>With an <q>at least</q> condition, a vertex that is not whole must be rounded up, not down, and the plan checked against every constraint.</p></li>
+                    <li><p>Waste is what is made beyond what is needed: least waste is another objective to minimise.</p></li>
+                </ol>
+            </paragraphs>
+        </axiom>
+
+        <insight xml:id="insight-minimum-cost-and-least-waste">
+            <title>Minimum Cost and Least Waste</title>
+            <p>To minimise a cost <m>C = ax + by</m>, follow the same five steps and choose the vertex of R with the smallest value of <m>C</m>. In a cost problem R often has no far edge, because buying more is always possible; the smallest cost is still at a vertex.</p>
+            <p>When the unknowns must be whole numbers, an <q>at least</q> condition cannot be met by rounding down: rounding a vertex down can leave too little. Round up, or sample the whole-number points of R near the vertex, and check every constraint.</p>
+            <p>Sometimes the aim is to waste as little as possible: food left over, offcuts of timber, empty seats. The <term>waste</term> is the amount made beyond what is needed, and it is an objective function too. Making the most of what you have is the same as making the least waste.</p>
+        </insight>
+
+        <xi:include href="../lesson-plan-templates/example-intro.ptx" />
+
+        <example xml:id="example-feeding-learners-without-waste">
+            <title>Feeding Learners Without Waste</title>
+            <statement>
+                <p>The kitchen of a boarding school in Kitui cooks lunch for <m>620</m> learners. A pot of githeri serves <m>70</m> learners and a pot of rice serves <m>45</m>. A pot of githeri needs <m>7</m> bundles of firewood and a pot of rice <m>2</m> bundles; the kitchen has <m>50</m> bundles. Any food beyond <m>620</m> servings is wasted. How many pots of each should the cooks prepare?</p>
+            </statement>
+            <solution>
+                <p>Let <m>x</m> be the number of pots of githeri and <m>y</m> the number of pots of rice. Enough food: <m>70x + 45y \ge 620</m>. Firewood: <m>7x + 2y \le 50</m>. Also <m>x \ge 0</m>, <m>y \ge 0</m>, whole numbers. The servings left over are <m>W = 70x + 45y - 620</m>; minimise <m>W</m>.</p>
+                <p>Every plan on the line <m>70x + 45y = 620</m> wastes nothing, so look for a whole-number point on it. Dividing by <m>5</m>, <m>14x + 9y = 124</m>. Try <m>x = 0, 1, 2, \ldots</m>: <m>124 - 14x</m> must be a multiple of <m>9</m>. Only <m>x = 5</m> works (<m>124 - 70 = 54</m>), giving <m>y = 6</m>. Firewood: <m>35 + 12 = 47 \le 50</m>, so <m>(5, 6)</m> is in R.</p>
+                <p>The cooks should prepare <m>5</m> pots of githeri and <m>6</m> pots of rice: exactly <m>350 + 270 = 620</m> servings, with nothing wasted. By comparison, rice alone needs <m>14</m> pots (<m>630</m> servings, <m>10</m> wasted), and <m>(2, 11)</m> wastes <m>15</m>.</p>
+                <p component="core">Check with a search line: the lines <m>70x + 45y = k</m> are parallel to the boundary <m>70x + 45y = 620</m>. Sliding one towards that boundary, the waste falls to <m>0</m> on the boundary itself, and <m>(5, 6)</m> is the whole-number point of R on it.</p>
+            </solution>
+        </example>
+
+        <example xml:id="example-cheaper-dairy-ration">
+            <title>A Cheaper Dairy Ration</title>
+            <statement>
+                <p>A dairy farmer in Nyeri mixes maize germ (Ksh <m>40</m> a kg) and cotton seed cake (Ksh <m>60</m> a kg) for her cows each day. A kg of maize germ gives <m>1</m> unit of protein and <m>7</m> units of energy; a kg of cake gives <m>6</m> units of protein and <m>4</m> units of energy. The cows need at least <m>18</m> units of protein and <m>50</m> units of energy a day. Find the cheapest mix.</p>
+            </statement>
+            <solution>
+                <p>Let <m>x</m> be the mass of maize germ and <m>y</m> the mass of cake, in kg a day. Protein: <m>x + 6y \ge 18</m>. Energy: <m>7x + 4y \ge 50</m>. Also <m>x \ge 0</m>, <m>y \ge 0</m> (masses need not be whole). Minimise <m>C = 40x + 60y</m>.</p>
+                <p>The two lines meet where <m>x = 18 - 6y</m> and <m>7(18 - 6y) + 4y = 50</m>, so <m>38y = 76</m>, <m>y = 2</m>, <m>x = 6</m>. R has no far edge; its vertices are <m>(18, 0)</m>, <m>(6, 2)</m> and <m>(0, 12.5)</m>, with <m>C = 720</m>, <m>360</m> and <m>750</m>.</p>
+                <p>The cheapest mix is <m>6\,\text{kg}</m> of maize germ and <m>2\,\text{kg}</m> of cake, costing Ksh <m>360</m> a day. Check: protein <m>6 + 12 = 18</m>, energy <m>42 + 8 = 50</m>.</p>
+                <p component="core">Check with a search line: <m>40x + 60y = k</m> has gradient <m>-\tfrac{2}{3}</m>, between <m>-\tfrac{1}{6}</m> and <m>-\tfrac{7}{4}</m>, the gradients of the two edges at <m>(6, 2)</m>. Sliding it towards the origin, it leaves R at <m>(6, 2)</m>.</p>
+            </solution>
+        </example>
+
+        <paragraphs xml:id="paragraphs-linear-programming-around-us">
+            <title>Linear Programming Around Us</title>
+            <p>Linear programming helps people across Kenya decide how to use what they have. County agriculture offices plan how to share fertiliser among wards so that the most land is covered for the money. School feeding programmes plan meals that meet learners' needs within a budget. Matatu and lorry owners choose how many of each vehicle to run so that every passenger and every load is carried at least cost. Jua kali artisans plan how to cut steel sheets and timber so that fewer offcuts are thrown away, and farmers sharing an irrigation scheme plan how much water each crop gets.</p>
+            <p>Real problems often have many unknowns and hundreds of constraints. They cannot be drawn on a graph, so they are solved by computer, but the ideas are the ones in this chapter: constraints from the limits, an objective to make best, and an optimum at a corner of the feasible region. Using resources carefully, and wasting less, is good for a business, a school and the environment. Linear programming answers the question of this chapter: how can we make the best use of money, time and materials that are limited?</p>
+        </paragraphs>
+
+        <axiom component="lesson-plan">
+            <title>Curriculum Links</title>
+            <dl>
+                <li><title>Core Competencies</title><p>Critical thinking and problem solving, in checking that every model and answer makes sense in its situation; self-efficacy, in planning and solving a problem from start to finish.</p></li>
+                <li><title>Values</title><p component="core">Integrity, in the prudent and honest use of a group's money and resources.</p><p component="essential">Integrity, in the prudent and honest use of a group's money and resources; unity, in agreeing a plan as a group in the activity.</p></li>
+                <li><title>Pertinent and Contemporary Issues</title><p>Socio-economic issues and the environment: planning that reduces waste of food, timber and fuel.</p></li>
+                <li><title>Learning Outcome</title><p>This lesson also carries the outcome on appreciating the use of linear programming in real life.</p></li>
+            </dl>
+        </axiom>
+
+        <xi:include href="../lesson-plan-templates/assessment-intro.ptx" />
+        <xi:include href="../lesson-plan-templates/checkpoint.ptx" />
+
+        <p>Type <m>\le</m> as <c>&lt;=</c> and <m>\ge</m> as <c>>=</c>, for example <c>4x+9y&lt;=72</c>. Use the letters x and y as defined in the question. Type numbers of items as whole numbers.</p>
+
+                <exercise xml:id="ex-minimum-cost">
+            <!--<title></title>-->
+            <stack label="stk-minimum-cost" source="stack/top/1-numbers-and-algebra/05-linear-programming/04-application-of-linear-programming/Minimum-cost.xml"/>
+        </exercise>
+
+        <exercise xml:id="ex-least-waste">
+            <!--<title></title>-->
+            <stack label="stk-least-waste" source="stack/top/1-numbers-and-algebra/05-linear-programming/04-application-of-linear-programming/Least-waste.xml"/>
+        </exercise>
+
+        <exercises xml:id="exercises-minimum-cost-and-waste">
+            <exercise xml:id="ex-solve-tour">
+                <statement><p>Solve the tour model of <xref ref="example-tour-to-shimba-hills"/>: minimise <m>C = 9000x + 30\,000y</m> subject to <m>7x + 40y \ge 160</m>, <m>y \le 2</m>, <m>x + y \le 14</m>, whole numbers.</p></statement>
+                <answer><p><m>12</m> bandas and <m>2</m> dormitory blocks, Ksh <m>168\,000</m></p></answer>
+                <solution><p>The vertices are <m>\left(\tfrac{80}{7}, 2\right) \approx (11.43, 2)</m>, <m>(12, 2)</m> and <m>\left(\tfrac{400}{33}, \tfrac{62}{33}\right) \approx (12.12, 1.88)</m>. The cheapest is <m>(11.43, 2)</m>, about Ksh <m>162\,857</m>, but it is not whole. Rounding the bandas up gives <m>(12, 2)</m>: <m>84 + 80 = 164 \ge 160</m> beds, <m>14</m> caretakers, Ksh <m>108\,000 + 60\,000 = 168\,000</m>. No whole-number point of R is cheaper.</p></solution>
+            </exercise>
+            <exercise xml:id="ex-solve-tents">
+                <statement><p>Solve the tents model of <xref ref="ex-tents-model"/>: minimise <m>C = 6000x + 2400y</m> subject to <m>7x + 3y \ge 35</m>, <m>x + y \le 10</m>, whole numbers.</p></statement>
+                <answer><p><m>2</m> large and <m>7</m> small tents, Ksh <m>28\,800</m></p></answer>
+                <solution><p>The vertices are <m>(5, 0)</m>, <m>(10, 0)</m> and <m>(1.25, 8.75)</m>, with <m>C = 30\,000</m>, <m>60\,000</m> and <m>28\,500</m>. The best vertex is not whole. Near it: <m>(2, 7)</m> gives <m>14 + 21 = 35</m>, enough seats, <m>9</m> tents and <m>C = 28\,800</m>; <m>(1, 9)</m> has <m>34 \lt 35</m>, too few seats; <m>(2, 8)\colon 31\,200</m>; <m>(3, 5)\colon 30\,000</m>. The school should hire <m>2</m> large and <m>7</m> small tents for Ksh <m>28\,800</m>.</p></solution>
+            </exercise>
+            <exercise xml:id="ex-cheaper-feed">
+                <statement><p>Find the minimum of <m>C = 30x + 80y</m> subject to <m>2x + 7y \ge 28</m>, <m>4x + 9y \ge 46</m>, <m>x \ge 0</m>, <m>y \ge 0</m>.</p></statement>
+                <answer><p><m>370</m>, at <m>(7, 2)</m></p></answer>
+                <solution><p>Double the first: <m>4x + 14y = 56</m>; subtract <m>4x + 9y = 46</m>: <m>5y = 10</m>, <m>y = 2</m>, <m>x = 7</m>. The vertices are <m>(14, 0)</m>, <m>(7, 2)</m> and <m>\left(0, \tfrac{46}{9}\right)</m>, with <m>C = 420</m>, <m>370</m> and about <m>409</m>. The minimum is <m>370</m> at <m>(7, 2)</m>.</p></solution>
+            </exercise>
+            <exercise xml:id="ex-why-round-up">
+                <statement><p>In <xref ref="ex-solve-tour"/>, the best vertex has <m>x \approx 11.43</m>. Why may the company not book <m>11</m> bandas and <m>2</m> dormitory blocks?</p></statement>
+                <answer><p>They sleep only <m>157</m>, fewer than <m>160</m>.</p></answer>
+                <solution><p><m>7 \times 11 + 40 \times 2 = 77 + 80 = 157 \lt 160</m>: three tourists would have no bed. With an <q>at least</q> condition, rounding down can leave too little.</p></solution>
+            </exercise>
+            <exercise xml:id="ex-kitchen-with-more-wood">
+                <title>Challenge: More Firewood</title>
+                <statement><p>The kitchen of <xref ref="example-feeding-learners-without-waste"/> now has <m>60</m> bundles of firewood. Is there still a plan with no food left over? Is there more than one?</p></statement>
+                <hint><p>Which whole numbers satisfy <m>70x + 45y = 620</m>?</p></hint>
+                <answer><p>Yes, <m>(5, 6)</m>, and it is the only one.</p></answer>
+                <solution><p>A plan with no waste must satisfy <m>14x + 9y = 124</m>. Trying <m>x = 0</m> to <m>8</m>, only <m>x = 5</m> makes <m>124 - 14x</m> a multiple of <m>9</m>, so <m>(5, 6)</m> is the only whole-number solution. It uses <m>47</m> bundles, within <m>60</m>. More firewood allows more plans, such as <m>(7, 3)</m>, which uses <m>55</m> bundles and wastes <m>5</m> servings, but none with no waste except <m>(5, 6)</m>.</p></solution>
+            </exercise>
+        </exercises>
+
+        <axiom component="lesson-plan">
+            <title>Differentiation</title>
+            <table xml:id="table-differentiation-minimum-cost-and-waste">
+                <title>Differentiation Strategies</title>
+                <tabular halign="left" top="minor" bottom="minor" left="minor" right="minor">
+                    <row header="yes" bottom="medium"><cell>Learner Group</cell><cell>Strategy and Learning Experience</cell></row>
+                    <row><cell>Struggling Learners (Support)</cell><cell>Work through the activity and <xref ref="example-feeding-learners-without-waste"/> with the five-step card. Assign <xref ref="ex-solve-tour"/> and <xref ref="ex-why-round-up"/>.</cell></row>
+                    <row><cell>On-Level Learners (Core)</cell><cell>Full activity and both examples. Assign <xref ref="ex-solve-tour"/> to <xref ref="ex-why-round-up"/>.</cell></row>
+                    <row><cell>Advanced Learners (Challenge)</cell><cell>All exercises including <xref ref="ex-kitchen-with-more-wood"/>. Extension: find a cutting or cooking plan in your home or school that wastes less, and write its model.</cell></row>
+                </tabular>
+            </table>
+        </axiom>
+
+        <xi:include href="../lesson-plan-templates/assessment-methods.ptx" />
+        <xi:include href="../lesson-plan-templates/reflection.ptx"/>
+    </subsection>
 </section>

@@ -46,161 +46,282 @@
          Suggested activity: Learners divide a 30 cm stick in a given ratio, then confirm the position of the dividing point using vectors.
          Interactive (JSXGraph): Segment AB with a slider for the ratio m:n; point P moves along AB (or beyond it for external division) and its position vector is displayed. -->
 
-    <!-- [LP] Add guidance on activity -->
+    <!-- Section notes (2026-11)
+         SLOs: Core 2.6 (d), internal and external division
+         Activity: as planning notes (dividing a 30 cm stick, then a line in space with vectors) | added: external division beyond each end, parts (c), (d)
+         JSXGraph: fig-dividing-a-line (assets/jsxgraph/dividing-a-line.js), as planning notes, with an "external" checkbox and the arrow chain OA then AP
+         STACK: assets/stack/top/2-measurement-and-geometry/12-vectors-ii/07-proportional-division-of-a-line/ -->
 
-    <!-- <axiom component="lesson-plan">
-            <title>Problem-Solving and Discovery</title>
-            <dl>
-                <li>
-                    <title>Suggested Time</title>
-                    <p>
-                        XX minutes
-                    </p>
-                </li>
-                <li>
-                    <title>Objective</title>
-                    <p>
-                        XXX
-                    </p>
-                </li>
-                <li>
-                    <title>Teacher's Role</title>
-                    <p>
-                        XXX
-                    </p>
-                </li>
-            </dl>
-        </axiom> -->
+    <p component="lesson-plan">Upon completion of this lesson, learners will be able to:
+        <ol>
+            <li><p><alert>Know:</alert> what it means for a point to divide a line internally or externally in a ratio, and the fraction of <m>\overrightarrow{AB}</m> that <m>\overrightarrow{AP}</m> is in each case.</p></li>
+            <li><p><alert>Do:</alert> find the point that divides <m>AB</m> in a given ratio using <m>\overrightarrow{OP} = \overrightarrow{OA} + \overrightarrow{AP}</m>, and find the ratio from three points on a line.</p></li>
+            <li><p><alert>Apply:</alert> place markers on a stick, a road or a cable.</p></li>
+        </ol>
+    </p>
 
-    <!-- Add Activity -->
+    <axiom component="lesson-plan">
+        <title>Problem-Solving and Discovery</title>
+        <dl>
+            <li><title>Suggested Time</title><p>14 minutes</p></li>
+            <li><title>Objective</title><p>Learners divide a stick in a ratio, inside the stick and outside it, then find the same kind of point in space with vectors.</p></li>
+            <li><title>Teacher's Role</title><p>Give each pair a 30 cm stick or ruler with end <m>A</m> at 0 cm and end <m>B</m> at 30 cm. Groups report one part each and the class compares. After part (c), ask: <q>Can a point outside the stick be in the ratio <m>3 : 1</m>?</q></p></li>
+        </dl>
+    </axiom>
 
-    <!-- <activity>
+    <activity xml:id="act-dividing-a-stick">
+        <title>Dividing a Stick</title>
         <statement>
+            <p>A stick <m>AB</m> is <m>30\,\text{cm}</m> long, with <m>A</m> at the 0 cm mark and <m>B</m> at the 30 cm mark of a long ruler.</p>
+            <p>
+                <ol marker="(a)">
+                    <li>
+                        <p>Mark the point <m>P</m> on the stick with <m>AP : PB = 2 : 3</m>. How far is <m>P</m> from <m>A</m>?</p>
+                        <solution component="lesson-plan"><p>The stick is split into <m>2 + 3 = 5</m> equal parts of <m>6\,\text{cm}</m>, and <m>AP</m> is <m>2</m> of them: <m>AP = 12\,\text{cm}</m>.</p></solution>
+                    </li>
+                    <li>
+                        <p>Where is the point with <m>AP : PB = 1 : 4</m>?</p>
+                        <solution component="lesson-plan"><p><m>\frac{1}{5}</m> of the way along: <m>6\,\text{cm}</m> from <m>A</m>.</p></solution>
+                    </li>
+                    <li>
+                        <p>Now find a point <m>Q</m> on the ruler beyond <m>B</m> with <m>AQ : QB = 3 : 1</m>. How far is <m>Q</m> from <m>A</m>, and from <m>B</m>?</p>
+                        <solution component="lesson-plan"><p><m>AQ</m> is three times <m>QB</m> and <m>AQ - QB = AB = 30</m>, so <m>QB = 15\,\text{cm}</m> and <m>AQ = 45\,\text{cm}</m>. <m>Q</m> is at the 45 cm mark. <m>Q</m> divides <m>AB</m> <em>externally</em>.</p></solution>
+                    </li>
+                    <li>
+                        <p>Find a point <m>R</m> beyond <m>A</m> with <m>AR : RB = 1 : 3</m>.</p>
+                        <solution component="lesson-plan"><p><m>RB</m> is three times <m>AR</m> and <m>RB - AR = 30</m>, so <m>AR = 15\,\text{cm}</m> and <m>RB = 45\,\text{cm}</m>. <m>R</m> is at the <m>-15\,\text{cm}</m> mark, beyond <m>A</m>.</p></solution>
+                    </li>
+                    <li>
+                        <p>Now the line is in space: <m>A(2, -1, 4)</m> and <m>B(12, 9, -6)</m>. Find the point <m>P</m> dividing <m>AB</m> internally in the ratio <m>2 : 3</m>, and the point <m>Q</m> dividing <m>AB</m> externally in the ratio <m>3 : 1</m>.</p>
+                        <solution component="lesson-plan"><p><m>\overrightarrow{AB} = \begin{pmatrix} 10 \\ 10 \\ -10 \end{pmatrix}</m>. For <m>P</m>, go <m>\frac{2}{5}</m> of the way: <m>\overrightarrow{OP} = \overrightarrow{OA} + \frac{2}{5}\overrightarrow{AB} = \begin{pmatrix} 2 \\ -1 \\ 4 \end{pmatrix} + \begin{pmatrix} 4 \\ 4 \\ -4 \end{pmatrix}</m>, so <m>P(6, 3, 0)</m>. For <m>Q</m>, <m>AQ = 45 = \frac{3}{2} \times 30</m> in part (c), so go <m>\frac{3}{2}</m> of <m>\overrightarrow{AB}</m>: <m>\overrightarrow{OQ} = \overrightarrow{OA} + \begin{pmatrix} 15 \\ 15 \\ -15 \end{pmatrix}</m>, so <m>Q(17, 14, -11)</m>.</p></solution>
+                    </li>
+                </ol>
+            </p>
         </statement>
-    </activity> -->
+    </activity>
 
-    <!-- [LP] Add guidance on structured lesson plan-->
-
-    <!-- <axiom component="lesson-plan">
+    <axiom component="lesson-plan">
         <title>Structured Instruction</title>
         <p>
             <dl>
-            <li>
-                <title>Suggested Time</title>
-                <p>
-                    XX minutes
-                </p>
-            </li>
-            <li>
-                <title>Objective</title>
-                <p>
-                    To formalize the concepts and properties learners discovered in the anchor task.
-                </p>
-            </li>
+                <li><title>Suggested Time</title><p>8 minutes</p></li>
+                <li><title>Objective</title><p>To formalise internal and external division and the fraction of <m>\overrightarrow{AB}</m> to travel.</p></li>
             </dl>
         </p>
         <paragraphs>
             <title>Key Takeaways &amp; Teacher Connection</title>
             <ol>
-                <li>
-                    <p>
-                        <alert>Connecting to Learner Work:</alert> XXXX
-                    </p>
-                </li>
+                <li><p><alert>Connecting to Learner Work:</alert> in every part learners started at <m>A</m> and went a fraction of the way along <m>AB</m>: <m>\frac{2}{5}</m>, <m>\frac{1}{5}</m>, <m>\frac{3}{2}</m> and <m>-\frac{1}{2}</m>.</p></li>
+                <li><p>Internal: the fraction is <m>\dfrac{m}{m+n}</m>. External: the fraction is <m>\dfrac{m}{m-n}</m>.</p></li>
+                <li><p>The sign of <m>m - n</m> says which end: beyond <m>B</m> when <m>m \gt n</m>, beyond <m>A</m> when <m>m \lt n</m> (a negative fraction means going backwards from <m>A</m>).</p></li>
             </ol>
         </paragraphs>
-    </axiom> -->
+    </axiom>
 
-    <!-- Add insight / key takeaway directly related to activity / learner experience -->
+    <insight xml:id="insight-dividing-a-line">
+        <title>Dividing a Line in a Ratio</title>
+        <p>
+            A point <m>P</m> divides <m>AB</m> <term>internally</term> in the ratio <m>m : n</m> when <m>P</m> lies between <m>A</m> and <m>B</m> and <m>AP : PB = m : n</m>. Then
+            <md>\overrightarrow{AP} = \frac{m}{m+n}\overrightarrow{AB}.</md>
+        </p>
+        <p>
+            A point <m>P</m> divides <m>AB</m> <term>externally</term> in the ratio <m>m : n</m>, with <m>m \ne n</m>, when <m>P</m> lies on the line <m>AB</m> outside the segment and <m>AP : PB = m : n</m> (lengths). Then
+            <md>\overrightarrow{AP} = \frac{m}{m-n}\overrightarrow{AB}.</md>
+            <m>P</m> is beyond <m>B</m> when <m>m \gt n</m> and beyond <m>A</m> when <m>m \lt n</m>, where the fraction is negative.
+        </p>
+        <p>
+            In both cases, go the right fraction of the way along <m>AB</m>, starting from <m>A</m>: <m>\overrightarrow{OP} = \overrightarrow{OA} + \overrightarrow{AP}</m>.
+        </p>
+        <p>
+            Some books write <m>AP : PB = m : -n</m> for external division; it is the same point.
+        </p>
+    </insight>
 
-    <!-- <insight>
-    </insight> -->
+    <figure xml:id="fig-internal-external-division">
+        <caption>Internal division (top) and external division beyond <m>B</m> and beyond <m>A</m>, for a stick of length 30.</caption>
+        <image width="65%">
+            <shortdescription>Three lines. Top: P between A and B with AP = 12 and PB = 18, so AP : PB = 2 : 3. Middle: Q beyond B with AB = 30 and BQ = 15, so AQ : QB = 45 : 15 = 3 : 1. Bottom: R beyond A with RA = 15 and AB = 30, so AR : RB = 15 : 45 = 1 : 3.</shortdescription>
+            <latex-image>
+\begin{tikzpicture}[x=0.16cm, y=0.16cm]
+% internal 2:3
+\draw[thick] (0,0) -- (30,0);
+\foreach \x/\n in {0/A,12/P,30/B} {\fill (\x,0) circle (2pt); \node[above] at (\x,0.6) {$\n$};}
+\draw[Stealth-Stealth] (0,-2) -- node[below] {\small 12} (12,-2);
+\draw[Stealth-Stealth] (12,-2) -- node[below] {\small 18} (30,-2);
+\node[right] at (47,0) {\small $AP : PB = 2 : 3$};
+% external 3:1 beyond B
+\begin{scope}[yshift=-1.4cm]
+\draw[thick] (0,0) -- (30,0); \draw[dashed] (30,0) -- (45,0);
+\foreach \x/\n in {0/A,30/B,45/Q} {\fill (\x,0) circle (2pt); \node[above] at (\x,0.6) {$\n$};}
+\draw[Stealth-Stealth] (0,-2) -- node[below] {\small 30} (30,-2);
+\draw[Stealth-Stealth] (30,-2) -- node[below] {\small 15} (45,-2);
+\node[right] at (47,0) {\small $AQ : QB = 3 : 1$};
+\end{scope}
+% external 1:3 beyond A
+\begin{scope}[yshift=-2.8cm]
+\draw[dashed] (-15,0) -- (0,0); \draw[thick] (0,0) -- (30,0);
+\foreach \x/\n in {-15/R,0/A,30/B} {\fill (\x,0) circle (2pt); \node[above] at (\x,0.6) {$\n$};}
+\draw[Stealth-Stealth] (-15,-2) -- node[below] {\small 15} (0,-2);
+\draw[Stealth-Stealth] (0,-2) -- node[below] {\small 30} (30,-2);
+\node[right] at (47,0) {\small $AR : RB = 1 : 3$};
+\end{scope}
+\end{tikzpicture}
+            </latex-image>
+        </image>
+    </figure>
 
-    <!-- Add further instruction (not in a block) to develop ideas as needed -->
+    <figure xml:id="fig-dividing-a-line">
+        <caption>Drag <m>A</m> and <m>B</m>, and move the <m>m</m> and <m>n</m> sliders. The arrows show the journey <m>\overrightarrow{OA}</m> then <m>\overrightarrow{AP}</m> to the point <m>P</m>. Tick <q>external</q> to divide <m>AB</m> externally.</caption>
+        <interactive xml:id="interactive-dividing-a-line" platform="jsxgraph" width="90%" aspect="16:12" source="jsxgraph/dividing-a-line.js">
+            <slate xml:id="jsxgraph-dividing-a-line" surface="jsxboard" aspect="16:12"/>
+            <instructions>
+                <p>
+                    <ul>
+                        <li><p>Set the <alert>m</alert> slider to <m>2</m> and the <alert>n</alert> slider to <m>3</m>. Check that <m>P</m> is <m>\frac{2}{5}</m> of the way from <m>A</m> to <m>B</m>.</p></li>
+                        <li><p>Tick <alert>external</alert> and set <m>m = 3</m>, <m>n = 1</m>. Where is <m>P</m> now? Then try <m>m = 1</m>, <m>n = 3</m>.</p></li>
+                        <li><p>With <alert>external</alert> ticked, set <m>m = n</m>. Why is there no point?</p></li>
+                    </ul>
+                </p>
+            </instructions>
+        </interactive>
+    </figure>
 
     <xi:include href="../lesson-plan-templates/example-intro.ptx" />
 
-    <!-- Add at least 3 examples -->
-
-    <!-- <example>
+    <example xml:id="example-internal-division">
+        <title>Internal Division</title>
         <statement>
+            <p><m>A</m> is the point <m>(3, -2, 5)</m> and <m>B</m> is <m>(9, 7, -1)</m>. Find the point <m>P</m> that divides <m>AB</m> internally in the ratio <m>1 : 2</m>.</p>
         </statement>
         <solution>
+            <p>
+                <alert>Step 1:</alert> <m>\overrightarrow{AB} = \begin{pmatrix} 6 \\ 9 \\ -6 \end{pmatrix}</m>.
+            </p>
+            <p>
+                <alert>Step 2:</alert> <m>AP</m> is <m>1</m> part out of <m>1 + 2 = 3</m>, so <m>\overrightarrow{AP} = \dfrac{1}{3}\overrightarrow{AB} = \begin{pmatrix} 2 \\ 3 \\ -2 \end{pmatrix}</m>.
+            </p>
+            <p>
+                <alert>Step 3:</alert> <m>\overrightarrow{OP} = \overrightarrow{OA} + \overrightarrow{AP} = \begin{pmatrix} 3 \\ -2 \\ 5 \end{pmatrix} + \begin{pmatrix} 2 \\ 3 \\ -2 \end{pmatrix} = \begin{pmatrix} 5 \\ 1 \\ 3 \end{pmatrix}</m>, so <m>P</m> is <m>(5, 1, 3)</m>.
+            </p>
         </solution>
     </example>
 
-    <example>
+    <example xml:id="example-external-division">
+        <title>External Division</title>
         <statement>
+            <p><m>A</m> is <m>(1, 4, -2)</m> and <m>B</m> is <m>(4, 1, 7)</m>. Find the point <m>Q</m> that divides <m>AB</m> externally in the ratio <m>5 : 2</m>.</p>
         </statement>
         <solution>
+            <p>
+                <m>m = 5 \gt n = 2</m>, so <m>Q</m> is beyond <m>B</m>, and <m>\overrightarrow{AQ} = \dfrac{5}{5 - 2}\overrightarrow{AB} = \dfrac{5}{3}\overrightarrow{AB}</m>.
+            </p>
+            <p>
+                <md>
+                    <mrow>\overrightarrow{AB} \amp = \begin{pmatrix} 3 \\ -3 \\ 9 \end{pmatrix}, \qquad \overrightarrow{AQ} = \frac{5}{3}\begin{pmatrix} 3 \\ -3 \\ 9 \end{pmatrix} = \begin{pmatrix} 5 \\ -5 \\ 15 \end{pmatrix}</mrow>
+                    <mrow>\overrightarrow{OQ} \amp = \begin{pmatrix} 1 \\ 4 \\ -2 \end{pmatrix} + \begin{pmatrix} 5 \\ -5 \\ 15 \end{pmatrix} = \begin{pmatrix} 6 \\ -1 \\ 13 \end{pmatrix}</mrow>
+                </md>
+                so <m>Q</m> is <m>(6, -1, 13)</m>.
+            </p>
+            <p>
+                Check: <m>\overrightarrow{QB} = \begin{pmatrix} -2 \\ 2 \\ -6 \end{pmatrix}</m>, so <m>AQ^2 = 25 + 25 + 225 = 275</m> and <m>QB^2 = 4 + 4 + 36 = 44</m>. <m>275 : 44 = 25 : 4</m>, so <m>AQ : QB = 5 : 2</m>.
+            </p>
         </solution>
     </example>
 
-    <example>
+    <example xml:id="example-external-beyond-a">
+        <title>External Division Beyond A</title>
         <statement>
+            <p><m>A</m> is <m>(2, 0, 5)</m> and <m>B</m> is <m>(8, 6, -1)</m>. Find the point <m>R</m> that divides <m>AB</m> externally in the ratio <m>1 : 3</m>.</p>
         </statement>
         <solution>
+            <p>
+                <m>m = 1 \lt n = 3</m>, so <m>R</m> is beyond <m>A</m>. The fraction is <m>\dfrac{1}{1 - 3} = -\dfrac{1}{2}</m>: go half of <m>\overrightarrow{AB}</m> backwards from <m>A</m>.
+            </p>
+            <p>
+                <m>\overrightarrow{AB} = \begin{pmatrix} 6 \\ 6 \\ -6 \end{pmatrix}</m>, so <m>\overrightarrow{AR} = -\dfrac{1}{2}\overrightarrow{AB} = \begin{pmatrix} -3 \\ -3 \\ 3 \end{pmatrix}</m> and <m>\overrightarrow{OR} = \begin{pmatrix} 2 \\ 0 \\ 5 \end{pmatrix} + \begin{pmatrix} -3 \\ -3 \\ 3 \end{pmatrix} = \begin{pmatrix} -1 \\ -3 \\ 8 \end{pmatrix}</m>. <m>R</m> is <m>(-1, -3, 8)</m>.
+            </p>
+            <p>
+                Check: <m>\overrightarrow{RB} = \begin{pmatrix} 9 \\ 9 \\ -9 \end{pmatrix} = -3\overrightarrow{AR}</m>, three times as long as <m>\overrightarrow{AR}</m>, so <m>AR : RB = 1 : 3</m>.
+            </p>
         </solution>
-    </example> -->
+    </example>
+
+    <p>
+        <em>Vectors in use:</em> engineers fixing a stay cable to a telecom mast place clamps at fixed fractions along the cable; the clamp positions are found from the end points exactly as in these examples.
+    </p>
 
     <xi:include href="../lesson-plan-templates/assessment-intro.ptx" />
+    <xi:include href="../lesson-plan-templates/checkpoint.ptx" />
 
-    <!-- If STACK questions are included, uncomment this: -->
+    <p>Type one number in each box of a column vector. Fractions may be typed with a slash, for example <c>5/2</c>.</p>
 
-    <!-- <xi:include href="../lesson-plan-templates/checkpoint.ptx" /> -->
+    <exercise xml:id="ex-dividing-a-line-internally">
+        <!--<title></title>-->
+        <stack label="stk-dividing-a-line-internally" source="stack/top/2-measurement-and-geometry/12-vectors-ii/07-proportional-division-of-a-line/Dividing-a-line-internally.xml"/>
+    </exercise>
 
-    <!-- Add STACK exercises if made -->
+    <exercise xml:id="ex-dividing-a-line-externally">
+        <!--<title></title>-->
+        <stack label="stk-dividing-a-line-externally" source="stack/top/2-measurement-and-geometry/12-vectors-ii/07-proportional-division-of-a-line/Dividing-a-line-externally.xml"/>
+    </exercise>
 
-    <!-- Add static exercises -->
+    <exercise xml:id="ex-the-ratio-in-which-a-point-divides-a-line">
+        <!--<title></title>-->
+        <stack label="stk-the-ratio-in-which-a-point-divides-a-line" source="stack/top/2-measurement-and-geometry/12-vectors-ii/07-proportional-division-of-a-line/The-ratio-in-which-a-point-divides-a-line.xml"/>
+    </exercise>
 
-    <!-- <exercises>
-        <exercise>
-            <statement>   
+    <exercises xml:id="exercises-dividing-a-line">
+        <exercise xml:id="ex-internal-2-1">
+            <statement><p><m>A</m> is <m>(0, 2, 1)</m> and <m>B</m> is <m>(6, -4, 10)</m>. Find the point that divides <m>AB</m> internally in the ratio <m>2 : 1</m>.</p></statement>
+            <answer><p><m>(4, -2, 7)</m></p></answer>
+        </exercise>
+        <exercise xml:id="ex-external-4-1">
+            <statement><p>For the same <m>A</m> and <m>B</m> as in <xref ref="ex-internal-2-1"/>, find the point that divides <m>AB</m> externally in the ratio <m>4 : 1</m>.</p></statement>
+            <answer><p><m>(8, -6, 13)</m></p></answer>
+            <solution><p><m>\overrightarrow{AB} = \begin{pmatrix} 6 \\ -6 \\ 9 \end{pmatrix}</m> and the fraction is <m>\dfrac{4}{4 - 1} = \dfrac{4}{3}</m>, so <m>\overrightarrow{AP} = \begin{pmatrix} 8 \\ -8 \\ 12 \end{pmatrix}</m> and <m>P</m> is <m>(0 + 8, 2 - 8, 1 + 12) = (8, -6, 13)</m>.</p></solution>
+        </exercise>
+        <exercise xml:id="ex-midpoint-and-3-1">
+            <statement><p><m>A</m> is <m>(-3, 2)</m> and <m>B</m> is <m>(5, -6)</m>. Find the midpoint of <m>AB</m> and the point dividing <m>AB</m> internally in the ratio <m>3 : 1</m>.</p></statement>
+            <answer><p><m>(1, -2)</m>; <m>(3, -4)</m></p></answer>
+        </exercise>
+        <exercise xml:id="ex-fuel-station">
+            <statement><p>A boda boda stage <m>S</m> is at <m>(0, 0)</m> and a market <m>M</m> at <m>(12, 9)</m> on a map with a grid in kilometres, on a straight road. A fuel station <m>F</m> divides <m>SM</m> internally in the ratio <m>2 : 1</m>. Find <m>F</m> and the distance <m>SF</m>. A new stage is to be built at the point dividing <m>SM</m> externally in the ratio <m>4 : 1</m>. Where will it be?</p></statement>
+            <answer><p><m>F(8, 6)</m>, <m>SF = 10\,\text{km}</m>; <m>(16, 12)</m></p></answer>
+            <solution><p><m>\overrightarrow{SF} = \frac{2}{3}\begin{pmatrix} 12 \\ 9 \end{pmatrix} = \begin{pmatrix} 8 \\ 6 \end{pmatrix}</m>, so <m>F(8, 6)</m> and <m>SF = \sqrt{64 + 36} = 10\,\text{km}</m>. For the new stage the fraction is <m>\frac{4}{3}</m>: <m>\frac{4}{3}\begin{pmatrix} 12 \\ 9 \end{pmatrix} = \begin{pmatrix} 16 \\ 12 \end{pmatrix}</m>, the point <m>(16, 12)</m>, beyond the market.</p></solution>
+        </exercise>
+        <exercise xml:id="ex-find-b-from-division">
+            <statement><p>The point <m>P(3, 4, 0)</m> divides <m>AB</m> internally in the ratio <m>2 : 3</m>, and <m>A</m> is <m>(1, 0, -2)</m>. Find <m>B</m>.</p></statement>
+            <answer><p><m>B(6, 10, 3)</m></p></answer>
+            <solution><p><m>\overrightarrow{AP} = \begin{pmatrix} 2 \\ 4 \\ 2 \end{pmatrix} = \frac{2}{5}\overrightarrow{AB}</m>, so <m>\overrightarrow{AB} = \frac{5}{2}\begin{pmatrix} 2 \\ 4 \\ 2 \end{pmatrix} = \begin{pmatrix} 5 \\ 10 \\ 5 \end{pmatrix}</m> and <m>B</m> is <m>(1 + 5, 0 + 10, -2 + 5) = (6, 10, 3)</m>.</p></solution>
+        </exercise>
+        <exercise xml:id="ex-ratio-reasoning">
+            <title>Challenge: Reasoning with Ratios</title>
+            <statement>
+                <p>
+                    <ol marker="(a)">
+                        <li><p><m>X</m> divides <m>AB</m> externally in the ratio <m>2 : 1</m>. In what ratio does <m>B</m> divide <m>AX</m>?</p></li>
+                        <li><p>Explain why no point divides <m>AB</m> externally in the ratio <m>1 : 1</m>.</p></li>
+                    </ol>
+                </p>
+            </statement>
+            <hint><p>In (a), <m>\overrightarrow{AX} = 2\overrightarrow{AB}</m>.</p></hint>
+            <answer><p>(a) Internally <m>1 : 1</m>: <m>B</m> is the midpoint of <m>AX</m>. (b) The only point with <m>AP = PB</m> is the midpoint, which is inside <m>AB</m>; in the formula, <m>m - n = 0</m>.</p></answer>
+            <solution><p>(a) The fraction is <m>\frac{2}{2 - 1} = 2</m>, so <m>\overrightarrow{AX} = 2\overrightarrow{AB}</m> and <m>\overrightarrow{BX} = \overrightarrow{AB}</m>. <m>B</m> is the midpoint of <m>AX</m>: it divides <m>AX</m> internally in the ratio <m>1 : 1</m>. (b) <m>AP : PB = 1 : 1</m> means <m>P</m> is the same distance from <m>A</m> and <m>B</m>. On the line <m>AB</m> the only such point is the midpoint, which divides <m>AB</m> internally. The external formula would need <m>\frac{1}{1 - 1}</m>, which has no value.</p></solution>
+        </exercise>
+    </exercises>
 
-            </statement>   
-            <solution>
-
-            </solution>             
-        </exercise>        
-    </exercises> -->
-
-    <!-- [LP] Add information on how to differentiate  -->
-
-    <!-- <axiom component="lesson-plan">
+    <axiom component="lesson-plan">
         <title>Differentiation</title>
-
-        <table>
-            <title>Differentiation</title>
-            <tabular halign="left">
-                <row header="yes" bottom="minor">
-                    <cell>Learner Group</cell>
-                    <cell>Strategy &amp; Learning Experience</cell>
-                    <cell></cell>
-                </row>
-                <row>
-                    <cell>Struggling Learners (Support)</cell>
-                    <cell>
-                        XXXX
-                    </cell>
-                    <cell></cell>
-                </row>
-                <row>
-                    <cell>On-Level Learners (Core)</cell>
-                    <cell>
-                        <line>The core lesson activities as described above.</line>
-                    </cell>
-                    <cell></cell>
-                </row>
-                <row>
-                    <cell>Advanced Learners (Challenge)</cell>
-                    <cell>
-                        XXXX
-                    </cell>
-                    <cell></cell>
-                </row>
+        <table xml:id="table-differentiation-dividing-a-line">
+            <title>Differentiation Strategies</title>
+            <tabular halign="left" top="minor" bottom="minor" left="minor" right="minor">
+                <row header="yes" bottom="medium"><cell>Learner Group</cell><cell>Strategy and Learning Experience</cell></row>
+                <row><cell>Struggling Learners (Support)</cell><cell>Focus on the stick, parts (a) and (b), and <xref ref="example-internal-division"/>, with a fraction card <m>\dfrac{m}{m+n}</m>. Assign <xref ref="ex-internal-2-1"/> and <xref ref="ex-midpoint-and-3-1"/>.</cell></row>
+                <row><cell>On-Level Learners (Core)</cell><cell>Full activity and all examples. Assign <xref ref="ex-internal-2-1"/> to <xref ref="ex-find-b-from-division"/>.</cell></row>
+                <row><cell>Advanced Learners (Challenge)</cell><cell>All exercises including <xref ref="ex-ratio-reasoning"/>. Extension: <m>P</m> divides <m>AB</m> internally in the ratio <m>3 : 2</m> and <m>Q</m> divides <m>AB</m> externally in the ratio <m>3 : 2</m>; find <m>PQ : AB</m>. (Answer: <m>\overrightarrow{AP} = \frac{3}{5}\overrightarrow{AB}</m> and <m>\overrightarrow{AQ} = 3\overrightarrow{AB}</m>, so <m>\overrightarrow{PQ} = \frac{12}{5}\overrightarrow{AB}</m> and <m>PQ : AB = 12 : 5</m>.)</cell></row>
             </tabular>
         </table>
-    </axiom> -->
+    </axiom>
 
     <xi:include href="../lesson-plan-templates/assessment-methods.ptx" />
 

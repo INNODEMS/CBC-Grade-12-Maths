@@ -33,7 +33,7 @@
                 <li component="lesson-plan">
                     <title>Estimated Duration</title>
                     <p>
-                        40 minutes
+                        2 lessons of 40 minutes
                     </p>
                 </li>
             </dl>
@@ -46,163 +46,422 @@
          Suggested activity: Learners float a paper boat across a stream or water trough and observe how the current carries it off course, then draw the velocity triangle.
          Interactive (JSXGraph): Boat velocity and current velocity as draggable vectors; the resultant (track) and drift angle update live. -->
 
-    <!-- [LP] Add guidance on activity -->
+    <!-- Section notes (2026-11)
+         SLOs: Core (f); also (g) apply and (h) role (safety at sea and in the air). Core only (section root). Lessons 5.1 and 5.2 as subsections.
+         Activity: as planning notes (paper boats across a water trough; the velocity triangle)
+         JSXGraph: fig-velocity-triangle (assets/jsxgraph/velocity-triangle.js), as planning notes: draggable course and current tips, live track and drift; a "hold track" checkbox for lesson 5.2
+         STACK: assets/stack/top/2-measurement-and-geometry/13-navigation/05-course-track-and-drift/ -->
 
-    <!-- <axiom component="lesson-plan">
+    <!-- ============================================================ Lesson 5.1 -->
+    <subsection xml:id="subsec-course-track-and-drift">
+        <title>Course, Track and Drift</title>
+
+        <p component="lesson-plan">Upon completion of this lesson, learners will be able to:
+            <ol>
+                <li><p><alert>Know:</alert> course, track, drift, current and wind; the velocity triangle; the difference between a current flowing <em>towards</em> a direction and a wind blowing <em>from</em> one.</p></li>
+                <li><p><alert>Do:</alert> find the ground speed, drift angle and track when the current is at right angles to the course, then at any angle (cosine and sine rules).</p></li>
+                <li><p><alert>Apply:</alert> boats crossing rivers, dhows in a current, light aircraft in a wind.</p></li>
+            </ol>
+        </p>
+
+        <axiom component="lesson-plan">
             <title>Problem-Solving and Discovery</title>
             <dl>
-                <li>
-                    <title>Suggested Time</title>
-                    <p>
-                        XX minutes
-                    </p>
-                </li>
-                <li>
-                    <title>Objective</title>
-                    <p>
-                        XXX
-                    </p>
-                </li>
-                <li>
-                    <title>Teacher's Role</title>
-                    <p>
-                        XXX
-                    </p>
-                </li>
+                <li><title>Suggested Time</title><p>14 minutes</p></li>
+                <li><title>Objective</title><p>Learners watch a floating body carried off course by moving water, then draw the velocity triangle to explain what they saw.</p></li>
+                <li><title>Teacher's Role</title><p>Prepare a long water trough (or a gutter, or a shallow stream) with a gentle flow from a jug or hosepipe; paper boats, a stopwatch and a metre rule per group. Remind learners about safety near water: no learner wades into a stream. Do not use the words <q>course</q> or <q>track</q> until the Structured Instruction.</p></li>
             </dl>
-        </axiom> -->
+        </axiom>
 
-    <!-- Add Activity -->
-
-    <!-- <activity>
-        <statement>
-        </statement>
-    </activity> -->
-
-    <!-- [LP] Add guidance on structured lesson plan-->
-
-    <!-- <axiom component="lesson-plan">
-        <title>Structured Instruction</title>
-        <p>
-            <dl>
-            <li>
-                <title>Suggested Time</title>
+        <activity xml:id="act-paper-boats-across-a-trough">
+            <title>Paper Boats Across a Trough</title>
+            <statement>
+                <p>Each group makes a paper boat and pushes it straight across a trough of water.</p>
                 <p>
-                    XX minutes
+                    <ol marker="(a)">
+                        <li>
+                            <p>Push the boat straight across still water and time it. Then do the same while the water is flowing along the trough. What happens?</p>
+                            <solution component="lesson-plan"><p>It takes about the same time to cross, but it lands downstream of the point straight opposite: the water carries it along while it crosses.</p></solution>
+                        </li>
+                        <li>
+                            <p>In one trough the boat moves across the water at <m>0.5\,\text{m/s}</m> and the water flows along the trough at <m>0.4\,\text{m/s}</m>. Draw the boat's velocity and the water's velocity as arrows to scale (<m>1\,\text{cm}</m> for <m>0.1\,\text{m/s}</m>), the second starting at the tip of the first. Join the start to the end. How long is this arrow, and what speed does it show?</p>
+                            <solution component="lesson-plan"><p>Arrows of <m>5\,\text{cm}</m> across and <m>4\,\text{cm}</m> along; the joining arrow is about <m>6.4\,\text{cm}</m>, a speed of about <m>0.64\,\text{m/s}</m> (<m>\sqrt{0.5^2 + 0.4^2} = 0.640</m>).</p></solution>
+                        </li>
+                        <li>
+                            <p>Measure the angle between the direction the boat points and the direction it actually goes.</p>
+                            <solution component="lesson-plan"><p>About <m>39^\circ</m> (<m>\tan^{-1} 0.8 = 38.7^\circ</m>).</p></solution>
+                        </li>
+                        <li>
+                            <p>The trough is <m>1.5\,\text{m}</m> wide. How long does the boat take to cross, and how far downstream does it land?</p>
+                            <solution component="lesson-plan"><p><m>1.5 \div 0.5 = 3\,\text{s}</m>; in <m>3\,\text{s}</m> the water carries it <m>3 \times 0.4 = 1.2\,\text{m}</m> downstream.</p></solution>
+                        </li>
+                    </ol>
                 </p>
-            </li>
-            <li>
-                <title>Objective</title>
-                <p>
-                    To formalize the concepts and properties learners discovered in the anchor task.
-                </p>
-            </li>
-            </dl>
-        </p>
-        <paragraphs>
-            <title>Key Takeaways &amp; Teacher Connection</title>
-            <ol>
-                <li>
+            </statement>
+        </activity>
+
+        <axiom component="lesson-plan">
+            <title>Structured Instruction</title>
+            <p>
+                <dl>
+                    <li><title>Suggested Time</title><p>8 minutes</p></li>
+                    <li><title>Objective</title><p>To name the arrows of the learners' triangle and to state how to find the ground speed, drift and track.</p></li>
+                </dl>
+            </p>
+            <paragraphs>
+                <title>Key Takeaways &amp; Teacher Connection</title>
+                <ol>
+                    <li><p><alert>Connecting to Learner Work:</alert> the boat's arrow is the course, the water's arrow is the current, and the joining arrow is the track. The angle in part (c) is the drift.</p></li>
+                    <li><p>Course velocity <m>+</m> current velocity <m>=</m> track velocity. These are vectors: the speeds do not simply add.</p></li>
+                    <li><p>Read every direction carefully: currents are given by where they flow <em>towards</em>, winds by where they blow <em>from</em>.</p></li>
+                </ol>
+            </paragraphs>
+        </axiom>
+
+        <insight xml:id="insight-course-track-and-drift">
+            <title>Course, Track and Drift</title>
+            <p>Directions are three-figure bearings, measured clockwise from north, from <m>000^\circ</m> up to (but not including) <m>360^\circ</m>.</p>
+            <p>
+                <ul>
+                    <li><p>The <term>course</term> is the direction in which a boat or aircraft is steered (pointed). Its speed through the water or air (the <em>water speed</em> or <em>airspeed</em>) goes with it.</p></li>
+                    <li><p>A <term>current</term> is moving water, and a <term>wind</term> moving air. A current flowing towards <m>120^\circ</m> carries a boat towards <m>120^\circ</m>. A wind blowing from <m>300^\circ</m> pushes an aircraft towards <m>120^\circ</m>.</p></li>
+                    <li><p>The <term>track</term> is the direction in which the boat or aircraft actually moves over the ground or the sea bed. Its speed along the track is the <term>ground speed</term>.</p></li>
+                    <li><p>The <term>drift</term> (or drift angle) is the angle between the course and the track.</p></li>
+                </ul>
+            </p>
+            <p>The course is where the boat points; the track is where it goes. In the <term>velocity triangle</term> the current arrow starts at the tip of the course arrow, and the track arrow (drawn with a double head) joins the start to the end:
+                <md>\text{course velocity} + \text{current velocity} = \text{track velocity}</md>.
+                Solve the triangle with Pythagoras and <m>\tan</m> when the current is at right angles to the course, and with the cosine and sine rules otherwise.</p>
+            <p>Sailors also use <q>set and drift</q> to mean the direction and speed of a current. In this book <q>drift</q> always means the drift angle.</p>
+        </insight>
+
+        <figure xml:id="fig-velocity-triangle-labels">
+            <caption>A velocity triangle for a dhow steered on a course of <m>040^\circ</m> at <m>8\,\text{knots}</m> in a current flowing towards <m>160^\circ</m> at <m>3\,\text{knots}</m>.</caption>
+            <image width="55%">
+                <shortdescription>A velocity triangle. From the start O, a single-headed arrow labelled course, 8 knots, points on a bearing of 040 degrees. From its tip, an arrow labelled current, 3 knots, points towards 160 degrees. A double-headed arrow labelled track joins O to the end. The drift angle d is marked at O between the course and the track. A north line is drawn at O.</shortdescription>
+                <latex-image>
+\begin{tikzpicture}[scale=0.55, >=stealth]
+% SET: O start; B tip of course (bearing 040, 8 units); C tip of current (towards 160, 3 units)
+\coordinate (O) at (0,0);
+\coordinate (B) at (5.142,6.128);
+\coordinate (C) at (6.168,3.309);
+% DRAW: north line
+\draw[thin] (O) -- (0,7.5) node[above] {N};
+% DRAW: course (single head), current (single head), track (double head)
+\draw[->, thick] (O) -- (B) node[midway, sloped, above] {course, 8 knots};
+\draw[->, thick, dashed] (B) -- (C) node[midway, right] {current, 3 knots};
+\draw[->>, very thick] (O) -- (C) node[midway, sloped, below] {track};
+% MARK: drift angle at O between course (040) and track (061.8)
+\draw (0,0) ++(50:1.6) arc (50:28.2:1.6);
+\node at (40:2.2) {$d$};
+% MARK: bearing of the course from north
+\draw (0,0) ++(90:1.0) arc (90:50:1.0);
+\node at (72:1.5) {\small $40^\circ$};
+% LABEL
+\fill (O) circle (2pt) node[below left] {O};
+\end{tikzpicture}
+                </latex-image>
+            </image>
+        </figure>
+
+        <figure xml:id="fig-velocity-triangle">
+            <caption>The velocity triangle. Drag the tip of the course arrow and the tip of the current arrow; the double arrow is the track. Tick <q>hold track</q> to find the course to steer for a chosen track.</caption>
+            <interactive xml:id="interactive-velocity-triangle" platform="jsxgraph" width="90%" aspect="1:1" source="jsxgraph/velocity-triangle.js">
+                <slate xml:id="jsxgraph-velocity-triangle" surface="jsxboard" aspect="1:1"/>
+                <instructions>
                     <p>
-                        <alert>Connecting to Learner Work:</alert> XXXX
+                        <ul>
+                            <li><p>Drag the point <alert>B</alert> (the tip of the course arrow from O) and the point <alert>C</alert> (the tip of the current arrow from B). The readout gives the course, the current, the track, the ground speed and the drift angle. One grid square is <m>0.1</m> units of speed.</p></li>
+                            <li><p>Check the activity: put B at <m>0.5</m> north of O (course <m>000^\circ</m>) and C at <m>0.4</m> east of B. The readout gives a ground speed of <m>0.6</m> (more exactly <m>0.64</m>) and a drift of <m>38.7^\circ</m>.</p></li>
+                            <li><p>Point the course where you want to go, then tick <alert>hold track</alert>. That direction becomes the required track (dashed line); the current and the boat's speed are fixed, and B now moves on a circle. Turn B until C lies on the dashed line (the readout says <q>on track</q>), and read how far the course is from the track: that is the angle you must steer into the current.</p></li>
+                        </ul>
                     </p>
-                </li>
-            </ol>
-        </paragraphs>
-    </axiom> -->
+                </instructions>
+            </interactive>
+        </figure>
 
-    <!-- Add insight / key takeaway directly related to activity / learner experience -->
+        <xi:include href="../lesson-plan-templates/example-intro.ptx" />
 
-    <!-- <insight>
-    </insight> -->
-
-    <!-- Add further instruction (not in a block) to develop ideas as needed -->
-
-    <xi:include href="../lesson-plan-templates/example-intro.ptx" />
-
-    <!-- Add at least 3 examples -->
-
-    <!-- <example>
-        <statement>
-        </statement>
-        <solution>
-        </solution>
-    </example>
-
-    <example>
-        <statement>
-        </statement>
-        <solution>
-        </solution>
-    </example>
-
-    <example>
-        <statement>
-        </statement>
-        <solution>
-        </solution>
-    </example> -->
-
-    <xi:include href="../lesson-plan-templates/assessment-intro.ptx" />
-
-    <!-- If STACK questions are included, uncomment this: -->
-
-    <!-- <xi:include href="../lesson-plan-templates/checkpoint.ptx" /> -->
-
-    <!-- Add STACK exercises if made -->
-
-    <!-- Add static exercises -->
-
-    <!-- <exercises>
-        <exercise>
-            <statement>   
-
-            </statement>   
+        <example xml:id="example-crossing-the-tana-river">
+            <title>Crossing the Tana River</title>
+            <statement>
+                <p>At Garsen a boat is steered straight across the Tana River at <m>2.4\,\text{m/s}</m> through the water. The river flows at <m>0.7\,\text{m/s}</m> and is <m>120\,\text{m}</m> wide. Find the ground speed, the drift angle, the time to cross and how far downstream the boat lands.</p>
+            </statement>
             <solution>
+                <p>The current is at right angles to the course, so the velocity triangle is right-angled with the ground speed as its hypotenuse.
+                    <md>
+                        <mrow>\text{ground speed} \amp = \sqrt{2.4^2 + 0.7^2} = \sqrt{6.25} = 2.5\,\text{m/s}</mrow>
+                        <mrow>\tan d \amp = \frac{0.7}{2.4}, \quad d = 16.3^\circ</mrow>
+                    </md>
+                    The speed across the river is still <m>2.4\,\text{m/s}</m>, so the crossing takes <m>120 \div 2.4 = 50\,\text{s}</m>. In that time the current carries the boat <m>50 \times 0.7 = 35\,\text{m}</m> downstream.</p>
+            </solution>
+        </example>
 
-            </solution>             
-        </exercise>        
-    </exercises> -->
+        <example xml:id="example-wind-on-a-flight-from-wilson">
+            <title>Wind on a Flight from Wilson Airport</title>
+            <statement>
+                <p>A light aircraft leaves Wilson Airport, Nairobi, on a course of <m>090^\circ</m> with an airspeed of <m>160\,\text{knots}</m>. A wind of <m>28\,\text{knots}</m> blows from <m>000^\circ</m>. Find the ground speed, the drift angle and the track.</p>
+            </statement>
+            <solution>
+                <p>A wind from <m>000^\circ</m> (from the north) blows towards <m>180^\circ</m>, at right angles to the course.
+                    <md>
+                        <mrow>\text{ground speed} \amp = \sqrt{160^2 + 28^2} = 162.4\,\text{knots}</mrow>
+                        <mrow>\tan d \amp = \frac{28}{160}, \quad d = 9.9^\circ</mrow>
+                    </md>
+                    The wind pushes the aircraft south of east, so the track is <m>090^\circ + 9.9^\circ = 099.9^\circ</m>.</p>
+                <p>Check with column vectors (east, north): <m>\begin{pmatrix} 160 \\ 0 \end{pmatrix} + \begin{pmatrix} 0 \\ -28 \end{pmatrix} = \begin{pmatrix} 160 \\ -28 \end{pmatrix}</m>, which has length <m>162.4</m> and points <m>9.9^\circ</m> south of east.</p>
+            </solution>
+        </example>
 
-    <!-- [LP] Add information on how to differentiate  -->
+        <example xml:id="example-a-dhow-off-lamu">
+            <title>A Dhow off Lamu</title>
+            <statement>
+                <p>A dhow off Lamu is steered on a course of <m>040^\circ</m> at <m>8\,\text{knots}</m>. A current flows towards <m>160^\circ</m> at <m>3\,\text{knots}</m>. Find the ground speed, the drift angle and the track (see <xref ref="fig-velocity-triangle-labels"/>).</p>
+            </statement>
+            <solution>
+                <p>The directions <m>040^\circ</m> and <m>160^\circ</m> differ by <m>120^\circ</m>, so inside the triangle the angle between the course arrow and the current arrow is <m>180^\circ - 120^\circ = 60^\circ</m>.</p>
+                <p><alert>Step 1: cosine rule.</alert> <md>\text{ground speed}^2 = 8^2 + 3^2 - 2 \times 8 \times 3 \cos 60^\circ = 64 + 9 - 24 = 49</md> so the ground speed is <m>7\,\text{knots}</m>.</p>
+                <p><alert>Step 2: sine rule.</alert> <md>\sin d = \frac{3 \sin 60^\circ}{7}, \quad d = 21.8^\circ</md></p>
+                <p><alert>Step 3: track.</alert> The current pushes the dhow clockwise from its course, so the track is <m>040^\circ + 21.8^\circ = 061.8^\circ</m>.</p>
+            </solution>
+        </example>
 
-    <!-- <axiom component="lesson-plan">
-        <title>Differentiation</title>
+        <xi:include href="../lesson-plan-templates/assessment-intro.ptx" />
+        <xi:include href="../lesson-plan-templates/checkpoint.ptx" />
 
-        <table>
+        <p>Type decimals with a point, for example <c>36.8</c>. Type angles in degrees as numbers, without the degree sign. Choose N, S, E or W from each list.</p>
+
+<exercise xml:id="ex-drift-with-a-current-at-right-angles">
+    <!--<title></title>-->
+    <stack label="stk-drift-with-a-current-at-right-angles" source="stack/top/2-measurement-and-geometry/13-navigation/05-course-track-and-drift/Drift-with-a-current-at-right-angles.xml"/>
+</exercise>
+
+<exercise xml:id="ex-track-and-ground-speed-in-a-wind">
+    <!--<title></title>-->
+    <stack label="stk-track-and-ground-speed-in-a-wind" source="stack/top/2-measurement-and-geometry/13-navigation/05-course-track-and-drift/Track-and-ground-speed-in-a-wind.xml"/>
+</exercise>
+
+<exercise xml:id="ex-true-or-false-course-track-and-drift">
+    <!--<title></title>-->
+    <stack label="stk-true-or-false-course-track-and-drift" source="stack/top/2-measurement-and-geometry/13-navigation/05-course-track-and-drift/True-or-false-course-track-and-drift.xml"/>
+</exercise>
+
+        <exercises xml:id="exercises-course-track-and-drift">
+            <exercise xml:id="ex-boat-across-at-right-angles">
+                <statement><p>A boat is steered straight across a river at <m>3.5\,\text{m/s}</m> through the water. The current is <m>1.2\,\text{m/s}</m>. Find the ground speed and the drift angle.</p></statement>
+                <answer><p><m>3.7\,\text{m/s}</m>; <m>18.9^\circ</m></p></answer>
+                <solution><p><m>\sqrt{3.5^2 + 1.2^2} = \sqrt{13.69} = 3.7\,\text{m/s}</m>; <m>\tan d = 1.2 \div 3.5</m>, <m>d = 18.9^\circ</m>.</p></solution>
+            </exercise>
+            <exercise xml:id="ex-aircraft-course-180">
+                <statement><p>An aircraft flies on a course of <m>180^\circ</m> with an airspeed of <m>210\,\text{knots}</m>. A wind of <m>36\,\text{knots}</m> blows from <m>090^\circ</m>. Find the ground speed, the drift angle and the track.</p></statement>
+                <answer><p><m>213.1\,\text{knots}</m>; <m>9.7^\circ</m>; <m>189.7^\circ</m></p></answer>
+                <solution><p>The wind blows towards <m>270^\circ</m>, at right angles to the course. <m>\sqrt{210^2 + 36^2} = 213.1\,\text{knots}</m>; <m>\tan d = 36 \div 210</m>, <m>d = 9.7^\circ</m>. Pushed west of south, so the track is <m>180^\circ + 9.7^\circ = 189.7^\circ</m>.</p></solution>
+            </exercise>
+            <exercise xml:id="ex-ship-course-300">
+                <statement><p>A ship is steered on a course of <m>300^\circ</m> at <m>14\,\text{knots}</m>. A current flows towards <m>030^\circ</m> at <m>5\,\text{knots}</m>. Find the ground speed, the drift angle and the track.</p></statement>
+                <answer><p><m>14.9\,\text{knots}</m>; <m>19.7^\circ</m>; <m>319.7^\circ</m></p></answer>
+                <solution><p><m>030^\circ</m> is <m>90^\circ</m> clockwise from <m>300^\circ</m>. <m>\sqrt{14^2 + 5^2} = 14.9\,\text{knots}</m>; <m>\tan d = 5 \div 14</m>, <m>d = 19.7^\circ</m>; track <m>300^\circ + 19.7^\circ = 319.7^\circ</m>.</p></solution>
+            </exercise>
+            <exercise xml:id="ex-ship-current-at-60-degrees">
+                <statement><p>A ship is steered on a course of <m>120^\circ</m> at <m>9\,\text{knots}</m>. A current flows towards <m>060^\circ</m> at <m>4\,\text{knots}</m>. Find the ground speed, the drift angle and the track.</p></statement>
+                <answer><p><m>11.5\,\text{knots}</m>; <m>17.5^\circ</m>; <m>102.5^\circ</m></p></answer>
+                <solution><p>The directions differ by <m>60^\circ</m>, so the angle inside the triangle is <m>120^\circ</m>. <m>\text{ground speed}^2 = 9^2 + 4^2 - 2 \times 9 \times 4 \cos 120^\circ = 133</m>, ground speed <m>11.5\,\text{knots}</m>. <m>\sin d = 4 \sin 120^\circ \div 11.53</m>, <m>d = 17.5^\circ</m>. The current pushes anticlockwise, so the track is <m>120^\circ - 17.5^\circ = 102.5^\circ</m>.</p></solution>
+            </exercise>
+            <exercise xml:id="ex-crossing-time-and-distance">
+                <title>Challenge: Time to Cross</title>
+                <statement><p>A river is <m>80\,\text{m}</m> wide. A boat is steered straight across at <m>1.6\,\text{m/s}</m> through the water, and the current is <m>0.9\,\text{m/s}</m>. How long does the crossing take, and how far downstream does the boat land?</p></statement>
+                <hint><p>The current does not change the time to cross.</p></hint>
+                <answer><p><m>50\,\text{s}</m>; <m>45\,\text{m}</m></p></answer>
+                <solution><p>Across the river the boat moves at <m>1.6\,\text{m/s}</m>: <m>80 \div 1.6 = 50\,\text{s}</m>. Downstream it moves at <m>0.9\,\text{m/s}</m> for <m>50\,\text{s}</m>: <m>45\,\text{m}</m>.</p></solution>
+            </exercise>
+        </exercises>
+
+        <axiom component="lesson-plan">
             <title>Differentiation</title>
-            <tabular halign="left">
-                <row header="yes" bottom="minor">
-                    <cell>Learner Group</cell>
-                    <cell>Strategy &amp; Learning Experience</cell>
-                    <cell></cell>
-                </row>
-                <row>
-                    <cell>Struggling Learners (Support)</cell>
-                    <cell>
-                        XXXX
-                    </cell>
-                    <cell></cell>
-                </row>
-                <row>
-                    <cell>On-Level Learners (Core)</cell>
-                    <cell>
-                        <line>The core lesson activities as described above.</line>
-                    </cell>
-                    <cell></cell>
-                </row>
-                <row>
-                    <cell>Advanced Learners (Challenge)</cell>
-                    <cell>
-                        XXXX
-                    </cell>
-                    <cell></cell>
-                </row>
-            </tabular>
-        </table>
-    </axiom> -->
+            <table xml:id="table-differentiation-course-track-and-drift">
+                <title>Differentiation Strategies</title>
+                <tabular halign="left" top="minor" bottom="minor" left="minor" right="minor">
+                    <row header="yes" bottom="medium"><cell>Learner Group</cell><cell>Strategy and Learning Experience</cell></row>
+                    <row><cell>Struggling Learners (Support)</cell><cell>The activity and <xref ref="example-crossing-the-tana-river"/>. Give a card: <q>course + current = track</q>, with a right-angled triangle labelled. Assign <xref ref="ex-boat-across-at-right-angles"/> and <xref ref="ex-aircraft-course-180"/>.</cell></row>
+                    <row><cell>On-Level Learners (Core)</cell><cell>Full activity and all examples. Assign <xref ref="ex-boat-across-at-right-angles"/> to <xref ref="ex-ship-current-at-60-degrees"/>.</cell></row>
+                    <row><cell>Advanced Learners (Challenge)</cell><cell>All exercises including <xref ref="ex-crossing-time-and-distance"/>. Extension: show that when the current is at right angles to the course, <m>\tan d</m> = current speed <m>\div</m> boat speed. (Answer: in the right-angled triangle the current is opposite <m>d</m> and the course is adjacent to it.)</cell></row>
+                </tabular>
+            </table>
+        </axiom>
 
-    <xi:include href="../lesson-plan-templates/assessment-methods.ptx" />
+        <p component="lesson-plan">Closing question for the class: why must a pilot flying from Wilson Airport know the wind before take-off?</p>
 
-    <xi:include href="../lesson-plan-templates/reflection.ptx"/>
+        <xi:include href="../lesson-plan-templates/assessment-methods.ptx" />
+        <xi:include href="../lesson-plan-templates/reflection.ptx"/>
+    </subsection>
+
+    <!-- ============================================================ Lesson 5.2 -->
+    <subsection xml:id="subsec-steering-a-course">
+        <title>Steering a Course</title>
+
+        <p component="lesson-plan">Upon completion of this lesson, learners will be able to:
+            <ol>
+                <li><p><alert>Know:</alert> to make good a required track, a boat must be steered partly into the current (an aircraft partly into the wind).</p></li>
+                <li><p><alert>Do:</alert> find the course to steer and the ground speed, first when the current is at right angles to the track, then at any angle (sine rule).</p></li>
+                <li><p><alert>Apply:</alert> ferries, cargo ships and flights; safety on the water and in the air.</p></li>
+            </ol>
+        </p>
+
+        <axiom component="lesson-plan">
+            <title>Problem-Solving and Discovery</title>
+            <dl>
+                <li><title>Suggested Time</title><p>14 minutes</p></li>
+                <li><title>Objective</title><p>Learners find, by experiment with the interactive, where to point a boat so that it lands straight opposite its starting point.</p></li>
+                <li><title>Teacher's Role</title><p>Use <xref ref="fig-velocity-triangle"/> with <q>hold track</q> ticked. After the activity, discuss why ferry pilots, fishermen and aircraft pilots check the currents and winds before they set out (safety and security).</p></li>
+            </dl>
+        </axiom>
+
+        <activity xml:id="act-reaching-the-jetty">
+            <title>Reaching the Jetty</title>
+            <statement>
+                <p>A ferry crosses a channel to a jetty straight opposite. It moves at <m>2.8\,\text{m/s}</m> through the water, and the current flows at <m>0.7\,\text{m/s}</m>.</p>
+                <p>
+                    <ol marker="(a)">
+                        <li>
+                            <p>In <xref ref="fig-velocity-triangle"/>, put B at <m>2.8</m> north of O (straight across the channel) and C at <m>0.7</m> east of B (the current). Tick <alert>hold track</alert>, then turn B until C lies on the dashed line. At what angle upstream must the ferry be pointed?</p>
+                            <solution component="lesson-plan"><p>About <m>14.5^\circ</m> upstream (<m>\sin d = 0.7 \div 2.8 = 0.25</m>).</p></solution>
+                        </li>
+                        <li>
+                            <p>Why is the ground speed now less than <m>2.8\,\text{m/s}</m>?</p>
+                            <solution component="lesson-plan"><p>Part of the ferry's speed through the water is used to cancel the current, so less is left for crossing: <m>\sqrt{2.8^2 - 0.7^2} = 2.7\,\text{m/s}</m>.</p></solution>
+                        </li>
+                        <li>
+                            <p>What happens if the current is faster than the ferry?</p>
+                            <solution component="lesson-plan"><p>It cannot go straight across: however it is pointed, the current carries it downstream.</p></solution>
+                        </li>
+                    </ol>
+                </p>
+            </statement>
+        </activity>
+
+        <axiom component="lesson-plan">
+            <title>Structured Instruction</title>
+            <p>
+                <dl>
+                    <li><title>Suggested Time</title><p>8 minutes</p></li>
+                    <li><title>Objective</title><p>To set out how to find the course to steer for a required track.</p></li>
+                </dl>
+            </p>
+            <paragraphs>
+                <title>Key Takeaways &amp; Teacher Connection</title>
+                <ol>
+                    <li><p><alert>Connecting to Learner Work:</alert> in the activity the track was fixed and the course was unknown: the opposite of lesson 5.1.</p></li>
+                    <li><p>Draw the track line first. Draw the current arrow from the start, then the course arrow (its length is the boat's speed) from the tip of the current arrow to meet the track line.</p></li>
+                    <li><p>Use the sine rule for the angle between the course and the track; steer that angle on the upstream (upwind) side of the track.</p></li>
+                </ol>
+            </paragraphs>
+        </axiom>
+
+        <insight xml:id="insight-steering-a-course">
+            <title>Steering a Course</title>
+            <p>When the track is known and the course is not, draw the current arrow from the start, then the course arrow from its tip so that its length is the boat's speed and its end lies on the track line. If <m>\alpha</m> is the angle between the track and the direction of the current, the sine rule gives the drift angle <m>d</m>:
+                <md>\sin d = \frac{\text{current speed} \times \sin \alpha}{\text{boat speed}}</md>.
+                Steer <m>d</m> degrees on the upstream (upwind) side of the track. The ground speed is then
+                <md>\text{ground speed} = \text{boat speed} \times \cos d + \text{current speed} \times \cos \alpha</md>
+                (the parts of the two velocities along the track). When the current is at right angles to the track, <m>\sin d = \text{current speed} \div \text{boat speed}</m> and the ground speed is <m>\sqrt{\text{boat speed}^2 - \text{current speed}^2}</m>.</p>
+        </insight>
+
+        <xi:include href="../lesson-plan-templates/example-intro.ptx" />
+
+        <example xml:id="example-straight-across-likoni">
+            <title>Straight Across the Likoni Channel</title>
+            <statement>
+                <p>A ferry crosses the Likoni channel at Mombasa at <m>2.8\,\text{m/s}</m> through the water. The current flows at <m>0.7\,\text{m/s}</m> along the channel. At what angle upstream must the ferry be steered to go straight across, and what is its ground speed?</p>
+            </statement>
+            <solution>
+                <p>The current is at right angles to the required track. <md>\sin d = \frac{0.7}{2.8} = 0.25, \quad d = 14.5^\circ</md> upstream. The ground speed is <m>\sqrt{2.8^2 - 0.7^2} = \sqrt{7.35} = 2.7\,\text{m/s}</m>.</p>
+            </solution>
+        </example>
+
+        <example xml:id="example-flying-due-north">
+            <title>Flying Due North</title>
+            <statement>
+                <p>A pilot must fly on a track of <m>000^\circ</m> (due north). The airspeed is <m>150\,\text{knots}</m> and a wind of <m>25\,\text{knots}</m> blows from <m>270^\circ</m>. Find the course to steer and the ground speed.</p>
+            </statement>
+            <solution>
+                <p>A wind from <m>270^\circ</m> (from the west) blows towards <m>090^\circ</m>, at right angles to the track. <md>\sin d = \frac{25}{150}, \quad d = 9.6^\circ</md> The wind pushes east, so steer west of north: course <m>360^\circ - 9.6^\circ = 350.4^\circ</m>. Ground speed <m>\sqrt{150^2 - 25^2} = 147.9\,\text{knots}</m>.</p>
+            </solution>
+        </example>
+
+        <example xml:id="example-making-good-a-track-of-060">
+            <title>Making Good a Track of <m>060^\circ</m></title>
+            <statement>
+                <p>A cargo ship must make good a track of <m>060^\circ</m>. Its speed through the water is <m>12\,\text{knots}</m>, and a current flows towards <m>180^\circ</m> at <m>3.5\,\text{knots}</m>. Find the course to steer and the ground speed.</p>
+            </statement>
+            <solution>
+                <p>The angle between the track <m>060^\circ</m> and the current <m>180^\circ</m> is <m>\alpha = 120^\circ</m>.</p>
+                <p><alert>Step 1: sine rule.</alert> <md>\sin d = \frac{3.5 \sin 120^\circ}{12}, \quad d = 14.6^\circ</md></p>
+                <p><alert>Step 2: course.</alert> The current pushes the ship clockwise from the track, so steer anticlockwise: course <m>060^\circ - 14.6^\circ = 045.4^\circ</m>.</p>
+                <p><alert>Step 3: ground speed.</alert> <md>12 \cos 14.6^\circ + 3.5 \cos 120^\circ = 11.61 - 1.75 = 9.9\,\text{knots}</md></p>
+            </solution>
+        </example>
+
+        <note xml:id="note-safety-on-the-water">
+            <title>Safety on the Water</title>
+            <p>Currents are strongest at river mouths, in narrow channels such as the Likoni channel and when the tide turns. Anyone crossing water in a small boat should wear a life jacket and check the current first: a boat that cannot beat the current will be carried away however it is steered. Pilots work out a wind-corrected course before every flight so that they reach their destination with enough fuel.</p>
+        </note>
+
+        <xi:include href="../lesson-plan-templates/assessment-intro.ptx" />
+        <xi:include href="../lesson-plan-templates/checkpoint.ptx" />
+
+        <p>Type decimals with a point, for example <c>36.8</c>. Type angles in degrees as numbers, without the degree sign. Choose N, S, E or W from each list.</p>
+
+<exercise xml:id="ex-course-to-steer-for-a-required-track">
+    <!--<title></title>-->
+    <stack label="stk-course-to-steer-for-a-required-track" source="stack/top/2-measurement-and-geometry/13-navigation/05-course-track-and-drift/Course-to-steer-for-a-required-track.xml"/>
+</exercise>
+
+        <exercises xml:id="exercises-steering-a-course">
+            <exercise xml:id="ex-straight-across-1-6">
+                <statement><p>A boat moves at <m>3.4\,\text{m/s}</m> in still water. The current is <m>1.6\,\text{m/s}</m>. At what angle upstream must the boat be steered to go straight across, and what is its ground speed?</p></statement>
+                <answer><p><m>28.1^\circ</m>; <m>3.0\,\text{m/s}</m></p></answer>
+                <solution><p><m>\sin d = 1.6 \div 3.4</m>, <m>d = 28.1^\circ</m>; <m>\sqrt{3.4^2 - 1.6^2} = \sqrt{9} = 3.0\,\text{m/s}</m>.</p></solution>
+            </exercise>
+            <exercise xml:id="ex-track-090-wind-from-north">
+                <statement><p>A pilot must fly on a track of <m>090^\circ</m> with an airspeed of <m>240\,\text{knots}</m>. A wind of <m>48\,\text{knots}</m> blows from <m>000^\circ</m>. Find the course to steer and the ground speed.</p></statement>
+                <answer><p><m>078.5^\circ</m>; <m>235.2\,\text{knots}</m></p></answer>
+                <solution><p>The wind blows towards <m>180^\circ</m>, at right angles to the track. <m>\sin d = 48 \div 240</m>, <m>d = 11.5^\circ</m>; steer north of east: <m>090^\circ - 11.5^\circ = 078.5^\circ</m>. Ground speed <m>\sqrt{240^2 - 48^2} = 235.2\,\text{knots}</m>.</p></solution>
+            </exercise>
+            <exercise xml:id="ex-track-135-current-045">
+                <statement><p>A ship must make good a track of <m>135^\circ</m> at <m>15\,\text{knots}</m> through the water. A current flows towards <m>045^\circ</m> at <m>3\,\text{knots}</m>. Find the course to steer and the ground speed.</p></statement>
+                <answer><p><m>146.5^\circ</m>; <m>14.7\,\text{knots}</m></p></answer>
+                <solution><p>The current is at right angles to the track and pushes anticlockwise. <m>\sin d = 3 \div 15</m>, <m>d = 11.5^\circ</m>; steer clockwise: <m>135^\circ + 11.5^\circ = 146.5^\circ</m>. Ground speed <m>\sqrt{15^2 - 3^2} = 14.7\,\text{knots}</m>.</p></solution>
+            </exercise>
+            <exercise xml:id="ex-track-200-current-300">
+                <statement><p>A ship must make good a track of <m>200^\circ</m> at <m>11\,\text{knots}</m> through the water. A current flows towards <m>300^\circ</m> at <m>2.5\,\text{knots}</m>. Find the course to steer and the ground speed.</p></statement>
+                <answer><p><m>187.1^\circ</m>; <m>10.3\,\text{knots}</m></p></answer>
+                <solution><p>The angle between the track and the current is <m>100^\circ</m>. <m>\sin d = 2.5 \sin 100^\circ \div 11</m>, <m>d = 12.9^\circ</m>. The current pushes clockwise, so steer anticlockwise: <m>200^\circ - 12.9^\circ = 187.1^\circ</m>. Ground speed <m>11 \cos 12.9^\circ + 2.5 \cos 100^\circ = 10.72 - 0.43 = 10.3\,\text{knots}</m>.</p></solution>
+            </exercise>
+            <exercise xml:id="ex-current-too-strong">
+                <title>Challenge: A Current Too Strong</title>
+                <statement><p>A fisherman's dugout moves at <m>1.1\,\text{m/s}</m> in still water. After heavy rain the river flows at <m>1.3\,\text{m/s}</m>. Explain why the dugout cannot reach the point straight opposite.</p></statement>
+                <hint><p>Work out <m>\sin d</m>.</p></hint>
+                <answer><p><m>\sin d = 1.3 \div 1.1 = 1.18</m>, which is impossible.</p></answer>
+                <solution><p>To go straight across, <m>\sin d = 1.3 \div 1.1 = 1.18</m> (to 2 d.p.). The sine of an angle is never more than <m>1</m>, so no course works: the current is faster than the dugout, which is always carried downstream.</p></solution>
+            </exercise>
+        </exercises>
+
+        <axiom component="lesson-plan">
+            <title>Differentiation</title>
+            <table xml:id="table-differentiation-steering-a-course">
+                <title>Differentiation Strategies</title>
+                <tabular halign="left" top="minor" bottom="minor" left="minor" right="minor">
+                    <row header="yes" bottom="medium"><cell>Learner Group</cell><cell>Strategy and Learning Experience</cell></row>
+                    <row><cell>Struggling Learners (Support)</cell><cell>The activity and <xref ref="example-straight-across-likoni"/>. Assign <xref ref="ex-straight-across-1-6"/>.</cell></row>
+                    <row><cell>On-Level Learners (Core)</cell><cell>Full activity and all examples. Assign <xref ref="ex-straight-across-1-6"/> to <xref ref="ex-track-200-current-300"/>.</cell></row>
+                    <row><cell>Advanced Learners (Challenge)</cell><cell>All exercises including <xref ref="ex-current-too-strong"/>. Extension, for discussion only: if the current is too strong to go straight across, how should the dugout be pointed to be carried as little as possible downstream? (Answer in words: point it partly upstream, so that the course is at right angles to the resulting track.)</cell></row>
+                </tabular>
+            </table>
+        </axiom>
+
+        <p component="lesson-plan">Closing question for the class: what should a fisherman on Lake Victoria check before setting out in a small boat, and why?</p>
+
+        <xi:include href="../lesson-plan-templates/assessment-methods.ptx" />
+        <xi:include href="../lesson-plan-templates/reflection.ptx"/>
+    </subsection>
 </section>

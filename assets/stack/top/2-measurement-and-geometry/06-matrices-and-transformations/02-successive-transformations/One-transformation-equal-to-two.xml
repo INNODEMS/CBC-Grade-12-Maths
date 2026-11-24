@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<quiz>
+<question type="stack">
+  <name><text>One transformation equal to two</text></name>
+  <questiontext format="html">
+    <text><![CDATA[<p>The [[if test="is(f=\"rx\")"]]reflection in the x-axis[[/if]][[if test="is(f=\"ry\")"]]reflection in the y-axis[[/if]][[if test="is(f=\"ryx\")"]]reflection in the line \(y = x\)[[/if]][[if test="is(f=\"rmyx\")"]]reflection in the line \(y = -x\)[[/if]][[if test="is(f=\"r90\")"]]rotation of \(90^\circ\) anticlockwise about O[[/if]][[if test="is(f=\"r180\")"]]rotation of \(180^\circ\) about O[[/if]][[if test="is(f=\"r270\")"]]rotation of \(90^\circ\) clockwise about O[[/if]] is followed by the [[if test="is(s=\"rx\")"]]reflection in the x-axis[[/if]][[if test="is(s=\"ry\")"]]reflection in the y-axis[[/if]][[if test="is(s=\"ryx\")"]]reflection in the line \(y = x\)[[/if]][[if test="is(s=\"rmyx\")"]]reflection in the line \(y = -x\)[[/if]][[if test="is(s=\"r90\")"]]rotation of \(90^\circ\) anticlockwise about O[[/if]][[if test="is(s=\"r180\")"]]rotation of \(180^\circ\) about O[[/if]][[if test="is(s=\"r270\")"]]rotation of \(90^\circ\) clockwise about O[[/if]].</p><p>(a) Write down the single matrix for the combined transformation.</p><div>[[input:ans1]] [[validation:ans1]] [[feedback:prt1]]</div><p>(b) Which single transformation is it?</p><div>[[input:ans2]] [[validation:ans2]] [[feedback:prt2]]</div>]]></text>
+  </questiontext>
+  <generalfeedback format="html">
+    <text><![CDATA[<p>The matrix of the [[if test="is(f=\"rx\")"]]reflection in the x-axis[[/if]][[if test="is(f=\"ry\")"]]reflection in the y-axis[[/if]][[if test="is(f=\"ryx\")"]]reflection in the line \(y = x\)[[/if]][[if test="is(f=\"rmyx\")"]]reflection in the line \(y = -x\)[[/if]][[if test="is(f=\"r90\")"]]rotation of \(90^\circ\) anticlockwise about O[[/if]][[if test="is(f=\"r180\")"]]rotation of \(180^\circ\) about O[[/if]][[if test="is(f=\"r270\")"]]rotation of \(90^\circ\) clockwise about O[[/if]] is \({@Fm@}\) and the matrix of the [[if test="is(s=\"rx\")"]]reflection in the x-axis[[/if]][[if test="is(s=\"ry\")"]]reflection in the y-axis[[/if]][[if test="is(s=\"ryx\")"]]reflection in the line \(y = x\)[[/if]][[if test="is(s=\"rmyx\")"]]reflection in the line \(y = -x\)[[/if]][[if test="is(s=\"r90\")"]]rotation of \(90^\circ\) anticlockwise about O[[/if]][[if test="is(s=\"r180\")"]]rotation of \(180^\circ\) about O[[/if]][[if test="is(s=\"r270\")"]]rotation of \(90^\circ\) clockwise about O[[/if]] is \({@Sm@}\). The first transformation's matrix goes on the right:</p><p>\({@Sm@}{@Fm@} = {@ta@}\)</p><p>(b) Read its columns: (1, 0) goes to \(({@ta[1,1]@},\,{@ta[2,1]@})\) and (0, 1) goes to \(({@ta[1,2]@},\,{@ta[2,2]@})\). This is the [[if test="is(rk=\"rx\")"]]reflection in the x-axis[[/if]][[if test="is(rk=\"ry\")"]]reflection in the y-axis[[/if]][[if test="is(rk=\"ryx\")"]]reflection in the line \(y = x\)[[/if]][[if test="is(rk=\"rmyx\")"]]reflection in the line \(y = -x\)[[/if]][[if test="is(rk=\"r90\")"]]rotation of \(90^\circ\) anticlockwise about O[[/if]][[if test="is(rk=\"r180\")"]]rotation of \(180^\circ\) about O[[/if]][[if test="is(rk=\"r270\")"]]rotation of \(90^\circ\) clockwise about O[[/if]].</p>]]></text>
+  </generalfeedback>
+  <defaultgrade>2</defaultgrade>
+  <penalty>0.1</penalty>
+  <hidden>0</hidden>
+  <idnumber></idnumber>
+  <stackversion><text>2026063000</text></stackversion>
+  <questionvariables>
+    <text><![CDATA[validate_numeric(ex) := block([sx], sx: ev(ex, simp), if listofvars(ex) = [] and freeof(%i, sx) then "" else "Type a number in each box, not a letter.");
+Srx: matrix([1,0],[0,-1]); Sry: matrix([-1,0],[0,1]); Sryx: matrix([0,1],[1,0]); Srmyx: matrix([0,-1],[-1,0]);
+Sr90: matrix([0,-1],[1,0]); Sr180: matrix([-1,0],[0,-1]); Sr270: matrix([0,1],[-1,0]);
+symkeys: ["rx","ry","ryx","rmyx","r90","r180","r270"];
+symmats: [Srx,Sry,Sryx,Srmyx,Sr90,Sr180,Sr270];
+sm(k) := symmats[sublist_indices(symkeys, lambda([u], u=k))[1]];
+sn(k) := sublist_indices(symkeys, lambda([u], u=k))[1];
+skey(A) := block([j], j: sublist_indices(symmats, lambda([u], is(u=A))), if j=[] then "none" else symkeys[j[1]]);
+/* Design: combinations of reflections and turns, with matrices instead of drawing. Source: adapted from SMP Book 5 (Metric), Chapter 13, Exercise F, question 1. Every pair is non-commuting and neither product is the identity. */
+plist: [["r270","ryx"],["ry","r270"],["r90","rx"],["ryx","ry"],["rmyx","r90"],["rx","rmyx"],["ryx","r90"],["r90","ryx"],["rmyx","ry"],["ry","ryx"]];
+ix: 1+rand(10);
+f: plist[ix][1]; s: plist[ix][2];
+Fm: sm(f); Sm: sm(s);
+ta: Sm.Fm; dop: Fm.Sm;
+rk: skey(ta); ok: skey(dop);
+opt2: [["id", false, "the identity (no change)"], ["rx", is(rk="rx"), "reflection in the x-axis"], ["ry", is(rk="ry"), "reflection in the y-axis"], ["ryx", is(rk="ryx"), "reflection in the line y = x"], ["rmyx", is(rk="rmyx"), "reflection in the line y = −x"], ["r90", is(rk="r90"), "rotation of 90° anticlockwise about O"], ["r180", is(rk="r180"), "rotation of 180° about O"], ["r270", is(rk="r270"), "rotation of 90° clockwise about O"]];
+ta2: first(mcq_correct(opt2));
+tw: ta+matrix([1,0],[0,0]);
+badm: matrix([q,0],[0,1]);
+]]></text>
+  </questionvariables>
+  <specificfeedback format="html"><text><![CDATA[]]></text></specificfeedback>
+  <questionnote format="moodle_auto_format">
+    <text>ix={@ix@}, first {@f@}, second {@s@}, result {@rk@}</text>
+  </questionnote>
+  <questiondescription format="html"><text><![CDATA[<p id="concept">Matrices and Transformations: one transformation equal to two</p><p id="description">Grade 12 CBE Core 2.1: Find the single matrix for one reflection or rotation followed by another, and name the single transformation.</p><p id="edition">Core</p><p id="provenance">This question is adapted from Chapter 13, Exercise F, Question 1 of School Mathematics Project, SMP Book 5 (Metric), ed. P. G. Bowie, Cambridge University Press, 1969: combinations given by name and worked with matrices instead of drawings, the result named from a list, randomised.</p><p id="citation">INNODEMS CBC Grade 12 Mathematics, first draft by Ben Davies, 2026. Aligned to the KICD Senior School Curriculum Design, Core Mathematics Grade 12 (draft).</p>]]></text></questiondescription>
+  <questionsimplify>1</questionsimplify>
+  <assumepositive>0</assumepositive>
+  <assumereal>0</assumereal>
+  <prtcorrect format="html"><text><![CDATA[[[commonstring key="symbolicprtcorrectfeedback"/]] [[commonstring key="defaultprtcorrectfeedback"/]]]]></text></prtcorrect>
+  <prtpartiallycorrect format="html"><text><![CDATA[[[commonstring key="symbolicprtpartiallycorrectfeedback"/]] [[commonstring key="defaultprtpartiallycorrectfeedback"/]]]]></text></prtpartiallycorrect>
+  <prtincorrect format="html"><text><![CDATA[[[commonstring key="symbolicprtincorrectfeedback"/]] [[commonstring key="defaultprtincorrectfeedback"/]]]]></text></prtincorrect>
+  <decimals>.</decimals>
+  <scientificnotation>*10</scientificnotation>
+  <multiplicationsign>none</multiplicationsign>
+  <sqrtsign>1</sqrtsign>
+  <complexno>i</complexno>
+  <inversetrig>cos-1</inversetrig>
+  <logicsymbol>lang</logicsymbol>
+  <matrixparens>[</matrixparens>
+  <isbroken>0</isbroken>
+  <variantsselectionseed></variantsselectionseed>
+
+  <input><name>ans1</name><type>matrix</type><tans>ta</tans><boxsize>3</boxsize><strictsyntax>1</strictsyntax><insertstars>0</insertstars><syntaxhint></syntaxhint><syntaxattribute>0</syntaxattribute><forbidwords></forbidwords><allowwords></allowwords><forbidfloat>0</forbidfloat><requirelowestterms>0</requirelowestterms><checkanswertype>0</checkanswertype><mustverify>0</mustverify><showvalidation>3</showvalidation><options>validator:validate_numeric</options></input>
+  <input><name>ans2</name><type>dropdown</type><tans>opt2</tans><boxsize>15</boxsize><strictsyntax>1</strictsyntax><insertstars>0</insertstars><syntaxhint></syntaxhint><syntaxattribute>0</syntaxattribute><forbidwords></forbidwords><allowwords></allowwords><forbidfloat>1</forbidfloat><requirelowestterms>0</requirelowestterms><checkanswertype>0</checkanswertype><mustverify>0</mustverify><showvalidation>0</showvalidation><options></options></input>
+
+  <prt><name>prt1</name><value>1.0000000</value><autosimplify>1</autosimplify><feedbackstyle>1</feedbackstyle><feedbackvariables><text><![CDATA[]]></text></feedbackvariables>
+    <node><name>0</name><description>Single matrix</description><answertest>AlgEquiv</answertest><sans>ans1</sans><tans>ta</tans><testoptions></testoptions><quiet>0</quiet><truescoremode>=</truescoremode><truescore>1.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt1-1-T</trueanswernote><truefeedback format="html"><text><![CDATA[]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>1</falsenextnode><falseanswernote>prt1-1-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>1</name><description>Other order</description><answertest>AlgEquiv</answertest><sans>ans1</sans><tans>dop</tans><testoptions></testoptions><quiet>1</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt1-2-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>That is the matrix for the other order. The first transformation's matrix goes on the right: (second) \(\times\) (first).</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>-1</falsenextnode><falseanswernote>prt1-2-F</falseanswernote><falsefeedback format="html"><text><![CDATA[<p>Write down both matrices, then multiply (second) \(\times\) (first).</p>]]></text></falsefeedback></node>
+  </prt>
+  <prt><name>prt2</name><value>1.0000000</value><autosimplify>1</autosimplify><feedbackstyle>1</feedbackstyle><feedbackvariables><text><![CDATA[cm2: if ans2="id" then matrix([1,0],[0,1]) else sm(ans2);
+]]></text></feedbackvariables>
+    <node><name>0</name><description>Name</description><answertest>AlgEquiv</answertest><sans>ans2</sans><tans>rk</tans><testoptions></testoptions><quiet>1</quiet><truescoremode>=</truescoremode><truescore>1.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt2-1-T</trueanswernote><truefeedback format="html"><text><![CDATA[]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>1</falsenextnode><falseanswernote>prt2-1-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>1</name><description>Other order</description><answertest>AlgEquiv</answertest><sans>ans2</sans><tans>ok</tans><testoptions></testoptions><quiet>1</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt2-2-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>That is the result of doing them in the other order.</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>-1</falsenextnode><falseanswernote>prt2-2-F</falseanswernote><falsefeedback format="html"><text><![CDATA[<p>[[if test="is(ans2=\"id\")"]]The identity has matrix \({@cm2@}\)[[else]]The [[if test="is(ans2=\"rx\")"]]reflection in the x-axis[[/if]][[if test="is(ans2=\"ry\")"]]reflection in the y-axis[[/if]][[if test="is(ans2=\"ryx\")"]]reflection in the line \(y = x\)[[/if]][[if test="is(ans2=\"rmyx\")"]]reflection in the line \(y = -x\)[[/if]][[if test="is(ans2=\"r90\")"]]rotation of \(90^\circ\) anticlockwise about O[[/if]][[if test="is(ans2=\"r180\")"]]rotation of \(180^\circ\) about O[[/if]][[if test="is(ans2=\"r270\")"]]rotation of \(90^\circ\) clockwise about O[[/if]] has matrix \({@cm2@}\)[[/if]]. Compare its columns with the columns of the single matrix: where do (1, 0) and (0, 1) go?</p>]]></text></falsefeedback></node>
+  </prt>
+
+  <deployedseed>4</deployedseed>
+  <deployedseed>5</deployedseed>
+  <deployedseed>15</deployedseed>
+  <deployedseed>8</deployedseed>
+  <deployedseed>24</deployedseed>
+  <deployedseed>1</deployedseed>
+  <deployedseed>3</deployedseed>
+  <deployedseed>10</deployedseed>
+  <deployedseed>2</deployedseed>
+  <deployedseed>17</deployedseed>
+  <qtest><testcase>1</testcase><description>Correct</description>
+    <testinput><name>ans1</name><value>ta</value></testinput>
+    <testinput><name>ans2</name><value>ta2</value></testinput>
+    <expected><name>prt1</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt1-1-T</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt2-1-T</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>2</testcase><description>Other order</description>
+    <testinput><name>ans1</name><value>dop</value></testinput>
+    <testinput><name>ans2</name><value>ok</value></testinput>
+    <expected><name>prt1</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt1-1-F | prt1-2-T</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt2-1-F | prt2-2-T</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>3</testcase><description>Generic: offset matrix, identity</description>
+    <testinput><name>ans1</name><value>tw</value></testinput>
+    <testinput><name>ans2</name><value>"id"</value></testinput>
+    <expected><name>prt1</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt1-1-F | prt1-2-F</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt2-1-F | prt2-2-F</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>4</testcase><description>Invalid: a letter in the matrix</description>
+    <testinput><name>ans1</name><value>badm</value></testinput>
+    <testinput><name>ans2</name><value>ta2</value></testinput>
+    <expected><name>prt1</name><expectedscore></expectedscore><expectedpenalty></expectedpenalty><expectedanswernote>NULL</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt2-1-T</expectedanswernote></expected>
+  </qtest>
+</question>
+</quiz>

@@ -23,7 +23,7 @@
                     </p>
                 </li>
                 <li>
-                    <title>Specific Learning Outcomes</title> 
+                    <title>Specific Learning Outcomes</title>
                     <p component="core">
                         Determine mean, variance and standard deviation using assumed mean for ungrouped data
                     </p>
@@ -40,7 +40,7 @@
                 <li component="lesson-plan">
                     <title>Estimated Duration</title>
                     <p>
-                        40 minutes
+                        3 lessons of 40 minutes
                     </p>
                 </li>
             </dl>
@@ -52,163 +52,808 @@
          Content summary: Measures of central tendency by calculation. Core uses an assumed mean; Essential does not require it.
          Suggested activity: Learners collect the heights or masses of 30 classmates and calculate the mean using an assumed mean, then the median and quartiles. -->
 
-    <!-- [LP] Add guidance on activity -->
+    <!-- Section notes (2026-11)
+         SLOs: Core (a); Essential (a), (c) ungrouped. Lessons 1.1 to 1.3 as subsections.
+         Activity: as planning notes (heights; mean, then median and quartiles) | changed: groups of 10 to 12, not 30
+         JSXGraph: none named in the planning notes
+         STACK: assets/stack/top/3-statistics-and-probability/15-statistics/01-measures-of-central-tendency-by-calculation/ -->
 
-    <!-- <axiom component="lesson-plan">
+    <introduction>
+        <question xml:id="kiq-statistics-ii">
+            <p><em>Where do we use statistics in everyday life?</em></p>
+        </question>
+        <p>
+            In Grade 10 and Grade 11 you organised data into tables and graphs and found simple averages. In this chapter you calculate measures that summarise a whole data set: where its centre is (mean, median, quartiles) and how spread out it is (range, interquartile range, variance and standard deviation). You also draw and read cumulative frequency curves.
+        </p>
+        <p>
+            These measures are used every day in Kenya. A county agricultural officer compares the mean maize yield of two wards. A school compares the spread of marks in two streams before planning revision. An M-Pesa agent looks at the typical number of transactions a day to decide how much float to keep. As you work through the chapter, look out for other places where these measures help people make decisions.
+        </p>
+    </introduction>
+
+    <!-- ============================================================ Lesson 1.1 -->
+    <subsection xml:id="subsec-mean-by-calculation">
+        <title component="core">Mean by Calculation: the Assumed Mean</title>
+        <title component="essential">Mean by Calculation</title>
+
+        <p component="lesson-plan">Upon completion of this lesson, learners will be able to:
+            <ol>
+                <li><p><alert>Know:</alert> the mean uses every value; a frequency table is a short way of listing repeated values.</p></li>
+                <li><p><alert>Do:</alert> find a mean as <m>\Sigma x \div n</m> and as <m>\Sigma fx \div \Sigma f</m>.</p></li>
+                <li component="core"><p><alert>Do (Core):</alert> find a mean with an assumed mean, knowing that subtracting the same number from every value shifts the mean by that number.</p></li>
+                <li><p><alert>Apply:</alert> find means of real Kenyan data, and a missing value from a given mean.</p></li>
+            </ol>
+        </p>
+
+        <axiom component="lesson-plan">
             <title>Problem-Solving and Discovery</title>
             <dl>
-                <li>
-                    <title>Suggested Time</title>
-                    <p>
-                        XX minutes
-                    </p>
-                </li>
-                <li>
-                    <title>Objective</title>
-                    <p>
-                        XXX
-                    </p>
-                </li>
-                <li>
-                    <title>Teacher's Role</title>
-                    <p>
-                        XXX
-                    </p>
-                </li>
+                <li><title>Suggested Time</title><p>14 minutes</p></li>
+                <li><title>Objective</title><p>Learners find a mean directly, see that the deviations from the mean add to zero, and (Core) discover that any working value gives the same mean.</p></li>
+                <li><title>Teacher's Role</title><p>Put learners in groups of 10. Each group measures its heights to the nearest centimetre with a tape fixed to the wall; groups without a tape use the heights in the table. Do not name the <q>assumed mean</q> until after part (d).</p></li>
             </dl>
-        </axiom> -->
+        </axiom>
 
-    <!-- Add Activity -->
-
-    <!-- <activity>
-        <statement>
-        </statement>
-    </activity> -->
-
-    <!-- [LP] Add guidance on structured lesson plan-->
-
-    <!-- <axiom component="lesson-plan">
-        <title>Structured Instruction</title>
-        <p>
-            <dl>
-            <li>
-                <title>Suggested Time</title>
+        <activity xml:id="act-heights-in-our-group">
+            <title>Heights in Our Group</title>
+            <statement>
                 <p>
-                    XX minutes
+                    A group of 10 Grade 12 learners at a school in Nyeri measured their heights, in centimetres.
                 </p>
-            </li>
-            <li>
-                <title>Objective</title>
+                <table xml:id="table-heights-in-our-group">
+                    <title>Heights of 10 Learners (cm)</title>
+                    <tabular halign="center" top="minor" bottom="minor" left="minor" right="minor">
+                        <row><cell>162</cell><cell>158</cell><cell>171</cell><cell>165</cell><cell>168</cell><cell>159</cell><cell>174</cell><cell>163</cell><cell>166</cell><cell>170</cell></row>
+                    </tabular>
+                </table>
                 <p>
-                    To formalize the concepts and properties learners discovered in the anchor task.
+                    <ol marker="(a)">
+                        <li>
+                            <p>Find the total of the heights and the mean height.</p>
+                            <solution component="lesson-plan"><p>Total <m>1656\,\text{cm}</m>; mean <m>1656 \div 10 = 165.6\,\text{cm}</m>.</p></solution>
+                        </li>
+                        <li>
+                            <p>Subtract the mean from each height. Add the ten answers. What do you notice?</p>
+                            <solution component="lesson-plan"><p><m>-3.6, -7.6, 5.4, -0.6, 2.4, -6.6, 8.4, -2.6, 0.4, 4.4</m>; the sum is <m>0</m>. It is always <m>0</m>, because the mean balances the data: the amounts above it cancel the amounts below it.</p></solution>
+                        </li>
+                        <li>
+                            <p>Every learner in the group stands on a block <m>5\,\text{cm}</m> high. Without adding ten new heights, what is the new mean?</p>
+                            <solution component="lesson-plan"><p><m>165.6 + 5 = 170.6\,\text{cm}</m>. Adding <m>5</m> to each of the ten heights adds <m>50</m> to the total, and so <m>5</m> to the mean.</p></solution>
+                        </li>
+                        <li component="core">
+                            <p>Subtract <m>160</m> from each height. Find the mean of these ten numbers, then add <m>160</m> to it.</p>
+                            <solution component="lesson-plan"><p>The numbers are <m>2, -2, 11, 5, 8, -1, 14, 3, 6, 10</m>; their sum is <m>56</m> and their mean is <m>5.6</m>; <m>160 + 5.6 = 165.6\,\text{cm}</m>, the mean height again.</p></solution>
+                        </li>
+                        <li component="core">
+                            <p>Repeat part (d), subtracting <m>170</m> instead. What do you notice?</p>
+                            <solution component="lesson-plan"><p>The sum is <m>-44</m> and the mean <m>-4.4</m>; <m>170 + (-4.4) = 165.6\,\text{cm}</m>. Any starting value gives the same mean. Now name it: the starting value is an <q>assumed mean</q>.</p></solution>
+                        </li>
+                    </ol>
                 </p>
-            </li>
-            </dl>
-        </p>
-        <paragraphs>
-            <title>Key Takeaways &amp; Teacher Connection</title>
-            <ol>
-                <li>
-                    <p>
-                        <alert>Connecting to Learner Work:</alert> XXXX
-                    </p>
-                </li>
-            </ol>
-        </paragraphs>
-    </axiom> -->
+            </statement>
+        </activity>
 
-    <!-- Add insight / key takeaway directly related to activity / learner experience -->
+        <axiom component="lesson-plan">
+            <title>Structured Instruction</title>
+            <p>
+                <dl>
+                    <li><title>Suggested Time</title><p>8 minutes</p></li>
+                    <li><title>Objective</title><p>To formalise the mean of a list and of a frequency table, and (Core) the assumed mean.</p></li>
+                </dl>
+            </p>
+            <paragraphs>
+                <title>Key Takeaways &amp; Teacher Connection</title>
+                <ol>
+                    <li><p><alert>Connecting to Learner Work:</alert> the mean uses every value; that is why one very tall learner moves it.</p></li>
+                    <li><p>A frequency table lists repeated values once, with a count: multiply each value by its frequency before adding.</p></li>
+                    <li component="core"><p>Use the groups' own numbers from parts (d) and (e): whatever value was subtracted, adding it back gave the same mean. That is why the assumed mean works.</p></li>
+                </ol>
+            </paragraphs>
+        </axiom>
 
-    <!-- <insight>
-    </insight> -->
+        <insight xml:id="insight-mean-by-calculation">
+            <title>The Mean</title>
+            <p>
+                The <term>mean</term> of <m>n</m> values is their total divided by <m>n</m>:
+                <md>\bar{x} = \frac{\Sigma x}{n}</md>
+                where <m>\Sigma</m> means <q>the sum of</q>. In a frequency table the value <m>x</m> occurs <m>f</m> times, so every value counts, weighted by its frequency:
+                <md>\bar{x} = \frac{\Sigma fx}{\Sigma f}</md>.
+            </p>
+            <p>
+                The deviations from the mean, <m>x - \bar{x}</m>, always add to <m>0</m>.
+            </p>
+        </insight>
 
-    <!-- Add further instruction (not in a block) to develop ideas as needed -->
+        <insight xml:id="insight-assumed-mean" component="core">
+            <title>The Assumed Mean</title>
+            <p>
+                Choose a convenient value <m>A</m>, the <term>assumed mean</term>, near the middle of the data (often one of the values). Work out each <term>deviation</term> <m>d = x - A</m>. Subtracting the same number <m>A</m> from every value moves the mean down by <m>A</m> and leaves the spread unchanged, so
+                <md>\bar{x} = A + \frac{\Sigma d}{n} \qquad \text{or, for a frequency table,} \qquad \bar{x} = A + \frac{\Sigma fd}{\Sigma f}</md>.
+            </p>
+            <p>
+                Any value of <m>A</m> gives the same mean; a value near the middle simply keeps the numbers small.
+            </p>
+        </insight>
 
-    <xi:include href="../lesson-plan-templates/example-intro.ptx" />
+        <note xml:id="note-mean-digital">
+            <title>Using a Calculator or Spreadsheet</title>
+            <p>
+                A scientific calculator in statistics mode finds <m>\bar{x}</m> once you enter the values (with their frequencies, for a table). In a spreadsheet, put the values in cells A1 to A10 and type <c>=AVERAGE(A1:A10)</c>. For a frequency table, put <m>x</m> in column A and <m>f</m> in column B, then the mean is <c>=SUMPRODUCT(A1:A7,B1:B7)/SUM(B1:B7)</c>. Always check that the answer lies between the smallest and largest values.
+            </p>
+        </note>
 
-    <!-- Add at least 3 examples -->
+        <xi:include href="../lesson-plan-templates/example-intro.ptx" />
 
-    <!-- <example>
-        <statement>
-        </statement>
-        <solution>
-        </solution>
-    </example>
-
-    <example>
-        <statement>
-        </statement>
-        <solution>
-        </solution>
-    </example>
-
-    <example>
-        <statement>
-        </statement>
-        <solution>
-        </solution>
-    </example> -->
-
-    <xi:include href="../lesson-plan-templates/assessment-intro.ptx" />
-
-    <!-- If STACK questions are included, uncomment this: -->
-
-    <!-- <xi:include href="../lesson-plan-templates/checkpoint.ptx" /> -->
-
-    <!-- Add STACK exercises if made -->
-
-    <!-- Add static exercises -->
-
-    <!-- <exercises>
-        <exercise>
-            <statement>   
-
-            </statement>   
+        <example xml:id="example-household-sizes">
+            <title>Household Sizes</title>
+            <statement>
+                <p>The number of people in each of <m>50</m> households in a village near Kitui is recorded below. Find the mean number of people per household.</p>
+                <table xml:id="table-household-sizes">
+                    <title>People per Household</title>
+                    <tabular halign="center" top="minor" bottom="minor" left="minor" right="minor">
+                        <row header="yes" bottom="medium"><cell>People (<m>x</m>)</cell><cell>1</cell><cell>2</cell><cell>3</cell><cell>4</cell><cell>5</cell><cell>6</cell><cell>7</cell></row>
+                        <row><cell>Frequency (<m>f</m>)</cell><cell>3</cell><cell>7</cell><cell>10</cell><cell>12</cell><cell>8</cell><cell>6</cell><cell>4</cell></row>
+                    </tabular>
+                </table>
+            </statement>
             <solution>
+                <p>Multiply each value by its frequency to make an <m>fx</m> row:</p>
+                <table xml:id="table-household-sizes-working">
+                    <title>Working for the Mean Household Size</title>
+                    <tabular halign="center" top="minor" bottom="minor" left="minor" right="minor">
+                        <row header="yes" bottom="medium"><cell><m>x</m></cell><cell>1</cell><cell>2</cell><cell>3</cell><cell>4</cell><cell>5</cell><cell>6</cell><cell>7</cell><cell>Total</cell></row>
+                        <row><cell><m>f</m></cell><cell>3</cell><cell>7</cell><cell>10</cell><cell>12</cell><cell>8</cell><cell>6</cell><cell>4</cell><cell>50</cell></row>
+                        <row><cell><m>fx</m></cell><cell>3</cell><cell>14</cell><cell>30</cell><cell>48</cell><cell>40</cell><cell>36</cell><cell>28</cell><cell>199</cell></row>
+                    </tabular>
+                </table>
+                <p><md>\bar{x} = \frac{\Sigma fx}{\Sigma f} = \frac{199}{50} = 3.98</md> The mean is <m>3.98</m> people per household. It is not a whole number, even though every household has a whole number of people.</p>
+            </solution>
+        </example>
 
-            </solution>             
-        </exercise>        
-    </exercises> -->
+        <example xml:id="example-sacks-of-maize-core" component="core">
+            <title>Sacks of Maize</title>
+            <statement>
+                <p>The masses, in kg, of <m>8</m> sacks of maize at a cereals depot in Eldoret are <m>89, 92, 95, 90, 98, 93, 91, 96</m>. Use an assumed mean of <m>90\,\text{kg}</m> to find the mean mass.</p>
+            </statement>
+            <solution>
+                <p>Subtract <m>A = 90</m> from each mass, keeping the signs: <m>d = -1, 2, 5, 0, 8, 3, 1, 6</m>, so <m>\Sigma d = 24</m>.
+                    <md>\bar{x} = A + \frac{\Sigma d}{n} = 90 + \frac{24}{8} = 90 + 3 = 93</md>
+                    The mean mass is <m>93\,\text{kg}</m>. The assumed mean need not be the mean: <m>90</m> was simply a convenient value near the middle.</p>
+            </solution>
+        </example>
 
-    <!-- [LP] Add information on how to differentiate  -->
+        <example xml:id="example-sacks-of-maize-essential" component="essential">
+            <title>Sacks of Maize</title>
+            <statement>
+                <p>The masses, in kg, of <m>8</m> sacks of maize at a cereals depot in Eldoret are <m>89, 92, 95, 90, 98, 93, 91, 96</m>. Find the mean mass.</p>
+            </statement>
+            <solution>
+                <p>Add the masses: <m>\Sigma x = 744</m>. Then
+                    <md>\bar{x} = \frac{\Sigma x}{n} = \frac{744}{8} = 93</md>
+                    The mean mass is <m>93\,\text{kg}</m>.</p>
+            </solution>
+        </example>
 
-    <!-- <axiom component="lesson-plan">
-        <title>Differentiation</title>
+        <example xml:id="example-milk-cooperative" component="core">
+            <title>Milk from a Dairy Cooperative</title>
+            <statement>
+                <p>The daily milk yield, in litres, of <m>50</m> cows at a dairy cooperative in Nyandarua is shown below. Use an assumed mean of <m>14\,\text{litres}</m> to find the mean yield.</p>
+                <table xml:id="table-milk-cooperative">
+                    <title>Daily Milk Yield of 50 Cows</title>
+                    <tabular halign="center" top="minor" bottom="minor" left="minor" right="minor">
+                        <row header="yes" bottom="medium"><cell>Litres (<m>x</m>)</cell><cell>12</cell><cell>13</cell><cell>14</cell><cell>15</cell><cell>16</cell><cell>17</cell></row>
+                        <row><cell>Frequency (<m>f</m>)</cell><cell>4</cell><cell>9</cell><cell>15</cell><cell>11</cell><cell>7</cell><cell>4</cell></row>
+                    </tabular>
+                </table>
+            </statement>
+            <solution>
+                <table xml:id="table-milk-cooperative-working">
+                    <title>Working with <m>A = 14</m></title>
+                    <tabular halign="center" top="minor" bottom="minor" left="minor" right="minor">
+                        <row header="yes" bottom="medium"><cell><m>x</m></cell><cell>12</cell><cell>13</cell><cell>14</cell><cell>15</cell><cell>16</cell><cell>17</cell><cell>Total</cell></row>
+                        <row><cell><m>f</m></cell><cell>4</cell><cell>9</cell><cell>15</cell><cell>11</cell><cell>7</cell><cell>4</cell><cell>50</cell></row>
+                        <row><cell><m>d = x - A</m></cell><cell><m>-2</m></cell><cell><m>-1</m></cell><cell>0</cell><cell>1</cell><cell>2</cell><cell>3</cell><cell></cell></row>
+                        <row><cell><m>fd</m></cell><cell><m>-8</m></cell><cell><m>-9</m></cell><cell>0</cell><cell>11</cell><cell>14</cell><cell>12</cell><cell>20</cell></row>
+                    </tabular>
+                </table>
+                <p><md>\bar{x} = A + \frac{\Sigma fd}{\Sigma f} = 14 + \frac{20}{50} = 14.4</md> The mean yield is <m>14.4\,\text{litres}</m> per cow per day.</p>
+            </solution>
+        </example>
 
-        <table>
+        <example xml:id="example-missing-takings" component="essential">
+            <title>A Missing Day's Takings</title>
+            <statement>
+                <p>A boda boda rider's takings over <m>6</m> days had a mean of Ksh <m>1250</m>. On five of the days the takings were Ksh <m>1100</m>, <m>1350</m>, <m>1200</m>, <m>1400</m> and <m>1150</m>. Find the takings on the sixth day.</p>
+            </statement>
+            <solution>
+                <p>The total over <m>6</m> days is <m>6 \times 1250 = 7500</m>. The five known days add to <m>6200</m>. So the sixth day's takings were <m>7500 - 6200 = 1300</m>, that is Ksh <m>1300</m>.</p>
+            </solution>
+        </example>
+
+        <xi:include href="../lesson-plan-templates/assessment-intro.ptx" />
+        <xi:include href="../lesson-plan-templates/checkpoint.ptx" />
+
+        <p>Type decimals with a point, for example <c>30.6</c>. Give answers to the accuracy asked for.</p>
+
+        <exercise xml:id="ex-mean-of-ungrouped-data-using-an-assumed-mean" component="core">
+            <!--<title></title>-->
+            <stack label="stk-mean-of-ungrouped-data-using-an-assumed-mean" source="stack/top/3-statistics-and-probability/15-statistics/01-measures-of-central-tendency-by-calculation/Mean-of-ungrouped-data-using-an-assumed-mean.xml"/>
+        </exercise>
+
+        <exercise xml:id="ex-mean-from-a-frequency-table">
+            <!--<title></title>-->
+            <stack label="stk-mean-from-a-frequency-table" source="stack/top/3-statistics-and-probability/15-statistics/01-measures-of-central-tendency-by-calculation/Mean-from-a-frequency-table.xml"/>
+        </exercise>
+
+        <exercises xml:id="exercises-mean-by-calculation">
+            <exercise xml:id="ex-mean-sprint-times">
+                <statement><p>The 100 m times, in seconds, of six runners at a sports day in Kakamega were <m>12.4, 12.9, 13.1, 12.6, 13.4, 12.8</m>. Find the mean time, correct to 1 decimal place.</p></statement>
+                <answer><p><m>12.9</m> s</p></answer>
+                <solution><p><m>\Sigma x = 77.2</m>, so <m>\bar{x} = 77.2 \div 6 = 12.866\ldots \approx 12.9</m> s.</p></solution>
+            </exercise>
+            <exercise xml:id="ex-mean-goals-per-match">
+                <statement>
+                    <p>The goals scored per match in a county league are shown below. Find the mean number of goals per match, correct to 1 decimal place.</p>
+                    <tabular halign="center" top="minor" bottom="minor" left="minor" right="minor">
+                        <row header="yes" bottom="medium"><cell>Goals (<m>x</m>)</cell><cell>0</cell><cell>1</cell><cell>2</cell><cell>3</cell><cell>4</cell><cell>5</cell></row>
+                        <row><cell>Frequency (<m>f</m>)</cell><cell>6</cell><cell>11</cell><cell>9</cell><cell>5</cell><cell>2</cell><cell>1</cell></row>
+                    </tabular>
+                </statement>
+                <answer><p><m>1.7</m> goals</p></answer>
+                <solution><p><m>\Sigma f = 34</m> and <m>\Sigma fx = 0 + 11 + 18 + 15 + 8 + 5 = 57</m>, so <m>\bar{x} = 57 \div 34 = 1.676\ldots \approx 1.7</m> goals.</p></solution>
+            </exercise>
+            <exercise xml:id="ex-assumed-mean-goats" component="core">
+                <statement><p>The masses, in kg, of <m>8</m> goats are <m>32, 35, 29, 38, 34, 31, 36, 33</m>. Find the mean mass using an assumed mean of <m>33\,\text{kg}</m>.</p></statement>
+                <answer><p><m>33.5\,\text{kg}</m></p></answer>
+                <solution><p><m>d = -1, 2, -4, 5, 1, -2, 3, 0</m>, so <m>\Sigma d = 4</m> and <m>\bar{x} = 33 + 4 \div 8 = 33.5\,\text{kg}</m>.</p></solution>
+            </exercise>
+            <exercise xml:id="ex-assumed-mean-goats-again" component="core">
+                <statement><p>Repeat <xref ref="ex-assumed-mean-goats"/> with an assumed mean of <m>30\,\text{kg}</m>. Why is the answer the same?</p></statement>
+                <answer><p><m>33.5\,\text{kg}</m></p></answer>
+                <solution><p><m>d = 2, 5, -1, 8, 4, 1, 6, 3</m>, so <m>\Sigma d = 28</m> and <m>\bar{x} = 30 + 28 \div 8 = 33.5\,\text{kg}</m>. Lowering <m>A</m> by <m>3</m> raises every deviation by <m>3</m>, so the mean deviation rises by <m>3</m> and the two changes cancel.</p></solution>
+            </exercise>
+            <exercise xml:id="ex-missing-frequency-days-absent">
+                <statement>
+                    <p>The number of days learners in a class were absent in a term is shown below. The mean is <m>2.8</m> days. Find <m>k</m>.</p>
+                    <tabular halign="center" top="minor" bottom="minor" left="minor" right="minor">
+                        <row header="yes" bottom="medium"><cell>Days absent (<m>x</m>)</cell><cell>1</cell><cell>2</cell><cell>3</cell><cell>4</cell><cell>5</cell></row>
+                        <row><cell>Frequency (<m>f</m>)</cell><cell>3</cell><cell><m>k</m></cell><cell>9</cell><cell>6</cell><cell>2</cell></row>
+                    </tabular>
+                </statement>
+                <answer><p><m>k = 10</m></p></answer>
+                <solution><p><m>\Sigma f = 20 + k</m> and <m>\Sigma fx = 3 + 2k + 27 + 24 + 10 = 64 + 2k</m>. So <m>\dfrac{64 + 2k}{20 + k} = 2.8</m>, giving <m>64 + 2k = 56 + 2.8k</m>, <m>0.8k = 8</m> and <m>k = 10</m>.</p></solution>
+            </exercise>
+            <exercise xml:id="ex-shifting-the-data">
+                <title>Challenge: Shifting the Data</title>
+                <statement><p>Every height in <xref ref="act-heights-in-our-group"/> increases by <m>2\,\text{cm}</m>. Find the new mean, and explain your answer using <m>\Sigma (x + 2) = \Sigma x + 2n</m>.</p></statement>
+                <hint><p>Write the new total in terms of the old total <m>\Sigma x</m>, then divide by <m>n</m>.</p></hint>
+                <answer><p><m>167.6\,\text{cm}</m></p></answer>
+                <solution><p>The new mean is <m>\dfrac{\Sigma (x + 2)}{n} = \dfrac{\Sigma x + 2n}{n} = \dfrac{\Sigma x}{n} + 2 = 165.6 + 2 = 167.6\,\text{cm}</m>. Adding the same number to every value adds that number to the mean.</p></solution>
+            </exercise>
+        </exercises>
+
+        <axiom component="lesson-plan">
             <title>Differentiation</title>
-            <tabular halign="left">
-                <row header="yes" bottom="minor">
-                    <cell>Learner Group</cell>
-                    <cell>Strategy &amp; Learning Experience</cell>
-                    <cell></cell>
-                </row>
-                <row>
-                    <cell>Struggling Learners (Support)</cell>
-                    <cell>
-                        XXXX
-                    </cell>
-                    <cell></cell>
-                </row>
-                <row>
-                    <cell>On-Level Learners (Core)</cell>
-                    <cell>
-                        <line>The core lesson activities as described above.</line>
-                    </cell>
-                    <cell></cell>
-                </row>
-                <row>
-                    <cell>Advanced Learners (Challenge)</cell>
-                    <cell>
-                        XXXX
-                    </cell>
-                    <cell></cell>
-                </row>
-            </tabular>
-        </table>
-    </axiom> -->
+            <table xml:id="table-differentiation-mean-by-calculation">
+                <title>Differentiation Strategies</title>
+                <tabular halign="left" top="minor" bottom="minor" left="minor" right="minor">
+                    <row header="yes" bottom="medium"><cell>Learner Group</cell><cell>Strategy and Learning Experience</cell></row>
+                    <row><cell>Struggling Learners (Support)</cell><cell>Focus on activity parts (a) to (c) and <xref ref="example-household-sizes"/>. Provide a column card with headings <m>x</m>, <m>f</m>, <m>fx</m>. Assign <xref ref="ex-mean-sprint-times"/> and <xref ref="ex-mean-goals-per-match"/>.</cell></row>
+                    <row><cell>On-Level Learners (Core)</cell><cell>Full activity and all examples. Assign <xref ref="ex-mean-sprint-times"/> to <xref ref="ex-missing-frequency-days-absent"/>.</cell></row>
+                    <row><cell>Advanced Learners (Challenge)</cell><cell>All exercises including <xref ref="ex-shifting-the-data"/>. Extension: show that <m>\Sigma (x - \bar{x}) = 0</m> for any data (answer: <m>\Sigma (x - \bar{x}) = \Sigma x - n\bar{x} = \Sigma x - \Sigma x = 0</m>).</cell></row>
+                </tabular>
+            </table>
+        </axiom>
 
-    <xi:include href="../lesson-plan-templates/assessment-methods.ptx" />
+        <xi:include href="../lesson-plan-templates/assessment-methods.ptx" />
+        <xi:include href="../lesson-plan-templates/reflection.ptx"/>
+    </subsection>
 
-    <xi:include href="../lesson-plan-templates/reflection.ptx"/>
+    <!-- ============================================================ Lesson 1.2 -->
+    <subsection xml:id="subsec-variance-and-standard-deviation-ungrouped">
+        <title>Variance and Standard Deviation</title>
+
+        <p component="lesson-plan">Upon completion of this lesson, learners will be able to:
+            <ol>
+                <li><p><alert>Know:</alert> a measure of spread uses every value; deviations add to zero, so we square them; variance and standard deviation divide by <m>n</m>.</p></li>
+                <li><p><alert>Do:</alert> find <m>\sigma^2</m> and <m>\sigma</m> from the deviations and from <m>\Sigma x^2 \div n - \bar{x}^2</m>, for lists and frequency tables.</p></li>
+                <li component="core"><p><alert>Do (Core):</alert> find <m>\sigma^2</m> and <m>\sigma</m> with an assumed mean.</p></li>
+                <li><p><alert>Apply:</alert> compare the consistency of two data sets with the same mean.</p></li>
+            </ol>
+        </p>
+
+        <axiom component="lesson-plan">
+            <title>Problem-Solving and Discovery</title>
+            <dl>
+                <li><title>Suggested Time</title><p>14 minutes</p></li>
+                <li><title>Objective</title><p>Learners discover why we square the deviations to measure spread.</p></li>
+                <li><title>Teacher's Role</title><p>Show the dot plots first and ask which learner is more consistent. After part (b), ask: <q>Can the sum of the deviations measure spread?</q></p></li>
+            </dl>
+        </axiom>
+
+        <activity xml:id="act-two-learners-one-mean">
+            <title>Two Learners, One Mean</title>
+            <statement>
+                <p>Wanjiru and Otieno each took five quizzes, marked out of <m>25</m>. Wanjiru scored <m>12, 14, 15, 16, 18</m> and Otieno scored <m>6, 10, 15, 20, 24</m>.</p>
+                <figure xml:id="fig-quiz-marks-dot-plots">
+                    <caption>Wanjiru's and Otieno's quiz marks on one scale. The dashed line marks the mean, <m>15</m>.</caption>
+                    <image width="90%">
+                        <shortdescription>Two dot plots on a scale from 0 to 25. Wanjiru's marks 12, 14, 15, 16 and 18 lie close to 15; Otieno's marks 6, 10, 15, 20 and 24 are spread out. A dashed vertical line at 15 marks the mean of both.</shortdescription>
+                        <description><p>Upper row, Wanjiru: dots at 12, 14, 15, 16 and 18. Lower row, Otieno: dots at 6, 10, 15, 20 and 24. A dashed line at 15 crosses both rows.</p></description>
+                        <latex-image>
+\begin{tikzpicture}[x=0.5cm,y=1cm]
+  \draw[->] (0,0) -- (26,0) node[right] {mark};
+  \foreach \t in {0,5,...,25} { \draw (\t,0.1) -- (\t,-0.1) node[below] {\t}; }
+  \foreach \t in {1,...,24} { \draw (\t,0.05) -- (\t,-0.05); }
+  \node[left] at (0,2) {Wanjiru};
+  \node[left] at (0,1) {Otieno};
+  \foreach \v in {12,14,15,16,18} { \fill (\v,2) circle (3pt); }
+  \foreach \v in {6,10,15,20,24} { \fill (\v,1) circle (3pt); }
+  \draw[dashed] (15,0) -- (15,2.6) node[above] {mean $15$};
+\end{tikzpicture}
+                        </latex-image>
+                    </image>
+                </figure>
+                <p>
+                    <ol marker="(a)">
+                        <li>
+                            <p>Find each learner's mean mark.</p>
+                            <solution component="lesson-plan"><p>Both means are <m>75 \div 5 = 15</m>.</p></solution>
+                        </li>
+                        <li>
+                            <p>For each learner, find the deviation <m>x - 15</m> of every mark, and add the deviations.</p>
+                            <solution component="lesson-plan"><p>Wanjiru <m>-3, -1, 0, 1, 3</m>; Otieno <m>-9, -5, 0, 5, 9</m>. Both sums are <m>0</m>, so the sum cannot tell the two learners apart.</p></solution>
+                        </li>
+                        <li>
+                            <p>Square each deviation, and find the mean of the squares for each learner.</p>
+                            <solution component="lesson-plan"><p>Wanjiru <m>(9 + 1 + 0 + 1 + 9) \div 5 = 20 \div 5 = 4</m>; Otieno <m>(81 + 25 + 0 + 25 + 81) \div 5 = 212 \div 5 = 42.4</m>.</p></solution>
+                        </li>
+                        <li>
+                            <p>Take the square root of each answer to part (c). What are the units?</p>
+                            <solution component="lesson-plan"><p>Wanjiru <m>2</m> marks; Otieno <m>\sqrt{42.4} \approx 6.51</m> marks. Squaring made the units <q>marks squared</q>; the square root brings back marks.</p></solution>
+                        </li>
+                        <li>
+                            <p>Who is more consistent? Explain using your answers.</p>
+                            <solution component="lesson-plan"><p>Wanjiru: her marks are typically about <m>2</m> marks from the mean, Otieno's about <m>6.5</m>.</p></solution>
+                        </li>
+                    </ol>
+                </p>
+            </statement>
+        </activity>
+
+        <axiom component="lesson-plan">
+            <title>Structured Instruction</title>
+            <p>
+                <dl>
+                    <li><title>Suggested Time</title><p>8 minutes</p></li>
+                    <li><title>Objective</title><p>To define variance and standard deviation and give the two ways of calculating them.</p></li>
+                </dl>
+            </p>
+            <paragraphs>
+                <title>Key Takeaways &amp; Teacher Connection</title>
+                <ol>
+                    <li><p><alert>Connecting to Learner Work:</alert> part (c) was the variance, the mean of the squared deviations from the mean; part (d) was the standard deviation.</p></li>
+                    <li><p>The standard deviation is in the units of the data, so it is the measure to quote.</p></li>
+                    <li><p>Divide by <m>n</m>. Show learners the <m>\sigma_x</m> key on their calculators.</p></li>
+                </ol>
+            </paragraphs>
+        </axiom>
+
+        <insight xml:id="insight-variance-and-standard-deviation">
+            <title>Variance and Standard Deviation</title>
+            <p>
+                The <term>variance</term> is the mean of the squared deviations from the mean:
+                <md>\sigma^2 = \frac{\Sigma (x - \bar{x})^2}{n} = \frac{\Sigma x^2}{n} - \bar{x}^2</md>.
+                For a frequency table,
+                <md>\sigma^2 = \frac{\Sigma f(x - \bar{x})^2}{\Sigma f} = \frac{\Sigma fx^2}{\Sigma f} - \bar{x}^2</md>.
+            </p>
+            <p>
+                The <term>standard deviation</term> is the square root of the variance, in the units of the data: <m>\sigma = \sqrt{\sigma^2}</m>. Some books write <m>s</m> for it.
+            </p>
+            <p>
+                The first form shows what the variance means; the second avoids subtracting <m>\bar{x}</m> from every value, so it is quicker when <m>\bar{x}</m> is not a whole number. Keep <m>\bar{x}</m> unrounded in the second form.
+            </p>
+        </insight>
+
+        <insight xml:id="insight-variance-assumed-mean" component="core">
+            <title>With an Assumed Mean</title>
+            <p>
+                Subtracting the same number <m>A</m> from every value moves the mean down by <m>A</m> and leaves the spread unchanged. So with <m>d = x - A</m> the variance of <m>x</m> equals the variance of <m>d</m>:
+                <md>\sigma^2 = \frac{\Sigma d^2}{n} - \left(\frac{\Sigma d}{n}\right)^2 \qquad \text{or} \qquad \sigma^2 = \frac{\Sigma fd^2}{\Sigma f} - \left(\frac{\Sigma fd}{\Sigma f}\right)^2</md>.
+                Do not add <m>A</m> to the standard deviation.
+            </p>
+        </insight>
+
+        <warning xml:id="warning-divide-by-n">
+            <title>Divide by <m>n</m></title>
+            <p>
+                In this book the variance divides by <m>n</m>, the number of values. Many calculators show two standard deviations: <m>\sigma_x</m> (sometimes written <m>\sigma_n</m>) divides by <m>n</m>, and <m>s_x</m> (or <m>\sigma_{n-1}</m>) divides by <m>n - 1</m>. Use <m>\sigma_x</m>. In a spreadsheet use <c>STDEV.P</c> and <c>VAR.P</c>, not <c>STDEV.S</c> and <c>VAR.S</c>.
+            </p>
+        </warning>
+
+        <xi:include href="../lesson-plan-templates/example-intro.ptx" />
+
+        <example xml:id="example-matatu-passengers">
+            <title>Passengers on a Matatu</title>
+            <statement>
+                <p>The numbers of passengers on <m>6</m> matatu trips on Thika Road were <m>14, 11, 14, 12, 9, 12</m>. Find the variance and the standard deviation.</p>
+            </statement>
+            <solution>
+                <p><alert>Step 1: the mean.</alert> <m>\bar{x} = 72 \div 6 = 12</m>.</p>
+                <p><alert>Step 2: the squared deviations.</alert> The deviations <m>x - 12</m> are <m>2, -1, 2, 0, -3, 0</m>; their squares are <m>4, 1, 4, 0, 9, 0</m>, which add to <m>18</m>.</p>
+                <p><alert>Step 3: divide by <m>n</m> and take the root.</alert>
+                    <md>\sigma^2 = \frac{18}{6} = 3, \qquad \sigma = \sqrt{3} \approx 1.73</md>
+                    The variance is <m>3</m> and the standard deviation is about <m>1.73</m> passengers.</p>
+            </solution>
+        </example>
+
+        <example xml:id="example-shoe-sizes">
+            <title>Shoe Sizes</title>
+            <statement>
+                <p>The shoe sizes of <m>40</m> Grade 12 learners are shown below. Find the mean and the standard deviation.</p>
+                <table xml:id="table-shoe-sizes">
+                    <title>Shoe Sizes of 40 Learners</title>
+                    <tabular halign="center" top="minor" bottom="minor" left="minor" right="minor">
+                        <row header="yes" bottom="medium"><cell>Size (<m>x</m>)</cell><cell>5</cell><cell>6</cell><cell>7</cell><cell>8</cell><cell>9</cell><cell>10</cell></row>
+                        <row><cell>Frequency (<m>f</m>)</cell><cell>3</cell><cell>6</cell><cell>11</cell><cell>10</cell><cell>7</cell><cell>3</cell></row>
+                    </tabular>
+                </table>
+            </statement>
+            <solution>
+                <table xml:id="table-shoe-sizes-working">
+                    <title>Working for the Shoe Sizes</title>
+                    <tabular halign="center" top="minor" bottom="minor" left="minor" right="minor">
+                        <row header="yes" bottom="medium"><cell><m>x</m></cell><cell>5</cell><cell>6</cell><cell>7</cell><cell>8</cell><cell>9</cell><cell>10</cell><cell>Total</cell></row>
+                        <row><cell><m>f</m></cell><cell>3</cell><cell>6</cell><cell>11</cell><cell>10</cell><cell>7</cell><cell>3</cell><cell>40</cell></row>
+                        <row><cell><m>fx</m></cell><cell>15</cell><cell>36</cell><cell>77</cell><cell>80</cell><cell>63</cell><cell>30</cell><cell>301</cell></row>
+                        <row><cell><m>fx^2</m></cell><cell>75</cell><cell>216</cell><cell>539</cell><cell>640</cell><cell>567</cell><cell>300</cell><cell>2337</cell></row>
+                    </tabular>
+                </table>
+                <p><md>
+                    <mrow>\bar{x} \amp = \frac{301}{40} = 7.525 \approx 7.5</mrow>
+                    <mrow>\sigma^2 \amp = \frac{2337}{40} - 7.525^2 = 58.425 - 56.625625 = 1.799375</mrow>
+                    <mrow>\sigma \amp = \sqrt{1.799375} \approx 1.34</mrow>
+                </md>
+                    The mean size is about <m>7.5</m> and the standard deviation about <m>1.34</m> sizes. Keep <m>\bar{x} = 7.525</m> unrounded when you square it.</p>
+            </solution>
+        </example>
+
+        <example xml:id="example-garissa-temperatures-core" component="core">
+            <title>Temperatures in Garissa</title>
+            <statement>
+                <p>The maximum temperatures, in <m>^{\circ}\text{C}</m>, on <m>10</m> days in Garissa were <m>36, 38, 35, 37, 39, 36, 34, 37, 38, 36</m>. Use an assumed mean of <m>36</m> to find the mean and the standard deviation.</p>
+            </statement>
+            <solution>
+                <p>The deviations <m>d = x - 36</m> are <m>0, 2, -1, 1, 3, 0, -2, 1, 2, 0</m>, so <m>\Sigma d = 6</m> and <m>\Sigma d^2 = 24</m>.
+                    <md>
+                        <mrow>\bar{x} \amp = 36 + \frac{6}{10} = 36.6</mrow>
+                        <mrow>\sigma^2 \amp = \frac{24}{10} - \left(\frac{6}{10}\right)^2 = 2.4 - 0.36 = 2.04</mrow>
+                        <mrow>\sigma \amp = \sqrt{2.04} \approx 1.43</mrow>
+                    </md>
+                    The mean is <m>36.6\,^{\circ}\text{C}</m> and the standard deviation about <m>1.43\,^{\circ}\text{C}</m>. The <m>36</m> is added back to the mean only.</p>
+            </solution>
+        </example>
+
+        <example xml:id="example-garissa-temperatures-essential" component="essential">
+            <title>Temperatures in Garissa</title>
+            <statement>
+                <p>The maximum temperatures, in <m>^{\circ}\text{C}</m>, on <m>10</m> days in Garissa were <m>36, 38, 35, 37, 39, 36, 34, 37, 38, 36</m>. Find the mean and the standard deviation.</p>
+            </statement>
+            <solution>
+                <p><m>\Sigma x = 366</m> and <m>\Sigma x^2 = 13\,416</m>.
+                    <md>
+                        <mrow>\bar{x} \amp = \frac{366}{10} = 36.6</mrow>
+                        <mrow>\sigma^2 \amp = \frac{13\,416}{10} - 36.6^2 = 1341.6 - 1339.56 = 2.04</mrow>
+                        <mrow>\sigma \amp = \sqrt{2.04} \approx 1.43</mrow>
+                    </md>
+                    The mean is <m>36.6\,^{\circ}\text{C}</m> and the standard deviation about <m>1.43\,^{\circ}\text{C}</m>.</p>
+            </solution>
+        </example>
+
+        <note xml:id="note-spreadsheets-spread">
+            <title>Spreadsheets</title>
+            <p>
+                With the data in cells A1 to A10, <c>=AVERAGE(A1:A10)</c> gives the mean, <c>=VAR.P(A1:A10)</c> the variance and <c>=STDEV.P(A1:A10)</c> the standard deviation. Use them to check your working, not to replace it.
+            </p>
+        </note>
+
+        <xi:include href="../lesson-plan-templates/assessment-intro.ptx" />
+        <xi:include href="../lesson-plan-templates/checkpoint.ptx" />
+
+        <p>Type decimals with a point, for example <c>30.6</c>. Give answers to the accuracy asked for.</p>
+
+        <exercise xml:id="ex-variance-and-standard-deviation-of-ungrouped-data">
+            <!--<title></title>-->
+            <stack label="stk-variance-and-standard-deviation-of-ungrouped-data" source="stack/top/3-statistics-and-probability/15-statistics/01-measures-of-central-tendency-by-calculation/Variance-and-standard-deviation-of-ungrouped-data.xml"/>
+        </exercise>
+
+        <exercise xml:id="ex-standard-deviation-using-an-assumed-mean" component="core">
+            <!--<title></title>-->
+            <stack label="stk-standard-deviation-using-an-assumed-mean" source="stack/top/3-statistics-and-probability/15-statistics/01-measures-of-central-tendency-by-calculation/Standard-deviation-using-an-assumed-mean.xml"/>
+        </exercise>
+
+        <exercise xml:id="ex-finding-the-mistake-in-a-standard-deviation-calculation">
+            <!--<title></title>-->
+            <stack label="stk-finding-the-mistake-in-a-standard-deviation-calculation" source="stack/top/3-statistics-and-probability/15-statistics/01-measures-of-central-tendency-by-calculation/Finding-the-mistake-in-a-standard-deviation-calculation.xml"/>
+        </exercise>
+
+        <exercises xml:id="exercises-variance-and-standard-deviation">
+            <exercise xml:id="ex-sd-five-values">
+                <statement><p>Find the mean, the variance and the standard deviation of <m>5, 7, 8, 10, 10</m>. Give the standard deviation correct to 2 decimal places.</p></statement>
+                <answer><p>Mean <m>8</m>; variance <m>3.6</m>; standard deviation <m>1.90</m></p></answer>
+                <solution><p><m>\bar{x} = 40 \div 5 = 8</m>. Deviations <m>-3, -1, 0, 2, 2</m>; squares add to <m>18</m>; <m>\sigma^2 = 18 \div 5 = 3.6</m>; <m>\sigma = \sqrt{3.6} \approx 1.90</m>.</p></solution>
+            </exercise>
+            <exercise xml:id="ex-sd-frequency-table">
+                <statement>
+                    <p>The number of library books borrowed in a week by each of <m>30</m> learners is shown below. Find the mean, the variance and the standard deviation.</p>
+                    <tabular halign="center" top="minor" bottom="minor" left="minor" right="minor">
+                        <row header="yes" bottom="medium"><cell>Books (<m>x</m>)</cell><cell>1</cell><cell>2</cell><cell>3</cell><cell>4</cell><cell>5</cell></row>
+                        <row><cell>Frequency (<m>f</m>)</cell><cell>4</cell><cell>7</cell><cell>9</cell><cell>6</cell><cell>4</cell></row>
+                    </tabular>
+                </statement>
+                <answer><p>Mean <m>3.0</m>; variance <m>1.50</m>; standard deviation <m>1.22</m></p></answer>
+                <solution><p><m>\Sigma fx = 89</m> and <m>\Sigma fx^2 = 309</m>. <m>\bar{x} = 89 \div 30 = 2.966\ldots \approx 3.0</m>. <m>\sigma^2 = 309 \div 30 - (89 \div 30)^2 = 10.3 - 8.801\ldots = 1.498\ldots \approx 1.50</m>; <m>\sigma \approx 1.22</m>.</p></solution>
+            </exercise>
+            <exercise xml:id="ex-sd-mangoes-assumed-mean" component="core">
+                <statement><p>The masses, in grams, of <m>6</m> mangoes are <m>148, 152, 155, 149, 151, 153</m>. Use an assumed mean of <m>150\,\text{g}</m> to find the mean, the variance and the standard deviation.</p></statement>
+                <answer><p>Mean <m>151.3\,\text{g}</m>; variance <m>5.56</m>; standard deviation <m>2.36\,\text{g}</m></p></answer>
+                <solution><p><m>d = -2, 2, 5, -1, 1, 3</m>, so <m>\Sigma d = 8</m> and <m>\Sigma d^2 = 44</m>. <m>\bar{x} = 150 + 8 \div 6 = 151.33\ldots \approx 151.3\,\text{g}</m>. <m>\sigma^2 = 44 \div 6 - (8 \div 6)^2 = 7.333\ldots - 1.777\ldots = 5.555\ldots \approx 5.56</m>; <m>\sigma \approx 2.36\,\text{g}</m>.</p></solution>
+            </exercise>
+            <exercise xml:id="ex-sd-boda-trips">
+                <statement><p>Over <m>6</m> days, Kamau made <m>18, 22, 20, 19, 21, 20</m> boda boda trips a day and Chebet made <m>12, 28, 25, 15, 20, 20</m>. Find the mean and standard deviation for each rider, and compare them.</p></statement>
+                <answer><p>Both means <m>20</m>; standard deviations <m>1.29</m> (Kamau) and <m>5.45</m> (Chebet); Kamau is more consistent.</p></answer>
+                <solution><p>Both totals are <m>120</m>, so both means are <m>20</m>. Kamau's deviations <m>-2, 2, 0, -1, 1, 0</m> have squares adding to <m>10</m>: <m>\sigma = \sqrt{10 \div 6} \approx 1.29</m>. Chebet's deviations <m>-8, 8, 5, -5, 0, 0</m> have squares adding to <m>178</m>: <m>\sigma = \sqrt{178 \div 6} \approx 5.45</m>. Same typical number of trips, but Kamau's daily number varies much less.</p></solution>
+            </exercise>
+            <exercise xml:id="ex-sd-from-sums">
+                <statement><p>For a set of data, <m>n = 5</m>, <m>\Sigma x = 60</m> and <m>\Sigma x^2 = 760</m>. Find the mean and the standard deviation.</p></statement>
+                <answer><p>Mean <m>12</m>; standard deviation <m>2.83</m></p></answer>
+                <solution><p><m>\bar{x} = 60 \div 5 = 12</m>; <m>\sigma^2 = 760 \div 5 - 12^2 = 152 - 144 = 8</m>; <m>\sigma = \sqrt{8} \approx 2.83</m>.</p></solution>
+            </exercise>
+            <exercise xml:id="ex-five-consecutive-numbers">
+                <title>Challenge: Five in a Row</title>
+                <statement><p>Show that the five consecutive whole numbers <m>a, a + 1, a + 2, a + 3, a + 4</m> have standard deviation <m>\sqrt{2}</m>, whatever the value of <m>a</m>.</p></statement>
+                <hint><p>Find the mean first, then the deviations from it.</p></hint>
+                <answer><p>The variance is always <m>2</m>.</p></answer>
+                <solution><p>The mean is <m>a + 2</m>, so the deviations are <m>-2, -1, 0, 1, 2</m> whatever <m>a</m> is. Their squares add to <m>10</m>, so <m>\sigma^2 = 10 \div 5 = 2</m> and <m>\sigma = \sqrt{2}</m>.</p></solution>
+            </exercise>
+        </exercises>
+
+        <axiom component="lesson-plan">
+            <title>Differentiation</title>
+            <table xml:id="table-differentiation-variance-ungrouped">
+                <title>Differentiation Strategies</title>
+                <tabular halign="left" top="minor" bottom="minor" left="minor" right="minor">
+                    <row header="yes" bottom="medium"><cell>Learner Group</cell><cell>Strategy and Learning Experience</cell></row>
+                    <row><cell>Struggling Learners (Support)</cell><cell>Provide a deviation table template with columns <m>x</m>, <m>x - \bar{x}</m>, <m>(x - \bar{x})^2</m>. Work through <xref ref="example-matatu-passengers"/> and <xref ref="example-shoe-sizes"/> only. Assign <xref ref="ex-sd-five-values"/> and <xref ref="ex-sd-from-sums"/>.</cell></row>
+                    <row><cell>On-Level Learners (Core)</cell><cell>Full activity and all examples. Assign <xref ref="ex-sd-five-values"/> to <xref ref="ex-sd-from-sums"/>.</cell></row>
+                    <row><cell>Advanced Learners (Challenge)</cell><cell>All exercises including <xref ref="ex-five-consecutive-numbers"/>. Extension: find two different sets of <m>4</m> whole numbers with mean <m>10</m> and standard deviation <m>5</m> (one answer: <m>5, 5, 15, 15</m>).</cell></row>
+                </tabular>
+            </table>
+        </axiom>
+
+        <xi:include href="../lesson-plan-templates/assessment-methods.ptx" />
+        <xi:include href="../lesson-plan-templates/reflection.ptx"/>
+    </subsection>
+
+    <!-- ============================================================ Lesson 1.3 -->
+    <subsection xml:id="subsec-median-quartiles-deciles-percentiles-ungrouped">
+        <title component="core">Median, Quartiles, Deciles and Percentiles</title>
+        <title component="essential">Median and Quartiles</title>
+
+        <p component="lesson-plan">Upon completion of this lesson, learners will be able to:
+            <ol>
+                <li><p><alert>Know:</alert> quartiles split ordered data into quarters; for a list the positions use <m>n + 1</m>.</p></li>
+                <li component="core"><p><alert>Know (Core):</alert> deciles split ordered data into tenths and percentiles into hundredths.</p></li>
+                <li><p><alert>Do:</alert> order data, find positions and go the right fraction of the way between neighbouring values.</p></li>
+                <li><p><alert>Apply:</alert> describe the middle half of real data.</p></li>
+            </ol>
+        </p>
+
+        <axiom component="lesson-plan">
+            <title>Problem-Solving and Discovery</title>
+            <dl>
+                <li><title>Suggested Time</title><p>14 minutes</p></li>
+                <li><title>Objective</title><p>Learners find the middle and the quarter points of a line of learners.</p></li>
+                <li><title>Teacher's Role</title><p>Ask 11 learners to line up by height (or use the heights below). Ask: <q>Who stands a quarter of the way along?</q> Then add a 12th learner and ask the same question.</p></li>
+            </dl>
+        </axiom>
+
+        <activity xml:id="act-lining-up-by-height">
+            <title>Lining Up by Height</title>
+            <statement>
+                <p>The group in <xref ref="act-heights-in-our-group"/> is joined by an 11th learner, of height <m>161\,\text{cm}</m>.</p>
+                <p>
+                    <ol marker="(a)">
+                        <li>
+                            <p>Write the <m>11</m> heights in order. Which height is in the middle? Which is a quarter of the way along, and which three quarters?</p>
+                            <solution component="lesson-plan"><p><m>158, 159, 161, 162, 163, 165, 166, 168, 170, 171, 174</m>. Middle (6th) <m>165</m>; quarter (3rd) <m>161</m>; three quarters (9th) <m>170</m>.</p></solution>
+                        </li>
+                        <li>
+                            <p>Write the positions 6, 3 and 9 in terms of <m>n = 11</m>.</p>
+                            <solution component="lesson-plan"><p><m>\dfrac{n+1}{2} = 6</m>, <m>\dfrac{n+1}{4} = 3</m>, <m>\dfrac{3(n+1)}{4} = 9</m>.</p></solution>
+                        </li>
+                        <li>
+                            <p>A 12th learner, of height <m>167\,\text{cm}</m>, joins the line. Use the same formulas with <m>n = 12</m>. The positions are no longer whole numbers: what values would you give?</p>
+                            <solution component="lesson-plan"><p>Positions <m>6.5</m>, <m>3.25</m>, <m>9.75</m>. Middle: halfway from <m>165</m> to <m>166</m>, <m>165.5</m>. Quarter: <m>161 + 0.25 \times 1 = 161.25</m>. Three quarters: <m>168 + 0.75 \times 2 = 169.5</m>. Let learners suggest values first; then show the rule in the insight.</p></solution>
+                        </li>
+                    </ol>
+                </p>
+            </statement>
+        </activity>
+
+        <axiom component="lesson-plan">
+            <title>Structured Instruction</title>
+            <p>
+                <dl>
+                    <li><title>Suggested Time</title><p>8 minutes</p></li>
+                    <li><title>Objective</title><p>To formalise the positions of the median and quartiles of a list, and the rule for a position between two values.</p></li>
+                </dl>
+            </p>
+            <paragraphs>
+                <title>Key Takeaways &amp; Teacher Connection</title>
+                <ol>
+                    <li><p><alert>Connecting to Learner Work:</alert> position first, then value. A position such as <m>3.25</m> lies between two values.</p></li>
+                    <li><p>Always order the data before counting positions.</p></li>
+                </ol>
+            </paragraphs>
+        </axiom>
+
+        <insight xml:id="insight-ungrouped-quartiles">
+            <title>Median and Quartiles</title>
+            <p>
+                Put the <m>n</m> values in order. The <term>median</term> <m>Q_2</m> is at position <m>\dfrac{n+1}{2}</m>, the <term>lower quartile</term> <m>Q_1</m> at <m>\dfrac{n+1}{4}</m> and the <term>upper quartile</term> <m>Q_3</m> at <m>\dfrac{3(n+1)}{4}</m>. <m>Q_1</m> has a quarter of the data at or below it.
+            </p>
+            <p>
+                A position that is not a whole number lies between two values: go that fraction of the way from the lower to the higher. Position <m>3.75</m> is the 3rd value plus <m>0.75</m> of the gap to the 4th.
+            </p>
+        </insight>
+
+        <insight xml:id="insight-ungrouped-deciles-percentiles" component="core">
+            <title>Deciles and Percentiles</title>
+            <p>
+                The <term>deciles</term> <m>D_1, D_2, \ldots, D_9</m> split ordered data into tenths: <m>D_k</m> is at position <m>\dfrac{k(n+1)}{10}</m>. The <term>percentiles</term> <m>P_1, \ldots, P_{99}</m> split it into hundredths: <m>P_k</m> is at position <m>\dfrac{k(n+1)}{100}</m>. So <m>D_5 = P_{50} = Q_2</m> and <m>P_{25} = Q_1</m>.
+            </p>
+        </insight>
+
+        <figure xml:id="fig-quartile-positions">
+            <caption>The twelve heights from the activity in order, with their positions. The median and quartiles fall between values.</caption>
+            <image width="90%">
+                <shortdescription>Twelve heights in order with positions 1 to 12. Arrows at positions 3.25, 6.5 and 9.75 mark the lower quartile 161.25 cm, the median 165.5 cm and the upper quartile 169.5 cm.</shortdescription>
+                <description><p>Heights in order, positions 1 to 12: 158, 159, 161, 162, 163, 165, 166, 167, 168, 170, 171, 174. Arrows: position 3.25, lower quartile 161.25; position 6.5, median 165.5; position 9.75, upper quartile 169.5.</p></description>
+                <latex-image>
+\begin{tikzpicture}[x=1cm,y=1cm]
+  \draw (0.5,0) -- (12.5,0);
+  \foreach \p/\v in {1/158,2/159,3/161,4/162,5/163,6/165,7/166,8/167,9/168,10/170,11/171,12/174} {
+    \fill (\p,0) circle (2.5pt);
+    \node[above] at (\p,0.1) {\small $\v$};
+    \node[below] at (\p,-0.1) {\small $\p$};
+  }
+  \node[left] at (0.4,0.35) {\small height (cm)};
+  \node[left] at (0.4,-0.35) {\small position};
+  \foreach \p/\lab in {3.25/{$Q_1 = 161.25$},6.5/{median $= 165.5$},9.75/{$Q_3 = 169.5$}} {
+    \draw[->,thick] (\p,-1.4) -- (\p,-0.6);
+    \node[below] at (\p,-1.4) {\small \lab};
+    \node[below] at (\p,-1.85) {\small position $\p$};
+  }
+\end{tikzpicture}
+                </latex-image>
+            </image>
+        </figure>
+
+        <note xml:id="note-grouped-positions-later">
+            <title>Grouped Data Later</title>
+            <p>
+                For grouped data (<xref ref="sec-quartiles-deciles-and-percentiles-for-grouped-data"/>) we use positions <m>\dfrac{n}{4}</m>, <m>\dfrac{n}{2}</m> and <m>\dfrac{3n}{4}</m> instead. There the position is a point on a continuous scale rather than a count of individual values, and for the large <m>n</m> of grouped data the difference is very small.
+            </p>
+        </note>
+
+        <xi:include href="../lesson-plan-templates/example-intro.ptx" />
+
+        <example xml:id="example-walking-to-school">
+            <title>Walking to School</title>
+            <statement>
+                <p>The times, in minutes, that <m>11</m> learners in Kakamega take to walk to school are <m>18, 25, 12, 30, 22, 15, 27, 20, 35, 16, 24</m>. Find the median and the quartiles.</p>
+            </statement>
+            <solution>
+                <p>In order: <m>12, 15, 16, 18, 20, 22, 24, 25, 27, 30, 35</m>. With <m>n = 11</m>, the positions are <m>\dfrac{12}{4} = 3</m>, <m>\dfrac{12}{2} = 6</m> and <m>\dfrac{3 \times 12}{4} = 9</m>.</p>
+                <p><m>Q_1 = 16</m> minutes, median <m>= 22</m> minutes, <m>Q_3 = 27</m> minutes.</p>
+            </solution>
+        </example>
+
+        <example xml:id="example-pumpkins">
+            <title>Pumpkins at Wakulima Market</title>
+            <statement>
+                <p>The masses, in kg, of <m>14</m> pumpkins at Wakulima market are <m>4.2, 3.8, 5.1, 4.6, 3.5, 4.9, 5.4, 4.0, 4.4, 3.9, 4.7, 5.0, 4.3, 4.8</m>. Find the median and the quartiles.</p>
+            </statement>
+            <solution>
+                <p>In order: <m>3.5, 3.8, 3.9, 4.0, 4.2, 4.3, 4.4, 4.6, 4.7, 4.8, 4.9, 5.0, 5.1, 5.4</m>. With <m>n = 14</m>, <m>n + 1 = 15</m>.</p>
+                <p><alert>Lower quartile:</alert> position <m>15 \div 4 = 3.75</m>, between the 3rd value <m>3.9</m> and the 4th <m>4.0</m>: <m>Q_1 = 3.9 + 0.75 \times 0.1 = 3.975\,\text{kg}</m>.</p>
+                <p><alert>Median:</alert> position <m>7.5</m>, halfway from <m>4.4</m> to <m>4.6</m>: median <m>= 4.5\,\text{kg}</m>.</p>
+                <p><alert>Upper quartile:</alert> position <m>3 \times 15 \div 4 = 11.25</m>, between <m>4.9</m> and <m>5.0</m>: <m>Q_3 = 4.9 + 0.25 \times 0.1 = 4.925\,\text{kg}</m>.</p>
+            </solution>
+        </example>
+
+        <example xml:id="example-mock-test-deciles" component="core">
+            <title>Mock Test Marks</title>
+            <statement>
+                <p>The marks of <m>24</m> learners in a mock test, in order, are <m>23, 31, 35, 38, 40, 42, 44, 45, 47, 48, 50, 52, 53, 55, 56, 58, 60, 61, 63, 66, 68, 72, 75, 81</m>. Find <m>D_3</m>, <m>P_{90}</m> and <m>P_{15}</m>.</p>
+            </statement>
+            <solution>
+                <p>Here <m>n + 1 = 25</m>.</p>
+                <p><m>D_3</m>: position <m>3 \times 25 \div 10 = 7.5</m>, halfway from <m>44</m> to <m>45</m>, so <m>D_3 = 44.5</m>.</p>
+                <p><m>P_{90}</m>: position <m>90 \times 25 \div 100 = 22.5</m>, halfway from <m>72</m> to <m>75</m>, so <m>P_{90} = 73.5</m>.</p>
+                <p><m>P_{15}</m>: position <m>15 \times 25 \div 100 = 3.75</m>, between <m>35</m> and <m>38</m>, so <m>P_{15} = 35 + 0.75 \times 3 = 37.25</m>.</p>
+            </solution>
+        </example>
+
+        <xi:include href="../lesson-plan-templates/assessment-intro.ptx" />
+        <xi:include href="../lesson-plan-templates/checkpoint.ptx" />
+
+        <p>Type decimals with a point, for example <c>30.6</c>. Give answers to the accuracy asked for. To type a list of numbers, use square brackets and commas, for example <c>[3,5,8,9,12,14,20]</c>.</p>
+
+        <exercise xml:id="ex-median-and-quartiles-of-ungrouped-data">
+            <!--<title></title>-->
+            <stack label="stk-median-and-quartiles-of-ungrouped-data" source="stack/top/3-statistics-and-probability/15-statistics/01-measures-of-central-tendency-by-calculation/Median-and-quartiles-of-ungrouped-data.xml"/>
+        </exercise>
+
+        <exercise xml:id="ex-deciles-and-percentiles-of-ungrouped-data" component="core">
+            <!--<title></title>-->
+            <stack label="stk-deciles-and-percentiles-of-ungrouped-data" source="stack/top/3-statistics-and-probability/15-statistics/01-measures-of-central-tendency-by-calculation/Deciles-and-percentiles-of-ungrouped-data.xml"/>
+        </exercise>
+
+        <exercise xml:id="ex-seven-numbers-with-given-median-quartiles-and-mean">
+            <!--<title></title>-->
+            <stack label="stk-seven-numbers-with-given-median-quartiles-and-mean" source="stack/top/3-statistics-and-probability/15-statistics/01-measures-of-central-tendency-by-calculation/Seven-numbers-with-given-median-quartiles-and-mean.xml"/>
+        </exercise>
+
+        <exercises xml:id="exercises-ungrouped-quartiles">
+            <exercise xml:id="ex-quartiles-seven-values">
+                <statement><p>Find the median and the quartiles of <m>13, 9, 17, 11, 15, 10, 14</m>.</p></statement>
+                <answer><p><m>Q_1 = 10</m>, median <m>13</m>, <m>Q_3 = 15</m></p></answer>
+                <solution><p>In order: <m>9, 10, 11, 13, 14, 15, 17</m>. Positions <m>2, 4, 6</m> give <m>10, 13, 15</m>.</p></solution>
+            </exercise>
+            <exercise xml:id="ex-quartiles-ten-values">
+                <statement><p>The masses, in kg, of <m>10</m> bags of beans are <m>42, 35, 51, 38, 47, 40, 55, 44, 36, 49</m>. Find the median and the quartiles.</p></statement>
+                <answer><p><m>Q_1 = 37.5\,\text{kg}</m>, median <m>43\,\text{kg}</m>, <m>Q_3 = 49.5\,\text{kg}</m></p></answer>
+                <solution><p>In order: <m>35, 36, 38, 40, 42, 44, 47, 49, 51, 55</m>. Positions <m>2.75</m>, <m>5.5</m>, <m>8.25</m>: <m>Q_1 = 36 + 0.75 \times 2 = 37.5</m>; median <m>= 43</m>; <m>Q_3 = 49 + 0.25 \times 2 = 49.5</m>.</p></solution>
+            </exercise>
+            <exercise xml:id="ex-deciles-nineteen-values" component="core">
+                <statement><p>The ordered data <m>12, 15, 17, 18, 20, 21, 23, 24, 26, 27, 29, 30, 32, 34, 35, 37, 40, 43, 48</m> has <m>19</m> values. Find <m>D_7</m> and <m>P_{40}</m>.</p></statement>
+                <answer><p><m>D_7 = 34</m>, <m>P_{40} = 24</m></p></answer>
+                <solution><p><m>n + 1 = 20</m>. <m>D_7</m> is at position <m>7 \times 20 \div 10 = 14</m>, the 14th value, <m>34</m>. <m>P_{40}</m> is at position <m>40 \times 20 \div 100 = 8</m>, the 8th value, <m>24</m>.</p></solution>
+            </exercise>
+            <exercise xml:id="ex-quartiles-kiosk-customers">
+                <statement><p>The numbers of customers per day at a kiosk in Kisumu over <m>15</m> days were <m>34, 41, 29, 52, 38, 45, 47, 33, 40, 58, 36, 43, 49, 31, 44</m>. Find the median and the quartiles, and describe the middle half of the days.</p></statement>
+                <answer><p><m>Q_1 = 34</m>, median <m>41</m>, <m>Q_3 = 47</m>; on the middle half of the days the kiosk had between <m>34</m> and <m>47</m> customers.</p></answer>
+                <solution><p>In order: <m>29, 31, 33, 34, 36, 38, 40, 41, 43, 44, 45, 47, 49, 52, 58</m>. With <m>n + 1 = 16</m>, positions <m>4</m>, <m>8</m>, <m>12</m> give <m>34</m>, <m>41</m>, <m>47</m>.</p></solution>
+            </exercise>
+            <exercise xml:id="ex-missing-value-from-median">
+                <statement><p>The eight numbers <m>21, 25, 28, k, 33, 36, 40, 42</m> (not necessarily in order) have median <m>34</m>. Find <m>k</m>.</p></statement>
+                <answer><p><m>k = 35</m></p></answer>
+                <solution><p>With <m>n = 8</m> the median is halfway between the 4th and 5th values. Without <m>k</m>, the values in order are <m>21, 25, 28, 33, 36, 40, 42</m>. A median of <m>34</m> lies between <m>33</m> and <m>36</m>, so <m>k</m> must be the 5th value with <m>(33 + k) \div 2 = 34</m>, giving <m>k = 35</m>, which does lie between <m>33</m> and <m>36</m>.</p></solution>
+            </exercise>
+            <exercise xml:id="ex-percentile-equals-quartile" component="core">
+                <title>Challenge: Percentiles and Quartiles</title>
+                <statement><p>Show that, for any number of values <m>n</m>, <m>P_{25} = Q_1</m> and <m>D_5 = P_{50} = Q_2</m>.</p></statement>
+                <hint><p>Compare the positions, not the values.</p></hint>
+                <answer><p>The positions are equal.</p></answer>
+                <solution><p><m>P_{25}</m> is at position <m>\dfrac{25(n+1)}{100} = \dfrac{n+1}{4}</m>, the position of <m>Q_1</m>. <m>D_5</m> is at <m>\dfrac{5(n+1)}{10} = \dfrac{n+1}{2}</m> and <m>P_{50}</m> at <m>\dfrac{50(n+1)}{100} = \dfrac{n+1}{2}</m>, the position of the median. Equal positions give equal values.</p></solution>
+            </exercise>
+        </exercises>
+
+        <axiom component="lesson-plan">
+            <title>Differentiation</title>
+            <table xml:id="table-differentiation-ungrouped-quartiles">
+                <title>Differentiation Strategies</title>
+                <tabular halign="left" top="minor" bottom="minor" left="minor" right="minor">
+                    <row header="yes" bottom="medium"><cell>Learner Group</cell><cell>Strategy and Learning Experience</cell></row>
+                    <row><cell>Struggling Learners (Support)</cell><cell>Give the lists already ordered, and a position card: <m>(n+1)/4</m>, <m>(n+1)/2</m>, <m>3(n+1)/4</m>. Assign <xref ref="ex-quartiles-seven-values"/> and <xref ref="ex-quartiles-ten-values"/>.</cell></row>
+                    <row><cell>On-Level Learners (Core)</cell><cell>Full activity and all examples. Assign <xref ref="ex-quartiles-seven-values"/> to <xref ref="ex-missing-value-from-median"/>.</cell></row>
+                    <row><cell>Advanced Learners (Challenge)</cell><cell>All exercises. Extension: find a data set of <m>8</m> values with <m>Q_1 = Q_2</m> (one answer: <m>1, 5, 5, 5, 5, 6, 7, 8</m>, where <m>Q_1</m> at position <m>2.25</m> and the median are both <m>5</m>).</cell></row>
+                </tabular>
+            </table>
+        </axiom>
+
+        <xi:include href="../lesson-plan-templates/assessment-methods.ptx" />
+        <xi:include href="../lesson-plan-templates/reflection.ptx"/>
+    </subsection>
 </section>

@@ -33,7 +33,7 @@
                 <li component="lesson-plan">
                     <title>Estimated Duration</title>
                     <p>
-                        40 minutes
+                        2 lessons of 40 minutes
                     </p>
                 </li>
             </dl>
@@ -46,163 +46,481 @@
          Suggested activity: Learners find the area of a region bounded by a curve and the x-axis by integration, then shade it on graph paper.
          Interactive (JSXGraph): Curve with draggable limits a and b; the area under the curve is shaded and its exact value shown. -->
 
-    <!-- [LP] Add guidance on activity -->
+    <!-- Section notes (2026-11)
+         SLOs: Core (c), (d). Lessons 3.1 and 3.2 as subsections.
+         Activity: as planning notes (find an area by integration, shade it on graph paper) in lesson 3.1 | changed: starts from a straight line so the area can be checked by geometry; lesson 3.2 adds a ditch-and-mound activity
+         JSXGraph: fig-area-under-a-curve (assets/jsxgraph/area-under-a-curve.js), as planning notes, used in both lessons
+         STACK: assets/stack/top/4-calculus/18-integration/03-area-under-a-curve-by-integration/ -->
 
-    <!-- <axiom component="lesson-plan">
+    <!-- ============================================================ Lesson 3.1 -->
+    <subsection xml:id="subsec-area-and-the-definite-integral">
+        <title>Area and the Definite Integral</title>
+
+        <p component="lesson-plan">Upon completion of this lesson, learners will be able to:
+            <ol>
+                <li><p><alert>Know:</alert> the area under <m>y = f(x) \ge 0</m> from <m>x = a</m> to <m>x = b</m> is <m>\int_{a}^{b} f(x)\,dx</m>; the derivative of the area function is <m>f(x)</m>.</p></li>
+                <li><p><alert>Do:</alert> find areas under curves that lie above the <m>x</m>-axis.</p></li>
+                <li><p><alert>Apply:</alert> find the area of a plot of land with a curved boundary.</p></li>
+            </ol>
+        </p>
+
+        <axiom component="lesson-plan">
             <title>Problem-Solving and Discovery</title>
             <dl>
-                <li>
-                    <title>Suggested Time</title>
-                    <p>
-                        XX minutes
-                    </p>
-                </li>
-                <li>
-                    <title>Objective</title>
-                    <p>
-                        XXX
-                    </p>
-                </li>
-                <li>
-                    <title>Teacher's Role</title>
-                    <p>
-                        XXX
-                    </p>
-                </li>
+                <li><title>Suggested Time</title><p>14 minutes</p></li>
+                <li><title>Objective</title><p>Learners find an area formula for a straight line by geometry, then see that it is an integral.</p></li>
+                <li><title>Teacher's Role</title><p>Hand out graph paper and let learners draw and shade the areas. After part (b), ask: <q>What do you notice when you differentiate <m>A(X)</m>?</q></p></li>
             </dl>
-        </axiom> -->
+        </axiom>
 
-    <!-- Add Activity -->
-
-    <!-- <activity>
-        <statement>
-        </statement>
-    </activity> -->
-
-    <!-- [LP] Add guidance on structured lesson plan-->
-
-    <!-- <axiom component="lesson-plan">
-        <title>Structured Instruction</title>
-        <p>
-            <dl>
-            <li>
-                <title>Suggested Time</title>
+        <activity xml:id="act-area-under-a-straight-line">
+            <title>Area Under a Straight Line</title>
+            <statement>
+                <p>A plan of a shamba drawn on squared paper shows a region bounded by the line <m>y = 2x + 1</m>, the <m>x</m>-axis, the <m>y</m>-axis and the line <m>x = X</m>. Let <m>A(X)</m> be its area.</p>
+                <figure xml:id="fig-area-under-straight-line">
+                    <caption>The area under <m>y = 2x + 1</m> from <m>x = 0</m> to <m>x = 1</m>, <m>2</m> and <m>3</m>.</caption>
+                    <image width="90%">
+                        <shortdescription>Three small graphs of the line y = 2x + 1, each with the region under it shaded from x = 0 to x = 1, 2 and 3. Each region is a trapezium.</shortdescription>
+                        <latex-image>
+\begin{tikzpicture}
+\foreach \X/\sh in {1/0, 2/5, 3/10} {
+\begin{axis}[at={(\sh cm,0)}, width=5.2cm, height=5.2cm, xmin=0, xmax=3.5, ymin=0, ymax=8,
+  axis lines=left, xtick={0,1,2,3}, ytick={0,2,4,6,8}, xlabel={$x$}, ylabel={$y$},
+  title={$X=\X$}]
+\addplot[fill=gray!30, draw=none, domain=0:\X] {2*x+1} \closedcycle;
+\addplot[thick, domain=0:3.4] {2*x+1};
+\draw[thick] (axis cs:\X,0) -- (axis cs:\X,2*\X+1);
+\end{axis}
+}
+\end{tikzpicture}
+                        </latex-image>
+                    </image>
+                </figure>
                 <p>
-                    XX minutes
+                    <ol marker="(a)">
+                        <li>
+                            <p>Each region is a trapezium. Find <m>A(1)</m>, <m>A(2)</m> and <m>A(3)</m>.</p>
+                            <solution component="lesson-plan"><p><m>A(1) = \frac{1}{2}(1 + 3) \times 1 = 2</m>, <m>A(2) = \frac{1}{2}(1 + 5) \times 2 = 6</m>, <m>A(3) = \frac{1}{2}(1 + 7) \times 3 = 12</m>.</p></solution>
+                        </li>
+                        <li>
+                            <p>Guess a formula for <m>A(X)</m>.</p>
+                            <solution component="lesson-plan"><p><m>A(X) = \frac{1}{2}(1 + 2X + 1)X = X^2 + X</m>.</p></solution>
+                        </li>
+                        <li>
+                            <p>Differentiate <m>A(X)</m>. What do you notice?</p>
+                            <solution component="lesson-plan"><p><m>A'(X) = 2X + 1</m>: the equation of the line itself.</p></solution>
+                        </li>
+                        <li>
+                            <p>Find the area under the line from <m>x = 1</m> to <m>x = 3</m> as <m>A(3) - A(1)</m>. Check it with the area of a trapezium.</p>
+                            <solution component="lesson-plan"><p><m>12 - 2 = 10</m>; the trapezium has parallel sides <m>3</m> and <m>7</m> and width <m>2</m>: <m>\frac{1}{2} \times 2 \times (3 + 7) = 10</m>.</p></solution>
+                        </li>
+                        <li>
+                            <p>Evaluate <m>\displaystyle\int_{1}^{3} (2x + 1)\,dx</m> and compare.</p>
+                            <solution component="lesson-plan"><p><m>\left[ x^2 + x \right]_{1}^{3} = 12 - 2 = 10</m>, the same area.</p></solution>
+                        </li>
+                    </ol>
                 </p>
-            </li>
-            <li>
-                <title>Objective</title>
-                <p>
-                    To formalize the concepts and properties learners discovered in the anchor task.
-                </p>
-            </li>
-            </dl>
-        </p>
-        <paragraphs>
-            <title>Key Takeaways &amp; Teacher Connection</title>
-            <ol>
-                <li>
+            </statement>
+        </activity>
+
+        <axiom component="lesson-plan">
+            <title>Structured Instruction</title>
+            <p>
+                <dl>
+                    <li><title>Suggested Time</title><p>8 minutes</p></li>
+                    <li><title>Objective</title><p>To state that the area under a curve above the <m>x</m>-axis is a definite integral.</p></li>
+                </dl>
+            </p>
+            <paragraphs>
+                <title>Key Takeaways &amp; Teacher Connection</title>
+                <ol>
+                    <li><p><alert>Connecting to Learner Work:</alert> part (c): the area function differentiates to the curve, <m>A'(x) = f(x)</m>, so <m>A</m> is an integral of <m>f</m>.</p></li>
+                    <li><p>When the curve is above the axis, area <m>=</m> definite integral. Always sketch the region first.</p></li>
+                </ol>
+            </paragraphs>
+        </axiom>
+
+        <insight xml:id="insight-area-under-a-curve">
+            <title>Area Under a Curve</title>
+            <p>
+                If <m>f(x) \ge 0</m> for <m>a \le x \le b</m>, the area of the region between the curve <m>y = f(x)</m>, the <m>x</m>-axis and the lines <m>x = a</m> and <m>x = b</m> is
+                <md>\text{area} = \int_{a}^{b} f(x)\,dx = F(b) - F(a)</md>,
+                where <m>F</m> is any integral of <m>f</m>. The region is shaded in <xref ref="fig-area-under-parabola"/>. Areas are in square units, or in <m>\text{m}^2</m> when the lengths are in metres.
+            </p>
+        </insight>
+
+        <note xml:id="note-why-integration-gives-area">
+            <title>Why Integration Gives Area</title>
+            <p>
+                Let <m>A(x)</m> be the area under the curve from <m>a</m> up to <m>x</m>. Moving <m>x</m> on by a small amount <m>\delta x</m> adds a thin strip of width <m>\delta x</m> and height about <m>y</m>, so <m>\delta A \approx y\,\delta x</m>. Dividing by <m>\delta x</m> and letting the strip get thinner gives <m>\dfrac{dA}{dx} = y</m>: the area function is an integral of <m>y</m>.
+            </p>
+        </note>
+
+        <figure xml:id="fig-area-under-a-curve">
+            <caption>Drag <m>a</m> and <m>b</m> along the <m>x</m>-axis. When part of the region is below the axis, the integral and the area differ.</caption>
+            <interactive xml:id="interactive-area-under-a-curve" platform="jsxgraph" width="90%" aspect="16:12" source="jsxgraph/area-under-a-curve.js">
+                <slate xml:id="jsxgraph-area-under-a-curve" surface="jsxboard" aspect="16:12"/>
+                <instructions>
                     <p>
-                        <alert>Connecting to Learner Work:</alert> XXXX
+                        <ul>
+                            <li><p>The curve is <m>y = 6 + x - x^2</m>, which crosses the <m>x</m>-axis at <m>x = -2</m> and <m>x = 3</m>. Parts of the region above the axis are shaded and marked <m>+</m>; parts below are hatched and marked <m>-</m>.</p></li>
+                            <li><p>Drag <alert>a</alert> to <m>0</m> and <alert>b</alert> to <m>3</m>. Check that the integral and the area are both <m>13.5</m>.</p></li>
+                            <li><p>Now drag <alert>a</alert> to <m>2</m> and move <alert>b</alert> to the right of <m>3</m>. Find where the integral is <m>0</m> (about <m>b = 3.88</m>). Is the area <m>0</m> there? Explain.</p></li>
+                        </ul>
                     </p>
-                </li>
-            </ol>
-        </paragraphs>
-    </axiom> -->
+                </instructions>
+            </interactive>
+        </figure>
 
-    <!-- Add insight / key takeaway directly related to activity / learner experience -->
+        <xi:include href="../lesson-plan-templates/example-intro.ptx" />
 
-    <!-- <insight>
-    </insight> -->
-
-    <!-- Add further instruction (not in a block) to develop ideas as needed -->
-
-    <xi:include href="../lesson-plan-templates/example-intro.ptx" />
-
-    <!-- Add at least 3 examples -->
-
-    <!-- <example>
-        <statement>
-        </statement>
-        <solution>
-        </solution>
-    </example>
-
-    <example>
-        <statement>
-        </statement>
-        <solution>
-        </solution>
-    </example>
-
-    <example>
-        <statement>
-        </statement>
-        <solution>
-        </solution>
-    </example> -->
-
-    <xi:include href="../lesson-plan-templates/assessment-intro.ptx" />
-
-    <!-- If STACK questions are included, uncomment this: -->
-
-    <!-- <xi:include href="../lesson-plan-templates/checkpoint.ptx" /> -->
-
-    <!-- Add STACK exercises if made -->
-
-    <!-- Add static exercises -->
-
-    <!-- <exercises>
-        <exercise>
-            <statement>   
-
-            </statement>   
+        <example xml:id="example-area-under-a-parabola">
+            <title>Area Under a Parabola</title>
+            <statement><p>Find the area of the region between the curve <m>y = x^2 + 2</m>, the <m>x</m>-axis and the lines <m>x = 1</m> and <m>x = 3</m>.</p></statement>
             <solution>
+                <figure xml:id="fig-area-under-parabola">
+                    <caption>The region under <m>y = x^2 + 2</m> from <m>x = 1</m> to <m>x = 3</m>.</caption>
+                    <image width="60%">
+                        <shortdescription>The curve y = x squared + 2 for x from 0 to 3.5, with the region between the curve and the x-axis from x = 1 to x = 3 shaded. Its area is 38/3 square units.</shortdescription>
+                        <latex-image>
+\begin{tikzpicture}
+\begin{axis}[width=8cm, height=7cm, xmin=0, xmax=3.6, ymin=0, ymax=14,
+  axis lines=left, xtick={0,1,2,3}, ytick={0,2,...,14}, xlabel={$x$}, ylabel={$y$}]
+\addplot[fill=gray!30, draw=none, domain=1:3, samples=40] {x^2+2} \closedcycle;
+\addplot[thick, domain=0:3.5, samples=60] {x^2+2};
+\draw[thick] (axis cs:1,0) -- (axis cs:1,3);
+\draw[thick] (axis cs:3,0) -- (axis cs:3,11);
+\node[font=\small] at (axis cs:2,3) {area};
+\node[anchor=east, font=\small] at (axis cs:2.85,13) {$y=x^2+2$};
+\end{axis}
+\end{tikzpicture}
+                        </latex-image>
+                    </image>
+                </figure>
+                <p>The curve is above the <m>x</m>-axis, so
+                    <md>\text{area} = \int_{1}^{3} (x^2 + 2)\,dx = \left[ \frac{x^3}{3} + 2x \right]_{1}^{3} = (9 + 6) - \left(\frac{1}{3} + 2\right) = \frac{38}{3} \approx 12.67</md>
+                    square units.</p>
+            </solution>
+        </example>
 
-            </solution>             
-        </exercise>        
-    </exercises> -->
+        <example xml:id="example-area-under-a-cubic">
+            <title>Area Under a Cubic</title>
+            <statement><p>Find the area between the curve <m>y = x^3 + 1</m>, the <m>x</m>-axis and the lines <m>x = 0</m> and <m>x = 2</m>.</p></statement>
+            <solution>
+                <p>For <m>0 \le x \le 2</m>, <m>y \ge 1</m>, so the curve is above the axis.
+                    <md>\int_{0}^{2} (x^3 + 1)\,dx = \left[ \frac{x^4}{4} + x \right]_{0}^{2} = (4 + 2) - 0 = 6</md>
+                    The area is <m>6</m> square units.</p>
+            </solution>
+        </example>
 
-    <!-- [LP] Add information on how to differentiate  -->
+        <example xml:id="example-shamba-curved-boundary">
+            <title>A Shamba With a Curved Boundary</title>
+            <statement><p>A shamba in Nyeri is drawn on a plan with axes in units of <m>10\,\text{m}</m>. It is bounded by the <m>x</m>-axis (a road), the lines <m>x = 0</m> and <m>x = 4</m> (two fences) and a stream along the curve <m>y = 6 + 2x - \frac{x^2}{2}</m>. Find the area of the shamba in square metres.</p></statement>
+            <solution>
+                <p>Check the curve is above the axis: <m>y = 6</m> at <m>x = 0</m>, <m>8</m> at <m>x = 2</m> and <m>6</m> at <m>x = 4</m>, and a parabola that bends down stays above its two end heights between them. So
+                    <md>\text{area} = \int_{0}^{4} \left(6 + 2x - \frac{x^2}{2}\right)dx = \left[ 6x + x^2 - \frac{x^3}{6} \right]_{0}^{4} = 24 + 16 - \frac{64}{6} = \frac{88}{3} \approx 29.33</md>
+                    square units. One square unit is <m>10\,\text{m} \times 10\,\text{m} = 100\,\text{m}^2</m>, so the shamba is about <m>2933\,\text{m}^2</m>.</p>
+            </solution>
+        </example>
 
-    <!-- <axiom component="lesson-plan">
-        <title>Differentiation</title>
+        <xi:include href="../lesson-plan-templates/assessment-intro.ptx" />
+        <xi:include href="../lesson-plan-templates/checkpoint.ptx" />
 
-        <table>
+        <p>Type exact values as whole numbers, fractions or decimals, for example <c>27/4</c> or <c>6.75</c>.</p>
+
+        <exercise xml:id="ex-area-under-a-curve-above-the-x-axis">
+            <!--<title></title>-->
+            <stack label="stk-area-under-a-curve-above-the-x-axis" source="stack/top/4-calculus/18-integration/03-area-under-a-curve-by-integration/Area-under-a-curve-above-the-x-axis.xml"/>
+        </exercise>
+
+        <exercises xml:id="exercises-area-under-a-curve">
+            <exercise xml:id="ex-area-3x-squared">
+                <statement><p>Find the area under <m>y = 3x^2</m> from <m>x = 1</m> to <m>x = 2</m>.</p></statement>
+                <answer><p><m>7</m> square units</p></answer>
+            </exercise>
+            <exercise xml:id="ex-area-x-squared-plus-1">
+                <statement><p>Find the area under <m>y = x^2 + 1</m> from <m>x = 0</m> to <m>x = 3</m>.</p></statement>
+                <answer><p><m>12</m> square units</p></answer>
+            </exercise>
+            <exercise xml:id="ex-area-4x-cubed">
+                <statement><p>Find the area under <m>y = 4x^3</m> from <m>x = 1</m> to <m>x = 2</m>.</p></statement>
+                <answer><p><m>15</m> square units</p></answer>
+            </exercise>
+            <exercise xml:id="ex-area-line-check">
+                <statement><p>Find the area between <m>y = 8 - 2x</m> and the axes, from <m>x = 0</m> to <m>x = 4</m>, by integration. Check your answer with the area of a triangle.</p></statement>
+                <answer><p><m>16</m> square units; <m>\frac{1}{2} \times 4 \times 8 = 16</m></p></answer>
+                <solution><p><m>\left[ 8x - x^2 \right]_{0}^{4} = 32 - 16 = 16</m>. The region is a triangle with base <m>4</m> and height <m>8</m>.</p></solution>
+            </exercise>
+            <exercise xml:id="ex-culvert-entrance">
+                <statement><p>The opening of a culvert under a farm road in Kiambu is the region between the curve <m>y = 4 - \frac{x^2}{4}</m> and the <m>x</m>-axis (the stream bed), for <m>-4 \le x \le 4</m>, in metres. Find the area of the opening.</p></statement>
+                <answer><p><m>\frac{64}{3} \approx 21.33\,\text{m}^2</m></p></answer>
+                <solution><p><m>\left[ 4x - \frac{x^3}{12} \right]_{-4}^{4} = \left(16 - \frac{16}{3}\right) - \left(-16 + \frac{16}{3}\right) = \frac{64}{3}</m>.</p></solution>
+            </exercise>
+            <exercise xml:id="ex-find-k-area-16">
+                <statement><p>The area under <m>y = 2x</m> from <m>x = 0</m> to <m>x = k</m>, where <m>k \gt 0</m>, is <m>16</m>. Find <m>k</m>.</p></statement>
+                <answer><p><m>k = 4</m></p></answer>
+                <solution><p><m>\left[ x^2 \right]_{0}^{k} = k^2 = 16</m>, and <m>k \gt 0</m>, so <m>k = 4</m>.</p></solution>
+            </exercise>
+            <exercise xml:id="ex-equal-areas-find-k">
+                <title>Challenge: Equal Areas</title>
+                <statement><p>The area under <m>y = 3x^2 + k</m> from <m>x = 0</m> to <m>x = 2</m> equals the area under the same curve from <m>x = 2</m> to <m>x = 3</m>, where <m>k</m> is a positive constant. Find <m>k</m>.</p></statement>
+                <hint><p>Write both areas in terms of <m>k</m>.</p></hint>
+                <answer><p><m>k = 11</m></p></answer>
+                <solution><p><m>\int_{0}^{2} (3x^2 + k)\,dx = 8 + 2k</m> and <m>\int_{2}^{3} (3x^2 + k)\,dx = 19 + k</m>. So <m>8 + 2k = 19 + k</m> and <m>k = 11</m>.</p></solution>
+            </exercise>
+        </exercises>
+
+        <axiom component="lesson-plan">
             <title>Differentiation</title>
-            <tabular halign="left">
-                <row header="yes" bottom="minor">
-                    <cell>Learner Group</cell>
-                    <cell>Strategy &amp; Learning Experience</cell>
-                    <cell></cell>
-                </row>
-                <row>
-                    <cell>Struggling Learners (Support)</cell>
-                    <cell>
-                        XXXX
-                    </cell>
-                    <cell></cell>
-                </row>
-                <row>
-                    <cell>On-Level Learners (Core)</cell>
-                    <cell>
-                        <line>The core lesson activities as described above.</line>
-                    </cell>
-                    <cell></cell>
-                </row>
-                <row>
-                    <cell>Advanced Learners (Challenge)</cell>
-                    <cell>
-                        XXXX
-                    </cell>
-                    <cell></cell>
-                </row>
-            </tabular>
-        </table>
-    </axiom> -->
+            <table xml:id="table-differentiation-area-under-a-curve">
+                <title>Differentiation Strategies</title>
+                <tabular halign="left" top="minor" bottom="minor" left="minor" right="minor">
+                    <row header="yes" bottom="medium"><cell>Learner Group</cell><cell>Strategy and Learning Experience</cell></row>
+                    <row><cell>Struggling Learners (Support)</cell><cell>Focus on activity parts (a) to (c). Give a sketch template with axes and the limits marked, to shade before integrating. Assign <xref ref="ex-area-3x-squared"/> to <xref ref="ex-area-line-check"/>.</cell></row>
+                    <row><cell>On-Level Learners (Core)</cell><cell>Full activity and all examples. Assign <xref ref="ex-area-3x-squared"/> to <xref ref="ex-find-k-area-16"/>.</cell></row>
+                    <row><cell>Advanced Learners (Challenge)</cell><cell>All exercises including <xref ref="ex-equal-areas-find-k"/>. Extension: for <m>y = x^2</m>, show that the area from <m>x = 0</m> to <m>x = b</m> is one third of the rectangle <m>b \times b^2</m> (the area is <m>\frac{b^3}{3}</m>).</cell></row>
+                </tabular>
+            </table>
+        </axiom>
 
-    <xi:include href="../lesson-plan-templates/assessment-methods.ptx" />
+        <xi:include href="../lesson-plan-templates/assessment-methods.ptx" />
+        <xi:include href="../lesson-plan-templates/reflection.ptx"/>
+    </subsection>
 
-    <xi:include href="../lesson-plan-templates/reflection.ptx"/>
+    <!-- ============================================================ Lesson 3.2 -->
+    <subsection xml:id="subsec-areas-above-and-below-the-x-axis">
+        <title>Areas Above and Below the <m>x</m>-axis</title>
+
+        <p component="lesson-plan">Upon completion of this lesson, learners will be able to:
+            <ol>
+                <li><p><alert>Know:</alert> a region below the <m>x</m>-axis gives a negative integral; across a crossing, positive and negative parts cancel.</p></li>
+                <li><p><alert>Do:</alert> find the <m>x</m>-intercepts, split the region, and add the sizes of the parts.</p></li>
+                <li><p><alert>Apply:</alert> find the cross-sections of a ditch and a mound, and the net and total flow through a pipe.</p></li>
+            </ol>
+        </p>
+
+        <axiom component="lesson-plan">
+            <title>Problem-Solving and Discovery</title>
+            <dl>
+                <li><title>Suggested Time</title><p>14 minutes</p></li>
+                <li><title>Objective</title><p>Learners meet a negative integral, and a zero integral for a region that clearly has area.</p></li>
+                <li><title>Teacher's Role</title><p>Before the activity, use <xref ref="fig-area-under-a-curve"/> with <m>a = 2</m> and <m>b</m> near <m>3.88</m>, where the integral is <m>0</m>. Ask: <q>Where did the area go?</q></p></li>
+            </dl>
+        </axiom>
+
+        <activity xml:id="act-a-ditch-and-a-mound">
+            <title>A Ditch and a Mound</title>
+            <statement>
+                <p>A farmer in Nakuru digs a drainage ditch and piles the soil beside it. Across the ditch and the mound, the ground profile is <m>y = \frac{x^2 - 4x}{4}</m> metres for <m>0 \le x \le 6</m>, where <m>y = 0</m> is the original ground level.</p>
+                <figure xml:id="fig-ditch-and-mound">
+                    <caption>The ground profile <m>y = \frac{x^2 - 4x}{4}</m>: a ditch below ground level and a mound above it.</caption>
+                    <image width="90%">
+                        <shortdescription>Ground profile curve y = (x squared minus 4x)/4 for x from 0 to 6 metres. From x = 0 to 4 it dips below ground level to a depth of 1 m at x = 2 (the ditch, hatched); from x = 4 to 6 it rises to 3 m at x = 6 (the mound, shaded). Each cross-section is 8/3 square metres.</shortdescription>
+                        <latex-image>
+\begin{tikzpicture}
+\begin{axis}[width=12cm, height=7cm, xmin=-0.3, xmax=6.5, ymin=-1.5, ymax=3.4,
+  axis lines=middle, xtick={1,2,...,6}, ytick={-1,1,2,3}, xlabel={$x$ (m)}, ylabel={$y$ (m)},
+  xlabel style={anchor=north west}, xticklabel style={fill=white, inner sep=1pt}, axis on top]
+\addplot[pattern=north east lines, draw=none, domain=0:4, samples=50] {(x^2-4*x)/4} \closedcycle;
+\addplot[fill=gray!30, draw=none, domain=4:6, samples=40] {(x^2-4*x)/4} \closedcycle;
+\addplot[very thick, domain=0:6, samples=80] {(x^2-4*x)/4};
+\node[fill=white, inner sep=1pt, font=\small] at (axis cs:2,-0.62) {ditch};
+\node[font=\small] at (axis cs:5.45,0.6) {mound};
+\end{axis}
+\end{tikzpicture}
+                        </latex-image>
+                    </image>
+                </figure>
+                <p>
+                    <ol marker="(a)">
+                        <li>
+                            <p>For which values of <m>x</m> is the ground below the original level? How deep is the ditch at its deepest?</p>
+                            <solution component="lesson-plan"><p>For <m>0 \lt x \lt 4</m>, where <m>x(x - 4) \lt 0</m>. At <m>x = 2</m>, <m>y = -1</m>: <m>1\,\text{m}</m> deep.</p></solution>
+                        </li>
+                        <li>
+                            <p>Evaluate <m>\displaystyle\int_{0}^{4} y\,dx</m>.</p>
+                            <solution component="lesson-plan"><p><m>\left[ \frac{x^3}{12} - \frac{x^2}{2} \right]_{0}^{4} = \frac{16}{3} - 8 = -\frac{8}{3}</m>.</p></solution>
+                        </li>
+                        <li>
+                            <p>What is the area of the cross-section of the ditch?</p>
+                            <solution component="lesson-plan"><p><m>\frac{8}{3} \approx 2.67\,\text{m}^2</m>: an area is the size of the integral.</p></solution>
+                        </li>
+                        <li>
+                            <p>Evaluate <m>\displaystyle\int_{4}^{6} y\,dx</m>. How high is the mound?</p>
+                            <solution component="lesson-plan"><p><m>(18 - 18) - \left(\frac{16}{3} - 8\right) = \frac{8}{3}</m>. At <m>x = 6</m>, <m>y = 3</m>: <m>3\,\text{m}</m> high.</p></solution>
+                        </li>
+                        <li>
+                            <p>Evaluate <m>\displaystyle\int_{0}^{6} y\,dx</m>. What does it tell you? What is the total area between the profile and ground level?</p>
+                            <solution component="lesson-plan"><p><m>0</m>: the soil in the mound would exactly fill the ditch. The total area is <m>\frac{8}{3} + \frac{8}{3} = \frac{16}{3} \approx 5.33\,\text{m}^2</m>.</p></solution>
+                        </li>
+                    </ol>
+                </p>
+            </statement>
+        </activity>
+
+        <axiom component="lesson-plan">
+            <title>Structured Instruction</title>
+            <p>
+                <dl>
+                    <li><title>Suggested Time</title><p>8 minutes</p></li>
+                    <li><title>Objective</title><p>To set out the method for areas of regions below, or above and below, the <m>x</m>-axis.</p></li>
+                </dl>
+            </p>
+            <paragraphs>
+                <title>Key Takeaways &amp; Teacher Connection</title>
+                <ol>
+                    <li><p><alert>Connecting to Learner Work:</alert> part (e): one integral across the crossing gave <m>0</m>, but the area is <m>\frac{16}{3}</m>.</p></li>
+                    <li><p>Sketch the curve; find the <m>x</m>-intercepts; integrate each part separately; add the sizes.</p></li>
+                </ol>
+            </paragraphs>
+        </axiom>
+
+        <insight xml:id="insight-regions-below-the-axis">
+            <title>Regions Below the Axis</title>
+            <p>
+                The definite integral adds up thin strips of height <m>y</m>. Below the <m>x</m>-axis <m>y</m> is negative, so a region below the axis gives a negative integral; its area is the size of the integral.
+            </p>
+            <p>
+                When the curve crosses the axis between the limits, find the <m>x</m>-intercepts, integrate each part separately, and add the sizes of the answers. Always sketch the curve first.
+            </p>
+        </insight>
+
+        <warning xml:id="warning-integrating-across-the-axis">
+            <title>Integrating Across the Axis</title>
+            <p>
+                One integral across a crossing point gives the area above the axis minus the area below it, not their sum. In <xref ref="act-a-ditch-and-a-mound"/> it gives <m>0</m>.
+            </p>
+        </warning>
+
+        <xi:include href="../lesson-plan-templates/example-intro.ptx" />
+
+        <example xml:id="example-area-enclosed-by-a-parabola">
+            <title>Area Enclosed by a Parabola</title>
+            <statement><p>Find the area enclosed by the curve <m>y = (x + 1)(3 - x)</m> and the <m>x</m>-axis.</p></statement>
+            <solution>
+                <p>The curve crosses the axis at <m>x = -1</m> and <m>x = 3</m>, and is above it between them (at <m>x = 0</m>, <m>y = 3</m>). Expand: <m>y = 3 + 2x - x^2</m>.
+                    <md>\int_{-1}^{3} (3 + 2x - x^2)\,dx = \left[ 3x + x^2 - \frac{x^3}{3} \right]_{-1}^{3} = 9 - \left(-\frac{5}{3}\right) = \frac{32}{3} \approx 10.67</md>
+                    The area is <m>\frac{32}{3}</m> square units.</p>
+            </solution>
+        </example>
+
+        <example xml:id="example-a-region-below-the-axis">
+            <title>A Region Below the Axis</title>
+            <statement><p>Find the area between the curve <m>y = x^2 - 5x + 4</m> and the <m>x</m>-axis.</p></statement>
+            <solution>
+                <p><m>y = (x - 1)(x - 4)</m>, so the curve crosses the axis at <m>x = 1</m> and <m>x = 4</m> and is below it between them.
+                    <md>\int_{1}^{4} (x^2 - 5x + 4)\,dx = \left[ \frac{x^3}{3} - \frac{5x^2}{2} + 4x \right]_{1}^{4} = \left(-\frac{8}{3}\right) - \frac{11}{6} = -\frac{9}{2}</md>
+                    The integral is negative because the region is below the axis. The area is <m>\frac{9}{2} = 4.5</m> square units.</p>
+            </solution>
+        </example>
+
+        <example xml:id="example-region-above-and-below">
+            <title>A Region Above and Below</title>
+            <statement><p>Find the total area between the curve <m>y = x^3 - 4x</m>, the <m>x</m>-axis and the lines <m>x = 0</m> and <m>x = 3</m>.</p></statement>
+            <solution>
+                <figure xml:id="fig-cubic-above-and-below">
+                    <caption>The curve <m>y = x^3 - 4x</m> for <m>0 \le x \le 3</m>: a region below the axis from <m>0</m> to <m>2</m> and a region above it from <m>2</m> to <m>3</m>.</caption>
+                    <image width="60%">
+                        <shortdescription>The curve y = x cubed minus 4x from x = 0 to 3. It dips below the x-axis between 0 and 2 (hatched region, area 4) and rises above it between 2 and 3 (shaded region, area 25/4).</shortdescription>
+                        <latex-image>
+\begin{tikzpicture}
+\begin{axis}[width=8cm, height=8cm, xmin=-0.3, xmax=3.4, ymin=-4.5, ymax=16,
+  axis lines=middle, xtick={1,2,3}, ytick={-4,4,8,12,16}, xlabel={$x$}, ylabel={$y$},
+  xlabel style={anchor=north west}, xticklabel style={fill=white, inner sep=1pt}, axis on top]
+\addplot[pattern=north east lines, draw=none, domain=0:2, samples=50] {x^3-4*x} \closedcycle;
+\addplot[fill=gray!30, draw=none, domain=2:3, samples=40] {x^3-4*x} \closedcycle;
+\addplot[very thick, domain=0:3, samples=80] {x^3-4*x};
+\draw[thick] (axis cs:3,0) -- (axis cs:3,15);
+\node[fill=white, inner sep=1pt, font=\small] at (axis cs:1.2,-2.1) {$4$};
+\node[font=\small] at (axis cs:2.7,2.2) {$\frac{25}{4}$};
+\end{axis}
+\end{tikzpicture}
+                        </latex-image>
+                    </image>
+                </figure>
+                <p><m>y = x(x - 2)(x + 2)</m>, so between <m>0</m> and <m>3</m> the curve crosses the axis at <m>x = 2</m>. Integrate each part, with <m>F(x) = \frac{x^4}{4} - 2x^2</m>:
+                    <md>
+                        <mrow>\int_{0}^{2} (x^3 - 4x)\,dx \amp = F(2) - F(0) = (4 - 8) - 0 = -4</mrow>
+                        <mrow>\int_{2}^{3} (x^3 - 4x)\,dx \amp = F(3) - F(2) = \left(\frac{81}{4} - 18\right) - (-4) = \frac{25}{4}</mrow>
+                    </md>
+                    The total area is <m>4 + \frac{25}{4} = \frac{41}{4} = 10.25</m> square units. The single integral <m>\int_{0}^{3} (x^3 - 4x)\,dx = \frac{9}{4}</m> is not the area: the part below the axis has cancelled part of the area above.</p>
+            </solution>
+        </example>
+
+        <xi:include href="../lesson-plan-templates/assessment-intro.ptx" />
+        <xi:include href="../lesson-plan-templates/checkpoint.ptx" />
+
+        <p>Type exact values as whole numbers, fractions or decimals, for example <c>27/4</c> or <c>6.75</c>. Type a polynomial with <c>^</c> for powers, for example <c>3-2x</c>.</p>
+
+        <exercise xml:id="ex-area-enclosed-by-a-curve-and-the-x-axis">
+            <!--<title></title>-->
+            <stack label="stk-area-enclosed-by-a-curve-and-the-x-axis" source="stack/top/4-calculus/18-integration/03-area-under-a-curve-by-integration/Area-enclosed-by-a-curve-and-the-x-axis.xml"/>
+        </exercise>
+
+        <exercise xml:id="ex-area-of-a-region-below-the-x-axis">
+            <!--<title></title>-->
+            <stack label="stk-area-of-a-region-below-the-x-axis" source="stack/top/4-calculus/18-integration/03-area-under-a-curve-by-integration/Area-of-a-region-below-the-x-axis.xml"/>
+        </exercise>
+
+        <exercise xml:id="ex-area-of-a-region-above-and-below-the-x-axis">
+            <!--<title></title>-->
+            <stack label="stk-area-of-a-region-above-and-below-the-x-axis" source="stack/top/4-calculus/18-integration/03-area-under-a-curve-by-integration/Area-of-a-region-above-and-below-the-x-axis.xml"/>
+        </exercise>
+
+        <exercise xml:id="ex-a-function-whose-definite-integral-is-zero">
+            <!--<title></title>-->
+            <stack label="stk-a-function-whose-definite-integral-is-zero" source="stack/top/4-calculus/18-integration/03-area-under-a-curve-by-integration/A-function-whose-definite-integral-is-zero.xml"/>
+        </exercise>
+
+        <exercises xml:id="exercises-areas-above-and-below">
+            <exercise xml:id="ex-area-16-minus-x-squared">
+                <statement><p>Find the area enclosed by the curve <m>y = 16 - x^2</m> and the <m>x</m>-axis.</p></statement>
+                <answer><p><m>\frac{256}{3} \approx 85.33</m> square units</p></answer>
+                <solution><p>The curve crosses the axis at <m>x = \pm 4</m>. <m>\left[ 16x - \frac{x^3}{3} \right]_{-4}^{4} = \frac{128}{3} - \left(-\frac{128}{3}\right) = \frac{256}{3}</m>.</p></solution>
+            </exercise>
+            <exercise xml:id="ex-area-below-x-squared-minus-6x">
+                <statement><p>Find the area between the curve <m>y = x^2 - 6x</m> and the <m>x</m>-axis.</p></statement>
+                <answer><p><m>36</m> square units</p></answer>
+                <solution><p><m>y = x(x - 6)</m>, below the axis for <m>0 \lt x \lt 6</m>. <m>\left[ \frac{x^3}{3} - 3x^2 \right]_{0}^{6} = 72 - 108 = -36</m>, so the area is <m>36</m>.</p></solution>
+            </exercise>
+            <exercise xml:id="ex-area-cubic-two-regions">
+                <statement><p>Find the total area enclosed by the curve <m>y = x^3 - x^2 - 2x</m> and the <m>x</m>-axis.</p></statement>
+                <answer><p><m>\frac{37}{12} \approx 3.08</m> square units</p></answer>
+                <solution><p><m>y = x(x - 2)(x + 1)</m>, crossing at <m>x = -1</m>, <m>0</m>, <m>2</m>. With <m>F(x) = \frac{x^4}{4} - \frac{x^3}{3} - x^2</m>: <m>\int_{-1}^{0} y\,dx = \frac{5}{12}</m> (above) and <m>\int_{0}^{2} y\,dx = -\frac{8}{3}</m> (below). Total area <m>\frac{5}{12} + \frac{8}{3} = \frac{37}{12}</m>.</p></solution>
+            </exercise>
+            <exercise xml:id="ex-water-in-and-out">
+                <statement><p>A pipe joins two tanks. Water flows through it at <m>r = 6 - 2t</m> litres per second for <m>0 \le t \le 5</m>, into the first tank when <m>r</m> is positive and out of it when <m>r</m> is negative. Find the net change in the amount of water in the first tank, and the total amount of water that passes through the pipe.</p></statement>
+                <answer><p>Net change <m>5\,\text{litres}</m>; total <m>13\,\text{litres}</m></p></answer>
+                <solution><p><m>r = 0</m> at <m>t = 3</m>. <m>\int_{0}^{3} (6 - 2t)\,dt = 9\,\text{litres}</m> in; <m>\int_{3}^{5} (6 - 2t)\,dt = -4</m>, so <m>4\,\text{litres}</m> out. Net change <m>9 - 4 = 5\,\text{litres}</m> (which is <m>\int_{0}^{5} r\,dt</m>); total through the pipe <m>9 + 4 = 13\,\text{litres}</m>.</p></solution>
+            </exercise>
+            <exercise xml:id="ex-area-x-cubed-symmetric">
+                <statement><p>Evaluate <m>\displaystyle\int_{-2}^{2} x^3\,dx</m>. Find the area between <m>y = x^3</m>, the <m>x</m>-axis and the lines <m>x = -2</m> and <m>x = 2</m>.</p></statement>
+                <answer><p><m>0</m>; <m>8</m> square units</p></answer>
+                <solution><p><m>\left[ \frac{x^4}{4} \right]_{-2}^{2} = 4 - 4 = 0</m>. Split at <m>x = 0</m>: each part has size <m>4</m>, so the area is <m>8</m>.</p></solution>
+            </exercise>
+            <exercise xml:id="ex-find-k-area-36">
+                <title>Challenge: An Unknown Root</title>
+                <statement><p>The curve <m>y = x(k - x)</m>, where <m>k \gt 0</m>, encloses an area of <m>36</m> square units with the <m>x</m>-axis. Find <m>k</m>.</p></statement>
+                <hint><p>Show that the area is <m>\frac{k^3}{6}</m>.</p></hint>
+                <answer><p><m>k = 6</m></p></answer>
+                <solution><p>The curve crosses the axis at <m>0</m> and <m>k</m>. <m>\left[ \frac{kx^2}{2} - \frac{x^3}{3} \right]_{0}^{k} = \frac{k^3}{2} - \frac{k^3}{3} = \frac{k^3}{6}</m>. So <m>k^3 = 216</m> and <m>k = 6</m>.</p></solution>
+            </exercise>
+        </exercises>
+
+        <axiom component="lesson-plan">
+            <title>Differentiation</title>
+            <table xml:id="table-differentiation-areas-above-and-below">
+                <title>Differentiation Strategies</title>
+                <tabular halign="left" top="minor" bottom="minor" left="minor" right="minor">
+                    <row header="yes" bottom="medium"><cell>Learner Group</cell><cell>Strategy and Learning Experience</cell></row>
+                    <row><cell>Struggling Learners (Support)</cell><cell>Insist on a sketch first: shade each region and label it <m>+</m> or <m>-</m> before integrating. Work through the first two examples. Assign <xref ref="ex-area-16-minus-x-squared"/> and <xref ref="ex-area-below-x-squared-minus-6x"/>.</cell></row>
+                    <row><cell>On-Level Learners (Core)</cell><cell>Full activity and all examples. Assign <xref ref="ex-area-16-minus-x-squared"/> to <xref ref="ex-area-x-cubed-symmetric"/>.</cell></row>
+                    <row><cell>Advanced Learners (Challenge)</cell><cell>All exercises including <xref ref="ex-find-k-area-36"/>. Extension: give a cubic whose integral from <m>-1</m> to <m>1</m> is <m>0</m> but whose area with the axis between those lines is <m>\frac{1}{2}</m> (for example <m>y = x^3</m>: each part has size <m>\frac{1}{4}</m>).</cell></row>
+                </tabular>
+            </table>
+        </axiom>
+
+        <xi:include href="../lesson-plan-templates/assessment-methods.ptx" />
+        <xi:include href="../lesson-plan-templates/reflection.ptx"/>
+    </subsection>
 </section>

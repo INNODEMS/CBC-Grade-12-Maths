@@ -46,161 +46,278 @@
          Suggested activity: Learners compute the percentage error of each approximation compared with the exact integral.
          Interactive (JSXGraph): Error between estimate and exact area plotted against n as the slider changes. -->
 
-    <!-- [LP] Add guidance on activity -->
+    <!-- Section notes (2026-11)
+         SLOs: Core (e). One lesson, flat anatomy.
+         Activity: as planning notes (percentage error of each rule against the exact integral, for 2, 4 and 8 strips; group discussion of the pattern) | changed: none
+         JSXGraph: fig-error-against-n (assets/jsxgraph/error-against-n.js), as planning notes
+         STACK: assets/stack/top/4-calculus/18-integration/05-errors-in-area-approximation/ -->
 
-    <!-- <axiom component="lesson-plan">
-            <title>Problem-Solving and Discovery</title>
-            <dl>
-                <li>
-                    <title>Suggested Time</title>
-                    <p>
-                        XX minutes
-                    </p>
-                </li>
-                <li>
-                    <title>Objective</title>
-                    <p>
-                        XXX
-                    </p>
-                </li>
-                <li>
-                    <title>Teacher's Role</title>
-                    <p>
-                        XXX
-                    </p>
-                </li>
-            </dl>
-        </axiom> -->
+    <p component="lesson-plan">Upon completion of this lesson, learners will be able to:
+        <ol>
+            <li><p><alert>Know:</alert> the error, absolute error and percentage error of an estimate; for polynomials of degree at most <m>3</m>, doubling the number of strips divides each rule's error by <m>4</m> and the mid-ordinate error is half the trapezoidal error, with the opposite sign (nearly so for narrow strips on other curves).</p></li>
+            <li><p><alert>Do:</alert> compute errors and percentage errors, and predict the effect of more strips.</p></li>
+            <li><p><alert>Apply:</alert> find what an error in an estimated land area costs in a sale.</p></li>
+        </ol>
+    </p>
 
-    <!-- Add Activity -->
+    <axiom component="lesson-plan">
+        <title>Problem-Solving and Discovery</title>
+        <dl>
+            <li><title>Suggested Time</title><p>14 minutes</p></li>
+            <li><title>Objective</title><p>Learners find the two error patterns from a table of estimates.</p></li>
+            <li><title>Teacher's Role</title><p>Half the class works as Akinyi (trapezoidal rule), half as Baraka (mid-ordinate rule). Pool the results in one table on the board, then use the interactive for <m>n = 8</m>. Let groups discuss parts (e) and (f) and report in their own words.</p></li>
+        </dl>
+    </axiom>
 
-    <!-- <activity>
+    <activity xml:id="act-akinyi-and-baraka-compare">
+        <title>Akinyi and Baraka Compare</title>
         <statement>
+            <p>Akinyi and Baraka, Grade 12 learners in Kisumu, want to know how good their estimates of the area under <m>y = x^3</m> from <m>x = 0</m> to <m>x = 2</m> are. Akinyi uses the trapezoidal rule and Baraka the mid-ordinate rule.</p>
+            <p>
+                <ol marker="(a)">
+                    <li>
+                        <p>Find the exact area by integration.</p>
+                        <solution component="lesson-plan"><p><m>\left[\frac{x^4}{4}\right]_0^2 = 4</m>.</p></solution>
+                    </li>
+                    <li>
+                        <p>Find Akinyi's and Baraka's estimates with <m>2</m> strips and with <m>4</m> strips. Read the values for <m>8</m> strips from the interactive in <xref ref="fig-error-against-n"/>.</p>
+                        <solution component="lesson-plan"><p>Trapezoidal: <m>5</m>, <m>4.25</m>, <m>4.0625</m>. Mid-ordinate: <m>3.5</m>, <m>3.875</m>, <m>3.96875</m>.</p></solution>
+                    </li>
+                    <li>
+                        <p>For each estimate work out estimate <m>-</m> exact value.</p>
+                        <solution component="lesson-plan"><p>Trapezoidal: <m>1</m>, <m>0.25</m>, <m>0.0625</m>. Mid-ordinate: <m>-0.5</m>, <m>-0.125</m>, <m>-0.03125</m>.</p></solution>
+                    </li>
+                    <li>
+                        <p>Express the size of each of these as a percentage of the exact value.</p>
+                        <solution component="lesson-plan"><p>Trapezoidal: <m>25\%</m>, <m>6.25\%</m>, <m>1.5625\%</m>. Mid-ordinate: <m>12.5\%</m>, <m>3.125\%</m>, <m>0.78125\%</m>.</p></solution>
+                    </li>
+                    <li>
+                        <p>What happens to the errors each time the number of strips doubles?</p>
+                        <solution component="lesson-plan"><p>Each error is divided by <m>4</m>.</p></solution>
+                    </li>
+                    <li>
+                        <p>Compare Akinyi's error with Baraka's for the same number of strips.</p>
+                        <solution component="lesson-plan"><p>Baraka's error is half the size of Akinyi's and has the opposite sign.</p></solution>
+                    </li>
+                </ol>
+            </p>
         </statement>
-    </activity> -->
+    </activity>
 
-    <!-- [LP] Add guidance on structured lesson plan-->
-
-    <!-- <axiom component="lesson-plan">
+    <axiom component="lesson-plan">
         <title>Structured Instruction</title>
         <p>
             <dl>
-            <li>
-                <title>Suggested Time</title>
-                <p>
-                    XX minutes
-                </p>
-            </li>
-            <li>
-                <title>Objective</title>
-                <p>
-                    To formalize the concepts and properties learners discovered in the anchor task.
-                </p>
-            </li>
+                <li><title>Suggested Time</title><p>8 minutes</p></li>
+                <li><title>Objective</title><p>To define the error, absolute error and percentage error, and to state the two patterns.</p></li>
             </dl>
         </p>
         <paragraphs>
             <title>Key Takeaways &amp; Teacher Connection</title>
             <ol>
-                <li>
-                    <p>
-                        <alert>Connecting to Learner Work:</alert> XXXX
-                    </p>
-                </li>
+                <li><p><alert>Connecting to Learner Work:</alert> parts (e) and (f) are the two error patterns.</p></li>
+                <li><p>The percentage error divides by the exact value, not by the estimate.</p></li>
+                <li><p>A positive error means an overestimate, a negative error an underestimate.</p></li>
             </ol>
         </paragraphs>
-    </axiom> -->
+    </axiom>
 
-    <!-- Add insight / key takeaway directly related to activity / learner experience -->
+    <insight xml:id="insight-errors-in-area-approximation">
+        <title>Errors in Area Approximation</title>
+        <p>
+            When an estimate is compared with the exact value found by integration:
+            <md>
+                <mrow>\text{error} \amp = \text{estimate} - \text{exact value}</mrow>
+                <mrow>\text{absolute error} \amp = \left|\text{estimate} - \text{exact value}\right|</mrow>
+                <mrow>\text{percentage error} \amp = \frac{\text{absolute error}}{\text{exact value}} \times 100\%</mrow>
+            </md>
+            A positive <term>error</term> means the estimate is too big. The <term>absolute error</term> is the size of the error, and the <term>percentage error</term> compares it with the exact value.
+        </p>
+        <p>
+            These are the absolute and percentage errors of Grade 11 (Approximations and Errors), with the exact value from integration in place of the working value; the relative error, absolute error divided by exact value, is the percentage error before multiplying by <m>100\%</m>. The signed error is new: its sign shows whether the estimate is too big or too small.
+        </p>
+        <p>
+            For every polynomial of degree at most <m>3</m>, two patterns hold exactly:
+            <ul>
+                <li><p>halve the strip width (double the number of strips) and the error of each rule falls to a quarter;</p></li>
+                <li><p>the mid-ordinate error is half the trapezoidal error, with the opposite sign.</p></li>
+            </ul>
+        </p>
+    </insight>
 
-    <!-- <insight>
-    </insight> -->
+    <note xml:id="note-error-patterns-other-curves">
+        <title>Other Curves</title>
+        <p>
+            For other curves the two patterns are not exact, but they hold very nearly once the strips are narrow.
+        </p>
+    </note>
 
-    <!-- Add further instruction (not in a block) to develop ideas as needed -->
+    <note xml:id="note-estimates-spreadsheet">
+        <title>Using a Spreadsheet</title>
+        <p>
+            A spreadsheet does the arithmetic for many strips. Put the values of <m>x</m> in column A (start at <m>a</m> and add <m>h</m> each row), the heights <m>y</m> in column B by a formula such as <c>=A2^3</c>, and the weights <m>1, 2, 2, \ldots, 2, 1</m> in column C, and <m>h</m> in cell E1. With rows 2 to 10 (<m>n = 8</m>), <c>=SUMPRODUCT(B2:B10,C2:C10)*E1/2</c> gives the trapezoidal estimate. Change <m>h</m> and the number of rows to change <m>n</m>, and watch the error fall.
+        </p>
+    </note>
+
+    <figure xml:id="fig-error-against-n">
+        <caption>Watch how the percentage errors fall as <m>n</m> grows: doubling <m>n</m> divides them by <m>4</m>.</caption>
+        <interactive xml:id="interactive-error-against-n" platform="jsxgraph" width="90%" aspect="16:12" source="jsxgraph/error-against-n.js">
+            <slate xml:id="jsxgraph-error-against-n" surface="jsxboard" aspect="16:12"/>
+            <instructions>
+                <p>
+                    <ul>
+                        <li><p>The estimates are for <m>y = x^3</m> from <m>x = 0</m> to <m>x = 2</m>, the area in <xref ref="act-akinyi-and-baraka-compare"/>. Crosses show the trapezoidal rule's percentage error and circles the mid-ordinate rule's, for every number of strips from <m>1</m> to <m>12</m>.</p></li>
+                        <li><p>Drag the <alert>n</alert> slider. The current <m>n</m> is ringed, and the estimates and errors are shown in the text.</p></li>
+                        <li><p>Compare <m>n = 2</m>, <m>4</m> and <m>8</m>. By what number is each error divided when <m>n</m> doubles? What is the smallest <m>n</m> that makes the trapezoidal percentage error less than <m>1\%</m>?</p></li>
+                    </ul>
+                </p>
+            </instructions>
+        </interactive>
+    </figure>
+
+    <p>
+        <em>Integration in real life:</em> when land is sold by the square metre, a small percentage error in an estimated area can cost the buyer or the seller thousands of shillings, as the last example shows.
+    </p>
 
     <xi:include href="../lesson-plan-templates/example-intro.ptx" />
 
-    <!-- Add at least 3 examples -->
-
-    <!-- <example>
+    <example xml:id="example-percentage-error-of-an-estimate">
+        <title>Percentage Error of an Estimate</title>
         <statement>
+            <p>In <xref ref="act-three-ways-to-one-area"/> the trapezoidal estimate of the area under <m>y = x^2 + 3</m> from <m>x = 0</m> to <m>x = 4</m> was <m>34</m>, the mid-ordinate estimate <m>33</m>, and the exact area <m>\frac{100}{3}</m>. Find the absolute error and the percentage error of each estimate.</p>
         </statement>
         <solution>
+            <p>Trapezoidal: absolute error <m>\left|34 - \frac{100}{3}\right| = \frac{2}{3} \approx 0.67</m>, and
+                <md>\text{percentage error} = \frac{2/3}{100/3} \times 100\% = 2\%</md>
+            Mid-ordinate: absolute error <m>\left|33 - \frac{100}{3}\right| = \frac{1}{3} \approx 0.33</m>, and the percentage error is <m>\frac{1/3}{100/3} \times 100\% = 1\%</m>.</p>
         </solution>
     </example>
 
-    <example>
+    <example xml:id="example-predicting-the-error">
+        <title>Predicting the Error</title>
         <statement>
+            <p>The trapezoidal estimate of <m>\displaystyle\int_0^2 x^3\,dx</m> with <m>2</m> strips is <m>T_2 = 5</m>. Predict <m>T_4</m> and <m>T_8</m> without calculating them.</p>
         </statement>
         <solution>
+            <p>The exact value is <m>4</m>, so the error of <m>T_2</m> is <m>5 - 4 = 1</m>. Doubling the strips divides the error by <m>4</m>: the errors of <m>T_4</m> and <m>T_8</m> are <m>0.25</m> and <m>0.0625</m>, and they stay positive. So <m>T_4 = 4.25</m> and <m>T_8 = 4.0625</m>, the values found in <xref ref="act-akinyi-and-baraka-compare"/>.</p>
         </solution>
     </example>
 
-    <example>
+    <example xml:id="example-price-of-an-error">
+        <title>The Price of an Error</title>
         <statement>
+            <p>A plot in Nyeri lies between a straight fence and a river. Measured from one end of the fence, the width of the plot <m>x</m> metres along it is <m>y = 30 + 0.5x - 0.01x^2</m> metres, for <m>0 \le x \le 40</m>, as in <xref ref="fig-nyeri-river-plot"/>. Land here sells at Ksh <m>2000</m> per <m>\text{m}^2</m>.</p>
+            <figure xml:id="fig-nyeri-river-plot">
+                <caption>The plot by the river in Nyeri, with its width measured every <m>10\,\text{m}</m>.</caption>
+                <image width="80%">
+                    <shortdescription>A plot 40 m long between a straight fence along the bottom and a curved river bank along the top. Widths measured every 10 m are 30, 34, 36, 36 and 34 m at 0, 10, 20, 30 and 40 m along the fence.</shortdescription>
+                    <description><p>Horizontal axis: distance along the fence, x, from 0 to 40 m. Vertical axis: width y in metres from 0 to 40. The river bank is the curve y = 30 + 0.5x - 0.01x squared. Vertical dashed lines at x = 0, 10, 20, 30, 40 are labelled with the widths 30, 34, 36, 36, 34 m.</p></description>
+                    <latex-image>
+\begin{tikzpicture}
+\begin{axis}[width=10cm, height=7cm, xmin=0, xmax=44, ymin=0, ymax=42,
+  axis lines=left, xtick={0,10,20,30,40}, ytick={0,10,20,30,40},
+  xlabel={Distance along the fence, $x$ (m)}, ylabel={Width, $y$ (m)}]
+\addplot[pattern=dots, draw=none, domain=0:40, samples=60] {30+0.5*x-0.01*x^2} \closedcycle;
+\addplot[very thick, domain=0:40, samples=60] {30+0.5*x-0.01*x^2};
+\draw[dashed] (axis cs:0,0) -- (axis cs:0,30);
+\node[anchor=south west, font=\small, fill=white, inner sep=1pt] at (axis cs:0.3,30.8) {$30$};
+\draw[dashed] (axis cs:10,0) -- (axis cs:10,34);
+\node[anchor=south, font=\small, fill=white, inner sep=1pt] at (axis cs:10,34.8) {$34$};
+\draw[dashed] (axis cs:20,0) -- (axis cs:20,36);
+\node[anchor=south, font=\small, fill=white, inner sep=1pt] at (axis cs:20,36.8) {$36$};
+\draw[dashed] (axis cs:30,0) -- (axis cs:30,36);
+\node[anchor=south, font=\small, fill=white, inner sep=1pt] at (axis cs:30,36.8) {$36$};
+\draw[dashed] (axis cs:40,0) -- (axis cs:40,34);
+\node[anchor=south, font=\small, fill=white, inner sep=1pt] at (axis cs:40,34.8) {$34$};
+\node[font=\small] at (axis cs:20,40) {river};
+\node[font=\small, fill=white, inner sep=1pt] at (axis cs:20,3) {fence};
+\end{axis}
+\end{tikzpicture}
+                    </latex-image>
+                </image>
+            </figure>
+            <p>
+                <ol marker="(a)">
+                    <li><p>Find the exact area of the plot.</p></li>
+                    <li><p>Find the trapezoidal and mid-ordinate estimates with strips <m>10\,\text{m}</m> wide, and the percentage error of each, correct to 2 decimal places.</p></li>
+                    <li><p>If the plot were priced from the trapezoidal estimate, by how much would its value be wrong?</p></li>
+                </ol>
+            </p>
         </statement>
         <solution>
+            <p>(a) <md>\int_0^{40} (30 + 0.5x - 0.01x^2)\,dx = \left[30x + 0.25x^2 - \frac{0.01x^3}{3}\right]_0^{40} = 1200 + 400 - \frac{640}{3} = \frac{4160}{3} \approx 1386.67\,\text{m}^2</md></p>
+            <p>(b) With <m>h = 10</m> the widths are <m>30, 34, 36, 36, 34</m>, so <m>T = \tfrac{1}{2} \times 10 \times \left[30 + 34 + 2(34 + 36 + 36)\right] = 1380\,\text{m}^2</m>. The mid-widths at <m>x = 5, 15, 25, 35</m> are <m>32.25, 35.25, 36.25, 35.25</m>, so <m>M = 10 \times 139 = 1390\,\text{m}^2</m>.</p>
+            <p>The absolute error of <m>T</m> is <m>\frac{4160}{3} - 1380 = \frac{20}{3} \approx 6.67\,\text{m}^2</m>, a percentage error of <m>\frac{20/3}{4160/3} \times 100\% \approx 0.48\%</m>. For <m>M</m> it is <m>\frac{10}{3} \approx 3.33\,\text{m}^2</m>, about <m>0.24\%</m>. The boundary bends downwards, so <m>T</m> is too small and <m>M</m> too big.</p>
+            <p>(c) <m>\frac{20}{3} \times 2000 \approx 13\,333</m>: priced from the trapezoidal estimate, the plot would be undervalued by about Ksh <m>13\,333</m>.</p>
         </solution>
-    </example> -->
+    </example>
 
     <xi:include href="../lesson-plan-templates/assessment-intro.ptx" />
+    <xi:include href="../lesson-plan-templates/checkpoint.ptx" />
 
-    <!-- If STACK questions are included, uncomment this: -->
+    <p>Type exact values as whole numbers, fractions or decimals, for example <c>27/4</c> or <c>6.75</c>.</p>
 
-    <!-- <xi:include href="../lesson-plan-templates/checkpoint.ptx" /> -->
+    <exercise xml:id="ex-absolute-and-percentage-error-of-an-estimate">
+        <!--<title></title>-->
+        <stack label="stk-absolute-and-percentage-error-of-an-estimate" source="stack/top/4-calculus/18-integration/05-errors-in-area-approximation/Absolute-and-percentage-error-of-an-estimate.xml"/>
+    </exercise>
 
-    <!-- Add STACK exercises if made -->
+    <exercise xml:id="ex-how-the-error-changes-when-the-strips-are-halved">
+        <!--<title></title>-->
+        <stack label="stk-how-the-error-changes-when-the-strips-are-halved" source="stack/top/4-calculus/18-integration/05-errors-in-area-approximation/How-the-error-changes-when-the-strips-are-halved.xml"/>
+    </exercise>
 
-    <!-- Add static exercises -->
+    <exercise xml:id="ex-percentage-error-of-a-mid-ordinate-estimate">
+        <!--<title></title>-->
+        <stack label="stk-percentage-error-of-a-mid-ordinate-estimate" source="stack/top/4-calculus/18-integration/05-errors-in-area-approximation/Percentage-error-of-a-mid-ordinate-estimate.xml"/>
+    </exercise>
 
-    <!-- <exercises>
-        <exercise>
-            <statement>   
+    <exercises xml:id="exercises-errors-in-area-approximation">
+        <exercise xml:id="ex-error-trapezoidal-x-squared">
+            <statement><p>For <m>y = x^2</m> from <m>x = 0</m> to <m>x = 3</m>, find the trapezoidal estimate with <m>3</m> strips, the exact area, the absolute error and the percentage error.</p></statement>
+            <answer><p><m>T = 9.5</m>; exact <m>9</m>; absolute error <m>0.5</m>; <m>5.56\%</m></p></answer>
+            <solution><p>Ordinates <m>0, 1, 4, 9</m>: <m>T = \tfrac{1}{2}(0 + 9 + 2 \times 5) = 9.5</m>. Exact <m>\left[\frac{x^3}{3}\right]_0^3 = 9</m>. Absolute error <m>0.5</m>; <m>\frac{0.5}{9} \times 100\% \approx 5.56\%</m>.</p></solution>
+        </exercise>
+        <exercise xml:id="ex-error-mid-ordinate-x-squared">
+            <statement><p>Repeat <xref ref="ex-error-trapezoidal-x-squared"/> with the mid-ordinate rule.</p></statement>
+            <answer><p><m>M = 8.75</m>; absolute error <m>0.25</m>; <m>2.78\%</m></p></answer>
+            <solution><p>Mid-ordinates <m>0.25, 2.25, 6.25</m>: <m>M = 8.75</m>. Absolute error <m>0.25</m>; <m>\frac{0.25}{9} \times 100\% \approx 2.78\%</m>.</p></solution>
+        </exercise>
+        <exercise xml:id="ex-predict-t4">
+            <statement><p>For <m>y = 2x^3 + 1</m> from <m>x = 0</m> to <m>x = 2</m>, find the exact area, the trapezoidal estimate <m>T_2</m> with <m>2</m> strips and its percentage error. Then predict <m>T_4</m> without calculating it.</p></statement>
+            <answer><p>Exact <m>10</m>; <m>T_2 = 12</m>; <m>20\%</m>; <m>T_4 = 10.5</m></p></answer>
+            <solution><p>Exact <m>\left[\frac{x^4}{2} + x\right]_0^2 = 10</m>. Ordinates <m>1, 3, 17</m>: <m>T_2 = \tfrac{1}{2}(1 + 17 + 6) = 12</m>, error <m>2</m>, percentage error <m>20\%</m>. The error of <m>T_4</m> is <m>2 \div 4 = 0.5</m>, so <m>T_4 = 10.5</m>.</p></solution>
+        </exercise>
+        <exercise xml:id="ex-spot-the-percentage-mistake">
+            <statement><p>Otieno found that an area is exactly <m>50</m>, and his trapezoidal estimate was <m>52</m>. He wrote: <q>percentage error <m>= \frac{2}{52} \times 100\% = 3.85\%</m>.</q> What is wrong? Give the correct percentage error.</p></statement>
+            <answer><p>He divided by the estimate; divide by the exact value: <m>4\%</m>.</p></answer>
+        </exercise>
+        <exercise xml:id="ex-kericho-drainage-channel">
+            <statement><p>A drainage channel on a tea estate in Kericho is <m>10\,\text{m}</m> wide. Its depth <m>x</m> metres from one side is <m>d = 0.02x(10 - x)</m> metres. Using strips <m>2\,\text{m}</m> wide, find the mid-ordinate and trapezoidal estimates of the cross-section area, the exact area, and the percentage error of each estimate.</p></statement>
+            <answer><p><m>M = 3.4\,\text{m}^2</m>, <m>T = 3.2\,\text{m}^2</m>, exact <m>\frac{10}{3} \approx 3.33\,\text{m}^2</m>; <m>2\%</m> and <m>4\%</m></p></answer>
+            <solution><p>Mid-depths at <m>x = 1, 3, 5, 7, 9</m>: <m>0.18, 0.42, 0.5, 0.42, 0.18</m>, total <m>1.7</m>, so <m>M = 3.4</m>. Depths at <m>x = 0, 2, \ldots, 10</m>: <m>0, 0.32, 0.48, 0.48, 0.32, 0</m>, so <m>T = 1 \times 2 \times 1.6 = 3.2</m>. Exact: <m>\left[0.1x^2 - \frac{0.02x^3}{3}\right]_0^{10} = 10 - \frac{20}{3} = \frac{10}{3}</m>. Percentage errors: <m>\frac{1/15}{10/3} \times 100\% = 2\%</m> for <m>M</m> and <m>\frac{2/15}{10/3} \times 100\% = 4\%</m> for <m>T</m>.</p></solution>
+        </exercise>
+        <exercise xml:id="ex-combining-the-rules">
+            <title>Challenge: Combining the Rules (Extension)</title>
+            <statement><p>For <m>y = x^3</m> from <m>x = 0</m> to <m>x = 2</m> with <m>2</m> strips, <m>T = 5</m> and <m>M = 3.5</m>. Show that <m>\dfrac{T + 2M}{3}</m> is exactly the area. Explain why this works for every polynomial of degree at most <m>3</m>.</p></statement>
+            <hint><p>Use the second error pattern: the mid-ordinate error is <m>-\frac{1}{2}</m> of the trapezoidal error.</p></hint>
+            <answer><p><m>\frac{5 + 7}{3} = 4</m>, the exact area.</p></answer>
+            <solution><p><m>\frac{5 + 2 \times 3.5}{3} = 4</m>. If the exact area is <m>A</m> and <m>T = A + E</m>, then <m>M = A - \frac{E}{2}</m>, so <m>T + 2M = 3A</m> and the errors cancel. This combination is called Simpson's rule; it is beyond the KICD Grade 12 design.</p></solution>
+        </exercise>
+    </exercises>
 
-            </statement>   
-            <solution>
-
-            </solution>             
-        </exercise>        
-    </exercises> -->
-
-    <!-- [LP] Add information on how to differentiate  -->
-
-    <!-- <axiom component="lesson-plan">
+    <axiom component="lesson-plan">
         <title>Differentiation</title>
-
-        <table>
-            <title>Differentiation</title>
-            <tabular halign="left">
-                <row header="yes" bottom="minor">
-                    <cell>Learner Group</cell>
-                    <cell>Strategy &amp; Learning Experience</cell>
-                    <cell></cell>
-                </row>
-                <row>
-                    <cell>Struggling Learners (Support)</cell>
-                    <cell>
-                        XXXX
-                    </cell>
-                    <cell></cell>
-                </row>
-                <row>
-                    <cell>On-Level Learners (Core)</cell>
-                    <cell>
-                        <line>The core lesson activities as described above.</line>
-                    </cell>
-                    <cell></cell>
-                </row>
-                <row>
-                    <cell>Advanced Learners (Challenge)</cell>
-                    <cell>
-                        XXXX
-                    </cell>
-                    <cell></cell>
-                </row>
+        <table xml:id="table-differentiation-errors-in-area-approximation">
+            <title>Differentiation Strategies</title>
+            <tabular halign="left" top="minor" bottom="minor" left="minor" right="minor">
+                <row header="yes" bottom="medium"><cell>Learner Group</cell><cell>Strategy and Learning Experience</cell></row>
+                <row><cell>Struggling Learners (Support)</cell><cell>Give an error table template with columns estimate, exact, error, absolute error and percentage error. Work through <xref ref="example-percentage-error-of-an-estimate"/> and <xref ref="example-predicting-the-error"/>. Assign <xref ref="ex-error-trapezoidal-x-squared"/> and <xref ref="ex-spot-the-percentage-mistake"/>.</cell></row>
+                <row><cell>On-Level Learners (Core)</cell><cell>Full activity and all examples. Assign <xref ref="ex-error-trapezoidal-x-squared"/> to <xref ref="ex-kericho-drainage-channel"/>.</cell></row>
+                <row><cell>Advanced Learners (Challenge)</cell><cell>All exercises including <xref ref="ex-combining-the-rules"/>. Extension: how many strips make the trapezoidal percentage error for <m>y = x^3</m> from <m>0</m> to <m>2</m> less than <m>1\%</m>? (The percentage error is <m>\frac{100}{n^2}\%</m>, which is exactly <m>1\%</m> at <m>n = 10</m>, so <m>n = 11</m>.)</cell></row>
             </tabular>
         </table>
-    </axiom> -->
+    </axiom>
 
     <xi:include href="../lesson-plan-templates/assessment-methods.ptx" />
 

@@ -46,163 +46,202 @@
          Suggested activity: Learners calculate the value of a motorbike or a school laptop after several years of depreciation.
          Interactive (JSXGraph): Value of an asset over time with a slider for the depreciation rate, plotted as a decay curve. -->
 
-    <!-- [LP] Add guidance on activity -->
+    <!-- Section notes (2026-11)
+         SLO: Essential 2.4 (c), depreciation (the skeleton's SLO line, shared with 14.3, is kept). One lesson, flat anatomy. Reducing balance throughout.
+         Activity: as planning notes (a boda boda motorbike losing value year by year; a school laptop in the first example)
+         JSXGraph: fig-depreciation-curve (assets/jsxgraph/depreciation-curve.js), as planning notes
+         STACK: assets/stack/top/2-measurement-and-geometry/14-commercial-arithmetic-iii/04-depreciation/ -->
+
+    <p component="lesson-plan">Upon completion of this lesson, learners will be able to:
+        <ol>
+            <li><p><alert>Know:</alert> depreciation, the rate of depreciation and the reducing-balance method; the yearly losses shrink.</p></li>
+            <li><p><alert>Do:</alert> find a value after <m>n</m> years and the depreciation in Ksh; handle a different rate in the first year; find a rate from two values.</p></li>
+            <li><p><alert>Apply:</alert> motorbikes, laptops, matatus and tractors.</p></li>
+        </ol>
+    </p>
 
     <axiom component="lesson-plan">
         <title>Problem-Solving and Discovery</title>
         <dl>
-            <li>
-                <title>Suggested Time</title>
-                <p>
-                    XXX minutes
-                </p>
-            </li>
-            <li>
-                <title>Objective</title>
-                <p>
-                    XXX
-                </p>
-            </li>
-            <li>
-                <title>Teacher's Role</title>
-                <p>
-                    XXX
-                </p>
-            </li>
+            <li><title>Suggested Time</title><p>14 minutes</p></li>
+            <li><title>Objective</title><p>Learners work out a motorbike's value year by year and test the claim that it loses the same amount every year.</p></li>
+            <li><title>Teacher's Role</title><p>Start with the friend's claim in part (b) and let groups test it before they work out the table.</p></li>
         </dl>
     </axiom>
 
-    <!-- Add Activity -->
-
-    <!-- <activity>
+    <activity xml:id="act-a-boda-boda-motorbike">
+        <title>A Boda Boda Motorbike</title>
         <statement>
+            <p>Otieno buys a motorbike for his boda boda business for Ksh <m>160\,000</m>. Each year it loses <m>15\%</m> of its value at the start of that year.</p>
+            <p>
+                <ol marker="(a)">
+                    <li>
+                        <p>Find its value after <m>1</m>, <m>2</m> and <m>3</m> years.</p>
+                        <solution component="lesson-plan"><p><m>160\,000 - 24\,000 = 136\,000</m>; <m>136\,000 - 20\,400 = 115\,600</m>; <m>115\,600 - 17\,340 = 98\,260</m>.</p></solution>
+                    </li>
+                    <li>
+                        <p>Otieno's friend says: <q><m>15\%</m> of <m>160\,000</m> is <m>24\,000</m>, so after <m>3</m> years it is worth <m>160\,000 - 3 \times 24\,000 = 88\,000</m>.</q> Who is right?</p>
+                        <solution component="lesson-plan"><p>Otieno's table. The friend took <m>15\%</m> of the original price every year, but each year's loss is <m>15\%</m> of a smaller value, so the losses shrink: <m>24\,000</m>, <m>20\,400</m>, <m>17\,340</m>.</p></solution>
+                    </li>
+                    <li>
+                        <p>What single number multiplies the value each year?</p>
+                        <solution component="lesson-plan"><p><m>0.85</m>, since <m>100\% - 15\% = 85\%</m>. Check: <m>160\,000 \times 0.85^3 = 98\,260</m>.</p></solution>
+                    </li>
+                </ol>
+            </p>
         </statement>
-    </activity> -->
+    </activity>
 
-    <!-- [LP] Add guidance on structured lesson plan-->
-
-    <!-- <axiom component="lesson-plan">
+    <axiom component="lesson-plan">
         <title>Structured Instruction</title>
         <p>
             <dl>
-            <li>
-                <title>Suggested Time</title>
-                <p>
-                    XX minutes
-                </p>
-            </li>
-            <li>
-                <title>Objective</title>
-                <p>
-                    To formalize the concepts and properties learners discovered in the anchor task.
-                </p>
-            </li>
+                <li><title>Suggested Time</title><p>8 minutes</p></li>
+                <li><title>Objective</title><p>To name depreciation and its formula from the activity.</p></li>
             </dl>
         </p>
         <paragraphs>
             <title>Key Takeaways &amp; Teacher Connection</title>
             <ol>
-                <li>
-                    <p>
-                        <alert>Connecting to Learner Work:</alert> XXXX
-                    </p>
-                </li>
+                <li><p><alert>Connecting to Learner Work:</alert> part (c) found the multiplier <m>0.85 = 1 - \dfrac{15}{100}</m>.</p></li>
+                <li><p>The multiplier for a rate of depreciation of <m>r\%</m> is <m>1 - \dfrac{r}{100}</m>; the losses get smaller each year.</p></li>
+                <li><p>Depreciation is the price minus the value, <m>P - V</m>.</p></li>
             </ol>
         </paragraphs>
-    </axiom> -->
+    </axiom>
 
-    <!-- Add insight / key takeaway directly related to activity / learner experience -->
+    <insight xml:id="insight-depreciation">
+        <title>Depreciation</title>
+        <p>An asset <term>depreciates</term> when its value falls over time; the fall in value is its <term>depreciation</term>. In the <term>reducing balance</term> method, each year's loss is a percentage, the <term>rate of depreciation</term> <m>r</m>, of what the item is worth at the start of that year, so the losses get smaller. An item bought for <m>P</m> is worth, after <m>n</m> years,
+            <md>V = P\left(1 - \frac{r}{100}\right)^n</md>
+            and the depreciation is <m>P - V</m>.</p>
+    </insight>
 
-    <!-- <insight>
-    </insight> -->
+    <note xml:id="note-straight-line-depreciation">
+        <title>Another Way to Depreciate</title>
+        <p>Some businesses take the same amount off an item's value every year; this is called <q>straight-line</q> depreciation. In this chapter, depreciation always means the reducing-balance method.</p>
+    </note>
 
-    <!-- Add further instruction (not in a block) to develop ideas as needed -->
+    <figure xml:id="fig-depreciation-curve">
+        <caption>The value of an item that depreciates at a fixed yearly rate, by reducing balance.</caption>
+        <interactive xml:id="interactive-depreciation-curve" platform="jsxgraph" width="90%" aspect="16:12" source="jsxgraph/depreciation-curve.js">
+            <slate xml:id="jsxgraph-depreciation-curve" surface="jsxboard" aspect="16:12"/>
+            <instructions>
+                <p>
+                    <ul>
+                        <li><p>Drag <alert>P</alert> to set the price and <alert>r</alert> to set the rate of depreciation per cent per year. The solid curve is <m>V = P\left(1 - \dfrac{r}{100}\right)^t</m>; the dots mark the end of each year.</p></li>
+                        <li><p>Drag the year marker <alert>n</alert> to read the value after <m>n</m> years. The dotted line marks half the price.</p></li>
+                        <li><p>Tick <alert>same amount each year</alert> to add a dashed line that loses <m>r\%</m> of the price every year. With <m>P = 160\,000</m>, <m>r = 15</m> and <m>n = 3</m> the curve gives <m>98\,260</m> and the line <m>88\,000</m>, as in <xref ref="act-a-boda-boda-motorbike"/>.</p></li>
+                    </ul>
+                </p>
+            </instructions>
+        </interactive>
+    </figure>
 
     <xi:include href="../lesson-plan-templates/example-intro.ptx" />
 
-    <!-- Add at least 3 examples -->
-
-    <!-- <example>
+    <example xml:id="example-a-school-laptop">
+        <title>A School Laptop</title>
         <statement>
+            <p>A school buys a laptop for Ksh <m>65\,000</m>. It depreciates at <m>20\%</m> a year. Find its value after <m>3</m> years and the depreciation.</p>
         </statement>
         <solution>
+            <p>The multiplier is <m>1 - 0.2 = 0.8</m>.
+                <md>V = 65\,000 \times 0.8^3 = 65\,000 \times 0.512 = 33\,280</md>
+                The value is Ksh <m>33\,280</m> and the depreciation is <m>65\,000 - 33\,280 = 31\,720</m>, Ksh <m>31\,720</m>.</p>
         </solution>
     </example>
 
-    <example>
+    <example xml:id="example-a-matatus-first-year">
+        <title>A Matatu's First Year</title>
         <statement>
+            <p>A new matatu costs Ksh <m>4\,800\,000</m>. It loses <m>20\%</m> of its value in the first year and <m>10\%</m> a year after that, each time on its value at the start of the year. Find its value after <m>5</m> years.</p>
         </statement>
         <solution>
+            <p>Multiply by <m>0.8</m> for the first year and by <m>0.9</m> for each of the next four years:
+                <md>4\,800\,000 \times 0.8 \times 0.9^4 = 3\,840\,000 \times 0.6561 = 2\,519\,424</md>
+                The value is Ksh <m>2\,519\,424</m>.</p>
         </solution>
     </example>
 
-    <example>
+    <example xml:id="example-finding-the-rate-of-depreciation">
+        <title>Finding the Rate of Depreciation</title>
         <statement>
+            <p>A tailor's sewing machine worth Ksh <m>72\,000</m> is worth Ksh <m>61\,200</m> a year later. Find the rate of depreciation.</p>
         </statement>
         <solution>
+            <p>The loss is <m>72\,000 - 61\,200 = 10\,800</m>, so the rate is
+                <md>\frac{10\,800}{72\,000} \times 100 = 15\%</md></p>
         </solution>
-    </example> -->
+    </example>
 
     <xi:include href="../lesson-plan-templates/assessment-intro.ptx" />
+    <xi:include href="../lesson-plan-templates/checkpoint.ptx" />
 
-    <!-- If STACK questions are included, uncomment this: -->
+    <p>Type amounts as plain numbers, without Ksh, spaces or commas, for example <c>45326</c>. Give money to the nearest shilling and percentages to 1 decimal place unless the question says otherwise; exact answers in cents are also accepted.</p>
 
-    <!-- <xi:include href="../lesson-plan-templates/checkpoint.ptx" /> -->
+    <exercise xml:id="ex-value-after-depreciation">
+        <!--<title></title>-->
+        <stack label="stk-value-after-depreciation" source="stack/top/2-measurement-and-geometry/14-commercial-arithmetic-iii/04-depreciation/Value-after-depreciation.xml"/>
+    </exercise>
 
-    <!-- Add STACK exercises if made -->
+    <exercise xml:id="ex-adding-percentages-claim">
+        <!--<title></title>-->
+        <stack label="stk-adding-percentages-claim" source="stack/top/2-measurement-and-geometry/14-commercial-arithmetic-iii/04-depreciation/Adding-percentages-claim.xml"/>
+    </exercise>
 
-    <!-- Add static exercises -->
+    <exercise xml:id="ex-choose-a-rate-of-depreciation">
+        <!--<title></title>-->
+        <stack label="stk-choose-a-rate-of-depreciation" source="stack/top/2-measurement-and-geometry/14-commercial-arithmetic-iii/04-depreciation/Choose-a-rate-of-depreciation.xml"/>
+    </exercise>
 
-    <!-- <exercises>
-        <exercise>
-            <statement>   
+    <exercises xml:id="exercises-depreciation">
+        <exercise xml:id="ex-tractor-depreciates-11">
+            <statement><p>A tractor bought for Ksh <m>2\,400\,000</m> depreciates at <m>11\%</m> a year. Find its value after <m>4</m> years, to the nearest shilling.</p></statement>
+            <answer><p>Ksh <m>1\,505\,814</m></p></answer>
+        </exercise>
+        <exercise xml:id="ex-phone-depreciates-30">
+            <statement><p>A phone bought for Ksh <m>28\,000</m> loses <m>30\%</m> of its value each year. Find its value after <m>2</m> years and the depreciation.</p></statement>
+            <answer><p>Value Ksh <m>13\,720</m>; depreciation Ksh <m>14\,280</m></p></answer>
+        </exercise>
+        <exercise xml:id="ex-percentage-lost-in-five-years">
+            <statement><p>An item loses <m>10\%</m> of its value each year, by reducing balance. What percentage of its value has it lost after <m>5</m> years?</p></statement>
+            <answer><p><m>41.0\%</m> (not <m>50\%</m>)</p></answer>
+            <solution><p><m>0.9^5 = 0.59049</m>, so the item keeps <m>59.049\%</m> of its value and has lost <m>40.951\%</m>, about <m>41.0\%</m>.</p></solution>
+        </exercise>
+        <exercise xml:id="ex-computer-two-rates">
+            <statement><p>A cyber caf&#xe9;'s computer costs Ksh <m>95\,000</m>. It loses <m>22\%</m> of its value in the first year and <m>15\%</m> a year after that. Find its value after <m>3</m> years, to the nearest shilling.</p></statement>
+            <answer><p>Ksh <m>53\,537</m></p></answer>
+            <solution><p><m>95\,000 \times 0.78 \times 0.85^2 = 53\,537.25</m>, so Ksh <m>53\,537</m>.</p></solution>
+        </exercise>
+        <exercise xml:id="ex-rate-of-depreciation-posho-mill">
+            <statement><p>A posho mill worth Ksh <m>340\,000</m> is worth Ksh <m>272\,000</m> a year later. Find the rate of depreciation.</p></statement>
+            <answer><p><m>20\%</m></p></answer>
+        </exercise>
+        <exercise xml:id="ex-below-half">
+            <title>Challenge: Below Half</title>
+            <statement><p>A motorbike depreciates at <m>15\%</m> a year. After how many whole years is it first worth less than half its price?</p></statement>
+            <hint><p>Find the first power of <m>0.85</m> that is less than <m>0.5</m>.</p></hint>
+            <answer><p><m>5</m> years</p></answer>
+            <solution><p><m>0.85^4 = 0.522</m>, more than half; <m>0.85^5 = 0.444</m>, less than half. So after <m>5</m> years, whatever the price.</p></solution>
+        </exercise>
+    </exercises>
 
-            </statement>   
-            <solution>
-
-            </solution>             
-        </exercise>        
-    </exercises> -->
-
-    <!-- [LP] Add information on how to differentiate  -->
-
-    <!-- <axiom component="lesson-plan">
+    <axiom component="lesson-plan">
         <title>Differentiation</title>
-
-        <table>
-            <title>Differentiation</title>
-            <tabular halign="left">
-                <row header="yes" bottom="minor">
-                    <cell>Learner Group</cell>
-                    <cell>Strategy &amp; Learning Experience</cell>
-                    <cell></cell>
-                </row>
-                <row>
-                    <cell>Struggling Learners (Support)</cell>
-                    <cell>
-                        XXXX
-                    </cell>
-                    <cell></cell>
-                </row>
-                <row>
-                    <cell>On-Level Learners (Core)</cell>
-                    <cell>
-                        <line>The core lesson activities as described above.</line>
-                    </cell>
-                    <cell></cell>
-                </row>
-                <row>
-                    <cell>Advanced Learners (Challenge)</cell>
-                    <cell>
-                        XXXX
-                    </cell>
-                    <cell></cell>
-                </row>
+        <table xml:id="table-differentiation-depreciation">
+            <title>Differentiation Strategies</title>
+            <tabular halign="left" top="minor" bottom="minor" left="minor" right="minor">
+                <row header="yes" bottom="medium"><cell>Learner Group</cell><cell>Strategy and Learning Experience</cell></row>
+                <row><cell>Struggling Learners (Support)</cell><cell>Work through the activity and <xref ref="example-a-school-laptop"/>. Give a card: <q>multiply by <m>1 - \dfrac{r}{100}</m> each year</q>. Assign <xref ref="ex-tractor-depreciates-11"/> and <xref ref="ex-phone-depreciates-30"/>.</cell></row>
+                <row><cell>On-Level Learners (Core)</cell><cell>Full activity and all examples. Assign <xref ref="ex-tractor-depreciates-11"/> to <xref ref="ex-rate-of-depreciation-posho-mill"/>.</cell></row>
+                <row><cell>Advanced Learners (Challenge)</cell><cell>All exercises including <xref ref="ex-below-half"/>. Extension: can a value ever reach zero by reducing balance? (No: it is multiplied by a positive number each year, so it gets ever smaller but never reaches zero.)</cell></row>
             </tabular>
         </table>
-    </axiom> -->
+    </axiom>
+
+    <p component="lesson-plan">Closing question for the class: why might a boda boda rider want to know how fast a motorbike loses value before buying one?</p>
 
     <xi:include href="../lesson-plan-templates/assessment-methods.ptx" />
-
     <xi:include href="../lesson-plan-templates/reflection.ptx"/>
 </section>

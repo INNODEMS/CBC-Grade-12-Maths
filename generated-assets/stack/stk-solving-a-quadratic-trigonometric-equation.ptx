@@ -1,0 +1,5 @@
+<stack-static>
+    <statement><p><p>Solve <m>{2\cos^2 x - 7\sin x - 5 = 0}</m> for <m>0^\circ \le x \le 360^\circ</m>. Give angles that are not whole numbers to 1 decimal place.</p><div><m>x \in</m> <fillin characters="20" name="ans1"/>  </div></p></statement>
+    <solution><p><p>Replace <m>\cos^2 x</m> by <m>1 - \sin^2 x</m> and write <m>s = \sin x</m>. Collecting terms gives <m>{-2s^2 - 7s - 3 = 0}</m>.</p><p>Its roots are <m>s = {-3.0000}</m> and <m>s = {-0.5000}</m> (to 4 decimal places: use the formula if the quadratic does not factorise). <m>\sin x</m> can never be bigger than 1 or smaller than <m>-1</m>, so <m>\sin x = {-3.0000}</m> is rejected.</p><p><m>\sin x = {-0.5000}</m>: the calculator gives <m>{\{-30^\circ\}}</m>. Sine is negative in the third and fourth quadrants: use <m>180^\circ</m> plus and <m>360^\circ</m> minus the size of that angle. So <m>x \in {\{210^\circ, 330^\circ\}}</m>.</p></p></solution>
+    <answer><p><m>\left \{210.0 , 330.0 \right \}</m></p></answer>
+</stack-static>

@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<quiz>
+<question type="stack">
+  <name><text>Dividing a line internally</text></name>
+  <questiontext format="html">
+    <text><![CDATA[<p>A cable runs straight from the top of a mast at \(A({@A[1]@},\,{@A[2]@},\,{@A[3]@})\) to an anchor at \(B({@B[1]@},\,{@B[2]@},\,{@B[3]@})\) on a site in Kitui; coordinates are in metres. A marker P divides AB internally in the ratio \({@m@} : {@n@}\).</p><div>(a) \(\overrightarrow{AP} =\) [[input:ans1]] [[validation:ans1]] [[feedback:prt1]]</div><div>(b) The position vector of P, \(\overrightarrow{OP} =\) [[input:ans2]] [[validation:ans2]] [[feedback:prt2]]</div>]]></text>
+  </questiontext>
+  <generalfeedback format="html">
+    <text><![CDATA[<p>Go the right fraction of the way along AB, starting from A. \(\overrightarrow{AB} = \mathbf{b} - \mathbf{a} = {@vAB@}\).</p><p>(a) AP is \({@m@}\) parts out of \({@m+n@}\), so \(\overrightarrow{AP} = \dfrac{ {@m@} }{ {@m+n@} }\,\overrightarrow{AB} = {@tAP@}\).</p><p>(b) \(\overrightarrow{OP} = \overrightarrow{OA} + \overrightarrow{AP} = {@vA@} + {@tAP@} = {@tOP@}\), so P is \(({@tOP[1,1]@},\,{@tOP[2,1]@},\,{@tOP[3,1]@})\).</p>]]></text>
+  </generalfeedback>
+  <defaultgrade>2</defaultgrade>
+  <penalty>0.1</penalty>
+  <hidden>0</hidden>
+  <idnumber></idnumber>
+  <stackversion><text>2026063000</text></stackversion>
+  <questionvariables>
+    <text><![CDATA[validate_numeric(ex) := block([sx], sx: ev(ex, simp), if listofvars(ex) = [] and freeof(%i, sx) then "" else "Type a number in each box, not a letter.");
+cv3(v) := matrix([v[1]],[v[2]],[v[3]]);
+e1: matrix([1],[0],[0]); badm: matrix([q],[1],[2]);
+/* Design: a point a given ratio of the way along a segment, a mast cable in Kitui. "Measured from B" (B - AP) is the same point as the swapped-ratio point, so one node covers both. Source: adapted from SMP AS/A2 Core 4, Chapter 9, Section D, Example 2. */
+dlist: [[[-5,-4,4],[-14,-7,7],1,2],[[-5,1,0],[-11,4,-6],2,1],[[3,4,-1],[-5,8,11],1,3],[[2,-1,-5],[14,3,-1],3,1],[[2,-2,5],[-8,-7,-10],2,3],[[0,1,-5],[-15,-4,0],3,2],[[-1,-2,2],[4,13,-8],1,4],[[-4,-4,-4],[-11,3,-11],3,4],[[-4,-3,5],[-9,7,-5],4,1],[[1,5,0],[15,12,-14],2,5]];
+ix: 1+rand(10);
+A: dlist[ix][1]; B: dlist[ix][2]; m: dlist[ix][3]; n: dlist[ix][4];
+vA: cv3(A); vAB: cv3(B-A);
+tAP: m/(m+n)*vAB; tOP: vA+tAP;
+swp: n/(m+n)*vAB; frc: m/n*vAB; whl: vAB;
+swP: vA+swp;
+fAP: tAP+e1; fOP: vA+fAP; wOP: vA+whl;
+]]></text>
+  </questionvariables>
+  <specificfeedback format="html"><text><![CDATA[]]></text></specificfeedback>
+  <questionnote format="moodle_auto_format">
+    <text>ix={@ix@}, m:n={@m@}:{@n@}, P={@transpose(tOP)@}</text>
+  </questionnote>
+  <questiondescription format="html"><text><![CDATA[<p id="concept">Vectors II: dividing a line internally</p><p id="description">Grade 12 CBE Core 2.6: Find AP and the position vector of a point dividing a line segment internally in a given ratio in three dimensions.</p><p id="edition">Core</p><p id="provenance">This question is adapted from Example 2 in Section D of Chapter 9 of Instone, S., Ling, J., Scruton, P., Shilton, S. and West, H., SMP AS/A2 Mathematics: Core 4 for AQA, Cambridge University Press, 2005: a ratio instead of a fraction, a mast cable context in Kitui, new numbers, randomised over a curated list, with named and follow-through feedback.</p><p id="citation">INNODEMS CBC Grade 12 Mathematics, first draft by Ben Davies, 2026. Aligned to the KICD Senior School Curriculum Design, Core Mathematics Grade 12 (draft).</p>]]></text></questiondescription>
+  <questionsimplify>1</questionsimplify>
+  <assumepositive>0</assumepositive>
+  <assumereal>0</assumereal>
+  <prtcorrect format="html"><text><![CDATA[[[commonstring key="symbolicprtcorrectfeedback"/]] [[commonstring key="defaultprtcorrectfeedback"/]]]]></text></prtcorrect>
+  <prtpartiallycorrect format="html"><text><![CDATA[[[commonstring key="symbolicprtpartiallycorrectfeedback"/]] [[commonstring key="defaultprtpartiallycorrectfeedback"/]]]]></text></prtpartiallycorrect>
+  <prtincorrect format="html"><text><![CDATA[[[commonstring key="symbolicprtincorrectfeedback"/]] [[commonstring key="defaultprtincorrectfeedback"/]]]]></text></prtincorrect>
+  <decimals>.</decimals>
+  <scientificnotation>*10</scientificnotation>
+  <multiplicationsign>none</multiplicationsign>
+  <sqrtsign>1</sqrtsign>
+  <complexno>symi</complexno>
+  <inversetrig>cos-1</inversetrig>
+  <logicsymbol>lang</logicsymbol>
+  <matrixparens>(</matrixparens>
+  <isbroken>0</isbroken>
+  <variantsselectionseed></variantsselectionseed>
+
+  <input><name>ans1</name><type>matrix</type><tans>tAP</tans><boxsize>3</boxsize><strictsyntax>1</strictsyntax><insertstars>0</insertstars><syntaxhint></syntaxhint><syntaxattribute>0</syntaxattribute><forbidwords></forbidwords><allowwords></allowwords><forbidfloat>0</forbidfloat><requirelowestterms>0</requirelowestterms><checkanswertype>0</checkanswertype><mustverify>0</mustverify><showvalidation>3</showvalidation><options>validator:validate_numeric</options></input>
+  <input><name>ans2</name><type>matrix</type><tans>tOP</tans><boxsize>3</boxsize><strictsyntax>1</strictsyntax><insertstars>0</insertstars><syntaxhint></syntaxhint><syntaxattribute>0</syntaxattribute><forbidwords></forbidwords><allowwords></allowwords><forbidfloat>0</forbidfloat><requirelowestterms>0</requirelowestterms><checkanswertype>0</checkanswertype><mustverify>0</mustverify><showvalidation>3</showvalidation><options>validator:validate_numeric</options></input>
+
+  <prt><name>prt1</name><value>1.0000000</value><autosimplify>1</autosimplify><feedbackstyle>1</feedbackstyle><feedbackvariables><text><![CDATA[uu: [ans1[1,1], ans1[2,1], ans1[3,1]]; ww: B-A;
+crs: [uu[2]*ww[3]-uu[3]*ww[2], uu[3]*ww[1]-uu[1]*ww[3], uu[1]*ww[2]-uu[2]*ww[1]];
+parl: is(abs(crs[1])+abs(crs[2])+abs(crs[3]) < 10^-9);
+frl: (uu[1]*ww[1]+uu[2]*ww[2]+uu[3]*ww[3])/(ww[1]^2+ww[2]^2+ww[3]^2);
+]]></text></feedbackvariables>
+    <node><name>0</name><description>AP</description><answertest>AlgEquiv</answertest><sans>ans1</sans><tans>tAP</tans><testoptions></testoptions><quiet>0</quiet><truescoremode>=</truescoremode><truescore>1.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt1-1-T</trueanswernote><truefeedback format="html"><text><![CDATA[]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>1</falsenextnode><falseanswernote>prt1-1-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>1</name><description>Ratio swapped</description><answertest>AlgEquiv</answertest><sans>ans1</sans><tans>swp</tans><testoptions></testoptions><quiet>1</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt1-2-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>You took \(\dfrac{ {@n@} }{ {@m+n@} }\) of \(\overrightarrow{AB}\). That is the part next to B; AP is the part next to A.</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>2</falsenextnode><falseanswernote>prt1-2-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>2</name><description>m/n of AB</description><answertest>AlgEquiv</answertest><sans>ans1</sans><tans>frc</tans><testoptions></testoptions><quiet>1</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt1-3-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>Your vector is \({@m/n@}\,\overrightarrow{AB}\). The ratio \({@m@} : {@n@}\) compares AP with PB, not AP with AB. How many equal parts does AB have altogether?</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>3</falsenextnode><falseanswernote>prt1-3-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>3</name><description>AB itself</description><answertest>AlgEquiv</answertest><sans>ans1</sans><tans>whl</tans><testoptions></testoptions><quiet>1</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt1-4-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>That is \(\overrightarrow{AB}\) itself; P is only part of the way along.</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>-1</falsenextnode><falseanswernote>prt1-4-F</falseanswernote><falsefeedback format="html"><text><![CDATA[[[if test="parl"]]<p>Your vector is \({@frl@}\,\overrightarrow{AB}\). The ratio \({@m@} : {@n@}\) splits AB into equal parts: how many are there, and how many of them make AP?</p>[[else]]<p>AP lies along AB, so it is a fraction of \(\overrightarrow{AB} = \mathbf{b} - \mathbf{a} = {@vAB@}\). Your vector is not a multiple of that.</p>[[/if]]]]></text></falsefeedback></node>
+  </prt>
+  <prt><name>prt2</name><value>1.0000000</value><autosimplify>1</autosimplify><feedbackstyle>1</feedbackstyle><feedbackvariables><text><![CDATA[]]></text></feedbackvariables>
+    <node><name>0</name><description>OP</description><answertest>AlgEquiv</answertest><sans>ans2</sans><tans>tOP</tans><testoptions></testoptions><quiet>0</quiet><truescoremode>=</truescoremode><truescore>1.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt2-1-T</trueanswernote><truefeedback format="html"><text><![CDATA[]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>1</falsenextnode><falseanswernote>prt2-1-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>1</name><description>Forgot OA</description><answertest>AlgEquiv</answertest><sans>ans2</sans><tans>tAP</tans><testoptions></testoptions><quiet>1</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt2-2-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>That is \(\overrightarrow{AP}\). The position vector of P is \(\overrightarrow{OA} + \overrightarrow{AP}\).</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>2</falsenextnode><falseanswernote>prt2-2-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>2</name><description>Measured from B</description><answertest>AlgEquiv</answertest><sans>ans2</sans><tans>swP</tans><testoptions></testoptions><quiet>1</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt2-3-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>Your P is \(\dfrac{ {@m@} }{ {@m+n@} }\) of the way from B, not from A.</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>3</falsenextnode><falseanswernote>prt2-3-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>3</name><description>Follow-through</description><answertest>AlgEquiv</answertest><sans>ans2</sans><tans>vA+ans1</tans><testoptions></testoptions><quiet>1</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt2-4-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>\(\overrightarrow{OP} = \overrightarrow{OA} + \overrightarrow{AP}\) is the right method; check \(\overrightarrow{AP}\) in (a).</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>-1</falsenextnode><falseanswernote>prt2-4-F</falseanswernote><falsefeedback format="html"><text><![CDATA[<p>\(\overrightarrow{OP} = \overrightarrow{OA} + \overrightarrow{AP}\): start at A and add the part of \(\overrightarrow{AB}\) that reaches P.</p>]]></text></falsefeedback></node>
+  </prt>
+
+  <deployedseed>4</deployedseed>
+  <deployedseed>5</deployedseed>
+  <deployedseed>15</deployedseed>
+  <deployedseed>8</deployedseed>
+  <deployedseed>24</deployedseed>
+  <deployedseed>1</deployedseed>
+  <deployedseed>3</deployedseed>
+  <deployedseed>10</deployedseed>
+  <deployedseed>2</deployedseed>
+  <deployedseed>17</deployedseed>
+  <qtest><testcase>1</testcase><description>Correct</description>
+    <testinput><name>ans1</name><value>tAP</value></testinput>
+    <testinput><name>ans2</name><value>tOP</value></testinput>
+    <expected><name>prt1</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt1-1-T</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt2-1-T</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>2</testcase><description>Ratio swapped; forgot OA</description>
+    <testinput><name>ans1</name><value>swp</value></testinput>
+    <testinput><name>ans2</name><value>tAP</value></testinput>
+    <expected><name>prt1</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt1-1-F | prt1-2-T</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt2-1-F | prt2-2-T</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>3</testcase><description>m/n of AB; measured from B</description>
+    <testinput><name>ans1</name><value>frc</value></testinput>
+    <testinput><name>ans2</name><value>swP</value></testinput>
+    <expected><name>prt1</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt1-1-F | prt1-2-F | prt1-3-T</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt2-1-F | prt2-2-F | prt2-3-T</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>4</testcase><description>AB itself; follow-through</description>
+    <testinput><name>ans1</name><value>whl</value></testinput>
+    <testinput><name>ans2</name><value>wOP</value></testinput>
+    <expected><name>prt1</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt1-1-F | prt1-2-F | prt1-3-F | prt1-4-T</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt2-1-F | prt2-2-F | prt2-3-F | prt2-4-T</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>5</testcase><description>Generic offset; follow-through</description>
+    <testinput><name>ans1</name><value>fAP</value></testinput>
+    <testinput><name>ans2</name><value>fOP</value></testinput>
+    <expected><name>prt1</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt1-1-F | prt1-2-F | prt1-3-F | prt1-4-F</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt2-1-F | prt2-2-F | prt2-3-F | prt2-4-T</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>6</testcase><description>Generic in (b)</description>
+    <testinput><name>ans1</name><value>tAP</value></testinput>
+    <testinput><name>ans2</name><value>fOP</value></testinput>
+    <expected><name>prt1</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt1-1-T</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt2-1-F | prt2-2-F | prt2-3-F | prt2-4-F</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>7</testcase><description>Invalid: a letter in (b)</description>
+    <testinput><name>ans1</name><value>tAP</value></testinput>
+    <testinput><name>ans2</name><value>badm</value></testinput>
+    <expected><name>prt1</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt1-1-T</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore></expectedscore><expectedpenalty></expectedpenalty><expectedanswernote>NULL</expectedanswernote></expected>
+  </qtest>
+</question>
+</quiz>

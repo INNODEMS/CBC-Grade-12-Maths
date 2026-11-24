@@ -1,0 +1,12 @@
+<stack-static>
+    <statement><p><p>Kiprono worked out the compound interest on Ksh <m>{47\,000}</m> at <m>{8}\%</m> per annum for <m>{3}</m> years, to the nearest shilling. His working has one mistake.</p><p>Line 1: Multiplier <m>= 1 + \dfrac{ {8} }{100} = {1.8}</m></p><p>Line 2: Amount <m>A = {47\,000} \times {1.8}^{ {3} }</m></p><p>Line 3: <m>A = </m> Ksh <m>{274\,104}</m></p><p>Line 4: Compound interest <m>= A - P = {274\,104} - {47\,000} = {227\,104}</m></p><p>(a) Which line has the mistake?</p><p/><ol marker="(1)">
+<li>None: the working is correct</li>
+<li>Line 1</li>
+<li>Line 2</li>
+<li>Line 3</li>
+<li>Line 4</li>
+</ol>  <p>(b) Find the correct compound interest, to the nearest shilling.</p><p>Ksh <fillin characters="10" name="ans2"/>  </p></p></statement>
+    <solution><p><p>(a) Line 1 is wrong: <m>\dfrac{ {8} }{100} = {0.08}</m>, so the multiplier is <m>{1.08}</m>, not <m>{1.8}</m>.</p><p>(b) The correct working:</p><p>Line 1: Multiplier <m>= 1 + \dfrac{ {8} }{100} = {1.08}</m></p><p>Line 2: <m>A = {47\,000} \times {1.08}^{ {3} }</m></p><p>Line 3: <m>A = {59\,206.46}</m></p><p>Line 4: Compound interest <m>= {59\,206.46} - {47\,000} = {12\,206.46}</m>, about Ksh <m>{12\,206}</m>.</p></p></solution>
+    <answer><p><m>(2)</m></p></answer>
+    <answer><p><m>12206</m></p></answer>
+</stack-static>

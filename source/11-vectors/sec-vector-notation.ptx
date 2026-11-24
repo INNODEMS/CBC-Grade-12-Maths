@@ -45,161 +45,206 @@
          Content summary: Writing vectors using different notations (AB, a, column vectors).
          Suggested activity: Learners write the same vector in different notations: AB with an arrow, bold a and column form. -->
 
-    <!-- [LP] Add guidance on activity -->
+    <!-- Section notes (2026-11)
+         SLOs: Essential 2.2 (b) (the skeleton's SLO line repeats the representation outcome; section kept short)
+         Activity: as planning notes (one vector written three ways)
+         JSXGraph: none named in the planning notes
+         STACK: assets/stack/top/2-measurement-and-geometry/11-vectors/02-vector-notation/ -->
+
+    <p component="lesson-plan">Upon completion of this lesson, learners will be able to:
+        <ol>
+            <li><p><alert>Know:</alert> three ways to write a vector; what the two numbers of a column vector mean; the reverse of a vector.</p></li>
+            <li><p><alert>Do:</alert> write a drawn vector in all three ways; read a column vector as moves; reverse a vector.</p></li>
+            <li><p><alert>Apply:</alert> describe moves on a map with column vectors.</p></li>
+        </ol>
+    </p>
 
     <axiom component="lesson-plan">
         <title>Problem-Solving and Discovery</title>
         <dl>
-            <li>
-                <title>Suggested Time</title>
-                <p>
-                    XXX minutes
-                </p>
-            </li>
-            <li>
-                <title>Objective</title>
-                <p>
-                    XXX
-                </p>
-            </li>
-            <li>
-                <title>Teacher's Role</title>
-                <p>
-                    XXX
-                </p>
-            </li>
+            <li><title>Suggested Time</title><p>14 minutes</p></li>
+            <li><title>Objective</title><p>Learners write one vector in three ways and read its column as moves across and up.</p></li>
+            <li><title>Teacher's Role</title><p>Work in pairs: one learner draws, the other writes; swap roles at part (c). Listen to each other's answers before correcting them.</p></li>
         </dl>
     </axiom>
 
-    <!-- Add Activity -->
-
-    <!-- <activity>
+    <activity xml:id="act-one-vector-three-ways">
+        <title>One Vector, Three Ways</title>
         <statement>
+            <p><xref ref="fig-one-vector-three-ways"/> shows an arrow from <m>A(1, 1)</m> to <m>B(5, 3)</m>, labelled <m>\mathbf{a}</m>.</p>
+            <p>
+                <ol marker="(a)">
+                    <li>
+                        <p>Name the vector with letters in two ways.</p>
+                        <solution component="lesson-plan"><p><m>\overrightarrow{AB}</m> and <m>\mathbf{a}</m>.</p></solution>
+                    </li>
+                    <li>
+                        <p>Count the squares you move from <m>A</m> to <m>B</m>: first across, then up. Write the two numbers one above the other in brackets.</p>
+                        <solution component="lesson-plan"><p><m>\begin{pmatrix} 4 \\ 2 \end{pmatrix}</m>: <m>4</m> across and <m>2</m> up.</p></solution>
+                    </li>
+                    <li>
+                        <p>Write the column for the arrow from <m>B</m> back to <m>A</m>, <m>\overrightarrow{BA}</m>.</p>
+                        <solution component="lesson-plan"><p><m>\begin{pmatrix} -4 \\ -2 \end{pmatrix}</m>: left and down are negative.</p></solution>
+                    </li>
+                    <li>
+                        <p>Start at <m>C(6, 1)</m> and draw <m>\mathbf{c} = \begin{pmatrix} -3 \\ 2 \end{pmatrix}</m>. Where does it end?</p>
+                        <solution component="lesson-plan"><p>At <m>(3, 3)</m>: <m>3</m> left and <m>2</m> up from <m>C</m>.</p></solution>
+                    </li>
+                </ol>
+            </p>
         </statement>
-    </activity> -->
+    </activity>
 
-    <!-- [LP] Add guidance on structured lesson plan-->
+    <figure xml:id="fig-one-vector-three-ways">
+        <caption>The vector <m>\mathbf{a} = \overrightarrow{AB}</m> on a grid.</caption>
+        <image width="55%">
+            <shortdescription>An arrow on a grid from A(1, 1) to B(5, 3), labelled a, with its column vector 4 over 2.</shortdescription>
+            <latex-image>
+\begin{tikzpicture}[scale=0.9]
+\draw[very thin, gray!40] (0,0) grid (7,4);
+\draw[->] (0,0) -- (7.3,0) node[right] {$x$};
+\draw[->] (0,0) -- (0,4.3) node[above] {$y$};
+\foreach \x in {1,...,7} \node[below] at (\x,0) {\small \x};
+\foreach \y in {1,...,4} \node[left] at (0,\y) {\small \y};
+\draw[very thick, -{Stealth}] (1,1) -- (5,3);
+\fill (1,1) circle (2pt) node[below left] {$A$};
+\fill (5,3) circle (2pt) node[above right] {$B$};
+\node[above left] at (3,2) {$\mathbf{a}$};
+\draw[dashed] (1,1) -- (5,1) node[midway, below] {\small 4 across};
+\draw[dashed] (5,1) -- (5,3) node[midway, right] {\small 2 up};
+\node at (6.4,3.4) {$\begin{pmatrix} 4 \\ 2 \end{pmatrix}$};
+\end{tikzpicture}
+            </latex-image>
+        </image>
+    </figure>
 
-    <!-- <axiom component="lesson-plan">
+    <axiom component="lesson-plan">
         <title>Structured Instruction</title>
         <p>
             <dl>
-            <li>
-                <title>Suggested Time</title>
-                <p>
-                    XX minutes
-                </p>
-            </li>
-            <li>
-                <title>Objective</title>
-                <p>
-                    To formalize the concepts and properties learners discovered in the anchor task.
-                </p>
-            </li>
+                <li><title>Suggested Time</title><p>8 minutes</p></li>
+                <li><title>Objective</title><p>To formalise the notations and the meaning of the two numbers in a column vector.</p></li>
             </dl>
         </p>
         <paragraphs>
             <title>Key Takeaways &amp; Teacher Connection</title>
             <ol>
-                <li>
-                    <p>
-                        <alert>Connecting to Learner Work:</alert> XXXX
-                    </p>
-                </li>
+                <li><p><alert>Connecting to Learner Work:</alert> parts (a) and (b) give the three notations for the same arrow.</p></li>
+                <li><p>The top number is across, the bottom number is up; left and down are negative.</p></li>
+                <li><p>Reversing a vector changes the sign of both numbers.</p></li>
+                <li><p>Use the spare minutes: learners draw the push and the velocity cards from <xref ref="act-sorting-quantities"/> as arrows on a grid (one square for <m>100</m> N or <m>5\,\text{m/s}</m>) and write their columns.</p></li>
             </ol>
         </paragraphs>
-    </axiom> -->
+    </axiom>
 
-    <!-- Add insight / key takeaway directly related to activity / learner experience -->
+    <insight xml:id="insight-writing-vectors">
+        <title>Writing Vectors</title>
+        <p>
+            A vector can be written in three ways:
+        </p>
+        <p>
+            <ul>
+                <li><p>with the letters of its start and end points and an arrow on top: <m>\overrightarrow{AB}</m> is the vector from <m>A</m> to <m>B</m>;</p></li>
+                <li><p>with one bold small letter: <m>\mathbf{a}</m>;</p></li>
+                <li><p>as a <term>column vector</term>: <m>\begin{pmatrix} 4 \\ 2 \end{pmatrix}</m>. The top number is the move across, the <term>x-component</term> (positive to the right or east, negative to the left or west). The bottom number is the move up, the <term>y-component</term> (positive up or north, negative down or south).</p></li>
+            </ul>
+        </p>
+        <p>
+            The vector from <m>B</m> back to <m>A</m> is the reverse: both signs change, <m>\overrightarrow{BA} = -\overrightarrow{AB}</m>. The <term>zero vector</term> <m>\mathbf{0} = \begin{pmatrix} 0 \\ 0 \end{pmatrix}</m> means no move at all.
+        </p>
+        <p>
+            In this book a pair such as <m>(4, -3)</m> in brackets on one line is always a point; a vector is always written as a column.
+        </p>
+    </insight>
 
-    <!-- <insight>
-    </insight> -->
-
-    <!-- Add further instruction (not in a block) to develop ideas as needed -->
+    <note xml:id="note-vectors-by-hand">
+        <title>Writing Vectors by Hand</title>
+        <p>
+            You cannot write in bold with a pen, so draw a line under the letter instead: write <m>\underline{a}</m> for <m>\mathbf{a}</m>.
+        </p>
+    </note>
 
     <xi:include href="../lesson-plan-templates/example-intro.ptx" />
 
-    <!-- Add at least 3 examples -->
-
-    <!-- <example>
+    <example xml:id="example-reading-columns">
+        <title>Reading Columns from a Grid</title>
         <statement>
+            <p>Write each move as a column vector: (a) <m>4</m> squares right and <m>3</m> down; (b) <m>2</m> squares left and <m>4</m> up; (c) <m>6</m> squares right.</p>
         </statement>
         <solution>
+            <p>Across first, then up; right and up are positive, left and down negative.</p>
+            <p>(a) <m>\begin{pmatrix} 4 \\ -3 \end{pmatrix}</m> (b) <m>\begin{pmatrix} -2 \\ 4 \end{pmatrix}</m> (c) <m>\begin{pmatrix} 6 \\ 0 \end{pmatrix}</m>: there is no move up or down, so the bottom number is <m>0</m>.</p>
         </solution>
     </example>
 
-    <example>
+    <example xml:id="example-column-to-directions">
+        <title>From a Column to Directions</title>
         <statement>
+            <p>On a map with <m>1</m> unit to <m>1\,\text{km}</m>, east and north are positive. Describe the move <m>\begin{pmatrix} -3 \\ -6 \end{pmatrix}</m> in words.</p>
         </statement>
         <solution>
+            <p>The top number <m>-3</m> is <m>3\,\text{km}</m> west; the bottom number <m>-6</m> is <m>6\,\text{km}</m> south. So the move is <m>3\,\text{km}</m> west and <m>6\,\text{km}</m> south.</p>
         </solution>
     </example>
 
-    <example>
+    <example xml:id="example-reversing-a-vector">
+        <title>Reversing a Vector</title>
         <statement>
+            <p><m>\overrightarrow{PQ} = \begin{pmatrix} 5 \\ -3 \end{pmatrix}</m>. Write <m>\overrightarrow{QP}</m>.</p>
         </statement>
         <solution>
+            <p><m>\overrightarrow{QP}</m> goes back from <m>Q</m> to <m>P</m>, so both signs change: <m>\overrightarrow{QP} = \begin{pmatrix} -5 \\ 3 \end{pmatrix}</m>.</p>
         </solution>
-    </example> -->
+    </example>
 
     <xi:include href="../lesson-plan-templates/assessment-intro.ptx" />
+    <xi:include href="../lesson-plan-templates/checkpoint.ptx" />
 
-    <!-- If STACK questions are included, uncomment this: -->
+    <p>Type one number in each box of a column vector: the top box is the move across, the bottom box the move up. Use a minus sign for left or down, for example <c>-3</c>.</p>
 
-    <!-- <xi:include href="../lesson-plan-templates/checkpoint.ptx" /> -->
+    <exercise xml:id="ex-column-vector-from-a-grid">
+        <!--<title></title>-->
+        <stack label="stk-column-vector-from-a-grid" source="stack/top/2-measurement-and-geometry/11-vectors/02-vector-notation/Column-vector-from-a-grid.xml"/>
+    </exercise>
 
-    <!-- Add STACK exercises if made -->
+    <p>
+        <em>Vectors in everyday life:</em> a phone's map gives directions such as <q>walk <m>200\,\text{m}</m> east, then <m>50\,\text{m}</m> north</q>. How would you write that walk as two column vectors?
+    </p>
 
-    <!-- Add static exercises -->
+    <exercises xml:id="exercises-vector-notation">
+        <exercise xml:id="ex-moves-to-columns">
+            <statement><p>Write each move as a column vector: (a) <m>6</m> right and <m>3</m> down; (b) <m>3</m> left and <m>5</m> up; (c) <m>7</m> down.</p></statement>
+            <answer><p>(a) <m>\begin{pmatrix} 6 \\ -3 \end{pmatrix}</m> (b) <m>\begin{pmatrix} -3 \\ 5 \end{pmatrix}</m> (c) <m>\begin{pmatrix} 0 \\ -7 \end{pmatrix}</m></p></answer>
+        </exercise>
+        <exercise xml:id="ex-columns-to-directions">
+            <statement><p>On a map with <m>1</m> unit to <m>1\,\text{km}</m>, describe the moves <m>\begin{pmatrix} -4 \\ -1 \end{pmatrix}</m> and <m>\begin{pmatrix} 2 \\ 0 \end{pmatrix}</m> in words.</p></statement>
+            <answer><p><m>4\,\text{km}</m> west and <m>1\,\text{km}</m> south; <m>2\,\text{km}</m> east.</p></answer>
+        </exercise>
+        <exercise xml:id="ex-reverse-mn">
+            <statement><p><m>\overrightarrow{MN} = \begin{pmatrix} -2 \\ 7 \end{pmatrix}</m>. Write <m>\overrightarrow{NM}</m>.</p></statement>
+            <answer><p><m>\begin{pmatrix} 2 \\ -7 \end{pmatrix}</m></p></answer>
+        </exercise>
+        <exercise xml:id="ex-working-backwards">
+            <title>Challenge: Working Backwards</title>
+            <statement><p><m>B</m> is the point <m>(-1, 5)</m> and <m>\overrightarrow{AB} = \begin{pmatrix} -3 \\ 4 \end{pmatrix}</m>. Where is <m>A</m>?</p></statement>
+            <hint><p>Go from <m>B</m> the opposite way.</p></hint>
+            <answer><p><m>A(2, 1)</m></p></answer>
+            <solution><p><m>\overrightarrow{BA} = \begin{pmatrix} 3 \\ -4 \end{pmatrix}</m>, so from <m>B(-1, 5)</m> move <m>3</m> right and <m>4</m> down: <m>A(2, 1)</m>. Check: from <m>(2, 1)</m> to <m>(-1, 5)</m> is <m>3</m> left and <m>4</m> up.</p></solution>
+        </exercise>
+    </exercises>
 
-    <!-- <exercises>
-        <exercise>
-            <statement>   
-
-            </statement>   
-            <solution>
-
-            </solution>             
-        </exercise>        
-    </exercises> -->
-
-    <!-- [LP] Add information on how to differentiate  -->
-
-    <!-- <axiom component="lesson-plan">
+    <axiom component="lesson-plan">
         <title>Differentiation</title>
-
-        <table>
-            <title>Differentiation</title>
-            <tabular halign="left">
-                <row header="yes" bottom="minor">
-                    <cell>Learner Group</cell>
-                    <cell>Strategy &amp; Learning Experience</cell>
-                    <cell></cell>
-                </row>
-                <row>
-                    <cell>Struggling Learners (Support)</cell>
-                    <cell>
-                        XXXX
-                    </cell>
-                    <cell></cell>
-                </row>
-                <row>
-                    <cell>On-Level Learners (Core)</cell>
-                    <cell>
-                        <line>The core lesson activities as described above.</line>
-                    </cell>
-                    <cell></cell>
-                </row>
-                <row>
-                    <cell>Advanced Learners (Challenge)</cell>
-                    <cell>
-                        XXXX
-                    </cell>
-                    <cell></cell>
-                </row>
+        <table xml:id="table-differentiation-vector-notation">
+            <title>Differentiation Strategies</title>
+            <tabular halign="left" top="minor" bottom="minor" left="minor" right="minor">
+                <row header="yes" bottom="medium"><cell>Learner Group</cell><cell>Strategy and Learning Experience</cell></row>
+                <row><cell>Struggling Learners (Support)</cell><cell>Give an <q>across, up</q> card with arrows showing which way is positive. Focus on activity parts (a) to (c). Assign <xref ref="ex-moves-to-columns"/> and <xref ref="ex-reverse-mn"/>.</cell></row>
+                <row><cell>On-Level Learners (Core)</cell><cell>Full activity and all examples. Assign <xref ref="ex-moves-to-columns"/> to <xref ref="ex-reverse-mn"/>.</cell></row>
+                <row><cell>Advanced Learners (Challenge)</cell><cell>All exercises including <xref ref="ex-working-backwards"/>. Extension: draw three different arrows that are all <m>\begin{pmatrix} 2 \\ -3 \end{pmatrix}</m>. (Answer: any three arrows with the same moves, from different starting points.)</cell></row>
             </tabular>
         </table>
-    </axiom> -->
+    </axiom>
 
     <xi:include href="../lesson-plan-templates/assessment-methods.ptx" />
 

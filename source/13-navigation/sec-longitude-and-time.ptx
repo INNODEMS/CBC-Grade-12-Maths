@@ -39,7 +39,7 @@
                 <li component="lesson-plan">
                     <title>Estimated Duration</title>
                     <p>
-                        40 minutes
+                        2 lessons of 40 minutes
                     </p>
                 </li>
             </dl>
@@ -53,163 +53,422 @@
          Suggested activity: Learners use a world map to find local times in cities such as London, Dubai and New York when it is 12 noon in Nairobi.
          Interactive (JSXGraph): Slider for longitude shows local time relative to Greenwich (15° = 1 hour), with East Africa Time marked. -->
 
-    <!-- [LP] Add guidance on activity -->
+    <!-- Section notes (2026-11)
+         SLOs: Core (d); Essential (c). Lessons 4.1 and 4.2 as subsections. Lesson 4.2 also carries
+         Core (g) / Essential (f) (apply) and Core (h) / Essential (g) (role of navigation), and the Curriculum Links axiom.
+         Activity: as planning notes (local times in London, Dubai and New York at noon in Nairobi)
+         JSXGraph: fig-longitude-time-dial (assets/jsxgraph/longitude-time-dial.js), as planning notes
+         STACK: assets/stack/top/2-measurement-and-geometry/13-navigation/04-longitude-and-time/ -->
 
-    <!-- <axiom component="lesson-plan">
+    <!-- ============================================================ Lesson 4.1 -->
+    <subsection xml:id="subsec-local-time-and-longitude">
+        <title>Local Time and Longitude</title>
+
+        <p component="lesson-plan">Upon completion of this lesson, learners will be able to:
+            <ol>
+                <li><p><alert>Know:</alert> the earth turns through <m>15^\circ</m> every hour, so <m>1^\circ</m> of longitude is <m>4</m> minutes of time; places to the east are ahead in local time and places to the west behind; Greenwich Mean Time; time zones; the day can change.</p></li>
+                <li><p><alert>Do:</alert> find the local time at another longitude; find a longitude from a time difference; find the day and time on the other side of the world.</p></li>
+                <li><p><alert>Apply:</alert> world times from Nairobi.</p></li>
+            </ol>
+        </p>
+
+        <axiom component="lesson-plan">
             <title>Problem-Solving and Discovery</title>
             <dl>
-                <li>
-                    <title>Suggested Time</title>
-                    <p>
-                        XX minutes
-                    </p>
-                </li>
-                <li>
-                    <title>Objective</title>
-                    <p>
-                        XXX
-                    </p>
-                </li>
-                <li>
-                    <title>Teacher's Role</title>
-                    <p>
-                        XXX
-                    </p>
-                </li>
+                <li><title>Suggested Time</title><p>14 minutes</p></li>
+                <li><title>Objective</title><p>Learners work out that the earth turns <m>15^\circ</m> in an hour and <m>1^\circ</m> in <m>4</m> minutes, use this to find local times, and compare local solar time with clock time zones.</p></li>
+                <li><title>Teacher's Role</title><p>Darken the room. Shine a torch (the sun) on the globe and turn the globe slowly eastwards (anticlockwise seen from above the North Pole). Ask: <q>Which town sees the sun highest first, Mombasa or Kisumu?</q> Then use the interactive in <xref ref="fig-longitude-time-dial"/>.</p></li>
             </dl>
-        </axiom> -->
+        </axiom>
 
-    <!-- Add Activity -->
-
-    <!-- <activity>
-        <statement>
-        </statement>
-    </activity> -->
-
-    <!-- [LP] Add guidance on structured lesson plan-->
-
-    <!-- <axiom component="lesson-plan">
-        <title>Structured Instruction</title>
-        <p>
-            <dl>
-            <li>
-                <title>Suggested Time</title>
+        <activity xml:id="act-noon-in-nairobi">
+            <title>Noon in Nairobi</title>
+            <statement>
+                <p>Take Nairobi to be on longitude <m>37^\circ\,\text{E}</m> and Kisumu on <m>35^\circ\,\text{E}</m>. <em>Local time</em> at a place is the time by the sun there: it is 12:00 local time when the sun is highest in the sky.</p>
                 <p>
-                    XX minutes
+                    <ol marker="(a)">
+                        <li>
+                            <p>The earth turns once (<m>360^\circ</m>) in <m>24</m> hours. Through how many degrees does it turn in <m>1</m> hour? In <m>4</m> minutes?</p>
+                            <solution component="lesson-plan"><p><m>360 \div 24 = 15^\circ</m> in an hour; <m>15^\circ</m> in <m>60</m> minutes is <m>1^\circ</m> in <m>4</m> minutes.</p></solution>
+                        </li>
+                        <li>
+                            <p>When the sun is highest over Nairobi, how long is it until the sun is highest over Kisumu?</p>
+                            <solution component="lesson-plan"><p>Kisumu is <m>2^\circ</m> west of Nairobi, so the sun reaches it <m>2 \times 4 = 8</m> minutes later.</p></solution>
+                        </li>
+                        <li>
+                            <p>When it is 12:00 local time on <m>37^\circ\,\text{E}</m>, find the local times in London (<m>0^\circ</m>), Dubai (<m>55^\circ\,\text{E}</m>) and New York (<m>74^\circ\,\text{W}</m>).</p>
+                            <solution component="lesson-plan"><p>London is <m>37^\circ</m> west: <m>148</m> minutes behind, 09:32. Dubai is <m>18^\circ</m> east: <m>72</m> minutes ahead, 13:12. New York is <m>37 + 74 = 111^\circ</m> west: <m>444</m> minutes <m>= 7\,\text{h}\ 24\,\text{min}</m> behind, 04:36.</p></solution>
+                        </li>
+                        <li>
+                            <p>In January, clocks in Nairobi show East Africa Time (EAT), which is GMT <m>+ 3</m> hours. Clocks in London show GMT, in Dubai GMT <m>+ 4</m> hours and in New York GMT <m>- 5</m> hours. When Nairobi clocks show 12:00, what do the clocks in the other three cities show? Why are the answers to (c) and (d) different?</p>
+                            <solution component="lesson-plan"><p>12:00 EAT is 09:00 GMT, so London 09:00, Dubai 13:00 and New York 04:00. Clocks follow time zones that differ by whole hours; local time follows the exact longitude.</p></solution>
+                        </li>
+                    </ol>
                 </p>
-            </li>
-            <li>
-                <title>Objective</title>
-                <p>
-                    To formalize the concepts and properties learners discovered in the anchor task.
-                </p>
-            </li>
-            </dl>
-        </p>
-        <paragraphs>
-            <title>Key Takeaways &amp; Teacher Connection</title>
-            <ol>
-                <li>
+            </statement>
+        </activity>
+
+        <axiom component="lesson-plan">
+            <title>Structured Instruction</title>
+            <p>
+                <dl>
+                    <li><title>Suggested Time</title><p>8 minutes</p></li>
+                    <li><title>Objective</title><p>To state the link between longitude and local time that learners found in the activity.</p></li>
+                </dl>
+            </p>
+            <paragraphs>
+                <title>Key Takeaways &amp; Teacher Connection</title>
+                <ol>
+                    <li><p><alert>Connecting to Learner Work:</alert> part (a) gives the two facts used all lesson: <m>15^\circ</m> is <m>1</m> hour and <m>1^\circ</m> is <m>4</m> minutes.</p></li>
+                    <li><p>East is ahead (add), west is behind (subtract). Find the difference in longitude first, with the same rule as for positions: same side of Greenwich subtract, opposite sides add.</p></li>
+                    <li><p>Time zones are a convention: clocks in a zone all show the same time, which is the local time of one chosen meridian.</p></li>
+                </ol>
+            </paragraphs>
+        </axiom>
+
+        <insight xml:id="insight-longitude-and-local-time">
+            <title>Longitude and Local Time</title>
+            <p>The <term>local time</term> at a place is the time by the sun there: 12:00 when the sun is highest. The earth turns eastwards through <m>15^\circ</m> every hour, so the sun reaches places to the east first.</p>
+            <p>
+                <md>
+                    <mrow>360^\circ \amp = 24\ \text{hours}, \amp 15^\circ \amp = 1\ \text{hour}, \amp 1^\circ \amp = 4\ \text{minutes}, \amp 15' \amp = 1\ \text{minute}</mrow>
+                </md>
+            </p>
+            <p>Time difference between two places <m>=</m> difference in longitude (in degrees) <m>\times 4</m> minutes. A place east of another is ahead in local time; a place west of it is behind. <term>Greenwich Mean Time</term> (GMT) is the local time on the Greenwich meridian, <m>0^\circ</m>.</p>
+        </insight>
+
+        <figure xml:id="fig-longitude-time-dial">
+            <caption>Local time and longitude. Set the time at Greenwich, then move the longitude marker: every <m>15^\circ</m> east adds an hour.</caption>
+            <interactive xml:id="interactive-longitude-time-dial" platform="jsxgraph" width="90%" aspect="16:10" source="jsxgraph/longitude-time-dial.js">
+                <slate xml:id="jsxgraph-longitude-time-dial" surface="jsxboard" aspect="16:10"/>
+                <instructions>
                     <p>
-                        <alert>Connecting to Learner Work:</alert> XXXX
+                        <ul>
+                            <li><p>Set the <alert>GMT</alert> slider (steps of <m>15</m> minutes), then move the <alert>longitude</alert> slider (steps of <m>1^\circ</m>). The readout shows the local time at the marker, with <q>+1 day</q> or <q>-1 day</q> when the date is different from Greenwich.</p></li>
+                            <li><p>Check: at 09:00 GMT, the local time at Nairobi (<m>37^\circ\,\text{E}</m>) is 11:28, and at <m>45^\circ\,\text{E}</m> it is 12:00.</p></li>
+                            <li><p>Compare Nairobi's local time with East Africa Time, the local time of the <m>45^\circ\,\text{E}</m> meridian.</p></li>
+                        </ul>
                     </p>
-                </li>
-            </ol>
-        </paragraphs>
-    </axiom> -->
+                </instructions>
+            </interactive>
+        </figure>
 
-    <!-- Add insight / key takeaway directly related to activity / learner experience -->
+        <note xml:id="note-time-zones-eat">
+            <title>Time Zones and East Africa Time</title>
+            <p>If every town kept its own local time, clocks in Nairobi and Mombasa would differ by about <m>11</m> minutes. Instead, most countries use <term>time zones</term>: every clock in a zone shows the same time, usually a whole number of hours ahead of or behind GMT. Kenya, Uganda and Tanzania use East Africa Time (EAT), which is GMT <m>+ 3</m> hours: the local time of the <m>45^\circ\,\text{E}</m> meridian. Nairobi is about <m>8^\circ</m> west of that meridian, so the sun is highest over Nairobi at about 12:33 EAT. In this chapter, <q>local time</q> always means the time by longitude, not the time zone.</p>
+        </note>
 
-    <!-- <insight>
-    </insight> -->
+        <note xml:id="note-international-date-line">
+            <title>The International Date Line</title>
+            <p>Travel far enough east or west and the time difference reaches <m>12</m> hours, at the <m>180^\circ</m> meridian. The <term>International Date Line</term> runs through the Pacific Ocean, roughly along <m>180^\circ</m>. Crossing it travelling westwards, you add a day; travelling eastwards, you take a day away. The line bends round some island groups so that each country keeps one date.</p>
+        </note>
 
-    <!-- Add further instruction (not in a block) to develop ideas as needed -->
+        <xi:include href="../lesson-plan-templates/example-intro.ptx" />
 
-    <xi:include href="../lesson-plan-templates/example-intro.ptx" />
-
-    <!-- Add at least 3 examples -->
-
-    <!-- <example>
-        <statement>
-        </statement>
-        <solution>
-        </solution>
-    </example>
-
-    <example>
-        <statement>
-        </statement>
-        <solution>
-        </solution>
-    </example>
-
-    <example>
-        <statement>
-        </statement>
-        <solution>
-        </solution>
-    </example> -->
-
-    <xi:include href="../lesson-plan-templates/assessment-intro.ptx" />
-
-    <!-- If STACK questions are included, uncomment this: -->
-
-    <!-- <xi:include href="../lesson-plan-templates/checkpoint.ptx" /> -->
-
-    <!-- Add STACK exercises if made -->
-
-    <!-- Add static exercises -->
-
-    <!-- <exercises>
-        <exercise>
-            <statement>   
-
-            </statement>   
+        <example xml:id="example-mombasa-and-kampala">
+            <title>Mombasa and Kampala</title>
+            <statement>
+                <p>Take Mombasa to be on longitude <m>40^\circ\,\text{E}</m> and Kampala on <m>33^\circ\,\text{E}</m>. Find the local time in Kampala when it is 12:00 local time in Mombasa.</p>
+            </statement>
             <solution>
+                <p>Both are east of Greenwich, so the difference in longitude is <m>40^\circ - 33^\circ = 7^\circ</m>, which is <m>7 \times 4 = 28</m> minutes. Kampala is west of Mombasa, so its local time is behind: <m>12{:}00 - 28\,\text{min} = 11{:}32</m>.</p>
+            </solution>
+        </example>
 
-            </solution>             
-        </exercise>        
-    </exercises> -->
+        <example xml:id="example-accra-and-nairobi">
+            <title>Accra and Nairobi</title>
+            <statement>
+                <p>It is 15:20 local time in Nairobi (take <m>37^\circ\,\text{E}</m>). Take Accra to be on the Greenwich meridian, <m>0^\circ</m>. What is the local time in Accra?</p>
+            </statement>
+            <solution>
+                <p>Difference in longitude <m>37^\circ</m>, so <m>37 \times 4 = 148\,\text{min} = 2\,\text{h}\ 28\,\text{min}</m>. Accra is west, so behind: <m>15{:}20 - 2{:}28 = 12{:}52</m>.</p>
+            </solution>
+        </example>
 
-    <!-- [LP] Add information on how to differentiate  -->
+        <example xml:id="example-finding-a-ships-longitude">
+            <title>Finding a Ship's Longitude</title>
+            <statement>
+                <p>A ship's navigator sees that the local time on board is 05:24 when it is 08:00 GMT. Find the ship's longitude.</p>
+            </statement>
+            <solution>
+                <p>The ship's time is behind GMT by <m>8{:}00 - 5{:}24 = 2\,\text{h}\ 36\,\text{min} = 156\,\text{min}</m>. Each degree is <m>4</m> minutes, so the ship is <m>156 \div 4 = 39^\circ</m> from Greenwich. Behind means west: the ship is on longitude <m>39^\circ\,\text{W}</m>.</p>
+            </solution>
+        </example>
 
-    <!-- <axiom component="lesson-plan">
-        <title>Differentiation</title>
+        <example xml:id="example-across-the-pacific">
+            <title>Across the Pacific</title>
+            <statement>
+                <p>It is 05:00 on Wednesday, local time, in Nairobi (<m>37^\circ\,\text{E}</m>). Take Honolulu to be on longitude <m>158^\circ\,\text{W}</m>. What are the day and local time in Honolulu?</p>
+            </statement>
+            <solution>
+                <p>Nairobi and Honolulu are on opposite sides of Greenwich, so add: <m>37^\circ + 158^\circ = 195^\circ</m>. <m>195 \times 4 = 780\,\text{min} = 13\,\text{h}</m>. Honolulu is west of Nairobi, so it is behind: <m>13</m> hours before 05:00 on Wednesday is 16:00 on Tuesday.</p>
+                <p>Counting the other way, eastwards across the <m>180^\circ</m> meridian, Honolulu is <m>165^\circ</m> away and <m>11</m> hours ahead, which also gives 16:00. Crossing the International Date Line (<xref ref="note-international-date-line"/>) eastwards takes a day away, so the day is Tuesday either way.</p>
+            </solution>
+        </example>
 
-        <table>
+        <xi:include href="../lesson-plan-templates/assessment-intro.ptx" />
+        <xi:include href="../lesson-plan-templates/checkpoint.ptx" />
+
+        <p>Type decimals with a point, for example <c>36.8</c>. Type angles in degrees as numbers, without the degree sign. Choose N, S, E or W from each list.</p>
+        <p>Give times on the 24-hour clock: type the hours and the minutes in separate boxes, for example 14 and 05 for 14:05.</p>
+
+<exercise xml:id="ex-local-time-at-another-longitude">
+    <!--<title></title>-->
+    <stack label="stk-local-time-at-another-longitude" source="stack/top/2-measurement-and-geometry/13-navigation/04-longitude-and-time/Local-time-at-another-longitude.xml"/>
+</exercise>
+
+<exercise xml:id="ex-longitude-from-a-time-difference">
+    <!--<title></title>-->
+    <stack label="stk-longitude-from-a-time-difference" source="stack/top/2-measurement-and-geometry/13-navigation/04-longitude-and-time/Longitude-from-a-time-difference.xml"/>
+</exercise>
+
+<exercise xml:id="ex-day-and-time-across-the-world">
+    <!--<title></title>-->
+    <stack label="stk-day-and-time-across-the-world" source="stack/top/2-measurement-and-geometry/13-navigation/04-longitude-and-time/Day-and-time-across-the-world.xml"/>
+</exercise>
+
+        <exercises xml:id="exercises-local-time-and-longitude">
+            <exercise xml:id="ex-garissa-and-kisumu">
+                <statement><p>Take Garissa to be on longitude <m>40^\circ\,\text{E}</m> and Kisumu on <m>35^\circ\,\text{E}</m>. It is 09:00 local time in Garissa. What is the local time in Kisumu?</p></statement>
+                <answer><p>08:40</p></answer>
+                <solution><p>Difference in longitude <m>40^\circ - 35^\circ = 5^\circ</m>, and <m>5 \times 4 = 20</m> minutes of time. Kisumu is west of Garissa, so it is behind: <m>09{:}00 - 20</m> minutes gives 08:40.</p></solution>
+            </exercise>
+            <exercise xml:id="ex-from-greenwich">
+                <statement><p>It is 13:00 GMT. Find the local time on longitude <m>75^\circ\,\text{W}</m> and on longitude <m>120^\circ\,\text{E}</m>.</p></statement>
+                <answer><p>08:00; 21:00</p></answer>
+                <solution><p><m>75 \times 4 = 300\,\text{min} = 5\,\text{h}</m> behind: 08:00. <m>120 \times 4 = 480\,\text{min} = 8\,\text{h}</m> ahead: 21:00.</p></solution>
+            </exercise>
+            <exercise xml:id="ex-longitude-mauritius">
+                <statement><p>When it is 12:00 GMT, the local time on a ship is 15:48. Find the ship's longitude.</p></statement>
+                <answer><p><m>57^\circ\,\text{E}</m></p></answer>
+                <solution><p>The ship is <m>3\,\text{h}\ 48\,\text{min} = 228\,\text{min}</m> ahead, so <m>228 \div 4 = 57^\circ</m> east.</p></solution>
+            </exercise>
+            <exercise xml:id="ex-wellington-and-lima">
+                <statement><p>It is 10:00 on Wednesday, local time, in Nairobi (<m>37^\circ\,\text{E}</m>). Find the day and local time in Wellington (take <m>175^\circ\,\text{E}</m>) and in Lima (take <m>77^\circ\,\text{W}</m>).</p></statement>
+                <answer><p>Wellington: Wednesday 19:12. Lima: Wednesday 02:24.</p></answer>
+                <solution><p>Wellington is <m>175 - 37 = 138^\circ</m> east: <m>552\,\text{min} = 9\,\text{h}\ 12\,\text{min}</m> ahead, 19:12 on Wednesday. Lima is <m>37 + 77 = 114^\circ</m> west: <m>456\,\text{min} = 7\,\text{h}\ 36\,\text{min}</m> behind, 02:24 on Wednesday.</p></solution>
+            </exercise>
+            <exercise xml:id="ex-friday-night-in-nairobi">
+                <statement><p>It is 21:30 on Friday, local time, in Nairobi (<m>37^\circ\,\text{E}</m>). Find the day and local time on longitude <m>165^\circ\,\text{E}</m>.</p></statement>
+                <answer><p>Saturday 06:02</p></answer>
+                <solution><p><m>165 - 37 = 128^\circ</m> east: <m>512\,\text{min} = 8\,\text{h}\ 32\,\text{min}</m> ahead. <m>21{:}30 + 8{:}32 = 30{:}02</m>, which is past midnight: 06:02 on Saturday.</p></solution>
+            </exercise>
+            <exercise xml:id="ex-two-possible-longitudes">
+                <title>Challenge: Two Possible Longitudes</title>
+                <statement><p>The local time at a place P differs by <m>3\,\text{h}\ 20\,\text{min}</m> from the local time on longitude <m>25^\circ\,\text{E}</m>. Find the two possible longitudes of P.</p></statement>
+                <hint><p>P could be east or west of <m>25^\circ\,\text{E}</m>.</p></hint>
+                <answer><p><m>75^\circ\,\text{E}</m> or <m>25^\circ\,\text{W}</m></p></answer>
+                <solution><p><m>3\,\text{h}\ 20\,\text{min} = 200\,\text{min}</m>, and <m>200 \div 4 = 50^\circ</m>. East: <m>25^\circ + 50^\circ = 75^\circ\,\text{E}</m>. West: <m>50^\circ - 25^\circ = 25^\circ</m> past Greenwich, so <m>25^\circ\,\text{W}</m>.</p></solution>
+            </exercise>
+        </exercises>
+
+        <axiom component="lesson-plan">
             <title>Differentiation</title>
-            <tabular halign="left">
-                <row header="yes" bottom="minor">
-                    <cell>Learner Group</cell>
-                    <cell>Strategy &amp; Learning Experience</cell>
-                    <cell></cell>
-                </row>
-                <row>
-                    <cell>Struggling Learners (Support)</cell>
-                    <cell>
-                        XXXX
-                    </cell>
-                    <cell></cell>
-                </row>
-                <row>
-                    <cell>On-Level Learners (Core)</cell>
-                    <cell>
-                        <line>The core lesson activities as described above.</line>
-                    </cell>
-                    <cell></cell>
-                </row>
-                <row>
-                    <cell>Advanced Learners (Challenge)</cell>
-                    <cell>
-                        XXXX
-                    </cell>
-                    <cell></cell>
-                </row>
-            </tabular>
-        </table>
-    </axiom> -->
+            <table xml:id="table-differentiation-local-time-and-longitude">
+                <title>Differentiation Strategies</title>
+                <tabular halign="left" top="minor" bottom="minor" left="minor" right="minor">
+                    <row header="yes" bottom="medium"><cell>Learner Group</cell><cell>Strategy and Learning Experience</cell></row>
+                    <row><cell>Struggling Learners (Support)</cell><cell>Activity parts (a) to (c), <xref ref="example-mombasa-and-kampala"/> and <xref ref="example-accra-and-nairobi"/>. Give a card: <q>East is ahead: add. West is behind: subtract. <m>1^\circ</m> = 4 min.</q> Assign <xref ref="ex-garissa-and-kisumu"/> and <xref ref="ex-from-greenwich"/>.</cell></row>
+                    <row><cell>On-Level Learners (Core)</cell><cell>Full activity and all examples. Assign <xref ref="ex-garissa-and-kisumu"/> to <xref ref="ex-friday-night-in-nairobi"/>.</cell></row>
+                    <row><cell>Advanced Learners (Challenge)</cell><cell>All exercises including <xref ref="ex-two-possible-longitudes"/>. Extension: at what longitude is local time exactly <m>12</m> hours different from Greenwich? (Answer: <m>180^\circ</m>.)</cell></row>
+                </tabular>
+            </table>
+        </axiom>
 
-    <xi:include href="../lesson-plan-templates/assessment-methods.ptx" />
+        <p component="lesson-plan">Closing question for the class: why does a business in Nairobi that phones a customer in London need to know the time difference?</p>
 
-    <xi:include href="../lesson-plan-templates/reflection.ptx"/>
+        <xi:include href="../lesson-plan-templates/assessment-methods.ptx" />
+        <xi:include href="../lesson-plan-templates/reflection.ptx"/>
+    </subsection>
+
+    <!-- ============================================================ Lesson 4.2 -->
+    <subsection xml:id="subsec-journeys-across-longitudes">
+        <title>Journeys Across Longitudes</title>
+
+        <p component="lesson-plan">Upon completion of this lesson, learners will be able to:
+            <ol>
+                <li><p><alert>Know:</alert> the local time on arrival is the departure local time plus the journey time, then plus or minus the time difference between the two longitudes.</p></li>
+                <li><p><alert>Do:</alert> find arrival times, journey times and speeds from local times.</p></li>
+                <li><p><alert>Apply:</alert> flights and voyages along the equator and parallels; recognise the role of navigation in daily life.</p></li>
+            </ol>
+        </p>
+
+        <axiom component="lesson-plan">
+            <title>Problem-Solving and Discovery</title>
+            <dl>
+                <li><title>Suggested Time</title><p>14 minutes</p></li>
+                <li><title>Objective</title><p>Learners combine distance, speed and local time for a long voyage along the equator.</p></li>
+                <li><title>Teacher's Role</title><p>Open with a story: a visitor has just arrived in Nairobi and her phone still shows the time at home. How should she reset it, and how could you help her? (Caring for a visitor is part of the value love.) Let groups do parts (a) to (c) before discussing part (d).</p></li>
+            </dl>
+        </axiom>
+
+        <activity xml:id="act-five-days-on-the-equator">
+            <title>Five Days on the Equator</title>
+            <statement>
+                <p>A ship sails due east along the equator from longitude <m>42^\circ\,\text{E}</m> to longitude <m>73^\circ\,\text{E}</m> at <m>15.5\,\text{knots}</m>. It leaves at 08:00 on Monday, local time.</p>
+                <p>
+                    <ol marker="(a)">
+                        <li>
+                            <p>How far does the ship sail, in nautical miles?</p>
+                            <solution component="lesson-plan"><p><m>73^\circ - 42^\circ = 31^\circ = 1860'</m>, so <m>1860\,\text{nm}</m>.</p></solution>
+                        </li>
+                        <li>
+                            <p>How long does the voyage take?</p>
+                            <solution component="lesson-plan"><p><m>1860 \div 15.5 = 120\,\text{h} = 5</m> days.</p></solution>
+                        </li>
+                        <li>
+                            <p>What is the time of arrival by the clock of the starting port?</p>
+                            <solution component="lesson-plan"><p>Five days after 08:00 on Monday: 08:00 on Saturday.</p></solution>
+                        </li>
+                        <li>
+                            <p>What is the local time on <m>73^\circ\,\text{E}</m> when the ship arrives?</p>
+                            <solution component="lesson-plan"><p>The ship has moved <m>31^\circ</m> east, so local time is <m>31 \times 4 = 124\,\text{min}</m> ahead: 10:04 on Saturday.</p></solution>
+                        </li>
+                        <li>
+                            <p>A passenger's watch still shows the time at the starting port. How should she change it?</p>
+                            <solution component="lesson-plan"><p>Forward by <m>2\,\text{h}\ 04\,\text{min}</m>.</p></solution>
+                        </li>
+                    </ol>
+                </p>
+            </statement>
+        </activity>
+
+        <axiom component="lesson-plan">
+            <title>Structured Instruction</title>
+            <p>
+                <dl>
+                    <li><title>Suggested Time</title><p>8 minutes</p></li>
+                    <li><title>Objective</title><p>To set out the three steps for the local time at the end of a journey.</p></li>
+                </dl>
+            </p>
+            <paragraphs>
+                <title>Key Takeaways &amp; Teacher Connection</title>
+                <ol>
+                    <li><p><alert>Connecting to Learner Work:</alert> parts (b), (c) and (d) of the activity are the three steps: journey time, the starting clock on arrival, then the change of local time.</p></li>
+                    <li><p>Travelling east, local time gains <m>4</m> minutes for every degree; travelling west, it loses <m>4</m> minutes for every degree.</p></li>
+                    <li><p>Return to the key inquiry question of the chapter: how do we use navigation in daily life?</p></li>
+                </ol>
+            </paragraphs>
+        </axiom>
+
+        <insight xml:id="insight-arrival-local-time">
+            <title>Arrival Local Time</title>
+            <p>For a journey from one longitude to another:</p>
+            <p>
+                <ol marker="1.">
+                    <li><p>Find the journey time from the distance and the speed.</p></li>
+                    <li><p>Add it to the departure time: this is the arrival time by the clock of the starting place.</p></li>
+                    <li><p>Change to local time at the end: add <m>4</m> minutes for each degree travelled east, or subtract <m>4</m> minutes for each degree travelled west.</p></li>
+                </ol>
+            </p>
+            <p>
+                <md>\text{arrival local time} = \text{departure local time} + \text{journey time} \pm 4\ \text{min} \times (\text{degrees of longitude travelled})</md>
+                with <m>+</m> for a journey east and <m>-</m> for a journey west.
+            </p>
+        </insight>
+
+        <xi:include href="../lesson-plan-templates/example-intro.ptx" />
+
+        <example xml:id="example-a-westward-flight">
+            <title>A Westward Flight</title>
+            <statement>
+                <p>An aircraft flies due west along the equator from longitude <m>37^\circ\,\text{E}</m> to longitude <m>13^\circ\,\text{E}</m> at <m>450\,\text{knots}</m>. It leaves at 07:30 local time. Find the local time when it arrives.</p>
+            </statement>
+            <solution>
+                <p><alert>Step 1: journey time.</alert> Distance <m>(37 - 13) \times 60 = 1440\,\text{nm}</m>. Time <m>1440 \div 450 = 3.2\,\text{h} = 3\,\text{h}\ 12\,\text{min}</m>.</p>
+                <p><alert>Step 2: starting clock.</alert> <m>07{:}30 + 3{:}12 = 10{:}42</m>.</p>
+                <p><alert>Step 3: local time.</alert> The aircraft travelled <m>24^\circ</m> west, so local time is <m>24 \times 4 = 96\,\text{min} = 1\,\text{h}\ 36\,\text{min}</m> behind: <m>10{:}42 - 1{:}36 = 09{:}06</m>. It arrives at 09:06 local time.</p>
+            </solution>
+        </example>
+
+        <example xml:id="example-speed-from-local-times">
+            <title>Finding the Speed from Local Times</title>
+            <statement>
+                <p>A plane leaves longitude <m>0^\circ</m> on the equator at 09:00 local time and flies due east along the equator to longitude <m>37^\circ\,\text{E}</m>, arriving at 17:58 local time. Find its speed in knots.</p>
+            </statement>
+            <solution>
+                <p>The local times differ by <m>17{:}58 - 9{:}00 = 8\,\text{h}\ 58\,\text{min}</m>. Part of this is the change of local time: <m>37 \times 4 = 148\,\text{min} = 2\,\text{h}\ 28\,\text{min}</m>, gained by flying east. So the flight time is <m>8\,\text{h}\ 58\,\text{min} - 2\,\text{h}\ 28\,\text{min} = 6\,\text{h}\ 30\,\text{min} = 6.5\,\text{h}</m>.</p>
+                <p>Distance <m>37 \times 60 = 2220\,\text{nm}</m>. Speed <m>2220 \div 6.5 = 341.5\,\text{knots}</m>.</p>
+            </solution>
+        </example>
+
+        <insight xml:id="insight-navigation-around-us">
+            <title>Navigation Around Us</title>
+            <p>Navigation is finding where you are and how to reach where you want to go. In Kenya it is used every day:</p>
+            <p>
+                <ul>
+                    <li><p>ships entering the ports of Mombasa and Lamu, and dhows along the coast;</p></li>
+                    <li><p>Kenya Airways and other flights planning routes, fuel and arrival times across time zones;</p></li>
+                    <li><p>fishermen on Lake Victoria and in the Indian Ocean finding their way back to shore;</p></li>
+                    <li><p>phone maps and GPS used by matatu, boda boda and delivery riders;</p></li>
+                    <li><p>search and rescue teams giving positions in latitude and longitude;</p></li>
+                    <li><p>businesses arranging calls and deliveries with partners in other time zones.</p></li>
+                </ul>
+            </p>
+        </insight>
+
+        <axiom component="lesson-plan">
+            <title>Curriculum Links</title>
+            <dl>
+                <li><title>Key Inquiry Question</title><p>How do we use navigation in daily life? Revisit it with <xref ref="insight-navigation-around-us"/>.</p></li>
+                <li><title>Core Competencies</title><p>Citizenship (global awareness: world times in the activity of <xref ref="subsec-local-time-and-longitude"/>); digital literacy (the interactives, phone GPS positions).</p></li>
+                <li><title>Values</title><p>Love: helping a visitor whose phone still shows home time.</p></li>
+                <li><title>Pertinent and Contemporary Issues</title><p component="core">Safety and security; online safety (think before sharing your live location).</p><p component="essential">Online safety (think before sharing your live location).</p></li>
+            </dl>
+        </axiom>
+
+        <xi:include href="../lesson-plan-templates/assessment-intro.ptx" />
+        <xi:include href="../lesson-plan-templates/checkpoint.ptx" />
+
+        <p>Type decimals with a point, for example <c>36.8</c>. Type angles in degrees as numbers, without the degree sign. Choose N, S, E or W from each list.</p>
+        <p>Give times on the 24-hour clock: type the hours and the minutes in separate boxes, for example 14 and 05 for 14:05.</p>
+
+<exercise xml:id="ex-arrival-local-time-after-a-flight">
+    <!--<title></title>-->
+    <stack label="stk-arrival-local-time-after-a-flight" source="stack/top/2-measurement-and-geometry/13-navigation/04-longitude-and-time/Arrival-local-time-after-a-flight.xml"/>
+</exercise>
+
+        <exercises xml:id="exercises-journeys-across-longitudes">
+            <exercise xml:id="ex-westward-flight-20e">
+                <statement><p>A plane leaves longitude <m>20^\circ\,\text{E}</m> on the equator at 06:00 local time and flies due west along the equator at <m>400\,\text{knots}</m> to longitude <m>10^\circ\,\text{W}</m>. Find the local time when it arrives.</p></statement>
+                <answer><p>08:30</p></answer>
+                <solution><p>Difference in longitude <m>20^\circ + 10^\circ = 30^\circ</m>, so <m>1800\,\text{nm}</m>. Time <m>1800 \div 400 = 4.5\,\text{h} = 4\,\text{h}\ 30\,\text{min}</m>; starting clock <m>10{:}30</m>. West by <m>30^\circ</m>: <m>120\,\text{min}</m> behind, so 08:30 local time.</p></solution>
+            </exercise>
+            <exercise xml:id="ex-voyage-along-32s">
+                <statement><p>A ship sails along the parallel <m>32^\circ\,\text{S}</m> from longitude <m>30^\circ\,\text{E}</m> to longitude <m>115^\circ\,\text{E}</m> at <m>16\,\text{knots}</m>. How long does the voyage take, to the nearest hour?</p></statement>
+                <answer><p><m>270</m> hours</p></answer>
+                <solution><p>Difference in longitude <m>85^\circ = 5100'</m>. Distance <m>5100 \cos 32^\circ = 4325.0\,\text{nm}</m>. Time <m>4325.0 \div 16 = 270.3</m>, about <m>270\,\text{h}</m> (just over <m>11</m> days).</p></solution>
+            </exercise>
+            <exercise xml:id="ex-speed-from-local-times">
+                <statement><p>A plane leaves longitude <m>10^\circ\,\text{W}</m> on the equator at 08:00 local time and flies due east along the equator to longitude <m>26^\circ\,\text{E}</m>, arriving at 15:24 local time. Find its speed in knots.</p></statement>
+                <answer><p><m>432\,\text{knots}</m></p></answer>
+                <solution><p>Difference in longitude <m>10^\circ + 26^\circ = 36^\circ</m>, so <m>2160\,\text{nm}</m>, and local time gains <m>36 \times 4 = 144\,\text{min} = 2\,\text{h}\ 24\,\text{min}</m>. The local times differ by <m>7\,\text{h}\ 24\,\text{min}</m>, so the flight takes <m>5\,\text{h}</m>. Speed <m>2160 \div 5 = 432\,\text{knots}</m>.</p></solution>
+            </exercise>
+            <exercise xml:id="ex-ships-clock">
+                <title>Challenge: The Ship's Clock</title>
+                <statement><p>A ship sails due west along the equator, covering <m>300\,\text{nm}</m> each day. Its clock is set to local time once a day. By how much is the clock changed each day, and is it put forward or back?</p></statement>
+                <hint><p>How many degrees of longitude is <m>300\,\text{nm}</m> along the equator?</p></hint>
+                <answer><p>Back <m>20</m> minutes each day</p></answer>
+                <solution><p><m>300\,\text{nm} = 300' = 5^\circ</m> a day. <m>5 \times 4 = 20</m> minutes. The ship moves west, where local time is behind, so the clock is put back <m>20</m> minutes each day.</p></solution>
+            </exercise>
+        </exercises>
+
+        <axiom component="lesson-plan">
+            <title>Differentiation</title>
+            <table xml:id="table-differentiation-journeys-across-longitudes">
+                <title>Differentiation Strategies</title>
+                <tabular halign="left" top="minor" bottom="minor" left="minor" right="minor">
+                    <row header="yes" bottom="medium"><cell>Learner Group</cell><cell>Strategy and Learning Experience</cell></row>
+                    <row><cell>Struggling Learners (Support)</cell><cell>Activity parts (a) to (d) and <xref ref="example-a-westward-flight"/>. Give a card with the three steps of <xref ref="insight-arrival-local-time"/>. Assign <xref ref="ex-westward-flight-20e"/>.</cell></row>
+                    <row><cell>On-Level Learners (Core)</cell><cell>Full activity and all examples. Assign <xref ref="ex-westward-flight-20e"/> to <xref ref="ex-speed-from-local-times"/>.</cell></row>
+                    <row><cell>Advanced Learners (Challenge)</cell><cell>All exercises including <xref ref="ex-ships-clock"/>. Extension: a plane leaves a town on the equator at 08:00 local time, flies due west along the equator for <m>3</m> hours and lands at 10:00 local time. Find its speed. (Answer: by the starting clock it lands at 11:00, so local time is <m>1</m> hour behind: <m>15^\circ</m> of longitude, which is <m>900\,\text{nm}</m> in <m>3</m> hours, <m>300\,\text{knots}</m>.)</cell></row>
+                </tabular>
+            </table>
+        </axiom>
+
+        <p component="lesson-plan">Closing question for the class: name one way navigation is used in your county, and say what it measures (a position, a distance, a speed or a time).</p>
+
+        <xi:include href="../lesson-plan-templates/assessment-methods.ptx" />
+        <xi:include href="../lesson-plan-templates/reflection.ptx"/>
+    </subsection>
 </section>

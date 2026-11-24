@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<quiz>
+<question type="stack">
+  <name><text>Probability of an event from a bag of bottle tops</text></name>
+  <questiontext format="html">
+    <text><![CDATA[<p>A bag holds \({@r@}\) red, \({@g@}\) green, \({@w@}\) white and \({@y@}\) yellow bottle tops. {@nm@} takes one bottle top at random.</p><p>Give each probability exactly, as a fraction or an exact decimal.</p><p>(a) Find \(P(\text{red})\).</p><div>[[input:ans1]] [[validation:ans1]] [[feedback:prt1]]</div><p>(b) Find \(P(\text{not green})\).</p><div>[[input:ans2]] [[validation:ans2]] [[feedback:prt2]]</div><p>(c) Find \(P(\text{red or white})\).</p><div>[[input:ans3]] [[validation:ans3]] [[feedback:prt3]]</div>]]></text>
+  </questiontext>
+  <generalfeedback format="html">
+    <text><![CDATA[<p>There are \({@r@} + {@g@} + {@w@} + {@y@} = {@N@}\) bottle tops, and each is equally likely to be taken. Count the bottle tops that make the event happen and divide by \({@N@}\).</p><p>(a) \(P(\text{red}) = \dfrac{{@r@}}{{@N@}} = {@ta1@}\).</p><p>(b) An event either happens or it does not, so the two probabilities add to 1. \(P(\text{not green}) = 1 - \dfrac{{@g@}}{{@N@}} = \dfrac{{@N-g@}}{{@N@}} = {@ta2@}\).</p><p>(c) One bottle top cannot be both red and white, so count both colours together: \(P(\text{red or white}) = \dfrac{{@r@} + {@w@}}{{@N@}} = \dfrac{{@r+w@}}{{@N@}} = {@ta3@}\).</p>]]></text>
+  </generalfeedback>
+  <defaultgrade>3</defaultgrade>
+  <penalty>0.1</penalty>
+  <hidden>0</hidden>
+  <idnumber></idnumber>
+  <stackversion><text>2026063000</text></stackversion>
+  <questionvariables>
+    <text><![CDATA[/* pdec: exact decimal display of a value with at most 4 decimal places */
+pdec(v) := if integerp(v) then v elseif integerp(10*v) then dispdp(float(v),1) elseif integerp(100*v) then dispdp(float(v),2) elseif integerp(1000*v) then dispdp(float(v),3) else dispdp(float(v),4);
+/* Design: probability of each colour and "not", with four colours and an "or" part. Curated lists. Source: adapted from SMP GCSE Foundation book 1, chapter 19, section A, A5. */
+L: [[8,4,3,7],[7,4,9,5],[4,2,7,9],[4,7,8,2],[6,3,8,4],[3,2,9,6],[3,7,4,5],[5,8,6,2],[4,6,3,5],[7,8,3,4]];
+ix: 1+rand(10);
+nm: rand(["Akoth","Kiprotich","Zawadi"]);
+r: L[ix][1]; g: L[ix][2]; w: L[ix][3]; y: L[ix][4];
+N: r+g+w+y;
+ta1: r/N; ta2: (N-g)/N; ta3: (r+w)/N;
+tl1: min(1/200,ta1/20); tl2: min(1/200,ta2/20); tl3: min(1/200,ta3/20);
+/* diagnostics */
+odds1: r/(N-r);
+dg2: g/N;
+half3: (r+w)/(2*N);
+prod3: r*w/N^2;]]></text>
+  </questionvariables>
+  <specificfeedback format="html"><text><![CDATA[]]></text></specificfeedback>
+  <questionnote format="moodle_auto_format">
+    <text>ix={@ix@}, name={@nm@}, r={@r@}, g={@g@}, w={@w@}, y={@y@}, P(red)={@ta1@}</text>
+  </questionnote>
+  <questiondescription format="html"><text><![CDATA[<p id="concept">Probability III: probability of an event by counting</p><p id="description">Grade 12 CBE Essential 3.2: Find probabilities of single events, a complement and an 'or' event for one draw from a bag, by counting equally likely outcomes.</p><p id="edition">Essential</p><p id="provenance">This question is adapted from Chapter 19, Section A, question A5 of Ling, J., Scruton, P., Shilton, S. and West, H., SMP GCSE Mathematics: Foundation 1 for AQA, Edexcel and OCR two-tier GCSE mathematics, Cambridge University Press, 2006: four colours, a complement part and an 'or' part, randomised, with a new Kenyan context and new numbers.</p><p id="citation">INNODEMS CBC Grade 12 Mathematics, first draft by Ben Davies, 2026. Aligned to the KICD Senior School Curriculum Design, Essential Mathematics Grade 12 (draft).</p>]]></text></questiondescription>
+  <questionsimplify>1</questionsimplify>
+  <assumepositive>0</assumepositive>
+  <assumereal>0</assumereal>
+  <prtcorrect format="html"><text><![CDATA[[[commonstring key="symbolicprtcorrectfeedback"/]] [[commonstring key="defaultprtcorrectfeedback"/]]]]></text></prtcorrect>
+  <prtpartiallycorrect format="html"><text><![CDATA[[[commonstring key="symbolicprtpartiallycorrectfeedback"/]] [[commonstring key="defaultprtpartiallycorrectfeedback"/]]]]></text></prtpartiallycorrect>
+  <prtincorrect format="html"><text><![CDATA[[[commonstring key="symbolicprtincorrectfeedback"/]] [[commonstring key="defaultprtincorrectfeedback"/]]]]></text></prtincorrect>
+  <decimals>.</decimals>
+  <scientificnotation>*10</scientificnotation>
+  <multiplicationsign>none</multiplicationsign>
+  <sqrtsign>1</sqrtsign>
+  <complexno>i</complexno>
+  <inversetrig>cos-1</inversetrig>
+  <logicsymbol>lang</logicsymbol>
+  <matrixparens>[</matrixparens>
+  <isbroken>0</isbroken>
+  <variantsselectionseed></variantsselectionseed>
+
+  <input><name>ans1</name><type>numerical</type><tans>ta1</tans><boxsize>8</boxsize><strictsyntax>1</strictsyntax><insertstars>0</insertstars><syntaxhint></syntaxhint><syntaxattribute>0</syntaxattribute><forbidwords></forbidwords><allowwords></allowwords><forbidfloat>0</forbidfloat><requirelowestterms>0</requirelowestterms><checkanswertype>0</checkanswertype><mustverify>0</mustverify><showvalidation>0</showvalidation><options></options></input>
+  <input><name>ans2</name><type>numerical</type><tans>ta2</tans><boxsize>8</boxsize><strictsyntax>1</strictsyntax><insertstars>0</insertstars><syntaxhint></syntaxhint><syntaxattribute>0</syntaxattribute><forbidwords></forbidwords><allowwords></allowwords><forbidfloat>0</forbidfloat><requirelowestterms>0</requirelowestterms><checkanswertype>0</checkanswertype><mustverify>0</mustverify><showvalidation>0</showvalidation><options></options></input>
+  <input><name>ans3</name><type>numerical</type><tans>ta3</tans><boxsize>8</boxsize><strictsyntax>1</strictsyntax><insertstars>0</insertstars><syntaxhint></syntaxhint><syntaxattribute>0</syntaxattribute><forbidwords></forbidwords><allowwords></allowwords><forbidfloat>0</forbidfloat><requirelowestterms>0</requirelowestterms><checkanswertype>0</checkanswertype><mustverify>0</mustverify><showvalidation>0</showvalidation><options></options></input>
+
+  <prt><name>prt1</name><value>1.0000000</value><autosimplify>1</autosimplify><feedbackstyle>1</feedbackstyle><feedbackvariables><text><![CDATA[]]></text></feedbackvariables>
+    <node><name>0</name><description>ok</description><answertest>NumAbsolute</answertest><sans>ans1</sans><tans>ta1</tans><testoptions>10^(-9)</testoptions><quiet>1</quiet><truescoremode>=</truescoremode><truescore>1.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt1-1-T</trueanswernote><truefeedback format="html"><text><![CDATA[]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>1</falsenextnode><falseanswernote>prt1-1-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>1</name><description>round</description><answertest>NumAbsolute</answertest><sans>ans1</sans><tans>ta1</tans><testoptions>tl1</testoptions><quiet>1</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt1-2-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>Your value is close to the right one but has been rounded. Give the exact probability as a fraction or an exact decimal.</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>2</falsenextnode><falseanswernote>prt1-2-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>2</name><description>odds</description><answertest>NumAbsolute</answertest><sans>ans1</sans><tans>odds1</tans><testoptions>tl1</testoptions><quiet>1</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt1-3-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>You compared the red bottle tops with all the others (\({@r@}\) to \({@N-r@}\)). A probability compares them with all \({@N@}\) bottle tops.</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>3</falsenextnode><falseanswernote>prt1-3-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>3</name><description>range</description><answertest>AlgEquiv</answertest><sans>is(ans1&lt;0 or ans1&gt;1)</sans><tans>true</tans><testoptions></testoptions><quiet>1</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt1-4-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>A probability is always between 0 and 1, so \({@ans1@}\) cannot be a probability.</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>-1</falsenextnode><falseanswernote>prt1-4-F</falseanswernote><falsefeedback format="html"><text><![CDATA[<p>Count the red bottle tops and divide by the total number of bottle tops, \({@N@}\).</p>]]></text></falsefeedback></node>
+  </prt>
+  <prt><name>prt2</name><value>1.0000000</value><autosimplify>1</autosimplify><feedbackstyle>1</feedbackstyle><feedbackvariables><text><![CDATA[]]></text></feedbackvariables>
+    <node><name>0</name><description>ok</description><answertest>NumAbsolute</answertest><sans>ans2</sans><tans>ta2</tans><testoptions>10^(-9)</testoptions><quiet>1</quiet><truescoremode>=</truescoremode><truescore>1.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt2-1-T</trueanswernote><truefeedback format="html"><text><![CDATA[]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>1</falsenextnode><falseanswernote>prt2-1-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>1</name><description>round</description><answertest>NumAbsolute</answertest><sans>ans2</sans><tans>ta2</tans><testoptions>tl2</testoptions><quiet>1</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt2-2-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>Your value is close to the right one but has been rounded. Give the exact probability as a fraction or an exact decimal.</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>2</falsenextnode><falseanswernote>prt2-2-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>2</name><description>green</description><answertest>NumAbsolute</answertest><sans>ans2</sans><tans>dg2</tans><testoptions>tl2</testoptions><quiet>1</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt2-3-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>That is \(P(\text{green})\). <q>Not green</q> is every other bottle top: count those, or take \(P(\text{green})\) away from 1.</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>3</falsenextnode><falseanswernote>prt2-3-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>3</name><description>range</description><answertest>AlgEquiv</answertest><sans>is(ans2&lt;0 or ans2&gt;1)</sans><tans>true</tans><testoptions></testoptions><quiet>1</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt2-4-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>A probability is always between 0 and 1, so \({@ans2@}\) cannot be a probability.</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>-1</falsenextnode><falseanswernote>prt2-4-F</falseanswernote><falsefeedback format="html"><text><![CDATA[<p>Use \(P(\text{not green}) = 1 - P(\text{green})\).</p>]]></text></falsefeedback></node>
+  </prt>
+  <prt><name>prt3</name><value>1.0000000</value><autosimplify>1</autosimplify><feedbackstyle>1</feedbackstyle><feedbackvariables><text><![CDATA[]]></text></feedbackvariables>
+    <node><name>0</name><description>ok</description><answertest>NumAbsolute</answertest><sans>ans3</sans><tans>ta3</tans><testoptions>10^(-9)</testoptions><quiet>1</quiet><truescoremode>=</truescoremode><truescore>1.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt3-1-T</trueanswernote><truefeedback format="html"><text><![CDATA[]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>1</falsenextnode><falseanswernote>prt3-1-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>1</name><description>round</description><answertest>NumAbsolute</answertest><sans>ans3</sans><tans>ta3</tans><testoptions>tl3</testoptions><quiet>1</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt3-2-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>Your value is close to the right one but has been rounded. Give the exact probability as a fraction or an exact decimal.</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>2</falsenextnode><falseanswernote>prt3-2-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>2</name><description>half</description><answertest>NumAbsolute</answertest><sans>ans3</sans><tans>half3</tans><testoptions>tl3</testoptions><quiet>1</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt3-3-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>You added the two fractions by adding the tops and the bottoms. Both fractions are out of the same \({@N@}\) bottle tops, so the bottom stays \({@N@}\): add only the tops.</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>3</falsenextnode><falseanswernote>prt3-3-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>3</name><description>prod</description><answertest>NumAbsolute</answertest><sans>ans3</sans><tans>prod3</tans><testoptions>tl3</testoptions><quiet>1</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt3-4-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>Multiplying is for two separate events that must both happen. One bottle top cannot be red and white, so add: \(P(\text{red}) + P(\text{white})\).</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>4</falsenextnode><falseanswernote>prt3-4-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>4</name><description>range</description><answertest>AlgEquiv</answertest><sans>is(ans3&lt;0 or ans3&gt;1)</sans><tans>true</tans><testoptions></testoptions><quiet>1</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt3-5-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>A probability is always between 0 and 1, so \({@ans3@}\) cannot be a probability.</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>-1</falsenextnode><falseanswernote>prt3-5-F</falseanswernote><falsefeedback format="html"><text><![CDATA[<p>Count the bottle tops that are red or white, and divide by \({@N@}\).</p>]]></text></falsefeedback></node>
+  </prt>
+
+  <deployedseed>4</deployedseed>
+  <deployedseed>5</deployedseed>
+  <deployedseed>15</deployedseed>
+  <deployedseed>8</deployedseed>
+  <deployedseed>24</deployedseed>
+  <deployedseed>1</deployedseed>
+  <deployedseed>3</deployedseed>
+  <deployedseed>10</deployedseed>
+  <deployedseed>2</deployedseed>
+  <deployedseed>17</deployedseed>
+  <qtest><testcase>1</testcase><description>Correct, derived</description>
+    <testinput><name>ans1</name><value>ev(r/(r+g+w+y),simp)</value></testinput>
+    <testinput><name>ans2</name><value>ev((r+w+y)/(r+g+w+y),simp)</value></testinput>
+    <testinput><name>ans3</name><value>ev((r+w)/(r+g+w+y),simp)</value></testinput>
+    <expected><name>prt1</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt1-1-T</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt2-1-T</expectedanswernote></expected>
+    <expected><name>prt3</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt3-1-T</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>2</testcase><description>Rounded</description>
+    <testinput><name>ans1</name><value>float(ta1+tl1/2)</value></testinput>
+    <testinput><name>ans2</name><value>float(ta2+tl2/2)</value></testinput>
+    <testinput><name>ans3</name><value>float(ta3+tl3/2)</value></testinput>
+    <expected><name>prt1</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt1-1-F | prt1-2-T</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt2-1-F | prt2-2-T</expectedanswernote></expected>
+    <expected><name>prt3</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt3-1-F | prt3-2-T</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>3</testcase><description>Odds; P(green); added tops and bottoms</description>
+    <testinput><name>ans1</name><value>odds1</value></testinput>
+    <testinput><name>ans2</name><value>dg2</value></testinput>
+    <testinput><name>ans3</name><value>half3</value></testinput>
+    <expected><name>prt1</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt1-1-F | prt1-2-F | prt1-3-T</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt2-1-F | prt2-2-F | prt2-3-T</expectedanswernote></expected>
+    <expected><name>prt3</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt3-1-F | prt3-2-F | prt3-3-T</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>4</testcase><description>Multiplied for or</description>
+    <testinput><name>ans1</name><value>ta1</value></testinput>
+    <testinput><name>ans2</name><value>ta2</value></testinput>
+    <testinput><name>ans3</name><value>prod3</value></testinput>
+    <expected><name>prt1</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt1-1-T</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt2-1-T</expectedanswernote></expected>
+    <expected><name>prt3</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt3-1-F | prt3-2-F | prt3-3-F | prt3-4-T</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>5</testcase><description>Generic wrong</description>
+    <testinput><name>ans1</name><value>ta1/2</value></testinput>
+    <testinput><name>ans2</name><value>(1+ta2)/2</value></testinput>
+    <testinput><name>ans3</name><value>(1+ta3)/2</value></testinput>
+    <expected><name>prt1</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt1-1-F | prt1-2-F | prt1-3-F | prt1-4-F</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt2-1-F | prt2-2-F | prt2-3-F | prt2-4-F</expectedanswernote></expected>
+    <expected><name>prt3</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt3-1-F | prt3-2-F | prt3-3-F | prt3-4-F | prt3-5-F</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>6</testcase><description>Out of range</description>
+    <testinput><name>ans1</name><value>ta1+1</value></testinput>
+    <testinput><name>ans2</name><value>ta2</value></testinput>
+    <testinput><name>ans3</name><value>ta3</value></testinput>
+    <expected><name>prt1</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt1-1-F | prt1-2-F | prt1-3-F | prt1-4-T</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt2-1-T</expectedanswernote></expected>
+    <expected><name>prt3</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt3-1-T</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>7</testcase><description>Invalid: letter in (a)</description>
+    <testinput><name>ans1</name><value>x</value></testinput>
+    <testinput><name>ans2</name><value>ta2</value></testinput>
+    <testinput><name>ans3</name><value>ta3</value></testinput>
+    <expected><name>prt1</name><expectedscore></expectedscore><expectedpenalty></expectedpenalty><expectedanswernote>NULL</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt2-1-T</expectedanswernote></expected>
+    <expected><name>prt3</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt3-1-T</expectedanswernote></expected>
+  </qtest>
+</question>
+</quiz>

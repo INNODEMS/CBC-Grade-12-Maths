@@ -46,161 +46,207 @@
          Suggested activity: Learners draw several equal chords in a circle and find the locus of their midpoints.
          Interactive (JSXGraph): Circle with a chord of fixed length that can be rotated; the midpoint traces a smaller concentric circle. -->
 
-    <!-- [LP] Add guidance on activity -->
+    <!-- Section notes (2026-11)
+         SLOs: none in the design (content list only); skeleton TODO line left as INNODEMS wrote it (listed in EDITORIAL-QUESTIONS.md). Kept short.
+         Activity: as planning notes (equal chords in a circle, the locus of their midpoints) | added: the reason by Pythagoras, a second chord length
+         JSXGraph: fig-midpoints-of-equal-chords (assets/jsxgraph/midpoints-of-equal-chords.js), as planning notes
+         STACK: assets/stack/top/2-measurement-and-geometry/08-loci/08-loci-involving-chords/ -->
 
-    <!-- <axiom component="lesson-plan">
-            <title>Problem-Solving and Discovery</title>
-            <dl>
-                <li>
-                    <title>Suggested Time</title>
-                    <p>
-                        XX minutes
-                    </p>
-                </li>
-                <li>
-                    <title>Objective</title>
-                    <p>
-                        XXX
-                    </p>
-                </li>
-                <li>
-                    <title>Teacher's Role</title>
-                    <p>
-                        XXX
-                    </p>
-                </li>
-            </dl>
-        </axiom> -->
+    <p component="lesson-plan">Upon completion of this lesson, learners will be able to:
+        <ol>
+            <li><p><alert>Know:</alert> that the perpendicular bisector of a chord passes through the centre; that the midpoints of equal chords lie on a circle with the same centre; that equal chords are the same distance from the centre.</p></li>
+            <li><p><alert>Do:</alert> find the radius of the locus of the midpoints of equal chords; find the centre of a circle from two chords.</p></li>
+            <li><p><alert>Apply:</alert> find the centre of a broken plate or of the base of a round tank.</p></li>
+        </ol>
+    </p>
 
-    <!-- Add Activity -->
+    <axiom component="lesson-plan">
+        <title>Problem-Solving and Discovery</title>
+        <dl>
+            <li><title>Suggested Time</title><p>14 minutes</p></li>
+            <li><title>Objective</title><p>Learners draw equal chords in a circle and find that their midpoints lie on a smaller circle with the same centre.</p></li>
+            <li><title>Teacher's Role</title><p>Learners set their compasses to <m>8\,\text{cm}</m> and step chords round a circle of radius <m>5\,\text{cm}</m>. After part (c), ask: <q>Why do all the midpoints come out the same distance from <m>O</m>?</q></p></li>
+        </dl>
+    </axiom>
 
-    <!-- <activity>
+    <activity xml:id="act-equal-chords">
+        <title>Equal Chords</title>
         <statement>
+            <p>
+                <ol marker="(a)">
+                    <li>
+                        <p>Draw a circle with centre <m>O</m> and radius <m>5\,\text{cm}</m>. Draw five different chords, each <m>8\,\text{cm}</m> long.</p>
+                        <solution component="lesson-plan"><p>With the compasses at <m>8\,\text{cm}</m> and the point on the circle, each arc that cuts the circle gives the other end of a chord.</p></solution>
+                    </li>
+                    <li>
+                        <p>Mark the midpoint of each chord.</p>
+                        <solution component="lesson-plan"><p>Measure <m>4\,\text{cm}</m> along each chord, or bisect it.</p></solution>
+                    </li>
+                    <li>
+                        <p>Measure the distance of each midpoint from <m>O</m>.</p>
+                        <solution component="lesson-plan"><p>Each is <m>3\,\text{cm}</m>.</p></solution>
+                    </li>
+                    <li>
+                        <p>Explain why. Use the fact from Grade 11 that the perpendicular from the centre to a chord bisects it.</p>
+                        <solution component="lesson-plan"><p>If <m>M</m> is the midpoint of chord <m>AB</m>, then <m>OM</m> is perpendicular to <m>AB</m> and <m>AM = 4\,\text{cm}</m>. In the right-angled triangle <m>OMA</m>, <m>OM^2 = 5^2 - 4^2 = 9</m>, so <m>OM = 3\,\text{cm}</m> for every chord of <m>8\,\text{cm}</m>.</p></solution>
+                    </li>
+                    <li>
+                        <p>Repeat for chords of <m>6\,\text{cm}</m>. How far from <m>O</m> are their midpoints?</p>
+                        <solution component="lesson-plan"><p><m>OM^2 = 5^2 - 3^2 = 16</m>, so <m>4\,\text{cm}</m>.</p></solution>
+                    </li>
+                    <li>
+                        <p>What is the locus of the midpoints of all chords of length <m>8\,\text{cm}</m>?</p>
+                        <solution component="lesson-plan"><p>The circle with centre <m>O</m> and radius <m>3\,\text{cm}</m>.</p></solution>
+                        <note component="lesson-plan"><p>Ask what happens for a chord of <m>10\,\text{cm}</m> (a diameter: the midpoint is <m>O</m>) and of <m>12\,\text{cm}</m> (no such chord).</p></note>
+                    </li>
+                </ol>
+            </p>
         </statement>
-    </activity> -->
+    </activity>
 
-    <!-- [LP] Add guidance on structured lesson plan-->
-
-    <!-- <axiom component="lesson-plan">
+    <axiom component="lesson-plan">
         <title>Structured Instruction</title>
         <p>
             <dl>
-            <li>
-                <title>Suggested Time</title>
-                <p>
-                    XX minutes
-                </p>
-            </li>
-            <li>
-                <title>Objective</title>
-                <p>
-                    To formalize the concepts and properties learners discovered in the anchor task.
-                </p>
-            </li>
+                <li><title>Suggested Time</title><p>8 minutes</p></li>
+                <li><title>Objective</title><p>To formalise the two chord facts, the locus of the midpoints of equal chords, and how to find a centre from two chords.</p></li>
             </dl>
         </p>
         <paragraphs>
             <title>Key Takeaways &amp; Teacher Connection</title>
             <ol>
-                <li>
-                    <p>
-                        <alert>Connecting to Learner Work:</alert> XXXX
-                    </p>
-                </li>
+                <li><p><alert>Connecting to Learner Work:</alert> every midpoint in part (c) came out <m>3\,\text{cm}</m> from <m>O</m> because the same right-angled triangle appears for every chord.</p></li>
+                <li><p>The perpendicular bisector of any chord passes through the centre, so two chords are enough to find the centre.</p></li>
+                <li><p>A chord can be no longer than the diameter; a diameter has its midpoint at the centre.</p></li>
             </ol>
         </paragraphs>
-    </axiom> -->
+    </axiom>
 
-    <!-- Add insight / key takeaway directly related to activity / learner experience -->
+    <insight xml:id="insight-chords-and-loci">
+        <title>Chords and Loci</title>
+        <p>
+            <ul>
+                <li><p>The perpendicular bisector of any chord of a circle passes through the centre.</p></li>
+                <li><p>In a circle with centre <m>O</m> and radius <m>r</m>, the midpoints of all chords of length <m>c</m> lie on the circle with centre <m>O</m> and radius <md>\sqrt{r^2 - \left(\tfrac{c}{2}\right)^2}.</md> Equal chords are the same distance from the centre.</p></li>
+                <li><p>A chord as long as the diameter (<m>c = 2r</m>) has its midpoint at <m>O</m>, so the locus is the single point <m>O</m>. No chord is longer than the diameter.</p></li>
+            </ul>
+        </p>
+    </insight>
 
-    <!-- <insight>
-    </insight> -->
-
-    <!-- Add further instruction (not in a block) to develop ideas as needed -->
+    <figure xml:id="fig-midpoints-of-equal-chords">
+        <caption>Drag the end <m>P</m> of the chord round the circle. Its midpoint <m>M</m> traces the locus. Change the chord length with the <m>c</m> slider.</caption>
+        <interactive xml:id="interactive-midpoints-of-equal-chords" platform="jsxgraph" width="90%" aspect="16:12" source="jsxgraph/midpoints-of-equal-chords.js">
+            <slate xml:id="jsxgraph-midpoints-of-equal-chords" surface="jsxboard" aspect="16:12"/>
+            <instructions>
+                <p>
+                    <ul>
+                        <li><p>Drag <m>P</m> all the way round. What shape do the dots of <m>M</m> make?</p></li>
+                        <li><p>Set the <alert>c</alert> slider to <m>8</m> and tick <alert>Show the locus</alert>. Read <m>OM</m> and check it with Pythagoras.</p></li>
+                        <li><p>Set <m>c = 10</m>, the diameter. Where is <m>M</m> now?</p></li>
+                    </ul>
+                </p>
+            </instructions>
+        </interactive>
+    </figure>
 
     <xi:include href="../lesson-plan-templates/example-intro.ptx" />
 
-    <!-- Add at least 3 examples -->
-
-    <!-- <example>
+    <example xml:id="example-midpoints-of-equal-chords">
+        <title>Midpoints of Equal Chords</title>
         <statement>
+            <p>A circle has centre <m>O</m> and radius <m>13\,\text{cm}</m>. Describe the locus of the midpoints of all chords of length <m>24\,\text{cm}</m>.</p>
+            <figure xml:id="fig-equal-chords-midpoints">
+                <caption>Four chords of <m>24\,\text{cm}</m> in a circle of radius <m>13\,\text{cm}</m>. Their midpoints lie on the dashed circle of radius <m>5\,\text{cm}</m> with the same centre.</caption>
+                <image width="55%">
+                    <shortdescription>A circle with centre O and radius 13 cm, with four chords of 24 cm in different directions. The midpoint of each chord is marked; all four lie on a dashed circle of radius 5 cm with centre O. One radius OA and the segment OM are drawn.</shortdescription>
+                    <latex-image>
+\begin{tikzpicture}[scale=0.2]
+% SET: radius 13, chords 24, midpoints 5 from O
+\coordinate (O) at (0,0);
+\draw[thick] (O) circle (13);
+\draw[dashed] (O) circle (5);
+% DRAW: four chords, midpoint at angle phi, ends M +/- 12 (-sin phi, cos phi)
+\foreach \p in {20, 110, 200, 300} {
+  \draw[thick] ({5*cos(\p) - 12*sin(\p)},{5*sin(\p) + 12*cos(\p)}) -- ({5*cos(\p) + 12*sin(\p)},{5*sin(\p) - 12*cos(\p)});
+  \fill ({5*cos(\p)},{5*sin(\p)}) circle (0.45);
+}
+% MARK: triangle OMA for the chord with phi = 20
+\draw (O) -- ({5*cos(20)},{5*sin(20)}) node[pos=0.55, below] {$5$};
+\draw (O) -- ({5*cos(20) - 12*sin(20)},{5*sin(20) + 12*cos(20)}) node[pos=0.55, left] {$13$};
+\node[right] at ({5*cos(20)},{5*sin(20)}) {$M$};
+\node[above] at ({5*cos(20) - 12*sin(20)},{5*sin(20) + 12*cos(20)}) {$A$};
+\fill (O) circle (0.45) node[below left] {$O$};
+\end{tikzpicture}
+                    </latex-image>
+                </image>
+            </figure>
         </statement>
         <solution>
+            <p>Let <m>M</m> be the midpoint of a chord <m>AB</m> of <m>24\,\text{cm}</m>. Then <m>OM</m> is perpendicular to <m>AB</m> and <m>AM = 12\,\text{cm}</m>, so <md>OM^2 = 13^2 - 12^2 = 169 - 144 = 25, \qquad OM = 5 \,\text{cm}.</md> This is the same for every such chord. The locus is the circle with centre <m>O</m> and radius <m>5\,\text{cm}</m>.</p>
         </solution>
     </example>
 
-    <example>
+    <example xml:id="example-centre-of-a-broken-plate">
+        <title>Finding the Centre of a Broken Plate</title>
         <statement>
+            <p>Only part of the rim of a round plate is left. (a) Explain how to construct its centre. (b) On a grid, three points on the rim are <m>A(-6, 5)</m>, <m>B(10, 5)</m> and <m>C(8, -9)</m>. Find the centre and the radius.</p>
         </statement>
         <solution>
+            <p>(a) Mark three points <m>A</m>, <m>B</m>, <m>C</m> on the rim and draw the chords <m>AB</m> and <m>BC</m>. Construct the perpendicular bisector of each. Both pass through the centre, so the centre is where they meet.</p>
+            <p>(b) <m>A</m> and <m>B</m> have the same <m>y</m>-coordinate, so the perpendicular bisector of <m>AB</m> is the vertical line through its midpoint: <m>x = 2</m>. The centre is <m>(2, k)</m> for some <m>k</m>, and it is the same distance from <m>B</m> and <m>C</m>:
+                <md>(10 - 2)^2 + (5 - k)^2 = (8 - 2)^2 + (-9 - k)^2</md>
+                <md>64 + 25 - 10k + k^2 = 36 + 81 + 18k + k^2</md>
+                so <m>-28 = 28k</m> and <m>k = -1</m>. The centre is <m>(2, -1)</m> and the radius is <m>\sqrt{8^2 + 6^2} = 10</m> units.</p>
         </solution>
     </example>
-
-    <example>
-        <statement>
-        </statement>
-        <solution>
-        </solution>
-    </example> -->
 
     <xi:include href="../lesson-plan-templates/assessment-intro.ptx" />
+    <xi:include href="../lesson-plan-templates/checkpoint.ptx" />
 
-    <!-- If STACK questions are included, uncomment this: -->
+    <p>Type decimals with a point, for example <c>12.6</c>. Give answers to the accuracy asked for. Choose from each list.</p>
 
-    <!-- <xi:include href="../lesson-plan-templates/checkpoint.ptx" /> -->
+    <exercise xml:id="ex-locus-of-the-midpoints-of-equal-chords">
+        <!--<title></title>-->
+        <stack label="stk-locus-of-the-midpoints-of-equal-chords" source="stack/top/2-measurement-and-geometry/08-loci/08-loci-involving-chords/Locus-of-the-midpoints-of-equal-chords.xml"/>
+    </exercise>
 
-    <!-- Add STACK exercises if made -->
+    <exercises xml:id="exercises-loci-chords">
+        <exercise xml:id="ex-midpoint-locus-radius">
+            <statement><p>Chords of <m>16\,\text{cm}</m> are drawn in a circle of radius <m>10\,\text{cm}</m>. Describe the locus of their midpoints.</p></statement>
+            <answer><p>The circle with the same centre <m>O</m> and radius <m>6\,\text{cm}</m>.</p></answer>
+            <solution><p><m>OM^2 = 10^2 - 8^2 = 36</m>, so <m>OM = 6\,\text{cm}</m> for every such chord.</p></solution>
+        </exercise>
+        <exercise xml:id="ex-chord-from-its-distance">
+            <statement><p>In a circle of radius <m>17\,\text{cm}</m>, the midpoint of a chord is <m>8\,\text{cm}</m> from the centre. How long is the chord?</p></statement>
+            <answer><p><m>30\,\text{cm}</m></p></answer>
+            <solution><p>Half the chord is <m>\sqrt{17^2 - 8^2} = \sqrt{225} = 15\,\text{cm}</m>, so the chord is <m>30\,\text{cm}</m>.</p></solution>
+        </exercise>
+        <exercise xml:id="ex-centre-of-a-tank">
+            <statement><p>Only part of the round concrete base of an old water tank in Kakamega is left. Explain how to find its centre with a tape measure, pegs and string.</p></statement>
+            <answer><p>Peg out two chords on the rim; find the perpendicular bisector of each; the centre is where they cross.</p></answer>
+            <solution><p>Put pegs <m>A</m>, <m>B</m> and <m>C</m> on the rim. For chord <m>AB</m>, find the points equidistant from <m>A</m> and <m>B</m> with two equal lengths of string, one from each peg, on both sides of <m>AB</m>; the line through them is the perpendicular bisector. Do the same for <m>BC</m>. Both lines pass through the centre, so it is where they cross.</p></solution>
+        </exercise>
+        <exercise xml:id="ex-chords-through-a-point">
+            <title>Challenge: Chords Through a Point</title>
+            <statement><p><m>P</m> is a fixed point inside a circle with centre <m>O</m>. Find the locus of the midpoints of all the chords that pass through <m>P</m>.</p></statement>
+            <hint><p>If <m>M</m> is the midpoint of such a chord, what is angle <m>OMP</m>?</p></hint>
+            <answer><p>The circle with diameter <m>OP</m>.</p></answer>
+            <solution><p>The line from <m>O</m> to the midpoint <m>M</m> of a chord is perpendicular to the chord, and the chord passes through <m>P</m>, so angle <m>OMP = 90^{\circ}</m>. So <m>OP</m> subtends a right angle at <m>M</m>: a constant angle locus, the circle with diameter <m>OP</m> (it includes <m>O</m>, the midpoint of the diameter through <m>P</m>, and <m>P</m>, the midpoint of the chord perpendicular to <m>OP</m>).</p></solution>
+        </exercise>
+    </exercises>
 
-    <!-- Add static exercises -->
-
-    <!-- <exercises>
-        <exercise>
-            <statement>   
-
-            </statement>   
-            <solution>
-
-            </solution>             
-        </exercise>        
-    </exercises> -->
-
-    <!-- [LP] Add information on how to differentiate  -->
-
-    <!-- <axiom component="lesson-plan">
+    <axiom component="lesson-plan">
         <title>Differentiation</title>
-
-        <table>
-            <title>Differentiation</title>
-            <tabular halign="left">
-                <row header="yes" bottom="minor">
-                    <cell>Learner Group</cell>
-                    <cell>Strategy &amp; Learning Experience</cell>
-                    <cell></cell>
-                </row>
-                <row>
-                    <cell>Struggling Learners (Support)</cell>
-                    <cell>
-                        XXXX
-                    </cell>
-                    <cell></cell>
-                </row>
-                <row>
-                    <cell>On-Level Learners (Core)</cell>
-                    <cell>
-                        <line>The core lesson activities as described above.</line>
-                    </cell>
-                    <cell></cell>
-                </row>
-                <row>
-                    <cell>Advanced Learners (Challenge)</cell>
-                    <cell>
-                        XXXX
-                    </cell>
-                    <cell></cell>
-                </row>
+        <table xml:id="table-differentiation-loci-chords">
+            <title>Differentiation Strategies</title>
+            <tabular halign="left" top="minor" bottom="minor" left="minor" right="minor">
+                <row header="yes" bottom="medium"><cell>Learner Group</cell><cell>Strategy and Learning Experience</cell></row>
+                <row><cell>Struggling Learners (Support)</cell><cell>Activity parts (a) to (c) with a printed circle. Work <xref ref="example-midpoints-of-equal-chords"/>. Assign <xref ref="ex-midpoint-locus-radius"/>.</cell></row>
+                <row><cell>On-Level Learners (Core)</cell><cell>Full activity and both examples. Assign <xref ref="ex-midpoint-locus-radius"/> to <xref ref="ex-centre-of-a-tank"/>.</cell></row>
+                <row><cell>Advanced Learners (Challenge)</cell><cell>All exercises including <xref ref="ex-chords-through-a-point"/>.</cell></row>
             </tabular>
         </table>
-    </axiom> -->
+    </axiom>
 
     <xi:include href="../lesson-plan-templates/assessment-methods.ptx" />
 

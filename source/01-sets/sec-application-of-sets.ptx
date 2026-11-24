@@ -33,7 +33,7 @@
                 <li component="lesson-plan">
                     <title>Estimated Duration</title>
                     <p>
-                        40 minutes
+                        2 lessons of 40 minutes
                     </p>
                 </li>
             </dl>
@@ -45,163 +45,394 @@
          Content summary: Using sets and Venn diagrams to solve real-life classification and survey problems.
          Suggested activity: Learners solve a real survey problem, e.g. how many households in a village keep cows, goats or both, using data collected from home. -->
 
-    <!-- [LP] Add guidance on activity -->
+    <!-- Section notes (2026-11)
+         SLO: Core and Essential 1.1 (e); reflection (f) in lesson 6.2. Lessons 6.1 and 6.2 as subsections.
+         Activity: as planning notes (households keeping cows, goats or both)
+         Core-only: insight-greatest-and-least-overlap, example-tea-and-dairy, exercises-overlap-challenge,
+         ex-greatest-and-least-overlap (STACK), formula checks in example-traders-at-gikomba
+         STACK: assets/stack/top/1-numbers-and-algebra/01-sets/06-application-of-sets/ -->
 
-    <!-- <axiom component="lesson-plan">
+    <!-- ============================================================ Lesson 6.1 -->
+    <subsection xml:id="subsec-surveys-with-two-sets">
+        <title>Surveys with Two Sets</title>
+
+        <p component="lesson-plan">Upon completion of this lesson, learners will be able to:
+            <ol>
+                <li><p><alert>Know:</alert> how to write an unknown region as <m>x</m>, and how to check that a survey is possible.</p></li>
+                <li component="core"><p><alert>Know (Core):</alert> the greatest and least possible overlap of two groups.</p></li>
+                <li><p><alert>Do:</alert> set up and solve an equation for an unknown region, and interpret the answer.</p></li>
+                <li><p><alert>Apply:</alert> households, homes, mobile money and bank accounts.</p></li>
+            </ol>
+        </p>
+
+        <axiom component="lesson-plan">
             <title>Problem-Solving and Discovery</title>
             <dl>
-                <li>
-                    <title>Suggested Time</title>
-                    <p>
-                        XX minutes
-                    </p>
-                </li>
-                <li>
-                    <title>Objective</title>
-                    <p>
-                        XXX
-                    </p>
-                </li>
-                <li>
-                    <title>Teacher's Role</title>
-                    <p>
-                        XXX
-                    </p>
-                </li>
+                <li><title>Suggested Time</title><p>14 minutes</p></li>
+                <li><title>Objective</title><p>Learners solve the households problem with a Venn diagram, then with <m>x</m>.</p></li>
+                <li><title>Teacher's Role</title><p>The day before, ask each learner to find out whether five homes near them keep cows, goats, both or neither; combine the results in part (d). Learners record honestly and keep the names of homes private.</p></li>
             </dl>
-        </axiom> -->
+        </axiom>
 
-    <!-- Add Activity -->
-
-    <!-- <activity>
-        <statement>
-        </statement>
-    </activity> -->
-
-    <!-- [LP] Add guidance on structured lesson plan-->
-
-    <!-- <axiom component="lesson-plan">
-        <title>Structured Instruction</title>
-        <p>
-            <dl>
-            <li>
-                <title>Suggested Time</title>
+        <activity xml:id="act-cows-and-goats">
+            <title>Cows and Goats</title>
+            <statement>
+                <p>In a village survey of <m>50</m> households, <m>23</m> keep cows, <m>31</m> keep goats and <m>6</m> keep neither.</p>
                 <p>
-                    XX minutes
+                    <ol marker="(a)">
+                        <li>
+                            <p>Let <m>x</m> households keep both. Write the number in each of the four regions in terms of <m>x</m>.</p>
+                            <solution component="lesson-plan"><p>Cows only <m>23 - x</m>; both <m>x</m>; goats only <m>31 - x</m>; neither <m>6</m>.</p></solution>
+                        </li>
+                        <li>
+                            <p>The four regions hold all <m>50</m> households. Write an equation and solve it.</p>
+                            <solution component="lesson-plan"><p><m>(23 - x) + x + (31 - x) + 6 = 50</m>, so <m>60 - x = 50</m> and <m>x = 10</m>.</p></solution>
+                        </li>
+                        <li>
+                            <p>How many households keep cows only? Goats only?</p>
+                            <solution component="lesson-plan"><p>Cows only <m>13</m>; goats only <m>21</m>.</p></solution>
+                        </li>
+                        <li>
+                            <p>Combine the class's data from home (on paper or in a spreadsheet) and draw the Venn diagram.</p>
+                            <solution component="lesson-plan"><p>Answers depend on the class. Check that the four regions add up to the number of homes surveyed.</p></solution>
+                        </li>
+                    </ol>
                 </p>
-            </li>
-            <li>
-                <title>Objective</title>
-                <p>
-                    To formalize the concepts and properties learners discovered in the anchor task.
-                </p>
-            </li>
-            </dl>
-        </p>
-        <paragraphs>
-            <title>Key Takeaways &amp; Teacher Connection</title>
-            <ol>
-                <li>
-                    <p>
-                        <alert>Connecting to Learner Work:</alert> XXXX
-                    </p>
-                </li>
-            </ol>
-        </paragraphs>
-    </axiom> -->
+            </statement>
+        </activity>
 
-    <!-- Add insight / key takeaway directly related to activity / learner experience -->
+        <axiom component="lesson-plan">
+            <title>Structured Instruction</title>
+            <p>
+                <dl>
+                    <li><title>Suggested Time</title><p>8 minutes</p></li>
+                    <li><title>Objective</title><p>To set out the method with one unknown region.</p></li>
+                </dl>
+            </p>
+            <paragraphs>
+                <title>Key Takeaways &amp; Teacher Connection</title>
+                <ol>
+                    <li><p><alert>Connecting to Learner Work:</alert> parts (a) and (b) are the method: one unknown region, every region in terms of it, one equation.</p></li>
+                    <li><p>Every person is in exactly one region, so the regions add up to the total.</p></li>
+                    <li><p>Check the answer: no region may be negative.</p></li>
+                </ol>
+            </paragraphs>
+        </axiom>
 
-    <!-- <insight>
-    </insight> -->
+        <insight xml:id="insight-using-x-for-an-unknown-region">
+            <title>Using <m>x</m> for an Unknown Region</title>
+            <p>When a survey does not give the number in a region, call it <m>x</m> and write every other region in terms of <m>x</m>. Every person is in exactly one region, so the regions add up to the total. Solve the equation, then check that no region is negative and that every set total is right. If a region comes out negative, or the regions cannot add up to the total, the survey data contain a mistake.</p>
+        </insight>
 
-    <!-- Add further instruction (not in a block) to develop ideas as needed -->
+        <xi:include href="../lesson-plan-templates/example-intro.ptx" />
 
-    <xi:include href="../lesson-plan-templates/example-intro.ptx" />
-
-    <!-- Add at least 3 examples -->
-
-    <!-- <example>
-        <statement>
-        </statement>
-        <solution>
-        </solution>
-    </example>
-
-    <example>
-        <statement>
-        </statement>
-        <solution>
-        </solution>
-    </example>
-
-    <example>
-        <statement>
-        </statement>
-        <solution>
-        </solution>
-    </example> -->
-
-    <xi:include href="../lesson-plan-templates/assessment-intro.ptx" />
-
-    <!-- If STACK questions are included, uncomment this: -->
-
-    <!-- <xi:include href="../lesson-plan-templates/checkpoint.ptx" /> -->
-
-    <!-- Add STACK exercises if made -->
-
-    <!-- Add static exercises -->
-
-    <!-- <exercises>
-        <exercise>
-            <statement>   
-
-            </statement>   
+        <example xml:id="example-solar-lamps-and-water-tanks">
+            <title>Solar Lamps and Water Tanks</title>
+            <statement>
+                <p>Of <m>70</m> homes in a village, <m>41</m> have a solar lamp, <m>33</m> have a water tank and <m>5</m> have neither. How many have both?</p>
+            </statement>
             <solution>
+                <p>Let <m>x</m> homes have both. Then <m>(41 - x) + x + (33 - x) + 5 = 70</m>, so <m>79 - x = 70</m> and <m>x = 9</m>. Nine homes have both.</p>
+            </solution>
+        </example>
 
-            </solution>             
-        </exercise>        
-    </exercises> -->
+        <example xml:id="example-regions-in-terms-of-x">
+            <title>Regions in Terms of <m>x</m></title>
+            <statement>
+                <p>In a class of <m>48</m>, the number who play football only is three times the number who play both football and volleyball. <m>14</m> play volleyball only and <m>6</m> play neither. How many play football?</p>
+            </statement>
+            <solution>
+                <p>Let <m>x</m> play both, so <m>3x</m> play football only. Then <m>3x + x + 14 + 6 = 48</m>, so <m>4x = 28</m> and <m>x = 7</m>. Football: <m>3 \times 7 + 7 = 28</m>.</p>
+            </solution>
+        </example>
 
-    <!-- [LP] Add information on how to differentiate  -->
+        <example xml:id="example-an-impossible-survey">
+            <title>An Impossible Survey</title>
+            <statement>
+                <p>A report says that of <m>40</m> learners, <m>26</m> take subject <m>A</m>, <m>21</m> take subject <m>B</m>, <m>5</m> take both and <m>3</m> take neither. Is this possible?</p>
+            </statement>
+            <solution>
+                <p><m>n(A \cup B) = 26 + 21 - 5 = 42</m>, which is more than the <m>40</m> learners in the class (and <m>3</m> more take neither). The report must contain an error.</p>
+            </solution>
+        </example>
 
-    <!-- <axiom component="lesson-plan">
-        <title>Differentiation</title>
+        <insight xml:id="insight-greatest-and-least-overlap" component="core">
+            <title>Greatest and Least Overlap</title>
+            <p>When only <m>n(\xi)</m>, <m>n(A)</m> and <m>n(B)</m> are known, the overlap <m>n(A \cap B)</m> can vary.
+                <ul>
+                    <li><p>It is greatest when the smaller set lies inside the larger one: the greatest possible <m>n(A \cap B)</m> is the smaller of <m>n(A)</m> and <m>n(B)</m>.</p></li>
+                    <li><p>It is least when <m>n(A \cup B)</m> is as big as possible. Since <m>n(A \cap B) = n(A) + n(B) - n(A \cup B)</m> and <m>n(A \cup B) \le n(\xi)</m>, the least possible overlap is <m>n(A) + n(B) - n(\xi)</m> when this is positive, and <m>0</m> otherwise.</p></li>
+                </ul>
+            </p>
+        </insight>
 
-        <table>
+        <example xml:id="example-tea-and-dairy" component="core">
+            <title>Tea and Dairy</title>
+            <statement>
+                <p>A cooperative in Kirinyaga has <m>130</m> farmers. <m>96</m> grow tea and <m>58</m> keep dairy cows. Find the greatest and least possible numbers who do both.</p>
+            </statement>
+            <solution>
+                <p>Greatest: all <m>58</m> dairy farmers also grow tea, so <m>58</m>. Least: <m>96 + 58 - 130 = 24</m>, when every farmer does at least one of the two.</p>
+            </solution>
+        </example>
+
+        <xi:include href="../lesson-plan-templates/assessment-intro.ptx" />
+        <xi:include href="../lesson-plan-templates/checkpoint.ptx" />
+
+        <p>Type a set inside curly brackets with commas between the elements, for example <c>{2, 5, 9}</c>. On most phone keyboards the curly brackets are on the second page of symbols: tap <c>?123</c> (or <c>123</c>), then <c>=\&lt;</c> (or <c>#+=</c>). Type the empty set as <c>{}</c>. Type a count as a whole number.</p>
+
+        <exercise xml:id="ex-two-set-survey-with-an-unknown">
+            <!--<title></title>-->
+            <stack label="stk-two-set-survey-with-an-unknown" source="stack/top/1-numbers-and-algebra/01-sets/06-application-of-sets/Two-set-survey-with-an-unknown.xml"/>
+        </exercise>
+
+        <exercise xml:id="ex-greatest-and-least-overlap" component="core">
+            <!--<title></title>-->
+            <stack label="stk-greatest-and-least-overlap" source="stack/top/1-numbers-and-algebra/01-sets/06-application-of-sets/Greatest-and-least-overlap.xml"/>
+        </exercise>
+
+        <exercise xml:id="ex-build-a-survey-result">
+            <!--<title></title>-->
+            <stack label="stk-build-a-survey-result" source="stack/top/1-numbers-and-algebra/01-sets/06-application-of-sets/Build-a-survey-result.xml"/>
+        </exercise>
+
+        <exercises xml:id="exercises-surveys-with-two-sets">
+            <exercise xml:id="ex-reflector-jackets">
+                <statement><p>Of <m>55</m> boda boda riders in Nakuru, <m>38</m> wear a reflector jacket, <m>29</m> have a phone holder and <m>4</m> have neither. How many have both?</p></statement>
+                <answer><p><m>16</m></p></answer>
+            </exercise>
+            <exercise xml:id="ex-business-and-computer">
+                <statement><p>In a class of <m>72</m>, the number who take Business Studies only is <m>2x</m>, Computer Studies only <m>x + 6</m>, both <m>x</m>, and <m>10</m> take neither. Find <m>x</m>.</p></statement>
+                <answer><p><m>x = 14</m></p></answer>
+                <solution><p><m>2x + (x + 6) + x + 10 = 72</m>, so <m>4x + 16 = 72</m> and <m>x = 14</m>.</p></solution>
+            </exercise>
+            <exercise xml:id="ex-sixty-twelve-none">
+                <statement><p>Of <m>60</m> learners, <m>12</m> take neither Geography nor History, <m>31</m> take Geography and <m>26</m> take History. How many take both?</p></statement>
+                <answer><p><m>9</m></p></answer>
+            </exercise>
+            <exercise xml:id="ex-impossible-report">
+                <statement><p>A report on <m>36</m> learners says <m>21</m> are in the choir, <m>19</m> in the drama club, <m>3</m> in both and <m>2</m> in neither. Is this possible?</p></statement>
+                <answer><p>No: <m>n(C \cup D) = 21 + 19 - 3 = 37 \gt 36</m>.</p></answer>
+            </exercise>
+            <exercise xml:id="ex-solar-check">
+                <statement><p>Check the answer to <xref ref="example-solar-lamps-and-water-tanks"/> by adding the four regions.</p></statement>
+                <answer><p><m>32 + 9 + 24 + 5 = 70</m></p></answer>
+            </exercise>
+        </exercises>
+
+        <exercises xml:id="exercises-overlap-challenge" component="core">
+            <title>Challenge for Core</title>
+            <exercise xml:id="ex-rice-and-chapati-overlap">
+                <statement><p>In a class of <m>50</m>, <m>36</m> learners like rice and <m>29</m> like chapati. Find the greatest and least possible numbers who like both.</p></statement>
+                <answer><p>Greatest <m>29</m>; least <m>36 + 29 - 50 = 15</m></p></answer>
+            </exercise>
+        </exercises>
+
+        <axiom component="lesson-plan">
             <title>Differentiation</title>
-            <tabular halign="left">
-                <row header="yes" bottom="minor">
-                    <cell>Learner Group</cell>
-                    <cell>Strategy &amp; Learning Experience</cell>
-                    <cell></cell>
-                </row>
-                <row>
-                    <cell>Struggling Learners (Support)</cell>
-                    <cell>
-                        XXXX
-                    </cell>
-                    <cell></cell>
-                </row>
-                <row>
-                    <cell>On-Level Learners (Core)</cell>
-                    <cell>
-                        <line>The core lesson activities as described above.</line>
-                    </cell>
-                    <cell></cell>
-                </row>
-                <row>
-                    <cell>Advanced Learners (Challenge)</cell>
-                    <cell>
-                        XXXX
-                    </cell>
-                    <cell></cell>
-                </row>
-            </tabular>
-        </table>
-    </axiom> -->
+            <table xml:id="table-differentiation-surveys-with-two-sets">
+                <title>Differentiation Strategies</title>
+                <tabular halign="left" top="minor" bottom="minor" left="minor" right="minor">
+                    <row header="yes" bottom="medium"><cell>Learner Group</cell><cell>Strategy and Learning Experience</cell></row>
+                    <row><cell>Struggling Learners (Support)</cell><cell>Work through the activity and <xref ref="example-solar-lamps-and-water-tanks"/>. Assign <xref ref="ex-reflector-jackets"/> and <xref ref="ex-solar-check"/>.</cell></row>
+                    <row><cell>On-Level Learners (Core)</cell><cell>Full activity and all examples. Assign all the exercises.</cell></row>
+                    <row><cell>Advanced Learners (Challenge)</cell><cell><xref ref="ex-impossible-report"/>, then change one number in it to make the report possible.</cell></row>
+                </tabular>
+            </table>
+            <p component="core">Core: advanced learners also work through <xref ref="ex-rice-and-chapati-overlap"/>.</p>
+        </axiom>
 
-    <xi:include href="../lesson-plan-templates/assessment-methods.ptx" />
+        <xi:include href="../lesson-plan-templates/assessment-methods.ptx" />
+        <xi:include href="../lesson-plan-templates/reflection.ptx"/>
+    </subsection>
 
-    <xi:include href="../lesson-plan-templates/reflection.ptx"/>
+    <!-- ============================================================ Lesson 6.2 -->
+    <subsection xml:id="subsec-surveys-with-three-sets">
+        <title>Surveys with Three Sets</title>
+
+        <p component="lesson-plan">Upon completion of this lesson, learners will be able to:
+            <ol>
+                <li><p><alert>Know:</alert> the centre as <m>x</m>; the difference between <q>exactly two</q> counts and pair totals.</p></li>
+                <li><p><alert>Do:</alert> solve for the centre and complete a three-set diagram.</p></li>
+                <li><p><alert>Apply:</alert> clubs, foods and market traders; reflect on how sets help us count.</p></li>
+            </ol>
+        </p>
+
+        <axiom component="lesson-plan">
+            <title>Problem-Solving and Discovery</title>
+            <dl>
+                <li><title>Suggested Time</title><p>14 minutes</p></li>
+                <li><title>Objective</title><p>Learners find an unknown centre by writing every region in terms of <m>x</m>.</p></li>
+                <li><title>Teacher's Role</title><p>Stress the words <q>exactly two</q>: these counts do not include the centre.</p></li>
+            </dl>
+        </axiom>
+
+        <activity xml:id="act-three-clubs">
+            <title>Three Clubs</title>
+            <statement>
+                <p>A school asked <m>40</m> learners about three clubs. <m>18</m> are in Drama, <m>19</m> in Music and <m>21</m> in the Environment club. Exactly <m>4</m> are in Drama and Music only, <m>5</m> in Drama and Environment only, and <m>5</m> in Music and Environment only. <m>2</m> are in none of the three. Let <m>x</m> be the number in all three.</p>
+                <p>
+                    <ol marker="(a)">
+                        <li>
+                            <p>Write the number in Drama only, Music only and Environment only in terms of <m>x</m>.</p>
+                            <solution component="lesson-plan"><p>Drama only <m>18 - 4 - 5 - x = 9 - x</m>; Music only <m>19 - 4 - 5 - x = 10 - x</m>; Environment only <m>21 - 5 - 5 - x = 11 - x</m>.</p></solution>
+                        </li>
+                        <li>
+                            <p>Add all eight regions.</p>
+                            <solution component="lesson-plan"><p><m>(9 - x) + (10 - x) + (11 - x) + 4 + 5 + 5 + x + 2 = 46 - 2x</m>.</p></solution>
+                        </li>
+                        <li>
+                            <p>Solve <m>46 - 2x = 40</m>.</p>
+                            <solution component="lesson-plan"><p><m>2x = 6</m>, so <m>x = 3</m>.</p></solution>
+                        </li>
+                        <li>
+                            <p>Complete the Venn diagram.</p>
+                            <solution component="lesson-plan"><p>Drama only <m>6</m>, Music only <m>7</m>, Environment only <m>8</m>; the exactly-two regions <m>4</m>, <m>5</m>, <m>5</m>; centre <m>3</m>; none <m>2</m>. Check: <m>6 + 7 + 8 + 4 + 5 + 5 + 3 + 2 = 40</m>.</p></solution>
+                        </li>
+                    </ol>
+                </p>
+            </statement>
+        </activity>
+
+        <axiom component="lesson-plan">
+            <title>Structured Instruction</title>
+            <p>
+                <dl>
+                    <li><title>Suggested Time</title><p>8 minutes</p></li>
+                    <li><title>Objective</title><p>To compare the two kinds of survey data for three sets.</p></li>
+                </dl>
+            </p>
+            <paragraphs>
+                <title>Key Takeaways &amp; Teacher Connection</title>
+                <ol>
+                    <li><p><alert>Connecting to Learner Work:</alert> every region was written in <m>x</m>; the centre appears inside all three set totals.</p></li>
+                    <li><p>Always check that no region is negative and that the regions add up to the total.</p></li>
+                </ol>
+            </paragraphs>
+        </axiom>
+
+        <insight xml:id="insight-finding-the-centre">
+            <title>Finding the Centre</title>
+            <p>Let <m>x</m> be the number in all three sets. Surveys give the overlaps in one of two ways.
+                <ul>
+                    <li><p><q>Exactly two</q> counts do not include the centre. Then each <q>only</q> region is a set total minus two known numbers minus <m>x</m>, and the sum of the eight regions contains <m>-2x</m>.</p></li>
+                    <li><p>Pair totals (<q>maize and beans</q>) include the centre. Then each <q>exactly two</q> region is a pair total minus <m>x</m>, and each <q>only</q> region comes out as a number plus <m>x</m>.</p></li>
+                </ul>
+                Either way, add the eight regions, set the sum equal to the total and solve for <m>x</m>.</p>
+        </insight>
+
+        <xi:include href="../lesson-plan-templates/example-intro.ptx" />
+
+        <example xml:id="example-traders-at-gikomba">
+            <title>Traders at Gikomba</title>
+            <statement>
+                <p>At Gikomba market, <m>57</m> traders each sell at least one of clothes, shoes and bags. <m>37</m> sell clothes, <m>26</m> shoes and <m>22</m> bags; <m>13</m> sell clothes and shoes, <m>11</m> clothes and bags, and <m>9</m> shoes and bags. How many sell all three? Complete the Venn diagram.</p>
+            </statement>
+            <solution>
+                <p>Let <m>x</m> sell all three. The pair totals include the centre, so the <q>exactly two</q> regions are <m>13 - x</m>, <m>11 - x</m> and <m>9 - x</m>. Then
+                    <ul>
+                        <li><p>clothes only <m>37 - (13 - x) - (11 - x) - x = 13 + x</m>;</p></li>
+                        <li><p>shoes only <m>26 - (13 - x) - (9 - x) - x = 4 + x</m>;</p></li>
+                        <li><p>bags only <m>22 - (11 - x) - (9 - x) - x = 2 + x</m>.</p></li>
+                    </ul>
+                    Nobody is outside all three, so the seven regions add up to <m>57</m>:
+                    <md>(13 + x) + (4 + x) + (2 + x) + (13 - x) + (11 - x) + (9 - x) + x = 52 + x = 57</md>
+                    so <m>x = 5</m>. The regions are clothes only <m>18</m>, clothes and shoes only <m>8</m>, shoes only <m>9</m>, clothes and bags only <m>6</m>, all three <m>5</m>, shoes and bags only <m>4</m>, bags only <m>7</m>, none <m>0</m>.</p>
+                <p component="core">Check with the formula: <m>37 + 26 + 22 - 13 - 11 - 9 + 5 = 57</m>.</p>
+                <figure xml:id="fig-traders-at-gikomba">
+                    <caption>What <m>57</m> traders at Gikomba sell.</caption>
+                    <image width="60%">
+                        <shortdescription>A three-set Venn diagram, clothes, shoes and bags, with the number of traders in each region.</shortdescription>
+                        <description><p>Clothes only <m>18</m>; clothes and shoes only <m>8</m>; shoes only <m>9</m>; clothes and bags only <m>6</m>; all three <m>5</m>; shoes and bags only <m>4</m>; bags only <m>7</m>; none <m>0</m>.</p></description>
+                        <latex-image>
+\begin{tikzpicture}[scale=0.85]
+% universal set
+\draw[thick] (-4,-2.8) rectangle (4,2.8);
+\node at (-3.6,2.4) {$\xi$};
+% sets (solid circles, labelled outside)
+\draw[thick] (-0.85,0.55) circle (1.55);
+\node at (-2.35,2.1) {Clothes};
+\draw[thick] (0.85,0.55) circle (1.55);
+\node at (2.35,2.1) {Shoes};
+\draw[thick] (0,-0.9) circle (1.55);
+\node at (1.6,-2.4) {Bags};
+% regions
+\node[font=\small,align=center] at (-1.6,1.0) {$18$};
+\node[font=\small,align=center] at (0,1.35) {$8$};
+\node[font=\small,align=center] at (1.6,1.0) {$9$};
+\node[font=\small,align=center] at (-1.05,-0.55) {$6$};
+\node[font=\small,align=center] at (0,0.05) {$5$};
+\node[font=\small,align=center] at (1.05,-0.55) {$4$};
+\node[font=\small,align=center] at (0,-1.85) {$7$};
+\node[font=\small,align=center] at (-3.4,-2.4) {$0$};
+\end{tikzpicture}
+                        </latex-image>
+                    </image>
+                </figure>
+            </solution>
+        </example>
+
+        <insight xml:id="insight-why-sets">
+            <title>Why Sets?</title>
+            <p>A set with a clear rule describes a group without any doubt about who belongs. Union, intersection, complement and difference sort a group into parts. A Venn diagram puts each person in exactly one region, so a survey can be counted without counting anyone twice, and a negative region shows at once that the data contain a mistake.</p>
+        </insight>
+
+        <axiom component="lesson-plan">
+            <title>Curriculum Links</title>
+            <dl>
+                <li><title>Key Inquiry Question</title><p>How do sets help us sort, describe and count the things around us? Revisit it with <xref ref="insight-why-sets"/>.</p></li>
+                <li><title>Core Competencies</title><p>Critical thinking and problem solving (operations on sets; the centre-out method); communication and collaboration (planning and running surveys in groups).</p></li>
+                <li><title>Values</title><p>Responsibility (recording survey data honestly); respect (asking classmates' consent and keeping their answers private).</p></li>
+                <li><title>Pertinent and Contemporary Issues</title><p>Life skills; social awareness.</p></li>
+            </dl>
+        </axiom>
+
+        <xi:include href="../lesson-plan-templates/assessment-intro.ptx" />
+        <xi:include href="../lesson-plan-templates/checkpoint.ptx" />
+
+        <p>Type a set inside curly brackets with commas between the elements, for example <c>{2, 5, 9}</c>. On most phone keyboards the curly brackets are on the second page of symbols: tap <c>?123</c> (or <c>123</c>), then <c>=\&lt;</c> (or <c>#+=</c>). Type the empty set as <c>{}</c>. Type a count as a whole number.</p>
+
+        <exercise xml:id="ex-three-set-survey-with-an-unknown-centre">
+            <!--<title></title>-->
+            <stack label="stk-three-set-survey-with-an-unknown-centre" source="stack/top/1-numbers-and-algebra/01-sets/06-application-of-sets/Three-set-survey-with-an-unknown-centre.xml"/>
+        </exercise>
+
+        <exercises xml:id="exercises-surveys-with-three-sets">
+            <exercise xml:id="ex-ugali-rice-chapati">
+                <statement><p>At lunch, <m>58</m> learners were asked what they ate last week: <m>30</m> ate ugali, <m>22</m> rice and <m>22</m> chapati. Exactly <m>4</m> ate ugali and rice only, <m>5</m> ugali and chapati only, and <m>3</m> rice and chapati only; <m>4</m> ate none of the three. How many ate all three? How many ate ugali only?</p></statement>
+                <answer><p>All three <m>4</m>; ugali only <m>17</m></p></answer>
+                <solution><p>Let <m>x</m> eat all three. Ugali only <m>21 - x</m>, rice only <m>15 - x</m>, chapati only <m>14 - x</m>. The sum of the eight regions is <m>(21 - x) + (15 - x) + (14 - x) + 4 + 5 + 3 + x + 4 = 66 - 2x = 58</m>, so <m>x = 4</m> and ugali only is <m>17</m>.</p></solution>
+            </exercise>
+            <exercise xml:id="ex-hawkers">
+                <statement><p><m>55</m> hawkers each sell at least one of fruit, vegetables and eggs. <m>32</m> sell fruit, <m>25</m> vegetables and <m>25</m> eggs; <m>11</m> sell fruit and vegetables, <m>12</m> fruit and eggs, and <m>9</m> vegetables and eggs. How many sell all three?</p></statement>
+                <answer><p><m>5</m></p></answer>
+                <solution><p>With <m>x</m> in the centre, the only regions are <m>9 + x</m>, <m>5 + x</m> and <m>4 + x</m> and the exactly-two regions are <m>11 - x</m>, <m>12 - x</m> and <m>9 - x</m>. The seven regions add to <m>50 + x = 55</m>, so <m>x = 5</m>.</p></solution>
+            </exercise>
+            <exercise xml:id="ex-hawkers-exactly-one">
+                <statement><p>In <xref ref="ex-hawkers"/>, how many hawkers sell exactly one kind of item?</p></statement>
+                <answer><p><m>14 + 10 + 9 = 33</m></p></answer>
+            </exercise>
+            <exercise xml:id="ex-centre-needs-pairs">
+                <title>Challenge: Is the Centre Fixed?</title>
+                <statement><p>Can the number in all three sets be found from the three set totals, the overall total and the number in none alone? Explain.</p></statement>
+                <answer><p>No. Different diagrams fit the same numbers. A diagram with <m>1</m> person in all three sets and <m>1</m> in <m>C</m> only, and a diagram with <m>1</m> person in <m>A</m> and <m>C</m> only and <m>1</m> in <m>B</m> and <m>C</m> only, both give <m>n(A) = 1</m>, <m>n(B) = 1</m>, <m>n(C) = 2</m> and <m>2</m> people in at least one set, but their centres are <m>1</m> and <m>0</m>. The overlap counts are needed.</p></answer>
+            </exercise>
+        </exercises>
+
+        <axiom component="lesson-plan">
+            <title>Differentiation</title>
+            <table xml:id="table-differentiation-surveys-with-three-sets">
+                <title>Differentiation Strategies</title>
+                <tabular halign="left" top="minor" bottom="minor" left="minor" right="minor">
+                    <row header="yes" bottom="medium"><cell>Learner Group</cell><cell>Strategy and Learning Experience</cell></row>
+                    <row><cell>Struggling Learners (Support)</cell><cell>Work through the activity with a card of <xref ref="fig-three-set-regions"/>. Assign <xref ref="ex-ugali-rice-chapati"/>.</cell></row>
+                    <row><cell>On-Level Learners (Core)</cell><cell>Full activity and the example. Assign <xref ref="ex-ugali-rice-chapati"/> to <xref ref="ex-hawkers-exactly-one"/>.</cell></row>
+                    <row><cell>Advanced Learners (Challenge)</cell><cell><xref ref="ex-centre-needs-pairs"/>. Extension: design a three-set survey for the school, collect the data and present the Venn diagram to the class.</cell></row>
+                </tabular>
+            </table>
+        </axiom>
+
+        <xi:include href="../lesson-plan-templates/assessment-methods.ptx" />
+        <xi:include href="../lesson-plan-templates/reflection.ptx"/>
+    </subsection>
 </section>

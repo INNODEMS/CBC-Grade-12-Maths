@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<quiz>
+<question type="stack">
+  <name><text>Which arrows are equal to a</text></name>
+  <questiontext format="html">
+    <text><![CDATA[<p>\(\mathbf{a} = {@col(av)@}\). Four arrows p, q, r and s are drawn on the grid, each labelled at its tail. Is each one equal to \(\mathbf{a}\)?</p><div style="text-align:center;" role="img" aria-label="Four arrows on a grid. p from ({#t1[1]#}, {#t1[2]#}) to ({#h1[1]#}, {#h1[2]#}). q from ({#t2[1]#}, {#t2[2]#}) to ({#h2[1]#}, {#h2[2]#}). r from ({#t3[1]#}, {#t3[2]#}) to ({#h3[1]#}, {#h3[2]#}). s from ({#t4[1]#}, {#t4[2]#}) to ({#h4[1]#}, {#h4[2]#}).">
+[[jsxgraph width="480px" height="360px"]]
+(function() {
+  var b = JXG.JSXGraph.initBoard(divid, {boundingbox: [-0.6, 10.6, 14.6, -0.6], axis: false, grid: false, keepAspectRatio: true, showNavigation: false, showCopyright: false, pan: {enabled: false}, zoom: {enabled: false}});
+  var gl = {strokeColor: '#d0d0d0', strokeWidth: 1, fixed: true, highlight: false};
+  for (var gx = 0; gx <= 14; gx++) { b.create('segment', [[gx, 0], [gx, 10]], gl); }
+  for (var gy = 0; gy <= 10; gy++) { b.create('segment', [[0, gy], [14, gy]], gl); }
+  var tx = {fixed: true, highlight: false, useMathJax: false, fontSize: 13};
+  var lab = {fixed: true, highlight: false, useMathJax: false, fontSize: 16};
+  var ar = {strokeColor: '#1f4e9c', strokeWidth: 3, lastArrow: {type: 2, size: 5}, fixed: true, highlight: false};
+  var dv = {strokeColor: '#888888', strokeWidth: 2, fixed: true, highlight: false};
+  // cell dividers
+  b.create('segment', [[7, 0], [7, 10]], dv); b.create('segment', [[0, 5], [14, 5]], dv);
+  b.create('arrow', [[{#t1[1]#}, {#t1[2]#}], [{#h1[1]#}, {#h1[2]#}]], ar);
+  (function () { var cx = {#c1[1]#}, cy = {#c1[2]#}, n = Math.sqrt(cx * cx + cy * cy);
+    // label just behind the tail, away from the arrow
+    b.create('text', [{#t1[1]#} - 0.6 * cx / n - 0.15, {#t1[2]#} - 0.6 * cy / n, 'p'], lab); })();
+  b.create('arrow', [[{#t2[1]#}, {#t2[2]#}], [{#h2[1]#}, {#h2[2]#}]], ar);
+  (function () { var cx = {#c2[1]#}, cy = {#c2[2]#}, n = Math.sqrt(cx * cx + cy * cy);
+    // label just behind the tail, away from the arrow
+    b.create('text', [{#t2[1]#} - 0.6 * cx / n - 0.15, {#t2[2]#} - 0.6 * cy / n, 'q'], lab); })();
+  b.create('arrow', [[{#t3[1]#}, {#t3[2]#}], [{#h3[1]#}, {#h3[2]#}]], ar);
+  (function () { var cx = {#c3[1]#}, cy = {#c3[2]#}, n = Math.sqrt(cx * cx + cy * cy);
+    // label just behind the tail, away from the arrow
+    b.create('text', [{#t3[1]#} - 0.6 * cx / n - 0.15, {#t3[2]#} - 0.6 * cy / n, 'r'], lab); })();
+  b.create('arrow', [[{#t4[1]#}, {#t4[2]#}], [{#h4[1]#}, {#h4[2]#}]], ar);
+  (function () { var cx = {#c4[1]#}, cy = {#c4[2]#}, n = Math.sqrt(cx * cx + cy * cy);
+    // label just behind the tail, away from the arrow
+    b.create('text', [{#t4[1]#} - 0.6 * cx / n - 0.15, {#t4[2]#} - 0.6 * cy / n, 's'], lab); })();
+
+})();
+[[/jsxgraph]]
+</div><div>p: [[input:ans1]] [[validation:ans1]] [[feedback:prt1]]</div><div>q: [[input:ans2]] [[validation:ans2]] [[feedback:prt2]]</div><div>r: [[input:ans3]] [[validation:ans3]] [[feedback:prt3]]</div><div>s: [[input:ans4]] [[validation:ans4]] [[feedback:prt4]]</div>]]></text>
+  </questiontext>
+  <generalfeedback format="html">
+    <text><![CDATA[<p>Equal vectors have the same length and the same direction, anywhere on the page: they have the same column. Count each arrow from its tail to its tip.</p><ul><li>p: \({@col(c1)@}\), [[if test="is(cat1=1)"]]equal to \(\mathbf{a}\).[[else]]not equal to \(\mathbf{a}\). [[/if]][[if test="is(cat1#1)"]][[if test="is(cat1=1)"]]Count from tail to tip: \({@c1[1]@}\) across and \({@c1[2]@}\) up, the same as \(\mathbf{a}\). Where an arrow starts does not matter.[[/if]][[if test="is(cat1=2)"]]Same length, but it points the opposite way: its column is \({@col(c1)@}\). Equal vectors need the same direction too.[[/if]][[if test="is(cat1=3)"]]Count again: this arrow goes \({@c1[1]@}\) across and \({@c1[2]@}\) up, so its column is \({@col(c1)@}\), not \({@col(av)@}\).[[/if]][[if test="is(cat1=4)"]]Same direction, but twice as long: \({@col(c1)@} = 2\mathbf{a}\).[[/if]][[if test="is(cat1=5)"]]One of its moves goes the other way: its column is \({@col(c1)@}\).[[/if]][[/if]]</li><li>q: \({@col(c2)@}\), [[if test="is(cat2=1)"]]equal to \(\mathbf{a}\).[[else]]not equal to \(\mathbf{a}\). [[/if]][[if test="is(cat2#1)"]][[if test="is(cat2=1)"]]Count from tail to tip: \({@c2[1]@}\) across and \({@c2[2]@}\) up, the same as \(\mathbf{a}\). Where an arrow starts does not matter.[[/if]][[if test="is(cat2=2)"]]Same length, but it points the opposite way: its column is \({@col(c2)@}\). Equal vectors need the same direction too.[[/if]][[if test="is(cat2=3)"]]Count again: this arrow goes \({@c2[1]@}\) across and \({@c2[2]@}\) up, so its column is \({@col(c2)@}\), not \({@col(av)@}\).[[/if]][[if test="is(cat2=4)"]]Same direction, but twice as long: \({@col(c2)@} = 2\mathbf{a}\).[[/if]][[if test="is(cat2=5)"]]One of its moves goes the other way: its column is \({@col(c2)@}\).[[/if]][[/if]]</li><li>r: \({@col(c3)@}\), [[if test="is(cat3=1)"]]equal to \(\mathbf{a}\).[[else]]not equal to \(\mathbf{a}\). [[/if]][[if test="is(cat3#1)"]][[if test="is(cat3=1)"]]Count from tail to tip: \({@c3[1]@}\) across and \({@c3[2]@}\) up, the same as \(\mathbf{a}\). Where an arrow starts does not matter.[[/if]][[if test="is(cat3=2)"]]Same length, but it points the opposite way: its column is \({@col(c3)@}\). Equal vectors need the same direction too.[[/if]][[if test="is(cat3=3)"]]Count again: this arrow goes \({@c3[1]@}\) across and \({@c3[2]@}\) up, so its column is \({@col(c3)@}\), not \({@col(av)@}\).[[/if]][[if test="is(cat3=4)"]]Same direction, but twice as long: \({@col(c3)@} = 2\mathbf{a}\).[[/if]][[if test="is(cat3=5)"]]One of its moves goes the other way: its column is \({@col(c3)@}\).[[/if]][[/if]]</li><li>s: \({@col(c4)@}\), [[if test="is(cat4=1)"]]equal to \(\mathbf{a}\).[[else]]not equal to \(\mathbf{a}\). [[/if]][[if test="is(cat4#1)"]][[if test="is(cat4=1)"]]Count from tail to tip: \({@c4[1]@}\) across and \({@c4[2]@}\) up, the same as \(\mathbf{a}\). Where an arrow starts does not matter.[[/if]][[if test="is(cat4=2)"]]Same length, but it points the opposite way: its column is \({@col(c4)@}\). Equal vectors need the same direction too.[[/if]][[if test="is(cat4=3)"]]Count again: this arrow goes \({@c4[1]@}\) across and \({@c4[2]@}\) up, so its column is \({@col(c4)@}\), not \({@col(av)@}\).[[/if]][[if test="is(cat4=4)"]]Same direction, but twice as long: \({@col(c4)@} = 2\mathbf{a}\).[[/if]][[if test="is(cat4=5)"]]One of its moves goes the other way: its column is \({@col(c4)@}\).[[/if]][[/if]]</li></ul>]]></text>
+  </generalfeedback>
+  <defaultgrade>4</defaultgrade>
+  <penalty>0.1</penalty>
+  <hidden>0</hidden>
+  <idnumber></idnumber>
+  <stackversion><text>2026063000</text></stackversion>
+  <questionvariables>
+    <text><![CDATA[col(v) := matrix([v[1]],[v[2]]);
+/* Design: decide which arrows are equal to a; two categories in a fixed order. Entries [a, [[category, column] for p, q, r, s]]: 1 or 2 equal arrows, and the equal arrow's position varies. Source: original. */
+L: [[[1,-2],[["swap",[-2,1]],["rev",[-1,2]],["sgn",[-1,-2]],["eq",[1,-2]]]],[[2,1],[["sgn",[2,-1]],["dbl",[4,2]],["rev",[-2,-1]],["eq",[2,1]]]],[[2,-1],[["rev",[-2,1]],["dbl",[4,-2]],["eq",[2,-1]],["swap",[-1,2]]]],[[-3,1],[["rev",[3,-1]],["eq",[-3,1]],["eq",[-3,1]],["swap",[1,-3]]]],[[-2,-1],[["sgn",[-2,1]],["swap",[-1,-2]],["rev",[2,1]],["eq",[-2,-1]]]],[[3,-1],[["swap",[-1,3]],["rev",[-3,1]],["eq",[3,-1]],["dbl",[6,-2]]]],[[-1,2],[["rev",[1,-2]],["eq",[-1,2]],["eq",[-1,2]],["sgn",[1,2]]]],[[-3,2],[["eq",[-3,2]],["rev",[3,-2]],["dbl",[-6,4]],["sgn",[3,2]]]],[[-3,-2],[["rev",[3,2]],["sgn",[3,-2]],["eq",[-3,-2]],["swap",[-2,-3]]]],[[-3,-1],[["rev",[3,1]],["eq",[-3,-1]],["swap",[-1,-3]],["sgn",[3,-1]]]]];
+ix: 1+rand(10);
+av: L[ix][1];
+cells: [[0,5],[7,5],[0,0],[7,0]];
+/* category code: 1 eq, 2 rev, 3 swap, 4 dbl, 5 sgn */
+cc(s) := if s="eq" then 1 elseif s="rev" then 2 elseif s="swap" then 3 elseif s="dbl" then 4 else 5;
+/* tail inside the 7 by 5 cell so the whole arrow fits */
+tl(c, v) := [c[1] + (if v[1] >= 0 then 1 else 6), c[2] + (if v[2] >= 0 then 1 else 4)];
+cat1: cc(L[ix][2][1][1]); c1: L[ix][2][1][2];
+t1: tl(cells[1], c1); h1: t1+c1;
+opt1: [["eq1", is(cat1=1), "equal to a"], ["neq1", is(cat1#1), "not equal to a"]];
+ta1: first(mcq_correct(opt1));
+wr1: if cat1=1 then "neq1" else "eq1";
+cat2: cc(L[ix][2][2][1]); c2: L[ix][2][2][2];
+t2: tl(cells[2], c2); h2: t2+c2;
+opt2: [["eq2", is(cat2=1), "equal to a"], ["neq2", is(cat2#1), "not equal to a"]];
+ta2: first(mcq_correct(opt2));
+wr2: if cat2=1 then "neq2" else "eq2";
+cat3: cc(L[ix][2][3][1]); c3: L[ix][2][3][2];
+t3: tl(cells[3], c3); h3: t3+c3;
+opt3: [["eq3", is(cat3=1), "equal to a"], ["neq3", is(cat3#1), "not equal to a"]];
+ta3: first(mcq_correct(opt3));
+wr3: if cat3=1 then "neq3" else "eq3";
+cat4: cc(L[ix][2][4][1]); c4: L[ix][2][4][2];
+t4: tl(cells[4], c4); h4: t4+c4;
+opt4: [["eq4", is(cat4=1), "equal to a"], ["neq4", is(cat4#1), "not equal to a"]];
+ta4: first(mcq_correct(opt4));
+wr4: if cat4=1 then "neq4" else "eq4";
+cs: [cat1, cat2, cat3, cat4];
+]]></text>
+  </questionvariables>
+  <specificfeedback format="html"><text><![CDATA[]]></text></specificfeedback>
+  <questionnote format="moodle_auto_format">
+    <text>ix={@ix@}, a={@av@}, categories {@cs@}</text>
+  </questionnote>
+  <questiondescription format="html"><text><![CDATA[<p id="concept">Vectors: equal vectors</p><p id="description">Grade 12 CBE Essential 2.2: Decide which of four arrows drawn on a grid are equal to a given column vector.</p><p id="edition">Essential</p><p id="provenance">This question is original to this project.</p><p id="citation">INNODEMS CBC Grade 12 Mathematics, first draft by Ben Davies, 2026. Aligned to the KICD Senior School Curriculum Design, Essential Mathematics Grade 12 (draft).</p>]]></text></questiondescription>
+  <questionsimplify>1</questionsimplify>
+  <assumepositive>0</assumepositive>
+  <assumereal>0</assumereal>
+  <prtcorrect format="html"><text><![CDATA[[[commonstring key="symbolicprtcorrectfeedback"/]] [[commonstring key="defaultprtcorrectfeedback"/]]]]></text></prtcorrect>
+  <prtpartiallycorrect format="html"><text><![CDATA[[[commonstring key="symbolicprtpartiallycorrectfeedback"/]] [[commonstring key="defaultprtpartiallycorrectfeedback"/]]]]></text></prtpartiallycorrect>
+  <prtincorrect format="html"><text><![CDATA[[[commonstring key="symbolicprtincorrectfeedback"/]] [[commonstring key="defaultprtincorrectfeedback"/]]]]></text></prtincorrect>
+  <decimals>.</decimals>
+  <scientificnotation>*10</scientificnotation>
+  <multiplicationsign>none</multiplicationsign>
+  <sqrtsign>1</sqrtsign>
+  <complexno>i</complexno>
+  <inversetrig>cos-1</inversetrig>
+  <logicsymbol>lang</logicsymbol>
+  <matrixparens>(</matrixparens>
+  <isbroken>0</isbroken>
+  <variantsselectionseed></variantsselectionseed>
+
+  <input><name>ans1</name><type>dropdown</type><tans>opt1</tans><boxsize>15</boxsize><strictsyntax>1</strictsyntax><insertstars>0</insertstars><syntaxhint></syntaxhint><syntaxattribute>0</syntaxattribute><forbidwords></forbidwords><allowwords></allowwords><forbidfloat>1</forbidfloat><requirelowestterms>0</requirelowestterms><checkanswertype>0</checkanswertype><mustverify>0</mustverify><showvalidation>0</showvalidation><options></options></input>
+  <input><name>ans2</name><type>dropdown</type><tans>opt2</tans><boxsize>15</boxsize><strictsyntax>1</strictsyntax><insertstars>0</insertstars><syntaxhint></syntaxhint><syntaxattribute>0</syntaxattribute><forbidwords></forbidwords><allowwords></allowwords><forbidfloat>1</forbidfloat><requirelowestterms>0</requirelowestterms><checkanswertype>0</checkanswertype><mustverify>0</mustverify><showvalidation>0</showvalidation><options></options></input>
+  <input><name>ans3</name><type>dropdown</type><tans>opt3</tans><boxsize>15</boxsize><strictsyntax>1</strictsyntax><insertstars>0</insertstars><syntaxhint></syntaxhint><syntaxattribute>0</syntaxattribute><forbidwords></forbidwords><allowwords></allowwords><forbidfloat>1</forbidfloat><requirelowestterms>0</requirelowestterms><checkanswertype>0</checkanswertype><mustverify>0</mustverify><showvalidation>0</showvalidation><options></options></input>
+  <input><name>ans4</name><type>dropdown</type><tans>opt4</tans><boxsize>15</boxsize><strictsyntax>1</strictsyntax><insertstars>0</insertstars><syntaxhint></syntaxhint><syntaxattribute>0</syntaxattribute><forbidwords></forbidwords><allowwords></allowwords><forbidfloat>1</forbidfloat><requirelowestterms>0</requirelowestterms><checkanswertype>0</checkanswertype><mustverify>0</mustverify><showvalidation>0</showvalidation><options></options></input>
+
+  <prt><name>prt1</name><value>1.0000000</value><autosimplify>1</autosimplify><feedbackstyle>1</feedbackstyle><feedbackvariables><text><![CDATA[]]></text></feedbackvariables>
+    <node><name>0</name><description>Arrow p</description><answertest>AlgEquiv</answertest><sans>ans1</sans><tans>ta1</tans><testoptions></testoptions><quiet>0</quiet><truescoremode>=</truescoremode><truescore>1.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt1-1-T</trueanswernote><truefeedback format="html"><text><![CDATA[]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>-1</falsenextnode><falseanswernote>prt1-1-F</falseanswernote><falsefeedback format="html"><text><![CDATA[<p>[[if test="is(cat1=1)"]]Count from tail to tip: \({@c1[1]@}\) across and \({@c1[2]@}\) up, the same as \(\mathbf{a}\). Where an arrow starts does not matter.[[/if]][[if test="is(cat1=2)"]]Same length, but it points the opposite way: its column is \({@col(c1)@}\). Equal vectors need the same direction too.[[/if]][[if test="is(cat1=3)"]]Count again: this arrow goes \({@c1[1]@}\) across and \({@c1[2]@}\) up, so its column is \({@col(c1)@}\), not \({@col(av)@}\).[[/if]][[if test="is(cat1=4)"]]Same direction, but twice as long: \({@col(c1)@} = 2\mathbf{a}\).[[/if]][[if test="is(cat1=5)"]]One of its moves goes the other way: its column is \({@col(c1)@}\).[[/if]]</p>]]></text></falsefeedback></node>
+  </prt>
+  <prt><name>prt2</name><value>1.0000000</value><autosimplify>1</autosimplify><feedbackstyle>1</feedbackstyle><feedbackvariables><text><![CDATA[]]></text></feedbackvariables>
+    <node><name>0</name><description>Arrow q</description><answertest>AlgEquiv</answertest><sans>ans2</sans><tans>ta2</tans><testoptions></testoptions><quiet>0</quiet><truescoremode>=</truescoremode><truescore>1.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt2-1-T</trueanswernote><truefeedback format="html"><text><![CDATA[]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>-1</falsenextnode><falseanswernote>prt2-1-F</falseanswernote><falsefeedback format="html"><text><![CDATA[<p>[[if test="is(cat2=1)"]]Count from tail to tip: \({@c2[1]@}\) across and \({@c2[2]@}\) up, the same as \(\mathbf{a}\). Where an arrow starts does not matter.[[/if]][[if test="is(cat2=2)"]]Same length, but it points the opposite way: its column is \({@col(c2)@}\). Equal vectors need the same direction too.[[/if]][[if test="is(cat2=3)"]]Count again: this arrow goes \({@c2[1]@}\) across and \({@c2[2]@}\) up, so its column is \({@col(c2)@}\), not \({@col(av)@}\).[[/if]][[if test="is(cat2=4)"]]Same direction, but twice as long: \({@col(c2)@} = 2\mathbf{a}\).[[/if]][[if test="is(cat2=5)"]]One of its moves goes the other way: its column is \({@col(c2)@}\).[[/if]]</p>]]></text></falsefeedback></node>
+  </prt>
+  <prt><name>prt3</name><value>1.0000000</value><autosimplify>1</autosimplify><feedbackstyle>1</feedbackstyle><feedbackvariables><text><![CDATA[]]></text></feedbackvariables>
+    <node><name>0</name><description>Arrow r</description><answertest>AlgEquiv</answertest><sans>ans3</sans><tans>ta3</tans><testoptions></testoptions><quiet>0</quiet><truescoremode>=</truescoremode><truescore>1.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt3-1-T</trueanswernote><truefeedback format="html"><text><![CDATA[]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>-1</falsenextnode><falseanswernote>prt3-1-F</falseanswernote><falsefeedback format="html"><text><![CDATA[<p>[[if test="is(cat3=1)"]]Count from tail to tip: \({@c3[1]@}\) across and \({@c3[2]@}\) up, the same as \(\mathbf{a}\). Where an arrow starts does not matter.[[/if]][[if test="is(cat3=2)"]]Same length, but it points the opposite way: its column is \({@col(c3)@}\). Equal vectors need the same direction too.[[/if]][[if test="is(cat3=3)"]]Count again: this arrow goes \({@c3[1]@}\) across and \({@c3[2]@}\) up, so its column is \({@col(c3)@}\), not \({@col(av)@}\).[[/if]][[if test="is(cat3=4)"]]Same direction, but twice as long: \({@col(c3)@} = 2\mathbf{a}\).[[/if]][[if test="is(cat3=5)"]]One of its moves goes the other way: its column is \({@col(c3)@}\).[[/if]]</p>]]></text></falsefeedback></node>
+  </prt>
+  <prt><name>prt4</name><value>1.0000000</value><autosimplify>1</autosimplify><feedbackstyle>1</feedbackstyle><feedbackvariables><text><![CDATA[]]></text></feedbackvariables>
+    <node><name>0</name><description>Arrow s</description><answertest>AlgEquiv</answertest><sans>ans4</sans><tans>ta4</tans><testoptions></testoptions><quiet>0</quiet><truescoremode>=</truescoremode><truescore>1.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt4-1-T</trueanswernote><truefeedback format="html"><text><![CDATA[]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>-1</falsenextnode><falseanswernote>prt4-1-F</falseanswernote><falsefeedback format="html"><text><![CDATA[<p>[[if test="is(cat4=1)"]]Count from tail to tip: \({@c4[1]@}\) across and \({@c4[2]@}\) up, the same as \(\mathbf{a}\). Where an arrow starts does not matter.[[/if]][[if test="is(cat4=2)"]]Same length, but it points the opposite way: its column is \({@col(c4)@}\). Equal vectors need the same direction too.[[/if]][[if test="is(cat4=3)"]]Count again: this arrow goes \({@c4[1]@}\) across and \({@c4[2]@}\) up, so its column is \({@col(c4)@}\), not \({@col(av)@}\).[[/if]][[if test="is(cat4=4)"]]Same direction, but twice as long: \({@col(c4)@} = 2\mathbf{a}\).[[/if]][[if test="is(cat4=5)"]]One of its moves goes the other way: its column is \({@col(c4)@}\).[[/if]]</p>]]></text></falsefeedback></node>
+  </prt>
+
+  <deployedseed>4</deployedseed>
+  <deployedseed>5</deployedseed>
+  <deployedseed>15</deployedseed>
+  <deployedseed>8</deployedseed>
+  <deployedseed>24</deployedseed>
+  <deployedseed>1</deployedseed>
+  <deployedseed>3</deployedseed>
+  <deployedseed>10</deployedseed>
+  <deployedseed>2</deployedseed>
+  <deployedseed>17</deployedseed>
+  <qtest><testcase>1</testcase><description>Correct</description>
+    <testinput><name>ans1</name><value>ta1</value></testinput>
+    <testinput><name>ans2</name><value>ta2</value></testinput>
+    <testinput><name>ans3</name><value>ta3</value></testinput>
+    <testinput><name>ans4</name><value>ta4</value></testinput>
+    <expected><name>prt1</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt1-1-T</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt2-1-T</expectedanswernote></expected>
+    <expected><name>prt3</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt3-1-T</expectedanswernote></expected>
+    <expected><name>prt4</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt4-1-T</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>2</testcase><description>All wrong: named feedback for each arrow</description>
+    <testinput><name>ans1</name><value>wr1</value></testinput>
+    <testinput><name>ans2</name><value>wr2</value></testinput>
+    <testinput><name>ans3</name><value>wr3</value></testinput>
+    <testinput><name>ans4</name><value>wr4</value></testinput>
+    <expected><name>prt1</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt1-1-F</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt2-1-F</expectedanswernote></expected>
+    <expected><name>prt3</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt3-1-F</expectedanswernote></expected>
+    <expected><name>prt4</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt4-1-F</expectedanswernote></expected>
+  </qtest>
+</question>
+</quiz>

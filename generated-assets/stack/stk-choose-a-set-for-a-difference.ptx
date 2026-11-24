@@ -1,0 +1,5 @@
+<stack-static>
+    <statement><p><p><m>\xi = \{1, 2, \ldots, {10}\}</m> and <m>A = {\{2, 4, 5, 7\}}</m>.</p><p>Write a set <m>B</m>, using elements of <m>\xi</m> only, so that <m>A - B = {\{4, 7\}}</m> and <m>B</m> has at least one element that is not in <m>A</m>. Many answers are correct.</p><p><m>B =</m> <fillin characters="25" name="ans1"/>  </p></p></statement>
+    <solution><p><p><m>A - B</m> is <m>A</m> with every element of <m>B</m> removed. To leave exactly <m>{\{4, 7\}}</m>, <m>B</m> must contain <m>{\{2, 5\}}</m> (the elements of <m>A</m> to be removed) and must not contain any element of <m>{\{4, 7\}}</m>.</p><p><m>B</m> also needs an element of <m>\xi</m> that is not in <m>A</m>, such as <m>{1}</m>. For example <m>B = {\{1, 2, 5\}}</m> gives <m>A - B = {\{4, 7\}}</m>. Any other elements of <m>\xi</m> outside <m>A</m> may be added.</p></p></solution>
+    <answer><p><m>\left \{1 , 2 , 5 \right \}</m></p></answer>
+</stack-static>

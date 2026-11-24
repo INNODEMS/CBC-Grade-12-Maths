@@ -39,7 +39,7 @@
                 <li component="lesson-plan">
                     <title>Estimated Duration</title>
                     <p>
-                        40 minutes
+                        2 lessons of 40 minutes
                     </p>
                 </li>
             </dl>
@@ -51,165 +51,515 @@
          Sheet title: Distances on the earth's surface (km and nautical miles)
          Content summary: Distance along great circles and small circles (parallels of latitude) in km and nautical miles.
          Suggested activity: Learners calculate the distance along the equator and along a parallel of latitude between two towns, in km and nautical miles.
-         Interactive (JSXGraph): Globe cross-section showing the radius of a parallel of latitude as R cos θ; a slider for θ shows the small circle shrinking towards the pole. -->
+         Interactive (JSXGraph): Globe cross-section showing the radius of a parallel of latitude as R cos φ; a slider for φ shows the small circle shrinking towards the pole. -->
 
-    <!-- [LP] Add guidance on activity -->
+    <!-- Section notes (2026-11)
+         SLOs: Core (c); Essential (d). Lessons 2.1 and 2.2 as subsections.
+         Activity: as planning notes (distance along the equator across Kenya in 2.1; a parallel of latitude between towns, with the shrinking-parallels table, in 2.2)
+         JSXGraph: fig-parallel-radius-cross-section (assets/jsxgraph/parallel-radius-cross-section.js), as planning notes
+         STACK: assets/stack/top/2-measurement-and-geometry/13-navigation/02-distances-on-the-earths-surface/ -->
 
-    <!-- <axiom component="lesson-plan">
+    <!-- ============================================================ Lesson 2.1 -->
+    <subsection xml:id="subsec-distance-along-a-great-circle">
+        <title>Distance Along a Great Circle</title>
+
+        <p component="lesson-plan">Upon completion of this lesson, learners will be able to:
+            <ol>
+                <li><p><alert>Know:</alert> the nautical mile; <m>1^\circ</m> of a great circle is <m>60</m> nautical miles, or <m>111.2\,\text{km}</m>.</p></li>
+                <li><p><alert>Do:</alert> find distances along a meridian and along the equator in nautical miles and in kilometres, going the shorter way round; find a new latitude after sailing due north or due south.</p></li>
+                <li><p><alert>Apply:</alert> find distances between places in East Africa.</p></li>
+            </ol>
+        </p>
+
+        <axiom component="lesson-plan">
             <title>Problem-Solving and Discovery</title>
             <dl>
-                <li>
-                    <title>Suggested Time</title>
-                    <p>
-                        XX minutes
-                    </p>
-                </li>
-                <li>
-                    <title>Objective</title>
-                    <p>
-                        XXX
-                    </p>
-                </li>
-                <li>
-                    <title>Teacher's Role</title>
-                    <p>
-                        XXX
-                    </p>
-                </li>
+                <li><title>Suggested Time</title><p>14 minutes</p></li>
+                <li><title>Objective</title><p>Learners turn an angle at the centre of the earth into a distance, in kilometres by the arc-length rule and in nautical miles by counting minutes, and compare the two.</p></li>
+                <li><title>Teacher's Role</title><p>Remind learners of the length of an arc, <m>\frac{\theta}{360} \times 2\pi r</m>, from Grade 11. Give <m>R = 6370\,\text{km}</m> and <m>\pi = \tfrac{22}{7}</m> (<xref ref="note-earth-constants"/>).</p></li>
             </dl>
-        </axiom> -->
+        </axiom>
 
-    <!-- Add Activity -->
-
-    <!-- <activity>
-        <statement>
-        </statement>
-    </activity> -->
-
-    <!-- [LP] Add guidance on structured lesson plan-->
-
-    <!-- <axiom component="lesson-plan">
-        <title>Structured Instruction</title>
-        <p>
-            <dl>
-            <li>
-                <title>Suggested Time</title>
+        <activity xml:id="act-how-wide-is-kenya-at-the-equator">
+            <title>How Wide Is Kenya at the Equator?</title>
+            <statement>
+                <p>The equator enters Kenya from Uganda at about <m>34^\circ\,\text{E}</m> and leaves it into Somalia at about <m>41^\circ\,\text{E}</m>.</p>
                 <p>
-                    XX minutes
+                    <ol marker="(a)">
+                        <li>
+                            <p>Through what angle of longitude does the equator cross Kenya?</p>
+                            <solution component="lesson-plan"><p><m>41^\circ - 34^\circ = 7^\circ</m>.</p></solution>
+                        </li>
+                        <li>
+                            <p>The equator is a great circle of radius <m>6370\,\text{km}</m>. Find its length, then the length of an arc of <m>7^\circ</m>.</p>
+                            <solution component="lesson-plan"><p><m>2 \times \tfrac{22}{7} \times 6370 = 40\,040\,\text{km}</m>; <m>\tfrac{7}{360} \times 40\,040 = 778.6\,\text{km}</m>.</p></solution>
+                        </li>
+                        <li>
+                            <p>Sailors and pilots measure distance in minutes of arc. How many minutes are there in <m>7^\circ</m>?</p>
+                            <solution component="lesson-plan"><p><m>7 \times 60 = 420'</m>.</p></solution>
+                        </li>
+                        <li>
+                            <p>An arc of one minute on a great circle is called a nautical mile, and is about <m>1.853\,\text{km}</m>. Change <m>420</m> nautical miles to kilometres and compare with your answer to (b).</p>
+                            <solution component="lesson-plan"><p><m>420 \times 1.853 = 778.3\,\text{km}</m>. The small difference from <m>778.6\,\text{km}</m> comes from rounding the nautical mile to <m>1.853\,\text{km}</m>.</p></solution>
+                        </li>
+                    </ol>
                 </p>
-            </li>
-            <li>
-                <title>Objective</title>
-                <p>
-                    To formalize the concepts and properties learners discovered in the anchor task.
-                </p>
-            </li>
-            </dl>
-        </p>
-        <paragraphs>
-            <title>Key Takeaways &amp; Teacher Connection</title>
-            <ol>
-                <li>
-                    <p>
-                        <alert>Connecting to Learner Work:</alert> XXXX
-                    </p>
-                </li>
-            </ol>
-        </paragraphs>
-    </axiom> -->
+            </statement>
+        </activity>
 
-    <!-- Add insight / key takeaway directly related to activity / learner experience -->
+        <axiom component="lesson-plan">
+            <title>Structured Instruction</title>
+            <p>
+                <dl>
+                    <li><title>Suggested Time</title><p>8 minutes</p></li>
+                    <li><title>Objective</title><p>To define the nautical mile and state both ways of finding a distance along a great circle.</p></li>
+                </dl>
+            </p>
+            <paragraphs>
+                <title>Key Takeaways &amp; Teacher Connection</title>
+                <ol>
+                    <li><p><alert>Connecting to Learner Work:</alert> parts (b) and (d) are the two routes to the same distance: arc length in kilometres, or minutes of arc in nautical miles.</p></li>
+                    <li><p>Nautical miles count minutes of arc on a great circle.</p></li>
+                    <li><p>Meridians and the equator are great circles: along a meridian use the difference in latitude, along the equator the difference in longitude.</p></li>
+                    <li><p>Along the equator, go the shorter way round.</p></li>
+                </ol>
+            </paragraphs>
+        </axiom>
 
-    <!-- <insight>
-    </insight> -->
+        <insight xml:id="insight-distance-along-a-great-circle">
+            <title>Distance Along a Great Circle</title>
+            <p>
+                A <term>nautical mile</term> (nm) is the length of an arc of a great circle that subtends one minute (<m>1'</m>) at the centre of the earth. So along a great circle the distance in nautical miles is the angle at the centre in minutes, and <m>1^\circ = 60\,\text{nm}</m>.
+            </p>
+            <p>
+                For an angle <m>\theta^\circ</m> at the centre, the distance along a great circle is
+                <md>\text{distance} = 60\theta\,\text{nm} \qquad\text{or}\qquad \text{distance} = \frac{\theta}{360} \times 2\pi R\,\text{km}</md>.
+                With <m>R = 6370\,\text{km}</m> and <m>\pi = \tfrac{22}{7}</m>, <m>1^\circ = 60\,\text{nm} = 111.2\,\text{km}</m> and <m>1\,\text{nm} = 40\,040 \div 21\,600 = 1.8537\ldots\,\text{km}</m>, which this chapter takes as <m>1.853\,\text{km}</m>.
+            </p>
+            <p>
+                Along a meridian, <m>\theta</m> is the difference in latitude. Along the equator, <m>\theta</m> is the difference in longitude, taking the smaller of the two ways round.
+            </p>
+        </insight>
 
-    <!-- Add further instruction (not in a block) to develop ideas as needed -->
+        <note xml:id="note-international-nautical-mile">
+            <title>The International Nautical Mile</title>
+            <p>
+                Since 1929 the international nautical mile has been defined as exactly <m>1.852\,\text{km}</m>. With the values of this chapter we get <m>1.8537\,\text{km}</m>, which we use as <m>1.853\,\text{km}</m>. That agrees with <m>1.852\,\text{km}</m> to about <m>1</m> part in <m>2000</m>, so either gives the same answers to the accuracy we need.
+            </p>
+        </note>
 
-    <xi:include href="../lesson-plan-templates/example-intro.ptx" />
+        <xi:include href="../lesson-plan-templates/example-intro.ptx" />
 
-    <!-- Add at least 3 examples -->
-
-    <!-- <example>
-        <statement>
-        </statement>
-        <solution>
-        </solution>
-    </example>
-
-    <example>
-        <statement>
-        </statement>
-        <solution>
-        </solution>
-    </example>
-
-    <example>
-        <statement>
-        </statement>
-        <solution>
-        </solution>
-    </example> -->
-
-    <xi:include href="../lesson-plan-templates/assessment-intro.ptx" />
-
-    <!-- If STACK questions are included, uncomment this: -->
-
-    <!-- <xi:include href="../lesson-plan-templates/checkpoint.ptx" /> -->
-
-    <!-- Add STACK exercises if made -->
-
-    <!-- Add static exercises -->
-
-    <!-- <exercises>
-        <exercise>
-            <statement>   
-
-            </statement>   
+        <example xml:id="example-garissa-to-mombasa">
+            <title>Garissa to Mombasa</title>
+            <statement>
+                <p>Take Garissa <m>(0^\circ 27'\,\text{S})</m> and Mombasa <m>(4^\circ 03'\,\text{S})</m> to be on the same meridian, <m>39^\circ 40'\,\text{E}</m>. Find the distance between them along the meridian in nautical miles and in kilometres.</p>
+            </statement>
             <solution>
+                <p>Both are south of the equator, so subtract: <m>4^\circ 03' - 0^\circ 27' = 3^\circ 63' - 0^\circ 27' = 3^\circ 36'</m>. In minutes, <m>3 \times 60 + 36 = 216'</m>, so the distance is <m>216\,\text{nm}</m>.</p>
+                <p>In kilometres, <m>216 \times 1.853 = 400.2\,\text{km}</m>. By arc length, <m>3^\circ 36' = 3.6^\circ</m> and <m>\tfrac{3.6}{360} \times 40\,040 = 400.4\,\text{km}</m>. Both are fine: the first uses the rounded value <m>1.853</m>.</p>
+            </solution>
+        </example>
 
-            </solution>             
-        </exercise>        
-    </exercises> -->
+        <example xml:id="example-across-the-equator">
+            <title>Across the Equator</title>
+            <statement>
+                <p>A survey aircraft flies along the meridian <m>38^\circ 45'\,\text{E}</m> from Addis Ababa <m>(9^\circ 02'\,\text{N})</m> to latitude <m>6^\circ 48'\,\text{S}</m>. How far does it fly, in nautical miles and in kilometres?</p>
+            </statement>
+            <solution>
+                <p>The equator lies between the two points, so add: <m>9^\circ 02' + 6^\circ 48' = 15^\circ 50' = 950'</m>. The distance is <m>950\,\text{nm}</m>.</p>
+                <p>In kilometres, <m>15^\circ 50' = 15\tfrac{5}{6}^\circ</m> and <m>15\tfrac{5}{6} \div 360 \times 40\,040 = 1761.0\,\text{km}</m> (or <m>950 \times 1.853 = 1760.4\,\text{km}</m>).</p>
+            </solution>
+        </example>
 
-    <!-- [LP] Add information on how to differentiate  -->
+        <example xml:id="example-along-the-equator-short-way">
+            <title>Along the Equator, the Short Way</title>
+            <statement>
+                <p>Two points on the equator are at <m>37^\circ\,\text{E}</m> and <m>150^\circ\,\text{W}</m>. Find the shorter distance between them along the equator.</p>
+            </statement>
+            <solution>
+                <p>The longitudes are on opposite sides of Greenwich, so add: <m>37^\circ + 150^\circ = 187^\circ</m>. This is more than <m>180^\circ</m>, so the other way round, across the <m>180^\circ</m> meridian, is shorter: <m>360^\circ - 187^\circ = 173^\circ</m>.</p>
+                <p>Distance <m>= 173 \times 60 = 10\,380\,\text{nm}</m>, or <m>\tfrac{173}{360} \times 40\,040 = 19\,241.4\,\text{km}</m>.</p>
+            </solution>
+        </example>
 
-    <!-- <axiom component="lesson-plan">
-        <title>Differentiation</title>
+        <example xml:id="example-sailing-due-south">
+            <title>Sailing Due South</title>
+            <statement>
+                <p>A ship leaves Mombasa <m>(4^\circ 03'\,\text{S},\ 39^\circ 40'\,\text{E})</m> and sails <m>300\,\text{nm}</m> due south. Find its new position.</p>
+            </statement>
+            <solution>
+                <p>Sailing due south keeps the ship on its meridian. <m>300\,\text{nm}</m> is <m>300' = 5^\circ</m> of latitude, and the ship moves further from the equator: <m>4^\circ 03' + 5^\circ = 9^\circ 03'</m>. The new position is <m>(9^\circ 03'\,\text{S},\ 39^\circ 40'\,\text{E})</m>.</p>
+            </solution>
+        </example>
 
-        <table>
+        <xi:include href="../lesson-plan-templates/assessment-intro.ptx" />
+        <xi:include href="../lesson-plan-templates/checkpoint.ptx" />
+
+        <p>Type decimals with a point, for example <c>36.8</c>. Type angles in degrees as numbers, without the degree sign. Choose N, S, E or W from each list. Take <m>\pi = \tfrac{22}{7}</m> and <m>R = 6370\,\text{km}</m>. Distances in km within 0.1% of the exact value are accepted.</p>
+
+        <exercise xml:id="ex-distance-along-a-meridian">
+            <!--<title></title>-->
+            <stack label="stk-distance-along-a-meridian" source="stack/top/2-measurement-and-geometry/13-navigation/02-distances-on-the-earths-surface/Distance-along-a-meridian.xml"/>
+        </exercise>
+
+        <exercise xml:id="ex-distance-along-the-equator">
+            <!--<title></title>-->
+            <stack label="stk-distance-along-the-equator" source="stack/top/2-measurement-and-geometry/13-navigation/02-distances-on-the-earths-surface/Distance-along-the-equator.xml"/>
+        </exercise>
+
+        <exercise xml:id="ex-two-places-a-given-distance-apart">
+            <!--<title></title>-->
+            <stack label="stk-two-places-a-given-distance-apart" source="stack/top/2-measurement-and-geometry/13-navigation/02-distances-on-the-earths-surface/Two-places-a-given-distance-apart.xml"/>
+        </exercise>
+
+        <exercises xml:id="exercises-distance-along-a-great-circle">
+            <exercise xml:id="ex-meridian-distance-same-hemisphere">
+                <statement><p>P is at <m>(12^\circ\,\text{N},\ 30^\circ\,\text{E})</m> and Q is at <m>(25^\circ\,\text{N},\ 30^\circ\,\text{E})</m>. Find the distance PQ along the meridian in nautical miles and in kilometres.</p></statement>
+                <answer><p><m>780\,\text{nm}</m>; <m>1445.9\,\text{km}</m></p></answer>
+                <solution><p>Difference in latitude <m>25^\circ - 12^\circ = 13^\circ = 780'</m>, so <m>780\,\text{nm}</m>. <m>\tfrac{13}{360} \times 40\,040 = 1445.9\,\text{km}</m>.</p></solution>
+            </exercise>
+            <exercise xml:id="ex-meridian-distance-across-equator">
+                <statement><p>P is at <m>(8^\circ 20'\,\text{N},\ 45^\circ\,\text{E})</m> and Q is at <m>(14^\circ 50'\,\text{S},\ 45^\circ\,\text{E})</m>. Find PQ along the meridian in nautical miles and in kilometres.</p></statement>
+                <answer><p><m>1390\,\text{nm}</m>; <m>2576.6\,\text{km}</m></p></answer>
+                <solution><p>Opposite sides of the equator: <m>8^\circ 20' + 14^\circ 50' = 22^\circ 70' = 23^\circ 10' = 1390'</m>, so <m>1390\,\text{nm}</m>. <m>23\tfrac{1}{6} \div 360 \times 40\,040 = 2576.6\,\text{km}</m>.</p></solution>
+            </exercise>
+            <exercise xml:id="ex-equator-distance">
+                <statement><p>Two points on the equator are at <m>10^\circ\,\text{W}</m> and <m>65^\circ\,\text{E}</m>. Find the distance between them along the equator in nautical miles and in kilometres.</p></statement>
+                <answer><p><m>4500\,\text{nm}</m>; <m>8341.7\,\text{km}</m></p></answer>
+                <solution><p>Opposite sides of Greenwich: <m>10^\circ + 65^\circ = 75^\circ = 4500'</m>, so <m>4500\,\text{nm}</m>. <m>\tfrac{75}{360} \times 40\,040 = 8341.7\,\text{km}</m>.</p></solution>
+            </exercise>
+            <exercise xml:id="ex-equator-shorter-way">
+                <statement><p>Two points on the equator are at <m>120^\circ\,\text{E}</m> and <m>100^\circ\,\text{W}</m>. Find the shorter distance between them along the equator in nautical miles and in kilometres.</p></statement>
+                <answer><p><m>8400\,\text{nm}</m>; <m>15\,571.1\,\text{km}</m></p></answer>
+                <solution><p><m>120^\circ + 100^\circ = 220^\circ</m>, more than <m>180^\circ</m>, so the shorter arc is <m>360^\circ - 220^\circ = 140^\circ = 8400'</m>: <m>8400\,\text{nm}</m>. <m>\tfrac{140}{360} \times 40\,040 = 15\,571.1\,\text{km}</m>.</p></solution>
+            </exercise>
+            <exercise xml:id="ex-dhow-sails-north-from-lamu">
+                <statement><p>A dhow leaves Lamu <m>(2^\circ 16'\,\text{S},\ 40^\circ 54'\,\text{E})</m> and sails <m>450\,\text{nm}</m> due north. Find its new position.</p></statement>
+                <answer><p><m>(5^\circ 14'\,\text{N},\ 40^\circ 54'\,\text{E})</m></p></answer>
+                <solution><p><m>450' = 7^\circ 30'</m> of latitude northwards. The first <m>2^\circ 16'</m> take the dhow to the equator, and the remaining <m>7^\circ 30' - 2^\circ 16' = 5^\circ 14'</m> take it north of it. The new position is <m>(5^\circ 14'\,\text{N},\ 40^\circ 54'\,\text{E})</m>.</p></solution>
+            </exercise>
+            <exercise xml:id="ex-latitude-from-distance">
+                <title>Challenge: Latitude from a Distance</title>
+                <statement><p>A research ship leaves Mogadishu, taken to be at <m>(2^\circ 03'\,\text{N},\ 45^\circ 19'\,\text{E})</m>, and sails <m>900\,\text{km}</m> due south. Find its new position, to the nearest minute.</p></statement>
+                <hint><p><m>900\,\text{km}</m> is <m>900 \div 40\,040</m> of a full turn round a great circle.</p></hint>
+                <answer><p><m>(6^\circ 03'\,\text{S},\ 45^\circ 19'\,\text{E})</m></p></answer>
+                <solution><p>The ship moves along its meridian through <m>\theta = \tfrac{900}{40\,040} \times 360 = 8.092^\circ</m>, and <m>0.092 \times 60 = 5.5</m>, so <m>8^\circ 06'</m> to the nearest minute. The first <m>2^\circ 03'</m> take it to the equator; the remaining <m>8^\circ 06' - 2^\circ 03' = 6^\circ 03'</m> take it south of the equator. New position <m>(6^\circ 03'\,\text{S},\ 45^\circ 19'\,\text{E})</m>.</p></solution>
+            </exercise>
+        </exercises>
+
+        <axiom component="lesson-plan">
             <title>Differentiation</title>
-            <tabular halign="left">
-                <row header="yes" bottom="minor">
-                    <cell>Learner Group</cell>
-                    <cell>Strategy &amp; Learning Experience</cell>
-                    <cell></cell>
-                </row>
-                <row>
-                    <cell>Struggling Learners (Support)</cell>
-                    <cell>
-                        XXXX
-                    </cell>
-                    <cell></cell>
-                </row>
-                <row>
-                    <cell>On-Level Learners (Core)</cell>
-                    <cell>
-                        <line>The core lesson activities as described above.</line>
-                    </cell>
-                    <cell></cell>
-                </row>
-                <row>
-                    <cell>Advanced Learners (Challenge)</cell>
-                    <cell>
-                        XXXX
-                    </cell>
-                    <cell></cell>
-                </row>
-            </tabular>
-        </table>
-    </axiom> -->
+            <table xml:id="table-differentiation-distance-along-a-great-circle">
+                <title>Differentiation Strategies</title>
+                <tabular halign="left" top="minor" bottom="minor" left="minor" right="minor">
+                    <row header="yes" bottom="medium"><cell>Learner Group</cell><cell>Strategy and Learning Experience</cell></row>
+                    <row><cell>Struggling Learners (Support)</cell><cell>The activity and <xref ref="example-garissa-to-mombasa"/>. Give a card: <m>1^\circ = 60\,\text{nm} = 111.2\,\text{km}</m>. Assign <xref ref="ex-meridian-distance-same-hemisphere"/> and <xref ref="ex-equator-distance"/>.</cell></row>
+                    <row><cell>On-Level Learners (Core)</cell><cell>Full activity and all examples. Assign <xref ref="ex-meridian-distance-same-hemisphere"/> to <xref ref="ex-dhow-sails-north-from-lamu"/>.</cell></row>
+                    <row><cell>Advanced Learners (Challenge)</cell><cell>All exercises including <xref ref="ex-latitude-from-distance"/>. Extension: how far is it from the North Pole to the equator in nautical miles? (Answer: <m>90^\circ = 5400\,\text{nm}</m>.)</cell></row>
+                </tabular>
+            </table>
+        </axiom>
 
-    <xi:include href="../lesson-plan-templates/assessment-methods.ptx" />
+        <xi:include href="../lesson-plan-templates/assessment-methods.ptx" />
+        <xi:include href="../lesson-plan-templates/reflection.ptx"/>
+    </subsection>
 
-    <xi:include href="../lesson-plan-templates/reflection.ptx"/>
+    <!-- ============================================================ Lesson 2.2 -->
+    <subsection xml:id="subsec-distance-along-a-parallel">
+        <title>Distance Along a Parallel of Latitude</title>
+
+        <p component="lesson-plan">Upon completion of this lesson, learners will be able to:
+            <ol>
+                <li><p><alert>Know:</alert> a parallel of latitude <m>\phi</m> is a small circle of radius <m>R\cos\phi</m>; <m>1^\circ</m> of longitude along it is <m>60\cos\phi</m> nautical miles.</p></li>
+                <li component="core"><p><alert>Know (Core):</alert> why the radius of a parallel is <m>R\cos\phi</m>.</p></li>
+                <li><p><alert>Do:</alert> find distances along a parallel in nautical miles and in kilometres; compare the route along a parallel with the route over a pole.</p></li>
+                <li><p><alert>Apply:</alert> routes across the Indian Ocean and in the far north and south.</p></li>
+            </ol>
+        </p>
+
+        <axiom component="lesson-plan">
+            <title>Problem-Solving and Discovery</title>
+            <dl>
+                <li><title>Suggested Time</title><p>14 minutes</p></li>
+                <li><title>Objective</title><p>Learners see the parallels shrink towards the pole and find the factor <m>\cos\phi</m>.</p></li>
+                <li><title>Teacher's Role</title><p>Project the interactive in <xref ref="fig-parallel-radius-cross-section"/>. Groups fill a table for the latitudes <m>0^\circ</m>, <m>30^\circ</m>, <m>60^\circ</m> and <m>75^\circ</m>.</p></li>
+            </dl>
+        </axiom>
+
+        <activity xml:id="act-shrinking-parallels">
+            <title>Shrinking Parallels</title>
+            <statement>
+                <p>Use the interactive in <xref ref="fig-parallel-radius-cross-section"/>. The slider sets the latitude <m>\phi</m> of the point P.</p>
+                <p>
+                    <ol marker="(a)">
+                        <li>
+                            <p>Set <m>\phi</m> to <m>0^\circ</m>, <m>30^\circ</m>, <m>60^\circ</m> and <m>75^\circ</m> in turn. Record the radius <m>r</m> of the parallel through P each time.</p>
+                            <solution component="lesson-plan"><p><m>6370</m>, <m>5517</m>, <m>3185</m> and <m>1649\,\text{km}</m>.</p></solution>
+                        </li>
+                        <li>
+                            <p>Divide each radius by <m>6370</m>. What do you notice?</p>
+                            <solution component="lesson-plan"><p><m>1</m>, <m>0.866</m>, <m>0.5</m> and <m>0.259</m>: these are <m>\cos 0^\circ</m>, <m>\cos 30^\circ</m>, <m>\cos 60^\circ</m> and <m>\cos 75^\circ</m>. So <m>r = R\cos\phi</m>.</p></solution>
+                        </li>
+                        <li>
+                            <p>Find the length of <m>1^\circ</m> of longitude along each parallel.</p>
+                            <solution component="lesson-plan"><p><m>\tfrac{1}{360} \times 2\pi r</m>: <m>111.2</m>, <m>96.3</m>, <m>55.6</m> and <m>28.8\,\text{km}</m>.</p></solution>
+                        </li>
+                        <li>
+                            <p>At what latitude is <m>1^\circ</m> of longitude half as long as it is at the equator?</p>
+                            <solution component="lesson-plan"><p>At <m>60^\circ</m> (north or south), since <m>\cos 60^\circ = \tfrac{1}{2}</m>.</p></solution>
+                        </li>
+                    </ol>
+                </p>
+            </statement>
+        </activity>
+
+        <axiom component="lesson-plan">
+            <title>Structured Instruction</title>
+            <p>
+                <dl>
+                    <li><title>Suggested Time</title><p>8 minutes</p></li>
+                    <li><title>Objective</title><p>To state the radius of a parallel and the distance along it.</p></li>
+                </dl>
+            </p>
+            <paragraphs>
+                <title>Key Takeaways &amp; Teacher Connection</title>
+                <ol>
+                    <li><p><alert>Connecting to Learner Work:</alert> the ratios in part (b) are <m>\cos\phi</m>, so the radius of a parallel is <m>R\cos\phi</m>.</p></li>
+                    <li><p>Along a parallel, take the great-circle distance for the same angle of longitude and multiply by <m>\cos(\text{latitude})</m>.</p></li>
+                    <li><p>A parallel is not the shortest route between two of its points, unless it is the equator.</p></li>
+                </ol>
+            </paragraphs>
+        </axiom>
+
+        <insight xml:id="insight-distance-along-a-parallel">
+            <title>Distance Along a Parallel</title>
+            <p>
+                The parallel of latitude <m>\phi</m> is a small circle of radius
+                <md>r = R\cos\phi</md>
+                (<xref ref="fig-radius-of-a-parallel"/>). It shrinks to a point at the pole.
+            </p>
+            <p>
+                Two points on this parallel whose difference in longitude is <m>\theta^\circ</m> are the same angle apart as on the equator, but on a smaller circle, so multiply by <m>\cos\phi</m>:
+                <md>\text{distance} = \frac{\theta}{360} \times 2\pi R\cos\phi\,\text{km} \qquad\text{or}\qquad \text{distance} = 60\theta\cos\phi\,\text{nm}</md>.
+                In the second form, <m>60\theta</m> is the difference in longitude in minutes.
+            </p>
+        </insight>
+
+        <figure xml:id="fig-radius-of-a-parallel">
+            <caption>A cross-section of the earth through the poles. P is on the parallel of latitude <m>\phi</m>, whose centre C is on the axis.</caption>
+            <image width="55%">
+                <shortdescription>A circle cut through the North and South Poles, with centre O, the axis and the equator. P is on the circle at latitude phi above the equator. C is on the axis level with P. OP = R, CP = R cos phi, the angle at O between the equator and OP is phi, and the angle OPC is also phi.</shortdescription>
+                <latex-image>
+\begin{tikzpicture}
+% SET: earth radius R drawn as 3 units, latitude phi = 40 degrees
+\def\R{3}
+\def\ph{40}
+% CALCULATE: P on the circle at angle phi above the equator; C on the axis level with P
+\coordinate (O) at (0,0);
+\coordinate (P) at ({\R*cos(\ph)},{\R*sin(\ph)});
+\coordinate (C) at (0,{\R*sin(\ph)});
+\coordinate (E) at (\R,0);
+% DRAW: the meridian cross-section, the axis, the equator and the triangle OCP
+\draw[thick] (O) circle (\R);
+\draw[dashed] (0,{-\R-0.4}) -- (0,{\R+0.4});
+\draw (-\R,0) -- (\R,0);
+\draw[thick] (O) -- (P);
+\draw[very thick] (C) -- (P);
+% MARK: right angle at C, angle phi at O and at P
+\draw (0.25,{\R*sin(\ph)}) -- (0.25,{\R*sin(\ph)-0.25}) -- (0,{\R*sin(\ph)-0.25});
+\draw (0.8,0) arc (0:\ph:0.8);
+\draw ($(P)+({-0.7},0)$) arc (180:{180+\ph}:0.7);
+% LABEL
+\node at ({1.1*cos(\ph/2)},{1.1*sin(\ph/2)}) {$\phi$};
+\node at ($(P)+({-0.95*cos(\ph/2)},{-0.95*sin(\ph/2)})$) {$\phi$};
+\node[below left] at (O) {O};
+\node[right] at (P) {P};
+\node[left] at (C) {C};
+\node[above] at (0,{\R+0.4}) {N};
+\node[below] at (0,{-\R-0.4}) {S};
+\node[below] at ({-0.6*\R},0) {equator};
+\node[above] at ({\R*cos(\ph)/2},{\R*sin(\ph)}) {$r = R\cos\phi$};
+\node[below right] at ({0.5*\R*cos(\ph)},{0.5*\R*sin(\ph)}) {$R$};
+\end{tikzpicture}
+                </latex-image>
+            </image>
+        </figure>
+
+        <figure xml:id="fig-parallel-radius-cross-section">
+            <caption>The radius of the parallel through P is <m>r = R\cos\phi</m>. Move the slider to change the latitude <m>\phi</m>.</caption>
+            <interactive xml:id="interactive-parallel-radius-cross-section" platform="jsxgraph" width="90%" aspect="16:12" source="jsxgraph/parallel-radius-cross-section.js">
+                <slate xml:id="jsxgraph-parallel-radius-cross-section" surface="jsxboard" aspect="16:12"/>
+                <instructions>
+                    <p>
+                        <ul>
+                            <li><p>Move the <alert><m>\phi</m></alert> slider from <m>0^\circ</m> to <m>90^\circ</m>. The thick segment CP is the radius <m>r</m> of the parallel; the dashed ellipse shows the parallel seen from the side.</p></li>
+                            <li><p>Read <m>r</m> and the length of <m>1^\circ</m> of longitude at <m>0^\circ</m>, <m>30^\circ</m>, <m>60^\circ</m> and <m>75^\circ</m>. At the pole, <m>\phi = 90^\circ</m>, the parallel is a single point.</p></li>
+                        </ul>
+                    </p>
+                </instructions>
+            </interactive>
+        </figure>
+
+        <xi:include href="../lesson-plan-templates/example-intro.ptx" />
+
+        <example xml:id="example-why-the-radius-is-r-cos-phi-core" component="core">
+            <title>Why the Radius Is <m>R\cos\phi</m></title>
+            <statement>
+                <p>Show that the radius of the parallel of latitude <m>\phi</m> is <m>R\cos\phi</m>.</p>
+            </statement>
+            <solution>
+                <p>In the cross-section of <xref ref="fig-radius-of-a-parallel"/>, O is the centre of the earth, P is a point on the parallel and C is the centre of the parallel, on the axis. CP is parallel to the equator and perpendicular to the axis, so triangle OCP has a right angle at C.</p>
+                <p>The latitude <m>\phi</m> is the angle between OP and the equator. Since CP is parallel to the equator, angle <m>OPC = \phi</m> (alternate angles). In the right-angled triangle, <m>OP = R</m> is the hypotenuse and CP is adjacent to the angle <m>\phi</m> at P, so
+                    <md>CP = R\cos\phi</md>.
+                    CP is the radius of the parallel.</p>
+            </solution>
+        </example>
+
+        <example xml:id="example-using-the-radius-of-a-parallel-essential" component="essential">
+            <title>Using the Radius of a Parallel</title>
+            <statement>
+                <p>Find the radius of the parallel of latitude <m>45^\circ\,\text{S}</m> and the length of the whole parallel.</p>
+            </statement>
+            <solution>
+                <p>From <xref ref="fig-radius-of-a-parallel"/>, the radius is <m>r = R\cos\phi = 6370 \cos 45^\circ = 4504\,\text{km}</m>.</p>
+                <p>The length of the parallel is <m>2\pi r = 2 \times \tfrac{22}{7} \times 4504 = 28\,311\,\text{km}</m>. (Working without rounding the radius, <m>40\,040 \cos 45^\circ = 28\,313\,\text{km}</m>.)</p>
+            </solution>
+        </example>
+
+        <example xml:id="example-mombasa-to-the-seychelles">
+            <title>Mombasa to the Seychelles</title>
+            <statement>
+                <p>Take Mombasa <m>(39^\circ 40'\,\text{E})</m> and Victoria in the Seychelles <m>(55^\circ 27'\,\text{E})</m> both to be on the parallel <m>4^\circ\,\text{S}</m>. Find the distance between them along the parallel in nautical miles and in kilometres.</p>
+            </statement>
+            <solution>
+                <p>Difference in longitude: <m>55^\circ 27' - 39^\circ 40' = 54^\circ 87' - 39^\circ 40' = 15^\circ 47' = 947'</m>.</p>
+                <p>In nautical miles: <m>947 \cos 4^\circ = 944.7\,\text{nm}</m>.</p>
+                <p>In kilometres: <m>15\tfrac{47}{60} \div 360 \times 40\,040 \times \cos 4^\circ = 1751.2\,\text{km}</m>.</p>
+            </solution>
+        </example>
+
+        <example xml:id="example-research-ship-southern-ocean">
+            <title>A Research Ship in the Southern Ocean</title>
+            <statement>
+                <p>A research ship sails along the parallel <m>45^\circ\,\text{S}</m> from <m>30^\circ\,\text{E}</m> to <m>75^\circ\,\text{E}</m>. How far does it sail?</p>
+            </statement>
+            <solution>
+                <p>Difference in longitude <m>45^\circ = 2700'</m>. Distance <m>= 2700 \cos 45^\circ = 1909.2\,\text{nm}</m>, or <m>\tfrac{45}{360} \times 40\,040 \times \cos 45^\circ = 3539.1\,\text{km}</m>.</p>
+            </solution>
+        </example>
+
+        <example xml:id="example-over-the-pole-or-along-the-parallel">
+            <title>Over the Pole or Along the Parallel?</title>
+            <statement>
+                <p>P is at <m>(60^\circ\,\text{N},\ 40^\circ\,\text{E})</m> and Q at <m>(60^\circ\,\text{N},\ 140^\circ\,\text{W})</m>. Compare the distance from P to Q along the parallel with the distance over the North Pole.</p>
+            </statement>
+            <solution>
+                <p><m>40 + 140 = 180</m>, so the meridians of P and Q are opposite each other. Together they form a great circle that passes through the North Pole (<xref ref="fig-pole-route"/>).</p>
+                <p>Along the parallel: the difference in longitude is <m>180^\circ = 10\,800'</m>, so the distance is <m>10\,800 \cos 60^\circ = 5400\,\text{nm}</m>.</p>
+                <p>Over the pole: P is <m>90^\circ - 60^\circ = 30^\circ</m> from the pole and so is Q, so the angle at the centre is <m>60^\circ = 3600'</m>: <m>3600\,\text{nm}</m>.</p>
+                <p>The route over the pole is shorter, by <m>1800\,\text{nm}</m>: it follows a great circle.</p>
+            </solution>
+        </example>
+
+        <figure xml:id="fig-pole-route">
+            <caption>Two routes from P to Q on the parallel <m>60^\circ\,\text{N}</m>: along the parallel (thick dashed) and over the North Pole (thick).</caption>
+            <image width="70%">
+                <shortdescription>A globe seen from above the northern half. P and Q are on the parallel 60 degrees N on opposite meridians. One route follows the parallel round from P to Q; a shorter route goes from P up to the North Pole N and down to Q along the great circle through both meridians.</shortdescription>
+                <latex-image>
+\begin{tikzpicture}[back/.style={dashed, thin}]
+% SET: sphere radius 3, orthographic view centred on longitude 100 E, tilted 40 degrees; P (60 N, 40 E), Q (60 N, 140 W)
+% CALCULATE: as fig-latitude-and-longitude-angles; hidden parts dashed
+% DRAW: parallel 60 N (P to Q eastwards thick dashed), meridians 40 E and 140 W (P to N to Q thick)
+\draw[thick] (0,0) circle (3);
+\draw[thin] (2.954,-0.335) -- (2.989,-0.168) -- (3.000,0.000) -- (2.989,0.168);
+\draw[back] (2.989,0.168) -- (2.954,0.335) -- (2.898,0.499) -- (2.819,0.660) -- (2.719,0.815) -- (2.598,0.964) -- (2.457,1.106) -- (2.298,1.240) -- (2.121,1.364) -- (1.928,1.477) -- (1.721,1.580) -- (1.500,1.670) -- (1.268,1.748) -- (1.026,1.812) -- (0.776,1.863) -- (0.521,1.899) -- (0.261,1.921) -- (-0.000,1.928) -- (-0.261,1.921) -- (-0.521,1.899) -- (-0.776,1.863) -- (-1.026,1.812) -- (-1.268,1.748) -- (-1.500,1.670) -- (-1.721,1.580) -- (-1.928,1.477) -- (-2.121,1.364) -- (-2.298,1.240) -- (-2.457,1.106) -- (-2.598,0.964) -- (-2.719,0.815) -- (-2.819,0.660) -- (-2.898,0.499) -- (-2.954,0.335) -- (-2.989,0.168) -- (-3.000,-0.000);
+\draw[thin] (-3.000,-0.000) -- (-2.989,-0.168) -- (-2.954,-0.335) -- (-2.898,-0.499) -- (-2.819,-0.660) -- (-2.719,-0.815) -- (-2.598,-0.964) -- (-2.457,-1.106) -- (-2.298,-1.240) -- (-2.121,-1.364) -- (-1.928,-1.477) -- (-1.721,-1.580) -- (-1.500,-1.670) -- (-1.268,-1.748) -- (-1.026,-1.812) -- (-0.776,-1.863) -- (-0.521,-1.899) -- (-0.261,-1.921) -- (0.000,-1.928) -- (0.261,-1.921) -- (0.521,-1.899) -- (0.776,-1.863) -- (1.026,-1.812) -- (1.268,-1.748) -- (1.500,-1.670) -- (1.721,-1.580) -- (1.928,-1.477) -- (2.121,-1.364) -- (2.298,-1.240) -- (2.457,-1.106) -- (2.598,-0.964) -- (2.719,-0.815) -- (2.819,-0.660) -- (2.898,-0.499) -- (2.954,-0.335);
+\draw[thin] (1.299,2.472) -- (1.265,2.508) -- (1.229,2.543) -- (1.190,2.577) -- (1.149,2.610) -- (1.106,2.642) -- (1.061,2.672) -- (1.013,2.701) -- (0.964,2.729) -- (0.913,2.755) -- (0.860,2.780) -- (0.806,2.803) -- (0.750,2.825) -- (0.693,2.845) -- (0.634,2.864) -- (0.574,2.881) -- (0.513,2.896) -- (0.451,2.910) -- (0.388,2.922) -- (0.325,2.932) -- (0.260,2.940) -- (0.196,2.946) -- (0.131,2.951) -- (0.065,2.954) -- (-0.000,2.954) -- (-0.065,2.954) -- (-0.131,2.951) -- (-0.196,2.946) -- (-0.260,2.940) -- (-0.325,2.932) -- (-0.388,2.922) -- (-0.451,2.910) -- (-0.513,2.896) -- (-0.574,2.881) -- (-0.634,2.864) -- (-0.693,2.845) -- (-0.750,2.825) -- (-0.806,2.803) -- (-0.860,2.780) -- (-0.913,2.755) -- (-0.964,2.729) -- (-1.013,2.701) -- (-1.061,2.672) -- (-1.106,2.642) -- (-1.149,2.610) -- (-1.190,2.577) -- (-1.229,2.543) -- (-1.265,2.508) -- (-1.299,2.472) -- (-1.331,2.435) -- (-1.359,2.398) -- (-1.386,2.359) -- (-1.410,2.320) -- (-1.431,2.280) -- (-1.449,2.240) -- (-1.464,2.199) -- (-1.477,2.158) -- (-1.487,2.116) -- (-1.494,2.074) -- (-1.499,2.032) -- (-1.500,1.990) -- (-1.499,1.948) -- (-1.494,1.906) -- (-1.487,1.864) -- (-1.477,1.823) -- (-1.464,1.782) -- (-1.449,1.741) -- (-1.431,1.700) -- (-1.410,1.660) -- (-1.386,1.621) -- (-1.359,1.583) -- (-1.331,1.545) -- (-1.299,1.508);
+\draw[very thick, dash pattern=on 6pt off 2pt] (-1.299,1.508) -- (-1.265,1.472) -- (-1.229,1.437) -- (-1.190,1.403) -- (-1.149,1.370) -- (-1.106,1.339) -- (-1.061,1.308) -- (-1.013,1.279) -- (-0.964,1.252) -- (-0.913,1.225) -- (-0.860,1.200) -- (-0.806,1.177) -- (-0.750,1.155) -- (-0.693,1.135) -- (-0.634,1.116) -- (-0.574,1.099) -- (-0.513,1.084) -- (-0.451,1.071) -- (-0.388,1.059) -- (-0.325,1.049) -- (-0.260,1.041) -- (-0.196,1.034) -- (-0.131,1.030) -- (-0.065,1.027) -- (0.000,1.026) -- (0.065,1.027) -- (0.131,1.030) -- (0.196,1.034) -- (0.260,1.041) -- (0.325,1.049) -- (0.388,1.059) -- (0.451,1.071) -- (0.513,1.084) -- (0.574,1.099) -- (0.634,1.116) -- (0.693,1.135) -- (0.750,1.155) -- (0.806,1.177) -- (0.860,1.200) -- (0.913,1.225) -- (0.964,1.252) -- (1.013,1.279) -- (1.061,1.308) -- (1.106,1.339) -- (1.149,1.370) -- (1.190,1.403) -- (1.229,1.437) -- (1.265,1.472) -- (1.299,1.508) -- (1.331,1.545) -- (1.359,1.583) -- (1.386,1.621) -- (1.410,1.660) -- (1.431,1.700) -- (1.449,1.741) -- (1.464,1.782) -- (1.477,1.823) -- (1.487,1.864) -- (1.494,1.906) -- (1.499,1.948) -- (1.500,1.990) -- (1.499,2.032) -- (1.494,2.074) -- (1.487,2.116) -- (1.477,2.158) -- (1.464,2.199) -- (1.449,2.240) -- (1.431,2.280) -- (1.410,2.320) -- (1.386,2.359) -- (1.359,2.398) -- (1.331,2.435) -- (1.299,2.472);
+\draw[very thick] (-1.299,1.508) -- (-1.273,1.531) -- (-1.246,1.554) -- (-1.220,1.576) -- (-1.193,1.599) -- (-1.166,1.621) -- (-1.139,1.643) -- (-1.112,1.665) -- (-1.084,1.686) -- (-1.057,1.707) -- (-1.029,1.728) -- (-1.001,1.749) -- (-0.973,1.770) -- (-0.945,1.790) -- (-0.917,1.810) -- (-0.889,1.830) -- (-0.860,1.849) -- (-0.832,1.869) -- (-0.803,1.888) -- (-0.774,1.907) -- (-0.745,1.925) -- (-0.716,1.943) -- (-0.687,1.961) -- (-0.658,1.979) -- (-0.629,1.997) -- (-0.599,2.014) -- (-0.570,2.031) -- (-0.540,2.047) -- (-0.511,2.064) -- (-0.481,2.080) -- (-0.451,2.096) -- (-0.421,2.111) -- (-0.391,2.127) -- (-0.362,2.142) -- (-0.332,2.156) -- (-0.302,2.171) -- (-0.272,2.185) -- (-0.241,2.199) -- (-0.211,2.212) -- (-0.181,2.225) -- (-0.151,2.238) -- (-0.121,2.251) -- (-0.091,2.263) -- (-0.060,2.275) -- (-0.030,2.287) -- (-0.000,2.298);
+\draw[very thick] (1.299,2.472) -- (1.273,2.476) -- (1.246,2.479) -- (1.220,2.482) -- (1.193,2.484) -- (1.166,2.486) -- (1.139,2.488) -- (1.112,2.490) -- (1.084,2.491) -- (1.057,2.492) -- (1.029,2.492) -- (1.001,2.492) -- (0.973,2.492) -- (0.945,2.491) -- (0.917,2.491) -- (0.889,2.489) -- (0.860,2.488) -- (0.832,2.486) -- (0.803,2.484) -- (0.774,2.481) -- (0.745,2.478) -- (0.716,2.475) -- (0.687,2.471) -- (0.658,2.467) -- (0.629,2.463) -- (0.599,2.459) -- (0.570,2.454) -- (0.540,2.448) -- (0.511,2.443) -- (0.481,2.437) -- (0.451,2.431) -- (0.421,2.424) -- (0.391,2.417) -- (0.362,2.410) -- (0.332,2.402) -- (0.302,2.395) -- (0.272,2.386) -- (0.241,2.378) -- (0.211,2.369) -- (0.181,2.360) -- (0.151,2.350) -- (0.121,2.341) -- (0.091,2.330) -- (0.060,2.320) -- (0.030,2.309) -- (0.000,2.298);
+\draw[back] (-0.000,-2.298) -- (-0.151,-2.350) -- (-0.302,-2.395) -- (-0.451,-2.431) -- (-0.599,-2.459) -- (-0.745,-2.478) -- (-0.889,-2.489) -- (-1.029,-2.492) -- (-1.166,-2.486) -- (-1.299,-2.472) -- (-1.428,-2.450) -- (-1.551,-2.419) -- (-1.670,-2.380) -- (-1.783,-2.333) -- (-1.890,-2.278) -- (-1.990,-2.216) -- (-2.084,-2.146) -- (-2.171,-2.068) -- (-2.250,-1.984);
+\draw[thin] (-2.250,-1.984) -- (-2.322,-1.893) -- (-2.386,-1.796) -- (-2.441,-1.692) -- (-2.489,-1.583) -- (-2.528,-1.468) -- (-2.559,-1.349) -- (-2.581,-1.224) -- (-2.594,-1.096) -- (-2.598,-0.964) -- (-2.594,-0.829) -- (-2.581,-0.691) -- (-2.559,-0.550) -- (-2.528,-0.408) -- (-2.489,-0.265) -- (-2.441,-0.120) -- (-2.386,0.025) -- (-2.322,0.170) -- (-2.250,0.314) -- (-2.171,0.457) -- (-2.084,0.599) -- (-1.990,0.739) -- (-1.890,0.876) -- (-1.783,1.010) -- (-1.670,1.141) -- (-1.551,1.268) -- (-1.428,1.390) -- (-1.299,1.508);
+\draw[back] (0.000,-2.298) -- (0.151,-2.238) -- (0.302,-2.171) -- (0.451,-2.096) -- (0.599,-2.014) -- (0.745,-1.925) -- (0.889,-1.830) -- (1.029,-1.728) -- (1.166,-1.621) -- (1.299,-1.508) -- (1.428,-1.390) -- (1.551,-1.268) -- (1.670,-1.141) -- (1.783,-1.010) -- (1.890,-0.876) -- (1.990,-0.739) -- (2.084,-0.599) -- (2.171,-0.457) -- (2.250,-0.314) -- (2.322,-0.170) -- (2.386,-0.025) -- (2.441,0.120) -- (2.489,0.265) -- (2.528,0.408) -- (2.559,0.550) -- (2.581,0.691) -- (2.594,0.829) -- (2.598,0.964) -- (2.594,1.096) -- (2.581,1.224) -- (2.559,1.349) -- (2.528,1.468) -- (2.489,1.583) -- (2.441,1.692) -- (2.386,1.796) -- (2.322,1.893) -- (2.250,1.984) -- (2.171,2.068);
+\draw[thin] (2.171,2.068) -- (2.084,2.146) -- (1.990,2.216) -- (1.890,2.278) -- (1.783,2.333) -- (1.670,2.380) -- (1.551,2.419) -- (1.428,2.450) -- (1.299,2.472);
+\fill (-1.299,1.508) circle (2pt) node[left] {P};
+\fill (1.299,2.472) circle (2pt) node[above right] {Q};
+\fill (-0.000,2.298) circle (2pt) node[above] {N};
+\fill (0,0) circle (1.5pt) node[below] {O};
+\node[font=\small, anchor=west] at (3.20,0.6) {along the parallel $60^\circ$N};
+\draw[->] (3.15,0.6) -- (0.964,1.252);
+\node[font=\small, anchor=east] at (-3.10,2.4) {over the North Pole};
+\draw[->] (-3.10,2.4) -- (-0.540,2.047);
+\end{tikzpicture}
+                </latex-image>
+            </image>
+        </figure>
+
+        <xi:include href="../lesson-plan-templates/assessment-intro.ptx" />
+        <xi:include href="../lesson-plan-templates/checkpoint.ptx" />
+
+        <p>Type decimals with a point, for example <c>36.8</c>. Type angles in degrees as numbers, without the degree sign. Choose N, S, E or W from each list. Take <m>\pi = \tfrac{22}{7}</m> and <m>R = 6370\,\text{km}</m>. Distances in km within 0.1% of the exact value are accepted.</p>
+
+        <exercise xml:id="ex-distance-along-a-parallel">
+            <!--<title></title>-->
+            <stack label="stk-distance-along-a-parallel" source="stack/top/2-measurement-and-geometry/13-navigation/02-distances-on-the-earths-surface/Distance-along-a-parallel.xml"/>
+        </exercise>
+
+        <exercise xml:id="ex-over-the-pole-or-along-the-parallel">
+            <!--<title></title>-->
+            <stack label="stk-over-the-pole-or-along-the-parallel" source="stack/top/2-measurement-and-geometry/13-navigation/02-distances-on-the-earths-surface/Over-the-pole-or-along-the-parallel.xml"/>
+        </exercise>
+
+        <exercises xml:id="exercises-distance-along-a-parallel">
+            <exercise xml:id="ex-parallel-30n">
+                <statement><p>Find the distance along the parallel <m>30^\circ\,\text{N}</m> between the meridians <m>10^\circ\,\text{E}</m> and <m>50^\circ\,\text{E}</m>, in nautical miles and in kilometres.</p></statement>
+                <answer><p><m>2078.5\,\text{nm}</m>; <m>3852.9\,\text{km}</m></p></answer>
+                <solution><p>Difference in longitude <m>40^\circ = 2400'</m>. <m>2400 \cos 30^\circ = 2078.5\,\text{nm}</m>; <m>\tfrac{40}{360} \times 40\,040 \times \cos 30^\circ = 3852.9\,\text{km}</m>.</p></solution>
+            </exercise>
+            <exercise xml:id="ex-parallel-52s">
+                <statement><p>Find the distance along the parallel <m>52^\circ\,\text{S}</m> between the meridians <m>20^\circ\,\text{W}</m> and <m>35^\circ\,\text{E}</m>, in nautical miles and in kilometres.</p></statement>
+                <answer><p><m>2031.7\,\text{nm}</m>; <m>3766.1\,\text{km}</m></p></answer>
+                <solution><p>Opposite sides of Greenwich: <m>20^\circ + 35^\circ = 55^\circ = 3300'</m>. <m>3300 \cos 52^\circ = 2031.7\,\text{nm}</m>; <m>\tfrac{55}{360} \times 40\,040 \times \cos 52^\circ = 3766.1\,\text{km}</m>.</p></solution>
+            </exercise>
+            <exercise xml:id="ex-lodwar-towards-mandera">
+                <statement><p>Take Lodwar <m>(35^\circ 36'\,\text{E})</m> and Mandera <m>(41^\circ 52'\,\text{E})</m> both to be on the parallel <m>3^\circ\,\text{N}</m>. Find the distance between them along the parallel in nautical miles and in kilometres.</p></statement>
+                <answer><p><m>375.5\,\text{nm}</m>; <m>696.0\,\text{km}</m></p></answer>
+                <solution><p><m>41^\circ 52' - 35^\circ 36' = 6^\circ 16' = 376'</m>. <m>376 \cos 3^\circ = 375.5\,\text{nm}</m>; <m>6\tfrac{16}{60} \div 360 \times 40\,040 \times \cos 3^\circ = 696.0\,\text{km}</m>.</p></solution>
+            </exercise>
+            <exercise xml:id="ex-ship-west-from-port-louis">
+                <statement><p>A ship leaves Port Louis in Mauritius, taken to be at <m>(20^\circ\,\text{S},\ 57^\circ 30'\,\text{E})</m>, and sails <m>600\,\text{nm}</m> due west along the parallel. Find its new longitude, to the nearest minute.</p></statement>
+                <answer><p><m>46^\circ 51'\,\text{E}</m></p></answer>
+                <solution><p>Each degree of longitude on <m>20^\circ\,\text{S}</m> is <m>60\cos 20^\circ = 56.38\,\text{nm}</m>. Change in longitude <m>= 600 \div (60 \cos 20^\circ) = 10.642^\circ = 10^\circ 39'</m>. Sailing west from an east longitude decreases it: <m>57^\circ 30' - 10^\circ 39' = 46^\circ 51'\,\text{E}</m>.</p></solution>
+            </exercise>
+            <exercise xml:id="ex-pole-or-parallel-70s">
+                <statement><p>P is at <m>(70^\circ\,\text{S},\ 25^\circ\,\text{E})</m> and Q at <m>(70^\circ\,\text{S},\ 155^\circ\,\text{W})</m>. Compare the distance from P to Q along the parallel with the distance over the South Pole.</p></statement>
+                <answer><p>Parallel <m>3693.8\,\text{nm}</m>; over the pole <m>2400\,\text{nm}</m>; the route over the pole is shorter.</p></answer>
+                <solution><p><m>25 + 155 = 180</m>: opposite meridians. Along the parallel: <m>10\,800 \cos 70^\circ = 3693.8\,\text{nm}</m>. Over the pole: <m>2 \times (90^\circ - 70^\circ) = 40^\circ = 2400'</m>, so <m>2400\,\text{nm}</m>.</p></solution>
+            </exercise>
+            <exercise xml:id="ex-latitude-for-a-given-distance">
+                <title>Challenge: Which Parallel?</title>
+                <statement><p>Along which parallel of latitude is the distance between the meridians <m>0^\circ</m> and <m>60^\circ\,\text{E}</m> equal to <m>1800\,\text{nm}</m>?</p></statement>
+                <hint><p>On the equator the distance is <m>3600\,\text{nm}</m>.</p></hint>
+                <answer><p><m>60^\circ\,\text{N}</m> or <m>60^\circ\,\text{S}</m></p></answer>
+                <solution><p><m>60^\circ = 3600'</m>, so <m>3600\cos\phi = 1800</m>, <m>\cos\phi = \tfrac{1}{2}</m> and <m>\phi = 60^\circ</m>. The parallel is <m>60^\circ\,\text{N}</m> or <m>60^\circ\,\text{S}</m>.</p></solution>
+            </exercise>
+        </exercises>
+
+        <axiom component="lesson-plan">
+            <title>Differentiation</title>
+            <table xml:id="table-differentiation-distance-along-a-parallel">
+                <title>Differentiation Strategies</title>
+                <tabular halign="left" top="minor" bottom="minor" left="minor" right="minor">
+                    <row header="yes" bottom="medium"><cell>Learner Group</cell><cell>Strategy and Learning Experience</cell></row>
+                    <row><cell>Struggling Learners (Support)</cell><cell>The activity and <xref ref="example-mombasa-to-the-seychelles"/>. Give a card: <q>parallel: multiply by <m>\cos(\text{latitude})</m></q>. Assign <xref ref="ex-parallel-30n"/> and <xref ref="ex-lodwar-towards-mandera"/>.</cell></row>
+                    <row><cell>On-Level Learners (Core)</cell><cell>Full activity and all examples. Assign <xref ref="ex-parallel-30n"/> to <xref ref="ex-pole-or-parallel-70s"/>.</cell></row>
+                    <row><cell>Advanced Learners (Challenge)</cell><cell>All exercises including <xref ref="ex-latitude-for-a-given-distance"/>. Extension: why is the route along a parallel never the shortest unless the two points are on the equator? (Answer: of all the parallels, only the equator is a great circle.)</cell></row>
+                </tabular>
+            </table>
+        </axiom>
+
+        <xi:include href="../lesson-plan-templates/assessment-methods.ptx" />
+        <xi:include href="../lesson-plan-templates/reflection.ptx"/>
+    </subsection>
 </section>

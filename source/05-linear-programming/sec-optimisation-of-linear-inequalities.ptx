@@ -35,9 +35,8 @@
                 </li>
                 <li component="lesson-plan">
                     <title>Estimated Duration</title>
-                    <p>
-                        40 minutes
-                    </p>
+                    <p component="core">2 lessons of 40 minutes</p>
+                    <p component="essential">40 minutes</p>
                 </li>
             </dl>
             </p>
@@ -49,163 +48,510 @@
          Suggested activity: Learners test each vertex of the feasible region in a profit function and identify the maximum profit.
          Interactive (JSXGraph): Feasible region with a draggable search line ax + by = k; a slider moves the line across the region and shows the value of the objective function, stopping at the optimum vertex. -->
 
-    <!-- [LP] Add guidance on activity -->
+    <!-- Section notes (2026-11)
+         SLOs: Core (c) graph: sampling and search line; Essential (c) sampling. Lessons 3.1 (both), 3.2 (Core) as subsections.
+         Activity: as planning notes (test each vertex of the fundraiser region in a profit function)
+         JSXGraph: fig-lp-sampling-points (shared, added; assets/jsxgraph/lp-sampling-points.js); fig-lp-search-line (planning notes, Core only: Essential excludes the search line; assets/jsxgraph/lp-search-line.js)
+         STACK: assets/stack/top/1-numbers-and-algebra/05-linear-programming/03-optimisation-of-linear-inequalities/ -->
 
-    <!-- <axiom component="lesson-plan">
+    <!-- ============================================================ Lesson 3.1 -->
+    <subsection xml:id="subsec-optimum-by-sampling">
+        <title>Finding the Optimum by Sampling</title>
+
+        <p component="lesson-plan">Upon completion of this lesson, learners will be able to:
+            <ol>
+                <li><p><alert>Know:</alert> the optimal solution of a linear programming problem is at a vertex of the feasible region; a vertex that is not a whole-number point is not an answer when the unknowns count things.</p></li>
+                <li><p><alert>Do:</alert> find the vertices of R, work out the objective function at each, and sample the whole-number points of R near the best vertex.</p></li>
+                <li><p><alert>Apply:</alert> choose the most profitable plan for a fundraiser, a tailor and a youth group, and the cheapest fertiliser for a shamba.</p></li>
+            </ol>
+        </p>
+
+        <axiom component="lesson-plan">
             <title>Problem-Solving and Discovery</title>
             <dl>
-                <li>
-                    <title>Suggested Time</title>
-                    <p>
-                        XX minutes
-                    </p>
-                </li>
-                <li>
-                    <title>Objective</title>
-                    <p>
-                        XXX
-                    </p>
-                </li>
-                <li>
-                    <title>Teacher's Role</title>
-                    <p>
-                        XXX
-                    </p>
-                </li>
+                <li><title>Suggested Time</title><p>14 minutes</p></li>
+                <li><title>Objective</title><p>Learners test points of the fundraiser region in the profit function and notice that the best plans are at a corner.</p></li>
+                <li><title>Teacher's Role</title><p>Give each group two inside points and two corners to test, and collect every result in one table on the board. After part (c), ask: <q>Could any plan inside R beat the best corner?</q></p></li>
             </dl>
-        </axiom> -->
+        </axiom>
 
-    <!-- Add Activity -->
-
-    <!-- <activity>
-        <statement>
-        </statement>
-    </activity> -->
-
-    <!-- [LP] Add guidance on structured lesson plan-->
-
-    <!-- <axiom component="lesson-plan">
-        <title>Structured Instruction</title>
-        <p>
-            <dl>
-            <li>
-                <title>Suggested Time</title>
+        <activity xml:id="act-which-plan-earns-most">
+            <title>Which Plan Earns Most?</title>
+            <statement>
+                <p>The Grade 12 class in Machakos is planning its fundraiser again (<xref ref="act-planning-the-fundraiser"/>). They make <m>x</m> mandazi and <m>y</m> samosas, with
+                    <md>x + y \le 100, \quad 15x + 35y \le 2520, \quad y \ge 30, \quad x \ge 0</md>.
+                    The profit is Ksh <m>15</m> on a mandazi and Ksh <m>25</m> on a samosa, so the profit in shillings is <m>P = 15x + 25y</m>. The corners of the region R are <m>(0, 30)</m>, <m>(70, 30)</m>, <m>(49, 51)</m> and <m>(0, 72)</m> (<xref ref="act-corners-of-the-fundraiser-region"/>).</p>
                 <p>
-                    XX minutes
+                    <ol marker="(a)">
+                        <li>
+                            <p>Check that the plans <m>(20, 40)</m>, <m>(50, 40)</m> and <m>(30, 50)</m> are inside R, and work out the profit for each.</p>
+                            <solution component="lesson-plan"><p>All three satisfy every constraint. <m>P = 1300</m>, <m>1750</m> and <m>1700</m> shillings.</p></solution>
+                        </li>
+                        <li>
+                            <p>Work out the profit at each corner of R.</p>
+                            <solution component="lesson-plan"><p><m>(0, 30)</m>: Ksh <m>750</m>; <m>(70, 30)</m>: Ksh <m>1800</m>; <m>(49, 51)</m>: Ksh <m>2010</m>; <m>(0, 72)</m>: Ksh <m>1800</m>.</p></solution>
+                        </li>
+                        <li>
+                            <p>Which plan earns most? How much is the profit?</p>
+                            <solution component="lesson-plan"><p>49 mandazi and 51 samosas, a profit of Ksh <m>2010</m>.</p></solution>
+                        </li>
+                        <li>
+                            <p>Start at the plan <m>(50, 40)</m>. What happens to the profit if the class makes one more samosa? Can they keep doing this? Use your answer to explain why the best plan is on the edge of R, and then at a corner.</p>
+                            <solution component="lesson-plan"><p>One more samosa adds Ksh <m>25</m>. From any point inside R you can keep adding samosas (or mandazi) and the profit keeps rising until you reach a boundary. Along that boundary you can still move in a direction that raises the profit until you reach a corner, where two limits stop you at once.</p></solution>
+                        </li>
+                    </ol>
                 </p>
-            </li>
-            <li>
-                <title>Objective</title>
-                <p>
-                    To formalize the concepts and properties learners discovered in the anchor task.
-                </p>
-            </li>
-            </dl>
-        </p>
-        <paragraphs>
-            <title>Key Takeaways &amp; Teacher Connection</title>
-            <ol>
-                <li>
+            </statement>
+        </activity>
+
+        <axiom component="lesson-plan">
+            <title>Structured Instruction</title>
+            <p>
+                <dl>
+                    <li><title>Suggested Time</title><p>8 minutes</p></li>
+                    <li><title>Objective</title><p>To state where the optimum of a linear objective lies, and the sampling method for whole-number answers.</p></li>
+                </dl>
+            </p>
+            <paragraphs>
+                <title>Key Takeaways &amp; Teacher Connection</title>
+                <ol>
+                    <li><p><alert>Connecting to Learner Work:</alert> no inside plan in the board table beat the best corner. That is the key fact: the optimum is at a vertex of R.</p></li>
+                    <li><p>Sampling: find the vertices, work out the objective at each, choose the best.</p></li>
+                    <li><p>When the answer must be whole numbers and the best vertex is not a whole-number point, test the whole-number points of R near it, check the one you choose against every constraint, and check that no whole-number point further away does better.</p></li>
+                </ol>
+            </paragraphs>
+        </axiom>
+
+        <insight xml:id="insight-optimum-by-sampling">
+            <title>Optimal Solution by Sampling</title>
+            <p>The point of R that gives the largest value of the objective function (or the smallest, for a cost) is the <term>optimal solution</term>. The value of the objective function there is the <term>optimum value</term>.</p>
+            <p>For a linear objective function such as <m>P = ax + by</m>, the optimum value is found at a vertex of R: the best value of a linear objective is at a corner of the region. If the lines <m>ax + by = k</m> are parallel to an edge of R, every point of that edge may give the same optimum value.</p>
+            <p>To find the optimal solution by <term>sampling</term>:
+                <ol marker="1.">
+                    <li><p>Find the vertices of R.</p></li>
+                    <li><p>Work out the objective function at each vertex.</p></li>
+                    <li><p>Choose the vertex with the largest value (or the smallest, for a cost).</p></li>
+                    <li><p>If the answer must be whole numbers and the best vertex is not a whole-number point, list the whole-number points of R near that vertex (a good start is every whole-number point whose <m>x</m> and <m>y</m> are each within <m>2</m> of it) and work out the objective at each. Choose the best and check that it satisfies every constraint.</p></li>
+                    <li><p>Check that no whole-number point of R further from the vertex does better.</p></li>
+                </ol>
+            </p>
+            <p>Step 4 is a practical method, not a rule that always works: the best whole-number point is usually near the best vertex, but in a long, thin region it can lie further away. That is why step 5 is needed. When R is small, as in every problem in this chapter, the nearby points are enough, and you can check by working out the objective at the other whole-number points of R. A vertex that is not a whole-number point is not an answer. Rounding a vertex can carry you outside R, so check every constraint.</p>
+            <p xml:id="p-search-line-ahead-core" component="core">In the next lesson you meet a second method, the search line, which also gives a quick check for step 5.</p>
+            <p xml:id="p-sampling-only-essential" component="essential">Sampling is the method you will use for every problem in this book.</p>
+        </insight>
+
+        <figure xml:id="fig-lp-sampling-points">
+            <caption>Drag the point to a whole-number plan for the tailor of <xref ref="act-the-tailors-week"/>. If it is in R you see its profit; try to beat the best so far. Then show the vertices.</caption>
+            <interactive xml:id="interactive-lp-sampling-points" platform="jsxgraph" width="90%" aspect="16:12" source="jsxgraph/lp-sampling-points.js">
+                <slate xml:id="jsxgraph-lp-sampling-points" surface="jsxboard" aspect="16:12"/>
+                <instructions>
                     <p>
-                        <alert>Connecting to Learner Work:</alert> XXXX
+                        <ul>
+                            <li><p>The tailor makes <m>x</m> shirts and <m>y</m> dresses a week, with <m>3x + 7y \le 126</m> (cloth) and <m>x + 6y \le 64</m> (machine hours). The profit is <m>P = 300x + 800y</m> shillings. The unwanted side of each line is shaded; R is left clear.</p></li>
+                            <li><p>Drag the point <alert>Q</alert>. It jumps to whole-number plans. The text says whether the plan is in R and, if it is, its profit.</p></li>
+                            <li><p>The best plan you have found so far is marked and recorded. Can you reach Ksh <m>13\,200</m>?</p></li>
+                            <li><p>Press <alert>Show the vertices</alert> to see the four corners of R with their profits. Is your best plan at a corner?</p></li>
+                        </ul>
                     </p>
-                </li>
-            </ol>
-        </paragraphs>
-    </axiom> -->
+                </instructions>
+            </interactive>
+        </figure>
 
-    <!-- Add insight / key takeaway directly related to activity / learner experience -->
+        <xi:include href="../lesson-plan-templates/example-intro.ptx" />
 
-    <!-- <insight>
-    </insight> -->
-
-    <!-- Add further instruction (not in a block) to develop ideas as needed -->
-
-    <xi:include href="../lesson-plan-templates/example-intro.ptx" />
-
-    <!-- Add at least 3 examples -->
-
-    <!-- <example>
-        <statement>
-        </statement>
-        <solution>
-        </solution>
-    </example>
-
-    <example>
-        <statement>
-        </statement>
-        <solution>
-        </solution>
-    </example>
-
-    <example>
-        <statement>
-        </statement>
-        <solution>
-        </solution>
-    </example> -->
-
-    <xi:include href="../lesson-plan-templates/assessment-intro.ptx" />
-
-    <!-- If STACK questions are included, uncomment this: -->
-
-    <!-- <xi:include href="../lesson-plan-templates/checkpoint.ptx" /> -->
-
-    <!-- Add STACK exercises if made -->
-
-    <!-- Add static exercises -->
-
-    <!-- <exercises>
-        <exercise>
-            <statement>   
-
-            </statement>   
+        <example xml:id="example-tailor-best-week">
+            <title>The Tailor's Best Week</title>
+            <statement>
+                <p>The tailor in Kisumu makes <m>x</m> school shirts and <m>y</m> dresses a week, with
+                    <md>3x + 7y \le 126, \quad x + 6y \le 64, \quad x \ge 0, \quad y \ge 0</md>
+                    and profit <m>P = 300x + 800y</m> shillings (<xref ref="act-the-tailors-week"/>). The vertices of R are <m>(0, 0)</m>, <m>(42, 0)</m>, <m>(28, 6)</m> and <m>\left(0, \tfrac{32}{3}\right)</m> (<xref ref="example-tailor-vertices"/>). How many of each should the tailor make to earn the most?</p>
+            </statement>
             <solution>
+                <p>Work out <m>P</m> at each vertex.</p>
+                <table xml:id="table-tailor-vertex-profits">
+                    <title>Profit at the Vertices of the Tailor's Region</title>
+                    <tabular halign="center" top="minor" bottom="minor" left="minor" right="minor">
+                        <row header="yes" bottom="medium"><cell>Vertex</cell><cell><m>P = 300x + 800y</m> (Ksh)</cell></row>
+                        <row><cell><m>(0, 0)</m></cell><cell><m>0</m></cell></row>
+                        <row><cell><m>(42, 0)</m></cell><cell><m>12\,600</m></cell></row>
+                        <row><cell><m>(28, 6)</m></cell><cell><m>8400 + 4800 = 13\,200</m></cell></row>
+                        <row><cell><m>\left(0, \tfrac{32}{3}\right)</m></cell><cell><m>8533.33</m></cell></row>
+                    </tabular>
+                </table>
+                <p>The largest value is at <m>(28, 6)</m>, which is already a whole-number point. The tailor should make <m>28</m> shirts and <m>6</m> dresses a week, for a profit of Ksh <m>13\,200</m>.</p>
+            </solution>
+        </example>
 
-            </solution>             
-        </exercise>        
-    </exercises> -->
+        <example xml:id="example-cheapest-fertiliser">
+            <title>Cheapest Fertiliser</title>
+            <statement>
+                <p>Moraa buys fertiliser for her shamba in Kisii. A bag of fertiliser A costs Ksh <m>4000</m> and a bag of fertiliser B costs Ksh <m>7000</m>. She needs at least <m>7</m> bags altogether. A bag of A gives <m>1</m> unit of nitrogen and a bag of B gives <m>6</m> units; the shamba needs at least <m>17</m> units. She buys <m>x</m> bags of A and <m>y</m> bags of B. Find the cheapest way to buy the fertiliser.</p>
+            </statement>
+            <solution>
+                <p>The constraints are <m>x + y \ge 7</m>, <m>x + 6y \ge 17</m>, <m>x \ge 0</m>, <m>y \ge 0</m>, and the cost is <m>C = 4000x + 7000y</m> shillings.</p>
+                <p>Solve <m>x + y = 7</m> and <m>x + 6y = 17</m> together: subtracting gives <m>5y = 10</m>, so <m>y = 2</m> and <m>x = 5</m>. The other vertices are where the boundaries meet the axes: <m>x + 6y = 17</m> meets <m>y = 0</m> at <m>(17, 0)</m>, and <m>x + y = 7</m> meets <m>x = 0</m> at <m>(0, 7)</m>.</p>
+                <p><md>
+                    <mrow>(17, 0)\amp: \quad C = 68\,000</mrow>
+                    <mrow>(5, 2)\amp: \quad C = 20\,000 + 14\,000 = 34\,000</mrow>
+                    <mrow>(0, 7)\amp: \quad C = 49\,000</mrow>
+                </md>
+                    The cheapest plan is <m>5</m> bags of A and <m>2</m> bags of B, costing Ksh <m>34\,000</m>.</p>
+                <p>Here R has no far edge: it carries on away from the origin, and buying more bags only costs more. The minimum is still at a vertex.</p>
+            </solution>
+        </example>
 
-    <!-- [LP] Add information on how to differentiate  -->
+        <example xml:id="example-beehives-and-cages">
+            <title>Beehives and Cages</title>
+            <statement>
+                <p>A youth group in Kitui makes <m>x</m> beehives and <m>y</m> chicken cages a month. A beehive uses <m>7</m> planks and a cage <m>3</m> planks; the group has <m>35</m> planks. A beehive needs <m>3</m> hours on the group's saw and a cage <m>7</m> hours; the saw is free for <m>31</m> hours. The profit is Ksh <m>900</m> on a beehive and Ksh <m>700</m> on a cage. How many of each should the group make?</p>
+            </statement>
+            <solution>
+                <p>The model is <m>7x + 3y \le 35</m>, <m>3x + 7y \le 31</m>, <m>x \ge 0</m>, <m>y \ge 0</m>, with <m>x</m> and <m>y</m> whole numbers, and <m>P = 900x + 700y</m>.</p>
+                <p><alert>Step 1: the vertices.</alert> Solve <m>7x + 3y = 35</m> and <m>3x + 7y = 31</m>: multiply the first by <m>7</m> and the second by <m>3</m> and subtract, <m>40x = 152</m>, so <m>x = 3.8</m> and <m>y = 2.8</m>. The vertices are <m>(0, 0)</m>, <m>(5, 0)</m>, <m>(3.8, 2.8)</m> and <m>\left(0, \tfrac{31}{7}\right) \approx (0, 4.43)</m>.</p>
+                <p><alert>Step 2: the objective at each vertex.</alert> <m>P = 0</m>, <m>4500</m>, <m>5380</m> and <m>3100</m>. The best vertex is <m>(3.8, 2.8)</m>, but the group cannot make <m>3.8</m> beehives.</p>
+                <p><alert>Step 3: do not just round.</alert> Rounding gives <m>(4, 3)</m>, which needs <m>7 \times 4 + 3 \times 3 = 37</m> planks: more than <m>35</m>, so <m>(4, 3)</m> is outside R.</p>
+                <p><alert>Step 4: sample the whole-number points near the vertex.</alert> Take <m>x = 2, 3, 4, 5</m> and <m>y = 1, 2, 3, 4</m>. The points of this block that are in R, with their profits, are
+                    <md>(2, 1)\colon 2500, \quad (2, 2)\colon 3200, \quad (2, 3)\colon 3900, \quad (3, 1)\colon 3400,</md>
+                    <md>(3, 2)\colon 4100, \quad (3, 3)\colon 4800, \quad (4, 1)\colon 4300, \quad (4, 2)\colon 5000</md>.
+                    The others break a constraint (for example <m>(5, 1)</m> needs <m>38</m> planks). The vertex <m>(5, 0)</m> gives only <m>4500</m>.</p>
+                <p><alert>Step 5: check.</alert> <m>(4, 2)</m> uses <m>28 + 6 = 34</m> planks and <m>12 + 14 = 26</m> saw hours, so it is in R. The region is small, so <xref ref="fig-beehives-region"/> shows all <m>22</m> of its whole-number points: none beats <m>(4, 2)</m>. The group should make <m>4</m> beehives and <m>2</m> cages, for a profit of Ksh <m>5000</m>.</p>
+                <figure xml:id="fig-beehives-region">
+                    <caption>The youth group's region R with its whole-number points. The best vertex <m>(3.8, 2.8)</m> is a ring; the rounded point <m>(4, 3)</m>, a cross, lies outside R.</caption>
+                    <image width="70%">
+                        <shortdescription>Region for beehives x and cages y. Solid lines 7x + 3y = 35 and 3x + 7y = 31; the side of each away from the origin is shaded. R, left clear, has corners (0, 0), (5, 0), (3.8, 2.8) and (0, 4.43). Dots mark its 22 whole-number points; the best, (4, 2), is labelled. A cross at (4, 3) lies in the shaded part.</shortdescription>
+                        <description><p>Horizontal axis x, beehives, from 0 to 7. Vertical axis y, cages, from 0 to 6. Boundary 7x + 3y = 35, solid, through (5, 0) and (2.43, 6). Boundary 3x + 7y = 31, solid, through (0, 4.43) and (7, 1.43). The unwanted side of each line, away from the origin, is shaded. R is the clear region with vertices (0, 0), (5, 0), (3.8, 2.8) and (0, 31/7), about (0, 4.43). Whole-number points of R, shown as dots: (0, 0) to (0, 4); (1, 0) to (1, 4); (2, 0) to (2, 3); (3, 0) to (3, 3); (4, 0) to (4, 2); and (5, 0). The vertex (3.8, 2.8) is marked with a ring and the point (4, 3), outside R, with a cross. Key: shaded, not wanted; unshaded (R), the required region.</p></description>
+                        <latex-image>
+\begin{tikzpicture}
+\begin{axis}[width=9cm, height=8cm, xmin=0, xmax=7, ymin=0, ymax=6,
+  axis lines=left, xtick={0,1,...,7}, ytick={0,1,...,6}, grid=major, grid style={gray!35},
+  xlabel={$x$ (beehives)}, ylabel={$y$ (cages)}, clip=true]
+\fill[gray!45, opacity=0.6] (axis cs:5,0) -- (axis cs:7,0) -- (axis cs:7,6) -- (axis cs:17/7,6) -- cycle;
+\fill[gray!45, opacity=0.6] (axis cs:0,31/7) -- (axis cs:0,6) -- (axis cs:7,6) -- (axis cs:7,10/7) -- cycle;
+\addplot[thick, domain=17/7:5, samples=2] {(35-7*x)/3};
+\addplot[thick, domain=0:7, samples=2] {(31-3*x)/7};
+\addplot[only marks, mark=*, mark size=1.6pt] coordinates {(0,0) (0,1) (0,2) (0,3) (0,4) (1,0) (1,1) (1,2) (1,3) (1,4) (2,0) (2,1) (2,2) (2,3) (3,0) (3,1) (3,2) (3,3) (4,0) (4,1) (4,2) (5,0)};
+\addplot[only marks, mark=o, mark size=3pt, thick] coordinates {(3.8,2.8)};
+\addplot[only marks, mark=x, mark size=4pt, very thick] coordinates {(4,3)};
+\node[font=\small, fill=white, inner sep=1pt, anchor=north west] at (axis cs:4.05,1.95) {$(4, 2)$};
+\node[font=\small, fill=white, inner sep=1pt, anchor=south west] at (axis cs:4.1,3.05) {$(4, 3)$};
+\node[font=\small, fill=white, inner sep=1pt, anchor=west] at (axis cs:3.95,2.8) {$(3.8, 2.8)$};
+\node[font=\large] at (axis cs:1.5,1.5) {$R$};
+\node[font=\small, fill=white, inner sep=1pt, rotate=-66] at (axis cs:3.35,4.4) {$7x + 3y = 35$};
+\node[font=\small, fill=white, inner sep=1pt, rotate=-17] at (axis cs:5.8,2.2) {$3x + 7y = 31$};
+\end{axis}
+\node[font=\small, anchor=north] at (3.6,-1.1) {Shaded, not wanted; unshaded ($R$), the required region.};
+\end{tikzpicture}
+                        </latex-image>
+                    </image>
+                </figure>
+            </solution>
+        </example>
 
-    <!-- <axiom component="lesson-plan">
-        <title>Differentiation</title>
+        <note xml:id="note-sampling-in-a-spreadsheet">
+            <title>Sampling in a Spreadsheet</title>
+            <p>A spreadsheet can do the sampling for you. Put the values of <m>x</m> in column A and of <m>y</m> in column B, one plan per row. In column C use <c>IF</c> to test every constraint, for example <c>=IF(AND(7*A2+3*B2&lt;=35, 3*A2+7*B2&lt;=31), "in R", "out")</c>, and in column D work out the profit, <c>=900*A2+700*B2</c>. Sort the rows that are in R by profit: the top row is the best plan you sampled.</p>
+        </note>
 
-        <table>
+        <xi:include href="../lesson-plan-templates/assessment-intro.ptx" />
+        <xi:include href="../lesson-plan-templates/checkpoint.ptx" />
+
+        <p>Type whole numbers or exact values, for example <c>4.5</c> or <c>13/2</c>.</p>
+
+                <exercise xml:id="ex-testing-the-vertices">
+            <!--<title></title>-->
+            <stack label="stk-testing-the-vertices" source="stack/top/1-numbers-and-algebra/05-linear-programming/03-optimisation-of-linear-inequalities/Testing-the-vertices.xml"/>
+        </exercise>
+
+                <exercise xml:id="ex-best-whole-number-plan">
+            <!--<title></title>-->
+            <stack label="stk-best-whole-number-plan" source="stack/top/1-numbers-and-algebra/05-linear-programming/03-optimisation-of-linear-inequalities/Best-whole-number-plan.xml"/>
+        </exercise>
+
+                <exercise xml:id="ex-finding-the-mistake-in-a-sampling-solution">
+            <!--<title></title>-->
+            <stack label="stk-finding-the-mistake-in-a-sampling-solution" source="stack/top/1-numbers-and-algebra/05-linear-programming/03-optimisation-of-linear-inequalities/Finding-the-mistake-in-a-sampling-solution.xml"/>
+        </exercise>
+
+        <exercises xml:id="exercises-optimum-by-sampling">
+            <exercise xml:id="ex-sample-r4">
+                <statement><p>R is the region <m>8x + 7y \le 112</m>, <m>2x + 7y \le 70</m>, <m>x \ge 0</m>, <m>y \ge 0</m> (the region of <xref ref="ex-graph-region-r4"/>). Find the vertices of R and the maximum value of <m>P = 2x + 5y</m> on R.</p></statement>
+                <answer><p>Maximum <m>54</m> at <m>(7, 8)</m></p></answer>
+                <solution><p>Subtracting <m>2x + 7y = 70</m> from <m>8x + 7y = 112</m> gives <m>6x = 42</m>, so <m>x = 7</m> and <m>y = 8</m>. The vertices are <m>(0, 0)</m>, <m>(14, 0)</m>, <m>(7, 8)</m> and <m>(0, 10)</m>, where <m>P = 0</m>, <m>28</m>, <m>54</m> and <m>50</m>. The maximum is <m>54</m> at <m>(7, 8)</m>.</p></solution>
+            </exercise>
+            <exercise xml:id="ex-sample-minimum">
+                <statement><p>Find the minimum value of <m>C = 5x + 2y</m> subject to <m>5x + 7y \ge 70</m>, <m>9x + 2y \ge 73</m>, <m>x \ge 0</m>, <m>y \ge 0</m>.</p></statement>
+                <answer><p>Minimum <m>45</m> at <m>(7, 5)</m></p></answer>
+                <solution><p>Solve <m>5x + 7y = 70</m> and <m>9x + 2y = 73</m>: multiply the first by <m>2</m> and the second by <m>7</m>, then subtract: <m>53x = 371</m>, so <m>x = 7</m> and <m>y = 5</m>. The other vertices are <m>(14, 0)</m> on <m>5x + 7y = 70</m> and <m>(0, 36.5)</m> on <m>9x + 2y = 73</m>. <m>C = 70</m> at <m>(14, 0)</m>, <m>45</m> at <m>(7, 5)</m> and <m>73</m> at <m>(0, 36.5)</m>. The minimum is <m>45</m> at <m>(7, 5)</m>.</p></solution>
+            </exercise>
+            <exercise xml:id="ex-sample-jua-kali">
+                <statement><p>Solve the jua kali model of <xref ref="example-metal-boxes-and-jikos"/>: <m>6x + y \le 96</m>, <m>x + y \le 26</m>, <m>x \ge 0</m>, <m>y \ge 0</m>, with profit <m>P = 450x + 250y</m> shillings for <m>x</m> metal boxes and <m>y</m> jikos. How many of each should the workshop make?</p></statement>
+                <answer><p><m>14</m> metal boxes and <m>12</m> jikos, Ksh <m>9300</m></p></answer>
+                <solution><p>Subtracting <m>x + y = 26</m> from <m>6x + y = 96</m> gives <m>5x = 70</m>, so <m>x = 14</m> and <m>y = 12</m>. The vertices are <m>(0, 0)</m>, <m>(16, 0)</m>, <m>(14, 12)</m> and <m>(0, 26)</m>, with <m>P = 0</m>, <m>7200</m>, <m>9300</m> and <m>6500</m>. The best plan is <m>14</m> boxes and <m>12</m> jikos, a profit of Ksh <m>9300</m>.</p></solution>
+            </exercise>
+            <exercise xml:id="ex-sample-whole-numbers">
+                <statement><p>Find the whole numbers <m>x</m> and <m>y</m> that make <m>P = 3x + 8y</m> as large as possible, subject to <m>6x + 5y \le 41</m>, <m>2x + 9y \le 32</m>, <m>x \ge 0</m>, <m>y \ge 0</m>.</p></statement>
+                <answer><p><m>(5, 2)</m>, <m>P = 31</m></p></answer>
+                <solution><p>The boundaries meet where <m>6x + 5y = 41</m> and <m>2x + 9y = 32</m>: multiply the second by <m>3</m> and subtract the first, <m>22y = 55</m>, so <m>y = 2.5</m> and <m>x = 4.75</m>. The vertices are <m>(0, 0)</m>, <m>\left(\tfrac{41}{6}, 0\right)</m>, <m>(4.75, 2.5)</m> and <m>\left(0, \tfrac{32}{9}\right)</m>, with <m>P = 0</m>, <m>20.5</m>, <m>34.25</m> and about <m>28.44</m>. The best vertex is not a whole-number point. The whole-number points of R with <m>x = 3</m> to <m>6</m> and <m>y = 1</m> to <m>4</m> are <m>(3, 1)</m>, <m>(3, 2)</m>, <m>(4, 1)</m>, <m>(4, 2)</m>, <m>(5, 1)</m>, <m>(5, 2)</m> and <m>(6, 1)</m>, with <m>P = 17, 25, 20, 28, 23, 31, 26</m>. The best is <m>(5, 2)</m>: it uses <m>40 \le 41</m> and <m>28 \le 32</m>, and <m>P = 31</m>.</p></solution>
+            </exercise>
+            <exercise xml:id="ex-sample-tie">
+                <statement><p>Find the maximum value of <m>P = 2x + 7y</m> subject to <m>6x + y \le 48</m>, <m>2x + 7y \le 56</m>, <m>x \ge 0</m>, <m>y \ge 0</m>. Which points give it? Which of them are whole-number points?</p></statement>
+                <answer><p><m>56</m>, at every point of the edge from <m>(7, 6)</m> to <m>(0, 8)</m>; whole-number points <m>(7, 6)</m> and <m>(0, 8)</m></p></answer>
+                <solution><p>The vertices are <m>(0, 0)</m>, <m>(8, 0)</m>, <m>(7, 6)</m> and <m>(0, 8)</m>, with <m>P = 0</m>, <m>16</m>, <m>56</m> and <m>56</m>. Two vertices tie. The objective <m>2x + 7y</m> is the left-hand side of the boundary <m>2x + 7y = 56</m>, so every point of the edge joining <m>(7, 6)</m> and <m>(0, 8)</m> gives <m>P = 56</m>. On that edge <m>y = (56 - 2x) \div 7</m> is a whole number only when <m>x</m> is a multiple of <m>7</m>, so the whole-number optima are <m>(7, 6)</m> and <m>(0, 8)</m>.</p></solution>
+            </exercise>
+            <exercise xml:id="ex-which-profit-keeps-the-corner">
+                <title>Challenge: Which Profit Keeps the Corner?</title>
+                <statement><p>On the region of <xref ref="ex-sample-tie"/>, the objective is changed to <m>P = kx + y</m>, where <m>k \gt 0</m>. For which values of <m>k</m> is <m>(7, 6)</m> an optimal solution?</p></statement>
+                <hint><p>Compare the values of <m>P</m> at <m>(8, 0)</m>, <m>(7, 6)</m> and <m>(0, 8)</m>: <m>8k</m>, <m>7k + 6</m> and <m>8</m>.</p></hint>
+                <answer><p><m>\tfrac{2}{7} \le k \le 6</m></p></answer>
+                <solution><p><m>(7, 6)</m> is optimal when <m>7k + 6 \ge 8k</m> and <m>7k + 6 \ge 8</m> (the value at <m>(0, 0)</m> is <m>0</m>). The first gives <m>k \le 6</m> and the second <m>k \ge \tfrac{2}{7}</m>. So <m>\tfrac{2}{7} \le k \le 6</m>. At either end two vertices tie.</p></solution>
+            </exercise>
+        </exercises>
+
+        <axiom component="lesson-plan">
             <title>Differentiation</title>
-            <tabular halign="left">
-                <row header="yes" bottom="minor">
-                    <cell>Learner Group</cell>
-                    <cell>Strategy &amp; Learning Experience</cell>
-                    <cell></cell>
-                </row>
-                <row>
-                    <cell>Struggling Learners (Support)</cell>
-                    <cell>
-                        XXXX
-                    </cell>
-                    <cell></cell>
-                </row>
-                <row>
-                    <cell>On-Level Learners (Core)</cell>
-                    <cell>
-                        <line>The core lesson activities as described above.</line>
-                    </cell>
-                    <cell></cell>
-                </row>
-                <row>
-                    <cell>Advanced Learners (Challenge)</cell>
-                    <cell>
-                        XXXX
-                    </cell>
-                    <cell></cell>
-                </row>
-            </tabular>
-        </table>
-    </axiom> -->
+            <table xml:id="table-differentiation-optimum-by-sampling">
+                <title>Differentiation Strategies</title>
+                <tabular halign="left" top="minor" bottom="minor" left="minor" right="minor">
+                    <row header="yes" bottom="medium"><cell>Learner Group</cell><cell>Strategy and Learning Experience</cell></row>
+                    <row><cell>Struggling Learners (Support)</cell><cell>Give a sampling table template with columns <m>x</m>, <m>y</m>, one column per constraint (<q>holds?</q>) and <m>P</m>. Work through <xref ref="example-tailor-best-week"/> and <xref ref="example-cheapest-fertiliser"/>. Assign <xref ref="ex-sample-r4"/> and <xref ref="ex-sample-jua-kali"/>.</cell></row>
+                    <row><cell>On-Level Learners (Core)</cell><cell>Full activity and all examples. Assign <xref ref="ex-sample-r4"/> to <xref ref="ex-sample-tie"/>.</cell></row>
+                    <row><cell>Advanced Learners (Challenge)</cell><cell><p>All exercises including <xref ref="ex-which-profit-keeps-the-corner"/>.</p><p component="core">Extension: draw the line <m>2x + 5y = 20</m> on the region of <xref ref="ex-sample-r4"/> and slide a ruler parallel to it, away from the origin. Where does it leave R? (Answer: at <m>(7, 8)</m>, the optimum found by sampling.)</p><p component="essential">Extension: on the region of <xref ref="ex-sample-r4"/>, test every whole-number point with <m>y = 8</m> in <m>P = 2x + 5y</m>. Which is best? (Answer: <m>(0, 8)</m> to <m>(7, 8)</m> are in R and <m>(7, 8)</m> gives the largest value, <m>54</m>.)</p></cell></row>
+                </tabular>
+            </table>
+        </axiom>
 
-    <xi:include href="../lesson-plan-templates/assessment-methods.ptx" />
+        <xi:include href="../lesson-plan-templates/assessment-methods.ptx" />
+        <xi:include href="../lesson-plan-templates/reflection.ptx"/>
+    </subsection>
 
-    <xi:include href="../lesson-plan-templates/reflection.ptx"/>
+    <!-- ============================================================ Lesson 3.2 (Core only) -->
+    <subsection xml:id="subsec-the-search-line" component="core">
+        <title>The Search Line</title>
+
+        <p component="lesson-plan">Upon completion of this lesson, learners will be able to:
+            <ol>
+                <li><p><alert>Know:</alert> all plans with the same value of <m>P = ax + by</m> lie on one line; these lines are parallel, with gradient <m>-\tfrac{a}{b}</m>.</p></li>
+                <li><p><alert>Do:</alert> draw a search line and slide it, away from the origin for a maximum and towards it for a minimum, to find the optimal vertex or whole-number point; confirm a vertex by comparing gradients.</p></li>
+                <li><p><alert>Apply:</alert> check the sampling answers for the tailor, the fertiliser and the youth group.</p></li>
+            </ol>
+        </p>
+
+        <axiom component="lesson-plan">
+            <title>Problem-Solving and Discovery</title>
+            <dl>
+                <li><title>Suggested Time</title><p>14 minutes</p></li>
+                <li><title>Objective</title><p>Learners see that plans with equal profit lie on parallel lines, and use a ruler to find the last point of R such a line touches.</p></li>
+                <li><title>Teacher's Role</title><p>Give each group a ruler and a set square and the graph of the fundraiser region from <xref ref="act-graphing-the-fundraiser"/>. After part (b), ask: <q>What do all these lines have in common?</q></p></li>
+            </dl>
+        </axiom>
+
+        <activity xml:id="act-lines-of-equal-profit">
+            <title>Lines of Equal Profit</title>
+            <statement>
+                <p>Use your graph of the fundraiser region R and the profit <m>P = 15x + 25y</m> shillings from <xref ref="act-which-plan-earns-most"/>.</p>
+                <p>
+                    <ol marker="(a)">
+                        <li>
+                            <p>Show that the plans <m>(100, 0)</m>, <m>(0, 60)</m> and <m>(50, 30)</m> each earn Ksh <m>1500</m>. Plot them. What do you notice?</p>
+                            <solution component="lesson-plan"><p><m>15 \times 100 = 1500</m>, <m>25 \times 60 = 1500</m>, <m>750 + 750 = 1500</m>. The three points lie on one straight line, <m>15x + 25y = 1500</m>.</p></solution>
+                        </li>
+                        <li>
+                            <p>Draw the lines of plans earning Ksh <m>1800</m> and Ksh <m>2100</m>. How are the three lines related?</p>
+                            <solution component="lesson-plan"><p><m>15x + 25y = 1800</m> passes through <m>(120, 0)</m> and <m>(0, 72)</m>; <m>15x + 25y = 2100</m> through <m>(140, 0)</m> and <m>(0, 84)</m>. All three lines are parallel, with gradient <m>-\tfrac{15}{25} = -\tfrac{3}{5}</m>; a bigger profit gives a line further from the origin.</p></solution>
+                        </li>
+                        <li>
+                            <p>Lay your ruler along the Ksh <m>1500</m> line and slide it parallel to itself, away from the origin. Which point of R does it touch last? What is the profit there?</p>
+                            <solution component="lesson-plan"><p>The corner <m>(49, 51)</m>, with <m>P = 735 + 1275 = 2010</m>: the same answer as sampling gave.</p></solution>
+                        </li>
+                        <li>
+                            <p>Does the Ksh <m>2100</m> line meet R? What does that tell the class?</p>
+                            <solution component="lesson-plan"><p>No: it lies beyond <m>(49, 51)</m>. No plan in R earns Ksh <m>2100</m>.</p></solution>
+                        </li>
+                    </ol>
+                </p>
+            </statement>
+        </activity>
+
+        <axiom component="lesson-plan">
+            <title>Structured Instruction</title>
+            <p>
+                <dl>
+                    <li><title>Suggested Time</title><p>8 minutes</p></li>
+                    <li><title>Objective</title><p>To name the search line and state the method for a maximum, a minimum and a whole-number answer.</p></li>
+                </dl>
+            </p>
+            <paragraphs>
+                <title>Key Takeaways &amp; Teacher Connection</title>
+                <ol>
+                    <li><p><alert>Connecting to Learner Work:</alert> the lines of part (b) are search lines: one profit, one line.</p></li>
+                    <li><p>For <m>P = ax + by</m> every search line has gradient <m>-\tfrac{a}{b}</m>.</p></li>
+                    <li><p>Slide away from the origin for a maximum, towards it for a minimum. For whole numbers, stop at the last whole-number point of R.</p></li>
+                    <li><p>The gradient check confirms the vertex without drawing.</p></li>
+                </ol>
+            </paragraphs>
+        </axiom>
+
+        <insight xml:id="insight-search-line">
+            <title>The Search Line</title>
+            <p>For the objective function <m>P = ax + by</m>, all the plans with <m>P = k</m> lie on the line <m>ax + by = k</m>. This line is called a <term>search line</term>, or a line of equal profit (a line of equal cost when the objective is a cost). Changing <m>k</m> moves the line without turning it: all search lines are parallel, with gradient <m>-\tfrac{a}{b}</m>. Every point on one search line gives the same value, so slide it until it is about to leave R.</p>
+            <p>To find the optimal solution with a search line, when <m>a</m> and <m>b</m> are positive:
+                <ol marker="1.">
+                    <li><p>Draw one search line <m>ax + by = k</m> for a convenient <m>k</m> (a multiple of both <m>a</m> and <m>b</m> gives whole-number intercepts).</p></li>
+                    <li><p>Slide a ruler parallel to it: away from the origin for a maximum, towards the origin for a minimum.</p></li>
+                    <li><p>The last point of R that the ruler touches is the optimal solution. Find its exact coordinates by solving the equations of the two boundaries that meet there.</p></li>
+                    <li><p>If the answer must be whole numbers, the optimal solution is the last whole-number point of R that the ruler touches.</p></li>
+                </ol>
+            </p>
+            <p>A gradient check: a vertex is optimal when the gradient of the search line lies between the gradients of the two edges of R that meet at that vertex.</p>
+        </insight>
+
+        <figure xml:id="fig-search-lines-fundraiser">
+            <caption>Three search lines for <m>P = 15x + 25y</m> on the fundraiser region. The line <m>P = 2010</m> touches R only at <m>(49, 51)</m>.</caption>
+            <image width="90%">
+                <shortdescription>The fundraiser region R with solid boundaries x + y = 100, 15x + 35y = 2520 and y = 30, the unwanted sides shaded. Three parallel dashed search lines 15x + 25y = 1500, 1800 and 2010 cross the graph; the line P = 2010 touches R only at the corner (49, 51).</shortdescription>
+                <description><p>Horizontal axis x, mandazi, from 0 to 110. Vertical axis y, samosas, from 0 to 110. Boundaries, all solid: x + y = 100 through (0, 100) and (100, 0); 15x + 35y = 2520 through (0, 72) and (168, 0); y = 30. The side of each boundary that is not wanted is shaded. R, left clear, has vertices (0, 30), (70, 30), (49, 51) and (0, 72). Dashed search lines: 15x + 25y = 1500 through (0, 60) and (100, 0), crossing R; 15x + 25y = 1800 through (0, 72) and (120, 0), crossing R; 15x + 25y = 2010 through (0, 80.4) and (134, 0), meeting R only at (49, 51). Key: shaded, not wanted; unshaded (R), the required region.</p></description>
+                <latex-image>
+\begin{tikzpicture}
+\begin{axis}[width=12cm, height=10cm, xmin=0, xmax=110, ymin=0, ymax=110,
+  axis lines=left, xtick={0,10,...,110}, ytick={0,10,...,110}, grid=major, grid style={gray!35},
+  xlabel={$x$ (mandazi)}, ylabel={$y$ (samosas)}, clip=true]
+\fill[gray!45, opacity=0.5] (axis cs:0,100) -- (axis cs:0,110) -- (axis cs:110,110) -- (axis cs:110,0) -- (axis cs:100,0) -- cycle;
+\fill[gray!45, opacity=0.5] (axis cs:0,72) -- (axis cs:0,110) -- (axis cs:110,110) -- (axis cs:110,870/35) -- cycle;
+\fill[gray!45, opacity=0.5] (axis cs:0,0) -- (axis cs:110,0) -- (axis cs:110,30) -- (axis cs:0,30) -- cycle;
+\addplot[thick, domain=0:100, samples=2] {100-x};
+\addplot[thick, domain=0:110, samples=2] {(2520-15*x)/35};
+\addplot[thick, domain=0:110, samples=2] {30};
+\addplot[very thick, dashed, domain=0:100, samples=2] {(1500-15*x)/25};
+\addplot[very thick, dashed, domain=0:110, samples=2] {(1800-15*x)/25};
+\addplot[very thick, dashed, domain=0:110, samples=2] {(2010-15*x)/25};
+\addplot[only marks, mark=*, mark size=2pt] coordinates {(0,30) (70,30) (49,51) (0,72)};
+\node[font=\small, fill=white, inner sep=1pt, anchor=south west] at (axis cs:50,52) {$(49, 51)$};
+\node[font=\large] at (axis cs:25,45) {$R$};
+\node[font=\small, fill=white, inner sep=1pt] at (axis cs:85,9) {$P = 1500$};
+\node[font=\small, fill=white, inner sep=1pt] at (axis cs:96,15) {$P = 1800$};
+\node[font=\small, fill=white, inner sep=1pt] at (axis cs:100,26) {$P = 2010$};
+\node[font=\small, fill=white, inner sep=1pt, anchor=west] at (axis cs:2,104) {$x + y = 100$};
+\node[font=\small, fill=white, inner sep=1pt, anchor=west] at (axis cs:80,40) {$15x + 35y = 2520$};
+\node[font=\small, fill=white, inner sep=1pt, anchor=west] at (axis cs:75,33.5) {$y = 30$};
+\end{axis}
+\node[font=\small, anchor=north] at (5.3,-1.1) {Shaded, not wanted; unshaded ($R$), the required region. Dashed lines: search lines.};
+\end{tikzpicture}
+                </latex-image>
+            </image>
+        </figure>
+
+        <figure xml:id="fig-lp-search-line">
+            <caption>Drag the slider to move the search line away from the origin. Watch where it last touches the region.</caption>
+            <interactive xml:id="interactive-lp-search-line" platform="jsxgraph" width="90%" aspect="16:12" source="jsxgraph/lp-search-line.js">
+                <slate xml:id="jsxgraph-lp-search-line" surface="jsxboard" aspect="16:12"/>
+                <instructions>
+                    <p>
+                        <ul>
+                            <li><p>The region is the tailor's, from <xref ref="act-the-tailors-week"/>: <m>3x + 7y \le 126</m>, <m>x + 6y \le 64</m>, <m>x \ge 0</m>, <m>y \ge 0</m>. The dashed line is the search line <m>300x + 800y = k</m>.</p></li>
+                            <li><p>Drag the <alert>k</alert> slider from <m>0</m> to <m>22\,000</m>. While the line crosses R, every point of R on it earns <m>P = k</m>. When the line leaves R it turns grey and the text names the last point it touched: <m>(28, 6)</m>, with <m>P = 13\,200</m>.</p></li>
+                            <li><p>Press <alert>Change the profit</alert> to use <m>P = 500x + 300y</m> instead. Where does the line leave R now?</p></li>
+                            <li><p>Tick <alert>Whole numbers only</alert> to show the whole-number points of R. The text reports the last one the line passes.</p></li>
+                        </ul>
+                    </p>
+                </instructions>
+            </interactive>
+        </figure>
+
+        <xi:include href="../lesson-plan-templates/example-intro.ptx" />
+
+        <example xml:id="example-search-line-tailor">
+            <title>Search Line for the Tailor</title>
+            <statement>
+                <p>Use a search line to find the tailor's best plan for <m>P = 300x + 800y</m> on the region <m>3x + 7y \le 126</m>, <m>x + 6y \le 64</m>, <m>x \ge 0</m>, <m>y \ge 0</m>. Check your answer with gradients.</p>
+            </statement>
+            <solution>
+                <p>Take <m>k = 2400</m>, a multiple of both <m>300</m> and <m>800</m>. The search line <m>300x + 800y = 2400</m> passes through <m>(8, 0)</m> and <m>(0, 3)</m>. Slide a ruler parallel to it, away from the origin. The last point of R it touches is the vertex where <m>3x + 7y = 126</m> and <m>x + 6y = 64</m> meet, <m>(28, 6)</m>. There <m>P = 13\,200</m>.</p>
+                <p>Gradient check: the search line has gradient <m>-\tfrac{300}{800} = -\tfrac{3}{8} = -0.375</m>. The cloth edge <m>3x + 7y = 126</m> has gradient <m>-\tfrac{3}{7} \approx -0.43</m> and the machine edge <m>x + 6y = 64</m> has gradient <m>-\tfrac{1}{6} \approx -0.17</m>. Since <m>-0.375</m> lies between them, <m>(28, 6)</m> is optimal: <m>28</m> shirts and <m>6</m> dresses, Ksh <m>13\,200</m>, as sampling found in <xref ref="example-tailor-best-week"/>.</p>
+            </solution>
+        </example>
+
+        <example xml:id="example-search-line-minimum">
+            <title>Search Line Towards the Origin</title>
+            <statement>
+                <p>Use a search line to find the cheapest fertiliser plan of <xref ref="example-cheapest-fertiliser"/>: minimise <m>C = 4000x + 7000y</m> subject to <m>x + y \ge 7</m>, <m>x + 6y \ge 17</m>, <m>x \ge 0</m>, <m>y \ge 0</m>.</p>
+            </statement>
+            <solution>
+                <p>Draw the line of equal cost <m>4000x + 7000y = 56\,000</m> through <m>(14, 0)</m> and <m>(0, 8)</m>; it crosses R. For a minimum, slide it towards the origin. The last point of R it touches is the vertex <m>(5, 2)</m>, where <m>x + y = 7</m> meets <m>x + 6y = 17</m>.</p>
+                <p>Check: the search line's gradient <m>-\tfrac{4}{7} \approx -0.57</m> lies between <m>-1</m> (for <m>x + y = 7</m>) and <m>-\tfrac{1}{6}</m> (for <m>x + 6y = 17</m>). The minimum cost is <m>C = 20\,000 + 14\,000 = 34\,000</m>: <m>5</m> bags of A and <m>2</m> of B, Ksh <m>34\,000</m>.</p>
+            </solution>
+        </example>
+
+        <example xml:id="example-search-line-whole-numbers">
+            <title>Search Line and Whole Numbers</title>
+            <statement>
+                <p>In <xref ref="example-beehives-and-cages"/> the best vertex <m>(3.8, 2.8)</m> is not a whole-number point. Use a search line for <m>P = 900x + 700y</m> to find the best whole-number plan.</p>
+            </statement>
+            <solution>
+                <p>The search lines <m>900x + 700y = k</m> have gradient <m>-\tfrac{9}{7}</m>. The line through <m>(3.8, 2.8)</m> has <m>k = 5380</m> and touches R only at that vertex. Slide the line back towards the origin and watch for the first whole-number points of R it meets (see the dots in <xref ref="fig-beehives-region"/>):
+                    <md>(4, 2)\colon P = 5000, \quad (3, 3)\colon P = 4800, \quad (5, 0)\colon P = 4500</md>.
+                    The first one met is <m>(4, 2)</m>. Moving outwards from the origin, it is the last whole-number point of R the line touches, so it is the best whole-number plan: <m>4</m> beehives and <m>2</m> cages, Ksh <m>5000</m>. This agrees with sampling.</p>
+            </solution>
+        </example>
+
+        <xi:include href="../lesson-plan-templates/assessment-intro.ptx" />
+        <xi:include href="../lesson-plan-templates/checkpoint.ptx" />
+
+        <p>Type whole numbers or exact values, for example <c>4.5</c> or <c>13/2</c>.</p>
+
+                <exercise xml:id="ex-the-search-line" component="core">
+            <!--<title></title>-->
+            <stack label="stk-the-search-line" source="stack/top/1-numbers-and-algebra/05-linear-programming/03-optimisation-of-linear-inequalities/The-search-line.xml"/>
+        </exercise>
+
+                <exercise xml:id="ex-which-vertex-is-optimal" component="core">
+            <!--<title></title>-->
+            <stack label="stk-which-vertex-is-optimal" source="stack/top/1-numbers-and-algebra/05-linear-programming/03-optimisation-of-linear-inequalities/Which-vertex-is-optimal.xml"/>
+        </exercise>
+
+        <exercises xml:id="exercises-search-line">
+            <exercise xml:id="ex-search-line-r5">
+                <statement><p>R is the region <m>7x + 4y \le 84</m>, <m>x + 8y \le 64</m>, <m>x \ge 0</m>, <m>y \ge 0</m> (<xref ref="ex-vertices-r5"/>). Use a search line to find the maximum of <m>P = 5x + 7y</m> on R.</p></statement>
+                <answer><p><m>89</m> at <m>(8, 7)</m></p></answer>
+                <solution><p>Draw <m>5x + 7y = 35</m> through <m>(7, 0)</m> and <m>(0, 5)</m> and slide it away from the origin. It leaves R at the vertex where <m>7x + 4y = 84</m> and <m>x + 8y = 64</m> meet: <m>(8, 7)</m>. Gradient check: <m>-\tfrac{5}{7}</m> lies between <m>-\tfrac{7}{4}</m> and <m>-\tfrac{1}{8}</m>. <m>P = 40 + 49 = 89</m>.</p></solution>
+            </exercise>
+            <exercise xml:id="ex-search-line-minimum">
+                <statement><p>Use a search line to find the minimum of <m>C = 11x + 7y</m> subject to <m>7x + 2y \ge 29</m>, <m>x + 6y \ge 27</m>, <m>x \ge 0</m>, <m>y \ge 0</m>.</p></statement>
+                <answer><p><m>61</m> at <m>(3, 4)</m></p></answer>
+                <solution><p>Draw <m>11x + 7y = 77</m> through <m>(7, 0)</m> and <m>(0, 11)</m> and slide it towards the origin. It leaves R at the vertex where <m>7x + 2y = 29</m> and <m>x + 6y = 27</m> meet. From the second, <m>x = 27 - 6y</m>; then <m>189 - 40y = 29</m>, so <m>y = 4</m> and <m>x = 3</m>. Gradient check: <m>-\tfrac{11}{7}</m> lies between <m>-\tfrac{7}{2}</m> and <m>-\tfrac{1}{6}</m>. <m>C = 33 + 28 = 61</m>.</p></solution>
+            </exercise>
+            <exercise xml:id="ex-change-the-profit">
+                <statement><p>The tailor's profits change to Ksh <m>500</m> a shirt and Ksh <m>300</m> a dress, so <m>P = 500x + 300y</m> on the same region (<xref ref="example-search-line-tailor"/>). Use a search line to find the new best plan.</p></statement>
+                <answer><p><m>42</m> shirts and no dresses, Ksh <m>21\,000</m></p></answer>
+                <solution><p>The search lines have gradient <m>-\tfrac{5}{3}</m>, steeper than the cloth edge (gradient <m>-\tfrac{3}{7}</m>). Draw <m>500x + 300y = 1500</m> through <m>(3, 0)</m> and <m>(0, 5)</m> and slide it away from the origin. The last point of R it touches is <m>(42, 0)</m>, where the cloth edge meets the <m>x</m>-axis. <m>P = 21\,000</m> there, compared with <m>15\,800</m> at <m>(28, 6)</m>: <m>42</m> shirts and no dresses.</p></solution>
+            </exercise>
+            <exercise xml:id="ex-search-line-along-an-edge">
+                <statement><p>In <xref ref="ex-sample-tie"/>, the maximum of <m>P = 2x + 7y</m> is reached all along an edge of R. Explain this using search lines.</p></statement>
+                <answer><p>The search lines <m>2x + 7y = k</m> are parallel to the edge <m>2x + 7y = 56</m>.</p></answer>
+                <solution><p>Every search line <m>2x + 7y = k</m> is parallel to the boundary <m>2x + 7y = 56</m>. Sliding away from the origin, the last search line that meets R is <m>2x + 7y = 56</m> itself, and it touches R along the whole edge from <m>(7, 6)</m> to <m>(0, 8)</m>, not at a single point.</p></solution>
+            </exercise>
+            <exercise xml:id="ex-profit-range-tailor">
+                <title>Challenge: How Far Can the Shirt Profit Move?</title>
+                <statement><p>The tailor's profit is <m>P = kx + 800y</m> shillings on the region of <xref ref="example-search-line-tailor"/>. For which values of <m>k</m> is <m>(28, 6)</m> still an optimal solution?</p></statement>
+                <hint><p>Use the gradient check: <m>-\tfrac{k}{800}</m> must lie between the gradients of the two edges that meet at <m>(28, 6)</m>.</p></hint>
+                <answer><p><m>\tfrac{400}{3} \le k \le \tfrac{2400}{7}</m>, that is about <m>133.33 \le k \le 342.86</m></p></answer>
+                <solution><p>The edges at <m>(28, 6)</m> have gradients <m>-\tfrac{3}{7}</m> and <m>-\tfrac{1}{6}</m>. We need <m>\tfrac{1}{6} \le \tfrac{k}{800} \le \tfrac{3}{7}</m>, so <m>\tfrac{800}{6} \le k \le \tfrac{2400}{7}</m>, that is <m>\tfrac{400}{3} \le k \le \tfrac{2400}{7}</m> (about <m>133.33</m> to <m>342.86</m>). At either end the search line lies along an edge and two vertices tie.</p></solution>
+            </exercise>
+        </exercises>
+
+        <axiom component="lesson-plan">
+            <title>Differentiation</title>
+            <table xml:id="table-differentiation-the-search-line">
+                <title>Differentiation Strategies</title>
+                <tabular halign="left" top="minor" bottom="minor" left="minor" right="minor">
+                    <row header="yes" bottom="medium"><cell>Learner Group</cell><cell>Strategy and Learning Experience</cell></row>
+                    <row><cell>Struggling Learners (Support)</cell><cell>Give a card showing how to slide a ruler along a set square, and pre-drawn regions. Work through <xref ref="example-search-line-tailor"/> and <xref ref="example-search-line-minimum"/>. Assign <xref ref="ex-search-line-r5"/> and <xref ref="ex-change-the-profit"/>.</cell></row>
+                    <row><cell>On-Level Learners (Core)</cell><cell>Full activity and all examples. Assign <xref ref="ex-search-line-r5"/> to <xref ref="ex-search-line-along-an-edge"/>.</cell></row>
+                    <row><cell>Advanced Learners (Challenge)</cell><cell>All exercises including <xref ref="ex-profit-range-tailor"/>. Extension: for <m>P = 300x + by</m> on the tailor's region, which values of <m>b</m> keep <m>(28, 6)</m> optimal? (Answer: <m>700 \le b \le 1800</m>, since <m>\tfrac{300}{b}</m> must lie between <m>\tfrac{1}{6}</m> and <m>\tfrac{3}{7}</m>.)</cell></row>
+                </tabular>
+            </table>
+        </axiom>
+
+        <xi:include href="../lesson-plan-templates/assessment-methods.ptx" />
+        <xi:include href="../lesson-plan-templates/reflection.ptx"/>
+    </subsection>
 </section>

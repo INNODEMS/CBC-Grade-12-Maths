@@ -46,161 +46,318 @@
          Suggested activity: On a cuboid model, learners slide a pencil parallel to one edge until it touches a skew edge, measure the angle with a protractor, then calculate it and compare.
          Interactive (JSXGraph): Two skew edges of a cuboid highlighted; a button slides one edge parallel to itself until it meets the other, and the angle between them is shown. -->
 
-    <!-- [LP] Add guidance on activity -->
+    <!-- Section notes (2026-11)
+         SLOs: Core 2.4 (f). Placed second by the include order: needs only face triangles here; skew-line angles that need the cosine rule are in the exercises of sec-angle-between-two-lines.
+         Activity: as planning notes (a pencil slid along a box; measure, then calculate)
+         JSXGraph: fig-sliding-a-skew-line (assets/jsxgraph/sliding-a-skew-line.js) | changed: a slide slider instead of a button, so the slide can be watched; the angle arc is a 2D curve over view.project3DTo2D points
+         STACK: assets/stack/top/2-measurement-and-geometry/09-three-dimensional-geometry/02-angle-between-skew-lines/ -->
+
+    <p component="lesson-plan">Upon completion of this lesson, learners will be able to:
+        <ol>
+            <li><p><alert>Know:</alert> the angle between skew lines is found by sliding one line, without turning it, until it meets the other; the parallel line is chosen through a vertex; the angle is between <m>0^{\circ}</m> and <m>90^{\circ}</m>; skew lines at <m>90^{\circ}</m> are perpendicular.</p></li>
+            <li><p><alert>Do:</alert> name the angle between two skew lines in a cuboid, a pyramid and a prism, and calculate it in a right-angled face triangle or an isosceles face.</p></li>
+            <li><p><alert>Apply:</alert> edges of a box and of a tent.</p></li>
+        </ol>
+    </p>
 
     <axiom component="lesson-plan">
         <title>Problem-Solving and Discovery</title>
         <dl>
-            <li>
-                <title>Suggested Time</title>
-                <p>
-                    XXX minutes
-                </p>
-            </li>
-            <li>
-                <title>Objective</title>
-                <p>
-                    XXX
-                </p>
-            </li>
-            <li>
-                <title>Teacher's Role</title>
-                <p>
-                    XXX
-                </p>
-            </li>
+            <li><title>Suggested Time</title><p>14 minutes</p></li>
+            <li><title>Objective</title><p>Learners slide a pencil along a box to turn a skew pair into a meeting pair, measure the angle and check it by calculation.</p></li>
+            <li><title>Teacher's Role</title><p>Put learners in groups of four with a shoebox (or the box in <xref ref="fig-skew-angle-translate"/> drawn on the board), a pencil and a protractor. Each learner does one part and reports to the group. After part (b), ask: <q>Did the angle change while the pencil slid?</q></p></li>
         </dl>
     </axiom>
 
-    <!-- Add Activity -->
-
-    <!-- <activity>
+    <activity xml:id="act-sliding-a-pencil">
+        <title>Sliding a Pencil Along a Box</title>
         <statement>
+            <p>A shoebox <m>ABCDEFGH</m> has <m>AB = 24\,\text{cm}</m>, <m>BC = 14\,\text{cm}</m> and <m>AE = 10\,\text{cm}</m>. <m>CH</m> is a diagonal of the back face <m>DCGH</m>. The lines <m>AB</m> and <m>CH</m> never meet and are not parallel: they are skew.</p>
+            <figure xml:id="fig-skew-angle-translate">
+                <caption>Sliding <m>AB</m>, without turning it, to <m>DC</m>, which meets <m>CH</m> at <m>C</m>.</caption>
+                <image width="55%">
+                    <shortdescription>A box ABCDEFGH, 24 cm by 14 cm by 10 cm. AB is drawn thick; arrows show it moved without turning to DC, also thick, which meets the dashed face diagonal CH at C. The angle DCH is marked theta, and the right angle at D is marked.</shortdescription>
+                    <latex-image>
+\tdplotsetmaincoords{70}{120}
+\begin{tikzpicture}[tdplot_main_coords, scale=0.17]
+\coordinate (A) at (14,0,0);
+\coordinate (B) at (14,24,0);
+\coordinate (C) at (0,24,0);
+\coordinate (D) at (0,0,0);
+\coordinate (E) at (14,0,10);
+\coordinate (F) at (14,24,10);
+\coordinate (G) at (0,24,10);
+\coordinate (H) at (0,0,10);
+\draw[dashed] (D) -- (A);
+\draw[dashed] (D) -- (H);
+\draw (B) -- (C);
+\draw (C) -- (G);
+\draw (G) -- (H);
+\draw (H) -- (E);
+\draw (E) -- (A);
+\draw (E) -- (F);
+\draw (F) -- (G);
+\draw (B) -- (F);
+\node[anchor=north east] at (A) {$A$};
+\node[anchor=north] at (B) {$B$};
+\node[anchor=north west] at (C) {$C$};
+\node[anchor=south east] at (D) {$D$};
+\node[anchor=east] at (E) {$E$};
+\node[anchor=south east] at (F) {$F$};
+\node[anchor=south west] at (G) {$G$};
+\node[anchor=south] at (H) {$H$};
+\draw[very thick] (A) -- (B); \draw[very thick, dashed] (C) -- (H); \draw[very thick] (D) -- (C);
+\draw[-{Stealth}, thick] (10,8,0) -- (3,8,0); \draw[-{Stealth}, thick] (10,16,0) -- (3,16,0);
+\draw (0.000,1.300,0.000) -- (0.000,1.300,1.300) -- (0.000,0.000,1.300);
+\draw[] (0.000,19.500,0.000) -- (0.000,19.501,0.111) -- (0.000,19.505,0.222) -- (0.000,19.512,0.333) -- (0.000,19.522,0.443) -- (0.000,19.534,0.554) -- (0.000,19.549,0.664) -- (0.000,19.567,0.773) -- (0.000,19.587,0.883) -- (0.000,19.611,0.991) -- (0.000,19.636,1.099) -- (0.000,19.665,1.206) -- (0.000,19.696,1.313) -- (0.000,19.730,1.419) -- (0.000,19.766,1.524) -- (0.000,19.805,1.628) -- (0.000,19.846,1.731);
+\node at (0.000,17.626,1.275) {$\theta$};
+\node[anchor=north] at (14,12,0) {$24$}; \node[anchor=north west] at (7,24,0) {$14$}; \node[anchor=west] at (0,24,5) {$10$};
+\end{tikzpicture}
+                    </latex-image>
+                </image>
+            </figure>
+            <p>
+                <ol marker="(a)">
+                    <li>
+                        <p>Hold the pencil along <m>AB</m>. Which edges of the box are parallel to <m>AB</m> and touch the line <m>CH</m>?</p>
+                        <solution component="lesson-plan"><p><m>DC</m> (touching <m>CH</m> at <m>C</m>) and <m>HG</m> (touching it at <m>H</m>).</p></solution>
+                    </li>
+                    <li>
+                        <p>Slide the pencil, keeping it parallel to <m>AB</m>, until it lies along <m>DC</m>. It now meets <m>CH</m> at <m>C</m>. Measure angle <m>DCH</m> with the protractor.</p>
+                        <solution component="lesson-plan"><p>About <m>23^{\circ}</m>. The angle does not change while the pencil slides, because the pencil never turns.</p></solution>
+                    </li>
+                    <li>
+                        <p>Triangle <m>DCH</m> has a right angle at <m>D</m>. Use tan to calculate angle <m>DCH</m>.</p>
+                        <solution component="lesson-plan"><p><m>\tan DCH = \dfrac{DH}{DC} = \dfrac{10}{24}</m>, so angle <m>DCH = 22.6^{\circ}</m>.</p></solution>
+                    </li>
+                    <li>
+                        <p>Slide the pencil to <m>HG</m> instead and find angle <m>GHC</m>. Compare it with angle <m>DCH</m>.</p>
+                        <solution component="lesson-plan"><p>Angle <m>GHC = 22.6^{\circ}</m>, the same: <m>DC</m> and <m>HG</m> are parallel, so the two angles are alternate angles in the face <m>DCGH</m>.</p></solution>
+                    </li>
+                    <li>
+                        <p>Find the angle between <m>AB</m> and <m>CG</m>.</p>
+                        <solution component="lesson-plan"><p>Slide <m>AB</m> to <m>DC</m>, which meets <m>CG</m> at <m>C</m>. Angle <m>DCG = 90^{\circ}</m>, so <m>AB</m> and <m>CG</m> are perpendicular skew lines.</p></solution>
+                    </li>
+                </ol>
+            </p>
+            <p>Report your measured angle and your calculated angle side by side. If they differ, keep both: the difference tells you how accurate the measuring was.</p>
         </statement>
-    </activity> -->
+    </activity>
 
-    <!-- [LP] Add guidance on structured lesson plan-->
-
-    <!-- <axiom component="lesson-plan">
+    <axiom component="lesson-plan">
         <title>Structured Instruction</title>
         <p>
             <dl>
-            <li>
-                <title>Suggested Time</title>
-                <p>
-                    XX minutes
-                </p>
-            </li>
-            <li>
-                <title>Objective</title>
-                <p>
-                    To formalize the concepts and properties learners discovered in the anchor task.
-                </p>
-            </li>
+                <li><title>Suggested Time</title><p>8 minutes</p></li>
+                <li><title>Objective</title><p>To formalise the angle between two skew lines and the method for finding it.</p></li>
             </dl>
         </p>
         <paragraphs>
             <title>Key Takeaways &amp; Teacher Connection</title>
             <ol>
-                <li>
-                    <p>
-                        <alert>Connecting to Learner Work:</alert> XXXX
-                    </p>
-                </li>
+                <li><p><alert>Connecting to Learner Work:</alert> in part (b) the pencil slid without turning, so the angle it made with <m>CH</m> was the angle between <m>AB</m> and <m>CH</m>.</p></li>
+                <li><p>Slide, do not turn. Pick the parallel line through a vertex of the other line, so the angle sits in a face or a known triangle.</p></li>
+                <li><p>The triangle is often a face with a right angle; then sine, cosine or tangent gives the angle. The answer is never more than <m>90^{\circ}</m>.</p></li>
+                <li><p><alert>Real-world link:</alert> a carpenter checking that a shelf bracket is square to a beam it does not touch is finding the angle between skew lines.</p></li>
             </ol>
         </paragraphs>
-    </axiom> -->
+    </axiom>
 
-    <!-- Add insight / key takeaway directly related to activity / learner experience -->
+    <insight xml:id="insight-angle-between-skew-lines">
+        <title>Angle Between Skew Lines</title>
+        <p>
+            The angle between two skew lines is found by moving one of them, without turning it, to a parallel line that meets the other. The angle between these two meeting lines is the angle between the skew lines. In short: slide one line, without turning it, until it meets the other.
+        </p>
+        <p>
+            <ol>
+                <li><p>Find a line parallel to the first line that passes through a vertex of the second line.</p></li>
+                <li><p>Name the angle between this parallel line and the second line, with three letters.</p></li>
+                <li><p>Find a triangle that contains the angle, draw it flat, and calculate the angle.</p></li>
+            </ol>
+        </p>
+        <p>
+            The angle between two lines is never more than <m>90^{\circ}</m>: if the triangle gives an obtuse angle, the angle between the lines is <m>180^{\circ}</m> minus it. Skew lines at <m>90^{\circ}</m> to each other are called <term>perpendicular</term>, even though they do not meet.
+        </p>
+    </insight>
 
-    <!-- <insight>
-    </insight> -->
-
-    <!-- Add further instruction (not in a block) to develop ideas as needed -->
+    <figure xml:id="fig-sliding-a-skew-line">
+        <caption>Choose a pair of skew edges with the pair slider. Drag the slide slider to move the first line without turning it. When it meets the second line, the angle between them appears.</caption>
+        <interactive xml:id="interactive-sliding-a-skew-line" platform="jsxgraph" width="90%" aspect="16:12" source="jsxgraph/sliding-a-skew-line.js">
+            <slate xml:id="jsxgraph-sliding-a-skew-line" surface="jsxboard" aspect="16:12"/>
+            <instructions>
+                <p>
+                    <ul>
+                        <li><p>With <alert>pair</alert> at <m>1</m>, drag the <alert>slide</alert> slider from <m>0</m> to <m>1</m>. <m>AB</m> moves to <m>DC</m>. The cuboid is <m>6</m> by <m>4</m> by <m>3</m> units: check the angle shown with <m>\tan DCH = \frac{3}{6}</m>.</p></li>
+                        <li><p>Set <alert>pair</alert> to <m>2</m> and then <m>3</m>, and slide again. Which pair is perpendicular?</p></li>
+                        <li><p>Turn the cuboid with the view sliders. Does the angle shown change?</p></li>
+                    </ul>
+                </p>
+            </instructions>
+        </interactive>
+    </figure>
 
     <xi:include href="../lesson-plan-templates/example-intro.ptx" />
 
-    <!-- Add at least 3 examples -->
-
-    <!-- <example>
+    <example xml:id="example-skew-lines-in-a-cuboid">
+        <title>Skew Lines in a Cuboid</title>
         <statement>
+            <p>A packing crate in a shop is a cuboid <m>ABCDEFGH</m> with <m>AB = 16\,\text{cm}</m>, <m>BC = 10\,\text{cm}</m> and <m>AE = 12\,\text{cm}</m>. Find the angle between
+                (a) <m>AB</m> and <m>FH</m>; (b) <m>BC</m> and <m>DH</m>; (c) <m>AE</m> and <m>BG</m>.</p>
         </statement>
         <solution>
+            <p>(a) <m>AB</m> is parallel to <m>EF</m>, which meets <m>FH</m> at <m>F</m>. The angle is angle <m>EFH</m>, in the top face, where triangle <m>EFH</m> has a right angle at <m>E</m>:
+                <md>\tan EFH = \frac{EH}{EF} = \frac{10}{16}, \quad \text{angle } EFH = 32.0^{\circ}</md></p>
+            <p>(b) <m>BC</m> is parallel to <m>AD</m>, which meets <m>DH</m> at <m>D</m>. <m>DH</m> is vertical and <m>AD</m> is horizontal, so the angle is <m>90^{\circ}</m>: <m>BC</m> and <m>DH</m> are perpendicular.</p>
+            <p>(c) <m>AE</m> is parallel to <m>BF</m>, which meets <m>BG</m> at <m>B</m>. The angle is angle <m>FBG</m>, in the face <m>BCGF</m>, where triangle <m>FBG</m> has a right angle at <m>F</m>:
+                <md>\tan FBG = \frac{FG}{BF} = \frac{10}{12}, \quad \text{angle } FBG = 39.8^{\circ}</md></p>
         </solution>
     </example>
 
-    <example>
+    <example xml:id="example-skew-lines-in-a-pyramid">
+        <title>Skew Lines in a Pyramid</title>
         <statement>
+            <p>A model of a right pyramid <m>VABCD</m> stands on a square base <m>ABCD</m> of side <m>12\,\text{cm}</m>, and each sloping edge is <m>15\,\text{cm}</m>. Find the angle between the skew lines <m>VA</m> and <m>BC</m>.</p>
+            <figure xml:id="fig-skew-pyramid">
+                <caption><m>BC</m> is parallel to <m>AD</m>, which meets <m>VA</m> at <m>A</m>.</caption>
+                <image width="50%">
+                    <shortdescription>A pyramid VABCD on a square base of side 12 cm with sloping edges 15 cm. VA and BC are drawn thick and AD thick dashed; BC is parallel to AD. A dotted line from V meets AD at its midpoint at a right angle, and the angle VAD is marked theta.</shortdescription>
+                    <latex-image>
+\tdplotsetmaincoords{70}{120}
+\begin{tikzpicture}[tdplot_main_coords, scale=0.27]
+\coordinate (A) at (12,0,0.000);
+\coordinate (B) at (12,12,0.000);
+\coordinate (C) at (0,12,0.000);
+\coordinate (D) at (0,0,0.000);
+\coordinate (V) at (6.0,6.0,12.369);
+\draw[dashed] (D) -- (C); \draw[dashed] (D) -- (V);
+\draw (A) -- (B); \draw (C) -- (V); \draw (B) -- (V);
+\draw[very thick] (A) -- (V); \draw[very thick] (B) -- (C); \draw[very thick, dashed] (A) -- (D);
+\draw[dotted, thick] (V) -- (6,0,0);
+\draw (6.900,0.000,0.000) -- (6.900,0.393,0.810) -- (6.000,0.393,0.810);
+\draw[] (11.040,0.960,1.979) -- (10.883,0.927,1.911) -- (10.732,0.889,1.834) -- (10.588,0.847,1.746) -- (10.451,0.800,1.650) -- (10.323,0.749,1.545) -- (10.203,0.694,1.431) -- (10.092,0.636,1.310) -- (9.992,0.574,1.183) -- (9.902,0.509,1.049) -- (9.823,0.441,0.909) -- (9.756,0.371,0.765) -- (9.700,0.299,0.617) -- (9.656,0.226,0.466) -- (9.625,0.151,0.312) -- (9.606,0.076,0.156) -- (9.600,0.000,0.000);
+\node at (8.988,0.861,1.774) {$\theta$};
+\node[anchor=north east] at (A) {$A$};
+\node[anchor=north west] at (B) {$B$};
+\node[anchor=west] at (C) {$C$};
+\node[anchor=south west] at (D) {$D$};
+\node[anchor=south] at (V) {$V$};
+\node[anchor=north] at (12,6,0) {$12$}; \node[anchor=east] at (9,3,6.185) {$15$};
+\end{tikzpicture}
+                    </latex-image>
+                </image>
+            </figure>
         </statement>
         <solution>
+            <p><m>BC</m> is parallel to <m>AD</m>, which meets <m>VA</m> at <m>A</m>, so the angle is angle <m>VAD</m>, in the face <m>VAD</m>.</p>
+            <p>The face <m>VAD</m> is isosceles, with <m>VA = VD = 15\,\text{cm}</m>. The perpendicular from <m>V</m> to <m>AD</m> meets it at its midpoint, <m>6\,\text{cm}</m> from <m>A</m>. In the right-angled triangle this makes,
+                <md>\cos VAD = \frac{6}{15}, \quad \text{angle } VAD = 66.4^{\circ}</md></p>
         </solution>
     </example>
 
-    <example>
+    <example xml:id="example-ridge-of-a-tent">
+        <title>The Ridge of a Tent</title>
         <statement>
+            <p>The tent <m>ABCDEF</m> in <xref ref="fig-tent-prism"/> has <m>AB = 2.4\,\text{m}</m>, <m>CA = CB = 1.5\,\text{m}</m> and <m>AD = 3\,\text{m}</m>. Find the angle between
+                (a) <m>AC</m> and <m>EF</m>; (b) <m>AB</m> and the ridge <m>CF</m>.</p>
         </statement>
         <solution>
+            <p>(a) <m>EF</m> is parallel to <m>BC</m>, which meets <m>AC</m> at <m>C</m>, so we need angle <m>ACB</m> in the end of the tent, drawn flat in <xref ref="fig-tent-end-angle"/>. The height <m>CN</m> cuts the isosceles triangle into two right-angled triangles with <m>AN = 1.2\,\text{m}</m> and <m>CA = 1.5\,\text{m}</m>:
+                <md>\sin ACN = \frac{1.2}{1.5}, \quad \text{angle } ACN = 53.13^{\circ}, \quad \text{angle } ACB = 2 \times 53.13^{\circ} = 106.3^{\circ}</md>
+                This angle is obtuse. The angle between two lines is never more than <m>90^{\circ}</m>, so the angle between <m>AC</m> and <m>EF</m> is <m>180^{\circ} - 106.3^{\circ} = 73.7^{\circ}</m>.</p>
+            <figure xml:id="fig-tent-end-angle">
+                <caption>The end <m>ABC</m> of the tent drawn flat.</caption>
+                <image width="55%">
+                    <shortdescription>The tent's end triangle ABC drawn flat: AB is 2.4 m, split into 1.2 m and 1.2 m at its midpoint N; CA = CB = 1.5 m; the height CN is 0.9 m with a right angle at N. The angle ACB of 106.3 degrees is marked, and the acute angle of 73.7 degrees between CB and AC extended beyond C is marked.</shortdescription>
+                    <latex-image>
+\begin{tikzpicture}[scale=2.4]
+\coordinate (A) at (0,0); \coordinate (B) at (2.4,0); \coordinate (C) at (1.2,0.9); \coordinate (N) at (1.2,0);
+\draw[thick] (A) -- (B) -- (C) -- cycle;
+\draw[dotted, thick] (C) -- (N);
+\draw (1.2,0.09) -- (1.29,0.09) -- (1.29,0);
+\draw[dashed] (C) -- ($(C)!-0.75!(A)$) coordinate (X);
+\node[anchor=north east] at (A) {$A$}; \node[anchor=north west] at (B) {$B$}; \node[anchor=south east] at (C) {$C$}; \node[anchor=north] at (N) {$N$};
+\node[anchor=north] at (0.6,0) {$1.2$}; \node[anchor=north] at (1.8,0) {$1.2$};
+\node[anchor=south east] at (0.6,0.45) {$1.5$}; \node[anchor=south west, xshift=-2pt] at (1.85,0.42) {$1.5$};
+\node[anchor=west] at (1.2,0.28) {$0.9$}; \node[anchor=north east] at (1.12,0.6) {$106.3^{\circ}$};
+\draw pic[draw, angle radius=0.28cm*2.4] {angle=A--C--B};
+\draw pic[draw, double, angle radius=0.2cm*2.4, "$73.7^{\circ}$" {anchor=west, xshift=0.2cm}] {angle=B--C--X};
+\end{tikzpicture}
+                    </latex-image>
+                </image>
+            </figure>
+            <p>(b) <m>CF</m> is parallel to <m>AD</m>, which meets <m>AB</m> at <m>A</m>. The ground <m>ABED</m> is a rectangle, so angle <m>BAD = 90^{\circ}</m>: <m>AB</m> and the ridge are perpendicular.</p>
         </solution>
-    </example> -->
+    </example>
 
     <xi:include href="../lesson-plan-templates/assessment-intro.ptx" />
+    <xi:include href="../lesson-plan-templates/checkpoint.ptx" />
 
-    <!-- If STACK questions are included, uncomment this: -->
+    <p>Choose from each list. Type angles in degrees as numbers, without the degree sign, for example <c>36.9</c>.</p>
 
-    <!-- <xi:include href="../lesson-plan-templates/checkpoint.ptx" /> -->
+    <exercise xml:id="ex-angle-between-skew-lines-in-a-cuboid">
+        <!--<title></title>-->
+        <stack label="stk-angle-between-skew-lines-in-a-cuboid" source="stack/top/2-measurement-and-geometry/09-three-dimensional-geometry/02-angle-between-skew-lines/Angle-between-skew-lines-in-a-cuboid.xml"/>
+    </exercise>
+    <exercise xml:id="ex-angle-between-skew-lines-in-a-pyramid">
+        <!--<title></title>-->
+        <stack label="stk-angle-between-skew-lines-in-a-pyramid" source="stack/top/2-measurement-and-geometry/09-three-dimensional-geometry/02-angle-between-skew-lines/Angle-between-skew-lines-in-a-pyramid.xml"/>
+    </exercise>
+    <exercise xml:id="ex-matching-skew-lines-to-angles">
+        <!--<title></title>-->
+        <stack label="stk-matching-skew-lines-to-angles" source="stack/top/2-measurement-and-geometry/09-three-dimensional-geometry/02-angle-between-skew-lines/Matching-skew-lines-to-angles.xml"/>
+    </exercise>
 
-    <!-- Add STACK exercises if made -->
+    <exercises xml:id="exercises-angle-between-skew-lines">
+        <exercise xml:id="ex-skew-angles-in-a-box">
+            <statement><p>A cuboid <m>ABCDEFGH</m> has <m>AB = 20\,\text{cm}</m>, <m>BC = 15\,\text{cm}</m> and <m>AE = 8\,\text{cm}</m>. Find the angle between
+                (a) <m>AB</m> and <m>CG</m>; (b) <m>AB</m> and <m>DG</m>; (c) <m>EH</m> and <m>BG</m>.</p></statement>
+            <answer><p>(a) <m>90^{\circ}</m> (b) <m>21.8^{\circ}</m> (c) <m>28.1^{\circ}</m></p></answer>
+            <solution><p>(a) Slide <m>AB</m> to <m>DC</m>, which meets <m>CG</m> at a right angle: <m>90^{\circ}</m>.</p>
+                <p>(b) Slide <m>AB</m> to <m>DC</m>, which meets <m>DG</m> at <m>D</m>. Angle <m>CDG</m>: <m>\tan CDG = \frac{CG}{DC} = \frac{8}{20}</m>, so <m>21.8^{\circ}</m>.</p>
+                <p>(c) <m>EH</m> is parallel to <m>FG</m>, which meets <m>BG</m> at <m>G</m>. Angle <m>BGF</m>: <m>\tan BGF = \frac{BF}{FG} = \frac{8}{15}</m>, so <m>28.1^{\circ}</m>.</p></solution>
+        </exercise>
+        <exercise xml:id="ex-skew-angles-in-a-cube">
+            <statement><p><m>ABCDEFGH</m> is a cube. Find the angle between <m>AB</m> and <m>CH</m>.</p></statement>
+            <answer><p><m>45^{\circ}</m></p></answer>
+            <solution><p><m>AB</m> is parallel to <m>DC</m>, which meets <m>CH</m> at <m>C</m>. Angle <m>DCH</m> is between a side and a diagonal of the square face <m>DCGH</m>, so it is <m>45^{\circ}</m>.</p></solution>
+        </exercise>
+        <exercise xml:id="ex-skew-angles-rectangular-pyramid">
+            <statement><p>A right pyramid <m>VABCD</m> stands on a rectangular base with <m>AB = 16\,\text{cm}</m> and <m>BC = 12\,\text{cm}</m>. Every sloping edge is <m>14\,\text{cm}</m>. Find the angle between
+                (a) <m>VA</m> and <m>BC</m>; (b) <m>VA</m> and <m>CD</m>.</p></statement>
+            <answer><p>(a) <m>64.6^{\circ}</m> (b) <m>55.2^{\circ}</m></p></answer>
+            <solution><p>(a) <m>BC</m> is parallel to <m>AD</m> (<m>12\,\text{cm}</m>), which meets <m>VA</m> at <m>A</m>. In the isosceles face <m>VAD</m>, <m>\cos VAD = \frac{6}{14}</m>, so angle <m>VAD = 64.6^{\circ}</m>.</p>
+                <p>(b) <m>CD</m> is parallel to <m>AB</m> (<m>16\,\text{cm}</m>). In the isosceles face <m>VAB</m>, <m>\cos VAB = \frac{8}{14}</m>, so angle <m>VAB = 55.2^{\circ}</m>.</p></solution>
+        </exercise>
+        <exercise xml:id="ex-classroom-skew-angle">
+            <statement><p>A classroom is a cuboid <m>ABCDEFGH</m> with <m>AB = 9\,\text{m}</m>, <m>BC = 7\,\text{m}</m> and <m>AE = 3\,\text{m}</m>. Find the angle between the floor edge <m>AD</m> and the diagonal <m>CF</m> of the end wall <m>BCGF</m>.</p></statement>
+            <answer><p><m>23.2^{\circ}</m></p></answer>
+            <solution><p><m>AD</m> is parallel to <m>BC</m>, which meets <m>CF</m> at <m>C</m>. In the end wall, triangle <m>BCF</m> has a right angle at <m>B</m>: <m>\tan BCF = \frac{BF}{BC} = \frac{3}{7}</m>, so angle <m>BCF = 23.2^{\circ}</m>.</p></solution>
+        </exercise>
+        <exercise xml:id="ex-perpendicular-skew-lines">
+            <statement><p>Explain why, in any cuboid <m>ABCDEFGH</m>, the angle between the vertical edge <m>AE</m> and any line in the base that does not pass through <m>A</m> is <m>90^{\circ}</m>.</p></statement>
+            <answer><p>Slide <m>AE</m> to the vertical line through a point of the base line; a vertical line is perpendicular to every line in the horizontal base through its foot.</p></answer>
+        </exercise>
+        <exercise xml:id="ex-perpendicular-face-diagonals">
+            <title>Challenge: Perpendicular Face Diagonals</title>
+            <statement><p><m>ABCDEFGH</m> is a cube. Show that the face diagonals <m>AF</m> and <m>CH</m> are perpendicular.</p></statement>
+            <hint><p><m>AF</m> is parallel to <m>DG</m>.</p></hint>
+            <answer><p>The angle between them is <m>90^{\circ}</m>.</p></answer>
+            <solution><p>Slide <m>AF</m>, without turning it, to <m>DG</m>, the diagonal of the opposite face that slopes the same way. <m>DG</m> and <m>CH</m> are the two diagonals of the square <m>DCGH</m>, and the diagonals of a square cross at right angles. So the angle between <m>AF</m> and <m>CH</m> is <m>90^{\circ}</m>.</p></solution>
+        </exercise>
+    </exercises>
 
-    <!-- Add static exercises -->
-
-    <!-- <exercises>
-        <exercise>
-            <statement>   
-
-            </statement>   
-            <solution>
-
-            </solution>             
-        </exercise>        
-    </exercises> -->
-
-    <!-- [LP] Add information on how to differentiate  -->
-
-    <!-- <axiom component="lesson-plan">
+    <axiom component="lesson-plan">
         <title>Differentiation</title>
-
-        <table>
-            <title>Differentiation</title>
-            <tabular halign="left">
-                <row header="yes" bottom="minor">
-                    <cell>Learner Group</cell>
-                    <cell>Strategy &amp; Learning Experience</cell>
-                    <cell></cell>
-                </row>
-                <row>
-                    <cell>Struggling Learners (Support)</cell>
-                    <cell>
-                        XXXX
-                    </cell>
-                    <cell></cell>
-                </row>
-                <row>
-                    <cell>On-Level Learners (Core)</cell>
-                    <cell>
-                        <line>The core lesson activities as described above.</line>
-                    </cell>
-                    <cell></cell>
-                </row>
-                <row>
-                    <cell>Advanced Learners (Challenge)</cell>
-                    <cell>
-                        XXXX
-                    </cell>
-                    <cell></cell>
-                </row>
+        <table xml:id="table-differentiation-angle-between-skew-lines">
+            <title>Differentiation Strategies</title>
+            <tabular halign="left" top="minor" bottom="minor" left="minor" right="minor">
+                <row header="yes" bottom="medium"><cell>Learner Group</cell><cell>Strategy and Learning Experience</cell></row>
+                <row><cell>Struggling Learners (Support)</cell><cell>Use a model box and a pencil throughout. Give a step card: <q>slide, meet, triangle, tan</q>. Work through <xref ref="example-skew-lines-in-a-cuboid"/> and <xref ref="example-skew-lines-in-a-pyramid"/>. Assign <xref ref="ex-skew-angles-in-a-box"/> and <xref ref="ex-skew-angles-in-a-cube"/>.</cell></row>
+                <row><cell>On-Level Learners (Core)</cell><cell>Full activity plus all examples. Assign <xref ref="ex-skew-angles-in-a-box"/> to <xref ref="ex-perpendicular-skew-lines"/>.</cell></row>
+                <row><cell>Advanced Learners (Challenge)</cell><cell>All exercises including <xref ref="ex-perpendicular-face-diagonals"/>. Extension: in a cube <m>ABCDEFGH</m>, find the angle between <m>AG</m> and <m>BD</m>. (Answer: <m>90^{\circ}</m>. The projection of <m>AG</m> on the base is <m>AC</m>, which is perpendicular to <m>BD</m>, and <m>CG</m> is perpendicular to the base, so <m>BD</m> is perpendicular to the whole plane <m>ACGE</m>, which contains <m>AG</m>.)</cell></row>
             </tabular>
         </table>
-    </axiom> -->
+    </axiom>
 
     <xi:include href="../lesson-plan-templates/assessment-methods.ptx" />
 

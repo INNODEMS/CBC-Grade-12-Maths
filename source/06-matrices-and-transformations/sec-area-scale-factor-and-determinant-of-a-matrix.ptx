@@ -46,161 +46,284 @@
          Suggested activity: Learners find the area of an object and its image under several matrices and compare each area ratio with the determinant.
          Interactive (JSXGraph): Unit square and its image under a matrix set by sliders; the area of the image and the determinant are shown side by side. -->
 
-    <!-- [LP] Add guidance on activity -->
+    <!-- Section notes (2026-11)
+         SLOs: Core 2.1 (f)
+         Activity: as planning notes (areas of object and image under four matrices, compared with det)
+         JSXGraph: interactive-area-and-determinant (assets/jsxgraph/area-and-determinant.js), as planning notes
+         STACK: assets/stack/top/2-measurement-and-geometry/06-matrices-and-transformations/04-area-scale-factor-and-determinant-of-a-matrix/ -->
 
-    <!-- <axiom component="lesson-plan">
-            <title>Problem-Solving and Discovery</title>
-            <dl>
-                <li>
-                    <title>Suggested Time</title>
-                    <p>
-                        XX minutes
-                    </p>
-                </li>
-                <li>
-                    <title>Objective</title>
-                    <p>
-                        XXX
-                    </p>
-                </li>
-                <li>
-                    <title>Teacher's Role</title>
-                    <p>
-                        XXX
-                    </p>
-                </li>
-            </dl>
-        </axiom> -->
+    <p component="lesson-plan">Upon completion of this lesson, learners will be able to:
+        <ol>
+            <li><p><alert>Know:</alert> the area scale factor of a transformation is <m>|\det M|</m>; a negative determinant reverses the orientation; a zero determinant collapses every shape onto a line; area scale factors multiply.</p></li>
+            <li><p><alert>Do:</alert> find the area of an image; find an unknown entry of a matrix from an area or from a collapse.</p></li>
+            <li><p><alert>Apply:</alert> find an area on the plan of a shamba.</p></li>
+        </ol>
+    </p>
 
-    <!-- Add Activity -->
+    <axiom component="lesson-plan">
+        <title>Problem-Solving and Discovery</title>
+        <dl>
+            <li><title>Suggested Time</title><p>14 minutes</p></li>
+            <li><title>Objective</title><p>Learners find the areas of the images of one rectangle under four matrices and see that each area ratio is the size of the determinant.</p></li>
+            <li><title>Teacher's Role</title><p>Put learners in four groups; each group takes one matrix, draws the image and finds its area (by counting squares, or by the enclosing-rectangle method), then works out the determinant. Collect the four results in a table on the board so that the pattern appears. Groups that finish early do a second matrix. After part (c), ask: <q>What does the sign of the determinant tell us?</q></p></li>
+        </dl>
+    </axiom>
 
-    <!-- <activity>
+    <activity xml:id="act-how-much-bigger">
+        <title>How Much Bigger?</title>
         <statement>
+            <p>The rectangle <m>OABC</m> has vertices <m>O(0, 0)</m>, <m>A(2, 0)</m>, <m>B(2, 1)</m> and <m>C(0, 1)</m>, lettered anticlockwise. Its area is <m>2</m> square units. Four matrices are
+                <md>P = \begin{bmatrix} 3 \amp 0 \\ 0 \amp 2 \end{bmatrix}, \quad Q = \begin{bmatrix} 2 \amp 1 \\ 1 \amp 2 \end{bmatrix}, \quad S = \begin{bmatrix} 0 \amp 1 \\ 1 \amp 0 \end{bmatrix}, \quad T = \begin{bmatrix} 3 \amp -3 \\ -1 \amp 1 \end{bmatrix}</md>
+            </p>
+            <p>
+                <ol marker="(a)">
+                    <li>
+                        <p>Draw the image of <m>OABC</m> under each matrix and find its area.</p>
+                        <solution component="lesson-plan"><p>Areas <m>12</m>, <m>6</m>, <m>2</m> and <m>0</m>. Under <m>Q</m> the image is the parallelogram <m>(0, 0)</m>, <m>(4, 2)</m>, <m>(5, 4)</m>, <m>(1, 2)</m>.</p></solution>
+                    </li>
+                    <li>
+                        <p>Find the determinant of each matrix.</p>
+                        <solution component="lesson-plan"><p><m>\det P = 6</m>, <m>\det Q = 3</m>, <m>\det S = -1</m>, <m>\det T = 0</m>.</p></solution>
+                    </li>
+                    <li>
+                        <p>For each matrix, work out (area of image) <m>\div</m> (area of object). Compare it with the determinant.</p>
+                        <solution component="lesson-plan"><p><m>6</m>, <m>3</m>, <m>1</m>, <m>0</m>: the size of the determinant, <m>|\det M|</m>, every time.</p></solution>
+                    </li>
+                    <li>
+                        <p>Letter each image <m>O'A'B'C'</m>. Which image is lettered clockwise?</p>
+                        <solution component="lesson-plan"><p>The image under <m>S</m>: <m>O'(0, 0)</m>, <m>A'(0, 2)</m>, <m>B'(1, 2)</m>, <m>C'(1, 0)</m> runs clockwise. <m>S</m> is the only matrix with a negative determinant.</p></solution>
+                    </li>
+                    <li>
+                        <p>What happened to the rectangle under <m>T</m>?</p>
+                        <solution component="lesson-plan"><p>The images <m>(0, 0)</m>, <m>(6, -2)</m>, <m>(3, -1)</m>, <m>(-3, 1)</m> all lie on the line <m>y = -\frac{1}{3}x</m>. The rectangle has been flattened onto a line, so its image has no area.</p></solution>
+                    </li>
+                </ol>
+            </p>
         </statement>
-    </activity> -->
+    </activity>
 
-    <!-- [LP] Add guidance on structured lesson plan-->
-
-    <!-- <axiom component="lesson-plan">
+    <axiom component="lesson-plan">
         <title>Structured Instruction</title>
         <p>
             <dl>
-            <li>
-                <title>Suggested Time</title>
-                <p>
-                    XX minutes
-                </p>
-            </li>
-            <li>
-                <title>Objective</title>
-                <p>
-                    To formalize the concepts and properties learners discovered in the anchor task.
-                </p>
-            </li>
+                <li><title>Suggested Time</title><p>8 minutes</p></li>
+                <li><title>Objective</title><p>To formalise the area scale factor as the size of the determinant, and the meaning of its sign and of zero.</p></li>
             </dl>
         </p>
         <paragraphs>
             <title>Key Takeaways &amp; Teacher Connection</title>
             <ol>
-                <li>
-                    <p>
-                        <alert>Connecting to Learner Work:</alert> XXXX
-                    </p>
-                </li>
+                <li><p><alert>Connecting to Learner Work:</alert> the table on the board shows area of image <m>\div</m> area of object <m>= |\det M|</m> for every matrix.</p></li>
+                <li><p>A negative determinant reverses the orientation, as part (d) showed: the transformation includes a reflection.</p></li>
+                <li><p>A zero determinant flattens every shape onto a line through <m>O</m>, so there is no area and no way back: no inverse.</p></li>
+                <li><p>Links: in Grade 10, an enlargement with linear scale factor <m>k</m> has area scale factor <m>k^2</m>, and <m>\det \begin{bmatrix} k \amp 0 \\ 0 \amp k \end{bmatrix} = k^2</m>. In Grade 11 the determinant was introduced as how a matrix changes areas.</p></li>
             </ol>
         </paragraphs>
-    </axiom> -->
+    </axiom>
 
-    <!-- Add insight / key takeaway directly related to activity / learner experience -->
+    <insight xml:id="insight-area-scale-factor">
+        <title>Area Scale Factor</title>
+        <p>
+            For a transformation with matrix <m>M = \begin{bmatrix} a \amp b \\ c \amp d \end{bmatrix}</m>, every area is multiplied by the same number, the <term>area scale factor</term>, which is the size of the determinant:
+            <md>\text{area of image} = |\det M| \times \text{area of object}, \qquad \det M = ad - bc</md>
+        </p>
+        <p>
+            The sign of <m>\det M</m> tells you about the <term>orientation</term> of the image. If <m>\det M > 0</m>, vertices lettered anticlockwise in the object are still anticlockwise in the image. If <m>\det M \lt 0</m>, the orientation is reversed: anticlockwise lettering becomes clockwise, and the shape has been turned over (the transformation includes a reflection). If <m>\det M = 0</m>, the image of every shape lies on a line through <m>O</m>; its area is <m>0</m> and <m>M</m> has no inverse.
+        </p>
+        <p>
+            The determinant tells you how many times bigger every area becomes, and its sign tells you whether the shape has been turned over. For two successive transformations the area scale factors multiply: <m>\det(QP) = \det Q \times \det P</m>.
+        </p>
+    </insight>
 
-    <!-- <insight>
-    </insight> -->
+    <figure xml:id="fig-area-unit-square">
+        <caption>The unit square <m>OABC</m> has area <m>1</m>. Its image <m>OA'B'C'</m> under <m>\begin{bmatrix} 2 \amp 1 \\ 1 \amp 4 \end{bmatrix}</m> is a parallelogram of area <m>7</m>, the determinant of the matrix.</caption>
+        <image width="55%">
+            <shortdescription>The unit square O(0, 0), A(1, 0), B(1, 1), C(0, 1), shaded, and its image, the parallelogram O, A prime(2, 1), B prime(3, 5), C prime(1, 4), drawn dashed. The square has area 1 and the parallelogram has area 7.</shortdescription>
+            <latex-image>
+\begin{tikzpicture}[scale=0.8]
+\draw[very thin, gray!40] (-1,-1) grid (4,6);
+\draw[->] (-1.3,0) -- (4.4,0) node[right]{$x$};
+\draw[->] (0,-1.3) -- (0,6.4) node[above]{$y$};
+\fill[gray!30] (0,0) -- (1,0) -- (1,1) -- (0,1) -- cycle;
+\draw[thick] (0,0) -- (1,0) -- (1,1) -- (0,1) -- cycle;
+\node[below left] at (0,0) {$O$}; \node[below] at (1,0) {$A$}; \node[above right] at (1,1) {$B$}; \node[left] at (0,1) {$C$};
+\node at (0.5,0.5) {$1$};
+\draw[thick, dashed] (0,0) -- (2,1) -- (3,5) -- (1,4) -- cycle;
+\node[right] at (2,1) {$A'(2, 1)$}; \node[right] at (3,5) {$B'(3, 5)$}; \node[left] at (1,4) {$C'(1, 4)$};
+\node at (1.6,2.9) {area $7$};
+\end{tikzpicture}
+            </latex-image>
+        </image>
+    </figure>
 
-    <!-- Add further instruction (not in a block) to develop ideas as needed -->
+    <figure xml:id="fig-area-and-determinant">
+        <caption>Change the matrix. The area of the image always equals the size of the determinant.</caption>
+        <interactive xml:id="interactive-area-and-determinant" platform="jsxgraph" width="90%" aspect="4:3" source="jsxgraph/area-and-determinant.js">
+            <slate xml:id="jsxgraph-area-and-determinant" surface="jsxboard" aspect="4:3"/>
+            <instructions>
+                <p>
+                    <ul>
+                        <li><p>The sliders <alert>a</alert>, <alert>b</alert>, <alert>c</alert> and <alert>d</alert> set the matrix <m>\begin{bmatrix} a \amp b \\ c \amp d \end{bmatrix}</m>. They start at the matrix of <xref ref="fig-area-unit-square"/>. Check that the area of the image is <m>7</m>.</p></li>
+                        <li><p>Make the determinant negative. What happens to the order of the letters <m>O, A', B', C'</m>?</p></li>
+                        <li><p>Find a matrix with determinant <m>0</m>. What happens to the square?</p></li>
+                    </ul>
+                </p>
+            </instructions>
+        </interactive>
+    </figure>
 
     <xi:include href="../lesson-plan-templates/example-intro.ptx" />
 
-    <!-- Add at least 3 examples -->
-
-    <!-- <example>
+    <example xml:id="example-area-of-an-image">
+        <title>Area of an Image</title>
         <statement>
+            <p>The triangle <m>ABC</m> with <m>A(1, 1)</m>, <m>B(5, 1)</m> and <m>C(1, 4)</m> is mapped by <m>M = \begin{bmatrix} 5 \amp -1 \\ 1 \amp -1 \end{bmatrix}</m>. Find the area of the image and describe its orientation.</p>
         </statement>
         <solution>
+            <p>The triangle has a right angle at <m>A</m>, with sides <m>4</m> and <m>3</m>, so its area is <m>\frac{1}{2} \times 4 \times 3 = 6</m> square units.</p>
+            <p><m>\det M = 5 \times (-1) - (-1) \times 1 = -5 + 1 = -4</m>. The area scale factor is <m>|-4| = 4</m>, so the image has area <m>4 \times 6 = 24</m> square units.</p>
+            <p>The determinant is negative, so the orientation is reversed. Check with the images:
+                <md>\begin{bmatrix} 5 \amp -1 \\ 1 \amp -1 \end{bmatrix}\begin{bmatrix} 1 \amp 5 \amp 1 \\ 1 \amp 1 \amp 4 \end{bmatrix} = \begin{bmatrix} 4 \amp 24 \amp 1 \\ 0 \amp 4 \amp -3 \end{bmatrix}</md>
+            <m>A, B, C</m> runs anticlockwise, but <m>A'(4, 0)</m>, <m>B'(24, 4)</m>, <m>C'(1, -3)</m> runs clockwise (<xref ref="fig-orientation-reversed"/>).</p>
         </solution>
     </example>
 
-    <example>
+    <figure xml:id="fig-orientation-reversed">
+        <caption>The triangle <m>ABC</m> is lettered anticlockwise; its image <m>A'B'C'</m> under <m>\begin{bmatrix} 5 \amp -1 \\ 1 \amp -1 \end{bmatrix}</m> is lettered clockwise.</caption>
+        <image width="70%">
+            <shortdescription>Triangle A(1, 1), B(5, 1), C(1, 4), with a curved arrow showing that A, B, C runs anticlockwise. Its image, drawn dashed, A prime(4, 0), B prime(24, 4), C prime(1, -3), with a curved arrow showing that A prime, B prime, C prime runs clockwise.</shortdescription>
+            <latex-image>
+\begin{tikzpicture}[scale=0.45, >=stealth]
+\draw[very thin, gray!40] (-1,-4) grid (25,5);
+\draw[->] (-1.3,0) -- (25.6,0) node[right]{$x$};
+\draw[->] (0,-4.3) -- (0,5.6) node[above]{$y$};
+\node[below left] at (0,0) {$O$};
+\draw[thick] (1,1) -- (5,1) -- (1,4) -- cycle;
+\node[below left] at (1,1) {$A$}; \node[below right] at (5,1) {$B$}; \node[above left] at (1,4) {$C$};
+\draw[->, thick] (2.9,2) arc[start angle=0, end angle=270, radius=0.55];
+\draw[thick, dashed] (4,0) -- (24,4) -- (1,-3) -- cycle;
+\node[below right] at (4,0) {$A'$}; \node[right] at (24,4) {$B'$}; \node[below left] at (1,-3) {$C'$};
+\draw[->, thick] (10.3,0.4) arc[start angle=0, end angle=-270, radius=0.55];
+\end{tikzpicture}
+            </latex-image>
+        </image>
+    </figure>
+
+    <example xml:id="example-finding-an-unknown-entry">
+        <title>Finding an Unknown Entry</title>
         <statement>
+            <p>The matrix <m>\begin{bmatrix} k \amp 5 \\ 1 \amp 2 \end{bmatrix}</m> maps a shape of area <m>2</m> square units onto a shape of area <m>14</m> square units. Find the two possible values of <m>k</m>.</p>
         </statement>
         <solution>
+            <p>The area scale factor is <m>14 \div 2 = 7</m>, so <m>|\det M| = 7</m>. Here <m>\det M = 2k - 5</m>, so
+                <md>2k - 5 = 7 \quad \text{or} \quad 2k - 5 = -7</md>
+            giving <m>k = 6</m> or <m>k = -1</m>. With <m>k = 6</m> the orientation is kept; with <m>k = -1</m> (determinant <m>-7</m>) it is reversed.</p>
         </solution>
     </example>
 
-    <example>
+    <example xml:id="example-when-the-image-collapses">
+        <title>When the Image Collapses</title>
         <statement>
+            <p>Find the value of <m>k</m> for which <m>\begin{bmatrix} k \amp 6 \\ 2 \amp 3 \end{bmatrix}</m> has no inverse. For this value, show that the image of every point lies on one line, and find the line.</p>
         </statement>
         <solution>
+            <p>There is no inverse when the determinant is <m>0</m>: <m>3k - 12 = 0</m>, so <m>k = 4</m>.</p>
+            <p>Then
+                <md>\begin{bmatrix} 4 \amp 6 \\ 2 \amp 3 \end{bmatrix}\begin{pmatrix} x \\ y \end{pmatrix} = \begin{pmatrix} 4x + 6y \\ 2x + 3y \end{pmatrix}</md>
+            The first coordinate of every image is twice the second, so every image lies on the line <m>x = 2y</m> (that is, <m>y = \frac{1}{2}x</m>). For example <m>(1, 0)</m>, <m>(0, 1)</m> and <m>(1, 1)</m> go to <m>(4, 2)</m>, <m>(6, 3)</m> and <m>(10, 5)</m> (<xref ref="fig-collapse-onto-line"/>). Every shape is flattened onto this line, so its image has area <m>0</m>, and many points share one image, so the transformation cannot be undone.</p>
         </solution>
-    </example> -->
+    </example>
+
+    <figure xml:id="fig-collapse-onto-line">
+        <caption>Under <m>\begin{bmatrix} 4 \amp 6 \\ 2 \amp 3 \end{bmatrix}</m> the whole plane collapses onto the line <m>x = 2y</m>.</caption>
+        <image width="65%">
+            <shortdescription>The unit square O, A(1, 0), B(1, 1), C(0, 1) and the line x = 2y through O. Under the matrix with rows 4, 6 and 2, 3 the points A, C and B go to A prime(4, 2), C prime(6, 3) and B prime(10, 5), all on the line.</shortdescription>
+            <latex-image>
+\begin{tikzpicture}[scale=0.55, >=stealth]
+\draw[very thin, gray!40] (-1,-1) grid (12,7);
+\draw[->] (-1.3,0) -- (12.5,0) node[right]{$x$};
+\draw[->] (0,-1.3) -- (0,7.4) node[above]{$y$};
+\node[below left] at (0,0) {$O$};
+\draw[thick] (0,0) -- (1,0) -- (1,1) -- (0,1) -- cycle;
+\node[below] at (1,0) {$A$}; \node[above right] at (1,1) {$B$}; \node[left] at (0,1) {$C$};
+\draw[thick, dashed] (-1,-0.5) -- (12,6) node[above left]{$x = 2y$};
+\foreach \p/\q/\l in {4/2/{A'(4, 2)}, 6/3/{C'(6, 3)}, 10/5/{B'(10, 5)}} {
+  \fill (\p,\q) circle (3pt);
+  \node[below right] at (\p,\q) {$\l$};
+}
+\end{tikzpicture}
+            </latex-image>
+        </image>
+    </figure>
 
     <xi:include href="../lesson-plan-templates/assessment-intro.ptx" />
+    <xi:include href="../lesson-plan-templates/checkpoint.ptx" />
 
-    <!-- If STACK questions are included, uncomment this: -->
+    <p>Type one number in each box of a matrix. Type fractions with a slash, for example <c>-3/2</c>, or as exact decimals, for example <c>-1.5</c>.</p>
 
-    <!-- <xi:include href="../lesson-plan-templates/checkpoint.ptx" /> -->
+        <exercise xml:id="ex-area-of-an-image-from-the-determinant">
+        <stack label="stk-area-of-an-image-from-the-determinant" source="stack/top/2-measurement-and-geometry/06-matrices-and-transformations/04-area-scale-factor-and-determinant-of-a-matrix/Area-of-an-image-from-the-determinant.xml"/>
+    </exercise>
 
-    <!-- Add STACK exercises if made -->
+    <exercise xml:id="ex-unknown-entry-from-the-determinant">
+        <stack label="stk-unknown-entry-from-the-determinant" source="stack/top/2-measurement-and-geometry/06-matrices-and-transformations/04-area-scale-factor-and-determinant-of-a-matrix/Unknown-entry-from-the-determinant.xml"/>
+    </exercise>
 
-    <!-- Add static exercises -->
+    <exercise xml:id="ex-a-matrix-with-a-given-area-scale-factor">
+        <stack label="stk-a-matrix-with-a-given-area-scale-factor" source="stack/top/2-measurement-and-geometry/06-matrices-and-transformations/04-area-scale-factor-and-determinant-of-a-matrix/A-matrix-with-a-given-area-scale-factor.xml"/>
+    </exercise>
 
-    <!-- <exercises>
-        <exercise>
-            <statement>   
+    <exercises xml:id="exercises-area-scale-factor">
+        <exercise xml:id="ex-determinant-and-area">
+            <statement><p>A square of area <m>4</m> square units is mapped by each matrix below. For each, find the determinant, the area of the image, and whether the orientation is kept or reversed.
+                <ol marker="(a)">
+                    <li><p><m>\begin{bmatrix} 5 \amp 2 \\ 3 \amp 6 \end{bmatrix}</m></p></li>
+                    <li><p><m>\begin{bmatrix} 2 \amp 3 \\ 5 \amp 1 \end{bmatrix}</m></p></li>
+                </ol>
+            </p></statement>
+            <answer><p>(a) <m>24</m>; <m>96</m> square units; kept (b) <m>-13</m>; <m>52</m> square units; reversed</p></answer>
+        </exercise>
+        <exercise xml:id="ex-area-of-image-triangle">
+            <statement><p>The triangle with vertices <m>(0, 0)</m>, <m>(4, 0)</m> and <m>(0, 3)</m> is mapped by <m>\begin{bmatrix} 5 \amp 2 \\ 1 \amp 1 \end{bmatrix}</m>. Find the area of the image.</p></statement>
+            <answer><p><m>18</m> square units</p></answer>
+            <solution><p>The triangle has area <m>\frac{1}{2} \times 4 \times 3 = 6</m>. The determinant is <m>5 - 2 = 3</m>, so the image has area <m>3 \times 6 = 18</m> square units.</p></solution>
+        </exercise>
+        <exercise xml:id="ex-collapse">
+            <statement><p>Find the value of <m>k</m> for which <m>\begin{bmatrix} k \amp -2 \\ 6 \amp -4 \end{bmatrix}</m> has no inverse. For this value, find the line onto which the whole plane collapses.</p></statement>
+            <answer><p><m>k = 3</m>; the line <m>y = 2x</m></p></answer>
+            <solution><p><m>\det = -4k + 12 = 0</m> gives <m>k = 3</m>. Then <m>\begin{bmatrix} 3 \amp -2 \\ 6 \amp -4 \end{bmatrix}\begin{pmatrix} x \\ y \end{pmatrix} = \begin{pmatrix} 3x - 2y \\ 6x - 4y \end{pmatrix}</m>, and the second coordinate is always twice the first, so every image lies on <m>y = 2x</m>.</p></solution>
+        </exercise>
+        <exercise xml:id="ex-unknown-from-area">
+            <statement><p>The matrix <m>\begin{bmatrix} 4 \amp k \\ -1 \amp 3 \end{bmatrix}</m> maps a shape of area <m>5</m> square units onto a shape of area <m>40</m> square units. Find both possible values of <m>k</m>.</p></statement>
+            <answer><p><m>k = -4</m> or <m>k = -20</m></p></answer>
+            <solution><p>The area scale factor is <m>40 \div 5 = 8</m>. The determinant is <m>12 + k</m>, so <m>12 + k = 8</m> or <m>12 + k = -8</m>, giving <m>k = -4</m> or <m>k = -20</m>.</p></solution>
+        </exercise>
+        <exercise xml:id="ex-shamba-on-a-plan">
+            <statement><p>A rectangular shamba near Nakuru measures <m>30\,\text{m}</m> by <m>20\,\text{m}</m>. A farmer draws it on a plan, using the matrix <m>\begin{bmatrix} 1.5 \amp 0 \\ 0 \amp 2 \end{bmatrix}</m> to change the real measurements into plan units. What is the area of the shamba on the plan, in square plan units?</p></statement>
+            <answer><p><m>1800</m> square plan units</p></answer>
+            <solution><p>The real area is <m>30 \times 20 = 600\,\text{m}^2</m>. The determinant is <m>1.5 \times 2 = 3</m>, so the area on the plan is <m>3 \times 600 = 1800</m> square plan units. (Check: the plan rectangle is <m>45</m> by <m>40</m>.)</p></solution>
+        </exercise>
+        <exercise xml:id="ex-determinant-of-a-product">
+            <title>Challenge: The Determinant of a Product</title>
+            <statement><p><m>P = \begin{bmatrix} 3 \amp 1 \\ 1 \amp 1 \end{bmatrix}</m> and <m>Q = \begin{bmatrix} 2 \amp 5 \\ 1 \amp 4 \end{bmatrix}</m>. Show that <m>\det(PQ) = \det P \times \det Q</m>, and explain this result using area scale factors.</p></statement>
+            <hint><p><m>PQ</m> is the single matrix for two transformations. Each one has its own area scale factor.</p></hint>
+            <answer><p><m>PQ = \begin{bmatrix} 7 \amp 19 \\ 3 \amp 9 \end{bmatrix}</m>, <m>\det(PQ) = 6 = 2 \times 3</m></p></answer>
+            <solution><p><m>PQ = \begin{bmatrix} 6 + 1 \amp 15 + 4 \\ 2 + 1 \amp 5 + 4 \end{bmatrix} = \begin{bmatrix} 7 \amp 19 \\ 3 \amp 9 \end{bmatrix}</m>, so <m>\det(PQ) = 63 - 57 = 6</m>. Also <m>\det P = 3 - 1 = 2</m> and <m>\det Q = 8 - 5 = 3</m>, and <m>2 \times 3 = 6</m>. <m>PQ</m> means <m>Q</m> followed by <m>P</m>: <m>Q</m> multiplies every area by <m>3</m>, and then <m>P</m> multiplies every area by <m>2</m>, so together every area is multiplied by <m>6</m>.</p></solution>
+        </exercise>
+    </exercises>
 
-            </statement>   
-            <solution>
-
-            </solution>             
-        </exercise>        
-    </exercises> -->
-
-    <!-- [LP] Add information on how to differentiate  -->
-
-    <!-- <axiom component="lesson-plan">
+    <axiom component="lesson-plan">
         <title>Differentiation</title>
-
-        <table>
-            <title>Differentiation</title>
-            <tabular halign="left">
-                <row header="yes" bottom="minor">
-                    <cell>Learner Group</cell>
-                    <cell>Strategy &amp; Learning Experience</cell>
-                    <cell></cell>
-                </row>
-                <row>
-                    <cell>Struggling Learners (Support)</cell>
-                    <cell>
-                        XXXX
-                    </cell>
-                    <cell></cell>
-                </row>
-                <row>
-                    <cell>On-Level Learners (Core)</cell>
-                    <cell>
-                        <line>The core lesson activities as described above.</line>
-                    </cell>
-                    <cell></cell>
-                </row>
-                <row>
-                    <cell>Advanced Learners (Challenge)</cell>
-                    <cell>
-                        XXXX
-                    </cell>
-                    <cell></cell>
-                </row>
+        <table xml:id="table-differentiation-area-scale-factor">
+            <title>Differentiation Strategies</title>
+            <tabular halign="left" top="minor" bottom="minor" left="minor" right="minor">
+                <row header="yes" bottom="medium"><cell>Learner Group</cell><cell>Strategy and Learning Experience</cell></row>
+                <row><cell>Struggling Learners (Support)</cell><cell>Give a card showing the enclosing-rectangle method for the area of a parallelogram or triangle on a grid. Focus on activity parts (a) to (c) and <xref ref="example-area-of-an-image"/>. Assign <xref ref="ex-determinant-and-area"/> and <xref ref="ex-area-of-image-triangle"/>.</cell></row>
+                <row><cell>On-Level Learners (Core)</cell><cell>Full activity plus all examples. Assign <xref ref="ex-determinant-and-area"/> to <xref ref="ex-shamba-on-a-plan"/>.</cell></row>
+                <row><cell>Advanced Learners (Challenge)</cell><cell>All exercises including <xref ref="ex-determinant-of-a-product"/>. Extension: a circle of radius <m>1</m> has area <m>\pi</m>. Find the area of its image under <m>\begin{bmatrix} 5 \amp 1 \\ 1 \amp 2 \end{bmatrix}</m>. (Answer: the determinant is <m>9</m>, so the area is <m>9\pi</m> square units.)</cell></row>
             </tabular>
         </table>
-    </axiom> -->
+    </axiom>
 
     <xi:include href="../lesson-plan-templates/assessment-methods.ptx" />
 

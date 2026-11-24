@@ -1,0 +1,5 @@
+<stack-static>
+    <statement><p><p>Give an equation of a cubic curve that has a maximum point at <m>x = {-1}</m> and a minimum point at <m>x = {2}</m>.</p><p>Think about what <m>\dfrac{dy}{dx}</m> must be.</p><div><m>y =</m> <fillin characters="20" name="ans1"/>  </div></p></statement>
+    <solution><p><p>Stationary points are where <m>\dfrac{dy}{dx} = 0</m>, so <m>\dfrac{dy}{dx}</m> must have the factors <m>{x+1}</m> and <m>{x-2}</m>. One choice is <m>\dfrac{dy}{dx} = {6 \left(x-2\right) \left(x+1\right)} = {6 x^2-6 x-12}</m>, which gives</p><p><me>y = {2 x^3-3 x^2-12 x}</me></p><p>Check: <m>\dfrac{d^2y}{dx^2} = {12 x-6}</m>, which is <m>{-18}</m> at <m>x = {-1}</m> (negative: a maximum point) and <m>{18}</m> at <m>x = {2}</m> (positive: a minimum point).</p><p>Any <m>y = k\left({2 x^3-3 x^2-12 x}\right) + c</m> with <m>k \gt 0</m> also works.</p></p></solution>
+    <answer><p><m>2 x^3-3 x^2-12 x</m></p></answer>
+</stack-static>

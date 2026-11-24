@@ -46,161 +46,239 @@
          Suggested activity: Learners measure the length of a diagonal of a carton and compare it with the value from |r| = √(x² + y² + z²).
          Interactive (JSXGraph): 3D vector from the origin with sliders for x, y and z; its magnitude is computed and the diagonal of the surrounding box is drawn. -->
 
-    <!-- [LP] Add guidance on activity -->
+    <!-- Section notes (2026-11)
+         SLOs: Core 2.6 (c): magnitude in 3D, distance between points
+         Activity: as planning notes (measure the diagonal of a carton with string and compare with the formula; a ready-made carton for classes without one)
+         JSXGraph: fig-magnitude-box (assets/jsxgraph/magnitude-box.js), as planning notes
+         STACK: assets/stack/top/2-measurement-and-geometry/12-vectors-ii/04-magnitude-of-a-vector-in-three-dimensions/ -->
 
-    <!-- <axiom component="lesson-plan">
-            <title>Problem-Solving and Discovery</title>
-            <dl>
-                <li>
-                    <title>Suggested Time</title>
-                    <p>
-                        XX minutes
-                    </p>
-                </li>
-                <li>
-                    <title>Objective</title>
-                    <p>
-                        XXX
-                    </p>
-                </li>
-                <li>
-                    <title>Teacher's Role</title>
-                    <p>
-                        XXX
-                    </p>
-                </li>
-            </dl>
-        </axiom> -->
+    <p component="lesson-plan">Upon completion of this lesson, learners will be able to:
+        <ol>
+            <li><p><alert>Know:</alert> <m>|\mathbf{r}| = \sqrt{x^2 + y^2 + z^2}</m>, by Pythagoras twice; the distance between two points is the magnitude of the vector between them; a unit vector has magnitude <m>1</m>.</p></li>
+            <li><p><alert>Do:</alert> find magnitudes and distances, exactly and to 2 decimal places, and find an unknown component from a magnitude.</p></li>
+            <li><p><alert>Apply:</alert> find the diagonals of cartons and rooms.</p></li>
+        </ol>
+    </p>
 
-    <!-- Add Activity -->
+    <axiom component="lesson-plan">
+        <title>Problem-Solving and Discovery</title>
+        <dl>
+            <li><title>Suggested Time</title><p>14 minutes</p></li>
+            <li><title>Objective</title><p>Learners measure a space diagonal and match it with two uses of Pythagoras.</p></li>
+            <li><title>Teacher's Role</title><p>Give each group a carton, a ruler and a piece of string. Groups measure the three edges and stretch the string from one bottom corner to the opposite top corner. Groups without a carton use the measurements in the activity. Ask each group to report its measured and calculated diagonals so the class can compare.</p></li>
+        </dl>
+    </axiom>
 
-    <!-- <activity>
+    <activity xml:id="act-diagonal-of-a-carton">
+        <title>The Diagonal of a Carton</title>
         <statement>
+            <p>A carton is <m>16\,\text{cm}</m> long, <m>12\,\text{cm}</m> wide and <m>15\,\text{cm}</m> high. Place it with one bottom corner at <m>O</m> and its edges along the axes.</p>
+            <figure xml:id="fig-carton-diagonal">
+                <caption>The base diagonal and the space diagonal of the carton.</caption>
+                <image width="45%">
+                    <shortdescription>A carton 16 by 12 by 15 cm with a corner at O. A dotted base diagonal of 20 cm runs across the floor of the carton, a vertical edge of 15 cm rises from its end, and the space diagonal of 25 cm joins O to the opposite top corner. The right angle between the base diagonal and the vertical edge is marked.</shortdescription>
+                    <latex-image>
+\tdplotsetmaincoords{70}{110}
+\begin{tikzpicture}[tdplot_main_coords, scale=0.2]
+\draw[dashed] (0,0,0) -- (0,12,0); \draw[dashed] (0,0,0) -- (0,0,15); \draw[dashed] (0,0,0) -- (16,0,0);
+\draw (16,0,0) -- (16,12,0) -- (0,12,0);
+\draw (16,0,0) -- (16,0,15); \draw (16,12,0) -- (16,12,15); \draw (0,12,0) -- (0,12,15);
+\draw (0,0,15) -- (16,0,15) -- (16,12,15) -- (0,12,15) -- cycle;
+\draw[very thick, densely dotted] (0,0,0) -- (16,12,0) node[pos=0.4, anchor=north east]{$20$};
+\draw[very thick] (0,0,0) -- (16,12,15) node[pos=0.6, anchor=south east]{$25$};
+\draw[very thick] (16,12,0) -- (16,12,15);
+\draw (14.8,11.1,0) -- (14.8,11.1,1.5) -- (16,12,1.5);
+\node[anchor=south east] at (0,0,0) {$O$};
+\node[anchor=south east] at (8,0,15) {$16$};
+\node[anchor=north west] at (16,6,0) {$12$};
+\node[anchor=west] at (16,12,7.5) {$15$};
+\end{tikzpicture}
+                    </latex-image>
+                </image>
+            </figure>
+            <p>
+                <ol marker="(a)">
+                    <li>
+                        <p>Measure the edges of your carton, and measure the diagonal from one bottom corner to the opposite top corner with string.</p>
+                        <solution component="lesson-plan"><p>For the carton in the figure: <m>16</m>, <m>12</m> and <m>15\,\text{cm}</m>; the string measures about <m>25\,\text{cm}</m>.</p></solution>
+                    </li>
+                    <li>
+                        <p>Use Pythagoras to find the diagonal across the base.</p>
+                        <solution component="lesson-plan"><p><m>\sqrt{16^2 + 12^2} = \sqrt{400} = 20\,\text{cm}</m>.</p></solution>
+                    </li>
+                    <li>
+                        <p>The base diagonal, a vertical edge and the space diagonal make a right-angled triangle. Use Pythagoras again to find the space diagonal.</p>
+                        <solution component="lesson-plan"><p><m>\sqrt{20^2 + 15^2} = \sqrt{625} = 25\,\text{cm}</m>.</p></solution>
+                    </li>
+                    <li>
+                        <p>Compare your answer with <m>\sqrt{16^2 + 12^2 + 15^2}</m>.</p>
+                        <solution component="lesson-plan"><p><m>\sqrt{256 + 144 + 225} = \sqrt{625} = 25</m>: the same, because the <m>20^2</m> in (c) is <m>16^2 + 12^2</m>.</p></solution>
+                    </li>
+                    <li>
+                        <p>Write the space diagonal from <m>O</m> as a position vector and state its length.</p>
+                        <solution component="lesson-plan"><p><m>\begin{pmatrix} 16 \\ 12 \\ 15 \end{pmatrix}</m>, length <m>25\,\text{cm}</m>.</p></solution>
+                    </li>
+                </ol>
+            </p>
         </statement>
-    </activity> -->
+    </activity>
 
-    <!-- [LP] Add guidance on structured lesson plan-->
-
-    <!-- <axiom component="lesson-plan">
+    <axiom component="lesson-plan">
         <title>Structured Instruction</title>
         <p>
             <dl>
-            <li>
-                <title>Suggested Time</title>
-                <p>
-                    XX minutes
-                </p>
-            </li>
-            <li>
-                <title>Objective</title>
-                <p>
-                    To formalize the concepts and properties learners discovered in the anchor task.
-                </p>
-            </li>
+                <li><title>Suggested Time</title><p>8 minutes</p></li>
+                <li><title>Objective</title><p>To formalise the magnitude of a vector in three dimensions and the distance between two points.</p></li>
             </dl>
         </p>
         <paragraphs>
             <title>Key Takeaways &amp; Teacher Connection</title>
             <ol>
-                <li>
-                    <p>
-                        <alert>Connecting to Learner Work:</alert> XXXX
-                    </p>
-                </li>
+                <li><p><alert>Connecting to Learner Work:</alert> parts (b) to (d) are Pythagoras twice: across the floor, then up.</p></li>
+                <li><p>Squaring removes the signs, so negative components are fine.</p></li>
+                <li><p>The distance <m>AB</m> is the magnitude of <m>\overrightarrow{AB}</m>.</p></li>
             </ol>
         </paragraphs>
-    </axiom> -->
+    </axiom>
 
-    <!-- Add insight / key takeaway directly related to activity / learner experience -->
+    <insight xml:id="insight-magnitude-in-three-dimensions">
+        <title>Magnitude in Three Dimensions</title>
+        <p>
+            The <term>magnitude</term> (or modulus) of a vector <m>\mathbf{r}</m>, written <m>|\mathbf{r}|</m>, is its length. By Pythagoras twice, across the floor and then up,
+            <md>\left|\begin{pmatrix} x \\ y \\ z \end{pmatrix}\right| = |x\mathbf{i} + y\mathbf{j} + z\mathbf{k}| = \sqrt{x^2 + y^2 + z^2}</md>
+            The distance between <m>A(x_1, y_1, z_1)</m> and <m>B(x_2, y_2, z_2)</m> is the magnitude of <m>\overrightarrow{AB}</m>:
+            <md>|\overrightarrow{AB}| = \sqrt{(x_2 - x_1)^2 + (y_2 - y_1)^2 + (z_2 - z_1)^2}</md>
+            A unit vector has magnitude <m>1</m>. Give magnitudes exactly as surds, such as <m>\sqrt{41}</m>, or, when a decimal is asked for, to 2 decimal places, such as <m>6.40</m>.
+        </p>
+    </insight>
 
-    <!-- <insight>
-    </insight> -->
-
-    <!-- Add further instruction (not in a block) to develop ideas as needed -->
+    <figure xml:id="fig-magnitude-box">
+        <caption>Move the sliders to change the vector. The dashed box has the vector as its diagonal. Check the magnitude with the formula.</caption>
+        <interactive xml:id="interactive-magnitude-box" platform="jsxgraph" width="90%" aspect="16:12" source="jsxgraph/magnitude-box.js">
+            <slate xml:id="jsxgraph-magnitude-box" surface="jsxboard" aspect="16:12"/>
+            <instructions>
+                <p>
+                    <ul>
+                        <li><p>Set the <alert>x</alert>, <alert>y</alert> and <alert>z</alert> sliders to <m>2</m>, <m>-1</m> and <m>2</m>. Work out <m>\sqrt{2^2 + (-1)^2 + 2^2}</m> and check it against the magnitude shown.</p></li>
+                        <li><p>Set the sliders to <m>4</m>, <m>0</m> and <m>3</m>. Why is the box flat, and why is the magnitude a whole number?</p></li>
+                        <li><p>Change the sign of one component. Does the magnitude change? Drag the view sliders to turn the box.</p></li>
+                    </ul>
+                </p>
+            </instructions>
+        </interactive>
+    </figure>
 
     <xi:include href="../lesson-plan-templates/example-intro.ptx" />
 
-    <!-- Add at least 3 examples -->
-
-    <!-- <example>
+    <example xml:id="example-magnitude-of-a-vector">
+        <title>Magnitude of a Vector</title>
         <statement>
+            <p>Find the magnitude of (a) <m>\begin{pmatrix} -8 \\ 4 \\ 1 \end{pmatrix}</m>; (b) <m>5\mathbf{i} - 2\mathbf{j} + \mathbf{k}</m>, exactly and to 2 decimal places.</p>
         </statement>
         <solution>
+            <p>(a) <m>\sqrt{(-8)^2 + 4^2 + 1^2} = \sqrt{64 + 16 + 1} = \sqrt{81} = 9</m>.</p>
+            <p>(b) <m>\sqrt{5^2 + (-2)^2 + 1^2} = \sqrt{25 + 4 + 1} = \sqrt{30} \approx 5.48</m>.</p>
         </solution>
     </example>
 
-    <example>
+    <example xml:id="example-distance-between-points">
+        <title>Distance Between Two Points</title>
         <statement>
+            <p>Find the distance between <m>A(1, 5, -2)</m> and <m>B(4, 1, 10)</m>.</p>
         </statement>
         <solution>
+            <p><m>\overrightarrow{AB} = \mathbf{b} - \mathbf{a} = \begin{pmatrix} 3 \\ -4 \\ 12 \end{pmatrix}</m>, so <md>AB = \sqrt{3^2 + (-4)^2 + 12^2} = \sqrt{9 + 16 + 144} = \sqrt{169} = 13</md></p>
         </solution>
     </example>
 
-    <example>
+    <example xml:id="example-unknown-component">
+        <title>An Unknown Component</title>
         <statement>
+            <p><m>P</m> is <m>(1, 3, -2)</m> and <m>Q</m> is <m>(7, 5, k)</m>. The distance <m>PQ</m> is <m>11</m>. Find the two possible values of <m>k</m>.</p>
         </statement>
         <solution>
+            <p><m>\overrightarrow{PQ} = \begin{pmatrix} 6 \\ 2 \\ k + 2 \end{pmatrix}</m>. Square the magnitude:
+            <md>
+                <mrow>6^2 + 2^2 + (k + 2)^2 \amp = 11^2</mrow>
+                <mrow>40 + (k + 2)^2 \amp = 121</mrow>
+                <mrow>(k + 2)^2 \amp = 81</mrow>
+            </md>
+            so <m>k + 2 = 9</m> or <m>k + 2 = -9</m>, giving <m>k = 7</m> or <m>k = -11</m>.</p>
         </solution>
-    </example> -->
+    </example>
 
     <xi:include href="../lesson-plan-templates/assessment-intro.ptx" />
+    <xi:include href="../lesson-plan-templates/checkpoint.ptx" />
 
-    <!-- If STACK questions are included, uncomment this: -->
+    <p>Type a square root as <c>sqrt(41)</c>, or give the decimal to 2 decimal places. Type one number in each box of a column vector; fractions may be typed with a slash, for example <c>5/2</c>.</p>
 
-    <!-- <xi:include href="../lesson-plan-templates/checkpoint.ptx" /> -->
+    <exercise xml:id="ex-magnitude-of-a-vector-and-distance-between-points">
+        <!--<title></title>-->
+        <stack label="stk-magnitude-of-a-vector-and-distance-between-points" source="stack/top/2-measurement-and-geometry/12-vectors-ii/04-magnitude-of-a-vector-in-three-dimensions/Magnitude-of-a-vector-and-distance-between-points.xml"/>
+    </exercise>
 
-    <!-- Add STACK exercises if made -->
+    <exercise xml:id="ex-unknown-component-from-a-magnitude">
+        <!--<title></title>-->
+        <stack label="stk-unknown-component-from-a-magnitude" source="stack/top/2-measurement-and-geometry/12-vectors-ii/04-magnitude-of-a-vector-in-three-dimensions/Unknown-component-from-a-magnitude.xml"/>
+    </exercise>
 
-    <!-- Add static exercises -->
+    <exercise xml:id="ex-which-vectors-are-unit-vectors">
+        <!--<title></title>-->
+        <stack label="stk-which-vectors-are-unit-vectors" source="stack/top/2-measurement-and-geometry/12-vectors-ii/04-magnitude-of-a-vector-in-three-dimensions/Which-vectors-are-unit-vectors.xml"/>
+    </exercise>
 
-    <!-- <exercises>
-        <exercise>
-            <statement>   
+    <exercises xml:id="exercises-magnitude">
+        <exercise xml:id="ex-four-magnitudes">
+            <statement><p>Find the magnitude of each vector, exactly, and to 2 decimal places where it is not a whole number.
+                (a) <m>\begin{pmatrix} 1 \\ 4 \\ 8 \end{pmatrix}</m> (b) <m>2\mathbf{i} - 2\mathbf{j} + \mathbf{k}</m> (c) <m>\begin{pmatrix} -3 \\ 0 \\ 4 \end{pmatrix}</m> (d) <m>\begin{pmatrix} 1 \\ 3 \\ 4 \end{pmatrix}</m></p></statement>
+            <answer><p>(a) <m>9</m> (b) <m>3</m> (c) <m>5</m> (d) <m>\sqrt{26} \approx 5.10</m></p></answer>
+        </exercise>
+        <exercise xml:id="ex-distance-two-points">
+            <statement><p>Find the distance between <m>(2, -1, 3)</m> and <m>(-4, 1, 6)</m>.</p></statement>
+            <answer><p><m>7</m></p></answer>
+        </exercise>
+        <exercise xml:id="ex-magnitude-of-a-multiple">
+            <statement><p>Find <m>\left|\begin{pmatrix} 2 \\ 6 \\ 9 \end{pmatrix}\right|</m>. Hence write down <m>\left|\begin{pmatrix} -4 \\ -12 \\ -18 \end{pmatrix}\right|</m>.</p></statement>
+            <answer><p><m>11</m>; <m>22</m></p></answer>
+            <solution><p><m>\sqrt{4 + 36 + 81} = \sqrt{121} = 11</m>. The second vector is <m>-2</m> times the first, so its magnitude is <m>2 \times 11 = 22</m>.</p></solution>
+        </exercise>
+        <exercise xml:id="ex-classroom-distances">
+            <statement><p>For the classroom in <xref ref="act-corner-of-the-classroom"/>, find, to 2 decimal places, the distance (a) from the floor corner <m>O</m> to the far ceiling corner <m>(8, 6, 3)</m>; (b) from the clock <m>(4, 0, 2.5)</m> to the light <m>(4, 3, 3)</m>.</p></statement>
+            <answer><p>(a) <m>\sqrt{109} \approx 10.44\,\text{m}</m> (b) <m>\sqrt{9.25} \approx 3.04\,\text{m}</m></p></answer>
+            <solution><p>(a) <m>\sqrt{8^2 + 6^2 + 3^2} = \sqrt{109} \approx 10.44\,\text{m}</m>. (b) The moves are <m>\begin{pmatrix} 0 \\ 3 \\ 0.5 \end{pmatrix}</m>, so the distance is <m>\sqrt{0 + 9 + 0.25} = \sqrt{9.25} \approx 3.04\,\text{m}</m>.</p></solution>
+        </exercise>
+        <exercise xml:id="ex-unknown-multiple">
+            <statement><p>The vector <m>\begin{pmatrix} 2k \\ k \\ -2k \end{pmatrix}</m> has magnitude <m>12</m>. Find the two values of <m>k</m>.</p></statement>
+            <answer><p><m>k = 4</m> or <m>k = -4</m></p></answer>
+            <solution><p><m>\sqrt{4k^2 + k^2 + 4k^2} = \sqrt{9k^2} = 3|k| = 12</m>, so <m>|k| = 4</m>.</p></solution>
+        </exercise>
+        <exercise xml:id="ex-cube-diagonal-and-unit-vector">
+            <title>Challenge: Diagonals and Unit Vectors</title>
+            <statement><p>
+                <ol marker="(a)">
+                    <li><p>Show that the space diagonal of a cube of edge <m>s</m> has length <m>s\sqrt{3}</m>.</p></li>
+                    <li><p>Find a unit vector in the direction of <m>4\mathbf{i} - 4\mathbf{j} + 7\mathbf{k}</m>, and check that its magnitude is <m>1</m>.</p></li>
+                </ol>
+            </p></statement>
+            <hint><p>Divide the vector by its magnitude.</p></hint>
+            <answer><p>(a) <m>\sqrt{s^2 + s^2 + s^2} = s\sqrt{3}</m> (b) <m>\frac{4}{9}\mathbf{i} - \frac{4}{9}\mathbf{j} + \frac{7}{9}\mathbf{k}</m></p></answer>
+            <solution><p>(a) The diagonal from <m>O</m> to <m>(s, s, s)</m> has length <m>\sqrt{s^2 + s^2 + s^2} = \sqrt{3s^2} = s\sqrt{3}</m>.</p>
+            <p>(b) <m>|4\mathbf{i} - 4\mathbf{j} + 7\mathbf{k}| = \sqrt{16 + 16 + 49} = 9</m>. Dividing by <m>9</m> gives <m>\frac{4}{9}\mathbf{i} - \frac{4}{9}\mathbf{j} + \frac{7}{9}\mathbf{k}</m>, which points the same way. Check: <m>\frac{16}{81} + \frac{16}{81} + \frac{49}{81} = 1</m>, so its magnitude is <m>1</m>.</p></solution>
+        </exercise>
+    </exercises>
 
-            </statement>   
-            <solution>
-
-            </solution>             
-        </exercise>        
-    </exercises> -->
-
-    <!-- [LP] Add information on how to differentiate  -->
-
-    <!-- <axiom component="lesson-plan">
+    <axiom component="lesson-plan">
         <title>Differentiation</title>
-
-        <table>
-            <title>Differentiation</title>
-            <tabular halign="left">
-                <row header="yes" bottom="minor">
-                    <cell>Learner Group</cell>
-                    <cell>Strategy &amp; Learning Experience</cell>
-                    <cell></cell>
-                </row>
-                <row>
-                    <cell>Struggling Learners (Support)</cell>
-                    <cell>
-                        XXXX
-                    </cell>
-                    <cell></cell>
-                </row>
-                <row>
-                    <cell>On-Level Learners (Core)</cell>
-                    <cell>
-                        <line>The core lesson activities as described above.</line>
-                    </cell>
-                    <cell></cell>
-                </row>
-                <row>
-                    <cell>Advanced Learners (Challenge)</cell>
-                    <cell>
-                        XXXX
-                    </cell>
-                    <cell></cell>
-                </row>
+        <table xml:id="table-differentiation-magnitude">
+            <title>Differentiation Strategies</title>
+            <tabular halign="left" top="minor" bottom="minor" left="minor" right="minor">
+                <row header="yes" bottom="medium"><cell>Learner Group</cell><cell>Strategy and Learning Experience</cell></row>
+                <row><cell>Struggling Learners (Support)</cell><cell>Give a table with columns <q>component</q>, <q>square</q> and a <q>total</q> row, then the square root. Work through <xref ref="example-magnitude-of-a-vector"/> and <xref ref="example-distance-between-points"/>. Assign <xref ref="ex-four-magnitudes"/> and <xref ref="ex-distance-two-points"/>.</cell></row>
+                <row><cell>On-Level Learners (Core)</cell><cell>Full activity plus all examples. Assign <xref ref="ex-four-magnitudes"/> to <xref ref="ex-unknown-multiple"/>.</cell></row>
+                <row><cell>Advanced Learners (Challenge)</cell><cell>All exercises including <xref ref="ex-cube-diagonal-and-unit-vector"/>. Extension: find all vectors <m>x\mathbf{i} + y\mathbf{j} + z\mathbf{k}</m> with whole-number components and magnitude <m>3</m>. (Answer: <m>30</m> vectors: the <m>6</m> vectors <m>\pm 3\mathbf{i}</m>, <m>\pm 3\mathbf{j}</m>, <m>\pm 3\mathbf{k}</m>, and the <m>24</m> vectors whose components are <m>\pm 1</m>, <m>\pm 2</m>, <m>\pm 2</m> in any order.)</cell></row>
             </tabular>
         </table>
-    </axiom> -->
+    </axiom>
 
     <xi:include href="../lesson-plan-templates/assessment-methods.ptx" />
 

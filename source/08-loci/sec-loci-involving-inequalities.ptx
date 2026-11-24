@@ -46,161 +46,299 @@
          Suggested activity: Learners shade the region of a scale map where a new market could be built given conditions such as 'less than 4 km from the town and nearer to A than to B'.
          Interactive (JSXGraph): Loci with inequality toggles (< or >); the region satisfying all conditions is shaded. -->
 
-    <!-- [LP] Add guidance on activity -->
+    <!-- Section notes (2026-11)
+         SLOs: Core 2.3 (g); outcome (h), recognise the use of loci, placed here (Loci Around Us) with the Curriculum Links
+         Activity: as planning notes (a new market on a scale map, less than 4 km from the town and nearer to A than to B) | added: test points and the solid or dashed question
+         JSXGraph: fig-loci-inequalities (assets/jsxgraph/loci-inequalities.js), as planning notes, with less than, more than and both inclusive forms, and an angle condition
+         STACK: assets/stack/top/2-measurement-and-geometry/08-loci/07-loci-involving-inequalities/ -->
 
-    <!-- <axiom component="lesson-plan">
-            <title>Problem-Solving and Discovery</title>
-            <dl>
-                <li>
-                    <title>Suggested Time</title>
-                    <p>
-                        XX minutes
-                    </p>
-                </li>
-                <li>
-                    <title>Objective</title>
-                    <p>
-                        XXX
-                    </p>
-                </li>
-                <li>
-                    <title>Teacher's Role</title>
-                    <p>
-                        XXX
-                    </p>
-                </li>
-            </dl>
-        </axiom> -->
+    <p component="lesson-plan">Upon completion of this lesson, learners will be able to:
+        <ol>
+            <li><p><alert>Know:</alert> that <q>less than</q> and <q>more than</q> conditions give regions; that a boundary is drawn solid when it belongs to the region and dashed when it does not; that the unwanted region is shaded, the required region is left clear, and a key says so.</p></li>
+            <li><p><alert>Do:</alert> show regions from distance, equidistance, line-distance and angle conditions by shading the unwanted parts; describe a region left clear with inequalities; test points against the conditions.</p></li>
+            <li><p><alert>Apply:</alert> find where a new market can go; decide whether a footballer is in an offside position; find where a goal looks wider than a right angle.</p></li>
+        </ol>
+    </p>
 
-    <!-- Add Activity -->
+    <axiom component="lesson-plan">
+        <title>Problem-Solving and Discovery</title>
+        <dl>
+            <li><title>Suggested Time</title><p>14 minutes</p></li>
+            <li><title>Objective</title><p>Learners turn conditions in words into regions on a scale map and test points against them.</p></li>
+            <li><title>Teacher's Role</title><p>Give each pair a grid map with <m>1\,\text{cm}</m> representing <m>1\,\text{km}</m> and the town and villages marked. Before part (c), ask: <q>Is a place exactly <m>4\,\text{km}</m> from the town allowed?</q> Let pairs argue it from the words <q>less than</q>.</p></li>
+        </dl>
+    </axiom>
 
-    <!-- <activity>
+    <activity xml:id="act-where-can-the-new-market-go">
+        <title>Where Can the New Market Go?</title>
         <statement>
+            <p>A county plans a new market. On a map with <m>1</m> unit representing <m>1\,\text{km}</m>, the town is at <m>T(3, 3)</m> and two villages are at <m>A(1, 5)</m> and <m>B(7, 5)</m>. The market must be less than <m>4\,\text{km}</m> from the town and nearer to village <m>A</m> than to village <m>B</m>.</p>
+            <p>
+                <ol marker="(a)">
+                    <li>
+                        <p>Draw the locus of points <m>4\,\text{km}</m> from <m>T</m>. Should it be drawn solid or dashed?</p>
+                        <solution component="lesson-plan"><p>A circle, centre <m>T</m>, radius <m>4</m> units, drawn dashed: <q>less than</q> <m>4\,\text{km}</m> does not include points exactly <m>4\,\text{km}</m> away.</p></solution>
+                    </li>
+                    <li>
+                        <p>Draw the locus of points equidistant from <m>A</m> and <m>B</m>. Solid or dashed?</p>
+                        <solution component="lesson-plan"><p>The perpendicular bisector of <m>AB</m>, the line <m>x = 4</m>, drawn dashed: points on it are not nearer to <m>A</m>.</p></solution>
+                    </li>
+                    <li>
+                        <p>Shade the parts of the map where the market cannot go, so that the region where it can go is left clear.</p>
+                        <solution component="lesson-plan"><p>Shade outside the circle and to the right of <m>x = 4</m>. The clear region is the part of the inside of the circle to the left of <m>x = 4</m>, on <m>A</m>'s side. A key says <q>shaded, not wanted; unshaded, the required region</q>.</p></solution>
+                    </li>
+                    <li>
+                        <p>Test the places <m>P(2, 6)</m>, <m>Q(5, 3)</m> and <m>R(-1, 5)</m>. Which can be used?</p>
+                        <solution component="lesson-plan"><p><m>P</m>: <m>PT = \sqrt{1 + 9} \approx 3.2\,\text{km}</m> and <m>x = 2 \lt 4</m>: yes. <m>Q</m>: <m>QT = 2\,\text{km}</m>, but <m>x = 5 \gt 4</m>, so it is nearer to <m>B</m>: no. <m>R</m>: <m>RT = \sqrt{16 + 4} \approx 4.5\,\text{km}</m>: no.</p></solution>
+                    </li>
+                    <li>
+                        <p>Why are the points on the dashed lines not allowed?</p>
+                        <solution component="lesson-plan"><p>A point on the circle is exactly <m>4\,\text{km}</m> from <m>T</m>, not less; a point on <m>x = 4</m> is the same distance from both villages, not nearer to <m>A</m>.</p></solution>
+                        <note component="lesson-plan"><p>Ask what would change if the rule said <q>at most <m>4\,\text{km}</m></q>: the circle becomes solid and belongs to the region.</p></note>
+                    </li>
+                </ol>
+            </p>
         </statement>
-    </activity> -->
+    </activity>
 
-    <!-- [LP] Add guidance on structured lesson plan-->
-
-    <!-- <axiom component="lesson-plan">
+    <axiom component="lesson-plan">
         <title>Structured Instruction</title>
         <p>
             <dl>
-            <li>
-                <title>Suggested Time</title>
-                <p>
-                    XX minutes
-                </p>
-            </li>
-            <li>
-                <title>Objective</title>
-                <p>
-                    To formalize the concepts and properties learners discovered in the anchor task.
-                </p>
-            </li>
+                <li><title>Suggested Time</title><p>8 minutes</p></li>
+                <li><title>Objective</title><p>To formalise regions from loci: each inequality keeps one side of its boundary, and the line style says whether the boundary belongs.</p></li>
             </dl>
         </p>
         <paragraphs>
             <title>Key Takeaways &amp; Teacher Connection</title>
             <ol>
-                <li>
-                    <p>
-                        <alert>Connecting to Learner Work:</alert> XXXX
-                    </p>
-                </li>
+                <li><p><alert>Connecting to Learner Work:</alert> the circle and the bisector in the activity are the loci of the earlier lessons; the word <q>less</q> or <q>nearer</q> chose one side of each.</p></li>
+                <li><p>Solid boundary for <m>\le</m> and <m>\ge</m>, dashed for <m>\lt</m> and <m>\gt</m>, as for inequalities in Grade 11.</p></li>
+                <li><p>Shade the unwanted region, leave the required region clear and give a key (<xref ref="note-shading-conventions"/>). Test one point in the region against every condition.</p></li>
             </ol>
         </paragraphs>
-    </axiom> -->
+    </axiom>
 
-    <!-- Add insight / key takeaway directly related to activity / learner experience -->
+    <insight xml:id="insight-regions-from-loci">
+        <title>Regions from Loci</title>
+        <p>A condition with <q>less than</q> or <q>more than</q> gives a <term>region</term>, not a line or curve. The locus of the matching <q>equals</q> condition is its <term>boundary</term>.</p>
+        <p>
+            <ul>
+                <li><p><m>PA \lt r</m>: inside the circle with centre <m>A</m> and radius <m>r</m>; <m>PA \gt r</m>: outside it.</p></li>
+                <li><p><m>PA \lt PB</m>: the side of the perpendicular bisector of <m>AB</m> that contains <m>A</m>.</p></li>
+                <li><p>Distance from a line <m>l</m> less than <m>d</m>: the strip between the two lines parallel to <m>l</m> at distance <m>d</m>.</p></li>
+                <li><p>Angle <m>APB \gt \theta</m>, on one side of <m>AB</m>: inside the arc of the constant angle locus, between the arc and <m>AB</m>; angle <m>APB \lt \theta</m>: outside the arc.</p></li>
+            </ul>
+        </p>
+        <p>Draw a boundary solid when it belongs to the region (<m>\le</m>, <m>\ge</m>) and dashed when it does not (<m>\lt</m>, <m>\gt</m>). For each condition, shade the side of its boundary that is not wanted. The region left clear obeys every condition, and a key says so: <q>shaded, not wanted; unshaded, the required region</q> (<xref ref="note-shading-conventions"/>).</p>
+    </insight>
 
-    <!-- <insight>
-    </insight> -->
-
-    <!-- Add further instruction (not in a block) to develop ideas as needed -->
+    <figure xml:id="fig-loci-inequalities">
+        <caption>Choose each condition with its button and drag the points. The shaded parts break at least one condition; the clear region obeys every condition. Solid edges are included, dashed edges are not.</caption>
+        <interactive xml:id="interactive-loci-inequalities" platform="jsxgraph" width="90%" aspect="16:12" source="jsxgraph/loci-inequalities.js">
+            <slate xml:id="jsxgraph-loci-inequalities" surface="jsxboard" aspect="16:12"/>
+            <instructions>
+                <p>
+                    <ul>
+                        <li><p>Click each button to cycle its condition through off, <m>\lt</m>, <m>\gt</m>, <m>\le</m> and <m>\ge</m>. Watch the boundary change between dashed and solid.</p></li>
+                        <li><p>Move the <alert>r</alert> slider and drag <m>A</m> and <m>B</m>. Find settings where no point obeys all the conditions.</p></li>
+                        <li><p>Turn on only the angle condition with <m>\gt</m> and set the <alert>θ</alert> slider to <m>90</m>. What shape is the region?</p></li>
+                        <li><p>Drag <m>Q</m> and read which conditions it obeys.</p></li>
+                    </ul>
+                </p>
+            </instructions>
+        </interactive>
+    </figure>
 
     <xi:include href="../lesson-plan-templates/example-intro.ptx" />
 
-    <!-- Add at least 3 examples -->
-
-    <!-- <example>
+    <example xml:id="example-describing-a-region">
+        <title>Describing a Region</title>
         <statement>
+            <p><m>A</m> and <m>B</m> are <m>4\,\text{cm}</m> apart. Describe the required region in <xref ref="fig-region-circle-and-bisector"/> with inequalities.</p>
+            <figure xml:id="fig-region-circle-and-bisector">
+                <caption>A circle of radius <m>3\,\text{cm}</m> with centre <m>A</m> (solid) and the perpendicular bisector of <m>AB</m> (dashed). Key: shaded, not wanted; unshaded, the required region.</caption>
+                <image width="55%">
+                    <shortdescription>Points A and B 4 cm apart. A solid circle of radius 3 cm with centre A. The dashed perpendicular bisector of AB, 2 cm from A. Everything is shaded except the part of the disc on B's side of the bisector, which is left clear. A key below: shaded, not wanted; unshaded, required region.</shortdescription>
+                    <latex-image>
+\begin{tikzpicture}[scale=0.9]
+% SET
+\coordinate (A) at (0,0); \coordinate (B) at (4,0);
+% DRAW: shade the frame except the part of the disc on B's side of x = 2 (corners (2, +-sqrt 5), at +-48.19 degrees)
+\fill[gray!35, even odd rule] (-3.6,-3.6) rectangle (4.8,3.6) (2,-2.2361) arc[start angle=-48.19, end angle=48.19, radius=3] -- cycle;
+\draw[gray] (-3.6,-3.6) rectangle (4.8,3.6);
+\draw[thick] (A) circle (3);
+\draw[thick,dashed] (2,-3.6) -- (2,3.6);
+\draw (A) -- (B);
+% LABEL
+\fill (A) circle (1.5pt) node[below left] {$A$};
+\fill (B) circle (1.5pt) node[below right] {$B$};
+\draw[stealth-stealth] (A) -- node[above left] {$3$ cm} (225:3);
+\node[above] at (2,3.6) {\small bisector of $AB$};
+% KEY
+\fill[gray!35] (-3.6,-4.5) rectangle (-3.1,-4.1); \draw[gray] (-3.6,-4.5) rectangle (-3.1,-4.1);
+\node[right] at (-3.1,-4.3) {\small not wanted};
+\draw[gray] (0.6,-4.5) rectangle (1.1,-4.1);
+\node[right] at (1.1,-4.3) {\small required region};
+\end{tikzpicture}
+                    </latex-image>
+                </image>
+            </figure>
         </statement>
         <solution>
+            <p>The unshaded region is inside the circle, and the circle is solid, so its points are included: <m>PA \le 3\,\text{cm}</m>. The unshaded region is on <m>B</m>'s side of the bisector, where points are nearer to <m>B</m>, and the bisector is dashed, so it is not included: <m>PB \lt PA</m>. The region is the set of points <m>P</m> with <m>PA \le 3\,\text{cm}</m> and <m>PB \lt PA</m>.</p>
         </solution>
     </example>
 
-    <example>
+    <example xml:id="example-offside-line">
+        <title>The Offside Line</title>
         <statement>
+            <p>In a simplified form of the offside rule, an attacker in the opponents' half is in an <term>offside position</term> if they are nearer to the opponents' goal line than both the ball and the second-last defender. Being level is not offside.</p>
+            <p>In a school match the second-last defender is <m>12\,\text{m}</m> from the goal line and the ball is <m>20\,\text{m}</m> from it. Three attackers are <m>10\,\text{m}</m>, <m>12\,\text{m}</m> and <m>13\,\text{m}</m> from the goal line. Describe the offside region and decide which attackers are in an offside position.</p>
+            <figure xml:id="fig-offside-strip">
+                <caption>Half a pitch. The dashed line through the second-last defender is parallel to the goal line. Key: shaded, not wanted; unshaded, the offside region.</caption>
+                <image width="70%">
+                    <shortdescription>Half a football pitch from the goal line to the halfway line. The second-last defender D is 12 m from the goal line, with a dashed line through D parallel to the goal line; the rest of the half pitch is shaded, leaving clear the strip between the goal line and the dashed line. The ball is 20 m out. Attackers are 10 m, 12 m and 13 m from the goal line. A key: shaded, not offside; unshaded, offside region.</shortdescription>
+                    <latex-image>
+\begin{tikzpicture}[scale=0.2]
+% SET: 1 unit = 1 m; goal line x = 0, halfway line x = 50; pitch width 60
+\fill[gray!35] (12,0) rectangle (50,60);
+\draw[thick] (0,0) rectangle (50,60);
+\draw[thick] (0,26.3) -- (-2,26.3) -- (-2,33.7) -- (0,33.7);
+\draw[thick,dashed] (12,0) -- (12,60);
+% MARK
+\fill (12,40) circle (0.6) node[right] {$D$};
+\draw (20,20) circle (0.8) node[right=2pt] {ball};
+\fill (10,30) circle (0.6) node[left] {$10$ m};
+\fill (12,48) circle (0.6) node[right] {$12$ m};
+\fill (13,10) circle (0.6) node[right] {$13$ m};
+% LABEL
+\node[rotate=90, above] at (0,46) {\small goal line};
+\node[rotate=90, below] at (50,30) {\small halfway line};
+\draw[stealth-stealth] (0,-2.5) -- node[below] {$12$ m} (12,-2.5);
+\draw[stealth-stealth] (0,-7) -- node[below] {$20$ m} (20,-7);
+% KEY
+\fill[gray!35] (26,-6) rectangle (28.5,-3.5); \draw (26,-6) rectangle (28.5,-3.5);
+\node[right] at (28.5,-4.75) {\small not offside};
+\draw (26,-11) rectangle (28.5,-8.5);
+\node[right] at (28.5,-9.75) {\small offside region};
+\end{tikzpicture}
+                    </latex-image>
+                </image>
+            </figure>
         </statement>
         <solution>
+            <p>The defender is nearer to the goal line than the ball, so the defender decides. The locus of points <m>12\,\text{m}</m> from the goal line, inside the pitch, is the line parallel to the goal line through the defender. The offside region is the strip nearer to the goal line than this line, in the opponents' half. Its boundary is dashed, because an attacker exactly level is not offside.</p>
+            <p>The attacker <m>10\,\text{m}</m> out is in the strip: in an offside position. The attacker <m>12\,\text{m}</m> out is level with the defender, on the dashed line: not offside. The attacker <m>13\,\text{m}</m> out is outside the strip: not offside.</p>
+            <p>Being in an offside position is not an offence in itself; the referee also judges whether the attacker takes part in the play.</p>
         </solution>
     </example>
 
-    <example>
+    <example xml:id="example-goal-looks-wider">
+        <title>Where the Goal Looks Wider</title>
         <statement>
+            <p>A five-a-side goal <m>AB</m> is <m>6\,\text{m}</m> wide. Describe the region in front of the goal where angle <m>APB \gt 90^{\circ}</m>. Is the point <m>P</m>, <m>2\,\text{m}</m> in front of the centre of the goal, in it? Is the point <m>Q</m>, <m>4\,\text{m}</m> in front of the centre?</p>
         </statement>
         <solution>
+            <p>Angle <m>APB = 90^{\circ}</m> on the semicircle on <m>AB</m> (the angle in a semicircle), centre the middle <m>M</m> of the goal, radius <m>3\,\text{m}</m>. Points inside the semicircle see <m>AB</m> at a larger angle, so the region is the inside of the semicircle in front of the goal, with the semicircle dashed.</p>
+            <p><m>P</m> is <m>2\,\text{m}</m> from <m>M</m>, less than <m>3\,\text{m}</m>: inside. Check: angle <m>APB = 2\tan^{-1}\left(\frac{3}{2}\right) \approx 112.6^{\circ}</m>.</p>
+            <p><m>Q</m> is <m>4\,\text{m}</m> from <m>M</m>: outside. Angle <m>AQB = 2\tan^{-1}\left(\frac{3}{4}\right) \approx 73.7^{\circ}</m>, less than <m>90^{\circ}</m>.</p>
         </solution>
-    </example> -->
+    </example>
+
+    <paragraphs xml:id="paragraphs-loci-around-us">
+        <title>Loci Around Us</title>
+        <p>Loci are used wherever things must be placed fairly or kept at a safe distance.</p>
+        <p>
+            <ul>
+                <li><p>A borehole or a dispensary that serves two villages fairly is placed on the perpendicular bisector of the line joining them.</p></li>
+                <li><p>A mobile mast or a radio transmitter covers the inside of a circle; where two masts overlap, the coverage regions intersect.</p></li>
+                <li><p>Safety strips along power lines and pipelines are the regions between two parallel lines.</p></li>
+                <li><p>The offside rule in football uses a line parallel to the goal line and an inequality.</p></li>
+                <li><p>The tip of a windscreen wiper or a robot arm moves on an arc of a circle.</p></li>
+                <li><p>Surveyors find the centre of a round water tank from the perpendicular bisectors of two chords.</p></li>
+            </ul>
+        </p>
+        <p>This answers the question we asked at the start of the chapter (<xref ref="kiq-loci"/>): we use loci to decide where things can be placed, and where they can move, when they must obey rules about distances and angles.</p>
+    </paragraphs>
+
+    <axiom component="lesson-plan">
+        <title>Curriculum Links</title>
+        <dl>
+            <li><title>Key Inquiry Question</title><p>How do we use loci to decide where things can be placed or where they can move? Revisit it with <xref ref="paragraphs-loci-around-us" text="title"/> and in the reflection.</p></li>
+            <li><title>Core Competencies</title><p>Creativity, in the open placement tasks (<q>give a point of your own</q>) and in choosing a site for the market; learning to learn, in the find-the-mistake questions of this chapter and in checking each construction against its rule.</p></li>
+            <li><title>Values</title><p>Respect, in group work: each group checks another group's construction without rubbing out their arcs.</p></li>
+            <li><title>Pertinent and Contemporary Issues</title><p>Safety and security, in the power-line strip, the security light and the pipeline examples; life skills, in planning where a kiosk, market or borehole can fairly go.</p></li>
+            <li><title>Learning Outcome</title><p>This lesson also carries the outcome on recognising the use of loci in real life.</p></li>
+        </dl>
+    </axiom>
 
     <xi:include href="../lesson-plan-templates/assessment-intro.ptx" />
+    <xi:include href="../lesson-plan-templates/checkpoint.ptx" />
 
-    <!-- If STACK questions are included, uncomment this: -->
+    <p>Choose from each list. Type coordinates as whole numbers, for example <c>-3</c>.</p>
 
-    <!-- <xi:include href="../lesson-plan-templates/checkpoint.ptx" /> -->
+    <exercise xml:id="ex-describing-a-region-with-inequalities">
+        <!--<title></title>-->
+        <stack label="stk-describing-a-region-with-inequalities" source="stack/top/2-measurement-and-geometry/08-loci/07-loci-involving-inequalities/Describing-a-region-with-inequalities.xml"/>
+    </exercise>
 
-    <!-- Add STACK exercises if made -->
+    <exercise xml:id="ex-which-conditions-a-point-satisfies">
+        <!--<title></title>-->
+        <stack label="stk-which-conditions-a-point-satisfies" source="stack/top/2-measurement-and-geometry/08-loci/07-loci-involving-inequalities/Which-conditions-a-point-satisfies.xml"/>
+    </exercise>
 
-    <!-- Add static exercises -->
+    <exercise xml:id="ex-a-point-in-a-region-defined-by-three-conditions">
+        <!--<title></title>-->
+        <stack label="stk-a-point-in-a-region-defined-by-three-conditions" source="stack/top/2-measurement-and-geometry/08-loci/07-loci-involving-inequalities/A-point-in-a-region-defined-by-three-conditions.xml"/>
+    </exercise>
 
-    <!-- <exercises>
-        <exercise>
-            <statement>   
+    <exercises xml:id="exercises-loci-inequalities">
+        <exercise xml:id="ex-shade-a-lens">
+            <statement><p><m>AB = 4\,\text{cm}</m>. Show the region where <m>PA \lt 3\,\text{cm}</m> and <m>PB \lt 3\,\text{cm}</m> by shading the unwanted parts. Describe its boundary.</p></statement>
+            <answer><p>The overlap of the two discs, bounded by two dashed arcs that meet at two points.</p></answer>
+            <solution><p>Draw circles of radius <m>3\,\text{cm}</m> about <m>A</m> and about <m>B</m>, both dashed. Shade outside each circle. The region left clear, inside both, is a lens shape. Its corners are on the perpendicular bisector of <m>AB</m>, <m>2\,\text{cm}</m> from <m>A</m> along <m>AB</m> and <m>\sqrt{3^2 - 2^2} \approx 2.2\,\text{cm}</m> either side of <m>AB</m>.</p></solution>
+        </exercise>
+        <exercise xml:id="ex-grid-region-test">
+            <statement><p>A region is the set of points less than <m>5</m> units from <m>A(0, 0)</m> and nearer to <m>B(6, 0)</m> than to <m>A</m>. Test the points <m>(4, 2)</m>, <m>(2, 1)</m> and <m>(4, 4)</m>.</p></statement>
+            <answer><p><m>(4, 2)</m> is in the region; <m>(2, 1)</m> is not (nearer to <m>A</m>); <m>(4, 4)</m> is not (about <m>5.66</m> units from <m>A</m>).</p></answer>
+            <solution><p>The perpendicular bisector of <m>AB</m> is <m>x = 3</m>, so <q>nearer to <m>B</m></q> means <m>x \gt 3</m>. <m>(4, 2)</m>: <m>4^2 + 2^2 = 20 \lt 25</m> and <m>x = 4 \gt 3</m>: in. <m>(2, 1)</m>: <m>x = 2 \lt 3</m>: out. <m>(4, 4)</m>: <m>16 + 16 = 32 \gt 25</m>: out.</p></solution>
+        </exercise>
+        <exercise xml:id="ex-write-the-inequalities">
+            <statement><p>Write as inequalities: the points less than <m>2\,\text{m}</m> from the straight path <m>l</m> and more than <m>5\,\text{m}</m> from the tree <m>T</m>.</p></statement>
+            <answer><p>(distance of <m>P</m> from <m>l</m>) <m>\lt 2\,\text{m}</m> and <m>PT \gt 5\,\text{m}</m>.</p></answer>
+        </exercise>
+        <exercise xml:id="ex-dispensary-site">
+            <statement><p>A dispensary in Garissa County must be within <m>6\,\text{km}</m> of village <m>A</m>, at least <m>2\,\text{km}</m> from the straight main road and nearer to <m>A</m> than to village <m>B</m>, which is <m>8\,\text{km}</m> from <m>A</m> along the road. Using <m>1\,\text{cm}</m> to represent <m>1\,\text{km}</m>, construct the region where the dispensary can go, shading the unwanted parts.</p></statement>
+            <answer><p>Inside the circle of radius <m>6\,\text{cm}</m> about <m>A</m> (solid), outside the strip of width <m>2\,\text{cm}</m> on each side of the road (solid lines), and on <m>A</m>'s side of the perpendicular bisector of <m>AB</m> (dashed).</p></answer>
+            <solution><p><q>Within <m>6\,\text{km}</m></q> includes <m>6\,\text{km}</m>, so the circle is solid. <q>At least <m>2\,\text{km}</m></q> includes <m>2\,\text{km}</m>, so the two lines parallel to the road, <m>2\,\text{cm}</m> from it, are solid and the region is outside the strip. <q>Nearer to <m>A</m></q> excludes the bisector, which is <m>4\,\text{cm}</m> from <m>A</m> and is dashed. Shade outside the circle, inside the strip and on <m>B</m>'s side of the bisector. The clear region is two pieces, one on each side of the road.</p></solution>
+        </exercise>
+        <exercise xml:id="ex-offside-positions">
+            <statement><p>The second-last defender is <m>8\,\text{m}</m> from the goal line and the ball is <m>15\,\text{m}</m> from it. Attackers stand <m>6\,\text{m}</m>, <m>8\,\text{m}</m> and <m>9\,\text{m}</m> from the goal line, in the opponents' half. Which are in an offside position?</p></statement>
+            <answer><p>Only the attacker <m>6\,\text{m}</m> from the goal line.</p></answer>
+            <solution><p>The defender is nearer the goal line than the ball, so the offside region is the strip less than <m>8\,\text{m}</m> from the goal line. The attacker at <m>8\,\text{m}</m> is level (not offside) and the one at <m>9\,\text{m}</m> is outside the strip.</p></solution>
+        </exercise>
+        <exercise xml:id="ex-sixty-degree-region">
+            <title>Challenge: A Sixty-Degree Region</title>
+            <statement><p><m>AB = 6\,\text{cm}</m>. Describe the region on one side of <m>AB</m> where angle <m>APB \ge 60^{\circ}</m>. Is the point <m>5\,\text{cm}</m> in front of the midpoint <m>M</m> of <m>AB</m> in it?</p></statement>
+            <hint><p>Find the centre and radius of the arc on which angle <m>APB = 60^{\circ}</m>, then how far in front of <m>M</m> the arc reaches.</p></hint>
+            <answer><p>The region between <m>AB</m> and the arc of radius <m>3.46\,\text{cm}</m>, arc included (solid). The arc is <m>5.20\,\text{cm}</m> in front of <m>M</m>, so the point is in the region (angle about <m>61.9^{\circ}</m>).</p></answer>
+            <solution><p>The arc has radius <m>\dfrac{6}{2\sin 60^{\circ}} \approx 3.46\,\text{cm}</m> and its centre <m>O</m> is on the perpendicular bisector, <m>OM = \dfrac{3}{\tan 60^{\circ}} \approx 1.73\,\text{cm}</m> from <m>M</m>. So the arc reaches <m>1.73 + 3.46 \approx 5.20\,\text{cm}</m> in front of <m>M</m>. Points inside the arc see <m>AB</m> at more than <m>60^{\circ}</m>, and <m>\ge</m> includes the arc. The point <m>5\,\text{cm}</m> in front of <m>M</m> is inside: angle <m>2\tan^{-1}\left(\frac{3}{5}\right) \approx 61.9^{\circ}</m>.</p></solution>
+        </exercise>
+    </exercises>
 
-            </statement>   
-            <solution>
-
-            </solution>             
-        </exercise>        
-    </exercises> -->
-
-    <!-- [LP] Add information on how to differentiate  -->
-
-    <!-- <axiom component="lesson-plan">
+    <axiom component="lesson-plan">
         <title>Differentiation</title>
-
-        <table>
-            <title>Differentiation</title>
-            <tabular halign="left">
-                <row header="yes" bottom="minor">
-                    <cell>Learner Group</cell>
-                    <cell>Strategy &amp; Learning Experience</cell>
-                    <cell></cell>
-                </row>
-                <row>
-                    <cell>Struggling Learners (Support)</cell>
-                    <cell>
-                        XXXX
-                    </cell>
-                    <cell></cell>
-                </row>
-                <row>
-                    <cell>On-Level Learners (Core)</cell>
-                    <cell>
-                        <line>The core lesson activities as described above.</line>
-                    </cell>
-                    <cell></cell>
-                </row>
-                <row>
-                    <cell>Advanced Learners (Challenge)</cell>
-                    <cell>
-                        XXXX
-                    </cell>
-                    <cell></cell>
-                </row>
+        <table xml:id="table-differentiation-loci-inequalities">
+            <title>Differentiation Strategies</title>
+            <tabular halign="left" top="minor" bottom="minor" left="minor" right="minor">
+                <row header="yes" bottom="medium"><cell>Learner Group</cell><cell>Strategy and Learning Experience</cell></row>
+                <row><cell>Struggling Learners (Support)</cell><cell>Take one condition at a time: shade its unwanted side, test a point in the clear region, then add the next condition. Work <xref ref="example-describing-a-region"/> and <xref ref="example-offside-line"/>. Assign <xref ref="ex-grid-region-test"/> and <xref ref="ex-offside-positions"/>.</cell></row>
+                <row><cell>On-Level Learners (Core)</cell><cell>Full activity and all examples. Assign <xref ref="ex-shade-a-lens"/> to <xref ref="ex-offside-positions"/>.</cell></row>
+                <row><cell>Advanced Learners (Challenge)</cell><cell>All exercises including <xref ref="ex-sixty-degree-region"/>. Extension: show, by shading the unwanted parts, the region less than <m>2\,\text{m}</m> from a straight wall <m>6\,\text{m}</m> long and more than <m>1\,\text{m}</m> from both of its ends. (Answer: the stadium shape round the wall, two <m>6\,\text{m}</m> sides joined by semicircles of radius <m>2\,\text{m}</m>, all dashed, with two dashed circles of radius <m>1\,\text{m}</m> about the ends of the wall removed.)</cell></row>
             </tabular>
         </table>
-    </axiom> -->
+    </axiom>
 
     <xi:include href="../lesson-plan-templates/assessment-methods.ptx" />
 

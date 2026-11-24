@@ -22,7 +22,7 @@
                     </p>
                 </li>
                 <li>
-                    <title>Specific Learning Outcomes</title> 
+                    <title>Specific Learning Outcomes</title>
                     <p component="core">
                         Divide quantities using ratios and proportions in different situations
                     </p>
@@ -39,7 +39,7 @@
                 <li component="lesson-plan">
                     <title>Estimated Duration</title>
                     <p>
-                        40 minutes
+                        2 lessons of 40 minutes
                     </p>
                 </li>
             </dl>
@@ -51,163 +51,409 @@
          Content summary: Sharing quantities in a given ratio; proportional parts.
          Suggested activity: Groups share 60 bottle tops (or sweets) in given ratios such as 2:3:5 and record the share of each person. -->
 
-    <!-- [LP] Add guidance on activity -->
+    <!-- Section notes (2026-11)
+         SLO: Core 1.3 (a), (e); Essential 1.2 (a), (f). Lessons 1.1 and 1.2 as subsections.
+         Activity: as planning notes (groups share 60 bottle tops), with the ratios 1:4:5, 1:5:6 and 5:7:8 in place of 2:3:5 (listed in EDITORIAL-QUESTIONS.md)
+         STACK: assets/stack/top/1-numbers-and-algebra/03-compound-proportions-rates-of-work-and-mixtures/01-proportional-parts/ -->
 
-    <!-- <axiom component="lesson-plan">
+    <introduction>
+        <question xml:id="kiq-proportions">
+            <p><em>Where do you meet ratios and proportions in your home, school and community?</em></p>
+        </question>
+        <p>
+            A family shares the harvest among those who worked on the shamba. A road contractor plans how many workers a job needs and for how long. A school fills its water tank with a pump while the kitchen draws water out. A cook mixes maize and beans for githeri and needs to know what each plate costs. Each of these is a question about ratio and proportion.
+        </p>
+        <p>
+            This chapter starts with sharing in a ratio, then builds up to compound proportion, where three or more quantities change at once, to rates of work, and to mixtures. Keep the key inquiry question in mind as you work.
+        </p>
+        <note xml:id="note-working-in-this-chapter">
+            <title>Working in This Chapter</title>
+            <p>
+                <ul>
+                    <li><p>A ratio is written with spaces, <m>3 : 5</m>, and its order matters: <q>the ratio of A to B is <m>3 : 5</m></q> is not the same as <m>5 : 3</m>.</p></li>
+                    <li><p>To share in a ratio, find the total number of parts, then one part, then each share as a number of parts. Check that the shares add back to the total.</p></li>
+                    <li><p><q>Share in proportion to</q> some amounts means share in the ratio of those amounts. In this book <em>indirect proportion</em> and <em>inverse proportion</em> mean the same thing.</p></li>
+                    <li><p>We say <q>worker-hours</q>, <q>worker-days</q> and <q>learner-hours</q> for the size of a job.</p></li>
+                    <li><p>Round only at the end. Give money to the nearest shilling unless the work is exact, times, masses and volumes exactly or to 1 decimal place, and fractions of a job as fractions in their simplest form. Numbers of workers or drivers are rounded up, and we say why.</p></li>
+                    <li><p>Prices, quantities and times in this chapter are invented, at about 2026 levels.</p></li>
+                </ul>
+            </p>
+        </note>
+    </introduction>
+
+    <!-- ============================================================ Lesson 1.1 -->
+    <subsection xml:id="subsec-sharing-in-a-ratio">
+        <title>Sharing in a Ratio</title>
+
+        <p component="lesson-plan">Upon completion of this lesson, learners will be able to:
+            <ol>
+                <li><p><alert>Know:</alert> a ratio, its parts, and a share.</p></li>
+                <li><p><alert>Do:</alert> share a quantity in a two-part or three-part ratio; find the total or the other shares from one share or from the difference between two shares.</p></li>
+                <li><p><alert>Apply:</alert> sharing money, stationery and farm inputs.</p></li>
+            </ol>
+        </p>
+
+        <axiom component="lesson-plan">
             <title>Problem-Solving and Discovery</title>
             <dl>
-                <li>
-                    <title>Suggested Time</title>
-                    <p>
-                        XX minutes
-                    </p>
-                </li>
-                <li>
-                    <title>Objective</title>
-                    <p>
-                        XXX
-                    </p>
-                </li>
-                <li>
-                    <title>Teacher's Role</title>
-                    <p>
-                        XXX
-                    </p>
-                </li>
+                <li><title>Suggested Time</title><p>14 minutes</p></li>
+                <li><title>Objective</title><p>Learners share real counters in given ratios and discover that the key step is to find one part first.</p></li>
+                <li><title>Teacher's Role</title><p>Give each group of three <m>60</m> bottle tops (or beans, or sweets). Before any rule, ask: <q>How many bottle tops is one part?</q></p></li>
             </dl>
-        </axiom> -->
+        </axiom>
 
-    <!-- Add Activity -->
-
-    <!-- <activity>
-        <statement>
-        </statement>
-    </activity> -->
-
-    <!-- [LP] Add guidance on structured lesson plan-->
-
-    <!-- <axiom component="lesson-plan">
-        <title>Structured Instruction</title>
-        <p>
-            <dl>
-            <li>
-                <title>Suggested Time</title>
+        <activity xml:id="act-sharing-bottle-tops">
+            <title>Sharing Bottle Tops</title>
+            <statement>
+                <p>Work in groups of three. Your group has <m>60</m> bottle tops.</p>
                 <p>
-                    XX minutes
+                    <ol marker="(a)">
+                        <li>
+                            <p>Share the bottle tops in the ratio <m>1 : 4 : 5</m>. How many does each of you get?</p>
+                            <solution component="lesson-plan"><p>There are <m>1 + 4 + 5 = 10</m> parts, so one part is <m>60 \div 10 = 6</m>. The shares are <m>6</m>, <m>24</m> and <m>30</m>.</p></solution>
+                        </li>
+                        <li>
+                            <p>Share them again in the ratio <m>1 : 5 : 6</m>.</p>
+                            <solution component="lesson-plan"><p><m>12</m> parts of <m>5</m>: <m>5</m>, <m>25</m> and <m>30</m>.</p></solution>
+                        </li>
+                        <li>
+                            <p>Share them in the ratio <m>5 : 7 : 8</m>.</p>
+                            <solution component="lesson-plan"><p><m>20</m> parts of <m>3</m>: <m>15</m>, <m>21</m> and <m>24</m>.</p></solution>
+                        </li>
+                        <li>
+                            <p>Try to share them in the ratio <m>2 : 6 : 9</m>. What goes wrong?</p>
+                            <solution component="lesson-plan"><p>There are <m>17</m> parts, and <m>60 \div 17</m> is not a whole number, so some bottle tops are left over (or would have to be cut).</p></solution>
+                        </li>
+                        <li>
+                            <p>Is sharing equally always fair? When would sharing in a ratio be fairer?</p>
+                            <solution component="lesson-plan"><p>Open. Sharing in a ratio is fairer when people did different amounts of work or put in different amounts of money.</p></solution>
+                        </li>
+                    </ol>
                 </p>
-            </li>
-            <li>
-                <title>Objective</title>
-                <p>
-                    To formalize the concepts and properties learners discovered in the anchor task.
-                </p>
-            </li>
-            </dl>
-        </p>
-        <paragraphs>
-            <title>Key Takeaways &amp; Teacher Connection</title>
-            <ol>
-                <li>
-                    <p>
-                        <alert>Connecting to Learner Work:</alert> XXXX
-                    </p>
-                </li>
-            </ol>
-        </paragraphs>
-    </axiom> -->
+            </statement>
+        </activity>
 
-    <!-- Add insight / key takeaway directly related to activity / learner experience -->
+        <axiom component="lesson-plan">
+            <title>Structured Instruction</title>
+            <p>
+                <dl>
+                    <li><title>Suggested Time</title><p>8 minutes</p></li>
+                    <li><title>Objective</title><p>To formalise the sharing method from the activity.</p></li>
+                </dl>
+            </p>
+            <paragraphs>
+                <title>Key Takeaways &amp; Teacher Connection</title>
+                <ol>
+                    <li><p><alert>Connecting to Learner Work:</alert> in every part of the activity the groups found one part first: <m>60</m> divided by the total number of parts.</p></li>
+                    <li><p>Each share is its number of parts times one part.</p></li>
+                    <li><p>The shares must add back to the total; this is the check.</p></li>
+                </ol>
+            </paragraphs>
+        </axiom>
 
-    <!-- <insight>
-    </insight> -->
+        <insight xml:id="insight-sharing-in-a-ratio">
+            <title>Sharing in a Ratio</title>
+            <p>A <term>ratio</term> such as <m>5 : 7 : 8</m> compares quantities. Its numbers are <term>parts</term>, and the amount each person gets is a <term>share</term>. To share a total in the ratio <m>a : b : c</m>:
+                <ol>
+                    <li><p>Total number of parts: <m>a + b + c</m>.</p></li>
+                    <li><p>One part: total <m>\div (a + b + c)</m>.</p></li>
+                    <li><p>Each share: its number of parts <m>\times</m> one part.</p></li>
+                    <li><p>Check: the shares add up to the total.</p></li>
+                </ol>
+            So the first person gets <m>\dfrac{a}{a + b + c}</m> of the total. Find one part first, then each share is a number of parts.</p>
+        </insight>
 
-    <!-- Add further instruction (not in a block) to develop ideas as needed -->
+        <figure xml:id="fig-ratio-bar-model">
+            <caption>Sharing <m>60</m> bottle tops in the ratio <m>5 : 7 : 8</m> with a bar model.</caption>
+            <image width="70%">
+                <shortdescription>Three bars of 5, 7 and 8 equal boxes, each box marked 3, make 20 parts. 60 bottle tops make each part 3, so the shares are 15, 21 and 24.</shortdescription>
+                <latex-image>
+% SET: one box is 1 unit wide and 0.8 high; bars at heights 2.4, 1.2 and 0.
+% CALCULATE: 5 + 7 + 8 = 20 parts; 60 / 20 = 3 in each box; shares 15, 21, 24.
+% DRAW: the three bars of boxes; a label under them for the 20 parts.
+% MARK: 3 in every box. LABEL: names on the left, shares on the right.
+\begin{tikzpicture}[scale=0.75]
+\foreach \i in {0,...,4} { \draw[thick] (\i,2.4) rectangle ++(1,0.8); \node at (\i+0.5,2.8) {$3$}; }
+\foreach \i in {0,...,6} { \draw[thick] (\i,1.2) rectangle ++(1,0.8); \node at (\i+0.5,1.6) {$3$}; }
+\foreach \i in {0,...,7} { \draw[thick] (\i,0) rectangle ++(1,0.8); \node at (\i+0.5,0.4) {$3$}; }
+\node[left] at (-0.2,2.8) {First: $5$ parts};
+\node[left] at (-0.2,1.6) {Second: $7$ parts};
+\node[left] at (-0.2,0.4) {Third: $8$ parts};
+\node[right] at (8.4,2.8) {$5 \times 3 = 15$};
+\node[right] at (8.4,1.6) {$7 \times 3 = 21$};
+\node[right] at (8.4,0.4) {$8 \times 3 = 24$};
+\node[below] at (4,-0.3) {$5 + 7 + 8 = 20$ parts make $60$ bottle tops, so $1$ part $= 3$};
+\end{tikzpicture}
+                </latex-image>
+            </image>
+        </figure>
 
-    <xi:include href="../lesson-plan-templates/example-intro.ptx" />
+        <xi:include href="../lesson-plan-templates/example-intro.ptx" />
 
-    <!-- Add at least 3 examples -->
-
-    <!-- <example>
-        <statement>
-        </statement>
-        <solution>
-        </solution>
-    </example>
-
-    <example>
-        <statement>
-        </statement>
-        <solution>
-        </solution>
-    </example>
-
-    <example>
-        <statement>
-        </statement>
-        <solution>
-        </solution>
-    </example> -->
-
-    <xi:include href="../lesson-plan-templates/assessment-intro.ptx" />
-
-    <!-- If STACK questions are included, uncomment this: -->
-
-    <!-- <xi:include href="../lesson-plan-templates/checkpoint.ptx" /> -->
-
-    <!-- Add STACK exercises if made -->
-
-    <!-- Add static exercises -->
-
-    <!-- <exercises>
-        <exercise>
-            <statement>   
-
-            </statement>   
+        <example xml:id="example-stationery-for-three-classes">
+            <title>Stationery for Three Classes</title>
+            <statement>
+                <p>A school shares <m>840</m> exercise books among classes 12A, 12B and 12C in the ratio <m>7 : 8 : 9</m>. How many does each class get?</p>
+            </statement>
             <solution>
+                <p>Total parts: <m>7 + 8 + 9 = 24</m>. One part: <m>840 \div 24 = 35</m> books.</p>
+                <p>12A gets <m>7 \times 35 = 245</m>, 12B gets <m>8 \times 35 = 280</m> and 12C gets <m>9 \times 35 = 315</m> exercise books.</p>
+                <p>Check: <m>245 + 280 + 315 = 840</m>.</p>
+            </solution>
+        </example>
 
-            </solution>             
-        </exercise>        
-    </exercises> -->
+        <example xml:id="example-shares-from-one-share">
+            <title>Shares from One Share</title>
+            <statement>
+                <p>Achieng, Baraka and Chebet share the profit from their poultry project in the ratio <m>3 : 4 : 6</m>. Chebet gets Ksh <m>9000</m>. Find the total profit and the other two shares.</p>
+            </statement>
+            <solution>
+                <p>Chebet's <m>6</m> parts are Ksh <m>9000</m>, so one part is <m>9000 \div 6 = 1500</m>.</p>
+                <p>There are <m>3 + 4 + 6 = 13</m> parts, so the total profit is <m>13 \times 1500 = 19\,500</m>, Ksh <m>19\,500</m>. Achieng gets <m>3 \times 1500 = 4500</m> and Baraka <m>4 \times 1500 = 6000</m>: Ksh <m>4500</m> and Ksh <m>6000</m>.</p>
+            </solution>
+        </example>
 
-    <!-- [LP] Add information on how to differentiate  -->
+        <example xml:id="example-shares-from-a-difference">
+            <title>Shares from a Difference</title>
+            <statement>
+                <p>Two dairy co-operatives share their income from a milk cooler in the ratio <m>5 : 2</m>. The first gets Ksh <m>36\,000</m> more than the second. Find each share and the total.</p>
+            </statement>
+            <solution>
+                <p>The difference is <m>5 - 2 = 3</m> parts, so <m>3</m> parts are Ksh <m>36\,000</m> and one part is <m>12\,000</m>.</p>
+                <p>The first gets <m>5 \times 12\,000 = 60\,000</m> and the second <m>2 \times 12\,000 = 24\,000</m>: Ksh <m>60\,000</m> and Ksh <m>24\,000</m>, Ksh <m>84\,000</m> in all.</p>
+            </solution>
+        </example>
 
-    <!-- <axiom component="lesson-plan">
-        <title>Differentiation</title>
+        <xi:include href="../lesson-plan-templates/assessment-intro.ptx" />
+        <xi:include href="../lesson-plan-templates/checkpoint.ptx" />
 
-        <table>
+        <p>Type numbers only, without Ksh, units, spaces or commas, for example <c>45326</c>. Give a fraction as a fraction, for example <c>7/12</c>, or as a decimal correct to 3 decimal places. Give times, masses and volumes exactly or correct to 1 decimal place, and money to the nearest shilling, unless the question says otherwise.</p>
+
+        <exercise xml:id="ex-sharing-in-a-three-part-ratio">
+            <!--<title></title>-->
+            <stack label="stk-sharing-in-a-three-part-ratio" source="stack/top/1-numbers-and-algebra/03-compound-proportions-rates-of-work-and-mixtures/01-proportional-parts/Sharing-in-a-three-part-ratio.xml"/>
+        </exercise>
+
+        <exercises xml:id="exercises-sharing-in-a-ratio">
+            <exercise xml:id="ex-share-4800">
+                <statement><p>Share Ksh <m>4800</m> in the ratio <m>7 : 9</m>.</p></statement>
+                <answer><p>Ksh <m>2100</m> and Ksh <m>2700</m></p></answer>
+            </exercise>
+            <exercise xml:id="ex-share-fertiliser">
+                <statement><p>Divide <m>1260\,\text{kg}</m> of fertiliser among three farmers in the ratio <m>4 : 5 : 12</m>.</p></statement>
+                <answer><p><m>240\,\text{kg}</m>, <m>300\,\text{kg}</m> and <m>720\,\text{kg}</m></p></answer>
+                <solution><p><m>4 + 5 + 12 = 21</m> parts, and one part is <m>1260 \div 21 = 60\,\text{kg}</m>. The shares are <m>4 \times 60 = 240</m>, <m>5 \times 60 = 300</m> and <m>12 \times 60 = 720\,\text{kg}</m>.</p></solution>
+            </exercise>
+            <exercise xml:id="ex-sacco-days-worked">
+                <statement><p>A matatu SACCO shares Ksh <m>96\,000</m> among three drivers, Otieno, Kamau and Wekesa, in the ratio of the days they worked, <m>6 : 5 : 5</m>. How much does each driver get?</p></statement>
+                <answer><p>Otieno Ksh <m>36\,000</m>; Kamau and Wekesa Ksh <m>30\,000</m> each</p></answer>
+            </exercise>
+            <exercise xml:id="ex-mango-grades">
+                <statement><p>Mangoes are sorted into grades A, B and C in the ratio <m>9 : 5 : 2</m>. There are <m>180</m> grade A mangoes. How many mangoes are there altogether, and how many are grade C?</p></statement>
+                <answer><p><m>320</m> mangoes; <m>40</m> grade C</p></answer>
+                <solution><p><m>9</m> parts are <m>180</m>, so one part is <m>20</m>. There are <m>16</m> parts, <m>16 \times 20 = 320</m> mangoes, and grade C is <m>2 \times 20 = 40</m>.</p></solution>
+            </exercise>
+            <exercise xml:id="ex-share-from-difference">
+                <statement><p>Money is shared in the ratio <m>7 : 3</m>. The larger share is Ksh <m>2800</m> more than the smaller. Find the total.</p></statement>
+                <answer><p>Ksh <m>7000</m></p></answer>
+                <solution><p>The difference is <m>4</m> parts, so one part is <m>2800 \div 4 = 700</m>. The total is <m>10 \times 700 = 7000</m>.</p></solution>
+            </exercise>
+            <exercise xml:id="ex-bottle-tops-challenge">
+                <title>Challenge: Which Totals Share Exactly?</title>
+                <statement><p>Can <m>100</m> bottle tops be shared exactly in the ratio <m>2 : 6 : 9</m>? Which totals from <m>100</m> to <m>120</m> can be?</p></statement>
+                <hint><p>How many parts are there? Which totals divide exactly by that number?</p></hint>
+                <answer><p>No; <m>102</m> and <m>119</m></p></answer>
+                <solution><p>There are <m>2 + 6 + 9 = 17</m> parts, and <m>100</m> is not a multiple of <m>17</m>. The multiples of <m>17</m> from <m>100</m> to <m>120</m> are <m>102 = 6 \times 17</m> and <m>119 = 7 \times 17</m>.</p></solution>
+            </exercise>
+        </exercises>
+
+        <axiom component="lesson-plan">
             <title>Differentiation</title>
-            <tabular halign="left">
-                <row header="yes" bottom="minor">
-                    <cell>Learner Group</cell>
-                    <cell>Strategy &amp; Learning Experience</cell>
-                    <cell></cell>
-                </row>
-                <row>
-                    <cell>Struggling Learners (Support)</cell>
-                    <cell>
-                        XXXX
-                    </cell>
-                    <cell></cell>
-                </row>
-                <row>
-                    <cell>On-Level Learners (Core)</cell>
-                    <cell>
-                        <line>The core lesson activities as described above.</line>
-                    </cell>
-                    <cell></cell>
-                </row>
-                <row>
-                    <cell>Advanced Learners (Challenge)</cell>
-                    <cell>
-                        XXXX
-                    </cell>
-                    <cell></cell>
-                </row>
-            </tabular>
-        </table>
-    </axiom> -->
+            <table xml:id="table-differentiation-sharing-in-a-ratio">
+                <title>Differentiation Strategies</title>
+                <tabular halign="left" top="minor" bottom="minor" left="minor" right="minor">
+                    <row header="yes" bottom="medium"><cell>Learner Group</cell><cell>Strategy and Learning Experience</cell></row>
+                    <row><cell>Struggling Learners (Support)</cell><cell>Activity parts (a) to (c) with real counters, and <xref ref="example-stationery-for-three-classes"/>. Give a bar-model card like <xref ref="fig-ratio-bar-model"/>. Assign <xref ref="ex-share-4800"/> and <xref ref="ex-share-fertiliser"/>.</cell></row>
+                    <row><cell>On-Level Learners (Core)</cell><cell>Full activity and all examples. Assign <xref ref="ex-share-4800"/> to <xref ref="ex-share-from-difference"/>.</cell></row>
+                    <row><cell>Advanced Learners (Challenge)</cell><cell>All exercises including <xref ref="ex-bottle-tops-challenge"/>. Extension: share Ksh <m>1500</m> in the ratio <m>1 : 3 : 5 : 6</m>. What fraction of the total does each person get? (Answer: Ksh <m>100</m>, <m>300</m>, <m>500</m> and <m>600</m>; <m>\tfrac{1}{15}</m>, <m>\tfrac{3}{15} = \tfrac{1}{5}</m>, <m>\tfrac{5}{15} = \tfrac{1}{3}</m> and <m>\tfrac{6}{15} = \tfrac{2}{5}</m>.)</cell></row>
+                </tabular>
+            </table>
+        </axiom>
 
-    <xi:include href="../lesson-plan-templates/assessment-methods.ptx" />
+        <xi:include href="../lesson-plan-templates/assessment-methods.ptx" />
+        <xi:include href="../lesson-plan-templates/reflection.ptx"/>
+    </subsection>
 
-    <xi:include href="../lesson-plan-templates/reflection.ptx"/>
+    <!-- ============================================================ Lesson 1.2 -->
+    <subsection xml:id="subsec-proportional-parts-in-practice">
+        <title>Proportional Parts in Practice</title>
+
+        <p component="lesson-plan">Upon completion of this lesson, learners will be able to:
+            <ol>
+                <li><p><alert>Know:</alert> sharing in proportion to amounts; a ratio of fractions; increasing or decreasing in a ratio.</p></li>
+                <li><p><alert>Do:</alert> find a ratio from contributions, days worked or fractions, then share; change a quantity in a given ratio; work back to a total.</p></li>
+                <li><p><alert>Apply:</alert> chamas, farmers, workers' pay and fair shares.</p></li>
+            </ol>
+        </p>
+
+        <axiom component="lesson-plan">
+            <title>Problem-Solving and Discovery</title>
+            <dl>
+                <li><title>Suggested Time</title><p>14 minutes</p></li>
+                <li><title>Objective</title><p>Learners compare equal sharing with sharing in proportion to what each person put in, and argue which is fair.</p></li>
+                <li><title>Teacher's Role</title><p>Give each group member the view of one chama member for part (d); let each group report its decision and its reasons.</p></li>
+            </dl>
+        </axiom>
+
+        <activity xml:id="act-fair-shares-in-a-chama">
+            <title>Fair Shares in a Chama</title>
+            <statement>
+                <p>Three members of a chama put Ksh <m>15\,000</m>, Ksh <m>25\,000</m> and Ksh <m>40\,000</m> into a posho mill. This month the mill made a profit of Ksh <m>32\,000</m>.</p>
+                <p>
+                    <ol marker="(a)">
+                        <li>
+                            <p>Write the ratio of their contributions in its simplest form.</p>
+                            <solution component="lesson-plan"><p>Divide each by <m>5000</m>: <m>3 : 5 : 8</m>.</p></solution>
+                        </li>
+                        <li>
+                            <p>Share the profit in this ratio.</p>
+                            <solution component="lesson-plan"><p><m>16</m> parts of Ksh <m>2000</m>: Ksh <m>6000</m>, Ksh <m>10\,000</m> and Ksh <m>16\,000</m>.</p></solution>
+                        </li>
+                        <li>
+                            <p>How much would each get if the profit were shared equally?</p>
+                            <solution component="lesson-plan"><p><m>32\,000 \div 3 \approx 10\,666.67</m>, so about Ksh <m>10\,667</m> each (the shillings do not divide exactly: in practice Ksh <m>10\,667</m>, <m>10\,667</m> and <m>10\,666</m>).</p></solution>
+                        </li>
+                        <li>
+                            <p>Who gains and who loses by sharing equally? Which way is fairer here, and why?</p>
+                            <solution component="lesson-plan"><p>Compared with sharing in proportion, the first member gains about Ksh <m>4667</m> and the second about Ksh <m>667</m>, and the third loses about Ksh <m>5333</m> (exactly, the gains <m>4666\tfrac{2}{3} + 666\tfrac{2}{3}</m> equal the loss <m>5333\tfrac{1}{3}</m>). Sharing in proportion is fairer, because the members risked their money in that ratio.</p></solution>
+                        </li>
+                    </ol>
+                </p>
+            </statement>
+        </activity>
+
+        <axiom component="lesson-plan">
+            <title>Structured Instruction</title>
+            <p>
+                <dl>
+                    <li><title>Suggested Time</title><p>8 minutes</p></li>
+                    <li><title>Objective</title><p>To formalise sharing in proportion, ratios of fractions, and changing a quantity in a given ratio.</p></li>
+                </dl>
+            </p>
+            <paragraphs>
+                <title>Key Takeaways &amp; Teacher Connection</title>
+                <ol>
+                    <li><p><alert>Connecting to Learner Work:</alert> part (a) turned the contributions into a ratio before sharing: <q>in proportion to</q> means <q>in the ratio of</q>.</p></li>
+                    <li><p>A ratio of fractions is cleared by multiplying every fraction by the lowest common multiple of the denominators.</p></li>
+                    <li><p>To increase in the ratio <m>5 : 4</m>, multiply by <m>\tfrac{5}{4}</m>; to decrease in the ratio <m>8 : 9</m>, multiply by <m>\tfrac{8}{9}</m>.</p></li>
+                </ol>
+            </paragraphs>
+        </axiom>
+
+        <insight xml:id="insight-proportional-parts">
+            <title>Proportional Parts</title>
+            <p>To share <term>in proportion to</term> some amounts, share in the ratio of those amounts (simplify the ratio first if you like). Contributions of Ksh <m>15\,000</m>, <m>25\,000</m> and <m>40\,000</m> give the ratio <m>3 : 5 : 8</m>.</p>
+            <p>A ratio of fractions such as <m>\tfrac{1}{2} : \tfrac{1}{3} : \tfrac{1}{4}</m> becomes a ratio of whole numbers when every fraction is multiplied by the lowest common multiple of the denominators, here <m>12</m>: <m>6 : 4 : 3</m>.</p>
+            <p>To <term>increase in the ratio</term> <m>5 : 4</m> or <term>decrease in the ratio</term> <m>8 : 9</m>, multiply by the first number over the second: new <m>=</m> old <m>\times \tfrac{5}{4}</m>, or old <m>\times \tfrac{8}{9}</m>.</p>
+        </insight>
+
+        <xi:include href="../lesson-plan-templates/example-intro.ptx" />
+
+        <example xml:id="example-ratio-made-of-fractions">
+            <title>A Ratio Made of Fractions</title>
+            <statement>
+                <p>Share Ksh <m>26\,000</m> in the ratio <m>\tfrac{1}{2} : \tfrac{1}{3} : \tfrac{1}{4}</m>.</p>
+            </statement>
+            <solution>
+                <p>The lowest common multiple of <m>2</m>, <m>3</m> and <m>4</m> is <m>12</m>. Multiplying each fraction by <m>12</m> gives <m>6 : 4 : 3</m>, which is <m>13</m> parts.</p>
+                <p>One part is <m>26\,000 \div 13 = 2000</m>, so the shares are Ksh <m>12\,000</m>, Ksh <m>8000</m> and Ksh <m>6000</m>.</p>
+            </solution>
+        </example>
+
+        <example xml:id="example-increase-and-decrease-in-a-ratio">
+            <title>Increase and Decrease in a Ratio</title>
+            <statement>
+                <p>(a) A jua kali workshop makes <m>120</m> jiko a week. Its output increases in the ratio <m>5 : 4</m>. How many does it make now?</p>
+                <p>(b) A bus fare of Ksh <m>450</m> decreases in the ratio <m>8 : 9</m>. What is the new fare?</p>
+            </statement>
+            <solution>
+                <p>(a) <m>120 \times \tfrac{5}{4} = 150</m> jiko a week.</p>
+                <p>(b) <m>450 \times \tfrac{8}{9} = 400</m>, so Ksh <m>400</m>.</p>
+            </solution>
+        </example>
+
+        <example xml:id="example-sharing-a-repair-bill">
+            <title>Sharing a Repair Bill</title>
+            <statement>
+                <p>Three neighbours keep <m>4</m>, <m>10</m> and <m>12</m> cows that drink from a shared borehole. They share a repair bill of Ksh <m>26\,000</m> in proportion to the number of cows. How much does each pay?</p>
+            </statement>
+            <solution>
+                <p>The ratio <m>4 : 10 : 12</m> simplifies to <m>2 : 5 : 6</m>, which is <m>13</m> parts. One part is <m>26\,000 \div 13 = 2000</m>.</p>
+                <p>They pay Ksh <m>4000</m>, Ksh <m>10\,000</m> and Ksh <m>12\,000</m>.</p>
+            </solution>
+        </example>
+
+        <xi:include href="../lesson-plan-templates/assessment-intro.ptx" />
+        <xi:include href="../lesson-plan-templates/checkpoint.ptx" />
+
+        <p>Type numbers only, without Ksh, units, spaces or commas, for example <c>45326</c>. Give a fraction as a fraction, for example <c>7/12</c>, or as a decimal correct to 3 decimal places. Give times, masses and volumes exactly or correct to 1 decimal place, and money to the nearest shilling, unless the question says otherwise.</p>
+
+        <exercise xml:id="ex-proportional-shares-from-one-share">
+            <!--<title></title>-->
+            <stack label="stk-proportional-shares-from-one-share" source="stack/top/1-numbers-and-algebra/03-compound-proportions-rates-of-work-and-mixtures/01-proportional-parts/Proportional-shares-from-one-share.xml"/>
+        </exercise>
+
+        <exercise xml:id="ex-choose-a-ratio-for-a-share">
+            <!--<title></title>-->
+            <stack label="stk-choose-a-ratio-for-a-share" source="stack/top/1-numbers-and-algebra/03-compound-proportions-rates-of-work-and-mixtures/01-proportional-parts/Choose-a-ratio-for-a-share.xml"/>
+        </exercise>
+
+        <exercises xml:id="exercises-proportional-parts-in-practice">
+            <exercise xml:id="ex-fractions-ratio-18900">
+                <statement><p>Share Ksh <m>18\,900</m> in the ratio <m>\tfrac{1}{3} : \tfrac{1}{5} : \tfrac{1}{6}</m>.</p></statement>
+                <answer><p><m>10 : 6 : 5</m>; Ksh <m>9000</m>, Ksh <m>5400</m> and Ksh <m>4500</m></p></answer>
+                <solution><p>Multiply by <m>30</m>: <m>10 : 6 : 5</m>, <m>21</m> parts. One part is <m>18\,900 \div 21 = 900</m>.</p></solution>
+            </exercise>
+            <exercise xml:id="ex-increase-decrease-ratio">
+                <statement><p>(a) Increase <m>250\,\text{kg}</m> in the ratio <m>6 : 5</m>. (b) Decrease Ksh <m>1400</m> in the ratio <m>3 : 4</m>.</p></statement>
+                <answer><p>(a) <m>300\,\text{kg}</m> (b) Ksh <m>1050</m></p></answer>
+            </exercise>
+            <exercise xml:id="ex-school-trip-refund">
+                <statement><p>Three schools paid Ksh <m>30\,000</m>, Ksh <m>50\,000</m> and Ksh <m>70\,000</m> for a joint trip to Hell's Gate. A refund of Ksh <m>12\,000</m> is shared in proportion to what they paid. How much does each school get back?</p></statement>
+                <answer><p><m>3 : 5 : 7</m>; Ksh <m>2400</m>, Ksh <m>4000</m> and Ksh <m>5600</m></p></answer>
+            </exercise>
+            <exercise xml:id="ex-old-price-from-ratio">
+                <statement><p>The price of a phone rose in the ratio <m>9 : 8</m> to Ksh <m>13\,500</m>. What was the old price?</p></statement>
+                <answer><p>Ksh <m>12\,000</m></p></answer>
+                <solution><p>New <m>=</m> old <m>\times \tfrac{9}{8}</m>, so old <m>= 13\,500 \times \tfrac{8}{9} = 12\,000</m>.</p></solution>
+            </exercise>
+            <exercise xml:id="ex-pay-by-days-worked">
+                <statement><p>Three casual workers worked <m>14</m>, <m>10</m> and <m>18</m> days on a building site. They share Ksh <m>25\,200</m> in proportion to the days they worked. How much does each get?</p></statement>
+                <answer><p><m>7 : 5 : 9</m>; Ksh <m>8400</m>, Ksh <m>6000</m> and Ksh <m>10\,800</m></p></answer>
+            </exercise>
+            <exercise xml:id="ex-combine-two-ratios">
+                <title>Challenge: Combining Two Ratios</title>
+                <statement><p><m>a : b = 3 : 4</m> and <m>b : c = 6 : 5</m>. Find <m>a : b : c</m>, then share Ksh <m>6200</m> in this ratio.</p></statement>
+                <hint><p>Make the two values of <m>b</m> the same: what is the lowest common multiple of <m>4</m> and <m>6</m>?</p></hint>
+                <answer><p><m>9 : 12 : 10</m>; Ksh <m>1800</m>, Ksh <m>2400</m> and Ksh <m>2000</m></p></answer>
+                <solution><p>Make <m>b</m> equal to <m>12</m> in both: <m>a : b = 9 : 12</m> and <m>b : c = 12 : 10</m>, so <m>a : b : c = 9 : 12 : 10</m>. That is <m>31</m> parts, and one part is <m>6200 \div 31 = 200</m>.</p></solution>
+            </exercise>
+        </exercises>
+
+        <axiom component="lesson-plan">
+            <title>Differentiation</title>
+            <table xml:id="table-differentiation-proportional-parts-in-practice">
+                <title>Differentiation Strategies</title>
+                <tabular halign="left" top="minor" bottom="minor" left="minor" right="minor">
+                    <row header="yes" bottom="medium"><cell>Learner Group</cell><cell>Strategy and Learning Experience</cell></row>
+                    <row><cell>Struggling Learners (Support)</cell><cell>Activity parts (a) and (b), and <xref ref="example-sharing-a-repair-bill"/>. Assign <xref ref="ex-school-trip-refund"/> and <xref ref="ex-pay-by-days-worked"/>.</cell></row>
+                    <row><cell>On-Level Learners (Core)</cell><cell>Full activity and all examples. Assign <xref ref="ex-fractions-ratio-18900"/> to <xref ref="ex-pay-by-days-worked"/>.</cell></row>
+                    <row><cell>Advanced Learners (Challenge)</cell><cell>All exercises including <xref ref="ex-combine-two-ratios"/>. Extension: design a fair way to share a group's profit when members gave both money and days of work.</cell></row>
+                </tabular>
+            </table>
+        </axiom>
+
+        <xi:include href="../lesson-plan-templates/assessment-methods.ptx" />
+        <xi:include href="../lesson-plan-templates/reflection.ptx"/>
+    </subsection>
 </section>

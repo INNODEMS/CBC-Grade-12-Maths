@@ -46,161 +46,275 @@
          Suggested activity: Using a pack of exercise books pushed sideways, learners model a shear, then perform the same shear on a rectangle drawn on graph paper.
          Interactive (JSXGraph): Rectangle with a slider for the shear factor; the top edge slides while the base (invariant line) stays fixed, and the area stays constant. -->
 
-    <!-- [LP] Add guidance on activity -->
+    <!-- Section notes (2026-11)
+         SLOs: Core 2.1 (g): shear
+         Activity: as planning notes (a pile of exercise books pushed sideways, then the same shear on a rectangle on graph paper)
+         JSXGraph: fig-shear-slider (assets/jsxgraph/shear-slider.js), as planning notes
+         STACK: assets/stack/top/2-measurement-and-geometry/06-matrices-and-transformations/06-shear/ -->
 
-    <!-- <axiom component="lesson-plan">
-            <title>Problem-Solving and Discovery</title>
-            <dl>
-                <li>
-                    <title>Suggested Time</title>
-                    <p>
-                        XX minutes
-                    </p>
-                </li>
-                <li>
-                    <title>Objective</title>
-                    <p>
-                        XXX
-                    </p>
-                </li>
-                <li>
-                    <title>Teacher's Role</title>
-                    <p>
-                        XXX
-                    </p>
-                </li>
-            </dl>
-        </axiom> -->
+    <p component="lesson-plan">Upon completion of this lesson, learners will be able to:
+        <ol>
+            <li><p><alert>Know:</alert> a shear has an invariant axis and a shear factor; its matrix is <m>\begin{bmatrix} 1 \amp k \\ 0 \amp 1 \end{bmatrix}</m> or <m>\begin{bmatrix} 1 \amp 0 \\ k \amp 1 \end{bmatrix}</m>; a shear does not change area.</p></li>
+            <li><p><alert>Do:</alert> find images under a shear; describe a shear fully from an object and its image or from its matrix; find the points a shear leaves fixed.</p></li>
+            <li><p><alert>Apply:</alert> a leaning bookshelf and a pile of books.</p></li>
+        </ol>
+    </p>
 
-    <!-- Add Activity -->
+    <axiom component="lesson-plan">
+        <title>Problem-Solving and Discovery</title>
+        <dl>
+            <li><title>Suggested Time</title><p>14 minutes</p></li>
+            <li><title>Objective</title><p>Learners model a shear with a pile of books and see that each book moves in proportion to its height.</p></li>
+            <li><title>Teacher's Role</title><p>Give each group a pile of ten exercise books, about 5 cm high. Learners hold a ruler against the side of the pile and tilt it so that the top book moves 2 cm sideways, then measure how far books at other heights moved. After part (b), ask: <q>What stays the same when the pile leans?</q></p></li>
+        </dl>
+    </axiom>
 
-    <!-- <activity>
+    <activity xml:id="act-pushing-a-pile-of-books">
+        <title>Pushing a Pile of Books</title>
         <statement>
+            <p>A pile of exercise books is 5 cm high. Its side is pushed with a slanting ruler so that the top book moves 2 cm sideways and the bottom book stays on the desk.</p>
+            <p>
+                <ol marker="(a)">
+                    <li>
+                        <p>Work out (distance moved) <m>\div</m> (height above the desk) for the top book. The book halfway up, 2.5 cm above the desk, moved 1 cm: work out the same ratio for it.</p>
+                        <solution component="lesson-plan"><p><m>2 \div 5 = 0.4</m> and <m>1 \div 2.5 = 0.4</m>: the same. Every book moves <m>0.4</m> times its height.</p></solution>
+                    </li>
+                    <li>
+                        <p>Which book did not move?</p>
+                        <solution component="lesson-plan"><p>The bottom book, on the desk (height <m>0</m>).</p></solution>
+                    </li>
+                    <li>
+                        <p>On graph paper, draw the rectangle with corners <m>O(0, 0)</m>, <m>(3, 0)</m>, <m>(3, 2)</m> and <m>(0, 2)</m>. Move every point parallel to the <m>x</m>-axis by <m>1.5</m> times its height above the <m>x</m>-axis. Find and draw the image.</p>
+                        <solution component="lesson-plan"><p><m>(0, 0)</m>, <m>(3, 0)</m>, <m>(6, 2)</m>, <m>(3, 2)</m>: the base stays and the top edge slides <m>1.5 \times 2 = 3</m> units. See <xref ref="fig-shear-rectangle"/>.</p></solution>
+                    </li>
+                    <li>
+                        <p>Find the images of <m>(1, 0)</m> and <m>(0, 1)</m> and write down the matrix.</p>
+                        <solution component="lesson-plan"><p><m>(1, 0) \to (1, 0)</m> and <m>(0, 1) \to (1.5, 1)</m>, so the matrix is <m>\begin{bmatrix} 1 \amp 1.5 \\ 0 \amp 1 \end{bmatrix}</m>.</p></solution>
+                    </li>
+                    <li>
+                        <p>Find the areas of the rectangle and of its image.</p>
+                        <solution component="lesson-plan"><p>Both are <m>6</m>: the image is a parallelogram with base <m>3</m> and height <m>2</m>. The determinant of the matrix is <m>1</m>.</p></solution>
+                    </li>
+                </ol>
+            </p>
         </statement>
-    </activity> -->
+    </activity>
 
-    <!-- [LP] Add guidance on structured lesson plan-->
-
-    <!-- <axiom component="lesson-plan">
+    <axiom component="lesson-plan">
         <title>Structured Instruction</title>
         <p>
             <dl>
-            <li>
-                <title>Suggested Time</title>
-                <p>
-                    XX minutes
-                </p>
-            </li>
-            <li>
-                <title>Objective</title>
-                <p>
-                    To formalize the concepts and properties learners discovered in the anchor task.
-                </p>
-            </li>
+                <li><title>Suggested Time</title><p>8 minutes</p></li>
+                <li><title>Objective</title><p>To formalise the shear: its invariant axis, its shear factor, its matrix and why it keeps area.</p></li>
             </dl>
         </p>
         <paragraphs>
             <title>Key Takeaways &amp; Teacher Connection</title>
             <ol>
-                <li>
-                    <p>
-                        <alert>Connecting to Learner Work:</alert> XXXX
-                    </p>
-                </li>
+                <li><p><alert>Connecting to Learner Work:</alert> the desk is the invariant axis, and the ratio <m>0.4</m> from part (a) is the shear factor of the pile of books.</p></li>
+                <li><p>Shear factor = distance moved <m>\div</m> distance from the invariant axis, with a sign for the direction.</p></li>
+                <li><p>A shear keeps the base and the height of a shape, so it keeps its area (determinant <m>1</m>); but the image is not congruent to the object, because angles and some lengths change.</p></li>
             </ol>
         </paragraphs>
-    </axiom> -->
+    </axiom>
 
-    <!-- Add insight / key takeaway directly related to activity / learner experience -->
+    <insight xml:id="insight-shear">
+        <title>Shear</title>
+        <p>
+            A <term>shear</term> with the <m>x</m>-axis invariant and shear factor <m>k</m> moves every point parallel to the <m>x</m>-axis by <m>k</m> times its distance from the <m>x</m>-axis. Points on the <m>x</m>-axis do not move: it is the <term>invariant axis</term>. When <m>k > 0</m>, points above the <m>x</m>-axis move in the positive <m>x</m>-direction and points below it move the opposite way. A shear with the <m>y</m>-axis invariant moves every point parallel to the <m>y</m>-axis; when <m>k > 0</m>, points to the right of the <m>y</m>-axis move in the positive <m>y</m>-direction.
+        </p>
+        <p>
+            The <term>shear factor</term> is
+            <md>
+                k = \frac{\text{distance moved}}{\text{distance from the invariant axis}}
+            </md>
+            counted negative when points above (or to the right of) the axis move in the negative direction. Every point slides parallel to the invariant axis, by the shear factor times its distance from that axis, so areas do not change. Using the columns rule:
+            <md>
+                \text{x-axis invariant: } \begin{bmatrix} 1 \amp k \\ 0 \amp 1 \end{bmatrix}, \qquad \text{y-axis invariant: } \begin{bmatrix} 1 \amp 0 \\ k \amp 1 \end{bmatrix}
+            </md>
+            Both have determinant <m>1</m>.
+        </p>
+        <p>
+            To describe a shear fully, give its invariant axis and its shear factor. Its inverse is the shear with the same invariant axis and shear factor <m>-k</m>.
+        </p>
+    </insight>
 
-    <!-- <insight>
-    </insight> -->
+    <figure xml:id="fig-shear-rectangle">
+        <caption>A shear with the <m>x</m>-axis invariant and shear factor <m>1.5</m>. The image of the rectangle is dashed.</caption>
+        <image width="60%">
+            <shortdescription>The rectangle O(0, 0), (3, 0), (3, 2), (0, 2), drawn solid, and its dashed image (0, 0), (3, 0), (6, 2), (3, 2), a parallelogram. The base on the thick x-axis stays. Arrows of length 3 show the top corners sliding right; an arrow of length 1.5 shows a point at height 1 sliding half as far.</shortdescription>
+            <latex-image>
+\begin{tikzpicture}[scale=0.8, >=stealth]
+\draw[very thin, gray!40] (-1,-1) grid (7,3);
+\draw[->] (-1,0) -- (7.3,0) node[right]{$x$};
+\draw[->] (0,-1) -- (0,3.3) node[above]{$y$};
+\draw[line width=2pt] (-1,0) -- (7,0);
+\node[below left] at (0,0) {$O$};
+\draw[thick] (0,0) -- (3,0) -- (3,2) -- (0,2) -- cycle;
+\draw[thick, dashed] (0,0) -- (3,0) -- (6,2) -- (3,2) -- cycle;
+\draw[->, thin] (0,2) -- (2.9,2);
+\draw[->, thin] (3,2) -- (5.9,2);
+\draw[->, thin] (0,1) -- (1.45,1);
+\node[above] at (1.5,2) {\small 3};
+\node[above] at (4.5,2) {\small 3};
+\node[below right] at (0,1) {\small 1.5};
+\node[below] at (3,0) {\small $(3, 0)$};
+\node[above] at (6,2) {\small $(6, 2)$};
+\end{tikzpicture}
+            </latex-image>
+        </image>
+    </figure>
 
-    <!-- Add further instruction (not in a block) to develop ideas as needed -->
+    <figure xml:id="fig-shear-slider">
+        <caption>Move the slider. The top edge slides, the base on the invariant axis stays, and the area stays the same.</caption>
+        <interactive xml:id="interactive-shear" platform="jsxgraph" width="80%" aspect="1:1" source="jsxgraph/shear-slider.js">
+            <slate xml:id="jsxgraph-shear-slider" surface="jsxboard" aspect="1:1"/>
+            <instructions>
+                <p>
+                    <ul>
+                        <li><p>Press <alert>x-axis invariant</alert> and set the <alert>shear factor</alert> slider to <m>1.5</m>. Compare the image with your drawing in the activity.</p></li>
+                        <li><p>Find the shear factor that moves <m>(3, 2)</m> to <m>(1, 2)</m>.</p></li>
+                        <li><p>Press <alert>y-axis invariant</alert> and move the slider. Which edge of the rectangle stays still now?</p></li>
+                    </ul>
+                </p>
+            </instructions>
+        </interactive>
+    </figure>
 
     <xi:include href="../lesson-plan-templates/example-intro.ptx" />
 
-    <!-- Add at least 3 examples -->
-
-    <!-- <example>
+    <example xml:id="example-shearing-a-rectangle">
+        <title>Shearing a Rectangle</title>
         <statement>
+            <p>The rectangle with corners <m>(2, 0)</m>, <m>(4, 0)</m>, <m>(4, 3)</m> and <m>(2, 3)</m> is mapped by a shear with the <m>y</m>-axis invariant and shear factor <m>0.5</m>. Find the matrix, the image and the areas.</p>
         </statement>
         <solution>
+            <p>With the <m>y</m>-axis invariant, <m>(0, 1)</m> stays at <m>(0, 1)</m> and <m>(1, 0)</m> moves up <m>0.5</m> to <m>(1, 0.5)</m>. The matrix is <m>\begin{bmatrix} 1 \amp 0 \\ 0.5 \amp 1 \end{bmatrix}</m>.</p>
+            <p>
+                <md>
+                    \begin{bmatrix} 1 \amp 0 \\ 0.5 \amp 1 \end{bmatrix} \begin{bmatrix} 2 \amp 4 \amp 4 \amp 2 \\ 0 \amp 0 \amp 3 \amp 3 \end{bmatrix} = \begin{bmatrix} 2 \amp 4 \amp 4 \amp 2 \\ 1 \amp 2 \amp 5 \amp 4 \end{bmatrix}
+                </md>
+                The image is <m>(2, 1)</m>, <m>(4, 2)</m>, <m>(4, 5)</m>, <m>(2, 4)</m>. Points 2 units from the <m>y</m>-axis moved up <m>1</m>; points 4 units away moved up <m>2</m>.
+            </p>
+            <p>The rectangle has area <m>2 \times 3 = 6</m>. The image is a parallelogram with vertical sides of length <m>3</m>, 2 units apart: area <m>6</m> again.</p>
         </solution>
     </example>
 
-    <example>
+    <example xml:id="example-describing-a-shear">
+        <title>Describing a Shear</title>
         <statement>
+            <p>A shear maps the square <m>(1, 2)</m>, <m>(3, 2)</m>, <m>(3, 4)</m>, <m>(1, 4)</m> onto <m>(-1, 2)</m>, <m>(1, 2)</m>, <m>(-1, 4)</m>, <m>(-3, 4)</m>. Describe the shear fully and write down its matrix.</p>
         </statement>
         <solution>
+            <p>Every <m>y</m>-coordinate is unchanged, so the points move parallel to the <m>x</m>-axis, and the <m>x</m>-axis is the invariant axis.</p>
+            <p><m>(3, 2)</m> moved to <m>(1, 2)</m>: a distance <m>-2</m> at distance <m>2</m> from the axis, so <m>k = \frac{-2}{2} = -1</m>. Check with <m>(3, 4)</m>: it moved <m>-4</m> at distance <m>4</m>, and <m>\frac{-4}{4} = -1</m>.</p>
+            <p>The transformation is a shear with the <m>x</m>-axis invariant and shear factor <m>-1</m>. Its matrix is <m>\begin{bmatrix} 1 \amp -1 \\ 0 \amp 1 \end{bmatrix}</m>.</p>
         </solution>
     </example>
 
-    <example>
+    <example xml:id="example-a-leaning-bookshelf">
+        <title>A Leaning Bookshelf</title>
         <statement>
+            <p>A bookshelf in a school library is 1.8 m tall and 0.9 m wide. Its joints work loose, and the top moves 0.3 m sideways while the bottom stays on the floor. Treat the front of the shelf as a rectangle sheared with the floor as the invariant axis. Find the shear factor, how far a point 0.9 m above the floor moves, and the area of the front of the shelf after the shear.</p>
         </statement>
         <solution>
+            <p>Shear factor = distance moved <m>\div</m> distance from the invariant axis <m>= 0.3 \div 1.8 = \frac{1}{6}</m>.</p>
+            <p>A point 0.9 m above the floor moves <m>\frac{1}{6} \times 0.9 = 0.15\,\text{m}</m>, half as far as the top.</p>
+            <p>A shear does not change area, so the front still has area <m>1.8 \times 0.9 = 1.62\,\text{m}^2</m> (<xref ref="fig-shear-factor-bookshelf"/>).</p>
         </solution>
-    </example> -->
+    </example>
+
+    <figure xml:id="fig-shear-factor-bookshelf">
+        <caption>The front of a bookshelf before and after its top moves 0.3 m sideways.</caption>
+        <image width="45%">
+            <shortdescription>A rectangle 0.9 m wide and 1.8 m tall standing on the floor, drawn solid, and its dashed sheared image whose top edge has moved 0.3 m to the right. The floor is drawn thick. The shear factor is 0.3 divided by 1.8.</shortdescription>
+            <latex-image>
+\begin{tikzpicture}[scale=2.5, >=stealth]
+\draw[line width=2pt] (-0.3,0) -- (1.6,0) node[right]{\small floor};
+\draw[thick] (0,0) rectangle (0.9,1.8);
+\draw[thick, dashed] (0,0) -- (0.9,0) -- (1.2,1.8) -- (0.3,1.8) -- cycle;
+\draw[latex-latex, thin] (-0.15,0) -- (-0.15,1.8) node[midway, left]{\small 1.8 m};
+\draw[latex-latex, thin] (0,-0.12) -- (0.9,-0.12) node[midway, below]{\small 0.9 m};
+\draw[->, thin] (0.9,1.9) -- (1.2,1.9) node[midway, above]{\small 0.3 m};
+\end{tikzpicture}
+            </latex-image>
+        </image>
+    </figure>
 
     <xi:include href="../lesson-plan-templates/assessment-intro.ptx" />
+    <xi:include href="../lesson-plan-templates/checkpoint.ptx" />
 
-    <!-- If STACK questions are included, uncomment this: -->
+    <p>Type one number in each box of a matrix. Type fractions with a slash, for example <c>-3/2</c>, or as exact decimals, for example <c>-1.5</c>. Type each coordinate in its own box.</p>
 
-    <!-- <xi:include href="../lesson-plan-templates/checkpoint.ptx" /> -->
+    <exercise xml:id="ex-matrix-and-image-under-a-shear">
+        <stack label="stk-matrix-and-image-under-a-shear" source="stack/top/2-measurement-and-geometry/06-matrices-and-transformations/06-shear/Matrix-and-image-under-a-shear.xml"/>
+    </exercise>
 
-    <!-- Add STACK exercises if made -->
+    <exercise xml:id="ex-describing-a-shear">
+        <stack label="stk-describing-a-shear" source="stack/top/2-measurement-and-geometry/06-matrices-and-transformations/06-shear/Describing-a-shear.xml"/>
+    </exercise>
 
-    <!-- Add static exercises -->
+    <exercise xml:id="ex-finding-the-mistake-in-describing-a-shear">
+        <stack label="stk-finding-the-mistake-in-describing-a-shear" source="stack/top/2-measurement-and-geometry/06-matrices-and-transformations/06-shear/Finding-the-mistake-in-describing-a-shear.xml"/>
+    </exercise>
 
-    <!-- <exercises>
-        <exercise>
-            <statement>   
+    <exercises xml:id="exercises-shear">
+        <exercise xml:id="ex-shear-images">
+            <statement><p>Find the image of the point under each shear.
+                <ol marker="(a)">
+                    <li><p>The <m>x</m>-axis invariant, shear factor <m>4</m>; the point <m>(1, 2)</m>.</p></li>
+                    <li><p>The <m>y</m>-axis invariant, shear factor <m>-1.5</m>; the point <m>(2, 3)</m>.</p></li>
+                </ol>
+            </p></statement>
+            <answer><p>(a) <m>(9, 2)</m> (b) <m>(2, 0)</m></p></answer>
+        </exercise>
+        <exercise xml:id="ex-describe-the-shear">
+            <statement><p>A shear maps <m>(0, 0)</m>, <m>(4, 0)</m>, <m>(4, 1)</m>, <m>(0, 1)</m> onto <m>(0, 0)</m>, <m>(4, 0)</m>, <m>(6.5, 1)</m>, <m>(2.5, 1)</m>. Describe the shear fully and write down its matrix.</p></statement>
+            <answer><p>A shear with the <m>x</m>-axis invariant and shear factor <m>2.5</m>; <m>\begin{bmatrix} 1 \amp 2.5 \\ 0 \amp 1 \end{bmatrix}</m></p></answer>
+            <solution><p>The <m>y</m>-coordinates do not change and the points on the <m>x</m>-axis stay, so the <m>x</m>-axis is invariant. <m>(0, 1)</m> moved <m>2.5</m> at distance <m>1</m>: shear factor <m>2.5</m>.</p></solution>
+        </exercise>
+        <exercise xml:id="ex-shear-from-matrix">
+            <statement><p>Describe fully the transformation with matrix <m>\begin{bmatrix} 1 \amp 0 \\ -4 \amp 1 \end{bmatrix}</m>, and find the image of <m>(2, 1)</m>.</p></statement>
+            <answer><p>A shear with the <m>y</m>-axis invariant and shear factor <m>-4</m>; <m>(2, -7)</m></p></answer>
+        </exercise>
+        <exercise xml:id="ex-area-after-shear">
+            <statement><p>A rectangular plot 25 m by 12 m is drawn on a plan and then sheared. What is the area of the image? Give a reason.</p></statement>
+            <answer><p><m>300\,\text{m}^2</m>, because a shear has determinant <m>1</m> and so does not change area.</p></answer>
+        </exercise>
+        <exercise xml:id="ex-invariant-line-of-a-shear">
+            <statement><p>Show that every point on the <m>x</m>-axis is fixed by <m>\begin{bmatrix} 1 \amp 2.5 \\ 0 \amp 1 \end{bmatrix}</m>. Find the images of <m>(0, 2)</m> and <m>(4, 2)</m>, and explain why both moved the same distance.</p></statement>
+            <answer><p><m>(t, 0) \to (t, 0)</m>; <m>(5, 2)</m> and <m>(9, 2)</m>: both moved 5 units, because both are 2 units from the invariant axis.</p></answer>
+            <solution><p><m>\begin{bmatrix} 1 \amp 2.5 \\ 0 \amp 1 \end{bmatrix} \begin{pmatrix} t \\ 0 \end{pmatrix} = \begin{pmatrix} t \\ 0 \end{pmatrix}</m>. <m>(0, 2) \to (0 + 2.5 \times 2,\ 2) = (5, 2)</m> and <m>(4, 2) \to (4 + 5,\ 2) = (9, 2)</m>. Each moves <m>2.5 \times 2 = 5</m> units: the distance moved depends only on the distance from the invariant axis.</p></solution>
+        </exercise>
+        <exercise xml:id="ex-shear-with-another-invariant-line">
+            <title>Challenge: A Shear With Another Invariant Line (Extension)</title>
+            <statement><p><m>M = \begin{bmatrix} -3 \amp 16 \\ -1 \amp 5 \end{bmatrix}</m> is the matrix of a shear whose invariant line is not an axis.
+                <ol marker="(a)">
+                    <li><p>Find <m>\det M</m>.</p></li>
+                    <li><p>Show that <m>(4, 1)</m> is fixed by <m>M</m>, and that every point on the line <m>x = 4y</m> is fixed.</p></li>
+                    <li><p>Find the image of <m>(0, 1)</m> and show that it moved parallel to the line <m>x = 4y</m>.</p></li>
+                </ol>
+            </p></statement>
+            <hint><p>A fixed point satisfies <m>M\begin{pmatrix} x \\ y \end{pmatrix} = \begin{pmatrix} x \\ y \end{pmatrix}</m>.</p></hint>
+            <answer><p>(a) <m>1</m> (b) <m>(4, 1) \to (4, 1)</m> (c) <m>(16, 5)</m>, which moved by <m>\begin{pmatrix} 16 \\ 4 \end{pmatrix} = 4\begin{pmatrix} 4 \\ 1 \end{pmatrix}</m></p></answer>
+            <solution><p>(a) <m>\det M = (-3)(5) - (16)(-1) = -15 + 16 = 1</m>, so areas are unchanged.</p>
+            <p>(b) <m>M\begin{pmatrix} 4 \\ 1 \end{pmatrix} = \begin{pmatrix} -12 + 16 \\ -4 + 5 \end{pmatrix} = \begin{pmatrix} 4 \\ 1 \end{pmatrix}</m>. A point on <m>x = 4y</m> is <m>(4t, t)</m>, and <m>M\begin{pmatrix} 4t \\ t \end{pmatrix} = t\,M\begin{pmatrix} 4 \\ 1 \end{pmatrix} = \begin{pmatrix} 4t \\ t \end{pmatrix}</m>.</p>
+            <p>(c) <m>M\begin{pmatrix} 0 \\ 1 \end{pmatrix} = \begin{pmatrix} 16 \\ 5 \end{pmatrix}</m>. The point moved by <m>\begin{pmatrix} 16 \\ 4 \end{pmatrix}</m>, which is <m>4\begin{pmatrix} 4 \\ 1 \end{pmatrix}</m>, a vector along the line <m>x = 4y</m>.</p></solution>
+        </exercise>
+    </exercises>
 
-            </statement>   
-            <solution>
-
-            </solution>             
-        </exercise>        
-    </exercises> -->
-
-    <!-- [LP] Add information on how to differentiate  -->
-
-    <!-- <axiom component="lesson-plan">
+    <axiom component="lesson-plan">
         <title>Differentiation</title>
-
-        <table>
-            <title>Differentiation</title>
-            <tabular halign="left">
-                <row header="yes" bottom="minor">
-                    <cell>Learner Group</cell>
-                    <cell>Strategy &amp; Learning Experience</cell>
-                    <cell></cell>
-                </row>
-                <row>
-                    <cell>Struggling Learners (Support)</cell>
-                    <cell>
-                        XXXX
-                    </cell>
-                    <cell></cell>
-                </row>
-                <row>
-                    <cell>On-Level Learners (Core)</cell>
-                    <cell>
-                        <line>The core lesson activities as described above.</line>
-                    </cell>
-                    <cell></cell>
-                </row>
-                <row>
-                    <cell>Advanced Learners (Challenge)</cell>
-                    <cell>
-                        XXXX
-                    </cell>
-                    <cell></cell>
-                </row>
+        <table xml:id="table-differentiation-shear">
+            <title>Differentiation Strategies</title>
+            <tabular halign="left" top="minor" bottom="minor" left="minor" right="minor">
+                <row header="yes" bottom="medium"><cell>Learner Group</cell><cell>Strategy and Learning Experience</cell></row>
+                <row><cell>Struggling Learners (Support)</cell><cell>Use the pile of books again. Give a card: <q>shear factor = distance moved <m>\div</m> distance from the invariant axis</q>. Focus on the activity. Assign <xref ref="ex-shear-images"/> and <xref ref="ex-area-after-shear"/>.</cell></row>
+                <row><cell>On-Level Learners (Core)</cell><cell>Full activity plus all examples. Assign <xref ref="ex-shear-images"/> to <xref ref="ex-invariant-line-of-a-shear"/>.</cell></row>
+                <row><cell>Advanced Learners (Challenge)</cell><cell>All exercises including <xref ref="ex-shear-with-another-invariant-line"/>. Extension: which shear undoes a shear with the <m>y</m>-axis invariant and shear factor <m>0.5</m>? (Answer: the shear with the <m>y</m>-axis invariant and shear factor <m>-0.5</m>.)</cell></row>
             </tabular>
         </table>
-    </axiom> -->
+    </axiom>
 
     <xi:include href="../lesson-plan-templates/assessment-methods.ptx" />
 

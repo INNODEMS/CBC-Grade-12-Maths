@@ -33,7 +33,7 @@
                 <li component="lesson-plan">
                     <title>Estimated Duration</title>
                     <p>
-                        40 minutes
+                        2 lessons of 40 minutes
                     </p>
                 </li>
             </dl>
@@ -41,168 +41,434 @@
         </introduction>
     </objectives>
 
+
     <!-- Planning notes (from the Combined Mathematics tab of the Grade 12 Book Structure Mapping sheet)
          Sheet title: Combined events (mutually exclusive, independent events)
          Content summary: Combined events: mutually exclusive events and independent events.
          Suggested activity: Learners identify mutually exclusive and independent events from everyday examples, e.g. choosing safe means of transport. -->
 
-    <!-- [LP] Add guidance on activity -->
+    <!-- Section notes (2026-11)
+         SLO: Essential (c), with (b) in lesson 4.2. Lessons 4.1 and 4.2 as subsections.
+         Activity: as planning notes (sorting everyday event pairs; choosing safe transport) in lesson 4.1 | changed: lesson 4.2 adds its own activity (two seeds in a hole)
+         JSXGraph: none named in the planning notes
+         STACK: assets/stack/top/3-statistics-and-probability/16-probability-iii/04-combined-events/ -->
 
-    <axiom component="lesson-plan">
-        <title>Problem-Solving and Discovery</title>
-        <dl>
-            <li>
-                <title>Suggested Time</title>
-                <p>
-                    XXX minutes
-                </p>
-            </li>
-            <li>
-                <title>Objective</title>
-                <p>
-                    XXX
-                </p>
-            </li>
-            <li>
-                <title>Teacher's Role</title>
-                <p>
-                    XXX
-                </p>
-            </li>
-        </dl>
-    </axiom>
+    <!-- ============================================================ Lesson 4.1 -->
+    <subsection xml:id="subsec-mutually-exclusive-or-independent">
+        <title>Mutually Exclusive and Independent Events</title>
 
-    <!-- Add Activity -->
-
-    <!-- <activity>
-        <statement>
-        </statement>
-    </activity> -->
-
-    <!-- [LP] Add guidance on structured lesson plan-->
-
-    <!-- <axiom component="lesson-plan">
-        <title>Structured Instruction</title>
-        <p>
-            <dl>
-            <li>
-                <title>Suggested Time</title>
-                <p>
-                    XX minutes
-                </p>
-            </li>
-            <li>
-                <title>Objective</title>
-                <p>
-                    To formalize the concepts and properties learners discovered in the anchor task.
-                </p>
-            </li>
-            </dl>
-        </p>
-        <paragraphs>
-            <title>Key Takeaways &amp; Teacher Connection</title>
+        <p component="lesson-plan">Upon completion of this lesson, learners will be able to:
             <ol>
-                <li>
-                    <p>
-                        <alert>Connecting to Learner Work:</alert> XXXX
-                    </p>
-                </li>
+                <li><p><alert>Know:</alert> how to tell mutually exclusive, independent and neither apart in context; mutually exclusive events that can each happen are never independent; independence in real life is an assumption.</p></li>
+                <li><p><alert>Do:</alert> classify a pair of events, then use the right law.</p></li>
+                <li><p><alert>Apply:</alert> choosing a safe means of transport.</p></li>
             </ol>
-        </paragraphs>
-    </axiom> -->
+        </p>
 
-    <!-- Add insight / key takeaway directly related to activity / learner experience -->
+        <axiom component="lesson-plan">
+            <title>Problem-Solving and Discovery</title>
+            <dl>
+                <li><title>Suggested Time</title><p>14 minutes</p></li>
+                <li><title>Objective</title><p>Groups sort everyday pairs of events and explain their choices.</p></li>
+                <li><title>Teacher's Role</title><p>Print the eight cards. Groups of four sort them into three piles, then each group presents one card it disagreed about (communication and collaboration; respect for others' views). Close with part (c): road safety.</p></li>
+            </dl>
+        </axiom>
 
-    <!-- <insight>
-    </insight> -->
+        <activity xml:id="act-choosing-safe-transport">
+            <title>Choosing Safe Transport</title>
+            <statement>
+                <p>Each card shows two events.</p>
+                <p>
+                    <ol>
+                        <li><p>Achieng's one trip to school today is by matatu / is by boda boda.</p></li>
+                        <li><p>A boda boda rider in Eldoret wears a helmet / a coin tossed in Nairobi shows heads.</p></li>
+                        <li><p>It rains in Eldoret this morning / the road to school is muddy.</p></li>
+                        <li><p>A die shows 2 / the same die shows 5.</p></li>
+                        <li><p>A die shows an even number / the same die shows a number less than 4.</p></li>
+                        <li><p>The first toss of a coin is heads / the second toss is heads.</p></li>
+                        <li><p>A matatu has a working speed governor / the same matatu breaks the speed limit.</p></li>
+                        <li><p>A learner is in the school's road-safety club / a learner in another county wins a raffle.</p></li>
+                    </ol>
+                </p>
+                <p>
+                    <ol marker="(a)">
+                        <li>
+                            <p>Sort the cards into three piles: events that cannot both happen; events where one does not affect the other; and neither.</p>
+                            <solution component="lesson-plan"><p>Cannot both happen (mutually exclusive): 1 and 4. Do not affect each other (independent): 2, 6 and 8. Neither: 3, 5 and 7. For card 5, the score 2 is both even and less than 4, and of the scores 1, 2, 3 only one in three is even, compared with one in two overall.</p></solution>
+                        </li>
+                        <li>
+                            <p>For each card in the first pile, explain why the two events cannot be independent.</p>
+                            <solution component="lesson-plan"><p>If one happens, the other cannot: knowing one has happened changes the probability of the other to 0.</p></solution>
+                        </li>
+                        <li>
+                            <p>Achieng travels to school by exactly one of: walking, matatu or boda boda, with probabilities <m>0.5</m>, <m>0.35</m> and <m>0.15</m>. Find the probability that she uses a motor vehicle. Which choice would a road-safety campaign most want her to avoid, and why?</p>
+                            <solution component="lesson-plan"><p>The ways are mutually exclusive: <m>0.35 + 0.15 = 0.5</m>. Open answer: many learners will say the boda boda, as riders and passengers are exposed and often travel without helmets; accept any reasoned answer.</p></solution>
+                        </li>
+                    </ol>
+                </p>
+            </statement>
+        </activity>
 
-    <!-- Add further instruction (not in a block) to develop ideas as needed -->
+        <axiom component="lesson-plan">
+            <title>Structured Instruction</title>
+            <p>
+                <dl>
+                    <li><title>Suggested Time</title><p>8 minutes</p></li>
+                    <li><title>Objective</title><p>To give two tests for classifying a pair of events.</p></li>
+                </dl>
+            </p>
+            <paragraphs>
+                <title>Key Takeaways &amp; Teacher Connection</title>
+                <ol>
+                    <li><p><alert>Connecting to Learner Work:</alert> the disputed cards show that the two tests must be asked separately.</p></li>
+                    <li><p>Mutually exclusive: ask <q>Can both happen?</q></p></li>
+                    <li><p>Independent: ask <q>Does one change the probability of the other?</q> In real life this is an assumption we state.</p></li>
+                </ol>
+            </paragraphs>
+        </axiom>
 
-    <xi:include href="../lesson-plan-templates/example-intro.ptx" />
+        <insight xml:id="insight-me-or-independent">
+            <title>Mutually Exclusive or Independent?</title>
+            <p>
+                <alert>Mutually exclusive:</alert> the events cannot both happen in one trial, so <m>P(A \text{ and } B) = 0</m>. For <q>or</q>, add.
+            </p>
+            <p>
+                <alert>Independent:</alert> one happening does not change the probability of the other. This is usually true for separate experiments, such as two coins or a coin and a die. For <q>and</q>, multiply.
+            </p>
+            <p>
+                If <m>A</m> and <m>B</m> are mutually exclusive and each can happen, they are <em>not</em> independent: if <m>A</m> happens, <m>B</m> cannot.
+            </p>
+        </insight>
 
-    <!-- Add at least 3 examples -->
+        <note xml:id="note-is-it-really-independent">
+            <title>Is It Really Independent?</title>
+            <p>
+                Weather, traffic and people's choices are often linked. Rain on one day makes rain the next day more likely; a rider who carries too many passengers may also be one who skips a helmet. We assume events are independent only when it is reasonable, and we say that we have assumed it.
+            </p>
+        </note>
 
-    <!-- <example>
-        <statement>
-        </statement>
-        <solution>
-        </solution>
-    </example>
+        <xi:include href="../lesson-plan-templates/example-intro.ptx" />
 
-    <example>
-        <statement>
-        </statement>
-        <solution>
-        </solution>
-    </example>
-
-    <example>
-        <statement>
-        </statement>
-        <solution>
-        </solution>
-    </example> -->
-
-    <xi:include href="../lesson-plan-templates/assessment-intro.ptx" />
-
-    <!-- If STACK questions are included, uncomment this: -->
-
-    <!-- <xi:include href="../lesson-plan-templates/checkpoint.ptx" /> -->
-
-    <!-- Add STACK exercises if made -->
-
-    <!-- Add static exercises -->
-
-    <!-- <exercises>
-        <exercise>
-            <statement>   
-
-            </statement>   
+        <example xml:id="example-sorting-events-on-a-die">
+            <title>Sorting Events on One Die</title>
+            <statement>
+                <p>A fair die is rolled once. Decide whether each pair of events is mutually exclusive, independent or neither: (a) <q>shows 2</q> and <q>shows 5</q>; (b) <q>even</q> and <q>greater than 3</q>; (c) <q>even</q> and <q>less than 3</q>.</p>
+            </statement>
             <solution>
+                <p>(a) The die cannot show 2 and 5 at once: mutually exclusive.</p>
+                <p>(b) 4 and 6 are even and greater than 3, so both can happen: not mutually exclusive. <m>P(\text{even}) = \frac{1}{2}</m>, but of the scores greater than 3 (4, 5, 6), two out of three are even. Knowing the score is greater than 3 changes the probability, so they are not independent. Neither.</p>
+                <p>(c) 2 is even and less than 3: not mutually exclusive. Of the scores less than 3 (1, 2), one out of two is even, the same as <m>P(\text{even}) = \frac{1}{2}</m>. Check: <m>P(\text{even and less than } 3) = \frac{1}{6}</m> and <m>\frac{1}{2} \times \frac{2}{6} = \frac{1}{6}</m>. Surprisingly, these events are independent. Decide such cases by calculation, not by feel.</p>
+            </solution>
+        </example>
 
-            </solution>             
-        </exercise>        
-    </exercises> -->
+        <example xml:id="example-two-dice-and-the-laws">
+            <title>Two Dice and the Laws</title>
+            <statement>
+                <p>Two dice are rolled. Find the probability of (a) a total of 2 or a total of 12, (b) a 6 on the first die and a 6 on the second, (c) an even number on the first die and a number greater than 4 on the second.</p>
+            </statement>
+            <solution>
+                <p>(a) The totals 2 and 12 cannot both happen: <m>\frac{1}{36} + \frac{1}{36} = \frac{1}{18}</m>.</p>
+                <p>(b) The dice are independent: <m>\frac{1}{6} \times \frac{1}{6} = \frac{1}{36}</m>.</p>
+                <p>(c) Independent again: <m>\frac{1}{2} \times \frac{1}{3} = \frac{1}{6}</m>.</p>
+            </solution>
+        </example>
 
-    <!-- [LP] Add information on how to differentiate  -->
+        <example xml:id="example-helmet-survey-assumption">
+            <title>A Helmet Survey: Stating the Assumption</title>
+            <statement>
+                <p>At a boda boda checkpoint, the probability that a rider wears a helmet is <m>0.65</m> and the probability that the rider is carrying more than one passenger is <m>0.2</m>. Assuming these events are independent, find the probability that a rider wears a helmet and is not overloaded. Is the assumption reasonable?</p>
+            </statement>
+            <solution>
+                <p><m>P(\text{not overloaded}) = 1 - 0.2 = 0.8</m>, so if the events are independent the probability is <m>0.65 \times 0.8 = 0.52</m>.</p>
+                <p>The assumption is doubtful: riders who overload their bikes may also be the riders who skip helmets. The true probability could be different, and only data on both together would tell us.</p>
+            </solution>
+        </example>
 
-    <!-- <axiom component="lesson-plan">
-        <title>Differentiation</title>
+        <xi:include href="../lesson-plan-templates/assessment-intro.ptx" />
+        <xi:include href="../lesson-plan-templates/checkpoint.ptx" />
 
-        <table>
+        <p>Type a fraction with a slash, for example <c>5/12</c>, and a decimal with a point, for example <c>0.35</c>. Give probabilities exactly: do not round. Choose from the lists where they are given.</p>
+
+        <exercise xml:id="ex-classifying-pairs-of-events">
+            <!--<title></title>-->
+            <stack label="stk-classifying-pairs-of-events" source="stack/top/3-statistics-and-probability/16-probability-iii/04-combined-events/Classifying-pairs-of-events.xml"/>
+        </exercise>
+
+        <exercise xml:id="ex-finding-the-mistake-in-choosing-a-probability-law">
+            <!--<title></title>-->
+            <stack label="stk-finding-the-mistake-in-choosing-a-probability-law" source="stack/top/3-statistics-and-probability/16-probability-iii/04-combined-events/Finding-the-mistake-in-choosing-a-probability-law.xml"/>
+        </exercise>
+
+        <exercises xml:id="exercises-me-and-independent">
+            <exercise xml:id="ex-classify-four-pairs">
+                <statement><p>Classify each pair as mutually exclusive, independent or neither, with a reason. (a) A learner chosen at random is in Grade 10 / is in Grade 12. (b) A coin shows heads / a spinner in another room shows red. (c) A card from cards numbered 1 to 20 is even / is a multiple of 4. (d) It is sunny in Garissa / Wafula's die shows 3.</p></statement>
+                <answer><p>(a) mutually exclusive (b) independent (c) neither (d) independent</p></answer>
+                <solution><p>(a) No learner is in both grades. (b) and (d) Separate experiments that cannot affect each other. (c) 4, 8, 12, 16 and 20 are both, and every multiple of 4 is even, so knowing one changes the probability of the other.</p></solution>
+            </exercise>
+            <exercise xml:id="ex-one-die-or">
+                <statement><p>A die is rolled. Find (a) <m>P(1 \text{ or } 6)</m>, (b) <m>P(\text{even or } 5)</m>.</p></statement>
+                <answer><p>(a) <m>\frac{1}{3}</m> (b) <m>\frac{2}{3}</m></p></answer>
+            </exercise>
+            <exercise xml:id="ex-two-dice-doubles-one-or-six">
+                <statement><p>Two dice are rolled. Find the probability of a double 6 or a double 1.</p></statement>
+                <answer><p><m>\frac{1}{18}</m></p></answer>
+            </exercise>
+            <exercise xml:id="ex-spinner-twice">
+                <statement><p>A spinner lands on red with probability <m>0.3</m>, blue <m>0.5</m> and green <m>0.2</m>. It is spun twice. Find (a) <m>P(\text{red then blue})</m>, (b) <m>P(\text{red or blue on the first spin})</m>.</p></statement>
+                <answer><p>(a) <m>0.15</m> (b) <m>0.8</m></p></answer>
+            </exercise>
+            <exercise xml:id="ex-kamau-rain-half">
+                <statement><p>Kamau says: <q>Tomorrow it will either rain or not rain, so the probability of rain is <m>\frac{1}{2}</m>.</q> What is wrong with his reasoning?</p></statement>
+                <answer><p>The two outcomes are not equally likely, so counting them does not give the probability.</p></answer>
+            </exercise>
+            <exercise xml:id="ex-me-not-independent">
+                <title>Challenge: Never Both</title>
+                <statement><p><m>A</m> and <m>B</m> are mutually exclusive, with <m>P(A) = 0.3</m> and <m>P(B) = 0.4</m>. Show that <m>A</m> and <m>B</m> are not independent.</p></statement>
+                <hint><p>Compare <m>P(A \text{ and } B)</m> with <m>P(A) \times P(B)</m>.</p></hint>
+                <answer><p><m>P(A \text{ and } B) = 0</m>, but <m>P(A) \times P(B) = 0.12</m>.</p></answer>
+                <solution><p>Mutually exclusive events cannot both happen, so <m>P(A \text{ and } B) = 0</m>. If they were independent it would be <m>0.3 \times 0.4 = 0.12</m>. Since <m>0 \ne 0.12</m>, they are not independent.</p></solution>
+            </exercise>
+        </exercises>
+
+        <axiom component="lesson-plan">
             <title>Differentiation</title>
-            <tabular halign="left">
-                <row header="yes" bottom="minor">
-                    <cell>Learner Group</cell>
-                    <cell>Strategy &amp; Learning Experience</cell>
-                    <cell></cell>
-                </row>
-                <row>
-                    <cell>Struggling Learners (Support)</cell>
-                    <cell>
-                        XXXX
-                    </cell>
-                    <cell></cell>
-                </row>
-                <row>
-                    <cell>On-Level Learners (Core)</cell>
-                    <cell>
-                        <line>The core lesson activities as described above.</line>
-                    </cell>
-                    <cell></cell>
-                </row>
-                <row>
-                    <cell>Advanced Learners (Challenge)</cell>
-                    <cell>
-                        XXXX
-                    </cell>
-                    <cell></cell>
-                </row>
-            </tabular>
-        </table>
-    </axiom> -->
+            <table xml:id="table-differentiation-me-and-independent">
+                <title>Differentiation Strategies</title>
+                <tabular halign="left" top="minor" bottom="minor" left="minor" right="minor">
+                    <row header="yes" bottom="medium"><cell>Learner Group</cell><cell>Strategy and Learning Experience</cell></row>
+                    <row><cell>Struggling Learners (Support)</cell><cell>Give the two test questions on a card. Sort cards 1, 2, 4 and 6 only. Assign <xref ref="ex-one-die-or"/> and <xref ref="ex-two-dice-doubles-one-or-six"/>.</cell></row>
+                    <row><cell>On-Level Learners (Core)</cell><cell>Full activity and all examples. Assign <xref ref="ex-classify-four-pairs"/> to <xref ref="ex-kamau-rain-half"/>.</cell></row>
+                    <row><cell>Advanced Learners (Challenge)</cell><cell>All exercises including <xref ref="ex-me-not-independent"/>. Extension: find two events on one die that are independent but not obviously so. (For example <q>even</q> and <q>less than 3</q>, or <q>even</q> and <q>a multiple of 3</q>.)</cell></row>
+                </tabular>
+            </table>
+        </axiom>
 
-    <xi:include href="../lesson-plan-templates/assessment-methods.ptx" />
+        <xi:include href="../lesson-plan-templates/assessment-methods.ptx" />
+        <xi:include href="../lesson-plan-templates/reflection.ptx"/>
+    </subsection>
 
-    <xi:include href="../lesson-plan-templates/reflection.ptx"/>
+    <!-- ============================================================ Lesson 4.2 -->
+    <subsection xml:id="subsec-at-least-one-and-exactly-one">
+        <title>Neither, At Least One and Exactly One</title>
+
+        <p component="lesson-plan">Upon completion of this lesson, learners will be able to:
+            <ol>
+                <li><p><alert>Know:</alert> for independent <m>A</m> and <m>B</m>, <m>P(\text{neither}) = P(A') \times P(B')</m>; <m>P(\text{at least one}) = 1 - P(\text{neither})</m>; <q>exactly one</q> is <m>A</m> only or <m>B</m> only; adding the probabilities of events that can happen together counts the overlap twice.</p></li>
+                <li><p><alert>Do:</alert> answer the four standard questions (both, neither, at least one, exactly one).</p></li>
+                <li><p><alert>Apply:</alert> seeds, fishing boats and two dice.</p></li>
+            </ol>
+        </p>
+
+        <axiom component="lesson-plan">
+            <title>Problem-Solving and Discovery</title>
+            <dl>
+                <li><title>Suggested Time</title><p>14 minutes</p></li>
+                <li><title>Objective</title><p>Learners find out why many farmers plant two maize seeds in each hole.</p></li>
+                <li><title>Teacher's Role</title><p>Ask the question first: <q>Why plant two seeds in a hole?</q> Groups list the four cases (both germinate, first only, second only, neither) before calculating.</p></li>
+            </dl>
+        </axiom>
+
+        <activity xml:id="act-two-seeds-in-a-hole">
+            <title>Two Seeds in a Hole</title>
+            <statement>
+                <p>A farmer in Machakos plants two maize seeds in each hole. Each seed germinates with probability <m>0.8</m>, independently.</p>
+                <p>
+                    <ol marker="(a)">
+                        <li>
+                            <p>Find the probability that both seeds germinate.</p>
+                            <solution component="lesson-plan"><p><m>0.8 \times 0.8 = 0.64</m>.</p></solution>
+                        </li>
+                        <li>
+                            <p>Find the probability that neither germinates.</p>
+                            <solution component="lesson-plan"><p><m>0.2 \times 0.2 = 0.04</m>.</p></solution>
+                        </li>
+                        <li>
+                            <p>Find the probability that at least one germinates.</p>
+                            <solution component="lesson-plan"><p>Everything except neither: <m>1 - 0.04 = 0.96</m>.</p></solution>
+                        </li>
+                        <li>
+                            <p>Find the probability that exactly one germinates.</p>
+                            <solution component="lesson-plan"><p>First only or second only: <m>0.8 \times 0.2 + 0.2 \times 0.8 = 0.32</m>.</p></solution>
+                        </li>
+                        <li>
+                            <p>Check that your answers to (a), (b) and (d) add to 1. Why must they?</p>
+                            <solution component="lesson-plan"><p><m>0.64 + 0.04 + 0.32 = 1</m>: the three cases cover every possibility and cannot happen together.</p></solution>
+                        </li>
+                        <li>
+                            <p>Why do farmers plant two seeds in a hole?</p>
+                            <solution component="lesson-plan"><p>The chance of a plant in the hole rises from <m>0.8</m> to <m>0.96</m>.</p></solution>
+                        </li>
+                    </ol>
+                </p>
+            </statement>
+        </activity>
+
+        <axiom component="lesson-plan">
+            <title>Structured Instruction</title>
+            <p>
+                <dl>
+                    <li><title>Suggested Time</title><p>8 minutes</p></li>
+                    <li><title>Objective</title><p>To set out the four standard questions for two independent events.</p></li>
+                </dl>
+            </p>
+            <paragraphs>
+                <title>Key Takeaways &amp; Teacher Connection</title>
+                <ol>
+                    <li><p><alert>Connecting to Learner Work:</alert> part (e) shows that both, exactly one and neither add to 1.</p></li>
+                    <li><p><q>At least one</q> is quickest by the complement.</p></li>
+                    <li><p><q>Exactly one</q> has two orders.</p></li>
+                </ol>
+            </paragraphs>
+        </axiom>
+
+        <insight xml:id="insight-at-least-one">
+            <title>At Least One</title>
+            <p>
+                For independent events <m>A</m> and <m>B</m>:
+                <ul>
+                    <li><p>neither: <m>P(A' \text{ and } B') = P(A') \times P(B')</m>;</p></li>
+                    <li><p>at least one: <m>1 - P(\text{neither})</m>, because <q>at least one</q> is everything except <q>neither</q>;</p></li>
+                    <li><p>exactly one: <m>P(A \text{ and } B') + P(A' \text{ and } B)</m>, the two mutually exclusive orders.</p></li>
+                </ul>
+            </p>
+            <p>
+                Both, exactly one and neither cover every possibility, so their probabilities add to 1.
+            </p>
+        </insight>
+
+        <warning xml:id="warning-overlap-twice">
+            <title>Counting the Overlap Twice</title>
+            <p>
+                The probability of at least one 6 with two dice is not <m>\frac{1}{6} + \frac{1}{6}</m>. Adding counts the outcome (6, 6) twice, because the two events can happen together. See <xref ref="fig-at-least-one-six"/>.
+            </p>
+        </warning>
+
+        <figure xml:id="fig-at-least-one-six">
+            <caption>Outcomes of two dice with at least one 6: the last row and the last column, <m>11</m> cells.</caption>
+            <image width="55%">
+                <shortdescription>A six by six grid of the outcomes of two dice. The last column (first die 6) and the last row (second die 6) are shaded, 11 cells in all; the corner cell (6, 6), which belongs to both, is circled.</shortdescription>
+                <latex-image>
+\begin{tikzpicture}[scale=0.8]
+\fill[gray!35] (5,0) rectangle (6,6);
+\fill[gray!35] (0,0) rectangle (6,1);
+\draw (0,0) grid (6,6);
+\draw[very thick] (5.5,0.5) circle (0.38);
+\foreach \a in {1,...,6} { \node at (\a-0.5, 6.4) {\a}; }
+\foreach \b in {1,...,6} { \node at (-0.4, 6.5-\b) {\b}; }
+\node at (3, 7.1) {First die};
+\node[rotate=90] at (-1.1, 3) {Second die};
+\end{tikzpicture}
+                </latex-image>
+            </image>
+        </figure>
+
+        <note xml:id="note-general-addition-law">
+            <title>The General Addition Law (Extension)</title>
+            <p>
+                For any two events, <m>P(A \text{ or } B) = P(A) + P(B) - P(A \text{ and } B)</m>: subtract the overlap once because adding counts it twice. With two dice, <m>P(\text{at least one } 6) = \frac{6}{36} + \frac{6}{36} - \frac{1}{36} = \frac{11}{36}</m>. When <m>A</m> and <m>B</m> are mutually exclusive, <m>P(A \text{ and } B) = 0</m> and this is the addition law.
+            </p>
+        </note>
+
+        <xi:include href="../lesson-plan-templates/example-intro.ptx" />
+
+        <example xml:id="example-two-fishing-boats">
+            <title>Two Fishing Boats</title>
+            <statement>
+                <p>Two fishing boats go out from Dunga beach, Kisumu. The probability that the first comes back with a full catch is <m>0.7</m>, and for the second it is <m>0.6</m>. Assume the boats' catches are independent. Find the probability that (a) both, (b) neither, (c) at least one, (d) exactly one come back with a full catch.</p>
+            </statement>
+            <solution>
+                <p>(a) <m>0.7 \times 0.6 = 0.42</m>. (b) <m>0.3 \times 0.4 = 0.12</m>. (c) <m>1 - 0.12 = 0.88</m>. (d) <m>0.7 \times 0.4 + 0.3 \times 0.6 = 0.28 + 0.18 = 0.46</m>.</p>
+                <p>Check: <m>0.42 + 0.46 + 0.12 = 1</m>. The boats fish the same lake on the same day, so their catches may not really be independent: a calm day may help both.</p>
+            </solution>
+        </example>
+
+        <example xml:id="example-at-least-one-six">
+            <title>At Least One Six</title>
+            <statement>
+                <p>Two dice are rolled. Find the probability of at least one 6.</p>
+            </statement>
+            <solution>
+                <p><m>P(\text{no } 6) = \frac{5}{6} \times \frac{5}{6} = \frac{25}{36}</m>, so <m>P(\text{at least one } 6) = 1 - \frac{25}{36} = \frac{11}{36}</m>. Check by counting the <m>11</m> shaded cells of <xref ref="fig-at-least-one-six"/>.</p>
+            </solution>
+        </example>
+
+        <example xml:id="example-head-or-six">
+            <title>A Head or a Six</title>
+            <statement>
+                <p>A coin is tossed and a die is rolled. Find the probability of a head or a 6 (or both).</p>
+            </statement>
+            <solution>
+                <p><m>P(\text{neither}) = P(\text{tail}) \times P(\text{not } 6) = \frac{1}{2} \times \frac{5}{6} = \frac{5}{12}</m>, so <m>P(\text{head or } 6) = 1 - \frac{5}{12} = \frac{7}{12}</m>. Check with the list of <m>12</m> outcomes: H1 to H6 and T6 make <m>7</m>.</p>
+            </solution>
+        </example>
+
+        <p>
+            <em>Probability in daily life:</em> choosing a safe way to travel is a choice between mutually exclusive options, each with its own risk. Which of the ways you travel to school is the safest, and how could you find out?
+        </p>
+
+        <xi:include href="../lesson-plan-templates/assessment-intro.ptx" />
+        <xi:include href="../lesson-plan-templates/checkpoint.ptx" />
+
+        <p>Type a fraction with a slash, for example <c>5/12</c>, and a decimal with a point, for example <c>0.35</c>. Give probabilities exactly: do not round.</p>
+
+        <exercise xml:id="ex-at-least-one-and-exactly-one-for-independent-events">
+            <!--<title></title>-->
+            <stack label="stk-at-least-one-and-exactly-one-for-independent-events" source="stack/top/3-statistics-and-probability/16-probability-iii/04-combined-events/At-least-one-and-exactly-one-for-independent-events.xml"/>
+        </exercise>
+
+        <exercise xml:id="ex-events-that-can-happen-together">
+            <!--<title></title>-->
+            <stack label="stk-events-that-can-happen-together" source="stack/top/3-statistics-and-probability/16-probability-iii/04-combined-events/Events-that-can-happen-together.xml"/>
+        </exercise>
+
+        <exercises xml:id="exercises-at-least-one">
+            <exercise xml:id="ex-two-driving-tests">
+                <statement><p>The probability that Juma passes the theory part of his driving test is <m>0.9</m>, and the practical part <m>0.75</m>, independently. Find the probability that he passes (a) both, (b) at least one, (c) exactly one.</p></statement>
+                <answer><p>(a) <m>0.675</m> (b) <m>0.975</m> (c) <m>0.3</m></p></answer>
+                <solution><p>(a) <m>0.9 \times 0.75 = 0.675</m>. (b) <m>1 - 0.1 \times 0.25 = 0.975</m>. (c) <m>0.9 \times 0.25 + 0.1 \times 0.75 = 0.225 + 0.075 = 0.3</m>.</p></solution>
+            </exercise>
+            <exercise xml:id="ex-at-least-one-one">
+                <statement><p>Two dice are rolled. Find the probability of (a) at least one 1, (b) no 1.</p></statement>
+                <answer><p>(a) <m>\frac{11}{36}</m> (b) <m>\frac{25}{36}</m></p></answer>
+            </exercise>
+            <exercise xml:id="ex-tail-or-five">
+                <statement><p>A coin is tossed and a spinner numbered 1 to 5 is spun. Find the probability of a tail or a 5 (or both). Check by listing.</p></statement>
+                <answer><p><m>\frac{3}{5}</m></p></answer>
+                <solution><p><m>1 - \frac{1}{2} \times \frac{4}{5} = \frac{3}{5}</m>. By listing: T1 to T5 and H5 are <m>6</m> of the <m>10</m> outcomes.</p></solution>
+            </exercise>
+            <exercise xml:id="ex-two-guesses">
+                <statement><p>Two learners each guess the answer to a question with four options. Find the probability that at least one of them is right.</p></statement>
+                <answer><p><m>\frac{7}{16}</m></p></answer>
+            </exercise>
+            <exercise xml:id="ex-find-p-at-least-one">
+                <statement><p>Two independent events each have probability <m>p</m>. The probability that at least one happens is <m>0.91</m>. Find <m>p</m>.</p></statement>
+                <answer><p><m>p = 0.7</m></p></answer>
+                <solution><p><m>(1 - p)^2 = 0.09</m>, so <m>1 - p = 0.3</m> and <m>p = 0.7</m>.</p></solution>
+            </exercise>
+            <exercise xml:id="ex-how-many-seeds">
+                <title>Challenge: How Many Seeds?</title>
+                <statement><p>Each maize seed germinates with probability <m>0.8</m>, independently. How many seeds must be planted in a hole to make the probability that at least one germinates more than <m>0.99</m>?</p></statement>
+                <hint><p>With <m>n</m> seeds, the probability that none germinates is <m>0.2^n</m>.</p></hint>
+                <answer><p><m>3</m> seeds</p></answer>
+                <solution><p>With two seeds the probability is <m>1 - 0.2^2 = 0.96</m>; with three it is <m>1 - 0.2^3 = 0.992</m>, which is more than <m>0.99</m>.</p></solution>
+            </exercise>
+        </exercises>
+
+        <axiom component="lesson-plan">
+            <title>Differentiation</title>
+            <table xml:id="table-differentiation-at-least-one">
+                <title>Differentiation Strategies</title>
+                <tabular halign="left" top="minor" bottom="minor" left="minor" right="minor">
+                    <row header="yes" bottom="medium"><cell>Learner Group</cell><cell>Strategy and Learning Experience</cell></row>
+                    <row><cell>Struggling Learners (Support)</cell><cell>Give a four-case table (both, <m>A</m> only, <m>B</m> only, neither) to fill. Focus on <xref ref="example-two-fishing-boats"/> and <xref ref="example-at-least-one-six"/>. Assign <xref ref="ex-two-driving-tests"/> and <xref ref="ex-at-least-one-one"/>.</cell></row>
+                    <row><cell>On-Level Learners (Core)</cell><cell>Full activity and all examples. Assign <xref ref="ex-two-driving-tests"/> to <xref ref="ex-find-p-at-least-one"/>.</cell></row>
+                    <row><cell>Advanced Learners (Challenge)</cell><cell>All exercises including <xref ref="ex-how-many-seeds"/>. Extension: with three seeds, find the probability that exactly one germinates. (<m>3 \times 0.8 \times 0.2 \times 0.2 = 0.096</m>; tree diagrams in <xref ref="sec-tree-diagrams"/> organise this.)</cell></row>
+                </tabular>
+            </table>
+        </axiom>
+
+
+        <xi:include href="../lesson-plan-templates/assessment-methods.ptx" />
+        <xi:include href="../lesson-plan-templates/reflection.ptx"/>
+    </subsection>
 </section>

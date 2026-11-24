@@ -1,0 +1,5 @@
+<stack-static>
+    <statement><p><p>Give a matrix <m>M</m> with no zero entries such that the image of every shape under <m>M</m> has <m>{2}</m> times the area of the shape and the same orientation.</p><div><m>M = </m> <fillin characters="3" name="ans1"/>  </div></p></statement>
+    <solution><p><p>The area scale factor is <m>|\det M|</m>, and a negative determinant reverses the orientation. So you need <m>\det M = {2}</m>.</p><p>Choose three entries that are not 0 and solve for the fourth. For example, <m>{\left[\begin{array}{cc} 3 &amp; 1 \\ 1 &amp; 1 \end{array}\right]}</m> has determinant <m>{2}</m>, and so does <m>{\left[\begin{array}{cc} 1 &amp; 1 \\ 1 &amp; 3 \end{array}\right]}</m>. Many other matrices work.</p></p></solution>
+    <answer><p><m>\left[\begin{array}{cc} 3 &amp; 1 \\ 1 &amp; 1 \end{array}\right]</m></p></answer>
+</stack-static>

@@ -1,0 +1,8 @@
+<stack-static>
+    <statement><p><p>For the inequality <m>3x + 7y \le 42</m>, decide for each pair <m>(x, y)</m> whether the inequality is true.</p><ol><li><div><m>({7}, {3})</m> [ true, with both sides equal | true, with the sides not equal | false ]  </div></li><li><div><m>({12}, {1})</m> [ true, with both sides equal | true, with the sides not equal | false ]  </div></li><li><div><m>({11}, {2})</m> [ true, with both sides equal | true, with the sides not equal | false ]  </div></li><li><div><m>({5}, {3})</m> [ true, with both sides equal | true, with the sides not equal | false ]  </div></li></ol></p></statement>
+    <solution><p><p>A pair <m>(x, y)</m> is a solution when it makes the inequality true. Work out the left side, compare it with <m>{42}</m>, and remember that this sign allows the two sides to be equal.</p><ol><li><p><m>({7}, {3})</m>: <m>{3}({7}) + {7}({3}) = {42}</m>. Both sides equal <m>{42}</m>, and the sign allows equal: true.</p></li><li><p><m>({12}, {1})</m>: <m>{3}({12}) + {7}({1}) = {43}</m>. <m>{43} {\le} {42}</m> is false.</p></li><li><p><m>({11}, {2})</m>: <m>{3}({11}) + {7}({2}) = {47}</m>. <m>{47} {\le} {42}</m> is false.</p></li><li><p><m>({5}, {3})</m>: <m>{3}({5}) + {7}({3}) = {36}</m>. <m>{36} {\le} {42}</m> is true.</p></li></ol></p></solution>
+    <answer><p>true, with both sides equal</p></answer>
+    <answer><p>false</p></answer>
+    <answer><p>false</p></answer>
+    <answer><p>true, with the sides not equal</p></answer>
+</stack-static>

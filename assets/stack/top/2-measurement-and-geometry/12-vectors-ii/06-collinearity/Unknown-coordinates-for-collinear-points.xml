@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<quiz>
+<question type="stack">
+  <name><text>Unknown coordinates for collinear points</text></name>
+  <questiontext format="html">
+    <text><![CDATA[<p>\(A({@A[1]@},\,{@A[2]@},\,{@A[3]@})\), \(B({@B[1]@},\,{@B[2]@},\,{@B[3]@})\) and \(C(s,\,{@c2@},\,t)\) are collinear, with \(\overrightarrow{AC} = k\,\overrightarrow{AB}\). Fractions are fine; type a fraction with a slash, for example 5/3.</p><div>(a) \(k =\) [[input:ans1]] [[validation:ans1]] [[feedback:prt1]]</div><div>(b) \(s =\) [[input:ans2]] [[validation:ans2]] [[feedback:prt2]]</div><div>(c) \(t =\) [[input:ans3]] [[validation:ans3]] [[feedback:prt3]]</div>]]></text>
+  </questiontext>
+  <generalfeedback format="html">
+    <text><![CDATA[<p>\(\overrightarrow{AB} = {@cv3(d)@}\) and \(\overrightarrow{AC} = \begin{pmatrix} s - ({@A[1]@}) \\ \displaystyle{@c2-A[2]@} \\ t - ({@A[3]@}) \end{pmatrix}\).</p><p>(a) The y-components are both known: \({@c2-A[2]@} = k \times ({@d[2]@})\), so \(k = {@kk@}\).</p><p>(b) \(s = {@A[1]@} + k \times ({@d[1]@}) = {@sp@}\).</p><p>(c) \(t = {@A[3]@} + k \times ({@d[3]@}) = {@tq@}\).</p>]]></text>
+  </generalfeedback>
+  <defaultgrade>3</defaultgrade>
+  <penalty>0.1</penalty>
+  <hidden>0</hidden>
+  <idnumber></idnumber>
+  <stackversion><text>2026063000</text></stackversion>
+  <questionvariables>
+    <text><![CDATA[cv3(v) := matrix([v[1]],[v[2]],[v[3]]);
+/* Design: unknown coordinates of a point on a line through two points, without the line equation; k found first. Source: adapted from SMP AS/A2 Core 4, Chapter 9, Exercise E, Q7. */
+clist: [[[-1,-1,-4],[-3,-3,-2],-5,2],[[5,5,-2],[4,3,2],-1,3],[[-1,-1,-3],[3,3,-1],9,5/2],[[-2,3,-1],[-4,1,1],0,3/2],[[3,2,-3],[2,3,-4],0,-2],[[2,-3,5],[4,-7,4],-19,4],[[3,3,2],[1,-1,6],5,-1/2],[[2,-1,-1],[0,-3,3],-8,7/2],[[-3,1,-2],[-1,4,1],-8,-3],[[1,4,-4],[4,7,-7],9,5/3]];
+ix: 1+rand(10);
+A: clist[ix][1]; B: clist[ix][2]; c2: clist[ix][3]; kk: clist[ix][4];
+d: B-A;
+sp: A[1]+kk*d[1]; tq: A[3]+kk*d[3];
+kinv: 1/kk; pd: kk*d[1]; pin: A[1]+kinv*d[1]; qd: kk*d[3]; qin: A[3]+kinv*d[3];
+k1: kk+1/3; sft: A[1]+k1*d[1]; tft: A[3]+k1*d[3];
+]]></text>
+  </questionvariables>
+  <specificfeedback format="html"><text><![CDATA[]]></text></specificfeedback>
+  <questionnote format="moodle_auto_format">
+    <text>ix={@ix@}, k={@kk@}, s={@sp@}, t={@tq@}</text>
+  </questionnote>
+  <questiondescription format="html"><text><![CDATA[<p id="concept">Vectors II: unknown coordinates for collinear points</p><p id="description">Grade 12 CBE Core 2.6: Find the scalar k and two unknown coordinates of a point collinear with two given points in three dimensions.</p><p id="edition">Core</p><p id="provenance">This question is adapted from Question 7 in Exercise E of Chapter 9 of Instone, S., Ling, J., Scruton, P., Shilton, S. and West, H., SMP AS/A2 Mathematics: Core 4 for AQA, Cambridge University Press, 2005: the line equation replaced by AC = k AB, the scalar found first, new points and letters, randomised over a curated list, with named and follow-through feedback.</p><p id="citation">INNODEMS CBC Grade 12 Mathematics, first draft by Ben Davies, 2026. Aligned to the KICD Senior School Curriculum Design, Core Mathematics Grade 12 (draft).</p>]]></text></questiondescription>
+  <questionsimplify>1</questionsimplify>
+  <assumepositive>0</assumepositive>
+  <assumereal>0</assumereal>
+  <prtcorrect format="html"><text><![CDATA[[[commonstring key="symbolicprtcorrectfeedback"/]] [[commonstring key="defaultprtcorrectfeedback"/]]]]></text></prtcorrect>
+  <prtpartiallycorrect format="html"><text><![CDATA[[[commonstring key="symbolicprtpartiallycorrectfeedback"/]] [[commonstring key="defaultprtpartiallycorrectfeedback"/]]]]></text></prtpartiallycorrect>
+  <prtincorrect format="html"><text><![CDATA[[[commonstring key="symbolicprtincorrectfeedback"/]] [[commonstring key="defaultprtincorrectfeedback"/]]]]></text></prtincorrect>
+  <decimals>.</decimals>
+  <scientificnotation>*10</scientificnotation>
+  <multiplicationsign>none</multiplicationsign>
+  <sqrtsign>1</sqrtsign>
+  <complexno>symi</complexno>
+  <inversetrig>cos-1</inversetrig>
+  <logicsymbol>lang</logicsymbol>
+  <matrixparens>(</matrixparens>
+  <isbroken>0</isbroken>
+  <variantsselectionseed></variantsselectionseed>
+
+  <input><name>ans1</name><type>numerical</type><tans>kk</tans><boxsize>6</boxsize><strictsyntax>1</strictsyntax><insertstars>0</insertstars><syntaxhint></syntaxhint><syntaxattribute>0</syntaxattribute><forbidwords></forbidwords><allowwords></allowwords><forbidfloat>0</forbidfloat><requirelowestterms>0</requirelowestterms><checkanswertype>0</checkanswertype><mustverify>0</mustverify><showvalidation>0</showvalidation><options></options></input>
+  <input><name>ans2</name><type>numerical</type><tans>sp</tans><boxsize>6</boxsize><strictsyntax>1</strictsyntax><insertstars>0</insertstars><syntaxhint></syntaxhint><syntaxattribute>0</syntaxattribute><forbidwords></forbidwords><allowwords></allowwords><forbidfloat>0</forbidfloat><requirelowestterms>0</requirelowestterms><checkanswertype>0</checkanswertype><mustverify>0</mustverify><showvalidation>0</showvalidation><options></options></input>
+  <input><name>ans3</name><type>numerical</type><tans>tq</tans><boxsize>6</boxsize><strictsyntax>1</strictsyntax><insertstars>0</insertstars><syntaxhint></syntaxhint><syntaxattribute>0</syntaxattribute><forbidwords></forbidwords><allowwords></allowwords><forbidfloat>0</forbidfloat><requirelowestterms>0</requirelowestterms><checkanswertype>0</checkanswertype><mustverify>0</mustverify><showvalidation>0</showvalidation><options></options></input>
+
+  <prt><name>prt1</name><value>1.0000000</value><autosimplify>1</autosimplify><feedbackstyle>1</feedbackstyle><feedbackvariables><text><![CDATA[chk: ans1*d[2]; chk: if is(abs(chk-floor(chk+1/2)) < 10^-9) then floor(chk+1/2) else chk;
+]]></text></feedbackvariables>
+    <node><name>0</name><description>k</description><answertest>NumAbsolute</answertest><sans>ans1</sans><tans>kk</tans><testoptions>0.001</testoptions><quiet>1</quiet><truescoremode>=</truescoremode><truescore>1.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt1-1-T</trueanswernote><truefeedback format="html"><text><![CDATA[]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>1</falsenextnode><falseanswernote>prt1-1-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>1</name><description>Inverted</description><answertest>NumAbsolute</answertest><sans>ans1</sans><tans>kinv</tans><testoptions>0.001</testoptions><quiet>1</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt1-2-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>That makes \(\overrightarrow{AB} = k\,\overrightarrow{AC}\): the division is the wrong way round. Check with the y-components: \(k \times ({@d[2]@})\) must equal \({@c2-A[2]@}\), but your \(k\) gives \({@chk@}\).</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>-1</falsenextnode><falseanswernote>prt1-2-F</falseanswernote><falsefeedback format="html"><text><![CDATA[<p>Use the y-components, which are known in both vectors: \(k \times ({@d[2]@})\) must equal \({@c2-A[2]@}\). Your \(k\) gives \({@chk@}\).</p>]]></text></falsefeedback></node>
+  </prt>
+  <prt><name>prt2</name><value>1.0000000</value><autosimplify>1</autosimplify><feedbackstyle>1</feedbackstyle><feedbackvariables><text><![CDATA[ft2: A[1]+ans1*d[1];
+]]></text></feedbackvariables>
+    <node><name>0</name><description>s</description><answertest>NumAbsolute</answertest><sans>ans2</sans><tans>sp</tans><testoptions>0.001</testoptions><quiet>1</quiet><truescoremode>=</truescoremode><truescore>1.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt2-1-T</trueanswernote><truefeedback format="html"><text><![CDATA[]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>1</falsenextnode><falseanswernote>prt2-1-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>1</name><description>Forgot A</description><answertest>NumAbsolute</answertest><sans>ans2</sans><tans>pd</tans><testoptions>0.001</testoptions><quiet>1</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt2-2-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>That is the x-component of \(\overrightarrow{AC}\). C's x-coordinate is A's plus that: add \({@A[1]@}\).</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>2</falsenextnode><falseanswernote>prt2-2-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>2</name><description>From inverted k</description><answertest>NumAbsolute</answertest><sans>ans2</sans><tans>pin</tans><testoptions>0.001</testoptions><quiet>1</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt2-3-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>That comes from \(k = {@kinv@}\), which has the division the wrong way round.</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>3</falsenextnode><falseanswernote>prt2-3-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>3</name><description>Follow-through</description><answertest>NumAbsolute</answertest><sans>ans2</sans><tans>ft2</tans><testoptions>0.001</testoptions><quiet>1</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt2-4-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>\(s = {@A[1]@} + k \times ({@d[1]@})\) is the right method; check your \(k\) in (a).</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>-1</falsenextnode><falseanswernote>prt2-4-F</falseanswernote><falsefeedback format="html"><text><![CDATA[<p>\(s = {@A[1]@} + k \times ({@d[1]@})\): start at A and add \(k\) times the x-component of \(\overrightarrow{AB}\).</p>]]></text></falsefeedback></node>
+  </prt>
+  <prt><name>prt3</name><value>1.0000000</value><autosimplify>1</autosimplify><feedbackstyle>1</feedbackstyle><feedbackvariables><text><![CDATA[ft3: A[3]+ans1*d[3];
+]]></text></feedbackvariables>
+    <node><name>0</name><description>t</description><answertest>NumAbsolute</answertest><sans>ans3</sans><tans>tq</tans><testoptions>0.001</testoptions><quiet>1</quiet><truescoremode>=</truescoremode><truescore>1.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt3-1-T</trueanswernote><truefeedback format="html"><text><![CDATA[]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>1</falsenextnode><falseanswernote>prt3-1-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>1</name><description>Forgot A</description><answertest>NumAbsolute</answertest><sans>ans3</sans><tans>qd</tans><testoptions>0.001</testoptions><quiet>1</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt3-2-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>That is the z-component of \(\overrightarrow{AC}\). C's z-coordinate is A's plus that: add \({@A[3]@}\).</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>2</falsenextnode><falseanswernote>prt3-2-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>2</name><description>Follow-through</description><answertest>NumAbsolute</answertest><sans>ans3</sans><tans>ft3</tans><testoptions>0.001</testoptions><quiet>1</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt3-3-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>\(t = {@A[3]@} + k \times ({@d[3]@})\) is the right method; check your \(k\) in (a).</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>-1</falsenextnode><falseanswernote>prt3-3-F</falseanswernote><falsefeedback format="html"><text><![CDATA[<p>\(t = {@A[3]@} + k \times ({@d[3]@})\): start at A and add \(k\) times the z-component of \(\overrightarrow{AB}\).</p>]]></text></falsefeedback></node>
+  </prt>
+
+  <deployedseed>4</deployedseed>
+  <deployedseed>5</deployedseed>
+  <deployedseed>15</deployedseed>
+  <deployedseed>8</deployedseed>
+  <deployedseed>24</deployedseed>
+  <deployedseed>1</deployedseed>
+  <deployedseed>3</deployedseed>
+  <deployedseed>10</deployedseed>
+  <deployedseed>2</deployedseed>
+  <deployedseed>17</deployedseed>
+  <qtest><testcase>1</testcase><description>Correct</description>
+    <testinput><name>ans1</name><value>kk</value></testinput>
+    <testinput><name>ans2</name><value>sp</value></testinput>
+    <testinput><name>ans3</name><value>tq</value></testinput>
+    <expected><name>prt1</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt1-1-T</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt2-1-T</expectedanswernote></expected>
+    <expected><name>prt3</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt3-1-T</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>2</testcase><description>Inverted k carried through</description>
+    <testinput><name>ans1</name><value>kinv</value></testinput>
+    <testinput><name>ans2</name><value>pin</value></testinput>
+    <testinput><name>ans3</name><value>qin</value></testinput>
+    <expected><name>prt1</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt1-1-F | prt1-2-T</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt2-1-F | prt2-2-F | prt2-3-T</expectedanswernote></expected>
+    <expected><name>prt3</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt3-1-F | prt3-2-F | prt3-3-T</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>3</testcase><description>Forgot A</description>
+    <testinput><name>ans1</name><value>kk</value></testinput>
+    <testinput><name>ans2</name><value>pd</value></testinput>
+    <testinput><name>ans3</name><value>qd</value></testinput>
+    <expected><name>prt1</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt1-1-T</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt2-1-F | prt2-2-T</expectedanswernote></expected>
+    <expected><name>prt3</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt3-1-F | prt3-2-T</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>4</testcase><description>Follow-through from a wrong k</description>
+    <testinput><name>ans1</name><value>k1</value></testinput>
+    <testinput><name>ans2</name><value>sft</value></testinput>
+    <testinput><name>ans3</name><value>tft</value></testinput>
+    <expected><name>prt1</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt1-1-F | prt1-2-F</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt2-1-F | prt2-2-F | prt2-3-F | prt2-4-T</expectedanswernote></expected>
+    <expected><name>prt3</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt3-1-F | prt3-2-F | prt3-3-T</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>5</testcase><description>Generic offsets</description>
+    <testinput><name>ans1</name><value>kk</value></testinput>
+    <testinput><name>ans2</name><value>sp+0.37</value></testinput>
+    <testinput><name>ans3</name><value>tq+0.37</value></testinput>
+    <expected><name>prt1</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt1-1-T</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt2-1-F | prt2-2-F | prt2-3-F | prt2-4-F</expectedanswernote></expected>
+    <expected><name>prt3</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt3-1-F | prt3-2-F | prt3-3-F</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>6</testcase><description>Invalid: a letter in (a)</description>
+    <testinput><name>ans1</name><value>k</value></testinput>
+    <testinput><name>ans2</name><value>sp</value></testinput>
+    <testinput><name>ans3</name><value>tq</value></testinput>
+    <expected><name>prt1</name><expectedscore></expectedscore><expectedpenalty></expectedpenalty><expectedanswernote>NULL</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore></expectedscore><expectedpenalty></expectedpenalty><expectedanswernote>NULL</expectedanswernote></expected>
+    <expected><name>prt3</name><expectedscore></expectedscore><expectedpenalty></expectedpenalty><expectedanswernote>NULL</expectedanswernote></expected>
+  </qtest>
+</question>
+</quiz>

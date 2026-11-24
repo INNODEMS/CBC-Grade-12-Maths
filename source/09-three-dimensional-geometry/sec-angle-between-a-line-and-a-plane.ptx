@@ -46,161 +46,336 @@
          Suggested activity: Learners lean a metre rule against the floor or wall (like a ladder or a flagpole support wire), drop a plumb line to find its projection, and measure the angle between the rule and the floor.
          Interactive (JSXGraph): Square-based pyramid with a slider for height; a slant edge and its projection on the base are shown and the angle between them updates as the height changes. -->
 
-    <!-- [LP] Add guidance on activity -->
+    <!-- Section notes (2026-11)
+         SLOs: Core 2.4 (d)
+         Activity: as planning notes (a leaning metre rule, a plumb line for the projection, a chalk line to compare)
+         JSXGraph: fig-edge-and-base (assets/jsxgraph/edge-and-base.js), as planning notes; triangle VOA shaded by a 2D polygon over view.project3DTo2D points
+         STACK: assets/stack/top/2-measurement-and-geometry/09-three-dimensional-geometry/05-angle-between-a-line-and-a-plane/ -->
+
+    <p component="lesson-plan">Upon completion of this lesson, learners will be able to:
+        <ol>
+            <li><p><alert>Know:</alert> the angle between a line and a plane is the angle between the line and its projection on the plane; it is the smallest angle the line makes with any line in the plane; it is <m>90^{\circ}</m> for a line perpendicular to the plane and <m>0^{\circ}</m> for a line in or parallel to it.</p></li>
+            <li><p><alert>Do:</alert> find the angles of space and face diagonals with the faces of a cuboid, of sloping edges of pyramids with the base, and of a line across a prism.</p></li>
+            <li><p><alert>Apply:</alert> a leaning rule, a wheelchair ramp, a water tank.</p></li>
+        </ol>
+    </p>
 
     <axiom component="lesson-plan">
         <title>Problem-Solving and Discovery</title>
         <dl>
-            <li>
-                <title>Suggested Time</title>
-                <p>
-                    XXX minutes
-                </p>
-            </li>
-            <li>
-                <title>Objective</title>
-                <p>
-                    XXX
-                </p>
-            </li>
-            <li>
-                <title>Teacher's Role</title>
-                <p>
-                    XXX
-                </p>
-            </li>
+            <li><title>Suggested Time</title><p>14 minutes</p></li>
+            <li><title>Objective</title><p>Learners measure the angle between a leaning metre rule and the floor, find it from the projection, and discover that the rule makes a bigger angle with any other floor line through its foot.</p></li>
+            <li><title>Teacher's Role</title><p>Learners work in pairs with a metre rule, a plumb line (a thread with a small stone tied to it), chalk and a protractor. One learner holds the rule still while the other measures. After part (d), ask: <q>Which line on the floor should we use for <em>the</em> angle between the rule and the floor?</q></p></li>
         </dl>
     </axiom>
 
-    <!-- Add Activity -->
-
-    <!-- <activity>
+    <activity xml:id="act-leaning-metre-rule">
+        <title>A Leaning Metre Rule</title>
         <statement>
+            <figure xml:id="fig-metre-rule-projection">
+                <caption>A metre rule <m>AP</m> leaning on the floor, the plumb line <m>PN</m>, the projection <m>AN</m> and a chalk line <m>AL</m>.</caption>
+                <image width="55%">
+                    <shortdescription>A metre rule AP, 100 cm long, leans with its foot A on the shaded floor and its top P 70 cm above the floor. A dashed plumb line hangs from P to the point N on the floor, with a right angle at N. The dashed line AN on the floor is the projection of AP. A second chalk line AL runs across the floor from A in another direction. The angles PAN and PAL are marked at A.</shortdescription>
+                    <latex-image>
+\tdplotsetmaincoords{70}{120}
+\begin{tikzpicture}[tdplot_main_coords,scale=0.045]
+\fill[gray!15] (-25,-15,0) -- (75,-15,0) -- (75,95,0) -- (-25,95,0) -- cycle;
+\draw[very thick] (0,0,0) -- (0,71.4,70);
+\draw[dashed] (0,71.4,70) -- (0,71.4,0);
+\draw[thick,dashed] (0,0,0) -- (0,71.4,0);
+\draw[thick] (0,0,0) -- (38.567,45.963,0);
+\draw (0,66.4,0) -- (0,66.4,5) -- (0,71.4,5);
+\draw (0,16,0) .. controls (0,18.515,7.562) .. (0,11.425,11.201);
+\draw (6.428,7.66,0) .. controls (4.568,10.518,4.975) .. (0,7.141,7.001);
+\node[anchor=east] at (0,0,0) {$A$};
+\node[anchor=south] at (0,71.4,70) {$P$};
+\node[anchor=north west] at (0,71.4,0) {$N$};
+\node[anchor=north] at (38.567,45.963,0) {$L$};
+\node[anchor=west] at (0,71.4,35) {$70$ cm};
+\node[anchor=south east] at (0,35.7,35) {$100$ cm};
+\end{tikzpicture}
+                    </latex-image>
+                </image>
+            </figure>
+            <p>
+                <ol marker="(a)">
+                    <li>
+                        <p>Lean a metre rule <m>AP</m> with its foot <m>A</m> on the floor and its top <m>P</m> held <m>70\,\text{cm}</m> above the floor. You can rest the top against a pile of books.</p>
+                        <solution component="lesson-plan"><p>Check the height of <m>P</m> with a second ruler held upright.</p></solution>
+                    </li>
+                    <li>
+                        <p>Hang the plumb line from <m>P</m> and mark with chalk the point <m>N</m> where it touches the floor. The line <m>AN</m> is the projection of <m>AP</m> on the floor. Measure <m>AN</m>.</p>
+                        <solution component="lesson-plan"><p>About <m>71\,\text{cm}</m>. By Pythagoras, <m>AN = \sqrt{100^2 - 70^2} = \sqrt{5100} \approx 71.41\,\text{cm}</m>.</p></solution>
+                    </li>
+                    <li>
+                        <p>Measure angle <m>PAN</m>. Then calculate it in triangle <m>PAN</m>.</p>
+                        <solution component="lesson-plan"><p>The plumb line is vertical, so angle <m>PNA = 90^{\circ}</m>. <m>\sin PAN = \dfrac{70}{100}</m>, so angle <m>PAN \approx 44.4^{\circ}</m>.</p></solution>
+                    </li>
+                    <li>
+                        <p>Draw another chalk line <m>AL</m> on the floor from <m>A</m>, about <m>40^{\circ}</m> away from <m>AN</m>. Hold a protractor against the rule and measure angle <m>PAL</m>.</p>
+                        <solution component="lesson-plan"><p>About <m>57^{\circ}</m>: bigger than angle <m>PAN</m>.</p></solution>
+                    </li>
+                    <li>
+                        <p>Which line on the floor through <m>A</m> makes the smallest angle with the rule?</p>
+                        <solution component="lesson-plan"><p>The projection <m>AN</m>. Every other floor line through <m>A</m> makes a bigger angle with the rule, so the angle with the projection is the one we call the angle between the rule and the floor.</p></solution>
+                    </li>
+                </ol>
+            </p>
         </statement>
-    </activity> -->
+    </activity>
 
-    <!-- [LP] Add guidance on structured lesson plan-->
-
-    <!-- <axiom component="lesson-plan">
+    <axiom component="lesson-plan">
         <title>Structured Instruction</title>
         <p>
             <dl>
-            <li>
-                <title>Suggested Time</title>
-                <p>
-                    XX minutes
-                </p>
-            </li>
-            <li>
-                <title>Objective</title>
-                <p>
-                    To formalize the concepts and properties learners discovered in the anchor task.
-                </p>
-            </li>
+                <li><title>Suggested Time</title><p>8 minutes</p></li>
+                <li><title>Objective</title><p>To formalise the angle between a line and a plane as the angle between the line and its projection, and the four steps that find it.</p></li>
             </dl>
         </p>
         <paragraphs>
             <title>Key Takeaways &amp; Teacher Connection</title>
             <ol>
-                <li>
-                    <p>
-                        <alert>Connecting to Learner Work:</alert> XXXX
-                    </p>
-                </li>
+                <li><p><alert>Connecting to Learner Work:</alert> the plumb line in part (b) is the perpendicular from <m>P</m> to the floor; its foot <m>N</m> gives the projection <m>AN</m>.</p></li>
+                <li><p>Drop the perpendicular, find the projection, use the right-angled triangle.</p></li>
+                <li><p>Never use an edge of the plane unless it is the projection: part (d) showed that other lines give bigger angles.</p></li>
             </ol>
         </paragraphs>
-    </axiom> -->
+    </axiom>
 
-    <!-- Add insight / key takeaway directly related to activity / learner experience -->
+    <insight xml:id="insight-angle-between-a-line-and-a-plane">
+        <title>Angle Between a Line and a Plane</title>
+        <p>To measure how steeply a line meets a plane, use its <term>projection</term> on the plane. The angle we want is the one between the line and that projection: <em>the angle between the line and its shadow on the plane</em>, when the light is straight above the plane. To find it:</p>
+        <p>
+            <ol>
+                <li><p>Find where the line meets the plane.</p></li>
+                <li><p>From another point of the line, drop a perpendicular to the plane.</p></li>
+                <li><p>Join the foot of the perpendicular to the point where the line meets the plane. This is the projection.</p></li>
+                <li><p>The line, its projection and the perpendicular form a right-angled triangle. Use sine, cosine or tangent.</p></li>
+            </ol>
+        </p>
+        <p>The angle is between <m>0^{\circ}</m> and <m>90^{\circ}</m>: it is <m>90^{\circ}</m> when the line is perpendicular to the plane and <m>0^{\circ}</m> when the line lies in the plane or is parallel to it. The projection gives the smallest angle that the line makes with any line in the plane.</p>
+    </insight>
 
-    <!-- <insight>
-    </insight> -->
+    <warning xml:id="warning-projection-not-edge">
+        <title>Use the Projection, Not an Edge</title>
+        <p>In a cuboid <m>ABCDEFGH</m>, the angle between the diagonal <m>AG</m> and the base <m>ABCD</m> is angle <m>GAC</m>, not angle <m>GAB</m>. The edge <m>AB</m> lies in the base, but it is not the projection of <m>AG</m>: <m>G</m> is vertically above <m>C</m>, so the projection is <m>AC</m>.</p>
+    </warning>
 
-    <!-- Add further instruction (not in a block) to develop ideas as needed -->
+    <figure xml:id="fig-edge-and-base">
+        <caption>Drag the h slider to change the height. The dashed line <m>OA</m> is the projection of the edge <m>VA</m> on the base, and angle <m>VAO</m> is the angle between <m>VA</m> and the base.</caption>
+        <interactive xml:id="interactive-edge-and-base" platform="jsxgraph" width="90%" aspect="16:12" source="jsxgraph/edge-and-base.js">
+            <slate xml:id="jsxgraph-edge-and-base" surface="jsxboard" aspect="16:12"/>
+            <instructions>
+                <p>
+                    <ul>
+                        <li><p>Drag the <alert>h</alert> slider. Angle <m>VAB</m>, between <m>VA</m> and the base edge <m>AB</m>, is always bigger than angle <m>VAO</m>. Why?</p></li>
+                        <li><p>The base has side <m>6</m>, so <m>OA = 3\sqrt{2} \approx 4.24</m>. Between which two values of <alert>h</alert> does angle <m>VAO</m> pass <m>45^{\circ}</m>? Explain using triangle <m>VOA</m>.</p></li>
+                        <li><p>Drag the view sliders to turn the pyramid and look along the base from the side.</p></li>
+                    </ul>
+                </p>
+            </instructions>
+        </interactive>
+    </figure>
 
     <xi:include href="../lesson-plan-templates/example-intro.ptx" />
 
-    <!-- Add at least 3 examples -->
-
-    <!-- <example>
+    <example xml:id="example-diagonal-of-a-water-tank">
+        <title>A Diagonal of a Water Tank</title>
         <statement>
+            <p>A water tank at a school in Machakos is a cuboid <m>ABCDEFGH</m> with <m>AB = 3.6\,\text{m}</m>, <m>BC = 2.4\,\text{m}</m> and <m>AE = 1.5\,\text{m}</m>. Find the angle between the diagonal <m>AG</m> and (a) the base <m>ABCD</m>; (b) the face <m>ABFE</m>.</p>
+            <figure xml:id="fig-diagonal-and-base">
+                <caption>The diagonal <m>AG</m>, its projection <m>AC</m> on the base and the vertical edge <m>GC</m>; triangle <m>AGC</m> drawn flat.</caption>
+                <image width="70%">
+                    <shortdescription>Left: the water tank ABCDEFGH, 3.6 by 2.4 by 1.5 m, with the diagonal AG thick, its projection AC on the base thick and dashed, and the vertical edge GC with a right angle at C. Angle GAC is marked. The hidden corner D and its three edges are dashed. Right: triangle AGC drawn flat with AC the square root of 18.72, CG 1.5 and the right angle at C.</shortdescription>
+                    <latex-image>
+\tdplotsetmaincoords{70}{120}
+\begin{tikzpicture}
+\begin{scope}[tdplot_main_coords,scale=1.1]
+\draw (2.4,0,0) -- (2.4,3.6,0);
+\draw (2.4,3.6,0) -- (0,3.6,0);
+\draw (2.4,0,1.5) -- (2.4,3.6,1.5);
+\draw (2.4,3.6,1.5) -- (0,3.6,1.5);
+\draw (0,3.6,1.5) -- (0,0,1.5);
+\draw (0,0,1.5) -- (2.4,0,1.5);
+\draw (2.4,0,0) -- (2.4,0,1.5);
+\draw (2.4,3.6,0) -- (2.4,3.6,1.5);
+\draw (0,3.6,0) -- (0,3.6,1.5);
+\draw[dashed] (2.4,0,0) -- (0,0,0);
+\draw[dashed] (0,0,0) -- (0,3.6,0);
+\draw[dashed] (0,0,0) -- (0,0,1.5);
+\node[anchor=north east] at (2.4,0,0) {$A$};
+\node[anchor=north west] at (2.4,3.6,0) {$B$};
+\node[anchor=west] at (0,3.6,0) {$C$};
+\node[anchor=south east] at (0,0,0) {$D$};
+\node[anchor=east] at (2.4,0,1.5) {$E$};
+\node[anchor=north west] at (2.4,3.6,1.5) {$F$};
+\node[anchor=south west] at (0,3.6,1.5) {$G$};
+\node[anchor=south east] at (0,0,1.5) {$H$};
+\draw[very thick] (2.4,0,0) -- (0,3.6,1.5);
+\draw[very thick,dashed] (2.4,0,0) -- (0,3.6,0);
+\draw[very thick] (0,3.6,1.5) -- (0,3.6,0);
+\draw (0.111,3.434,0) -- (0.111,3.434,0.2) -- (0,3.6,0.2);
+\draw (2.095,0.458,0) .. controls (2.024,0.564,0.114) .. (2.112,0.432,0.18);
+\node[anchor=north] at (2.4,1.8,0) {$3.6$};
+\node[anchor=north west] at (1.2,3.6,0) {$2.4$};
+\node[anchor=east] at (2.4,0,0.75) {$1.5$};
+\end{scope}
+\begin{scope}[shift={(4.2,-1.2)},scale=0.9]
+\draw[very thick] (0,0) -- (4.327,0) -- (4.327,1.5) -- cycle;
+\draw (4.107,0) -- (4.107,0.22) -- (4.327,0.22);
+\draw (0.7,0) .. controls (0.863,0.145) .. (0.661,0.229);
+\node[below left] at (0,0) {$A$};
+\node[below right] at (4.327,0) {$C$};
+\node[above right] at (4.327,1.5) {$G$};
+\node[below] at (2.163,0) {$\sqrt{18.72}$};
+\node[right] at (4.327,0.75) {$1.5$};
+\end{scope}
+\end{tikzpicture}
+                    </latex-image>
+                </image>
+            </figure>
         </statement>
         <solution>
+            <p>(a) <m>AG</m> meets the base at <m>A</m>. <m>G</m> is vertically above <m>C</m>, so the perpendicular from <m>G</m> is <m>GC</m> and the projection is <m>AC</m>. <m>AC^2 = 3.6^2 + 2.4^2 = 18.72</m>. In triangle <m>AGC</m>, with the right angle at <m>C</m>:
+            <md>\tan GAC = \frac{1.5}{\sqrt{18.72}}</md>
+            so the angle is about <m>19.1^{\circ}</m>.</p>
+            <p>(b) The perpendicular from <m>G</m> to the face <m>ABFE</m> is the edge <m>GF</m>, so the projection of <m>AG</m> on that face is <m>AF</m>. <m>AF^2 = 3.6^2 + 1.5^2 = 15.21</m>, so <m>AF = 3.9\,\text{m}</m>. In triangle <m>AFG</m>, with the right angle at <m>F</m>:
+            <md>\tan GAF = \frac{GF}{AF} = \frac{2.4}{3.9}</md>
+            so the angle is about <m>31.6^{\circ}</m>. The same line makes different angles with different planes.</p>
         </solution>
     </example>
 
-    <example>
+    <example xml:id="example-sloping-edge-and-base">
+        <title>A Sloping Edge and the Base</title>
         <statement>
+            <p>The right pyramid <m>VABCD</m> of <xref ref="example-edges-of-a-pyramid"/> has a square base of side <m>10\,\text{cm}</m> and height <m>VO = 12\,\text{cm}</m>. Find the angle between the sloping edge <m>VA</m> and the base.</p>
         </statement>
         <solution>
+            <p><m>V</m> is vertically above <m>O</m>, so the projection of <m>VA</m> on the base is <m>OA = \sqrt{50}</m> cm, half the diagonal. In triangle <m>VOA</m>, with the right angle at <m>O</m>:
+            <md>\tan VAO = \frac{12}{\sqrt{50}}</md>
+            so angle <m>VAO \approx 59.5^{\circ}</m>.</p>
+            <p>The slant height <m>VM</m>, to the midpoint <m>M</m> of <m>BC</m>, makes a bigger angle with the base: <m>\tan VMO = \frac{12}{5}</m>, so angle <m>VMO \approx 67.4^{\circ}</m>. That is the slope of a face, the subject of the next lesson.</p>
         </solution>
     </example>
 
-    <example>
+    <example xml:id="example-ramp">
+        <title>A Ramp</title>
         <statement>
+            <p>A wheelchair ramp at a health centre in Kakamega is a triangular prism <m>ABCDEF</m>. The base <m>ABED</m> is horizontal, the face <m>BCFE</m> is vertical and <m>ACFD</m> is the sloping face. <m>AB = 3.6\,\text{m}</m>, the rise <m>BC = 0.3\,\text{m}</m> and the width <m>AD = 1.5\,\text{m}</m>. Find the angle between the base and (a) the line <m>AF</m>, from a bottom corner to the far top corner; (b) the line <m>AC</m>, straight up the slope.</p>
+            <figure xml:id="fig-ramp">
+                <caption>The ramp <m>ABCDEF</m>, with its rise drawn larger than scale. <m>AE</m> is the projection of <m>AF</m> on the ground.</caption>
+                <image width="60%">
+                    <shortdescription>A wedge-shaped ramp ABCDEF. The base ABED is horizontal with AB 3.6 m and AD 1.5 m; the vertical back face BCFE has the rise BC 0.3 m, with right angles at B and E. The line AF runs from A across the sloping face to the top corner F; its projection AE on the ground is dashed, and FE is vertical. AC runs straight up the slope. Angles FAE and CAB are marked at A. The rise is drawn larger than scale.</shortdescription>
+                    <latex-image>
+\tdplotsetmaincoords{70}{120}
+\begin{tikzpicture}[tdplot_main_coords,scale=1.6]
+\draw (1.5,0,0) -- (1.5,3.6,0);
+\draw (1.5,3.6,0) -- (1.5,3.6,1.2);
+\draw (1.5,0,0) -- (1.5,3.6,1.2);
+\draw (1.5,0,0) -- (0,0,0);
+\draw (0,0,0) -- (0,3.6,1.2);
+\draw (1.5,3.6,1.2) -- (0,3.6,1.2);
+\draw (1.5,3.6,0) -- (0,3.6,0);
+\draw (0,3.6,0) -- (0,3.6,1.2);
+\draw[dashed] (0,0,0) -- (0,3.6,0);
+\draw[very thick] (1.5,0,0) -- (0,3.6,1.2);
+\draw[very thick,dashed] (1.5,0,0) -- (0,3.6,0);
+\draw[very thick] (1.5,0,0) -- (1.5,3.6,1.2);
+\draw (1.5,3.42,0) -- (1.5,3.42,0.18) -- (1.5,3.6,0.18);
+\draw (0.069,3.434,0) -- (0.069,3.434,0.18) -- (0,3.6,0.18);
+\draw (1.154,0.831,0) .. controls (1.072,1.027,0.167) .. (1.169,0.794,0.265);
+\draw (1.5,1.3,0) .. controls (1.5,1.604,0.26) .. (1.5,1.233,0.411);
+\node[anchor=north] at (1.5,0,0) {$A$};
+\node[anchor=north west] at (1.5,3.6,0) {$B$};
+\node[anchor=south] at (1.5,3.6,1.2) {$C$};
+\node[anchor=south east] at (0,0,0) {$D$};
+\node[anchor=west] at (0,3.6,0) {$E$};
+\node[anchor=south] at (0,3.6,1.2) {$F$};
+\node[anchor=north] at (1.5,1.8,0) {$3.6$};
+\node[anchor=west] at (1.5,3.6,0.6) {$0.3$};
+\node[anchor=south east] at (0.75,0,0) {$1.5$};
+\end{tikzpicture}
+                    </latex-image>
+                </image>
+            </figure>
         </statement>
         <solution>
+            <p>(a) <m>F</m> is vertically above <m>E</m>, so the projection of <m>AF</m> on the ground is <m>AE</m>. <m>AE = \sqrt{3.6^2 + 1.5^2} = \sqrt{15.21} = 3.9\,\text{m}</m>. In triangle <m>AEF</m>, with the right angle at <m>E</m>:
+            <md>\tan FAE = \frac{0.3}{3.9}</md>
+            so the angle is about <m>4.4^{\circ}</m>.</p>
+            <p>(b) <m>C</m> is above <m>B</m>, so the projection of <m>AC</m> is <m>AB</m>: <m>\tan CAB = \frac{0.3}{3.6}</m>, and the angle is about <m>4.8^{\circ}</m>. <m>AC</m>, at right angles to the bottom edge <m>AD</m>, is the steepest line on the ramp. A common guideline for wheelchair ramps is a rise of at most <m>1</m> in <m>12</m>, about <m>4.8^{\circ}</m>, measured along a line like <m>AC</m>: this ramp just meets it.</p>
         </solution>
-    </example> -->
+    </example>
 
     <xi:include href="../lesson-plan-templates/assessment-intro.ptx" />
+    <xi:include href="../lesson-plan-templates/checkpoint.ptx" />
 
-    <!-- If STACK questions are included, uncomment this: -->
+    <p>Choose from each list. Type angles in degrees as numbers, without the degree sign, for example <c>36.9</c>, correct to 1 decimal place.</p>
 
-    <!-- <xi:include href="../lesson-plan-templates/checkpoint.ptx" /> -->
+    <exercise xml:id="ex-angle-between-a-line-and-a-face-of-a-cuboid">
+        <!--<title></title>-->
+        <stack label="stk-angle-between-a-line-and-a-face-of-a-cuboid" source="stack/top/2-measurement-and-geometry/09-three-dimensional-geometry/05-angle-between-a-line-and-a-plane/Angle-between-a-line-and-a-face-of-a-cuboid.xml"/>
+    </exercise>
 
-    <!-- Add STACK exercises if made -->
+    <exercise xml:id="ex-angle-between-a-sloping-edge-and-the-base">
+        <!--<title></title>-->
+        <stack label="stk-angle-between-a-sloping-edge-and-the-base" source="stack/top/2-measurement-and-geometry/09-three-dimensional-geometry/05-angle-between-a-line-and-a-plane/Angle-between-a-sloping-edge-and-the-base.xml"/>
+    </exercise>
 
-    <!-- Add static exercises -->
+    <exercise xml:id="ex-angles-on-a-ramp">
+        <!--<title></title>-->
+        <stack label="stk-angles-on-a-ramp" source="stack/top/2-measurement-and-geometry/09-three-dimensional-geometry/05-angle-between-a-line-and-a-plane/Angles-on-a-ramp.xml"/>
+    </exercise>
 
-    <!-- <exercises>
-        <exercise>
-            <statement>   
+    <exercises xml:id="exercises-angle-between-a-line-and-a-plane">
+        <exercise xml:id="ex-box-diagonal-and-faces">
+            <statement><p>A box <m>ABCDEFGH</m> has <m>AB = 20\,\text{cm}</m>, <m>BC = 12\,\text{cm}</m> and <m>AE = 9\,\text{cm}</m>. Find the angle between <m>AG</m> and (a) the base <m>ABCD</m>; (b) the face <m>BCGF</m>.</p></statement>
+            <answer><p>(a) <m>21.1^{\circ}</m> (b) <m>53.1^{\circ}</m></p></answer>
+            <solution><p>(a) The projection is <m>AC = \sqrt{400 + 144} = \sqrt{544}</m>, so <m>\tan GAC = \dfrac{9}{\sqrt{544}}</m> and the angle is about <m>21.1^{\circ}</m>.</p>
+            <p>(b) <m>A</m> projects to <m>B</m> (the edge <m>AB</m> is at right angles to the face <m>BCGF</m>), so the projection is <m>BG = \sqrt{144 + 81} = 15\,\text{cm}</m> and the angle is at <m>G</m>: <m>\tan AGB = \dfrac{20}{15}</m>, about <m>53.1^{\circ}</m>.</p></solution>
+        </exercise>
+        <exercise xml:id="ex-rectangular-pyramid-edge">
+            <statement><p>A right pyramid <m>VABCD</m> has a rectangular base with <m>AB = 16\,\text{cm}</m> and <m>BC = 12\,\text{cm}</m>, and each sloping edge is <m>14\,\text{cm}</m> long. Find the angle between <m>VA</m> and the base.</p></statement>
+            <answer><p><m>44.4^{\circ}</m></p></answer>
+            <solution><p><m>AC = \sqrt{256 + 144} = 20</m>, so the projection <m>OA = 10\,\text{cm}</m>. In triangle <m>VOA</m>, <m>\cos VAO = \dfrac{10}{14}</m>, so the angle is about <m>44.4^{\circ}</m>.</p></solution>
+        </exercise>
+        <exercise xml:id="ex-tent-line-and-ground">
+            <statement><p>For the tent in <xref ref="fig-tent-prism"/> (<m>AB = 2.4\,\text{m}</m>, <m>CA = CB = 1.5\,\text{m}</m>, <m>AD = 3\,\text{m}</m>), find the angle between the line <m>AF</m> and the ground.</p></statement>
+            <answer><p><m>15.6^{\circ}</m></p></answer>
+            <solution><p><m>F</m> is above <m>P</m>, the midpoint of <m>DE</m>, at height <m>0.9\,\text{m}</m>. The projection is <m>AP</m>, with <m>AP^2 = 1.2^2 + 3^2 = 10.44</m>. So <m>\tan FAP = \dfrac{0.9}{\sqrt{10.44}}</m> and the angle is about <m>15.6^{\circ}</m>.</p></solution>
+        </exercise>
+        <exercise xml:id="ex-flagpole-wire-angle">
+            <statement><p>A vertical flagpole at a school in Nyeri is <m>8\,\text{m}</m> high. A wire runs from its top to a peg on level ground <m>5.5\,\text{m}</m> from its foot. Find the angle between the wire and the ground.</p></statement>
+            <answer><p><m>55.5^{\circ}</m></p></answer>
+            <solution><p>The projection of the wire is the <m>5.5\,\text{m}</m> line from the peg to the foot of the pole. <m>\tan \theta = \dfrac{8}{5.5}</m>, so <m>\theta \approx 55.5^{\circ}</m>.</p></solution>
+        </exercise>
+        <exercise xml:id="ex-corner-pyramid-line-and-planes">
+            <statement><p>A pyramid <m>VABC</m> has a right angle <m>BAC</m> in its base, <m>AB = AC = 10\,\text{cm}</m>, and the edge <m>VA = 7\,\text{cm}</m> is vertical. Find the angle between <m>VB</m> and (a) the base <m>ABC</m>; (b) the face <m>VAC</m>.</p></statement>
+            <answer><p>(a) <m>35.0^{\circ}</m> (b) <m>55.0^{\circ}</m></p></answer>
+            <solution><p>(a) <m>V</m> is above <m>A</m>, so the projection of <m>VB</m> is <m>AB</m>: <m>\tan VBA = \dfrac{7}{10}</m>, about <m>35.0^{\circ}</m>.</p>
+            <p>(b) <m>BA</m> is at right angles to both <m>AC</m> and <m>AV</m>, so it is perpendicular to the face <m>VAC</m>, and <m>B</m> projects to <m>A</m>. The projection of <m>VB</m> is <m>VA</m>: <m>\tan BVA = \dfrac{10}{7}</m>, about <m>55.0^{\circ}</m>.</p></solution>
+        </exercise>
+        <exercise xml:id="ex-projection-gives-smallest-angle">
+            <title>Challenge: The Projection Gives the Smallest Angle</title>
+            <statement><p>In a cuboid <m>ABCDEFGH</m>, show that angle <m>GAC</m> is smaller than angle <m>GAB</m>.</p></statement>
+            <hint><p>Angles <m>ACG</m> and <m>ABG</m> are both right angles. Compare <m>\cos GAC = \dfrac{AC}{AG}</m> with <m>\cos GAB = \dfrac{AB}{AG}</m>.</p></hint>
+            <answer><p><m>AC \gt AB</m>, so <m>\cos GAC \gt \cos GAB</m>, so angle <m>GAC</m> is smaller.</p></answer>
+            <solution><p>Triangle <m>ACG</m> has a right angle at <m>C</m> and triangle <m>ABG</m> has a right angle at <m>B</m>, so <m>\cos GAC = \dfrac{AC}{AG}</m> and <m>\cos GAB = \dfrac{AB}{AG}</m>. <m>AC</m> is the hypotenuse of triangle <m>ABC</m>, so <m>AC \gt AB</m>, and therefore <m>\cos GAC \gt \cos GAB</m>. For acute angles a larger cosine means a smaller angle, so angle <m>GAC</m> is smaller than angle <m>GAB</m>.</p></solution>
+        </exercise>
+    </exercises>
 
-            </statement>   
-            <solution>
-
-            </solution>             
-        </exercise>        
-    </exercises> -->
-
-    <!-- [LP] Add information on how to differentiate  -->
-
-    <!-- <axiom component="lesson-plan">
+    <axiom component="lesson-plan">
         <title>Differentiation</title>
-
-        <table>
-            <title>Differentiation</title>
-            <tabular halign="left">
-                <row header="yes" bottom="minor">
-                    <cell>Learner Group</cell>
-                    <cell>Strategy &amp; Learning Experience</cell>
-                    <cell></cell>
-                </row>
-                <row>
-                    <cell>Struggling Learners (Support)</cell>
-                    <cell>
-                        XXXX
-                    </cell>
-                    <cell></cell>
-                </row>
-                <row>
-                    <cell>On-Level Learners (Core)</cell>
-                    <cell>
-                        <line>The core lesson activities as described above.</line>
-                    </cell>
-                    <cell></cell>
-                </row>
-                <row>
-                    <cell>Advanced Learners (Challenge)</cell>
-                    <cell>
-                        XXXX
-                    </cell>
-                    <cell></cell>
-                </row>
+        <table xml:id="table-differentiation-angle-between-a-line-and-a-plane">
+            <title>Differentiation Strategies</title>
+            <tabular halign="left" top="minor" bottom="minor" left="minor" right="minor">
+                <row header="yes" bottom="medium"><cell>Learner Group</cell><cell>Strategy and Learning Experience</cell></row>
+                <row><cell>Struggling Learners (Support)</cell><cell>Give a four-step card: where does the line meet the plane; drop a perpendicular; join to find the projection; use the right-angled triangle. Work through the activity and <xref ref="example-diagonal-of-a-water-tank"/>. Assign <xref ref="ex-box-diagonal-and-faces"/> (a) and <xref ref="ex-flagpole-wire-angle"/>.</cell></row>
+                <row><cell>On-Level Learners (Core)</cell><cell>Full activity plus all examples. Assign <xref ref="ex-box-diagonal-and-faces"/> to <xref ref="ex-corner-pyramid-line-and-planes"/>.</cell></row>
+                <row><cell>Advanced Learners (Challenge)</cell><cell>All exercises including <xref ref="ex-projection-gives-smallest-angle"/>. Extension: for which height does a sloping edge of a right pyramid on a square base of side <m>6\,\text{m}</m> make <m>45^{\circ}</m> with the base? (Answer: when the height equals <m>OA = 3\sqrt{2} \approx 4.24\,\text{m}</m>.)</cell></row>
             </tabular>
         </table>
-    </axiom> -->
+    </axiom>
 
     <xi:include href="../lesson-plan-templates/assessment-methods.ptx" />
 
