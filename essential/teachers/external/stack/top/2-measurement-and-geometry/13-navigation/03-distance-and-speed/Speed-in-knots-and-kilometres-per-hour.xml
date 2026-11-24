@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<quiz>
+<question type="stack">
+  <name><text>Speed in knots and kilometres per hour</text></name>
+  <questiontext format="html">
+    <text><![CDATA[<p>A cargo ship sails due [[if test="north"]]north[[else]]south[[/if]] along a meridian from port \(P\) (latitude \([[if test="is(ix=1)"]]2^\circ\,10'\,\mathrm{S}[[/if]][[if test="is(ix=2)"]]1^\circ\,40'\,\mathrm{N}[[/if]][[if test="is(ix=3)"]]8^\circ\,05'\,\mathrm{S}[[/if]][[if test="is(ix=4)"]]0^\circ\,50'\,\mathrm{S}[[/if]][[if test="is(ix=5)"]]4^\circ\,15'\,\mathrm{S}[[/if]][[if test="is(ix=6)"]]3^\circ\,30'\,\mathrm{N}[[/if]][[if test="is(ix=7)"]]5^\circ\,00'\,\mathrm{S}[[/if]][[if test="is(ix=8)"]]6^\circ\,10'\,\mathrm{S}[[/if]][[if test="is(ix=9)"]]2^\circ\,20'\,\mathrm{N}[[/if]][[if test="is(ix=10)"]]7^\circ\,40'\,\mathrm{S}[[/if]]\)) to port \(Q\) (latitude \([[if test="is(ix=1)"]]4^\circ\,25'\,\mathrm{S}[[/if]][[if test="is(ix=2)"]]3^\circ\,05'\,\mathrm{S}[[/if]][[if test="is(ix=3)"]]5^\circ\,20'\,\mathrm{S}[[/if]][[if test="is(ix=4)"]]3^\circ\,35'\,\mathrm{N}[[/if]][[if test="is(ix=5)"]]7^\circ\,55'\,\mathrm{S}[[/if]][[if test="is(ix=6)"]]6^\circ\,45'\,\mathrm{N}[[/if]][[if test="is(ix=7)"]]0^\circ\,35'\,\mathrm{N}[[/if]][[if test="is(ix=8)"]]9^\circ\,00'\,\mathrm{S}[[/if]][[if test="is(ix=9)"]]1^\circ\,55'\,\mathrm{S}[[/if]][[if test="is(ix=10)"]]4^\circ\,50'\,\mathrm{S}[[/if]]\)). It leaves at \([[if test="is(floor(mod(dep,1440)/60)<10)"]]0[[/if]]{@floor(mod(dep,1440)/60)@}:[[if test="is(mod(mod(dep,1440),60)<10)"]]0[[/if]]{@mod(mod(dep,1440),60)@}\) and arrives at \([[if test="is(floor(mod(arr,1440)/60)<10)"]]0[[/if]]{@floor(mod(arr,1440)/60)@}:[[if test="is(mod(mod(arr,1440),60)<10)"]]0[[/if]]{@mod(mod(arr,1440),60)@}\)[[if test="nxt"]] the next day[[/if]].</p><p>(a) Find the distance it sails, in nautical miles.</p><p>[[input:ans1]] nm [[validation:ans1]] [[feedback:prt1]]</p><p>(b) Find its average speed in knots, correct to 1 decimal place.</p><p>[[input:ans2]] knots [[validation:ans2]] [[feedback:prt2]]</p><p>(c) Find its average speed in km/h, correct to the nearest km/h. Take \(1\) knot \(= 1.853\) km/h.</p><p>[[input:ans3]] km/h [[validation:ans3]] [[feedback:prt3]]</p>]]></text>
+  </questiontext>
+  <generalfeedback format="html">
+    <text><![CDATA[<p>(a) [[if test="same"]]Both ports are on the same side of the equator, so subtract the latitudes.[[else]]The ports are on opposite sides of the equator, so add the latitudes.[[/if]] The difference is \({@floor((nm)/60)@}^\circ\,[[if test="is(mod(nm,60)<10)"]]0[[/if]]{@mod(nm,60)@}' = {@nm@}'\), and along a meridian \(1'\) is \(1\) nm, so the ship sails \({@nm@}\) nm.</p><p>(b) The journey lasts \({@dh@}\) h \({@dm@}\) min \(= {@dh@} + \tfrac{ {@dm@} }{60} = {@dispdp(float(dur/60),2)@}\) h. A knot is one nautical mile per hour, so the speed is \({@nm@} \div {@dispdp(float(dur/60),2)@} = {@dispdp(float(kn),3)@} \approx {@dispdp(float(floor(10*kn+1/2)/10),1)@}\) knots.</p><p>(c) \({@dispdp(float(kn),3)@} \times 1.853 = {@dispdp(float(kmh),2)@} \approx {@floor(kmh+1/2)@}\) km/h.</p>]]></text>
+  </generalfeedback>
+  <defaultgrade>3</defaultgrade>
+  <penalty>0.1</penalty>
+  <hidden>0</hidden>
+  <idnumber></idnumber>
+  <stackversion><text>2026063000</text></stackversion>
+  <questionvariables>
+    <text><![CDATA[cosd(x) := cos(x*%pi/180);
+sind(x) := sin(x*%pi/180);
+atand(x) := 180*atan(x)/%pi;
+asind(x) := 180*asin(x)/%pi;
+two(v) := if v < 10 then sconcat("0", string(v)) else string(v);
+hm(m) := block([q], q: mod(m, 1440), sconcat(two(floor(q/60)), ":", two(mod(q, 60))));
+dmx(m) := sconcat(string(floor(m/60)), "^\\circ", two(mod(m, 60)), "'");
+/* Design: [latP deg, min, N/S, latQ deg, min, N/S, departure h, m, duration h, m]. The next-day node applies only on overnight entries; elsewhere dayw = -1, a value no speed takes (used only by its test). Source: original. */
+L: [[2,10,"S",4,25,"S",6,0,11,15],[1,40,"N",3,5,"S",19,30,16,45],[8,5,"S",5,20,"S",22,15,13,30],[0,50,"S",3,35,"N",7,45,14,30],[4,15,"S",7,55,"S",20,0,18,45],[3,30,"N",6,45,"N",9,10,10,30],[5,0,"S",0,35,"N",21,40,20,45],[6,10,"S",9,0,"S",5,30,12,45],[2,20,"N",1,55,"S",18,45,15,15],[7,40,"S",4,50,"S",13,0,9,30]];
+ix: 1+rand(10);
+E: L[ix];
+sP: (60*E[1]+E[2])*(if E[3]="N" then 1 else -1);
+sQ: (60*E[4]+E[5])*(if E[6]="N" then 1 else -1);
+north: is(sQ>sP);
+same: is(E[3]=E[6]);
+nm: abs(sP-sQ);
+dep: 60*E[7]+E[8];
+dh: E[9]; dm: E[10];
+dur: 60*dh+dm;
+arr: dep+dur;
+nxt: is(arr>=1440);
+kn: nm*60/dur;
+kmh: kn*1.853;
+/* diagnostics */
+wr: if same then abs(sP)+abs(sQ) else abs(abs(sP)-abs(sQ));
+dec: nm/(dh+dm/100);
+dayw: if nxt then nm/(abs(mod(arr,1440)-dep)/60) else -1;
+permin: nm/dur;
+div: kn/1.853;
+]]></text>
+  </questionvariables>
+  <specificfeedback format="html"><text><![CDATA[]]></text></specificfeedback>
+  <questionnote format="moodle_auto_format">
+    <text>ix={@ix@}, nm={@nm@}, dur={@dur@} min, knots={@dispdp(float(kn),1)@}</text>
+  </questionnote>
+  <questiondescription format="html"><text><![CDATA[<p id="concept">Navigation: speed in knots and km/h</p><p id="description">Grade 12 CBE Core 2.7 (e) / Essential 2.3 (e): Find the distance sailed along a meridian between two ports and the average speed in knots and in km/h.</p><p id="edition">Core and Essential</p><p id="provenance">This question is original to this project.</p><p id="citation">INNODEMS CBC Grade 12 Mathematics, first draft by Ben Davies, 2026. Aligned to the KICD Senior School Curriculum Design, Core and Essential Mathematics Grade 12 (draft).</p>]]></text></questiondescription>
+  <questionsimplify>1</questionsimplify>
+  <assumepositive>0</assumepositive>
+  <assumereal>0</assumereal>
+  <prtcorrect format="html"><text><![CDATA[[[commonstring key="symbolicprtcorrectfeedback"/]] [[commonstring key="defaultprtcorrectfeedback"/]]]]></text></prtcorrect>
+  <prtpartiallycorrect format="html"><text><![CDATA[[[commonstring key="symbolicprtpartiallycorrectfeedback"/]] [[commonstring key="defaultprtpartiallycorrectfeedback"/]]]]></text></prtpartiallycorrect>
+  <prtincorrect format="html"><text><![CDATA[[[commonstring key="symbolicprtincorrectfeedback"/]] [[commonstring key="defaultprtincorrectfeedback"/]]]]></text></prtincorrect>
+  <decimals>.</decimals>
+  <scientificnotation>*10</scientificnotation>
+  <multiplicationsign>none</multiplicationsign>
+  <sqrtsign>1</sqrtsign>
+  <complexno>i</complexno>
+  <inversetrig>cos-1</inversetrig>
+  <logicsymbol>lang</logicsymbol>
+  <matrixparens>[</matrixparens>
+  <isbroken>0</isbroken>
+  <variantsselectionseed></variantsselectionseed>
+
+  <input><name>ans1</name><type>numerical</type><tans>nm</tans><boxsize>8</boxsize><strictsyntax>1</strictsyntax><insertstars>0</insertstars><syntaxhint></syntaxhint><syntaxattribute>0</syntaxattribute><forbidwords></forbidwords><allowwords></allowwords><forbidfloat>0</forbidfloat><requirelowestterms>0</requirelowestterms><checkanswertype>0</checkanswertype><mustverify>0</mustverify><showvalidation>0</showvalidation><options></options></input>
+  <input><name>ans2</name><type>numerical</type><tans>float(kn)</tans><boxsize>8</boxsize><strictsyntax>1</strictsyntax><insertstars>0</insertstars><syntaxhint></syntaxhint><syntaxattribute>0</syntaxattribute><forbidwords></forbidwords><allowwords></allowwords><forbidfloat>0</forbidfloat><requirelowestterms>0</requirelowestterms><checkanswertype>0</checkanswertype><mustverify>0</mustverify><showvalidation>0</showvalidation><options></options></input>
+  <input><name>ans3</name><type>numerical</type><tans>float(kmh)</tans><boxsize>8</boxsize><strictsyntax>1</strictsyntax><insertstars>0</insertstars><syntaxhint></syntaxhint><syntaxattribute>0</syntaxattribute><forbidwords></forbidwords><allowwords></allowwords><forbidfloat>0</forbidfloat><requirelowestterms>0</requirelowestterms><checkanswertype>0</checkanswertype><mustverify>0</mustverify><showvalidation>0</showvalidation><options></options></input>
+
+  <prt><name>prt1</name><value>1.0000000</value><autosimplify>1</autosimplify><feedbackstyle>1</feedbackstyle><feedbackvariables><text><![CDATA[]]></text></feedbackvariables>
+    <node><name>0</name><description>Distance</description><answertest>NumAbsolute</answertest><sans>ans1</sans><tans>nm</tans><testoptions>0.001</testoptions><quiet>0</quiet><truescoremode>=</truescoremode><truescore>1.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt1-1-T</trueanswernote><truefeedback format="html"><text><![CDATA[]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>1</falsenextnode><falseanswernote>prt1-1-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>1</name><description>Rule swapped</description><answertest>NumAbsolute</answertest><sans>ans1</sans><tans>wr</tans><testoptions>0.001</testoptions><quiet>0</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt1-2-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>[[if test="same"]]Both ports are on the same side of the equator, so subtract the latitudes.[[else]]The ports are on opposite sides of the equator, so add the latitudes.[[/if]]</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>-1</falsenextnode><falseanswernote>prt1-2-F</falseanswernote><falsefeedback format="html"><text><![CDATA[<p>Your \({@ans1@}\) nm is \({@ans1@}'\) of arc on the meridian, which is \({@dispdp(float(ans1/60),2)@}^\circ\). Compare that with the difference in latitude between the two ports, worked in degrees and minutes.</p>]]></text></falsefeedback></node>
+  </prt>
+  <prt><name>prt2</name><value>1.0000000</value><autosimplify>1</autosimplify><feedbackstyle>1</feedbackstyle><feedbackvariables><text><![CDATA[ft2: is(abs(ans1-nm)>0.001 and abs(ans2-ans1/(dur/60))<=0.0501);
+yd: float(ans2*dur/60);]]></text></feedbackvariables>
+    <node><name>0</name><description>Speed in knots</description><answertest>NumAbsolute</answertest><sans>ans2</sans><tans>kn</tans><testoptions>0.0501</testoptions><quiet>0</quiet><truescoremode>=</truescoremode><truescore>1.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt2-1-T</trueanswernote><truefeedback format="html"><text><![CDATA[]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>1</falsenextnode><falseanswernote>prt2-1-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>1</name><description>Minutes as decimals</description><answertest>NumAbsolute</answertest><sans>ans2</sans><tans>dec</tans><testoptions>0.0501</testoptions><quiet>0</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt2-2-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>You wrote \({@dh@}\) h \({@dm@}\) min as \({@dh@}.{@dm@}\) h. Minutes are sixtieths of an hour: \({@dm@}\) min \(= {@dispdp(float(dm/60),2)@}\) h.</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>2</falsenextnode><falseanswernote>prt2-2-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>2</name><description>Next day</description><answertest>NumAbsolute</answertest><sans>ans2</sans><tans>dayw</tans><testoptions>0.0501</testoptions><quiet>0</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt2-3-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>The ship arrives the next day. The journey lasted \({@dh@}\) h \({@dm@}\) min, not the difference of the clock times.</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>3</falsenextnode><falseanswernote>prt2-3-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>3</name><description>Per minute</description><answertest>NumAbsolute</answertest><sans>ans2</sans><tans>permin</tans><testoptions>0.0501</testoptions><quiet>0</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt2-4-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>That is nautical miles per minute. A knot is a nautical mile per hour.</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>4</falsenextnode><falseanswernote>prt2-4-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>4</name><description>Follow-through</description><answertest>AlgEquiv</answertest><sans>ft2</sans><tans>true</tans><testoptions></testoptions><quiet>1</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt2-5-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>Your method is right for your answer to (a), but (a) is wrong.</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>-1</falsenextnode><falseanswernote>prt2-5-F</falseanswernote><falsefeedback format="html"><text><![CDATA[<p>At \({@ans2@}\) knots for \({@dh@}\) h \({@dm@}\) min the ship would sail \({@dispdp(yd,1)@}\) nm. Compare that with the distance in (a). A knot is one nautical mile per hour, so change the minutes to a fraction of an hour before you divide.</p>]]></text></falsefeedback></node>
+  </prt>
+  <prt><name>prt3</name><value>1.0000000</value><autosimplify>1</autosimplify><feedbackstyle>1</feedbackstyle><feedbackvariables><text><![CDATA[ft3: is(abs(ans2-kn)>0.0501 and abs(ans3-ans2*1.853)<=1);
+yr: if ans2>0 then float(ans3/ans2) else 0;]]></text></feedbackvariables>
+    <node><name>0</name><description>Speed in km/h</description><answertest>NumAbsolute</answertest><sans>ans3</sans><tans>kmh</tans><testoptions>1</testoptions><quiet>0</quiet><truescoremode>=</truescoremode><truescore>1.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt3-1-T</trueanswernote><truefeedback format="html"><text><![CDATA[]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>1</falsenextnode><falseanswernote>prt3-1-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>1</name><description>Divided</description><answertest>NumAbsolute</answertest><sans>ans3</sans><tans>div</tans><testoptions>1</testoptions><quiet>0</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt3-2-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>Multiply by \(1.853\), do not divide: a km/h is a smaller unit than a knot, so the number gets bigger.</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>2</falsenextnode><falseanswernote>prt3-2-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>2</name><description>Follow-through</description><answertest>AlgEquiv</answertest><sans>ft3</sans><tans>true</tans><testoptions></testoptions><quiet>1</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt3-3-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>Your conversion is right for your answer to (b), but (b) is wrong.</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>-1</falsenextnode><falseanswernote>prt3-3-F</falseanswernote><falsefeedback format="html"><text><![CDATA[<p>[[if test="is(ans2>0)"]]Your answers to (b) and (c) make one knot equal to \({@dispdp(yr,3)@}\) km/h. [[/if]]The question gives \(1\) knot \(= 1.853\) km/h.</p>]]></text></falsefeedback></node>
+  </prt>
+
+  <deployedseed>4</deployedseed>
+  <deployedseed>5</deployedseed>
+  <deployedseed>15</deployedseed>
+  <deployedseed>8</deployedseed>
+  <deployedseed>24</deployedseed>
+  <deployedseed>1</deployedseed>
+  <deployedseed>3</deployedseed>
+  <deployedseed>10</deployedseed>
+  <deployedseed>2</deployedseed>
+  <deployedseed>17</deployedseed>
+  <qtest><testcase>1</testcase><description>Correct</description>
+    <testinput><name>ans1</name><value>nm</value></testinput>
+    <testinput><name>ans2</name><value>float(floor(10^1*(kn)+1/2)/10^1)</value></testinput>
+    <testinput><name>ans3</name><value>floor(kmh+1/2)</value></testinput>
+    <expected><name>prt1</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt1-1-T</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt2-1-T</expectedanswernote></expected>
+    <expected><name>prt3</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt3-1-T</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>2</testcase><description>Correct, unrounded</description>
+    <testinput><name>ans1</name><value>nm</value></testinput>
+    <testinput><name>ans2</name><value>float(kn)</value></testinput>
+    <testinput><name>ans3</name><value>float(kmh)</value></testinput>
+    <expected><name>prt1</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt1-1-T</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt2-1-T</expectedanswernote></expected>
+    <expected><name>prt3</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt3-1-T</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>3</testcase><description>Generic wrong</description>
+    <testinput><name>ans1</name><value>nm+7</value></testinput>
+    <testinput><name>ans2</name><value>float(floor(10^1*(kn)+1/2)/10^1)+1.5</value></testinput>
+    <testinput><name>ans3</name><value>floor(kmh+1/2)+5</value></testinput>
+    <expected><name>prt1</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt1-1-F | prt1-2-F</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt2-1-F | prt2-2-F | prt2-3-F | prt2-4-F | prt2-5-F</expectedanswernote></expected>
+    <expected><name>prt3</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt3-1-F | prt3-2-F | prt3-3-F</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>4</testcase><description>Rule swapped; minutes as decimals; divided</description>
+    <testinput><name>ans1</name><value>wr</value></testinput>
+    <testinput><name>ans2</name><value>float(dec)</value></testinput>
+    <testinput><name>ans3</name><value>float(div)</value></testinput>
+    <expected><name>prt1</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt1-1-F | prt1-2-T</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt2-1-F | prt2-2-T</expectedanswernote></expected>
+    <expected><name>prt3</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt3-1-F | prt3-2-T</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>5</testcase><description>Clock difference (sentinel value on same-day entries)</description>
+    <testinput><name>ans1</name><value>nm</value></testinput>
+    <testinput><name>ans2</name><value>float(dayw)</value></testinput>
+    <testinput><name>ans3</name><value>floor(kmh+1/2)</value></testinput>
+    <expected><name>prt1</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt1-1-T</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt2-1-F | prt2-2-F | prt2-3-T</expectedanswernote></expected>
+    <expected><name>prt3</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt3-1-T</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>6</testcase><description>Per minute</description>
+    <testinput><name>ans1</name><value>nm</value></testinput>
+    <testinput><name>ans2</name><value>float(permin)</value></testinput>
+    <testinput><name>ans3</name><value>floor(kmh+1/2)</value></testinput>
+    <expected><name>prt1</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt1-1-T</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt2-1-F | prt2-2-F | prt2-3-F | prt2-4-T</expectedanswernote></expected>
+    <expected><name>prt3</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt3-1-T</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>7</testcase><description>Follow-through in km/h</description>
+    <testinput><name>ans1</name><value>nm</value></testinput>
+    <testinput><name>ans2</name><value>float(floor(10^1*(kn)+1/2)/10^1)+1.5</value></testinput>
+    <testinput><name>ans3</name><value>float((float(floor(10^1*(kn)+1/2)/10^1)+1.5)*1.853)</value></testinput>
+    <expected><name>prt1</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt1-1-T</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt2-1-F | prt2-2-F | prt2-3-F | prt2-4-F | prt2-5-F</expectedanswernote></expected>
+    <expected><name>prt3</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt3-1-F | prt3-2-F | prt3-3-T</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>8</testcase><description>Follow-through in knots</description>
+    <testinput><name>ans1</name><value>nm+7</value></testinput>
+    <testinput><name>ans2</name><value>float((nm+7)/(dur/60))</value></testinput>
+    <testinput><name>ans3</name><value>floor(kmh+1/2)</value></testinput>
+    <expected><name>prt1</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt1-1-F | prt1-2-F</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt2-1-F | prt2-2-F | prt2-3-F | prt2-4-F | prt2-5-T</expectedanswernote></expected>
+    <expected><name>prt3</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt3-1-T</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>9</testcase><description>Invalid: letter in (c)</description>
+    <testinput><name>ans1</name><value>nm</value></testinput>
+    <testinput><name>ans2</name><value>float(floor(10^1*(kn)+1/2)/10^1)</value></testinput>
+    <testinput><name>ans3</name><value>x</value></testinput>
+    <expected><name>prt1</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt1-1-T</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt2-1-T</expectedanswernote></expected>
+    <expected><name>prt3</name><expectedscore></expectedscore><expectedpenalty></expectedpenalty><expectedanswernote>NULL</expectedanswernote></expected>
+  </qtest>
+</question>
+</quiz>

@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<quiz>
+<question type="stack">
+  <name><text>Absolute and percentage error of an estimate</text></name>
+  <questiontext format="html">
+    <text><![CDATA[<p>Nyambura used the trapezoidal rule with \({@ns@}\) strips to estimate \(\displaystyle \int_{ {@lo@} }^{ {@hi@} } \left({@fx@}\right)dx\) and got \({@exd(Tv)@}\).</p><p>(a) Find the exact value of the integral.</p><div>Exact value \(=\) [[input:ans1]] [[validation:ans1]] [[feedback:prt1]]</div><p>(b) Find the absolute error of her estimate.</p><div>Absolute error \(=\) [[input:ans2]] [[validation:ans2]] [[feedback:prt2]]</div><p>(c) Find the percentage error, correct to 2 decimal places.</p><div>Percentage error \(=\) [[input:ans3]] % [[validation:ans3]] [[feedback:prt3]]</div>]]></text>
+  </questiontext>
+  <generalfeedback format="html">
+    <text><![CDATA[<p>The absolute error is the size of the difference between the estimate and the exact value. The percentage error compares it with the exact value: absolute error \(\div\) exact value \(\times 100\).</p><p>(a) \(\displaystyle \int_{ {@lo@} }^{ {@hi@} } \left({@fx@}\right)dx = \left[{@Fx@}\right]_{ {@lo@} }^{ {@hi@} } = {@exd(Ex)@}\).</p><p>(b) Absolute error \(= |{@exd(Tv)@} - {@exd(Ex)@}| = {@exd(ae)@}\).</p><p>(c) Percentage error \(= \dfrac{ {@exd(ae)@} }{ {@exd(Ex)@} } \times 100 \approx {@dispdp(float(floor(10^2*(pc)+1/2)/10^2),2)@}\,\%\).</p><p>[[if test="is(Tv>Ex)"]]The estimate is too big: the curve bends upwards, so the chords lie above it.[[else]]The estimate is too small: the curve bends downwards, so the chords lie below it.[[/if]]</p>]]></text>
+  </generalfeedback>
+  <defaultgrade>3</defaultgrade>
+  <penalty>0.1</penalty>
+  <hidden>0</hidden>
+  <idnumber></idnumber>
+  <stackversion><text>2026063000</text></stackversion>
+  <questionvariables>
+    <text><![CDATA[/* exd: shortest exact decimal display of a terminating value (up to 3 d.p.) */
+exd(v) := if integerp(v) then v else if integerp(10*v) then dispdp(float(v),1) else if integerp(100*v) then dispdp(float(v),2) else dispdp(float(v),3);
+trap(fn, a, b, m) := block([h, ys], h: (b-a)/m, ys: makelist(subst(x=a+j*h, fn), j, 0, m), h/2*(ys[1]+ys[m+1]+2*sum(ys[j], j, 2, m)));
+/* Design: [c0, c1, c2, c3, lo, hi, n]; odd entries bend upwards, even entries bend downwards. Source: original. */
+L: [[1,0,0,1,0,2,4],[30,2,-3,0,1,3,2],[2,2,0,2,0,3,3],[30,2,0,-1,0,3,3],[1,2,6,1,1,4,3],[30,0,0,-1,0,3,3],[5,2,6,0,0,2,4],[40,0,-3,-1,0,2,2],[2,0,3,1,1,5,4],[20,2,0,-1,0,2,2]];
+ix: 1+rand(10);
+cf: L[ix];
+lo: cf[5]; hi: cf[6]; ns: cf[7];
+fx: cf[1]+cf[2]*x+cf[3]*x^2+cf[4]*x^3;
+Fx: integrate(fx,x);
+Tv: trap(fx, lo, hi, ns);
+Ex: subst(x=hi,Fx)-subst(x=lo,Fx);
+ae: abs(Tv-Ex);
+pc: ae/Ex*100;
+/* diagnostics */
+pcT: ae/Tv*100;
+pcno: ae/Ex;
+/* test values */
+pc2: float(floor(10^2*(pc)+1/2)/10^2);
+pcT2: float(floor(10^2*(pcT)+1/2)/10^2);
+ftb: abs(Tv-Ex-2);
+ftc: float(floor(10^2*(abs(Tv-Ex-2)/(Ex+2)*100)+1/2)/10^2);]]></text>
+  </questionvariables>
+  <specificfeedback format="html"><text><![CDATA[]]></text></specificfeedback>
+  <questionnote format="moodle_auto_format">
+    <text>ix={@ix@}, f={@fx@}, n={@ns@}, T={@exd(Tv)@}, exact={@exd(Ex)@}, %={@dispdp(float(floor(10^2*(pc)+1/2)/10^2),2)@}</text>
+  </questionnote>
+  <questiondescription format="html"><text><![CDATA[<p id="concept">Integration: absolute and percentage error of a trapezoidal estimate</p><p id="description">Grade 12 CBE Core 4.2: Find the exact value of an integral, and the absolute and percentage errors of a trapezoidal estimate of it.</p><p id="edition">Core</p><p id="provenance">This question is original to this project.</p><p id="citation">INNODEMS CBC Grade 12 Mathematics, first draft by Ben Davies, 2026. Aligned to the KICD Senior School Curriculum Design, Core Mathematics Grade 12 (draft).</p>]]></text></questiondescription>
+  <questionsimplify>1</questionsimplify>
+  <assumepositive>0</assumepositive>
+  <assumereal>0</assumereal>
+  <prtcorrect format="html"><text><![CDATA[[[commonstring key="symbolicprtcorrectfeedback"/]] [[commonstring key="defaultprtcorrectfeedback"/]]]]></text></prtcorrect>
+  <prtpartiallycorrect format="html"><text><![CDATA[[[commonstring key="symbolicprtpartiallycorrectfeedback"/]] [[commonstring key="defaultprtpartiallycorrectfeedback"/]]]]></text></prtpartiallycorrect>
+  <prtincorrect format="html"><text><![CDATA[[[commonstring key="symbolicprtincorrectfeedback"/]] [[commonstring key="defaultprtincorrectfeedback"/]]]]></text></prtincorrect>
+  <decimals>.</decimals>
+  <scientificnotation>*10</scientificnotation>
+  <multiplicationsign>none</multiplicationsign>
+  <sqrtsign>1</sqrtsign>
+  <complexno>i</complexno>
+  <inversetrig>cos-1</inversetrig>
+  <logicsymbol>lang</logicsymbol>
+  <matrixparens>[</matrixparens>
+  <isbroken>0</isbroken>
+  <variantsselectionseed></variantsselectionseed>
+
+  <input><name>ans1</name><type>numerical</type><tans>Ex</tans><boxsize>8</boxsize><strictsyntax>1</strictsyntax><insertstars>0</insertstars><syntaxhint></syntaxhint><syntaxattribute>0</syntaxattribute><forbidwords></forbidwords><allowwords></allowwords><forbidfloat>0</forbidfloat><requirelowestterms>0</requirelowestterms><checkanswertype>0</checkanswertype><mustverify>0</mustverify><showvalidation>0</showvalidation><options></options></input>
+  <input><name>ans2</name><type>numerical</type><tans>ae</tans><boxsize>8</boxsize><strictsyntax>1</strictsyntax><insertstars>0</insertstars><syntaxhint></syntaxhint><syntaxattribute>0</syntaxattribute><forbidwords></forbidwords><allowwords></allowwords><forbidfloat>0</forbidfloat><requirelowestterms>0</requirelowestterms><checkanswertype>0</checkanswertype><mustverify>0</mustverify><showvalidation>0</showvalidation><options></options></input>
+  <input><name>ans3</name><type>numerical</type><tans>pc</tans><boxsize>8</boxsize><strictsyntax>1</strictsyntax><insertstars>0</insertstars><syntaxhint></syntaxhint><syntaxattribute>0</syntaxattribute><forbidwords></forbidwords><allowwords></allowwords><forbidfloat>0</forbidfloat><requirelowestterms>0</requirelowestterms><checkanswertype>0</checkanswertype><mustverify>0</mustverify><showvalidation>0</showvalidation><options></options></input>
+
+  <prt><name>prt1</name><value>1.0000000</value><autosimplify>1</autosimplify><feedbackstyle>1</feedbackstyle><feedbackvariables><text><![CDATA[]]></text></feedbackvariables>
+    <node><name>0</name><description>Exact value</description><answertest>NumAbsolute</answertest><sans>ans1</sans><tans>Ex</tans><testoptions>0.001</testoptions><quiet>0</quiet><truescoremode>=</truescoremode><truescore>1.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt1-1-T</trueanswernote><truefeedback format="html"><text><![CDATA[]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>1</falsenextnode><falseanswernote>prt1-1-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>1</name><description>Gave the estimate</description><answertest>NumAbsolute</answertest><sans>ans1</sans><tans>Tv</tans><testoptions>0.001</testoptions><quiet>0</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt1-2-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>That is Nyambura's estimate. Integrate to find the exact value.</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>-1</falsenextnode><falseanswernote>prt1-2-F</falseanswernote><falsefeedback format="html"><text><![CDATA[<p>Integrate \({@fx@}\) and work out \(F({@hi@}) - F({@lo@})\).</p>]]></text></falsefeedback></node>
+  </prt>
+  <prt><name>prt2</name><value>1.0000000</value><autosimplify>1</autosimplify><feedbackstyle>1</feedbackstyle><feedbackvariables><text><![CDATA[ft2: abs(Tv-ans1);]]></text></feedbackvariables>
+    <node><name>0</name><description>Absolute error</description><answertest>NumAbsolute</answertest><sans>ans2</sans><tans>ae</tans><testoptions>0.001</testoptions><quiet>0</quiet><truescoremode>=</truescoremode><truescore>1.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt2-1-T</trueanswernote><truefeedback format="html"><text><![CDATA[]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>1</falsenextnode><falseanswernote>prt2-1-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>1</name><description>Negative</description><answertest>NumAbsolute</answertest><sans>ans2</sans><tans>-ae</tans><testoptions>0.001</testoptions><quiet>0</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt2-2-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>The absolute error is the size of the difference, so it is never negative.</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>2</falsenextnode><falseanswernote>prt2-2-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>2</name><description>Follow-through from (a)</description><answertest>NumAbsolute</answertest><sans>ans2</sans><tans>ft2</tans><testoptions>0.001</testoptions><quiet>1</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt2-3-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>Your subtraction is right for your exact value, but (a) is wrong.</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>-1</falsenextnode><falseanswernote>prt2-3-F</falseanswernote><falsefeedback format="html"><text><![CDATA[<p>Absolute error \(= |\text{estimate} - \text{exact value}|\), with the estimate \({@exd(Tv)@}\).</p>]]></text></falsefeedback></node>
+  </prt>
+  <prt><name>prt3</name><value>1.0000000</value><autosimplify>1</autosimplify><feedbackstyle>1</feedbackstyle><feedbackvariables><text><![CDATA[ft3: if is(ans1 = 0) then -1000 else ans2/ans1*100;]]></text></feedbackvariables>
+    <node><name>0</name><description>Percentage error</description><answertest>NumAbsolute</answertest><sans>ans3</sans><tans>pc</tans><testoptions>0.00501</testoptions><quiet>0</quiet><truescoremode>=</truescoremode><truescore>1.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt3-1-T</trueanswernote><truefeedback format="html"><text><![CDATA[]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>1</falsenextnode><falseanswernote>prt3-1-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>1</name><description>Divided by the estimate</description><answertest>NumAbsolute</answertest><sans>ans3</sans><tans>pcT</tans><testoptions>0.00501</testoptions><quiet>0</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt3-2-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>You divided by the estimate \({@exd(Tv)@}\). Divide by the exact value \({@exd(Ex)@}\).</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>2</falsenextnode><falseanswernote>prt3-2-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>2</name><description>Did not multiply by 100</description><answertest>NumAbsolute</answertest><sans>ans3</sans><tans>pcno</tans><testoptions>0.00501</testoptions><quiet>0</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt3-3-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>That is the error as a fraction of the exact value. Multiply by \(100\) for a percentage.</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>3</falsenextnode><falseanswernote>prt3-3-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>3</name><description>Negative</description><answertest>NumAbsolute</answertest><sans>ans3</sans><tans>-pc</tans><testoptions>0.00501</testoptions><quiet>0</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt3-4-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>A percentage error uses the absolute error, so it is positive.</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>4</falsenextnode><falseanswernote>prt3-4-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>4</name><description>Follow-through from (a) and (b)</description><answertest>NumAbsolute</answertest><sans>ans3</sans><tans>ft3</tans><testoptions>0.00501</testoptions><quiet>1</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt3-5-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>Your division is right for your answers to (a) and (b), but at least one of them is wrong.</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>-1</falsenextnode><falseanswernote>prt3-5-F</falseanswernote><falsefeedback format="html"><text><![CDATA[<p>Percentage error \(=\) absolute error \(\div\) exact value \(\times 100\), given to 2 decimal places.</p>]]></text></falsefeedback></node>
+  </prt>
+
+  <deployedseed>4</deployedseed>
+  <deployedseed>5</deployedseed>
+  <deployedseed>15</deployedseed>
+  <deployedseed>8</deployedseed>
+  <deployedseed>24</deployedseed>
+  <deployedseed>1</deployedseed>
+  <deployedseed>3</deployedseed>
+  <deployedseed>10</deployedseed>
+  <deployedseed>2</deployedseed>
+  <deployedseed>17</deployedseed>
+  <qtest><testcase>1</testcase><description>Correct, rounded</description>
+    <testinput><name>ans1</name><value>Ex</value></testinput>
+    <testinput><name>ans2</name><value>ae</value></testinput>
+    <testinput><name>ans3</name><value>pc2</value></testinput>
+    <expected><name>prt1</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt1-1-T</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt2-1-T</expectedanswernote></expected>
+    <expected><name>prt3</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt3-1-T</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>2</testcase><description>Correct, percentage unrounded</description>
+    <testinput><name>ans1</name><value>Ex</value></testinput>
+    <testinput><name>ans2</name><value>ae</value></testinput>
+    <testinput><name>ans3</name><value>float(pc)</value></testinput>
+    <expected><name>prt1</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt1-1-T</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt2-1-T</expectedanswernote></expected>
+    <expected><name>prt3</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt3-1-T</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>3</testcase><description>Estimate as exact; negative error; divided by the estimate</description>
+    <testinput><name>ans1</name><value>Tv</value></testinput>
+    <testinput><name>ans2</name><value>-ae</value></testinput>
+    <testinput><name>ans3</name><value>pcT2</value></testinput>
+    <expected><name>prt1</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt1-1-F | prt1-2-T</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt2-1-F | prt2-2-T</expectedanswernote></expected>
+    <expected><name>prt3</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt3-1-F | prt3-2-T</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>4</testcase><description>Did not multiply by 100</description>
+    <testinput><name>ans1</name><value>Ex</value></testinput>
+    <testinput><name>ans2</name><value>ae</value></testinput>
+    <testinput><name>ans3</name><value>float(pcno)</value></testinput>
+    <expected><name>prt1</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt1-1-T</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt2-1-T</expectedanswernote></expected>
+    <expected><name>prt3</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt3-1-F | prt3-2-F | prt3-3-T</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>5</testcase><description>Negative percentage</description>
+    <testinput><name>ans1</name><value>Ex</value></testinput>
+    <testinput><name>ans2</name><value>ae</value></testinput>
+    <testinput><name>ans3</name><value>-pc2</value></testinput>
+    <expected><name>prt1</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt1-1-T</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt2-1-T</expectedanswernote></expected>
+    <expected><name>prt3</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt3-1-F | prt3-2-F | prt3-3-F | prt3-4-T</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>6</testcase><description>Follow-through from a wrong exact value</description>
+    <testinput><name>ans1</name><value>Ex+2</value></testinput>
+    <testinput><name>ans2</name><value>ftb</value></testinput>
+    <testinput><name>ans3</name><value>ftc</value></testinput>
+    <expected><name>prt1</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt1-1-F | prt1-2-F</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt2-1-F | prt2-2-F | prt2-3-T</expectedanswernote></expected>
+    <expected><name>prt3</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt3-1-F | prt3-2-F | prt3-3-F | prt3-4-F | prt3-5-T</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>7</testcase><description>Generic wrong</description>
+    <testinput><name>ans1</name><value>Ex+1</value></testinput>
+    <testinput><name>ans2</name><value>ae+3</value></testinput>
+    <testinput><name>ans3</name><value>pc2+1</value></testinput>
+    <expected><name>prt1</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt1-1-F | prt1-2-F</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt2-1-F | prt2-2-F | prt2-3-F</expectedanswernote></expected>
+    <expected><name>prt3</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt3-1-F | prt3-2-F | prt3-3-F | prt3-4-F | prt3-5-F</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>8</testcase><description>Invalid: letter in (c)</description>
+    <testinput><name>ans1</name><value>Ex</value></testinput>
+    <testinput><name>ans2</name><value>ae</value></testinput>
+    <testinput><name>ans3</name><value>x</value></testinput>
+    <expected><name>prt1</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt1-1-T</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt2-1-T</expectedanswernote></expected>
+    <expected><name>prt3</name><expectedscore></expectedscore><expectedpenalty></expectedpenalty><expectedanswernote>NULL</expectedanswernote></expected>
+  </qtest>
+</question>
+</quiz>

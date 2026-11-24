@@ -1,0 +1,12 @@
+<stack-static>
+    <statement><p><p><m>{6}</m> artisans in a jua kali workshop make <m>{144}</m> jiko in <m>{4}</m> days. Working at the same rate, how many jiko can <m>{9}</m> artisans make in <m>{5}</m> days?</p><p>Akinyi wrote this working, which has one mistake:</p><ol><li><p>1 artisan makes <m>{144} \times {6} = {864}</m> jiko in <m>{4}</m> days.</p></li><li><p>1 artisan makes <m>{864} \div {4} = {216}</m> jiko in 1 day.</p></li><li><p><m>{9}</m> artisans make <m>{216} \times {9} = {1944}</m> jiko in 1 day.</p></li><li><p>In <m>{5}</m> days they make <m>{1944} \times {5} = {9720}</m> jiko.</p></li></ol><p>(a) Which line has the mistake?</p><p/><ol marker="(1)">
+<li>None: the working is correct</li>
+<li>Line 1</li>
+<li>Line 2</li>
+<li>Line 3</li>
+<li>Line 4</li>
+</ol>  <p>(b) How many jiko can they make?</p><p><fillin characters="8" name="ans2"/> jiko  </p></p></statement>
+    <solution><p><p>The mistake is in line <m>{1}</m>. Line 1 multiplies by the number of artisans: one artisan must make fewer jiko than all of them, so divide.</p><p>The correct working:</p><ol><li><p>1 artisan makes <m>{144} \div {6} = {24}</m> jiko in <m>{4}</m> days.</p></li><li><p>1 artisan makes <m>{24} \div {4} = {6}</m> jiko in 1 day.</p></li><li><p><m>{9}</m> artisans make <m>{6} \times {9} = {54}</m> jiko in 1 day.</p></li><li><p>In <m>{5}</m> days they make <m>{54} \times {5} = {270}</m> jiko.</p></li></ol><p>In each line ask: should the answer be more or less than the line before?</p></p></solution>
+    <answer><p><m>(2)</m></p></answer>
+    <answer><p><m>270</m></p></answer>
+</stack-static>

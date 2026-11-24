@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<quiz>
+<question type="stack">
+  <name><text>Velocity and displacement from acceleration</text></name>
+  <questiontext format="html">
+    <text><![CDATA[<p>A particle moves in a straight line. At time \(t\) seconds its acceleration is \(a = {@at@}\) m/s\(^2\). When \(t = 0\) its velocity is \({@uu@}\) m/s and it is at the point \(O\).</p><p>(a) Find its velocity \(v\) in terms of \(t\).</p><div>\(v =\) [[input:ans1]] m/s [[validation:ans1]] [[feedback:prt1]]</div><p>(b) Find its displacement \(s\) from \(O\) in terms of \(t\).</p><div>\(s =\) [[input:ans2]] m [[validation:ans2]] [[feedback:prt2]]</div><p>(c) Find its displacement from \(O\) when \(t = {@Tend@}\).</p><div>\(s =\) [[input:ans3]] m [[validation:ans3]] [[feedback:prt3]]</div>]]></text>
+  </questiontext>
+  <generalfeedback format="html">
+    <text><![CDATA[<p>Integrate to go from acceleration to velocity and from velocity to displacement, using what you know at the start to find each constant.</p><p>(a) \(v = \displaystyle\int \left({@at@}\right)dt = {@pp*t+qq/2*t^2@} + c\). When \(t = 0\), \(v = {@uu@}\), so \(c = {@uu@}\) and \(v = {@vt@}\).</p><p>(b) \(s = \displaystyle\int \left({@vt@}\right)dt = {@st@} + c\). When \(t = 0\), \(s = 0\), so \(c = 0\) and \(s = {@st@}\).</p><p>(c) When \(t = {@Tend@}\), \(s = {@sT@}\) m.</p><p>Check by differentiating: \(\dfrac{ds}{dt} = {@vt@}\) and \(\dfrac{dv}{dt} = {@at@}\).</p>]]></text>
+  </generalfeedback>
+  <defaultgrade>3</defaultgrade>
+  <penalty>0.1</penalty>
+  <hidden>0</hidden>
+  <idnumber></idnumber>
+  <stackversion><text>2026063000</text></stackversion>
+  <questionvariables>
+    <text><![CDATA[validate_tc(ex) := if every(lambda([v], member(v, [t, c, C])), listofvars(ex)) then "" else "Use t for time (and c for a constant of integration).";
+/* Design: [p, q, u, T]: a = p + q t, v(0) = u, s(0) = 0. Source: original. */
+L: [[4,6,3,2],[6,-6,2,3],[2,12,4,1],[8,-6,1,2],[10,6,4,3],[4,-12,6,1],[2,6,8,2],[12,-6,3,2],[6,12,2,1],[8,6,7,3]];
+ix: 1+rand(10);
+pp: L[ix][1]; qq: L[ix][2]; uu: L[ix][3]; Tend: L[ix][4];
+at: pp+qq*t;
+vt: uu+pp*t+qq/2*t^2;
+st: uu*t+pp/2*t^2+qq/6*t^3;
+sT: subst(t=Tend, st);
+/* diagnostics */
+vnou: pp*t+qq/2*t^2;
+vnodiv: uu+pp*t+qq*t^2;
+snout: pp/2*t^2+qq/6*t^3;
+vT: subst(t=Tend, vt);
+su: sT+uu;
+/* test values */
+snoutT: subst(t=Tend, snout);
+ft2: st+t^2/2;
+ftT: sT+Tend^2/2;]]></text>
+  </questionvariables>
+  <specificfeedback format="html"><text><![CDATA[]]></text></specificfeedback>
+  <questionnote format="moodle_auto_format">
+    <text>ix={@ix@}, p={@pp@}, q={@qq@}, u={@uu@}, T={@Tend@}, s(T)={@sT@}</text>
+  </questionnote>
+  <questiondescription format="html"><text><![CDATA[<p id="concept">Integration: velocity and displacement from acceleration</p><p id="description">Grade 12 CBE Core 4.2: Integrate an acceleration twice, using the initial velocity and position, to find velocity and displacement.</p><p id="edition">Core</p><p id="provenance">This question is original to this project.</p><p id="citation">INNODEMS CBC Grade 12 Mathematics, first draft by Ben Davies, 2026. Aligned to the KICD Senior School Curriculum Design, Core Mathematics Grade 12 (draft).</p>]]></text></questiondescription>
+  <questionsimplify>1</questionsimplify>
+  <assumepositive>0</assumepositive>
+  <assumereal>0</assumereal>
+  <prtcorrect format="html"><text><![CDATA[[[commonstring key="symbolicprtcorrectfeedback"/]] [[commonstring key="defaultprtcorrectfeedback"/]]]]></text></prtcorrect>
+  <prtpartiallycorrect format="html"><text><![CDATA[[[commonstring key="symbolicprtpartiallycorrectfeedback"/]] [[commonstring key="defaultprtpartiallycorrectfeedback"/]]]]></text></prtpartiallycorrect>
+  <prtincorrect format="html"><text><![CDATA[[[commonstring key="symbolicprtincorrectfeedback"/]] [[commonstring key="defaultprtincorrectfeedback"/]]]]></text></prtincorrect>
+  <decimals>.</decimals>
+  <scientificnotation>*10</scientificnotation>
+  <multiplicationsign>none</multiplicationsign>
+  <sqrtsign>1</sqrtsign>
+  <complexno>i</complexno>
+  <inversetrig>cos-1</inversetrig>
+  <logicsymbol>lang</logicsymbol>
+  <matrixparens>[</matrixparens>
+  <isbroken>0</isbroken>
+  <variantsselectionseed></variantsselectionseed>
+
+  <input><name>ans1</name><type>algebraic</type><tans>vt</tans><boxsize>20</boxsize><strictsyntax>1</strictsyntax><insertstars>4</insertstars><syntaxhint></syntaxhint><syntaxattribute>0</syntaxattribute><forbidwords>int,integrate,diff,antidiff,defint</forbidwords><allowwords></allowwords><forbidfloat>1</forbidfloat><requirelowestterms>0</requirelowestterms><checkanswertype>0</checkanswertype><mustverify>0</mustverify><showvalidation>3</showvalidation><options>validator:validate_tc</options></input>
+  <input><name>ans2</name><type>algebraic</type><tans>st</tans><boxsize>20</boxsize><strictsyntax>1</strictsyntax><insertstars>4</insertstars><syntaxhint></syntaxhint><syntaxattribute>0</syntaxattribute><forbidwords>int,integrate,diff,antidiff,defint</forbidwords><allowwords></allowwords><forbidfloat>1</forbidfloat><requirelowestterms>0</requirelowestterms><checkanswertype>0</checkanswertype><mustverify>0</mustverify><showvalidation>3</showvalidation><options>validator:validate_tc</options></input>
+  <input><name>ans3</name><type>numerical</type><tans>sT</tans><boxsize>8</boxsize><strictsyntax>1</strictsyntax><insertstars>0</insertstars><syntaxhint></syntaxhint><syntaxattribute>0</syntaxattribute><forbidwords></forbidwords><allowwords></allowwords><forbidfloat>0</forbidfloat><requirelowestterms>0</requirelowestterms><checkanswertype>0</checkanswertype><mustverify>0</mustverify><showvalidation>0</showvalidation><options></options></input>
+
+  <prt><name>prt1</name><value>1.0000000</value><autosimplify>1</autosimplify><feedbackstyle>1</feedbackstyle><feedbackvariables><text><![CDATA[hasc: if member(c, listofvars(ans1)) or member(C, listofvars(ans1)) then true else false;]]></text></feedbackvariables>
+    <node><name>0</name><description>Velocity</description><answertest>AlgEquiv</answertest><sans>ans1</sans><tans>vt</tans><testoptions></testoptions><quiet>0</quiet><truescoremode>=</truescoremode><truescore>1.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt1-1-T</trueanswernote><truefeedback format="html"><text><![CDATA[]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>1</falsenextnode><falseanswernote>prt1-1-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>1</name><description>Constant left in</description><answertest>AlgEquiv</answertest><sans>hasc</sans><tans>true</tans><testoptions></testoptions><quiet>0</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt1-2-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>You still have a constant of integration. Use \(v = {@uu@}\) when \(t = 0\) to find it.</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>2</falsenextnode><falseanswernote>prt1-2-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>2</name><description>Left out u</description><answertest>AlgEquiv</answertest><sans>ans1</sans><tans>vnou</tans><testoptions></testoptions><quiet>0</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt1-3-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>You left out the starting velocity \({@uu@}\) m/s: at \(t = 0\) your \(v\) is \(0\).</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>3</falsenextnode><falseanswernote>prt1-3-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>3</name><description>Did not divide</description><answertest>AlgEquiv</answertest><sans>ans1</sans><tans>vnodiv</tans><testoptions></testoptions><quiet>0</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt1-4-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>You raised the power of \(t\) but did not divide by the new power: your \({@qq*t^2@}\) differentiates to \({@2*qq*t@}\), not \({@qq*t@}\).</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>4</falsenextnode><falseanswernote>prt1-4-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>4</name><description>Differentiated a</description><answertest>AlgEquiv</answertest><sans>ans1</sans><tans>qq</tans><testoptions></testoptions><quiet>0</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt1-5-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>You differentiated \(a\). To go from acceleration to velocity, integrate.</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>-1</falsenextnode><falseanswernote>prt1-5-F</falseanswernote><falsefeedback format="html"><text><![CDATA[<p>Integrate \(a = {@at@}\) term by term, add a constant, and use \(v = {@uu@}\) when \(t = 0\).</p>]]></text></falsefeedback></node>
+  </prt>
+  <prt><name>prt2</name><value>1.0000000</value><autosimplify>1</autosimplify><feedbackstyle>1</feedbackstyle><feedbackvariables><text><![CDATA[hasc: if member(c, listofvars(ans2)) or member(C, listofvars(ans2)) then true else false;
+ftok: if hasc then false else (is(ratsimp(diff(ans2,t)-ans1) = 0) and is(ratsimp(subst(t=0,ans2)) = 0));]]></text></feedbackvariables>
+    <node><name>0</name><description>Displacement</description><answertest>AlgEquiv</answertest><sans>ans2</sans><tans>st</tans><testoptions></testoptions><quiet>0</quiet><truescoremode>=</truescoremode><truescore>1.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt2-1-T</trueanswernote><truefeedback format="html"><text><![CDATA[]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>1</falsenextnode><falseanswernote>prt2-1-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>1</name><description>Constant left in</description><answertest>AlgEquiv</answertest><sans>hasc</sans><tans>true</tans><testoptions></testoptions><quiet>0</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt2-2-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>You still have a constant of integration. The particle is at \(O\) when \(t = 0\), so \(s = 0\) then.</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>2</falsenextnode><falseanswernote>prt2-2-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>2</name><description>Did not integrate u</description><answertest>AlgEquiv</answertest><sans>ans2</sans><tans>snout</tans><testoptions></testoptions><quiet>0</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt2-3-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>Differentiate your \(s\): you get \({@diff(ans2,t)@}\), which has lost the constant \({@uu@}\) in \(v\). A constant in \(v\) must be integrated too.</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>3</falsenextnode><falseanswernote>prt2-3-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>3</name><description>Constant u</description><answertest>AlgEquiv</answertest><sans>ans2</sans><tans>st+uu</tans><testoptions></testoptions><quiet>0</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt2-4-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>The constant is \(s(0) = 0\), not \({@uu@}\): the particle starts at \(O\).</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>4</falsenextnode><falseanswernote>prt2-4-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>4</name><description>Follow-through from (a)</description><answertest>AlgEquiv</answertest><sans>ftok</sans><tans>true</tans><testoptions></testoptions><quiet>1</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt2-5-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>Your \(s\) is right for your \(v\) in (a), but (a) is wrong.</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>-1</falsenextnode><falseanswernote>prt2-5-F</falseanswernote><falsefeedback format="html"><text><![CDATA[<p>Integrate your velocity term by term, add a constant, and use \(s = 0\) when \(t = 0\).</p>]]></text></falsefeedback></node>
+  </prt>
+  <prt><name>prt3</name><value>1.0000000</value><autosimplify>1</autosimplify><feedbackstyle>1</feedbackstyle><feedbackvariables><text><![CDATA[ft3: if is(listofvars(ans2) = [t]) or is(listofvars(ans2) = []) then subst(t=Tend, ans2) else -10^6;]]></text></feedbackvariables>
+    <node><name>0</name><description>Displacement at T</description><answertest>NumAbsolute</answertest><sans>ans3</sans><tans>sT</tans><testoptions>0.001</testoptions><quiet>0</quiet><truescoremode>=</truescoremode><truescore>1.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt3-1-T</trueanswernote><truefeedback format="html"><text><![CDATA[]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>1</falsenextnode><falseanswernote>prt3-1-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>1</name><description>Velocity at T</description><answertest>NumAbsolute</answertest><sans>ans3</sans><tans>vT</tans><testoptions>0.001</testoptions><quiet>0</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt3-2-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>That is the velocity at \(t = {@Tend@}\), not the displacement.</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>2</falsenextnode><falseanswernote>prt3-2-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>2</name><description>Constant u</description><answertest>NumAbsolute</answertest><sans>ans3</sans><tans>su</tans><testoptions>0.001</testoptions><quiet>0</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt3-3-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>The constant in \(s\) is \(s(0) = 0\), not \({@uu@}\): the particle starts at \(O\).</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>3</falsenextnode><falseanswernote>prt3-3-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>3</name><description>Follow-through from (b)</description><answertest>NumAbsolute</answertest><sans>ans3</sans><tans>ft3</tans><testoptions>0.001</testoptions><quiet>1</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt3-4-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>That is right for your \(s\) in (b), but (b) is wrong.</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>-1</falsenextnode><falseanswernote>prt3-4-F</falseanswernote><falsefeedback format="html"><text><![CDATA[<p>Substitute \(t = {@Tend@}\) into \(s\).</p>]]></text></falsefeedback></node>
+  </prt>
+
+  <deployedseed>4</deployedseed>
+  <deployedseed>5</deployedseed>
+  <deployedseed>15</deployedseed>
+  <deployedseed>8</deployedseed>
+  <deployedseed>24</deployedseed>
+  <deployedseed>1</deployedseed>
+  <deployedseed>3</deployedseed>
+  <deployedseed>10</deployedseed>
+  <deployedseed>2</deployedseed>
+  <deployedseed>17</deployedseed>
+  <qtest><testcase>1</testcase><description>Correct</description>
+    <testinput><name>ans1</name><value>vt</value></testinput>
+    <testinput><name>ans2</name><value>st</value></testinput>
+    <testinput><name>ans3</name><value>sT</value></testinput>
+    <expected><name>prt1</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt1-1-T</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt2-1-T</expectedanswernote></expected>
+    <expected><name>prt3</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt3-1-T</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>2</testcase><description>Left out u; u not integrated; follow-through</description>
+    <testinput><name>ans1</name><value>vnou</value></testinput>
+    <testinput><name>ans2</name><value>snout</value></testinput>
+    <testinput><name>ans3</name><value>snoutT</value></testinput>
+    <expected><name>prt1</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt1-1-F | prt1-2-F | prt1-3-T</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt2-1-F | prt2-2-F | prt2-3-T</expectedanswernote></expected>
+    <expected><name>prt3</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt3-1-F | prt3-2-F | prt3-3-F | prt3-4-T</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>3</testcase><description>Not divided; constant u; constant u</description>
+    <testinput><name>ans1</name><value>vnodiv</value></testinput>
+    <testinput><name>ans2</name><value>st+uu</value></testinput>
+    <testinput><name>ans3</name><value>su</value></testinput>
+    <expected><name>prt1</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt1-1-F | prt1-2-F | prt1-3-F | prt1-4-T</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt2-1-F | prt2-2-F | prt2-3-F | prt2-4-T</expectedanswernote></expected>
+    <expected><name>prt3</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt3-1-F | prt3-2-F | prt3-3-T</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>4</testcase><description>Differentiated a; constant left in; velocity</description>
+    <testinput><name>ans1</name><value>qq</value></testinput>
+    <testinput><name>ans2</name><value>st+c</value></testinput>
+    <testinput><name>ans3</name><value>vT</value></testinput>
+    <expected><name>prt1</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt1-1-F | prt1-2-F | prt1-3-F | prt1-4-F | prt1-5-T</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt2-1-F | prt2-2-T</expectedanswernote></expected>
+    <expected><name>prt3</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt3-1-F | prt3-2-T</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>5</testcase><description>Constant left in (a)</description>
+    <testinput><name>ans1</name><value>vt+c</value></testinput>
+    <testinput><name>ans2</name><value>st</value></testinput>
+    <testinput><name>ans3</name><value>sT</value></testinput>
+    <expected><name>prt1</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt1-1-F | prt1-2-T</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt2-1-T</expectedanswernote></expected>
+    <expected><name>prt3</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt3-1-T</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>6</testcase><description>Follow-through from a wrong v</description>
+    <testinput><name>ans1</name><value>vt+t</value></testinput>
+    <testinput><name>ans2</name><value>ft2</value></testinput>
+    <testinput><name>ans3</name><value>ftT</value></testinput>
+    <expected><name>prt1</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt1-1-F | prt1-2-F | prt1-3-F | prt1-4-F | prt1-5-F</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt2-1-F | prt2-2-F | prt2-3-F | prt2-4-F | prt2-5-T</expectedanswernote></expected>
+    <expected><name>prt3</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt3-1-F | prt3-2-F | prt3-3-F | prt3-4-T</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>7</testcase><description>Generic wrong</description>
+    <testinput><name>ans1</name><value>vt+t^2</value></testinput>
+    <testinput><name>ans2</name><value>st+t^3</value></testinput>
+    <testinput><name>ans3</name><value>sT+10</value></testinput>
+    <expected><name>prt1</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt1-1-F | prt1-2-F | prt1-3-F | prt1-4-F | prt1-5-F</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt2-1-F | prt2-2-F | prt2-3-F | prt2-4-F | prt2-5-F</expectedanswernote></expected>
+    <expected><name>prt3</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt3-1-F | prt3-2-F | prt3-3-F | prt3-4-F</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>8</testcase><description>Invalid: letter x in (a)</description>
+    <testinput><name>ans1</name><value>x</value></testinput>
+    <testinput><name>ans2</name><value>st</value></testinput>
+    <testinput><name>ans3</name><value>sT</value></testinput>
+    <expected><name>prt1</name><expectedscore></expectedscore><expectedpenalty></expectedpenalty><expectedanswernote>NULL</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore></expectedscore><expectedpenalty></expectedpenalty><expectedanswernote>NULL</expectedanswernote></expected>
+    <expected><name>prt3</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt3-1-T</expectedanswernote></expected>
+  </qtest>
+</question>
+</quiz>

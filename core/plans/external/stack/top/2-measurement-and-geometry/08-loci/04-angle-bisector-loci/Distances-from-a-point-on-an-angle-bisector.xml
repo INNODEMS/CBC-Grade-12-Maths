@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<quiz>
+<question type="stack">
+  <name><text>Distances from a point on an angle bisector</text></name>
+  <questiontext format="html">
+    <text><![CDATA[<p>\(P\) is a point on the bisector of angle \(XOY\). \(F\) on \(OX\) and \(G\) on \(OY\) are the feet of the perpendiculars from \(P\). \(PF = {@a@}\) cm and \(OP = {@c@}\) cm.</p><div style="text-align:center;" role="img" aria-label="Angle XOY with vertex O and its bisector drawn dashed. P is on the bisector. F on OX and G on OY are the feet of the perpendiculars from P, with right-angle marks at F and G. PF = {#a#} cm and OP = {#c#} cm. The diagram is not to scale.">
+[[jsxgraph width="360px" height="230px"]]
+(function () {
+  var ang = {#float(ang)#} * Math.PI / 180, h = ang / 2, R = 6.2, op = 4.2;
+  var b = JXG.JSXGraph.initBoard(divid, {boundingbox: [-5, 6.4, 7.2, -1.2], keepAspectRatio: true, axis: false, grid: false,
+    showNavigation: false, showCopyright: false, pan: {enabled: false}, zoom: {enabled: false}});
+  var st = {fixed: true, highlight: false};
+  var O = b.create('point', [0, 0], {name: 'O', fixed: true, size: 2, color: '#000000', label: {offset: [-6, -14]}});
+  var X = b.create('point', [R, 0], {name: 'X', fixed: true, size: 0, label: {offset: [4, -10]}});
+  var Y = b.create('point', [R * Math.cos(ang), R * Math.sin(ang)], {name: 'Y', fixed: true, size: 0, label: {offset: [-14, 6]}});
+  b.create('segment', [O, X], {strokeColor: '#000000', strokeWidth: 2, fixed: true, highlight: false});
+  b.create('segment', [O, Y], {strokeColor: '#000000', strokeWidth: 2, fixed: true, highlight: false});
+  b.create('segment', [O, [R * Math.cos(h), R * Math.sin(h)]], {strokeColor: '#1f4e9c', strokeWidth: 1.5, dash: 2, fixed: true, highlight: false});
+  var P = b.create('point', [op * Math.cos(h), op * Math.sin(h)], {name: 'P', fixed: true, size: 2, color: '#b00000', label: {offset: [6, 6]}});
+  var fx = op * Math.cos(h), gd = op * Math.cos(h);
+  var F = b.create('point', [fx, 0], {name: 'F', fixed: true, size: 2, color: '#000000', label: {offset: [-4, -14]}});
+  var G = b.create('point', [gd * Math.cos(ang), gd * Math.sin(ang)], {name: 'G', fixed: true, size: 2, color: '#000000', label: {offset: [-14, 4]}});
+  b.create('segment', [P, F], {strokeColor: '#b00000', strokeWidth: 1.5, fixed: true, highlight: false});
+  b.create('segment', [P, G], {strokeColor: '#b00000', strokeWidth: 1.5, fixed: true, highlight: false});
+  b.create('segment', [O, P], {strokeColor: '#b00000', strokeWidth: 1, fixed: true, highlight: false});
+  b.create('angle', [X, F, P], {type: 'square', radius: 0.35, name: '', withLabel: false, fixed: true, fillOpacity: 0, strokeColor: '#000000'});
+  b.create('angle', [P, G, O], {type: 'square', radius: 0.35, name: '', withLabel: false, fixed: true, fillOpacity: 0, strokeColor: '#000000'});
+})();
+[[/jsxgraph]]
+</div><p>(a)</p><div>\(PG = \) [[input:ans1]] cm [[validation:ans1]] [[feedback:prt1]]</div><p>(b)</p><div>\(OF = \) [[input:ans2]] cm [[validation:ans2]] [[feedback:prt2]]</div><p>(c) Find angle \(XOY\), to the nearest degree.</p><div>[[input:ans3]] \(^\circ\) [[validation:ans3]] [[feedback:prt3]]</div>]]></text>
+  </questiontext>
+  <generalfeedback format="html">
+    <text><![CDATA[<p>(a) Every point on the bisector of an angle is the same distance from both arms, so \(PG = PF = {@a@}\) cm.</p><p>(b) Triangle \(OFP\) has a right angle at \(F\) and hypotenuse \(OP\): \(OF^2 = OP^2 - PF^2 = {@c@}^2 - {@a@}^2 = {@c^2-a^2@}\), so \(OF = {@bb@}\) cm.</p><p>(c) In triangle \(OFP\), \(\sin \angle FOP = \dfrac{PF}{OP} = \dfrac{ {@a@} }{ {@c@} }\), so \(\angle FOP = {@dispdp(float(floor(10^2*(dh)+1/2)/10^2),2)@}^{\circ}\). \(OP\) bisects angle \(XOY\), so \(\angle XOY = 2 \times \angle FOP = {@dispdp(float(floor(10^2*(ang)+1/2)/10^2),2)@}^{\circ}\), which is \({@floor(ang+1/2)@}^{\circ}\) to the nearest degree.</p>]]></text>
+  </generalfeedback>
+  <defaultgrade>3</defaultgrade>
+  <penalty>0.1</penalty>
+  <hidden>0</hidden>
+  <idnumber></idnumber>
+  <stackversion><text>2026063000</text></stackversion>
+  <questionvariables>
+    <text><![CDATA[/* Design: distances from a point on an angle bisector. Entries are triples [PF, OF, OP]; this chapter's (6, 8, 10) and (8, 15, 17) are excluded. PRT1 has no diagnostic: the only error is not using the bisector property, which the generic feedback names. Source: original. */
+q41: [[3,4,5],[4,3,5],[5,12,13],[12,5,13],[7,24,25],[20,21,29],[21,20,29],[9,40,41],[12,35,37],[15,8,17]];
+ix: 1+rand(10);
+a: q41[ix][1]; bb: q41[ix][2]; c: q41[ix][3];
+ang: 2*asin(a/c)*180/%pi;
+/* diagnostics (c): angle XOP only; cosine used for the half-angle */
+dh: ang/2;
+dc: 2*acos(a/c)*180/%pi;]]></text>
+  </questionvariables>
+  <specificfeedback format="html"><text><![CDATA[]]></text></specificfeedback>
+  <questionnote format="moodle_auto_format">
+    <text>ix={@ix@}, PF={@a@}, OF={@bb@}, OP={@c@}, angle={@dispdp(float(floor(10^2*(ang)+1/2)/10^2),2)@}</text>
+  </questionnote>
+  <questiondescription format="html"><text><![CDATA[<p id="concept">Loci: distances from a point on an angle bisector</p><p id="description">Grade 12 CBE Core 2.3: Use the equal perpendicular distances from a point on an angle bisector, with Pythagoras and trigonometry.</p><p id="edition">Core</p><p id="provenance">This question is original to this project.</p><p id="citation">INNODEMS CBC Grade 12 Mathematics, first draft by Ben Davies, 2026. Aligned to the KICD Senior School Curriculum Design, Core Mathematics Grade 12 (draft).</p>]]></text></questiondescription>
+  <questionsimplify>1</questionsimplify>
+  <assumepositive>0</assumepositive>
+  <assumereal>0</assumereal>
+  <prtcorrect format="html"><text><![CDATA[[[commonstring key="symbolicprtcorrectfeedback"/]] [[commonstring key="defaultprtcorrectfeedback"/]]]]></text></prtcorrect>
+  <prtpartiallycorrect format="html"><text><![CDATA[[[commonstring key="symbolicprtpartiallycorrectfeedback"/]] [[commonstring key="defaultprtpartiallycorrectfeedback"/]]]]></text></prtpartiallycorrect>
+  <prtincorrect format="html"><text><![CDATA[[[commonstring key="symbolicprtincorrectfeedback"/]] [[commonstring key="defaultprtincorrectfeedback"/]]]]></text></prtincorrect>
+  <decimals>.</decimals>
+  <scientificnotation>*10</scientificnotation>
+  <multiplicationsign>none</multiplicationsign>
+  <sqrtsign>1</sqrtsign>
+  <complexno>i</complexno>
+  <inversetrig>cos-1</inversetrig>
+  <logicsymbol>lang</logicsymbol>
+  <matrixparens>[</matrixparens>
+  <isbroken>0</isbroken>
+  <variantsselectionseed></variantsselectionseed>
+
+  <input><name>ans1</name><type>numerical</type><tans>a</tans><boxsize>5</boxsize><strictsyntax>1</strictsyntax><insertstars>0</insertstars><syntaxhint></syntaxhint><syntaxattribute>0</syntaxattribute><forbidwords></forbidwords><allowwords></allowwords><forbidfloat>0</forbidfloat><requirelowestterms>0</requirelowestterms><checkanswertype>0</checkanswertype><mustverify>0</mustverify><showvalidation>0</showvalidation><options></options></input>
+  <input><name>ans2</name><type>numerical</type><tans>bb</tans><boxsize>5</boxsize><strictsyntax>1</strictsyntax><insertstars>0</insertstars><syntaxhint></syntaxhint><syntaxattribute>0</syntaxattribute><forbidwords></forbidwords><allowwords></allowwords><forbidfloat>0</forbidfloat><requirelowestterms>0</requirelowestterms><checkanswertype>0</checkanswertype><mustverify>0</mustverify><showvalidation>0</showvalidation><options></options></input>
+  <input><name>ans3</name><type>numerical</type><tans>float(ang)</tans><boxsize>6</boxsize><strictsyntax>1</strictsyntax><insertstars>0</insertstars><syntaxhint></syntaxhint><syntaxattribute>0</syntaxattribute><forbidwords></forbidwords><allowwords></allowwords><forbidfloat>0</forbidfloat><requirelowestterms>0</requirelowestterms><checkanswertype>0</checkanswertype><mustverify>0</mustverify><showvalidation>0</showvalidation><options></options></input>
+
+  <prt><name>prt1</name><value>1.0000000</value><autosimplify>1</autosimplify><feedbackstyle>1</feedbackstyle><feedbackvariables><text><![CDATA[]]></text></feedbackvariables>
+    <node><name>0</name><description>Equal distances to the arms</description><answertest>NumAbsolute</answertest><sans>ans1</sans><tans>a</tans><testoptions>0.001</testoptions><quiet>0</quiet><truescoremode>=</truescoremode><truescore>1.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt1-1-T</trueanswernote><truefeedback format="html"><text><![CDATA[]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>-1</falsenextnode><falseanswernote>prt1-1-F</falseanswernote><falsefeedback format="html"><text><![CDATA[<p>\(PG\) and \(PF\) are the perpendicular distances from \(P\) to the two arms of the angle. \(P\) is on the bisector of the angle: what does that say about its distances from the arms?</p>]]></text></falsefeedback></node>
+  </prt>
+  <prt><name>prt2</name><value>1.0000000</value><autosimplify>1</autosimplify><feedbackstyle>1</feedbackstyle><feedbackvariables><text><![CDATA[nd(v) := if integerp(v) then v else float(floor(1000*v+1/2)/1000);]]></text></feedbackvariables>
+    <node><name>0</name><description>OF by Pythagoras</description><answertest>NumAbsolute</answertest><sans>ans2</sans><tans>bb</tans><testoptions>0.001</testoptions><quiet>0</quiet><truescoremode>=</truescoremode><truescore>1.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt2-1-T</trueanswernote><truefeedback format="html"><text><![CDATA[]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>1</falsenextnode><falseanswernote>prt2-1-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>1</name><description>Subtracted the lengths</description><answertest>NumAbsolute</answertest><sans>ans2</sans><tans>c-a</tans><testoptions>0.001</testoptions><quiet>0</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt2-2-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>\({@c@} - {@a@} = {@c-a@}\) subtracts the lengths. Pythagoras works with the squares of the sides of triangle \(OFP\).</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>2</falsenextnode><falseanswernote>prt2-2-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>2</name><description>Added the squares (rounded to 1 d.p. or better)</description><answertest>NumAbsolute</answertest><sans>ans2</sans><tans>sqrt(c^2+a^2)</tans><testoptions>0.06</testoptions><quiet>0</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt2-3-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>You added the squares of \(OP\) and \(PF\), which makes \(OF\) longer than \(OP = {@c@}\) cm. \(OP\) is the hypotenuse of triangle \(OFP\), its longest side.</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>-1</falsenextnode><falseanswernote>prt2-3-F</falseanswernote><falsefeedback format="html"><text><![CDATA[<p>With \(OF = {@ans2@}\), \(OF^2 + PF^2\) is \({@nd(ans2^2+a^2)@}\), but \(OP^2 = {@c@}^2 = {@c^2@}\). Triangle \(OFP\) has its right angle at \(F\), so \(OP\) is the hypotenuse.</p>]]></text></falsefeedback></node>
+  </prt>
+  <prt><name>prt3</name><value>1.0000000</value><autosimplify>1</autosimplify><feedbackstyle>1</feedbackstyle><feedbackvariables><text><![CDATA[nd(v) := if integerp(v) then v else float(floor(1000*v+1/2)/1000);]]></text></feedbackvariables>
+    <node><name>0</name><description>Angle XOY</description><answertest>NumAbsolute</answertest><sans>ans3</sans><tans>ang</tans><testoptions>0.501</testoptions><quiet>0</quiet><truescoremode>=</truescoremode><truescore>1.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt3-1-T</trueanswernote><truefeedback format="html"><text><![CDATA[]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>1</falsenextnode><falseanswernote>prt3-1-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>1</name><description>Angle XOP only</description><answertest>NumAbsolute</answertest><sans>ans3</sans><tans>dh</tans><testoptions>0.501</testoptions><quiet>0</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt3-2-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>That is angle \(XOP\). \(OP\) bisects angle \(XOY\), so double it.</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>2</falsenextnode><falseanswernote>prt3-2-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>2</name><description>Used cosine</description><answertest>NumAbsolute</answertest><sans>ans3</sans><tans>dc</tans><testoptions>0.501</testoptions><quiet>0</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt3-3-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>In triangle \(OFP\), \(PF\) is opposite angle \(FOP\), so \(\sin \angle FOP = \dfrac{PF}{OP}\).</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>-1</falsenextnode><falseanswernote>prt3-3-F</falseanswernote><falsefeedback format="html"><text><![CDATA[<p>If angle \(XOY\) were \({@ans3@}^{\circ}\), angle \(FOP\) would be half of it, \({@nd(ans3/2)@}^{\circ}\), with sine about \({@dispdp(float(sin(ans3*%pi/360)),3)@}\). Compare that with \(PF \div OP\) in the right-angled triangle \(OFP\).</p>]]></text></falsefeedback></node>
+  </prt>
+
+  <deployedseed>4</deployedseed>
+  <deployedseed>5</deployedseed>
+  <deployedseed>15</deployedseed>
+  <deployedseed>8</deployedseed>
+  <deployedseed>24</deployedseed>
+  <deployedseed>1</deployedseed>
+  <deployedseed>3</deployedseed>
+  <deployedseed>10</deployedseed>
+  <deployedseed>2</deployedseed>
+  <deployedseed>17</deployedseed>
+  <qtest><testcase>1</testcase><description>Correct</description>
+    <testinput><name>ans1</name><value>a</value></testinput>
+    <testinput><name>ans2</name><value>bb</value></testinput>
+    <testinput><name>ans3</name><value>float(ang)</value></testinput>
+    <expected><name>prt1</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt1-1-T</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt2-1-T</expectedanswernote></expected>
+    <expected><name>prt3</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt3-1-T</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>2</testcase><description>Correct, angle rounded</description>
+    <testinput><name>ans1</name><value>a</value></testinput>
+    <testinput><name>ans2</name><value>bb</value></testinput>
+    <testinput><name>ans3</name><value>ev(floor(ang+1/2),simp)</value></testinput>
+    <expected><name>prt1</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt1-1-T</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt2-1-T</expectedanswernote></expected>
+    <expected><name>prt3</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt3-1-T</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>3</testcase><description>Wrong PG; lengths subtracted; half angle</description>
+    <testinput><name>ans1</name><value>a+1</value></testinput>
+    <testinput><name>ans2</name><value>c-a</value></testinput>
+    <testinput><name>ans3</name><value>float(dh)</value></testinput>
+    <expected><name>prt1</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt1-1-F</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt2-1-F | prt2-2-T</expectedanswernote></expected>
+    <expected><name>prt3</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt3-1-F | prt3-2-T</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>4</testcase><description>Squares added; cosine</description>
+    <testinput><name>ans1</name><value>a</value></testinput>
+    <testinput><name>ans2</name><value>float(sqrt(c^2+a^2))</value></testinput>
+    <testinput><name>ans3</name><value>float(dc)</value></testinput>
+    <expected><name>prt1</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt1-1-T</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt2-1-F | prt2-2-F | prt2-3-T</expectedanswernote></expected>
+    <expected><name>prt3</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt3-1-F | prt3-2-F | prt3-3-T</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>5</testcase><description>Squares added, rounded to 1 d.p.</description>
+    <testinput><name>ans1</name><value>a</value></testinput>
+    <testinput><name>ans2</name><value>ev(float(floor(10^1*(sqrt(c^2+a^2))+1/2)/10^1),simp)</value></testinput>
+    <testinput><name>ans3</name><value>float(ang)</value></testinput>
+    <expected><name>prt1</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt1-1-T</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt2-1-F | prt2-2-F | prt2-3-T</expectedanswernote></expected>
+    <expected><name>prt3</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt3-1-T</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>6</testcase><description>Generic wrong</description>
+    <testinput><name>ans1</name><value>a</value></testinput>
+    <testinput><name>ans2</name><value>bb+1</value></testinput>
+    <testinput><name>ans3</name><value>float(ang)+3</value></testinput>
+    <expected><name>prt1</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt1-1-T</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt2-1-F | prt2-2-F | prt2-3-F</expectedanswernote></expected>
+    <expected><name>prt3</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt3-1-F | prt3-2-F | prt3-3-F</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>7</testcase><description>Invalid: letter in (a)</description>
+    <testinput><name>ans1</name><value>x</value></testinput>
+    <testinput><name>ans2</name><value>bb</value></testinput>
+    <testinput><name>ans3</name><value>float(ang)</value></testinput>
+    <expected><name>prt1</name><expectedscore></expectedscore><expectedpenalty></expectedpenalty><expectedanswernote>NULL</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt2-1-T</expectedanswernote></expected>
+    <expected><name>prt3</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt3-1-T</expectedanswernote></expected>
+  </qtest>
+</question>
+</quiz>

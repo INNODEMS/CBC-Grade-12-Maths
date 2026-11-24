@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<quiz>
+<question type="stack">
+  <name><text>Constructing a cubic with given turning points</text></name>
+  <questiontext format="html">
+    <text><![CDATA[<p>Give an equation of a cubic curve that has a maximum point at \(x = {@p0@}\) and a minimum point at \(x = {@q0@}\).</p><p>Think about what \(\dfrac{dy}{dx}\) must be.</p><div>\(y =\) [[input:ans1]] [[validation:ans1]] [[feedback:prt1]]</div>]]></text>
+  </questiontext>
+  <generalfeedback format="html">
+    <text><![CDATA[<p>Stationary points are where \(\dfrac{dy}{dx} = 0\), so \(\dfrac{dy}{dx}\) must have the factors \({@x-p0@}\) and \({@x-q0@}\). One choice is \(\dfrac{dy}{dx} = {@6*s0*(x-p0)*(x-q0)@} = {@dsamp@}\), which gives</p><p>\[y = {@samp@}\]</p><p>Check: \(\dfrac{d^2y}{dx^2} = {@diff(samp,x,2)@}\), which is \({@ev(diff(samp,x,2),x=p0)@}\) at \(x = {@p0@}\) (negative: a maximum point) and \({@ev(diff(samp,x,2),x=q0)@}\) at \(x = {@q0@}\) (positive: a minimum point).</p><p>Any \(y = k\left({@samp@}\right) + c\) with \(k \gt 0\) also works.</p>]]></text>
+  </generalfeedback>
+  <defaultgrade>1</defaultgrade>
+  <penalty>0.1</penalty>
+  <hidden>0</hidden>
+  <idnumber></idnumber>
+  <stackversion><text>2026063000</text></stackversion>
+  <questionvariables>
+    <text><![CDATA[validate_poly(ex) := if not every(lambda([v], member(v, [x])), listofvars(ex)) then "Use x as the only letter in your answer." elseif not polynomialp(ev(ex,simp),[x]) then "Your answer should be a polynomial in x: powers of x only, with no other functions." else "";
+/* Design: construct-an-example pattern (the response tree checks properties; many correct answers). The box takes polynomials in x only (validate_poly), because an answer such as cubic + cos(pi x) would pass every property test. Source: original. */
+L: [[-1,2],[3,1],[0,4],[-2,1],[2,-1],[-3,0],[1,5],[4,-2],[-1,-4],[5,2]];
+ix: 1+rand(10);
+p0: L[ix][1]; q0: L[ix][2];
+s0: if p0<q0 then 1 else -1;
+samp: expand((2*s0)*x^3-3*(2*s0)*((p0)+(q0))/2*x^2+3*(2*s0)*(p0)*(q0)*x+(0));
+dsamp: diff(samp,x);]]></text>
+  </questionvariables>
+  <specificfeedback format="html"><text><![CDATA[]]></text></specificfeedback>
+  <questionnote format="moodle_auto_format">
+    <text>ix={@ix@}, max at {@p0@}, min at {@q0@}, sample {@samp@}</text>
+  </questionnote>
+  <questiondescription format="html"><text><![CDATA[<p id="concept">Differentiation II: constructing a cubic with given turning points</p><p id="description">Grade 12 CBE Core 4.1: Construct a cubic with a maximum point and a minimum point at given values of x, by building its derivative first.</p><p id="edition">Core</p><p id="provenance">This question is original to this project.</p><p id="citation">INNODEMS CBC Grade 12 Mathematics, first draft by Ben Davies, 2026. Aligned to the KICD Senior School Curriculum Design, Core Mathematics Grade 12 (draft).</p>]]></text></questiondescription>
+  <questionsimplify>1</questionsimplify>
+  <assumepositive>0</assumepositive>
+  <assumereal>0</assumereal>
+  <prtcorrect format="html"><text><![CDATA[[[commonstring key="symbolicprtcorrectfeedback"/]] [[commonstring key="defaultprtcorrectfeedback"/]]]]></text></prtcorrect>
+  <prtpartiallycorrect format="html"><text><![CDATA[[[commonstring key="symbolicprtpartiallycorrectfeedback"/]] [[commonstring key="defaultprtpartiallycorrectfeedback"/]]]]></text></prtpartiallycorrect>
+  <prtincorrect format="html"><text><![CDATA[[[commonstring key="symbolicprtincorrectfeedback"/]] [[commonstring key="defaultprtincorrectfeedback"/]]]]></text></prtincorrect>
+  <decimals>.</decimals>
+  <scientificnotation>*10</scientificnotation>
+  <multiplicationsign>none</multiplicationsign>
+  <sqrtsign>1</sqrtsign>
+  <complexno>i</complexno>
+  <inversetrig>cos-1</inversetrig>
+  <logicsymbol>lang</logicsymbol>
+  <matrixparens>[</matrixparens>
+  <isbroken>0</isbroken>
+  <variantsselectionseed></variantsselectionseed>
+
+  <input><name>ans1</name><type>algebraic</type><tans>samp</tans><boxsize>20</boxsize><strictsyntax>1</strictsyntax><insertstars>4</insertstars><syntaxhint></syntaxhint><syntaxattribute>0</syntaxattribute><forbidwords>diff,integrate,solve</forbidwords><allowwords></allowwords><forbidfloat>1</forbidfloat><requirelowestterms>0</requirelowestterms><checkanswertype>1</checkanswertype><mustverify>0</mustverify><showvalidation>3</showvalidation><options>validator:validate_poly</options></input>
+
+  <prt><name>prt1</name><value>1.0000000</value><autosimplify>1</autosimplify><feedbackstyle>1</feedbackstyle><feedbackvariables><text><![CDATA[sa: expand(ans1);
+dg: hipow(sa,x);
+g1: diff(sa,x);
+vp: ev(g1,x=p0);
+vq: ev(g1,x=q0);
+w2: ev(diff(sa,x,2),x=p0);
+zp: ev(sa,x=p0);
+zq: ev(sa,x=q0);]]></text></feedbackvariables>
+    <node><name>0</name><description>Cubic</description><answertest>AlgEquiv</answertest><sans>dg</sans><tans>3</tans><testoptions></testoptions><quiet>1</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>1</truenextnode><trueanswernote>prt1-1-T</trueanswernote><truefeedback format="html"><text><![CDATA[]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>-1</falsenextnode><falseanswernote>prt1-1-F</falseanswernote><falsefeedback format="html"><text><![CDATA[<p>Your expression is not a cubic: its highest power of \(x\) must be \(3\).</p>]]></text></falsefeedback></node>
+    <node><name>1</name><description>Stationary at both</description><answertest>AlgEquiv</answertest><sans>[vp,vq]</sans><tans>[0,0]</tans><testoptions></testoptions><quiet>1</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>2</truenextnode><trueanswernote>prt1-2-T</trueanswernote><truefeedback format="html"><text><![CDATA[]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>3</falsenextnode><falseanswernote>prt1-2-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>2</name><description>Maximum first</description><answertest>AlgEquiv</answertest><sans>is(w2&lt;0)</sans><tans>true</tans><testoptions></testoptions><quiet>1</quiet><truescoremode>=</truescoremode><truescore>1.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt1-3-T</trueanswernote><truefeedback format="html"><text><![CDATA[]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>-1</falsenextnode><falseanswernote>prt1-3-F</falseanswernote><falsefeedback format="html"><text><![CDATA[<p>Your curve has stationary points at \(x = {@p0@}\) and \(x = {@q0@}\), but for your curve \(\dfrac{d^2y}{dx^2}\) is \({@w2@}\) at \(x = {@p0@}\). That is positive, so your curve has a minimum point there and its maximum point at \(x = {@q0@}\). What change to your expression would turn the curve upside down?</p>]]></text></falsefeedback></node>
+    <node><name>3</name><description>Roots instead</description><answertest>AlgEquiv</answertest><sans>[zp,zq]</sans><tans>[0,0]</tans><testoptions></testoptions><quiet>1</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt1-4-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>Your curve meets the \(x\)-axis at \(x = {@p0@}\) and \(x = {@q0@}\): that is where \(y = 0\). Stationary points are where \(\dfrac{dy}{dx} = 0\), and for your curve \(\dfrac{dy}{dx}\) is \({@vp@}\) at \(x = {@p0@}\) and \({@vq@}\) at \(x = {@q0@}\). Which expression should be zero at these two values of \(x\)?</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>-1</falsenextnode><falseanswernote>prt1-4-F</falseanswernote><falsefeedback format="html"><text><![CDATA[<p>For your curve, \(\dfrac{dy}{dx}\) is \({@vp@}\) at \(x = {@p0@}\) and \({@vq@}\) at \(x = {@q0@}\). Both must be \(0\) for the curve to be stationary there. Decide which factors \(\dfrac{dy}{dx}\) must have, then find a \(y\) with that gradient.</p>]]></text></falsefeedback></node>
+  </prt>
+
+  <deployedseed>4</deployedseed>
+  <deployedseed>5</deployedseed>
+  <deployedseed>15</deployedseed>
+  <deployedseed>8</deployedseed>
+  <deployedseed>24</deployedseed>
+  <deployedseed>1</deployedseed>
+  <deployedseed>3</deployedseed>
+  <deployedseed>10</deployedseed>
+  <deployedseed>2</deployedseed>
+  <deployedseed>17</deployedseed>
+  <qtest><testcase>1</testcase><description>Correct: the sample answer</description>
+    <testinput><name>ans1</name><value>samp</value></testinput>
+    <expected><name>prt1</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt1-1-T | prt1-2-T | prt1-3-T</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>2</testcase><description>Correct: another valid curve</description>
+    <testinput><name>ans1</name><value>2*samp+7</value></testinput>
+    <expected><name>prt1</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt1-1-T | prt1-2-T | prt1-3-T</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>3</testcase><description>Maximum and minimum the wrong way round</description>
+    <testinput><name>ans1</name><value>-samp</value></testinput>
+    <expected><name>prt1</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt1-1-T | prt1-2-T | prt1-3-F</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>4</testcase><description>Roots instead of stationary points</description>
+    <testinput><name>ans1</name><value>(x-p0)*(x-q0)*(x+10)</value></testinput>
+    <expected><name>prt1</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt1-1-T | prt1-2-F | prt1-4-T</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>5</testcase><description>Not a cubic</description>
+    <testinput><name>ans1</name><value>(x-p0)*(x-q0)</value></testinput>
+    <expected><name>prt1</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt1-1-F</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>6</testcase><description>Generic cubic</description>
+    <testinput><name>ans1</name><value>x^3</value></testinput>
+    <expected><name>prt1</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt1-1-T | prt1-2-F | prt1-4-F</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>7</testcase><description>Invalid: an equation</description>
+    <testinput><name>ans1</name><value>y=x^3</value></testinput>
+    <expected><name>prt1</name><expectedscore></expectedscore><expectedpenalty></expectedpenalty><expectedanswernote>NULL</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>8</testcase><description>Invalid: not a polynomial (it would pass the property tests)</description>
+    <testinput><name>ans1</name><value>2*samp+cos(%pi*x)</value></testinput>
+    <expected><name>prt1</name><expectedscore></expectedscore><expectedpenalty></expectedpenalty><expectedanswernote>NULL</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>9</testcase><description>Invalid: a reciprocal term</description>
+    <testinput><name>ans1</name><value>samp+1/x</value></testinput>
+    <expected><name>prt1</name><expectedscore></expectedscore><expectedpenalty></expectedpenalty><expectedanswernote>NULL</expectedanswernote></expected>
+  </qtest>
+</question>
+</quiz>

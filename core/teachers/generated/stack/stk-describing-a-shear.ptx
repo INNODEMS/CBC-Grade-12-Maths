@@ -1,0 +1,7 @@
+<stack-static>
+    <statement><p><p>Rectangle ABCD, with <m>A({0},\,{2})</m>, <m>B({4},\,{2})</m>, <m>C({4},\,{5})</m> and <m>D({0},\,{5})</m>, is mapped onto <m>A'B'C'D'</m>, with <m>A'({3},\,{2})</m>, <m>B'({7},\,{2})</m>, <m>C'({\frac{23}{2}},\,{5})</m> and <m>D'({\frac{15}{2}},\,{5})</m>, by a shear.</p><p>(a) The invariant axis is</p><div>[ neither axis | the x-axis | the y-axis ]  </div><p>(b) The shear factor is</p><div><fillin characters="5" name="ans2"/>  </div><p>(c) The area of <m>A'B'C'D'</m> is</p><div><fillin characters="5" name="ans3"/> square units  </div></p></statement>
+    <solution><p><p>(a) Every y-coordinate stays the same, so the points slide parallel to the x-axis: the x-axis is invariant.</p><p>(b) C is <m>{5}</m> units from the x-axis and moves <m>{\frac{15}{2}}</m> units in the positive x-direction, a signed distance of <m>{\frac{15}{2}}</m>. So the shear factor is <m>{\frac{15}{2}} \div {5} = {\frac{3}{2}}</m>.</p><p>(c) A shear keeps the base and the height, so the area is unchanged: <m>{12}</m> square units. (The determinant of a shear matrix is 1.)</p></p></solution>
+    <answer><p>the x-axis</p></answer>
+    <answer><p><m>\frac{3}{2}</m></p></answer>
+    <answer><p><m>12</m></p></answer>
+</stack-static>

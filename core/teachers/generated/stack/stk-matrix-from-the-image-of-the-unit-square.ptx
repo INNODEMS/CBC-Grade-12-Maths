@@ -1,0 +1,5 @@
+<stack-static>
+    <statement><p><p>The unit square OABC, with A(1, 0), B(1, 1) and C(0, 1), is mapped by a matrix <m>M</m> onto the parallelogram <m>OA'B'C'</m> with <m>A'({0},\,{-3})</m>, <m>B'({-2},\,{0})</m> and <m>C'({-2},\,{3})</m>.</p><p>Find <m>M</m>.</p><div><m>M = </m> <fillin characters="3" name="ans1"/>  </div></p></statement>
+    <solution><p><p>The columns of a matrix are where (1, 0) and (0, 1) go. A(1, 0) goes to <m>A'({0},\,{-3})</m>, so the first column is <m>{\left[\begin{array}{c} 0 \\ -3 \end{array}\right]}</m>. C(0, 1) goes to <m>C'({-2},\,{3})</m>, so the second column is <m>{\left[\begin{array}{c} -2 \\ 3 \end{array}\right]}</m>.</p><p><m>M = {\left[\begin{array}{cc} 0 &amp; -2 \\ -3 &amp; 3 \end{array}\right]}</m>. Check with B: <m>{\left[\begin{array}{cc} 0 &amp; -2 \\ -3 &amp; 3 \end{array}\right]}{\left[\begin{array}{c} 1 \\ 1 \end{array}\right]} = {\left[\begin{array}{c} -2 \\ 0 \end{array}\right]}</m>, which is <m>B' = A' + C'</m>.</p></p></solution>
+    <answer><p><m>\left[\begin{array}{cc} 0 &amp; -2 \\ -3 &amp; 3 \end{array}\right]</m></p></answer>
+</stack-static>

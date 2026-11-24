@@ -1,0 +1,6 @@
+<stack-static>
+    <statement><p><p>To estimate <m>{0.98}^{5}</m> you can write <m>{0.98} = 1 + x</m>.</p><p>(a) What is <m>x</m>?</p><div><m>x =</m> <fillin characters="8" name="ans1"/>  </div><p>(b) Use the first four terms of the expansion of <m>(1 + x)^{5}</m> to estimate <m>{0.98}^{5}</m>, correct to 4 decimal places.</p><div><fillin characters="10" name="ans2"/>  </div></p></statement>
+    <solution><p><p>A number just below 1 is <m>1 + x</m> with <m>x</m> negative. Keep the signs: odd powers of a negative number are negative and even powers are positive, so the terms alternate in sign.</p><p>(a) <m>{0.98} = 1 + ({-0.02})</m>, so <m>x = {-0.02}</m>.</p><p>(b) <m>(1 + x)^{5} = 1 + {5}x + {10}x^2 + {10}x^3 + \cdots</m>. With <m>x = {-0.02}</m> the four terms are <m>{1}</m>, <m>{-0.1}</m>, <m>{0.004}</m> and <m>{-0.00008}</m>. Their sum is <m>{0.90392}</m>, so <m>{0.98}^{5} \approx {0.9039}</m>.</p><p>A calculator gives <m>{0.90392080}\ldots</m>, which also rounds to <m>{0.9039}</m>.</p></p></solution>
+    <answer><p><m>-\frac{1}{50}</m></p></answer>
+    <answer><p><m>\frac{11299}{12500}</m></p></answer>
+</stack-static>

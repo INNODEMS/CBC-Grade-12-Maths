@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<quiz>
+<question type="stack">
+  <name><text>Finding the mistake in a definite integral</text></name>
+  <questiontext format="html">
+    <text><![CDATA[<p>Kiprono evaluated \(\displaystyle \int_{ {@lo@} }^{ {@hi@} } \left({@fx@}\right)dx\). His working has one mistake.</p><ol><li>\(\displaystyle \int_{ {@lo@} }^{ {@hi@} } \left({@fx@}\right)dx = \left[{@Gx@}\right]_{ {@lo@} }^{ {@hi@} }\)</li><li>At \(x = {@hi@}\): \({@Fh@}\)</li><li>At \(x = {@lo@}\): \({@Fl@}\)</li><li>\({@Fh@} - \left({@Fl@}\right) = {@shown@}\)</li></ol><p>(a) Which step has the mistake?</p><div>[[input:ans1]] [[validation:ans1]] [[feedback:prt1]]</div><p>(b) Give the correct exact value of the integral.</p><div>[[input:ans2]] [[validation:ans2]] [[feedback:prt2]]</div>]]></text>
+  </questiontext>
+  <generalfeedback format="html">
+    <text><![CDATA[<p>Check each step: Step 1 must differentiate back to \(f(x)\); Steps 2 and 3 substitute the limits, with brackets round negative numbers; Step 4 is upper minus lower.</p>[[if test="is(er=1)"]]<p>(a) The mistake is in Step 1. The term \({@a1*x@}\) integrates to \({@a1*x^2/2@}\), not \({@a1*x^2@}\): divide by the new power. The correct integral is \({@Fx@}\).</p>[[elif test="is(er=2)"]]<p>(a) The mistake is in Step 3. Kiprono substituted \(x = {@-lo@}\) instead of \(x = {@lo@}\). With brackets, \(F({@lo@}) = {@Flc@}\).</p>[[else]]<p>(a) The mistake is in Step 4. Subtracting a negative number adds its size: \({@Fh@} - \left({@Fl@}\right) = {@val@}\), not \({@shown@}\).</p>[[/if]]<p>(b) \[\int_{ {@lo@} }^{ {@hi@} } \left({@fx@}\right)dx = \left[{@Fx@}\right]_{ {@lo@} }^{ {@hi@} } = {@Fhc@} - \left({@Flc@}\right) = {@val@}\]</p>]]></text>
+  </generalfeedback>
+  <defaultgrade>2</defaultgrade>
+  <penalty>0.1</penalty>
+  <hidden>0</hidden>
+  <idnumber></idnumber>
+  <stackversion><text>2026063000</text></stackversion>
+  <questionvariables>
+    <text><![CDATA[/* Design: find-the-mistake pattern. [a2, a1, a0, lo, hi, er]; f = a2 x^2 + a1 x + a0. er 1: step 1 writes a1 x^2 for a1 x^2/2 (steps 2 to 4 follow it); er 2: step 3 evaluates at -lo; er 3: step 4 computes F(hi) + F(lo) (F(lo) < 0). Cases split 4/3/3 over the 10 seeds. The step dropdown lists Step 1 to Step 4 in natural order, so on er 1 seeds the correct option is first: this exception is deliberate. Source: original. */
+L: [[9,5,4,-1,3,1],[6,4,-3,-1,2,2],[6,4,4,-1,2,3],[9,3,-1,-2,1,1],[6,-2,-3,-2,1,2],[9,-2,5,-2,2,3],[3,4,-3,-2,1,1],[-3,-2,-1,-1,3,2],[-3,-4,2,-2,2,3],[-3,2,-3,-1,2,1]];
+ix: 1+rand(10);
+a2: L[ix][1]; a1: L[ix][2]; a0: L[ix][3]; lo: L[ix][4]; hi: L[ix][5]; er: L[ix][6];
+fx: a2*x^2+a1*x+a0;
+Fx: integrate(fx,x);
+val: subst(x=hi,Fx)-subst(x=lo,Fx);
+/* Kiprono's working */
+Gx: if er=1 then a2/3*x^3+a1*x^2+a0*x else Fx;
+Fh: subst(x=hi,Gx);
+Fl: if er=2 then subst(x=-lo,Gx) else subst(x=lo,Gx);
+shown: if er=3 then Fh+Fl else Fh-Fl;
+opts: [["s1",is(er=1),"Step 1"],["s2",false,"Step 2"],["s3",is(er=2),"Step 3"],["s4",is(er=3),"Step 4"]];
+ky: first(mcq_correct(opts));
+wrongstep: if er=1 then "s2" elseif er=2 then "s4" else "s2";
+Fhc: subst(x=hi,Fx); Flc: subst(x=lo,Fx);]]></text>
+  </questionvariables>
+  <specificfeedback format="html"><text><![CDATA[]]></text></specificfeedback>
+  <questionnote format="moodle_auto_format">
+    <text>ix={@ix@}, er={@er@}, value={@val@}, shown={@shown@}</text>
+  </questionnote>
+  <questiondescription format="html"><text><![CDATA[<p id="concept">Integration: finding the mistake in a definite integral</p><p id="description">Grade 12 CBE Core 4.2: Find the wrong step in a worked definite integral, and give the correct value.</p><p id="edition">Core</p><p id="provenance">This question is original to this project.</p><p id="citation">INNODEMS CBC Grade 12 Mathematics, first draft by Ben Davies, 2026. Aligned to the KICD Senior School Curriculum Design, Core Mathematics Grade 12 (draft).</p>]]></text></questiondescription>
+  <questionsimplify>1</questionsimplify>
+  <assumepositive>0</assumepositive>
+  <assumereal>0</assumereal>
+  <prtcorrect format="html"><text><![CDATA[[[commonstring key="symbolicprtcorrectfeedback"/]] [[commonstring key="defaultprtcorrectfeedback"/]]]]></text></prtcorrect>
+  <prtpartiallycorrect format="html"><text><![CDATA[[[commonstring key="symbolicprtpartiallycorrectfeedback"/]] [[commonstring key="defaultprtpartiallycorrectfeedback"/]]]]></text></prtpartiallycorrect>
+  <prtincorrect format="html"><text><![CDATA[[[commonstring key="symbolicprtincorrectfeedback"/]] [[commonstring key="defaultprtincorrectfeedback"/]]]]></text></prtincorrect>
+  <decimals>.</decimals>
+  <scientificnotation>*10</scientificnotation>
+  <multiplicationsign>none</multiplicationsign>
+  <sqrtsign>1</sqrtsign>
+  <complexno>i</complexno>
+  <inversetrig>cos-1</inversetrig>
+  <logicsymbol>lang</logicsymbol>
+  <matrixparens>[</matrixparens>
+  <isbroken>0</isbroken>
+  <variantsselectionseed></variantsselectionseed>
+
+  <input><name>ans1</name><type>dropdown</type><tans>opts</tans><boxsize>8</boxsize><strictsyntax>1</strictsyntax><insertstars>0</insertstars><syntaxhint></syntaxhint><syntaxattribute>0</syntaxattribute><forbidwords></forbidwords><allowwords></allowwords><forbidfloat>1</forbidfloat><requirelowestterms>0</requirelowestterms><checkanswertype>0</checkanswertype><mustverify>0</mustverify><showvalidation>0</showvalidation><options></options></input>
+  <input><name>ans2</name><type>numerical</type><tans>val</tans><boxsize>8</boxsize><strictsyntax>1</strictsyntax><insertstars>0</insertstars><syntaxhint></syntaxhint><syntaxattribute>0</syntaxattribute><forbidwords></forbidwords><allowwords></allowwords><forbidfloat>0</forbidfloat><requirelowestterms>0</requirelowestterms><checkanswertype>0</checkanswertype><mustverify>0</mustverify><showvalidation>0</showvalidation><options></options></input>
+
+  <prt><name>prt1</name><value>1.0000000</value><autosimplify>1</autosimplify><feedbackstyle>1</feedbackstyle><feedbackvariables><text><![CDATA[pick: if is(ans1="s1") then 1 elseif is(ans1="s2") then 2 elseif is(ans1="s3") then 3 else 4;]]></text></feedbackvariables>
+    <node><name>0</name><description>Step with the mistake</description><answertest>AlgEquiv</answertest><sans>ans1</sans><tans>ky</tans><testoptions></testoptions><quiet>1</quiet><truescoremode>=</truescoremode><truescore>1.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt1-1-T</trueanswernote><truefeedback format="html"><text><![CDATA[]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>-1</falsenextnode><falseanswernote>prt1-1-F</falseanswernote><falsefeedback format="html"><text><![CDATA[[[if test="is(pick=1)"]]<p>Step 1 is right: \({@Gx@}\) differentiates back to \({@fx@}\).</p>[[elif test="is(pick=2)"]]<p>Step 2 is right: the substitution of \(x = {@hi@}\) into the bracket from Step 1 is right.</p>[[elif test="is(pick=3)"]]<p>Step 3 is right: the substitution of \(x = {@lo@}\) into the bracket from Step 1 is right.</p>[[else]]<p>Step 4 is right: it subtracts the value at the lower limit from the value at the upper limit correctly.</p>[[/if]]<p>Look again at the other steps.</p>]]></text></falsefeedback></node>
+  </prt>
+  <prt><name>prt2</name><value>1.0000000</value><autosimplify>1</autosimplify><feedbackstyle>1</feedbackstyle><feedbackvariables><text><![CDATA[]]></text></feedbackvariables>
+    <node><name>0</name><description>Correct value</description><answertest>NumAbsolute</answertest><sans>ans2</sans><tans>val</tans><testoptions>0.001</testoptions><quiet>0</quiet><truescoremode>=</truescoremode><truescore>1.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt2-1-T</trueanswernote><truefeedback format="html"><text><![CDATA[]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>1</falsenextnode><falseanswernote>prt2-1-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>1</name><description>Copied Kiprono</description><answertest>NumAbsolute</answertest><sans>ans2</sans><tans>shown</tans><testoptions>0.001</testoptions><quiet>0</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt2-2-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>That is Kiprono's answer, which contains the mistake. Correct the step you found and recalculate.</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>2</falsenextnode><falseanswernote>prt2-2-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>2</name><description>Lower minus upper</description><answertest>NumAbsolute</answertest><sans>ans2</sans><tans>-val</tans><testoptions>0.001</testoptions><quiet>0</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt2-3-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>You worked out the value at the lower limit minus the value at the upper limit. It is upper minus lower.</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>-1</falsenextnode><falseanswernote>prt2-3-F</falseanswernote><falsefeedback format="html"><text><![CDATA[<p>Redo the step you found, then the steps after it.</p>]]></text></falsefeedback></node>
+  </prt>
+
+  <deployedseed>4</deployedseed>
+  <deployedseed>5</deployedseed>
+  <deployedseed>15</deployedseed>
+  <deployedseed>8</deployedseed>
+  <deployedseed>24</deployedseed>
+  <deployedseed>1</deployedseed>
+  <deployedseed>3</deployedseed>
+  <deployedseed>10</deployedseed>
+  <deployedseed>2</deployedseed>
+  <deployedseed>17</deployedseed>
+  <qtest><testcase>1</testcase><description>Correct</description>
+    <testinput><name>ans1</name><value>ky</value></testinput>
+    <testinput><name>ans2</name><value>val</value></testinput>
+    <expected><name>prt1</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt1-1-T</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt2-1-T</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>2</testcase><description>Correct, decimal value</description>
+    <testinput><name>ans1</name><value>ky</value></testinput>
+    <testinput><name>ans2</name><value>float(val)</value></testinput>
+    <expected><name>prt1</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt1-1-T</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt2-1-T</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>3</testcase><description>Wrong step; copied Kiprono</description>
+    <testinput><name>ans1</name><value>wrongstep</value></testinput>
+    <testinput><name>ans2</name><value>shown</value></testinput>
+    <expected><name>prt1</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt1-1-F</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt2-1-F | prt2-2-T</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>4</testcase><description>Lower minus upper</description>
+    <testinput><name>ans1</name><value>ky</value></testinput>
+    <testinput><name>ans2</name><value>-val</value></testinput>
+    <expected><name>prt1</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt1-1-T</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt2-1-F | prt2-2-F | prt2-3-T</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>5</testcase><description>Generic wrong</description>
+    <testinput><name>ans1</name><value>ky</value></testinput>
+    <testinput><name>ans2</name><value>val+1</value></testinput>
+    <expected><name>prt1</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt1-1-T</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt2-1-F | prt2-2-F | prt2-3-F</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>6</testcase><description>Invalid: letter in (b)</description>
+    <testinput><name>ans1</name><value>ky</value></testinput>
+    <testinput><name>ans2</name><value>x</value></testinput>
+    <expected><name>prt1</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt1-1-T</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore></expectedscore><expectedpenalty></expectedpenalty><expectedanswernote>NULL</expectedanswernote></expected>
+  </qtest>
+</question>
+</quiz>

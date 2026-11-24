@@ -1,0 +1,7 @@
+<stack-static>
+    <statement><p><p>Find whole numbers <m>p</m>, <m>q</m> and <m>r</m>, with <m>p \ne 0</m>, so that the solutions of <m>p\sin^2 x + q\cos x + r = 0</m> for <m>0^\circ \le x \le 360^\circ</m> are exactly <m>x \in {\{60^\circ, 180^\circ, 300^\circ\}}</m>.</p><div><m>p =</m> <fillin characters="6" name="ans1"/>  <m>\quad q =</m> <fillin characters="6" name="ans2"/>  <m>\quad r =</m> <fillin characters="6" name="ans3"/>  </div></p></statement>
+    <solution><p><p>Work backwards. The target angles are the solutions of <m>\cos x = {\frac{1}{2}}</m> or <m>\cos x = {-1}</m>. With <m>c = \cos x</m>, a quadratic with roots <m>{\frac{1}{2}}</m> and <m>{-1}</m> is <m>{-2c^2}{ - c}{ + 1} = 0</m> (or any non-zero multiple of it).</p><p>Now replace <m>c^2</m> by <m>1 - \sin^2 x</m>: <m>{-2(1 - \sin^2 x)}{ - \cos x}{ + 1} = 0</m>, that is <m>{2\sin^2 x}{ - \cos x}{ - 1} = 0</m>.</p><p>One answer is <m>p = {2}</m>, <m>q = {-1}</m>, <m>r = {-1}</m>. Any non-zero multiple, such as <m>p = {4}</m>, <m>q = {-2}</m>, <m>r = {-2}</m>, also works.</p></p></solution>
+    <answer><p><m>2</m></p></answer>
+    <answer><p><m>-1</m></p></answer>
+    <answer><p><m>-1</m></p></answer>
+</stack-static>

@@ -1,0 +1,15 @@
+<stack-static>
+    <statement><p><p>Two dice, A and B, were each rolled <m>{120}</m> times. The tables show the frequency of each score.</p><tabular border="1" style="border-collapse:collapse;text-align:center;"><row><cell style="padding:4px 10px;">Score</cell><cell style="padding:4px 10px;">1</cell><cell style="padding:4px 10px;">2</cell><cell style="padding:4px 10px;">3</cell><cell style="padding:4px 10px;">4</cell><cell style="padding:4px 10px;">5</cell><cell style="padding:4px 10px;">6</cell></row><row><cell style="padding:4px 10px;">Frequency, die A</cell><cell style="padding:4px 10px;"><m>{18}</m></cell><cell style="padding:4px 10px;"><m>{19}</m></cell><cell style="padding:4px 10px;"><m>{22}</m></cell><cell style="padding:4px 10px;"><m>{20}</m></cell><cell style="padding:4px 10px;"><m>{19}</m></cell><cell style="padding:4px 10px;"><m>{22}</m></cell></row></tabular><p/><tabular border="1" style="border-collapse:collapse;text-align:center;"><row><cell style="padding:4px 10px;">Score</cell><cell style="padding:4px 10px;">1</cell><cell style="padding:4px 10px;">2</cell><cell style="padding:4px 10px;">3</cell><cell style="padding:4px 10px;">4</cell><cell style="padding:4px 10px;">5</cell><cell style="padding:4px 10px;">6</cell></row><row><cell style="padding:4px 10px;">Frequency, die B</cell><cell style="padding:4px 10px;"><m>{16}</m></cell><cell style="padding:4px 10px;"><m>{14}</m></cell><cell style="padding:4px 10px;"><m>{38}</m></cell><cell style="padding:4px 10px;"><m>{16}</m></cell><cell style="padding:4px 10px;"><m>{16}</m></cell><cell style="padding:4px 10px;"><m>{20}</m></cell></row></tabular><p>(a) If a die is fair, how many times would you expect each score in <m>{120}</m> rolls?</p><div><fillin characters="6" name="ans1"/>  </div><p>(b) Which die is more likely to be biased?</p><div><ol marker="(1)">
+<li>Neither: both sets of results are close to what a fair die gives.</li>
+<li>Die A</li>
+<li>Die B</li>
+</ol>  </div><p>(c) Which reason supports your answer?</p><div><ol marker="(1)">
+<li>A fair die gives exactly 20 of each score in 120 rolls.</li>
+<li>On that die one score came up about twice as often as expected, while every frequency of the other die is close to 20.</li>
+<li>The frequencies of that die add up to more than 120.</li>
+</ol>  </div></p></statement>
+    <solution><p><p>(a) A fair die gives each of the 6 scores with probability <m>\dfrac{1}{6}</m>, so the expected frequency is <m>{120} \times \dfrac{1}{6} = {20}</m>.</p><p>(b) On die B, score <m>{3}</m> came up <m>{38}</m> times, about twice the expected <m>{20}</m>. Every frequency of die A is close to <m>{20}</m>. So die B is more likely to be biased.</p><p>(c) Small differences from <m>{20}</m> are normal: no fair die gives exactly the expected number every time. Bias shows as a frequency far from the expected one, as on die B. Both dice were rolled <m>{120}</m> times, so both sets of frequencies add to <m>{120}</m>.</p></p></solution>
+    <answer><p><m>20</m></p></answer>
+    <answer><p><m>(3)</m></p></answer>
+    <answer><p><m>(2)</m></p></answer>
+</stack-static>

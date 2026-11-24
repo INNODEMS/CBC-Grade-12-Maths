@@ -1,0 +1,7 @@
+<stack-static>
+    <statement><p><p>A fair die is rolled and a fair spinner with <m>{4}</m> equal sectors numbered 1 to <m>{4}</m> is spun.</p><p>A is the event <q>the die shows a 6</q>. B is the event <q>the spinner shows <m>{4}</m></q>.</p><p>Give each probability exactly, as a fraction or an exact decimal.</p><p>(a) Find <m>P(\text{A and B})</m>.</p><div><fillin characters="8" name="ans1"/>  </div><p>(b) Find <m>P(\text{neither A nor B})</m>.</p><div><fillin characters="8" name="ans2"/>  </div><p>(c) Find <m>P(\text{A or B, or both})</m>.</p><div><fillin characters="8" name="ans3"/>  </div></p></statement>
+    <solution><p><p><m>P(\text{A}) = \dfrac{{1}}{6}</m> and <m>P(\text{B}) = \dfrac{{1}}{{4}}</m>. The die and the spinner are independent. There are <m>6 \times {4} = {24}</m> equally likely outcomes.</p><p>(a) <m>P(\text{A and B}) = \dfrac{{1}}{6} \times \dfrac{{1}}{{4}} = {\frac{1}{24}}</m>: <m>{1}</m> of the <m>{24}</m> outcomes.</p><p>(b) <m>P(\text{neither}) = \dfrac{{5}}{6} \times \dfrac{{3}}{{4}} = {\frac{5}{8}}</m>.</p><p>(c) A and B can happen together, so do not just add. <m>P(\text{A or B, or both}) = 1 - P(\text{neither}) = 1 - {\frac{5}{8}} = {\frac{3}{8}}</m>. Check by counting: A has <m>{4}</m> outcomes and B has <m>{6}</m>, and the <m>{1}</m> where both happen are in both lists, so <m>{4} + {6} - {1} = {9}</m> of the <m>{24}</m> outcomes.</p></p></solution>
+    <answer><p><m>\frac{1}{24}</m></p></answer>
+    <answer><p><m>\frac{5}{8}</m></p></answer>
+    <answer><p><m>\frac{3}{8}</m></p></answer>
+</stack-static>

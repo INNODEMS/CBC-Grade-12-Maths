@@ -1,0 +1,7 @@
+<stack-static>
+    <statement><p><p>A particle moves in a straight line. At time <m>t</m> seconds its acceleration is <m>a = {6 t+4}</m> m/s<m>^2</m>. When <m>t = 0</m> its velocity is <m>{3}</m> m/s and it is at the point <m>O</m>.</p><p>(a) Find its velocity <m>v</m> in terms of <m>t</m>.</p><div><m>v =</m> <fillin characters="20" name="ans1"/> m/s  </div><p>(b) Find its displacement <m>s</m> from <m>O</m> in terms of <m>t</m>.</p><div><m>s =</m> <fillin characters="20" name="ans2"/> m  </div><p>(c) Find its displacement from <m>O</m> when <m>t = {2}</m>.</p><div><m>s =</m> <fillin characters="8" name="ans3"/> m  </div></p></statement>
+    <solution><p><p>Integrate to go from acceleration to velocity and from velocity to displacement, using what you know at the start to find each constant.</p><p>(a) <m>v = \displaystyle\int \left({6 t+4}\right)dt = {3 t^2+4 t} + c</m>. When <m>t = 0</m>, <m>v = {3}</m>, so <m>c = {3}</m> and <m>v = {3 t^2+4 t+3}</m>.</p><p>(b) <m>s = \displaystyle\int \left({3 t^2+4 t+3}\right)dt = {t^3+2 t^2+3 t} + c</m>. When <m>t = 0</m>, <m>s = 0</m>, so <m>c = 0</m> and <m>s = {t^3+2 t^2+3 t}</m>.</p><p>(c) When <m>t = {2}</m>, <m>s = {22}</m> m.</p><p>Check by differentiating: <m>\dfrac{ds}{dt} = {3 t^2+4 t+3}</m> and <m>\dfrac{dv}{dt} = {6 t+4}</m>.</p></p></solution>
+    <answer><p><m>3 t^2+4 t+3</m></p></answer>
+    <answer><p><m>t^3+2 t^2+3 t</m></p></answer>
+    <answer><p><m>22</m></p></answer>
+</stack-static>

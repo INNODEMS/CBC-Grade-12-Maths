@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<quiz>
+<question type="stack">
+  <name><text>Forming an inequality in two unknowns</text></name>
+  <questiontext format="html">
+    <text><![CDATA[<p>[[if test="is(ix=1)"]]Kerubo has Ksh {@T@} to spend on \(x\) kg of tomatoes at Ksh {@p@} per kg and \(y\) packets of maize flour at Ksh {@q@} each.[[elif test="is(ix=2)"]]A school club sells \(x\) cups of tea at a profit of Ksh {@p@} each and \(y\) samosas at a profit of Ksh {@q@} each. It needs a profit of at least Ksh {@T@}.[[elif test="is(ix=3)"]]Mutua has Ksh {@T@} to spend on \(x\) litres of milk at Ksh {@p@} each and \(y\) loaves of bread at Ksh {@q@} each.[[elif test="is(ix=4)"]]A handcart must carry less than {@T@} kg. It carries \(x\) bags of {@p@} kg and \(y\) crates of {@q@} kg.[[elif test="is(ix=5)"]]At a charity walk in Eldoret, adults pay Ksh {@p@} and children pay Ksh {@q@}. The organisers need to collect more than Ksh {@T@}. \(x\) adults and \(y\) children take part.[[elif test="is(ix=6)"]]A matatu SACCO wants at least {@p@} times as many 14-seater matatus (\(x\)) as 33-seater buses (\(y\)).[[elif test="is(ix=7)"]]A kiosk makes a profit of Ksh {@p@} on each bottle of water (\(x\)) and Ksh {@q@} on each packet of groundnuts (\(y\)). The owner wants a profit of at least Ksh {@T@} in a week.[[elif test="is(ix=8)"]]Chebet has Ksh {@T@} to spend on \(x\) bars of soap at Ksh {@p@} each and \(y\) tubes of toothpaste at Ksh {@q@} each.[[elif test="is(ix=9)"]]A hotel buys at least {@p@} times as many cups (\(x\)) as teapots (\(y\)).[[else]]A tuk-tuk's load must be less than {@T@} kg. It carries \(x\) sacks of {@p@} kg and \(y\) trays of {@q@} kg.[[/if]]</p><p>(a) Write an inequality in \(x\) and \(y\).</p><div>[[input:ans1]] [[validation:ans1]] [[feedback:prt1]]</div><p>(b) [[if test="is(ix=1)"]]If she buys {@x0@} kg of tomatoes, what is the greatest number of packets of maize flour she can buy?[[elif test="is(ix=2)"]]If the club sells {@x0@} cups of tea, what is the least number of samosas it must sell?[[elif test="is(ix=3)"]]If he buys {@x0@} litres of milk, what is the greatest number of loaves he can buy?[[elif test="is(ix=4)"]]If it carries {@x0@} bags, what is the greatest number of crates it can carry?[[elif test="is(ix=5)"]]If {@x0@} adults take part, what is the least number of children needed?[[elif test="is(ix=6)"]]If the SACCO has {@x0@} buses, what is the least number of matatus it needs?[[elif test="is(ix=7)"]]If the kiosk sells {@x0@} bottles of water, what is the least number of packets of groundnuts it must sell?[[elif test="is(ix=8)"]]If she buys {@x0@} bars of soap, what is the greatest number of tubes of toothpaste she can buy?[[elif test="is(ix=9)"]]If it buys {@x0@} teapots, what is the least number of cups?[[else]]If it carries {@x0@} sacks, what is the greatest number of trays it can carry?[[/if]]</p><div>[[input:ans2]] [[validation:ans2]] [[feedback:prt2]]</div>]]></text>
+  </questiontext>
+  <generalfeedback format="html">
+    <text><![CDATA[<p>(a) [[if test="tms"]]<q>At least {@p@} times as many \(x\) as \(y\)</q> means \(x\) is at least {@p@} lots of \(y\): {@ansd@}. Check with \(y = 1\): \(x\) must be at least \({@p@}\).[[else]]The total {@totw@} is \({@p@}x + {@q@}y\), and it must be {@wd@} \({@T@}\): {@ansd@}.[[/if]]</p><p>(b) [[if test="tms"]]Put \(y = {@x0@}\): \(x \ge {@p*x0@}\), so the least number is \({@ansb@}\).[[else]]Put \(x = {@x0@}\): \({@p*x0@} + {@q@}y {@relt(rel)@} {@T@}\), so \({@q@}y {@relt(rel)@} {@T-p*x0@}\) and \(y {@relt(rel)@} {@nd(bv)@}\). \(y\) must be a whole number, so the answer is \({@ansb@}\).[[/if]]</p>]]></text>
+  </generalfeedback>
+  <defaultgrade>2</defaultgrade>
+  <penalty>0.1</penalty>
+  <hidden>0</hidden>
+  <idnumber></idnumber>
+  <stackversion><text>2026063000</text></stackversion>
+  <questionvariables>
+    <text><![CDATA[/* helpers: relation tokens, display strings, inequality builders */
+relt(r) := if r="lt" then "\\lt" else if r="le" then "\\le" else if r="gt" then "\\gt" else "\\ge";
+reluc(r) := if r="lt" then "<" else if r="le" then "≤" else if r="gt" then ">" else "≥";
+relflip(r) := if r="lt" then "gt" else if r="le" then "ge" else if r="gt" then "lt" else "le";
+relother(r) := if r="lt" then "le" else if r="le" then "lt" else if r="gt" then "ge" else "gt";
+relcomp(r) := if r="lt" then "ge" else if r="le" then "gt" else if r="gt" then "le" else "lt";
+strictp(r) := is(r="lt" or r="gt");
+/* Typed answers must be one inequality; "and"/"or" statements are rejected at validation. */
+vsingle(ex) := if not atom(ex) and member(op(ex), ["and", "or", "nounand", "nounor"]) then "Type a single inequality, without the words and or or." else "";
+mkin(u, r, w) := if r="lt" then u<w else if r="le" then u<=w else if r="gt" then u>w else u>=w;
+holds(u, r, w) := if r="lt" then is(u<w) else if r="le" then is(u<=w) else if r="gt" then is(u>w) else is(u>=w);
+relopts(c) := [["lt",is(c="lt"),"<"],["le",is(c="le"),"≤"],["gt",is(c="gt"),">"],["ge",is(c="ge"),"≥"]];
+termp(v) := block([dd], dd: denom(v), while is(mod(dd,2)=0) do dd: dd/2, while is(mod(dd,5)=0) do dd: dd/5, is(dd=1));
+nd(v) := if integerp(v) then string(v) else if termp(v) then string(float(v))
+  else sconcat(if is(v<0) then "-" else "", "\\frac{", string(abs(num(v))), "}{", string(denom(v)), "}");
+ndm(v) := sconcat("\\(", nd(v), "\\)");
+/* plain-text number for aria-labels (nd gives TeX fractions, which a screen reader reads raw) */
+ndt(v) := if integerp(v) then string(v) else if termp(v) then string(float(v)) else sconcat(string(num(v)), "/", string(denom(v)));
+trm(k, v, fst) := block([m, s], m: abs(k), s: if v="" then nd(m) else if m=1 then v else sconcat(nd(m), v),
+  if fst then (if k<0 then sconcat("-", s) else s) else (if k<0 then sconcat(" - ", s) else sconcat(" + ", s)));
+lfs(L) := block([s, t], s: "", for t in L do (if t[1]#0 then s: sconcat(s, trm(t[1], t[2], is(s="")))), if s="" then "0" else s);
+ins(a, b, c, r) := sconcat(lfs([[a,"x"],[b,"y"]]), " ", relt(r), " ", nd(c));
+ineqd(a, b, c, r) := sconcat("\\(", ins(a, b, c, r), "\\)");
+lind(a, b, c) := sconcat("\\(", lfs([[a,"x"],[b,"y"]]), " = ", nd(c), "\\)");
+ineqm(a, b, c, r) := mkin(a*x+b*y, r, c);
+/* Design: form an inequality from prices and a limit. Source: adapted from SMP GCSE Higher 2, Chapter 1, question C7.
+   q21 [kind, p, q, T, rel, x0 (y0 for times), answer to (b)]: p*x+q*y rel T; times rows store k in p: x >= k*y. */
+q21: [["budget",60,110,2000,"le",2,17],["target",14,15,1200,"ge",3,78],["budget",90,65,950,"le",5,7],["cart",90,20,390,"lt",3,5],["walk",250,120,7500,"gt",6,51],["times",3,0,0,"ge",12,36],["target",7,16,600,"ge",5,36],["budget",120,55,1000,"le",4,9],["times",4,0,0,"ge",12,48],["cart",25,9,480,"lt",3,44]];
+ix: 1+rand(10);
+kind: q21[ix][1]; p: q21[ix][2]; q: q21[ix][3]; T: q21[ix][4]; rel: q21[ix][5]; x0: q21[ix][6]; ansb: q21[ix][7];
+tms: is(kind="times");
+ta1: if tms then x>=p*y else mkin(p*x+q*y, rel, T);
+tswap: if tms then y>=p*x else mkin(q*x+p*y, rel, T);
+tflip: if tms then x<=p*y else mkin(p*x+q*y, relflip(rel), T);
+tstrict: if tms then x>p*y else mkin(p*x+q*y, relother(rel), T);
+/* (b) one past the answer: rounded the wrong way, the exact (excluded) boundary, or x = k*y0 + 1 */
+wb: if tms or is(rel="le" or rel="lt") then ansb+1 else ansb-1;
+/* test values */
+tdbl: if tms then 2*x>=2*p*y else mkin(2*p*x+2*q*y, rel, 2*T);
+tgen: if tms then x>=p*y+1 else mkin(p*x+q*y, rel, T+q);
+tguard: if tms then x>=p else mkin(p*x, rel, T);
+teq: if tms then x=p*y else p*x+q*y=T;
+ab5: ansb+5;
+totw: if kind="budget" then "cost" else if kind="target" then "profit" else if kind="cart" then "mass" else "takings";
+wd: if rel="le" then "not more than" else if rel="ge" then "not less than" else if rel="lt" then "less than" else "more than";
+ansd: if tms then sconcat("\\(x \\ge ", nd(p), "y\\)") else ineqd(p, q, T, rel);
+bv: if tms then p*x0 else (T-p*x0)/q;]]></text>
+  </questionvariables>
+  <specificfeedback format="html"><text><![CDATA[]]></text></specificfeedback>
+  <questionnote format="moodle_auto_format">
+    <text>ix={@ix@}, {@kind@}, {@ansd@}, (b) {@ansb@}</text>
+  </questionnote>
+  <questiondescription format="html"><text><![CDATA[<p id="concept">Linear Inequalities: forming an inequality in two unknowns</p><p id="description">Grade 12 CBE Essential 1.3: Form a linear inequality in two unknowns from a budget, a target, a load or a ratio, and use it.</p><p id="edition">Essential</p><p id="provenance">This question is adapted from Chapter 1 (Graphing inequalities), Section C, question C7 of Ling, J., Scruton, P., Shilton, S. and West, H., SMP GCSE Mathematics: Higher 2 for AQA, Edexcel and OCR two-tier GCSE mathematics, Cambridge University Press, 2007: new Kenyan contexts and numbers, with budgets, targets, loads and ratios.</p><p id="citation">INNODEMS CBC Grade 12 Mathematics, first draft by Ben Davies, 2026. Aligned to the KICD Senior School Curriculum Design, Essential Mathematics Grade 12 (draft).</p>]]></text></questiondescription>
+  <questionsimplify>1</questionsimplify>
+  <assumepositive>0</assumepositive>
+  <assumereal>0</assumereal>
+  <prtcorrect format="html"><text><![CDATA[[[commonstring key="symbolicprtcorrectfeedback"/]] [[commonstring key="defaultprtcorrectfeedback"/]]]]></text></prtcorrect>
+  <prtpartiallycorrect format="html"><text><![CDATA[[[commonstring key="symbolicprtpartiallycorrectfeedback"/]] [[commonstring key="defaultprtpartiallycorrectfeedback"/]]]]></text></prtpartiallycorrect>
+  <prtincorrect format="html"><text><![CDATA[[[commonstring key="symbolicprtincorrectfeedback"/]] [[commonstring key="defaultprtincorrectfeedback"/]]]]></text></prtincorrect>
+  <decimals>.</decimals>
+  <scientificnotation>*10</scientificnotation>
+  <multiplicationsign>none</multiplicationsign>
+  <sqrtsign>1</sqrtsign>
+  <complexno>i</complexno>
+  <inversetrig>cos-1</inversetrig>
+  <logicsymbol>lang</logicsymbol>
+  <matrixparens>[</matrixparens>
+  <isbroken>0</isbroken>
+  <variantsselectionseed></variantsselectionseed>
+
+  <input><name>ans1</name><type>algebraic</type><tans>ta1</tans><boxsize>18</boxsize><strictsyntax>1</strictsyntax><insertstars>4</insertstars><syntaxhint></syntaxhint><syntaxattribute>0</syntaxattribute><forbidwords></forbidwords><allowwords></allowwords><forbidfloat>1</forbidfloat><requirelowestterms>0</requirelowestterms><checkanswertype>1</checkanswertype><mustverify>0</mustverify><showvalidation>3</showvalidation><options>validator:vsingle</options></input>
+  <input><name>ans2</name><type>numerical</type><tans>ansb</tans><boxsize>5</boxsize><strictsyntax>1</strictsyntax><insertstars>0</insertstars><syntaxhint></syntaxhint><syntaxattribute>0</syntaxattribute><forbidwords></forbidwords><allowwords></allowwords><forbidfloat>1</forbidfloat><requirelowestterms>0</requirelowestterms><checkanswertype>0</checkanswertype><mustverify>0</mustverify><showvalidation>0</showvalidation><options></options></input>
+
+  <prt><name>prt1</name><value>1.0000000</value><autosimplify>1</autosimplify><feedbackstyle>1</feedbackstyle><feedbackvariables><text><![CDATA[/* guard: same letters as the teacher's answer (AlgEquiv ignores the name of a lone variable) */
+gsd: ev(lhs(ans1)-rhs(ans1),simp);
+gsv: sort(listofvars(gsd));
+gtv: sort(listofvars(ev(lhs(ta1)-rhs(ta1),simp)));
+samevars: is(gsv = gtv);
+]]></text></feedbackvariables>
+    <node><name>0</name><description>Guard: uses x and y</description><answertest>AlgEquiv</answertest><sans>samevars</sans><tans>true</tans><testoptions></testoptions><quiet>1</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>1</truenextnode><trueanswernote>prt1-1-T</trueanswernote><truefeedback format="html"><text><![CDATA[]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>-1</falsenextnode><falseanswernote>prt1-1-F</falseanswernote><falsefeedback format="html"><text><![CDATA[<p>Your inequality should use both \(x\) and \(y\).</p>]]></text></falsefeedback></node>
+    <node><name>1</name><description>Correct inequality</description><answertest>AlgEquiv</answertest><sans>ans1</sans><tans>ta1</tans><testoptions></testoptions><quiet>1</quiet><truescoremode>=</truescoremode><truescore>1.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt1-2-T</trueanswernote><truefeedback format="html"><text><![CDATA[]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>2</falsenextnode><falseanswernote>prt1-2-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>2</name><description>Letters swapped</description><answertest>AlgEquiv</answertest><sans>ans1</sans><tans>tswap</tans><testoptions></testoptions><quiet>1</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt1-3-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>[[if test="tms"]]Test your inequality with numbers that fit the sentence: \(x = {@p@}\) and \(y = 1\). Yours says \(1 \ge {@p*p@}\), which is false. Which letter stands for the bigger number?[[else]]You matched the numbers to the wrong letters: \(x\) goes with \({@p@}\) and \(y\) goes with \({@q@}\).[[/if]]</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>3</falsenextnode><falseanswernote>prt1-3-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>3</name><description>Sign the wrong way</description><answertest>AlgEquiv</answertest><sans>ans1</sans><tans>tflip</tans><testoptions></testoptions><quiet>1</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt1-4-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>[[if test="tms"]]Your sign points the wrong way: your inequality allows \(x = 0\) with \(y = 1\). Does that fit <q>at least {@p@} times as many</q>?[[else]]Your sign points the wrong way: the total must be {@wd@} \({@T@}\).[[/if]]</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>4</falsenextnode><falseanswernote>prt1-4-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>4</name><description>Wrong strictness</description><answertest>AlgEquiv</answertest><sans>ans1</sans><tans>tstrict</tans><testoptions></testoptions><quiet>1</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt1-5-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>[[if test="tms"]]<q>At least</q> includes \(x = {@p@}y\) itself, so use \(\ge\).[[elif test="strictp(rel)"]]<q>{@wd@}</q> does not include \({@T@}\) itself, so use a strict sign.[[else]]<q>{@wd@}</q> includes \({@T@}\) itself, so use \(\le\) or \(\ge\).[[/if]]</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>-1</falsenextnode><falseanswernote>prt1-5-F</falseanswernote><falsefeedback format="html"><text><![CDATA[<p>[[if test="tms"]]Compare \(x\) with {@p@} lots of \(y\). Check with \(y = 1\): \(x\) must be at least \({@p@}\).[[else]]Write the total {@totw@} as \(({@p@} \times x) + ({@q@} \times y)\), then compare it with \({@T@}\) using the words of the question.[[/if]]</p>]]></text></falsefeedback></node>
+  </prt>
+  <prt><name>prt2</name><value>1.0000000</value><autosimplify>1</autosimplify><feedbackstyle>1</feedbackstyle><feedbackvariables><text><![CDATA[b2i: integerp(ans2);
+upper: is(rel="le" or rel="lt");
+b2t: p*x0+q*ans2;
+b2ok: if tms then is(ans2>=p*x0) else holds(b2t, rel, T);]]></text></feedbackvariables>
+    <node><name>0</name><description>Answer to (b)</description><answertest>AlgEquiv</answertest><sans>ans2</sans><tans>ansb</tans><testoptions></testoptions><quiet>0</quiet><truescoremode>=</truescoremode><truescore>1.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt2-1-T</trueanswernote><truefeedback format="html"><text><![CDATA[]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>1</falsenextnode><falseanswernote>prt2-1-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>1</name><description>One past the answer</description><answertest>AlgEquiv</answertest><sans>ans2</sans><tans>wb</tans><testoptions></testoptions><quiet>0</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt2-2-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>[[if test="tms"]]\(x = {@wb@}\) is allowed, but is it the least? Try one fewer in your inequality: <q>at least</q> includes equal.[[elif test="is(kind=\"budget\")"]]Round down: \({@wb@}\) would cost \({@p*x0+q*wb@}\) shillings, more than Ksh {@T@}.[[elif test="is(kind=\"target\")"]]Round up: with \({@wb@}\) the profit is \({@p*x0+q*wb@}\) shillings, less than Ksh {@T@}.[[elif test="is(kind=\"cart\")"]]With \({@wb@}\) the total is exactly \({@T@}\) kg, which is not less than \({@T@}\) kg.[[else]]With \({@wb@}\) the total is exactly Ksh {@T@}, which is not more than Ksh {@T@}.[[/if]]</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>-1</falsenextnode><falseanswernote>prt2-2-F</falseanswernote><falsefeedback format="html"><text><![CDATA[<p>[[if test="not b2i"]]The answer must be a whole number. [[elif test="tms and b2ok"]]\(x = {@ans2@}\) is allowed, but it is not the least number that is. [[elif test="tms"]]With \(y = {@x0@}\), \(x = {@ans2@}\) is too few: it is less than \({@p@}\) times \({@x0@}\). [[elif test="b2ok"]]With \(x = {@x0@}\) and \(y = {@ans2@}\) the {@totw@} would be \({@b2t@}\), which is allowed, but \({@ans2@}\) is not the [[if test="upper"]]greatest[[else]]least[[/if]] number that is. [[else]]With \(x = {@x0@}\) and \(y = {@ans2@}\) the {@totw@} would be \({@b2t@}\), which is [[if test="upper"]]more[[else]]less[[/if]] than \({@T@}\). [[/if]][[if test="tms"]]Put \(y = {@x0@}\) into your inequality and find the least whole number \(x\) that makes it true.[[else]]Put \(x = {@x0@}\) into your inequality and find the [[if test="upper"]]greatest[[else]]least[[/if]] whole number \(y\) that makes it true. Check the next whole number as well.[[/if]]</p>]]></text></falsefeedback></node>
+  </prt>
+
+  <deployedseed>4</deployedseed>
+  <deployedseed>5</deployedseed>
+  <deployedseed>15</deployedseed>
+  <deployedseed>8</deployedseed>
+  <deployedseed>24</deployedseed>
+  <deployedseed>1</deployedseed>
+  <deployedseed>3</deployedseed>
+  <deployedseed>10</deployedseed>
+  <deployedseed>2</deployedseed>
+  <deployedseed>17</deployedseed>
+  <qtest><testcase>1</testcase><description>Correct</description>
+    <testinput><name>ans1</name><value>ta1</value></testinput>
+    <testinput><name>ans2</name><value>ansb</value></testinput>
+    <expected><name>prt1</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt1-1-T | prt1-2-T</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt2-1-T</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>2</testcase><description>Correct, doubled</description>
+    <testinput><name>ans1</name><value>tdbl</value></testinput>
+    <testinput><name>ans2</name><value>ansb</value></testinput>
+    <expected><name>prt1</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt1-1-T | prt1-2-T</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt2-1-T</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>3</testcase><description>Letters swapped; one past</description>
+    <testinput><name>ans1</name><value>tswap</value></testinput>
+    <testinput><name>ans2</name><value>wb</value></testinput>
+    <expected><name>prt1</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt1-1-T | prt1-2-F | prt1-3-T</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt2-1-F | prt2-2-T</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>4</testcase><description>Sign flipped; generic (b)</description>
+    <testinput><name>ans1</name><value>tflip</value></testinput>
+    <testinput><name>ans2</name><value>ab5</value></testinput>
+    <expected><name>prt1</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt1-1-T | prt1-2-F | prt1-3-F | prt1-4-T</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt2-1-F | prt2-2-F</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>5</testcase><description>Wrong strictness</description>
+    <testinput><name>ans1</name><value>tstrict</value></testinput>
+    <testinput><name>ans2</name><value>ansb</value></testinput>
+    <expected><name>prt1</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt1-1-T | prt1-2-F | prt1-3-F | prt1-4-F | prt1-5-T</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt2-1-T</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>6</testcase><description>Generic</description>
+    <testinput><name>ans1</name><value>tgen</value></testinput>
+    <testinput><name>ans2</name><value>ansb</value></testinput>
+    <expected><name>prt1</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt1-1-T | prt1-2-F | prt1-3-F | prt1-4-F | prt1-5-F</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt2-1-T</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>7</testcase><description>Guard: one letter only</description>
+    <testinput><name>ans1</name><value>tguard</value></testinput>
+    <testinput><name>ans2</name><value>ansb</value></testinput>
+    <expected><name>prt1</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt1-1-F</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt2-1-T</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>8</testcase><description>Invalid: an equation</description>
+    <testinput><name>ans1</name><value>teq</value></testinput>
+    <testinput><name>ans2</name><value>ansb</value></testinput>
+    <expected><name>prt1</name><expectedscore></expectedscore><expectedpenalty></expectedpenalty><expectedanswernote>NULL</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt2-1-T</expectedanswernote></expected>
+  </qtest>
+</question>
+</quiz>

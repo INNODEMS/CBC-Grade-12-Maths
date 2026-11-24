@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<quiz>
+<question type="stack">
+  <name><text>Two draws without replacement</text></name>
+  <questiontext format="html">
+    <text><![CDATA[<p>[[if test="is(cx=1)"]]A box holds \({@r@}\) blue pens and \({@b@}\) red pens.[[else]]A basket at a market in Mombasa holds \({@r@}\) ripe mangoes and \({@b@}\) unripe mangoes.[[/if]] Two [[if test="is(cx=1)"]]pens[[else]]mangoes[[/if]] are taken at random, one after the other, without replacement.</p><p>Give each probability exactly, as a fraction or an exact decimal.</p><p>(a) The first [[if test="is(cx=1)"]]pen[[else]]mango[[/if]] is [[if test="is(cx=1)"]]blue[[else]]ripe[[/if]]. What is the probability that the second is [[if test="is(cx=1)"]]blue[[else]]ripe[[/if]]?</p><div>[[input:ans1]] [[validation:ans1]] [[feedback:prt1]]</div><p>(b) Find the probability that both are [[if test="is(cx=1)"]]blue[[else]]ripe[[/if]].</p><div>[[input:ans2]] [[validation:ans2]] [[feedback:prt2]]</div><p>(c) Find the probability that one is [[if test="is(cx=1)"]]blue[[else]]ripe[[/if]] and one is [[if test="is(cx=1)"]]red[[else]]unripe[[/if]].</p><div>[[input:ans3]] [[validation:ans3]] [[feedback:prt3]]</div><p>(d) Find the probability that at least one is [[if test="is(cx=1)"]]red[[else]]unripe[[/if]].</p><div>[[input:ans4]] [[validation:ans4]] [[feedback:prt4]]</div>]]></text>
+  </questiontext>
+  <generalfeedback format="html">
+    <text><![CDATA[<p>Without replacement, count what is left at the second stage: one [[if test="is(cx=1)"]]pen[[else]]mango[[/if]] has gone, so there are \({@n-1@}\) left. The four paths of the tree are</p><table border="1" style="border-collapse:collapse;text-align:center;"><tr><th style="padding:4px 10px;">First</th><th style="padding:4px 10px;">Second</th><th style="padding:4px 10px;">Probability of the path</th></tr><tr><td style="padding:4px 10px;">[[if test="is(cx=1)"]]blue[[else]]ripe[[/if]]</td><td style="padding:4px 10px;">[[if test="is(cx=1)"]]blue[[else]]ripe[[/if]]</td><td style="padding:4px 10px;">\(\dfrac{{@r@}}{{@n@}} \times \dfrac{{@r-1@}}{{@n-1@}} = {@r*(r-1)/(n*(n-1))@}\)</td></tr><tr><td style="padding:4px 10px;">[[if test="is(cx=1)"]]blue[[else]]ripe[[/if]]</td><td style="padding:4px 10px;">[[if test="is(cx=1)"]]red[[else]]unripe[[/if]]</td><td style="padding:4px 10px;">\(\dfrac{{@r@}}{{@n@}} \times \dfrac{{@b@}}{{@n-1@}} = {@r*b/(n*(n-1))@}\)</td></tr><tr><td style="padding:4px 10px;">[[if test="is(cx=1)"]]red[[else]]unripe[[/if]]</td><td style="padding:4px 10px;">[[if test="is(cx=1)"]]blue[[else]]ripe[[/if]]</td><td style="padding:4px 10px;">\(\dfrac{{@b@}}{{@n@}} \times \dfrac{{@r@}}{{@n-1@}} = {@r*b/(n*(n-1))@}\)</td></tr><tr><td style="padding:4px 10px;">[[if test="is(cx=1)"]]red[[else]]unripe[[/if]]</td><td style="padding:4px 10px;">[[if test="is(cx=1)"]]red[[else]]unripe[[/if]]</td><td style="padding:4px 10px;">\(\dfrac{{@b@}}{{@n@}} \times \dfrac{{@b-1@}}{{@n-1@}} = {@b*(b-1)/(n*(n-1))@}\)</td></tr></table><p>(a) After a [[if test="is(cx=1)"]]blue[[else]]ripe[[/if]] [[if test="is(cx=1)"]]pen[[else]]mango[[/if]] is taken, \({@r-1@}\) of the \({@n-1@}\) left are [[if test="is(cx=1)"]]blue[[else]]ripe[[/if]]: \({@ta1@}\).</p><p>(b) \(\dfrac{{@r@}}{{@n@}} \times \dfrac{{@r-1@}}{{@n-1@}} = {@ta2@}\).</p><p>(c) Two paths: [[if test="is(cx=1)"]]blue[[else]]ripe[[/if]] then [[if test="is(cx=1)"]]red[[else]]unripe[[/if]], or [[if test="is(cx=1)"]]red[[else]]unripe[[/if]] then [[if test="is(cx=1)"]]blue[[else]]ripe[[/if]]. \({@r*b/(n*(n-1))@} + {@r*b/(n*(n-1))@} = {@ta3@}\).</p><p>(d) <q>At least one [[if test="is(cx=1)"]]red[[else]]unripe[[/if]]</q> is everything except both [[if test="is(cx=1)"]]blue[[else]]ripe[[/if]]: \(1 - {@ta2@} = {@ta4@}\). The four paths add to 1.</p>]]></text>
+  </generalfeedback>
+  <defaultgrade>4</defaultgrade>
+  <penalty>0.1</penalty>
+  <hidden>0</hidden>
+  <idnumber></idnumber>
+  <stackversion><text>2026063000</text></stackversion>
+  <questionvariables>
+    <text><![CDATA[/* Design: two items drawn without replacement. [r, b]; context mod(ix,2): 1 pens, 0 mangoes. Source: adapted from SMP AS/A2 Statistics 1, chapter 3, section E, E2. */
+L: [[8,3],[8,4],[3,6],[4,6],[5,3],[7,2],[4,2],[5,6],[7,5],[3,5]];
+ix: 1+rand(10);
+r: L[ix][1]; b: L[ix][2]; n: r+b;
+cx: mod(ix,2);
+ta1: (r-1)/(n-1); ta2: r*(r-1)/(n*(n-1)); ta3: 2*r*b/(n*(n-1)); ta4: 1-ta2;
+tl1: min(1/200,ta1/20); tl2: min(1/200,ta2/20); tl3: min(1/200,ta3/20); tl4: min(1/200,ta4/20);
+/* diagnostics */
+rep1: r/n; num1: (r-1)/n; den1: r/(n-1);
+rep2: (r/n)^2; half2: r*(r-1)/n^2;
+one3: r*b/(n*(n-1)); rep3: 2*r*b/n^2;
+rep4: 1-(r/n)^2; bb4: b*(b-1)/(n*(n-1));]]></text>
+  </questionvariables>
+  <specificfeedback format="html"><text><![CDATA[]]></text></specificfeedback>
+  <questionnote format="moodle_auto_format">
+    <text>ix={@ix@}, r={@r@}, b={@b@}</text>
+  </questionnote>
+  <questiondescription format="html"><text><![CDATA[<p id="concept">Probability III: two draws without replacement</p><p id="description">Grade 12 CBE Essential 3.2: Find second-stage probabilities by counting what is left, and use a two-stage tree without replacement for both, one of each and at least one.</p><p id="edition">Essential</p><p id="provenance">This question is adapted from Chapter 3, Section E, question E2 of Cassell, D., Instone, S., Ling, J., Scruton, P. and Shilton, S., SMP AS/A2 Mathematics: Statistics 1 for Edexcel, Cambridge University Press, 2004: pens and mangoes in new numbers, randomised, with an 'at least one' part.</p><p id="citation">INNODEMS CBC Grade 12 Mathematics, first draft by Ben Davies, 2026. Aligned to the KICD Senior School Curriculum Design, Essential Mathematics Grade 12 (draft).</p>]]></text></questiondescription>
+  <questionsimplify>1</questionsimplify>
+  <assumepositive>0</assumepositive>
+  <assumereal>0</assumereal>
+  <prtcorrect format="html"><text><![CDATA[[[commonstring key="symbolicprtcorrectfeedback"/]] [[commonstring key="defaultprtcorrectfeedback"/]]]]></text></prtcorrect>
+  <prtpartiallycorrect format="html"><text><![CDATA[[[commonstring key="symbolicprtpartiallycorrectfeedback"/]] [[commonstring key="defaultprtpartiallycorrectfeedback"/]]]]></text></prtpartiallycorrect>
+  <prtincorrect format="html"><text><![CDATA[[[commonstring key="symbolicprtincorrectfeedback"/]] [[commonstring key="defaultprtincorrectfeedback"/]]]]></text></prtincorrect>
+  <decimals>.</decimals>
+  <scientificnotation>*10</scientificnotation>
+  <multiplicationsign>none</multiplicationsign>
+  <sqrtsign>1</sqrtsign>
+  <complexno>i</complexno>
+  <inversetrig>cos-1</inversetrig>
+  <logicsymbol>lang</logicsymbol>
+  <matrixparens>[</matrixparens>
+  <isbroken>0</isbroken>
+  <variantsselectionseed></variantsselectionseed>
+
+  <input><name>ans1</name><type>numerical</type><tans>ta1</tans><boxsize>8</boxsize><strictsyntax>1</strictsyntax><insertstars>0</insertstars><syntaxhint></syntaxhint><syntaxattribute>0</syntaxattribute><forbidwords></forbidwords><allowwords></allowwords><forbidfloat>0</forbidfloat><requirelowestterms>0</requirelowestterms><checkanswertype>0</checkanswertype><mustverify>0</mustverify><showvalidation>0</showvalidation><options></options></input>
+  <input><name>ans2</name><type>numerical</type><tans>ta2</tans><boxsize>8</boxsize><strictsyntax>1</strictsyntax><insertstars>0</insertstars><syntaxhint></syntaxhint><syntaxattribute>0</syntaxattribute><forbidwords></forbidwords><allowwords></allowwords><forbidfloat>0</forbidfloat><requirelowestterms>0</requirelowestterms><checkanswertype>0</checkanswertype><mustverify>0</mustverify><showvalidation>0</showvalidation><options></options></input>
+  <input><name>ans3</name><type>numerical</type><tans>ta3</tans><boxsize>8</boxsize><strictsyntax>1</strictsyntax><insertstars>0</insertstars><syntaxhint></syntaxhint><syntaxattribute>0</syntaxattribute><forbidwords></forbidwords><allowwords></allowwords><forbidfloat>0</forbidfloat><requirelowestterms>0</requirelowestterms><checkanswertype>0</checkanswertype><mustverify>0</mustverify><showvalidation>0</showvalidation><options></options></input>
+  <input><name>ans4</name><type>numerical</type><tans>ta4</tans><boxsize>8</boxsize><strictsyntax>1</strictsyntax><insertstars>0</insertstars><syntaxhint></syntaxhint><syntaxattribute>0</syntaxattribute><forbidwords></forbidwords><allowwords></allowwords><forbidfloat>0</forbidfloat><requirelowestterms>0</requirelowestterms><checkanswertype>0</checkanswertype><mustverify>0</mustverify><showvalidation>0</showvalidation><options></options></input>
+
+  <prt><name>prt1</name><value>1.0000000</value><autosimplify>1</autosimplify><feedbackstyle>1</feedbackstyle><feedbackvariables><text><![CDATA[]]></text></feedbackvariables>
+    <node><name>0</name><description>ok</description><answertest>NumAbsolute</answertest><sans>ans1</sans><tans>ta1</tans><testoptions>10^(-9)</testoptions><quiet>1</quiet><truescoremode>=</truescoremode><truescore>1.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt1-1-T</trueanswernote><truefeedback format="html"><text><![CDATA[]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>1</falsenextnode><falseanswernote>prt1-1-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>1</name><description>round</description><answertest>NumAbsolute</answertest><sans>ans1</sans><tans>ta1</tans><testoptions>tl1</testoptions><quiet>1</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt1-2-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>Your value is close to the right one but has been rounded. Give the exact probability as a fraction or an exact decimal.</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>2</falsenextnode><falseanswernote>prt1-2-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>2</name><description>rep</description><answertest>NumAbsolute</answertest><sans>ans1</sans><tans>rep1</tans><testoptions>tl1</testoptions><quiet>1</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt1-3-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>That is the probability for the first pick. One [[if test="is(cx=1)"]]blue[[else]]ripe[[/if]] [[if test="is(cx=1)"]]pen[[else]]mango[[/if]] has gone, so both the number of [[if test="is(cx=1)"]]blue[[else]]ripe[[/if]] [[if test="is(cx=1)"]]pens[[else]]mangoes[[/if]] and the total have changed.</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>3</falsenextnode><falseanswernote>prt1-3-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>3</name><description>num</description><answertest>NumAbsolute</answertest><sans>ans1</sans><tans>num1</tans><testoptions>tl1</testoptions><quiet>1</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt1-4-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>You took one off the number of [[if test="is(cx=1)"]]blue[[else]]ripe[[/if]] [[if test="is(cx=1)"]]pens[[else]]mangoes[[/if]], but the total also goes down by one.</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>4</falsenextnode><falseanswernote>prt1-4-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>4</name><description>den</description><answertest>NumAbsolute</answertest><sans>ans1</sans><tans>den1</tans><testoptions>tl1</testoptions><quiet>1</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt1-5-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>You took one off the total, but the number of [[if test="is(cx=1)"]]blue[[else]]ripe[[/if]] [[if test="is(cx=1)"]]pens[[else]]mangoes[[/if]] also goes down by one.</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>5</falsenextnode><falseanswernote>prt1-5-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>5</name><description>range</description><answertest>AlgEquiv</answertest><sans>is(ans1&lt;0 or ans1&gt;1)</sans><tans>true</tans><testoptions></testoptions><quiet>1</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt1-6-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>A probability is always between 0 and 1, so \({@ans1@}\) cannot be a probability.</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>-1</falsenextnode><falseanswernote>prt1-6-F</falseanswernote><falsefeedback format="html"><text><![CDATA[<p>Count what is left after one [[if test="is(cx=1)"]]blue[[else]]ripe[[/if]] [[if test="is(cx=1)"]]pen[[else]]mango[[/if]] has been taken.</p>]]></text></falsefeedback></node>
+  </prt>
+  <prt><name>prt2</name><value>1.0000000</value><autosimplify>1</autosimplify><feedbackstyle>1</feedbackstyle><feedbackvariables><text><![CDATA[]]></text></feedbackvariables>
+    <node><name>0</name><description>ok</description><answertest>NumAbsolute</answertest><sans>ans2</sans><tans>ta2</tans><testoptions>10^(-9)</testoptions><quiet>1</quiet><truescoremode>=</truescoremode><truescore>1.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt2-1-T</trueanswernote><truefeedback format="html"><text><![CDATA[]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>1</falsenextnode><falseanswernote>prt2-1-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>1</name><description>round</description><answertest>NumAbsolute</answertest><sans>ans2</sans><tans>ta2</tans><testoptions>tl2</testoptions><quiet>1</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt2-2-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>Your value is close to the right one but has been rounded. Give the exact probability as a fraction or an exact decimal.</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>2</falsenextnode><falseanswernote>prt2-2-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>2</name><description>rep</description><answertest>NumAbsolute</answertest><sans>ans2</sans><tans>rep2</tans><testoptions>tl2</testoptions><quiet>1</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt2-3-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>That is the answer with replacement. Without replacement, the second pick is from the [[if test="is(cx=1)"]]pens[[else]]mangoes[[/if]] that are left after one [[if test="is(cx=1)"]]blue[[else]]ripe[[/if]] [[if test="is(cx=1)"]]pen[[else]]mango[[/if]] has gone.</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>3</falsenextnode><falseanswernote>prt2-3-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>3</name><description>half</description><answertest>NumAbsolute</answertest><sans>ans2</sans><tans>half2</tans><testoptions>tl2</testoptions><quiet>1</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt2-4-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>At the second pick you took one off the number of [[if test="is(cx=1)"]]blue[[else]]ripe[[/if]] [[if test="is(cx=1)"]]pens[[else]]mangoes[[/if]], but the total also goes down by one.</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>4</falsenextnode><falseanswernote>prt2-4-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>4</name><description>range</description><answertest>AlgEquiv</answertest><sans>is(ans2&lt;0 or ans2&gt;1)</sans><tans>true</tans><testoptions></testoptions><quiet>1</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt2-5-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>A probability is always between 0 and 1, so \({@ans2@}\) cannot be a probability.</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>-1</falsenextnode><falseanswernote>prt2-5-F</falseanswernote><falsefeedback format="html"><text><![CDATA[<p>Multiply along the path [[if test="is(cx=1)"]]blue[[else]]ripe[[/if]] then [[if test="is(cx=1)"]]blue[[else]]ripe[[/if]], counting what is left at the second pick.</p>]]></text></falsefeedback></node>
+  </prt>
+  <prt><name>prt3</name><value>1.0000000</value><autosimplify>1</autosimplify><feedbackstyle>1</feedbackstyle><feedbackvariables><text><![CDATA[]]></text></feedbackvariables>
+    <node><name>0</name><description>ok</description><answertest>NumAbsolute</answertest><sans>ans3</sans><tans>ta3</tans><testoptions>10^(-9)</testoptions><quiet>1</quiet><truescoremode>=</truescoremode><truescore>1.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt3-1-T</trueanswernote><truefeedback format="html"><text><![CDATA[]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>1</falsenextnode><falseanswernote>prt3-1-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>1</name><description>round</description><answertest>NumAbsolute</answertest><sans>ans3</sans><tans>ta3</tans><testoptions>tl3</testoptions><quiet>1</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt3-2-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>Your value is close to the right one but has been rounded. Give the exact probability as a fraction or an exact decimal.</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>2</falsenextnode><falseanswernote>prt3-2-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>2</name><description>one</description><answertest>NumAbsolute</answertest><sans>ans3</sans><tans>one3</tans><testoptions>tl3</testoptions><quiet>1</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt3-3-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>That is one order only: [[if test="is(cx=1)"]]blue[[else]]ripe[[/if]] then [[if test="is(cx=1)"]]red[[else]]unripe[[/if]]. [[if test="is(cx=1)"]]red[[else]]unripe[[/if]] then [[if test="is(cx=1)"]]blue[[else]]ripe[[/if]] is the other: add both.</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>3</falsenextnode><falseanswernote>prt3-3-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>3</name><description>rep</description><answertest>NumAbsolute</answertest><sans>ans3</sans><tans>rep3</tans><testoptions>tl3</testoptions><quiet>1</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt3-4-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>That is the answer with replacement. Without replacement there are only \({@n-1@}\) [[if test="is(cx=1)"]]pens[[else]]mangoes[[/if]] left at the second pick.</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>4</falsenextnode><falseanswernote>prt3-4-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>4</name><description>range</description><answertest>AlgEquiv</answertest><sans>is(ans3&lt;0 or ans3&gt;1)</sans><tans>true</tans><testoptions></testoptions><quiet>1</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt3-5-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>A probability is always between 0 and 1, so \({@ans3@}\) cannot be a probability.</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>-1</falsenextnode><falseanswernote>prt3-5-F</falseanswernote><falsefeedback format="html"><text><![CDATA[<p>Find both paths with one of each colour and add them.</p>]]></text></falsefeedback></node>
+  </prt>
+  <prt><name>prt4</name><value>1.0000000</value><autosimplify>1</autosimplify><feedbackstyle>1</feedbackstyle><feedbackvariables><text><![CDATA[]]></text></feedbackvariables>
+    <node><name>0</name><description>ok</description><answertest>NumAbsolute</answertest><sans>ans4</sans><tans>ta4</tans><testoptions>10^(-9)</testoptions><quiet>1</quiet><truescoremode>=</truescoremode><truescore>1.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt4-1-T</trueanswernote><truefeedback format="html"><text><![CDATA[]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>1</falsenextnode><falseanswernote>prt4-1-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>1</name><description>round</description><answertest>NumAbsolute</answertest><sans>ans4</sans><tans>ta4</tans><testoptions>tl4</testoptions><quiet>1</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt4-2-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>Your value is close to the right one but has been rounded. Give the exact probability as a fraction or an exact decimal.</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>2</falsenextnode><falseanswernote>prt4-2-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>2</name><description>rep</description><answertest>NumAbsolute</answertest><sans>ans4</sans><tans>rep4</tans><testoptions>tl4</testoptions><quiet>1</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt4-3-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>That uses <q>with replacement</q> for the probability that both are [[if test="is(cx=1)"]]blue[[else]]ripe[[/if]].</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>3</falsenextnode><falseanswernote>prt4-3-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>3</name><description>bb</description><answertest>NumAbsolute</answertest><sans>ans4</sans><tans>bb4</tans><testoptions>tl4</testoptions><quiet>1</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt4-4-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>That is the probability that both are [[if test="is(cx=1)"]]red[[else]]unripe[[/if]]. <q>At least one [[if test="is(cx=1)"]]red[[else]]unripe[[/if]]</q> is \(1 - P(\)both [[if test="is(cx=1)"]]blue[[else]]ripe[[/if]]\()\).</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>4</falsenextnode><falseanswernote>prt4-4-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>4</name><description>ft</description><answertest>NumAbsolute</answertest><sans>ans4</sans><tans>1-ans2</tans><testoptions>tl4</testoptions><quiet>1</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt4-5-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>Your method is right for your answer to (b), but that answer is wrong; see (b).</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>5</falsenextnode><falseanswernote>prt4-5-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>5</name><description>range</description><answertest>AlgEquiv</answertest><sans>is(ans4&lt;0 or ans4&gt;1)</sans><tans>true</tans><testoptions></testoptions><quiet>1</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt4-6-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>A probability is always between 0 and 1, so \({@ans4@}\) cannot be a probability.</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>-1</falsenextnode><falseanswernote>prt4-6-F</falseanswernote><falsefeedback format="html"><text><![CDATA[<p>Use \(1 - P(\)both [[if test="is(cx=1)"]]blue[[else]]ripe[[/if]]\()\).</p>]]></text></falsefeedback></node>
+  </prt>
+
+  <deployedseed>4</deployedseed>
+  <deployedseed>5</deployedseed>
+  <deployedseed>15</deployedseed>
+  <deployedseed>8</deployedseed>
+  <deployedseed>24</deployedseed>
+  <deployedseed>1</deployedseed>
+  <deployedseed>3</deployedseed>
+  <deployedseed>10</deployedseed>
+  <deployedseed>2</deployedseed>
+  <deployedseed>17</deployedseed>
+  <qtest><testcase>1</testcase><description>Correct, derived</description>
+    <testinput><name>ans1</name><value>ev((r-1)/(n-1),simp)</value></testinput>
+    <testinput><name>ans2</name><value>ev(r/n*(r-1)/(n-1),simp)</value></testinput>
+    <testinput><name>ans3</name><value>ev(r/n*b/(n-1)+b/n*r/(n-1),simp)</value></testinput>
+    <testinput><name>ans4</name><value>ev(1-r/n*(r-1)/(n-1),simp)</value></testinput>
+    <expected><name>prt1</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt1-1-T</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt2-1-T</expectedanswernote></expected>
+    <expected><name>prt3</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt3-1-T</expectedanswernote></expected>
+    <expected><name>prt4</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt4-1-T</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>2</testcase><description>Rounded (b), (c), (d)</description>
+    <testinput><name>ans1</name><value>ta1</value></testinput>
+    <testinput><name>ans2</name><value>float(ta2+tl2/2)</value></testinput>
+    <testinput><name>ans3</name><value>float(ta3+tl3/2)</value></testinput>
+    <testinput><name>ans4</name><value>float(ta4+tl4/2)</value></testinput>
+    <expected><name>prt1</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt1-1-T</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt2-1-F | prt2-2-T</expectedanswernote></expected>
+    <expected><name>prt3</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt3-1-F | prt3-2-T</expectedanswernote></expected>
+    <expected><name>prt4</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt4-1-F | prt4-2-T</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>3</testcase><description>With replacement throughout</description>
+    <testinput><name>ans1</name><value>rep1</value></testinput>
+    <testinput><name>ans2</name><value>rep2</value></testinput>
+    <testinput><name>ans3</name><value>one3</value></testinput>
+    <testinput><name>ans4</name><value>rep4</value></testinput>
+    <expected><name>prt1</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt1-1-F | prt1-2-F | prt1-3-T</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt2-1-F | prt2-2-F | prt2-3-T</expectedanswernote></expected>
+    <expected><name>prt3</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt3-1-F | prt3-2-F | prt3-3-T</expectedanswernote></expected>
+    <expected><name>prt4</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt4-1-F | prt4-2-F | prt4-3-T</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>4</testcase><description>Only the number or total reduced; both of the other colour</description>
+    <testinput><name>ans1</name><value>num1</value></testinput>
+    <testinput><name>ans2</name><value>half2</value></testinput>
+    <testinput><name>ans3</name><value>rep3</value></testinput>
+    <testinput><name>ans4</name><value>bb4</value></testinput>
+    <expected><name>prt1</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt1-1-F | prt1-2-F | prt1-3-F | prt1-4-T</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt2-1-F | prt2-2-F | prt2-3-F | prt2-4-T</expectedanswernote></expected>
+    <expected><name>prt3</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt3-1-F | prt3-2-F | prt3-3-F | prt3-4-T</expectedanswernote></expected>
+    <expected><name>prt4</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt4-1-F | prt4-2-F | prt4-3-F | prt4-4-T</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>5</testcase><description>Total not reduced in (a)</description>
+    <testinput><name>ans1</name><value>den1</value></testinput>
+    <testinput><name>ans2</name><value>ta2</value></testinput>
+    <testinput><name>ans3</name><value>ta3</value></testinput>
+    <testinput><name>ans4</name><value>ta4</value></testinput>
+    <expected><name>prt1</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt1-1-F | prt1-2-F | prt1-3-F | prt1-4-F | prt1-5-T</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt2-1-T</expectedanswernote></expected>
+    <expected><name>prt3</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt3-1-T</expectedanswernote></expected>
+    <expected><name>prt4</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt4-1-T</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>6</testcase><description>Follow-through from a wrong (b)</description>
+    <testinput><name>ans1</name><value>ta1</value></testinput>
+    <testinput><name>ans2</name><value>ta2+1/10</value></testinput>
+    <testinput><name>ans3</name><value>ta3</value></testinput>
+    <testinput><name>ans4</name><value>1-(ta2+1/10)</value></testinput>
+    <expected><name>prt1</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt1-1-T</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt2-1-F | prt2-2-F | prt2-3-F | prt2-4-F | prt2-5-F</expectedanswernote></expected>
+    <expected><name>prt3</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt3-1-T</expectedanswernote></expected>
+    <expected><name>prt4</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt4-1-F | prt4-2-F | prt4-3-F | prt4-4-F | prt4-5-T</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>7</testcase><description>Generic wrong</description>
+    <testinput><name>ans1</name><value>ta1/2</value></testinput>
+    <testinput><name>ans2</name><value>ta2/2</value></testinput>
+    <testinput><name>ans3</name><value>(1+ta3)/2</value></testinput>
+    <testinput><name>ans4</name><value>ta4/2</value></testinput>
+    <expected><name>prt1</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt1-1-F | prt1-2-F | prt1-3-F | prt1-4-F | prt1-5-F | prt1-6-F</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt2-1-F | prt2-2-F | prt2-3-F | prt2-4-F | prt2-5-F</expectedanswernote></expected>
+    <expected><name>prt3</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt3-1-F | prt3-2-F | prt3-3-F | prt3-4-F | prt3-5-F</expectedanswernote></expected>
+    <expected><name>prt4</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt4-1-F | prt4-2-F | prt4-3-F | prt4-4-F | prt4-5-F | prt4-6-F</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>8</testcase><description>Out of range (b)</description>
+    <testinput><name>ans1</name><value>ta1</value></testinput>
+    <testinput><name>ans2</name><value>ta2+1</value></testinput>
+    <testinput><name>ans3</name><value>ta3</value></testinput>
+    <testinput><name>ans4</name><value>ta4</value></testinput>
+    <expected><name>prt1</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt1-1-T</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt2-1-F | prt2-2-F | prt2-3-F | prt2-4-F | prt2-5-T</expectedanswernote></expected>
+    <expected><name>prt3</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt3-1-T</expectedanswernote></expected>
+    <expected><name>prt4</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt4-1-T</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>9</testcase><description>Invalid: letter in (a)</description>
+    <testinput><name>ans1</name><value>x</value></testinput>
+    <testinput><name>ans2</name><value>ta2</value></testinput>
+    <testinput><name>ans3</name><value>ta3</value></testinput>
+    <testinput><name>ans4</name><value>ta4</value></testinput>
+    <expected><name>prt1</name><expectedscore></expectedscore><expectedpenalty></expectedpenalty><expectedanswernote>NULL</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt2-1-T</expectedanswernote></expected>
+    <expected><name>prt3</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt3-1-T</expectedanswernote></expected>
+    <expected><name>prt4</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt4-1-T</expectedanswernote></expected>
+  </qtest>
+</question>
+</quiz>

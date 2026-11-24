@@ -1,0 +1,345 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<quiz>
+<question type="stack">
+  <name><text>Which graph shows the inequality</text></name>
+  <questiontext format="html">
+    <text><![CDATA[<p>Which graph shows {@id@}? In each graph the shaded region is the unwanted region.</p><table style="margin:auto;"><tr><td style="padding:4px;text-align:center;"><p>Graph A</p><div style="text-align:center;" role="img" aria-label="{@arl[1]@}">[[jsxgraph width="230px" height="230px"]]
+(function () {
+
+  function clip(P, a, b, c, s) {
+    var out = [], i, p, q, fp, fq, t;
+    for (i = 0; i < P.length; i++) {
+      p = P[i]; q = P[(i + 1) % P.length];
+      fp = s * (a * p[0] + b * p[1] - c); fq = s * (a * q[0] + b * q[1] - c);
+      if (fp >= 0) { out.push(p); }
+      if ((fp >= 0) !== (fq >= 0)) { t = fp / (fp - fq); out.push([p[0] + t * (q[0] - p[0]), p[1] + t * (q[1] - p[1])]); }
+    }
+    return out;
+  }
+  function frame(x0, x1, y0, y1) { return [[x0, y0], [x1, y0], [x1, y1], [x0, y1]]; }
+  function unwanted(L, R) { var s = (L[3] === 'lt' || L[3] === 'le') ? 1 : -1; return clip(R, L[0], L[1], L[2], s); }
+  function shade(b, P) {
+    if (P.length < 3) { return; }
+    b.create('polygon', P, {fillColor: '#808080', fillOpacity: 0.3, borders: {strokeWidth: 0, visible: false},
+      vertices: {visible: false}, fixed: true, highlight: false, withLines: false, hasInnerPoints: false});
+  }
+  function boundary(b, L, dashedOverride) {
+    var strict = (L[3] === 'lt' || L[3] === 'gt');
+    if (dashedOverride !== undefined) { strict = dashedOverride; }
+    // A dashed boundary on an axis (x = 0 or y = 0) would be hidden by the solid axis drawn
+    // under it; a white line underneath breaks the axis so the dashes show.
+    if (strict && L[2] === 0 && (L[0] === 0 || L[1] === 0)) {
+      b.create('line', [0, L[0], L[1]], {strokeColor: '#ffffff', strokeWidth: 4, fixed: true, highlight: false});
+    }
+    b.create('line', [-L[2], L[0], L[1]], {strokeColor: '#000000', strokeWidth: 2, dash: strict ? 2 : 0,
+      fixed: true, highlight: false, straightFirst: true, straightLast: true});
+  }
+  function grid(b, x0, x1, y0, y1, step) {
+    var g = {strokeColor: '#d0d0d0', strokeWidth: 1, fixed: true, highlight: false}, k, ax = {strokeColor: '#000000', strokeWidth: 1.5, fixed: true, highlight: false, lastArrow: {type: 2, size: 6}};
+    for (k = Math.ceil(x0); k <= x1; k++) { b.create('segment', [[k, y0], [k, y1]], g); }
+    for (k = Math.ceil(y0); k <= y1; k++) { b.create('segment', [[x0, k], [x1, k]], g); }
+    b.create('arrow', [[x0, 0], [x1, 0]], ax); b.create('arrow', [[0, y0], [0, y1]], ax);
+    var t = {fixed: true, highlight: false, fontSize: 11, anchorX: 'middle', anchorY: 'top'};
+    for (k = Math.ceil(x0); k < x1; k++) { if (k !== 0 && k % step === 0) { b.create('text', [k, -0.15, String(k)], t); } }
+    for (k = Math.ceil(y0); k < y1; k++) { if (k !== 0 && k % step === 0) { b.create('text', [-0.2, k, String(k)], {fixed: true, highlight: false, fontSize: 11, anchorX: 'right', anchorY: 'middle'}); } }
+    b.create('text', [-0.2, -0.15, '0'], {fixed: true, highlight: false, fontSize: 11, anchorX: 'right', anchorY: 'top'});
+    b.create('text', [x1 - 0.1, 0.25, 'x'], {fixed: true, highlight: false, fontSize: 14, anchorX: 'right', anchorY: 'bottom'});
+    b.create('text', [0.25, y1 - 0.1, 'y'], {fixed: true, highlight: false, fontSize: 14, anchorX: 'left', anchorY: 'top'});
+  }
+  function opts(bb) {
+    return {boundingbox: bb, keepAspectRatio: true, axis: false, grid: false, showNavigation: false,
+      showCopyright: false, pan: {enabled: false}, zoom: {enabled: false}};
+  }
+
+  var G = {#gr[1]#}, lo = {#blo#}, hi = {#bhi#}, st = {#bst#};
+  var b = JXG.JSXGraph.initBoard(divid, opts([lo - 0.5, hi + 0.5, hi + 0.5, lo - 0.5]));
+  var R = frame(lo, hi, lo, hi);
+  grid(b, lo, hi, lo, hi, st);
+  shade(b, unwanted([G[0], G[1], G[2], G[3]], R));
+  boundary(b, [G[0], G[1], G[2], G[3]], G[4] === 1);
+})();
+[[/jsxgraph]]</div></td><td style="padding:4px;text-align:center;"><p>Graph B</p><div style="text-align:center;" role="img" aria-label="{@arl[2]@}">[[jsxgraph width="230px" height="230px"]]
+(function () {
+
+  function clip(P, a, b, c, s) {
+    var out = [], i, p, q, fp, fq, t;
+    for (i = 0; i < P.length; i++) {
+      p = P[i]; q = P[(i + 1) % P.length];
+      fp = s * (a * p[0] + b * p[1] - c); fq = s * (a * q[0] + b * q[1] - c);
+      if (fp >= 0) { out.push(p); }
+      if ((fp >= 0) !== (fq >= 0)) { t = fp / (fp - fq); out.push([p[0] + t * (q[0] - p[0]), p[1] + t * (q[1] - p[1])]); }
+    }
+    return out;
+  }
+  function frame(x0, x1, y0, y1) { return [[x0, y0], [x1, y0], [x1, y1], [x0, y1]]; }
+  function unwanted(L, R) { var s = (L[3] === 'lt' || L[3] === 'le') ? 1 : -1; return clip(R, L[0], L[1], L[2], s); }
+  function shade(b, P) {
+    if (P.length < 3) { return; }
+    b.create('polygon', P, {fillColor: '#808080', fillOpacity: 0.3, borders: {strokeWidth: 0, visible: false},
+      vertices: {visible: false}, fixed: true, highlight: false, withLines: false, hasInnerPoints: false});
+  }
+  function boundary(b, L, dashedOverride) {
+    var strict = (L[3] === 'lt' || L[3] === 'gt');
+    if (dashedOverride !== undefined) { strict = dashedOverride; }
+    // A dashed boundary on an axis (x = 0 or y = 0) would be hidden by the solid axis drawn
+    // under it; a white line underneath breaks the axis so the dashes show.
+    if (strict && L[2] === 0 && (L[0] === 0 || L[1] === 0)) {
+      b.create('line', [0, L[0], L[1]], {strokeColor: '#ffffff', strokeWidth: 4, fixed: true, highlight: false});
+    }
+    b.create('line', [-L[2], L[0], L[1]], {strokeColor: '#000000', strokeWidth: 2, dash: strict ? 2 : 0,
+      fixed: true, highlight: false, straightFirst: true, straightLast: true});
+  }
+  function grid(b, x0, x1, y0, y1, step) {
+    var g = {strokeColor: '#d0d0d0', strokeWidth: 1, fixed: true, highlight: false}, k, ax = {strokeColor: '#000000', strokeWidth: 1.5, fixed: true, highlight: false, lastArrow: {type: 2, size: 6}};
+    for (k = Math.ceil(x0); k <= x1; k++) { b.create('segment', [[k, y0], [k, y1]], g); }
+    for (k = Math.ceil(y0); k <= y1; k++) { b.create('segment', [[x0, k], [x1, k]], g); }
+    b.create('arrow', [[x0, 0], [x1, 0]], ax); b.create('arrow', [[0, y0], [0, y1]], ax);
+    var t = {fixed: true, highlight: false, fontSize: 11, anchorX: 'middle', anchorY: 'top'};
+    for (k = Math.ceil(x0); k < x1; k++) { if (k !== 0 && k % step === 0) { b.create('text', [k, -0.15, String(k)], t); } }
+    for (k = Math.ceil(y0); k < y1; k++) { if (k !== 0 && k % step === 0) { b.create('text', [-0.2, k, String(k)], {fixed: true, highlight: false, fontSize: 11, anchorX: 'right', anchorY: 'middle'}); } }
+    b.create('text', [-0.2, -0.15, '0'], {fixed: true, highlight: false, fontSize: 11, anchorX: 'right', anchorY: 'top'});
+    b.create('text', [x1 - 0.1, 0.25, 'x'], {fixed: true, highlight: false, fontSize: 14, anchorX: 'right', anchorY: 'bottom'});
+    b.create('text', [0.25, y1 - 0.1, 'y'], {fixed: true, highlight: false, fontSize: 14, anchorX: 'left', anchorY: 'top'});
+  }
+  function opts(bb) {
+    return {boundingbox: bb, keepAspectRatio: true, axis: false, grid: false, showNavigation: false,
+      showCopyright: false, pan: {enabled: false}, zoom: {enabled: false}};
+  }
+
+  var G = {#gr[2]#}, lo = {#blo#}, hi = {#bhi#}, st = {#bst#};
+  var b = JXG.JSXGraph.initBoard(divid, opts([lo - 0.5, hi + 0.5, hi + 0.5, lo - 0.5]));
+  var R = frame(lo, hi, lo, hi);
+  grid(b, lo, hi, lo, hi, st);
+  shade(b, unwanted([G[0], G[1], G[2], G[3]], R));
+  boundary(b, [G[0], G[1], G[2], G[3]], G[4] === 1);
+})();
+[[/jsxgraph]]</div></td></tr><tr><td style="padding:4px;text-align:center;"><p>Graph C</p><div style="text-align:center;" role="img" aria-label="{@arl[3]@}">[[jsxgraph width="230px" height="230px"]]
+(function () {
+
+  function clip(P, a, b, c, s) {
+    var out = [], i, p, q, fp, fq, t;
+    for (i = 0; i < P.length; i++) {
+      p = P[i]; q = P[(i + 1) % P.length];
+      fp = s * (a * p[0] + b * p[1] - c); fq = s * (a * q[0] + b * q[1] - c);
+      if (fp >= 0) { out.push(p); }
+      if ((fp >= 0) !== (fq >= 0)) { t = fp / (fp - fq); out.push([p[0] + t * (q[0] - p[0]), p[1] + t * (q[1] - p[1])]); }
+    }
+    return out;
+  }
+  function frame(x0, x1, y0, y1) { return [[x0, y0], [x1, y0], [x1, y1], [x0, y1]]; }
+  function unwanted(L, R) { var s = (L[3] === 'lt' || L[3] === 'le') ? 1 : -1; return clip(R, L[0], L[1], L[2], s); }
+  function shade(b, P) {
+    if (P.length < 3) { return; }
+    b.create('polygon', P, {fillColor: '#808080', fillOpacity: 0.3, borders: {strokeWidth: 0, visible: false},
+      vertices: {visible: false}, fixed: true, highlight: false, withLines: false, hasInnerPoints: false});
+  }
+  function boundary(b, L, dashedOverride) {
+    var strict = (L[3] === 'lt' || L[3] === 'gt');
+    if (dashedOverride !== undefined) { strict = dashedOverride; }
+    // A dashed boundary on an axis (x = 0 or y = 0) would be hidden by the solid axis drawn
+    // under it; a white line underneath breaks the axis so the dashes show.
+    if (strict && L[2] === 0 && (L[0] === 0 || L[1] === 0)) {
+      b.create('line', [0, L[0], L[1]], {strokeColor: '#ffffff', strokeWidth: 4, fixed: true, highlight: false});
+    }
+    b.create('line', [-L[2], L[0], L[1]], {strokeColor: '#000000', strokeWidth: 2, dash: strict ? 2 : 0,
+      fixed: true, highlight: false, straightFirst: true, straightLast: true});
+  }
+  function grid(b, x0, x1, y0, y1, step) {
+    var g = {strokeColor: '#d0d0d0', strokeWidth: 1, fixed: true, highlight: false}, k, ax = {strokeColor: '#000000', strokeWidth: 1.5, fixed: true, highlight: false, lastArrow: {type: 2, size: 6}};
+    for (k = Math.ceil(x0); k <= x1; k++) { b.create('segment', [[k, y0], [k, y1]], g); }
+    for (k = Math.ceil(y0); k <= y1; k++) { b.create('segment', [[x0, k], [x1, k]], g); }
+    b.create('arrow', [[x0, 0], [x1, 0]], ax); b.create('arrow', [[0, y0], [0, y1]], ax);
+    var t = {fixed: true, highlight: false, fontSize: 11, anchorX: 'middle', anchorY: 'top'};
+    for (k = Math.ceil(x0); k < x1; k++) { if (k !== 0 && k % step === 0) { b.create('text', [k, -0.15, String(k)], t); } }
+    for (k = Math.ceil(y0); k < y1; k++) { if (k !== 0 && k % step === 0) { b.create('text', [-0.2, k, String(k)], {fixed: true, highlight: false, fontSize: 11, anchorX: 'right', anchorY: 'middle'}); } }
+    b.create('text', [-0.2, -0.15, '0'], {fixed: true, highlight: false, fontSize: 11, anchorX: 'right', anchorY: 'top'});
+    b.create('text', [x1 - 0.1, 0.25, 'x'], {fixed: true, highlight: false, fontSize: 14, anchorX: 'right', anchorY: 'bottom'});
+    b.create('text', [0.25, y1 - 0.1, 'y'], {fixed: true, highlight: false, fontSize: 14, anchorX: 'left', anchorY: 'top'});
+  }
+  function opts(bb) {
+    return {boundingbox: bb, keepAspectRatio: true, axis: false, grid: false, showNavigation: false,
+      showCopyright: false, pan: {enabled: false}, zoom: {enabled: false}};
+  }
+
+  var G = {#gr[3]#}, lo = {#blo#}, hi = {#bhi#}, st = {#bst#};
+  var b = JXG.JSXGraph.initBoard(divid, opts([lo - 0.5, hi + 0.5, hi + 0.5, lo - 0.5]));
+  var R = frame(lo, hi, lo, hi);
+  grid(b, lo, hi, lo, hi, st);
+  shade(b, unwanted([G[0], G[1], G[2], G[3]], R));
+  boundary(b, [G[0], G[1], G[2], G[3]], G[4] === 1);
+})();
+[[/jsxgraph]]</div></td><td style="padding:4px;text-align:center;"><p>Graph D</p><div style="text-align:center;" role="img" aria-label="{@arl[4]@}">[[jsxgraph width="230px" height="230px"]]
+(function () {
+
+  function clip(P, a, b, c, s) {
+    var out = [], i, p, q, fp, fq, t;
+    for (i = 0; i < P.length; i++) {
+      p = P[i]; q = P[(i + 1) % P.length];
+      fp = s * (a * p[0] + b * p[1] - c); fq = s * (a * q[0] + b * q[1] - c);
+      if (fp >= 0) { out.push(p); }
+      if ((fp >= 0) !== (fq >= 0)) { t = fp / (fp - fq); out.push([p[0] + t * (q[0] - p[0]), p[1] + t * (q[1] - p[1])]); }
+    }
+    return out;
+  }
+  function frame(x0, x1, y0, y1) { return [[x0, y0], [x1, y0], [x1, y1], [x0, y1]]; }
+  function unwanted(L, R) { var s = (L[3] === 'lt' || L[3] === 'le') ? 1 : -1; return clip(R, L[0], L[1], L[2], s); }
+  function shade(b, P) {
+    if (P.length < 3) { return; }
+    b.create('polygon', P, {fillColor: '#808080', fillOpacity: 0.3, borders: {strokeWidth: 0, visible: false},
+      vertices: {visible: false}, fixed: true, highlight: false, withLines: false, hasInnerPoints: false});
+  }
+  function boundary(b, L, dashedOverride) {
+    var strict = (L[3] === 'lt' || L[3] === 'gt');
+    if (dashedOverride !== undefined) { strict = dashedOverride; }
+    // A dashed boundary on an axis (x = 0 or y = 0) would be hidden by the solid axis drawn
+    // under it; a white line underneath breaks the axis so the dashes show.
+    if (strict && L[2] === 0 && (L[0] === 0 || L[1] === 0)) {
+      b.create('line', [0, L[0], L[1]], {strokeColor: '#ffffff', strokeWidth: 4, fixed: true, highlight: false});
+    }
+    b.create('line', [-L[2], L[0], L[1]], {strokeColor: '#000000', strokeWidth: 2, dash: strict ? 2 : 0,
+      fixed: true, highlight: false, straightFirst: true, straightLast: true});
+  }
+  function grid(b, x0, x1, y0, y1, step) {
+    var g = {strokeColor: '#d0d0d0', strokeWidth: 1, fixed: true, highlight: false}, k, ax = {strokeColor: '#000000', strokeWidth: 1.5, fixed: true, highlight: false, lastArrow: {type: 2, size: 6}};
+    for (k = Math.ceil(x0); k <= x1; k++) { b.create('segment', [[k, y0], [k, y1]], g); }
+    for (k = Math.ceil(y0); k <= y1; k++) { b.create('segment', [[x0, k], [x1, k]], g); }
+    b.create('arrow', [[x0, 0], [x1, 0]], ax); b.create('arrow', [[0, y0], [0, y1]], ax);
+    var t = {fixed: true, highlight: false, fontSize: 11, anchorX: 'middle', anchorY: 'top'};
+    for (k = Math.ceil(x0); k < x1; k++) { if (k !== 0 && k % step === 0) { b.create('text', [k, -0.15, String(k)], t); } }
+    for (k = Math.ceil(y0); k < y1; k++) { if (k !== 0 && k % step === 0) { b.create('text', [-0.2, k, String(k)], {fixed: true, highlight: false, fontSize: 11, anchorX: 'right', anchorY: 'middle'}); } }
+    b.create('text', [-0.2, -0.15, '0'], {fixed: true, highlight: false, fontSize: 11, anchorX: 'right', anchorY: 'top'});
+    b.create('text', [x1 - 0.1, 0.25, 'x'], {fixed: true, highlight: false, fontSize: 14, anchorX: 'right', anchorY: 'bottom'});
+    b.create('text', [0.25, y1 - 0.1, 'y'], {fixed: true, highlight: false, fontSize: 14, anchorX: 'left', anchorY: 'top'});
+  }
+  function opts(bb) {
+    return {boundingbox: bb, keepAspectRatio: true, axis: false, grid: false, showNavigation: false,
+      showCopyright: false, pan: {enabled: false}, zoom: {enabled: false}};
+  }
+
+  var G = {#gr[4]#}, lo = {#blo#}, hi = {#bhi#}, st = {#bst#};
+  var b = JXG.JSXGraph.initBoard(divid, opts([lo - 0.5, hi + 0.5, hi + 0.5, lo - 0.5]));
+  var R = frame(lo, hi, lo, hi);
+  grid(b, lo, hi, lo, hi, st);
+  shade(b, unwanted([G[0], G[1], G[2], G[3]], R));
+  boundary(b, [G[0], G[1], G[2], G[3]], G[4] === 1);
+})();
+[[/jsxgraph]]</div></td></tr></table><div>[[input:ans1]] [[validation:ans1]] [[feedback:prt1]]</div>]]></text>
+  </questiontext>
+  <generalfeedback format="html">
+    <text><![CDATA[<p>The boundary {@lind(a, b, c)@} crosses the axes at \(({@X@}, 0)\) and \((0, {@Y@})\). [[if test="strictp(rel)"]]The sign is strict, so the line is dashed.[[else]]The sign includes <q>equal to</q>, so the line is solid.[[/if]] Test \((0, 0)\): \(0 {@relt(rel)@} {@c@}\) is [[if test="osat"]]true, so the origin is in \(R\) and the shaded side is the side without the origin.[[else]]false, so the side with the origin is shaded.[[/if]] That is Graph {@cor@}.</p><p>Graph {@lw@} shades the wanted side; Graph {@ls@} has the wrong line style; Graph {@lb@} has its crossings swapped.</p>]]></text>
+  </generalfeedback>
+  <defaultgrade>1</defaultgrade>
+  <penalty>0.1</penalty>
+  <hidden>0</hidden>
+  <idnumber></idnumber>
+  <stackversion><text>2026063000</text></stackversion>
+  <questionvariables>
+    <text><![CDATA[/* helpers: relation tokens, display strings, inequality builders */
+relt(r) := if r="lt" then "\\lt" else if r="le" then "\\le" else if r="gt" then "\\gt" else "\\ge";
+reluc(r) := if r="lt" then "<" else if r="le" then "≤" else if r="gt" then ">" else "≥";
+relflip(r) := if r="lt" then "gt" else if r="le" then "ge" else if r="gt" then "lt" else "le";
+relother(r) := if r="lt" then "le" else if r="le" then "lt" else if r="gt" then "ge" else "gt";
+relcomp(r) := if r="lt" then "ge" else if r="le" then "gt" else if r="gt" then "le" else "lt";
+strictp(r) := is(r="lt" or r="gt");
+/* Typed answers must be one inequality; "and"/"or" statements are rejected at validation. */
+vsingle(ex) := if not atom(ex) and member(op(ex), ["and", "or", "nounand", "nounor"]) then "Type a single inequality, without the words and or or." else "";
+mkin(u, r, w) := if r="lt" then u<w else if r="le" then u<=w else if r="gt" then u>w else u>=w;
+holds(u, r, w) := if r="lt" then is(u<w) else if r="le" then is(u<=w) else if r="gt" then is(u>w) else is(u>=w);
+relopts(c) := [["lt",is(c="lt"),"<"],["le",is(c="le"),"≤"],["gt",is(c="gt"),">"],["ge",is(c="ge"),"≥"]];
+termp(v) := block([dd], dd: denom(v), while is(mod(dd,2)=0) do dd: dd/2, while is(mod(dd,5)=0) do dd: dd/5, is(dd=1));
+nd(v) := if integerp(v) then string(v) else if termp(v) then string(float(v))
+  else sconcat(if is(v<0) then "-" else "", "\\frac{", string(abs(num(v))), "}{", string(denom(v)), "}");
+ndm(v) := sconcat("\\(", nd(v), "\\)");
+/* plain-text number for aria-labels (nd gives TeX fractions, which a screen reader reads raw) */
+ndt(v) := if integerp(v) then string(v) else if termp(v) then string(float(v)) else sconcat(string(num(v)), "/", string(denom(v)));
+trm(k, v, fst) := block([m, s], m: abs(k), s: if v="" then nd(m) else if m=1 then v else sconcat(nd(m), v),
+  if fst then (if k<0 then sconcat("-", s) else s) else (if k<0 then sconcat(" - ", s) else sconcat(" + ", s)));
+lfs(L) := block([s, t], s: "", for t in L do (if t[1]#0 then s: sconcat(s, trm(t[1], t[2], is(s="")))), if s="" then "0" else s);
+ins(a, b, c, r) := sconcat(lfs([[a,"x"],[b,"y"]]), " ", relt(r), " ", nd(c));
+ineqd(a, b, c, r) := sconcat("\\(", ins(a, b, c, r), "\\)");
+lind(a, b, c) := sconcat("\\(", lfs([[a,"x"],[b,"y"]]), " = ", nd(c), "\\)");
+ineqm(a, b, c, r) := mkin(a*x+b*y, r, c);
+/* Design: choose the graph that shows the inequality. Source: original. q32 [a,b,c,rel,types in positions A..D]: T correct, W wanted side shaded,
+   S the other line style, B crossings swapped. Every type in every position at least twice; |X| # |Y|. */
+q32: [[7,3,-21,"lt",["S","B","T","W"]],[5,7,-35,"gt",["T","W","S","B"]],[-2,7,-14,"lt",["B","T","W","S"]],[7,2,-14,"gt",["W","T","B","S"]],[1,6,6,"le",["W","S","T","B"]],[7,4,28,"ge",["S","W","B","T"]],[-7,3,-21,"ge",["W","B","S","T"]],[-5,6,30,"le",["B","T","W","S"]],[-5,6,-30,"ge",["T","S","W","B"]],[7,4,-28,"lt",["B","T","S","W"]]];
+ix: 1+rand(10);
+a: q32[ix][1]; b: q32[ix][2]; c: q32[ix][3]; rel: q32[ix][4]; ty: q32[ix][5];
+X: c/a; Y: c/b;
+dsh: if strictp(rel) then 1 else 0;
+/* graph data [a', b', c, shading relation, dashed]: the shaded side is where the shading relation is false */
+gd(t) := if t="T" then [a, b, c, rel, dsh] else if t="W" then [a, b, c, relcomp(rel), dsh]
+  else if t="S" then [a, b, c, rel, 1-dsh] else [b, a, c, rel, dsh];
+gr: makelist(gd(ty[j]), j, 1, 4);
+L: ["A","B","C","D"];
+pos(t) := L[first(sublist(makelist(j, j, 1, 4), lambda([j], is(ty[j]=t))))];
+cor: pos("T"); lw: pos("W"); ls: pos("S"); lb: pos("B");
+o1: [["none",false,"None of the graphs is correct"],["A",is(cor="A"),"Graph A"],["B",is(cor="B"),"Graph B"],["C",is(cor="C"),"Graph C"],["D",is(cor="D"),"Graph D"]];
+blo: min(0, X, Y)-2; bhi: max(0, X, Y)+2; bst: if is(bhi-blo>12) then 2 else 1;
+arl: makelist(sconcat("Graph ", L[j], ": a ", if is(gr[j][5]=1) then "dashed" else "solid", " line through (", nd(c/gr[j][1]), ", 0) and (0, ",
+  nd(c/gr[j][2]), "); the side ", if holds(0, gr[j][4], c) then "not containing" else "containing", " the origin is shaded."), j, 1, 4);
+id: ineqd(a, b, c, rel);
+osat: holds(0, rel, c);]]></text>
+  </questionvariables>
+  <specificfeedback format="html"><text><![CDATA[]]></text></specificfeedback>
+  <questionnote format="moodle_auto_format">
+    <text>ix={@ix@}, {@id@}, order {@ty@}</text>
+  </questionnote>
+  <questiondescription format="html"><text><![CDATA[<p id="concept">Linear Inequalities: which graph shows an inequality</p><p id="description">Grade 12 CBE Essential 1.3: Choose the graph that shows a linear inequality, with the unwanted side shaded, against graphs with the common errors.</p><p id="edition">Essential</p><p id="provenance">This question is original to this project.</p><p id="citation">INNODEMS CBC Grade 12 Mathematics, first draft by Ben Davies, 2026. Aligned to the KICD Senior School Curriculum Design, Essential Mathematics Grade 12 (draft).</p>]]></text></questiondescription>
+  <questionsimplify>1</questionsimplify>
+  <assumepositive>0</assumepositive>
+  <assumereal>0</assumereal>
+  <prtcorrect format="html"><text><![CDATA[[[commonstring key="symbolicprtcorrectfeedback"/]] [[commonstring key="defaultprtcorrectfeedback"/]]]]></text></prtcorrect>
+  <prtpartiallycorrect format="html"><text><![CDATA[[[commonstring key="symbolicprtpartiallycorrectfeedback"/]] [[commonstring key="defaultprtpartiallycorrectfeedback"/]]]]></text></prtpartiallycorrect>
+  <prtincorrect format="html"><text><![CDATA[[[commonstring key="symbolicprtincorrectfeedback"/]] [[commonstring key="defaultprtincorrectfeedback"/]]]]></text></prtincorrect>
+  <decimals>.</decimals>
+  <scientificnotation>*10</scientificnotation>
+  <multiplicationsign>none</multiplicationsign>
+  <sqrtsign>1</sqrtsign>
+  <complexno>i</complexno>
+  <inversetrig>cos-1</inversetrig>
+  <logicsymbol>lang</logicsymbol>
+  <matrixparens>[</matrixparens>
+  <isbroken>0</isbroken>
+  <variantsselectionseed></variantsselectionseed>
+
+  <input><name>ans1</name><type>radio</type><tans>o1</tans><boxsize>15</boxsize><strictsyntax>1</strictsyntax><insertstars>0</insertstars><syntaxhint></syntaxhint><syntaxattribute>0</syntaxattribute><forbidwords></forbidwords><allowwords></allowwords><forbidfloat>1</forbidfloat><requirelowestterms>0</requirelowestterms><checkanswertype>0</checkanswertype><mustverify>0</mustverify><showvalidation>0</showvalidation><options></options></input>
+
+  <prt><name>prt1</name><value>1.0000000</value><autosimplify>1</autosimplify><feedbackstyle>1</feedbackstyle><feedbackvariables><text><![CDATA[]]></text></feedbackvariables>
+    <node><name>0</name><description>Correct graph</description><answertest>AlgEquiv</answertest><sans>ans1</sans><tans>cor</tans><testoptions></testoptions><quiet>0</quiet><truescoremode>=</truescoremode><truescore>1.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt1-1-T</trueanswernote><truefeedback format="html"><text><![CDATA[]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>1</falsenextnode><falseanswernote>prt1-1-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>1</name><description>Wanted side shaded</description><answertest>AlgEquiv</answertest><sans>ans1</sans><tans>lw</tans><testoptions></testoptions><quiet>0</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt1-2-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>Graph {@lw@} shades the region where the inequality is true. In this book we shade the unwanted region and leave \(R\) clear.</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>2</falsenextnode><falseanswernote>prt1-2-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>2</name><description>Wrong line style</description><answertest>AlgEquiv</answertest><sans>ans1</sans><tans>ls</tans><testoptions></testoptions><quiet>0</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt1-3-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>Graph {@ls@} has a [[if test="strictp(rel)"]]solid line, but the sign does not include the line, so it should be dashed.[[else]]dashed line, but the sign includes the line, so it should be solid.[[/if]]</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>3</falsenextnode><falseanswernote>prt1-3-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>3</name><description>Crossings swapped</description><answertest>AlgEquiv</answertest><sans>ans1</sans><tans>lb</tans><testoptions></testoptions><quiet>0</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt1-4-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>Graph {@lb@}'s line crosses the axes at \(({@Y@}, 0)\) and \((0, {@X@})\). Put \(y = 0\) and then \(x = 0\) in {@lind(a, b, c)@}.</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>-1</falsenextnode><falseanswernote>prt1-4-F</falseanswernote><falsefeedback format="html"><text><![CDATA[<p>One graph is correct: check the line's crossings, its style and which side is shaded.</p>]]></text></falsefeedback></node>
+  </prt>
+
+  <deployedseed>4</deployedseed>
+  <deployedseed>5</deployedseed>
+  <deployedseed>15</deployedseed>
+  <deployedseed>8</deployedseed>
+  <deployedseed>24</deployedseed>
+  <deployedseed>1</deployedseed>
+  <deployedseed>3</deployedseed>
+  <deployedseed>10</deployedseed>
+  <deployedseed>2</deployedseed>
+  <deployedseed>17</deployedseed>
+  <qtest><testcase>1</testcase><description>Correct</description>
+    <testinput><name>ans1</name><value>cor</value></testinput>
+    <expected><name>prt1</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt1-1-T</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>2</testcase><description>Wanted side shaded</description>
+    <testinput><name>ans1</name><value>lw</value></testinput>
+    <expected><name>prt1</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt1-1-F | prt1-2-T</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>3</testcase><description>Wrong style</description>
+    <testinput><name>ans1</name><value>ls</value></testinput>
+    <expected><name>prt1</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt1-1-F | prt1-2-F | prt1-3-T</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>4</testcase><description>Crossings swapped</description>
+    <testinput><name>ans1</name><value>lb</value></testinput>
+    <expected><name>prt1</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt1-1-F | prt1-2-F | prt1-3-F | prt1-4-T</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>5</testcase><description>None</description>
+    <testinput><name>ans1</name><value>"none"</value></testinput>
+    <expected><name>prt1</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt1-1-F | prt1-2-F | prt1-3-F | prt1-4-F</expectedanswernote></expected>
+  </qtest>
+</question>
+</quiz>

@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<quiz>
+<question type="stack">
+  <name><text>Elements of a described set</text></name>
+  <questiontext format="html">
+    <text><![CDATA[<p>\(A = {@Ad@}\)</p><p>(a) List the elements of \(A\).</p><p>[[input:ans1]] [[validation:ans1]] [[feedback:prt1]]</p><p>(b) Find \(n(A)\).</p><p>[[input:ans2]] [[validation:ans2]] [[feedback:prt2]]</p>]]></text>
+  </questiontext>
+  <generalfeedback format="html">
+    <text><![CDATA[<p>(a) Go through the candidates in order and test each one against the description. {@expl@}</p><p>So \(A = {@dset(A)@}\).</p><p>(b) Counting each element once, \(n(A) = {@nA@}\).</p>]]></text>
+  </generalfeedback>
+  <defaultgrade>2</defaultgrade>
+  <penalty>0.1</penalty>
+  <hidden>0</hidden>
+  <idnumber></idnumber>
+  <stackversion><text>2026063000</text></stackversion>
+  <questionvariables>
+    <text><![CDATA[cardn(S) := length(listify(S));
+dset(S) := if emptyp(S) then "\\{\\,\\}" else sconcat("\\{", simplode(map(string, listify(S)), ", "), "\\}");
+ix: 1+rand(10);
+/* Design: list the elements of a described set and give n(A). Source: adapted from SMP Book 1, Chapter 2, Exercise A, question 1.
+   Curated list, one seed per entry: [description TeX, description words, A, first non-member above max(A), explanation, n(A), n(A)-1, n(A)+2, max(A)].
+   Counts are literals: test inputs are evaluated with simp:false, which leaves cardn() unevaluated. */
+L: [["\\{\\text{the factors of 75}\\}","the factors of 75",{1,3,5,15,25,75},76,"The factors of \\(75\\) come in pairs: \\(1 \\times 75\\), \\(3 \\times 25\\), \\(5 \\times 15\\).",6,5,8,75],["\\{\\text{the multiples of 6 between 40 and 70}\\}","the multiples of 6 between 40 and 70",{42,48,54,60,66},67,"The first multiple of \\(6\\) above \\(40\\) is \\(42\\) and the last below \\(70\\) is \\(66\\).",5,4,7,66],["\\{\\text{the prime numbers between 30 and 60}\\}","the prime numbers between 30 and 60",{31,37,41,43,47,53,59},60,"Test each odd number from \\(31\\) to \\(59\\): \\(33\\), \\(35\\), \\(39\\), \\(45\\), \\(49\\), \\(51\\), \\(55\\) and \\(57\\) have other factors, so they are not prime.",7,6,9,59],["\\{\\text{the factors of 45}\\}","the factors of 45",{1,3,5,9,15,45},46,"The factors of \\(45\\) come in pairs: \\(1 \\times 45\\), \\(3 \\times 15\\), \\(5 \\times 9\\).",6,5,8,45],["\\{\\text{the square numbers between 10 and 90}\\}","the square numbers between 10 and 90",{16,25,36,49,64,81},82,"\\(3^2 = 9\\) is too small and \\(10^2 = 100\\) is too big, so the squares are \\(4^2\\) to \\(9^2\\).",6,5,8,81],["\\{\\text{the multiples of 8 between 50 and 100}\\}","the multiples of 8 between 50 and 100",{56,64,72,80,88,96},97,"The first multiple of \\(8\\) above \\(50\\) is \\(56\\) and the last below \\(100\\) is \\(96\\).",6,5,8,96],["\\{\\text{the factors of 28}\\}","the factors of 28",{1,2,4,7,14,28},29,"The factors of \\(28\\) come in pairs: \\(1 \\times 28\\), \\(2 \\times 14\\), \\(4 \\times 7\\).",6,5,8,28],["\\{\\text{the prime numbers between 60 and 90}\\}","the prime numbers between 60 and 90",{61,67,71,73,79,83,89},90,"Test each odd number from \\(61\\) to \\(89\\): \\(63\\), \\(65\\), \\(69\\), \\(75\\), \\(77\\), \\(81\\), \\(85\\) and \\(87\\) have other factors, so they are not prime.",7,6,9,89],["\\{\\text{the odd multiples of 5 between 20 and 80}\\}","the odd multiples of 5 between 20 and 80",{25,35,45,55,65,75},76,"The odd multiples of \\(5\\) end in \\(5\\): from \\(25\\) up to \\(75\\).",6,5,8,75],["\\{\\text{the cube numbers between 5 and 300}\\}","the cube numbers between 5 and 300",{8,27,64,125,216},217,"\\(1^3 = 1\\) is too small and \\(7^3 = 343\\) is too big, so the cubes are \\(2^3\\) to \\(6^3\\).",5,4,7,216]];
+Ad: L[ix][1]; dw: L[ix][2]; A: L[ix][3]; y1: L[ix][4]; expl: L[ix][5];
+nA: L[ix][6]; x1: L[ix][9];
+/* test values */
+t2a: setdifference(A,{x1}); t2b: L[ix][7]; t3a: union(A,{y1}); t3b: L[ix][8]; t4a: union(setdifference(A,{x1}),{y1});
+]]></text>
+  </questionvariables>
+  <specificfeedback format="html"><text><![CDATA[]]></text></specificfeedback>
+  <questionnote format="moodle_auto_format">
+    <text>ix={@ix@}, A={@A@}, n={@nA@}</text>
+  </questionnote>
+  <questiondescription format="html"><text><![CDATA[<p id="concept">Sets: listing a described set</p><p id="description">Grade 12 CBE Core and Essential 1.1 (a): List the elements of a set given by a description in words, and count them.</p><p id="edition">Core and Essential</p><p id="provenance">This question is adapted from Chapter 2 (Sets), Exercise A, question 1 of School Mathematics Project, SMP Book 1 (Metric), Cambridge University Press, 1969: listing the members of sets described in words; every set is new and the count n(A) is added.</p><p id="citation">INNODEMS CBC Grade 12 Mathematics, first draft by Ben Davies, 2026. Aligned to the KICD Senior School Curriculum Design, Core and Essential Mathematics Grade 12 (draft).</p>]]></text></questiondescription>
+  <questionsimplify>1</questionsimplify>
+  <assumepositive>0</assumepositive>
+  <assumereal>0</assumereal>
+  <prtcorrect format="html"><text><![CDATA[[[commonstring key="symbolicprtcorrectfeedback"/]] [[commonstring key="defaultprtcorrectfeedback"/]]]]></text></prtcorrect>
+  <prtpartiallycorrect format="html"><text><![CDATA[[[commonstring key="symbolicprtpartiallycorrectfeedback"/]] [[commonstring key="defaultprtpartiallycorrectfeedback"/]]]]></text></prtpartiallycorrect>
+  <prtincorrect format="html"><text><![CDATA[[[commonstring key="symbolicprtincorrectfeedback"/]] [[commonstring key="defaultprtincorrectfeedback"/]]]]></text></prtincorrect>
+  <decimals>.</decimals>
+  <scientificnotation>*10</scientificnotation>
+  <multiplicationsign>none</multiplicationsign>
+  <sqrtsign>1</sqrtsign>
+  <complexno>i</complexno>
+  <inversetrig>cos-1</inversetrig>
+  <logicsymbol>lang</logicsymbol>
+  <matrixparens>[</matrixparens>
+  <isbroken>0</isbroken>
+  <variantsselectionseed></variantsselectionseed>
+
+  <input><name>ans1</name><type>algebraic</type><tans>A</tans><boxsize>25</boxsize><strictsyntax>1</strictsyntax><insertstars>0</insertstars><syntaxhint></syntaxhint><syntaxattribute>0</syntaxattribute><forbidwords></forbidwords><allowwords></allowwords><forbidfloat>1</forbidfloat><requirelowestterms>0</requirelowestterms><checkanswertype>1</checkanswertype><mustverify>0</mustverify><showvalidation>1</showvalidation><options></options></input>
+  <input><name>ans2</name><type>numerical</type><tans>nA</tans><boxsize>5</boxsize><strictsyntax>1</strictsyntax><insertstars>0</insertstars><syntaxhint></syntaxhint><syntaxattribute>0</syntaxattribute><forbidwords></forbidwords><allowwords></allowwords><forbidfloat>1</forbidfloat><requirelowestterms>0</requirelowestterms><checkanswertype>0</checkanswertype><mustverify>0</mustverify><showvalidation>0</showvalidation><options>intnum</options></input>
+
+  <prt><name>prt1</name><value>1.0000000</value><autosimplify>1</autosimplify><feedbackstyle>1</feedbackstyle><feedbackvariables><text><![CDATA[xtra: setdifference(ans1,A);
+nmiss: cardn(setdifference(A,ans1));
+]]></text></feedbackvariables>
+    <node><name>0</name><description>Correct set</description><answertest>AlgEquiv</answertest><sans>ans1</sans><tans>A</tans><testoptions></testoptions><quiet>1</quiet><truescoremode>=</truescoremode><truescore>1.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt1-1-T</trueanswernote><truefeedback format="html"><text><![CDATA[]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>1</falsenextnode><falseanswernote>prt1-1-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>1</name><description>Missing elements</description><answertest>AlgEquiv</answertest><sans>is(subsetp(ans1,A))</sans><tans>true</tans><testoptions></testoptions><quiet>0</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt1-2-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>Every element you listed belongs, but you have left out [[if test="is(nmiss=1)"]]1 element[[else]]{@nmiss@} elements[[/if]].</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>2</falsenextnode><falseanswernote>prt1-2-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>2</name><description>Extra elements</description><answertest>AlgEquiv</answertest><sans>is(subsetp(A,ans1))</sans><tans>true</tans><testoptions></testoptions><quiet>0</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt1-3-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>Your set contains every element it should, and also \({@dset(xtra)@}\), which [[if test="is(cardn(xtra)=1)"]]does[[else]]do[[/if]] not belong.</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>-1</falsenextnode><falseanswernote>prt1-3-F</falseanswernote><falsefeedback format="html"><text><![CDATA[<p>\({@dset(xtra)@}\) [[if test="is(cardn(xtra)=1)"]]does[[else]]do[[/if]] not belong, and [[if test="is(nmiss=1)"]]1 element is[[else]]{@nmiss@} elements are[[/if]] missing. Test each candidate against the description: {@dw@}.</p>]]></text></falsefeedback></node>
+  </prt>
+  <prt><name>prt2</name><value>1.0000000</value><autosimplify>1</autosimplify><feedbackstyle>1</feedbackstyle><feedbackvariables><text><![CDATA[ftc: is(ans2=cardn(ans1));]]></text></feedbackvariables>
+    <node><name>0</name><description>Count</description><answertest>AlgEquiv</answertest><sans>ans2</sans><tans>nA</tans><testoptions></testoptions><quiet>0</quiet><truescoremode>=</truescoremode><truescore>1.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt2-1-T</trueanswernote><truefeedback format="html"><text><![CDATA[]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>1</falsenextnode><falseanswernote>prt2-1-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>1</name><description>Follow-through</description><answertest>AlgEquiv</answertest><sans>ftc</sans><tans>true</tans><testoptions></testoptions><quiet>0</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt2-2-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>Your method is right, but it uses your answer to (a), which is not right.</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>-1</falsenextnode><falseanswernote>prt2-2-F</falseanswernote><falsefeedback format="html"><text><![CDATA[<p>\(n(A)\) is the number of elements in \(A\); count each element once.</p>]]></text></falsefeedback></node>
+  </prt>
+
+  <deployedseed>4</deployedseed>
+  <deployedseed>5</deployedseed>
+  <deployedseed>15</deployedseed>
+  <deployedseed>8</deployedseed>
+  <deployedseed>24</deployedseed>
+  <deployedseed>1</deployedseed>
+  <deployedseed>3</deployedseed>
+  <deployedseed>10</deployedseed>
+  <deployedseed>2</deployedseed>
+  <deployedseed>17</deployedseed>
+  <qtest><testcase>1</testcase><description>Correct</description>
+    <testinput><name>ans1</name><value>A</value></testinput>
+    <testinput><name>ans2</name><value>nA</value></testinput>
+    <expected><name>prt1</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt1-1-T</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt2-1-T</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>2</testcase><description>Missed the largest element; counted own list</description>
+    <testinput><name>ans1</name><value>t2a</value></testinput>
+    <testinput><name>ans2</name><value>t2b</value></testinput>
+    <expected><name>prt1</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt1-1-F | prt1-2-T</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt2-1-F | prt2-2-T</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>3</testcase><description>Extra element; generic count</description>
+    <testinput><name>ans1</name><value>t3a</value></testinput>
+    <testinput><name>ans2</name><value>t3b</value></testinput>
+    <expected><name>prt1</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt1-1-F | prt1-2-F | prt1-3-T</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt2-1-F | prt2-2-F</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>4</testcase><description>Wrong and missing elements; right count</description>
+    <testinput><name>ans1</name><value>t4a</value></testinput>
+    <testinput><name>ans2</name><value>nA</value></testinput>
+    <expected><name>prt1</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt1-1-F | prt1-2-F | prt1-3-F</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt2-1-T</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>5</testcase><description>Invalid: a list, not a set</description>
+    <testinput><name>ans1</name><value>[1,2]</value></testinput>
+    <testinput><name>ans2</name><value>nA</value></testinput>
+    <expected><name>prt1</name><expectedscore></expectedscore><expectedpenalty></expectedpenalty><expectedanswernote>NULL</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore></expectedscore><expectedpenalty></expectedpenalty><expectedanswernote>NULL</expectedanswernote></expected>
+  </qtest>
+</question>
+</quiz>

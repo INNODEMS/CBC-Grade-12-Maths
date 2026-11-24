@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<quiz>
+<question type="stack">
+  <name><text>Finding the mistake in a trigonometric equation</text></name>
+  <questiontext format="html">
+    <text><![CDATA[<p>Wekesa solved \({@eqd@}\) for \(0^\circ \le x \le 360^\circ\). His working has one mistake.</p><table style="border-collapse:collapse;"><tr><td style="padding:3px 12px;">Step 1</td><td>\({@st1@}\)</td></tr><tr><td style="padding:3px 12px;">Step 2</td><td>\({@st2@}\)</td></tr><tr><td style="padding:3px 12px;">Step 3</td><td>\({@st3@}\)</td></tr><tr><td style="padding:3px 12px;">Step 4</td><td>\(\cos x = {@w1@}\) or \(\cos x = {@w2@}\)</td></tr><tr><td style="padding:3px 12px;">Step 5</td><td>\(x \in {@setraw(wsol)@}\)</td></tr></table><p>(a) Which step has the mistake?</p><div>[[input:ans1]] [[validation:ans1]] [[feedback:prt1]]</div><p>(b) Write the correct set of solutions. Give angles that are not whole numbers to 1 decimal place.</p><div>\(x \in\) [[input:ans2]] [[validation:ans2]] [[feedback:prt2]]</div>]]></text>
+  </questiontext>
+  <generalfeedback format="html">
+    <text><![CDATA[<p>Check each line against the one before.</p><p>Multiplying out step 1 and collecting terms gives \({@P2@}\cos^2 x{@tm(Q2, "\\cos x")@}{@tc(R2)@} = 0\)[[if test="is(er = 1)"]], so step 2 has the wrong sign on the \(\cos x\) term. That changes the signs of both roots.[[else]], which is step 2. Steps 3 and 4 follow.[[/if]]</p><p>The correct values are \(\cos x = {@c1@}\) or \(\cos x = {@c2@}\). For each value take the calculator angle \(\alpha\) and \(360^\circ - \alpha\) (\(\cos x = 1\) gives \(0^\circ\) and \(360^\circ\); \(\cos x = -1\) gives only \(180^\circ\)).</p>[[if test="is(er = 2)"]]<p>In step 5 Wekesa wrote only the calculator angles and missed the second angle for each value.</p>[[/if]][[if test="is(er = 3)"]]<p>In step 5 Wekesa used \(180^\circ - \alpha\), which is the rule for sine, not cosine.</p>[[/if]]<p>The mistake is in step {@erstep@}. The solutions are \(x \in {@setraw(sols)@}\).</p>]]></text>
+  </generalfeedback>
+  <defaultgrade>2</defaultgrade>
+  <penalty>0.1</penalty>
+  <hidden>0</hidden>
+  <idnumber></idnumber>
+  <stackversion><text>2026063000</text></stackversion>
+  <questionvariables>
+    <text><![CDATA[hits(L,s,tol) := length(sublist(L, lambda([v], is(abs(v-s) <= tol))));
+matchset(L,S,tol) := is(length(L) = length(S)) and every(lambda([s], is(hits(L,s,tol) = 1)), S);
+allgenuine(L,S,tol) := every(lambda([v], some(lambda([s], is(abs(v-s) <= tol)), S)), L);
+validate_angles(ex) := if (setp(ex) or listp(ex)) and every(lambda([v], numberp(ev(v,simp))), if setp(ex) then listify(ex) else ex) then "" else "Type the angles as numbers inside curly brackets, separated by commas, for example {30, 150}. Do not type the degree sign.";
+r1(v) := float(floor(10*v+1/2)/10);
+ang1(v) := block([r], r: floor(10*v+1/2), if integerp(r/10) then string(r/10) else string(float(r/10)));
+setraw(L) := if L = [] then "\\{\\,\\}" else sconcat("\\{", simplode(map(lambda([v], sconcat(ang1(v), "^\\circ")), sort(L)), ", "), "\\}");
+degraw(v) := sconcat(ang1(v), "^\\circ");
+setstr(L) := sconcat("\\(", setraw(L), "\\)");
+angc(v) := block([al], al: float(acos(v)*180/%pi), if abs(al) < 1e-9 then [0,360] elseif abs(al-180) < 1e-9 then [180] else [al, 360-al]);
+angs(v) := block([al], al: float(asin(v)*180/%pi), if abs(al) < 1e-9 then [0,180,360] elseif abs(al-90) < 1e-9 then [90] elseif abs(al+90) < 1e-9 then [270] elseif al > 0 then [al, 180-al] else [180-al, 360+al]);
+qroots(A,B,C) := if A = 0 then (if B = 0 then [] else [-C/B]) elseif B^2-4*A*C < 0 then [] else [(-B-sqrt(B^2-4*A*C))/(2*A), (-B+sqrt(B^2-4*A*C))/(2*A)];
+inrange(L) := sublist(L, lambda([v], is(abs(float(v)) <= 1+1e-12)));
+uniqf(L) := unique(map(lambda([v], float(floor(10000*v+1/2)/10000)), L));
+nice(v) := block([r], r: floor(1000*v+1/2)/1000, if integerp(r) then r else float(r));
+res2(v) := block([r], r: floor(100*v+1/2)/100, if integerp(r) then string(r) else string(float(r)));
+tm(n, s) := if n = 0 then "" elseif n = 1 then sconcat(" + ", s) elseif n = -1 then sconcat(" - ", s) elseif n > 0 then sconcat(" + ", string(n), s) else sconcat(" - ", string(-n), s);
+tc(n) := if n = 0 then "" elseif n > 0 then sconcat(" + ", string(n)) else sconcat(" - ", string(-n));
+lead(n, s) := if n = 1 then s elseif n = -1 then sconcat("-", s) else sconcat(string(n), s);
+/* Design: find the mistake in a trigonometric equation. One step is wrong; every later step is right for the wrong line. Source: original. */
+L: [[1/2,-1/3,2],[-1/3,1,3],[2/3,0,1],[-1/4,0,2],[1/3,-1,3],[2/3,1,1],[-1/4,1,2],[3/4,0,3],[-2/5,1,1],[1/4,-1,2]];
+
+ix: 1+rand(10);
+c1: L[ix][1]; c2: L[ix][2]; er: L[ix][3];
+m: denom(c1)*denom(c2);
+p: m; q: m*(c1+c2); r: -m*c1*c2-m;
+P2: p; Q2: -q; R2: -(p+r);
+Qs: if er = 1 then -Q2 else Q2;
+w1: if er = 1 then -c1 else c1; w2: if er = 1 then -c2 else c2;
+eqd: sconcat(lead(p, "\\sin^2 x"), tm(q, "\\cos x"), tc(r), " = 0");
+st1: sconcat(string(p), "(1 - \\cos^2 x)", tm(q, "\\cos x"), tc(r), " = 0");
+st2: sconcat(lead(P2, "\\cos^2 x"), tm(Qs, "\\cos x"), tc(R2), " = 0");
+fac(v) := if v = 0 then "\\cos x" else sconcat("(", if denom(v) = 1 then "" else string(denom(v)), "\\cos x", tc(-num(v)), ")");
+st3: sconcat(fac(w1), fac(w2), " = 0");
+calc1(v) := [float(acos(v)*180/%pi)];
+wr3(v) := block([a], a: float(acos(v)*180/%pi), [a, 180-a]);
+wsol: uniqf(flatten(if er = 3 then map(wr3, [w1, w2]) elseif er = 2 then map(calc1, [w1, w2]) else map(angc, [w1, w2])));
+wsolF: float(wsol);
+sols: uniqf(flatten(map(angc, [c1, c2]))); solsF: float(sols); solsd: map(r1, sols);
+opts: [["s1",false,"Step 1"],["s2",is(er=1),"Step 2"],["s3",false,"Step 3"],["s4",false,"Step 4"],["s5",is(er>1),"Step 5"]];
+ta1: first(mcq_correct(opts));
+erstep: if er = 1 then 2 else 5;
+t_ok: setify(map(r1, sols));
+t_w: setify(map(r1, wsol));
+t_off: setify(map(lambda([v], r1(v)+5), sols));
+t_sub: setify(map(r1, rest(sols)));
+t_sup: append(map(r1, sols), [r1(sols[1])+1]);
+t_near: setify(map(lambda([v], r1(v)+0.3), sols));
+lhsf(t) := float(p*sin(%pi*t/180)^2 + q*cos(%pi*t/180) + r);
+st1m: sconcat(lead(-p, "\\cos^2 x"), tm(q, "\\cos x"), tc(p+r), " = 0");
+wst: if er = 1 then "s5" else "s2";
+]]></text>
+  </questionvariables>
+  <specificfeedback format="html"><text><![CDATA[]]></text></specificfeedback>
+  <questionnote format="moodle_auto_format">
+    <text>ix={@ix@}, roots {@c1@}, {@c2@}, er={@er@}, error step {@erstep@}, x={@solsd@}</text>
+  </questionnote>
+  <questiondescription format="html"><text><![CDATA[<p id="concept">Trigonometry III: finding the mistake in a solution</p><p id="description">Grade 12 CBE Core 2.5: Find the wrong step in a worked solution of p sin^2 x + q cos x + r = 0, then give the correct solution set.</p><p id="edition">Core</p><p id="provenance">This question is original to this project.</p><p id="citation">INNODEMS CBC Grade 12 Mathematics, first draft by Ben Davies, 2026. Aligned to the KICD Senior School Curriculum Design, Core Mathematics Grade 12 (draft).</p>]]></text></questiondescription>
+  <questionsimplify>1</questionsimplify>
+  <assumepositive>0</assumepositive>
+  <assumereal>0</assumereal>
+  <prtcorrect format="html"><text><![CDATA[[[commonstring key="symbolicprtcorrectfeedback"/]] [[commonstring key="defaultprtcorrectfeedback"/]]]]></text></prtcorrect>
+  <prtpartiallycorrect format="html"><text><![CDATA[[[commonstring key="symbolicprtpartiallycorrectfeedback"/]] [[commonstring key="defaultprtpartiallycorrectfeedback"/]]]]></text></prtpartiallycorrect>
+  <prtincorrect format="html"><text><![CDATA[[[commonstring key="symbolicprtincorrectfeedback"/]] [[commonstring key="defaultprtincorrectfeedback"/]]]]></text></prtincorrect>
+  <decimals>.</decimals>
+  <scientificnotation>*10</scientificnotation>
+  <multiplicationsign>none</multiplicationsign>
+  <sqrtsign>1</sqrtsign>
+  <complexno>i</complexno>
+  <inversetrig>cos-1</inversetrig>
+  <logicsymbol>lang</logicsymbol>
+  <matrixparens>[</matrixparens>
+  <isbroken>0</isbroken>
+  <variantsselectionseed></variantsselectionseed>
+
+  <input><name>ans1</name><type>dropdown</type><tans>opts</tans><boxsize>15</boxsize><strictsyntax>1</strictsyntax><insertstars>0</insertstars><syntaxhint></syntaxhint><syntaxattribute>0</syntaxattribute><forbidwords></forbidwords><allowwords></allowwords><forbidfloat>1</forbidfloat><requirelowestterms>0</requirelowestterms><checkanswertype>0</checkanswertype><mustverify>0</mustverify><showvalidation>0</showvalidation><options></options></input>
+  <input><name>ans2</name><type>algebraic</type><tans>t_ok</tans><boxsize>20</boxsize><strictsyntax>1</strictsyntax><insertstars>0</insertstars><syntaxhint></syntaxhint><syntaxattribute>0</syntaxattribute><forbidwords></forbidwords><allowwords></allowwords><forbidfloat>0</forbidfloat><requirelowestterms>0</requirelowestterms><checkanswertype>0</checkanswertype><mustverify>0</mustverify><showvalidation>1</showvalidation><options>validator:validate_angles</options></input>
+
+  <prt><name>prt1</name><value>1.0000000</value><autosimplify>1</autosimplify><feedbackstyle>1</feedbackstyle><feedbackvariables><text><![CDATA[ch2: is(ans1 = "s2"); ch3: is(ans1 = "s3");
+]]></text></feedbackvariables>
+    <node><name>0</name><description>Step with the mistake</description><answertest>AlgEquiv</answertest><sans>ans1</sans><tans>ta1</tans><testoptions></testoptions><quiet>1</quiet><truescoremode>=</truescoremode><truescore>1.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt1-1-T</trueanswernote><truefeedback format="html"><text><![CDATA[]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>1</falsenextnode><falseanswernote>prt1-1-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>1</name><description>Chose step 1</description><answertest>AlgEquiv</answertest><sans>ans1</sans><tans>"s1"</tans><testoptions></testoptions><quiet>1</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt1-2-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>Step 1 is right: \(\sin^2 x = 1 - \cos^2 x\).</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>2</falsenextnode><falseanswernote>prt1-2-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>2</name><description>Chose step 4</description><answertest>AlgEquiv</answertest><sans>ans1</sans><tans>"s4"</tans><testoptions></testoptions><quiet>1</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt1-3-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>Step 4 follows from step 3: each bracket equals 0.</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>-1</falsenextnode><falseanswernote>prt1-3-F</falseanswernote><falsefeedback format="html"><text><![CDATA[[[if test="ch3"]]<p>Step 3 is right for the line above it: multiply out the brackets in step 3 and you get step 2 again.</p>[[else]][[if test="ch2"]]<p>Step 2 is right: multiplying out step 1 and collecting terms gives \({@st1m@}\), and changing every sign gives step 2.</p>[[else]]<p>Step 5 gives the right angles for the values of \(\cos x\) in step 4. Check the lines those values came from.</p>[[/if]][[/if]]<p>Check each of the other lines against the one before it in the same way.</p>]]></text></falsefeedback></node>
+  </prt>
+  <prt><name>prt2</name><value>1.0000000</value><autosimplify>1</autosimplify><feedbackstyle>1</feedbackstyle><feedbackvariables><text><![CDATA[sl0: if setp(ans2) then listify(ans2) else ans2;
+sl: unique(map(lambda([v], float(floor(100*float(v)+1/2)/100)), sl0));
+okset: matchset(sl, solsF, 0.0501);
+fsub: is(length(sl) > 0) and allgenuine(sl, solsF, 0.0501) and is(length(sl) < length(solsF));
+fsup: allgenuine(solsF, sl, 0.0501) and is(length(sl) > length(solsF));
+extras: sublist(sl, lambda([v], not some(lambda([s], is(abs(v-s) <= 0.0501)), solsF)));
+outside: sublist(sl, lambda([v], is(v < -0.0001 or v > 360.0001)));
+miss360: some(lambda([s], is(abs(s-360) < 0.001)), solsF) and not some(lambda([v], is(abs(v-360) <= 0.0501)), sl);
+radn: is(length(sl) > 0) and every(lambda([v], is(abs(v) < 6.3)), sl) and not okset;
+resx0: sublist(extras, lambda([v], is(abs(lhsf(v)) >= 0.005)));
+resx: makelist(resx0[i], i, 1, min(4, length(resx0)));
+resstr: simplode(map(lambda([v], sconcat("\\(x = ", res2(v), "^\\circ\\) gives \\(", res2(lhsf(v)), "\\)")), resx), "; ");
+]]></text></feedbackvariables>
+    <node><name>0</name><description>Correct set</description><answertest>AlgEquiv</answertest><sans>okset</sans><tans>true</tans><testoptions></testoptions><quiet>1</quiet><truescoremode>=</truescoremode><truescore>1.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt2-1-T</trueanswernote><truefeedback format="html"><text><![CDATA[]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>1</falsenextnode><falseanswernote>prt2-1-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>1</name><description>Wekesa's answer</description><answertest>AlgEquiv</answertest><sans>matchset(sl, wsolF, 0.0501)</sans><tans>true</tans><testoptions></testoptions><quiet>1</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt2-2-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>That is Wekesa's answer, which carries the mistake.</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>2</falsenextnode><falseanswernote>prt2-2-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>2</name><description>Some missing</description><answertest>AlgEquiv</answertest><sans>fsub</sans><tans>true</tans><testoptions></testoptions><quiet>1</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt2-3-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>Every angle you gave is a solution, but the equation has {@length(solsF)@} solutions in \(0^\circ \le x \le 360^\circ\) and you gave {@length(sl)@}.[[if test="miss360"]] When \(0^\circ\) is a solution, \(360^\circ\) is one too: both ends are in the interval.[[/if]]</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>3</falsenextnode><falseanswernote>prt2-3-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>3</name><description>Extra values</description><answertest>AlgEquiv</answertest><sans>fsup</sans><tans>true</tans><testoptions></testoptions><quiet>1</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt2-4-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>[[if test="is(extras = [])"]]You have every solution, but you gave at least one of them twice, to different accuracy. Give each angle once.[[else]]You have every solution, but also {@setstr(extras)@}.[[/if]][[if test="is(outside # [])"]] Angles outside \(0^\circ\) to \(360^\circ\) are not wanted: add or subtract \(360^\circ\) to bring a calculator value into the interval.[[/if]]</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>4</falsenextnode><falseanswernote>prt2-4-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>4</name><description>Close but not to 1 d.p.</description><answertest>AlgEquiv</answertest><sans>matchset(sl, solsF, 0.51)</sans><tans>true</tans><testoptions></testoptions><quiet>1</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt2-5-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>Each of your angles is close to a solution, but not correct to 1 decimal place. Keep full calculator accuracy and round only at the end, to 1 decimal place (round up when the next digit is 5 or more).</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>-1</falsenextnode><falseanswernote>prt2-5-F</falseanswernote><falsefeedback format="html"><text><![CDATA[[[if test="is(resx # [])"]]<p>Test your angles in the equation. For the left side of the equation, {@resstr@}. A solution gives \(0\).</p>[[/if]]<p>Correct the mistake, then solve each equation \(\cos x = k\) with \(-1 \le k \le 1\): the calculator angle \(\alpha\) and \(360^\circ - \alpha\).</p>[[if test="is(outside # [])"]]<p>Angles outside \(0^\circ\) to \(360^\circ\) are not wanted: add or subtract \(360^\circ\) to bring a calculator value into the interval.</p>[[/if]][[if test="radn"]]<p>All your values are small: check that your calculator is in degree mode, and give angles in degrees.</p>[[/if]]]]></text></falsefeedback></node>
+  </prt>
+
+  <deployedseed>4</deployedseed>
+  <deployedseed>5</deployedseed>
+  <deployedseed>15</deployedseed>
+  <deployedseed>8</deployedseed>
+  <deployedseed>24</deployedseed>
+  <deployedseed>1</deployedseed>
+  <deployedseed>3</deployedseed>
+  <deployedseed>10</deployedseed>
+  <deployedseed>2</deployedseed>
+  <deployedseed>17</deployedseed>
+  <qtest><testcase>1</testcase><description>Correct</description>
+    <testinput><name>ans1</name><value>ta1</value></testinput>
+    <testinput><name>ans2</name><value>t_ok</value></testinput>
+    <expected><name>prt1</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt1-1-T</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt2-1-T</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>2</testcase><description>Step 1; Wekesa's answer</description>
+    <testinput><name>ans1</name><value>"s1"</value></testinput>
+    <testinput><name>ans2</name><value>t_w</value></testinput>
+    <expected><name>prt1</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt1-1-F | prt1-2-T</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt2-1-F | prt2-2-T</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>3</testcase><description>Step 4; generic wrong set</description>
+    <testinput><name>ans1</name><value>"s4"</value></testinput>
+    <testinput><name>ans2</name><value>t_off</value></testinput>
+    <expected><name>prt1</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt1-1-F | prt1-2-F | prt1-3-T</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt2-1-F | prt2-2-F | prt2-3-F | prt2-4-F | prt2-5-F</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>4</testcase><description>Angles 0.3 degrees out (accuracy)</description>
+    <testinput><name>ans1</name><value>ta1</value></testinput>
+    <testinput><name>ans2</name><value>t_near</value></testinput>
+    <expected><name>prt1</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt1-1-T</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt2-1-F | prt2-2-F | prt2-3-F | prt2-4-F | prt2-5-T</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>5</testcase><description>Step 3; one solution missing</description>
+    <testinput><name>ans1</name><value>"s3"</value></testinput>
+    <testinput><name>ans2</name><value>t_sub</value></testinput>
+    <expected><name>prt1</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt1-1-F | prt1-2-F | prt1-3-F</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt2-1-F | prt2-2-F | prt2-3-T</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>6</testcase><description>An extra value</description>
+    <testinput><name>ans1</name><value>ta1</value></testinput>
+    <testinput><name>ans2</name><value>t_sup</value></testinput>
+    <expected><name>prt1</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt1-1-T</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt2-1-F | prt2-2-F | prt2-3-F | prt2-4-T</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>7</testcase><description>Step 2 or step 5, whichever is right</description>
+    <testinput><name>ans1</name><value>wst</value></testinput>
+    <testinput><name>ans2</name><value>t_ok</value></testinput>
+    <expected><name>prt1</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt1-1-F | prt1-2-F | prt1-3-F</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt2-1-T</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>8</testcase><description>Invalid: a letter in the set</description>
+    <testinput><name>ans1</name><value>ta1</value></testinput>
+    <testinput><name>ans2</name><value>{x}</value></testinput>
+    <expected><name>prt1</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt1-1-T</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore></expectedscore><expectedpenalty></expectedpenalty><expectedanswernote>NULL</expectedanswernote></expected>
+  </qtest>
+</question>
+</quiz>

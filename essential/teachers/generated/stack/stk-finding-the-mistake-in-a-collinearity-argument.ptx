@@ -1,0 +1,11 @@
+<stack-static>
+    <statement><p><p>Otieno has <m>P({3},\,{1},\,{-4})</m>, <m>Q({6},\,{0},\,{-6})</m>, <m>R({-4},\,{4},\,{-1})</m> and <m>S({-10},\,{6},\,{3})</m>. He writes:</p><p><m>\overrightarrow{PQ} = {\left(\begin{array}{c} 3 \\ -1 \\ -2 \end{array}\right)}</m>, <m>\overrightarrow{RS} = {\left(\begin{array}{c} -6 \\ 2 \\ 4 \end{array}\right)} = {-2}\,\overrightarrow{PQ}</m>. <q>So P, Q, R and S lie on one straight line.</q></p><p>(a) Which statement about his argument is correct?</p><div><ol marker="(1)">
+<li>He is right: RS is a multiple of PQ, so all four points are on one line.</li>
+<li>He is wrong: RS is not a multiple of PQ.</li>
+<li>He is wrong: PQ and RS are parallel, but they need a common point. He must also check that R is on the line PQ, for example that PR is a multiple of PQ.</li>
+<li>He is wrong: vectors cannot show that points in three dimensions are collinear.</li>
+</ol>  </div><p>(b) Find the vector <m>\overrightarrow{PR}</m>.</p><div><m>\overrightarrow{PR} =</m> <fillin characters="3" name="ans2"/>  </div></p></statement>
+    <solution><p><p>(a) <m>\overrightarrow{RS} = {-2}\,\overrightarrow{PQ}</m>, so the two vectors are parallel. That alone does not put the points on one line: parallel vectors can lie on different lines. Collinear means parallel and sharing a point.</p><p>(b) <m>\overrightarrow{PR} = \mathbf{r} - \mathbf{p} = {\left(\begin{array}{c} -7 \\ 3 \\ 3 \end{array}\right)}</m>. Dividing by the components of <m>\overrightarrow{PQ}</m> gives <m>{-\frac{7}{3}}</m>, <m>{-3}</m>, <m>{-\frac{3}{2}}</m>, which are not all equal. So <m>\overrightarrow{PR}</m> is not a multiple of <m>\overrightarrow{PQ}</m>, R is not on the line PQ, and Otieno's conclusion is false.</p></p></solution>
+    <answer><p><m>(3)</m></p></answer>
+    <answer><p><m>\left(\begin{array}{c} -7 \\ 3 \\ 3 \end{array}\right)</m></p></answer>
+</stack-static>

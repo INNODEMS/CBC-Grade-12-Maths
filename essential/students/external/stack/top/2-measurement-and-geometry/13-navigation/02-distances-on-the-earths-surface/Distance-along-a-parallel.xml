@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<quiz>
+<question type="stack">
+  <name><text>Distance along a parallel</text></name>
+  <questiontext format="html">
+    <text><![CDATA[<p>[[if test="is(ix=1)"]]\(P(35^\circ\,\mathrm{N}, 10^\circ\,\mathrm{E})\) and \(Q(35^\circ\,\mathrm{N}, 48^\circ\,\mathrm{E})\)[[/if]][[if test="is(ix=2)"]]\(P(50^\circ\,\mathrm{S}, 15^\circ\,\mathrm{W})\) and \(Q(50^\circ\,\mathrm{S}, 30^\circ\,\mathrm{E})\)[[/if]][[if test="is(ix=3)"]]\(P(20^\circ\,\mathrm{N}, 65^\circ\,\mathrm{W})\) and \(Q(20^\circ\,\mathrm{N}, 20^\circ\,\mathrm{W})\)[[/if]][[if test="is(ix=4)"]]\(P(60^\circ\,\mathrm{S}, 25^\circ\,\mathrm{E})\) and \(Q(60^\circ\,\mathrm{S}, 110^\circ\,\mathrm{E})\)[[/if]][[if test="is(ix=5)"]]\(P(40^\circ\,\mathrm{N}, 30^\circ\,\mathrm{W})\) and \(Q(40^\circ\,\mathrm{N}, 45^\circ\,\mathrm{E})\)[[/if]][[if test="is(ix=6)"]]\(P(15^\circ\,\mathrm{S}, 40^\circ\,\mathrm{E})\) and \(Q(15^\circ\,\mathrm{S}, 95^\circ\,\mathrm{E})\)[[/if]][[if test="is(ix=7)"]]\(P(55^\circ\,\mathrm{N}, 12^\circ\,\mathrm{W})\) and \(Q(55^\circ\,\mathrm{N}, 38^\circ\,\mathrm{E})\)[[/if]][[if test="is(ix=8)"]]\(P(25^\circ\,\mathrm{S}, 70^\circ\,\mathrm{W})\) and \(Q(25^\circ\,\mathrm{S}, 15^\circ\,\mathrm{W})\)[[/if]][[if test="is(ix=9)"]]\(P(65^\circ\,\mathrm{N}, 5^\circ\,\mathrm{W})\) and \(Q(65^\circ\,\mathrm{N}, 70^\circ\,\mathrm{E})\)[[/if]][[if test="is(ix=10)"]]\(P(30^\circ\,\mathrm{S}, 50^\circ\,\mathrm{W})\) and \(Q(30^\circ\,\mathrm{S}, 20^\circ\,\mathrm{E})\)[[/if]] are on the same parallel of latitude. Take \(\pi = \tfrac{22}{7}\) and \(R = 6370\,\text{km}\). Distances in km within 0.1% of the exact value are accepted.</p><p>(a) Find the difference in longitude.</p><p>[[input:ans1]] \(^\circ\) [[validation:ans1]] [[feedback:prt1]]</p><p>(b) Find the distance \(PQ\) along the parallel, to the nearest nautical mile.</p><p>[[input:ans2]] nm [[validation:ans2]] [[feedback:prt2]]</p><p>(c) Find the distance \(PQ\) along the parallel, to the nearest km.</p><p>[[input:ans3]] km [[validation:ans3]] [[feedback:prt3]]</p>]]></text>
+  </questiontext>
+  <generalfeedback format="html">
+    <text><![CDATA[<p>(a) [[if test="same"]]\(P\) and \(Q\) are on the same side of the Greenwich meridian, so subtract the longitudes.[[else]]\(P\) and \(Q\) are on opposite sides of the Greenwich meridian, so add the longitudes.[[/if]] [[if test="same"]]\(|{@l1@}^\circ - {@l2@}^\circ| = {@dl@}^\circ\).[[else]]\({@l1@}^\circ + {@l2@}^\circ = {@dl@}^\circ\).[[/if]]</p><p>(b) The parallel is a small circle of radius \(R\cos {@phi@}^\circ\): the same angle of longitude, on a smaller circle, so multiply by \(\cos {@phi@}^\circ\):</p><p>\[PQ = {@dl@} \times 60 \times \cos {@phi@}^\circ = {@dispdp(float(nm),1)@} \approx {@floor(nm+1/2)@} \text{ nm}.\]</p><p>(c) \[PQ = \frac{ {@dl@} }{360} \times 2 \times \frac{22}{7} \times 6370 \times \cos {@phi@}^\circ = {@dispdp(float(kmv),1)@} \approx {@floor(kmv+1/2)@}\,\text{km}.\]</p>]]></text>
+  </generalfeedback>
+  <defaultgrade>3</defaultgrade>
+  <penalty>0.1</penalty>
+  <hidden>0</hidden>
+  <idnumber></idnumber>
+  <stackversion><text>2026063000</text></stackversion>
+  <questionvariables>
+    <text><![CDATA[cosd(x) := cos(x*%pi/180);
+sind(x) := sin(x*%pi/180);
+atand(x) := 180*atan(x)/%pi;
+asind(x) := 180*asin(x)/%pi;
+two(v) := if v < 10 then sconcat("0", string(v)) else string(v);
+hm(m) := block([q], q: mod(m, 1440), sconcat(two(floor(q/60)), ":", two(mod(q, 60))));
+dmx(m) := sconcat(string(floor(m/60)), "^\\circ", two(mod(m, 60)), "'");
+/* Design: distance along a parallel, in km. [phi, N/S, l1, E/W, l2, E/W]. Source: adapted from SMP Book 5 (Metric), chapter 3, section 7, Example 2 and Exercise E question 1. */
+L: [[35,"N",10,"E",48,"E"],[50,"S",15,"W",30,"E"],[20,"N",65,"W",20,"W"],[60,"S",25,"E",110,"E"],[40,"N",30,"W",45,"E"],[15,"S",40,"E",95,"E"],[55,"N",12,"W",38,"E"],[25,"S",70,"W",15,"W"],[65,"N",5,"W",70,"E"],[30,"S",50,"W",20,"E"]];
+ix: 1+rand(10);
+E: L[ix];
+phi: E[1];
+l1: E[3]; l2: E[5]; same: is(E[4]=E[6]);
+dl: if same then abs(l1-l2) else l1+l2;
+wr: if same then l1+l2 else abs(l1-l2);
+nm: 60*dl*cosd(phi);
+kmv: dl/360*40040*cosd(phi);
+kmtol: max(1,kmv/1000);
+/* diagnostics */
+nocos: 60*dl; snm: 60*dl*sind(phi); dvc: 60*dl/cosd(phi); wrnm: 60*wr*cosd(phi);
+kmnc: dl/360*40040; kms: kmnc*sind(phi); half: kmv/2; divnm: nm/1.853; wrkm: wr/360*40040*cosd(phi);
+]]></text>
+  </questionvariables>
+  <specificfeedback format="html"><text><![CDATA[]]></text></specificfeedback>
+  <questionnote format="moodle_auto_format">
+    <text>ix={@ix@}, dl={@dl@}, nm={@dispdp(float(nm),1)@}, km={@dispdp(float(kmv),1)@}</text>
+  </questionnote>
+  <questiondescription format="html"><text><![CDATA[<p id="concept">Navigation: distance along a parallel</p><p id="description">Grade 12 CBE Core 2.7 (c) / Essential 2.3 (d): Find the difference in longitude of two places on a parallel of latitude and the distance between them along the parallel in nautical miles and kilometres.</p><p id="edition">Core and Essential</p><p id="provenance">This question is adapted from Chapter 3 (The sphere), Section 7, Example 2 and Exercise E, question 1 of School Mathematics Project, SMP Book 5 (Metric), ed. P. G. Bowie, Cambridge University Press, 1969: distance along a parallel in nautical miles; kilometres added, new positions.</p><p id="citation">INNODEMS CBC Grade 12 Mathematics, first draft by Ben Davies, 2026. Aligned to the KICD Senior School Curriculum Design, Core and Essential Mathematics Grade 12 (draft).</p>]]></text></questiondescription>
+  <questionsimplify>1</questionsimplify>
+  <assumepositive>0</assumepositive>
+  <assumereal>0</assumereal>
+  <prtcorrect format="html"><text><![CDATA[[[commonstring key="symbolicprtcorrectfeedback"/]] [[commonstring key="defaultprtcorrectfeedback"/]]]]></text></prtcorrect>
+  <prtpartiallycorrect format="html"><text><![CDATA[[[commonstring key="symbolicprtpartiallycorrectfeedback"/]] [[commonstring key="defaultprtpartiallycorrectfeedback"/]]]]></text></prtpartiallycorrect>
+  <prtincorrect format="html"><text><![CDATA[[[commonstring key="symbolicprtincorrectfeedback"/]] [[commonstring key="defaultprtincorrectfeedback"/]]]]></text></prtincorrect>
+  <decimals>.</decimals>
+  <scientificnotation>*10</scientificnotation>
+  <multiplicationsign>none</multiplicationsign>
+  <sqrtsign>1</sqrtsign>
+  <complexno>i</complexno>
+  <inversetrig>cos-1</inversetrig>
+  <logicsymbol>lang</logicsymbol>
+  <matrixparens>[</matrixparens>
+  <isbroken>0</isbroken>
+  <variantsselectionseed></variantsselectionseed>
+
+  <input><name>ans1</name><type>numerical</type><tans>dl</tans><boxsize>4</boxsize><strictsyntax>1</strictsyntax><insertstars>0</insertstars><syntaxhint></syntaxhint><syntaxattribute>0</syntaxattribute><forbidwords></forbidwords><allowwords></allowwords><forbidfloat>1</forbidfloat><requirelowestterms>0</requirelowestterms><checkanswertype>0</checkanswertype><mustverify>0</mustverify><showvalidation>0</showvalidation><options></options></input>
+  <input><name>ans2</name><type>numerical</type><tans>float(nm)</tans><boxsize>8</boxsize><strictsyntax>1</strictsyntax><insertstars>0</insertstars><syntaxhint></syntaxhint><syntaxattribute>0</syntaxattribute><forbidwords></forbidwords><allowwords></allowwords><forbidfloat>0</forbidfloat><requirelowestterms>0</requirelowestterms><checkanswertype>0</checkanswertype><mustverify>0</mustverify><showvalidation>0</showvalidation><options></options></input>
+  <input><name>ans3</name><type>numerical</type><tans>float(kmv)</tans><boxsize>8</boxsize><strictsyntax>1</strictsyntax><insertstars>0</insertstars><syntaxhint></syntaxhint><syntaxattribute>0</syntaxattribute><forbidwords></forbidwords><allowwords></allowwords><forbidfloat>0</forbidfloat><requirelowestterms>0</requirelowestterms><checkanswertype>0</checkanswertype><mustverify>0</mustverify><showvalidation>0</showvalidation><options></options></input>
+
+  <prt><name>prt1</name><value>1.0000000</value><autosimplify>1</autosimplify><feedbackstyle>1</feedbackstyle><feedbackvariables><text><![CDATA[]]></text></feedbackvariables>
+    <node><name>0</name><description>Difference in longitude</description><answertest>AlgEquiv</answertest><sans>ans1</sans><tans>dl</tans><testoptions></testoptions><quiet>0</quiet><truescoremode>=</truescoremode><truescore>1.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt1-1-T</trueanswernote><truefeedback format="html"><text><![CDATA[]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>1</falsenextnode><falseanswernote>prt1-1-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>1</name><description>Rule swapped</description><answertest>AlgEquiv</answertest><sans>ans1</sans><tans>wr</tans><testoptions></testoptions><quiet>0</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt1-2-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>[[if test="same"]]\(P\) and \(Q\) are on the same side of the Greenwich meridian, so subtract the longitudes.[[else]]\(P\) and \(Q\) are on opposite sides of the Greenwich meridian, so add the longitudes.[[/if]]</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>-1</falsenextnode><falseanswernote>prt1-2-F</falseanswernote><falsefeedback format="html"><text><![CDATA[<p>Same side of Greenwich: subtract the longitudes; opposite sides: add them.</p>]]></text></falsefeedback></node>
+  </prt>
+  <prt><name>prt2</name><value>1.0000000</value><autosimplify>1</autosimplify><feedbackstyle>1</feedbackstyle><feedbackvariables><text><![CDATA[ft2: is(abs(ans1-dl)>0.001 and abs(ans2-60*ans1*cosd(phi))<=1);
+yl: float(ans2/(60*cosd(phi)));]]></text></feedbackvariables>
+    <node><name>0</name><description>Distance in nm</description><answertest>NumAbsolute</answertest><sans>ans2</sans><tans>nm</tans><testoptions>1</testoptions><quiet>0</quiet><truescoremode>=</truescoremode><truescore>1.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt2-1-T</trueanswernote><truefeedback format="html"><text><![CDATA[]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>1</falsenextnode><falseanswernote>prt2-1-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>1</name><description>No cos</description><answertest>NumAbsolute</answertest><sans>ans2</sans><tans>nocos</tans><testoptions>1</testoptions><quiet>0</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt2-2-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>That is the distance for \({@dl@}^\circ\) along a great circle. A parallel is a small circle, radius \(R\cos\varphi\), so multiply by \(\cos {@phi@}^\circ\).</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>2</falsenextnode><falseanswernote>prt2-2-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>2</name><description>Used sin</description><answertest>NumAbsolute</answertest><sans>ans2</sans><tans>snm</tans><testoptions>1</testoptions><quiet>0</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt2-3-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>Use \(\cos {@phi@}^\circ\), not \(\sin {@phi@}^\circ\): the radius of the parallel is \(R\cos\varphi\).</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>3</falsenextnode><falseanswernote>prt2-3-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>3</name><description>Divided by cos</description><answertest>NumAbsolute</answertest><sans>ans2</sans><tans>dvc</tans><testoptions>1</testoptions><quiet>0</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt2-4-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>You divided by \(\cos {@phi@}^\circ\). The parallel is shorter than the equator, so multiply.</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>4</falsenextnode><falseanswernote>prt2-4-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>4</name><description>Rule swapped</description><answertest>NumAbsolute</answertest><sans>ans2</sans><tans>wrnm</tans><testoptions>1</testoptions><quiet>0</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt2-5-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>[[if test="same"]]\(P\) and \(Q\) are on the same side of the Greenwich meridian, so subtract the longitudes.[[else]]\(P\) and \(Q\) are on opposite sides of the Greenwich meridian, so add the longitudes.[[/if]]</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>5</falsenextnode><falseanswernote>prt2-5-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>5</name><description>Follow-through</description><answertest>AlgEquiv</answertest><sans>ft2</sans><tans>true</tans><testoptions></testoptions><quiet>1</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt2-6-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>Your method is right for your answer to (a), but (a) is wrong.</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>-1</falsenextnode><falseanswernote>prt2-6-F</falseanswernote><falsefeedback format="html"><text><![CDATA[<p>On the parallel \({@phi@}^\circ\), a distance of \({@ans2@}\) nm spans \({@dispdp(yl,1)@}^\circ\) of longitude. Compare that with the difference in longitude in (a). A parallel is a small circle, so each degree of longitude along it is shorter than \(60\) nm.</p>]]></text></falsefeedback></node>
+  </prt>
+  <prt><name>prt3</name><value>1.0000000</value><autosimplify>1</autosimplify><feedbackstyle>1</feedbackstyle><feedbackvariables><text><![CDATA[ft3: is(abs(ans2-nm)>1 and abs(ans3-ans2*1.853)<=kmtol);
+yr: if ans2>0 then float(ans3/ans2) else 0;
+yshow: is(ans2>0 and abs(yr-1.853)>0.002);]]></text></feedbackvariables>
+    <node><name>0</name><description>Distance in km</description><answertest>NumAbsolute</answertest><sans>ans3</sans><tans>kmv</tans><testoptions>kmtol</testoptions><quiet>0</quiet><truescoremode>=</truescoremode><truescore>1.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt3-1-T</trueanswernote><truefeedback format="html"><text><![CDATA[]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>1</falsenextnode><falseanswernote>prt3-1-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>1</name><description>No cos</description><answertest>NumAbsolute</answertest><sans>ans3</sans><tans>kmnc</tans><testoptions>kmtol</testoptions><quiet>0</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt3-2-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>That is the distance for \({@dl@}^\circ\) along a great circle. A parallel is a small circle, radius \(R\cos\varphi\), so multiply by \(\cos {@phi@}^\circ\).</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>2</falsenextnode><falseanswernote>prt3-2-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>2</name><description>Used sin</description><answertest>NumAbsolute</answertest><sans>ans3</sans><tans>kms</tans><testoptions>kmtol</testoptions><quiet>0</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt3-3-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>Use \(\cos {@phi@}^\circ\), not \(\sin {@phi@}^\circ\): the radius of the parallel is \(R\cos\varphi\).</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>3</falsenextnode><falseanswernote>prt3-3-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>3</name><description>Half circumference</description><answertest>NumAbsolute</answertest><sans>ans3</sans><tans>half</tans><testoptions>kmtol</testoptions><quiet>0</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt3-4-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>You used \(\pi r\) instead of \(2\pi r\) for the whole parallel.</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>4</falsenextnode><falseanswernote>prt3-4-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>4</name><description>Divided by 1.853</description><answertest>NumAbsolute</answertest><sans>ans3</sans><tans>divnm</tans><testoptions>kmtol</testoptions><quiet>0</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt3-5-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>\(1\) nm \(= 1.853\,\text{km}\), so km \(=\) nm \(\times 1.853\), not nm \(\div 1.853\).</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>5</falsenextnode><falseanswernote>prt3-5-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>5</name><description>Rule swapped</description><answertest>NumAbsolute</answertest><sans>ans3</sans><tans>wrkm</tans><testoptions>kmtol</testoptions><quiet>0</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt3-6-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>[[if test="same"]]\(P\) and \(Q\) are on the same side of the Greenwich meridian, so subtract the longitudes.[[else]]\(P\) and \(Q\) are on opposite sides of the Greenwich meridian, so add the longitudes.[[/if]]</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>6</falsenextnode><falseanswernote>prt3-6-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>6</name><description>Follow-through</description><answertest>AlgEquiv</answertest><sans>ft3</sans><tans>true</tans><testoptions></testoptions><quiet>1</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt3-7-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>Your conversion is right for your answer to (b), but (b) is wrong.</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>-1</falsenextnode><falseanswernote>prt3-7-F</falseanswernote><falsefeedback format="html"><text><![CDATA[<p>[[if test="yshow"]]Your answers to (b) and (c) make one nautical mile equal to \({@dispdp(yr,3)@}\,\text{km}\). [[/if]]One nautical mile is \(1.853\,\text{km}\). You can also work from the angle at the centre, as a fraction of the whole parallel.</p>]]></text></falsefeedback></node>
+  </prt>
+
+  <deployedseed>4</deployedseed>
+  <deployedseed>5</deployedseed>
+  <deployedseed>15</deployedseed>
+  <deployedseed>8</deployedseed>
+  <deployedseed>24</deployedseed>
+  <deployedseed>1</deployedseed>
+  <deployedseed>3</deployedseed>
+  <deployedseed>10</deployedseed>
+  <deployedseed>2</deployedseed>
+  <deployedseed>17</deployedseed>
+  <qtest><testcase>1</testcase><description>Correct</description>
+    <testinput><name>ans1</name><value>dl</value></testinput>
+    <testinput><name>ans2</name><value>floor(nm+1/2)</value></testinput>
+    <testinput><name>ans3</name><value>floor(kmv+1/2)</value></testinput>
+    <expected><name>prt1</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt1-1-T</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt2-1-T</expectedanswernote></expected>
+    <expected><name>prt3</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt3-1-T</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>2</testcase><description>Correct km by nm times 1.853</description>
+    <testinput><name>ans1</name><value>dl</value></testinput>
+    <testinput><name>ans2</name><value>float(nm)</value></testinput>
+    <testinput><name>ans3</name><value>float(nm*1.853)</value></testinput>
+    <expected><name>prt1</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt1-1-T</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt2-1-T</expectedanswernote></expected>
+    <expected><name>prt3</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt3-1-T</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>3</testcase><description>Correct km with calculator pi</description>
+    <testinput><name>ans1</name><value>dl</value></testinput>
+    <testinput><name>ans2</name><value>float(nm)</value></testinput>
+    <testinput><name>ans3</name><value>float(dl/360*2*%pi*6370*cosd(phi))</value></testinput>
+    <expected><name>prt1</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt1-1-T</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt2-1-T</expectedanswernote></expected>
+    <expected><name>prt3</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt3-1-T</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>4</testcase><description>Generic wrong</description>
+    <testinput><name>ans1</name><value>dl+3</value></testinput>
+    <testinput><name>ans2</name><value>floor(nm+1/2)+40</value></testinput>
+    <testinput><name>ans3</name><value>floor(kmv+1/2)+60</value></testinput>
+    <expected><name>prt1</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt1-1-F | prt1-2-F</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt2-1-F | prt2-2-F | prt2-3-F | prt2-4-F | prt2-5-F | prt2-6-F</expectedanswernote></expected>
+    <expected><name>prt3</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt3-1-F | prt3-2-F | prt3-3-F | prt3-4-F | prt3-5-F | prt3-6-F | prt3-7-F</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>5</testcase><description>Rule swapped</description>
+    <testinput><name>ans1</name><value>wr</value></testinput>
+    <testinput><name>ans2</name><value>float(wrnm)</value></testinput>
+    <testinput><name>ans3</name><value>float(wrkm)</value></testinput>
+    <expected><name>prt1</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt1-1-F | prt1-2-T</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt2-1-F | prt2-2-F | prt2-3-F | prt2-4-F | prt2-5-T</expectedanswernote></expected>
+    <expected><name>prt3</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt3-1-F | prt3-2-F | prt3-3-F | prt3-4-F | prt3-5-F | prt3-6-T</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>6</testcase><description>No cos</description>
+    <testinput><name>ans1</name><value>dl</value></testinput>
+    <testinput><name>ans2</name><value>float(nocos)</value></testinput>
+    <testinput><name>ans3</name><value>float(kmnc)</value></testinput>
+    <expected><name>prt1</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt1-1-T</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt2-1-F | prt2-2-T</expectedanswernote></expected>
+    <expected><name>prt3</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt3-1-F | prt3-2-T</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>7</testcase><description>Used sin</description>
+    <testinput><name>ans1</name><value>dl</value></testinput>
+    <testinput><name>ans2</name><value>float(snm)</value></testinput>
+    <testinput><name>ans3</name><value>float(kms)</value></testinput>
+    <expected><name>prt1</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt1-1-T</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt2-1-F | prt2-2-F | prt2-3-T</expectedanswernote></expected>
+    <expected><name>prt3</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt3-1-F | prt3-2-F | prt3-3-T</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>8</testcase><description>Divided by cos; half circle</description>
+    <testinput><name>ans1</name><value>dl</value></testinput>
+    <testinput><name>ans2</name><value>float(dvc)</value></testinput>
+    <testinput><name>ans3</name><value>float(half)</value></testinput>
+    <expected><name>prt1</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt1-1-T</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt2-1-F | prt2-2-F | prt2-3-F | prt2-4-T</expectedanswernote></expected>
+    <expected><name>prt3</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt3-1-F | prt3-2-F | prt3-3-F | prt3-4-T</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>9</testcase><description>Divided by 1.853</description>
+    <testinput><name>ans1</name><value>dl</value></testinput>
+    <testinput><name>ans2</name><value>float(nm)</value></testinput>
+    <testinput><name>ans3</name><value>float(divnm)</value></testinput>
+    <expected><name>prt1</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt1-1-T</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt2-1-T</expectedanswernote></expected>
+    <expected><name>prt3</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt3-1-F | prt3-2-F | prt3-3-F | prt3-4-F | prt3-5-T</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>10</testcase><description>Follow-through in km</description>
+    <testinput><name>ans1</name><value>dl</value></testinput>
+    <testinput><name>ans2</name><value>floor(nm+1/2)+40</value></testinput>
+    <testinput><name>ans3</name><value>float((floor(nm+1/2)+40)*1.853)</value></testinput>
+    <expected><name>prt1</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt1-1-T</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt2-1-F | prt2-2-F | prt2-3-F | prt2-4-F | prt2-5-F | prt2-6-F</expectedanswernote></expected>
+    <expected><name>prt3</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt3-1-F | prt3-2-F | prt3-3-F | prt3-4-F | prt3-5-F | prt3-6-F | prt3-7-T</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>11</testcase><description>Follow-through in nm</description>
+    <testinput><name>ans1</name><value>dl+3</value></testinput>
+    <testinput><name>ans2</name><value>float(60*(dl+3)*cosd(phi))</value></testinput>
+    <testinput><name>ans3</name><value>floor(kmv+1/2)</value></testinput>
+    <expected><name>prt1</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt1-1-F | prt1-2-F</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt2-1-F | prt2-2-F | prt2-3-F | prt2-4-F | prt2-5-F | prt2-6-T</expectedanswernote></expected>
+    <expected><name>prt3</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt3-1-T</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>12</testcase><description>Invalid: letter in (c)</description>
+    <testinput><name>ans1</name><value>dl</value></testinput>
+    <testinput><name>ans2</name><value>floor(nm+1/2)</value></testinput>
+    <testinput><name>ans3</name><value>x</value></testinput>
+    <expected><name>prt1</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt1-1-T</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt2-1-T</expectedanswernote></expected>
+    <expected><name>prt3</name><expectedscore></expectedscore><expectedpenalty></expectedpenalty><expectedanswernote>NULL</expectedanswernote></expected>
+  </qtest>
+</question>
+</quiz>

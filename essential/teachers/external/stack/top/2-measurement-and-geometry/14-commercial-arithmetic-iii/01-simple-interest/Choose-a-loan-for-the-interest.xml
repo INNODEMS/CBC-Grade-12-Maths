@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<quiz>
+<question type="stack">
+  <name><text>Choose a loan for the interest</text></name>
+  <questiontext format="html">
+    <text><![CDATA[<p>Choose a principal, a rate and a time so that the simple interest is exactly Ksh \({@ksh(I)@}\). Your rate must be from \(5\%\) to \(20\%\) per annum and your time from \(1\) to \(6\) years. Many answers are correct.</p><p>\(P =\) Ksh [[input:ansP]] [[validation:ansP]]</p><p>\(R =\) [[input:ansR]] % per annum [[validation:ansR]]</p><p>\(T =\) [[input:ansT]] years [[validation:ansT]]</p><p>[[feedback:prt1]]</p>]]></text>
+  </questiontext>
+  <generalfeedback format="html">
+    <text><![CDATA[<p>Any \(P\), \(R\) and \(T\) inside the rules with \(PRT = 100 \times {@ksh(I)@}\) is correct. Choose \(R\) and \(T\) first, then \(P = \dfrac{100 \times {@ksh(I)@}}{RT}\).</p><p>For example, \(R = 10\) and \(T = 3\) give \(P = \dfrac{100 \times {@ksh(I)@}}{30} = {@ksh(Ps)@}\). Check: \(\dfrac{{@ksh(Ps)@} \times 10 \times 3}{100} = {@ksh(I)@}\).</p>]]></text>
+  </generalfeedback>
+  <defaultgrade>1</defaultgrade>
+  <penalty>0.1</penalty>
+  <hidden>0</hidden>
+  <idnumber></idnumber>
+  <stackversion><text>2026063000</text></stackversion>
+  <questionvariables>
+    <text><![CDATA[kgrp(n) := block([s, out, k], s: string(n), k: slength(s), if k < 5 then s else (out: "", while k > 3 do (out: sconcat("\\,", substring(s, k-2, k+1), out), k: k-3), sconcat(substring(s, 1, k+1), out)));
+ksh(v) := block([c, w, f], c: floor(100*v+1/2), w: floor(c/100), f: c-100*w, if f = 0 then kgrp(w) else sconcat(kgrp(w), ".", if f < 10 then "0" else "", string(f)));
+dd(v) := if integerp(v) then v else if integerp(10*v) then dispdp(float(v),1) else if integerp(100*v) then dispdp(float(v),2) else if integerp(1000*v) then dispdp(float(v),3) else dispdp(float(v),4);
+ix: 1+rand(10);
+/* Design: construct-an-example pattern. Target interest I; rules 5 <= R <= 20, 1 <= T <= 6, P > 0. Source: original. */
+L: [6000,7200,9000,10800,12600,15000,18000,4800,8400,13500];
+I: L[ix];
+Ps: 100*I/30;
+]]></text>
+  </questionvariables>
+  <specificfeedback format="html"><text><![CDATA[]]></text></specificfeedback>
+  <questionnote format="moodle_auto_format">
+    <text>ix={@ix@}, I={@I@}</text>
+  </questionnote>
+  <questiondescription format="html"><text><![CDATA[<p id="concept">Commercial Arithmetic III: choosing a loan for a given interest</p><p id="description">Grade 12 CBE Essential 2.4 (a): Choose a principal, a rate and a time within given limits so that the simple interest takes a given value.</p><p id="edition">Essential</p><p id="provenance">This question is original to this project.</p><p id="citation">INNODEMS CBC Grade 12 Mathematics, first draft by Ben Davies, 2026. Aligned to the KICD Senior School Curriculum Design, Essential Mathematics Grade 12 (draft).</p>]]></text></questiondescription>
+  <questionsimplify>1</questionsimplify>
+  <assumepositive>0</assumepositive>
+  <assumereal>0</assumereal>
+  <prtcorrect format="html"><text><![CDATA[[[commonstring key="symbolicprtcorrectfeedback"/]] [[commonstring key="defaultprtcorrectfeedback"/]]]]></text></prtcorrect>
+  <prtpartiallycorrect format="html"><text><![CDATA[[[commonstring key="symbolicprtpartiallycorrectfeedback"/]] [[commonstring key="defaultprtpartiallycorrectfeedback"/]]]]></text></prtpartiallycorrect>
+  <prtincorrect format="html"><text><![CDATA[[[commonstring key="symbolicprtincorrectfeedback"/]] [[commonstring key="defaultprtincorrectfeedback"/]]]]></text></prtincorrect>
+  <decimals>.</decimals>
+  <scientificnotation>*10</scientificnotation>
+  <multiplicationsign>none</multiplicationsign>
+  <sqrtsign>1</sqrtsign>
+  <complexno>i</complexno>
+  <inversetrig>cos-1</inversetrig>
+  <logicsymbol>lang</logicsymbol>
+  <matrixparens>[</matrixparens>
+  <isbroken>0</isbroken>
+  <variantsselectionseed></variantsselectionseed>
+
+  <input><name>ansP</name><type>numerical</type><tans>Ps</tans><boxsize>10</boxsize><strictsyntax>1</strictsyntax><insertstars>0</insertstars><syntaxhint></syntaxhint><syntaxattribute>0</syntaxattribute><forbidwords></forbidwords><allowwords></allowwords><forbidfloat>0</forbidfloat><requirelowestterms>0</requirelowestterms><checkanswertype>0</checkanswertype><mustverify>0</mustverify><showvalidation>0</showvalidation><options></options></input>
+  <input><name>ansR</name><type>numerical</type><tans>10</tans><boxsize>5</boxsize><strictsyntax>1</strictsyntax><insertstars>0</insertstars><syntaxhint></syntaxhint><syntaxattribute>0</syntaxattribute><forbidwords></forbidwords><allowwords></allowwords><forbidfloat>0</forbidfloat><requirelowestterms>0</requirelowestterms><checkanswertype>0</checkanswertype><mustverify>0</mustverify><showvalidation>0</showvalidation><options></options></input>
+  <input><name>ansT</name><type>numerical</type><tans>3</tans><boxsize>5</boxsize><strictsyntax>1</strictsyntax><insertstars>0</insertstars><syntaxhint></syntaxhint><syntaxattribute>0</syntaxattribute><forbidwords></forbidwords><allowwords></allowwords><forbidfloat>0</forbidfloat><requirelowestterms>0</requirelowestterms><checkanswertype>0</checkanswertype><mustverify>0</mustverify><showvalidation>0</showvalidation><options></options></input>
+
+  <prt><name>prt1</name><value>1.0000000</value><autosimplify>1</autosimplify><feedbackstyle>1</feedbackstyle><feedbackvariables><text><![CDATA[intr: ansP*ansR*ansT/100;
+okc: is(ansP>0 and ansR>=5 and ansR<=20 and ansT>=1 and ansT<=6 and abs(intr-I)<=0.501);
+brk: is(ansP<=0 or ansR<5 or ansR>20 or ansT<1 or ansT>6);
+n100: is(abs(ansP*ansR*ansT-I)<=0.501);
+amt: is(abs(ansP+intr-I)<=0.501);
+]]></text></feedbackvariables>
+    <node><name>0</name><description>Valid choice</description><answertest>AlgEquiv</answertest><sans>okc</sans><tans>true</tans><testoptions></testoptions><quiet>0</quiet><truescoremode>=</truescoremode><truescore>1.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt1-1-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>Check: \(\dfrac{ {@ansP@} \times {@ansR@} \times {@ansT@} }{100} = {@ksh(intr)@}\).</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>1</falsenextnode><falseanswernote>prt1-1-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>1</name><description>Broke a rule</description><answertest>AlgEquiv</answertest><sans>brk</sans><tans>true</tans><testoptions></testoptions><quiet>0</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt1-2-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>Keep to the rules. [[if test="is(ansR<5 or ansR>20)"]]Your rate, \({@ansR@}\%\), is not from \(5\%\) to \(20\%\). [[/if]][[if test="is(ansT<1 or ansT>6)"]]Your time, \({@ansT@}\) years, is not from \(1\) to \(6\) years. [[/if]][[if test="is(ansP<=0)"]]The principal must be more than \(0\). [[/if]][[if test="is(ansP>0 and abs(intr-I)<=0.501)"]]Your choice does give interest of Ksh \({@ksh(I)@}\); now find one inside the rules.[[/if]]</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>2</falsenextnode><falseanswernote>prt1-2-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>2</name><description>No 100</description><answertest>AlgEquiv</answertest><sans>n100</sans><tans>true</tans><testoptions></testoptions><quiet>0</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt1-3-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>\(P \times R \times T\) equals \({@ksh(I)@}\), but the interest is \(\dfrac{P \times R \times T}{100}\). Make \(P\) \(100\) times bigger.</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>3</falsenextnode><falseanswernote>prt1-3-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>3</name><description>Amount, not interest</description><answertest>AlgEquiv</answertest><sans>amt</sans><tans>true</tans><testoptions></testoptions><quiet>0</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt1-4-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>With your choice the amount \(P + I\) is Ksh \({@ksh(I)@}\). The interest itself must be Ksh \({@ksh(I)@}\).</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>-1</falsenextnode><falseanswernote>prt1-4-F</falseanswernote><falsefeedback format="html"><text><![CDATA[<p>Your choice gives interest of Ksh \({@ksh(intr)@}\). Choose \(R\) and \(T\) first, then \(P = \dfrac{100 \times {@ksh(I)@}}{R \times T}\).</p>]]></text></falsefeedback></node>
+  </prt>
+
+  <deployedseed>4</deployedseed>
+  <deployedseed>5</deployedseed>
+  <deployedseed>15</deployedseed>
+  <deployedseed>8</deployedseed>
+  <deployedseed>24</deployedseed>
+  <deployedseed>1</deployedseed>
+  <deployedseed>3</deployedseed>
+  <deployedseed>10</deployedseed>
+  <deployedseed>2</deployedseed>
+  <deployedseed>17</deployedseed>
+  <qtest><testcase>1</testcase><description>Correct: R 10, T 3</description>
+    <testinput><name>ansP</name><value>Ps</value></testinput>
+    <testinput><name>ansR</name><value>10</value></testinput>
+    <testinput><name>ansT</name><value>3</value></testinput>
+    <expected><name>prt1</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt1-1-T</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>2</testcase><description>Correct: R 12, T 2.5</description>
+    <testinput><name>ansP</name><value>Ps</value></testinput>
+    <testinput><name>ansR</name><value>12</value></testinput>
+    <testinput><name>ansT</name><value>2.5</value></testinput>
+    <expected><name>prt1</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt1-1-T</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>3</testcase><description>Rate above 20</description>
+    <testinput><name>ansP</name><value>2*I</value></testinput>
+    <testinput><name>ansR</name><value>25</value></testinput>
+    <testinput><name>ansT</name><value>2</value></testinput>
+    <expected><name>prt1</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt1-1-F | prt1-2-T</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>4</testcase><description>No 100</description>
+    <testinput><name>ansP</name><value>I/30</value></testinput>
+    <testinput><name>ansR</name><value>10</value></testinput>
+    <testinput><name>ansT</name><value>3</value></testinput>
+    <expected><name>prt1</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt1-1-F | prt1-2-F | prt1-3-T</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>5</testcase><description>Amount equals the target</description>
+    <testinput><name>ansP</name><value>float(I/1.3)</value></testinput>
+    <testinput><name>ansR</name><value>10</value></testinput>
+    <testinput><name>ansT</name><value>3</value></testinput>
+    <expected><name>prt1</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt1-1-F | prt1-2-F | prt1-3-F | prt1-4-T</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>6</testcase><description>Generic wrong</description>
+    <testinput><name>ansP</name><value>I/10</value></testinput>
+    <testinput><name>ansR</name><value>10</value></testinput>
+    <testinput><name>ansT</name><value>3</value></testinput>
+    <expected><name>prt1</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt1-1-F | prt1-2-F | prt1-3-F | prt1-4-F</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>7</testcase><description>Invalid: letter in R</description>
+    <testinput><name>ansP</name><value>Ps</value></testinput>
+    <testinput><name>ansR</name><value>x</value></testinput>
+    <testinput><name>ansT</name><value>3</value></testinput>
+    <expected><name>prt1</name><expectedscore></expectedscore><expectedpenalty></expectedpenalty><expectedanswernote>NULL</expectedanswernote></expected>
+  </qtest>
+</question>
+</quiz>

@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<quiz>
+<question type="stack">
+  <name><text>An edge skew to a given line</text></name>
+  <questiontext format="html">
+    <text><![CDATA[<p>The tent ABCDEF is a triangular prism. Its ends ABC and DEF are triangles and the edges AD, BE and CF are parallel. AE, BD, AF, CD, BF and CE are the diagonals of its three rectangular faces.</p><div style="text-align:center;" role="img" aria-label="A tent ABCDEF, a triangular prism. The ends ABC and DEF are lightly shaded triangles; the edges AD, BE and CF are parallel; ABED is the rectangular ground. N is the midpoint of AB and P is the midpoint of DE, with CN and FP dotted. The hidden corner D and its edges are dashed.">
+[[jsxgraph width="360px" height="280px"]]
+(function() {
+  var b = JXG.JSXGraph.initBoard(divid, {boundingbox: [-1.0, 5.4, 7.6, -1.3], axis: false, grid: false, keepaspectratio: true,
+    showNavigation: false, showCopyright: false, pan: {enabled: false}, zoom: {enabled: false}});
+  // oblique projection: receding edges at 30 degrees, half length
+  function P(x, y, z) { return [x + 0.5*y*Math.cos(Math.PI/6), z + 0.5*y*Math.sin(Math.PI/6)]; }
+  var solid = {strokeColor: '#000000', strokeWidth: 2, fixed: true, highlight: false};
+  var hid = {strokeColor: '#000000', strokeWidth: 1.5, dash: 2, fixed: true, highlight: false};
+  var dot = {strokeColor: '#000000', strokeWidth: 1.5, dash: 1, fixed: true, highlight: false};
+  var tx = {fixed: true, highlight: false, useMathJax: false, fontSize: 15, anchorX: 'middle', anchorY: 'middle'};
+  var cx = 3.3, cy = 1.9;
+  function lab(Q, s) { var dx = Q[0]-cx, dy = Q[1]-cy, r = Math.sqrt(dx*dx+dy*dy) || 1;
+    b.create('text', [Q[0]+0.42*dx/r, Q[1]+0.42*dy/r, s], tx); }
+  function seg(Q, R, o) { b.create('segment', [Q, R], o); }
+  function mark(Q, R, S) { // right-angle mark at Q between QR and QS
+    function u(X) { var dx = X[0]-Q[0], dy = X[1]-Q[1], r = Math.sqrt(dx*dx+dy*dy); return [0.3*dx/r, 0.3*dy/r]; }
+    var a = u(R), c = u(S);
+    b.create('polygon', [[Q[0]+a[0], Q[1]+a[1]], [Q[0]+a[0]+c[0], Q[1]+a[1]+c[1]], [Q[0]+c[0], Q[1]+c[1]]],
+      {fixed: true, highlight: false, fillOpacity: 0, vertices: {visible: false},
+       borders: {strokeColor: '#000000', strokeWidth: 1, fixed: true, highlight: false}});
+  }
+  // tent: triangular prism ABCDEF, ends ABC (front) and DEF (back), ground ABED (shape only)
+  var A = P(0,0,0), B = P(4,0,0), C = P(2,0,2.5), D = P(0,6,0), E = P(4,6,0), F = P(2,6,2.5), N = P(2,0,0), Q = P(2,6,0);
+  var shade = {fixed: true, highlight: false, fillColor: '#bbbbbb', fillOpacity: 0.3, vertices: {visible: false},
+    borders: {strokeWidth: 0, fixed: true, highlight: false}};
+  b.create('polygon', [A, B, C], shade); b.create('polygon', [D, E, F], shade);
+  seg(A,B,solid); seg(B,C,solid); seg(C,A,solid); seg(B,E,solid); seg(C,F,solid); seg(E,F,solid);
+  // hidden corner D: its three edges dashed; CN and FP dotted
+  seg(A,D,hid); seg(D,E,hid); seg(D,F,hid); seg(C,N,dot); seg(F,Q,dot);
+  lab(A,'A'); lab(B,'B'); lab(C,'C'); lab(D,'D'); lab(E,'E'); lab(F,'F');
+  b.create('text', [N[0], N[1]-0.4, 'N'], tx); b.create('text', [Q[0]+0.15, Q[1]-0.35, 'P'], tx);
+})();
+[[/jsxgraph]]
+</div><p>The diagram is not drawn to scale.</p><p>(a) Choose an edge of the tent that is skew to {@g@}.</p><div>[[input:ans1]] [[validation:ans1]] [[feedback:prt1]]</div><p>(b) Choose a face diagonal that is skew to {@g@}.</p><div>[[input:ans2]] [[validation:ans2]] [[feedback:prt2]]</div>]]></text>
+  </questiontext>
+  <generalfeedback format="html">
+    <text><![CDATA[<p>Skew lines never meet and are not parallel: no flat surface holds both. For each line, ask: does it meet {@g@}? Is it parallel to {@g@}? If neither, it is skew.</p><p>(a) The edges skew to {@g@} are {@sE@}. (b) The face diagonals skew to {@g@} are {@sD@}.</p>]]></text>
+  </generalfeedback>
+  <defaultgrade>2</defaultgrade>
+  <penalty>0.1</penalty>
+  <hidden>0</hidden>
+  <idnumber></idnumber>
+  <stackversion><text>2026063000</text></stackversion>
+  <questionvariables>
+    <text><![CDATA[tlist: [["AB",["CF","DF","EF"],["CD","CE"],[["AC","int","AC meets AB at A."],["AD","int","AD meets AB at A."],["BC","int","BC meets AB at B."],["BE","int","BE meets AB at B."],["CF","skw",""],["DE","par","DE is parallel to AB: it points the same way, so the two lines never meet but are not skew."],["DF","skw",""],["EF","skw",""],["AE","int","AE meets AB at A."],["BD","int","BD meets AB at B."],["AF","int","AF meets AB at A."],["CD","skw",""],["BF","int","BF meets AB at B."],["CE","skw",""]]],["AC",["BE","DE","EF"],["BD","BF"],[["AB","int","AB meets AC at A."],["AD","int","AD meets AC at A."],["BC","int","BC meets AC at C."],["BE","skw",""],["CF","int","CF meets AC at C."],["DE","skw",""],["DF","par","DF is parallel to AC: it points the same way, so the two lines never meet but are not skew."],["EF","skw",""],["AE","int","AE meets AC at A."],["BD","skw",""],["AF","int","AF meets AC at A."],["CD","int","CD meets AC at C."],["BF","skw",""],["CE","int","CE meets AC at C."]]],["BC",["AD","DE","DF"],["AE","AF"],[["AB","int","AB meets BC at B."],["AC","int","AC meets BC at C."],["AD","skw",""],["BE","int","BE meets BC at B."],["CF","int","CF meets BC at C."],["DE","skw",""],["DF","skw",""],["EF","par","EF is parallel to BC: it points the same way, so the two lines never meet but are not skew."],["AE","skw",""],["BD","int","BD meets BC at B."],["AF","skw",""],["CD","int","CD meets BC at C."],["BF","int","BF meets BC at B."],["CE","int","CE meets BC at C."]]],["DE",["AC","BC","CF"],["AF","BF"],[["AB","par","AB is parallel to DE: it points the same way, so the two lines never meet but are not skew."],["AC","skw",""],["AD","int","AD meets DE at D."],["BC","skw",""],["BE","int","BE meets DE at E."],["CF","skw",""],["DF","int","DF meets DE at D."],["EF","int","EF meets DE at E."],["AE","int","AE meets DE at E."],["BD","int","BD meets DE at D."],["AF","skw",""],["CD","int","CD meets DE at D."],["BF","skw",""],["CE","int","CE meets DE at E."]]],["DF",["AB","BC","BE"],["AE","CE"],[["AB","skw",""],["AC","par","AC is parallel to DF: it points the same way, so the two lines never meet but are not skew."],["AD","int","AD meets DF at D."],["BC","skw",""],["BE","skw",""],["CF","int","CF meets DF at F."],["DE","int","DE meets DF at D."],["EF","int","EF meets DF at F."],["AE","skw",""],["BD","int","BD meets DF at D."],["AF","int","AF meets DF at F."],["CD","int","CD meets DF at D."],["BF","int","BF meets DF at F."],["CE","skw",""]]],["EF",["AB","AC","AD"],["BD","CD"],[["AB","skw",""],["AC","skw",""],["AD","skw",""],["BC","par","BC is parallel to EF: it points the same way, so the two lines never meet but are not skew."],["BE","int","BE meets EF at E."],["CF","int","CF meets EF at F."],["DE","int","DE meets EF at E."],["DF","int","DF meets EF at F."],["AE","int","AE meets EF at E."],["BD","skw",""],["AF","int","AF meets EF at F."],["CD","skw",""],["BF","int","BF meets EF at F."],["CE","int","CE meets EF at E."]]],["AD",["BC","EF"],["BF","CE"],[["AB","int","AB meets AD at A."],["AC","int","AC meets AD at A."],["BC","skw",""],["BE","par","BE is parallel to AD: it points the same way, so the two lines never meet but are not skew."],["CF","par","CF is parallel to AD: it points the same way, so the two lines never meet but are not skew."],["DE","int","DE meets AD at D."],["DF","int","DF meets AD at D."],["EF","skw",""],["AE","int","AE meets AD at A."],["BD","int","BD meets AD at D."],["AF","int","AF meets AD at A."],["CD","int","CD meets AD at D."],["BF","skw",""],["CE","skw",""]]],["BE",["AC","DF"],["AF","CD"],[["AB","int","AB meets BE at B."],["AC","skw",""],["AD","par","AD is parallel to BE: it points the same way, so the two lines never meet but are not skew."],["BC","int","BC meets BE at B."],["CF","par","CF is parallel to BE: it points the same way, so the two lines never meet but are not skew."],["DE","int","DE meets BE at E."],["DF","skw",""],["EF","int","EF meets BE at E."],["AE","int","AE meets BE at E."],["BD","int","BD meets BE at B."],["AF","skw",""],["CD","skw",""],["BF","int","BF meets BE at B."],["CE","int","CE meets BE at E."]]],["CF",["AB","DE"],["AE","BD"],[["AB","skw",""],["AC","int","AC meets CF at C."],["AD","par","AD is parallel to CF: it points the same way, so the two lines never meet but are not skew."],["BC","int","BC meets CF at C."],["BE","par","BE is parallel to CF: it points the same way, so the two lines never meet but are not skew."],["DE","skw",""],["DF","int","DF meets CF at F."],["EF","int","EF meets CF at F."],["AE","skw",""],["BD","skw",""],["AF","int","AF meets CF at F."],["CD","int","CD meets CF at C."],["BF","int","BF meets CF at F."],["CE","int","CE meets CF at C."]]],["AE",["BC","CF","DF"],["CD","BF"],[["AB","int","AB meets AE at A."],["AC","int","AC meets AE at A."],["AD","int","AD meets AE at A."],["BC","skw",""],["BE","int","BE meets AE at E."],["CF","skw",""],["DE","int","DE meets AE at E."],["DF","skw",""],["EF","int","EF meets AE at E."],["BD","int","BD meets AE."],["AF","int","AF meets AE at A."],["CD","skw",""],["BF","skw",""],["CE","int","CE meets AE at E."]]]];
+/* Design: choose an edge skew to a given line; any correct choice scores. Options are in a fixed order; several are correct, so the teacher's answer is the first correct one. Each wrong option has its own feedback (parallel or meets). Source: original. */
+ix: 1+rand(10); TT: tlist[ix];
+g: TT[1]; skE: TT[2]; skD: TT[3]; REL: TT[4];
+andlist(L) := if length(L) = 1 then L[1] else sconcat(simplode(rest(L,-1), ", "), " and ", last(L));
+oE: delete(g, ["AB","AC","AD","BC","BE","CF","DE","DF","EF"]);
+oD: delete(g, ["AE","BD","AF","CD","BF","CE"]);
+cE: sublist(oE, lambda([e], member(e, skE))); cD: sublist(oD, lambda([e], member(e, skD)));
+opt1: makelist([e, is(e = cE[1]), e], e, oE); opt2: makelist([e, is(e = cD[1]), e], e, oD);
+ta1: cE[1]; ta2: cD[1]; tb1: cE[2]; tb2: cD[2];
+pE: sublist(oE, lambda([e], is(first(sublist(REL, lambda([r], is(r[1] = e))))[2] = "par")));
+iE: sublist(oE, lambda([e], is(first(sublist(REL, lambda([r], is(r[1] = e))))[2] = "int")));
+iD: sublist(oD, lambda([e], is(first(sublist(REL, lambda([r], is(r[1] = e))))[2] = "int")));
+w1: if pE = [] then iE[1] else pE[1]; w2: iE[1]; wd: iD[1]; wd2: last(iD);
+sE: andlist(skE); sD: andlist(skD);
+]]></text>
+  </questionvariables>
+  <specificfeedback format="html"><text><![CDATA[]]></text></specificfeedback>
+  <questionnote format="moodle_auto_format">
+    <text>ix={@ix@}, g={@g@}</text>
+  </questionnote>
+  <questiondescription format="html"><text><![CDATA[<p id="concept">Three-Dimensional Geometry: an edge skew to a given line</p><p id="description">Grade 12 CBE Core 2.4: Give an example of an edge, and of a face diagonal, of a triangular prism that is skew to a given line.</p><p id="edition">Core</p><p id="provenance">This question is original to this project.</p><p id="citation">INNODEMS CBC Grade 12 Mathematics, first draft by Ben Davies, 2026. Aligned to the KICD Senior School Curriculum Design, Core Mathematics Grade 12 (draft).</p>]]></text></questiondescription>
+  <questionsimplify>1</questionsimplify>
+  <assumepositive>0</assumepositive>
+  <assumereal>0</assumereal>
+  <prtcorrect format="html"><text><![CDATA[[[commonstring key="symbolicprtcorrectfeedback"/]] [[commonstring key="defaultprtcorrectfeedback"/]]]]></text></prtcorrect>
+  <prtpartiallycorrect format="html"><text><![CDATA[[[commonstring key="symbolicprtpartiallycorrectfeedback"/]] [[commonstring key="defaultprtpartiallycorrectfeedback"/]]]]></text></prtpartiallycorrect>
+  <prtincorrect format="html"><text><![CDATA[[[commonstring key="symbolicprtincorrectfeedback"/]] [[commonstring key="defaultprtincorrectfeedback"/]]]]></text></prtincorrect>
+  <decimals>.</decimals>
+  <scientificnotation>*10</scientificnotation>
+  <multiplicationsign>none</multiplicationsign>
+  <sqrtsign>1</sqrtsign>
+  <complexno>i</complexno>
+  <inversetrig>cos-1</inversetrig>
+  <logicsymbol>lang</logicsymbol>
+  <matrixparens>[</matrixparens>
+  <isbroken>0</isbroken>
+  <variantsselectionseed></variantsselectionseed>
+
+  <input><name>ans1</name><type>dropdown</type><tans>opt1</tans><boxsize>15</boxsize><strictsyntax>1</strictsyntax><insertstars>0</insertstars><syntaxhint></syntaxhint><syntaxattribute>0</syntaxattribute><forbidwords></forbidwords><allowwords></allowwords><forbidfloat>1</forbidfloat><requirelowestterms>0</requirelowestterms><checkanswertype>0</checkanswertype><mustverify>0</mustverify><showvalidation>0</showvalidation><options></options></input>
+  <input><name>ans2</name><type>dropdown</type><tans>opt2</tans><boxsize>15</boxsize><strictsyntax>1</strictsyntax><insertstars>0</insertstars><syntaxhint></syntaxhint><syntaxattribute>0</syntaxattribute><forbidwords></forbidwords><allowwords></allowwords><forbidfloat>1</forbidfloat><requirelowestterms>0</requirelowestterms><checkanswertype>0</checkanswertype><mustverify>0</mustverify><showvalidation>0</showvalidation><options></options></input>
+
+  <prt><name>prt1</name><value>1.0000000</value><autosimplify>1</autosimplify><feedbackstyle>1</feedbackstyle><feedbackvariables><text><![CDATA[in1: member(ans1, skE); in2: member(ans2, skD);
+rv1: sublist(REL, lambda([r], is(r[1] = ans1))); rv2: sublist(REL, lambda([r], is(r[1] = ans2)));
+fb1: if rv1 = [] then "" else rv1[1][3]; fb2: if rv2 = [] then "" else rv2[1][3];
+]]></text></feedbackvariables>
+    <node><name>0</name><description>Skew edge</description><answertest>AlgEquiv</answertest><sans>in1</sans><tans>true</tans><testoptions></testoptions><quiet>1</quiet><truescoremode>=</truescoremode><truescore>1.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt1-1-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>Yes. The edges skew to {@g@} are {@sE@}.</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>-1</falsenextnode><falseanswernote>prt1-1-F</falseanswernote><falsefeedback format="html"><text><![CDATA[<p>{@fb1@}</p><p>A skew edge neither meets {@g@} nor points the same way.</p>]]></text></falsefeedback></node>
+  </prt>
+  <prt><name>prt2</name><value>1.0000000</value><autosimplify>1</autosimplify><feedbackstyle>1</feedbackstyle><feedbackvariables><text><![CDATA[in1: member(ans1, skE); in2: member(ans2, skD);
+rv1: sublist(REL, lambda([r], is(r[1] = ans1))); rv2: sublist(REL, lambda([r], is(r[1] = ans2)));
+fb1: if rv1 = [] then "" else rv1[1][3]; fb2: if rv2 = [] then "" else rv2[1][3];
+]]></text></feedbackvariables>
+    <node><name>0</name><description>Skew face diagonal</description><answertest>AlgEquiv</answertest><sans>in2</sans><tans>true</tans><testoptions></testoptions><quiet>1</quiet><truescoremode>=</truescoremode><truescore>1.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt2-1-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>Yes. The face diagonals skew to {@g@} are {@sD@}.</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>-1</falsenextnode><falseanswernote>prt2-1-F</falseanswernote><falsefeedback format="html"><text><![CDATA[<p>{@fb2@}</p><p>A skew face diagonal neither meets {@g@} nor points the same way.</p>]]></text></falsefeedback></node>
+  </prt>
+
+  <deployedseed>4</deployedseed>
+  <deployedseed>5</deployedseed>
+  <deployedseed>15</deployedseed>
+  <deployedseed>8</deployedseed>
+  <deployedseed>24</deployedseed>
+  <deployedseed>1</deployedseed>
+  <deployedseed>3</deployedseed>
+  <deployedseed>10</deployedseed>
+  <deployedseed>2</deployedseed>
+  <deployedseed>17</deployedseed>
+  <qtest><testcase>1</testcase><description>First correct options</description>
+    <testinput><name>ans1</name><value>ta1</value></testinput>
+    <testinput><name>ans2</name><value>ta2</value></testinput>
+    <expected><name>prt1</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt1-1-T</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt2-1-T</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>2</testcase><description>Second correct options</description>
+    <testinput><name>ans1</name><value>tb1</value></testinput>
+    <testinput><name>ans2</name><value>tb2</value></testinput>
+    <expected><name>prt1</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt1-1-T</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt2-1-T</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>3</testcase><description>A parallel edge (where there is one); a meeting diagonal</description>
+    <testinput><name>ans1</name><value>w1</value></testinput>
+    <testinput><name>ans2</name><value>wd</value></testinput>
+    <expected><name>prt1</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt1-1-F</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt2-1-F</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>4</testcase><description>A meeting edge; another meeting diagonal</description>
+    <testinput><name>ans1</name><value>w2</value></testinput>
+    <testinput><name>ans2</name><value>wd2</value></testinput>
+    <expected><name>prt1</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt1-1-F</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt2-1-F</expectedanswernote></expected>
+  </qtest>
+</question>
+</quiz>

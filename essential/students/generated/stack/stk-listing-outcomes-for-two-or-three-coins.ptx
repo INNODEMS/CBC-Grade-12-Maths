@@ -1,0 +1,7 @@
+<stack-static>
+    <statement><p><p>A fair coin is tossed <m>{2}</m> times.</p><p>Give each probability exactly, as a fraction or an exact decimal.</p><p>(a) How many equally likely outcomes are there?</p><div><fillin characters="6" name="ans1"/>  </div><p>(b) Find the probability that there is exactly <m>{1}</m> head.</p><div><fillin characters="8" name="ans2"/>  </div><p>(c) Find the probability that there is at least one head.</p><div><fillin characters="8" name="ans3"/>  </div></p></statement>
+    <solution><p><p>(a) List the outcomes in order (H is a head and T a tail): HH, HT, TH, TT. Each extra toss doubles the list, so there are <m>{4}</m> equally likely outcomes.</p><p>(b) <m>{2}</m> of the outcomes in the list have exactly <m>{1}</m> head, so the probability is <m>\dfrac{{2}}{{4}} = {\frac{1}{2}}</m>.</p><p>(c) Only one outcome has none at all, so the probability of at least one is <m>1 - \dfrac{1}{{4}} = {\frac{3}{4}}</m>.</p><p>The number of heads can be 0 to <m>{2}</m>, but these <m>{3}</m> counts are not equally likely: the counts in the middle can happen in more orders.</p></p></solution>
+    <answer><p><m>4</m></p></answer>
+    <answer><p><m>\frac{1}{2}</m></p></answer>
+    <answer><p><m>\frac{3}{4}</m></p></answer>
+</stack-static>

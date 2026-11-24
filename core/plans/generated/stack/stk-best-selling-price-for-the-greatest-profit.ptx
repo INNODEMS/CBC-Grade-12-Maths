@@ -1,0 +1,7 @@
+<stack-static>
+    <statement><p><p>Mwanajuma sells cups of sugarcane juice at her stall in Mombasa. Each cup costs Ksh <m>{20}</m> to make. At a price of Ksh <m>p</m> a cup, she sells <m>{300-2 p}</m> cups a day.</p><p>(a) Write the daily profit <m>P</m> (in Ksh) in terms of <m>p</m>.</p><div><m>P =</m> <fillin characters="18" name="ans1"/>  </div><p>(b) Find the price that gives the greatest daily profit.</p><div>Ksh <fillin characters="5" name="ans2"/>  </div><p>(c) Find the greatest daily profit.</p><div>Ksh <fillin characters="6" name="ans3"/>  </div></p></statement>
+    <solution><p><p>Profit = (profit on each item) <m>\times</m> (number sold).</p><p>(a) <m>P = {\left(300-2 p\right) \left(p-20\right)} = {-2 p^2+340 p-6000}</m>.</p><p>(b) <m>\dfrac{dP}{dp} = {340-4 p} = 0</m> when <m>p = {85}</m>. <m>\dfrac{d^2P}{dp^2} = {-4} \lt 0</m>, so this is a maximum: the best price is Ksh <m>{85}</m>.</p><p>(c) At that price <m>{130}</m> are sold a day, and <m>P = {65} \times {130} = 8450</m>: the greatest daily profit is Ksh <m>8450</m>.</p><p>The takings alone, <m>{\left(300-2 p\right) p}</m>, would be greatest at Ksh <m>{75}</m>, a different price: the cost of making each item moves the best price up.</p></p></solution>
+    <answer><p><m>\left(300-2 p\right) \left(p-20\right)</m></p></answer>
+    <answer><p><m>85</m></p></answer>
+    <answer><p><m>8450</m></p></answer>
+</stack-static>

@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<quiz>
+<question type="stack">
+  <name><text>Finding the mistake in choosing a probability law</text></name>
+  <questiontext format="html">
+    <text><![CDATA[<p>A fair die is rolled and a fair spinner numbered 1 to \({@s@}\) is spun. Baraka wrote three probabilities. Exactly one line is wrong.</p><p>Line 1: [[if test="is(ord[1]=1)"]]\(P(\text{die shows } {@a@} \text{ and spinner shows } {@b@}) = [[if test="is(er=1)"]]\dfrac{1}{6} + \dfrac{1}{{@s@}} = {@1/6+1/s@}[[else]]\dfrac{1}{6} \times \dfrac{1}{{@s@}} = {@1/(6*s)@}[[/if]]\)[[elif test="is(ord[1]=2)"]]\(P(\text{die shows } {@a@} \text{ or } {@c@}) = [[if test="is(er=2)"]]\dfrac{1}{6} \times \dfrac{1}{6} = \dfrac{1}{36}[[else]]\dfrac{1}{6} + \dfrac{1}{6} = \dfrac{1}{3}[[/if]]\)[[else]]\(P(\text{die shows } {@a@} \text{ or spinner shows } {@b@}) = [[if test="is(er=3)"]]\dfrac{1}{6} + \dfrac{1}{{@s@}} = {@1/6+1/s@}[[else]]1 - \dfrac{5}{6} \times \dfrac{{@s-1@}}{{@s@}} = {@(s+5)/(6*s)@}[[/if]]\)[[/if]]</p><p>Line 2: [[if test="is(ord[2]=1)"]]\(P(\text{die shows } {@a@} \text{ and spinner shows } {@b@}) = [[if test="is(er=1)"]]\dfrac{1}{6} + \dfrac{1}{{@s@}} = {@1/6+1/s@}[[else]]\dfrac{1}{6} \times \dfrac{1}{{@s@}} = {@1/(6*s)@}[[/if]]\)[[elif test="is(ord[2]=2)"]]\(P(\text{die shows } {@a@} \text{ or } {@c@}) = [[if test="is(er=2)"]]\dfrac{1}{6} \times \dfrac{1}{6} = \dfrac{1}{36}[[else]]\dfrac{1}{6} + \dfrac{1}{6} = \dfrac{1}{3}[[/if]]\)[[else]]\(P(\text{die shows } {@a@} \text{ or spinner shows } {@b@}) = [[if test="is(er=3)"]]\dfrac{1}{6} + \dfrac{1}{{@s@}} = {@1/6+1/s@}[[else]]1 - \dfrac{5}{6} \times \dfrac{{@s-1@}}{{@s@}} = {@(s+5)/(6*s)@}[[/if]]\)[[/if]]</p><p>Line 3: [[if test="is(ord[3]=1)"]]\(P(\text{die shows } {@a@} \text{ and spinner shows } {@b@}) = [[if test="is(er=1)"]]\dfrac{1}{6} + \dfrac{1}{{@s@}} = {@1/6+1/s@}[[else]]\dfrac{1}{6} \times \dfrac{1}{{@s@}} = {@1/(6*s)@}[[/if]]\)[[elif test="is(ord[3]=2)"]]\(P(\text{die shows } {@a@} \text{ or } {@c@}) = [[if test="is(er=2)"]]\dfrac{1}{6} \times \dfrac{1}{6} = \dfrac{1}{36}[[else]]\dfrac{1}{6} + \dfrac{1}{6} = \dfrac{1}{3}[[/if]]\)[[else]]\(P(\text{die shows } {@a@} \text{ or spinner shows } {@b@}) = [[if test="is(er=3)"]]\dfrac{1}{6} + \dfrac{1}{{@s@}} = {@1/6+1/s@}[[else]]1 - \dfrac{5}{6} \times \dfrac{{@s-1@}}{{@s@}} = {@(s+5)/(6*s)@}[[/if]]\)[[/if]]</p><p>Give each probability exactly, as a fraction or an exact decimal.</p><p>(a) Which line is wrong?</p><div>[[input:ans1]] [[validation:ans1]] [[feedback:prt1]]</div><p>(b) What is the mistake?</p><div>[[input:ans2]] [[validation:ans2]] [[feedback:prt2]]</div><p>(c) Give the correct probability for that line.</p><div>[[input:ans3]] [[validation:ans3]] [[feedback:prt3]]</div>]]></text>
+  </questiontext>
+  <generalfeedback format="html">
+    <text><![CDATA[<p>Check each line. For <q>and</q> with the die and the spinner, which are separate experiments, multiply. For <q>or</q> with one die, the two numbers cannot both happen, so add. For <q>or</q> with the die and the spinner, both can happen together, so use \(1 - P(\text{neither})\).</p>[[if test="is(er=1)"]]<p>(a) Line {@wp@} adds for an <q>and</q> event. (b) The die and the spinner are independent and both must happen, so multiply. (c) \(\dfrac{1}{6} \times \dfrac{1}{{@s@}} = {@ta3@}\).</p>[[elif test="is(er=2)"]]<p>(a) Line {@wp@} multiplies for an <q>or</q> event on one die. (b) The die cannot show {@a@} and {@c@} at once, so add. (c) \(\dfrac{1}{6} + \dfrac{1}{6} = \dfrac{1}{3}\).</p>[[else]]<p>(a) Line {@wp@} adds two events that can happen together. (b) The outcome where the die shows {@a@} and the spinner shows {@b@} is counted twice. (c) \(1 - P(\text{neither}) = 1 - \dfrac{5}{6} \times \dfrac{{@s-1@}}{{@s@}} = {@ta3@}\).</p>[[/if]]]]></text>
+  </generalfeedback>
+  <defaultgrade>3</defaultgrade>
+  <penalty>0.1</penalty>
+  <hidden>0</hidden>
+  <idnumber></idnumber>
+  <stackversion><text>2026063000</text></stackversion>
+  <questionvariables>
+    <text><![CDATA[/* Design: [er, s, a, c, b, wp]: er 1 the "and" line adds, er 2 the one-die "or" line multiplies, er 3 the overlapping "or" line adds; wp = position (2 or 3) of the wrong line. Shown values differ from the correct ones on every entry. Source: original. */
+L: [[1,8,5,1,3,2],[2,4,4,5,2,3],[3,4,3,1,2,3],[1,5,5,4,5,3],[2,5,6,2,3,3],[3,8,2,1,5,2],[1,8,5,4,3,3],[2,4,5,3,2,3],[3,8,2,6,8,2],[2,4,5,6,2,2]];
+ix: 1+rand(10);
+er: L[ix][1]; s: L[ix][2]; a: L[ix][3]; c: L[ix][4]; b: L[ix][5]; wp: L[ix][6];
+/* line kinds: 1 "and", 2 one-die "or", 3 overlapping "or"; ord = kind shown at positions 1..3 */
+oth: delete(er,[1,2,3]);
+ord: if wp=2 then [oth[1],er,oth[2]] else [oth[1],oth[2],er];
+pos(kd) := first(sublist([1,2,3], lambda([u], ord[u]=kd)));
+mel: pos(2);
+ta3: if er=1 then 1/(6*s) elseif er=2 then 1/3 else (s+5)/(6*s);
+bv: if er=2 then 1/36 else 1/6+1/s;
+tl3: min(1/200,ta3/20);
+lk: if wp=2 then "l2" else "l3";
+lo: if wp=2 then "l3" else "l2";
+rk: if er=1 then "r1" elseif er=2 then "r2" else "r3";
+rw: if er=1 then "r2" else "r1";
+opts1: [["l1",false,"Line 1"],["l2",is(wp=2),"Line 2"],["l3",is(wp=3),"Line 3"]];
+opts2: [["r0",false,"Probabilities should never be added."],["r1",is(er=1),"Both events must happen and they are independent, so he should multiply, not add."],["r2",is(er=2),"The die cannot show both numbers at once, so he should add, not multiply."],["r3",is(er=3),"The two events can happen together, so adding counts the outcome where both happen twice."]];]]></text>
+  </questionvariables>
+  <specificfeedback format="html"><text><![CDATA[]]></text></specificfeedback>
+  <questionnote format="moodle_auto_format">
+    <text>ix={@ix@}, er={@er@}, s={@s@}, wp={@wp@}</text>
+  </questionnote>
+  <questiondescription format="html"><text><![CDATA[<p id="concept">Probability III: finding the mistake in choosing a probability law</p><p id="description">Grade 12 CBE Essential 3.2: Identify which of three probability calculations uses the wrong law, say why, and correct it.</p><p id="edition">Essential</p><p id="provenance">This question is original to this project.</p><p id="citation">INNODEMS CBC Grade 12 Mathematics, first draft by Ben Davies, 2026. Aligned to the KICD Senior School Curriculum Design, Essential Mathematics Grade 12 (draft).</p>]]></text></questiondescription>
+  <questionsimplify>1</questionsimplify>
+  <assumepositive>0</assumepositive>
+  <assumereal>0</assumereal>
+  <prtcorrect format="html"><text><![CDATA[[[commonstring key="symbolicprtcorrectfeedback"/]] [[commonstring key="defaultprtcorrectfeedback"/]]]]></text></prtcorrect>
+  <prtpartiallycorrect format="html"><text><![CDATA[[[commonstring key="symbolicprtpartiallycorrectfeedback"/]] [[commonstring key="defaultprtpartiallycorrectfeedback"/]]]]></text></prtpartiallycorrect>
+  <prtincorrect format="html"><text><![CDATA[[[commonstring key="symbolicprtincorrectfeedback"/]] [[commonstring key="defaultprtincorrectfeedback"/]]]]></text></prtincorrect>
+  <decimals>.</decimals>
+  <scientificnotation>*10</scientificnotation>
+  <multiplicationsign>none</multiplicationsign>
+  <sqrtsign>1</sqrtsign>
+  <complexno>i</complexno>
+  <inversetrig>cos-1</inversetrig>
+  <logicsymbol>lang</logicsymbol>
+  <matrixparens>[</matrixparens>
+  <isbroken>0</isbroken>
+  <variantsselectionseed></variantsselectionseed>
+
+  <input><name>ans1</name><type>dropdown</type><tans>opts1</tans><boxsize>15</boxsize><strictsyntax>1</strictsyntax><insertstars>0</insertstars><syntaxhint></syntaxhint><syntaxattribute>0</syntaxattribute><forbidwords></forbidwords><allowwords></allowwords><forbidfloat>1</forbidfloat><requirelowestterms>0</requirelowestterms><checkanswertype>0</checkanswertype><mustverify>0</mustverify><showvalidation>0</showvalidation><options></options></input>
+  <input><name>ans2</name><type>radio</type><tans>opts2</tans><boxsize>15</boxsize><strictsyntax>1</strictsyntax><insertstars>0</insertstars><syntaxhint></syntaxhint><syntaxattribute>0</syntaxattribute><forbidwords></forbidwords><allowwords></allowwords><forbidfloat>1</forbidfloat><requirelowestterms>0</requirelowestterms><checkanswertype>0</checkanswertype><mustverify>0</mustverify><showvalidation>0</showvalidation><options></options></input>
+  <input><name>ans3</name><type>numerical</type><tans>ta3</tans><boxsize>8</boxsize><strictsyntax>1</strictsyntax><insertstars>0</insertstars><syntaxhint></syntaxhint><syntaxattribute>0</syntaxattribute><forbidwords></forbidwords><allowwords></allowwords><forbidfloat>0</forbidfloat><requirelowestterms>0</requirelowestterms><checkanswertype>0</checkanswertype><mustverify>0</mustverify><showvalidation>0</showvalidation><options></options></input>
+
+  <prt><name>prt1</name><value>1.0000000</value><autosimplify>1</autosimplify><feedbackstyle>1</feedbackstyle><feedbackvariables><text><![CDATA[kc: if ans1="l1" then 1 elseif ans1="l2" then 2 else 3;
+kd: ord[kc];]]></text></feedbackvariables>
+    <node><name>0</name><description>ok</description><answertest>AlgEquiv</answertest><sans>ans1</sans><tans>lk</tans><testoptions></testoptions><quiet>1</quiet><truescoremode>=</truescoremode><truescore>1.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt1-1-T</trueanswernote><truefeedback format="html"><text><![CDATA[]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>-1</falsenextnode><falseanswernote>prt1-1-F</falseanswernote><falsefeedback format="html"><text><![CDATA[<p>Line {@kc@} is right: [[if test="is(kd=1)"]]the die and the spinner are separate experiments, so multiply for <q>and</q>[[elif test="is(kd=2)"]]one die cannot show both numbers, so add for <q>or</q>[[else]]the two events can happen together, so 1 minus the probability of neither is right[[/if]]. Check the other lines.</p>]]></text></falsefeedback></node>
+  </prt>
+  <prt><name>prt2</name><value>1.0000000</value><autosimplify>1</autosimplify><feedbackstyle>1</feedbackstyle><feedbackvariables><text><![CDATA[]]></text></feedbackvariables>
+    <node><name>0</name><description>ok</description><answertest>AlgEquiv</answertest><sans>ans2</sans><tans>rk</tans><testoptions></testoptions><quiet>1</quiet><truescoremode>=</truescoremode><truescore>1.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt2-1-T</trueanswernote><truefeedback format="html"><text><![CDATA[]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>1</falsenextnode><falseanswernote>prt2-1-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>1</name><description>never</description><answertest>AlgEquiv</answertest><sans>ans2</sans><tans>"r0"</tans><testoptions></testoptions><quiet>1</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt2-2-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>Adding is right for mutually exclusive events (Line {@mel@}).</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>-1</falsenextnode><falseanswernote>prt2-2-F</falseanswernote><falsefeedback format="html"><text><![CDATA[<p>Your reason describes a different mistake. Ask: is the line about <q>and</q> or <q>or</q>, and can the two events happen together?</p>]]></text></falsefeedback></node>
+  </prt>
+  <prt><name>prt3</name><value>1.0000000</value><autosimplify>1</autosimplify><feedbackstyle>1</feedbackstyle><feedbackvariables><text><![CDATA[]]></text></feedbackvariables>
+    <node><name>0</name><description>ok</description><answertest>NumAbsolute</answertest><sans>ans3</sans><tans>ta3</tans><testoptions>10^(-9)</testoptions><quiet>1</quiet><truescoremode>=</truescoremode><truescore>1.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt3-1-T</trueanswernote><truefeedback format="html"><text><![CDATA[]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>1</falsenextnode><falseanswernote>prt3-1-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>1</name><description>round</description><answertest>NumAbsolute</answertest><sans>ans3</sans><tans>ta3</tans><testoptions>tl3</testoptions><quiet>1</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt3-2-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>Your value is close to the right one but has been rounded. Give the exact probability as a fraction or an exact decimal.</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>2</falsenextnode><falseanswernote>prt3-2-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>2</name><description>bv</description><answertest>NumAbsolute</answertest><sans>ans3</sans><tans>bv</tans><testoptions>tl3</testoptions><quiet>1</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt3-3-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>That is Baraka's value, which contains the mistake.</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>3</falsenextnode><falseanswernote>prt3-3-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>3</name><description>range</description><answertest>AlgEquiv</answertest><sans>is(ans3&lt;0 or ans3&gt;1)</sans><tans>true</tans><testoptions></testoptions><quiet>1</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt3-4-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>A probability is always between 0 and 1, so \({@ans3@}\) cannot be a probability.</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>-1</falsenextnode><falseanswernote>prt3-4-F</falseanswernote><falsefeedback format="html"><text><![CDATA[<p>Use the right law for that line: multiply for <q>and</q> with separate experiments; add for <q>or</q> when both cannot happen; otherwise use \(1 - P(\text{neither})\).</p>]]></text></falsefeedback></node>
+  </prt>
+
+  <deployedseed>4</deployedseed>
+  <deployedseed>5</deployedseed>
+  <deployedseed>15</deployedseed>
+  <deployedseed>8</deployedseed>
+  <deployedseed>24</deployedseed>
+  <deployedseed>1</deployedseed>
+  <deployedseed>3</deployedseed>
+  <deployedseed>10</deployedseed>
+  <deployedseed>2</deployedseed>
+  <deployedseed>17</deployedseed>
+  <qtest><testcase>1</testcase><description>Correct</description>
+    <testinput><name>ans1</name><value>lk</value></testinput>
+    <testinput><name>ans2</name><value>rk</value></testinput>
+    <testinput><name>ans3</name><value>ev(if er=1 then 1/(6*s) elseif er=2 then 1/6+1/6 else 1-5/6*(s-1)/s,simp)</value></testinput>
+    <expected><name>prt1</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt1-1-T</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt2-1-T</expectedanswernote></expected>
+    <expected><name>prt3</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt3-1-T</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>2</testcase><description>Line 1; never add; Baraka's value</description>
+    <testinput><name>ans1</name><value>"l1"</value></testinput>
+    <testinput><name>ans2</name><value>"r0"</value></testinput>
+    <testinput><name>ans3</name><value>bv</value></testinput>
+    <expected><name>prt1</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt1-1-F</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt2-1-F | prt2-2-T</expectedanswernote></expected>
+    <expected><name>prt3</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt3-1-F | prt3-2-F | prt3-3-T</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>3</testcase><description>Other right line; wrong reason; generic</description>
+    <testinput><name>ans1</name><value>lo</value></testinput>
+    <testinput><name>ans2</name><value>rw</value></testinput>
+    <testinput><name>ans3</name><value>ta3/2</value></testinput>
+    <expected><name>prt1</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt1-1-F</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt2-1-F | prt2-2-F</expectedanswernote></expected>
+    <expected><name>prt3</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt3-1-F | prt3-2-F | prt3-3-F | prt3-4-F</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>4</testcase><description>Rounded (c)</description>
+    <testinput><name>ans1</name><value>lk</value></testinput>
+    <testinput><name>ans2</name><value>rk</value></testinput>
+    <testinput><name>ans3</name><value>float(ta3+tl3/2)</value></testinput>
+    <expected><name>prt1</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt1-1-T</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt2-1-T</expectedanswernote></expected>
+    <expected><name>prt3</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt3-1-F | prt3-2-T</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>5</testcase><description>Out of range (c)</description>
+    <testinput><name>ans1</name><value>lk</value></testinput>
+    <testinput><name>ans2</name><value>rk</value></testinput>
+    <testinput><name>ans3</name><value>ta3+1</value></testinput>
+    <expected><name>prt1</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt1-1-T</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt2-1-T</expectedanswernote></expected>
+    <expected><name>prt3</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt3-1-F | prt3-2-F | prt3-3-F | prt3-4-T</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>6</testcase><description>Invalid: letter in (c)</description>
+    <testinput><name>ans1</name><value>lk</value></testinput>
+    <testinput><name>ans2</name><value>rk</value></testinput>
+    <testinput><name>ans3</name><value>x</value></testinput>
+    <expected><name>prt1</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt1-1-T</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt2-1-T</expectedanswernote></expected>
+    <expected><name>prt3</name><expectedscore></expectedscore><expectedpenalty></expectedpenalty><expectedanswernote>NULL</expectedanswernote></expected>
+  </qtest>
+</question>
+</quiz>

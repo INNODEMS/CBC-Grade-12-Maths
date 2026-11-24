@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<quiz>
+<question type="stack">
+  <name><text>Finding coefficients from a stationary point</text></name>
+  <questiontext format="html">
+    <text><![CDATA[<p>The curve \(y = x^3 + ax^2 + bx + 4\) has a stationary point at \(({@p0@}, {@kk@})\).</p><p>(a) Find \(a\) and \(b\).</p><div>\(a =\) [[input:ans1]] [[validation:ans1]] \(\quad b =\) [[input:ans2]] [[validation:ans2]] [[feedback:prt1]]</div><p>(b) The stationary point is a [[input:ans3]] [[validation:ans3]] [[feedback:prt2]]</p>]]></text>
+  </questiontext>
+  <generalfeedback format="html">
+    <text><![CDATA[<p>Two facts give two equations. The gradient is \(0\) at the point, and the point lies on the curve.</p><p>\(\dfrac{dy}{dx} = 3x^2 + 2ax + b\). At \(x = {@p0@}\): \({@3*p0^2+2*p0*a+b@} = 0\).</p><p>The curve passes through \(({@p0@}, {@kk@})\): \({@p0^3+p0^2*a+p0*b+4@} = {@kk@}\).</p><p>Solving these simultaneously gives \(a = {@a0@}\) and \(b = {@b0@}\), so \(y = {@f@}\).</p><p>(b) \(\dfrac{d^2y}{dx^2} = 6x + 2a = {@6*x+2*a0@}\), which is \({@f2@}\) at \(x = {@p0@}\): [[if test="is(f2>0)"]]positive[[else]]negative[[/if]], so the point is a [[if test="is(np=1)"]]maximum point[[elif test="is(np=2)"]]minimum point[[else]]point of inflection[[/if]].</p>]]></text>
+  </generalfeedback>
+  <defaultgrade>2</defaultgrade>
+  <penalty>0.1</penalty>
+  <hidden>0</hidden>
+  <idnumber></idnumber>
+  <stackversion><text>2026063000</text></stackversion>
+  <questionvariables>
+    <text><![CDATA[/* Design: a stationary point fixes two constants, with diagnostics for using only one of the two facts. Source: adapted from SMP AS/A2 Core 1, chapter 9, Mixed questions question 10. */
+L: [[1,-5],[2,-4],[-1,1],[3,-3],[-2,-1],[1,3],[2,-9],[-1,-6],[-3,3],[2,1]];
+ix: 1+rand(10);
+p0: L[ix][1]; a0: L[ix][2];
+b0: -3*p0^2-2*a0*p0;
+kk: p0^3+a0*p0^2+b0*p0+4;
+f2: 6*p0+2*a0;
+np: if f2<0 then 1 else 2;
+f: x^3+a0*x^2+b0*x+4;
+nat2: [["max2",is(np=1),"maximum point"],["min2",is(np=2),"minimum point"],["inf2",is(np=3),"point of inflection"]];
+wa2: if np=1 then "min2" else "max2";
+wb2: if np=3 then "min2" else "inf2";
+]]></text>
+  </questionvariables>
+  <specificfeedback format="html"><text><![CDATA[]]></text></specificfeedback>
+  <questionnote format="moodle_auto_format">
+    <text>ix={@ix@}, p0={@p0@}, k={@kk@}, a={@a0@}, b={@b0@}, nature {@np@}</text>
+  </questionnote>
+  <questiondescription format="html"><text><![CDATA[<p id="concept">Differentiation II: finding coefficients from a stationary point</p><p id="description">Grade 12 CBE Core 4.1: Use the two facts at a given stationary point to find two coefficients of a cubic, then classify the point.</p><p id="edition">Core</p><p id="provenance">This question is adapted from Question 10 in the Mixed questions of Chapter 9 of Cassell, D., Instone, S., Ling, J., Scruton, P., Shilton, S. and West, H., SMP AS/A2 Mathematics: Core 1 for AQA, Cambridge University Press, 2004: two unknown constants instead of one, randomised over curated points, with diagnostics for using only one fact.</p><p id="citation">INNODEMS CBC Grade 12 Mathematics, first draft by Ben Davies, 2026. Aligned to the KICD Senior School Curriculum Design, Core Mathematics Grade 12 (draft).</p>]]></text></questiondescription>
+  <questionsimplify>1</questionsimplify>
+  <assumepositive>0</assumepositive>
+  <assumereal>0</assumereal>
+  <prtcorrect format="html"><text><![CDATA[[[commonstring key="symbolicprtcorrectfeedback"/]] [[commonstring key="defaultprtcorrectfeedback"/]]]]></text></prtcorrect>
+  <prtpartiallycorrect format="html"><text><![CDATA[[[commonstring key="symbolicprtpartiallycorrectfeedback"/]] [[commonstring key="defaultprtpartiallycorrectfeedback"/]]]]></text></prtpartiallycorrect>
+  <prtincorrect format="html"><text><![CDATA[[[commonstring key="symbolicprtincorrectfeedback"/]] [[commonstring key="defaultprtincorrectfeedback"/]]]]></text></prtincorrect>
+  <decimals>.</decimals>
+  <scientificnotation>*10</scientificnotation>
+  <multiplicationsign>none</multiplicationsign>
+  <sqrtsign>1</sqrtsign>
+  <complexno>i</complexno>
+  <inversetrig>cos-1</inversetrig>
+  <logicsymbol>lang</logicsymbol>
+  <matrixparens>[</matrixparens>
+  <isbroken>0</isbroken>
+  <variantsselectionseed></variantsselectionseed>
+
+  <input><name>ans1</name><type>numerical</type><tans>a0</tans><boxsize>5</boxsize><strictsyntax>1</strictsyntax><insertstars>0</insertstars><syntaxhint></syntaxhint><syntaxattribute>0</syntaxattribute><forbidwords></forbidwords><allowwords></allowwords><forbidfloat>1</forbidfloat><requirelowestterms>0</requirelowestterms><checkanswertype>0</checkanswertype><mustverify>0</mustverify><showvalidation>0</showvalidation><options></options></input>
+  <input><name>ans2</name><type>numerical</type><tans>b0</tans><boxsize>5</boxsize><strictsyntax>1</strictsyntax><insertstars>0</insertstars><syntaxhint></syntaxhint><syntaxattribute>0</syntaxattribute><forbidwords></forbidwords><allowwords></allowwords><forbidfloat>1</forbidfloat><requirelowestterms>0</requirelowestterms><checkanswertype>0</checkanswertype><mustverify>0</mustverify><showvalidation>0</showvalidation><options></options></input>
+  <input><name>ans3</name><type>dropdown</type><tans>nat2</tans><boxsize>15</boxsize><strictsyntax>1</strictsyntax><insertstars>0</insertstars><syntaxhint></syntaxhint><syntaxattribute>0</syntaxattribute><forbidwords></forbidwords><allowwords></allowwords><forbidfloat>1</forbidfloat><requirelowestterms>0</requirelowestterms><checkanswertype>0</checkanswertype><mustverify>0</mustverify><showvalidation>0</showvalidation><options></options></input>
+
+  <prt><name>prt1</name><value>1.0000000</value><autosimplify>1</autosimplify><feedbackstyle>1</feedbackstyle><feedbackvariables><text><![CDATA[]]></text></feedbackvariables>
+    <node><name>0</name><description>Both constants</description><answertest>AlgEquiv</answertest><sans>[ans1,ans2]</sans><tans>[a0,b0]</tans><testoptions></testoptions><quiet>1</quiet><truescoremode>=</truescoremode><truescore>1.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt1-1-T</trueanswernote><truefeedback format="html"><text><![CDATA[]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>1</falsenextnode><falseanswernote>prt1-1-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>1</name><description>Gradient fact only</description><answertest>AlgEquiv</answertest><sans>3*p0^2+2*ans1*p0+ans2</sans><tans>0</tans><testoptions></testoptions><quiet>1</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt1-2-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>With your values \(\dfrac{dy}{dx}\) is \(0\) at \(x = {@p0@}\), but the curve does not pass through \(({@p0@}, {@kk@})\): your \(y\) there is \({@p0^3+ans1*p0^2+ans2*p0+4@}\). Use both facts.</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>2</falsenextnode><falseanswernote>prt1-2-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>2</name><description>Point fact only</description><answertest>AlgEquiv</answertest><sans>p0^3+ans1*p0^2+ans2*p0+4</sans><tans>kk</tans><testoptions></testoptions><quiet>1</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt1-3-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>Your curve passes through the point, but \(\dfrac{dy}{dx}\) is not \(0\) there. Use both facts.</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>-1</falsenextnode><falseanswernote>prt1-3-F</falseanswernote><falsefeedback format="html"><text><![CDATA[<p>With your values, \(\dfrac{dy}{dx}\) at \(x = {@p0@}\) is \({@3*p0^2+2*ans1*p0+ans2@}\) (it should be \(0\)) and \(y\) there is \({@p0^3+ans1*p0^2+ans2*p0+4@}\) (it should be \({@kk@}\)). Write the two facts as equations in \(a\) and \(b\) and solve them simultaneously.</p>]]></text></falsefeedback></node>
+  </prt>
+  <prt><name>prt2</name><value>1.0000000</value><autosimplify>1</autosimplify><feedbackstyle>1</feedbackstyle><feedbackvariables><text><![CDATA[d2l: 6*p0+2*ans1; sgl: if d2l<0 then 1 elseif d2l>0 then 2 else 0;]]></text></feedbackvariables>
+    <node><name>0</name><description>Nature</description><answertest>AlgEquiv</answertest><sans>ans3</sans><tans>first(mcq_correct(nat2))</tans><testoptions></testoptions><quiet>1</quiet><truescoremode>=</truescoremode><truescore>1.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt2-1-T</trueanswernote><truefeedback format="html"><text><![CDATA[]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>1</falsenextnode><falseanswernote>prt2-1-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>1</name><description>Wrong A</description><answertest>AlgEquiv</answertest><sans>ans3</sans><tans>wa2</tans><testoptions></testoptions><quiet>1</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt2-2-T</trueanswernote><truefeedback format="html"><text><![CDATA[[[if test="is(sgl=3-np)"]]<p>With your \(a = {@ans1@}\), \(\dfrac{d^2y}{dx^2}\) is \({@d2l@}\) at \(x = {@p0@}\), so your choice follows from your \(a\). But that value of \(a\) is not right: check (a).</p>[[else]][[if test="is(np=1)"]]<p>You chose minimum point. At a minimum point \(\dfrac{d^2y}{dx^2}\) is positive. Find \(\dfrac{d^2y}{dx^2}\) with your \(a\) and work out its value at \(x = {@p0@}\).</p>[[else]]<p>You chose maximum point. At a maximum point \(\dfrac{d^2y}{dx^2}\) is negative. Find \(\dfrac{d^2y}{dx^2}\) with your \(a\) and work out its value at \(x = {@p0@}\).</p>[[/if]][[/if]]]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>-1</falsenextnode><falseanswernote>prt2-2-F</falseanswernote><falsefeedback format="html"><text><![CDATA[[[if test="is(d2l=0)"]]<p>With your \(a = {@ans1@}\), \(\dfrac{d^2y}{dx^2}\) would be \(0\) at \(x = {@p0@}\), which decides nothing. Check (a): with the right \(a\) it is not \(0\).</p>[[else]]<p>You chose point of inflection. With your \(a = {@ans1@}\), \(\dfrac{d^2y}{dx^2}\) is not \(0\) at \(x = {@p0@}\), so the second-derivative test decides: the point is a turning point. Use the sign of the second derivative to say which kind.</p>[[/if]]]]></text></falsefeedback></node>
+  </prt>
+
+  <deployedseed>4</deployedseed>
+  <deployedseed>5</deployedseed>
+  <deployedseed>15</deployedseed>
+  <deployedseed>8</deployedseed>
+  <deployedseed>24</deployedseed>
+  <deployedseed>1</deployedseed>
+  <deployedseed>3</deployedseed>
+  <deployedseed>10</deployedseed>
+  <deployedseed>2</deployedseed>
+  <deployedseed>17</deployedseed>
+  <qtest><testcase>1</testcase><description>Correct</description>
+    <testinput><name>ans1</name><value>a0</value></testinput>
+    <testinput><name>ans2</name><value>b0</value></testinput>
+    <testinput><name>ans3</name><value>first(mcq_correct(nat2))</value></testinput>
+    <expected><name>prt1</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt1-1-T</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt2-1-T</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>2</testcase><description>Gradient condition only; wrong A</description>
+    <testinput><name>ans1</name><value>a0+1</value></testinput>
+    <testinput><name>ans2</name><value>b0-2*p0</value></testinput>
+    <testinput><name>ans3</name><value>wa2</value></testinput>
+    <expected><name>prt1</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt1-1-F | prt1-2-T</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt2-1-F | prt2-2-T</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>3</testcase><description>Point condition only; wrong B</description>
+    <testinput><name>ans1</name><value>a0+1</value></testinput>
+    <testinput><name>ans2</name><value>b0-p0</value></testinput>
+    <testinput><name>ans3</name><value>wb2</value></testinput>
+    <expected><name>prt1</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt1-1-F | prt1-2-F | prt1-3-T</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt2-1-F | prt2-2-F</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>4</testcase><description>Neither condition</description>
+    <testinput><name>ans1</name><value>a0+1</value></testinput>
+    <testinput><name>ans2</name><value>b0</value></testinput>
+    <testinput><name>ans3</name><value>first(mcq_correct(nat2))</value></testinput>
+    <expected><name>prt1</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt1-1-F | prt1-2-F | prt1-3-F</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt2-1-T</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>5</testcase><description>Invalid: letter in b</description>
+    <testinput><name>ans1</name><value>a0</value></testinput>
+    <testinput><name>ans2</name><value>x</value></testinput>
+    <testinput><name>ans3</name><value>first(mcq_correct(nat2))</value></testinput>
+    <expected><name>prt1</name><expectedscore></expectedscore><expectedpenalty></expectedpenalty><expectedanswernote>NULL</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt2-1-T</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>6</testcase><description>Nature that follows from a wrong a</description>
+    <testinput><name>ans1</name><value>a0-f2</value></testinput>
+    <testinput><name>ans2</name><value>b0</value></testinput>
+    <testinput><name>ans3</name><value>wa2</value></testinput>
+    <expected><name>prt1</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt1-1-F | prt1-2-F | prt1-3-F</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt2-1-F | prt2-2-T</expectedanswernote></expected>
+  </qtest>
+</question>
+</quiz>

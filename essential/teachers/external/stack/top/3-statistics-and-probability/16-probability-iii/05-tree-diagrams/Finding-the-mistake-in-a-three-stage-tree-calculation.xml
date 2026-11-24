@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<quiz>
+<question type="stack">
+  <name><text>Finding the mistake in a three-stage tree calculation</text></name>
+  <questiontext format="html">
+    <text><![CDATA[<p>[[if test="is(cx=0)"]]A farmer plants three bean seeds. Each seed germinates with probability \({@p@}\), independently.[[elif test="is(cx=1)"]]Three boda boda riders pass a checkpoint. Each rider wears a helmet with probability \({@p@}\), independently.[[elif test="is(cx=2)"]]Chebet takes three free throws in a basketball match. She scores each with probability \({@p@}\), independently.[[else]]A school buys three solar lamps. Each lamp works for a year with probability \({@p@}\), independently.[[/if]] Wafula worked out the probability that [[if test="is(cx=0)"]]exactly two seeds germinate[[elif test="is(cx=1)"]]exactly two riders wear a helmet[[elif test="is(cx=2)"]]she scores exactly two[[else]]exactly two lamps work[[/if]]. He wrote S for success and F for failure. His working has one mistake.</p><div style="border-left:3px solid #999;padding-left:10px;">[[if test="is(er=1)"]]<p>Paths: SSF.</p><p>\(P = {@p@} \times {@p@} \times {@1-p@} = {@v@}\)</p>[[elif test="is(er=2)"]]<p>Paths: SSF, SFS, FSS, SSS.</p><p>\(P = 3 \times {@p@} \times {@p@} \times {@1-p@} + ({@p@})^3 = {@v@}\)</p>[[else]]<p>Paths: SSF, SFS, FSS.</p><p>Each path \(= {@p@} \times {@p@} \times {@p@} = {@p^3@}\).</p><p>\(P = 3 \times {@p^3@} = {@v@}\)</p>[[/if]]</div><p>Give each probability exactly, as a fraction or an exact decimal.</p><p>(a) What did Wafula do wrong?</p><div>[[input:ans1]] [[validation:ans1]] [[feedback:prt1]]</div><p>(b) Find the correct probability.</p><div>[[input:ans2]] [[validation:ans2]] [[feedback:prt2]]</div>]]></text>
+  </questiontext>
+  <generalfeedback format="html">
+    <text><![CDATA[<p>Exactly two successes happen on three paths, SSF, SFS and FSS. On each path the two S branches have probability \({@p@}\) and the F branch \({@1-p@}\), so each path has probability \({@p@} \times {@p@} \times {@1-p@} = {@p^2*(1-p)@}\). The three paths are equal, so multiplying one by 3 is right.</p><p>(a) [[if test="is(er=1)"]]Wafula used only one of the three paths.[[elif test="is(er=2)"]]Wafula included SSS, which has three successes, not exactly two.[[else]]Wafula used \({@p@}\) on the F branch, where the item fails; that branch has probability \({@1-p@}\).[[/if]]</p><p>(b) \(3 \times {@p^2*(1-p)@} = {@ta2@}\).</p>]]></text>
+  </generalfeedback>
+  <defaultgrade>2</defaultgrade>
+  <penalty>0.1</penalty>
+  <hidden>0</hidden>
+  <idnumber></idnumber>
+  <stackversion><text>2026063000</text></stackversion>
+  <questionvariables>
+    <text><![CDATA[/* Design: three independent stages, three named errors. [er, p]: er 1 one path only, er 2 included SSS, er 3 success probability on fail branches. One diagnostic only in (b), so every seed has the same route structure. Source: adapted from SMP AS/A2 Statistics 1, chapter 3, Exercise E question 3. */
+L: [[1,3/5],[2,7/10],[3,2/5],[1,9/10],[2,3/4],[3,3/5],[1,7/10],[2,4/5],[3,2/3],[1,3/10]];
+ix: 1+rand(10);
+er: L[ix][1]; p: L[ix][2];
+cx: mod(ix,4);
+ta2: 3*p^2*(1-p);
+v: [p^2*(1-p), 3*p^2*(1-p)+p^3, 3*p^3][er];
+tl2: min(1/200,ta2/20);
+rk: if er=1 then "r1" elseif er=2 then "r2" else "r3";
+rw: if er=1 then "r2" else "r1";
+opts1: [["r0",false,"He should have added the three paths instead of multiplying one path by 3."],["r1",is(er=1),"He used only one of the paths with exactly two successes."],["r2",is(er=2),"He included the path where all three succeed."],["r3",is(er=3),"He used the probability of success on branches where the item fails."]];]]></text>
+  </questionvariables>
+  <specificfeedback format="html"><text><![CDATA[]]></text></specificfeedback>
+  <questionnote format="moodle_auto_format">
+    <text>ix={@ix@}, er={@er@}, p={@p@}</text>
+  </questionnote>
+  <questiondescription format="html"><text><![CDATA[<p id="concept">Probability III: finding the mistake in a three-stage tree calculation</p><p id="description">Grade 12 CBE Essential 3.2: Identify the error in a three-stage tree calculation of P(exactly two) and find the correct probability.</p><p id="edition">Essential</p><p id="provenance">This question is adapted from Chapter 3, Exercise E, question 3 of Cassell, D., Instone, S., Ling, J., Scruton, P. and Shilton, S., SMP AS/A2 Mathematics: Statistics 1 for Edexcel, Cambridge University Press, 2004: three independent stages, three named errors in a new worked calculation, new Kenyan contexts and numbers, randomised.</p><p id="citation">INNODEMS CBC Grade 12 Mathematics, first draft by Ben Davies, 2026. Aligned to the KICD Senior School Curriculum Design, Essential Mathematics Grade 12 (draft).</p>]]></text></questiondescription>
+  <questionsimplify>1</questionsimplify>
+  <assumepositive>0</assumepositive>
+  <assumereal>0</assumereal>
+  <prtcorrect format="html"><text><![CDATA[[[commonstring key="symbolicprtcorrectfeedback"/]] [[commonstring key="defaultprtcorrectfeedback"/]]]]></text></prtcorrect>
+  <prtpartiallycorrect format="html"><text><![CDATA[[[commonstring key="symbolicprtpartiallycorrectfeedback"/]] [[commonstring key="defaultprtpartiallycorrectfeedback"/]]]]></text></prtpartiallycorrect>
+  <prtincorrect format="html"><text><![CDATA[[[commonstring key="symbolicprtincorrectfeedback"/]] [[commonstring key="defaultprtincorrectfeedback"/]]]]></text></prtincorrect>
+  <decimals>.</decimals>
+  <scientificnotation>*10</scientificnotation>
+  <multiplicationsign>none</multiplicationsign>
+  <sqrtsign>1</sqrtsign>
+  <complexno>i</complexno>
+  <inversetrig>cos-1</inversetrig>
+  <logicsymbol>lang</logicsymbol>
+  <matrixparens>[</matrixparens>
+  <isbroken>0</isbroken>
+  <variantsselectionseed></variantsselectionseed>
+
+  <input><name>ans1</name><type>radio</type><tans>opts1</tans><boxsize>15</boxsize><strictsyntax>1</strictsyntax><insertstars>0</insertstars><syntaxhint></syntaxhint><syntaxattribute>0</syntaxattribute><forbidwords></forbidwords><allowwords></allowwords><forbidfloat>1</forbidfloat><requirelowestterms>0</requirelowestterms><checkanswertype>0</checkanswertype><mustverify>0</mustverify><showvalidation>0</showvalidation><options></options></input>
+  <input><name>ans2</name><type>numerical</type><tans>ta2</tans><boxsize>8</boxsize><strictsyntax>1</strictsyntax><insertstars>0</insertstars><syntaxhint></syntaxhint><syntaxattribute>0</syntaxattribute><forbidwords></forbidwords><allowwords></allowwords><forbidfloat>0</forbidfloat><requirelowestterms>0</requirelowestterms><checkanswertype>0</checkanswertype><mustverify>0</mustverify><showvalidation>0</showvalidation><options></options></input>
+
+  <prt><name>prt1</name><value>1.0000000</value><autosimplify>1</autosimplify><feedbackstyle>1</feedbackstyle><feedbackvariables><text><![CDATA[]]></text></feedbackvariables>
+    <node><name>0</name><description>ok</description><answertest>AlgEquiv</answertest><sans>ans1</sans><tans>rk</tans><testoptions></testoptions><quiet>1</quiet><truescoremode>=</truescoremode><truescore>1.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt1-1-T</trueanswernote><truefeedback format="html"><text><![CDATA[]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>1</falsenextnode><falseanswernote>prt1-1-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>1</name><description>add</description><answertest>AlgEquiv</answertest><sans>ans1</sans><tans>"r0"</tans><testoptions></testoptions><quiet>1</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt1-2-T</trueanswernote><truefeedback format="html"><text><![CDATA[[[if test="is(er=1)"]]<p>Wafula did not multiply a path by 3 in this working, so that cannot be his mistake. Compare his working with the tree, one step at a time.</p>[[else]]<p>Multiplying one path by 3 is fine here: the three paths have the same probability.</p>[[/if]]]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>-1</falsenextnode><falseanswernote>prt1-2-F</falseanswernote><falsefeedback format="html"><text><![CDATA[<p>Check his list of paths, then the branches on each path.</p>]]></text></falsefeedback></node>
+  </prt>
+  <prt><name>prt2</name><value>1.0000000</value><autosimplify>1</autosimplify><feedbackstyle>1</feedbackstyle><feedbackvariables><text><![CDATA[]]></text></feedbackvariables>
+    <node><name>0</name><description>ok</description><answertest>NumAbsolute</answertest><sans>ans2</sans><tans>ta2</tans><testoptions>10^(-9)</testoptions><quiet>1</quiet><truescoremode>=</truescoremode><truescore>1.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt2-1-T</trueanswernote><truefeedback format="html"><text><![CDATA[]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>1</falsenextnode><falseanswernote>prt2-1-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>1</name><description>round</description><answertest>NumAbsolute</answertest><sans>ans2</sans><tans>ta2</tans><testoptions>tl2</testoptions><quiet>1</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt2-2-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>Your value is close to the right one but has been rounded. Give the exact probability as a fraction or an exact decimal.</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>2</falsenextnode><falseanswernote>prt2-2-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>2</name><description>v</description><answertest>NumAbsolute</answertest><sans>ans2</sans><tans>v</tans><testoptions>tl2</testoptions><quiet>1</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt2-3-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>That is Wafula's answer, which contains the mistake.</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>3</falsenextnode><falseanswernote>prt2-3-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>3</name><description>range</description><answertest>AlgEquiv</answertest><sans>is(ans2&lt;0 or ans2&gt;1)</sans><tans>true</tans><testoptions></testoptions><quiet>1</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt2-4-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>A probability is always between 0 and 1, so \({@ans2@}\) cannot be a probability.</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>-1</falsenextnode><falseanswernote>prt2-4-F</falseanswernote><falsefeedback format="html"><text><![CDATA[<p>List the three paths with exactly two successes and multiply along each.</p>]]></text></falsefeedback></node>
+  </prt>
+
+  <deployedseed>4</deployedseed>
+  <deployedseed>5</deployedseed>
+  <deployedseed>15</deployedseed>
+  <deployedseed>8</deployedseed>
+  <deployedseed>24</deployedseed>
+  <deployedseed>1</deployedseed>
+  <deployedseed>3</deployedseed>
+  <deployedseed>10</deployedseed>
+  <deployedseed>2</deployedseed>
+  <deployedseed>17</deployedseed>
+  <qtest><testcase>1</testcase><description>Correct, derived</description>
+    <testinput><name>ans1</name><value>rk</value></testinput>
+    <testinput><name>ans2</name><value>ev(3*p^2*(1-p),simp)</value></testinput>
+    <expected><name>prt1</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt1-1-T</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt2-1-T</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>2</testcase><description>Blamed multiplying by 3; Wafula's value</description>
+    <testinput><name>ans1</name><value>"r0"</value></testinput>
+    <testinput><name>ans2</name><value>v</value></testinput>
+    <expected><name>prt1</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt1-1-F | prt1-2-T</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt2-1-F | prt2-2-F | prt2-3-T</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>3</testcase><description>Wrong reason; generic</description>
+    <testinput><name>ans1</name><value>rw</value></testinput>
+    <testinput><name>ans2</name><value>ta2/2</value></testinput>
+    <expected><name>prt1</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt1-1-F | prt1-2-F</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt2-1-F | prt2-2-F | prt2-3-F | prt2-4-F</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>4</testcase><description>Rounded (b)</description>
+    <testinput><name>ans1</name><value>rk</value></testinput>
+    <testinput><name>ans2</name><value>float(ta2+tl2/2)</value></testinput>
+    <expected><name>prt1</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt1-1-T</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt2-1-F | prt2-2-T</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>5</testcase><description>Out of range (b)</description>
+    <testinput><name>ans1</name><value>rk</value></testinput>
+    <testinput><name>ans2</name><value>ta2+1</value></testinput>
+    <expected><name>prt1</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt1-1-T</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt2-1-F | prt2-2-F | prt2-3-F | prt2-4-T</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>6</testcase><description>Invalid: letter in (b)</description>
+    <testinput><name>ans1</name><value>rk</value></testinput>
+    <testinput><name>ans2</name><value>x</value></testinput>
+    <expected><name>prt1</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt1-1-T</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore></expectedscore><expectedpenalty></expectedpenalty><expectedanswernote>NULL</expectedanswernote></expected>
+  </qtest>
+</question>
+</quiz>

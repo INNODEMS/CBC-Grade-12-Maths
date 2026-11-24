@@ -1,0 +1,232 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<quiz>
+<question type="stack">
+  <name><text>Standard deviation using an assumed mean</text></name>
+  <questiontext format="html">
+    <text><![CDATA[<p>[[if test="eggs"]]The table shows the number of eggs collected each day at a poultry unit in Kiambu over {@n@} days.[[else]]The table shows the resting heart rates, in beats per minute (bpm), of {@n@} Grade 12 learners.[[/if]]</p><table border="1" style="border-collapse:collapse;text-align:center;"><tr><th style="padding:4px 10px;">[[if test="eggs"]]Eggs per day[[else]]Heart rate (bpm)[[/if]] (\(x\))</th><th style="padding:4px 10px;">{@xv[1]@}</th><th style="padding:4px 10px;">{@xv[2]@}</th><th style="padding:4px 10px;">{@xv[3]@}</th><th style="padding:4px 10px;">{@xv[4]@}</th><th style="padding:4px 10px;">{@xv[5]@}</th><th style="padding:4px 10px;">{@xv[6]@}</th></tr><tr><td style="padding:4px 10px;">[[if test="eggs"]]Number of days[[else]]Number of learners[[/if]] (\(f\))</td><td style="padding:4px 10px;">{@f[1]@}</td><td style="padding:4px 10px;">{@f[2]@}</td><td style="padding:4px 10px;">{@f[3]@}</td><td style="padding:4px 10px;">{@f[4]@}</td><td style="padding:4px 10px;">{@f[5]@}</td><td style="padding:4px 10px;">{@f[6]@}</td></tr></table><p>Use the assumed mean \(A = {@A@}\), with \(d = x - A\).</p><p>(a) Find \(\Sigma fd\).</p><div>\(\Sigma fd =\) [[input:ans1]] [[validation:ans1]] [[feedback:prt1]]</div><p>(b) Find \(\Sigma fd^2\).</p><div>\(\Sigma fd^2 =\) [[input:ans2]] [[validation:ans2]] [[feedback:prt2]]</div><p>(c) Find the mean, correct to 1 decimal place.</p><div>\(\bar{x} =\) [[input:ans3]] [[validation:ans3]] [[feedback:prt3]]</div><p>(d) Find the standard deviation, correct to 2 decimal places.</p><div>\(\sigma =\) [[input:ans4]] [[validation:ans4]] [[feedback:prt4]]</div>]]></text>
+  </questiontext>
+  <generalfeedback format="html">
+    <text><![CDATA[<p>Subtracting the same number \(A\) from every value moves the mean down by \(A\) and leaves the spread unchanged. So work with the small deviations \(d = x - A\): add \(A\) back to their mean, but not to their standard deviation, because the variance of \(x\) equals the variance of \(d\).</p><table border="1" style="border-collapse:collapse;text-align:center;"><tr><th style="padding:4px 10px;">\(x\)</th><th style="padding:4px 10px;">{@xv[1]@}</th><th style="padding:4px 10px;">{@xv[2]@}</th><th style="padding:4px 10px;">{@xv[3]@}</th><th style="padding:4px 10px;">{@xv[4]@}</th><th style="padding:4px 10px;">{@xv[5]@}</th><th style="padding:4px 10px;">{@xv[6]@}</th><th style="padding:4px 10px;">Total</th></tr><tr><td style="padding:4px 10px;">\(f\)</td><td style="padding:4px 10px;">{@f[1]@}</td><td style="padding:4px 10px;">{@f[2]@}</td><td style="padding:4px 10px;">{@f[3]@}</td><td style="padding:4px 10px;">{@f[4]@}</td><td style="padding:4px 10px;">{@f[5]@}</td><td style="padding:4px 10px;">{@f[6]@}</td><td style="padding:4px 10px;">{@n@}</td></tr><tr><td style="padding:4px 10px;">\(d = x - {@A@}\)</td><td style="padding:4px 10px;">{@dv[1]@}</td><td style="padding:4px 10px;">{@dv[2]@}</td><td style="padding:4px 10px;">{@dv[3]@}</td><td style="padding:4px 10px;">{@dv[4]@}</td><td style="padding:4px 10px;">{@dv[5]@}</td><td style="padding:4px 10px;">{@dv[6]@}</td><td style="padding:4px 10px;"></td></tr><tr><td style="padding:4px 10px;">\(fd\)</td><td style="padding:4px 10px;">{@f[1]*dv[1]@}</td><td style="padding:4px 10px;">{@f[2]*dv[2]@}</td><td style="padding:4px 10px;">{@f[3]*dv[3]@}</td><td style="padding:4px 10px;">{@f[4]*dv[4]@}</td><td style="padding:4px 10px;">{@f[5]*dv[5]@}</td><td style="padding:4px 10px;">{@f[6]*dv[6]@}</td><td style="padding:4px 10px;">{@Sfd@}</td></tr><tr><td style="padding:4px 10px;">\(fd^2\)</td><td style="padding:4px 10px;">{@f[1]*dv[1]^2@}</td><td style="padding:4px 10px;">{@f[2]*dv[2]^2@}</td><td style="padding:4px 10px;">{@f[3]*dv[3]^2@}</td><td style="padding:4px 10px;">{@f[4]*dv[4]^2@}</td><td style="padding:4px 10px;">{@f[5]*dv[5]^2@}</td><td style="padding:4px 10px;">{@f[6]*dv[6]^2@}</td><td style="padding:4px 10px;">{@Sfd2@}</td></tr></table><p>(a) \(\Sigma fd = {@Sfd@}\). (b) \(\Sigma fd^2 = {@Sfd2@}\).</p><p>(c) \[\bar{x} = A + \frac{\Sigma fd}{\Sigma f} = {@A@} [[if test="is(Sfd>=0)"]]+[[else]]-[[/if]] \frac{ {@aSfd@} }{ {@n@} } \approx {@mnd@}\]</p><p>(d) \[\sigma^2 = \frac{\Sigma fd^2}{\Sigma f} - \left(\frac{\Sigma fd}{\Sigma f}\right)^2 = \frac{ {@Sfd2@} }{ {@n@} } - \left(\frac{ {@Sfd@} }{ {@n@} }\right)^2 \approx {@vrd@}\]so \(\sigma = \sqrt{\sigma^2} \approx {@sdd@}\), using the unrounded variance.</p>]]></text>
+  </generalfeedback>
+  <defaultgrade>4</defaultgrade>
+  <penalty>0.1</penalty>
+  <hidden>0</hidden>
+  <idnumber></idnumber>
+  <stackversion><text>2026063000</text></stackversion>
+  <questionvariables>
+    <text><![CDATA[/* exd: shortest exact decimal display of a terminating value (up to 3 d.p.) */
+exd(v) := if integerp(v) then v else if integerp(10*v) then dispdp(float(v),1) else if integerp(100*v) then dispdp(float(v),2) else dispdp(float(v),3);
+/* Design: subtract a constant to find the mean and SD, as a frequency table. Source: adapted from SMP AS/A2 Statistics 1, chapter 2, section C, C7. */
+P: [[[3,4,8,14,10,2],63,3],[[2,2,14,9,5,3],48,3],[[6,6,11,13,6,5],47,3],[[2,2,6,9,13,7],48,2],[[10,12,5,3,3,2],65,2],[[5,5,5,11,10,9],45,2],[[2,2,6,8,13,8],62,3],[[14,12,7,6,2,2],63,3],[[3,3,4,7,14,8],65,2],[[8,13,7,12,6,4],47,3]];
+/* Keep every list's carried-rounding value different from the n-1 slip value. */
+ix: 1+rand(10);
+f: P[ix][1];
+x0: P[ix][2];
+A: x0+P[ix][3];
+xv: makelist(x0+k-1,k,1,6);
+dv: xv-A;
+n: apply("+",f);
+Sfd: sum(f[k]*dv[k],k,1,6);
+Sfd2: sum(f[k]*dv[k]^2,k,1,6);
+mn: A+Sfd/n;
+vr: Sfd2/n-(Sfd/n)^2;
+sdv: sqrt(vr);
+eggs: is(x0<=48);
+mnd: dispdp(float(floor(10^1*(mn)+1/2)/10^1),1);
+sdd: dispdp(float(floor(10^2*(sdv)+1/2)/10^2),2);
+vrd: dispdp(float(floor(10^3*(vr)+1/2)/10^3),3);
+/* diagnostics */
+negSfd: -Sfd;
+fdsq: sum((f[k]*dv[k])^2,k,1,6);
+unsq: sum(abs(f[k]*dv[k]),k,1,6);
+dbar: Sfd/n;
+mnsign: A-Sfd/n;
+sdplusA: sdv+A;
+sdnosub: sqrt(Sfd2/n);
+sdn1: sqrt(vr*n/(n-1));
+/* test values */
+mn1: float(floor(10^1*(mn)+1/2)/10^1);
+sd2: float(floor(10^2*(sdv)+1/2)/10^2);
+dbar1: float(floor(10^1*(dbar)+1/2)/10^1);
+mnsign1: float(floor(10^1*(mnsign)+1/2)/10^1);
+sdplusA2: float(floor(10^2*(sdplusA)+1/2)/10^2);
+sdnosub2: float(floor(10^2*(sdnosub)+1/2)/10^2);
+sdn12: float(floor(10^2*(sdn1)+1/2)/10^2);
+vr2: float(floor(10^2*(vr)+1/2)/10^2);
+Sfd2p: Sfd2+2*n;
+ft2: float(floor(10^2*(sqrt((Sfd2+2*n)/n-(Sfd/n)^2))+1/2)/10^2);
+tcar: float(floor(10^2*(sqrt(Sfd2/n-(mn1-A)^2))+1/2)/10^2);
+tcar4: if is(abs(tcar-sdn1)>0.00501) then tcar else sd2;
+aSfd: abs(Sfd);]]></text>
+  </questionvariables>
+  <specificfeedback format="html"><text><![CDATA[]]></text></specificfeedback>
+  <questionnote format="moodle_auto_format">
+    <text>ix={@ix@}, A={@A@}, n={@n@}, Sfd={@Sfd@}, Sfd2={@Sfd2@}, mean={@mnd@}, sd={@sdd@}</text>
+  </questionnote>
+  <questiondescription format="html"><text><![CDATA[<p id="concept">Statistics II: standard deviation using an assumed mean</p><p id="description">Grade 12 CBE Core 3.1: Use an assumed mean to find the mean and standard deviation from a frequency table.</p><p id="edition">Core</p><p id="provenance">This question is adapted from Question C7 in Section C of Chapter 2 of Cassell, D., Instone, S., Ling, J., Scruton, P. and Shilton, S., SMP AS/A2 Mathematics: Statistics 1 for Edexcel, Cambridge University Press, 2004: set as a frequency table with a given assumed mean, with new Kenyan contexts and new data.</p><p id="citation">INNODEMS CBC Grade 12 Mathematics, first draft by Ben Davies, 2026. Aligned to the KICD Senior School Curriculum Design, Core Mathematics Grade 12 (draft).</p>]]></text></questiondescription>
+  <questionsimplify>1</questionsimplify>
+  <assumepositive>0</assumepositive>
+  <assumereal>0</assumereal>
+  <prtcorrect format="html"><text><![CDATA[[[commonstring key="symbolicprtcorrectfeedback"/]] [[commonstring key="defaultprtcorrectfeedback"/]]]]></text></prtcorrect>
+  <prtpartiallycorrect format="html"><text><![CDATA[[[commonstring key="symbolicprtpartiallycorrectfeedback"/]] [[commonstring key="defaultprtpartiallycorrectfeedback"/]]]]></text></prtpartiallycorrect>
+  <prtincorrect format="html"><text><![CDATA[[[commonstring key="symbolicprtincorrectfeedback"/]] [[commonstring key="defaultprtincorrectfeedback"/]]]]></text></prtincorrect>
+  <decimals>.</decimals>
+  <scientificnotation>*10</scientificnotation>
+  <multiplicationsign>none</multiplicationsign>
+  <sqrtsign>1</sqrtsign>
+  <complexno>i</complexno>
+  <inversetrig>cos-1</inversetrig>
+  <logicsymbol>lang</logicsymbol>
+  <matrixparens>[</matrixparens>
+  <isbroken>0</isbroken>
+  <variantsselectionseed></variantsselectionseed>
+
+  <input><name>ans1</name><type>numerical</type><tans>Sfd</tans><boxsize>5</boxsize><strictsyntax>1</strictsyntax><insertstars>0</insertstars><syntaxhint></syntaxhint><syntaxattribute>0</syntaxattribute><forbidwords></forbidwords><allowwords></allowwords><forbidfloat>1</forbidfloat><requirelowestterms>0</requirelowestterms><checkanswertype>0</checkanswertype><mustverify>0</mustverify><showvalidation>0</showvalidation><options></options></input>
+  <input><name>ans2</name><type>numerical</type><tans>Sfd2</tans><boxsize>5</boxsize><strictsyntax>1</strictsyntax><insertstars>0</insertstars><syntaxhint></syntaxhint><syntaxattribute>0</syntaxattribute><forbidwords></forbidwords><allowwords></allowwords><forbidfloat>1</forbidfloat><requirelowestterms>0</requirelowestterms><checkanswertype>0</checkanswertype><mustverify>0</mustverify><showvalidation>0</showvalidation><options></options></input>
+  <input><name>ans3</name><type>numerical</type><tans>mn</tans><boxsize>6</boxsize><strictsyntax>1</strictsyntax><insertstars>0</insertstars><syntaxhint></syntaxhint><syntaxattribute>0</syntaxattribute><forbidwords></forbidwords><allowwords></allowwords><forbidfloat>0</forbidfloat><requirelowestterms>0</requirelowestterms><checkanswertype>0</checkanswertype><mustverify>0</mustverify><showvalidation>0</showvalidation><options></options></input>
+  <input><name>ans4</name><type>numerical</type><tans>sdv</tans><boxsize>6</boxsize><strictsyntax>1</strictsyntax><insertstars>0</insertstars><syntaxhint></syntaxhint><syntaxattribute>0</syntaxattribute><forbidwords></forbidwords><allowwords></allowwords><forbidfloat>0</forbidfloat><requirelowestterms>0</requirelowestterms><checkanswertype>0</checkanswertype><mustverify>0</mustverify><showvalidation>0</showvalidation><options></options></input>
+
+  <prt><name>prt1</name><value>1.0000000</value><autosimplify>1</autosimplify><feedbackstyle>1</feedbackstyle><feedbackvariables><text><![CDATA[]]></text></feedbackvariables>
+    <node><name>0</name><description>Sum fd</description><answertest>AlgEquiv</answertest><sans>ans1</sans><tans>Sfd</tans><testoptions></testoptions><quiet>0</quiet><truescoremode>=</truescoremode><truescore>1.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt1-1-T</trueanswernote><truefeedback format="html"><text><![CDATA[]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>1</falsenextnode><falseanswernote>prt1-1-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>1</name><description>Used A - x</description><answertest>AlgEquiv</answertest><sans>ans1</sans><tans>negSfd</tans><testoptions></testoptions><quiet>0</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt1-2-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>You used \(A - x\). The deviation is \(d = x - A\), so values below \({@A@}\) have negative \(d\).</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>-1</falsenextnode><falseanswernote>prt1-2-F</falseanswernote><falsefeedback format="html"><text><![CDATA[<p>Make a \(d\) row (\(x - {@A@}\)), multiply each \(d\) by its frequency, and add, keeping the signs.</p>]]></text></falsefeedback></node>
+  </prt>
+  <prt><name>prt2</name><value>1.0000000</value><autosimplify>1</autosimplify><feedbackstyle>1</feedbackstyle><feedbackvariables><text><![CDATA[]]></text></feedbackvariables>
+    <node><name>0</name><description>Sum fd^2</description><answertest>AlgEquiv</answertest><sans>ans2</sans><tans>Sfd2</tans><testoptions></testoptions><quiet>0</quiet><truescoremode>=</truescoremode><truescore>1.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt2-1-T</trueanswernote><truefeedback format="html"><text><![CDATA[]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>1</falsenextnode><falseanswernote>prt2-1-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>1</name><description>Squared fd</description><answertest>AlgEquiv</answertest><sans>ans2</sans><tans>fdsq</tans><testoptions></testoptions><quiet>0</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt2-2-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>You squared \(fd\). Each term is \(f \times d^2\): square \(d\), then multiply by \(f\).</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>2</falsenextnode><falseanswernote>prt2-2-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>2</name><description>Did not square d</description><answertest>AlgEquiv</answertest><sans>ans2</sans><tans>unsq</tans><testoptions></testoptions><quiet>0</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt2-3-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>You added the sizes of \(fd\) without squaring \(d\). Each term is \(f \times d^2\).</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>-1</falsenextnode><falseanswernote>prt2-3-F</falseanswernote><falsefeedback format="html"><text><![CDATA[<p>Make an \(fd^2\) row: \(f \times d \times d\). Every term is positive.</p>]]></text></falsefeedback></node>
+  </prt>
+  <prt><name>prt3</name><value>1.0000000</value><autosimplify>1</autosimplify><feedbackstyle>1</feedbackstyle><feedbackvariables><text><![CDATA[need: dispdp(float(n*(ans3-A)),1);]]></text></feedbackvariables>
+    <node><name>0</name><description>Mean</description><answertest>NumAbsolute</answertest><sans>ans3</sans><tans>mn</tans><testoptions>0.0501</testoptions><quiet>0</quiet><truescoremode>=</truescoremode><truescore>1.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt3-1-T</trueanswernote><truefeedback format="html"><text><![CDATA[]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>1</falsenextnode><falseanswernote>prt3-1-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>1</name><description>Mean of d only</description><answertest>NumAbsolute</answertest><sans>ans3</sans><tans>dbar</tans><testoptions>0.0501</testoptions><quiet>0</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt3-2-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>That is the mean of \(d\). Add the assumed mean, \(A = {@A@}\).</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>2</falsenextnode><falseanswernote>prt3-2-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>2</name><description>Subtracted mean of d</description><answertest>NumAbsolute</answertest><sans>ans3</sans><tans>mnsign</tans><testoptions>0.0501</testoptions><quiet>0</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt3-3-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>You subtracted the mean of \(d\) from \(A\). The mean is \(A + \dfrac{\Sigma fd}{\Sigma f}\).</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>-1</falsenextnode><falseanswernote>prt3-3-F</falseanswernote><falsefeedback format="html"><text><![CDATA[<p>A mean of \({@ans3@}\) would need \(\Sigma fd = {@n@} \times ({@ans3@} - {@A@}) = {@need@}\). Compare that with your \(\Sigma fd\) in (a).</p>]]></text></falsefeedback></node>
+  </prt>
+  <prt><name>prt4</name><value>1.0000000</value><autosimplify>1</autosimplify><feedbackstyle>1</feedbackstyle><feedbackvariables><text><![CDATA[rad: ans2/n-(ans1/n)^2;
+ft: if is(rad>=0) then sqrt(rad) else -1000;
+okm: is(abs(ans3-mn)<=0.0501);
+rc: Sfd2/n-(ans3-A)^2;
+car: if okm and is(rc>=0) then sqrt(rc) else sdv;
+far: is(abs(ans4-sdv)>0.00501);
+carok: is(abs(ans4-car)<=0.00501) and is(abs(ans4-sdn1)>0.00501);
+sdt: if far and carok then car else sdv;
+carn: okm and is(abs(ans4-car)<=0.00501);
+sq4: dispdp(float(ans4^2),3);]]></text></feedbackvariables>
+    <node><name>0</name><description>Standard deviation (or from the rounded mean in (c))</description><answertest>NumAbsolute</answertest><sans>ans4</sans><tans>sdt</tans><testoptions>0.00501</testoptions><quiet>0</quiet><truescoremode>=</truescoremode><truescore>1.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt4-1-T</trueanswernote><truefeedback format="html"><text><![CDATA[[[if test="far"]]<p>Accepted, but your answer is a little away from the exact value because you used a rounded answer from (c). In later parts, keep the unrounded value from your calculator.</p>[[/if]]]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>1</falsenextnode><falseanswernote>prt4-1-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>1</name><description>Added A</description><answertest>NumAbsolute</answertest><sans>ans4</sans><tans>sdplusA</tans><testoptions>0.00501</testoptions><quiet>0</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt4-2-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>You added \(A\) to the standard deviation. Subtracting \(A\) shifts every value but not the spread, so \(\sigma\) of \(x\) equals \(\sigma\) of \(d\): do not add \(A\) back.</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>2</falsenextnode><falseanswernote>prt4-2-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>2</name><description>Forgot to subtract</description><answertest>NumAbsolute</answertest><sans>ans4</sans><tans>sdnosub</tans><testoptions>0.00501</testoptions><quiet>0</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt4-3-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>Subtract \(\left(\dfrac{\Sigma fd}{\Sigma f}\right)^2\) before taking the square root.</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>3</falsenextnode><falseanswernote>prt4-3-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>3</name><description>Divided by n-1</description><answertest>NumAbsolute</answertest><sans>ans4</sans><tans>sdn1</tans><testoptions>0.00501</testoptions><quiet>0</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt4-4-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>You divided by \(n - 1 = {@n-1@}\). In this book the variance divides by \(\Sigma f = {@n@}\).</p>[[if test="carn"]]<p>If you divided by \({@n@}\) and this came from your rounded mean in (c), keep the unrounded mean in your calculator: rounding it changes this answer.</p>[[/if]]]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>4</falsenextnode><falseanswernote>prt4-4-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>4</name><description>Gave the variance</description><answertest>NumAbsolute</answertest><sans>ans4</sans><tans>vr</tans><testoptions>0.00501</testoptions><quiet>0</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt4-5-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>That is the variance; take its square root.</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>5</falsenextnode><falseanswernote>prt4-5-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>5</name><description>Follow-through</description><answertest>NumAbsolute</answertest><sans>ans4</sans><tans>ft</tans><testoptions>0.00501</testoptions><quiet>1</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt4-6-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>That is the right method for your sums; check (a) and (b).</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>-1</falsenextnode><falseanswernote>prt4-6-F</falseanswernote><falsefeedback format="html"><text><![CDATA[<p>Your answer squared is \({@sq4@}\). Compare it with \(\dfrac{\Sigma fd^2}{\Sigma f} - \left(\dfrac{\Sigma fd}{\Sigma f}\right)^2\) worked from your sums in (a) and (b), unrounded.</p>]]></text></falsefeedback></node>
+  </prt>
+
+  <deployedseed>4</deployedseed>
+  <deployedseed>5</deployedseed>
+  <deployedseed>15</deployedseed>
+  <deployedseed>8</deployedseed>
+  <deployedseed>24</deployedseed>
+  <deployedseed>1</deployedseed>
+  <deployedseed>3</deployedseed>
+  <deployedseed>10</deployedseed>
+  <deployedseed>2</deployedseed>
+  <deployedseed>17</deployedseed>
+  <qtest><testcase>1</testcase><description>Carried rounding: sd from the 1 d.p. mean in (c)</description>
+    <testinput><name>ans1</name><value>Sfd</value></testinput>
+    <testinput><name>ans2</name><value>Sfd2</value></testinput>
+    <testinput><name>ans3</name><value>mn1</value></testinput>
+    <testinput><name>ans4</name><value>tcar4</value></testinput>
+    <expected><name>prt1</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt1-1-T</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt2-1-T</expectedanswernote></expected>
+    <expected><name>prt3</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt3-1-T</expectedanswernote></expected>
+    <expected><name>prt4</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt4-1-T</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>2</testcase><description>Correct, derived</description>
+    <testinput><name>ans1</name><value>ev(apply("+",f*(xv-A)),simp)</value></testinput>
+    <testinput><name>ans2</name><value>ev(apply("+",f*(xv-A)^2),simp)</value></testinput>
+    <testinput><name>ans3</name><value>ev(float(floor(10^1*(A+apply("+",f*(xv-A))/n)+1/2)/10^1),simp)</value></testinput>
+    <testinput><name>ans4</name><value>ev(float(floor(10^2*(sqrt(apply("+",f*(xv-A)^2)/n-(apply("+",f*(xv-A))/n)^2))+1/2)/10^2),simp)</value></testinput>
+    <expected><name>prt1</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt1-1-T</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt2-1-T</expectedanswernote></expected>
+    <expected><name>prt3</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt3-1-T</expectedanswernote></expected>
+    <expected><name>prt4</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt4-1-T</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>3</testcase><description>Correct, unrounded</description>
+    <testinput><name>ans1</name><value>Sfd</value></testinput>
+    <testinput><name>ans2</name><value>Sfd2</value></testinput>
+    <testinput><name>ans3</name><value>float(mn)</value></testinput>
+    <testinput><name>ans4</name><value>float(sdv)</value></testinput>
+    <expected><name>prt1</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt1-1-T</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt2-1-T</expectedanswernote></expected>
+    <expected><name>prt3</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt3-1-T</expectedanswernote></expected>
+    <expected><name>prt4</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt4-1-T</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>4</testcase><description>Generic wrong</description>
+    <testinput><name>ans1</name><value>Sfd+1</value></testinput>
+    <testinput><name>ans2</name><value>Sfd2+1</value></testinput>
+    <testinput><name>ans3</name><value>-mn1</value></testinput>
+    <testinput><name>ans4</name><value>-sd2</value></testinput>
+    <expected><name>prt1</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt1-1-F | prt1-2-F</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt2-1-F | prt2-2-F | prt2-3-F</expectedanswernote></expected>
+    <expected><name>prt3</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt3-1-F | prt3-2-F | prt3-3-F</expectedanswernote></expected>
+    <expected><name>prt4</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt4-1-F | prt4-2-F | prt4-3-F | prt4-4-F | prt4-5-F | prt4-6-F</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>5</testcase><description>A - x; squared fd; mean of d; added A to sd</description>
+    <testinput><name>ans1</name><value>negSfd</value></testinput>
+    <testinput><name>ans2</name><value>fdsq</value></testinput>
+    <testinput><name>ans3</name><value>dbar1</value></testinput>
+    <testinput><name>ans4</name><value>sdplusA2</value></testinput>
+    <expected><name>prt1</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt1-1-F | prt1-2-T</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt2-1-F | prt2-2-T</expectedanswernote></expected>
+    <expected><name>prt3</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt3-1-F | prt3-2-T</expectedanswernote></expected>
+    <expected><name>prt4</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt4-1-F | prt4-2-T</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>6</testcase><description>Did not square d; subtracted mean of d; did not subtract</description>
+    <testinput><name>ans1</name><value>Sfd</value></testinput>
+    <testinput><name>ans2</name><value>unsq</value></testinput>
+    <testinput><name>ans3</name><value>mnsign1</value></testinput>
+    <testinput><name>ans4</name><value>sdnosub2</value></testinput>
+    <expected><name>prt1</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt1-1-T</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt2-1-F | prt2-2-F | prt2-3-T</expectedanswernote></expected>
+    <expected><name>prt3</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt3-1-F | prt3-2-F | prt3-3-T</expectedanswernote></expected>
+    <expected><name>prt4</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt4-1-F | prt4-2-F | prt4-3-T</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>7</testcase><description>Divided by n-1</description>
+    <testinput><name>ans1</name><value>Sfd</value></testinput>
+    <testinput><name>ans2</name><value>Sfd2</value></testinput>
+    <testinput><name>ans3</name><value>mn1</value></testinput>
+    <testinput><name>ans4</name><value>sdn12</value></testinput>
+    <expected><name>prt1</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt1-1-T</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt2-1-T</expectedanswernote></expected>
+    <expected><name>prt3</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt3-1-T</expectedanswernote></expected>
+    <expected><name>prt4</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt4-1-F | prt4-2-F | prt4-3-F | prt4-4-T</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>8</testcase><description>Gave the variance</description>
+    <testinput><name>ans1</name><value>Sfd</value></testinput>
+    <testinput><name>ans2</name><value>Sfd2</value></testinput>
+    <testinput><name>ans3</name><value>mn1</value></testinput>
+    <testinput><name>ans4</name><value>vr2</value></testinput>
+    <expected><name>prt1</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt1-1-T</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt2-1-T</expectedanswernote></expected>
+    <expected><name>prt3</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt3-1-T</expectedanswernote></expected>
+    <expected><name>prt4</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt4-1-F | prt4-2-F | prt4-3-F | prt4-4-F | prt4-5-T</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>9</testcase><description>Follow-through from a wrong sum of fd^2</description>
+    <testinput><name>ans1</name><value>Sfd</value></testinput>
+    <testinput><name>ans2</name><value>Sfd2p</value></testinput>
+    <testinput><name>ans3</name><value>mn1</value></testinput>
+    <testinput><name>ans4</name><value>ft2</value></testinput>
+    <expected><name>prt1</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt1-1-T</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt2-1-F | prt2-2-F | prt2-3-F</expectedanswernote></expected>
+    <expected><name>prt3</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt3-1-T</expectedanswernote></expected>
+    <expected><name>prt4</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt4-1-F | prt4-2-F | prt4-3-F | prt4-4-F | prt4-5-F | prt4-6-T</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>10</testcase><description>Invalid: letter in (b); (d) reads (b)</description>
+    <testinput><name>ans1</name><value>Sfd</value></testinput>
+    <testinput><name>ans2</name><value>x</value></testinput>
+    <testinput><name>ans3</name><value>mn1</value></testinput>
+    <testinput><name>ans4</name><value>sd2</value></testinput>
+    <expected><name>prt1</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt1-1-T</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore></expectedscore><expectedpenalty></expectedpenalty><expectedanswernote>NULL</expectedanswernote></expected>
+    <expected><name>prt3</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt3-1-T</expectedanswernote></expected>
+    <expected><name>prt4</name><expectedscore></expectedscore><expectedpenalty></expectedpenalty><expectedanswernote>NULL</expectedanswernote></expected>
+  </qtest>
+</question>
+</quiz>

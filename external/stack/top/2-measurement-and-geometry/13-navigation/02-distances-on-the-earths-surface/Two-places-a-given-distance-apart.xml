@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<quiz>
+<question type="stack">
+  <name><text>Two places a given distance apart</text></name>
+  <questiontext format="html">
+    <text><![CDATA[<p>(a) \(P\) and \(Q\) are both on the meridian \(37^\circ\,\mathrm{E}\). \(P\) is north of the equator and \(Q\) is south of it. The distance \(PQ\) along the meridian is \({@D1@}\) nm. Give a possible latitude for \(P\) and for \(Q\).</p><p>\(P\): [[input:ans1]] \(^\circ\,\mathrm{N}\), \(Q\): [[input:ans2]] \(^\circ\,\mathrm{S}\) [[validation:ans1]] [[validation:ans2]] [[feedback:prt1]]</p><p>(b) \(R\) and \(S\) are both on the meridian \(37^\circ\,\mathrm{E}\) and both north of the equator, \({@D2@}\) nm apart. Give possible latitudes.</p><p>\(R\): [[input:ans3]] \(^\circ\,\mathrm{N}\), \(S\): [[input:ans4]] \(^\circ\,\mathrm{N}\) [[validation:ans3]] [[validation:ans4]] [[feedback:prt2]]</p><p>There are many correct answers. Decimals are allowed.</p>]]></text>
+  </questiontext>
+  <generalfeedback format="html">
+    <text><![CDATA[<p>(a) Along a meridian, \(1\) nm is \(1'\) of latitude, so \({@D1@}\) nm is \({@D1@}' = {@k1@}^\circ\). \(P\) and \(Q\) are on opposite sides of the equator, so their latitudes add to \({@k1@}^\circ\): for example \(P\) at \(2^\circ\,\mathrm{N}\) and \(Q\) at \({@k1-2@}^\circ\,\mathrm{S}\).</p><p>(b) \({@D2@}\) nm is \({@k2@}^\circ\). \(R\) and \(S\) are on the same side, so their latitudes differ by \({@k2@}^\circ\): for example \(10^\circ\,\mathrm{N}\) and \({@k2+10@}^\circ\,\mathrm{N}\).</p>]]></text>
+  </generalfeedback>
+  <defaultgrade>2</defaultgrade>
+  <penalty>0.1</penalty>
+  <hidden>0</hidden>
+  <idnumber></idnumber>
+  <stackversion><text>2026063000</text></stackversion>
+  <questionvariables>
+    <text><![CDATA[/* Design: construct-an-example pattern. Any latitudes meeting the condition are accepted. Source: original. */
+k1: rand_with_step(6,40,1); D1: 60*k1;
+k2: rand_with_step(5,30,1); D2: 60*k2;
+ta1: 2; ta2: k1-2; ta3: k2+10; ta4: 10;
+]]></text>
+  </questionvariables>
+  <specificfeedback format="html"><text><![CDATA[]]></text></specificfeedback>
+  <questionnote format="moodle_auto_format">
+    <text>k1={@k1@}, k2={@k2@}</text>
+  </questionnote>
+  <questiondescription format="html"><text><![CDATA[<p id="concept">Navigation: places a given distance apart</p><p id="description">Grade 12 CBE Core 2.7 (c) / Essential 2.3 (d): Give latitudes of two places on a meridian that are a given number of nautical miles apart, on opposite sides of the equator and on the same side.</p><p id="edition">Core and Essential</p><p id="provenance">This question is original to this project.</p><p id="citation">INNODEMS CBC Grade 12 Mathematics, first draft by Ben Davies, 2026. Aligned to the KICD Senior School Curriculum Design, Core and Essential Mathematics Grade 12 (draft).</p>]]></text></questiondescription>
+  <questionsimplify>1</questionsimplify>
+  <assumepositive>0</assumepositive>
+  <assumereal>0</assumereal>
+  <prtcorrect format="html"><text><![CDATA[[[commonstring key="symbolicprtcorrectfeedback"/]] [[commonstring key="defaultprtcorrectfeedback"/]]]]></text></prtcorrect>
+  <prtpartiallycorrect format="html"><text><![CDATA[[[commonstring key="symbolicprtpartiallycorrectfeedback"/]] [[commonstring key="defaultprtpartiallycorrectfeedback"/]]]]></text></prtpartiallycorrect>
+  <prtincorrect format="html"><text><![CDATA[[[commonstring key="symbolicprtincorrectfeedback"/]] [[commonstring key="defaultprtincorrectfeedback"/]]]]></text></prtincorrect>
+  <decimals>.</decimals>
+  <scientificnotation>*10</scientificnotation>
+  <multiplicationsign>none</multiplicationsign>
+  <sqrtsign>1</sqrtsign>
+  <complexno>i</complexno>
+  <inversetrig>cos-1</inversetrig>
+  <logicsymbol>lang</logicsymbol>
+  <matrixparens>[</matrixparens>
+  <isbroken>0</isbroken>
+  <variantsselectionseed></variantsselectionseed>
+
+  <input><name>ans1</name><type>numerical</type><tans>ta1</tans><boxsize>5</boxsize><strictsyntax>1</strictsyntax><insertstars>0</insertstars><syntaxhint></syntaxhint><syntaxattribute>0</syntaxattribute><forbidwords></forbidwords><allowwords></allowwords><forbidfloat>0</forbidfloat><requirelowestterms>0</requirelowestterms><checkanswertype>0</checkanswertype><mustverify>0</mustverify><showvalidation>0</showvalidation><options></options></input>
+  <input><name>ans2</name><type>numerical</type><tans>ta2</tans><boxsize>5</boxsize><strictsyntax>1</strictsyntax><insertstars>0</insertstars><syntaxhint></syntaxhint><syntaxattribute>0</syntaxattribute><forbidwords></forbidwords><allowwords></allowwords><forbidfloat>0</forbidfloat><requirelowestterms>0</requirelowestterms><checkanswertype>0</checkanswertype><mustverify>0</mustverify><showvalidation>0</showvalidation><options></options></input>
+  <input><name>ans3</name><type>numerical</type><tans>ta3</tans><boxsize>5</boxsize><strictsyntax>1</strictsyntax><insertstars>0</insertstars><syntaxhint></syntaxhint><syntaxattribute>0</syntaxattribute><forbidwords></forbidwords><allowwords></allowwords><forbidfloat>0</forbidfloat><requirelowestterms>0</requirelowestterms><checkanswertype>0</checkanswertype><mustverify>0</mustverify><showvalidation>0</showvalidation><options></options></input>
+  <input><name>ans4</name><type>numerical</type><tans>ta4</tans><boxsize>5</boxsize><strictsyntax>1</strictsyntax><insertstars>0</insertstars><syntaxhint></syntaxhint><syntaxattribute>0</syntaxattribute><forbidwords></forbidwords><allowwords></allowwords><forbidfloat>0</forbidfloat><requirelowestterms>0</requirelowestterms><checkanswertype>0</checkanswertype><mustverify>0</mustverify><showvalidation>0</showvalidation><options></options></input>
+
+  <prt><name>prt1</name><value>1.0000000</value><autosimplify>1</autosimplify><feedbackstyle>1</feedbackstyle><feedbackvariables><text><![CDATA[ys1: ans1+ans2;
+c1: is(ans1>0 and ans2>0 and ans1<=90 and ans2<=90 and abs(ans1+ans2-k1)<=0.001);
+g1: is(ans1<=0 or ans2<=0 or ans1>90 or ans2>90);
+u1: is(abs(ans1+ans2-D1)<=0.001);
+s1: is(abs(abs(ans1-ans2)-k1)<=0.001);]]></text></feedbackvariables>
+    <node><name>0</name><description>Opposite sides</description><answertest>AlgEquiv</answertest><sans>c1</sans><tans>true</tans><testoptions></testoptions><quiet>0</quiet><truescoremode>=</truescoremode><truescore>1.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt1-1-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>Any pair adding to \({@k1@}^\circ\) works, because the equator lies between \(P\) and \(Q\).</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>1</falsenextnode><falseanswernote>prt1-1-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>1</name><description>Range</description><answertest>AlgEquiv</answertest><sans>g1</sans><tans>true</tans><testoptions></testoptions><quiet>0</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt1-2-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>Latitudes are between \(0^\circ\) and \(90^\circ\), and neither \(P\) nor \(Q\) is on the equator, so both must be more than \(0^\circ\) and at most \(90^\circ\).</p>[[if test="u1"]]<p>\({@D1@}\) nm is \({@D1@}\) minutes of arc, which is \({@k1@}^\circ\), not \({@D1@}^\circ\).</p>[[/if]]]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>2</falsenextnode><falseanswernote>prt1-2-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>2</name><description>Subtracted</description><answertest>AlgEquiv</answertest><sans>s1</sans><tans>true</tans><testoptions></testoptions><quiet>0</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt1-3-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>You subtracted. \(P\) and \(Q\) are on opposite sides of the equator, so their latitudes add to the difference in latitude, \({@k1@}^\circ\).</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>-1</falsenextnode><falseanswernote>prt1-3-F</falseanswernote><falsefeedback format="html"><text><![CDATA[<p>The equator lies between \(P\) and \(Q\), so your latitudes put them \({@ans1@}^\circ + {@ans2@}^\circ = {@ys1@}^\circ\) apart. That is \({@60*ys1@}'\) of arc, so \({@60*ys1@}\) nm along the meridian, not \({@D1@}\) nm.</p>]]></text></falsefeedback></node>
+  </prt>
+  <prt><name>prt2</name><value>1.0000000</value><autosimplify>1</autosimplify><feedbackstyle>1</feedbackstyle><feedbackvariables><text><![CDATA[yd2: abs(ans3-ans4);
+c2: is(ans3>0 and ans4>0 and ans3<=90 and ans4<=90 and abs(abs(ans3-ans4)-k2)<=0.001);
+g2: is(ans3<=0 or ans4<=0 or ans3>90 or ans4>90);
+u2: is(abs(abs(ans3-ans4)-D2)<=0.001);
+s2: is(abs(ans3+ans4-k2)<=0.001);]]></text></feedbackvariables>
+    <node><name>0</name><description>Same side</description><answertest>AlgEquiv</answertest><sans>c2</sans><tans>true</tans><testoptions></testoptions><quiet>0</quiet><truescoremode>=</truescoremode><truescore>1.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt2-1-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>Any two latitudes that differ by \({@k2@}^\circ\) work.</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>1</falsenextnode><falseanswernote>prt2-1-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>1</name><description>Range</description><answertest>AlgEquiv</answertest><sans>g2</sans><tans>true</tans><testoptions></testoptions><quiet>0</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt2-2-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>Latitudes are between \(0^\circ\) and \(90^\circ\), and both \(R\) and \(S\) are north of the equator, so both must be more than \(0^\circ\) and at most \(90^\circ\).</p>[[if test="u2"]]<p>\({@D2@}\) nm is \({@D2@}\) minutes of arc, which is \({@k2@}^\circ\), not \({@D2@}^\circ\).</p>[[/if]]]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>2</falsenextnode><falseanswernote>prt2-2-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>2</name><description>Added</description><answertest>AlgEquiv</answertest><sans>s2</sans><tans>true</tans><testoptions></testoptions><quiet>0</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt2-3-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>You added. \(R\) and \(S\) are on the same side of the equator, so their latitudes differ by \({@k2@}^\circ\).</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>-1</falsenextnode><falseanswernote>prt2-3-F</falseanswernote><falsefeedback format="html"><text><![CDATA[<p>[[if test="is(yd2<0.0005)"]]Your \(R\) and \(S\) have the same latitude, so on this meridian they are the same place, not \({@D2@}\) nm apart.[[else]]\(R\) and \(S\) are on the same side of the equator, so your latitudes put them \({@yd2@}^\circ\) apart. That is \({@60*yd2@}'\) of arc, so \({@60*yd2@}\) nm along the meridian, not \({@D2@}\) nm.[[/if]]</p>]]></text></falsefeedback></node>
+  </prt>
+
+  <deployedseed>1</deployedseed>
+  <deployedseed>2</deployedseed>
+  <deployedseed>3</deployedseed>
+  <deployedseed>4</deployedseed>
+  <deployedseed>5</deployedseed>
+  <deployedseed>6</deployedseed>
+  <deployedseed>7</deployedseed>
+  <deployedseed>8</deployedseed>
+  <deployedseed>9</deployedseed>
+  <deployedseed>10</deployedseed>
+  <qtest><testcase>1</testcase><description>Correct</description>
+    <testinput><name>ans1</name><value>2</value></testinput>
+    <testinput><name>ans2</name><value>k1-2</value></testinput>
+    <testinput><name>ans3</name><value>k2+10</value></testinput>
+    <testinput><name>ans4</name><value>10</value></testinput>
+    <expected><name>prt1</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt1-1-T</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt2-1-T</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>2</testcase><description>Other correct answers</description>
+    <testinput><name>ans1</name><value>k1/2</value></testinput>
+    <testinput><name>ans2</name><value>k1/2</value></testinput>
+    <testinput><name>ans3</name><value>5</value></testinput>
+    <testinput><name>ans4</name><value>5+k2</value></testinput>
+    <expected><name>prt1</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt1-1-T</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt2-1-T</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>3</testcase><description>P on the equator</description>
+    <testinput><name>ans1</name><value>0</value></testinput>
+    <testinput><name>ans2</name><value>k1</value></testinput>
+    <testinput><name>ans3</name><value>k2+10</value></testinput>
+    <testinput><name>ans4</name><value>10</value></testinput>
+    <expected><name>prt1</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt1-1-F | prt1-2-T</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt2-1-T</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>4</testcase><description>Subtracted; added</description>
+    <testinput><name>ans1</name><value>k1+10</value></testinput>
+    <testinput><name>ans2</name><value>10</value></testinput>
+    <testinput><name>ans3</name><value>k2-3</value></testinput>
+    <testinput><name>ans4</name><value>3</value></testinput>
+    <expected><name>prt1</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt1-1-F | prt1-2-F | prt1-3-T</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt2-1-F | prt2-2-F | prt2-3-T</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>5</testcase><description>Degrees not converted</description>
+    <testinput><name>ans1</name><value>D1-1</value></testinput>
+    <testinput><name>ans2</name><value>1</value></testinput>
+    <testinput><name>ans3</name><value>D2+10</value></testinput>
+    <testinput><name>ans4</name><value>10</value></testinput>
+    <expected><name>prt1</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt1-1-F | prt1-2-T</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt2-1-F | prt2-2-T</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>6</testcase><description>Generic wrong</description>
+    <testinput><name>ans1</name><value>1</value></testinput>
+    <testinput><name>ans2</name><value>k1+2</value></testinput>
+    <testinput><name>ans3</name><value>1</value></testinput>
+    <testinput><name>ans4</name><value>k2+5</value></testinput>
+    <expected><name>prt1</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt1-1-F | prt1-2-F | prt1-3-F</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt2-1-F | prt2-2-F | prt2-3-F</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>7</testcase><description>Invalid: letter in (a)</description>
+    <testinput><name>ans1</name><value>x</value></testinput>
+    <testinput><name>ans2</name><value>k1-2</value></testinput>
+    <testinput><name>ans3</name><value>k2+10</value></testinput>
+    <testinput><name>ans4</name><value>10</value></testinput>
+    <expected><name>prt1</name><expectedscore></expectedscore><expectedpenalty></expectedpenalty><expectedanswernote>NULL</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt2-1-T</expectedanswernote></expected>
+  </qtest>
+</question>
+</quiz>

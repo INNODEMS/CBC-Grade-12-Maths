@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<quiz>
+<question type="stack">
+  <name><text>Best whole-number plan</text></name>
+  <questiontext format="html">
+    <text><![CDATA[<p>{@E[1]@}</p><p>The vertex where the two boundary lines meet is \({@vd@}\). It would give the greatest profit if fractions were allowed.</p><p>(a) Which whole-number plan gives the greatest profit? \(x =\) [[input:ans1]] [[validation:ans1]] \(y =\) [[input:ans2]] [[validation:ans2]]</p><div>[[feedback:prt1]]</div><p>(b) What is that profit? Ksh [[input:ans3]] [[validation:ans3]] [[feedback:prt2]]</p>]]></text>
+  </questiontext>
+  <generalfeedback format="html">
+    <text><![CDATA[<p>A vertex that is not a whole-number point is not an answer: test the whole-number points of R around it. Rounding \({@vd@}\) to \(({@rp[1]@}, {@rp[2]@})\) breaks a condition: \({@brkd@}\). Rounding a vertex can carry you outside R, so check every constraint.</p><p>Test the whole-number points near the vertex that satisfy both conditions and work out \(P = {@pp@}x + {@pq@}y\) at each. The best is \(x = {@bst[1]@}\), \(y = {@bst[2]@}\), with profit Ksh \({@thou(t)@}\).</p>]]></text>
+  </generalfeedback>
+  <defaultgrade>2</defaultgrade>
+  <penalty>0.1</penalty>
+  <hidden>0</hidden>
+  <idnumber></idnumber>
+  <stackversion><text>2026063000</text></stackversion>
+  <questionvariables>
+    <text><![CDATA[/* Design: best whole-number combination, not the corner of the region. Source: adapted from SMP Book 5 (Metric), Chapter 8, Section 2.3. Vertex fractions with denominators 2, 4, 5; rounding to the nearest is outside R; rounding down is inside R but not best. Profits in Ksh (list scale x the context's Ksh step). */
+Q32L: [["A carpenter in Kericho makes \\(x\\) chairs and \\(y\\) tables a week. Each of the chairs needs \\(4\\) metres of timber and each of the tables needs \\(7\\); there are \\(44\\) metres of timber. Each of the chairs needs \\(9\\) hours of workshop time and each of the tables needs \\(2\\); there are \\(33\\) hours of workshop time. The profit is Ksh \\(400\\) on each of the chairs and Ksh \\(500\\) on each of the tables.",[4,7,"<=",44],[9,2,"<=",33],400,500,[13/5,24/5],[2,5],3300,3440,[3,5],[2,4],"(2.6, 4.8)","4 \\times 3 + 7 \\times 5 = 47 \\gt 44",["metres of timber","hours of workshop time"]],
+["A knitting group in Nyahururu makes \\(x\\) pairs of school socks and \\(y\\) school sweaters a week. Each of the pairs of school socks needs \\(1\\) units of wool and each of the school sweaters needs \\(7\\); there are \\(33\\) units of wool. Each of the pairs of school socks needs \\(7\\) hours of knitting time and each of the school sweaters needs \\(4\\); there are \\(69\\) hours of knitting time. The profit is Ksh \\(50\\) on each of the pairs of school socks and Ksh \\(30\\) on each of the school sweaters.",[1,7,"<=",33],[7,4,"<=",69],50,30,[39/5,18/5],[8,3],490,498,[8,4],[7,3],"(7.8, 3.6)","1 \\times 8 + 7 \\times 4 = 36 \\gt 33",["units of wool","hours of knitting time"]],
+["A farmer in Ol Kalou makes \\(x\\) sacks of cabbages and \\(y\\) sacks of carrots a week. Each of the sacks of cabbages needs \\(3\\) units of space on the lorry and each of the sacks of carrots needs \\(7\\); there are \\(46\\) units of space on the lorry. Each of the sacks of cabbages needs \\(9\\) minutes of loading time and each of the sacks of carrots needs \\(1\\); there are \\(22\\) minutes of loading time. The profit is Ksh \\(400\\) on each of the sacks of cabbages and Ksh \\(900\\) on each of the sacks of carrots.",[3,7,"<=",46],[9,1,"<=",22],400,900,[9/5,29/5],[1,6],5800,5940,[2,6],[1,5],"(1.8, 5.8)","3 \\times 2 + 7 \\times 6 = 48 \\gt 46",["units of space on the lorry","minutes of loading time"]],
+["A tailor in Machakos makes \\(x\\) school bags and \\(y\\) sports kits a week. Each of the school bags needs \\(1\\) metres of cloth and each of the sports kits needs \\(1\\); there are \\(13\\) metres of cloth. Each of the school bags needs \\(6\\) hours of sewing time and each of the sports kits needs \\(1\\); there are \\(41\\) hours of sewing time. The profit is Ksh \\(500\\) on each of the school bags and Ksh \\(400\\) on each of the sports kits.",[1,1,"<=",13],[6,1,"<=",41],500,400,[28/5,37/5],[5,8],5700,5760,[6,7],[5,7],"(5.6, 7.4)","6 \\times 6 + 1 \\times 7 = 43 \\gt 41",["metres of cloth","hours of sewing time"]],
+["A carpenter in Kabarnet makes \\(x\\) beehives and \\(y\\) bird boxes a week. Each of the beehives needs \\(1\\) planks of timber and each of the bird boxes needs \\(1\\); there are \\(14\\) planks of timber. Each of the beehives needs \\(7\\) hours of carpentry time and each of the bird boxes needs \\(2\\); there are \\(66\\) hours of carpentry time. The profit is Ksh \\(900\\) on each of the beehives and Ksh \\(700\\) on each of the bird boxes.",[1,1,"<=",14],[7,2,"<=",66],900,700,[38/5,32/5],[7,7],11200,11320,[8,6],[7,6],"(7.6, 6.4)","7 \\times 8 + 2 \\times 6 = 68 \\gt 66",["planks of timber","hours of carpentry time"]],
+["A fruit trader in Murang'a makes \\(x\\) baskets of tomatoes and \\(y\\) crates of avocados a week. Each of the baskets of tomatoes needs \\(4\\) units of space in the pickup and each of the crates of avocados needs \\(7\\); there are \\(55\\) units of space in the pickup. Each of the baskets of tomatoes needs \\(7\\) hours of packing time and each of the crates of avocados needs \\(1\\); there are \\(31\\) hours of packing time. The profit is Ksh \\(700\\) on each of the baskets of tomatoes and Ksh \\(900\\) on each of the crates of avocados.",[4,7,"<=",55],[7,1,"<=",31],700,900,[18/5,29/5],[3,6],7500,7740,[4,6],[3,5],"(3.6, 5.8)","4 \\times 4 + 7 \\times 6 = 58 \\gt 55",["units of space in the pickup","hours of packing time"]],
+["A dairy in Eldama Ravine makes \\(x\\) packets of yoghurt and \\(y\\) packets of mala a week. Each of the packets of yoghurt needs \\(1\\) litres of milk and each of the packets of mala needs \\(9\\); there are \\(18\\) litres of milk. Each of the packets of yoghurt needs \\(7\\) units of fridge space and each of the packets of mala needs \\(8\\); there are \\(38\\) units of fridge space. The profit is Ksh \\(500\\) on each of the packets of yoghurt and Ksh \\(600\\) on each of the packets of mala.",[1,9,"<=",18],[7,8,"<=",38],500,600,[18/5,8/5],[4,1],2600,2760,[4,2],[3,1],"(3.6, 1.6)","1 \\times 4 + 9 \\times 2 = 22 \\gt 18",["litres of milk","units of fridge space"]],
+["A welder in Kisii makes \\(x\\) door frames and \\(y\\) window frames a week. Each of the door frames needs \\(1\\) metres of steel and each of the window frames needs \\(1\\); there are \\(12\\) metres of steel. Each of the door frames needs \\(6\\) hours of welding time and each of the window frames needs \\(1\\); there are \\(40\\) hours of welding time. The profit is Ksh \\(900\\) on each of the door frames and Ksh \\(500\\) on each of the window frames.",[1,1,"<=",12],[6,1,"<=",40],900,500,[28/5,32/5],[5,7],8000,8240,[6,6],[5,6],"(5.6, 6.4)","6 \\times 6 + 1 \\times 6 = 42 \\gt 40",["metres of steel","hours of welding time"]],
+["A tree nursery in Embu makes \\(x\\) trays of seedlings and \\(y\\) potted plants a week. Each of the trays of seedlings needs \\(1\\) kg of potting soil and each of the potted plants needs \\(9\\); there are \\(57\\) kg of potting soil. Each of the trays of seedlings needs \\(7\\) minutes of watering time and each of the potted plants needs \\(3\\); there are \\(51\\) minutes of watering time. The profit is Ksh \\(70\\) on each of the trays of seedlings and Ksh \\(90\\) on each of the potted plants.",[1,9,"<=",57],[7,3,"<=",51],70,90,[24/5,29/5],[5,5],800,858,[5,6],[4,5],"(4.8, 5.8)","1 \\times 5 + 9 \\times 6 = 59 \\gt 57",["kg of potting soil","minutes of watering time"]],
+["A women's group in Makueni makes \\(x\\) kiondo baskets and \\(y\\) table mats a week. Each of the kiondo baskets needs \\(7\\) kg of sisal and each of the table mats needs \\(5\\); there are \\(30\\) kg of sisal. Each of the kiondo baskets needs \\(7\\) hours of weaving time and each of the table mats needs \\(1\\); there are \\(20\\) hours of weaving time. The profit is Ksh \\(700\\) on each of the kiondo baskets and Ksh \\(400\\) on each of the table mats.",[7,5,"<=",30],[7,1,"<=",20],700,400,[5/2,5/2],[2,3],2600,2750,[3,3],[2,2],"(2.5, 2.5)","7 \\times 3 + 5 \\times 3 = 36 \\gt 30",["kg of sisal","hours of weaving time"]]];
+ix: 1+rand(10);
+E: Q32L[ix];
+a1: E[2][1]; b1: E[2][2]; c1: E[2][4]; a2: E[3][1]; b2: E[3][2]; c2: E[3][4];
+pp: E[4]; pq: E[5]; vv: E[6]; bst: E[7]; t: E[8]; tv: E[9]; rp: E[10]; fl: E[11]; vd: E[12]; brkd: E[13]; un: E[14];
+Pof(u, w) := pp*u + pq*w;
+prnd: Pof(rp[1], rp[2]);
+validate_int(ex) := if integerp(ev(ex, simp)) then "" else "Type whole numbers.";
+g3(v) := block([q,r], if v < 1000 then string(v) else (q: floor(v/1000), r: v - 1000*q, sconcat(g3(q), "\\,", if r < 10 then "00" elseif r < 100 then "0" else "", string(r))));
+thou(v) := if abs(v) < 10000 then string(v) else g3(v);
+]]></text>
+  </questionvariables>
+  <specificfeedback format="html"><text><![CDATA[]]></text></specificfeedback>
+  <questionnote format="moodle_auto_format">
+    <text>ix={@ix@}, vertex {@vd@}, best ({@bst[1]@}, {@bst[2]@}), P={@t@}</text>
+  </questionnote>
+  <questiondescription format="html"><text><![CDATA[<p id="concept">Linear Programming: best whole-number plan</p><p id="description">Grade 12 CBE Core 1.4 (c) / Essential 1.4 (c): Given the optimal vertex of a feasible region, find the best whole-number plan near it by sampling, and its profit.</p><p id="edition">Core and Essential</p><p id="provenance">This question is adapted from Chapter 8, Section 2.3 of School Mathematics Project, SMP Book 5 (Metric), ed. P. G. Bowie, Cambridge University Press, 1969: choosing the best whole-number combination rather than the corner of the region, with Kenyan contexts and new numbers.</p><p id="citation">INNODEMS CBC Grade 12 Mathematics, first draft by Ben Davies, 2026. Aligned to the KICD Senior School Curriculum Design, Core and Essential Mathematics Grade 12 (draft).</p>]]></text></questiondescription>
+  <questionsimplify>1</questionsimplify>
+  <assumepositive>0</assumepositive>
+  <assumereal>0</assumereal>
+  <prtcorrect format="html"><text><![CDATA[[[commonstring key="symbolicprtcorrectfeedback"/]] [[commonstring key="defaultprtcorrectfeedback"/]]]]></text></prtcorrect>
+  <prtpartiallycorrect format="html"><text><![CDATA[[[commonstring key="symbolicprtpartiallycorrectfeedback"/]] [[commonstring key="defaultprtpartiallycorrectfeedback"/]]]]></text></prtpartiallycorrect>
+  <prtincorrect format="html"><text><![CDATA[[[commonstring key="symbolicprtincorrectfeedback"/]] [[commonstring key="defaultprtincorrectfeedback"/]]]]></text></prtincorrect>
+  <decimals>.</decimals>
+  <scientificnotation>*10</scientificnotation>
+  <multiplicationsign>none</multiplicationsign>
+  <sqrtsign>1</sqrtsign>
+  <complexno>i</complexno>
+  <inversetrig>cos-1</inversetrig>
+  <logicsymbol>lang</logicsymbol>
+  <matrixparens>[</matrixparens>
+  <isbroken>0</isbroken>
+  <variantsselectionseed></variantsselectionseed>
+
+  <input><name>ans1</name><type>numerical</type><tans>bst[1]</tans><boxsize>4</boxsize><strictsyntax>1</strictsyntax><insertstars>0</insertstars><syntaxhint></syntaxhint><syntaxattribute>0</syntaxattribute><forbidwords></forbidwords><allowwords></allowwords><forbidfloat>1</forbidfloat><requirelowestterms>0</requirelowestterms><checkanswertype>0</checkanswertype><mustverify>0</mustverify><showvalidation>0</showvalidation><options>validator:validate_int</options></input>
+  <input><name>ans2</name><type>numerical</type><tans>bst[2]</tans><boxsize>4</boxsize><strictsyntax>1</strictsyntax><insertstars>0</insertstars><syntaxhint></syntaxhint><syntaxattribute>0</syntaxattribute><forbidwords></forbidwords><allowwords></allowwords><forbidfloat>1</forbidfloat><requirelowestterms>0</requirelowestterms><checkanswertype>0</checkanswertype><mustverify>0</mustverify><showvalidation>0</showvalidation><options>validator:validate_int</options></input>
+  <input><name>ans3</name><type>numerical</type><tans>t</tans><boxsize>8</boxsize><strictsyntax>1</strictsyntax><insertstars>0</insertstars><syntaxhint></syntaxhint><syntaxattribute>0</syntaxattribute><forbidwords></forbidwords><allowwords></allowwords><forbidfloat>0</forbidfloat><requirelowestterms>0</requirelowestterms><checkanswertype>0</checkanswertype><mustverify>0</mustverify><showvalidation>0</showvalidation><options></options></input>
+
+  <prt><name>prt1</name><value>1.0000000</value><autosimplify>1</autosimplify><feedbackstyle>1</feedbackstyle><feedbackvariables><text><![CDATA[inR: is(a1*ans1 + b1*ans2 <= c1 and a2*ans1 + b2*ans2 <= c2 and ans1 >= 0 and ans2 >= 0);]]></text></feedbackvariables>
+    <node><name>0</name><description>Plan satisfies both conditions</description><answertest>AlgEquiv</answertest><sans>inR</sans><tans>true</tans><testoptions></testoptions><quiet>0</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>2</truenextnode><trueanswernote>prt1-1-T</trueanswernote><truefeedback format="html"><text><![CDATA[]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>1</falsenextnode><falseanswernote>prt1-1-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>1</name><description>Rounded vertex, outside R</description><answertest>AlgEquiv</answertest><sans>[ans1, ans2]</sans><tans>rp</tans><testoptions></testoptions><quiet>1</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt1-2-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>\(({@rp[1]@}, {@rp[2]@})\) is the vertex rounded to the nearest whole numbers, but it is outside R: \({@brkd@}\). Try the whole-number points round the vertex.</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>-1</falsenextnode><falseanswernote>prt1-2-F</falseanswernote><falsefeedback format="html"><text><![CDATA[<p>Your plan breaks a condition: it needs \({@a1*ans1+b1*ans2@}\) {@un[1]@} (there are \({@c1@}\)) and \({@a2*ans1+b2*ans2@}\) {@un[2]@} (there are \({@c2@}\)).</p>]]></text></falsefeedback></node>
+    <node><name>2</name><description>Best plan</description><answertest>AlgEquiv</answertest><sans>Pof(ans1, ans2)</sans><tans>t</tans><testoptions></testoptions><quiet>0</quiet><truescoremode>=</truescoremode><truescore>1.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt1-3-T</trueanswernote><truefeedback format="html"><text><![CDATA[]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>3</falsenextnode><falseanswernote>prt1-3-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>3</name><description>Rounded down</description><answertest>AlgEquiv</answertest><sans>[ans1, ans2]</sans><tans>fl</tans><testoptions></testoptions><quiet>1</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt1-4-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>\(({@fl[1]@}, {@fl[2]@})\) is in R, but rounding both numbers down loses profit: another nearby plan gives more.</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>-1</falsenextnode><falseanswernote>prt1-4-F</falseanswernote><falsefeedback format="html"><text><![CDATA[<p>Your plan is in R and gives Ksh \({@Pof(ans1, ans2)@}\); a plan near the vertex gives more.</p>]]></text></falsefeedback></node>
+  </prt>
+  <prt><name>prt2</name><value>1.0000000</value><autosimplify>1</autosimplify><feedbackstyle>1</feedbackstyle><feedbackvariables><text><![CDATA[]]></text></feedbackvariables>
+    <node><name>0</name><description>Greatest profit</description><answertest>NumAbsolute</answertest><sans>ans3</sans><tans>t</tans><testoptions>0.501</testoptions><quiet>0</quiet><truescoremode>=</truescoremode><truescore>1.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt2-1-T</trueanswernote><truefeedback format="html"><text><![CDATA[]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>1</falsenextnode><falseanswernote>prt2-1-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>1</name><description>Profit at the vertex</description><answertest>NumAbsolute</answertest><sans>ans3</sans><tans>tv</tans><testoptions>0.501</testoptions><quiet>0</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt2-2-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>That is the profit at the vertex, which is not a whole-number plan.</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>2</falsenextnode><falseanswernote>prt2-2-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>2</name><description>Follow-through</description><answertest>NumAbsolute</answertest><sans>ans3</sans><tans>Pof(ans1, ans2)</tans><testoptions>0.501</testoptions><quiet>0</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt2-3-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>That is the profit for your plan, but your plan is not the best.</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>-1</falsenextnode><falseanswernote>prt2-3-F</falseanswernote><falsefeedback format="html"><text><![CDATA[<p>That is not the profit for your plan in (a), which is \({@pp@} \times {@ans1@} + {@pq@} \times {@ans2@}\). Work it out again, and check that your plan is the best one.</p>]]></text></falsefeedback></node>
+  </prt>
+
+  <deployedseed>4</deployedseed>
+  <deployedseed>5</deployedseed>
+  <deployedseed>15</deployedseed>
+  <deployedseed>8</deployedseed>
+  <deployedseed>24</deployedseed>
+  <deployedseed>1</deployedseed>
+  <deployedseed>3</deployedseed>
+  <deployedseed>10</deployedseed>
+  <deployedseed>2</deployedseed>
+  <deployedseed>17</deployedseed>
+  <qtest><testcase>1</testcase><description>Correct</description>
+    <testinput><name>ans1</name><value>bst[1]</value></testinput>
+    <testinput><name>ans2</name><value>bst[2]</value></testinput>
+    <testinput><name>ans3</name><value>t</value></testinput>
+    <expected><name>prt1</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt1-1-T | prt1-3-T</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt2-1-T</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>2</testcase><description>Rounded vertex; its profit</description>
+    <testinput><name>ans1</name><value>rp[1]</value></testinput>
+    <testinput><name>ans2</name><value>rp[2]</value></testinput>
+    <testinput><name>ans3</name><value>prnd</value></testinput>
+    <expected><name>prt1</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt1-1-F | prt1-2-T</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt2-1-F | prt2-2-F | prt2-3-T</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>3</testcase><description>Rounded down; profit at the vertex</description>
+    <testinput><name>ans1</name><value>fl[1]</value></testinput>
+    <testinput><name>ans2</name><value>fl[2]</value></testinput>
+    <testinput><name>ans3</name><value>tv</value></testinput>
+    <expected><name>prt1</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt1-1-T | prt1-3-F | prt1-4-T</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt2-1-F | prt2-2-T</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>4</testcase><description>Far point; generic profit</description>
+    <testinput><name>ans1</name><value>0</value></testinput>
+    <testinput><name>ans2</name><value>0</value></testinput>
+    <testinput><name>ans3</name><value>t+100</value></testinput>
+    <expected><name>prt1</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt1-1-T | prt1-3-F | prt1-4-F</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt2-1-F | prt2-2-F | prt2-3-F</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>5</testcase><description>Invalid: a decimal</description>
+    <testinput><name>ans1</name><value>2.5</value></testinput>
+    <testinput><name>ans2</name><value>bst[2]</value></testinput>
+    <testinput><name>ans3</name><value>t</value></testinput>
+    <expected><name>prt1</name><expectedscore></expectedscore><expectedpenalty></expectedpenalty><expectedanswernote>NULL</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore></expectedscore><expectedpenalty></expectedpenalty><expectedanswernote>NULL</expectedanswernote></expected>
+  </qtest>
+</question>
+</quiz>

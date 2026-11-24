@@ -1,0 +1,6 @@
+<stack-static>
+    <statement><p><p>(a) Find the first four terms of the expansion of <m>(1 + x)^{5}</m> in ascending powers of <m>x</m>.</p><div><fillin characters="30" name="ans1"/>  </div><p>(b) Use your answer to (a) to estimate <m>{1.01}^{5}</m>. Give your answer correct to 4 decimal places.</p><div><fillin characters="10" name="ans2"/>  </div></p></statement>
+    <solution><p><p>When <m>x</m> is small, each term is much smaller than the one before, so a few terms give the value to the accuracy you need.</p><p>(a) The row for power <m>{5}</m> starts 1, <m>{5}</m>, <m>{10}</m>, <m>{10}</m>, so <m>(1 + x)^{5} = {1 + 5x + 10x^{2} + 10x^{3}} + \cdots</m></p><p>(b) <m>{1.01} = 1 + {0.01}</m>, so put <m>x = {0.01}</m>. The four terms are <m>{1}</m>, <m>{0.05}</m>, <m>{0.001}</m> and <m>{0.00001}</m>. Their sum is <m>{1.05101}</m>, so <m>{1.01}^{5} \approx {1.0510}</m> to 4 decimal places.</p><p>The next term is <m>{0.00000005}</m>, too small to change the fourth decimal place. A calculator gives <m>{1.01}^{5} = {1.05101005}\ldots</m>, which also rounds to <m>{1.0510}</m>.</p></p></solution>
+    <answer><p><m>10 x^3+10 x^2+5 x+1</m></p></answer>
+    <answer><p><m>\frac{105101}{100000}</m></p></answer>
+</stack-static>

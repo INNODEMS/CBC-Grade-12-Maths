@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<quiz>
+<question type="stack">
+  <name><text>Angles between the edges of a pyramid</text></name>
+  <questiontext format="html">
+    <text><![CDATA[<p>VABCD is a right pyramid on a rectangular base with AB = {@ll@} cm and BC = {@ww@} cm. Its height VO is {@hh@} cm.</p><div style="text-align:center;" role="img" aria-label="A right pyramid VABCD on a rectangular base ABCD. O is the centre of the base, where the dashed diagonals AC and BD cross, and V is above O; VO is dotted. M is the midpoint of BC and N is the midpoint of AB. The hidden corner D and its edges are dashed.">
+[[jsxgraph width="360px" height="280px"]]
+(function() {
+  var b = JXG.JSXGraph.initBoard(divid, {boundingbox: [-1.2, 6.4, 8.9, -1.4], axis: false, grid: false, keepaspectratio: true,
+    showNavigation: false, showCopyright: false, pan: {enabled: false}, zoom: {enabled: false}});
+  // oblique projection: receding edges at 30 degrees, half length
+  function P(x, y, z) { return [x + 0.5*y*Math.cos(Math.PI/6), z + 0.5*y*Math.sin(Math.PI/6)]; }
+  var solid = {strokeColor: '#000000', strokeWidth: 2, fixed: true, highlight: false};
+  var hid = {strokeColor: '#000000', strokeWidth: 1.5, dash: 2, fixed: true, highlight: false};
+  var dot = {strokeColor: '#000000', strokeWidth: 1.5, dash: 1, fixed: true, highlight: false};
+  var tx = {fixed: true, highlight: false, useMathJax: false, fontSize: 15, anchorX: 'middle', anchorY: 'middle'};
+  var cx = 3.87, cy = 1.8;
+  function lab(Q, s) { var dx = Q[0]-cx, dy = Q[1]-cy, r = Math.sqrt(dx*dx+dy*dy) || 1;
+    b.create('text', [Q[0]+0.42*dx/r, Q[1]+0.42*dy/r, s], tx); }
+  function seg(Q, R, o) { b.create('segment', [Q, R], o); }
+  function mark(Q, R, S) { // right-angle mark at Q between QR and QS
+    function u(X) { var dx = X[0]-Q[0], dy = X[1]-Q[1], r = Math.sqrt(dx*dx+dy*dy); return [0.3*dx/r, 0.3*dy/r]; }
+    var a = u(R), c = u(S);
+    b.create('polygon', [[Q[0]+a[0], Q[1]+a[1]], [Q[0]+a[0]+c[0], Q[1]+a[1]+c[1]], [Q[0]+c[0], Q[1]+c[1]]],
+      {fixed: true, highlight: false, fillOpacity: 0, vertices: {visible: false},
+       borders: {strokeColor: '#000000', strokeWidth: 1, fixed: true, highlight: false}});
+  }
+  // right pyramid VABCD on a rectangular base (shape only)
+  var A = P(0,0,0), B = P(6,0,0), C = P(6,4,0), D = P(0,4,0), O = P(3,2,0), V = P(3,2,4.5), M = P(6,2,0), N = P(3,0,0);
+  seg(A,B,solid); seg(B,C,solid); seg(V,A,solid); seg(V,B,solid); seg(V,C,solid);
+  // hidden edges and the base diagonals dashed; the height VO dotted
+  seg(A,D,hid); seg(D,C,hid); seg(V,D,hid); seg(A,C,hid); seg(B,D,hid); seg(V,O,dot);
+  b.create('point', O, {fixed: true, highlight: false, size: 1.5, name: '', fillColor: '#000000', strokeColor: '#000000'});
+  b.create('point', M, {fixed: true, highlight: false, size: 1.5, name: '', fillColor: '#000000', strokeColor: '#000000'});
+  b.create('point', N, {fixed: true, highlight: false, size: 1.5, name: '', fillColor: '#000000', strokeColor: '#000000'});
+  lab(A,'A'); lab(B,'B'); lab(C,'C'); lab(D,'D'); lab(V,'V');
+  b.create('text', [M[0]+0.4, M[1], 'M'], tx); b.create('text', [N[0], N[1]-0.4, 'N'], tx);
+  b.create('text', [O[0]-0.15, O[1]-0.4, 'O'], tx);
+})();
+[[/jsxgraph]]
+</div><p>The diagram is not drawn to scale.</p><p>Find</p><p>(a) angle AVC</p><div>[[input:ans1]] \(^\circ\) [[validation:ans1]] [[feedback:prt1]]</div><p>(b) angle {@adj@}</p><div>[[input:ans2]] \(^\circ\) [[validation:ans2]] [[feedback:prt2]]</div><p>Give lengths correct to 2 decimal places and angles correct to 1 decimal place. Keep full calculator accuracy until the final answer.</p>]]></text>
+  </questiontext>
+  <generalfeedback format="html">
+    <text><![CDATA[<p>(a) \(\mathrm{OA}^2 = \frac{{@ll@}^2 + {@ww@}^2}{4} = {@SA@}\). Triangle VOA has a right angle at O, so \(\tan \mathrm{AVO} = \frac{\mathrm{OA}}{\mathrm{VO}} = \frac{\sqrt{{@SA@}}}{{@hh@}}\), angle AVO = \({@d2(avo)@}^\circ\), and angle AVC = \(2 \times\) angle AVO = \({@d1(t1)@}^\circ\).</p><p>(b) \(\mathrm{VA}^2 = \mathrm{VB}^2 = \mathrm{VC}^2 = {@SA@} + {@hh@}^2 = {@SV@}\). In triangle {@face@} the side opposite V is {@sn@} = {@ss@} cm, so \(\cos {@adj@} = \frac{{@SV@} + {@SV@} - {@ss@}^2}{2 \times {@SV@}}\) and angle {@adj@} = \({@d1(t2)@}^\circ\).</p>]]></text>
+  </generalfeedback>
+  <defaultgrade>2</defaultgrade>
+  <penalty>0.1</penalty>
+  <hidden>0</hidden>
+  <idnumber></idnumber>
+  <stackversion><text>2026063000</text></stackversion>
+  <questionvariables>
+    <text><![CDATA[plist: [[18,10,10,"AVB"],[21,20,15,"BVC"],[23,16,20,"AVB"],[16,9,16,"BVC"],[22,14,19,"AVB"],[10,17,13,"BVC"],[22,18,14,"AVB"],[10,4,10,"BVC"],[13,15,13,"AVB"],[17,19,17,"BVC"]];
+/* Design: angles between opposite and neighbouring edges of a pyramid with a rectangular base, by calculation. Source: adapted from SMP Book 5 (Metric), Chapter 7, Exercise C, Q4(b) (there by drawing). */
+ix: 1+rand(10); PP: plist[ix];
+ll: PP[1]; ww: PP[2]; hh: PP[3]; adj: PP[4];
+LS: "ABCDVOMN"; LT: [[0,0,0],[ll,0,0],[ll,ww,0],[0,ww,0],[ll/2,ww/2,hh],[ll/2,ww/2,0],[ll,ww/2,0],[ll/2,0,0]];
+pt(c) := LT[ssearch(c, LS)];
+vv(s) := pt(charat(s,2)) - pt(charat(s,1));
+sq(s) := vv(s) . vv(s);
+dst(s) := float(sqrt(sq(s)));
+angd(s) := block([u,w], u: pt(charat(s,1))-pt(charat(s,2)), w: pt(charat(s,3))-pt(charat(s,2)), float(acos((u . w)/sqrt((u . u)*(w . w)))*180/%pi));
+r1(v) := float(floor(10*v+1/2)/10); r2(v) := float(floor(100*v+1/2)/100);
+d1(v) := dispdp(r1(v),1); d2(v) := dispdp(r2(v),2); d4(v) := dispdp(float(floor(10000*v+1/2)/10000),4);
+NA: -999; NB: -888; NC: -777;
+nf(v) := if integerp(v) then v else float(v);
+r4(v) := float(floor(10000*v+1/2)/10000);
+t1: angd("AVC"); t2: angd(adj);
+isab: is(adj = "AVB"); ss: if isab then ll else ww; sn: if isab then "AB" else "BC";
+oadj: if isab then "BVC" else "AVB"; on: if isab then "BC" else "AB"; face: if isab then "VAB" else "VBC";
+oth: angd(oadj); vof: float(2*atan((ss/2)/hh)*180/%pi);
+SA: r4(sq("OA")); SV: r4(sq("VA")); avo: angd("AVO");
+a1h: t1/2; a1d: 180-t1;
+t1r: r1(t1); t2r: r1(t2); t1a: t1+0.2; t2a: t2+0.2; t1g: t1+1.0; t2g: t2+1.0; t1rad: float(t1*%pi/180); t2rad: float(t2*%pi/180);
+]]></text>
+  </questionvariables>
+  <specificfeedback format="html"><text><![CDATA[]]></text></specificfeedback>
+  <questionnote format="moodle_auto_format">
+    <text>ix={@ix@}, {@ll@} by {@ww@}, VO={@hh@}, AVC={@d1(t1)@}, {@adj@}={@d1(t2)@}</text>
+  </questionnote>
+  <questiondescription format="html"><text><![CDATA[<p id="concept">Three-Dimensional Geometry: angles between the edges of a pyramid</p><p id="description">Grade 12 CBE Core 2.4: Find the angle between opposite sloping edges and between neighbouring sloping edges of a rectangular-based right pyramid.</p><p id="edition">Core</p><p id="provenance">This question is adapted from Chapter 7, Exercise C, question 4(b) of School Mathematics Project, SMP Book 5 (Metric), ed. P. G. Bowie, Cambridge University Press, 1969: by calculation instead of drawing, rectangular bases, neighbouring edges added, new numbers, randomised, with named feedback.</p><p id="citation">INNODEMS CBC Grade 12 Mathematics, first draft by Ben Davies, 2026. Aligned to the KICD Senior School Curriculum Design, Core Mathematics Grade 12 (draft).</p>]]></text></questiondescription>
+  <questionsimplify>1</questionsimplify>
+  <assumepositive>0</assumepositive>
+  <assumereal>0</assumereal>
+  <prtcorrect format="html"><text><![CDATA[[[commonstring key="symbolicprtcorrectfeedback"/]] [[commonstring key="defaultprtcorrectfeedback"/]]]]></text></prtcorrect>
+  <prtpartiallycorrect format="html"><text><![CDATA[[[commonstring key="symbolicprtpartiallycorrectfeedback"/]] [[commonstring key="defaultprtpartiallycorrectfeedback"/]]]]></text></prtpartiallycorrect>
+  <prtincorrect format="html"><text><![CDATA[[[commonstring key="symbolicprtincorrectfeedback"/]] [[commonstring key="defaultprtincorrectfeedback"/]]]]></text></prtincorrect>
+  <decimals>.</decimals>
+  <scientificnotation>*10</scientificnotation>
+  <multiplicationsign>none</multiplicationsign>
+  <sqrtsign>1</sqrtsign>
+  <complexno>i</complexno>
+  <inversetrig>cos-1</inversetrig>
+  <logicsymbol>lang</logicsymbol>
+  <matrixparens>[</matrixparens>
+  <isbroken>0</isbroken>
+  <variantsselectionseed></variantsselectionseed>
+
+  <input><name>ans1</name><type>numerical</type><tans>t1</tans><boxsize>6</boxsize><strictsyntax>1</strictsyntax><insertstars>0</insertstars><syntaxhint></syntaxhint><syntaxattribute>0</syntaxattribute><forbidwords></forbidwords><allowwords></allowwords><forbidfloat>0</forbidfloat><requirelowestterms>0</requirelowestterms><checkanswertype>0</checkanswertype><mustverify>0</mustverify><showvalidation>0</showvalidation><options></options></input>
+  <input><name>ans2</name><type>numerical</type><tans>t2</tans><boxsize>6</boxsize><strictsyntax>1</strictsyntax><insertstars>0</insertstars><syntaxhint></syntaxhint><syntaxattribute>0</syntaxattribute><forbidwords></forbidwords><allowwords></allowwords><forbidfloat>0</forbidfloat><requirelowestterms>0</requirelowestterms><checkanswertype>0</checkanswertype><mustverify>0</mustverify><showvalidation>0</showvalidation><options></options></input>
+
+  <prt><name>prt1</name><value>1.0000000</value><autosimplify>1</autosimplify><feedbackstyle>1</feedbackstyle><feedbackvariables><text><![CDATA[okr: is(ans1 > 0 and ans1 < 180); rdn: float(ans1*%pi/180);
+hf: float(ans1/2); oav: if okr then float(hh*tan(rdn/2)) else NA;
+]]></text></feedbackvariables>
+    <node><name>0</name><description>Answer</description><answertest>NumAbsolute</answertest><sans>ans1</sans><tans>t1</tans><testoptions>0.0501</testoptions><quiet>1</quiet><truescoremode>=</truescoremode><truescore>1.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt1-1-T</trueanswernote><truefeedback format="html"><text><![CDATA[]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>1</falsenextnode><falseanswernote>prt1-1-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>1</name><description>Half</description><answertest>NumAbsolute</answertest><sans>ans1</sans><tans>a1h</tans><testoptions>0.0501</testoptions><quiet>1</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt1-2-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>That is angle AVO, half of AVC: VO bisects angle AVC.</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>2</falsenextnode><falseanswernote>prt1-2-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>2</name><description>Base angle doubled</description><answertest>NumAbsolute</answertest><sans>ans1</sans><tans>a1d</tans><testoptions>0.0501</testoptions><quiet>1</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt1-3-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>You doubled angle VAO, the angle at the base. Angle AVC is at V: \(\tan \mathrm{AVO} = \frac{\mathrm{OA}}{\mathrm{VO}}\).</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>3</falsenextnode><falseanswernote>prt1-3-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>3</name><description>Calculator in radians</description><answertest>NumAbsolute</answertest><sans>ans1</sans><tans>float((t1)*%pi/180)</tans><testoptions>0.00501</testoptions><quiet>1</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt1-4-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>Your calculator is set to radians. Set it to degrees (DEG) and work out the angle again.</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>4</falsenextnode><falseanswernote>prt1-4-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>4</name><description>Close but not accurate</description><answertest>NumAbsolute</answertest><sans>ans1</sans><tans>t1</tans><testoptions>0.3</testoptions><quiet>1</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt1-5-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>Your answer is close but not accurate to 1 decimal place. Keep full calculator accuracy until the end, then round the angle once.</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>-1</falsenextnode><falseanswernote>prt1-5-F</falseanswernote><falsefeedback format="html"><text><![CDATA[[[if test="okr"]]<p>VO bisects angle AVC, so half of your angle, \({@d1(hf)@}^\circ\), would be angle AVO. Triangle VOA has a right angle at O with VO = {@hh@} cm, so that makes OA = {@d2(oav)@} cm. Is that half the diagonal of the base?</p>[[else]]<p>An angle of a triangle is between \(0^\circ\) and \(180^\circ\). Check your working and your calculator mode.</p>[[/if]]]]></text></falsefeedback></node>
+  </prt>
+  <prt><name>prt2</name><value>1.0000000</value><autosimplify>1</autosimplify><feedbackstyle>1</feedbackstyle><feedbackvariables><text><![CDATA[okr: is(ans2 > 0 and ans2 < 180); rdn: float(ans2*%pi/180);
+opv: if okr then float(2*sqrt(SV)*sin(rdn/2)) else NA;
+]]></text></feedbackvariables>
+    <node><name>0</name><description>Answer</description><answertest>NumAbsolute</answertest><sans>ans2</sans><tans>t2</tans><testoptions>0.0501</testoptions><quiet>1</quiet><truescoremode>=</truescoremode><truescore>1.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt2-1-T</trueanswernote><truefeedback format="html"><text><![CDATA[]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>1</falsenextnode><falseanswernote>prt2-1-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>1</name><description>Other neighbouring angle</description><answertest>NumAbsolute</answertest><sans>ans2</sans><tans>oth</tans><testoptions>0.0501</testoptions><quiet>1</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt2-2-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>That is angle {@oadj@}, between the edges at the ends of {@on@}. Angle {@adj@} is opposite {@sn@}, which is {@ss@} cm.</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>2</falsenextnode><falseanswernote>prt2-2-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>2</name><description>AVC again</description><answertest>NumAbsolute</answertest><sans>ans2</sans><tans>t1</tans><testoptions>0.0501</testoptions><quiet>1</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt2-3-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>You used the diagonal AC, which gives angle AVC again.</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>3</falsenextnode><falseanswernote>prt2-3-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>3</name><description>VO as the height of the face</description><answertest>NumAbsolute</answertest><sans>ans2</sans><tans>vof</tans><testoptions>0.0501</testoptions><quiet>1</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt2-4-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>VO is not in the face {@face@}; the triangle {@face@} has no right angle at the foot of VO. Find VA, then use the cosine rule with {@sn@} = {@ss@} cm.</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>4</falsenextnode><falseanswernote>prt2-4-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>4</name><description>Calculator in radians</description><answertest>NumAbsolute</answertest><sans>ans2</sans><tans>float((t2)*%pi/180)</tans><testoptions>0.00501</testoptions><quiet>1</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt2-5-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>Your calculator is set to radians. Set it to degrees (DEG) and work out the angle again.</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>5</falsenextnode><falseanswernote>prt2-5-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>5</name><description>Close but not accurate</description><answertest>NumAbsolute</answertest><sans>ans2</sans><tans>t2</tans><testoptions>0.3</testoptions><quiet>1</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt2-6-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>Your answer is close but not accurate to 1 decimal place. Keep full calculator accuracy until the end, then round the angle once.</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>-1</falsenextnode><falseanswernote>prt2-6-F</falseanswernote><falsefeedback format="html"><text><![CDATA[[[if test="okr"]]<p>Triangle {@face@} is isosceles: its two sloping edges are equal, each the hypotenuse of a triangle like VOA. With the correct sloping edge and your angle at V, the side opposite V would be {@d2(opv)@} cm, but {@sn@} = {@ss@} cm. Check the sloping edge, then use the cosine rule in triangle {@face@}.</p>[[else]]<p>An angle of a triangle is between \(0^\circ\) and \(180^\circ\). Check your working and your calculator mode.</p>[[/if]]]]></text></falsefeedback></node>
+  </prt>
+
+  <deployedseed>4</deployedseed>
+  <deployedseed>5</deployedseed>
+  <deployedseed>15</deployedseed>
+  <deployedseed>8</deployedseed>
+  <deployedseed>24</deployedseed>
+  <deployedseed>1</deployedseed>
+  <deployedseed>3</deployedseed>
+  <deployedseed>10</deployedseed>
+  <deployedseed>2</deployedseed>
+  <deployedseed>17</deployedseed>
+  <qtest><testcase>1</testcase><description>Correct</description>
+    <testinput><name>ans1</name><value>t1</value></testinput>
+    <testinput><name>ans2</name><value>t2</value></testinput>
+    <expected><name>prt1</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt1-1-T</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt2-1-T</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>2</testcase><description>Correct, rounded to 1 d.p.</description>
+    <testinput><name>ans1</name><value>t1r</value></testinput>
+    <testinput><name>ans2</name><value>t2r</value></testinput>
+    <expected><name>prt1</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt1-1-T</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt2-1-T</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>3</testcase><description>Half; other neighbouring angle</description>
+    <testinput><name>ans1</name><value>a1h</value></testinput>
+    <testinput><name>ans2</name><value>oth</value></testinput>
+    <expected><name>prt1</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt1-1-F | prt1-2-T</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt2-1-F | prt2-2-T</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>4</testcase><description>Base angle doubled; AVC again</description>
+    <testinput><name>ans1</name><value>a1d</value></testinput>
+    <testinput><name>ans2</name><value>t1</value></testinput>
+    <expected><name>prt1</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt1-1-F | prt1-2-F | prt1-3-T</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt2-1-F | prt2-2-F | prt2-3-T</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>5</testcase><description>Radians; VO as the face height</description>
+    <testinput><name>ans1</name><value>t1rad</value></testinput>
+    <testinput><name>ans2</name><value>vof</value></testinput>
+    <expected><name>prt1</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt1-1-F | prt1-2-F | prt1-3-F | prt1-4-T</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt2-1-F | prt2-2-F | prt2-3-F | prt2-4-T</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>6</testcase><description>Close; radians</description>
+    <testinput><name>ans1</name><value>t1a</value></testinput>
+    <testinput><name>ans2</name><value>t2rad</value></testinput>
+    <expected><name>prt1</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt1-1-F | prt1-2-F | prt1-3-F | prt1-4-F | prt1-5-T</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt2-1-F | prt2-2-F | prt2-3-F | prt2-4-F | prt2-5-T</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>7</testcase><description>Generic; close</description>
+    <testinput><name>ans1</name><value>t1g</value></testinput>
+    <testinput><name>ans2</name><value>t2a</value></testinput>
+    <expected><name>prt1</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt1-1-F | prt1-2-F | prt1-3-F | prt1-4-F | prt1-5-F</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt2-1-F | prt2-2-F | prt2-3-F | prt2-4-F | prt2-5-F | prt2-6-T</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>8</testcase><description>Correct; generic</description>
+    <testinput><name>ans1</name><value>t1</value></testinput>
+    <testinput><name>ans2</name><value>t2g</value></testinput>
+    <expected><name>prt1</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt1-1-T</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt2-1-F | prt2-2-F | prt2-3-F | prt2-4-F | prt2-5-F | prt2-6-F</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>9</testcase><description>Invalid: a letter in (a)</description>
+    <testinput><name>ans1</name><value>x</value></testinput>
+    <testinput><name>ans2</name><value>t2</value></testinput>
+    <expected><name>prt1</name><expectedscore></expectedscore><expectedpenalty></expectedpenalty><expectedanswernote>NULL</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt2-1-T</expectedanswernote></expected>
+  </qtest>
+</question>
+</quiz>

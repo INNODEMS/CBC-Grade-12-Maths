@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<quiz>
+<question type="stack">
+  <name><text>Finding the mistake in a square count</text></name>
+  <questiontext format="html">
+    <text><![CDATA[<p>Kendi estimated the area of a fish pond on a farm in Kirinyaga from a plan drawn on squares. Each square stands for \({@s@}\,\text{m}\) by \({@s@}\,\text{m}\). She counted \({@F@}\) full squares and \({@P@}\) part squares. Her working:</p><p>Step 1: number of squares \(\approx {@sh1@}\).<br>Step 2: area of one square \(= {@sh2@}\,\text{m}^2\).<br>Step 3: area \(\approx {@sh1@} \times {@sh2@} = {@sh3@}\,\text{m}^2\).</p><p>Her working has one mistake.</p><p>(a) Which statement describes her mistake?</p><div>[[input:ans1]] [[validation:ans1]] [[feedback:prt1]]</div><p>(b) Find the correct estimate of the area of the pond.</p><div>[[input:ans2]] \(\text{m}^2\) [[validation:ans2]] [[feedback:prt2]]</div>]]></text>
+  </questiontext>
+  <generalfeedback format="html">
+    <text><![CDATA[<table border="1" style="border-collapse:collapse;"><tr><th style="padding:4px 10px;">Step</th><th style="padding:4px 10px;">Kendi</th><th style="padding:4px 10px;">Correct</th></tr><tr><td style="padding:4px 10px;">1. Number of squares</td><td style="padding:4px 10px;">\({@sh1@}\)</td><td style="padding:4px 10px;">\({@F@} + \tfrac{1}{2} \times {@P@} = {@est@}\)</td></tr><tr><td style="padding:4px 10px;">2. Area of one square</td><td style="padding:4px 10px;">\({@sh2@}\,\text{m}^2\)</td><td style="padding:4px 10px;">\({@s@} \times {@s@} = {@s^2@}\,\text{m}^2\)</td></tr><tr><td style="padding:4px 10px;">3. Area</td><td style="padding:4px 10px;">\({@sh3@}\,\text{m}^2\)</td><td style="padding:4px 10px;">\({@est@} \times {@s^2@} = {@cor@}\,\text{m}^2\)</td></tr></table><p>[[if test="is(er=1)"]]Kendi counted each part square as a whole square. A part square is, on average, about half covered, so it counts as \(\tfrac{1}{2}\).[[elif test="is(er=2)"]]Kendi left out the part squares. Each part square counts as \(\tfrac{1}{2}\), because a part square is, on average, about half covered.[[elif test="is(er=3)"]]Kendi used the length of a side, \({@s@}\,\text{m}\), as the area of a square. A square on the plan stands for a square on the ground, so square the side.[[else]]Kendi used the perimeter of a square, \(4 \times {@s@} = {@4*s@}\,\text{m}\), instead of its area, \({@s@} \times {@s@} = {@s^2@}\,\text{m}^2\).[[/if]]</p><p>The area of the pond is about \({@cor@}\,\text{m}^2\).</p>]]></text>
+  </generalfeedback>
+  <defaultgrade>2</defaultgrade>
+  <penalty>0.1</penalty>
+  <hidden>0</hidden>
+  <idnumber></idnumber>
+  <stackversion><text>2026063000</text></stackversion>
+  <questionvariables>
+    <text><![CDATA[/* Design: find the mistake in a square count, then give the right value. Entries [F, P, s, er]; er 1: part squares counted as whole; 2: part squares left out; 3: side used for the area of a square; 4: perimeter used. s = 4 is excluded (perimeter = area). Every shown answer is at least 10 m^2 from the correct one. Source: original. */
+L: [[23,16,2,1],[31,18,5,2],[19,14,10,3],[27,20,3,4],[35,22,2,2],[24,18,5,1],[29,12,10,4],[21,26,3,3],[33,14,5,1],[26,24,2,2]];
+ix: 1+rand(10);
+F: L[ix][1]; P: L[ix][2]; s: L[ix][3]; er: L[ix][4];
+est: F+P/2;
+cor: est*s^2;
+sh1: if er=1 then F+P elseif er=2 then F else F+P/2;
+sh2: if er=3 then s elseif er=4 then 4*s else s^2;
+sh3: sh1*sh2;
+opts: [["e0",false,"Her working is correct."],["e1",is(er=1),"She counted each part square as a whole square."],["e2",is(er=2),"She left out the part squares."],["e3",is(er=3),"She used the length of a side of a square instead of its area."],["e4",is(er=4),"She used the perimeter of a square instead of its area."]];
+kq: first(mcq_correct(opts));
+/* test inputs: an option for the other step, and the other option for the same step */
+wrongstep: if er >= 3 then "e1" else "e3";
+samestep: if er=1 then "e2" elseif er=2 then "e1" elseif er=3 then "e4" else "e3";]]></text>
+  </questionvariables>
+  <specificfeedback format="html"><text><![CDATA[]]></text></specificfeedback>
+  <questionnote format="moodle_auto_format">
+    <text>ix={@ix@}, er={@er@}, shown={@sh3@}, correct={@cor@}</text>
+  </questionnote>
+  <questiondescription format="html"><text><![CDATA[<p id="concept">Area Approximations: finding the mistake in a square count</p><p id="description">Grade 12 CBE Core 2.2 (a) / Essential 2.1 (a): Identify the mistake in a worked estimate of an area by counting squares, then give the correct estimate.</p><p id="edition">Core and Essential</p><p id="provenance">This question is original to this project.</p><p id="citation">INNODEMS CBC Grade 12 Mathematics, first draft by Ben Davies, 2026. Aligned to the KICD Senior School Curriculum Design, Core and Essential Mathematics Grade 12 (draft).</p>]]></text></questiondescription>
+  <questionsimplify>1</questionsimplify>
+  <assumepositive>0</assumepositive>
+  <assumereal>0</assumereal>
+  <prtcorrect format="html"><text><![CDATA[[[commonstring key="symbolicprtcorrectfeedback"/]] [[commonstring key="defaultprtcorrectfeedback"/]]]]></text></prtcorrect>
+  <prtpartiallycorrect format="html"><text><![CDATA[[[commonstring key="symbolicprtpartiallycorrectfeedback"/]] [[commonstring key="defaultprtpartiallycorrectfeedback"/]]]]></text></prtpartiallycorrect>
+  <prtincorrect format="html"><text><![CDATA[[[commonstring key="symbolicprtincorrectfeedback"/]] [[commonstring key="defaultprtincorrectfeedback"/]]]]></text></prtincorrect>
+  <decimals>.</decimals>
+  <scientificnotation>*10</scientificnotation>
+  <multiplicationsign>none</multiplicationsign>
+  <sqrtsign>1</sqrtsign>
+  <complexno>i</complexno>
+  <inversetrig>cos-1</inversetrig>
+  <logicsymbol>lang</logicsymbol>
+  <matrixparens>[</matrixparens>
+  <isbroken>0</isbroken>
+  <variantsselectionseed></variantsselectionseed>
+
+  <input><name>ans1</name><type>radio</type><tans>opts</tans><boxsize>15</boxsize><strictsyntax>1</strictsyntax><insertstars>0</insertstars><syntaxhint></syntaxhint><syntaxattribute>0</syntaxattribute><forbidwords></forbidwords><allowwords></allowwords><forbidfloat>1</forbidfloat><requirelowestterms>0</requirelowestterms><checkanswertype>0</checkanswertype><mustverify>0</mustverify><showvalidation>0</showvalidation><options></options></input>
+  <input><name>ans2</name><type>numerical</type><tans>cor</tans><boxsize>8</boxsize><strictsyntax>1</strictsyntax><insertstars>0</insertstars><syntaxhint></syntaxhint><syntaxattribute>0</syntaxattribute><forbidwords></forbidwords><allowwords></allowwords><forbidfloat>0</forbidfloat><requirelowestterms>0</requirelowestterms><checkanswertype>0</checkanswertype><mustverify>0</mustverify><showvalidation>0</showvalidation><options></options></input>
+
+  <prt><name>prt1</name><value>1.0000000</value><autosimplify>1</autosimplify><feedbackstyle>1</feedbackstyle><feedbackvariables><text><![CDATA[wstep: is((member(ans1,["e1","e2"]) and er >= 3) or (member(ans1,["e3","e4"]) and er <= 2));
+ch: if ans1="e1" then 1 elseif ans1="e2" then 2 elseif ans1="e3" then 3 elseif ans1="e4" then 4 else 0;
+wv: if ch=1 then F+P elseif ch=2 then F elseif ch=3 then s else 4*s;]]></text></feedbackvariables>
+    <node><name>0</name><description>Mistake named</description><answertest>AlgEquiv</answertest><sans>ans1</sans><tans>kq</tans><testoptions></testoptions><quiet>0</quiet><truescoremode>=</truescoremode><truescore>1.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt1-1-T</trueanswernote><truefeedback format="html"><text><![CDATA[]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>1</falsenextnode><falseanswernote>prt1-1-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>1</name><description>Wrong step</description><answertest>AlgEquiv</answertest><sans>wstep</sans><tans>true</tans><testoptions></testoptions><quiet>0</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt1-2-T</trueanswernote><truefeedback format="html"><text><![CDATA[[[if test="is(ch=1)"]]<p>If Kendi had counted each part square as a whole square, Step 1 would read \({@wv@}\). She wrote \({@sh1@}\), which is right: \({@F@} + \tfrac{1}{2} \times {@P@} = {@est@}\). Look at Step 2.</p>[[elif test="is(ch=2)"]]<p>If Kendi had left out the part squares, Step 1 would read \({@wv@}\). She wrote \({@sh1@}\), which is right: \({@F@} + \tfrac{1}{2} \times {@P@} = {@est@}\). Look at Step 2.</p>[[elif test="is(ch=3)"]]<p>If Kendi had used the length of a side, Step 2 would read \({@wv@}\,\text{m}^2\). She wrote \({@sh2@}\,\text{m}^2\), which is right: \({@s@} \times {@s@} = {@s^2@}\,\text{m}^2\). Look at Step 1.</p>[[else]]<p>If Kendi had used the perimeter of a square, Step 2 would read \({@wv@}\,\text{m}^2\). She wrote \({@sh2@}\,\text{m}^2\), which is right: \({@s@} \times {@s@} = {@s^2@}\,\text{m}^2\). Look at Step 1.</p>[[/if]]]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>2</falsenextnode><falseanswernote>prt1-2-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>2</name><description>Said correct</description><answertest>AlgEquiv</answertest><sans>ans1</sans><tans>"e0"</tans><testoptions></testoptions><quiet>0</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt1-3-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>Kendi's working has a mistake. Work out \({@F@} + \tfrac{1}{2} \times {@P@}\) for Step 1 and the area of a square of side \({@s@}\,\text{m}\) for Step 2, and compare each with what she wrote.</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>-1</falsenextnode><falseanswernote>prt1-3-F</falseanswernote><falsefeedback format="html"><text><![CDATA[[[if test="is(ch=1)"]]<p>If Kendi had counted each part square as a whole square, Step 1 would read \({@wv@}\). She wrote \({@sh1@}\), so that is not her mistake. Work out what this step should say and compare.</p>[[elif test="is(ch=2)"]]<p>If Kendi had left out the part squares, Step 1 would read \({@wv@}\). She wrote \({@sh1@}\), so that is not her mistake. Work out what this step should say and compare.</p>[[elif test="is(ch=3)"]]<p>If Kendi had used the length of a side, Step 2 would read \({@wv@}\,\text{m}^2\). She wrote \({@sh2@}\,\text{m}^2\), so that is not her mistake. Work out what this step should say and compare.</p>[[else]]<p>If Kendi had used the perimeter of a square, Step 2 would read \({@wv@}\,\text{m}^2\). She wrote \({@sh2@}\,\text{m}^2\), so that is not her mistake. Work out what this step should say and compare.</p>[[/if]]]]></text></falsefeedback></node>
+  </prt>
+  <prt><name>prt2</name><value>1.0000000</value><autosimplify>1</autosimplify><feedbackstyle>1</feedbackstyle><feedbackvariables><text><![CDATA[]]></text></feedbackvariables>
+    <node><name>0</name><description>Correct area</description><answertest>NumAbsolute</answertest><sans>ans2</sans><tans>cor</tans><testoptions>0.001</testoptions><quiet>0</quiet><truescoremode>=</truescoremode><truescore>1.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt2-1-T</trueanswernote><truefeedback format="html"><text><![CDATA[]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>1</falsenextnode><falseanswernote>prt2-1-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>1</name><description>Kendi's answer</description><answertest>NumAbsolute</answertest><sans>ans2</sans><tans>sh3</tans><testoptions>0.001</testoptions><quiet>0</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt2-2-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>That is Kendi's answer, which contains the mistake.</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>-1</falsenextnode><falseanswernote>prt2-2-F</falseanswernote><falsefeedback format="html"><text><![CDATA[<p>Correct the step that has the mistake, then redo Step 3 with the corrected values: (number of squares) \(\times\) (area of one square).</p>]]></text></falsefeedback></node>
+  </prt>
+
+  <deployedseed>4</deployedseed>
+  <deployedseed>5</deployedseed>
+  <deployedseed>15</deployedseed>
+  <deployedseed>8</deployedseed>
+  <deployedseed>24</deployedseed>
+  <deployedseed>1</deployedseed>
+  <deployedseed>3</deployedseed>
+  <deployedseed>10</deployedseed>
+  <deployedseed>2</deployedseed>
+  <deployedseed>17</deployedseed>
+  <qtest><testcase>1</testcase><description>Correct</description>
+    <testinput><name>ans1</name><value>kq</value></testinput>
+    <testinput><name>ans2</name><value>cor</value></testinput>
+    <expected><name>prt1</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt1-1-T</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt2-1-T</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>2</testcase><description>Wrong step; Kendi's answer</description>
+    <testinput><name>ans1</name><value>wrongstep</value></testinput>
+    <testinput><name>ans2</name><value>sh3</value></testinput>
+    <expected><name>prt1</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt1-1-F | prt1-2-T</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt2-1-F | prt2-2-T</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>3</testcase><description>Said correct; generic value</description>
+    <testinput><name>ans1</name><value>"e0"</value></testinput>
+    <testinput><name>ans2</name><value>cor+5</value></testinput>
+    <expected><name>prt1</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt1-1-F | prt1-2-F | prt1-3-T</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt2-1-F | prt2-2-F</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>4</testcase><description>Same step, other mistake</description>
+    <testinput><name>ans1</name><value>samestep</value></testinput>
+    <testinput><name>ans2</name><value>cor</value></testinput>
+    <expected><name>prt1</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt1-1-F | prt1-2-F | prt1-3-F</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt2-1-T</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>5</testcase><description>Invalid: letter in (b)</description>
+    <testinput><name>ans1</name><value>kq</value></testinput>
+    <testinput><name>ans2</name><value>x</value></testinput>
+    <expected><name>prt1</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt1-1-T</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore></expectedscore><expectedpenalty></expectedpenalty><expectedanswernote>NULL</expectedanswernote></expected>
+  </qtest>
+</question>
+</quiz>

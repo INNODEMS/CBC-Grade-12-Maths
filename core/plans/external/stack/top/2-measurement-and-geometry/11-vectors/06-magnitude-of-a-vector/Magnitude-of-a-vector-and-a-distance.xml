@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<quiz>
+<question type="stack">
+  <name><text>Magnitude of a vector and a distance</text></name>
+  <questiontext format="html">
+    <text><![CDATA[<p>Give exact values or decimals to 2 decimal places.</p><p>(a) Find the magnitude of \({@matrix([vv[1]],[vv[2]])@}\).</p><div>[[input:ans1]] [[validation:ans1]] [[feedback:prt1]]</div><p>(b) On a map with 1 unit = 1 km, a school S is at \(({@A[1]@},\,{@A[2]@})\) and a clinic K at \(({@B[1]@},\,{@B[2]@})\). How far is the clinic from the school in a straight line?</p><div>[[input:ans2]] km [[validation:ans2]] [[feedback:prt2]]</div>]]></text>
+  </questiontext>
+  <generalfeedback format="html">
+    <text><![CDATA[<p>Pythagoras on the across and up moves: \(|\mathbf{v}| = \sqrt{x^2 + y^2}\).</p><p>(a) \(\sqrt{({@vv[1]@})^2 + ({@vv[2]@})^2} = \sqrt{{@S@}}\) [[if test="integerp(tm1)"]]\(= {@tm1@}\).[[else]]\(\approx {@m1d@}\).[[/if]]</p><p>(b) \(\overrightarrow{SK}\) is end minus start: \({@matrix([d[1]],[d[2]])@}\). Its magnitude is \(\sqrt{({@d[1]@})^2 + ({@d[2]@})^2} = \sqrt{{@Sd@}}\) [[if test="integerp(tm2)"]]\(= {@tm2@}\)[[else]]\(\approx {@m2d@}\)[[/if]] km.</p>]]></text>
+  </generalfeedback>
+  <defaultgrade>2</defaultgrade>
+  <penalty>0.1</penalty>
+  <hidden>0</hidden>
+  <idnumber></idnumber>
+  <stackversion><text>2026063000</text></stackversion>
+  <questionvariables>
+    <text><![CDATA[/* Design: magnitude of a vector and the distance between two points by Pythagoras, map context. Entries 1 to 5 have whole magnitudes, 6 to 10 surds; every v has one negative component; diagnostics are more than 2 x 0.00501 apart and from the generic offset. Source: adapted from SMP AS/A2 Core 4, Chapter 9, Section B, B5(b). */
+mlist: [[[15,-8],[1,-4],[-3,0]],[[-24,7],[-6,6],[-2,2]],[[12,-5],[-1,-3],[-4,0]],[[-40,9],[-3,5],[6,-1]],[[12,-9],[-3,2],[4,-4]],[[8,-3],[4,-2],[-5,0]],[[-2,9],[0,3],[7,1]],[[5,-8],[-2,6],[4,0]],[[6,-5],[6,2],[-5,3]],[[-3,10],[5,-3],[-3,1]]];
+ix: 1+rand(10);
+vv: mlist[ix][1]; A: mlist[ix][2]; B: mlist[ix][3];
+S: vv[1]^2+vv[2]^2; tm1: sqrt(S);
+d: B-A; Sd: d[1]^2+d[2]^2; tm2: sqrt(Sd);
+neg: if vv[1]<0 then vv[1] else vv[2];
+/* diagnostics (a): no root, sum of sizes, sum of components, negative squared as negative */
+e1: abs(vv[1])+abs(vv[2]); e2: abs(vv[1]+vv[2]); e3: sqrt(abs(vv[1]^2-vv[2]^2));
+/* diagnostics (b): no root, added the coordinates, |OK|, sum of sizes */
+f1: sqrt((A[1]+B[1])^2+(A[2]+B[2])^2); f2: sqrt(B[1]^2+B[2]^2); f3: abs(d[1])+abs(d[2]);
+r1: float(floor(100*tm1+1/2)/100); r2: float(floor(100*tm2+1/2)/100);
+m1d: dispdp(r1,2); m2d: dispdp(r2,2);
+w1: float(tm1)+0.5; w2: float(tm2)+0.5;
+]]></text>
+  </questionvariables>
+  <specificfeedback format="html"><text><![CDATA[]]></text></specificfeedback>
+  <questionnote format="moodle_auto_format">
+    <text>ix={@ix@}, |v|={@m1d@}, SK={@m2d@}</text>
+  </questionnote>
+  <questiondescription format="html"><text><![CDATA[<p id="concept">Vectors: magnitude of a vector and a distance</p><p id="description">Grade 12 CBE Essential 2.2: Find the magnitude of a column vector and the straight-line distance between two places on a map, exactly or to 2 decimal places.</p><p id="edition">Essential</p><p id="provenance">This question is adapted from Question B5(b) in Section B of Chapter 9 of Instone, S., Ling, J., Scruton, P., Shilton, S. and West, H., SMP AS/A2 Mathematics: Core 4 for AQA, Cambridge University Press, 2005: new numbers, Kenyan context, STACK randomisation, the magnitude of a column added, with named feedback.</p><p id="citation">INNODEMS CBC Grade 12 Mathematics, first draft by Ben Davies, 2026. Aligned to the KICD Senior School Curriculum Design, Essential Mathematics Grade 12 (draft).</p>]]></text></questiondescription>
+  <questionsimplify>1</questionsimplify>
+  <assumepositive>0</assumepositive>
+  <assumereal>0</assumereal>
+  <prtcorrect format="html"><text><![CDATA[[[commonstring key="symbolicprtcorrectfeedback"/]] [[commonstring key="defaultprtcorrectfeedback"/]]]]></text></prtcorrect>
+  <prtpartiallycorrect format="html"><text><![CDATA[[[commonstring key="symbolicprtpartiallycorrectfeedback"/]] [[commonstring key="defaultprtpartiallycorrectfeedback"/]]]]></text></prtpartiallycorrect>
+  <prtincorrect format="html"><text><![CDATA[[[commonstring key="symbolicprtincorrectfeedback"/]] [[commonstring key="defaultprtincorrectfeedback"/]]]]></text></prtincorrect>
+  <decimals>.</decimals>
+  <scientificnotation>*10</scientificnotation>
+  <multiplicationsign>none</multiplicationsign>
+  <sqrtsign>1</sqrtsign>
+  <complexno>i</complexno>
+  <inversetrig>cos-1</inversetrig>
+  <logicsymbol>lang</logicsymbol>
+  <matrixparens>(</matrixparens>
+  <isbroken>0</isbroken>
+  <variantsselectionseed></variantsselectionseed>
+
+  <input><name>ans1</name><type>numerical</type><tans>tm1</tans><boxsize>8</boxsize><strictsyntax>1</strictsyntax><insertstars>0</insertstars><syntaxhint></syntaxhint><syntaxattribute>0</syntaxattribute><forbidwords></forbidwords><allowwords></allowwords><forbidfloat>0</forbidfloat><requirelowestterms>0</requirelowestterms><checkanswertype>0</checkanswertype><mustverify>0</mustverify><showvalidation>0</showvalidation><options></options></input>
+  <input><name>ans2</name><type>numerical</type><tans>tm2</tans><boxsize>8</boxsize><strictsyntax>1</strictsyntax><insertstars>0</insertstars><syntaxhint></syntaxhint><syntaxattribute>0</syntaxattribute><forbidwords></forbidwords><allowwords></allowwords><forbidfloat>0</forbidfloat><requirelowestterms>0</requirelowestterms><checkanswertype>0</checkanswertype><mustverify>0</mustverify><showvalidation>0</showvalidation><options></options></input>
+
+  <prt><name>prt1</name><value>1.0000000</value><autosimplify>1</autosimplify><feedbackstyle>1</feedbackstyle><feedbackvariables><text><![CDATA[zf: float(ans1); zng: is(zf < 0); zcl: is(abs(zf - float(tm1)) < 0.1);
+zsq: dispdp(floor(100*zf^2+1/2)/100.0, 2);
+]]></text></feedbackvariables>
+    <node><name>0</name><description>|v|</description><answertest>NumAbsolute</answertest><sans>ans1</sans><tans>float(tm1)</tans><testoptions>0.00501</testoptions><quiet>0</quiet><truescoremode>=</truescoremode><truescore>1.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt1-1-T</trueanswernote><truefeedback format="html"><text><![CDATA[]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>1</falsenextnode><falseanswernote>prt1-1-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>1</name><description>No square root</description><answertest>NumAbsolute</answertest><sans>ans1</sans><tans>S</tans><testoptions>0.00501</testoptions><quiet>1</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt1-2-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>You found \(x^2 + y^2 = {@S@}\) but did not take the square root.</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>2</falsenextnode><falseanswernote>prt1-2-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>2</name><description>Sum of sizes</description><answertest>NumAbsolute</answertest><sans>ans1</sans><tans>e1</tans><testoptions>0.00501</testoptions><quiet>1</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt1-3-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>You added the sizes of the components. Square them, add, then take the square root.</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>3</falsenextnode><falseanswernote>prt1-3-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>3</name><description>Sum of components</description><answertest>NumAbsolute</answertest><sans>ans1</sans><tans>e2</tans><testoptions>0.00501</testoptions><quiet>1</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt1-4-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>You added the components. Square each one first.</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>4</falsenextnode><falseanswernote>prt1-4-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>4</name><description>Negative squared as negative</description><answertest>NumAbsolute</answertest><sans>ans1</sans><tans>float(e3)</tans><testoptions>0.00501</testoptions><quiet>1</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt1-5-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>A negative number squared is positive: \(({@neg@})^2 = {@neg^2@}\).</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>-1</falsenextnode><falseanswernote>prt1-5-F</falseanswernote><falsefeedback format="html"><text><![CDATA[<p>[[if test="zng"]]A magnitude is a length, so it is never negative.[[else]][[if test="zcl"]]Your value is close to the magnitude but not correct to 2 decimal places. Keep all the figures on your calculator and round only at the end.[[else]]Check: the square of your answer is \({@zsq@}\), but it should equal \(({@vv[1]@})^2 + ({@vv[2]@})^2\). Square each component, add, then take the square root.[[/if]][[/if]]</p>]]></text></falsefeedback></node>
+  </prt>
+  <prt><name>prt2</name><value>1.0000000</value><autosimplify>1</autosimplify><feedbackstyle>1</feedbackstyle><feedbackvariables><text><![CDATA[zf: float(ans2); zng: is(zf < 0); zcl: is(abs(zf - float(tm2)) < 0.1);
+zsq: dispdp(floor(100*zf^2+1/2)/100.0, 2);
+]]></text></feedbackvariables>
+    <node><name>0</name><description>SK</description><answertest>NumAbsolute</answertest><sans>ans2</sans><tans>float(tm2)</tans><testoptions>0.00501</testoptions><quiet>0</quiet><truescoremode>=</truescoremode><truescore>1.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt2-1-T</trueanswernote><truefeedback format="html"><text><![CDATA[]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>1</falsenextnode><falseanswernote>prt2-1-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>1</name><description>No square root</description><answertest>NumAbsolute</answertest><sans>ans2</sans><tans>Sd</tans><testoptions>0.00501</testoptions><quiet>1</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt2-2-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>You found the sum of the squares, \({@Sd@}\), but did not take the square root.</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>2</falsenextnode><falseanswernote>prt2-2-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>2</name><description>Added the coordinates</description><answertest>NumAbsolute</answertest><sans>ans2</sans><tans>float(f1)</tans><testoptions>0.00501</testoptions><quiet>1</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt2-3-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>You added the coordinates. The vector from S to K is K \(-\) S: subtract them.</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>3</falsenextnode><falseanswernote>prt2-3-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>3</name><description>|OK|</description><answertest>NumAbsolute</answertest><sans>ans2</sans><tans>float(f2)</tans><testoptions>0.00501</testoptions><quiet>1</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt2-4-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>That is the distance of K from the origin. Find the vector from S to K first.</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>4</falsenextnode><falseanswernote>prt2-4-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>4</name><description>Sum of sizes</description><answertest>NumAbsolute</answertest><sans>ans2</sans><tans>f3</tans><testoptions>0.00501</testoptions><quiet>1</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt2-5-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>You added the across and up moves. The straight line is the hypotenuse: use Pythagoras.</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>-1</falsenextnode><falseanswernote>prt2-5-F</falseanswernote><falsefeedback format="html"><text><![CDATA[<p>[[if test="zng"]]A distance is never negative.[[else]][[if test="zcl"]]Your value is close to the distance but not correct to 2 decimal places. Keep all the figures on your calculator and round only at the end.[[else]]Check: the square of your answer is \({@zsq@}\). It should be the sum of the squares of the across move and the up move from S to K. Find \(\overrightarrow{SK}\) = K \(-\) S, then its magnitude.[[/if]][[/if]]</p>]]></text></falsefeedback></node>
+  </prt>
+
+  <deployedseed>4</deployedseed>
+  <deployedseed>5</deployedseed>
+  <deployedseed>15</deployedseed>
+  <deployedseed>8</deployedseed>
+  <deployedseed>24</deployedseed>
+  <deployedseed>1</deployedseed>
+  <deployedseed>3</deployedseed>
+  <deployedseed>10</deployedseed>
+  <deployedseed>2</deployedseed>
+  <deployedseed>17</deployedseed>
+  <qtest><testcase>1</testcase><description>Correct, exact</description>
+    <testinput><name>ans1</name><value>sqrt(S)</value></testinput>
+    <testinput><name>ans2</name><value>sqrt(Sd)</value></testinput>
+    <expected><name>prt1</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt1-1-T</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt2-1-T</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>2</testcase><description>Correct, 2 d.p.</description>
+    <testinput><name>ans1</name><value>r1</value></testinput>
+    <testinput><name>ans2</name><value>r2</value></testinput>
+    <expected><name>prt1</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt1-1-T</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt2-1-T</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>3</testcase><description>No square root</description>
+    <testinput><name>ans1</name><value>S</value></testinput>
+    <testinput><name>ans2</name><value>Sd</value></testinput>
+    <expected><name>prt1</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt1-1-F | prt1-2-T</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt2-1-F | prt2-2-T</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>4</testcase><description>Sum of sizes; added the coordinates</description>
+    <testinput><name>ans1</name><value>e1</value></testinput>
+    <testinput><name>ans2</name><value>float(f1)</value></testinput>
+    <expected><name>prt1</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt1-1-F | prt1-2-F | prt1-3-T</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt2-1-F | prt2-2-F | prt2-3-T</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>5</testcase><description>Sum of components; |OK|</description>
+    <testinput><name>ans1</name><value>e2</value></testinput>
+    <testinput><name>ans2</name><value>float(f2)</value></testinput>
+    <expected><name>prt1</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt1-1-F | prt1-2-F | prt1-3-F | prt1-4-T</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt2-1-F | prt2-2-F | prt2-3-F | prt2-4-T</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>6</testcase><description>Negative squared as negative; sum of sizes</description>
+    <testinput><name>ans1</name><value>float(e3)</value></testinput>
+    <testinput><name>ans2</name><value>f3</value></testinput>
+    <expected><name>prt1</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt1-1-F | prt1-2-F | prt1-3-F | prt1-4-F | prt1-5-T</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt2-1-F | prt2-2-F | prt2-3-F | prt2-4-F | prt2-5-T</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>7</testcase><description>Generic offsets</description>
+    <testinput><name>ans1</name><value>w1</value></testinput>
+    <testinput><name>ans2</name><value>w2</value></testinput>
+    <expected><name>prt1</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt1-1-F | prt1-2-F | prt1-3-F | prt1-4-F | prt1-5-F</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt2-1-F | prt2-2-F | prt2-3-F | prt2-4-F | prt2-5-F</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>8</testcase><description>Invalid: a letter in (a)</description>
+    <testinput><name>ans1</name><value>x</value></testinput>
+    <testinput><name>ans2</name><value>sqrt(Sd)</value></testinput>
+    <expected><name>prt1</name><expectedscore></expectedscore><expectedpenalty></expectedpenalty><expectedanswernote>NULL</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt2-1-T</expectedanswernote></expected>
+  </qtest>
+</question>
+</quiz>

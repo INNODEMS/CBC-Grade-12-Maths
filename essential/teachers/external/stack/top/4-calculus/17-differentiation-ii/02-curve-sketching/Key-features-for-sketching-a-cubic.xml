@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<quiz>
+<question type="stack">
+  <name><text>Key features for sketching a cubic</text></name>
+  <questiontext format="html">
+    <text><![CDATA[<p>A sketch of \(y = {@ffac@}\) is needed.</p><p>(a) Expand \(y\).</p><div>\(y =\) [[input:ans1]] [[validation:ans1]] [[feedback:prt1]]</div><p>(b) Find the \(y\)-intercept.</p><div>[[input:ans2]] [[validation:ans2]] [[feedback:prt2]]</div><p>(c) Find the coordinates of the maximum point.</p><div>( [[input:ans3]] , [[input:ans4]] ) [[validation:ans3]] [[validation:ans4]] [[feedback:prt3]]</div><p>(d) Find the coordinates of the minimum point.</p><div>( [[input:ans5]] , [[input:ans6]] ) [[validation:ans5]] [[validation:ans6]] [[feedback:prt4]]</div>]]></text>
+  </questiontext>
+  <generalfeedback format="html">
+    <text><![CDATA[<p>The stationary points and the intercepts are the skeleton of the curve.</p><p>(a) \(y = {@fexp@}\).</p><p>(b) Put \(x = 0\): the \(y\)-intercept is \({@yint@}\).</p><p>(c), (d) \(\dfrac{dy}{dx} = {@df@} = {@dfac@}\), which is \(0\) at \(x = {@m0@}\) and \(x = {@xs2@}\). \(\dfrac{d^2y}{dx^2} = {@diff(df,x)@}\) is negative at \(x = {@xmax@}\) and positive at \(x = {@xmin@}\). The maximum point is \(({@xmax@}, {@ymax@})\) and the minimum point is \(({@xmin@}, {@ymin@})\).</p><p>The squared factor makes the curve touch the \(x\)-axis at \(x = {@m0@}\); it crosses at \(x = {@n0@}\). [[if test="is(a0>0)"]]The leading coefficient is positive, so \(y\) is large and positive for large positive \(x\), and large and negative for large negative \(x\).[[else]]The leading coefficient is negative, so \(y\) is large and negative for large positive \(x\), and large and positive for large negative \(x\).[[/if]]</p><div style="text-align:center;" role="img" aria-label="Sketch of y = {#fexp#}: it touches the x-axis at ({#m0#}, 0), crosses it at ({#n0#}, 0), meets the y-axis at (0, {#yint#}), has a maximum point at ({#xmax#}, {#ymax#}) and a minimum point at ({#xmin#}, {#ymin#}).">
+[[jsxgraph width="360px" height="280px"]]
+(function() {
+  var b = JXG.JSXGraph.initBoard(divid, {boundingbox: [{#xl#}, {#yu+pd#}, {#xr#}, {#yl-pd#}], axis: true, grid: false, showNavigation: false, showCopyright: false, pan: {enabled: false}, zoom: {enabled: false}});
+  // the curve
+  b.create('functiongraph', [function(x) { return {#a0#}*(x-({#m0#}))*(x-({#m0#}))*(x-({#n0#})); }], {strokeColor: '#1f4e9c', strokeWidth: 2, fixed: true, highlight: false});
+  // intercepts and stationary points
+  b.create('point', [{#m0#}, 0], {name: '({#m0#}, 0)', size: 3, fixed: true, strokeColor: '#000000', fillColor: '#000000', showInfobox: false, label: {useMathJax: false, offset: [6, 12]}});
+  b.create('point', [{#n0#}, 0], {name: '({#n0#}, 0)', size: 3, fixed: true, strokeColor: '#000000', fillColor: '#000000', showInfobox: false, label: {useMathJax: false, offset: [6, 12]}});
+[[if test="is(xs2#0)"]]
+  b.create('point', [0, {#yint#}], {name: '(0, {#yint#})', size: 3, fixed: true, strokeColor: '#000000', fillColor: '#000000', showInfobox: false, label: {useMathJax: false, offset: [8, 0]}});
+[[/if]]
+  b.create('point', [{#xs2#}, {#y2#}], {name: '({#xs2#}, {#y2#})', size: 3, fixed: true, strokeColor: '#000000', fillColor: '#000000', showInfobox: false, label: {useMathJax: false, offset: [8, 8]}});
+})();
+[[/jsxgraph]]
+</div>]]></text>
+  </generalfeedback>
+  <defaultgrade>4</defaultgrade>
+  <penalty>0.1</penalty>
+  <hidden>0</hidden>
+  <idnumber></idnumber>
+  <stackversion><text>2026063000</text></stackversion>
+  <questionvariables>
+    <text><![CDATA[validate_x(ex) := if every(lambda([v], member(v, [x])), listofvars(ex)) then "" else "Use x as the only letter in your answer.";
+/* Design: y = a0(x-m0)^2(x-n0) with n0 - m0 = 3k, so the stationary points are x = m0 (on the axis) and x = m0 + 2k, both integers. Source: original. */
+L: [[1,-1,2],[-1,1,-2],[1,2,-1],[-1,-2,4],[1,-3,3],[-1,3,6],[1,1,-5],[-1,-1,-4],[1,2,5],[-1,-2,1]];
+ix: 1+rand(10);
+a0: L[ix][1]; m0: L[ix][2]; n0: L[ix][3];
+ffac: a0*(x-m0)^2*(x-n0);
+fexp: expand(ffac);
+df: diff(fexp,x);
+xs2: m0+2*(n0-m0)/3;
+dfac: 3*a0*(x-m0)*(x-xs2);
+y2: ev(fexp,x=xs2);
+yint: ev(fexp,x=0);
+mfirst: is(ev(diff(fexp,x,2),x=m0)<0);
+xmax: if mfirst then m0 else xs2; ymax: ev(fexp,x=xmax);
+xmin: if mfirst then xs2 else m0; ymin: ev(fexp,x=xmin);
+wsq: expand(a0*(x^2+m0^2)*(x-n0));
+/* sketch window */
+xl: min(m0,n0,xs2,0)-1.5; xr: max(m0,n0,xs2,0)+1.5;
+yl: min(0,yint,ymin); yu: max(0,yint,ymax); pd: (yu-yl)/5+1;]]></text>
+  </questionvariables>
+  <specificfeedback format="html"><text><![CDATA[]]></text></specificfeedback>
+  <questionnote format="moodle_auto_format">
+    <text>ix={@ix@}, y={@ffac@}, yint={@yint@}, max ({@xmax@},{@ymax@}), min ({@xmin@},{@ymin@})</text>
+  </questionnote>
+  <questiondescription format="html"><text><![CDATA[<p id="concept">Differentiation II: key features for sketching a cubic</p><p id="description">Grade 12 CBE Core 4.1: Expand a factorised cubic, find its y-intercept and the coordinates of its maximum and minimum points.</p><p id="edition">Core</p><p id="provenance">This question is original to this project.</p><p id="citation">INNODEMS CBC Grade 12 Mathematics, first draft by Ben Davies, 2026. Aligned to the KICD Senior School Curriculum Design, Core Mathematics Grade 12 (draft).</p>]]></text></questiondescription>
+  <questionsimplify>1</questionsimplify>
+  <assumepositive>0</assumepositive>
+  <assumereal>0</assumereal>
+  <prtcorrect format="html"><text><![CDATA[[[commonstring key="symbolicprtcorrectfeedback"/]] [[commonstring key="defaultprtcorrectfeedback"/]]]]></text></prtcorrect>
+  <prtpartiallycorrect format="html"><text><![CDATA[[[commonstring key="symbolicprtpartiallycorrectfeedback"/]] [[commonstring key="defaultprtpartiallycorrectfeedback"/]]]]></text></prtpartiallycorrect>
+  <prtincorrect format="html"><text><![CDATA[[[commonstring key="symbolicprtincorrectfeedback"/]] [[commonstring key="defaultprtincorrectfeedback"/]]]]></text></prtincorrect>
+  <decimals>.</decimals>
+  <scientificnotation>*10</scientificnotation>
+  <multiplicationsign>none</multiplicationsign>
+  <sqrtsign>1</sqrtsign>
+  <complexno>i</complexno>
+  <inversetrig>cos-1</inversetrig>
+  <logicsymbol>lang</logicsymbol>
+  <matrixparens>[</matrixparens>
+  <isbroken>0</isbroken>
+  <variantsselectionseed></variantsselectionseed>
+
+  <input><name>ans1</name><type>algebraic</type><tans>fexp</tans><boxsize>15</boxsize><strictsyntax>1</strictsyntax><insertstars>4</insertstars><syntaxhint></syntaxhint><syntaxattribute>0</syntaxattribute><forbidwords>diff,integrate,solve</forbidwords><allowwords></allowwords><forbidfloat>1</forbidfloat><requirelowestterms>0</requirelowestterms><checkanswertype>1</checkanswertype><mustverify>0</mustverify><showvalidation>3</showvalidation><options>validator:validate_x</options></input>
+  <input><name>ans2</name><type>numerical</type><tans>yint</tans><boxsize>5</boxsize><strictsyntax>1</strictsyntax><insertstars>0</insertstars><syntaxhint></syntaxhint><syntaxattribute>0</syntaxattribute><forbidwords></forbidwords><allowwords></allowwords><forbidfloat>1</forbidfloat><requirelowestterms>0</requirelowestterms><checkanswertype>0</checkanswertype><mustverify>0</mustverify><showvalidation>0</showvalidation><options></options></input>
+  <input><name>ans3</name><type>numerical</type><tans>xmax</tans><boxsize>5</boxsize><strictsyntax>1</strictsyntax><insertstars>0</insertstars><syntaxhint></syntaxhint><syntaxattribute>0</syntaxattribute><forbidwords></forbidwords><allowwords></allowwords><forbidfloat>1</forbidfloat><requirelowestterms>0</requirelowestterms><checkanswertype>0</checkanswertype><mustverify>0</mustverify><showvalidation>0</showvalidation><options></options></input>
+  <input><name>ans4</name><type>numerical</type><tans>ymax</tans><boxsize>5</boxsize><strictsyntax>1</strictsyntax><insertstars>0</insertstars><syntaxhint></syntaxhint><syntaxattribute>0</syntaxattribute><forbidwords></forbidwords><allowwords></allowwords><forbidfloat>1</forbidfloat><requirelowestterms>0</requirelowestterms><checkanswertype>0</checkanswertype><mustverify>0</mustverify><showvalidation>0</showvalidation><options></options></input>
+  <input><name>ans5</name><type>numerical</type><tans>xmin</tans><boxsize>5</boxsize><strictsyntax>1</strictsyntax><insertstars>0</insertstars><syntaxhint></syntaxhint><syntaxattribute>0</syntaxattribute><forbidwords></forbidwords><allowwords></allowwords><forbidfloat>1</forbidfloat><requirelowestterms>0</requirelowestterms><checkanswertype>0</checkanswertype><mustverify>0</mustverify><showvalidation>0</showvalidation><options></options></input>
+  <input><name>ans6</name><type>numerical</type><tans>ymin</tans><boxsize>5</boxsize><strictsyntax>1</strictsyntax><insertstars>0</insertstars><syntaxhint></syntaxhint><syntaxattribute>0</syntaxattribute><forbidwords></forbidwords><allowwords></allowwords><forbidfloat>1</forbidfloat><requirelowestterms>0</requirelowestterms><checkanswertype>0</checkanswertype><mustverify>0</mustverify><showvalidation>0</showvalidation><options></options></input>
+
+  <prt><name>prt1</name><value>1.0000000</value><autosimplify>0</autosimplify><feedbackstyle>1</feedbackstyle><feedbackvariables><text><![CDATA[]]></text></feedbackvariables>
+    <node><name>0</name><description>Value of the expansion</description><answertest>AlgEquiv</answertest><sans>ans1</sans><tans>fexp</tans><testoptions></testoptions><quiet>1</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>1</truenextnode><trueanswernote>prt1-1-T</trueanswernote><truefeedback format="html"><text><![CDATA[]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>2</falsenextnode><falseanswernote>prt1-1-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>1</name><description>Expanded form</description><answertest>EqualComAss</answertest><sans>ans1</sans><tans>fexp</tans><testoptions></testoptions><quiet>1</quiet><truescoremode>=</truescoremode><truescore>1.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt1-2-T</trueanswernote><truefeedback format="html"><text><![CDATA[]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>-1</falsenextnode><falseanswernote>prt1-2-F</falseanswernote><falsefeedback format="html"><text><![CDATA[<p>Your expression is equal to \(y\), but it is not fully expanded and simplified. Multiply out every bracket, collect like terms, and write each term in its simplest form (for example \(x^3\), not \(1x^3\)).</p>]]></text></falsefeedback></node>
+    <node><name>2</name><description>Squared bracket</description><answertest>AlgEquiv</answertest><sans>ans1</sans><tans>wsq</tans><testoptions></testoptions><quiet>1</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt1-3-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>You expanded \({@ev((x-m0)^2,simp)@}\) as \({@ev(x^2+m0^2,simp)@}\). Test that with \(x = 1\): the bracket gives \({@ev((1-m0)^2,simp)@}\), but your expansion gives \({@ev(1+m0^2,simp)@}\). Write the square as two brackets and multiply them out.</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>-1</falsenextnode><falseanswernote>prt1-3-F</falseanswernote><falsefeedback format="html"><text><![CDATA[<p>Expand the squared bracket first, then multiply by the other bracket.</p>]]></text></falsefeedback></node>
+  </prt>
+  <prt><name>prt2</name><value>1.0000000</value><autosimplify>1</autosimplify><feedbackstyle>1</feedbackstyle><feedbackvariables><text><![CDATA[]]></text></feedbackvariables>
+    <node><name>0</name><description>y-intercept</description><answertest>AlgEquiv</answertest><sans>ans2</sans><tans>yint</tans><testoptions></testoptions><quiet>1</quiet><truescoremode>=</truescoremode><truescore>1.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt2-1-T</trueanswernote><truefeedback format="html"><text><![CDATA[]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>1</falsenextnode><falseanswernote>prt2-1-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>1</name><description>Sign</description><answertest>AlgEquiv</answertest><sans>ans2</sans><tans>-yint</tans><testoptions></testoptions><quiet>1</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt2-2-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>Check the sign: put \(x = 0\) into \(y = {@ffac@}\).</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>-1</falsenextnode><falseanswernote>prt2-2-F</falseanswernote><falsefeedback format="html"><text><![CDATA[<p>Put \(x = 0\) into \(y = {@ffac@}\).</p>]]></text></falsefeedback></node>
+  </prt>
+  <prt><name>prt3</name><value>1.0000000</value><autosimplify>1</autosimplify><feedbackstyle>1</feedbackstyle><feedbackvariables><text><![CDATA[gq: ev(df,x=ans3);]]></text></feedbackvariables>
+    <node><name>0</name><description>Point</description><answertest>AlgEquiv</answertest><sans>[ans3,ans4]</sans><tans>[xmax,ymax]</tans><testoptions></testoptions><quiet>1</quiet><truescoremode>=</truescoremode><truescore>1.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt3-1-T</trueanswernote><truefeedback format="html"><text><![CDATA[]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>1</falsenextnode><falseanswernote>prt3-1-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>1</name><description>Other point</description><answertest>AlgEquiv</answertest><sans>[ans3,ans4]</sans><tans>[xmin,ymin]</tans><testoptions></testoptions><quiet>1</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt3-2-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>That is the minimum point. At a maximum point the gradient goes from positive to negative.</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>2</falsenextnode><falseanswernote>prt3-2-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>2</name><description>x right</description><answertest>AlgEquiv</answertest><sans>ans3</sans><tans>xmax</tans><testoptions></testoptions><quiet>1</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt3-3-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>Your \(x\)-coordinate is right. Substitute it into \(y\) to find the \(y\)-coordinate.</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>-1</falsenextnode><falseanswernote>prt3-3-F</falseanswernote><falsefeedback format="html"><text><![CDATA[[[if test="is(gq=0)"]]<p>The curve is stationary at \(x = {@ans3@}\), but that is not the maximum point. Classify both stationary points, for example by the sign of \(\dfrac{d^2y}{dx^2}\), then substitute into \(y\).</p>[[else]]<p>At \(x = {@ans3@}\), \(\dfrac{dy}{dx} = {@gq@}\), not \(0\), so the curve is not stationary there. Differentiate your expansion, solve \(\dfrac{dy}{dx} = 0\), classify both points, then substitute.</p>[[/if]]]]></text></falsefeedback></node>
+  </prt>
+  <prt><name>prt4</name><value>1.0000000</value><autosimplify>1</autosimplify><feedbackstyle>1</feedbackstyle><feedbackvariables><text><![CDATA[gq: ev(df,x=ans5);]]></text></feedbackvariables>
+    <node><name>0</name><description>Point</description><answertest>AlgEquiv</answertest><sans>[ans5,ans6]</sans><tans>[xmin,ymin]</tans><testoptions></testoptions><quiet>1</quiet><truescoremode>=</truescoremode><truescore>1.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt4-1-T</trueanswernote><truefeedback format="html"><text><![CDATA[]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>1</falsenextnode><falseanswernote>prt4-1-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>1</name><description>Other point</description><answertest>AlgEquiv</answertest><sans>[ans5,ans6]</sans><tans>[xmax,ymax]</tans><testoptions></testoptions><quiet>1</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt4-2-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>That is the maximum point. At a minimum point the gradient goes from negative to positive.</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>2</falsenextnode><falseanswernote>prt4-2-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>2</name><description>x right</description><answertest>AlgEquiv</answertest><sans>ans5</sans><tans>xmin</tans><testoptions></testoptions><quiet>1</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt4-3-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>Your \(x\)-coordinate is right. Substitute it into \(y\) to find the \(y\)-coordinate.</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>-1</falsenextnode><falseanswernote>prt4-3-F</falseanswernote><falsefeedback format="html"><text><![CDATA[[[if test="is(gq=0)"]]<p>The curve is stationary at \(x = {@ans5@}\), but that is not the minimum point. Classify both stationary points, for example by the sign of \(\dfrac{d^2y}{dx^2}\), then substitute into \(y\).</p>[[else]]<p>At \(x = {@ans5@}\), \(\dfrac{dy}{dx} = {@gq@}\), not \(0\), so the curve is not stationary there. Differentiate your expansion, solve \(\dfrac{dy}{dx} = 0\), classify both points, then substitute.</p>[[/if]]]]></text></falsefeedback></node>
+  </prt>
+
+  <deployedseed>4</deployedseed>
+  <deployedseed>5</deployedseed>
+  <deployedseed>15</deployedseed>
+  <deployedseed>8</deployedseed>
+  <deployedseed>24</deployedseed>
+  <deployedseed>1</deployedseed>
+  <deployedseed>3</deployedseed>
+  <deployedseed>10</deployedseed>
+  <deployedseed>2</deployedseed>
+  <deployedseed>17</deployedseed>
+  <qtest><testcase>1</testcase><description>Correct</description>
+    <testinput><name>ans1</name><value>fexp</value></testinput>
+    <testinput><name>ans2</name><value>yint</value></testinput>
+    <testinput><name>ans3</name><value>xmax</value></testinput>
+    <testinput><name>ans4</name><value>ymax</value></testinput>
+    <testinput><name>ans5</name><value>xmin</value></testinput>
+    <testinput><name>ans6</name><value>ymin</value></testinput>
+    <expected><name>prt1</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt1-1-T | prt1-2-T</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt2-1-T</expectedanswernote></expected>
+    <expected><name>prt3</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt3-1-T</expectedanswernote></expected>
+    <expected><name>prt4</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt4-1-T</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>2</testcase><description>Not expanded</description>
+    <testinput><name>ans1</name><value>ffac</value></testinput>
+    <testinput><name>ans2</name><value>yint</value></testinput>
+    <testinput><name>ans3</name><value>xmax</value></testinput>
+    <testinput><name>ans4</name><value>ymax</value></testinput>
+    <testinput><name>ans5</name><value>xmin</value></testinput>
+    <testinput><name>ans6</name><value>ymin</value></testinput>
+    <expected><name>prt1</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt1-1-T | prt1-2-F</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt2-1-T</expectedanswernote></expected>
+    <expected><name>prt3</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt3-1-T</expectedanswernote></expected>
+    <expected><name>prt4</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt4-1-T</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>3</testcase><description>Squared bracket; sign; points swapped</description>
+    <testinput><name>ans1</name><value>wsq</value></testinput>
+    <testinput><name>ans2</name><value>-yint</value></testinput>
+    <testinput><name>ans3</name><value>xmin</value></testinput>
+    <testinput><name>ans4</name><value>ymin</value></testinput>
+    <testinput><name>ans5</name><value>xmax</value></testinput>
+    <testinput><name>ans6</name><value>ymax</value></testinput>
+    <expected><name>prt1</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt1-1-F | prt1-3-T</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt2-1-F | prt2-2-T</expectedanswernote></expected>
+    <expected><name>prt3</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt3-1-F | prt3-2-T</expectedanswernote></expected>
+    <expected><name>prt4</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt4-1-F | prt4-2-T</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>4</testcase><description>Generic expansion and intercept; y-coordinates wrong</description>
+    <testinput><name>ans1</name><value>fexp+1</value></testinput>
+    <testinput><name>ans2</name><value>yint+100</value></testinput>
+    <testinput><name>ans3</name><value>xmax</value></testinput>
+    <testinput><name>ans4</name><value>ymax+100</value></testinput>
+    <testinput><name>ans5</name><value>xmin</value></testinput>
+    <testinput><name>ans6</name><value>ymin+100</value></testinput>
+    <expected><name>prt1</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt1-1-F | prt1-3-F</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt2-1-F | prt2-2-F</expectedanswernote></expected>
+    <expected><name>prt3</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt3-1-F | prt3-2-F | prt3-3-T</expectedanswernote></expected>
+    <expected><name>prt4</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt4-1-F | prt4-2-F | prt4-3-T</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>5</testcase><description>x-coordinates wrong</description>
+    <testinput><name>ans1</name><value>fexp</value></testinput>
+    <testinput><name>ans2</name><value>yint</value></testinput>
+    <testinput><name>ans3</name><value>xmax+100</value></testinput>
+    <testinput><name>ans4</name><value>ymax</value></testinput>
+    <testinput><name>ans5</name><value>xmin+100</value></testinput>
+    <testinput><name>ans6</name><value>ymin</value></testinput>
+    <expected><name>prt1</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt1-1-T | prt1-2-T</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt2-1-T</expectedanswernote></expected>
+    <expected><name>prt3</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt3-1-F | prt3-2-F | prt3-3-F</expectedanswernote></expected>
+    <expected><name>prt4</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt4-1-F | prt4-2-F | prt4-3-F</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>6</testcase><description>Other stationary x with a wrong y</description>
+    <testinput><name>ans1</name><value>fexp</value></testinput>
+    <testinput><name>ans2</name><value>yint</value></testinput>
+    <testinput><name>ans3</name><value>xmin</value></testinput>
+    <testinput><name>ans4</name><value>ymin+100</value></testinput>
+    <testinput><name>ans5</name><value>xmax</value></testinput>
+    <testinput><name>ans6</name><value>ymax+100</value></testinput>
+    <expected><name>prt1</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt1-1-T | prt1-2-T</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt2-1-T</expectedanswernote></expected>
+    <expected><name>prt3</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt3-1-F | prt3-2-F | prt3-3-F</expectedanswernote></expected>
+    <expected><name>prt4</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt4-1-F | prt4-2-F | prt4-3-F</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>7</testcase><description>Invalid: letter in (b)</description>
+    <testinput><name>ans1</name><value>fexp</value></testinput>
+    <testinput><name>ans2</name><value>x</value></testinput>
+    <testinput><name>ans3</name><value>xmax</value></testinput>
+    <testinput><name>ans4</name><value>ymax</value></testinput>
+    <testinput><name>ans5</name><value>xmin</value></testinput>
+    <testinput><name>ans6</name><value>ymin</value></testinput>
+    <expected><name>prt1</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt1-1-T | prt1-2-T</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore></expectedscore><expectedpenalty></expectedpenalty><expectedanswernote>NULL</expectedanswernote></expected>
+    <expected><name>prt3</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt3-1-T</expectedanswernote></expected>
+    <expected><name>prt4</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt4-1-T</expectedanswernote></expected>
+  </qtest>
+</question>
+</quiz>

@@ -1,0 +1,5 @@
+<stack-static>
+    <statement><p><p>Find the indefinite integral. Use <m>c</m> for the constant of integration.</p><div><m>\displaystyle \int {\left(x+3\right) \left(2 x-1\right)}\,dx =</m> <fillin characters="20" name="ans1"/>  </div></p></statement>
+    <solution><p><p>There is no product rule for integration: the integral of a product is not the product of the integrals. Multiply out the brackets first, then integrate term by term.</p><p><me>{\left(x+3\right) \left(2 x-1\right)} = {2 x^2+5 x-3}</me></p><p><me>\int {\left(x+3\right) \left(2 x-1\right)}\,dx = \int \left({2 x^2+5 x-3}\right)dx = {\frac{2 x^3}{3}+\frac{5 x^2}{2}-3 x} + c</me></p><p>Check: <m>\dfrac{d}{dx}\left({\frac{2 x^3}{3}+\frac{5 x^2}{2}-3 x} + c\right) = {2 x^2+5 x-3}</m>.</p></p></solution>
+    <answer><p><m>\frac{2 x^3}{3}+\frac{5 x^2}{2}-3 x+c</m></p></answer>
+</stack-static>

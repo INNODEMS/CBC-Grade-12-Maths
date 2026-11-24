@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<quiz>
+<question type="stack">
+  <name><text>Longitude from a time difference</text></name>
+  <questiontext format="html">
+    <text><![CDATA[<p>When it is \([[if test="is(floor(mod(t0,1440)/60)<10)"]]0[[/if]]{@floor(mod(t0,1440)/60)@}:[[if test="is(mod(mod(t0,1440),60)<10)"]]0[[/if]]{@mod(mod(t0,1440),60)@}\) [[if test="gw"]]GMT[[else]]local time in Nairobi (take Nairobi to be on \(37^\circ\,\mathrm{E}\))[[/if]], the local time on a ship is \([[if test="is(floor(mod(ts,1440)/60)<10)"]]0[[/if]]{@floor(mod(ts,1440)/60)@}:[[if test="is(mod(mod(ts,1440),60)<10)"]]0[[/if]]{@mod(mod(ts,1440),60)@}\). Find the ship's longitude.</p><p>[[input:ans1]] \(^\circ\) [[input:ans2]] [[validation:ans1]] [[feedback:prt1]]</p>]]></text>
+  </questiontext>
+  <generalfeedback format="html">
+    <text><![CDATA[<p>The ship's clock is [[if test="ahead"]]ahead[[else]]behind[[/if]] by \({@abs(dt)@}\) minutes. Each degree of longitude is \(4\) minutes of time, so the ship is \({@abs(dt)@} \div 4 = {@abs(dt)/4@}^\circ\) [[if test="ahead"]]east[[else]]west[[/if]] of [[if test="gw"]]Greenwich[[else]]Nairobi[[/if]].[[if test="gw"]][[else]] Nairobi is at \(37^\circ\,\mathrm{E}\), so the ship is at \(37^\circ [[if test="ahead"]]+[[else]]-[[/if]] {@abs(dt)/4@}^\circ\).[[/if]] The ship's longitude is \({@lon1@}^\circ\,\mathrm{[[if test="e1"]]E[[else]]W[[/if]]}\).</p>]]></text>
+  </generalfeedback>
+  <defaultgrade>1</defaultgrade>
+  <penalty>0.1</penalty>
+  <hidden>0</hidden>
+  <idnumber></idnumber>
+  <stackversion><text>2026063000</text></stackversion>
+  <questionvariables>
+    <text><![CDATA[cosd(x) := cos(x*%pi/180);
+sind(x) := sin(x*%pi/180);
+atand(x) := 180*atan(x)/%pi;
+asind(x) := 180*asin(x)/%pi;
+two(v) := if v < 10 then sconcat("0", string(v)) else string(v);
+hm(m) := block([q], q: mod(m, 1440), sconcat(two(floor(q/60)), ":", two(mod(q, 60))));
+dmx(m) := sconcat(string(floor(m/60)), "^\\circ", two(mod(m, 60)), "'");
+/* Design: [reference longitude (0 Greenwich, 37 Nairobi), reference h, m, ship h, m]. The two Nairobi nodes apply only on Nairobi entries; elsewhere dto = 999 and rfw = -999, values no longitude takes (used only by their tests). Source: original. */
+L: [[0,8,0,10,40],[0,12,0,9,12],[37,10,0,12,20],[0,15,30,18,58],[37,9,0,6,24],[0,6,0,2,40],[37,14,0,13,12],[0,20,0,23,0],[37,7,30,4,46],[0,11,15,9,51]];
+ix: 1+rand(10);
+E: L[ix];
+ref: E[1];
+gw: is(ref=0);
+t0: 60*E[2]+E[3]; ts: 60*E[4]+E[5];
+dt: ts-t0;
+ahead: is(dt>0);
+lam: ref+dt/4;
+lon1: abs(lam); ew1: if lam>0 then "E" else "W"; e1: is(lam>0);
+/* diagnostics (signed) */
+lw: -lam; l15: ref+dt/15;
+dto: if gw then 999 else dt/4;
+rfw: if gw then -999 else ref-dt/4;
+sgl(v) := if v>0 then "E" else "W";
+opt2: [["E", e1, "E"], ["W", not e1, "W"]];
+]]></text>
+  </questionvariables>
+  <specificfeedback format="html"><text><![CDATA[]]></text></specificfeedback>
+  <questionnote format="moodle_auto_format">
+    <text>ix={@ix@}, dt={@dt@}, lam={@lam@}</text>
+  </questionnote>
+  <questiondescription format="html"><text><![CDATA[<p id="concept">Navigation: longitude from a time difference</p><p id="description">Grade 12 CBE Core 2.7 (d) / Essential 2.3 (c): Find a ship's longitude from the difference between its local time and the time at Greenwich or Nairobi.</p><p id="edition">Core and Essential</p><p id="provenance">This question is original to this project.</p><p id="citation">INNODEMS CBC Grade 12 Mathematics, first draft by Ben Davies, 2026. Aligned to the KICD Senior School Curriculum Design, Core and Essential Mathematics Grade 12 (draft).</p>]]></text></questiondescription>
+  <questionsimplify>1</questionsimplify>
+  <assumepositive>0</assumepositive>
+  <assumereal>0</assumereal>
+  <prtcorrect format="html"><text><![CDATA[[[commonstring key="symbolicprtcorrectfeedback"/]] [[commonstring key="defaultprtcorrectfeedback"/]]]]></text></prtcorrect>
+  <prtpartiallycorrect format="html"><text><![CDATA[[[commonstring key="symbolicprtpartiallycorrectfeedback"/]] [[commonstring key="defaultprtpartiallycorrectfeedback"/]]]]></text></prtpartiallycorrect>
+  <prtincorrect format="html"><text><![CDATA[[[commonstring key="symbolicprtincorrectfeedback"/]] [[commonstring key="defaultprtincorrectfeedback"/]]]]></text></prtincorrect>
+  <decimals>.</decimals>
+  <scientificnotation>*10</scientificnotation>
+  <multiplicationsign>none</multiplicationsign>
+  <sqrtsign>1</sqrtsign>
+  <complexno>i</complexno>
+  <inversetrig>cos-1</inversetrig>
+  <logicsymbol>lang</logicsymbol>
+  <matrixparens>[</matrixparens>
+  <isbroken>0</isbroken>
+  <variantsselectionseed></variantsselectionseed>
+
+  <input><name>ans1</name><type>numerical</type><tans>lon1</tans><boxsize>5</boxsize><strictsyntax>1</strictsyntax><insertstars>0</insertstars><syntaxhint></syntaxhint><syntaxattribute>0</syntaxattribute><forbidwords></forbidwords><allowwords></allowwords><forbidfloat>0</forbidfloat><requirelowestterms>0</requirelowestterms><checkanswertype>0</checkanswertype><mustverify>0</mustverify><showvalidation>0</showvalidation><options></options></input>
+  <input><name>ans2</name><type>dropdown</type><tans>opt2</tans><boxsize>4</boxsize><strictsyntax>1</strictsyntax><insertstars>0</insertstars><syntaxhint></syntaxhint><syntaxattribute>0</syntaxattribute><forbidwords></forbidwords><allowwords></allowwords><forbidfloat>1</forbidfloat><requirelowestterms>0</requirelowestterms><checkanswertype>0</checkanswertype><mustverify>0</mustverify><showvalidation>0</showvalidation><options></options></input>
+
+  <prt><name>prt1</name><value>1.0000000</value><autosimplify>1</autosimplify><feedbackstyle>1</feedbackstyle><feedbackvariables><text><![CDATA[g: if ans2="E" then ans1 else -ans1;
+yt: 4*(g-ref);
+c1: is(abs(g-lam)<=0.001);
+z1: is(abs(g-lw)<=0.001);
+q1: is(abs(g-l15)<=0.001);
+n1: is(abs(g-dto)<=0.001);
+m1: is(abs(g-rfw)<=0.001);]]></text></feedbackvariables>
+    <node><name>0</name><description>Longitude</description><answertest>AlgEquiv</answertest><sans>c1</sans><tans>true</tans><testoptions></testoptions><quiet>0</quiet><truescoremode>=</truescoremode><truescore>1.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt1-1-T</trueanswernote><truefeedback format="html"><text><![CDATA[]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>1</falsenextnode><falseanswernote>prt1-1-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>1</name><description>East and west swapped</description><answertest>AlgEquiv</answertest><sans>z1</sans><tans>true</tans><testoptions></testoptions><quiet>0</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt1-2-T</trueanswernote><truefeedback format="html"><text><![CDATA[[[if test="gw"]]<p>The size is right, but check E or W. The ship's clock is [[if test="ahead"]]ahead of[[else]]behind[[/if]] GMT, and places to the east meet the sun first, so their clocks are ahead.</p>[[else]]<p>The size is right, but check E or W. The ship is \({@abs(dt)/4@}^\circ\) [[if test="ahead"]]east[[else]]west[[/if]] of Nairobi, and Nairobi is \(37^\circ\) east of Greenwich. Which side of the Greenwich meridian does that leave the ship?</p>[[/if]]]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>2</falsenextnode><falseanswernote>prt1-2-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>2</name><description>Divided by 15</description><answertest>AlgEquiv</answertest><sans>q1</sans><tans>true</tans><testoptions></testoptions><quiet>0</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt1-3-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>\(1^\circ\) of longitude is \(4\) minutes of time; divide the minutes by \(4\), not \(15\).</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>3</falsenextnode><falseanswernote>prt1-3-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>3</name><description>Distance from Nairobi</description><answertest>AlgEquiv</answertest><sans>n1</sans><tans>true</tans><testoptions></testoptions><quiet>0</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt1-4-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>That is how far the ship is [[if test="ahead"]]east[[else]]west[[/if]] of Nairobi, not its longitude. Longitude is measured from the Greenwich meridian, and Nairobi is at \(37^\circ\,\mathrm{E}\).</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>4</falsenextnode><falseanswernote>prt1-4-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>4</name><description>Wrong way from Nairobi</description><answertest>AlgEquiv</answertest><sans>m1</sans><tans>true</tans><testoptions></testoptions><quiet>0</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt1-5-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>You went \({@abs(dt)/4@}^\circ\) the wrong way from Nairobi. The ship's time is [[if test="ahead"]]ahead of Nairobi's, so the ship is east of Nairobi[[else]]behind Nairobi's, so the ship is west of Nairobi[[/if]].</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>-1</falsenextnode><falseanswernote>prt1-5-F</falseanswernote><falsefeedback format="html"><text><![CDATA[<p>Your longitude would put the ship's clock [[if test="is(yt=0)"]]at the same time as[[else]]\({@abs(yt)@}\) minutes [[if test="is(yt>0)"]]ahead of[[else]]behind[[/if]][[/if]] [[if test="gw"]]GMT[[else]]the time in Nairobi[[/if]]. Compare that with the two times in the question. Each degree of longitude is \(4\) minutes of time: ahead means east, behind means west.</p>]]></text></falsefeedback></node>
+  </prt>
+
+  <deployedseed>4</deployedseed>
+  <deployedseed>5</deployedseed>
+  <deployedseed>15</deployedseed>
+  <deployedseed>8</deployedseed>
+  <deployedseed>24</deployedseed>
+  <deployedseed>1</deployedseed>
+  <deployedseed>3</deployedseed>
+  <deployedseed>10</deployedseed>
+  <deployedseed>2</deployedseed>
+  <deployedseed>17</deployedseed>
+  <qtest><testcase>1</testcase><description>Correct</description>
+    <testinput><name>ans1</name><value>lon1</value></testinput>
+    <testinput><name>ans2</name><value>ew1</value></testinput>
+    <expected><name>prt1</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt1-1-T</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>2</testcase><description>Generic wrong, right letter</description>
+    <testinput><name>ans1</name><value>lon1+3</value></testinput>
+    <testinput><name>ans2</name><value>ew1</value></testinput>
+    <expected><name>prt1</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt1-1-F | prt1-2-F | prt1-3-F | prt1-4-F | prt1-5-F</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>3</testcase><description>Letter swapped</description>
+    <testinput><name>ans1</name><value>abs(lw)</value></testinput>
+    <testinput><name>ans2</name><value>sgl(lw)</value></testinput>
+    <expected><name>prt1</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt1-1-F | prt1-2-T</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>4</testcase><description>Divided by 15</description>
+    <testinput><name>ans1</name><value>abs(l15)</value></testinput>
+    <testinput><name>ans2</name><value>sgl(l15)</value></testinput>
+    <expected><name>prt1</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt1-1-F | prt1-2-F | prt1-3-T</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>5</testcase><description>Distance from Nairobi (sentinel on Greenwich entries)</description>
+    <testinput><name>ans1</name><value>abs(dto)</value></testinput>
+    <testinput><name>ans2</name><value>sgl(dto)</value></testinput>
+    <expected><name>prt1</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt1-1-F | prt1-2-F | prt1-3-F | prt1-4-T</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>6</testcase><description>Wrong way from Nairobi (sentinel on Greenwich entries)</description>
+    <testinput><name>ans1</name><value>abs(rfw)</value></testinput>
+    <testinput><name>ans2</name><value>sgl(rfw)</value></testinput>
+    <expected><name>prt1</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt1-1-F | prt1-2-F | prt1-3-F | prt1-4-F | prt1-5-T</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>7</testcase><description>Invalid: letter in the number</description>
+    <testinput><name>ans1</name><value>x</value></testinput>
+    <testinput><name>ans2</name><value>ew1</value></testinput>
+    <expected><name>prt1</name><expectedscore></expectedscore><expectedpenalty></expectedpenalty><expectedanswernote>NULL</expectedanswernote></expected>
+  </qtest>
+</question>
+</quiz>

@@ -1,0 +1,6 @@
+<stack-static>
+    <statement><p><p>Kiprono evaluated <m>\displaystyle \int_{ {-1} }^{ {3} } \left({9 x^2+5 x+4}\right)dx</m>. His working has one mistake.</p><ol><li><m>\displaystyle \int_{ {-1} }^{ {3} } \left({9 x^2+5 x+4}\right)dx = \left[{3 x^3+5 x^2+4 x}\right]_{ {-1} }^{ {3} }</m></li><li>At <m>x = {3}</m>: <m>{138}</m></li><li>At <m>x = {-1}</m>: <m>{-2}</m></li><li><m>{138} - \left({-2}\right) = {140}</m></li></ol><p>(a) Which step has the mistake?</p><div>[ Step 1 | Step 2 | Step 3 | Step 4 ]  </div><p>(b) Give the correct exact value of the integral.</p><div><fillin characters="8" name="ans2"/>  </div></p></statement>
+    <solution><p><p>Check each step: Step 1 must differentiate back to <m>f(x)</m>; Steps 2 and 3 substitute the limits, with brackets round negative numbers; Step 4 is upper minus lower.</p><p>(a) The mistake is in Step 1. The term <m>{5 x}</m> integrates to <m>{\frac{5 x^2}{2}}</m>, not <m>{5 x^2}</m>: divide by the new power. The correct integral is <m>{3 x^3+\frac{5 x^2}{2}+4 x}</m>.</p><p>(b) <me>\int_{ {-1} }^{ {3} } \left({9 x^2+5 x+4}\right)dx = \left[{3 x^3+\frac{5 x^2}{2}+4 x}\right]_{ {-1} }^{ {3} } = {\frac{231}{2}} - \left({-\frac{9}{2}}\right) = {120}</me></p></p></solution>
+    <answer><p>Step 1</p></answer>
+    <answer><p><m>120</m></p></answer>
+</stack-static>

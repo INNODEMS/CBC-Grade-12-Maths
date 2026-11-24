@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<quiz>
+<question type="stack">
+  <name><text>Finding the mistake in a sampling solution</text></name>
+  <questiontext format="html">
+    <text><![CDATA[<p>Kiprono maximised \(P = {@pp@}x + {@pq@}y\) on the region R given by {@E[1]@}, with \(x\) and \(y\) whole numbers. His working:</p><p>Step 1: The vertices of R are {@E[3]@}.</p><p>Step 2: \(P\) at the vertices is {@E[4]@}.</p><p>Step 3: {@E[5]@}</p><p>Step 4: The greatest value is {@E[6]@}.</p><p>(a) Which statement describes his mistake?</p><div>[[input:ans1]] [[validation:ans1]] [[feedback:prt1]]</div><p>(b) What is the greatest value of \(P\) with whole numbers? [[input:ans2]] [[validation:ans2]] [[feedback:prt2]]</p>]]></text>
+  </questiontext>
+  <generalfeedback format="html">
+    <text><![CDATA[<p>(a) {@otext(keyv)@}</p><p>(b) A vertex that is not a whole-number point is not an answer: test the whole-number points of R around the best vertex, and check every constraint. The best is \(({@bst[1]@}, {@bst[2]@})\), with \(P = {@t@}\).</p>]]></text>
+  </generalfeedback>
+  <defaultgrade>2</defaultgrade>
+  <penalty>0.1</penalty>
+  <hidden>0</hidden>
+  <idnumber></idnumber>
+  <stackversion><text>2026063000</text></stackversion>
+  <questionvariables>
+    <text><![CDATA[/* Design: find-the-mistake pattern. Source: original. Errors er1 3, er2 2, er3 2, er4 3; Kiprono's answer is never the right one. */
+Q35L: [["\\(4x + 7y \\le 46\\), \\(9x + 2y \\le 65\\), \\(x \\ge 1\\), \\(y \\ge 1\\)",[9,7],"\\((1, 1)\\), \\((7, 1)\\), \\((6.6, 2.8)\\), \\((1, 6)\\)","\\(16\\), \\(70\\), \\(79\\), \\(51\\)","The best vertex is \\((6.6, 2.8)\\); to the nearest whole numbers this is \\((7, 3)\\).","\\(P = 84\\), at \\((7, 3)\\)",1,"e1","e2",["e1","e2","e3","e4"],75,84,79,"Check his Step 3 point against every constraint.",[6,3],["","He rounded to the nearest whole numbers, not down: rounding \\((6.6, 2.8)\\) down gives \\((6, 2)\\), not \\((7, 3)\\).","His Step 3 uses the vertex \\((6.6, 2.8)\\), where \\(P = 79\\), the greatest value in Step 2, not the smallest.","His answer is the value at \\((7, 3)\\), which has whole-number coordinates."]],
+["\\(x + y \\le 13\\), \\(6x + y \\le 37\\), \\(x \\ge 1\\), \\(y \\ge 1\\)",[7,5],"\\((1, 1)\\), \\((6, 1)\\), \\((4.8, 8.2)\\), \\((1, 12)\\)","\\(12\\), \\(47\\), \\(74.6\\), \\(67\\)","The best vertex is \\((4.8, 8.2)\\); rounding down gives \\((4, 8)\\).","\\(P = 68\\), at \\((4, 8)\\)",2,"e2","e3",["e2","e3","e4","e1"],73,68,373/5,"Check the whole-number points next to his Step 3 point.",[4,9],["His Step 3 point \\((4, 8)\\) satisfies every constraint, so it is inside R.","","His Step 3 uses the vertex \\((4.8, 8.2)\\), where \\(P = 74.6\\), the greatest value in Step 2, not the smallest.","His answer is the value at \\((4, 8)\\), which has whole-number coordinates."]],
+["\\(3x + 8y \\le 70\\), \\(x + y \\le 12\\), \\(x \\ge 2\\), \\(y \\ge 2\\)",[6,7],"\\((2, 2)\\), \\((10, 2)\\), \\((5.2, 6.8)\\), \\((2, 8)\\)","\\(26\\), \\(74\\), \\(78.8\\), \\(68\\)","The best vertex is \\((2, 2)\\).","\\(P = 26\\), at \\((2, 2)\\)",3,"e3","e4",["e3","e4","e1","e2"],78,26,394/5,"Compare the values in his Step 2.",[6,6],["He did not round anything: his Step 3 point \\((2, 2)\\) is a vertex of R.","He did not round anything: his Step 3 point \\((2, 2)\\) is a vertex of R.","","His answer is the value at \\((2, 2)\\), which has whole-number coordinates."]],
+["\\(6x + 5y \\le 67\\), \\(6x + y \\le 41\\), \\(x \\ge 1\\), \\(y \\ge 2\\)",[5,3],"\\((1, 2)\\), \\((6.5, 2)\\), \\((5.75, 6.5)\\), \\((1, 12.2)\\)","\\(11\\), \\(38.5\\), \\(48.25\\), \\(41.6\\)","The best vertex is \\((5.75, 6.5)\\).","\\(P = 48.25\\), at \\((5.75, 6.5)\\)",4,"e4","e1",["e4","e1","e2","e3"],46,193/4,193/4,"Look at whether his Step 4 point has whole-number coordinates.",[5,7],["He did not round anything: his Step 4 point \\((5.75, 6.5)\\) is the vertex itself.","He did not round anything: his Step 4 point \\((5.75, 6.5)\\) is the vertex itself.","His Step 3 uses the vertex \\((5.75, 6.5)\\), where \\(P = 48.25\\), the greatest value in Step 2, not the smallest.",""]],
+["\\(3x + 8y \\le 54\\), \\(x + y \\le 10\\), \\(x \\ge 2\\), \\(y \\ge 1\\)",[5,8],"\\((2, 1)\\), \\((9, 1)\\), \\((5.2, 4.8)\\), \\((2, 6)\\)","\\(18\\), \\(53\\), \\(64.4\\), \\(58\\)","The best vertex is \\((5.2, 4.8)\\); to the nearest whole numbers this is \\((5, 5)\\).","\\(P = 65\\), at \\((5, 5)\\)",1,"e1","e2",["e1","e2","e3","e4"],62,65,322/5,"Check his Step 3 point against every constraint.",[6,4],["","He rounded to the nearest whole numbers, not down: rounding \\((5.2, 4.8)\\) down gives \\((5, 4)\\), not \\((5, 5)\\).","His Step 3 uses the vertex \\((5.2, 4.8)\\), where \\(P = 64.4\\), the greatest value in Step 2, not the smallest.","His answer is the value at \\((5, 5)\\), which has whole-number coordinates."]],
+["\\(7x + 8y \\le 49\\), \\(9x + y \\le 37\\), \\(x \\ge 1\\), \\(y \\ge 1\\)",[6,5],"\\((1, 1)\\), \\((4, 1)\\), \\((3.8, 2.8)\\), \\((1, 5.25)\\)","\\(11\\), \\(29\\), \\(36.8\\), \\(32.25\\)","The best vertex is \\((3.8, 2.8)\\).","\\(P = 36.8\\), at \\((3.8, 2.8)\\)",4,"e4","e1",["e2","e3","e4","e1"],33,184/5,184/5,"Look at whether his Step 4 point has whole-number coordinates.",[3,3],["He did not round anything: his Step 4 point \\((3.8, 2.8)\\) is the vertex itself.","He did not round anything: his Step 4 point \\((3.8, 2.8)\\) is the vertex itself.","His Step 3 uses the vertex \\((3.8, 2.8)\\), where \\(P = 36.8\\), the greatest value in Step 2, not the smallest.",""]],
+["\\(3x + 7y \\le 66\\), \\(x + y \\le 13\\), \\(x \\ge 1\\), \\(y \\ge 2\\)",[4,7],"\\((1, 2)\\), \\((11, 2)\\), \\((6.25, 6.75)\\), \\((1, 9)\\)","\\(18\\), \\(58\\), \\(72.25\\), \\(67\\)","The best vertex is \\((6.25, 6.75)\\); rounding down gives \\((6, 6)\\).","\\(P = 66\\), at \\((6, 6)\\)",2,"e2","e3",["e3","e4","e1","e2"],70,66,289/4,"Check the whole-number points next to his Step 3 point.",[7,6],["His Step 3 point \\((6, 6)\\) satisfies every constraint, so it is inside R.","","His Step 3 uses the vertex \\((6.25, 6.75)\\), where \\(P = 72.25\\), the greatest value in Step 2, not the smallest.","His answer is the value at \\((6, 6)\\), which has whole-number coordinates."]],
+["\\(x + y \\le 14\\), \\(8x + 3y \\le 70\\), \\(x \\ge 2\\), \\(y \\ge 2\\)",[6,5],"\\((2, 2)\\), \\((8, 2)\\), \\((5.6, 8.4)\\), \\((2, 12)\\)","\\(22\\), \\(58\\), \\(75.6\\), \\(72\\)","The best vertex is \\((2, 2)\\).","\\(P = 22\\), at \\((2, 2)\\)",3,"e3","e4",["e4","e1","e2","e3"],75,22,378/5,"Compare the values in his Step 2.",[5,9],["He did not round anything: his Step 3 point \\((2, 2)\\) is a vertex of R.","He did not round anything: his Step 3 point \\((2, 2)\\) is a vertex of R.","","His answer is the value at \\((2, 2)\\), which has whole-number coordinates."]],
+["\\(4x + 7y \\le 53\\), \\(7x + y \\le 50\\), \\(x \\ge 1\\), \\(y \\ge 1\\)",[8,5],"\\((1, 1)\\), \\((7, 1)\\), \\((6.6, 3.8)\\), \\((1, 7)\\)","\\(13\\), \\(61\\), \\(71.8\\), \\(43\\)","The best vertex is \\((6.6, 3.8)\\); to the nearest whole numbers this is \\((7, 4)\\).","\\(P = 76\\), at \\((7, 4)\\)",1,"e1","e2",["e1","e2","e3","e4"],68,76,359/5,"Check his Step 3 point against every constraint.",[6,4],["","He rounded to the nearest whole numbers, not down: rounding \\((6.6, 3.8)\\) down gives \\((6, 3)\\), not \\((7, 4)\\).","His Step 3 uses the vertex \\((6.6, 3.8)\\), where \\(P = 71.8\\), the greatest value in Step 2, not the smallest.","His answer is the value at \\((7, 4)\\), which has whole-number coordinates."]],
+["\\(x + y \\le 14\\), \\(7x + 3y \\le 69\\), \\(x \\ge 2\\), \\(y \\ge 2\\)",[7,6],"\\((2, 2)\\), \\((9, 2)\\), \\((6.75, 7.25)\\), \\((2, 12)\\)","\\(26\\), \\(75\\), \\(90.75\\), \\(86\\)","The best vertex is \\((6.75, 7.25)\\).","\\(P = 90.75\\), at \\((6.75, 7.25)\\)",4,"e4","e1",["e2","e3","e4","e1"],90,363/4,363/4,"Look at whether his Step 4 point has whole-number coordinates.",[6,8],["He did not round anything: his Step 4 point \\((6.75, 7.25)\\) is the vertex itself.","He did not round anything: his Step 4 point \\((6.75, 7.25)\\) is the vertex itself.","His Step 3 uses the vertex \\((6.75, 7.25)\\), where \\(P = 90.75\\), the greatest value in Step 2, not the smallest.",""]]];
+ix: 1+rand(10);
+E: Q35L[ix];
+pp: E[2][1]; pq: E[2][2]; er: E[7]; keyv: E[8]; wrong: E[9]; ord: E[10]; t: E[11]; sv: E[12]; Pv: E[13]; hint: E[14]; bst: E[15]; whyl: E[16];
+otext(k) := if k = "e1" then "He rounded the vertex to the nearest whole numbers, but that point is outside R." elseif k = "e2" then "He rounded both numbers down, but another whole-number point gives more." elseif k = "e3" then "He chose the vertex with the smallest value of P." else "His answer is the value at a vertex that is not a whole-number point.";
+o1: append([["ok", false, "His working is correct."]], makelist([ord[j], is(ord[j] = keyv), otext(ord[j])], j, 1, 4));
+]]></text>
+  </questionvariables>
+  <specificfeedback format="html"><text><![CDATA[]]></text></specificfeedback>
+  <questionnote format="moodle_auto_format">
+    <text>ix={@ix@}, er={@er@}, shown {@sv@}, t={@t@}</text>
+  </questionnote>
+  <questiondescription format="html"><text><![CDATA[<p id="concept">Linear Programming: finding the mistake in a sampling solution</p><p id="description">Grade 12 CBE Core 1.4 (c) / Essential 1.4 (c): Read a worked sampling solution for a whole-number linear programming problem, name its mistake, and give the right maximum.</p><p id="edition">Core and Essential</p><p id="provenance">This question is original to this project.</p><p id="citation">INNODEMS CBC Grade 12 Mathematics, first draft by Ben Davies, 2026. Aligned to the KICD Senior School Curriculum Design, Core and Essential Mathematics Grade 12 (draft).</p>]]></text></questiondescription>
+  <questionsimplify>1</questionsimplify>
+  <assumepositive>0</assumepositive>
+  <assumereal>0</assumereal>
+  <prtcorrect format="html"><text><![CDATA[[[commonstring key="symbolicprtcorrectfeedback"/]] [[commonstring key="defaultprtcorrectfeedback"/]]]]></text></prtcorrect>
+  <prtpartiallycorrect format="html"><text><![CDATA[[[commonstring key="symbolicprtpartiallycorrectfeedback"/]] [[commonstring key="defaultprtpartiallycorrectfeedback"/]]]]></text></prtpartiallycorrect>
+  <prtincorrect format="html"><text><![CDATA[[[commonstring key="symbolicprtincorrectfeedback"/]] [[commonstring key="defaultprtincorrectfeedback"/]]]]></text></prtincorrect>
+  <decimals>.</decimals>
+  <scientificnotation>*10</scientificnotation>
+  <multiplicationsign>none</multiplicationsign>
+  <sqrtsign>1</sqrtsign>
+  <complexno>i</complexno>
+  <inversetrig>cos-1</inversetrig>
+  <logicsymbol>lang</logicsymbol>
+  <matrixparens>[</matrixparens>
+  <isbroken>0</isbroken>
+  <variantsselectionseed></variantsselectionseed>
+
+  <input><name>ans1</name><type>radio</type><tans>o1</tans><boxsize>15</boxsize><strictsyntax>1</strictsyntax><insertstars>0</insertstars><syntaxhint></syntaxhint><syntaxattribute>0</syntaxattribute><forbidwords></forbidwords><allowwords></allowwords><forbidfloat>1</forbidfloat><requirelowestterms>0</requirelowestterms><checkanswertype>0</checkanswertype><mustverify>0</mustverify><showvalidation>0</showvalidation><options></options></input>
+  <input><name>ans2</name><type>numerical</type><tans>t</tans><boxsize>6</boxsize><strictsyntax>1</strictsyntax><insertstars>0</insertstars><syntaxhint></syntaxhint><syntaxattribute>0</syntaxattribute><forbidwords></forbidwords><allowwords></allowwords><forbidfloat>0</forbidfloat><requirelowestterms>0</requirelowestterms><checkanswertype>0</checkanswertype><mustverify>0</mustverify><showvalidation>0</showvalidation><options></options></input>
+
+  <prt><name>prt1</name><value>1.0000000</value><autosimplify>1</autosimplify><feedbackstyle>1</feedbackstyle><feedbackvariables><text><![CDATA[why: if ans1 = "e1" then whyl[1] elseif ans1 = "e2" then whyl[2] elseif ans1 = "e3" then whyl[3] elseif ans1 = "e4" then whyl[4] else "";]]></text></feedbackvariables>
+    <node><name>0</name><description>Mistake found</description><answertest>AlgEquiv</answertest><sans>ans1</sans><tans>keyv</tans><testoptions></testoptions><quiet>0</quiet><truescoremode>=</truescoremode><truescore>1.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt1-1-T</trueanswernote><truefeedback format="html"><text><![CDATA[]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>1</falsenextnode><falseanswernote>prt1-1-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>1</name><description>Said the working is correct</description><answertest>AlgEquiv</answertest><sans>ans1</sans><tans>"ok"</tans><testoptions></testoptions><quiet>0</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt1-2-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>His answer is not the greatest whole-number value: check each step.</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>-1</falsenextnode><falseanswernote>prt1-2-F</falseanswernote><falsefeedback format="html"><text><![CDATA[<p>That is not what went wrong. {@why@} {@hint@}</p>]]></text></falsefeedback></node>
+  </prt>
+  <prt><name>prt2</name><value>1.0000000</value><autosimplify>1</autosimplify><feedbackstyle>1</feedbackstyle><feedbackvariables><text><![CDATA[hv: is(abs(ans2 - sv) < 1/1000 or abs(ans2 - Pv) < 1/1000);]]></text></feedbackvariables>
+    <node><name>0</name><description>Greatest whole-number value</description><answertest>NumAbsolute</answertest><sans>ans2</sans><tans>t</tans><testoptions>0.001</testoptions><quiet>0</quiet><truescoremode>=</truescoremode><truescore>1.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt2-1-T</trueanswernote><truefeedback format="html"><text><![CDATA[]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>1</falsenextnode><falseanswernote>prt2-1-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>1</name><description>His answer or the value at the vertex</description><answertest>AlgEquiv</answertest><sans>hv</sans><tans>true</tans><testoptions></testoptions><quiet>0</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt2-2-T</trueanswernote><truefeedback format="html"><text><![CDATA[[[if test='is(abs(ans2 - sv) < 1/1000)']]<p>That is Kiprono's answer, which has the mistake.</p>[[else]]<p>That is the value at the vertex, which is not a whole-number point.</p>[[/if]]]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>-1</falsenextnode><falseanswernote>prt2-2-F</falseanswernote><falsefeedback format="html"><text><![CDATA[<p>Test the whole-number points of R near the best vertex and work out \(P\) at each.</p>]]></text></falsefeedback></node>
+  </prt>
+
+  <deployedseed>4</deployedseed>
+  <deployedseed>5</deployedseed>
+  <deployedseed>15</deployedseed>
+  <deployedseed>8</deployedseed>
+  <deployedseed>24</deployedseed>
+  <deployedseed>1</deployedseed>
+  <deployedseed>3</deployedseed>
+  <deployedseed>10</deployedseed>
+  <deployedseed>2</deployedseed>
+  <deployedseed>17</deployedseed>
+  <qtest><testcase>1</testcase><description>Correct</description>
+    <testinput><name>ans1</name><value>keyv</value></testinput>
+    <testinput><name>ans2</name><value>t</value></testinput>
+    <expected><name>prt1</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt1-1-T</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt2-1-T</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>2</testcase><description>Working correct; his answer</description>
+    <testinput><name>ans1</name><value>"ok"</value></testinput>
+    <testinput><name>ans2</name><value>sv</value></testinput>
+    <expected><name>prt1</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt1-1-F | prt1-2-T</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt2-1-F | prt2-2-T</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>3</testcase><description>Another mistake; value at the vertex</description>
+    <testinput><name>ans1</name><value>wrong</value></testinput>
+    <testinput><name>ans2</name><value>Pv</value></testinput>
+    <expected><name>prt1</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt1-1-F | prt1-2-F</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt2-1-F | prt2-2-T</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>4</testcase><description>Generic value</description>
+    <testinput><name>ans1</name><value>keyv</value></testinput>
+    <testinput><name>ans2</name><value>t+1</value></testinput>
+    <expected><name>prt1</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt1-1-T</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt2-1-F | prt2-2-F</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>5</testcase><description>Invalid: a letter in (b)</description>
+    <testinput><name>ans1</name><value>keyv</value></testinput>
+    <testinput><name>ans2</name><value>x</value></testinput>
+    <expected><name>prt1</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt1-1-T</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore></expectedscore><expectedpenalty></expectedpenalty><expectedanswernote>NULL</expectedanswernote></expected>
+  </qtest>
+</question>
+</quiz>

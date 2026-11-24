@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<quiz>
+<question type="stack">
+  <name><text>Finding the mistake in a vector calculation</text></name>
+  <questiontext format="html">
+    <text><![CDATA[<p>Wanjiku was asked to find \({@p@}\mathbf{a} - {@q@}\mathbf{b}\), where \(\mathbf{a} = {@ta@}\) and \(\mathbf{b} = {@tb@}\). Her working has one mistake.</p><ul><li>Step 1: \(\mathbf{a} = {@cv3(A)@}\), \(\mathbf{b} = {@cv3(B)@}\)</li><li>Step 2: \({@p@}\mathbf{a} = {@cv3(s2)@}\)</li><li>Step 3: \({@q@}\mathbf{b} = {@cv3(s3)@}\)</li><li>Step 4: \({@p@}\mathbf{a} - {@q@}\mathbf{b} = {@cv3(s4)@}\)</li><li>Step 5: So \({@p@}\mathbf{a} - {@q@}\mathbf{b} = {@sh@}\).</li></ul><p>(a) Which step has the mistake?</p><div>[[input:ans1]] [[validation:ans1]] [[feedback:prt1]]</div><p>(b) Give the correct value of \({@p@}\mathbf{a} - {@q@}\mathbf{b}\) in i, j, k form.</p><div>[[input:ans2]] [[validation:ans2]] [[feedback:prt2]]</div>]]></text>
+  </questiontext>
+  <generalfeedback format="html">
+    <text><![CDATA[<p>(a) [[if test="is(er=2)"]]Step 2 is wrong: a scalar multiplies every component, so \({@p@}\mathbf{a} = {@cv3(c2)@}\).[[/if]][[if test="is(er=3)"]]Step 3 is wrong: a scalar multiplies every component; it never adds to them. \({@q@}\mathbf{b} = {@cv3(c3)@}\).[[/if]][[if test="is(er=4)"]]Step 4 is wrong: subtracting a negative component adds its size. Component by component, \({@p@}\mathbf{a} - {@q@}\mathbf{b} = {@cv3(okl)@}\).[[/if]]</p><p>(b) \({@p@}\mathbf{a} = {@cv3(c2)@}\), \({@q@}\mathbf{b} = {@cv3(c3)@}\), so \({@p@}\mathbf{a} - {@q@}\mathbf{b} = {@cv3(okl)@} = {@okv@}\).</p>]]></text>
+  </generalfeedback>
+  <defaultgrade>2</defaultgrade>
+  <penalty>0.1</penalty>
+  <hidden>0</hidden>
+  <idnumber></idnumber>
+  <stackversion><text>2026063000</text></stackversion>
+  <questionvariables>
+    <text><![CDATA[ordergreat(i,j,k); texput(i,"\\mathbf{i}"); texput(j,"\\mathbf{j}"); texput(k,"\\mathbf{k}");
+validate_ijk(ex) := if listp(ex) or matrixp(ex) or listofvars(ex) = [] then "Write the vector with i, j and k, for example 3*i-2*k." else if every(lambda([vv], member(vv, [i,j,k])), listofvars(ex)) then "" else "Use only the letters i, j and k.";
+cv3(v) := matrix([v[1]],[v[2]],[v[3]]);
+/* Design: find the mistake in a vector calculation. er 2: step 2 scales only the first component of a; er 3: step 3 adds q to each component of b; er 4: step 4 treats -(-x) as -x at the first negative component of b. Later steps carry the error forward. Source: original. */
+alist: [[[5,6,4],[-2,-5,-4],4,3],[[5,-5,2],[-2,-1,-3],2,3],[[5,5,-6],[5,-4,4],3,4],[[5,2,3],[4,1,-3],4,3],[[2,-3,-5],[-2,5,5],2,3],[[-3,-6,4],[5,-4,-3],2,3],[[-4,-3,-5],[3,-2,-4],3,2],[[5,-5,-2],[-3,-2,1],3,2],[[-2,4,-4],[5,-3,2],3,2],[[1,2,4],[-1,-1,-3],2,3]];
+ix: 1+rand(10); er: rand([2,3,4]);
+A: alist[ix][1]; B: alist[ix][2]; p: alist[ix][3]; q: alist[ix][4];
+ta: A[1]*i+A[2]*j+A[3]*k; tb: B[1]*i+B[2]*j+B[3]*k;
+mneg: first(sublist_indices(B, lambda([t], is(t < 0))));
+s2: if er = 2 then [p*A[1], A[2], A[3]] else p*A;
+s3: if er = 3 then B+q else q*B;
+s4: makelist(if er = 4 and m = mneg then s2[m]+s3[m] else s2[m]-s3[m], m, 1, 3);
+sh: s4[1]*i+s4[2]*j+s4[3]*k;
+okl: p*A-q*B; okv: okl[1]*i+okl[2]*j+okl[3]*k;
+rev: -okv; okw: okv+i; lst: [1,2,3];
+c2: p*A; c3: q*B;
+opts: [["s1",false,"Step 1"],["s2",is(er=2),"Step 2"],["s3",is(er=3),"Step 3"],["s4",is(er=4),"Step 4"],["s5",false,"Step 5"]];
+ta1: first(mcq_correct(opts));
+gws: if er = 2 then "s3" else "s2";
+]]></text>
+  </questionvariables>
+  <specificfeedback format="html"><text><![CDATA[]]></text></specificfeedback>
+  <questionnote format="moodle_auto_format">
+    <text>ix={@ix@}, er={@er@}, p={@p@}, q={@q@}, answer {@okv@}</text>
+  </questionnote>
+  <questiondescription format="html"><text><![CDATA[<p id="concept">Vectors II: finding the mistake in a vector calculation</p><p id="description">Grade 12 CBE Core 2.6: Find the wrong step in a worked combination of three-dimensional vectors and give the correct result.</p><p id="edition">Core</p><p id="provenance">This question is original to this project.</p><p id="citation">INNODEMS CBC Grade 12 Mathematics, first draft by Ben Davies, 2026. Aligned to the KICD Senior School Curriculum Design, Core Mathematics Grade 12 (draft).</p>]]></text></questiondescription>
+  <questionsimplify>1</questionsimplify>
+  <assumepositive>0</assumepositive>
+  <assumereal>0</assumereal>
+  <prtcorrect format="html"><text><![CDATA[[[commonstring key="symbolicprtcorrectfeedback"/]] [[commonstring key="defaultprtcorrectfeedback"/]]]]></text></prtcorrect>
+  <prtpartiallycorrect format="html"><text><![CDATA[[[commonstring key="symbolicprtpartiallycorrectfeedback"/]] [[commonstring key="defaultprtpartiallycorrectfeedback"/]]]]></text></prtpartiallycorrect>
+  <prtincorrect format="html"><text><![CDATA[[[commonstring key="symbolicprtincorrectfeedback"/]] [[commonstring key="defaultprtincorrectfeedback"/]]]]></text></prtincorrect>
+  <decimals>.</decimals>
+  <scientificnotation>*10</scientificnotation>
+  <multiplicationsign>none</multiplicationsign>
+  <sqrtsign>1</sqrtsign>
+  <complexno>symi</complexno>
+  <inversetrig>cos-1</inversetrig>
+  <logicsymbol>lang</logicsymbol>
+  <matrixparens>(</matrixparens>
+  <isbroken>0</isbroken>
+  <variantsselectionseed></variantsselectionseed>
+
+  <input><name>ans1</name><type>dropdown</type><tans>opts</tans><boxsize>15</boxsize><strictsyntax>1</strictsyntax><insertstars>0</insertstars><syntaxhint></syntaxhint><syntaxattribute>0</syntaxattribute><forbidwords></forbidwords><allowwords></allowwords><forbidfloat>1</forbidfloat><requirelowestterms>0</requirelowestterms><checkanswertype>0</checkanswertype><mustverify>0</mustverify><showvalidation>0</showvalidation><options></options></input>
+  <input><name>ans2</name><type>algebraic</type><tans>okv</tans><boxsize>15</boxsize><strictsyntax>1</strictsyntax><insertstars>4</insertstars><syntaxhint></syntaxhint><syntaxattribute>0</syntaxattribute><forbidwords></forbidwords><allowwords></allowwords><forbidfloat>0</forbidfloat><requirelowestterms>0</requirelowestterms><checkanswertype>0</checkanswertype><mustverify>0</mustverify><showvalidation>3</showvalidation><options>validator:validate_ijk</options></input>
+
+  <prt><name>prt1</name><value>1.0000000</value><autosimplify>1</autosimplify><feedbackstyle>1</feedbackstyle><feedbackvariables><text><![CDATA[ch: if is(ans1 = "s2") then 2 elseif is(ans1 = "s3") then 3 elseif is(ans1 = "s4") then 4 else 0;
+]]></text></feedbackvariables>
+    <node><name>0</name><description>Wrong step</description><answertest>AlgEquiv</answertest><sans>ans1</sans><tans>ta1</tans><testoptions></testoptions><quiet>1</quiet><truescoremode>=</truescoremode><truescore>1.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt1-1-T</trueanswernote><truefeedback format="html"><text><![CDATA[]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>1</falsenextnode><falseanswernote>prt1-1-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>1</name><description>Step 5</description><answertest>AlgEquiv</answertest><sans>ans1</sans><tans>"s5"</tans><testoptions></testoptions><quiet>1</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt1-2-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>Step 5 only rewrites step 4 in i, j, k form. The mistake is earlier: check each component in steps 2, 3 and 4.</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>2</falsenextnode><falseanswernote>prt1-2-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>2</name><description>Step 1</description><answertest>AlgEquiv</answertest><sans>ans1</sans><tans>"s1"</tans><testoptions></testoptions><quiet>1</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt1-3-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>Step 1 is right: those are the columns of \(\mathbf{a}\) and \(\mathbf{b}\).</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>-1</falsenextnode><falseanswernote>prt1-3-F</falseanswernote><falsefeedback format="html"><text><![CDATA[[[if test="is(ch=2)"]]<p>Step 2 is right: \({@p@}\) times each component of \(\mathbf{a}\) gives \({@cv3(c2)@}\). Check steps 3 and 4 the same way, one component at a time.</p>[[/if]][[if test="is(ch=3)"]]<p>Step 3 is right: \({@q@}\) times each component of \(\mathbf{b}\) gives \({@cv3(c3)@}\). Check steps 2 and 4 the same way, one component at a time.</p>[[/if]][[if test="is(ch=4)"]]<p>Step 4 subtracts the column in step 3 from the column in step 2 correctly, so no new mistake is made there. One of those two columns is already wrong: multiply out \({@p@}\mathbf{a}\) and \({@q@}\mathbf{b}\) yourself and compare.</p>[[/if]]]]></text></falsefeedback></node>
+  </prt>
+  <prt><name>prt2</name><value>1.0000000</value><autosimplify>1</autosimplify><feedbackstyle>1</feedbackstyle><feedbackvariables><text><![CDATA[]]></text></feedbackvariables>
+    <node><name>0</name><description>Correct value</description><answertest>AlgEquiv</answertest><sans>ans2</sans><tans>okv</tans><testoptions></testoptions><quiet>1</quiet><truescoremode>=</truescoremode><truescore>1.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt2-1-T</trueanswernote><truefeedback format="html"><text><![CDATA[]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>1</falsenextnode><falseanswernote>prt2-1-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>1</name><description>Wanjiku's answer</description><answertest>AlgEquiv</answertest><sans>ans2</sans><tans>sh</tans><testoptions></testoptions><quiet>1</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt2-2-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>That is Wanjiku's answer, which contains the mistake.</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>2</falsenextnode><falseanswernote>prt2-2-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>2</name><description>Negative</description><answertest>AlgEquiv</answertest><sans>ans2</sans><tans>rev</tans><testoptions></testoptions><quiet>1</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt2-3-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>That is \({@q@}\mathbf{b} - {@p@}\mathbf{a}\), the negative of the answer.</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>-1</falsenextnode><falseanswernote>prt2-3-F</falseanswernote><falsefeedback format="html"><text><![CDATA[<p>Work out \({@p@}\mathbf{a}\) and \({@q@}\mathbf{b}\) component by component, then subtract matching components.</p>]]></text></falsefeedback></node>
+  </prt>
+
+  <deployedseed>4</deployedseed>
+  <deployedseed>16</deployedseed>
+  <deployedseed>73</deployedseed>
+  <deployedseed>8</deployedseed>
+  <deployedseed>24</deployedseed>
+  <deployedseed>14</deployedseed>
+  <deployedseed>3</deployedseed>
+  <deployedseed>10</deployedseed>
+  <deployedseed>13</deployedseed>
+  <deployedseed>17</deployedseed>
+  <qtest><testcase>1</testcase><description>Correct</description>
+    <testinput><name>ans1</name><value>ta1</value></testinput>
+    <testinput><name>ans2</name><value>okv</value></testinput>
+    <expected><name>prt1</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt1-1-T</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt2-1-T</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>2</testcase><description>Step 5; Wanjiku's answer</description>
+    <testinput><name>ans1</name><value>"s5"</value></testinput>
+    <testinput><name>ans2</name><value>sh</value></testinput>
+    <expected><name>prt1</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt1-1-F | prt1-2-T</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt2-1-F | prt2-2-T</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>3</testcase><description>Step 1; the negative</description>
+    <testinput><name>ans1</name><value>"s1"</value></testinput>
+    <testinput><name>ans2</name><value>rev</value></testinput>
+    <expected><name>prt1</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt1-1-F | prt1-2-F | prt1-3-T</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt2-1-F | prt2-2-F | prt2-3-T</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>4</testcase><description>Generic: another wrong step; offset</description>
+    <testinput><name>ans1</name><value>gws</value></testinput>
+    <testinput><name>ans2</name><value>okw</value></testinput>
+    <expected><name>prt1</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt1-1-F | prt1-2-F | prt1-3-F</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt2-1-F | prt2-2-F | prt2-3-F</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>5</testcase><description>Invalid: a list in (b)</description>
+    <testinput><name>ans1</name><value>ta1</value></testinput>
+    <testinput><name>ans2</name><value>lst</value></testinput>
+    <expected><name>prt1</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt1-1-T</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore></expectedscore><expectedpenalty></expectedpenalty><expectedanswernote>NULL</expectedanswernote></expected>
+  </qtest>
+</question>
+</quiz>

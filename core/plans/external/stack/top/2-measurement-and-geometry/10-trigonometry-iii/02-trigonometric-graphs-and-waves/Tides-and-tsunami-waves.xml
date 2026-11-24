@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<quiz>
+<question type="stack">
+  <name><text>Tides and tsunami waves</text></name>
+  <questiontext format="html">
+    <text><![CDATA[[[if test="is(k = 1)"]]<p>At the end of a jetty in Kilindini harbour, Mombasa, the depth of the water is \(h\) metres, \(t\) hours after midnight, where</p><p>\[h = {@d@} + {@A@}\sin\left(30(t - {@t0@})\right)^\circ \quad\text{for } 0 \le t \le 24.\]</p><div>(a) Find the amplitude. [[input:ans1]] m [[validation:ans1]] [[feedback:prt1]]</div><div>(b) Find the period of the tide. [[input:ans2]] hours [[validation:ans2]] [[feedback:prt2]]</div><div>(c) At what time, in hours after midnight, is the first high tide? [[input:ans3]] [[validation:ans3]] [[feedback:prt3]]</div>[[else]]<p>Far out in the Indian Ocean, the height \(h\) metres of a tsunami wave above normal sea level, at a distance \(x\) km along its path, is modelled by</p><p>\[h = {@A@}\sin({@bbd@}x)^\circ.\]</p><div>(a) Find the amplitude. [[input:ans1]] m [[validation:ans1]] [[feedback:prt1]]</div><div>(b) Find the wavelength. [[input:ans2]] km [[validation:ans2]] [[feedback:prt2]]</div><div>(c) How far along, in km, is the first crest? [[input:ans3]] [[validation:ans3]] [[feedback:prt3]]</div>[[/if]]]]></text>
+  </questiontext>
+  <generalfeedback format="html">
+    <text><![CDATA[[[if test="is(k = 1)"]]<p>(a) The water rises \({@A@}\) m above its mean depth \({@d@}\) m: the amplitude is \({@A@}\) m.</p><p>(b) The angle grows by \(30^\circ\) every hour, and one complete wave is \(360^\circ\): \(360 \div 30 = 12\) hours. The graph is drawn against time, so the repeat length is a period.</p><p>(c) The depth is greatest where \(30(t - {@t0@}) = 90\), so \(t = {@t0@} + 3 = {@t0+3@}\)[[if test="is(t0 + 3 > 12)"]], or 12 hours earlier, \(t = {@fst@}\)[[/if]]. The first high tide is at \(t = {@fst@}\).</p>[[else]]<p>(a) The amplitude is \({@A@}\) m.</p><p>(b) The angle grows by \({@bbd@}^\circ\) every km, and one complete wave is \(360^\circ\): \(360 \div {@bbd@} = {@per@}\) km. The graph is drawn against distance, so the repeat length is a wavelength.</p><p>(c) The first crest is where \({@bbd@}x = 90\), so \(x = {@fst@}\) km, a quarter of the way along one wavelength.</p>[[/if]]]]></text>
+  </generalfeedback>
+  <defaultgrade>3</defaultgrade>
+  <penalty>0.1</penalty>
+  <hidden>0</hidden>
+  <idnumber></idnumber>
+  <stackversion><text>2026063000</text></stackversion>
+  <questionvariables>
+    <text><![CDATA[/* Design: tides and tsunami waves. Kind 1: tide at Kilindini; kind 2: tsunami. Model numbers, not measurements. Source: original. */
+L: [[1,1.5,2.1,7],[2,0.5,0,3/5],[1,1.3,1.9,1],[2,0.35,0,3/4],[1,1.6,2.2,2],[2,0.8,0,6/5],[1,1.4,2.0,4],[2,0.3,0,3/2],[1,1.8,2.4,5],[2,0.6,0,9/10]];
+ix: 1+rand(10);
+k: L[ix][1]; A: L[ix][2]; d: L[ix][3]; p: L[ix][4];
+t0: p; bb: p; bbd: float(bb);
+per: if k = 1 then 12 else 360/bb;
+fst: if k = 1 then mod(3+t0, 12) else 90/bb;
+dA1: 2*A; dA2: if k = 1 then A+d else -A;
+dP1: if k = 1 then 30 else bb; dP2: per/2;
+dF1: if k = 1 then t0 else per; dF2: if k = 1 then 3 else per/2; dF3: 90; dF4: if k = 1 then fst+6 else -fst;
+nice(v) := block([r], r: floor(1000*v+1/2)/1000, if integerp(r) then r else float(r));
+dFlate: fst+per;
+]]></text>
+  </questionvariables>
+  <specificfeedback format="html"><text><![CDATA[]]></text></specificfeedback>
+  <questionnote format="moodle_auto_format">
+    <text>ix={@ix@}, kind {@k@}, A={@A@}, d={@d@}, p={@p@}, period/wavelength {@per@}, first {@fst@}</text>
+  </questionnote>
+  <questiondescription format="html"><text><![CDATA[<p id="concept">Trigonometry III: tides and tsunami waves</p><p id="description">Grade 12 CBE Core 2.5: Interpret a wave model in context: amplitude, period or wavelength, and the first high tide or crest.</p><p id="edition">Core</p><p id="provenance">This question is original to this project.</p><p id="citation">INNODEMS CBC Grade 12 Mathematics, first draft by Ben Davies, 2026. Aligned to the KICD Senior School Curriculum Design, Core Mathematics Grade 12 (draft).</p>]]></text></questiondescription>
+  <questionsimplify>1</questionsimplify>
+  <assumepositive>0</assumepositive>
+  <assumereal>0</assumereal>
+  <prtcorrect format="html"><text><![CDATA[[[commonstring key="symbolicprtcorrectfeedback"/]] [[commonstring key="defaultprtcorrectfeedback"/]]]]></text></prtcorrect>
+  <prtpartiallycorrect format="html"><text><![CDATA[[[commonstring key="symbolicprtpartiallycorrectfeedback"/]] [[commonstring key="defaultprtpartiallycorrectfeedback"/]]]]></text></prtpartiallycorrect>
+  <prtincorrect format="html"><text><![CDATA[[[commonstring key="symbolicprtincorrectfeedback"/]] [[commonstring key="defaultprtincorrectfeedback"/]]]]></text></prtincorrect>
+  <decimals>.</decimals>
+  <scientificnotation>*10</scientificnotation>
+  <multiplicationsign>none</multiplicationsign>
+  <sqrtsign>1</sqrtsign>
+  <complexno>i</complexno>
+  <inversetrig>cos-1</inversetrig>
+  <logicsymbol>lang</logicsymbol>
+  <matrixparens>[</matrixparens>
+  <isbroken>0</isbroken>
+  <variantsselectionseed></variantsselectionseed>
+
+  <input><name>ans1</name><type>numerical</type><tans>A</tans><boxsize>6</boxsize><strictsyntax>1</strictsyntax><insertstars>0</insertstars><syntaxhint></syntaxhint><syntaxattribute>0</syntaxattribute><forbidwords></forbidwords><allowwords></allowwords><forbidfloat>0</forbidfloat><requirelowestterms>0</requirelowestterms><checkanswertype>0</checkanswertype><mustverify>0</mustverify><showvalidation>0</showvalidation><options></options></input>
+  <input><name>ans2</name><type>numerical</type><tans>per</tans><boxsize>6</boxsize><strictsyntax>1</strictsyntax><insertstars>0</insertstars><syntaxhint></syntaxhint><syntaxattribute>0</syntaxattribute><forbidwords></forbidwords><allowwords></allowwords><forbidfloat>0</forbidfloat><requirelowestterms>0</requirelowestterms><checkanswertype>0</checkanswertype><mustverify>0</mustverify><showvalidation>0</showvalidation><options></options></input>
+  <input><name>ans3</name><type>numerical</type><tans>fst</tans><boxsize>6</boxsize><strictsyntax>1</strictsyntax><insertstars>0</insertstars><syntaxhint></syntaxhint><syntaxattribute>0</syntaxattribute><forbidwords></forbidwords><allowwords></allowwords><forbidfloat>0</forbidfloat><requirelowestterms>0</requirelowestterms><checkanswertype>0</checkanswertype><mustverify>0</mustverify><showvalidation>0</showvalidation><options></options></input>
+
+  <prt><name>prt1</name><value>1.0000000</value><autosimplify>1</autosimplify><feedbackstyle>1</feedbackstyle><feedbackvariables><text><![CDATA[]]></text></feedbackvariables>
+    <node><name>0</name><description>Amplitude</description><answertest>NumAbsolute</answertest><sans>ans1</sans><tans>A</tans><testoptions>0.001</testoptions><quiet>1</quiet><truescoremode>=</truescoremode><truescore>1.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt1-1-T</trueanswernote><truefeedback format="html"><text><![CDATA[]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>1</falsenextnode><falseanswernote>prt1-1-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>1</name><description>Highest minus lowest</description><answertest>NumAbsolute</answertest><sans>ans1</sans><tans>dA1</tans><testoptions>0.001</testoptions><quiet>1</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt1-2-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>That is the difference between the highest and lowest levels. The amplitude is half of it.</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>2</falsenextnode><falseanswernote>prt1-2-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>2</name><description>Greatest depth or trough</description><answertest>NumAbsolute</answertest><sans>ans1</sans><tans>dA2</tans><testoptions>0.001</testoptions><quiet>1</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt1-3-T</trueanswernote><truefeedback format="html"><text><![CDATA[[[if test="is(k = 1)"]]<p>That is the greatest depth. The amplitude is how far the water rises above its mean depth, \({@d@}\) m.</p>[[else]]<p>A height below sea level gives the trough; the amplitude is a distance, so it is positive.</p>[[/if]]]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>-1</falsenextnode><falseanswernote>prt1-3-F</falseanswernote><falsefeedback format="html"><text><![CDATA[[[if test="is(k = 1)"]]<p>Test your value: with amplitude \({@ans1@}\) m the greatest depth would be \({@d@} + {@ans1@} = {@nice(d+ans1)@}\) m. Sine is never more than 1: put 1 for the sine in the model and compare.</p>[[else]]<p>Test your value: with amplitude \({@ans1@}\) m the highest crest would be \({@ans1@}\) m above normal sea level. Sine is never more than 1: put 1 for the sine in the model and compare.</p>[[/if]]]]></text></falsefeedback></node>
+  </prt>
+  <prt><name>prt2</name><value>1.0000000</value><autosimplify>1</autosimplify><feedbackstyle>1</feedbackstyle><feedbackvariables><text><![CDATA[]]></text></feedbackvariables>
+    <node><name>0</name><description>Period or wavelength</description><answertest>NumAbsolute</answertest><sans>ans2</sans><tans>per</tans><testoptions>0.001</testoptions><quiet>1</quiet><truescoremode>=</truescoremode><truescore>1.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt2-1-T</trueanswernote><truefeedback format="html"><text><![CDATA[]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>1</falsenextnode><falseanswernote>prt2-1-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>1</name><description>Degrees per unit</description><answertest>NumAbsolute</answertest><sans>ans2</sans><tans>dP1</tans><testoptions>0.001</testoptions><quiet>1</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt2-2-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>\({@dP1@}\) is the number of degrees per [[if test="is(k = 1)"]]hour[[else]]km[[/if]]. How many [[if test="is(k = 1)"]]hours[[else]]km[[/if]] until the angle has grown by a whole \(360^\circ\)?</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>2</falsenextnode><falseanswernote>prt2-2-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>2</name><description>Half a wave</description><answertest>NumAbsolute</answertest><sans>ans2</sans><tans>dP2</tans><testoptions>0.001</testoptions><quiet>1</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt2-3-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>That is half a wave.</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>-1</falsenextnode><falseanswernote>prt2-3-F</falseanswernote><falsefeedback format="html"><text><![CDATA[<p>Test your value: in \({@ans2@}\) [[if test="is(k = 1)"]]hours[[else]]km[[/if]] the angle grows by \({@nice(dP1*ans2)@}^\circ\). One complete wave needs the angle to grow by exactly \(360^\circ\).</p>]]></text></falsefeedback></node>
+  </prt>
+  <prt><name>prt3</name><value>1.0000000</value><autosimplify>1</autosimplify><feedbackstyle>1</feedbackstyle><feedbackvariables><text><![CDATA[angv: if k = 1 then 30*(ans3-t0) else bb*ans3;
+mlate: float(mod(ans3-fst, per));
+latr: is(ans3 > fst+0.001) and is(mlate < 0.001 or mlate > per-0.001);
+]]></text></feedbackvariables>
+    <node><name>0</name><description>First maximum</description><answertest>NumAbsolute</answertest><sans>ans3</sans><tans>fst</tans><testoptions>0.001</testoptions><quiet>1</quiet><truescoremode>=</truescoremode><truescore>1.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt3-1-T</trueanswernote><truefeedback format="html"><text><![CDATA[]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>1</falsenextnode><falseanswernote>prt3-1-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>1</name><description>Mean level or one wavelength</description><answertest>NumAbsolute</answertest><sans>ans3</sans><tans>dF1</tans><testoptions>0.001</testoptions><quiet>1</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt3-2-T</trueanswernote><truefeedback format="html"><text><![CDATA[[[if test="is(k = 1)"]]<p>At \(t = {@t0@}\) the water is at its mean depth and rising, not at its highest.</p>[[else]]<p>That is one whole wavelength; the first crest comes a quarter of the way along.</p>[[/if]]]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>2</falsenextnode><falseanswernote>prt3-2-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>2</name><description>Ignored t0 or half a wavelength</description><answertest>NumAbsolute</answertest><sans>ans3</sans><tans>dF2</tans><testoptions>0.001</testoptions><quiet>1</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt3-3-T</trueanswernote><truefeedback format="html"><text><![CDATA[[[if test="is(k = 1)"]]<p>You ignored the \({@t0@}\): the highest point is where \(30(t - {@t0@}) = 90\).</p>[[else]]<p>That is half a wavelength (a zero).</p>[[/if]]]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>3</falsenextnode><falseanswernote>prt3-3-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>3</name><description>Gave 90</description><answertest>NumAbsolute</answertest><sans>ans3</sans><tans>dF3</tans><testoptions>0.001</testoptions><quiet>1</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt3-4-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>90 is the angle where sine is greatest. Solve [[if test="is(k = 1)"]]\(30(t - {@t0@}) = 90\) for \(t\)[[else]]\({@bbd@}x = 90\) for \(x\)[[/if]].</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>4</falsenextnode><falseanswernote>prt3-4-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>4</name><description>Low tide or negative distance</description><answertest>NumAbsolute</answertest><sans>ans3</sans><tans>dF4</tans><testoptions>0.001</testoptions><quiet>1</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt3-5-T</trueanswernote><truefeedback format="html"><text><![CDATA[[[if test="is(k = 1)"]]<p>That is a low tide, not a high tide.</p>[[else]]<p>Distance along the path is positive.</p>[[/if]]]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>-1</falsenextnode><falseanswernote>prt3-5-F</falseanswernote><falsefeedback format="html"><text><![CDATA[[[if test="latr"]]<p>That is a later [[if test="is(k = 1)"]]high tide[[else]]crest[[/if]], not the first one: there is an earlier one, one whole [[if test="is(k = 1)"]]period[[else]]wavelength[[/if]] before it.</p>[[else]]<p>Test your value: at [[if test="is(k = 1)"]]\(t = {@ans3@}\) the angle \(30(t - {@t0@})\)[[else]]\(x = {@ans3@}\) the angle \({@bbd@}x\)[[/if]] is \({@nice(angv)@}^\circ\). Sine is greatest when its angle is \(90^\circ\).</p>[[/if]]<p>Solve [[if test="is(k = 1)"]]\(30(t - {@t0@}) = 90\) for \(t\), then bring the time into \(0 \le t \le 12\)[[else]]\({@bbd@}x = 90\) for \(x\)[[/if]].</p>]]></text></falsefeedback></node>
+  </prt>
+
+  <deployedseed>4</deployedseed>
+  <deployedseed>5</deployedseed>
+  <deployedseed>15</deployedseed>
+  <deployedseed>8</deployedseed>
+  <deployedseed>24</deployedseed>
+  <deployedseed>1</deployedseed>
+  <deployedseed>3</deployedseed>
+  <deployedseed>10</deployedseed>
+  <deployedseed>2</deployedseed>
+  <deployedseed>17</deployedseed>
+  <qtest><testcase>1</testcase><description>Correct</description>
+    <testinput><name>ans1</name><value>A</value></testinput>
+    <testinput><name>ans2</name><value>per</value></testinput>
+    <testinput><name>ans3</name><value>fst</value></testinput>
+    <expected><name>prt1</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt1-1-T</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt2-1-T</expectedanswernote></expected>
+    <expected><name>prt3</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt3-1-T</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>2</testcase><description>Generic wrong</description>
+    <testinput><name>ans1</name><value>A+1</value></testinput>
+    <testinput><name>ans2</name><value>per+10</value></testinput>
+    <testinput><name>ans3</name><value>fst+1</value></testinput>
+    <expected><name>prt1</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt1-1-F | prt1-2-F | prt1-3-F</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt2-1-F | prt2-2-F | prt2-3-F</expectedanswernote></expected>
+    <expected><name>prt3</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt3-1-F | prt3-2-F | prt3-3-F | prt3-4-F | prt3-5-F</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>3</testcase><description>Second nodes</description>
+    <testinput><name>ans1</name><value>dA1</value></testinput>
+    <testinput><name>ans2</name><value>dP1</value></testinput>
+    <testinput><name>ans3</name><value>dF1</value></testinput>
+    <expected><name>prt1</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt1-1-F | prt1-2-T</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt2-1-F | prt2-2-T</expectedanswernote></expected>
+    <expected><name>prt3</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt3-1-F | prt3-2-T</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>4</testcase><description>Third nodes</description>
+    <testinput><name>ans1</name><value>dA2</value></testinput>
+    <testinput><name>ans2</name><value>dP2</value></testinput>
+    <testinput><name>ans3</name><value>dF2</value></testinput>
+    <expected><name>prt1</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt1-1-F | prt1-2-F | prt1-3-T</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt2-1-F | prt2-2-F | prt2-3-T</expectedanswernote></expected>
+    <expected><name>prt3</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt3-1-F | prt3-2-F | prt3-3-T</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>5</testcase><description>Gave 90</description>
+    <testinput><name>ans1</name><value>A</value></testinput>
+    <testinput><name>ans2</name><value>per</value></testinput>
+    <testinput><name>ans3</name><value>dF3</value></testinput>
+    <expected><name>prt1</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt1-1-T</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt2-1-T</expectedanswernote></expected>
+    <expected><name>prt3</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt3-1-F | prt3-2-F | prt3-3-F | prt3-4-T</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>6</testcase><description>Low tide or negative distance</description>
+    <testinput><name>ans1</name><value>A</value></testinput>
+    <testinput><name>ans2</name><value>per</value></testinput>
+    <testinput><name>ans3</name><value>dF4</value></testinput>
+    <expected><name>prt1</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt1-1-T</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt2-1-T</expectedanswernote></expected>
+    <expected><name>prt3</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt3-1-F | prt3-2-F | prt3-3-F | prt3-4-F | prt3-5-T</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>7</testcase><description>A later high tide or crest, not the first</description>
+    <testinput><name>ans1</name><value>A</value></testinput>
+    <testinput><name>ans2</name><value>per</value></testinput>
+    <testinput><name>ans3</name><value>dFlate</value></testinput>
+    <expected><name>prt1</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt1-1-T</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt2-1-T</expectedanswernote></expected>
+    <expected><name>prt3</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt3-1-F | prt3-2-F | prt3-3-F | prt3-4-F | prt3-5-F</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>8</testcase><description>Invalid: a letter for the amplitude</description>
+    <testinput><name>ans1</name><value>x</value></testinput>
+    <testinput><name>ans2</name><value>per</value></testinput>
+    <testinput><name>ans3</name><value>fst</value></testinput>
+    <expected><name>prt1</name><expectedscore></expectedscore><expectedpenalty></expectedpenalty><expectedanswernote>NULL</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt2-1-T</expectedanswernote></expected>
+    <expected><name>prt3</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt3-1-T</expectedanswernote></expected>
+  </qtest>
+</question>
+</quiz>

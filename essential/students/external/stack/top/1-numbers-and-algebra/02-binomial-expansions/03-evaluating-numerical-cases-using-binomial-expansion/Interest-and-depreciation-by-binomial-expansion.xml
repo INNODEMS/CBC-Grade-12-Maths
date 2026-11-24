@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<quiz>
+<question type="stack">
+  <name><text>Interest and depreciation by binomial expansion</text></name>
+  <questiontext format="html">
+    <text><![CDATA[[[if test="is(g=1)"]]<p>Ksh \({@Pd@}\) is saved in a SACCO account that adds \({@r@}\%\) interest at the end of each year. After \({@n@}\) years the amount is \({@Pd@}(1 + x)^{@n@}\).</p>[[else]]<p>A {@itm@} bought for Ksh \({@Pd@}\) loses \({@r@}\%\) of its value each year. After \({@n@}\) years its value is \({@Pd@}(1 + x)^{@n@}\).</p>[[/if]]<p>(a) What is \(x\)?</p><div>\(x =\) [[input:ans1]] [[validation:ans1]] [[feedback:prt1]]</div><p>(b) The second term of the expansion of \({@Pd@}(1 + x)^{@n@}\) is \({@Pd@} \times {@n@}x\). Work it out in Ksh.</p><div>Ksh [[input:ans2]] [[validation:ans2]] [[feedback:prt2]]</div><p>(c) Work out the third term in Ksh.</p><div>Ksh [[input:ans3]] [[validation:ans3]] [[feedback:prt3]]</div><p>(d) Use the first three terms to estimate the [[if test="is(g=1)"]]amount[[else]]value[[/if]] after \({@n@}\) years, to the nearest shilling.</p><div>Ksh [[input:ans4]] [[validation:ans4]] [[feedback:prt4]]</div>]]></text>
+  </questiontext>
+  <generalfeedback format="html">
+    <text><![CDATA[<p>The first term is the starting amount; the second term, \(P \times nx\), is the [[if test="is(g=1)"]]simple interest[[else]]simple loss[[/if]] over \({@n@}\) years; the later terms are the [[if test="is(g=1)"]]interest earned on interest[[else]]correction for losing a percentage of a smaller value each year[[/if]].</p><p>(a) [[if test="is(g=1)"]]The amount grows by \({@r@}\%\) a year[[else]]The value falls by \({@r@}\%\) a year[[/if]], so \(x = {@xd@}\).</p><p>(b) \({@Pd@} \times {@n@} \times ({@xd@}) = {@T2d@}\)</p><p>(c) The row for power \({@n@}\) starts 1, \({@n@}\), \({@C2@}\), so the third term is \({@Pd@} \times {@C2@} \times ({@xd@})^2 = {@T3d@}\).</p><p>(d) \({@Pd@} + ({@T2d@}) + {@T3d@} = {@E3d@}\), so the estimate is Ksh \({@E3d@}\). The exact value from a calculator is Ksh \({@exd@}\).</p>]]></text>
+  </generalfeedback>
+  <defaultgrade>4</defaultgrade>
+  <penalty>0.1</penalty>
+  <hidden>0</hidden>
+  <idnumber></idnumber>
+  <stackversion><text>2026063000</text></stackversion>
+  <questionvariables>
+    <text><![CDATA[dec(v) := block([k:0], while k<10 and not(integerp(ev(10^k*v,simp))) do k:k+1, if k=0 then string(v) else dispdp(float(v),k));
+pad3(r) := if r<10 then sconcat("00",r) else if r<100 then sconcat("0",r) else sconcat(r);
+grp(v) := if v<0 then sconcat("-",grp(-v)) else if v<10000 then sconcat(v) else sconcat(floor(v/1000),"\\,",pad3(mod(v,1000)));
+money(v) := block([c], c: floor(100*v+1/2), if mod(c,100)=0 then grp(c/100) else sconcat(grp(floor(c/100)),".",if mod(c,100)<10 then sconcat("0",mod(c,100)) else sconcat(mod(c,100))));
+/* Design: compound growth and depreciation (Grade 11 Chapter 11) read through the expansion. Source: original. */
+L: [[45000,4,4,1],[140000,5,5,-1],[40000,2,8,1],[80000,4,5,-1],[60000,3,6,1],[200000,10,4,-1],[30000,5,5,1],[150000,4,6,-1],[70000,2,10,1],[90000,5,4,-1]];
+ix: 1+rand(10);
+P: L[ix][1];
+r: L[ix][2];
+n: L[ix][3];
+g: L[ix][4];
+itm: ["", "boda boda", "", "delivery van", "", "posho mill", "", "maize sheller", "", "water pump"][ix];
+xv: g*r/100;
+C2: binomial(n,2);
+T2: P*n*xv;
+T3: P*C2*xv^2;
+E3: P+T2+T3;
+ex: P*(1+xv)^n;
+Pd: grp(P);
+xd: dec(xv);
+T2d: grp(T2);
+T3d: grp(T3);
+E3d: grp(E3);
+exd: money(ex);
+nT2: -T2; nT3: -T3; Px: P*xv; Pnx2: P*n*xv^2; PCx: P*C2*xv;]]></text>
+  </questionvariables>
+  <specificfeedback format="html"><text><![CDATA[]]></text></specificfeedback>
+  <questionnote format="moodle_auto_format">
+    <text>ix={@ix@}, P={@P@}, r={@r@}, n={@n@}, g={@g@}, T2={@T2@}, T3={@T3@}, E3={@E3@}, exact={@exd@}</text>
+  </questionnote>
+  <questiondescription format="html"><text><![CDATA[<p id="concept">Binomial Expansions: growth and depreciation by expansion</p><p id="description">Grade 12 CBE Core 1.2: Find x, the second and third terms of P(1 + x)^n in shillings and the three-term estimate of compound growth or depreciation.</p><p id="edition">Core</p><p id="provenance">This question is original to this project.</p><p id="citation">INNODEMS CBC Grade 12 Mathematics, first draft by Ben Davies, 2026. Aligned to the KICD Senior School Curriculum Design, Core Mathematics Grade 12 (draft).</p>]]></text></questiondescription>
+  <questionsimplify>1</questionsimplify>
+  <assumepositive>0</assumepositive>
+  <assumereal>0</assumereal>
+  <prtcorrect format="html"><text><![CDATA[[[commonstring key="symbolicprtcorrectfeedback"/]] [[commonstring key="defaultprtcorrectfeedback"/]]]]></text></prtcorrect>
+  <prtpartiallycorrect format="html"><text><![CDATA[[[commonstring key="symbolicprtpartiallycorrectfeedback"/]] [[commonstring key="defaultprtpartiallycorrectfeedback"/]]]]></text></prtpartiallycorrect>
+  <prtincorrect format="html"><text><![CDATA[[[commonstring key="symbolicprtincorrectfeedback"/]] [[commonstring key="defaultprtincorrectfeedback"/]]]]></text></prtincorrect>
+  <decimals>.</decimals>
+  <scientificnotation>*10</scientificnotation>
+  <multiplicationsign>none</multiplicationsign>
+  <sqrtsign>1</sqrtsign>
+  <complexno>i</complexno>
+  <inversetrig>cos-1</inversetrig>
+  <logicsymbol>lang</logicsymbol>
+  <matrixparens>[</matrixparens>
+  <isbroken>0</isbroken>
+  <variantsselectionseed></variantsselectionseed>
+
+  <input><name>ans1</name><type>numerical</type><tans>xv</tans><boxsize>8</boxsize><strictsyntax>1</strictsyntax><insertstars>0</insertstars><syntaxhint></syntaxhint><syntaxattribute>0</syntaxattribute><forbidwords>^,log,lg,ln</forbidwords><allowwords></allowwords><forbidfloat>0</forbidfloat><requirelowestterms>0</requirelowestterms><checkanswertype>0</checkanswertype><mustverify>0</mustverify><showvalidation>0</showvalidation><options></options></input>
+  <input><name>ans2</name><type>numerical</type><tans>T2</tans><boxsize>10</boxsize><strictsyntax>1</strictsyntax><insertstars>0</insertstars><syntaxhint></syntaxhint><syntaxattribute>0</syntaxattribute><forbidwords>^,log,lg,ln</forbidwords><allowwords></allowwords><forbidfloat>0</forbidfloat><requirelowestterms>0</requirelowestterms><checkanswertype>0</checkanswertype><mustverify>0</mustverify><showvalidation>0</showvalidation><options></options></input>
+  <input><name>ans3</name><type>numerical</type><tans>T3</tans><boxsize>10</boxsize><strictsyntax>1</strictsyntax><insertstars>0</insertstars><syntaxhint></syntaxhint><syntaxattribute>0</syntaxattribute><forbidwords>^,log,lg,ln</forbidwords><allowwords></allowwords><forbidfloat>0</forbidfloat><requirelowestterms>0</requirelowestterms><checkanswertype>0</checkanswertype><mustverify>0</mustverify><showvalidation>0</showvalidation><options></options></input>
+  <input><name>ans4</name><type>numerical</type><tans>E3</tans><boxsize>10</boxsize><strictsyntax>1</strictsyntax><insertstars>0</insertstars><syntaxhint></syntaxhint><syntaxattribute>0</syntaxattribute><forbidwords>^,log,lg,ln</forbidwords><allowwords></allowwords><forbidfloat>0</forbidfloat><requirelowestterms>0</requirelowestterms><checkanswertype>0</checkanswertype><mustverify>0</mustverify><showvalidation>0</showvalidation><options></options></input>
+
+  <prt><name>prt1</name><value>1.0000000</value><autosimplify>1</autosimplify><feedbackstyle>1</feedbackstyle><feedbackvariables><text><![CDATA[]]></text></feedbackvariables>
+    <node><name>0</name><description>x</description><answertest>NumAbsolute</answertest><sans>ans1</sans><tans>xv</tans><testoptions>0.001</testoptions><quiet>1</quiet><truescoremode>=</truescoremode><truescore>1.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt1-1-T</trueanswernote><truefeedback format="html"><text><![CDATA[]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>1</falsenextnode><falseanswernote>prt1-1-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>1</name><description>Sign of x</description><answertest>NumAbsolute</answertest><sans>ans1</sans><tans>-xv</tans><testoptions>0.001</testoptions><quiet>1</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt1-2-T</trueanswernote><truefeedback format="html"><text><![CDATA[[[if test="is(g=1)"]]<p>Interest makes the amount grow, so \(x\) is positive.</p>[[else]]<p>The value falls, so \(x\) is negative: \(1 - \dfrac{ {@r@} }{100}\).</p>[[/if]]]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>2</falsenextnode><falseanswernote>prt1-2-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>2</name><description>Percentage not divided by 100</description><answertest>NumAbsolute</answertest><sans>ans1</sans><tans>g*r</tans><testoptions>0.001</testoptions><quiet>1</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt1-3-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>You gave the percentage itself. \(x\) is the rate as a decimal: \({@r@}\%\) means \(\dfrac{ {@r@} }{100}\).</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>-1</falsenextnode><falseanswernote>prt1-3-F</falseanswernote><falsefeedback format="html"><text><![CDATA[<p>\(x\) is the rate as a decimal: \({@r@}\%\) is \(\dfrac{ {@r@} }{100}\), positive for growth and negative for a loss.</p>]]></text></falsefeedback></node>
+  </prt>
+  <prt><name>prt2</name><value>1.0000000</value><autosimplify>1</autosimplify><feedbackstyle>1</feedbackstyle><feedbackvariables><text><![CDATA[ft2: if numberp(ans1) then P*n*ans1 else 10^9;]]></text></feedbackvariables>
+    <node><name>0</name><description>Second term</description><answertest>NumAbsolute</answertest><sans>ans2</sans><tans>T2</tans><testoptions>0.501</testoptions><quiet>1</quiet><truescoremode>=</truescoremode><truescore>1.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt2-1-T</trueanswernote><truefeedback format="html"><text><![CDATA[]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>1</falsenextnode><falseanswernote>prt2-1-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>1</name><description>Sign of the second term</description><answertest>NumAbsolute</answertest><sans>ans2</sans><tans>nT2</tans><testoptions>0.501</testoptions><quiet>1</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt2-2-T</trueanswernote><truefeedback format="html"><text><![CDATA[[[if test="is(g=1)"]]<p>Interest makes the amount grow, so the second term is positive.</p>[[else]]<p>The value falls, so \(x\) is negative and the second term is negative.</p>[[/if]]]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>2</falsenextnode><falseanswernote>prt2-2-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>2</name><description>One year only</description><answertest>NumAbsolute</answertest><sans>ans2</sans><tans>Px</tans><testoptions>0.501</testoptions><quiet>1</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt2-3-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>That is the change in one year, \({@Pd@} \times x\). The second term is \({@Pd@} \times {@n@}x\): multiply by \({@n@}\) as well.</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>3</falsenextnode><falseanswernote>prt2-3-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>3</name><description>Follow-through from (a)</description><answertest>NumAbsolute</answertest><sans>ans2</sans><tans>ft2</tans><testoptions>0.501</testoptions><quiet>1</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt2-4-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>Right method for your \(x\); check (a).</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>-1</falsenextnode><falseanswernote>prt2-4-F</falseanswernote><falsefeedback format="html"><text><![CDATA[<p>The second term is \({@Pd@} \times {@n@}x\): multiply the starting amount by \({@n@}\) and by \(x\).</p>]]></text></falsefeedback></node>
+  </prt>
+  <prt><name>prt3</name><value>1.0000000</value><autosimplify>1</autosimplify><feedbackstyle>1</feedbackstyle><feedbackvariables><text><![CDATA[ft3: if numberp(ans1) then P*C2*ans1^2 else 10^9;]]></text></feedbackvariables>
+    <node><name>0</name><description>Third term</description><answertest>NumAbsolute</answertest><sans>ans3</sans><tans>T3</tans><testoptions>0.501</testoptions><quiet>1</quiet><truescoremode>=</truescoremode><truescore>1.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt3-1-T</trueanswernote><truefeedback format="html"><text><![CDATA[]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>1</falsenextnode><falseanswernote>prt3-1-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>1</name><description>Used n as the coefficient</description><answertest>NumAbsolute</answertest><sans>ans3</sans><tans>Pnx2</tans><testoptions>0.501</testoptions><quiet>1</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt3-2-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>You used \({@n@}\) as the coefficient. The third term uses the third number of the row for power \({@n@}\), which is \({@C2@}\).</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>2</falsenextnode><falseanswernote>prt3-2-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>2</name><description>x not squared</description><answertest>NumAbsolute</answertest><sans>ans3</sans><tans>PCx</tans><testoptions>0.501</testoptions><quiet>1</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt3-3-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>You did not square \(x\): the third term is \({@Pd@} \times {@C2@} \times x^2\).</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>3</falsenextnode><falseanswernote>prt3-3-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>3</name><description>Sign of the third term</description><answertest>NumAbsolute</answertest><sans>ans3</sans><tans>nT3</tans><testoptions>0.501</testoptions><quiet>1</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt3-4-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>The third term is always positive, because \(x^2\) is positive even when \(x\) is negative.</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>4</falsenextnode><falseanswernote>prt3-4-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>4</name><description>Follow-through from (a)</description><answertest>NumAbsolute</answertest><sans>ans3</sans><tans>ft3</tans><testoptions>0.501</testoptions><quiet>1</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt3-5-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>Right method for your \(x\); check (a).</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>-1</falsenextnode><falseanswernote>prt3-5-F</falseanswernote><falsefeedback format="html"><text><![CDATA[<p>The third term is \({@Pd@} \times {@C2@} \times x^2\), where \({@C2@}\) is the third number of the row for power \({@n@}\).</p>]]></text></falsefeedback></node>
+  </prt>
+  <prt><name>prt4</name><value>1.0000000</value><autosimplify>1</autosimplify><feedbackstyle>1</feedbackstyle><feedbackvariables><text><![CDATA[ft4: P+ans2+ans3;]]></text></feedbackvariables>
+    <node><name>0</name><description>Three-term estimate</description><answertest>NumAbsolute</answertest><sans>ans4</sans><tans>E3</tans><testoptions>0.501</testoptions><quiet>1</quiet><truescoremode>=</truescoremode><truescore>1.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt4-1-T</trueanswernote><truefeedback format="html"><text><![CDATA[]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>1</falsenextnode><falseanswernote>prt4-1-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>1</name><description>Exact value given</description><answertest>NumAbsolute</answertest><sans>ans4</sans><tans>ex</tans><testoptions>0.501</testoptions><quiet>1</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt4-2-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>That is the exact value from a calculator, Ksh \({@exd@}\). The question asks for the estimate from the first three terms: \({@Pd@}\) + (second term) + (third term).</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>2</falsenextnode><falseanswernote>prt4-2-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>2</name><description>Two terms only</description><answertest>NumAbsolute</answertest><sans>ans4</sans><tans>P+T2</tans><testoptions>0.501</testoptions><quiet>1</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt4-3-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>You used only the first two terms. Add the third term as well.</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>3</falsenextnode><falseanswernote>prt4-3-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>3</name><description>Follow-through from (b) and (c)</description><answertest>NumAbsolute</answertest><sans>ans4</sans><tans>ft4</tans><testoptions>0.501</testoptions><quiet>1</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt4-4-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>Your adding is right for your terms; check (b) and (c).</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>-1</falsenextnode><falseanswernote>prt4-4-F</falseanswernote><falsefeedback format="html"><text><![CDATA[<p>Add the first three terms: \({@Pd@}\), the second term and the third term.</p>]]></text></falsefeedback></node>
+  </prt>
+
+  <deployedseed>4</deployedseed>
+  <deployedseed>5</deployedseed>
+  <deployedseed>15</deployedseed>
+  <deployedseed>8</deployedseed>
+  <deployedseed>24</deployedseed>
+  <deployedseed>1</deployedseed>
+  <deployedseed>3</deployedseed>
+  <deployedseed>10</deployedseed>
+  <deployedseed>2</deployedseed>
+  <deployedseed>17</deployedseed>
+  <qtest><testcase>1</testcase><description>Correct, derived</description>
+    <testinput><name>ans1</name><value>ev(g*r/100,simp)</value></testinput>
+    <testinput><name>ans2</name><value>ev(P*n*(g*r/100),simp)</value></testinput>
+    <testinput><name>ans3</name><value>ev(P*binomial(n,2)*(g*r/100)^2,simp)</value></testinput>
+    <testinput><name>ans4</name><value>ev(P+P*n*(g*r/100)+P*binomial(n,2)*(g*r/100)^2,simp)</value></testinput>
+    <expected><name>prt1</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt1-1-T</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt2-1-T</expectedanswernote></expected>
+    <expected><name>prt3</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt3-1-T</expectedanswernote></expected>
+    <expected><name>prt4</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt4-1-T</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>2</testcase><description>Signs wrong; exact value</description>
+    <testinput><name>ans1</name><value>-xv</value></testinput>
+    <testinput><name>ans2</name><value>nT2</value></testinput>
+    <testinput><name>ans3</name><value>nT3</value></testinput>
+    <testinput><name>ans4</name><value>float(ex)</value></testinput>
+    <expected><name>prt1</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt1-1-F | prt1-2-T</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt2-1-F | prt2-2-T</expectedanswernote></expected>
+    <expected><name>prt3</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt3-1-F | prt3-2-F | prt3-3-F | prt3-4-T</expectedanswernote></expected>
+    <expected><name>prt4</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt4-1-F | prt4-2-T</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>3</testcase><description>Percentage; one year; n as coefficient; two terms</description>
+    <testinput><name>ans1</name><value>g*r</value></testinput>
+    <testinput><name>ans2</name><value>Px</value></testinput>
+    <testinput><name>ans3</name><value>Pnx2</value></testinput>
+    <testinput><name>ans4</name><value>P+T2</value></testinput>
+    <expected><name>prt1</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt1-1-F | prt1-2-F | prt1-3-T</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt2-1-F | prt2-2-F | prt2-3-T</expectedanswernote></expected>
+    <expected><name>prt3</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt3-1-F | prt3-2-T</expectedanswernote></expected>
+    <expected><name>prt4</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt4-1-F | prt4-2-F | prt4-3-T</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>4</testcase><description>x not squared</description>
+    <testinput><name>ans1</name><value>xv</value></testinput>
+    <testinput><name>ans2</name><value>T2</value></testinput>
+    <testinput><name>ans3</name><value>PCx</value></testinput>
+    <testinput><name>ans4</name><value>E3</value></testinput>
+    <expected><name>prt1</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt1-1-T</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt2-1-T</expectedanswernote></expected>
+    <expected><name>prt3</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt3-1-F | prt3-2-F | prt3-3-T</expectedanswernote></expected>
+    <expected><name>prt4</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt4-1-T</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>5</testcase><description>Follow-through from a wrong x</description>
+    <testinput><name>ans1</name><value>2*xv</value></testinput>
+    <testinput><name>ans2</name><value>P*n*2*xv</value></testinput>
+    <testinput><name>ans3</name><value>ev(P*C2*(2*xv)^2,simp)</value></testinput>
+    <testinput><name>ans4</name><value>ev(P+P*n*2*xv+P*C2*(2*xv)^2,simp)</value></testinput>
+    <expected><name>prt1</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt1-1-F | prt1-2-F | prt1-3-F</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt2-1-F | prt2-2-F | prt2-3-F | prt2-4-T</expectedanswernote></expected>
+    <expected><name>prt3</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt3-1-F | prt3-2-F | prt3-3-F | prt3-4-F | prt3-5-T</expectedanswernote></expected>
+    <expected><name>prt4</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt4-1-F | prt4-2-F | prt4-3-F | prt4-4-T</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>6</testcase><description>Generic wrong</description>
+    <testinput><name>ans1</name><value>xv</value></testinput>
+    <testinput><name>ans2</name><value>T2+7</value></testinput>
+    <testinput><name>ans3</name><value>T3+7</value></testinput>
+    <testinput><name>ans4</name><value>E3+7</value></testinput>
+    <expected><name>prt1</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt1-1-T</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt2-1-F | prt2-2-F | prt2-3-F | prt2-4-F</expectedanswernote></expected>
+    <expected><name>prt3</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt3-1-F | prt3-2-F | prt3-3-F | prt3-4-F | prt3-5-F</expectedanswernote></expected>
+    <expected><name>prt4</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt4-1-F | prt4-2-F | prt4-3-F | prt4-4-F</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>7</testcase><description>Invalid: a letter in (a)</description>
+    <testinput><name>ans1</name><value>x</value></testinput>
+    <testinput><name>ans2</name><value>T2</value></testinput>
+    <testinput><name>ans3</name><value>T3</value></testinput>
+    <testinput><name>ans4</name><value>E3</value></testinput>
+    <expected><name>prt1</name><expectedscore></expectedscore><expectedpenalty></expectedpenalty><expectedanswernote>NULL</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore></expectedscore><expectedpenalty></expectedpenalty><expectedanswernote>NULL</expectedanswernote></expected>
+    <expected><name>prt3</name><expectedscore></expectedscore><expectedpenalty></expectedpenalty><expectedanswernote>NULL</expectedanswernote></expected>
+    <expected><name>prt4</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt4-1-T</expectedanswernote></expected>
+  </qtest>
+</question>
+</quiz>

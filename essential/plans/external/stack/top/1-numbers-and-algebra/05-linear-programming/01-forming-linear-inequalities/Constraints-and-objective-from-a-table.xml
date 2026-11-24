@@ -1,0 +1,201 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<quiz>
+<question type="stack">
+  <name><text>Constraints and objective from a table</text></name>
+  <questiontext format="html">
+    <text><![CDATA[<p>{@E[1]@} The table shows what each item needs, what is available, and the profit on each item. Let \(x\) be the number of {@E[2]@} and \(y\) the number of {@E[3]@}.</p><table border="1" style="border-collapse:collapse;text-align:center;"><tr><th style="padding:4px 10px;">Resource</th><th style="padding:4px 10px;">One of the {@E[2]@} (\(x\))</th><th style="padding:4px 10px;">One of the {@E[3]@} (\(y\))</th><th style="padding:4px 10px;">Available</th></tr><tr><td style="padding:4px 10px;">{@r1@}</td><td>{@a1@}</td><td>{@b1@}</td><td>{@c1@}</td></tr><tr><td style="padding:4px 10px;">{@r2@}</td><td>{@a2@}</td><td>{@b2@}</td><td>{@c2@}</td></tr><tr><td style="padding:4px 10px;">Profit (Ksh)</td><td>{@p1@}</td><td>{@p2@}</td><td></td></tr></table><p>(a) Write the inequality for the first resource, {@r1@}.</p><div>[[input:ans1]] [[validation:ans1]] [[feedback:prt1]]</div><p>(b) Write the inequality for the second resource, {@r2@}.</p><div>[[input:ans2]] [[validation:ans2]] [[feedback:prt2]]</div><p>(c) Write the profit \(P\), in Ksh, in terms of \(x\) and \(y\).</p><div>\(P =\) [[input:ans3]] [[validation:ans3]] [[feedback:prt3]]</div><p>(d) Can they make \({@x0@}\) {@E[2]@} and \({@y0@}\) {@E[3]@}?</p><div>[[input:ans4]] [[validation:ans4]] [[feedback:prt4]]</div>]]></text>
+  </questiontext>
+  <generalfeedback format="html">
+    <text><![CDATA[<p>Each row of the table is one resource and gives one constraint: multiply each number by its letter, add, and compare with the amount available.</p><p>(a) \({@ta1@}\)</p><p>(b) \({@ta2@}\)</p><p>(c) \(P = {@ta3@}\). The profit is the objective function: it is not a constraint.</p><p>(d) Put \(x = {@x0@}\), \(y = {@y0@}\) into each inequality. First resource: \({@a1@} \times {@x0@} + {@b1@} \times {@y0@} = {@u1@}\), {@lt1@} the \({@c1@}\) available. Second resource: \({@a2@} \times {@x0@} + {@b2@} \times {@y0@} = {@u2@}\), {@lt2@} the \({@c2@}\) available. So the answer is: {@optd(keyp)@}</p>]]></text>
+  </generalfeedback>
+  <defaultgrade>4</defaultgrade>
+  <penalty>0.1</penalty>
+  <hidden>0</hidden>
+  <idnumber></idnumber>
+  <stackversion><text>2026063000</text></stackversion>
+  <questionvariables>
+    <text><![CDATA[/* Design: constraints from a resource table (one row per resource), plus the objective and a plan check. Source: adapted from SMP Book 5 (Metric), Chapter 8, Section 2.3, Example 2. Categories yes 3, breaks (a) 2, breaks (b) 3, both 2. Radio order per entry (correct never first). */
+/* lincan(q): canonical form of a linear inequality in x and y: [strict?, [a, b, c]] meaning a*x + b*y + c (< or <=) 0 */
+lincan(q) := block([r, d, s], r: op(q), d: expand(lhs(q) - rhs(q)),
+    if r = ">" or r = ">=" then d: -d,
+    s: is(r = "<" or r = ">"),
+    [s, map(lambda([t], float(t)), [coeff(d, x), coeff(d, y), subst([x = 0, y = 0], d)])]);
+lpar(u, v) := is(abs(u[1]*v[2] - u[2]*v[1]) + abs(u[1]*v[3] - u[3]*v[1]) + abs(u[2]*v[3] - u[3]*v[2]) < 1/10^9 * (abs(u[1]) + abs(u[2]) + abs(u[3])) * (abs(v[1]) + abs(v[2]) + abs(v[3])));
+ldot(u, v) := u[1]*v[1] + u[2]*v[2] + u[3]*v[3];
+/* lcls(L, T): "same" region; "dir" same boundary, other side, same strictness; "strict" same side, other strictness; "both"; "other" */
+lcls(L, T) := block([l: lincan(L), t: lincan(T)],
+    if not lpar(l[2], t[2]) then "other"
+    elseif ldot(l[2], t[2]) > 0 then (if l[1] = t[1] then "same" else "strict")
+    elseif l[1] = t[1] then "dir" else "both");
+/* the validator: an inequality in x and y, linear */
+validate_ineq(ex) := block([e: ev(ex, simp), d],
+    if atom(e) or not member(op(e), ["<", "<=", ">", ">="]) then
+        "Type an inequality using <, <=, > or >=, for example 2*x+3*y<=60. An equation with = is not an inequality."
+    elseif listofvars(e) = [] or not every(lambda([v], member(v, [x, y])), listofvars(e)) then "Use only the letters x and y."
+    else (d: ev(expand(lhs(e) - rhs(e)), simp),
+          if not ev(polynomialp(d, [x, y]), simp) then
+              "This inequality should be linear: only numbers times x and y, added or subtracted."
+          elseif ev(hipow(d, x), simp) > 1 or ev(hipow(d, y), simp) > 1 or not freeof(x, ev(coeff(d, y), simp)) then
+              "This inequality should be linear: no powers or products of x and y." else ""));
+/* mkineq([a, b, rel, c]): the inequality a*x + b*y rel c */
+mkineq(L) := if L[3] = "<=" then L[1]*x + L[2]*y <= L[4] elseif L[3] = "<" then L[1]*x + L[2]*y < L[4]
+    elseif L[3] = ">=" then L[1]*x + L[2]*y >= L[4] else L[1]*x + L[2]*y > L[4];
+Q12L: [["A candle maker in Kisumu makes boxes of plain candles and boxes of scented candles.","boxes of plain candles","boxes of scented candles",["Wax (kg)",7,1,125],["Time (hours)",7,4,165],350,200,[4,14],["n2","yes","nb","n1"],["wax","time"]],
+["A beadwork group in Kajiado makes necklaces and bracelets.","necklaces","bracelets",["Beads (hundreds)",5,9,148],["Time (hours)",1,6,65],80,20,[6,10],["yes","nb","n1","n2"],["beads","time"]],
+["A carpenter in Eldoret makes stools and benches.","stools","benches",["Timber (metres)",8,3,124],["Time (hours)",8,7,167],500,400,[15,4],["n2","yes","n1","nb"],["timber","time"]],
+["A tailor in Kitale makes school skirts and school blazers.","skirts","blazers",["Cloth (metres)",7,5,109],["Sewing (hours)",9,7,145],650,550,[13,6],["n1","nb","yes","n2"],["cloth","sewing"]],
+["A jua kali workshop in Kamukunji makes wheelbarrows and metal trunks.","wheelbarrows","metal trunks",["Steel sheet (square metres)",9,4,186],["Welding (hours)",8,9,219],600,2000,[15,1],["n2","nb","yes","n1"],["steel sheet","welding"]],
+["A women's group in Kitui weaves kiondo baskets and sisal mats.","baskets","mats",["Sisal (kg)",8,9,203],["Weaving (hours)",2,7,99],1000,350,[6,13],["n1","n2","yes","nb"],["sisal","weaving"]],
+["A mushroom grower in Kiambu fills bags of oyster mushrooms and trays of button mushrooms.","bags","trays",["Compost (kg)",7,3,123],["Labour (minutes)",9,5,176],30,160,[16,6],["nb","n2","n1","yes"],["compost","labour"]],
+["A printing shop in Kisii prints packs of posters and packs of booklets.","packs of posters","packs of booklets",["Paper (reams)",8,7,168],["Machine time (minutes)",5,9,155],950,850,[7,7],["nb","n1","n2","yes"],["paper","machine time"]],
+["A tree nursery in Murang'a raises trays of avocado seedlings and trays of macadamia seedlings.","avocado trays","macadamia trays",["Potting soil (kg)",7,2,77],["Water (litres per day)",5,9,133],400,600,[5,14],["yes","nb","n2","n1"],["potting soil","water"]],
+["A honey processor in Baringo packs jars and buckets of honey.","jars","buckets",["Honey (kg)",1,7,72],["Labelling (minutes)",1,9,87],300,150,[11,9],["yes","n1","n2","nb"],["honey","labelling"]]];
+ix: 1+rand(10);
+E: Q12L[ix];
+r1: E[4][1]; a1: E[4][2]; b1: E[4][3]; c1: E[4][4];
+r2: E[5][1]; a2: E[5][2]; b2: E[5][3]; c2: E[5][4]; rsh: E[10];
+p1: E[6]; p2: E[7]; x0: E[8][1]; y0: E[8][2];
+ta1: a1*x+b1*y<=c1; ta2: a2*x+b2*y<=c2; ta3: p1*x+p2*y;
+col1: a1*x+a2*y<=c1; col2: b1*x+b2*y<=c2;
+sw1: b1*x+a1*y<=c1; sw2: b2*x+a2*y<=c2;
+dr1: a1*x+b1*y>=c1; dr2: a2*x+b2*y>=c2;
+u1: a1*x0+b1*y0; u2: a2*x0+b2*y0;
+keyp: if u1<=c1 and u2<=c2 then "yes" elseif u1>c1 and u2>c2 then "nb" elseif u1>c1 then "n1" else "n2";
+optd(k) := if k="yes" then "Yes: the plan satisfies both conditions." elseif k="n1" then sconcat("No: it needs more than they have of the first resource (", rsh[1], ").")
+  elseif k="n2" then sconcat("No: it needs more than they have of the second resource (", rsh[2], ").") else "No: it needs more than they have of both resources.";
+opts: makelist([E[9][j], is(E[9][j]=keyp), optd(E[9][j])], j, 1, 4);
+wrongkey: E[9][1+mod(sublist_indices(E[9], lambda([t], t=keyp))[1], 4)];
+lt1: if u1<=c1 then "at most" else "more than"; lt2: if u2<=c2 then "at most" else "more than";
+validate_obj(ex) := if not atom(ex) and member(op(ex), ["=", "<", "<=", ">", ">="]) then "Type only the expression, for example 300x+800y." else "";
+]]></text>
+  </questionvariables>
+  <specificfeedback format="html"><text><![CDATA[]]></text></specificfeedback>
+  <questionnote format="moodle_auto_format">
+    <text>ix={@ix@}, ta1={@ta1@}, ta2={@ta2@}, P={@ta3@}, plan ({@x0@}, {@y0@}), keyp={@keyp@}</text>
+  </questionnote>
+  <questiondescription format="html"><text><![CDATA[<p id="concept">Linear Programming: constraints and the objective function from a table</p><p id="description">Grade 12 CBE Core 1.4 (a) / Essential 1.4 (a): Write one constraint for each row of a resource table, write the profit as an objective function, and check whether a plan is possible.</p><p id="edition">Core and Essential</p><p id="provenance">This question is adapted from Chapter 8, Section 2.3, Example 2 of School Mathematics Project, SMP Book 5 (Metric), ed. P. G. Bowie, Cambridge University Press, 1969: a table of resources by product read into one constraint per resource, with the table transposed, an objective function and a plan check added, and Kenyan contexts and new numbers.</p><p id="citation">INNODEMS CBC Grade 12 Mathematics, first draft by Ben Davies, 2026. Aligned to the KICD Senior School Curriculum Design, Core and Essential Mathematics Grade 12 (draft).</p>]]></text></questiondescription>
+  <questionsimplify>1</questionsimplify>
+  <assumepositive>0</assumepositive>
+  <assumereal>0</assumereal>
+  <prtcorrect format="html"><text><![CDATA[[[commonstring key="symbolicprtcorrectfeedback"/]] [[commonstring key="defaultprtcorrectfeedback"/]]]]></text></prtcorrect>
+  <prtpartiallycorrect format="html"><text><![CDATA[[[commonstring key="symbolicprtpartiallycorrectfeedback"/]] [[commonstring key="defaultprtpartiallycorrectfeedback"/]]]]></text></prtpartiallycorrect>
+  <prtincorrect format="html"><text><![CDATA[[[commonstring key="symbolicprtincorrectfeedback"/]] [[commonstring key="defaultprtincorrectfeedback"/]]]]></text></prtincorrect>
+  <decimals>.</decimals>
+  <scientificnotation>*10</scientificnotation>
+  <multiplicationsign>none</multiplicationsign>
+  <sqrtsign>1</sqrtsign>
+  <complexno>i</complexno>
+  <inversetrig>cos-1</inversetrig>
+  <logicsymbol>lang</logicsymbol>
+  <matrixparens>[</matrixparens>
+  <isbroken>0</isbroken>
+  <variantsselectionseed></variantsselectionseed>
+
+  <input><name>ans1</name><type>algebraic</type><tans>ta1</tans><boxsize>18</boxsize><strictsyntax>1</strictsyntax><insertstars>4</insertstars><syntaxhint></syntaxhint><syntaxattribute>0</syntaxattribute><forbidwords></forbidwords><allowwords></allowwords><forbidfloat>0</forbidfloat><requirelowestterms>0</requirelowestterms><checkanswertype>0</checkanswertype><mustverify>0</mustverify><showvalidation>1</showvalidation><options>validator:validate_ineq</options></input>
+  <input><name>ans2</name><type>algebraic</type><tans>ta2</tans><boxsize>18</boxsize><strictsyntax>1</strictsyntax><insertstars>4</insertstars><syntaxhint></syntaxhint><syntaxattribute>0</syntaxattribute><forbidwords></forbidwords><allowwords></allowwords><forbidfloat>0</forbidfloat><requirelowestterms>0</requirelowestterms><checkanswertype>0</checkanswertype><mustverify>0</mustverify><showvalidation>1</showvalidation><options>validator:validate_ineq</options></input>
+  <input><name>ans3</name><type>algebraic</type><tans>ta3</tans><boxsize>14</boxsize><strictsyntax>1</strictsyntax><insertstars>4</insertstars><syntaxhint></syntaxhint><syntaxattribute>0</syntaxattribute><forbidwords>P</forbidwords><allowwords></allowwords><forbidfloat>1</forbidfloat><requirelowestterms>0</requirelowestterms><checkanswertype>0</checkanswertype><mustverify>0</mustverify><showvalidation>1</showvalidation><options>validator:validate_obj</options></input>
+  <input><name>ans4</name><type>radio</type><tans>opts</tans><boxsize>15</boxsize><strictsyntax>1</strictsyntax><insertstars>0</insertstars><syntaxhint></syntaxhint><syntaxattribute>0</syntaxattribute><forbidwords></forbidwords><allowwords></allowwords><forbidfloat>1</forbidfloat><requirelowestterms>0</requirelowestterms><checkanswertype>0</checkanswertype><mustverify>0</mustverify><showvalidation>0</showvalidation><options></options></input>
+
+  <prt><name>prt1</name><value>1.0000000</value><autosimplify>1</autosimplify><feedbackstyle>1</feedbackstyle><feedbackvariables><text><![CDATA[k1: lcls(ans1, ta1); q1: lcls(ans1, col1); w1: lcls(ans1, sw1);]]></text></feedbackvariables>
+    <node><name>0</name><description>Row 1 inequality</description><answertest>AlgEquiv</answertest><sans>k1</sans><tans>"same"</tans><testoptions></testoptions><quiet>0</quiet><truescoremode>=</truescoremode><truescore>1.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt1-1-T</trueanswernote><truefeedback format="html"><text><![CDATA[]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>1</falsenextnode><falseanswernote>prt1-1-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>1</name><description>Read down a column</description><answertest>AlgEquiv</answertest><sans>q1</sans><tans>"same"</tans><testoptions></testoptions><quiet>0</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt1-2-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>You read down a column of the table: \({@a1@}\) and \({@a2@}\) are both amounts for one of the {@E[2]@}. Each row is one resource, so use the two numbers in the {@r1@} row, each with its letter.</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>2</falsenextnode><falseanswernote>prt1-2-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>2</name><description>Letters swapped</description><answertest>AlgEquiv</answertest><sans>w1</sans><tans>"same"</tans><testoptions></testoptions><quiet>0</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt1-3-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>You matched the numbers to the wrong letters: \(x\) counts the {@E[2]@}, so its number is in the {@E[2]@} column.</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>3</falsenextnode><falseanswernote>prt1-3-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>3</name><description>Wrong direction</description><answertest>AlgEquiv</answertest><sans>k1</sans><tans>"dir"</tans><testoptions></testoptions><quiet>0</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt1-4-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>Your inequality says the amount used is \({@c1@}\) or more. The amount available is the most they can use.</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>-1</falsenextnode><falseanswernote>prt1-4-F</falseanswernote><falsefeedback format="html"><text><![CDATA[<p>In the {@r1@} row, multiply each number by its letter, add, and compare with the amount available.</p>]]></text></falsefeedback></node>
+  </prt>
+  <prt><name>prt2</name><value>1.0000000</value><autosimplify>1</autosimplify><feedbackstyle>1</feedbackstyle><feedbackvariables><text><![CDATA[k2: lcls(ans2, ta2); q2: lcls(ans2, col2); w2: lcls(ans2, sw2);]]></text></feedbackvariables>
+    <node><name>0</name><description>Row 2 inequality</description><answertest>AlgEquiv</answertest><sans>k2</sans><tans>"same"</tans><testoptions></testoptions><quiet>0</quiet><truescoremode>=</truescoremode><truescore>1.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt2-1-T</trueanswernote><truefeedback format="html"><text><![CDATA[]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>1</falsenextnode><falseanswernote>prt2-1-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>1</name><description>Read down a column</description><answertest>AlgEquiv</answertest><sans>q2</sans><tans>"same"</tans><testoptions></testoptions><quiet>0</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt2-2-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>You read down a column of the table: \({@b1@}\) and \({@b2@}\) are both amounts for one of the {@E[3]@}. Each row is one resource, so use the two numbers in the {@r2@} row, each with its letter.</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>2</falsenextnode><falseanswernote>prt2-2-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>2</name><description>Letters swapped</description><answertest>AlgEquiv</answertest><sans>w2</sans><tans>"same"</tans><testoptions></testoptions><quiet>0</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt2-3-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>You matched the numbers to the wrong letters: \(x\) counts the {@E[2]@}, so its number is in the {@E[2]@} column.</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>3</falsenextnode><falseanswernote>prt2-3-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>3</name><description>Wrong direction</description><answertest>AlgEquiv</answertest><sans>k2</sans><tans>"dir"</tans><testoptions></testoptions><quiet>0</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt2-4-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>Your inequality says the amount used is \({@c2@}\) or more. The amount available is the most they can use.</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>-1</falsenextnode><falseanswernote>prt2-4-F</falseanswernote><falsefeedback format="html"><text><![CDATA[<p>In the {@r2@} row, multiply each number by its letter, add, and compare with the amount available.</p>]]></text></falsefeedback></node>
+  </prt>
+  <prt><name>prt3</name><value>1.0000000</value><autosimplify>1</autosimplify><feedbackstyle>1</feedbackstyle><feedbackvariables><text><![CDATA[u10: subst([x = 1, y = 0], ans3); u01: subst([x = 0, y = 1], ans3);]]></text></feedbackvariables>
+    <node><name>0</name><description>Profit</description><answertest>AlgEquiv</answertest><sans>ans3</sans><tans>ta3</tans><testoptions></testoptions><quiet>0</quiet><truescoremode>=</truescoremode><truescore>1.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt3-1-T</trueanswernote><truefeedback format="html"><text><![CDATA[]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>1</falsenextnode><falseanswernote>prt3-1-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>1</name><description>Profits swapped</description><answertest>AlgEquiv</answertest><sans>ans3</sans><tans>p2*x+p1*y</tans><testoptions></testoptions><quiet>0</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt3-2-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>The profits are matched to the wrong letters: \(x\) counts the {@E[2]@}, which make Ksh \({@p1@}\) each.</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>2</falsenextnode><falseanswernote>prt3-2-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>2</name><description>No letters</description><answertest>AlgEquiv</answertest><sans>ans3</sans><tans>p1+p2</tans><testoptions></testoptions><quiet>0</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt3-3-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>\(P\) depends on how many of each are made: multiply each profit by its letter.</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>-1</falsenextnode><falseanswernote>prt3-3-F</falseanswernote><falsefeedback format="html"><text><![CDATA[<p>Test your expression with simple plans. For \(x = 1\), \(y = 0\) it gives \({@u10@}\), and for \(x = 0\), \(y = 1\) it gives \({@u01@}\). Compare these with the profit on one of the {@E[2]@} and on one of the {@E[3]@} in the table.</p>]]></text></falsefeedback></node>
+  </prt>
+  <prt><name>prt4</name><value>1.0000000</value><autosimplify>1</autosimplify><feedbackstyle>1</feedbackstyle><feedbackvariables><text><![CDATA[]]></text></feedbackvariables>
+    <node><name>0</name><description>Plan check</description><answertest>AlgEquiv</answertest><sans>ans4</sans><tans>keyp</tans><testoptions></testoptions><quiet>0</quiet><truescoremode>=</truescoremode><truescore>1.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt4-1-T</trueanswernote><truefeedback format="html"><text><![CDATA[]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>-1</falsenextnode><falseanswernote>prt4-1-F</falseanswernote><falsefeedback format="html"><text><![CDATA[[[if test='is(ans4="yes")']]<p>Test the plan in each row of the table: work out \({@a1@} \times {@x0@} + {@b1@} \times {@y0@}\) for {@r1@} and \({@a2@} \times {@x0@} + {@b2@} \times {@y0@}\) for {@r2@}, and compare each total with the amount available.</p>[[/if]][[if test='is(ans4="n1")']][[if test='is(u1<=c1)']]<p>{@r1@}: \({@a1@} \times {@x0@} + {@b1@} \times {@y0@} = {@u1@}\), and \({@c1@}\) are available, so there is enough of this resource. Now test {@r2@} in the same way.</p>[[else]]<p>You are right that there is not enough for {@r1@}. Test {@r2@} too: compare \({@a2@} \times {@x0@} + {@b2@} \times {@y0@}\) with the \({@c2@}\) available.</p>[[/if]][[/if]][[if test='is(ans4="n2")']][[if test='is(u2<=c2)']]<p>{@r2@}: \({@a2@} \times {@x0@} + {@b2@} \times {@y0@} = {@u2@}\), and \({@c2@}\) are available, so there is enough of this resource. Now test {@r1@} in the same way.</p>[[else]]<p>You are right that there is not enough for {@r2@}. Test {@r1@} too: compare \({@a1@} \times {@x0@} + {@b1@} \times {@y0@}\) with the \({@c1@}\) available.</p>[[/if]][[/if]][[if test='is(ans4="nb")']][[if test='is(u1<=c1)']]<p>{@r1@}: \({@a1@} \times {@x0@} + {@b1@} \times {@y0@} = {@u1@}\), and \({@c1@}\) are available, so there is enough of this resource. So it is not both. Check {@r2@} again.</p>[[else]]<p>{@r2@}: \({@a2@} \times {@x0@} + {@b2@} \times {@y0@} = {@u2@}\), and \({@c2@}\) are available, so there is enough of this resource. So it is not both.</p>[[/if]][[/if]]]]></text></falsefeedback></node>
+  </prt>
+
+  <deployedseed>4</deployedseed>
+  <deployedseed>5</deployedseed>
+  <deployedseed>15</deployedseed>
+  <deployedseed>8</deployedseed>
+  <deployedseed>24</deployedseed>
+  <deployedseed>1</deployedseed>
+  <deployedseed>3</deployedseed>
+  <deployedseed>10</deployedseed>
+  <deployedseed>2</deployedseed>
+  <deployedseed>17</deployedseed>
+  <qtest><testcase>1</testcase><description>Correct</description>
+    <testinput><name>ans1</name><value>ta1</value></testinput>
+    <testinput><name>ans2</name><value>ta2</value></testinput>
+    <testinput><name>ans3</name><value>ta3</value></testinput>
+    <testinput><name>ans4</name><value>keyp</value></testinput>
+    <expected><name>prt1</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt1-1-T</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt2-1-T</expectedanswernote></expected>
+    <expected><name>prt3</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt3-1-T</expectedanswernote></expected>
+    <expected><name>prt4</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt4-1-T</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>2</testcase><description>Equivalent forms</description>
+    <testinput><name>ans1</name><value>2*a1*x+2*b1*y&lt;=2*c1</value></testinput>
+    <testinput><name>ans2</name><value>c2&gt;=a2*x+b2*y</value></testinput>
+    <testinput><name>ans3</name><value>y*p2+x*p1</value></testinput>
+    <testinput><name>ans4</name><value>keyp</value></testinput>
+    <expected><name>prt1</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt1-1-T</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt2-1-T</expectedanswernote></expected>
+    <expected><name>prt3</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt3-1-T</expectedanswernote></expected>
+    <expected><name>prt4</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt4-1-T</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>3</testcase><description>Columns read; profits swapped; wrong option</description>
+    <testinput><name>ans1</name><value>col1</value></testinput>
+    <testinput><name>ans2</name><value>col2</value></testinput>
+    <testinput><name>ans3</name><value>p2*x+p1*y</value></testinput>
+    <testinput><name>ans4</name><value>wrongkey</value></testinput>
+    <expected><name>prt1</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt1-1-F | prt1-2-T</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt2-1-F | prt2-2-T</expectedanswernote></expected>
+    <expected><name>prt3</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt3-1-F | prt3-2-T</expectedanswernote></expected>
+    <expected><name>prt4</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt4-1-F</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>4</testcase><description>Letters swapped; no letters in P</description>
+    <testinput><name>ans1</name><value>sw1</value></testinput>
+    <testinput><name>ans2</name><value>sw2</value></testinput>
+    <testinput><name>ans3</name><value>p1+p2</value></testinput>
+    <testinput><name>ans4</name><value>keyp</value></testinput>
+    <expected><name>prt1</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt1-1-F | prt1-2-F | prt1-3-T</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt2-1-F | prt2-2-F | prt2-3-T</expectedanswernote></expected>
+    <expected><name>prt3</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt3-1-F | prt3-2-F | prt3-3-T</expectedanswernote></expected>
+    <expected><name>prt4</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt4-1-T</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>5</testcase><description>Wrong direction; generic P</description>
+    <testinput><name>ans1</name><value>dr1</value></testinput>
+    <testinput><name>ans2</name><value>dr2</value></testinput>
+    <testinput><name>ans3</name><value>p1*x+p2*y+1</value></testinput>
+    <testinput><name>ans4</name><value>keyp</value></testinput>
+    <expected><name>prt1</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt1-1-F | prt1-2-F | prt1-3-F | prt1-4-T</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt2-1-F | prt2-2-F | prt2-3-F | prt2-4-T</expectedanswernote></expected>
+    <expected><name>prt3</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt3-1-F | prt3-2-F | prt3-3-F</expectedanswernote></expected>
+    <expected><name>prt4</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt4-1-T</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>6</testcase><description>Letters swapped with another number: generic</description>
+    <testinput><name>ans1</name><value>a1*y+b1*x&lt;=c1+1</value></testinput>
+    <testinput><name>ans2</name><value>ta2</value></testinput>
+    <testinput><name>ans3</name><value>ta3</value></testinput>
+    <testinput><name>ans4</name><value>keyp</value></testinput>
+    <expected><name>prt1</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt1-1-F | prt1-2-F | prt1-3-F | prt1-4-F</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt2-1-T</expectedanswernote></expected>
+    <expected><name>prt3</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt3-1-T</expectedanswernote></expected>
+    <expected><name>prt4</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt4-1-T</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>7</testcase><description>Invalid: an expression in (a)</description>
+    <testinput><name>ans1</name><value>a1*x+b1*y</value></testinput>
+    <testinput><name>ans2</name><value>ta2</value></testinput>
+    <testinput><name>ans3</name><value>ta3</value></testinput>
+    <testinput><name>ans4</name><value>keyp</value></testinput>
+    <expected><name>prt1</name><expectedscore></expectedscore><expectedpenalty></expectedpenalty><expectedanswernote>NULL</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt2-1-T</expectedanswernote></expected>
+    <expected><name>prt3</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt3-1-T</expectedanswernote></expected>
+    <expected><name>prt4</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt4-1-T</expectedanswernote></expected>
+  </qtest>
+</question>
+</quiz>

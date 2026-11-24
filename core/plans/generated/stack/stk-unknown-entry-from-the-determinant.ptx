@@ -1,0 +1,7 @@
+<stack-static>
+    <statement><p><p><m>M = {\left[\begin{array}{cc} k &amp; 6 \\ 4 &amp; 1 \end{array}\right]}</m>.</p><p>(a) Find the value of <m>k</m> for which <m>M</m> has no inverse.</p><div><m>k = </m> <fillin characters="5" name="ans1"/>  </div><p>(b) Under <m>M</m>, a shape of area <m>{2}</m> square units has an image of area <m>{6}</m> square units. Find the two possible values of <m>k</m>.</p><div><m>k = </m> <fillin characters="5" name="ans2"/> or <m>k = </m> <fillin characters="5" name="ans3"/>   </div></p></statement>
+    <solution><p><p><m>\det M = {k-24}</m>.</p><p>(a) No inverse means <m>\det M = 0</m>: <m>{k-24} = 0</m>, so <m>k = {24}</m>.</p><p>(b) The area scale factor is <m>{6} \div {2} = {3}</m>, and it equals <m>|\det M|</m>. So <m>{k-24} = {3}</m>, giving <m>k = {27}</m>, or <m>{k-24} = {-3}</m>, giving <m>k = {21}</m>.</p></p></solution>
+    <answer><p><m>24</m></p></answer>
+    <answer><p><m>27</m></p></answer>
+    <answer><p><m>21</m></p></answer>
+</stack-static>

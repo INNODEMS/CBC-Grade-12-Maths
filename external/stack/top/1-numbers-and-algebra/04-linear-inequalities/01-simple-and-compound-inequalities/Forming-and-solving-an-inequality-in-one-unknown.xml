@@ -1,0 +1,217 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<quiz>
+<question type="stack">
+  <name><text>Forming and solving an inequality in one unknown</text></name>
+  <questiontext format="html">
+    <text><![CDATA[<p>[[if test="is(kind=\"load\")"]]A fishing boat on Lake Victoria can carry a load of at most {@L@} kg. The fisherman and his nets weigh {@F@} kg. Crates of fish weigh {@w@} kg each. Let \(n\) be the number of crates.[[elif test="is(kind=\"budget\")"]]Nekesa has Ksh {@L@}. She pays Ksh {@F@} to enter the Nairobi Agricultural Show and spends the rest on rides at Ksh {@w@} each. Let \(n\) be the number of rides.[[elif test="is(kind=\"lift\")"]]A goods lift can carry at most {@L@} kg. A worker and her trolley weigh {@F@} kg. Boxes of paper weigh {@w@} kg each. Let \(n\) be the number of boxes.[[elif test="is(kind=\"boda\")"]]A boda boda rider pays Ksh {@F@} a day for fuel and the bike's hire. He earns Ksh {@w@} for each trip and wants a profit of at least Ksh {@L@} in a day. Let \(n\) be the number of trips.[[elif test="is(kind=\"savings\")"]]Baraka has saved Ksh {@F@}. He saves Ksh {@w@} every week and wants at least Ksh {@L@} for a bicycle. Let \(n\) be the number of weeks.[[else]]A mama mboga pays Ksh {@F@} a day for her stall. She makes a profit of Ksh {@w@} on each bunch of sukuma wiki and wants a profit of at least Ksh {@L@} in a day. Let \(n\) be the number of bunches.[[/if]]</p><p>(a) Write an inequality in \(n\).</p><div>[[input:ans1]] [[validation:ans1]] [[feedback:prt1]]</div><p>(b) Solve your inequality. Give the exact value.</p><div>\(n\) [[input:ans2]] [[input:ans3]] [[validation:ans3]] [[feedback:prt2]]</div><p>(c) What is the [[if test="is(rel=\"le\")"]]greatest[[else]]least[[/if]] number of {@item@}?</p><div>[[input:ans4]] {@item@} [[validation:ans4]] [[feedback:prt3]]</div>]]></text>
+  </questiontext>
+  <generalfeedback format="html">
+    <text><![CDATA[<p>(a) The total {@totw@} is \({@tot@}\)[[if test="earn"]] (the earnings minus the daily cost)[[/if]], and it must be [[if test="is(rel=\"le\")"]]at most[[else]]at least[[/if]] \({@L@}\): \({@ta1@}\). A solved form such as {@ansd@} is also a correct inequality in \(n\).</p><p>(b) [[if test="earn"]]Add \({@F@}\) to[[else]]Subtract \({@F@}\) from[[/if]] both sides: \({@w@}n {@relt(rel)@} {@bnd*w@}\). Divide both sides by \({@w@}\), a positive number, so the sign stays the same: {@ansd@}.</p><p>(c) \(n\) must be a whole number. [[if test="is(rel=\"le\")"]]The greatest whole number that is at most \({@nd(bnd)@}\) is \({@ans4t@}\); \({@ans4t+1@}\) {@item@} would be too many.[[else]]The least whole number that is at least \({@nd(bnd)@}\) is \({@ans4t@}\); \({@ans4t-1@}\) {@item@} would not be enough.[[/if]] Check: with \(n = {@ans4t@}\) the total is \({@ev(tot,n=ans4t)@}\); with \(n = {@wrongr@}\) it is \({@ev(tot,n=wrongr)@}\).</p>]]></text>
+  </generalfeedback>
+  <defaultgrade>3</defaultgrade>
+  <penalty>0.1</penalty>
+  <hidden>0</hidden>
+  <idnumber></idnumber>
+  <stackversion><text>2026063000</text></stackversion>
+  <questionvariables>
+    <text><![CDATA[/* helpers: relation tokens, display strings, inequality builders */
+relt(r) := if r="lt" then "\\lt" else if r="le" then "\\le" else if r="gt" then "\\gt" else "\\ge";
+reluc(r) := if r="lt" then "<" else if r="le" then "≤" else if r="gt" then ">" else "≥";
+relflip(r) := if r="lt" then "gt" else if r="le" then "ge" else if r="gt" then "lt" else "le";
+relother(r) := if r="lt" then "le" else if r="le" then "lt" else if r="gt" then "ge" else "gt";
+relcomp(r) := if r="lt" then "ge" else if r="le" then "gt" else if r="gt" then "le" else "lt";
+strictp(r) := is(r="lt" or r="gt");
+/* Typed answers must be one inequality; "and"/"or" statements are rejected at validation. */
+vsingle(ex) := if not atom(ex) and member(op(ex), ["and", "or", "nounand", "nounor"]) then "Type a single inequality, without the words and or or." else "";
+mkin(u, r, w) := if r="lt" then u<w else if r="le" then u<=w else if r="gt" then u>w else u>=w;
+holds(u, r, w) := if r="lt" then is(u<w) else if r="le" then is(u<=w) else if r="gt" then is(u>w) else is(u>=w);
+relopts(c) := [["lt",is(c="lt"),"<"],["le",is(c="le"),"≤"],["gt",is(c="gt"),">"],["ge",is(c="ge"),"≥"]];
+termp(v) := block([dd], dd: denom(v), while is(mod(dd,2)=0) do dd: dd/2, while is(mod(dd,5)=0) do dd: dd/5, is(dd=1));
+nd(v) := if integerp(v) then string(v) else if termp(v) then string(float(v))
+  else sconcat(if is(v<0) then "-" else "", "\\frac{", string(abs(num(v))), "}{", string(denom(v)), "}");
+ndm(v) := sconcat("\\(", nd(v), "\\)");
+/* plain-text number for aria-labels (nd gives TeX fractions, which a screen reader reads raw) */
+ndt(v) := if integerp(v) then string(v) else if termp(v) then string(float(v)) else sconcat(string(num(v)), "/", string(denom(v)));
+trm(k, v, fst) := block([m, s], m: abs(k), s: if v="" then nd(m) else if m=1 then v else sconcat(nd(m), v),
+  if fst then (if k<0 then sconcat("-", s) else s) else (if k<0 then sconcat(" - ", s) else sconcat(" + ", s)));
+lfs(L) := block([s, t], s: "", for t in L do (if t[1]#0 then s: sconcat(s, trm(t[1], t[2], is(s="")))), if s="" then "0" else s);
+ins(a, b, c, r) := sconcat(lfs([[a,"x"],[b,"y"]]), " ", relt(r), " ", nd(c));
+ineqd(a, b, c, r) := sconcat("\\(", ins(a, b, c, r), "\\)");
+lind(a, b, c) := sconcat("\\(", lfs([[a,"x"],[b,"y"]]), " = ", nd(c), "\\)");
+ineqm(a, b, c, r) := mkin(a*x+b*y, r, c);
+/* Design: form and solve an inequality from a context. Source: original. q13 [kind, F fixed amount, w per item, L limit or target, relation].
+   Boundaries all terminate and none is whole; answers 7, 11, 11, 29, 8, 29, 19, 18, 28, 20. */
+q13: [["load",590,50,950,"le"],["budget",250,120,1600,"le"],["lift",200,40,660,"le"],["boda",400,40,750,"ge"],["savings",600,400,3500,"ge"],["stall",160,25,550,"ge"],["load",410,25,900,"le"],["budget",200,80,1700,"le"],["lift",60,25,780,"le"],["boda",350,80,1200,"ge"]];
+ix: 1+rand(10);
+kind: q13[ix][1]; F: q13[ix][2]; w: q13[ix][3]; L: q13[ix][4]; rel: q13[ix][5];
+earn: is(kind="boda" or kind="stall");
+/* the total: le kinds and savings F + w n; boda and stall w n - F (profit) */
+tot: if earn then w*n-F else F+w*n;
+ta1: mkin(tot, rel, L);
+bnd: if earn then (L+F)/w else (L-F)/w;
+ans4t: if is(rel="le") then floor(bnd) else ceiling(bnd);
+wrongr: if is(rel="le") then ceiling(bnd) else floor(bnd);
+/* diagnostics for (a) */
+tflip: mkin(tot, relflip(rel), L);
+tstrict: mkin(tot, relother(rel), L);
+tnofix: mkin(w*n, rel, L);
+tsign: if earn then mkin(w*n+F, rel, L) else mkin(w*n-F, rel, L);
+/* diagnostics for (b): boundary of tsign; L/w */
+nb1: if earn then (L-F)/w else (L+F)/w;
+nb2: L/w;
+ftf(v) := if is(rel="le") then floor(v) else ceiling(v);
+ftnb1: ftf(nb1);
+o2: relopts(rel);
+/* test values */
+tsol: mkin(n, rel, bnd);
+bndf: float(bnd);
+rlo: relother(rel); rlf: relflip(rel);
+tgen: mkin(tot, rel, L+w);
+bnd3: bnd+1/3;
+/* generic whole-number test value: ans4t + 2, or ans4t + 3 where ans4t + 2 is the follow-through of L/w (as in budget entry 2) */
+a4p2: if is(ftf(nb2)=ans4t+2 or ftf(bnd+1/3)=ans4t+2) then ans4t+3 else ans4t+2;
+teq: n=bnd;
+item: if kind="load" then "crates" else if kind="budget" then "rides" else if kind="lift" then "boxes" else if kind="boda" then "trips" else if kind="savings" then "weeks" else "bunches";
+totw: if kind="load" or kind="lift" then "load" else if kind="budget" then "spending" else if kind="savings" then "savings" else "profit";
+ansd: sconcat("\\(n ", relt(rel), " ", nd(bnd), "\\)");]]></text>
+  </questionvariables>
+  <specificfeedback format="html"><text><![CDATA[]]></text></specificfeedback>
+  <questionnote format="moodle_auto_format">
+    <text>ix={@ix@}, {@kind@}, {@ansd@}, answer {@ans4t@}</text>
+  </questionnote>
+  <questiondescription format="html"><text><![CDATA[<p id="concept">Linear Inequalities: forming and solving an inequality in one unknown</p><p id="description">Grade 12 CBE Essential 1.3: Form an inequality from a limit or a target, solve it and give the greatest or least whole number.</p><p id="edition">Essential</p><p id="provenance">This question is original to this project.</p><p id="citation">INNODEMS CBC Grade 12 Mathematics, first draft by Ben Davies, 2026. Aligned to the KICD Senior School Curriculum Design, Essential Mathematics Grade 12 (draft).</p>]]></text></questiondescription>
+  <questionsimplify>1</questionsimplify>
+  <assumepositive>0</assumepositive>
+  <assumereal>0</assumereal>
+  <prtcorrect format="html"><text><![CDATA[[[commonstring key="symbolicprtcorrectfeedback"/]] [[commonstring key="defaultprtcorrectfeedback"/]]]]></text></prtcorrect>
+  <prtpartiallycorrect format="html"><text><![CDATA[[[commonstring key="symbolicprtpartiallycorrectfeedback"/]] [[commonstring key="defaultprtpartiallycorrectfeedback"/]]]]></text></prtpartiallycorrect>
+  <prtincorrect format="html"><text><![CDATA[[[commonstring key="symbolicprtincorrectfeedback"/]] [[commonstring key="defaultprtincorrectfeedback"/]]]]></text></prtincorrect>
+  <decimals>.</decimals>
+  <scientificnotation>*10</scientificnotation>
+  <multiplicationsign>none</multiplicationsign>
+  <sqrtsign>1</sqrtsign>
+  <complexno>i</complexno>
+  <inversetrig>cos-1</inversetrig>
+  <logicsymbol>lang</logicsymbol>
+  <matrixparens>[</matrixparens>
+  <isbroken>0</isbroken>
+  <variantsselectionseed></variantsselectionseed>
+
+  <input><name>ans1</name><type>algebraic</type><tans>ta1</tans><boxsize>18</boxsize><strictsyntax>1</strictsyntax><insertstars>4</insertstars><syntaxhint></syntaxhint><syntaxattribute>0</syntaxattribute><forbidwords></forbidwords><allowwords></allowwords><forbidfloat>1</forbidfloat><requirelowestterms>0</requirelowestterms><checkanswertype>1</checkanswertype><mustverify>0</mustverify><showvalidation>3</showvalidation><options>validator:vsingle</options></input>
+  <input><name>ans2</name><type>dropdown</type><tans>o2</tans><boxsize>15</boxsize><strictsyntax>1</strictsyntax><insertstars>0</insertstars><syntaxhint></syntaxhint><syntaxattribute>0</syntaxattribute><forbidwords></forbidwords><allowwords></allowwords><forbidfloat>1</forbidfloat><requirelowestterms>0</requirelowestterms><checkanswertype>0</checkanswertype><mustverify>0</mustverify><showvalidation>0</showvalidation><options></options></input>
+  <input><name>ans3</name><type>numerical</type><tans>bnd</tans><boxsize>5</boxsize><strictsyntax>1</strictsyntax><insertstars>0</insertstars><syntaxhint></syntaxhint><syntaxattribute>0</syntaxattribute><forbidwords></forbidwords><allowwords></allowwords><forbidfloat>0</forbidfloat><requirelowestterms>0</requirelowestterms><checkanswertype>0</checkanswertype><mustverify>0</mustverify><showvalidation>0</showvalidation><options></options></input>
+  <input><name>ans4</name><type>numerical</type><tans>ans4t</tans><boxsize>5</boxsize><strictsyntax>1</strictsyntax><insertstars>0</insertstars><syntaxhint></syntaxhint><syntaxattribute>0</syntaxattribute><forbidwords></forbidwords><allowwords></allowwords><forbidfloat>1</forbidfloat><requirelowestterms>0</requirelowestterms><checkanswertype>0</checkanswertype><mustverify>0</mustverify><showvalidation>0</showvalidation><options></options></input>
+
+  <prt><name>prt1</name><value>1.0000000</value><autosimplify>1</autosimplify><feedbackstyle>1</feedbackstyle><feedbackvariables><text><![CDATA[/* guard: same letters as the teacher's answer (AlgEquiv ignores the name of a lone variable) */
+gsd: ev(lhs(ans1)-rhs(ans1),simp);
+gsv: sort(listofvars(gsd));
+gtv: sort(listofvars(ev(lhs(ta1)-rhs(ta1),simp)));
+samevars: is(gsv = gtv);
+]]></text></feedbackvariables>
+    <node><name>0</name><description>Guard: uses n only</description><answertest>AlgEquiv</answertest><sans>samevars</sans><tans>true</tans><testoptions></testoptions><quiet>1</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>1</truenextnode><trueanswernote>prt1-1-T</trueanswernote><truefeedback format="html"><text><![CDATA[]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>-1</falsenextnode><falseanswernote>prt1-1-F</falseanswernote><falsefeedback format="html"><text><![CDATA[<p>Write your inequality using the letter \(n\) only.</p>]]></text></falsefeedback></node>
+    <node><name>1</name><description>Correct inequality</description><answertest>AlgEquiv</answertest><sans>ans1</sans><tans>ta1</tans><testoptions></testoptions><quiet>1</quiet><truescoremode>=</truescoremode><truescore>1.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt1-2-T</trueanswernote><truefeedback format="html"><text><![CDATA[]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>2</falsenextnode><falseanswernote>prt1-2-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>2</name><description>Sign the wrong way</description><answertest>AlgEquiv</answertest><sans>ans1</sans><tans>tflip</tans><testoptions></testoptions><quiet>1</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt1-3-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>Your sign points the wrong way: [[if test="is(rel=\"le\")"]]<q>at most</q> means the total is not more than \({@L@}\)[[else]]<q>at least</q> means the total is not less than \({@L@}\)[[/if]].</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>3</falsenextnode><falseanswernote>prt1-3-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>3</name><description>Wrong strictness</description><answertest>AlgEquiv</answertest><sans>ans1</sans><tans>tstrict</tans><testoptions></testoptions><quiet>1</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt1-4-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>[[if test="is(rel=\"le\")"]]<q>At most</q> includes \({@L@}\) itself, so use \(\le\).[[else]]<q>At least</q> includes \({@L@}\) itself, so use \(\ge\).[[/if]]</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>4</falsenextnode><falseanswernote>prt1-4-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>4</name><description>Left out the fixed amount</description><answertest>AlgEquiv</answertest><sans>ans1</sans><tans>tnofix</tans><testoptions></testoptions><quiet>1</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt1-5-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>You left out the \({@F@}\): the total {@totw@} includes it.</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>5</falsenextnode><falseanswernote>prt1-5-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>5</name><description>Fixed amount with the wrong sign</description><answertest>AlgEquiv</answertest><sans>ans1</sans><tans>tsign</tans><testoptions></testoptions><quiet>1</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt1-6-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>Check the sign of the \({@F@}\): [[if test="earn"]]it is paid, so it is subtracted from the earnings[[elif test="is(kind=\"savings\")"]]it is already saved, so it is added[[else]]it is part of the total, so it is added[[/if]].</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>-1</falsenextnode><falseanswernote>prt1-6-F</falseanswernote><falsefeedback format="html"><text><![CDATA[<p>Write the total {@totw@} in terms of \(n\), then compare it with \({@L@}\) using the words of the question.</p>]]></text></falsefeedback></node>
+  </prt>
+  <prt><name>prt2</name><value>1.0000000</value><autosimplify>1</autosimplify><feedbackstyle>1</feedbackstyle><feedbackvariables><text><![CDATA[]]></text></feedbackvariables>
+    <node><name>0</name><description>Boundary</description><answertest>NumAbsolute</answertest><sans>ans3</sans><tans>bnd</tans><testoptions>0.001</testoptions><quiet>0</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>1</truenextnode><trueanswernote>prt2-1-T</trueanswernote><truefeedback format="html"><text><![CDATA[]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>3</falsenextnode><falseanswernote>prt2-1-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>1</name><description>Sign</description><answertest>AlgEquiv</answertest><sans>ans2</sans><tans>rel</tans><testoptions></testoptions><quiet>0</quiet><truescoremode>=</truescoremode><truescore>1.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt2-2-T</trueanswernote><truefeedback format="html"><text><![CDATA[]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>2</falsenextnode><falseanswernote>prt2-2-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>2</name><description>Strictness</description><answertest>AlgEquiv</answertest><sans>ans2</sans><tans>rlo</tans><testoptions></testoptions><quiet>0</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt2-3-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>The value is right but the sign is not: dividing by the positive number \({@w@}\) keeps the sign as it was, including <q>or equal to</q>.</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>-1</falsenextnode><falseanswernote>prt2-3-F</falseanswernote><falsefeedback format="html"><text><![CDATA[<p>The value is right but your sign points the wrong way: dividing by the positive number \({@w@}\) does not turn it round.</p>]]></text></falsefeedback></node>
+    <node><name>3</name><description>Fixed amount with the wrong sign</description><answertest>NumAbsolute</answertest><sans>ans3</sans><tans>nb1</tans><testoptions>0.001</testoptions><quiet>0</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt2-4-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>Check the sign of the \({@F@}\): [[if test="earn"]]it is paid, so it is subtracted from the earnings[[elif test="is(kind=\"savings\")"]]it is already saved, so it is added[[else]]it is part of the total, so it is added[[/if]]. So [[if test="earn"]]add it to[[else]]subtract it from[[/if]] both sides.</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>4</falsenextnode><falseanswernote>prt2-4-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>4</name><description>Fixed amount ignored</description><answertest>NumAbsolute</answertest><sans>ans3</sans><tans>nb2</tans><testoptions>0.001</testoptions><quiet>0</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt2-5-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>You divided \({@L@}\) by \({@w@}\) without first dealing with the \({@F@}\).</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>-1</falsenextnode><falseanswernote>prt2-5-F</falseanswernote><falsefeedback format="html"><text><![CDATA[<p>[[if test="earn"]]Add[[else]]Subtract[[/if]] \({@F@}\) on both sides, then divide by \({@w@}\). Give the exact value.</p>]]></text></falsefeedback></node>
+  </prt>
+  <prt><name>prt3</name><value>1.0000000</value><autosimplify>1</autosimplify><feedbackstyle>1</feedbackstyle><feedbackvariables><text><![CDATA[ftl: if numberp(ans3) then ftf(ans3) else -1000;
+a4i: integerp(ans4);
+a4t: ev(tot, n=ans4);
+a4ok: holds(a4t, rel, L);]]></text></feedbackvariables>
+    <node><name>0</name><description>Whole-number answer</description><answertest>AlgEquiv</answertest><sans>ans4</sans><tans>ans4t</tans><testoptions></testoptions><quiet>0</quiet><truescoremode>=</truescoremode><truescore>1.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt3-1-T</trueanswernote><truefeedback format="html"><text><![CDATA[]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>1</falsenextnode><falseanswernote>prt3-1-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>1</name><description>Rounded the wrong way</description><answertest>AlgEquiv</answertest><sans>ans4</sans><tans>wrongr</tans><testoptions></testoptions><quiet>0</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt3-2-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>Test your number: with \(n = {@wrongr@}\) the total {@totw@} is \({@ev(tot,n=wrongr)@}\), which is [[if test="is(rel=\"le\")"]]more than \({@L@}\): too many {@item@}.[[else]]less than \({@L@}\): not enough {@item@}.[[/if]] \(n\) must be a whole number that satisfies your inequality.</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>2</falsenextnode><falseanswernote>prt3-2-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>2</name><description>Follow-through from (b)</description><answertest>AlgEquiv</answertest><sans>ans4</sans><tans>ftl</tans><testoptions></testoptions><quiet>0</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt3-3-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>That is the right whole number for your answer to (b), but (b) is not right.</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>-1</falsenextnode><falseanswernote>prt3-3-F</falseanswernote><falsefeedback format="html"><text><![CDATA[<p>[[if test="not a4i"]]The number of {@item@} must be a whole number.[[elif test="a4ok"]]\(n = {@ans4@}\) is allowed (the total {@totw@} is \({@a4t@}\)), but it is not the [[if test="is(rel=\"le\")"]]greatest[[else]]least[[/if]] whole number that is.[[else]]With \(n = {@ans4@}\) the total {@totw@} is \({@a4t@}\), which is [[if test="is(rel=\"le\")"]]more[[else]]less[[/if]] than \({@L@}\).[[/if]] Use your answer to (b): the number must be a whole number that satisfies it.</p>]]></text></falsefeedback></node>
+  </prt>
+
+  <deployedseed>4</deployedseed>
+  <deployedseed>5</deployedseed>
+  <deployedseed>15</deployedseed>
+  <deployedseed>8</deployedseed>
+  <deployedseed>24</deployedseed>
+  <deployedseed>1</deployedseed>
+  <deployedseed>3</deployedseed>
+  <deployedseed>10</deployedseed>
+  <deployedseed>2</deployedseed>
+  <deployedseed>17</deployedseed>
+  <qtest><testcase>1</testcase><description>Correct</description>
+    <testinput><name>ans1</name><value>ta1</value></testinput>
+    <testinput><name>ans2</name><value>rel</value></testinput>
+    <testinput><name>ans3</name><value>bnd</value></testinput>
+    <testinput><name>ans4</name><value>ans4t</value></testinput>
+    <expected><name>prt1</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt1-1-T | prt1-2-T</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt2-1-T | prt2-2-T</expectedanswernote></expected>
+    <expected><name>prt3</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt3-1-T</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>2</testcase><description>Correct, solved form and decimal</description>
+    <testinput><name>ans1</name><value>tsol</value></testinput>
+    <testinput><name>ans2</name><value>rel</value></testinput>
+    <testinput><name>ans3</name><value>bndf</value></testinput>
+    <testinput><name>ans4</name><value>ans4t</value></testinput>
+    <expected><name>prt1</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt1-1-T | prt1-2-T</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt2-1-T | prt2-2-T</expectedanswernote></expected>
+    <expected><name>prt3</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt3-1-T</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>3</testcase><description>Sign flipped; strictness; rounded the wrong way</description>
+    <testinput><name>ans1</name><value>tflip</value></testinput>
+    <testinput><name>ans2</name><value>rlo</value></testinput>
+    <testinput><name>ans3</name><value>bnd</value></testinput>
+    <testinput><name>ans4</name><value>wrongr</value></testinput>
+    <expected><name>prt1</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt1-1-T | prt1-2-F | prt1-3-T</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt2-1-T | prt2-2-F | prt2-3-T</expectedanswernote></expected>
+    <expected><name>prt3</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt3-1-F | prt3-2-T</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>4</testcase><description>Strictness; sign turned</description>
+    <testinput><name>ans1</name><value>tstrict</value></testinput>
+    <testinput><name>ans2</name><value>rlf</value></testinput>
+    <testinput><name>ans3</name><value>bnd</value></testinput>
+    <testinput><name>ans4</name><value>ans4t</value></testinput>
+    <expected><name>prt1</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt1-1-T | prt1-2-F | prt1-3-F | prt1-4-T</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt2-1-T | prt2-2-F | prt2-3-F</expectedanswernote></expected>
+    <expected><name>prt3</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt3-1-T</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>5</testcase><description>Fixed amount left out; sign of F; follow-through</description>
+    <testinput><name>ans1</name><value>tnofix</value></testinput>
+    <testinput><name>ans2</name><value>rel</value></testinput>
+    <testinput><name>ans3</name><value>nb1</value></testinput>
+    <testinput><name>ans4</name><value>ftnb1</value></testinput>
+    <expected><name>prt1</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt1-1-T | prt1-2-F | prt1-3-F | prt1-4-F | prt1-5-T</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt2-1-F | prt2-4-T</expectedanswernote></expected>
+    <expected><name>prt3</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt3-1-F | prt3-2-F | prt3-3-T</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>6</testcase><description>Sign of F; F ignored</description>
+    <testinput><name>ans1</name><value>tsign</value></testinput>
+    <testinput><name>ans2</name><value>rel</value></testinput>
+    <testinput><name>ans3</name><value>nb2</value></testinput>
+    <testinput><name>ans4</name><value>a4p2</value></testinput>
+    <expected><name>prt1</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt1-1-T | prt1-2-F | prt1-3-F | prt1-4-F | prt1-5-F | prt1-6-T</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt2-1-F | prt2-4-F | prt2-5-T</expectedanswernote></expected>
+    <expected><name>prt3</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt3-1-F | prt3-2-F | prt3-3-F</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>7</testcase><description>Generic</description>
+    <testinput><name>ans1</name><value>tgen</value></testinput>
+    <testinput><name>ans2</name><value>rel</value></testinput>
+    <testinput><name>ans3</name><value>bnd3</value></testinput>
+    <testinput><name>ans4</name><value>a4p2</value></testinput>
+    <expected><name>prt1</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt1-1-T | prt1-2-F | prt1-3-F | prt1-4-F | prt1-5-F | prt1-6-F</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt2-1-F | prt2-4-F | prt2-5-F</expectedanswernote></expected>
+    <expected><name>prt3</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt3-1-F | prt3-2-F | prt3-3-F</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>8</testcase><description>Invalid: an equation in (a)</description>
+    <testinput><name>ans1</name><value>teq</value></testinput>
+    <testinput><name>ans2</name><value>rel</value></testinput>
+    <testinput><name>ans3</name><value>bnd</value></testinput>
+    <testinput><name>ans4</name><value>ans4t</value></testinput>
+    <expected><name>prt1</name><expectedscore></expectedscore><expectedpenalty></expectedpenalty><expectedanswernote>NULL</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt2-1-T | prt2-2-T</expectedanswernote></expected>
+    <expected><name>prt3</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt3-1-T</expectedanswernote></expected>
+  </qtest>
+</question>
+</quiz>

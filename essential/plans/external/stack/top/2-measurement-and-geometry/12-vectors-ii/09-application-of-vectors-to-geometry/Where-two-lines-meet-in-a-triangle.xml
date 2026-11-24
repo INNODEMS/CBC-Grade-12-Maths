@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<quiz>
+<question type="stack">
+  <name><text>Where two lines meet in a triangle</text></name>
+  <questiontext format="html">
+    <text><![CDATA[<p>In triangle OAB, \(\overrightarrow{OA} = \mathbf{a}\) and \(\overrightarrow{OB} = \mathbf{b}\). C is on OA with \(OC : CA = {@r1@} : {@s1@}\). D is on AB with \(AD : DB = {@r2@} : {@s2@}\). The lines OD and BC meet at X, with \(\overrightarrow{OX} = h\,\overrightarrow{OD}\) and \(\overrightarrow{BX} = k\,\overrightarrow{BC}\).</p><div style="text-align:center;" role="img" aria-label="Triangle OAB with C on OA and D on AB; dashed lines OD and BC cross at X. Not to scale.">
+[[jsxgraph width="420px" height="300px"]]
+(function() {
+  var b = JXG.JSXGraph.initBoard(divid, {boundingbox: [-0.6, 5.6, 8.6, -0.8], axis: false, grid: false, showNavigation: false, showCopyright: false, pan: {enabled: false}, zoom: {enabled: false}});
+  var lo = {strokeColor: '#000000', strokeWidth: 2, fixed: true, highlight: false};
+  var po = {fixed: true, highlight: false, size: 2, fillColor: '#000000', strokeColor: '#000000', withLabel: false};
+  var tx = {fixed: true, highlight: false, useMathJax: false, fontSize: 15};
+  // triangle OAB, fixed positions (not to scale)
+  var O = [0, 0], A = [7.5, 0.6], B = [2.6, 4.8];
+  b.create('segment', [O, A], lo); b.create('segment', [O, B], lo); b.create('segment', [A, B], lo);
+  b.create('text', [-0.45, -0.25, 'O'], tx); b.create('text', [7.7, 0.5, 'A'], tx); b.create('text', [2.45, 5.2, 'B'], tx);
+  function at(P, Q, t) { return [P[0] + t*(Q[0]-P[0]), P[1] + t*(Q[1]-P[1])]; }
+  // C on OA, D on AB, X where OD meets BC (fixed positions, labels only)
+  var C = at(O, A, 0.6), D = at(A, B, 0.4);
+  var ds = {strokeColor: '#000000', strokeWidth: 1.5, dash: 2, fixed: true, highlight: false};
+  b.create('segment', [O, D], ds); b.create('segment', [B, C], ds);
+  // X: solve O + h(D - O) = B + k(C - B)
+  var d1 = [D[0], D[1]], d2 = [C[0] - B[0], C[1] - B[1]], det = d1[0]*(-d2[1]) + d2[0]*d1[1];
+  var h = (B[0]*(-d2[1]) + d2[0]*B[1]) / det, X = [h*D[0], h*D[1]];
+  b.create('point', C, po); b.create('point', D, po); b.create('point', X, po);
+  b.create('text', [C[0] - 0.1, C[1] - 0.4, 'C'], tx); b.create('text', [D[0] + 0.15, D[1] + 0.1, 'D'], tx);
+  b.create('text', [X[0] + 0.12, X[1] + 0.3, 'X'], tx);
+
+})();
+[[/jsxgraph]]
+</div><div>(a) \(\overrightarrow{OD} =\) [[input:ans1]] [[validation:ans1]] [[feedback:prt1]]</div><div>(b) \(\overrightarrow{BC} =\) [[input:ans2]] [[validation:ans2]] [[feedback:prt2]]</div><p>Give \(h\) and \(k\) as fractions.</p><div>(c) \(h =\) [[input:ans3]] [[validation:ans3]] [[feedback:prt3]]</div><div>(d) \(k =\) [[input:ans4]] [[validation:ans4]] [[feedback:prt4]]</div><p>(e) We may equate the coefficients of \(\mathbf{a}\) and \(\mathbf{b}\) because</p><div>[[input:ans5]] [[validation:ans5]] [[feedback:prt5]]</div>]]></text>
+  </questiontext>
+  <generalfeedback format="html">
+    <text><![CDATA[<p>(a) By the ratio theorem, \(\overrightarrow{OD} = {@tOD@}\). (b) \(\overrightarrow{OC} = {@c1@}\,\mathbf{a}\), so \(\overrightarrow{BC} = \overrightarrow{OC} - \overrightarrow{OB} = {@vBC@}\).</p><p>Two routes to X: \(\overrightarrow{OX} = h\,\overrightarrow{OD} = {@al@}h\,\mathbf{a} + {@be@}h\,\mathbf{b}\), and \(\overrightarrow{OX} = \overrightarrow{OB} + k\,\overrightarrow{BC} = {@c1@}k\,\mathbf{a} + (1 - k)\mathbf{b}\).</p><p>Because \(\mathbf{a}\) and \(\mathbf{b}\) are not zero and not parallel, neither can make up for the other, so the coefficients must match: \({@al@}h = {@c1@}k\) and \({@be@}h = 1 - k\).</p><p>(c), (d) Solving, \(h = {@h@}\) and \(k = {@kx@}\).</p>]]></text>
+  </generalfeedback>
+  <defaultgrade>5</defaultgrade>
+  <penalty>0.1</penalty>
+  <hidden>0</hidden>
+  <idnumber></idnumber>
+  <stackversion><text>2026063000</text></stackversion>
+  <questionvariables>
+    <text><![CDATA[validate_ab(ex) := block([s, ca, cb], if not every(lambda([vv], member(vv, [a,b])), listofvars(ex)) then "Use only the vectors a and b." else (s: ev(expand(ex), simp), ca: ev(coeff(s,a), simp), cb: ev(coeff(s,b), simp), if ev(is(s - ca*a - cb*b = 0), simp) and ev(numberp(float(ca)) and numberp(float(cb)), simp) then "" else "Write your answer as a number times a plus a number times b, for example 3/5*a+2/5*b."));
+texput(a,"\\mathbf{a}"); texput(b,"\\mathbf{b}");
+/* Design: where two lines meet in a triangle: two expressions for one point, equate coefficients. h # k, k # 1 - k and h # 1 - k on every entry. Source: adapted from SMP AS/A2 Core 4, Chapter 9, Exercise B, Q10. */
+glist: [[1,4,3,1],[1,2,1,2],[1,1,1,4],[3,1,1,1],[2,3,2,1],[1,4,1,1],[1,1,4,1],[3,1,2,3],[2,1,1,1],[2,3,1,2]];
+ix: 1+rand(10);
+r1: glist[ix][1]; s1: glist[ix][2]; r2: glist[ix][3]; s2: glist[ix][4];
+c1: r1/(r1+s1); al: s2/(r2+s2); be: r2/(r2+s2);
+h: 1/(be+al/c1); kx: h*al/c1;
+tOD: (s2*a+r2*b)/(r2+s2); vBC: c1*a-b;
+cr1: s2*a+r2*b; rv2: b-c1*a; omk: 1-kx;
+opts: [["mag", false, "a and b have the same magnitude"], ["np", true, "a and b are not zero and not parallel"], ["mult", false, "every vector is a multiple of a"], ["both", false, "both expressions for OX contain a and b"]];
+ta5: first(mcq_correct(opts));
+w1: tOD+a; w2: vBC+b; w3: h+1; w4: kx+1;
+]]></text>
+  </questionvariables>
+  <specificfeedback format="html"><text><![CDATA[]]></text></specificfeedback>
+  <questionnote format="moodle_auto_format">
+    <text>ix={@ix@}, h={@h@}, k={@kx@}</text>
+  </questionnote>
+  <questiondescription format="html"><text><![CDATA[<p id="concept">Vectors II: where two lines meet in a triangle</p><p id="description">Grade 12 CBE Core 2.6: Find where two lines in a triangle meet by writing one point two ways in terms of a and b and equating coefficients.</p><p id="edition">Core</p><p id="provenance">This question is adapted from Question 10 in Exercise B of Chapter 9 of Instone, S., Ling, J., Scruton, P., Shilton, S. and West, H., SMP AS/A2 Mathematics: Core 4 for AQA, Cambridge University Press, 2005: a triangle with randomised division ratios instead of a trapezium, scaffolded in five parts with the reason for equating coefficients, with named feedback.</p><p id="citation">INNODEMS CBC Grade 12 Mathematics, first draft by Ben Davies, 2026. Aligned to the KICD Senior School Curriculum Design, Core Mathematics Grade 12 (draft).</p>]]></text></questiondescription>
+  <questionsimplify>1</questionsimplify>
+  <assumepositive>0</assumepositive>
+  <assumereal>0</assumereal>
+  <prtcorrect format="html"><text><![CDATA[[[commonstring key="symbolicprtcorrectfeedback"/]] [[commonstring key="defaultprtcorrectfeedback"/]]]]></text></prtcorrect>
+  <prtpartiallycorrect format="html"><text><![CDATA[[[commonstring key="symbolicprtpartiallycorrectfeedback"/]] [[commonstring key="defaultprtpartiallycorrectfeedback"/]]]]></text></prtpartiallycorrect>
+  <prtincorrect format="html"><text><![CDATA[[[commonstring key="symbolicprtincorrectfeedback"/]] [[commonstring key="defaultprtincorrectfeedback"/]]]]></text></prtincorrect>
+  <decimals>.</decimals>
+  <scientificnotation>*10</scientificnotation>
+  <multiplicationsign>none</multiplicationsign>
+  <sqrtsign>1</sqrtsign>
+  <complexno>symi</complexno>
+  <inversetrig>cos-1</inversetrig>
+  <logicsymbol>lang</logicsymbol>
+  <matrixparens>(</matrixparens>
+  <isbroken>0</isbroken>
+  <variantsselectionseed></variantsselectionseed>
+
+  <input><name>ans1</name><type>algebraic</type><tans>tOD</tans><boxsize>15</boxsize><strictsyntax>1</strictsyntax><insertstars>4</insertstars><syntaxhint></syntaxhint><syntaxattribute>0</syntaxattribute><forbidwords></forbidwords><allowwords></allowwords><forbidfloat>1</forbidfloat><requirelowestterms>0</requirelowestterms><checkanswertype>0</checkanswertype><mustverify>0</mustverify><showvalidation>3</showvalidation><options>validator:validate_ab</options></input>
+  <input><name>ans2</name><type>algebraic</type><tans>vBC</tans><boxsize>15</boxsize><strictsyntax>1</strictsyntax><insertstars>4</insertstars><syntaxhint></syntaxhint><syntaxattribute>0</syntaxattribute><forbidwords></forbidwords><allowwords></allowwords><forbidfloat>1</forbidfloat><requirelowestterms>0</requirelowestterms><checkanswertype>0</checkanswertype><mustverify>0</mustverify><showvalidation>3</showvalidation><options>validator:validate_ab</options></input>
+  <input><name>ans3</name><type>numerical</type><tans>h</tans><boxsize>6</boxsize><strictsyntax>1</strictsyntax><insertstars>0</insertstars><syntaxhint></syntaxhint><syntaxattribute>0</syntaxattribute><forbidwords></forbidwords><allowwords></allowwords><forbidfloat>1</forbidfloat><requirelowestterms>0</requirelowestterms><checkanswertype>0</checkanswertype><mustverify>0</mustverify><showvalidation>0</showvalidation><options></options></input>
+  <input><name>ans4</name><type>numerical</type><tans>kx</tans><boxsize>6</boxsize><strictsyntax>1</strictsyntax><insertstars>0</insertstars><syntaxhint></syntaxhint><syntaxattribute>0</syntaxattribute><forbidwords></forbidwords><allowwords></allowwords><forbidfloat>1</forbidfloat><requirelowestterms>0</requirelowestterms><checkanswertype>0</checkanswertype><mustverify>0</mustverify><showvalidation>0</showvalidation><options></options></input>
+  <input><name>ans5</name><type>radio</type><tans>opts</tans><boxsize>15</boxsize><strictsyntax>1</strictsyntax><insertstars>0</insertstars><syntaxhint></syntaxhint><syntaxattribute>0</syntaxattribute><forbidwords></forbidwords><allowwords></allowwords><forbidfloat>1</forbidfloat><requirelowestterms>0</requirelowestterms><checkanswertype>0</checkanswertype><mustverify>0</mustverify><showvalidation>0</showvalidation><options></options></input>
+
+  <prt><name>prt1</name><value>1.0000000</value><autosimplify>1</autosimplify><feedbackstyle>1</feedbackstyle><feedbackvariables><text><![CDATA[sx: expand(ans1); la: coeff(sx,a); mu: coeff(sx,b); onl: is(la+mu = 1);
+rr: if ratnump(mu) then block([p: abs(mu), q: abs(1-mu), dd, gg], dd: denom(p)*denom(q), gg: gcd(p*dd, q*dd), [p*dd/gg, q*dd/gg]) else [abs(mu), abs(1-mu)];
+]]></text></feedbackvariables>
+    <node><name>0</name><description>OD</description><answertest>AlgEquiv</answertest><sans>ans1</sans><tans>tOD</tans><testoptions></testoptions><quiet>1</quiet><truescoremode>=</truescoremode><truescore>1.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt1-1-T</trueanswernote><truefeedback format="html"><text><![CDATA[]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>1</falsenextnode><falseanswernote>prt1-1-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>1</name><description>Not divided</description><answertest>AlgEquiv</answertest><sans>ans1</sans><tans>cr1</tans><testoptions></testoptions><quiet>1</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt1-2-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>Divide by \({@r2+s2@}\): the coefficients of \(\mathbf{a}\) and \(\mathbf{b}\) must add to 1.</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>-1</falsenextnode><falseanswernote>prt1-2-F</falseanswernote><falsefeedback format="html"><text><![CDATA[[[if test="onl"]]<p>Your point is on the line AB, with \(\overrightarrow{AD} = {@mu@}\,\overrightarrow{AB}\). So for your point \(AD : DB = {@rr[1]@} : {@rr[2]@}\), which is not \({@r2@} : {@s2@}\).</p>[[else]]<p>Your coefficients add to \({@la+mu@}\), not 1, so your point is not on the line AB. D is on AB: the weight on \(\mathbf{b}\) is the fraction of the way from A to B.</p>[[/if]]]]></text></falsefeedback></node>
+  </prt>
+  <prt><name>prt2</name><value>1.0000000</value><autosimplify>1</autosimplify><feedbackstyle>1</feedbackstyle><feedbackvariables><text><![CDATA[]]></text></feedbackvariables>
+    <node><name>0</name><description>BC</description><answertest>AlgEquiv</answertest><sans>ans2</sans><tans>vBC</tans><testoptions></testoptions><quiet>1</quiet><truescoremode>=</truescoremode><truescore>1.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt2-1-T</trueanswernote><truefeedback format="html"><text><![CDATA[]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>1</falsenextnode><falseanswernote>prt2-1-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>1</name><description>CB</description><answertest>AlgEquiv</answertest><sans>ans2</sans><tans>rv2</tans><testoptions></testoptions><quiet>1</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt2-2-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>That is \(\overrightarrow{CB}\). \(\overrightarrow{BC} = \overrightarrow{OC} - \overrightarrow{OB}\).</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>-1</falsenextnode><falseanswernote>prt2-2-F</falseanswernote><falsefeedback format="html"><text><![CDATA[<p>\(\overrightarrow{BC} = \overrightarrow{OC} - \overrightarrow{OB}\), with \(\overrightarrow{OC}\) a fraction of \(\mathbf{a}\).</p>]]></text></falsefeedback></node>
+  </prt>
+  <prt><name>prt3</name><value>1.0000000</value><autosimplify>1</autosimplify><feedbackstyle>1</feedbackstyle><feedbackvariables><text><![CDATA[]]></text></feedbackvariables>
+    <node><name>0</name><description>h</description><answertest>NumAbsolute</answertest><sans>ans3</sans><tans>h</tans><testoptions>0.001</testoptions><quiet>1</quiet><truescoremode>=</truescoremode><truescore>1.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt3-1-T</trueanswernote><truefeedback format="html"><text><![CDATA[]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>1</falsenextnode><falseanswernote>prt3-1-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>1</name><description>k given</description><answertest>NumAbsolute</answertest><sans>ans3</sans><tans>kx</tans><testoptions>0.001</testoptions><quiet>1</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt3-2-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>That is the value of \(k\).</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>-1</falsenextnode><falseanswernote>prt3-2-F</falseanswernote><falsefeedback format="html"><text><![CDATA[<p>Write \(\overrightarrow{OX} = h\,\overrightarrow{OD}\) and \(\overrightarrow{OX} = \overrightarrow{OB} + k\,\overrightarrow{BC}\) in terms of \(\mathbf{a}\) and \(\mathbf{b}\), then equate coefficients.</p>]]></text></falsefeedback></node>
+  </prt>
+  <prt><name>prt4</name><value>1.0000000</value><autosimplify>1</autosimplify><feedbackstyle>1</feedbackstyle><feedbackvariables><text><![CDATA[]]></text></feedbackvariables>
+    <node><name>0</name><description>k</description><answertest>NumAbsolute</answertest><sans>ans4</sans><tans>kx</tans><testoptions>0.001</testoptions><quiet>1</quiet><truescoremode>=</truescoremode><truescore>1.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt4-1-T</trueanswernote><truefeedback format="html"><text><![CDATA[]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>1</falsenextnode><falseanswernote>prt4-1-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>1</name><description>h given</description><answertest>NumAbsolute</answertest><sans>ans4</sans><tans>h</tans><testoptions>0.001</testoptions><quiet>1</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt4-2-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>That is the value of \(h\).</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>2</falsenextnode><falseanswernote>prt4-2-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>2</name><description>Measured from C</description><answertest>NumAbsolute</answertest><sans>ans4</sans><tans>omk</tans><testoptions>0.001</testoptions><quiet>1</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt4-3-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>That is \(CX : CB\). \(k\) measures BX as a fraction of BC.</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>-1</falsenextnode><falseanswernote>prt4-3-F</falseanswernote><falsefeedback format="html"><text><![CDATA[<p>Write \(\overrightarrow{OX} = h\,\overrightarrow{OD}\) and \(\overrightarrow{OX} = \overrightarrow{OB} + k\,\overrightarrow{BC}\) in terms of \(\mathbf{a}\) and \(\mathbf{b}\), then equate coefficients.</p>]]></text></falsefeedback></node>
+  </prt>
+  <prt><name>prt5</name><value>1.0000000</value><autosimplify>1</autosimplify><feedbackstyle>1</feedbackstyle><feedbackvariables><text><![CDATA[ch: if is(ans5 = "mag") then 1 elseif is(ans5 = "mult") then 2 else 0;
+]]></text></feedbackvariables>
+    <node><name>0</name><description>Reason</description><answertest>AlgEquiv</answertest><sans>ans5</sans><tans>ta5</tans><testoptions></testoptions><quiet>1</quiet><truescoremode>=</truescoremode><truescore>1.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt5-1-T</trueanswernote><truefeedback format="html"><text><![CDATA[]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>1</falsenextnode><falseanswernote>prt5-1-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>1</name><description>Both contain a and b</description><answertest>AlgEquiv</answertest><sans>ans5</sans><tans>"both"</tans><testoptions></testoptions><quiet>1</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt5-2-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>Every vector in this question is written with \(\mathbf{a}\) and \(\mathbf{b}\), so that alone cannot be the reason. Ask when \(p\mathbf{a} + q\mathbf{b}\) could equal \(r\mathbf{a} + s\mathbf{b}\) with different coefficients: what would have to be true of \(\mathbf{a}\) and \(\mathbf{b}\)?</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>-1</falsenextnode><falseanswernote>prt5-2-F</falseanswernote><falsefeedback format="html"><text><![CDATA[[[if test="is(ch=1)"]]<p>The lengths of \(\mathbf{a}\) and \(\mathbf{b}\) do not matter: the argument works for a triangle of any shape. Think about directions: if \(\mathbf{b}\) were a multiple of \(\mathbf{a}\), could one vector be written with different pairs of coefficients?</p>[[/if]][[if test="is(ch=2)"]]<p>If every vector were a multiple of \(\mathbf{a}\), then \(\mathbf{b}\) would be too, and O, A and B would lie on one line: there would be no triangle. A vector such as \(2\mathbf{a}\) could then be written in many ways, so coefficients could not be equated. What must be true of \(\mathbf{a}\) and \(\mathbf{b}\) to rule that out?</p>[[/if]]]]></text></falsefeedback></node>
+  </prt>
+
+  <deployedseed>4</deployedseed>
+  <deployedseed>5</deployedseed>
+  <deployedseed>15</deployedseed>
+  <deployedseed>8</deployedseed>
+  <deployedseed>24</deployedseed>
+  <deployedseed>1</deployedseed>
+  <deployedseed>3</deployedseed>
+  <deployedseed>10</deployedseed>
+  <deployedseed>2</deployedseed>
+  <deployedseed>17</deployedseed>
+  <qtest><testcase>1</testcase><description>Correct</description>
+    <testinput><name>ans1</name><value>tOD</value></testinput>
+    <testinput><name>ans2</name><value>vBC</value></testinput>
+    <testinput><name>ans3</name><value>h</value></testinput>
+    <testinput><name>ans4</name><value>kx</value></testinput>
+    <testinput><name>ans5</name><value>ta5</value></testinput>
+    <expected><name>prt1</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt1-1-T</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt2-1-T</expectedanswernote></expected>
+    <expected><name>prt3</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt3-1-T</expectedanswernote></expected>
+    <expected><name>prt4</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt4-1-T</expectedanswernote></expected>
+    <expected><name>prt5</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt5-1-T</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>2</testcase><description>Not divided; CB; h and k swapped; both contain a and b</description>
+    <testinput><name>ans1</name><value>cr1</value></testinput>
+    <testinput><name>ans2</name><value>rv2</value></testinput>
+    <testinput><name>ans3</name><value>kx</value></testinput>
+    <testinput><name>ans4</name><value>h</value></testinput>
+    <testinput><name>ans5</name><value>"both"</value></testinput>
+    <expected><name>prt1</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt1-1-F | prt1-2-T</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt2-1-F | prt2-2-T</expectedanswernote></expected>
+    <expected><name>prt3</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt3-1-F | prt3-2-T</expectedanswernote></expected>
+    <expected><name>prt4</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt4-1-F | prt4-2-T</expectedanswernote></expected>
+    <expected><name>prt5</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt5-1-F | prt5-2-T</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>3</testcase><description>Generic; k measured from C</description>
+    <testinput><name>ans1</name><value>w1</value></testinput>
+    <testinput><name>ans2</name><value>w2</value></testinput>
+    <testinput><name>ans3</name><value>w3</value></testinput>
+    <testinput><name>ans4</name><value>omk</value></testinput>
+    <testinput><name>ans5</name><value>"mag"</value></testinput>
+    <expected><name>prt1</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt1-1-F | prt1-2-F</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt2-1-F | prt2-2-F</expectedanswernote></expected>
+    <expected><name>prt3</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt3-1-F | prt3-2-F</expectedanswernote></expected>
+    <expected><name>prt4</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt4-1-F | prt4-2-F | prt4-3-T</expectedanswernote></expected>
+    <expected><name>prt5</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt5-1-F | prt5-2-F</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>4</testcase><description>Generic k</description>
+    <testinput><name>ans1</name><value>tOD</value></testinput>
+    <testinput><name>ans2</name><value>vBC</value></testinput>
+    <testinput><name>ans3</name><value>h</value></testinput>
+    <testinput><name>ans4</name><value>w4</value></testinput>
+    <testinput><name>ans5</name><value>"mult"</value></testinput>
+    <expected><name>prt1</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt1-1-T</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt2-1-T</expectedanswernote></expected>
+    <expected><name>prt3</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt3-1-T</expectedanswernote></expected>
+    <expected><name>prt4</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt4-1-F | prt4-2-F | prt4-3-F</expectedanswernote></expected>
+    <expected><name>prt5</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt5-1-F | prt5-2-F</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>5</testcase><description>Invalid: another letter in (a)</description>
+    <testinput><name>ans1</name><value>c</value></testinput>
+    <testinput><name>ans2</name><value>vBC</value></testinput>
+    <testinput><name>ans3</name><value>h</value></testinput>
+    <testinput><name>ans4</name><value>kx</value></testinput>
+    <testinput><name>ans5</name><value>ta5</value></testinput>
+    <expected><name>prt1</name><expectedscore></expectedscore><expectedpenalty></expectedpenalty><expectedanswernote>NULL</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt2-1-T</expectedanswernote></expected>
+    <expected><name>prt3</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt3-1-T</expectedanswernote></expected>
+    <expected><name>prt4</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt4-1-T</expectedanswernote></expected>
+    <expected><name>prt5</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt5-1-T</expectedanswernote></expected>
+  </qtest>
+</question>
+</quiz>

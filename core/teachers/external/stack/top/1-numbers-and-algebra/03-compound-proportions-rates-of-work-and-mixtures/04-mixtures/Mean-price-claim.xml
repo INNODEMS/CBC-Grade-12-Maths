@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<quiz>
+<question type="stack">
+  <name><text>Mean price claim</text></name>
+  <questiontext format="html">
+    <text><![CDATA[<p>{@nm@} mixes \({@m1@}\) kg of maize flour at Ksh \({@p1@}\) a kilogram with \({@m2@}\) kg of {@fl@} flour at Ksh \({@p2@}\) a kilogram to make uji flour, and says: <q>The mixture costs \(({@p1@} + {@p2@}) \div 2 = {@dd(mn)@}\) shillings a kilogram.</q></p><p>(a) Which statement is right?</p><p>[[input:ans1]] [[validation:ans1]] [[feedback:prt1]]</p><p>(b) What does 1 kg of the mixture cost, to the nearest shilling?</p><p>Ksh [[input:ans2]] [[validation:ans2]] [[feedback:prt2]]</p><p>(c) Keeping the \({@m1@}\) kg of maize flour, how many kilograms of {@fl@} flour would make {@nm@}'s statement true?</p><p>[[input:ans3]] kg [[validation:ans3]] [[feedback:prt3]]</p>]]></text>
+  </questiontext>
+  <generalfeedback format="html">
+    <text><![CDATA[<p>(a) and (b) Total cost: \({@m1@} \times {@p1@} + {@m2@} \times {@p2@} = {@ksh(tc)@}\) shillings. Total mass: \({@m1+m2@}\) kg. Cost of 1 kg: \({@ksh(tc)@} \div {@m1+m2@} [[if test="is(integerp(100*cc))"]]= {@ksh(cc)@}[[else]]\approx {@ksh(cc)@}[[/if]]\), so Ksh \({@floor(cc+1/2)@}\) to the nearest shilling. The cost of a mixture leans towards the ingredient you use more of: here {@mw@}.</p><p>(c) The mean of the prices is right only when the two masses are equal, so \({@m1@}\) kg of {@fl@} flour. Check: \(({@m1@} \times {@p1@} + {@m1@} \times {@p2@}) \div {@2*m1@} = {@dd(mn)@}\).</p>]]></text>
+  </generalfeedback>
+  <defaultgrade>3</defaultgrade>
+  <penalty>0.1</penalty>
+  <hidden>0</hidden>
+  <idnumber></idnumber>
+  <stackversion><text>2026063000</text></stackversion>
+  <questionvariables>
+    <text><![CDATA[kgrp(n) := block([s, out, k], s: string(n), k: slength(s), if k < 5 then s else (out: "", while k > 3 do (out: sconcat("\\,", substring(s, k-2, k+1), out), k: k-3), sconcat(substring(s, 1, k+1), out)));
+ksh(v) := block([c, w, f], c: floor(100*v+1/2), w: floor(c/100), f: c-100*w, if f = 0 then kgrp(w) else sconcat(kgrp(w), ".", if f < 10 then "0" else "", string(f)));
+dd(v) := if integerp(v) then v else if integerp(10*v) then dispdp(float(v),1) else if integerp(100*v) then dispdp(float(v),2) else if integerp(1000*v) then dispdp(float(v),3) else dispdp(float(v),4);
+fr(v) := if integerp(v) then string(v) else sconcat("\\frac{", string(num(v)), "}{", string(denom(v)), "}");
+r1(v) := floor(10*v+1/2)/10;
+ix: 1+rand(10);
+/* Design: claim pattern. Source: original. [m1, p1, m2, p2, flour, order]: m1 kg maize flour at p1 with m2 kg of a second flour at p2 (more of the cheaper flour in 5 entries, more of the dearer in 5), and the option display order (correct never first). Curated list, one seed per entry. */
+L: [[6,70,2,225,"millet",[4,3,1,2]],[3,68,5,180,"millet",[1,4,2,3]],[8,72,2,150,"sorghum",[3,2,1,4]],[2,66,6,210,"millet",[1,3,4,2]],[5,74,3,160,"sorghum",[4,1,3,2]],[4,70,8,190,"millet",[4,2,1,3]],[8,64,3,140,"sorghum",[1,2,3,4]],[3,75,7,205,"millet",[3,1,2,4]],[6,68,4,145,"sorghum",[3,4,2,1]],[4,72,6,230,"millet",[3,2,4,1]]];
+E: L[ix];
+m1: E[1]; p1: E[2]; m2: E[3]; p2: E[4]; fl: E[5]; pm: E[6];
+nm: ["Akinyi","Kiprop","Wambui","Otieno","Nafula","Mwangi","Jepkosgei","Wekesa","Nyokabi","Abdi"][ix];
+cc: (m1*p1+m2*p2)/(m1+m2);
+mn: (p1+p2)/2;
+tc: m1*p1+m2*p2;
+/* diagnostics */
+sp: p1+p2;
+sw: (m2*p1+m1*p2)/(m1+m2);
+mw: if m1>m2 then "more of the cheaper maize flour is used" else sconcat("more of the dearer ", fl, " flour is used");
+OT: [sconcat(nm, " is right: a mixture always costs the mean of the two prices."),
+  sconcat(nm, " is wrong: ", mw, ", so the cost per kilogram is nearer to the price of that flour."),
+  sconcat(nm, " is wrong: the mixture costs the sum of the prices, Ksh ", string(sp), " a kilogram."),
+  sconcat(nm, " is wrong: a mixture always costs the same per kilogram as the dearer flour.")];
+opt1: makelist([pm[i], is(pm[i]=2), OT[pm[i]]], i, 1, 4);
+]]></text>
+  </questionvariables>
+  <specificfeedback format="html"><text><![CDATA[]]></text></specificfeedback>
+  <questionnote format="moodle_auto_format">
+    <text>ix={@ix@}, cc={@cc@}</text>
+  </questionnote>
+  <questiondescription format="html"><text><![CDATA[<p id="concept">Compound Proportions: the mean-price claim for a mixture</p><p id="description">Grade 12 CBE Core 1.3 / Essential 1.2 (C d; E e): Judge the claim that a mixture costs the mean of the two prices, find the true cost per kilogram, and the masses for which the claim holds.</p><p id="edition">Core and Essential</p><p id="provenance">This question is original to this project.</p><p id="citation">INNODEMS CBC Grade 12 Mathematics, first draft by Ben Davies, 2026. Aligned to the KICD Senior School Curriculum Design, Core and Essential Mathematics Grade 12 (draft).</p>]]></text></questiondescription>
+  <questionsimplify>1</questionsimplify>
+  <assumepositive>0</assumepositive>
+  <assumereal>0</assumereal>
+  <prtcorrect format="html"><text><![CDATA[[[commonstring key="symbolicprtcorrectfeedback"/]] [[commonstring key="defaultprtcorrectfeedback"/]]]]></text></prtcorrect>
+  <prtpartiallycorrect format="html"><text><![CDATA[[[commonstring key="symbolicprtpartiallycorrectfeedback"/]] [[commonstring key="defaultprtpartiallycorrectfeedback"/]]]]></text></prtpartiallycorrect>
+  <prtincorrect format="html"><text><![CDATA[[[commonstring key="symbolicprtincorrectfeedback"/]] [[commonstring key="defaultprtincorrectfeedback"/]]]]></text></prtincorrect>
+  <decimals>.</decimals>
+  <scientificnotation>*10</scientificnotation>
+  <multiplicationsign>none</multiplicationsign>
+  <sqrtsign>1</sqrtsign>
+  <complexno>i</complexno>
+  <inversetrig>cos-1</inversetrig>
+  <logicsymbol>lang</logicsymbol>
+  <matrixparens>[</matrixparens>
+  <isbroken>0</isbroken>
+  <variantsselectionseed></variantsselectionseed>
+
+  <input><name>ans1</name><type>radio</type><tans>opt1</tans><boxsize>15</boxsize><strictsyntax>1</strictsyntax><insertstars>0</insertstars><syntaxhint></syntaxhint><syntaxattribute>0</syntaxattribute><forbidwords></forbidwords><allowwords></allowwords><forbidfloat>1</forbidfloat><requirelowestterms>0</requirelowestterms><checkanswertype>0</checkanswertype><mustverify>0</mustverify><showvalidation>0</showvalidation><options></options></input>
+  <input><name>ans2</name><type>numerical</type><tans>cc</tans><boxsize>6</boxsize><strictsyntax>1</strictsyntax><insertstars>0</insertstars><syntaxhint></syntaxhint><syntaxattribute>0</syntaxattribute><forbidwords></forbidwords><allowwords></allowwords><forbidfloat>0</forbidfloat><requirelowestterms>0</requirelowestterms><checkanswertype>0</checkanswertype><mustverify>0</mustverify><showvalidation>0</showvalidation><options></options></input>
+  <input><name>ans3</name><type>numerical</type><tans>m1</tans><boxsize>6</boxsize><strictsyntax>1</strictsyntax><insertstars>0</insertstars><syntaxhint></syntaxhint><syntaxattribute>0</syntaxattribute><forbidwords></forbidwords><allowwords></allowwords><forbidfloat>0</forbidfloat><requirelowestterms>0</requirelowestterms><checkanswertype>0</checkanswertype><mustverify>0</mustverify><showvalidation>0</showvalidation><options></options></input>
+
+  <prt><name>prt1</name><value>1.0000000</value><autosimplify>1</autosimplify><feedbackstyle>1</feedbackstyle><feedbackvariables><text><![CDATA[]]></text></feedbackvariables>
+    <node><name>0</name><description>Right statement</description><answertest>AlgEquiv</answertest><sans>ans1</sans><tans>2</tans><testoptions></testoptions><quiet>0</quiet><truescoremode>=</truescoremode><truescore>1.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt1-1-T</trueanswernote><truefeedback format="html"><text><![CDATA[]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>1</falsenextnode><falseanswernote>prt1-1-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>1</name><description>Claim right</description><answertest>AlgEquiv</answertest><sans>ans1</sans><tans>1</tans><testoptions></testoptions><quiet>0</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt1-2-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>Here {@mw@}, so the two prices do not count equally. Test the claim: find the total cost of the \({@m1+m2@}\) kg and divide by the total mass.</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>2</falsenextnode><falseanswernote>prt1-2-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>2</name><description>Sum of prices</description><answertest>AlgEquiv</answertest><sans>ans1</sans><tans>3</tans><testoptions></testoptions><quiet>0</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt1-3-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>A mixture cannot cost more than either of its parts.</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>3</falsenextnode><falseanswernote>prt1-3-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>3</name><description>Dearer price (last option; false branch unreachable)</description><answertest>AlgEquiv</answertest><sans>ans1</sans><tans>4</tans><testoptions></testoptions><quiet>0</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt1-4-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>The cheaper flour pulls the cost down, so the mixture is cheaper than the dearer flour.</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>-1</falsenextnode><falseanswernote>prt1-4-F</falseanswernote><falsefeedback format="html"><text><![CDATA[<p>Work out the total cost and divide by the total mass.</p>]]></text></falsefeedback></node>
+  </prt>
+  <prt><name>prt2</name><value>1.0000000</value><autosimplify>1</autosimplify><feedbackstyle>1</feedbackstyle><feedbackvariables><text><![CDATA[]]></text></feedbackvariables>
+    <node><name>0</name><description>Cost per kg</description><answertest>NumAbsolute</answertest><sans>ans2</sans><tans>cc</tans><testoptions>0.501</testoptions><quiet>0</quiet><truescoremode>=</truescoremode><truescore>1.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt2-1-T</trueanswernote><truefeedback format="html"><text><![CDATA[]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>1</falsenextnode><falseanswernote>prt2-1-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>1</name><description>Mean price</description><answertest>NumAbsolute</answertest><sans>ans2</sans><tans>mn</tans><testoptions>0.501</testoptions><quiet>0</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt2-2-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>That is {@nm@}'s claim, the mean of the prices.</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>2</falsenextnode><falseanswernote>prt2-2-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>2</name><description>Sum of prices</description><answertest>NumAbsolute</answertest><sans>ans2</sans><tans>sp</tans><testoptions>0.501</testoptions><quiet>0</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt2-3-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>That is the sum of the prices. Find the total cost and divide by the total mass.</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>3</falsenextnode><falseanswernote>prt2-3-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>3</name><description>Masses swapped</description><answertest>NumAbsolute</answertest><sans>ans2</sans><tans>sw</tans><testoptions>0.501</testoptions><quiet>0</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt2-4-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>You matched each price to the other flour's mass.</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>-1</falsenextnode><falseanswernote>prt2-4-F</falseanswernote><falsefeedback format="html"><text><![CDATA[[[if test="is(ans2<p1 or ans2>p2)"]]<p>A mixture cannot cost less than its cheaper part or more than its dearer part, so the answer lies between Ksh \({@p1@}\) and Ksh \({@p2@}\). Find what the whole \({@m1+m2@}\) kg costs, then divide by \({@m1+m2@}\).</p>[[else]]<p>Find what each flour costs, add them for the whole \({@m1+m2@}\) kg, then divide by \({@m1+m2@}\).</p>[[/if]]]]></text></falsefeedback></node>
+  </prt>
+  <prt><name>prt3</name><value>1.0000000</value><autosimplify>1</autosimplify><feedbackstyle>1</feedbackstyle><feedbackvariables><text><![CDATA[sd(v) := dd(floor(100*v+1/2)/100);
+sd3(v) := dd(floor(1000*v+1/2)/1000);
+ab(v, k) := if is(abs(v-floor(10^k*v+1/2)/10^k) < 10^(-9)) then "" else "about ";
+c3: if is(ans3>=0) then (m1*p1+ans3*p2)/(m1+ans3) else 0;]]></text></feedbackvariables>
+    <node><name>0</name><description>Equal mass</description><answertest>NumAbsolute</answertest><sans>ans3</sans><tans>m1</tans><testoptions>0.0501</testoptions><quiet>0</quiet><truescoremode>=</truescoremode><truescore>1.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt3-1-T</trueanswernote><truefeedback format="html"><text><![CDATA[]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>1</falsenextnode><falseanswernote>prt3-1-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>1</name><description>Mass used</description><answertest>NumAbsolute</answertest><sans>ans3</sans><tans>m2</tans><testoptions>0.0501</testoptions><quiet>0</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt3-2-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>That is the mass {@nm@} used, and (b) shows that the cost is then not the mean of the prices. What must be true of the two masses for the cost to sit exactly halfway between the prices?</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>-1</falsenextnode><falseanswernote>prt3-2-F</falseanswernote><falsefeedback format="html"><text><![CDATA[[[if test="is(ans3>=0)"]]<p>Test your answer: with \({@ans3@}\) kg of {@fl@} flour the mixture would cost {@ab(c3,2)@}\({@sd(c3)@}\) shillings a kilogram, not the mean, \({@dd(mn)@}\). When does the cost sit exactly halfway between the two prices?</p>[[else]]<p>A mass cannot be negative. When does the cost of a mixture sit exactly halfway between the two prices?</p>[[/if]]]]></text></falsefeedback></node>
+  </prt>
+
+  <deployedseed>4</deployedseed>
+  <deployedseed>5</deployedseed>
+  <deployedseed>15</deployedseed>
+  <deployedseed>8</deployedseed>
+  <deployedseed>24</deployedseed>
+  <deployedseed>1</deployedseed>
+  <deployedseed>3</deployedseed>
+  <deployedseed>10</deployedseed>
+  <deployedseed>2</deployedseed>
+  <deployedseed>17</deployedseed>
+  <qtest><testcase>1</testcase><description>Correct</description>
+    <testinput><name>ans1</name><value>2</value></testinput>
+    <testinput><name>ans2</name><value>cc</value></testinput>
+    <testinput><name>ans3</name><value>m1</value></testinput>
+    <expected><name>prt1</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt1-1-T</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt2-1-T</expectedanswernote></expected>
+    <expected><name>prt3</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt3-1-T</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>2</testcase><description>Agrees with the claim</description>
+    <testinput><name>ans1</name><value>1</value></testinput>
+    <testinput><name>ans2</name><value>mn</value></testinput>
+    <testinput><name>ans3</name><value>m2</value></testinput>
+    <expected><name>prt1</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt1-1-F | prt1-2-T</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt2-1-F | prt2-2-T</expectedanswernote></expected>
+    <expected><name>prt3</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt3-1-F | prt3-2-T</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>3</testcase><description>Sum of prices</description>
+    <testinput><name>ans1</name><value>3</value></testinput>
+    <testinput><name>ans2</name><value>sp</value></testinput>
+    <testinput><name>ans3</name><value>m1+3</value></testinput>
+    <expected><name>prt1</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt1-1-F | prt1-2-F | prt1-3-T</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt2-1-F | prt2-2-F | prt2-3-T</expectedanswernote></expected>
+    <expected><name>prt3</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt3-1-F | prt3-2-F</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>4</testcase><description>Dearer price; masses swapped</description>
+    <testinput><name>ans1</name><value>4</value></testinput>
+    <testinput><name>ans2</name><value>sw</value></testinput>
+    <testinput><name>ans3</name><value>m1</value></testinput>
+    <expected><name>prt1</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt1-1-F | prt1-2-F | prt1-3-F | prt1-4-T</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt2-1-F | prt2-2-F | prt2-3-F | prt2-4-T</expectedanswernote></expected>
+    <expected><name>prt3</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt3-1-T</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>5</testcase><description>Generic wrong cost</description>
+    <testinput><name>ans1</name><value>2</value></testinput>
+    <testinput><name>ans2</name><value>cc+9</value></testinput>
+    <testinput><name>ans3</name><value>m1</value></testinput>
+    <expected><name>prt1</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt1-1-T</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt2-1-F | prt2-2-F | prt2-3-F | prt2-4-F</expectedanswernote></expected>
+    <expected><name>prt3</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt3-1-T</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>6</testcase><description>Invalid: letter in (b)</description>
+    <testinput><name>ans1</name><value>2</value></testinput>
+    <testinput><name>ans2</name><value>x</value></testinput>
+    <testinput><name>ans3</name><value>m1</value></testinput>
+    <expected><name>prt1</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt1-1-T</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore></expectedscore><expectedpenalty></expectedpenalty><expectedanswernote>NULL</expectedanswernote></expected>
+    <expected><name>prt3</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt3-1-T</expectedanswernote></expected>
+  </qtest>
+</question>
+</quiz>

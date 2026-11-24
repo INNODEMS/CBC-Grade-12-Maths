@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<quiz>
+<question type="stack">
+  <name><text>Hire purchase or SACCO loan</text></name>
+  <questiontext format="html">
+    <text><![CDATA[<p>{@nm@} wants a {@itm@} that costs Ksh \({@ksh(C)@}\) cash.</p><p>Option 1, hire purchase: a deposit of Ksh \({@ksh(Dep)@}\) and \({@k@}\) monthly instalments of Ksh \({@ksh(m)@}\).</p><p>Option 2: borrow Ksh \({@ksh(C)@}\) from a SACCO at \({@R@}\%\) per annum simple interest, repaying it all over \({@mo@}\) months.</p><p>(a) Find the total cost of option 1.</p><p>Ksh [[input:ans1]] [[validation:ans1]] [[feedback:prt1]]</p><p>(b) Find the total repaid to the SACCO.</p><p>Ksh [[input:ans2]] [[validation:ans2]] [[feedback:prt2]]</p><p>(c) Which option costs less? [[input:ans3]] [[validation:ans3]] [[feedback:prt3]]</p><p>(d) By how much?</p><p>Ksh [[input:ans4]] [[validation:ans4]] [[feedback:prt4]]</p>]]></text>
+  </questiontext>
+  <generalfeedback format="html">
+    <text><![CDATA[<p>(a) Hire purchase: \({@ksh(Dep)@} + {@k@} \times {@ksh(m)@} = {@ksh(Dep)@} + {@ksh(km)@} = {@ksh(H)@}\).</p><p>(b) \({@mo@}\) months is \({@dd(mo/12)@}\) year[[if test="is(mo>12)"]]s[[/if]]. Interest \(= \dfrac{{@ksh(C)@} \times {@R@} \times {@dd(mo/12)@}}{100} = {@ksh(SI)@}\), so the SACCO is repaid \({@ksh(C)@} + {@ksh(SI)@} = {@ksh(S)@}\).</p><p>(c) and (d) [[if test="is(ky=1)"]]Hire purchase costs less, by \({@ksh(S)@} - {@ksh(H)@} = {@ksh(dif)@}\).[[else]]The SACCO loan costs less, by \({@ksh(H)@} - {@ksh(S)@} = {@ksh(dif)@}\).[[/if]] Paying cash is cheapest of all, if you have the money.</p>]]></text>
+  </generalfeedback>
+  <defaultgrade>4</defaultgrade>
+  <penalty>0.1</penalty>
+  <hidden>0</hidden>
+  <idnumber></idnumber>
+  <stackversion><text>2026063000</text></stackversion>
+  <questionvariables>
+    <text><![CDATA[kgrp(n) := block([s, out, k], s: string(n), k: slength(s), if k < 5 then s else (out: "", while k > 3 do (out: sconcat("\\,", substring(s, k-2, k+1), out), k: k-3), sconcat(substring(s, 1, k+1), out)));
+ksh(v) := block([c, w, f], c: floor(100*v+1/2), w: floor(c/100), f: c-100*w, if f = 0 then kgrp(w) else sconcat(kgrp(w), ".", if f < 10 then "0" else "", string(f)));
+dd(v) := if integerp(v) then v else if integerp(10*v) then dispdp(float(v),1) else if integerp(100*v) then dispdp(float(v),2) else if integerp(1000*v) then dispdp(float(v),3) else dispdp(float(v),4);
+ix: 1+rand(10);
+/* Design: credit plan against the cash price, with a SACCO loan option. [item, cash C, deposit, k, instalment m, SACCO rate R, months mo]. HP cheaper on 5 entries, SACCO on 5. Source: adapted from SMP GCSE Foundation book 2, chapter 10, T4. */
+L: [["motorbike",150000,30000,18,8200,14,18],["fridge",45000,9000,12,3500,12,12],["laptop",70000,10000,12,6000,15,12],["dairy cow",90000,20000,10,7600,16,12],["tuk-tuk",420000,100000,24,18500,13,24],["solar kit",38000,8000,12,2900,18,12],["water tank",52000,12000,15,3400,12,18],["sewing machine",26000,5000,10,2400,15,12],["greenhouse kit",120000,25000,18,7300,14,24],["posho mill",180000,40000,24,7000,15,24]];
+E: L[ix];
+itm: E[1]; C: E[2]; Dep: E[3]; k: E[4]; m: E[5]; R: E[6]; mo: E[7];
+nm: ["Achieng","Kiprono","Wanjiru","Omondi","Nekesa","Mutua","Chebet","Barasa","Njeri","Hassan"][ix];
+H: Dep+k*m;
+S: C+C*R*(mo/12)/100;
+ky: if H<S then 1 else 2;
+nky: 3-ky;
+dif: abs(H-S);
+/* diagnostics */
+km: k*m;
+CD: C+Dep;
+SI: C*R*(mo/12)/100;
+Smy: C+C*R*mo/100;
+h3: H+300;
+d3: abs(H+300-S);
+opt3: [[1, is(ky=1), "Hire purchase"], [2, is(ky=2), "The SACCO loan"]];
+]]></text>
+  </questionvariables>
+  <specificfeedback format="html"><text><![CDATA[]]></text></specificfeedback>
+  <questionnote format="moodle_auto_format">
+    <text>ix={@ix@}, H={@H@}, S={@S@}, key={@ky@}</text>
+  </questionnote>
+  <questiondescription format="html"><text><![CDATA[<p id="concept">Commercial Arithmetic III: hire purchase or a SACCO loan</p><p id="description">Grade 12 CBE Essential 2.4 (d): Compare the total cost of hire purchase with borrowing the cash price from a SACCO at simple interest, and decide which costs less.</p><p id="edition">Essential</p><p id="provenance">This question is adapted from Chapter 10 (Percentage increase and decrease), Test yourself, question T4 of Ling, J., Scruton, P., Shilton, S. and West, H., SMP GCSE Mathematics: Foundation 2 for AQA, Edexcel and OCR two-tier GCSE mathematics, Cambridge University Press, 2007: a credit plan against the cash price; a SACCO loan at simple interest added as a second option, new items and numbers.</p><p id="citation">INNODEMS CBC Grade 12 Mathematics, first draft by Ben Davies, 2026. Aligned to the KICD Senior School Curriculum Design, Essential Mathematics Grade 12 (draft).</p>]]></text></questiondescription>
+  <questionsimplify>1</questionsimplify>
+  <assumepositive>0</assumepositive>
+  <assumereal>0</assumereal>
+  <prtcorrect format="html"><text><![CDATA[[[commonstring key="symbolicprtcorrectfeedback"/]] [[commonstring key="defaultprtcorrectfeedback"/]]]]></text></prtcorrect>
+  <prtpartiallycorrect format="html"><text><![CDATA[[[commonstring key="symbolicprtpartiallycorrectfeedback"/]] [[commonstring key="defaultprtpartiallycorrectfeedback"/]]]]></text></prtpartiallycorrect>
+  <prtincorrect format="html"><text><![CDATA[[[commonstring key="symbolicprtincorrectfeedback"/]] [[commonstring key="defaultprtincorrectfeedback"/]]]]></text></prtincorrect>
+  <decimals>.</decimals>
+  <scientificnotation>*10</scientificnotation>
+  <multiplicationsign>none</multiplicationsign>
+  <sqrtsign>1</sqrtsign>
+  <complexno>i</complexno>
+  <inversetrig>cos-1</inversetrig>
+  <logicsymbol>lang</logicsymbol>
+  <matrixparens>[</matrixparens>
+  <isbroken>0</isbroken>
+  <variantsselectionseed></variantsselectionseed>
+
+  <input><name>ans1</name><type>numerical</type><tans>H</tans><boxsize>10</boxsize><strictsyntax>1</strictsyntax><insertstars>0</insertstars><syntaxhint></syntaxhint><syntaxattribute>0</syntaxattribute><forbidwords></forbidwords><allowwords></allowwords><forbidfloat>0</forbidfloat><requirelowestterms>0</requirelowestterms><checkanswertype>0</checkanswertype><mustverify>0</mustverify><showvalidation>0</showvalidation><options></options></input>
+  <input><name>ans2</name><type>numerical</type><tans>S</tans><boxsize>10</boxsize><strictsyntax>1</strictsyntax><insertstars>0</insertstars><syntaxhint></syntaxhint><syntaxattribute>0</syntaxattribute><forbidwords></forbidwords><allowwords></allowwords><forbidfloat>0</forbidfloat><requirelowestterms>0</requirelowestterms><checkanswertype>0</checkanswertype><mustverify>0</mustverify><showvalidation>0</showvalidation><options></options></input>
+  <input><name>ans3</name><type>dropdown</type><tans>opt3</tans><boxsize>15</boxsize><strictsyntax>1</strictsyntax><insertstars>0</insertstars><syntaxhint></syntaxhint><syntaxattribute>0</syntaxattribute><forbidwords></forbidwords><allowwords></allowwords><forbidfloat>1</forbidfloat><requirelowestterms>0</requirelowestterms><checkanswertype>0</checkanswertype><mustverify>0</mustverify><showvalidation>0</showvalidation><options></options></input>
+  <input><name>ans4</name><type>numerical</type><tans>dif</tans><boxsize>10</boxsize><strictsyntax>1</strictsyntax><insertstars>0</insertstars><syntaxhint></syntaxhint><syntaxattribute>0</syntaxattribute><forbidwords></forbidwords><allowwords></allowwords><forbidfloat>0</forbidfloat><requirelowestterms>0</requirelowestterms><checkanswertype>0</checkanswertype><mustverify>0</mustverify><showvalidation>0</showvalidation><options></options></input>
+
+  <prt><name>prt1</name><value>1.0000000</value><autosimplify>1</autosimplify><feedbackstyle>1</feedbackstyle><feedbackvariables><text><![CDATA[]]></text></feedbackvariables>
+    <node><name>0</name><description>Hire purchase total</description><answertest>NumAbsolute</answertest><sans>ans1</sans><tans>H</tans><testoptions>0.501</testoptions><quiet>0</quiet><truescoremode>=</truescoremode><truescore>1.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt1-1-T</trueanswernote><truefeedback format="html"><text><![CDATA[]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>1</falsenextnode><falseanswernote>prt1-1-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>1</name><description>No deposit</description><answertest>NumAbsolute</answertest><sans>ans1</sans><tans>km</tans><testoptions>0.501</testoptions><quiet>0</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt1-2-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>Add the deposit.</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>2</falsenextnode><falseanswernote>prt1-2-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>2</name><description>Cash plus deposit</description><answertest>NumAbsolute</answertest><sans>ans1</sans><tans>CD</tans><testoptions>0.501</testoptions><quiet>0</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt1-3-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>The total cost is the deposit plus the instalments; the cash price is not paid as well.</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>-1</falsenextnode><falseanswernote>prt1-3-F</falseanswernote><falsefeedback format="html"><text><![CDATA[<p>Total cost of hire purchase \(=\) deposit \(+ {@k@} \times {@ksh(m)@}\).</p>]]></text></falsefeedback></node>
+  </prt>
+  <prt><name>prt2</name><value>1.0000000</value><autosimplify>1</autosimplify><feedbackstyle>1</feedbackstyle><feedbackvariables><text><![CDATA[]]></text></feedbackvariables>
+    <node><name>0</name><description>SACCO total</description><answertest>NumAbsolute</answertest><sans>ans2</sans><tans>S</tans><testoptions>0.501</testoptions><quiet>0</quiet><truescoremode>=</truescoremode><truescore>1.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt2-1-T</trueanswernote><truefeedback format="html"><text><![CDATA[]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>1</falsenextnode><falseanswernote>prt2-1-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>1</name><description>Interest only</description><answertest>NumAbsolute</answertest><sans>ans2</sans><tans>SI</tans><testoptions>0.501</testoptions><quiet>0</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt2-2-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>That is the interest. The SACCO is repaid the loan plus the interest.</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>2</falsenextnode><falseanswernote>prt2-2-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>2</name><description>Months as years</description><answertest>NumAbsolute</answertest><sans>ans2</sans><tans>Smy</tans><testoptions>0.501</testoptions><quiet>0</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt2-3-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>\({@mo@}\) months is \({@dd(mo/12)@}\) year[[if test="is(mo>12)"]]s[[/if]]: \(T\) must be in years.</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>-1</falsenextnode><falseanswernote>prt2-3-F</falseanswernote><falsefeedback format="html"><text><![CDATA[<p>Repaid \(= {@ksh(C)@} + \dfrac{{@ksh(C)@} \times {@R@} \times {@mo@}/12}{100}\).</p>]]></text></falsefeedback></node>
+  </prt>
+  <prt><name>prt3</name><value>1.0000000</value><autosimplify>1</autosimplify><feedbackstyle>1</feedbackstyle><feedbackvariables><text><![CDATA[agree: is((ans1<ans2 and ans3=1) or (ans1>ans2 and ans3=2));
+own: is(ans1>0 and ans2>0 and not(ans1=ans2));]]></text></feedbackvariables>
+    <node><name>0</name><description>Choice</description><answertest>AlgEquiv</answertest><sans>ans3</sans><tans>ky</tans><testoptions></testoptions><quiet>0</quiet><truescoremode>=</truescoremode><truescore>1.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt3-1-T</trueanswernote><truefeedback format="html"><text><![CDATA[]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>1</falsenextnode><falseanswernote>prt3-1-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>1</name><description>Agrees with wrong totals</description><answertest>AlgEquiv</answertest><sans>agree</sans><tans>true</tans><testoptions></testoptions><quiet>0</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt3-2-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>Your choice agrees with your totals, but at least one total is wrong.</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>-1</falsenextnode><falseanswernote>prt3-2-F</falseanswernote><falsefeedback format="html"><text><![CDATA[[[if test="own"]]<p>You entered Ksh \({@ksh(ans1)@}\) for hire purchase and Ksh \({@ksh(ans2)@}\) for the SACCO loan, but chose the option with the larger of these. The option with the smaller total costs less.</p>[[else]]<p>The option with the smaller total costs less.</p>[[/if]]]]></text></falsefeedback></node>
+  </prt>
+  <prt><name>prt4</name><value>1.0000000</value><autosimplify>1</autosimplify><feedbackstyle>1</feedbackstyle><feedbackvariables><text><![CDATA[ft4: is((abs(ans1-H)>0.501 or abs(ans2-S)>0.501) and abs(ans4-abs(ans1-ans2))<=0.501);]]></text></feedbackvariables>
+    <node><name>0</name><description>Difference</description><answertest>NumAbsolute</answertest><sans>ans4</sans><tans>dif</tans><testoptions>0.501</testoptions><quiet>0</quiet><truescoremode>=</truescoremode><truescore>1.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt4-1-T</trueanswernote><truefeedback format="html"><text><![CDATA[]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>1</falsenextnode><falseanswernote>prt4-1-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>1</name><description>Follow-through</description><answertest>AlgEquiv</answertest><sans>ft4</sans><tans>true</tans><testoptions></testoptions><quiet>0</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt4-2-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>Your method is right, but it uses your totals in (a) and (b), and at least one of them is wrong.</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>-1</falsenextnode><falseanswernote>prt4-2-F</falseanswernote><falsefeedback format="html"><text><![CDATA[<p>Subtract the smaller total from the larger.</p>]]></text></falsefeedback></node>
+  </prt>
+
+  <deployedseed>4</deployedseed>
+  <deployedseed>5</deployedseed>
+  <deployedseed>15</deployedseed>
+  <deployedseed>8</deployedseed>
+  <deployedseed>24</deployedseed>
+  <deployedseed>1</deployedseed>
+  <deployedseed>3</deployedseed>
+  <deployedseed>10</deployedseed>
+  <deployedseed>2</deployedseed>
+  <deployedseed>17</deployedseed>
+  <qtest><testcase>1</testcase><description>Correct</description>
+    <testinput><name>ans1</name><value>H</value></testinput>
+    <testinput><name>ans2</name><value>S</value></testinput>
+    <testinput><name>ans3</name><value>ky</value></testinput>
+    <testinput><name>ans4</name><value>dif</value></testinput>
+    <expected><name>prt1</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt1-1-T</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt2-1-T</expectedanswernote></expected>
+    <expected><name>prt3</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt3-1-T</expectedanswernote></expected>
+    <expected><name>prt4</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt4-1-T</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>2</testcase><description>Generic wrong totals</description>
+    <testinput><name>ans1</name><value>H+900</value></testinput>
+    <testinput><name>ans2</name><value>S+900</value></testinput>
+    <testinput><name>ans3</name><value>ky</value></testinput>
+    <testinput><name>ans4</name><value>dif</value></testinput>
+    <expected><name>prt1</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt1-1-F | prt1-2-F | prt1-3-F</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt2-1-F | prt2-2-F | prt2-3-F</expectedanswernote></expected>
+    <expected><name>prt3</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt3-1-T</expectedanswernote></expected>
+    <expected><name>prt4</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt4-1-T</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>3</testcase><description>No deposit; interest only</description>
+    <testinput><name>ans1</name><value>km</value></testinput>
+    <testinput><name>ans2</name><value>SI</value></testinput>
+    <testinput><name>ans3</name><value>ky</value></testinput>
+    <testinput><name>ans4</name><value>dif</value></testinput>
+    <expected><name>prt1</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt1-1-F | prt1-2-T</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt2-1-F | prt2-2-T</expectedanswernote></expected>
+    <expected><name>prt3</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt3-1-T</expectedanswernote></expected>
+    <expected><name>prt4</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt4-1-T</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>4</testcase><description>Cash plus deposit; months as years</description>
+    <testinput><name>ans1</name><value>CD</value></testinput>
+    <testinput><name>ans2</name><value>Smy</value></testinput>
+    <testinput><name>ans3</name><value>ky</value></testinput>
+    <testinput><name>ans4</name><value>dif+500</value></testinput>
+    <expected><name>prt1</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt1-1-F | prt1-2-F | prt1-3-T</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt2-1-F | prt2-2-F | prt2-3-T</expectedanswernote></expected>
+    <expected><name>prt3</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt3-1-T</expectedanswernote></expected>
+    <expected><name>prt4</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt4-1-F | prt4-2-F</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>5</testcase><description>Wrong choice</description>
+    <testinput><name>ans1</name><value>H</value></testinput>
+    <testinput><name>ans2</name><value>S</value></testinput>
+    <testinput><name>ans3</name><value>nky</value></testinput>
+    <testinput><name>ans4</name><value>dif</value></testinput>
+    <expected><name>prt1</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt1-1-T</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt2-1-T</expectedanswernote></expected>
+    <expected><name>prt3</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt3-1-F | prt3-2-F</expectedanswernote></expected>
+    <expected><name>prt4</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt4-1-T</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>6</testcase><description>Follow-through difference</description>
+    <testinput><name>ans1</name><value>h3</value></testinput>
+    <testinput><name>ans2</name><value>S</value></testinput>
+    <testinput><name>ans3</name><value>ky</value></testinput>
+    <testinput><name>ans4</name><value>d3</value></testinput>
+    <expected><name>prt1</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt1-1-F | prt1-2-F | prt1-3-F</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt2-1-T</expectedanswernote></expected>
+    <expected><name>prt3</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt3-1-T</expectedanswernote></expected>
+    <expected><name>prt4</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt4-1-F | prt4-2-T</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>7</testcase><description>Invalid: letter in (d)</description>
+    <testinput><name>ans1</name><value>H</value></testinput>
+    <testinput><name>ans2</name><value>S</value></testinput>
+    <testinput><name>ans3</name><value>ky</value></testinput>
+    <testinput><name>ans4</name><value>x</value></testinput>
+    <expected><name>prt1</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt1-1-T</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt2-1-T</expectedanswernote></expected>
+    <expected><name>prt3</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt3-1-T</expectedanswernote></expected>
+    <expected><name>prt4</name><expectedscore></expectedscore><expectedpenalty></expectedpenalty><expectedanswernote>NULL</expectedanswernote></expected>
+  </qtest>
+</question>
+</quiz>

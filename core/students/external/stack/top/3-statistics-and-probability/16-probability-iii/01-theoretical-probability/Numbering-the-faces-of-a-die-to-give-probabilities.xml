@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<quiz>
+<question type="stack">
+  <name><text>Numbering the faces of a die to give probabilities</text></name>
+  <questiontext format="html">
+    <text><![CDATA[<p>A blank die has six faces. Write a whole number from 1 to 9 on each face (numbers may repeat) so that, when the die is rolled,</p><p style="text-align:center;">\(P(\text{even number}) = \dfrac{{@nev@}}{6}\) and \(P(\text{number greater than } {@m@}) = \dfrac{{@k@}}{6}\).</p><p>Each fraction is out of 6 because the die has six faces.</p><p>Give your six numbers as a list, for example <code>[1,2,2,5,8,9]</code>.</p><div>[[input:ans1]] [[validation:ans1]] [[feedback:prt1]]</div>]]></text>
+  </questiontext>
+  <generalfeedback format="html">
+    <text><![CDATA[<p>Decide how many faces of each kind you need, then choose numbers. You need \({@nev@}\) even faces and \({@k@}\) faces greater than \({@m@}\). A number such as 8 is both even and greater than \({@m@}\), so it counts for both.</p><p>One way: \({@a@}\) faces showing 8 (even and greater than \({@m@}\)), \({@nev-a@}\) showing 2 (even, not greater), \({@k-a@}\) showing 9 (odd, greater) and \({@6-nev-k+a@}\) showing 1 (odd, not greater). That gives the die \({@ta@}\).</p><p>Any list of six numbers from 1 to 9 with the right counts is accepted. Remember that <q>greater than \({@m@}\)</q> does not include \({@m@}\) itself.</p>]]></text>
+  </generalfeedback>
+  <defaultgrade>1</defaultgrade>
+  <penalty>0.1</penalty>
+  <hidden>0</hidden>
+  <idnumber></idnumber>
+  <stackversion><text>2026063000</text></stackversion>
+  <questionvariables>
+    <text><![CDATA[/* Design: construct-an-example pattern: the response tree checks the properties, so any list that works is accepted. Source: original. */
+C: [[4,3,6],[3,1,4],[4,3,4],[2,2,4],[4,1,4],[3,2,4],[4,2,6],[4,1,6],[2,1,4],[2,1,6]];
+ix: 1+rand(10);
+nev: C[ix][1]; k: C[ix][2]; m: C[ix][3];
+a: min(nev,k);
+/* m is 4 or 6: 8 is even and greater than m, 2 even and not, 9 odd and greater, 1 odd and not */
+ta: sort(append(makelist(8,j,1,a), makelist(2,j,1,nev-a), makelist(9,j,1,k-a), makelist(1,j,1,6-nev-k+a)));
+validate_faces(ex) := if listp(ex) and length(ex)=6 and every(lambda([v], integerp(ev(v,simp)) and ev(v,simp)>=1 and ev(v,simp)<=9), ex) then "" else "Type exactly six whole numbers from 1 to 9 in square brackets, separated by commas.";
+/* test lists: one 8 replaced by m (counted m as greater); one 1 replaced by 9 (too many greater); one 1 replaced by 2 (too many even) */
+tm: sort(append([m], rest(sublist(ta, lambda([v], v=8))), sublist(ta, lambda([v], v#8))));
+t9: sort(append([9], rest(sublist(ta, lambda([v], v=1))), sublist(ta, lambda([v], v#1))));
+t2: sort(append([2], rest(sublist(ta, lambda([v], v=1))), sublist(ta, lambda([v], v#1))));]]></text>
+  </questionvariables>
+  <specificfeedback format="html"><text><![CDATA[]]></text></specificfeedback>
+  <questionnote format="moodle_auto_format">
+    <text>ix={@ix@}, nev={@nev@}, k={@k@}, m={@m@}</text>
+  </questionnote>
+  <questiondescription format="html"><text><![CDATA[<p id="concept">Probability III: constructing a die with given probabilities</p><p id="description">Grade 12 CBE Essential 3.2: Construct the faces of a die so that two events have given probabilities.</p><p id="edition">Essential</p><p id="provenance">This question is original to this project.</p><p id="citation">INNODEMS CBC Grade 12 Mathematics, first draft by Ben Davies, 2026. Aligned to the KICD Senior School Curriculum Design, Essential Mathematics Grade 12 (draft).</p>]]></text></questiondescription>
+  <questionsimplify>1</questionsimplify>
+  <assumepositive>0</assumepositive>
+  <assumereal>0</assumereal>
+  <prtcorrect format="html"><text><![CDATA[[[commonstring key="symbolicprtcorrectfeedback"/]] [[commonstring key="defaultprtcorrectfeedback"/]]]]></text></prtcorrect>
+  <prtpartiallycorrect format="html"><text><![CDATA[[[commonstring key="symbolicprtpartiallycorrectfeedback"/]] [[commonstring key="defaultprtpartiallycorrectfeedback"/]]]]></text></prtpartiallycorrect>
+  <prtincorrect format="html"><text><![CDATA[[[commonstring key="symbolicprtincorrectfeedback"/]] [[commonstring key="defaultprtincorrectfeedback"/]]]]></text></prtincorrect>
+  <decimals>.</decimals>
+  <scientificnotation>*10</scientificnotation>
+  <multiplicationsign>none</multiplicationsign>
+  <sqrtsign>1</sqrtsign>
+  <complexno>i</complexno>
+  <inversetrig>cos-1</inversetrig>
+  <logicsymbol>lang</logicsymbol>
+  <matrixparens>[</matrixparens>
+  <isbroken>0</isbroken>
+  <variantsselectionseed></variantsselectionseed>
+
+  <input><name>ans1</name><type>algebraic</type><tans>ta</tans><boxsize>20</boxsize><strictsyntax>1</strictsyntax><insertstars>0</insertstars><syntaxhint></syntaxhint><syntaxattribute>0</syntaxattribute><forbidwords></forbidwords><allowwords></allowwords><forbidfloat>1</forbidfloat><requirelowestterms>0</requirelowestterms><checkanswertype>0</checkanswertype><mustverify>0</mustverify><showvalidation>1</showvalidation><options>validator:validate_faces</options></input>
+
+  <prt><name>prt1</name><value>1.0000000</value><autosimplify>1</autosimplify><feedbackstyle>1</feedbackstyle><feedbackvariables><text><![CDATA[ne: length(sublist(ans1, evenp));
+ng: length(sublist(ans1, lambda([v], v>m)));
+nge: length(sublist(ans1, lambda([v], v>=m)));]]></text></feedbackvariables>
+    <node><name>0</name><description>Even count</description><answertest>AlgEquiv</answertest><sans>ne</sans><tans>nev</tans><testoptions></testoptions><quiet>1</quiet><truescoremode>=</truescoremode><truescore>1.0000000</truescore><truepenalty></truepenalty><truenextnode>1</truenextnode><trueanswernote>prt1-1-T</trueanswernote><truefeedback format="html"><text><![CDATA[]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>-1</falsenextnode><falseanswernote>prt1-1-F</falseanswernote><falsefeedback format="html"><text><![CDATA[<p>Your die has \({@ne@}\) even faces, so \(P(\text{even})\) would be \(\dfrac{{@ne@}}{6}\). You need \({@nev@}\) even faces.</p>]]></text></falsefeedback></node>
+    <node><name>1</name><description>Greater-than count</description><answertest>AlgEquiv</answertest><sans>ng</sans><tans>k</tans><testoptions></testoptions><quiet>1</quiet><truescoremode>=</truescoremode><truescore>1.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt1-2-T</trueanswernote><truefeedback format="html"><text><![CDATA[]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>2</falsenextnode><falseanswernote>prt1-2-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>2</name><description>Counted m as greater</description><answertest>AlgEquiv</answertest><sans>nge</sans><tans>k</tans><testoptions></testoptions><quiet>1</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt1-3-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>You counted faces showing \({@m@}\). <q>Greater than \({@m@}\)</q> does not include \({@m@}\).</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>-1</falsenextnode><falseanswernote>prt1-3-F</falseanswernote><falsefeedback format="html"><text><![CDATA[<p>Your die has \({@ng@}\) faces greater than \({@m@}\), so that probability would be \(\dfrac{{@ng@}}{6}\). You need \({@k@}\).</p>]]></text></falsefeedback></node>
+  </prt>
+
+  <deployedseed>4</deployedseed>
+  <deployedseed>5</deployedseed>
+  <deployedseed>15</deployedseed>
+  <deployedseed>8</deployedseed>
+  <deployedseed>24</deployedseed>
+  <deployedseed>1</deployedseed>
+  <deployedseed>3</deployedseed>
+  <deployedseed>10</deployedseed>
+  <deployedseed>2</deployedseed>
+  <deployedseed>17</deployedseed>
+  <qtest><testcase>1</testcase><description>Correct: teacher's list</description>
+    <testinput><name>ans1</name><value>ta</value></testinput>
+    <expected><name>prt1</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt1-1-T | prt1-2-T</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>2</testcase><description>Counted m as greater than m</description>
+    <testinput><name>ans1</name><value>tm</value></testinput>
+    <expected><name>prt1</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt1-1-T | prt1-2-F | prt1-3-T</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>3</testcase><description>Too many faces greater than m</description>
+    <testinput><name>ans1</name><value>t9</value></testinput>
+    <expected><name>prt1</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt1-1-T | prt1-2-F | prt1-3-F</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>4</testcase><description>Wrong number of even faces</description>
+    <testinput><name>ans1</name><value>t2</value></testinput>
+    <expected><name>prt1</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt1-1-F</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>5</testcase><description>Invalid: three numbers</description>
+    <testinput><name>ans1</name><value>[1,2,3]</value></testinput>
+    <expected><name>prt1</name><expectedscore></expectedscore><expectedpenalty></expectedpenalty><expectedanswernote>NULL</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>6</testcase><description>Invalid: a 0 on a face</description>
+    <testinput><name>ans1</name><value>[0,1,2,3,4,5]</value></testinput>
+    <expected><name>prt1</name><expectedscore></expectedscore><expectedpenalty></expectedpenalty><expectedanswernote>NULL</expectedanswernote></expected>
+  </qtest>
+</question>
+</quiz>

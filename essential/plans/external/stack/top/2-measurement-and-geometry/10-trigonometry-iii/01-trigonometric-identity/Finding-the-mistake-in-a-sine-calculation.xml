@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<quiz>
+<question type="stack">
+  <name><text>Finding the mistake in a sine calculation</text></name>
+  <questiontext format="html">
+    <text><![CDATA[<p>Achieng was told that \(\cos x = {@g@}\) and \({@intv@}\). She found \(\sin x\) like this. Her working has one mistake.</p><table style="border-collapse:collapse;"><tr><td style="padding:3px 12px;">Step 1</td><td>\(\sin^2 x = 1 - \cos^2 x\)</td></tr><tr><td style="padding:3px 12px;">Step 2</td><td>[[if test="is(er = 1)"]]\(\sin^2 x = 1 - ({@g@}) = {@dispdp(1-g,4)@}\)[[else]]\(\sin^2 x = 1 - ({@g@})^2 = {@dispdp(v2,4)@}\)[[/if]]</td></tr><tr><td style="padding:3px 12px;">Step 3</td><td>[[if test="is(er = 2)"]]\(\sin x = \pm {@dispdp(v2,4)@}\)[[else]]\(\sin x = \pm\sqrt{ {@dispdp(s2,4)@} } = \pm {@dispdp(s3,4)@}\)[[/if]]</td></tr><tr><td style="padding:3px 12px;">Step 4</td><td>\(x\) is in the {@qword@} quadrant, so \(\sin x = {@dispdp(s4,4)@}\)</td></tr></table><p>(a) Which step has the mistake?</p><div>[[input:ans1]] [[validation:ans1]] [[feedback:prt1]]</div><p>(b) Give the correct value of \(\sin x\).</p><div>\(\sin x =\) [[input:ans2]] [[validation:ans2]] [[feedback:prt2]]</div>]]></text>
+  </questiontext>
+  <generalfeedback format="html">
+    <text><![CDATA[<p>\(\sin^2 x = 1 - \cos^2 x = 1 - ({@g@})^2 = {@dispdp(v2,4)@}\), so \(\sin x = \pm\sqrt{ {@dispdp(v2,4)@} } = \pm {@dispdp(abs(sv),4)@}\).</p><p>\(x\) is in the {@qword@} quadrant, where \(\sin x\) is {@sword@}: \(\sin x = {@dispdp(sv,4)@}\).</p><p>[[if test="is(er = 1)"]]Achieng's mistake is in step 2: she subtracted \(\cos x\), not \(\cos^2 x\).[[/if]][[if test="is(er = 2)"]]Achieng's mistake is in step 3: she forgot to take the square root.[[/if]][[if test="is(er = 3)"]]Achieng's mistake is in step 4: she chose the wrong sign for the quadrant.[[/if]]</p>]]></text>
+  </generalfeedback>
+  <defaultgrade>2</defaultgrade>
+  <penalty>0.1</penalty>
+  <hidden>0</hidden>
+  <idnumber></idnumber>
+  <stackversion><text>2026063000</text></stackversion>
+  <questionvariables>
+    <text><![CDATA[/* Design: find the mistake in a sine calculation. Entry: cos x, quadrant, error (1 subtracted cos x; 2 no square root; 3 wrong sign). Source: original. */
+L: [[-0.28,2,1],[0.8,4,2],[-0.28,3,3],[0.96,4,1],[-0.8,2,2],[0.6,4,3],[-0.96,3,1],[0.6,4,2],[-0.6,3,3],[-0.8,3,2]];
+ix: 1+rand(10);
+g: L[ix][1]; qd: L[ix][2]; er: L[ix][3];
+qword: if qd = 2 then "second" elseif qd = 3 then "third" else "fourth";
+intv: if qd = 2 then "90^\\circ \\lt x \\lt 180^\\circ" elseif qd = 3 then "180^\\circ \\lt x \\lt 270^\\circ" else "270^\\circ \\lt x \\lt 360^\\circ";
+ss: if qd = 2 then 1 else -1;
+sword: if ss > 0 then "positive" else "negative";
+v2: 1-g^2; sv: ss*sqrt(v2);
+s2: if er = 1 then 1-g else v2;
+s3: if er = 2 then v2 else sqrt(s2);
+s4: if er = 3 then -ss*s3 else ss*s3;
+opts: [["s1",false,"Step 1"],["s2",is(er=1),"Step 2"],["s3",is(er=2),"Step 3"],["s4",is(er=3),"Step 4"]];
+ta1: first(mcq_correct(opts));
+wstep: if er = 1 then "s3" else "s2";
+wstep2: if er = 3 then "s3" else "s4";
+d2: ss*v2; d3: float(ss*sqrt(1-g)); svoff: sv+0.1;
+]]></text>
+  </questionvariables>
+  <specificfeedback format="html"><text><![CDATA[]]></text></specificfeedback>
+  <questionnote format="moodle_auto_format">
+    <text>ix={@ix@}, cos={@g@}, Q{@qd@}, er={@er@}, error step {@er+1@}, sin={@sv@}</text>
+  </questionnote>
+  <questiondescription format="html"><text><![CDATA[<p id="concept">Trigonometry III: finding the mistake in a sine calculation</p><p id="description">Grade 12 CBE Core 2.5: Find the wrong step in a calculation of sin x from cos x and the quadrant, then give the correct value.</p><p id="edition">Core</p><p id="provenance">This question is original to this project.</p><p id="citation">INNODEMS CBC Grade 12 Mathematics, first draft by Ben Davies, 2026. Aligned to the KICD Senior School Curriculum Design, Core Mathematics Grade 12 (draft).</p>]]></text></questiondescription>
+  <questionsimplify>1</questionsimplify>
+  <assumepositive>0</assumepositive>
+  <assumereal>0</assumereal>
+  <prtcorrect format="html"><text><![CDATA[[[commonstring key="symbolicprtcorrectfeedback"/]] [[commonstring key="defaultprtcorrectfeedback"/]]]]></text></prtcorrect>
+  <prtpartiallycorrect format="html"><text><![CDATA[[[commonstring key="symbolicprtpartiallycorrectfeedback"/]] [[commonstring key="defaultprtpartiallycorrectfeedback"/]]]]></text></prtpartiallycorrect>
+  <prtincorrect format="html"><text><![CDATA[[[commonstring key="symbolicprtincorrectfeedback"/]] [[commonstring key="defaultprtincorrectfeedback"/]]]]></text></prtincorrect>
+  <decimals>.</decimals>
+  <scientificnotation>*10</scientificnotation>
+  <multiplicationsign>none</multiplicationsign>
+  <sqrtsign>1</sqrtsign>
+  <complexno>i</complexno>
+  <inversetrig>cos-1</inversetrig>
+  <logicsymbol>lang</logicsymbol>
+  <matrixparens>[</matrixparens>
+  <isbroken>0</isbroken>
+  <variantsselectionseed></variantsselectionseed>
+
+  <input><name>ans1</name><type>dropdown</type><tans>opts</tans><boxsize>15</boxsize><strictsyntax>1</strictsyntax><insertstars>0</insertstars><syntaxhint></syntaxhint><syntaxattribute>0</syntaxattribute><forbidwords></forbidwords><allowwords></allowwords><forbidfloat>1</forbidfloat><requirelowestterms>0</requirelowestterms><checkanswertype>0</checkanswertype><mustverify>0</mustverify><showvalidation>0</showvalidation><options></options></input>
+  <input><name>ans2</name><type>numerical</type><tans>sv</tans><boxsize>6</boxsize><strictsyntax>1</strictsyntax><insertstars>0</insertstars><syntaxhint></syntaxhint><syntaxattribute>0</syntaxattribute><forbidwords></forbidwords><allowwords></allowwords><forbidfloat>0</forbidfloat><requirelowestterms>0</requirelowestterms><checkanswertype>0</checkanswertype><mustverify>0</mustverify><showvalidation>0</showvalidation><options></options></input>
+
+  <prt><name>prt1</name><value>1.0000000</value><autosimplify>1</autosimplify><feedbackstyle>1</feedbackstyle><feedbackvariables><text><![CDATA[c2: is(ans1 = "s2"); c3: is(ans1 = "s3");
+]]></text></feedbackvariables>
+    <node><name>0</name><description>Step with the mistake</description><answertest>AlgEquiv</answertest><sans>ans1</sans><tans>ta1</tans><testoptions></testoptions><quiet>1</quiet><truescoremode>=</truescoremode><truescore>1.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt1-1-T</trueanswernote><truefeedback format="html"><text><![CDATA[]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>1</falsenextnode><falseanswernote>prt1-1-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>1</name><description>Chose step 1</description><answertest>AlgEquiv</answertest><sans>ans1</sans><tans>"s1"</tans><testoptions></testoptions><quiet>1</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt1-2-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>Step 1 is right: it is the identity rearranged.</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>-1</falsenextnode><falseanswernote>prt1-2-F</falseanswernote><falsefeedback format="html"><text><![CDATA[[[if test="c2"]]<p>Step 2 does what it should: \(({@g@})^2 = {@dispdp(g^2,4)@}\), and \(1 - {@dispdp(g^2,4)@} = {@dispdp(v2,4)@}\).</p>[[else]][[if test="c3"]]<p>Step 3 does what it should: it takes the square root of the value in step 2, \(\sqrt{ {@dispdp(s2,4)@} } = {@dispdp(s3,4)@}\), and keeps both signs.</p>[[else]]<p>Step 4 does what it should: in the {@qword@} quadrant \(\sin x\) is {@sword@}, and it takes the {@sword@} value from step 3.</p>[[/if]][[/if]]<p>Check the other steps in the same way: does each one do what it should to the line before it?</p>]]></text></falsefeedback></node>
+  </prt>
+  <prt><name>prt2</name><value>1.0000000</value><autosimplify>1</autosimplify><feedbackstyle>1</feedbackstyle><feedbackvariables><text><![CDATA[chk: float(ans2^2 + g^2);
+]]></text></feedbackvariables>
+    <node><name>0</name><description>sin x</description><answertest>NumAbsolute</answertest><sans>ans2</sans><tans>sv</tans><testoptions>0.001</testoptions><quiet>1</quiet><truescoremode>=</truescoremode><truescore>1.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt2-1-T</trueanswernote><truefeedback format="html"><text><![CDATA[]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>1</falsenextnode><falseanswernote>prt2-1-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>1</name><description>Wrong sign</description><answertest>NumAbsolute</answertest><sans>ans2</sans><tans>-sv</tans><testoptions>0.001</testoptions><quiet>1</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt2-2-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>The size is right. Is \(\sin x\) positive or negative in the {@qword@} quadrant?</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>2</falsenextnode><falseanswernote>prt2-2-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>2</name><description>No square root</description><answertest>NumAbsolute</answertest><sans>ans2</sans><tans>d2</tans><testoptions>0.001</testoptions><quiet>1</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt2-3-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>That is \(\sin^2 x\) with a sign. Take the square root.</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>3</falsenextnode><falseanswernote>prt2-3-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>3</name><description>Subtracted cos x</description><answertest>NumAbsolute</answertest><sans>ans2</sans><tans>d3</tans><testoptions>0.001</testoptions><quiet>1</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt2-4-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>You subtracted \(\cos x\), not \(\cos^2 x\).[[if test="is(g < 0)"]] A sine can never be more than 1 in size.[[/if]]</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>-1</falsenextnode><falseanswernote>prt2-4-F</falseanswernote><falsefeedback format="html"><text><![CDATA[<p>Test your value: \(\sin^2 x + \cos^2 x\) must come to 1, but \(({@ans2@})^2 + ({@g@})^2 = {@dispdp(chk,4)@}\).</p><p>\(\sin^2 x = 1 - \cos^2 x\); take the square root and choose the sign.</p>]]></text></falsefeedback></node>
+  </prt>
+
+  <deployedseed>4</deployedseed>
+  <deployedseed>5</deployedseed>
+  <deployedseed>15</deployedseed>
+  <deployedseed>8</deployedseed>
+  <deployedseed>24</deployedseed>
+  <deployedseed>1</deployedseed>
+  <deployedseed>3</deployedseed>
+  <deployedseed>10</deployedseed>
+  <deployedseed>2</deployedseed>
+  <deployedseed>17</deployedseed>
+  <qtest><testcase>1</testcase><description>Correct</description>
+    <testinput><name>ans1</name><value>ta1</value></testinput>
+    <testinput><name>ans2</name><value>sv</value></testinput>
+    <expected><name>prt1</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt1-1-T</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt2-1-T</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>2</testcase><description>A third wrong step; correct value</description>
+    <testinput><name>ans1</name><value>wstep2</value></testinput>
+    <testinput><name>ans2</name><value>sv</value></testinput>
+    <expected><name>prt1</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt1-1-F | prt1-2-F</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt2-1-T</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>3</testcase><description>The other wrong step; generic wrong value</description>
+    <testinput><name>ans1</name><value>wstep</value></testinput>
+    <testinput><name>ans2</name><value>svoff</value></testinput>
+    <expected><name>prt1</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt1-1-F | prt1-2-F</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt2-1-F | prt2-2-F | prt2-3-F | prt2-4-F</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>4</testcase><description>Step 1; wrong sign</description>
+    <testinput><name>ans1</name><value>"s1"</value></testinput>
+    <testinput><name>ans2</name><value>-sv</value></testinput>
+    <expected><name>prt1</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt1-1-F | prt1-2-T</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt2-1-F | prt2-2-T</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>5</testcase><description>No square root</description>
+    <testinput><name>ans1</name><value>ta1</value></testinput>
+    <testinput><name>ans2</name><value>d2</value></testinput>
+    <expected><name>prt1</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt1-1-T</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt2-1-F | prt2-2-F | prt2-3-T</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>6</testcase><description>Subtracted cos x</description>
+    <testinput><name>ans1</name><value>ta1</value></testinput>
+    <testinput><name>ans2</name><value>d3</value></testinput>
+    <expected><name>prt1</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt1-1-T</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt2-1-F | prt2-2-F | prt2-3-F | prt2-4-T</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>7</testcase><description>Invalid: a letter in (b)</description>
+    <testinput><name>ans1</name><value>ta1</value></testinput>
+    <testinput><name>ans2</name><value>x</value></testinput>
+    <expected><name>prt1</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt1-1-T</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore></expectedscore><expectedpenalty></expectedpenalty><expectedanswernote>NULL</expectedanswernote></expected>
+  </qtest>
+</question>
+</quiz>

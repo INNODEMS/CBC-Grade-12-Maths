@@ -1,0 +1,8 @@
+<stack-static>
+    <statement><p><p>A fishing boat on Lake Victoria can carry a load of at most <m>{950}</m> kg. The fisherman and his nets weigh <m>{590}</m> kg. Crates of fish weigh <m>{50}</m> kg each. Let <m>n</m> be the number of crates.</p><p>(a) Write an inequality in <m>n</m>.</p><div><fillin characters="18" name="ans1"/>  </div><p>(b) Solve your inequality. Give the exact value.</p><div><m>n</m> [ &lt; | ≤ | &gt; | ≥ ] <fillin characters="5" name="ans3"/>  </div><p>(c) What is the greatest number of crates?</p><div><fillin characters="5" name="ans4"/> crates  </div></p></statement>
+    <solution><p><p>(a) The total load is <m>{50 n+590}</m>, and it must be at most <m>{950}</m>: <m>{50 n+590\leq 950}</m>. A solved form such as <m>n \le 7.2</m> is also a correct inequality in <m>n</m>.</p><p>(b) Subtract <m>{590}</m> from both sides: <m>{50}n {\le} {360}</m>. Divide both sides by <m>{50}</m>, a positive number, so the sign stays the same: <m>n \le 7.2</m>.</p><p>(c) <m>n</m> must be a whole number. The greatest whole number that is at most <m>{7.2}</m> is <m>{7}</m>; <m>{8}</m> crates would be too many. Check: with <m>n = {7}</m> the total is <m>{940}</m>; with <m>n = {8}</m> it is <m>{990}</m>.</p></p></solution>
+    <answer><p><m>50 n+590\leq 950</m></p></answer>
+    <answer><p>≤</p></answer>
+    <answer><p><m>\frac{36}{5}</m></p></answer>
+    <answer><p><m>7</m></p></answer>
+</stack-static>

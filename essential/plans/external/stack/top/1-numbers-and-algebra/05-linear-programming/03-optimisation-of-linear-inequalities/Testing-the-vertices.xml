@@ -1,0 +1,201 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<quiz>
+<question type="stack">
+  <name><text>Testing the vertices</text></name>
+  <questiontext format="html">
+    <text><![CDATA[<p>The feasible region R has vertices A\(({@vs[1][1]@}, {@vs[1][2]@})\), B\(({@vs[2][1]@}, {@vs[2][2]@})\), C\(({@vs[3][1]@}, {@vs[3][2]@})\) and D\(({@vs[4][1]@}, {@vs[4][2]@})\).</p><div style="text-align:center;" role="img" aria-label="{@arl@}">
+[[jsxgraph width="420px" height="380px"]]
+(function () {
+  // static region board: the unwanted side of every boundary is shaded, R is left clear
+  var J = {#JB#};
+  var bb = J[0], Ls = J[1], Vs = J[2], R = J[3], st = J[4];
+  var b = JXG.JSXGraph.initBoard(divid, {boundingbox: bb, axis: false, grid: false, keepAspectRatio: false,
+    showNavigation: false, showCopyright: false, pan: {enabled: false}, zoom: {enabled: false}});
+  var i, k;
+  for (k = Math.ceil(bb[0]); k <= bb[2]; k++) {
+    b.create('segment', [[k, bb[3]], [k, bb[1]]], {strokeColor: '#d9d9d9', strokeWidth: 1, fixed: true, highlight: false});
+  }
+  for (k = Math.ceil(bb[3]); k <= bb[1]; k++) {
+    b.create('segment', [[bb[0], k], [bb[2], k]], {strokeColor: '#d9d9d9', strokeWidth: 1, fixed: true, highlight: false});
+  }
+  function clip(P, a, q, c, s) {
+    var out = [], j, p, r, fp, fr, t;
+    for (j = 0; j < P.length; j++) {
+      p = P[j]; r = P[(j + 1) % P.length];
+      fp = s * (a * p[0] + q * p[1] - c); fr = s * (a * r[0] + q * r[1] - c);
+      if (fp >= 0) { out.push(p); }
+      if ((fp >= 0) !== (fr >= 0)) { t = fp / (fp - fr); out.push([p[0] + t * (r[0] - p[0]), p[1] + t * (r[1] - p[1])]); }
+    }
+    return out;
+  }
+  function shade(a, q, c, s) {
+    var P = clip([[bb[0], bb[3]], [bb[2], bb[3]], [bb[2], bb[1]], [bb[0], bb[1]]], a, q, c, s);
+    if (P.length > 2) {
+      b.create('polygon', P, {fillColor: '#808080', fillOpacity: 0.25, borders: {visible: false},
+        vertices: {visible: false}, fixed: true, highlight: false, hasInnerPoints: false});
+    }
+  }
+  shade(1, 0, 0, -1); shade(0, 1, 0, -1);
+  b.create('axis', [[0, 0], [1, 0]], {name: 'x', withLabel: true, label: {position: 'rt', offset: [-12, 12]},
+    ticks: {insertTicks: false, ticksDistance: st, minorTicks: st - 1, majorHeight: 8, minorHeight: 4, drawZero: true, label: {offset: [-4, -12]}}});
+  b.create('axis', [[0, 0], [0, 1]], {name: 'y', withLabel: true, label: {position: 'rt', offset: [8, -6]},
+    ticks: {insertTicks: false, ticksDistance: st, minorTicks: st - 1, majorHeight: 8, minorHeight: 4, drawZero: false, label: {offset: [-18, 0]}}});
+  for (i = 0; i < Ls.length; i++) {
+    var L = Ls[i];
+    if (L[3] !== 0) { shade(L[0], L[1], L[2], L[3]); }
+    b.create('line', [-L[2], L[0], L[1]], {strokeColor: (L[3] !== 0 ? '#000000' : '#1f4e9c'), strokeWidth: 2, dash: (L[4] ? 2 : 0), fixed: true, highlight: false});
+    if (L[7] > 0) { b.create('text', [L[5], L[6], 'L<sub>' + L[7] + '</sub>'], {fontSize: 14, fixed: true, highlight: false}); }
+    if (L[7] < 0) { b.create('text', [L[5], L[6], 'search line'], {fontSize: 13, color: '#1f4e9c', fixed: true, highlight: false}); }
+  }
+  for (i = 0; i < Vs.length; i++) {
+    var V = Vs[i], nm = 'ABCDE'.charAt(V[2] - 1);
+    if (V[3]) { nm = nm + '(' + V[0] + ', ' + V[1] + ')'; }
+    b.create('point', [V[0], V[1]], {name: nm, fixed: true, size: 2, color: '#000000', highlight: false,
+      label: {offset: [V[4], V[5]], fontSize: 13}});
+  }
+  if (R.length === 2) { b.create('text', [R[0], R[1], 'R'], {fontSize: 18, fixed: true, highlight: false}); }
+})();
+[[/jsxgraph]]
+</div><p>(a) Work out \(P = {@pa@}x + {@pb@}y\) at each vertex.</p><p>A\(({@vs[1][1]@}, {@vs[1][2]@})\): \(P =\) [[input:ans1]] [[validation:ans1]]</p><p>B\(({@vs[2][1]@}, {@vs[2][2]@})\): \(P =\) [[input:ans2]] [[validation:ans2]]</p><p>C\(({@vs[3][1]@}, {@vs[3][2]@})\): \(P =\) [[input:ans3]] [[validation:ans3]]</p><p>D\(({@vs[4][1]@}, {@vs[4][2]@})\): \(P =\) [[input:ans4]] [[validation:ans4]]</p><div>[[feedback:prt1]]</div><p>(b) The {@mw@} value of \(P\) is [[input:ans5]] [[validation:ans5]] [[feedback:prt2]]</p><p>It is at vertex [[input:ans6]] [[validation:ans6]] [[feedback:prt3]]</p>]]></text>
+  </questiontext>
+  <generalfeedback format="html">
+    <text><![CDATA[<p>(a) Put each vertex into \(P = {@pa@}x + {@pb@}y\): A gives \({@vals[1]@}\), B gives \({@vals[2]@}\), C gives \({@vals[3]@}\), D gives \({@vals[4]@}\).</p><p>(b) The {@mw@} of these is \({@t@}\), at vertex {@lab@}. The best value of a linear objective is always at a corner of the region.</p>]]></text>
+  </generalfeedback>
+  <defaultgrade>3</defaultgrade>
+  <penalty>0.1</penalty>
+  <hidden>0</hidden>
+  <idnumber></idnumber>
+  <stackversion><text>2026063000</text></stackversion>
+  <questionvariables>
+    <text><![CDATA[/* Design: find the optimum by testing the vertices. Source: original. Max on 6 entries, min on 4; A is never the optimum; swapped-coefficient values differ at 3 or more vertices. */
+Q31L: [[[[6,5,"<=",82],[1,7,"<=",63],[1,0,">=",0],[0,1,">=",2]],[[0,9],[0,2],[12,2],[7,8]],[5,4],"max",[36,8,68,67],68,8,"C","B",[37,8,69,67],69,"A",[[-1,12,18,-1],[[6,5,82,1,0,0.0,0.0,0],[1,7,63,1,0,0.0,0.0,0],[0,1,2,-1,0,0.0,0.0,0]],[[0.0,9.0,1,1,6,10],[0.0,2.0,2,1,6,10],[12.0,2.0,3,1,6,10],[7.0,8.0,4,1,6,10]],[],2],"Graph with x from 0 to 18 and y from 0 to 12. The feasible region R is left clear and the unwanted side of each boundary is shaded. Boundaries: 6x + 5y = 82 (solid); x + 7y = 63 (solid); y = 2 (solid). Vertices of R: A (0, 9), B (0, 2), C (12, 2), D (7, 8).",[45,10,58,68]],
+[[[9,4,">=",57],[3,7,">=",36],[1,0,"<=",12],[0,1,"<=",12]],[[12,0],[12,12],[1,12],[5,3]],[9,7],"min",[108,192,93,66],66,192,"D","B",[109,192,93,67],67,"A",[[-1,15,18,-1],[[9,4,57,-1,0,0.0,0.0,0],[3,7,36,-1,0,0.0,0.0,0],[1,0,12,1,0,0.0,0.0,0],[0,1,12,1,0,0.0,0.0,0]],[[12.0,0.0,1,1,6,10],[12.0,12.0,2,1,6,10],[1.0,12.0,3,1,6,10],[5.0,3.0,4,1,6,10]],[],2],"Graph with x from 0 to 18 and y from 0 to 15. The feasible region R is left clear and the unwanted side of each boundary is shaded. Boundaries: 9x + 4y = 57 (solid); 3x + 7y = 36 (solid); x = 12 (solid); y = 12 (solid). Vertices of R: A (12, 0), B (12, 12), C (1, 12), D (5, 3).",[84,192,115,62]],
+[[[8,1,"<=",56],[1,6,"<=",54],[1,0,">=",0],[0,1,">=",0]],[[0,0],[7,0],[6,8],[0,9]],[3,8],"max",[0,21,82,72],82,0,"C","A",[1,21,83,72],83,"B",[[-1,12,13,-1],[[8,1,56,1,0,0.0,0.0,0],[1,6,54,1,0,0.0,0.0,0]],[[0.0,0.0,1,1,6,10],[7.0,0.0,2,1,6,10],[6.0,8.0,3,1,6,10],[0.0,9.0,4,1,6,10]],[],2],"Graph with x from 0 to 13 and y from 0 to 12. The feasible region R is left clear and the unwanted side of each boundary is shaded. Boundaries: 8x + y = 56 (solid); x + 6y = 54 (solid). Vertices of R: A (0, 0), B (7, 0), C (6, 8), D (0, 9).",[0,56,72,27]],
+[[[6,1,"<=",56],[4,7,"<=",88],[1,0,">=",1],[0,1,">=",2]],[[9,2],[8,8],[1,12],[1,2]],[6,5],"max",[64,88,66,16],88,16,"B","D",[65,89,66,16],89,"A",[[-1,15,15,-1],[[6,1,56,1,0,0.0,0.0,0],[4,7,88,1,0,0.0,0.0,0],[1,0,1,-1,0,0.0,0.0,0],[0,1,2,-1,0,0.0,0.0,0]],[[9.0,2.0,1,1,6,10],[8.0,8.0,2,1,6,10],[1.0,12.0,3,1,6,10],[1.0,2.0,4,1,6,10]],[],2],"Graph with x from 0 to 15 and y from 0 to 15. The feasible region R is left clear and the unwanted side of each boundary is shaded. Boundaries: 6x + y = 56 (solid); 4x + 7y = 88 (solid); x = 1 (solid); y = 2 (solid). Vertices of R: A (9, 2), B (8, 8), C (1, 12), D (1, 2).",[57,88,77,17]],
+[[[8,1,">=",30],[3,7,">=",51],[1,0,"<=",10],[0,1,"<=",14]],[[2,14],[3,6],[10,3],[10,14]],[7,3],"min",[56,39,79,112],39,112,"B","D",[57,40,79,112],40,"A",[[-1,17,16,-1],[[8,1,30,-1,0,0.0,0.0,0],[3,7,51,-1,0,0.0,0.0,0],[1,0,10,1,0,0.0,0.0,0],[0,1,14,1,0,0.0,0.0,0]],[[2.0,14.0,1,1,6,10],[3.0,6.0,2,1,6,10],[10.0,3.0,3,1,6,10],[10.0,14.0,4,1,6,10]],[],2],"Graph with x from 0 to 16 and y from 0 to 17. The feasible region R is left clear and the unwanted side of each boundary is shaded. Boundaries: 8x + y = 30 (solid); 3x + 7y = 51 (solid); x = 10 (solid); y = 14 (solid). Vertices of R: A (2, 14), B (3, 6), C (10, 3), D (10, 14).",[104,51,51,128]],
+[[[6,5,"<=",88],[1,7,"<=",64],[1,0,">=",1],[0,1,">=",2]],[[1,2],[13,2],[8,8],[1,9]],[8,9],"max",[26,122,136,89],136,26,"C","A",[27,122,137,89],137,"B",[[-1,12,19,-1],[[6,5,88,1,0,0.0,0.0,0],[1,7,64,1,0,0.0,0.0,0],[1,0,1,-1,0,0.0,0.0,0],[0,1,2,-1,0,0.0,0.0,0]],[[1.0,2.0,1,1,6,10],[13.0,2.0,2,1,6,10],[8.0,8.0,3,1,6,10],[1.0,9.0,4,1,6,10]],[],2],"Graph with x from 0 to 19 and y from 0 to 12. The feasible region R is left clear and the unwanted side of each boundary is shaded. Boundaries: 6x + 5y = 88 (solid); x + 7y = 64 (solid); x = 1 (solid); y = 2 (solid). Vertices of R: A (1, 2), B (13, 2), C (8, 8), D (1, 9).",[25,133,136,81]],
+[[[6,1,">=",55],[5,7,">=",89],[1,0,"<=",15],[0,1,"<=",13]],[[7,13],[8,7],[15,2],[15,13]],[2,5],"min",[79,51,40,95],40,95,"C","D",[80,51,41,95],41,"A",[[-1,16,21,-1],[[6,1,55,-1,0,0.0,0.0,0],[5,7,89,-1,0,0.0,0.0,0],[1,0,15,1,0,0.0,0.0,0],[0,1,13,1,0,0.0,0.0,0]],[[7.0,13.0,1,1,6,10],[8.0,7.0,2,1,6,10],[15.0,2.0,3,1,6,10],[15.0,13.0,4,1,6,10]],[],2],"Graph with x from 0 to 21 and y from 0 to 16. The feasible region R is left clear and the unwanted side of each boundary is shaded. Boundaries: 6x + y = 55 (solid); 5x + 7y = 89 (solid); x = 15 (solid); y = 13 (solid). Vertices of R: A (7, 13), B (8, 7), C (15, 2), D (15, 13).",[61,54,79,101]],
+[[[7,2,"<=",77],[1,7,"<=",58],[1,0,">=",2],[0,1,">=",0]],[[11,0],[9,7],[2,8],[2,0]],[8,3],"max",[88,93,40,16],93,16,"B","D",[89,94,40,16],94,"A",[[-1,11,17,-1],[[7,2,77,1,0,0.0,0.0,0],[1,7,58,1,0,0.0,0.0,0],[1,0,2,-1,0,0.0,0.0,0]],[[11.0,0.0,1,1,6,10],[9.0,7.0,2,1,6,10],[2.0,8.0,3,1,6,10],[2.0,0.0,4,1,6,10]],[],2],"Graph with x from 0 to 17 and y from 0 to 11. The feasible region R is left clear and the unwanted side of each boundary is shaded. Boundaries: 7x + 2y = 77 (solid); x + 7y = 58 (solid); x = 2 (solid). Vertices of R: A (11, 0), B (9, 7), C (2, 8), D (2, 0).",[33,83,70,6]],
+[[[6,1,"<=",60],[4,7,"<=",78],[1,0,">=",2],[0,1,">=",0]],[[10,0],[9,6],[2,10],[2,0]],[7,2],"max",[70,75,34,14],75,14,"B","D",[71,76,34,14],76,"A",[[-1,13,16,-1],[[6,1,60,1,0,0.0,0.0,0],[4,7,78,1,0,0.0,0.0,0],[1,0,2,-1,0,0.0,0.0,0]],[[10.0,0.0,1,1,6,10],[9.0,6.0,2,1,6,10],[2.0,10.0,3,1,6,10],[2.0,0.0,4,1,6,10]],[],2],"Graph with x from 0 to 16 and y from 0 to 13. The feasible region R is left clear and the unwanted side of each boundary is shaded. Boundaries: 6x + y = 60 (solid); 4x + 7y = 78 (solid); x = 2 (solid). Vertices of R: A (10, 0), B (9, 6), C (2, 10), D (2, 0).",[20,60,74,4]],
+[[[6,1,">=",44],[1,8,">=",23],[1,0,"<=",15],[0,1,"<=",14]],[[5,14],[7,2],[15,1],[15,14]],[7,5],"min",[105,59,110,175],59,175,"B","D",[106,60,110,175],60,"A",[[-1,17,21,-1],[[6,1,44,-1,0,0.0,0.0,0],[1,8,23,-1,0,0.0,0.0,0],[1,0,15,1,0,0.0,0.0,0],[0,1,14,1,0,0.0,0.0,0]],[[5.0,14.0,1,1,6,10],[7.0,2.0,2,1,6,10],[15.0,1.0,3,1,6,10],[15.0,14.0,4,1,6,10]],[],2],"Graph with x from 0 to 21 and y from 0 to 17. The feasible region R is left clear and the unwanted side of each boundary is shaded. Boundaries: 6x + y = 44 (solid); x + 8y = 23 (solid); x = 15 (solid); y = 14 (solid). Vertices of R: A (5, 14), B (7, 2), C (15, 1), D (15, 14).",[123,49,82,173]]];
+ix: 1+rand(10);
+E: Q31L[ix];
+vs: E[2]; pa: E[3][1]; pb: E[3][2]; mode: E[4]; vals: E[5]; t: E[6]; oth: E[7]; lab: E[8]; olab: E[9];
+mv: E[10]; ft: E[11]; nonext: E[12]; JB: E[13]; arl: E[14]; swvals: E[15];
+ismax: is(mode = "max");
+mw: if ismax then "largest" else "smallest"; ow: if ismax then "smallest" else "largest";
+vals7: makelist(vals[j] + 7, j, 1, 4);
+o6: [["A", is(lab = "A"), "A"], ["B", is(lab = "B"), "B"], ["C", is(lab = "C"), "C"], ["D", is(lab = "D"), "D"]];
+]]></text>
+  </questionvariables>
+  <specificfeedback format="html"><text><![CDATA[]]></text></specificfeedback>
+  <questionnote format="moodle_auto_format">
+    <text>ix={@ix@}, {@mode@}, values {@vals@}, optimum {@t@} at {@lab@}</text>
+  </questionnote>
+  <questiondescription format="html"><text><![CDATA[<p id="concept">Linear Programming: testing the vertices</p><p id="description">Grade 12 CBE Core 1.4 (c) / Essential 1.4 (c): Work out a linear objective function at each vertex of a feasible region and choose the largest or smallest value and its vertex.</p><p id="edition">Core and Essential</p><p id="provenance">This question is original to this project.</p><p id="citation">INNODEMS CBC Grade 12 Mathematics, first draft by Ben Davies, 2026. Aligned to the KICD Senior School Curriculum Design, Core and Essential Mathematics Grade 12 (draft).</p>]]></text></questiondescription>
+  <questionsimplify>1</questionsimplify>
+  <assumepositive>0</assumepositive>
+  <assumereal>0</assumereal>
+  <prtcorrect format="html"><text><![CDATA[[[commonstring key="symbolicprtcorrectfeedback"/]] [[commonstring key="defaultprtcorrectfeedback"/]]]]></text></prtcorrect>
+  <prtpartiallycorrect format="html"><text><![CDATA[[[commonstring key="symbolicprtpartiallycorrectfeedback"/]] [[commonstring key="defaultprtpartiallycorrectfeedback"/]]]]></text></prtpartiallycorrect>
+  <prtincorrect format="html"><text><![CDATA[[[commonstring key="symbolicprtincorrectfeedback"/]] [[commonstring key="defaultprtincorrectfeedback"/]]]]></text></prtincorrect>
+  <decimals>.</decimals>
+  <scientificnotation>*10</scientificnotation>
+  <multiplicationsign>none</multiplicationsign>
+  <sqrtsign>1</sqrtsign>
+  <complexno>i</complexno>
+  <inversetrig>cos-1</inversetrig>
+  <logicsymbol>lang</logicsymbol>
+  <matrixparens>[</matrixparens>
+  <isbroken>0</isbroken>
+  <variantsselectionseed></variantsselectionseed>
+
+  <input><name>ans1</name><type>numerical</type><tans>vals[1]</tans><boxsize>6</boxsize><strictsyntax>1</strictsyntax><insertstars>0</insertstars><syntaxhint></syntaxhint><syntaxattribute>0</syntaxattribute><forbidwords></forbidwords><allowwords></allowwords><forbidfloat>0</forbidfloat><requirelowestterms>0</requirelowestterms><checkanswertype>0</checkanswertype><mustverify>0</mustverify><showvalidation>0</showvalidation><options></options></input>
+  <input><name>ans2</name><type>numerical</type><tans>vals[2]</tans><boxsize>6</boxsize><strictsyntax>1</strictsyntax><insertstars>0</insertstars><syntaxhint></syntaxhint><syntaxattribute>0</syntaxattribute><forbidwords></forbidwords><allowwords></allowwords><forbidfloat>0</forbidfloat><requirelowestterms>0</requirelowestterms><checkanswertype>0</checkanswertype><mustverify>0</mustverify><showvalidation>0</showvalidation><options></options></input>
+  <input><name>ans3</name><type>numerical</type><tans>vals[3]</tans><boxsize>6</boxsize><strictsyntax>1</strictsyntax><insertstars>0</insertstars><syntaxhint></syntaxhint><syntaxattribute>0</syntaxattribute><forbidwords></forbidwords><allowwords></allowwords><forbidfloat>0</forbidfloat><requirelowestterms>0</requirelowestterms><checkanswertype>0</checkanswertype><mustverify>0</mustverify><showvalidation>0</showvalidation><options></options></input>
+  <input><name>ans4</name><type>numerical</type><tans>vals[4]</tans><boxsize>6</boxsize><strictsyntax>1</strictsyntax><insertstars>0</insertstars><syntaxhint></syntaxhint><syntaxattribute>0</syntaxattribute><forbidwords></forbidwords><allowwords></allowwords><forbidfloat>0</forbidfloat><requirelowestterms>0</requirelowestterms><checkanswertype>0</checkanswertype><mustverify>0</mustverify><showvalidation>0</showvalidation><options></options></input>
+  <input><name>ans5</name><type>numerical</type><tans>t</tans><boxsize>6</boxsize><strictsyntax>1</strictsyntax><insertstars>0</insertstars><syntaxhint></syntaxhint><syntaxattribute>0</syntaxattribute><forbidwords></forbidwords><allowwords></allowwords><forbidfloat>0</forbidfloat><requirelowestterms>0</requirelowestterms><checkanswertype>0</checkanswertype><mustverify>0</mustverify><showvalidation>0</showvalidation><options></options></input>
+  <input><name>ans6</name><type>dropdown</type><tans>o6</tans><boxsize>15</boxsize><strictsyntax>1</strictsyntax><insertstars>0</insertstars><syntaxhint></syntaxhint><syntaxattribute>0</syntaxattribute><forbidwords></forbidwords><allowwords></allowwords><forbidfloat>1</forbidfloat><requirelowestterms>0</requirelowestterms><checkanswertype>0</checkanswertype><mustverify>0</mustverify><showvalidation>0</showvalidation><options></options></input>
+
+  <prt><name>prt1</name><value>1.0000000</value><autosimplify>1</autosimplify><feedbackstyle>1</feedbackstyle><feedbackvariables><text><![CDATA[sa: [ans1, ans2, ans3, ans4]; nr: length(sublist(makelist(j, j, 1, 4), lambda([j], is(abs(sa[j] - vals[j]) < 1/1000)))); fw: first(append(sublist(makelist(j, j, 1, 4), lambda([j], is(abs(sa[j] - vals[j]) >= 1/1000))), [1])); fwl: ["A", "B", "C", "D"][fw];]]></text></feedbackvariables>
+    <node><name>0</name><description>All four values</description><answertest>AlgEquiv</answertest><sans>sa</sans><tans>vals</tans><testoptions></testoptions><quiet>1</quiet><truescoremode>=</truescoremode><truescore>1.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt1-1-T</trueanswernote><truefeedback format="html"><text><![CDATA[]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>1</falsenextnode><falseanswernote>prt1-1-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>1</name><description>Coefficients swapped</description><answertest>AlgEquiv</answertest><sans>sa</sans><tans>swvals</tans><testoptions></testoptions><quiet>1</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt1-2-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>You multiplied \(x\) by \({@pb@}\) and \(y\) by \({@pa@}\). \(P = {@pa@}x + {@pb@}y\).</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>2</falsenextnode><falseanswernote>prt1-2-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>2</name><description>Some values right</description><answertest>AlgEquiv</answertest><sans>is(nr &gt;= 2)</sans><tans>true</tans><testoptions></testoptions><quiet>0</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt1-3-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>\({@nr@}\) of your values are right. Check the others, for example at {@fwl@}: \({@pa@} \times {@vs[fw][1]@} + {@pb@} \times {@vs[fw][2]@}\).</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>-1</falsenextnode><falseanswernote>prt1-3-F</falseanswernote><falsefeedback format="html"><text><![CDATA[<p>At {@fwl@}, \(P = {@pa@} \times {@vs[fw][1]@} + {@pb@} \times {@vs[fw][2]@}\), which is not \({@sa[fw]@}\). Work out \(P\) at each of A, B, C and D in the same way.</p>]]></text></falsefeedback></node>
+  </prt>
+  <prt><name>prt2</name><value>1.0000000</value><autosimplify>1</autosimplify><feedbackstyle>1</feedbackstyle><feedbackvariables><text><![CDATA[sa: [ans1, ans2, ans3, ans4]; fx: if ismax then lmax(sa) else lmin(sa);]]></text></feedbackvariables>
+    <node><name>0</name><description>Optimum value</description><answertest>NumAbsolute</answertest><sans>ans5</sans><tans>t</tans><testoptions>0.001</testoptions><quiet>0</quiet><truescoremode>=</truescoremode><truescore>1.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt2-1-T</trueanswernote><truefeedback format="html"><text><![CDATA[]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>1</falsenextnode><falseanswernote>prt2-1-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>1</name><description>Other extreme</description><answertest>NumAbsolute</answertest><sans>ans5</sans><tans>oth</tans><testoptions>0.001</testoptions><quiet>0</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt2-2-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>That is the {@ow@} value; the question asks for the {@mw@}.</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>2</falsenextnode><falseanswernote>prt2-2-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>2</name><description>Follow-through from (a)</description><answertest>NumAbsolute</answertest><sans>ans5</sans><tans>fx</tans><testoptions>0.001</testoptions><quiet>0</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt2-3-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>That is the {@mw@} of your values in (a), but they are not all right.</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>-1</falsenextnode><falseanswernote>prt2-3-F</falseanswernote><falsefeedback format="html"><text><![CDATA[<p>Compare the four values of \(P\) and choose the {@mw@}.</p>]]></text></falsefeedback></node>
+  </prt>
+  <prt><name>prt3</name><value>1.0000000</value><autosimplify>1</autosimplify><feedbackstyle>1</feedbackstyle><feedbackvariables><text><![CDATA[sa: [ans1, ans2, ans3, ans4]; jc: first(sublist_indices(["A", "B", "C", "D"], lambda([s], is(s = ans6)))); own: is(sa[jc] = (if ismax then lmax(sa) else lmin(sa)));]]></text></feedbackvariables>
+    <node><name>0</name><description>Optimal vertex</description><answertest>AlgEquiv</answertest><sans>ans6</sans><tans>lab</tans><testoptions></testoptions><quiet>0</quiet><truescoremode>=</truescoremode><truescore>1.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt3-1-T</trueanswernote><truefeedback format="html"><text><![CDATA[]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>1</falsenextnode><falseanswernote>prt3-1-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>1</name><description>Vertex of the other extreme</description><answertest>AlgEquiv</answertest><sans>ans6</sans><tans>olab</tans><testoptions></testoptions><quiet>0</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt3-2-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>That is where \(P\) is {@ow@}; the question asks for the {@mw@}.</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>-1</falsenextnode><falseanswernote>prt3-2-F</falseanswernote><falsefeedback format="html"><text><![CDATA[[[if test='own']]<p>{@ans6@} has the {@mw@} of your values in (a), but those values are not all right. Check (a) first.</p>[[else]]<p>At {@ans6@} your value in (a) is \({@sa[jc]@}\). Compare your four values: is that the {@mw@}?</p>[[/if]]]]></text></falsefeedback></node>
+  </prt>
+
+  <deployedseed>4</deployedseed>
+  <deployedseed>5</deployedseed>
+  <deployedseed>15</deployedseed>
+  <deployedseed>8</deployedseed>
+  <deployedseed>24</deployedseed>
+  <deployedseed>1</deployedseed>
+  <deployedseed>3</deployedseed>
+  <deployedseed>10</deployedseed>
+  <deployedseed>2</deployedseed>
+  <deployedseed>17</deployedseed>
+  <qtest><testcase>1</testcase><description>Correct</description>
+    <testinput><name>ans1</name><value>vals[1]</value></testinput>
+    <testinput><name>ans2</name><value>vals[2]</value></testinput>
+    <testinput><name>ans3</name><value>vals[3]</value></testinput>
+    <testinput><name>ans4</name><value>vals[4]</value></testinput>
+    <testinput><name>ans5</name><value>t</value></testinput>
+    <testinput><name>ans6</name><value>lab</value></testinput>
+    <expected><name>prt1</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt1-1-T</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt2-1-T</expectedanswernote></expected>
+    <expected><name>prt3</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt3-1-T</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>2</testcase><description>Coefficients swapped; other extreme and its vertex</description>
+    <testinput><name>ans1</name><value>swvals[1]</value></testinput>
+    <testinput><name>ans2</name><value>swvals[2]</value></testinput>
+    <testinput><name>ans3</name><value>swvals[3]</value></testinput>
+    <testinput><name>ans4</name><value>swvals[4]</value></testinput>
+    <testinput><name>ans5</name><value>oth</value></testinput>
+    <testinput><name>ans6</name><value>olab</value></testinput>
+    <expected><name>prt1</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt1-1-F | prt1-2-T</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt2-1-F | prt2-2-T</expectedanswernote></expected>
+    <expected><name>prt3</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt3-1-F | prt3-2-T</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>3</testcase><description>Two values off; follow-through; right vertex</description>
+    <testinput><name>ans1</name><value>mv[1]</value></testinput>
+    <testinput><name>ans2</name><value>mv[2]</value></testinput>
+    <testinput><name>ans3</name><value>mv[3]</value></testinput>
+    <testinput><name>ans4</name><value>mv[4]</value></testinput>
+    <testinput><name>ans5</name><value>ft</value></testinput>
+    <testinput><name>ans6</name><value>lab</value></testinput>
+    <expected><name>prt1</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt1-1-F | prt1-2-F | prt1-3-T</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt2-1-F | prt2-2-F | prt2-3-T</expectedanswernote></expected>
+    <expected><name>prt3</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt3-1-T</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>4</testcase><description>Generic</description>
+    <testinput><name>ans1</name><value>vals7[1]</value></testinput>
+    <testinput><name>ans2</name><value>vals7[2]</value></testinput>
+    <testinput><name>ans3</name><value>vals7[3]</value></testinput>
+    <testinput><name>ans4</name><value>vals7[4]</value></testinput>
+    <testinput><name>ans5</name><value>t+5</value></testinput>
+    <testinput><name>ans6</name><value>nonext</value></testinput>
+    <expected><name>prt1</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt1-1-F | prt1-2-F | prt1-3-F</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt2-1-F | prt2-2-F | prt2-3-F</expectedanswernote></expected>
+    <expected><name>prt3</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt3-1-F | prt3-2-F</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>5</testcase><description>Invalid: a letter in (b)</description>
+    <testinput><name>ans1</name><value>vals[1]</value></testinput>
+    <testinput><name>ans2</name><value>vals[2]</value></testinput>
+    <testinput><name>ans3</name><value>vals[3]</value></testinput>
+    <testinput><name>ans4</name><value>vals[4]</value></testinput>
+    <testinput><name>ans5</name><value>x</value></testinput>
+    <testinput><name>ans6</name><value>lab</value></testinput>
+    <expected><name>prt1</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt1-1-T</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore></expectedscore><expectedpenalty></expectedpenalty><expectedanswernote>NULL</expectedanswernote></expected>
+    <expected><name>prt3</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt3-1-T</expectedanswernote></expected>
+  </qtest>
+</question>
+</quiz>

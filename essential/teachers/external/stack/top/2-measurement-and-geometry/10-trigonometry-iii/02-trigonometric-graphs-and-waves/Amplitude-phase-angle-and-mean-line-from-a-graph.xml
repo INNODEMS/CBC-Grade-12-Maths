@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<quiz>
+<question type="stack">
+  <name><text>Amplitude phase angle and mean line from a graph</text></name>
+  <questiontext format="html">
+    <text><![CDATA[<p>The graph shows the wave \(y = a\sin(x + c) + d\), where \(a \gt 0\) and \(-180^\circ \lt c \lt 180^\circ\).</p><div style="text-align:center;" role="img" aria-label="A wave on axes from minus 180 to 360 degrees. Its greatest value is {#amax#} at x = {#xmaxpt#} degrees, its least value is {#dmin#}, and it crosses its mean line going up at x = {#nc#} degrees.">
+[[jsxgraph width="520px" height="300px"]]
+(function() {
+  // static board: grid, axes and one wave; x in degrees
+  var xl = -180, xr = 360, yl = {#ylo#}, yu = {#yhi#};
+  var b = JXG.JSXGraph.initBoard(divid, {boundingbox: [xl - (xr-xl)*0.04, yu, xr + (xr-xl)*0.02, yl], axis: false, grid: false,
+    showNavigation: false, showCopyright: false, pan: {enabled: false}, zoom: {enabled: false}});
+  var g = {strokeColor: '#dddddd', strokeWidth: 1, fixed: true, highlight: false};
+  for (var gx = Math.ceil(xl/(15))*(15); gx <= xr + 1e-9; gx += 15) { b.create('segment', [[gx, yl], [gx, yu]], g); }
+  for (var gy = Math.ceil(yl/(0.5))*(0.5); gy <= yu + 1e-9; gy += 0.5) { b.create('segment', [[xl, gy], [xr, gy]], g); }
+  var ax = {strokeColor: '#000000', strokeWidth: 1, fixed: true, highlight: false};
+  b.create('segment', [[xl, 0], [xr, 0]], ax);
+  b.create('segment', [[0, yl], [0, yu]], ax);
+  var t = {fixed: true, highlight: false, useMathJax: false, fontSize: 11, anchorX: 'middle', anchorY: 'top'};
+  for (var tx = Math.ceil(xl/(60))*(60); tx <= xr + 1e-9; tx += 60) {
+    if (Math.abs(tx) > 1e-9) { b.create('text', [tx, -(yu-yl)*0.015, String(Math.round(tx*10)/10) + '\u00b0'], t); }
+  }
+  var ty = {fixed: true, highlight: false, useMathJax: false, fontSize: 11, anchorX: 'right', anchorY: 'middle'};
+  for (var tv = Math.ceil(yl/(1))*(1); tv <= yu + 1e-9; tv += 1) {
+    if (Math.abs(tv) > 1e-9) { b.create('text', [-(xr-xl)*0.01, tv, String(Math.round(tv*10)/10)], ty); }
+  }
+  b.create('functiongraph', [function(x) { return ({#a#})*Math.sin(Math.PI*(x+({#cc#}))/180)+({#d#}); }, xl, xr], {strokeColor: '#1f4e9c', strokeWidth: 2, fixed: true, highlight: false});
+})();
+[[/jsxgraph]]
+</div><div>(a) Find the amplitude \(a\). [[input:ans1]] [[validation:ans1]] [[feedback:prt1]]</div><div>(b) Find the phase angle \(c\). [[input:ans2]] \(^\circ\) [[validation:ans2]] [[feedback:prt2]]</div><div>(c) Find \(d\), where \(y = d\) is the mean line. [[input:ans3]] [[validation:ans3]] [[feedback:prt3]]</div>]]></text>
+  </questiontext>
+  <generalfeedback format="html">
+    <text><![CDATA[<p>The greatest value is \({@amax@}\) and the least is \({@dmin@}\).</p><p>(a) The amplitude is half of (greatest \(-\) least): \(a = {@a@}\).</p><p>(c) The mean line is halfway between: \(d = {@d@}\).</p><p>(b) The wave crosses its mean line going up at \(x = {@nc@}^\circ\). \(y = \sin x\) does this at \(0^\circ\), so the wave is \(y = \sin x\) moved {@dir@} by \({@abs(cc)@}^\circ\): the phase angle is \(c = {@cc@}^\circ\).</p><p>The wave is \(y = {@a@}\sin(x {@tc(cc)@}^\circ){@tc(d)@}\).</p>]]></text>
+  </generalfeedback>
+  <defaultgrade>3</defaultgrade>
+  <penalty>0.1</penalty>
+  <hidden>0</hidden>
+  <idnumber></idnumber>
+  <stackversion><text>2026063000</text></stackversion>
+  <questionvariables>
+    <text><![CDATA[hits(L,s,tol) := length(sublist(L, lambda([v], is(abs(v-s) <= tol))));
+matchset(L,S,tol) := is(length(L) = length(S)) and every(lambda([s], is(hits(L,s,tol) = 1)), S);
+allgenuine(L,S,tol) := every(lambda([v], some(lambda([s], is(abs(v-s) <= tol)), S)), L);
+validate_angles(ex) := if (setp(ex) or listp(ex)) and every(lambda([v], numberp(ev(v,simp))), if setp(ex) then listify(ex) else ex) then "" else "Type the angles as numbers inside curly brackets, separated by commas, for example {30, 150}. Do not type the degree sign.";
+r1(v) := float(floor(10*v+1/2)/10);
+ang1(v) := block([r], r: floor(10*v+1/2), if integerp(r/10) then string(r/10) else string(float(r/10)));
+setraw(L) := if L = [] then "\\{\\,\\}" else sconcat("\\{", simplode(map(lambda([v], sconcat(ang1(v), "^\\circ")), sort(L)), ", "), "\\}");
+degraw(v) := sconcat(ang1(v), "^\\circ");
+setstr(L) := sconcat("\\(", setraw(L), "\\)");
+angc(v) := block([al], al: float(acos(v)*180/%pi), if abs(al) < 1e-9 then [0,360] elseif abs(al-180) < 1e-9 then [180] else [al, 360-al]);
+angs(v) := block([al], al: float(asin(v)*180/%pi), if abs(al) < 1e-9 then [0,180,360] elseif abs(al-90) < 1e-9 then [90] elseif abs(al+90) < 1e-9 then [270] elseif al > 0 then [al, 180-al] else [180-al, 360+al]);
+qroots(A,B,C) := if A = 0 then (if B = 0 then [] else [-C/B]) elseif B^2-4*A*C < 0 then [] else [(-B-sqrt(B^2-4*A*C))/(2*A), (-B+sqrt(B^2-4*A*C))/(2*A)];
+inrange(L) := sublist(L, lambda([v], is(abs(float(v)) <= 1+1e-12)));
+uniqf(L) := unique(map(lambda([v], float(floor(10000*v+1/2)/10000)), L));
+nice(v) := block([r], r: floor(1000*v+1/2)/1000, if integerp(r) then r else float(r));
+res2(v) := block([r], r: floor(100*v+1/2)/100, if integerp(r) then string(r) else string(float(r)));
+tm(n, s) := if n = 0 then "" elseif n = 1 then sconcat(" + ", s) elseif n = -1 then sconcat(" - ", s) elseif n > 0 then sconcat(" + ", string(n), s) else sconcat(" - ", string(-n), s);
+tc(n) := if n = 0 then "" elseif n > 0 then sconcat(" + ", string(n)) else sconcat(" - ", string(-n));
+lead(n, s) := if n = 1 then s elseif n = -1 then sconcat("-", s) else sconcat(string(n), s);
+/* Design: amplitude, phase angle and mean line from a graph. c is never 0, 45, -45 or 180, so c, -c and 90 - c differ modulo 360; d is never 0. Source: original. */
+L: [[2,75,1],[3,-30,-1],[1.5,90,2],[2,-60,-2],[4,30,1],[2.5,-90,1],[3,120,-2],[1,-120,2],[2,150,-1],[3,-150,1]];
+ix: 1+rand(10);
+a: L[ix][1]; cc: L[ix][2]; d: L[ix][3];
+amax: a+d; a2: 2*a; nc: -cc; cmax: 90-cc; d2: 2*d; dmin: d-a;
+xmaxpt: mod(90-cc, 360); xmaxpt: if xmaxpt > 360-1 then xmaxpt-360 else xmaxpt;
+/* Keep the x-axis and its labels inside the board for every entry. */
+ylo: min(d-a-1, -1); yhi: max(d+a+1, 1);
+alt: if cc < 0 then cc+360 else cc-360;
+dir: if cc > 0 then "left" else "right";
+]]></text>
+  </questionvariables>
+  <specificfeedback format="html"><text><![CDATA[]]></text></specificfeedback>
+  <questionnote format="moodle_auto_format">
+    <text>ix={@ix@}, a={@a@}, c={@cc@}, d={@d@}</text>
+  </questionnote>
+  <questiondescription format="html"><text><![CDATA[<p id="concept">Trigonometry III: amplitude, phase angle and mean line from a graph</p><p id="description">Grade 12 CBE Core 2.5: Read the amplitude, phase angle and mean line of y = a sin(x + c) + d from its graph in degrees.</p><p id="edition">Core</p><p id="provenance">This question is original to this project.</p><p id="citation">INNODEMS CBC Grade 12 Mathematics, first draft by Ben Davies, 2026. Aligned to the KICD Senior School Curriculum Design, Core Mathematics Grade 12 (draft).</p>]]></text></questiondescription>
+  <questionsimplify>1</questionsimplify>
+  <assumepositive>0</assumepositive>
+  <assumereal>0</assumereal>
+  <prtcorrect format="html"><text><![CDATA[[[commonstring key="symbolicprtcorrectfeedback"/]] [[commonstring key="defaultprtcorrectfeedback"/]]]]></text></prtcorrect>
+  <prtpartiallycorrect format="html"><text><![CDATA[[[commonstring key="symbolicprtpartiallycorrectfeedback"/]] [[commonstring key="defaultprtpartiallycorrectfeedback"/]]]]></text></prtpartiallycorrect>
+  <prtincorrect format="html"><text><![CDATA[[[commonstring key="symbolicprtincorrectfeedback"/]] [[commonstring key="defaultprtincorrectfeedback"/]]]]></text></prtincorrect>
+  <decimals>.</decimals>
+  <scientificnotation>*10</scientificnotation>
+  <multiplicationsign>none</multiplicationsign>
+  <sqrtsign>1</sqrtsign>
+  <complexno>i</complexno>
+  <inversetrig>cos-1</inversetrig>
+  <logicsymbol>lang</logicsymbol>
+  <matrixparens>[</matrixparens>
+  <isbroken>0</isbroken>
+  <variantsselectionseed></variantsselectionseed>
+
+  <input><name>ans1</name><type>numerical</type><tans>a</tans><boxsize>6</boxsize><strictsyntax>1</strictsyntax><insertstars>0</insertstars><syntaxhint></syntaxhint><syntaxattribute>0</syntaxattribute><forbidwords></forbidwords><allowwords></allowwords><forbidfloat>0</forbidfloat><requirelowestterms>0</requirelowestterms><checkanswertype>0</checkanswertype><mustverify>0</mustverify><showvalidation>0</showvalidation><options></options></input>
+  <input><name>ans2</name><type>numerical</type><tans>cc</tans><boxsize>6</boxsize><strictsyntax>1</strictsyntax><insertstars>0</insertstars><syntaxhint></syntaxhint><syntaxattribute>0</syntaxattribute><forbidwords></forbidwords><allowwords></allowwords><forbidfloat>0</forbidfloat><requirelowestterms>0</requirelowestterms><checkanswertype>0</checkanswertype><mustverify>0</mustverify><showvalidation>0</showvalidation><options></options></input>
+  <input><name>ans3</name><type>numerical</type><tans>d</tans><boxsize>6</boxsize><strictsyntax>1</strictsyntax><insertstars>0</insertstars><syntaxhint></syntaxhint><syntaxattribute>0</syntaxattribute><forbidwords></forbidwords><allowwords></allowwords><forbidfloat>0</forbidfloat><requirelowestterms>0</requirelowestterms><checkanswertype>0</checkanswertype><mustverify>0</mustverify><showvalidation>0</showvalidation><options></options></input>
+
+  <prt><name>prt1</name><value>1.0000000</value><autosimplify>1</autosimplify><feedbackstyle>1</feedbackstyle><feedbackvariables><text><![CDATA[]]></text></feedbackvariables>
+    <node><name>0</name><description>Amplitude</description><answertest>NumAbsolute</answertest><sans>ans1</sans><tans>a</tans><testoptions>0.001</testoptions><quiet>1</quiet><truescoremode>=</truescoremode><truescore>1.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt1-1-T</trueanswernote><truefeedback format="html"><text><![CDATA[]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>1</falsenextnode><falseanswernote>prt1-1-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>1</name><description>Greatest value</description><answertest>NumAbsolute</answertest><sans>ans1</sans><tans>amax</tans><testoptions>0.001</testoptions><quiet>1</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt1-2-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>That is the greatest value of \(y\). The amplitude is half of (greatest \(-\) least).</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>2</falsenextnode><falseanswernote>prt1-2-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>2</name><description>Greatest minus least</description><answertest>NumAbsolute</answertest><sans>ans1</sans><tans>a2</tans><testoptions>0.001</testoptions><quiet>1</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt1-3-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>That is greatest minus least. Halve it.</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>-1</falsenextnode><falseanswernote>prt1-3-F</falseanswernote><falsefeedback format="html"><text><![CDATA[<p>Read the greatest and least values of \(y\) from the graph. The amplitude is half of (greatest \(-\) least).</p>]]></text></falsefeedback></node>
+  </prt>
+  <prt><name>prt2</name><value>1.0000000</value><autosimplify>1</autosimplify><feedbackstyle>1</feedbackstyle><feedbackvariables><text><![CDATA[]]></text></feedbackvariables>
+    <node><name>0</name><description>Phase angle</description><answertest>NumAbsolute</answertest><sans>ans2</sans><tans>cc</tans><testoptions>0.001</testoptions><quiet>1</quiet><truescoremode>=</truescoremode><truescore>1.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt2-1-T</trueanswernote><truefeedback format="html"><text><![CDATA[]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>1</falsenextnode><falseanswernote>prt2-1-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>1</name><description>Outside -180 to 180</description><answertest>AlgEquiv</answertest><sans>is(abs(mod(ans2-cc, 360)) &lt; 0.001 or abs(mod(ans2-cc, 360)-360) &lt; 0.001)</sans><tans>true</tans><testoptions></testoptions><quiet>1</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt2-2-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>Your angle gives the same wave, but give the phase angle between \(-180^\circ\) and \(180^\circ\).</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>2</falsenextnode><falseanswernote>prt2-2-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>2</name><description>Sign of c</description><answertest>NumAbsolute</answertest><sans>ans2</sans><tans>nc</tans><testoptions>0.001</testoptions><quiet>1</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt2-3-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>Test your value: \(y = a\sin(x + c) + d\) crosses its mean line going up where \(x + c = 0^\circ\). With \(c = {@ans2@}^\circ\) that is at \(x = {@-ans2@}^\circ\). Where does the graph cross its mean line going up?</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>3</falsenextnode><falseanswernote>prt2-3-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>3</name><description>Used the maximum</description><answertest>AlgEquiv</answertest><sans>is(abs(mod(ans2-cmax, 360)) &lt; 0.001 or abs(mod(ans2-cmax, 360)-360) &lt; 0.001)</sans><tans>true</tans><testoptions></testoptions><quiet>1</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt2-4-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>That is where a maximum is. Use the point where the wave crosses its mean line going up, and compare it with \(0^\circ\) for \(y = \sin x\).</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>-1</falsenextnode><falseanswernote>prt2-4-F</falseanswernote><falsefeedback format="html"><text><![CDATA[<p>Test your value: \(y = a\sin(x + c) + d\) crosses its mean line going up where \(x + c = 0^\circ\). With \(c = {@ans2@}^\circ\) that is at \(x = {@-ans2@}^\circ\). Where does the graph cross its mean line going up?</p>]]></text></falsefeedback></node>
+  </prt>
+  <prt><name>prt3</name><value>1.0000000</value><autosimplify>1</autosimplify><feedbackstyle>1</feedbackstyle><feedbackvariables><text><![CDATA[]]></text></feedbackvariables>
+    <node><name>0</name><description>Mean line</description><answertest>NumAbsolute</answertest><sans>ans3</sans><tans>d</tans><testoptions>0.001</testoptions><quiet>1</quiet><truescoremode>=</truescoremode><truescore>1.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt3-1-T</trueanswernote><truefeedback format="html"><text><![CDATA[]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>1</falsenextnode><falseanswernote>prt3-1-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>1</name><description>Sum not halved</description><answertest>NumAbsolute</answertest><sans>ans3</sans><tans>d2</tans><testoptions>0.001</testoptions><quiet>1</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt3-2-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>You added the greatest and least values. The mean line is halfway: halve the sum.</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>2</falsenextnode><falseanswernote>prt3-2-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>2</name><description>Greatest value</description><answertest>NumAbsolute</answertest><sans>ans3</sans><tans>amax</tans><testoptions>0.001</testoptions><quiet>1</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt3-3-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>That is the greatest value.</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>-1</falsenextnode><falseanswernote>prt3-3-F</falseanswernote><falsefeedback format="html"><text><![CDATA[<p>The mean line is halfway between the greatest and least values of \(y\). Test yours: the greatest value minus \({@ans3@}\) is \({@nice(amax-ans3)@}\), and \({@ans3@}\) minus the least value is \({@nice(ans3-dmin)@}\). On the mean line these two are equal.</p>]]></text></falsefeedback></node>
+  </prt>
+
+  <deployedseed>4</deployedseed>
+  <deployedseed>5</deployedseed>
+  <deployedseed>15</deployedseed>
+  <deployedseed>8</deployedseed>
+  <deployedseed>24</deployedseed>
+  <deployedseed>1</deployedseed>
+  <deployedseed>3</deployedseed>
+  <deployedseed>10</deployedseed>
+  <deployedseed>2</deployedseed>
+  <deployedseed>17</deployedseed>
+  <qtest><testcase>1</testcase><description>Correct</description>
+    <testinput><name>ans1</name><value>a</value></testinput>
+    <testinput><name>ans2</name><value>cc</value></testinput>
+    <testinput><name>ans3</name><value>d</value></testinput>
+    <expected><name>prt1</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt1-1-T</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt2-1-T</expectedanswernote></expected>
+    <expected><name>prt3</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt3-1-T</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>2</testcase><description>Generic wrong</description>
+    <testinput><name>ans1</name><value>a+0.5</value></testinput>
+    <testinput><name>ans2</name><value>cc+10</value></testinput>
+    <testinput><name>ans3</name><value>d+0.5</value></testinput>
+    <expected><name>prt1</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt1-1-F | prt1-2-F | prt1-3-F</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt2-1-F | prt2-2-F | prt2-3-F | prt2-4-F</expectedanswernote></expected>
+    <expected><name>prt3</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt3-1-F | prt3-2-F | prt3-3-F</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>3</testcase><description>Greatest value; sign of c; sum not halved</description>
+    <testinput><name>ans1</name><value>amax</value></testinput>
+    <testinput><name>ans2</name><value>nc</value></testinput>
+    <testinput><name>ans3</name><value>d2</value></testinput>
+    <expected><name>prt1</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt1-1-F | prt1-2-T</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt2-1-F | prt2-2-F | prt2-3-T</expectedanswernote></expected>
+    <expected><name>prt3</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt3-1-F | prt3-2-T</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>4</testcase><description>Greatest minus least; c outside the range; greatest value</description>
+    <testinput><name>ans1</name><value>a2</value></testinput>
+    <testinput><name>ans2</name><value>alt</value></testinput>
+    <testinput><name>ans3</name><value>amax</value></testinput>
+    <expected><name>prt1</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt1-1-F | prt1-2-F | prt1-3-T</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt2-1-F | prt2-2-T</expectedanswernote></expected>
+    <expected><name>prt3</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt3-1-F | prt3-2-F | prt3-3-T</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>5</testcase><description>Phase from the maximum</description>
+    <testinput><name>ans1</name><value>a</value></testinput>
+    <testinput><name>ans2</name><value>cmax</value></testinput>
+    <testinput><name>ans3</name><value>d</value></testinput>
+    <expected><name>prt1</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt1-1-T</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt2-1-F | prt2-2-F | prt2-3-F | prt2-4-T</expectedanswernote></expected>
+    <expected><name>prt3</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt3-1-T</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>6</testcase><description>Invalid: a letter for c</description>
+    <testinput><name>ans1</name><value>a</value></testinput>
+    <testinput><name>ans2</name><value>x</value></testinput>
+    <testinput><name>ans3</name><value>d</value></testinput>
+    <expected><name>prt1</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt1-1-T</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore></expectedscore><expectedpenalty></expectedpenalty><expectedanswernote>NULL</expectedanswernote></expected>
+    <expected><name>prt3</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt3-1-T</expectedanswernote></expected>
+  </qtest>
+</question>
+</quiz>

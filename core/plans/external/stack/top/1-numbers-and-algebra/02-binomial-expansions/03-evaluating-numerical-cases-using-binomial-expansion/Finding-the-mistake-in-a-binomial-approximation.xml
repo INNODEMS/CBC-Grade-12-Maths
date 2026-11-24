@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<quiz>
+<question type="stack">
+  <name><text>Finding the mistake in a binomial approximation</text></name>
+  <questiontext format="html">
+    <text><![CDATA[<p>Njeri used the expansion of \((1 + x)^{@n@}\) to estimate \({@Nd@}^{@n@}\) correct to 4 decimal places. Her working has one mistake.</p><ol><li>\({@Nd@} = 1 + x\) with \(x = -{@dd@}\).</li><li>The row for power \({@n@}\) starts \(1, {@cs[1]@}, {@cs[2]@}, {@cs[3]@}\).</li><li>\(x^2 = {@x2d@}\), \(x^3 = {@x3d@}\).</li><li>The first four terms are \(1, {@ttd[1]@}, {@ttd[2]@}, {@ttd[3]@}\).</li><li>Their sum is \({@Sd@}\).</li><li>So \({@Nd@}^{@n@} \approx {@Rd@}\).</li></ol><p>(a) Which step has the mistake?</p><div>[[input:ans1]] [[validation:ans1]] [[feedback:prt1]]</div><p>(b) Give the correct value of \({@Nd@}^{@n@}\), correct to 4 decimal places.</p><div>[[input:ans2]] [[validation:ans2]] [[feedback:prt2]]</div>]]></text>
+  </questiontext>
+  <generalfeedback format="html">
+    <text><![CDATA[<p>Check each step: the row of Pascal's triangle, the powers of \(x\) (a square has twice as many decimal places as the number), and the sign of each term (odd powers of a negative number are negative).</p>[[if test="is(er=1)"]]<p>(a) The mistake is in Step 2: \(1, {@cs[1]@}, {@cs[2]@}, {@cs[3]@}\) starts the row for power \({@n-1@}\). The row for power \({@n@}\) starts \(1, {@C1@}, {@C2@}, {@C3@}\).</p>[[elif test="is(er=2)"]]<p>(a) The mistake is in Step 3: \(({@dd@})^2\) has twice as many decimal places as \({@dd@}\), so \(x^2 = {@cx2@}\) and \(x^3 = {@cx3@}\).</p>[[else]]<p>(a) The mistake is in Step 4: \(x^3\) is negative, so the fourth term is \({@ct[3]@}\), not \({@ttd[3]@}\).</p>[[/if]]<p>(b) Done correctly: \(x = -{@dd@}\), the row starts \(1, {@C1@}, {@C2@}, {@C3@}\), \(x^2 = {@cx2@}\), \(x^3 = {@cx3@}\), the terms are \(1, {@ct[1]@}, {@ct[2]@}, {@ct[3]@}\), their sum is \({@S4d@}\), so \({@Nd@}^{@n@} \approx {@R4@}\).</p>]]></text>
+  </generalfeedback>
+  <defaultgrade>2</defaultgrade>
+  <penalty>0.1</penalty>
+  <hidden>0</hidden>
+  <idnumber></idnumber>
+  <stackversion><text>2026063000</text></stackversion>
+  <questionvariables>
+    <text><![CDATA[dec(v) := block([k:0], while k<10 and not(integerp(ev(10^k*v,simp))) do k:k+1, if k=0 then string(v) else dispdp(float(v),k));
+pad3(r) := if r<10 then sconcat("00",r) else if r<100 then sconcat("0",r) else sconcat(r);
+grp(v) := if v<0 then sconcat("-",grp(-v)) else if v<10000 then sconcat(v) else sconcat(floor(v/1000),"\\,",pad3(mod(v,1000)));
+money(v) := block([c], c: floor(100*v+1/2), if mod(c,100)=0 then grp(c/100) else sconcat(grp(floor(c/100)),".",if mod(c,100)<10 then sconcat("0",mod(c,100)) else sconcat(mod(c,100))));
+/* Design: find-the-mistake pattern. Source: original. er 1: row for power n-1 (step 2); er 2: x^2 and x^3 with one zero too few (step 3); er 3: the x^3 term given a + sign (step 4). Later steps follow correctly from the wrong one. */
+L: [[5,2/100,1],[7,2/100,2],[8,2/100,3],[5,3/100,1],[7,3/100,2],[5,4/100,3],[9,2/100,1],[8,3/100,2],[5,5/100,3],[7,4/100,2]];
+ix: 1+rand(10);
+n: L[ix][1];
+d: L[ix][2];
+er: L[ix][3];
+xv: -d;
+m: if er=1 then n-1 else n;
+cs: [binomial(m,1),binomial(m,2),binomial(m,3)];
+x2s: if er=2 then 10*xv^2 else xv^2;
+x3s: if er=2 then 10*xv^3 else xv^3;
+tt: [cs[1]*xv, cs[2]*x2s, (if er=3 then -1 else 1)*cs[3]*x3s];
+Ss: 1+apply("+",tt);
+Rs: floor(10^4*Ss+1/2)/10^4;
+S4: sum(binomial(n,r)*xv^r,r,0,3);
+two: 1+n*xv;
+Nd: dispdp(float(1-d),2);
+dd: dispdp(float(d),2);
+x2d: dec(x2s); x3d: dec(x3s);
+ttd: map(dec, tt);
+Sd: dec(Ss);
+Rd: dispdp(float(Rs),4);
+cx2: dec(xv^2); cx3: dec(xv^3);
+ct: makelist(dec(binomial(n,r)*xv^r),r,1,3);
+S4d: dec(S4);
+R4: dispdp(float(floor(10^4*S4+1/2)/10^4),4);
+C1: n; C2: binomial(n,2); C3: binomial(n,3);
+opts: [["s1",false,"Step 1"],["s2",is(er=1),"Step 2"],["s3",is(er=2),"Step 3"],["s4",is(er=3),"Step 4"],["s5",false,"Step 5"],["s6",false,"Step 6"]];
+kq: first(mcq_correct(opts));
+wr: if er=1 then "s3" else "s2";
+wstep: er+1;]]></text>
+  </questionvariables>
+  <specificfeedback format="html"><text><![CDATA[]]></text></specificfeedback>
+  <questionnote format="moodle_auto_format">
+    <text>ix={@ix@}, n={@n@}, d={@dd@}, er={@er@}, shown {@Rd@}, correct {@R4@}</text>
+  </questionnote>
+  <questiondescription format="html"><text><![CDATA[<p id="concept">Binomial Expansions: finding the mistake in a binomial approximation</p><p id="description">Grade 12 CBE Core 1.2: Find the wrong step in a worked four-term estimate of (1 - d)^n and give the correct value to 4 decimal places.</p><p id="edition">Core</p><p id="provenance">This question is original to this project.</p><p id="citation">INNODEMS CBC Grade 12 Mathematics, first draft by Ben Davies, 2026. Aligned to the KICD Senior School Curriculum Design, Core Mathematics Grade 12 (draft).</p>]]></text></questiondescription>
+  <questionsimplify>1</questionsimplify>
+  <assumepositive>0</assumepositive>
+  <assumereal>0</assumereal>
+  <prtcorrect format="html"><text><![CDATA[[[commonstring key="symbolicprtcorrectfeedback"/]] [[commonstring key="defaultprtcorrectfeedback"/]]]]></text></prtcorrect>
+  <prtpartiallycorrect format="html"><text><![CDATA[[[commonstring key="symbolicprtpartiallycorrectfeedback"/]] [[commonstring key="defaultprtpartiallycorrectfeedback"/]]]]></text></prtpartiallycorrect>
+  <prtincorrect format="html"><text><![CDATA[[[commonstring key="symbolicprtincorrectfeedback"/]] [[commonstring key="defaultprtincorrectfeedback"/]]]]></text></prtincorrect>
+  <decimals>.</decimals>
+  <scientificnotation>*10</scientificnotation>
+  <multiplicationsign>none</multiplicationsign>
+  <sqrtsign>1</sqrtsign>
+  <complexno>i</complexno>
+  <inversetrig>cos-1</inversetrig>
+  <logicsymbol>lang</logicsymbol>
+  <matrixparens>[</matrixparens>
+  <isbroken>0</isbroken>
+  <variantsselectionseed></variantsselectionseed>
+
+  <input><name>ans1</name><type>dropdown</type><tans>opts</tans><boxsize>8</boxsize><strictsyntax>1</strictsyntax><insertstars>0</insertstars><syntaxhint></syntaxhint><syntaxattribute>0</syntaxattribute><forbidwords></forbidwords><allowwords></allowwords><forbidfloat>1</forbidfloat><requirelowestterms>0</requirelowestterms><checkanswertype>0</checkanswertype><mustverify>0</mustverify><showvalidation>0</showvalidation><options></options></input>
+  <input><name>ans2</name><type>numerical</type><tans>S4</tans><boxsize>10</boxsize><strictsyntax>1</strictsyntax><insertstars>0</insertstars><syntaxhint></syntaxhint><syntaxattribute>0</syntaxattribute><forbidwords>^,log,lg,ln</forbidwords><allowwords></allowwords><forbidfloat>0</forbidfloat><requirelowestterms>0</requirelowestterms><checkanswertype>0</checkanswertype><mustverify>0</mustverify><showvalidation>0</showvalidation><options></options></input>
+
+  <prt><name>prt1</name><value>1.0000000</value><autosimplify>1</autosimplify><feedbackstyle>1</feedbackstyle><feedbackvariables><text><![CDATA[]]></text></feedbackvariables>
+    <node><name>0</name><description>Step with the mistake</description><answertest>AlgEquiv</answertest><sans>ans1</sans><tans>kq</tans><testoptions></testoptions><quiet>1</quiet><truescoremode>=</truescoremode><truescore>1.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt1-1-T</trueanswernote><truefeedback format="html"><text><![CDATA[]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>1</falsenextnode><falseanswernote>prt1-1-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>1</name><description>Chose step 1</description><answertest>AlgEquiv</answertest><sans>ans1</sans><tans>"s1"</tans><testoptions></testoptions><quiet>1</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt1-2-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>Step 1 is right: \({@Nd@} = 1 - {@dd@}\), so \(x = -{@dd@}\).</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>2</falsenextnode><falseanswernote>prt1-2-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>2</name><description>Chose step 5 or 6</description><answertest>AlgEquiv</answertest><sans>is(member(ans1,["s5","s6"]))</sans><tans>true</tans><testoptions></testoptions><quiet>1</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt1-3-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>Steps 5 and 6 follow correctly from the terms in step 4; the mistake is earlier.</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>-1</falsenextnode><falseanswernote>prt1-3-F</falseanswernote><falsefeedback format="html"><text><![CDATA[<p>Check the row of Pascal's triangle, the powers of \(x\) (count decimal places: \(({@dd@})^2\) has twice as many as \({@dd@}\)), and the sign of each term.</p>]]></text></falsefeedback></node>
+  </prt>
+  <prt><name>prt2</name><value>1.0000000</value><autosimplify>1</autosimplify><feedbackstyle>1</feedbackstyle><feedbackvariables><text><![CDATA[]]></text></feedbackvariables>
+    <node><name>0</name><description>Correct value</description><answertest>NumAbsolute</answertest><sans>ans2</sans><tans>S4</tans><testoptions>0.0000501</testoptions><quiet>1</quiet><truescoremode>=</truescoremode><truescore>1.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt2-1-T</trueanswernote><truefeedback format="html"><text><![CDATA[]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>1</falsenextnode><falseanswernote>prt2-1-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>1</name><description>Copied Njeri</description><answertest>NumAbsolute</answertest><sans>ans2</sans><tans>Rs</tans><testoptions>0.0000501</testoptions><quiet>1</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt2-2-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>That is Njeri's answer, which contains the mistake. Correct the wrong step and work on from there.</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>2</falsenextnode><falseanswernote>prt2-2-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>2</name><description>Two terms only</description><answertest>NumAbsolute</answertest><sans>ans2</sans><tans>two</tans><testoptions>0.0000501</testoptions><quiet>1</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt2-3-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>That is only the first two terms.</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>-1</falsenextnode><falseanswernote>prt2-3-F</falseanswernote><falsefeedback format="html"><text><![CDATA[<p>Correct the wrong step, then add the four terms and round to 4 decimal places.</p>]]></text></falsefeedback></node>
+  </prt>
+
+  <deployedseed>4</deployedseed>
+  <deployedseed>5</deployedseed>
+  <deployedseed>15</deployedseed>
+  <deployedseed>8</deployedseed>
+  <deployedseed>24</deployedseed>
+  <deployedseed>1</deployedseed>
+  <deployedseed>3</deployedseed>
+  <deployedseed>10</deployedseed>
+  <deployedseed>2</deployedseed>
+  <deployedseed>17</deployedseed>
+  <qtest><testcase>1</testcase><description>Correct, derived</description>
+    <testinput><name>ans1</name><value>first(mcq_correct(opts))</value></testinput>
+    <testinput><name>ans2</name><value>ev(float(floor(10^4*(sum(binomial(n,r)*(-d)^r,r,0,3))+1/2)/10^4),simp)</value></testinput>
+    <expected><name>prt1</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt1-1-T</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt2-1-T</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>2</testcase><description>Chose step 1; copied Njeri</description>
+    <testinput><name>ans1</name><value>"s1"</value></testinput>
+    <testinput><name>ans2</name><value>float(Rs)</value></testinput>
+    <expected><name>prt1</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt1-1-F | prt1-2-T</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt2-1-F | prt2-2-T</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>3</testcase><description>Chose step 6; two terms</description>
+    <testinput><name>ans1</name><value>"s6"</value></testinput>
+    <testinput><name>ans2</name><value>float(two)</value></testinput>
+    <expected><name>prt1</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt1-1-F | prt1-2-F | prt1-3-T</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt2-1-F | prt2-2-F | prt2-3-T</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>4</testcase><description>Generic wrong</description>
+    <testinput><name>ans1</name><value>wr</value></testinput>
+    <testinput><name>ans2</name><value>float(S4+1/100)</value></testinput>
+    <expected><name>prt1</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt1-1-F | prt1-2-F | prt1-3-F</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt2-1-F | prt2-2-F | prt2-3-F</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>5</testcase><description>Invalid: a letter in (b)</description>
+    <testinput><name>ans1</name><value>kq</value></testinput>
+    <testinput><name>ans2</name><value>x</value></testinput>
+    <expected><name>prt1</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt1-1-T</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore></expectedscore><expectedpenalty></expectedpenalty><expectedanswernote>NULL</expectedanswernote></expected>
+  </qtest>
+</question>
+</quiz>

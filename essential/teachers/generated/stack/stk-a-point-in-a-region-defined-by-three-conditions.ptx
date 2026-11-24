@@ -1,0 +1,6 @@
+<stack-static>
+    <statement><p><p><m>A</m> is <m>({0}, {1})</m> and <m>B</m> is <m>({6}, {0})</m>. Give a point <m>P</m> with whole-number coordinates such that <m>PA \lt {4}</m>, <m>PB \lt {6}</m> and <m>P</m> is nearer to <m>A</m> than to <m>B</m>.</p><div><m>P = \big(</m><fillin characters="5" name="ans1"/>, <fillin characters="5" name="ans2"/><m>\big)</m>   </div></p></statement>
+    <solution><p><p>The region is inside the circle with centre <m>A</m>, radius <m>{4}</m>, inside the circle with centre <m>B</m>, radius <m>{6}</m>, and on <m>A</m>'s side of the perpendicular bisector of <m>AB</m>. All three boundaries are dashed, because the inequalities are strict. Test a point by comparing squares: <m>PA^2 \lt {16}</m>, <m>PB^2 \lt {36}</m> and <m>PA^2 \lt PB^2</m>.</p><p>For example <m>P({1}, {-2})</m>: <m>PA^2 = {10}</m>, <m>PB^2 = {29}</m>. There are <m>{16}</m> points with whole-number coordinates in the region.</p></p></solution>
+    <answer><p><m>1</m></p></answer>
+    <answer><p><m>-2</m></p></answer>
+</stack-static>

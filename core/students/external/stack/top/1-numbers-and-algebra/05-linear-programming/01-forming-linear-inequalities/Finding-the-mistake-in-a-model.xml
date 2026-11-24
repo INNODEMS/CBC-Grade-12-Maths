@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<quiz>
+<question type="stack">
+  <name><text>Finding the mistake in a model</text></name>
+  <questiontext format="html">
+    <text><![CDATA[<p>{@E[1]@}</p><ul><li>{@E[2][1]@}</li><li>{@E[2][2]@}</li><li>{@E[2][3]@}</li></ul><p>Wambui wrote this model, with \(x \ge 0\) and \(y \ge 0\):</p><p>(1) \({@E[7][1]@}\) &nbsp;&nbsp; (2) \({@E[7][2]@}\) &nbsp;&nbsp; (3) \({@E[7][3]@}\)</p><p>Each inequality (1) to (3) is meant to match the sentence in the same place. One of them does not match its sentence.</p><p>(a) Which one?</p><div>[[input:ans1]] [[validation:ans1]] [[feedback:prt1]]</div><p>(b) Write it correctly.</p><div>[[input:ans2]] [[validation:ans2]] [[feedback:prt2]]</div>]]></text>
+  </questiontext>
+  <generalfeedback format="html">
+    <text><![CDATA[<p>The correct model is (1) \({@E[8][1]@}\), (2) \({@E[8][2]@}\), (3) \({@E[8][3]@}\).</p><p>Wambui's inequality ({@kk@}) is \({@wk@}\), which does not match its sentence: it should be \({@E[8][kk]@}\). Read each sentence for its key words (at most \(\le\), at least \(\ge\), more than \(\gt\), fewer than \(\lt\)), check which letter each number belongs to, and check a &lsquo;times as many&rsquo; sentence with numbers.</p>]]></text>
+  </generalfeedback>
+  <defaultgrade>2</defaultgrade>
+  <penalty>0.1</penalty>
+  <hidden>0</hidden>
+  <idnumber></idnumber>
+  <stackversion><text>2026063000</text></stackversion>
+  <questionvariables>
+    <text><![CDATA[/* Design: find-the-mistake pattern (reading comprehension). Source: original. Wrong index 1 four times, 2 three, 3 three; errors dir 3, swap 2, strict 2, ratio 2, single 1. */
+/* lincan(q): canonical form of a linear inequality in x and y: [strict?, [a, b, c]] meaning a*x + b*y + c (< or <=) 0 */
+lincan(q) := block([r, d, s], r: op(q), d: expand(lhs(q) - rhs(q)),
+    if r = ">" or r = ">=" then d: -d,
+    s: is(r = "<" or r = ">"),
+    [s, map(lambda([t], float(t)), [coeff(d, x), coeff(d, y), subst([x = 0, y = 0], d)])]);
+lpar(u, v) := is(abs(u[1]*v[2] - u[2]*v[1]) + abs(u[1]*v[3] - u[3]*v[1]) + abs(u[2]*v[3] - u[3]*v[2]) < 1/10^9 * (abs(u[1]) + abs(u[2]) + abs(u[3])) * (abs(v[1]) + abs(v[2]) + abs(v[3])));
+ldot(u, v) := u[1]*v[1] + u[2]*v[2] + u[3]*v[3];
+/* lcls(L, T): "same" region; "dir" same boundary, other side, same strictness; "strict" same side, other strictness; "both"; "other" */
+lcls(L, T) := block([l: lincan(L), t: lincan(T)],
+    if not lpar(l[2], t[2]) then "other"
+    elseif ldot(l[2], t[2]) > 0 then (if l[1] = t[1] then "same" else "strict")
+    elseif l[1] = t[1] then "dir" else "both");
+/* the validator: an inequality in x and y, linear */
+validate_ineq(ex) := block([e: ev(ex, simp), d],
+    if atom(e) or not member(op(e), ["<", "<=", ">", ">="]) then
+        "Type an inequality using <, <=, > or >=, for example 2*x+3*y<=60. An equation with = is not an inequality."
+    elseif listofvars(e) = [] or not every(lambda([v], member(v, [x, y])), listofvars(e)) then "Use only the letters x and y."
+    else (d: ev(expand(lhs(e) - rhs(e)), simp),
+          if not ev(polynomialp(d, [x, y]), simp) then
+              "This inequality should be linear: only numbers times x and y, added or subtracted."
+          elseif ev(hipow(d, x), simp) > 1 or ev(hipow(d, y), simp) > 1 or not freeof(x, ev(coeff(d, y), simp)) then
+              "This inequality should be linear: no powers or products of x and y." else ""));
+/* mkineq([a, b, rel, c]): the inequality a*x + b*y rel c */
+mkineq(L) := if L[3] = "<=" then L[1]*x + L[2]*y <= L[4] elseif L[3] = "<" then L[1]*x + L[2]*y < L[4]
+    elseif L[3] = ">=" then L[1]*x + L[2]*y >= L[4] else L[1]*x + L[2]*y > L[4];
+Q13L: [["A school canteen in Embu sells \\(x\\) plates of githeri and \\(y\\) plates of pilau in a day.",["A plate of githeri costs Ksh \\(30\\) to make and a plate of pilau costs Ksh \\(70\\); the canteen has Ksh \\(6300\\).","At least \\(50\\) plates of pilau are sold.","The canteen sells more than \\(100\\) plates."],[30*x+70*y<=6300,1*y>=50,1*x+1*y>100],2,"dir",1*y<=50,["30x + 70y \\le 6300","y \\le 50","x + y \\gt 100"],["30x + 70y \\le 6300","y \\ge 50","x + y \\gt 100"],">="],
+["A lorry owner in Nakuru plans \\(x\\) trips to Dar es Salaam and \\(y\\) trips to Mombasa in a month.",["A Dar es Salaam trip uses \\(900\\) litres of diesel and a Mombasa trip uses \\(700\\) litres; there are at most \\(9100\\) litres.","There are at least three times as many Dar es Salaam trips as Mombasa trips.","There are fewer than \\(15\\) trips in total."],[900*x+700*y<=9100,1*x-3*y>=0,1*x+1*y<15],1,"swap",700*x+900*y<=9100,["700x + 900y \\le 9100","x - 3y \\ge 0","x + y \\lt 15"],["900x + 700y \\le 9100","x - 3y \\ge 0","x + y \\lt 15"],"<="],
+["A dairy cooperative in Ol Kalou sends \\(x\\) churns of milk to Nakuru and \\(y\\) churns to Nyahururu each day.",["The lorry carries at most \\(40\\) churns.","Nakuru takes more than \\(15\\) churns.","Nyahururu takes at least \\(8\\) churns."],[1*x+1*y<=40,1*x>15,1*y>=8],2,"strict",1*x>=15,["x + y \\le 40","x \\ge 15","y \\ge 8"],["x + y \\le 40","x \\gt 15","y \\ge 8"],">"],
+["A youth group in Kisumu makes \\(x\\) desks and \\(y\\) chairs for a school.",["A desk uses \\(8\\) metres of timber and a chair uses \\(3\\) metres; there are \\(160\\) metres of timber.","There must be at least four times as many chairs as desks.","There must be at least \\(6\\) desks."],[8*x+3*y<=160,-4*x+1*y>=0,1*x>=6],2,"ratio",-1*x+4*y>=0,["8x + 3y \\le 160","-x + 4y \\ge 0","x \\ge 6"],["8x + 3y \\le 160","-4x + y \\ge 0","x \\ge 6"],">="],
+["A shop in Garissa stocks \\(x\\) crates of soda and \\(y\\) cartons of milk.",["The fridge holds at most \\(32\\) crates and cartons altogether.","A crate costs Ksh \\(900\\) and a carton costs Ksh \\(1300\\); the shop can spend at most Ksh \\(31\\,200\\).","There must be at least \\(5\\) cartons of milk."],[1*x+1*y<=32,900*x+1300*y<=31200,1*y>=5],1,"single",1*x<=32,["x \\le 32","900x + 1300y \\le 31\\,200","y \\ge 5"],["x + y \\le 32","900x + 1300y \\le 31\\,200","y \\ge 5"],"<="],
+["A farmer in Meru plants \\(x\\) rows of kales and \\(y\\) rows of spinach.",["Each row of kales needs \\(5\\) kg of manure and each row of spinach needs \\(6\\) kg; there are \\(150\\) kg of manure.","There must be more than \\(12\\) rows of kales.","There must be at least \\(5\\) rows of spinach."],[5*x+6*y<=150,1*x>12,1*y>=5],3,"dir",1*y<=5,["5x + 6y \\le 150","x \\gt 12","y \\le 5"],["5x + 6y \\le 150","x \\gt 12","y \\ge 5"],">="],
+["A posho mill in Thika grinds \\(x\\) bags of maize and \\(y\\) bags of millet in a day.",["A bag of maize takes \\(9\\) minutes to grind and a bag of millet takes \\(4\\) minutes; the mill runs for at most \\(480\\) minutes.","The mill grinds at least \\(20\\) bags of maize.","The mill grinds more than \\(4\\) bags of millet."],[9*x+4*y<=480,1*x>=20,1*y>4],3,"strict",1*y>=4,["9x + 4y \\le 480","x \\ge 20","y \\ge 4"],["9x + 4y \\le 480","x \\ge 20","y \\gt 4"],">"],
+["A county office buys \\(x\\) small water tanks and \\(y\\) large water tanks for a school borehole project.",["A small tank holds \\(2\\) cubic metres and a large tank holds \\(7\\) cubic metres; the tanks must hold at least \\(45\\) cubic metres.","At most \\(12\\) tanks fit on the site.","At most \\(5\\) large tanks are in stock."],[2*x+7*y>=45,1*x+1*y<=12,1*y<=5],1,"dir",2*x+7*y<=45,["2x + 7y \\le 45","x + y \\le 12","y \\le 5"],["2x + 7y \\ge 45","x + y \\le 12","y \\le 5"],">="],
+["A uniform maker in Kakamega sews \\(x\\) school shirts and \\(y\\) skirts in a week.",["A shirt takes \\(3\\) hours and a skirt takes \\(7\\) hours; there are \\(100\\) hours of sewing time.","At least \\(6\\) skirts are needed.","The number of shirts must be at least three times the number of skirts."],[3*x+7*y<=100,1*y>=6,1*x-3*y>=0],3,"ratio",3*x-1*y>=0,["3x + 7y \\le 100","y \\ge 6","3x - y \\ge 0"],["3x + 7y \\le 100","y \\ge 6","x - 3y \\ge 0"],">="],
+["A honey cooperative in Baringo fills \\(x\\) \\(6\\) kg tins and \\(y\\) \\(1\\) kg jars from \\(300\\) kg of honey.",["The honey in the tins and jars must not be more than the \\(300\\) kg they have.","At least \\(10\\) tins are filled.","Fewer than \\(120\\) tins and jars are filled altogether."],[6*x+1*y<=300,1*x>=10,1*x+1*y<120],1,"swap",1*x+6*y<=300,["x + 6y \\le 300","x \\ge 10","x + y \\lt 120"],["6x + y \\le 300","x \\ge 10","x + y \\lt 120"],"<="]];
+ix: 1+rand(10);
+E: Q13L[ix];
+kk: E[4]; er: E[5];
+tk: E[3][kk]; wk: E[6];
+keyv: ["i1","i2","i3"][kk];
+opts: [["none",false,"None of them: her model is right."],["i1",is(kk=1),"(1)"],["i2",is(kk=2),"(2)"],["i3",is(kk=3),"(3)"]];
+wrongi: ["i1","i2","i3"][mod(kk,3)+1];
+rl: op(tk);
+flip(q) := if op(q) = "<=" then lhs(q) >= rhs(q) elseif op(q) = ">=" then lhs(q) <= rhs(q) elseif op(q) = "<" then lhs(q) > rhs(q) else lhs(q) < rhs(q);
+strict(q) := if op(q) = "<=" then lhs(q) < rhs(q) elseif op(q) = ">=" then lhs(q) > rhs(q) elseif op(q) = "<" then lhs(q) <= rhs(q) else lhs(q) >= rhs(q);
+tkflip: flip(tk);
+tkboth: flip(strict(tk));
+/* side or strictness changed, never equal to Wambui's inequality (her error is dir on some entries, strict on others) */
+tkone: if er = "dir" then strict(tk) else flip(tk);
+tkswap: apply(op(tk), [subst([x=y, y=x], lhs(tk)), rhs(tk)+1]);
+incl: if rl = "<=" or rl = ">=" then "include" else "do not include";
+sidew: if rl = "<=" or rl = "<" then "\\(\\le\\) or \\(\\lt\\)" else "\\(\\ge\\) or \\(\\gt\\)";
+]]></text>
+  </questionvariables>
+  <specificfeedback format="html"><text><![CDATA[]]></text></specificfeedback>
+  <questionnote format="moodle_auto_format">
+    <text>ix={@ix@}, k={@kk@}, error={@er@}, correct {@tk@}</text>
+  </questionnote>
+  <questiondescription format="html"><text><![CDATA[<p id="concept">Linear Programming: finding the mistake in a model</p><p id="description">Grade 12 CBE Core 1.4 (a) / Essential 1.4 (a): Read three conditions and a model of them, find the inequality that does not match its sentence, and correct it.</p><p id="edition">Core and Essential</p><p id="provenance">This question is original to this project.</p><p id="citation">INNODEMS CBC Grade 12 Mathematics, first draft by Ben Davies, 2026. Aligned to the KICD Senior School Curriculum Design, Core and Essential Mathematics Grade 12 (draft).</p>]]></text></questiondescription>
+  <questionsimplify>1</questionsimplify>
+  <assumepositive>0</assumepositive>
+  <assumereal>0</assumereal>
+  <prtcorrect format="html"><text><![CDATA[[[commonstring key="symbolicprtcorrectfeedback"/]] [[commonstring key="defaultprtcorrectfeedback"/]]]]></text></prtcorrect>
+  <prtpartiallycorrect format="html"><text><![CDATA[[[commonstring key="symbolicprtpartiallycorrectfeedback"/]] [[commonstring key="defaultprtpartiallycorrectfeedback"/]]]]></text></prtpartiallycorrect>
+  <prtincorrect format="html"><text><![CDATA[[[commonstring key="symbolicprtincorrectfeedback"/]] [[commonstring key="defaultprtincorrectfeedback"/]]]]></text></prtincorrect>
+  <decimals>.</decimals>
+  <scientificnotation>*10</scientificnotation>
+  <multiplicationsign>none</multiplicationsign>
+  <sqrtsign>1</sqrtsign>
+  <complexno>i</complexno>
+  <inversetrig>cos-1</inversetrig>
+  <logicsymbol>lang</logicsymbol>
+  <matrixparens>[</matrixparens>
+  <isbroken>0</isbroken>
+  <variantsselectionseed></variantsselectionseed>
+
+  <input><name>ans1</name><type>dropdown</type><tans>opts</tans><boxsize>15</boxsize><strictsyntax>1</strictsyntax><insertstars>0</insertstars><syntaxhint></syntaxhint><syntaxattribute>0</syntaxattribute><forbidwords></forbidwords><allowwords></allowwords><forbidfloat>1</forbidfloat><requirelowestterms>0</requirelowestterms><checkanswertype>0</checkanswertype><mustverify>0</mustverify><showvalidation>0</showvalidation><options></options></input>
+  <input><name>ans2</name><type>algebraic</type><tans>tk</tans><boxsize>18</boxsize><strictsyntax>1</strictsyntax><insertstars>4</insertstars><syntaxhint></syntaxhint><syntaxattribute>0</syntaxattribute><forbidwords></forbidwords><allowwords></allowwords><forbidfloat>0</forbidfloat><requirelowestterms>0</requirelowestterms><checkanswertype>0</checkanswertype><mustverify>0</mustverify><showvalidation>1</showvalidation><options>validator:validate_ineq</options></input>
+
+  <prt><name>prt1</name><value>1.0000000</value><autosimplify>1</autosimplify><feedbackstyle>1</feedbackstyle><feedbackvariables><text><![CDATA[ch: if ans1 = "i1" then 1 elseif ans1 = "i2" then 2 elseif ans1 = "i3" then 3 else 1;]]></text></feedbackvariables>
+    <node><name>0</name><description>Wrong inequality found</description><answertest>AlgEquiv</answertest><sans>ans1</sans><tans>keyv</tans><testoptions></testoptions><quiet>0</quiet><truescoremode>=</truescoremode><truescore>1.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt1-1-T</trueanswernote><truefeedback format="html"><text><![CDATA[]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>1</falsenextnode><falseanswernote>prt1-1-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>1</name><description>Said the model is right</description><answertest>AlgEquiv</answertest><sans>ans1</sans><tans>"none"</tans><testoptions></testoptions><quiet>0</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt1-2-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>One inequality does not match: read each sentence again and check the sign, the letters and the numbers.</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>-1</falsenextnode><falseanswernote>prt1-2-F</falseanswernote><falsefeedback format="html"><text><![CDATA[<p>Inequality ({@ch@}) matches its sentence: it is \({@E[8][ch]@}\). Look at the others.</p>]]></text></falsefeedback></node>
+  </prt>
+  <prt><name>prt2</name><value>1.0000000</value><autosimplify>1</autosimplify><feedbackstyle>1</feedbackstyle><feedbackvariables><text><![CDATA[c2: lcls(ans2, tk); w2: lcls(ans2, wk); ds: is(c2 = "dir" or c2 = "strict");]]></text></feedbackvariables>
+    <node><name>0</name><description>Corrected inequality</description><answertest>AlgEquiv</answertest><sans>c2</sans><tans>"same"</tans><testoptions></testoptions><quiet>0</quiet><truescoremode>=</truescoremode><truescore>1.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt2-1-T</trueanswernote><truefeedback format="html"><text><![CDATA[]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>1</falsenextnode><falseanswernote>prt2-1-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>1</name><description>Copied Wambui</description><answertest>AlgEquiv</answertest><sans>w2</sans><tans>"same"</tans><testoptions></testoptions><quiet>0</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt2-2-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>That is Wambui's inequality, which is the one with the mistake.</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>2</falsenextnode><falseanswernote>prt2-2-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>2</name><description>Wrong side or wrong strictness</description><answertest>AlgEquiv</answertest><sans>ds</sans><tans>true</tans><testoptions></testoptions><quiet>0</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt2-3-T</trueanswernote><truefeedback format="html"><text><![CDATA[[[if test='is(c2="dir")']]<p>The boundary is right but the side is wrong: your inequality allows what sentence ({@kk@}) rules out. Test a pair of numbers that fits the sentence.</p>[[else]]<p>The side is right, but the words in sentence ({@kk@}) {@incl@} the number at the boundary.</p>[[/if]]]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>-1</falsenextnode><falseanswernote>prt2-3-F</falseanswernote><falsefeedback format="html"><text><![CDATA[<p>Write the sentence for inequality ({@kk@}) again, word by word.</p>]]></text></falsefeedback></node>
+  </prt>
+
+  <deployedseed>4</deployedseed>
+  <deployedseed>5</deployedseed>
+  <deployedseed>15</deployedseed>
+  <deployedseed>8</deployedseed>
+  <deployedseed>24</deployedseed>
+  <deployedseed>1</deployedseed>
+  <deployedseed>3</deployedseed>
+  <deployedseed>10</deployedseed>
+  <deployedseed>2</deployedseed>
+  <deployedseed>17</deployedseed>
+  <qtest><testcase>1</testcase><description>Correct</description>
+    <testinput><name>ans1</name><value>keyv</value></testinput>
+    <testinput><name>ans2</name><value>tk</value></testinput>
+    <expected><name>prt1</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt1-1-T</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt2-1-T</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>2</testcase><description>None; copied Wambui</description>
+    <testinput><name>ans1</name><value>"none"</value></testinput>
+    <testinput><name>ans2</name><value>wk</value></testinput>
+    <expected><name>prt1</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt1-1-F | prt1-2-T</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt2-1-F | prt2-2-T</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>3</testcase><description>Wrong index; side or strictness changed (not Wambui's)</description>
+    <testinput><name>ans1</name><value>wrongi</value></testinput>
+    <testinput><name>ans2</name><value>tkone</value></testinput>
+    <expected><name>prt1</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt1-1-F | prt1-2-F</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt2-1-F | prt2-2-F | prt2-3-T</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>4</testcase><description>Flipped side and strictness: generic</description>
+    <testinput><name>ans1</name><value>keyv</value></testinput>
+    <testinput><name>ans2</name><value>tkboth</value></testinput>
+    <expected><name>prt1</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt1-1-T</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt2-1-F | prt2-2-F | prt2-3-F</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>5</testcase><description>Letters exchanged, boundary moved: generic</description>
+    <testinput><name>ans1</name><value>keyv</value></testinput>
+    <testinput><name>ans2</name><value>tkswap</value></testinput>
+    <expected><name>prt1</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt1-1-T</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt2-1-F | prt2-2-F | prt2-3-F</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>6</testcase><description>Invalid: expression in (b)</description>
+    <testinput><name>ans1</name><value>keyv</value></testinput>
+    <testinput><name>ans2</name><value>x+y</value></testinput>
+    <expected><name>prt1</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt1-1-T</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore></expectedscore><expectedpenalty></expectedpenalty><expectedanswernote>NULL</expectedanswernote></expected>
+  </qtest>
+</question>
+</quiz>

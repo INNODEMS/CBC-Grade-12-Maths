@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<quiz>
+<question type="stack">
+  <name><text>A plan that meets a profit target</text></name>
+  <questiontext format="html">
+    <text><![CDATA[<p>{@E[1]@}</p><p>Give a whole-number plan that satisfies both conditions and makes a profit of at least Ksh \({@thou(TT)@}\). There is more than one right answer.</p><p>\(x =\) [[input:ans1]] [[validation:ans1]] \(y =\) [[input:ans2]] [[validation:ans2]]</p><div>[[feedback:prt1]]</div>]]></text>
+  </questiontext>
+  <generalfeedback format="html">
+    <text><![CDATA[<p>The conditions are \({@a1@}x + {@b1@}y \le {@c1@}\) and \({@a2@}x + {@b2@}y \le {@c2@}\), with \(x \ge 0\), \(y \ge 0\). The profit is \(P = {@pp@}x + {@pq@}y\). Plans near the corner where the two boundary lines meet give the most profit.</p><p>For example \(x = {@g1[1]@}\), \(y = {@g1[2]@}\) needs \({@a1*g1[1]+b1*g1[2]@}\) {@un[1]@} and \({@a2*g1[1]+b2*g1[2]@}\) {@un[2]@}, and makes Ksh \({@thou(pp*g1[1]+pq*g1[2])@}\). There are \({@ng@}\) plans that work.</p>]]></text>
+  </generalfeedback>
+  <defaultgrade>1</defaultgrade>
+  <penalty>0.1</penalty>
+  <hidden>0</hidden>
+  <idnumber></idnumber>
+  <stackversion><text>2026063000</text></stackversion>
+  <questionvariables>
+    <text><![CDATA[/* Design: construct-an-instance pattern. Source: original. 3 to 8 whole-number plans reach the target on every entry; a near miss and target-reaching plans outside R exist. */
+Q44L: [["A youth group in Kisii makes \\(x\\) soapstone carvings and \\(y\\) soapstone bowls a week. Each of the soapstone carvings needs \\(5\\) hours of carving time and each of the soapstone bowls needs \\(6\\); there are \\(47\\) hours of carving time. Each of the soapstone carvings needs \\(7\\) hours of polishing time and each of the soapstone bowls needs \\(4\\); there are \\(59\\) hours of polishing time. The profit is Ksh \\(600\\) on each of the soapstone carvings and Ksh \\(500\\) on each of the soapstone bowls.",[5,6,"<=",47],[7,4,"<=",59],600,500,4500,[[5,3],[6,2],[7,1],[7,2],[8,0]],[2,6],[0,9],[8,1],["hours of carving time","hours of polishing time"],5],
+["A farmer in Kirinyaga makes \\(x\\) rows of French beans and \\(y\\) rows of baby corn a week. Each of the rows of French beans needs \\(2\\) hundreds of litres a week of water and each of the rows of baby corn needs \\(9\\); there are \\(47\\) hundreds of litres a week of water. Each of the rows of French beans needs \\(7\\) hours a week of labour and each of the rows of baby corn needs \\(3\\); there are \\(38\\) hours a week of labour. The profit is Ksh \\(600\\) on each of the rows of French beans and Ksh \\(700\\) on each of the rows of baby corn.",[2,9,"<=",47],[7,3,"<=",38],600,700,3900,[[1,5],[2,4],[3,3],[3,4],[4,3]],[4,2],[0,6],[5,2],["hundreds of litres a week of water","hours a week of labour"],5],
+["A welder in Kisumu makes \\(x\\) gates and \\(y\\) window grills a week. Each of the gates needs \\(5\\) metres of steel and each of the window grills needs \\(7\\); there are \\(55\\) metres of steel. Each of the gates needs \\(7\\) hours of welding time and each of the window grills needs \\(2\\); there are \\(48\\) hours of welding time. The profit is Ksh \\(5000\\) on each of the gates and Ksh \\(3000\\) on each of the window grills.",[5,7,"<=",55],[7,2,"<=",48],5000,3000,34000,[[4,5],[5,3],[5,4],[6,2],[6,3]],[4,4],[2,8],[7,0],["metres of steel","hours of welding time"],5],
+["A snack maker in Kakamega makes \\(x\\) packets of popcorn and \\(y\\) bags of crisps a week. Each of the packets of popcorn needs \\(4\\) kg of potatoes and maize and each of the bags of crisps needs \\(9\\); there are \\(49\\) kg of potatoes and maize. Each of the packets of popcorn needs \\(6\\) hours of frying time and each of the bags of crisps needs \\(1\\); there are \\(24\\) hours of frying time. The profit is Ksh \\(700\\) on each of the packets of popcorn and Ksh \\(800\\) on each of the bags of crisps.",[4,9,"<=",49],[6,1,"<=",24],700,800,4000,[[0,5],[1,5],[2,4],[3,3],[3,4]],[1,4],[0,6],[4,2],["kg of potatoes and maize","hours of frying time"],5],
+["A school club in Meru makes \\(x\\) jars of jam and \\(y\\) bottles of juice a week. Each of the jars of jam needs \\(3\\) kg of fruit and each of the bottles of juice needs \\(8\\); there are \\(59\\) kg of fruit. Each of the jars of jam needs \\(6\\) hours of time and each of the bottles of juice needs \\(5\\); there are \\(55\\) hours of time. The profit is Ksh \\(90\\) on each of the jars of jam and Ksh \\(80\\) on each of the bottles of juice.",[3,8,"<=",59],[6,5,"<=",55],90,80,780,[[5,5],[6,3],[7,2],[8,1],[9,0]],[3,6],[0,10],[6,4],["kg of fruit","hours of time"],5],
+["A tailor in Nyeri makes \\(x\\) shirts and \\(y\\) dresses a week. Each of the shirts needs \\(3\\) metres of cloth and each of the dresses needs \\(7\\); there are \\(37\\) metres of cloth. Each of the shirts needs \\(8\\) hours of sewing time and each of the dresses needs \\(3\\); there are \\(39\\) hours of sewing time. The profit is Ksh \\(800\\) on each of the shirts and Ksh \\(900\\) on each of the dresses.",[3,7,"<=",37],[8,3,"<=",39],800,900,4500,[[0,5],[2,4],[3,3],[3,4],[4,2]],[1,4],[0,6],[5,1],["metres of cloth","hours of sewing time"],5],
+["A carpenter in Nakuru makes \\(x\\) beds and \\(y\\) wardrobes a week. Each of the beds needs \\(3\\) planks of timber and each of the wardrobes needs \\(8\\); there are \\(52\\) planks of timber. Each of the beds needs \\(7\\) hours of workshop time and each of the wardrobes needs \\(3\\); there are \\(54\\) hours of workshop time. The profit is Ksh \\(4000\\) on each of the beds and Ksh \\(7000\\) on each of the wardrobes.",[3,8,"<=",52],[7,3,"<=",54],4000,7000,46000,[[1,6],[3,5],[4,5],[5,4],[6,4]],[2,5],[0,7],[7,3],["planks of timber","hours of workshop time"],5],
+["A potter in Kitui makes \\(x\\) water pots and \\(y\\) flower pots a week. Each of the water pots needs \\(7\\) kg of clay and each of the flower pots needs \\(9\\); there are \\(60\\) kg of clay. Each of the water pots needs \\(7\\) units of kiln space and each of the flower pots needs \\(4\\); there are \\(52\\) units of kiln space. The profit is Ksh \\(700\\) on each of the water pots and Ksh \\(600\\) on each of the flower pots.",[7,9,"<=",60],[7,4,"<=",52],700,600,4600,[[4,3],[5,2],[6,1],[6,2],[7,0]],[2,5],[0,8],[7,1],["kg of clay","units of kiln space"],5],
+["A fish trader in Homa Bay makes \\(x\\) boxes of tilapia and \\(y\\) boxes of omena a week. Each of the boxes of tilapia needs \\(2\\) kg of ice and each of the boxes of omena needs \\(9\\); there are \\(56\\) kg of ice. Each of the boxes of tilapia needs \\(6\\) units of cool-box space and each of the boxes of omena needs \\(1\\); there are \\(29\\) units of cool-box space. The profit is Ksh \\(800\\) on each of the boxes of tilapia and Ksh \\(900\\) on each of the boxes of omena.",[2,9,"<=",56],[6,1,"<=",29],800,900,6100,[[1,6],[2,5],[3,5],[4,4],[4,5]],[3,4],[0,7],[5,3],["kg of ice","units of cool-box space"],5],
+["A printer in Thika makes \\(x\\) packs of calendars and \\(y\\) packs of posters a week. Each of the packs of calendars needs \\(5\\) reams of paper and each of the packs of posters needs \\(7\\); there are \\(50\\) reams of paper. Each of the packs of calendars needs \\(9\\) hours of machine time and each of the packs of posters needs \\(1\\); there are \\(24\\) hours of machine time. The profit is Ksh \\(500\\) on each of the packs of calendars and Ksh \\(600\\) on each of the packs of posters.",[5,7,"<=",50],[9,1,"<=",24],500,600,3500,[[0,6],[0,7],[1,5],[1,6],[2,5]],[2,4],[0,8],[3,4],["reams of paper","hours of machine time"],5]];
+ix: 1+rand(10);
+E: Q44L[ix];
+a1: E[2][1]; b1: E[2][2]; c1: E[2][4]; a2: E[3][1]; b2: E[3][2]; c2: E[3][4];
+pp: E[4]; pq: E[5]; TT: E[6]; good: E[7]; nr: E[8]; b1p: E[9]; b2p: E[10]; un: E[11]; ng: E[12];
+g1: first(good); gl: last(good);
+validate_int(ex) := if integerp(ev(ex, simp)) then "" else "Type whole numbers.";
+g3(v) := block([q,r], if v < 1000 then string(v) else (q: floor(v/1000), r: v - 1000*q, sconcat(g3(q), "\\,", if r < 10 then "00" elseif r < 100 then "0" else "", string(r))));
+thou(v) := if abs(v) < 10000 then string(v) else g3(v);
+]]></text>
+  </questionvariables>
+  <specificfeedback format="html"><text><![CDATA[]]></text></specificfeedback>
+  <questionnote format="moodle_auto_format">
+    <text>ix={@ix@}, T={@TT@}, plans {@ng@}</text>
+  </questionnote>
+  <questiondescription format="html"><text><![CDATA[<p id="concept">Linear Programming: a plan that meets a profit target</p><p id="description">Grade 12 CBE Core 1.4 (d) / Essential 1.4 (d): Construct a whole-number plan that satisfies two resource constraints and reaches a given profit.</p><p id="edition">Core and Essential</p><p id="provenance">This question is original to this project.</p><p id="citation">INNODEMS CBC Grade 12 Mathematics, first draft by Ben Davies, 2026. Aligned to the KICD Senior School Curriculum Design, Core and Essential Mathematics Grade 12 (draft).</p>]]></text></questiondescription>
+  <questionsimplify>1</questionsimplify>
+  <assumepositive>0</assumepositive>
+  <assumereal>0</assumereal>
+  <prtcorrect format="html"><text><![CDATA[[[commonstring key="symbolicprtcorrectfeedback"/]] [[commonstring key="defaultprtcorrectfeedback"/]]]]></text></prtcorrect>
+  <prtpartiallycorrect format="html"><text><![CDATA[[[commonstring key="symbolicprtpartiallycorrectfeedback"/]] [[commonstring key="defaultprtpartiallycorrectfeedback"/]]]]></text></prtpartiallycorrect>
+  <prtincorrect format="html"><text><![CDATA[[[commonstring key="symbolicprtincorrectfeedback"/]] [[commonstring key="defaultprtincorrectfeedback"/]]]]></text></prtincorrect>
+  <decimals>.</decimals>
+  <scientificnotation>*10</scientificnotation>
+  <multiplicationsign>none</multiplicationsign>
+  <sqrtsign>1</sqrtsign>
+  <complexno>i</complexno>
+  <inversetrig>cos-1</inversetrig>
+  <logicsymbol>lang</logicsymbol>
+  <matrixparens>[</matrixparens>
+  <isbroken>0</isbroken>
+  <variantsselectionseed></variantsselectionseed>
+
+  <input><name>ans1</name><type>numerical</type><tans>g1[1]</tans><boxsize>4</boxsize><strictsyntax>1</strictsyntax><insertstars>0</insertstars><syntaxhint></syntaxhint><syntaxattribute>0</syntaxattribute><forbidwords></forbidwords><allowwords></allowwords><forbidfloat>1</forbidfloat><requirelowestterms>0</requirelowestterms><checkanswertype>0</checkanswertype><mustverify>0</mustverify><showvalidation>0</showvalidation><options>validator:validate_int</options></input>
+  <input><name>ans2</name><type>numerical</type><tans>g1[2]</tans><boxsize>4</boxsize><strictsyntax>1</strictsyntax><insertstars>0</insertstars><syntaxhint></syntaxhint><syntaxattribute>0</syntaxattribute><forbidwords></forbidwords><allowwords></allowwords><forbidfloat>1</forbidfloat><requirelowestterms>0</requirelowestterms><checkanswertype>0</checkanswertype><mustverify>0</mustverify><showvalidation>0</showvalidation><options>validator:validate_int</options></input>
+
+  <prt><name>prt1</name><value>1.0000000</value><autosimplify>1</autosimplify><feedbackstyle>1</feedbackstyle><feedbackvariables><text><![CDATA[]]></text></feedbackvariables>
+    <node><name>0</name><description>First condition</description><answertest>AlgEquiv</answertest><sans>is(a1*ans1 + b1*ans2 &lt;= c1 and ans1 &gt;= 0 and ans2 &gt;= 0)</sans><tans>true</tans><testoptions></testoptions><quiet>0</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>1</truenextnode><trueanswernote>prt1-1-T</trueanswernote><truefeedback format="html"><text><![CDATA[]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>-1</falsenextnode><falseanswernote>prt1-1-F</falseanswernote><falsefeedback format="html"><text><![CDATA[[[if test='is(ans1 < 0 or ans2 < 0)']]<p>The numbers made cannot be negative.</p>[[else]]<p>Your plan needs \({@a1@} \times {@ans1@} + {@b1@} \times {@ans2@} = {@a1*ans1+b1*ans2@}\) {@un[1]@}, but there are only \({@c1@}\).</p>[[/if]]]]></text></falsefeedback></node>
+    <node><name>1</name><description>Second condition</description><answertest>AlgEquiv</answertest><sans>is(a2*ans1 + b2*ans2 &lt;= c2)</sans><tans>true</tans><testoptions></testoptions><quiet>0</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>2</truenextnode><trueanswernote>prt1-2-T</trueanswernote><truefeedback format="html"><text><![CDATA[]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>-1</falsenextnode><falseanswernote>prt1-2-F</falseanswernote><falsefeedback format="html"><text><![CDATA[<p>Your plan needs \({@a2@} \times {@ans1@} + {@b2@} \times {@ans2@} = {@a2*ans1+b2*ans2@}\) {@un[2]@}, but there are only \({@c2@}\).</p>]]></text></falsefeedback></node>
+    <node><name>2</name><description>Profit target</description><answertest>AlgEquiv</answertest><sans>is(pp*ans1 + pq*ans2 &gt;= TT)</sans><tans>true</tans><testoptions></testoptions><quiet>0</quiet><truescoremode>=</truescoremode><truescore>1.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt1-3-T</trueanswernote><truefeedback format="html"><text><![CDATA[]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>-1</falsenextnode><falseanswernote>prt1-3-F</falseanswernote><falsefeedback format="html"><text><![CDATA[<p>Your plan is possible but makes Ksh \({@thou(pp*ans1+pq*ans2)@}\), which is less than Ksh \({@thou(TT)@}\). Make more of the item with the bigger profit while the conditions allow.</p>]]></text></falsefeedback></node>
+  </prt>
+
+  <deployedseed>4</deployedseed>
+  <deployedseed>5</deployedseed>
+  <deployedseed>15</deployedseed>
+  <deployedseed>8</deployedseed>
+  <deployedseed>24</deployedseed>
+  <deployedseed>1</deployedseed>
+  <deployedseed>3</deployedseed>
+  <deployedseed>10</deployedseed>
+  <deployedseed>2</deployedseed>
+  <deployedseed>17</deployedseed>
+  <qtest><testcase>1</testcase><description>Correct: first plan</description>
+    <testinput><name>ans1</name><value>g1[1]</value></testinput>
+    <testinput><name>ans2</name><value>g1[2]</value></testinput>
+    <expected><name>prt1</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt1-1-T | prt1-2-T | prt1-3-T</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>2</testcase><description>Correct: last plan</description>
+    <testinput><name>ans1</name><value>gl[1]</value></testinput>
+    <testinput><name>ans2</name><value>gl[2]</value></testinput>
+    <expected><name>prt1</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt1-1-T | prt1-2-T | prt1-3-T</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>3</testcase><description>Near miss</description>
+    <testinput><name>ans1</name><value>nr[1]</value></testinput>
+    <testinput><name>ans2</name><value>nr[2]</value></testinput>
+    <expected><name>prt1</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt1-1-T | prt1-2-T | prt1-3-F</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>4</testcase><description>Reaches the target, breaks the first condition</description>
+    <testinput><name>ans1</name><value>b1p[1]</value></testinput>
+    <testinput><name>ans2</name><value>b1p[2]</value></testinput>
+    <expected><name>prt1</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt1-1-F</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>5</testcase><description>Reaches the target, breaks the second condition</description>
+    <testinput><name>ans1</name><value>b2p[1]</value></testinput>
+    <testinput><name>ans2</name><value>b2p[2]</value></testinput>
+    <expected><name>prt1</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt1-1-T | prt1-2-F</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>6</testcase><description>Invalid: a decimal</description>
+    <testinput><name>ans1</name><value>2.5</value></testinput>
+    <testinput><name>ans2</name><value>g1[2]</value></testinput>
+    <expected><name>prt1</name><expectedscore></expectedscore><expectedpenalty></expectedpenalty><expectedanswernote>NULL</expectedanswernote></expected>
+  </qtest>
+</question>
+</quiz>

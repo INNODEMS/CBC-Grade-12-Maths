@@ -1,0 +1,7 @@
+<stack-static>
+    <statement><p><p>A goods lift in a building in Nairobi starts from rest at <m>t = 0</m>. Taking upwards as positive, its velocity after <m>t</m> seconds is <m>v = {\frac{6 t}{5}-\frac{3 t^2}{20}}</m> m/s. Give exact values.</p><p>(a) When, after <m>t = 0</m>, is the lift at rest?</p><div><m>t =</m> <fillin characters="5" name="ans1"/> s  </div><p>(b) Find its displacement from <m>t = 0</m> to <m>t = {11}</m>.</p><div>Displacement <m>=</m> <fillin characters="8" name="ans2"/> m  </div><p>(c) Find the total distance it travels from <m>t = 0</m> to <m>t = {11}</m>.</p><div>Distance <m>=</m> <fillin characters="8" name="ans3"/> m  </div></p></statement>
+    <solution><p><p>Displacement is the single integral of <m>v</m>: motion downwards counts as negative. The distance travelled is the total area between the <m>v</m>-<m>t</m> graph and the <m>t</m>-axis, so split at the times of rest and add the sizes.</p><p>(a) <m>v = {\frac{3}{20}}t({8} - t) = 0</m> when <m>t = 0</m> or <m>t = {8}</m>. The lift goes up until <m>t = {8}</m>, then comes down.</p><p>(b) <m>\displaystyle\int_0^{ {11} } v\,dt = \left[{\frac{3 t^2}{5}-\frac{t^3}{20}}\right]_0^{ {11} } = {6.05}</m> m.</p><p>(c) Up: <m>\displaystyle\int_0^{ {8} } v\,dt = {12.8}</m> m. Down: <m>\displaystyle\int_{ {8} }^{ {11} } v\,dt = {-6.75}</m>, so <m>{6.75}</m> m. Distance <m>= {12.8} + {6.75} = {19.55}</m> m.</p></p></solution>
+    <answer><p><m>8</m></p></answer>
+    <answer><p><m>\frac{121}{20}</m></p></answer>
+    <answer><p><m>\frac{391}{20}</m></p></answer>
+</stack-static>

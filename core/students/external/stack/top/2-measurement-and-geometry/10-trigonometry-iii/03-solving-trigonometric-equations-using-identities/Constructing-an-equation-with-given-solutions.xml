@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<quiz>
+<question type="stack">
+  <name><text>Constructing an equation with given solutions</text></name>
+  <questiontext format="html">
+    <text><![CDATA[<p>Find whole numbers \(p\), \(q\) and \(r\), with \(p \ne 0\), so that the solutions of \(p\sin^2 x + q\cos x + r = 0\) for \(0^\circ \le x \le 360^\circ\) are exactly \(x \in {@setraw(tsols)@}\).</p><div>\(p =\) [[input:ans1]] [[validation:ans1]] \(\quad q =\) [[input:ans2]] [[validation:ans2]] \(\quad r =\) [[input:ans3]] [[validation:ans3]] [[feedback:prt1]]</div>]]></text>
+  </questiontext>
+  <generalfeedback format="html">
+    <text><![CDATA[<p>Work backwards. The target angles are the solutions of [[if test="is(abs(u2) > 1)"]]\(\cos x = {@u1@}\) only (a factor such as \(\cos x = {@u2@}\) adds no angles, because \(\cos x\) is never more than 1).[[else]]\(\cos x = {@u1@}\) or \(\cos x = {@u2@}\).[[/if]] With \(c = \cos x\), a quadratic with roots \({@u1@}\) and \({@u2@}\) is \({@lead(-mp, "c^2")@}{@tm(mq, "c")@}{@tc(mp+mr)@} = 0\) (or any non-zero multiple of it).</p><p>Now replace \(c^2\) by \(1 - \sin^2 x\): \({@lead(-mp, "(1 - \\sin^2 x)")@}{@tm(mq, "\\cos x")@}{@tc(mp+mr)@} = 0\), that is \({@lead(mp, "\\sin^2 x")@}{@tm(mq, "\\cos x")@}{@tc(mr)@} = 0\).</p><p>One answer is \(p = {@mp@}\), \(q = {@mq@}\), \(r = {@mr@}\). Any non-zero multiple, such as \(p = {@2*mp@}\), \(q = {@2*mq@}\), \(r = {@2*mr@}\), also works.</p>]]></text>
+  </generalfeedback>
+  <defaultgrade>1</defaultgrade>
+  <penalty>0.1</penalty>
+  <hidden>0</hidden>
+  <idnumber></idnumber>
+  <stackversion><text>2026063000</text></stackversion>
+  <questionvariables>
+    <text><![CDATA[hits(L,s,tol) := length(sublist(L, lambda([v], is(abs(v-s) <= tol))));
+matchset(L,S,tol) := is(length(L) = length(S)) and every(lambda([s], is(hits(L,s,tol) = 1)), S);
+allgenuine(L,S,tol) := every(lambda([v], some(lambda([s], is(abs(v-s) <= tol)), S)), L);
+validate_angles(ex) := if (setp(ex) or listp(ex)) and every(lambda([v], numberp(ev(v,simp))), if setp(ex) then listify(ex) else ex) then "" else "Type the angles as numbers inside curly brackets, separated by commas, for example {30, 150}. Do not type the degree sign.";
+r1(v) := float(floor(10*v+1/2)/10);
+ang1(v) := block([r], r: floor(10*v+1/2), if integerp(r/10) then string(r/10) else string(float(r/10)));
+setraw(L) := if L = [] then "\\{\\,\\}" else sconcat("\\{", simplode(map(lambda([v], sconcat(ang1(v), "^\\circ")), sort(L)), ", "), "\\}");
+degraw(v) := sconcat(ang1(v), "^\\circ");
+setstr(L) := sconcat("\\(", setraw(L), "\\)");
+angc(v) := block([al], al: float(acos(v)*180/%pi), if abs(al) < 1e-9 then [0,360] elseif abs(al-180) < 1e-9 then [180] else [al, 360-al]);
+angs(v) := block([al], al: float(asin(v)*180/%pi), if abs(al) < 1e-9 then [0,180,360] elseif abs(al-90) < 1e-9 then [90] elseif abs(al+90) < 1e-9 then [270] elseif al > 0 then [al, 180-al] else [180-al, 360+al]);
+qroots(A,B,C) := if A = 0 then (if B = 0 then [] else [-C/B]) elseif B^2-4*A*C < 0 then [] else [(-B-sqrt(B^2-4*A*C))/(2*A), (-B+sqrt(B^2-4*A*C))/(2*A)];
+inrange(L) := sublist(L, lambda([v], is(abs(float(v)) <= 1+1e-12)));
+uniqf(L) := unique(map(lambda([v], float(floor(10000*v+1/2)/10000)), L));
+nice(v) := block([r], r: floor(1000*v+1/2)/1000, if integerp(r) then r else float(r));
+res2(v) := block([r], r: floor(100*v+1/2)/100, if integerp(r) then string(r) else string(float(r)));
+tm(n, s) := if n = 0 then "" elseif n = 1 then sconcat(" + ", s) elseif n = -1 then sconcat(" - ", s) elseif n > 0 then sconcat(" + ", string(n), s) else sconcat(" - ", string(-n), s);
+tc(n) := if n = 0 then "" elseif n > 0 then sconcat(" + ", string(n)) else sconcat(" - ", string(-n));
+lead(n, s) := if n = 1 then s elseif n = -1 then sconcat("-", s) else sconcat(string(n), s);
+/* Design: construct an equation with given solutions; any equation with the property scores. Entry 7 pairs cos x = 1/2 with the impossible value 2. Source: original. */
+L: [[1/2,-1],[1,-3/4],[0,1/2],[-1/2,1/2],[1,0],[-1,0],[1/2,2],[-1/2,0],[1,1/2],[-1,-1/2]];
+M: [[2,-1,-1],[4,1,-1],[2,1,-2],[4,0,-3],[1,1,-1],[1,-1,-1],[2,5,-4],[2,-1,-2],[2,3,-3],[2,-3,-3]];
+ix: 1+rand(10);
+u1: L[ix][1]; u2: L[ix][2];
+mp: M[ix][1]; mq: M[ix][2]; mr: M[ix][3];
+tsols: uniqf(flatten(map(angc, inrange([u1, u2])))); tsolsF: float(tsols);
+proportional(u,w) := is(u # [0,0,0]) and is(u[1]*w[2]-u[2]*w[1] = 0 and u[1]*w[3]-u[3]*w[1] = 0 and u[2]*w[3]-u[3]*w[2] = 0);
+]]></text>
+  </questionvariables>
+  <specificfeedback format="html"><text><![CDATA[]]></text></specificfeedback>
+  <questionnote format="moodle_auto_format">
+    <text>ix={@ix@}, target {@map(r1, tsols)@}, model {@[mp,mq,mr]@}</text>
+  </questionnote>
+  <questiondescription format="html"><text><![CDATA[<p id="concept">Trigonometry III: constructing an equation with given solutions</p><p id="description">Grade 12 CBE Core 2.5: Find whole numbers p, q, r so that p sin^2 x + q cos x + r = 0 has a given solution set in 0 to 360 degrees.</p><p id="edition">Core</p><p id="provenance">This question is original to this project.</p><p id="citation">INNODEMS CBC Grade 12 Mathematics, first draft by Ben Davies, 2026. Aligned to the KICD Senior School Curriculum Design, Core Mathematics Grade 12 (draft).</p>]]></text></questiondescription>
+  <questionsimplify>1</questionsimplify>
+  <assumepositive>0</assumepositive>
+  <assumereal>0</assumereal>
+  <prtcorrect format="html"><text><![CDATA[[[commonstring key="symbolicprtcorrectfeedback"/]] [[commonstring key="defaultprtcorrectfeedback"/]]]]></text></prtcorrect>
+  <prtpartiallycorrect format="html"><text><![CDATA[[[commonstring key="symbolicprtpartiallycorrectfeedback"/]] [[commonstring key="defaultprtpartiallycorrectfeedback"/]]]]></text></prtpartiallycorrect>
+  <prtincorrect format="html"><text><![CDATA[[[commonstring key="symbolicprtincorrectfeedback"/]] [[commonstring key="defaultprtincorrectfeedback"/]]]]></text></prtincorrect>
+  <decimals>.</decimals>
+  <scientificnotation>*10</scientificnotation>
+  <multiplicationsign>none</multiplicationsign>
+  <sqrtsign>1</sqrtsign>
+  <complexno>i</complexno>
+  <inversetrig>cos-1</inversetrig>
+  <logicsymbol>lang</logicsymbol>
+  <matrixparens>[</matrixparens>
+  <isbroken>0</isbroken>
+  <variantsselectionseed></variantsselectionseed>
+
+  <input><name>ans1</name><type>numerical</type><tans>mp</tans><boxsize>6</boxsize><strictsyntax>1</strictsyntax><insertstars>0</insertstars><syntaxhint></syntaxhint><syntaxattribute>0</syntaxattribute><forbidwords></forbidwords><allowwords></allowwords><forbidfloat>1</forbidfloat><requirelowestterms>0</requirelowestterms><checkanswertype>0</checkanswertype><mustverify>0</mustverify><showvalidation>0</showvalidation><options></options></input>
+  <input><name>ans2</name><type>numerical</type><tans>mq</tans><boxsize>6</boxsize><strictsyntax>1</strictsyntax><insertstars>0</insertstars><syntaxhint></syntaxhint><syntaxattribute>0</syntaxattribute><forbidwords></forbidwords><allowwords></allowwords><forbidfloat>1</forbidfloat><requirelowestterms>0</requirelowestterms><checkanswertype>0</checkanswertype><mustverify>0</mustverify><showvalidation>0</showvalidation><options></options></input>
+  <input><name>ans3</name><type>numerical</type><tans>mr</tans><boxsize>6</boxsize><strictsyntax>1</strictsyntax><insertstars>0</insertstars><syntaxhint></syntaxhint><syntaxattribute>0</syntaxattribute><forbidwords></forbidwords><allowwords></allowwords><forbidfloat>1</forbidfloat><requirelowestterms>0</requirelowestterms><checkanswertype>0</checkanswertype><mustverify>0</mustverify><showvalidation>0</showvalidation><options></options></input>
+
+  <prt><name>prt1</name><value>1.0000000</value><autosimplify>1</autosimplify><feedbackstyle>1</feedbackstyle><feedbackvariables><text><![CDATA[lrts: if ans1 = 0 then [] else qroots(-ans1, ans2, ans1+ans3);
+lrv: sublist(lrts, lambda([v], is(imagpart(rectform(float(v))) = 0) and is(abs(float(v)) <= 1+1e-12)));
+lsol: uniqf(flatten(map(angc, map(realpart, float(lrv)))));
+allint: is(integerp(ans1) and integerp(ans2) and integerp(ans3));
+slipok: proportional([ans1, ans2, ans3-ans1], [-mp, mq, mp+mr]);
+]]></text></feedbackvariables>
+    <node><name>0</name><description>p is zero</description><answertest>AlgEquiv</answertest><sans>ans1</sans><tans>0</tans><testoptions></testoptions><quiet>1</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt1-1-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>\(p\) must not be 0: the equation must contain \(\sin^2 x\).</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>1</falsenextnode><falseanswernote>prt1-1-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>1</name><description>Whole numbers</description><answertest>AlgEquiv</answertest><sans>allint</sans><tans>true</tans><testoptions></testoptions><quiet>1</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>2</truenextnode><trueanswernote>prt1-2-T</trueanswernote><truefeedback format="html"><text><![CDATA[]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>-1</falsenextnode><falseanswernote>prt1-2-F</falseanswernote><falsefeedback format="html"><text><![CDATA[<p>Use whole numbers for \(p\), \(q\) and \(r\).</p>]]></text></falsefeedback></node>
+    <node><name>2</name><description>Solutions match</description><answertest>AlgEquiv</answertest><sans>matchset(lsol, tsolsF, 0.001)</sans><tans>true</tans><testoptions></testoptions><quiet>1</quiet><truescoremode>=</truescoremode><truescore>1.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt1-3-T</trueanswernote><truefeedback format="html"><text><![CDATA[]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>3</falsenextnode><falseanswernote>prt1-3-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>3</name><description>Sign slip in the identity</description><answertest>AlgEquiv</answertest><sans>slipok</sans><tans>true</tans><testoptions></testoptions><quiet>1</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt1-4-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>There is a sign slip where \(\sin^2 x\) and \(\cos^2 x\) are exchanged. With your numbers, \({@ans1@}\sin^2 x = {@ans1@}(1 - c^2)\) where \(c = \cos x\), so the equation becomes \({@-ans1*c^2+ans2*c+(ans1+ans3)@} = 0\), whose solutions are \(x \in {@setraw(lsol)@}\).</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>-1</falsenextnode><falseanswernote>prt1-4-F</falseanswernote><falsefeedback format="html"><text><![CDATA[<p>With your numbers the equation becomes \({@-ans1*c^2+ans2*c+(ans1+ans3)@} = 0\) with \(c = \cos x\), and its solutions are \(x \in {@setraw(lsol)@}\) (no solutions if this is empty). Work backwards: which values of \(\cos x\) give the target angles? Build a quadratic in \(c\) with those roots, then replace \(c^2\) by \(1 - \sin^2 x\).</p>]]></text></falsefeedback></node>
+  </prt>
+
+  <deployedseed>4</deployedseed>
+  <deployedseed>5</deployedseed>
+  <deployedseed>15</deployedseed>
+  <deployedseed>8</deployedseed>
+  <deployedseed>24</deployedseed>
+  <deployedseed>1</deployedseed>
+  <deployedseed>3</deployedseed>
+  <deployedseed>10</deployedseed>
+  <deployedseed>2</deployedseed>
+  <deployedseed>17</deployedseed>
+  <qtest><testcase>1</testcase><description>Correct: the model answer</description>
+    <testinput><name>ans1</name><value>mp</value></testinput>
+    <testinput><name>ans2</name><value>mq</value></testinput>
+    <testinput><name>ans3</name><value>mr</value></testinput>
+    <expected><name>prt1</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt1-1-F | prt1-2-T | prt1-3-T</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>2</testcase><description>Correct: a multiple of the model</description>
+    <testinput><name>ans1</name><value>-2*mp</value></testinput>
+    <testinput><name>ans2</name><value>-2*mq</value></testinput>
+    <testinput><name>ans3</name><value>-2*mr</value></testinput>
+    <expected><name>prt1</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt1-1-F | prt1-2-T | prt1-3-T</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>3</testcase><description>p is zero</description>
+    <testinput><name>ans1</name><value>0</value></testinput>
+    <testinput><name>ans2</name><value>mq</value></testinput>
+    <testinput><name>ans3</name><value>mr</value></testinput>
+    <expected><name>prt1</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt1-1-T</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>4</testcase><description>Not whole numbers</description>
+    <testinput><name>ans1</name><value>mp</value></testinput>
+    <testinput><name>ans2</name><value>mq</value></testinput>
+    <testinput><name>ans3</name><value>mr+1/2</value></testinput>
+    <expected><name>prt1</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt1-1-F | prt1-2-F</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>5</testcase><description>Sign slip in the identity</description>
+    <testinput><name>ans1</name><value>-mp</value></testinput>
+    <testinput><name>ans2</name><value>mq</value></testinput>
+    <testinput><name>ans3</name><value>mr</value></testinput>
+    <expected><name>prt1</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt1-1-F | prt1-2-T | prt1-3-F | prt1-4-T</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>6</testcase><description>Generic wrong</description>
+    <testinput><name>ans1</name><value>mp</value></testinput>
+    <testinput><name>ans2</name><value>mq</value></testinput>
+    <testinput><name>ans3</name><value>mr+1</value></testinput>
+    <expected><name>prt1</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt1-1-F | prt1-2-T | prt1-3-F | prt1-4-F</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>7</testcase><description>Invalid: a letter for p</description>
+    <testinput><name>ans1</name><value>x</value></testinput>
+    <testinput><name>ans2</name><value>mq</value></testinput>
+    <testinput><name>ans3</name><value>mr</value></testinput>
+    <expected><name>prt1</name><expectedscore></expectedscore><expectedpenalty></expectedpenalty><expectedanswernote>NULL</expectedanswernote></expected>
+  </qtest>
+</question>
+</quiz>

@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<quiz>
+<question type="stack">
+  <name><text>Where a perpendicular bisector meets a circle</text></name>
+  <questiontext format="html">
+    <text><![CDATA[<p>A phone-charging kiosk is to be the same distance from school \(A({@A[1]@}, {@A[2]@})\) as from school \(B({@B[1]@}, {@B[2]@})\), and exactly \({@r@}\) km from the market \(C({@C[1]@}, {@C[2]@})\). Grid units are kilometres.</p><p>(a) The locus of points equidistant from \(A\) and \(B\) is a line.</p><div>\({@lv@} = \) [[input:ans1]] [[validation:ans1]] [[feedback:prt1]]</div><p>(b) The kiosk can be at two places on this line. Give their \({@av@}\)-coordinates.</p><div>[[input:ans2]] and [[input:ans3]] [[validation:ans2]] [[validation:ans3]] [[feedback:prt2]]</div>]]></text>
+  </questiontext>
+  <generalfeedback format="html">
+    <text><![CDATA[<p>(a) \(A\) and \(B\) have the same \({@av@}\)-coordinate, so \(AB\) is [[if test="is(o=0)"]]horizontal[[else]]vertical[[/if]]. Its perpendicular bisector passes through the midpoint \(({@(A[1]+B[1])/2@}, {@(A[2]+B[2])/2@})\) at right angles to \(AB\): \({@lv@} = {@m@}\).</p><p>(b) \(C\) is \({@ca@}\) km from the line \({@lv@} = {@m@}\). A point on the line \({@r@}\) km from \(C\) is \(\sqrt{ {@r@}^2 - {@ca@}^2 } = {@cb@}\) km along the line from the point nearest \(C\), on either side: \({@av@} = {@cc@} - {@cb@} = {@ys[1]@}\) and \({@av@} = {@cc@} + {@cb@} = {@ys[2]@}\).</p>]]></text>
+  </generalfeedback>
+  <defaultgrade>2</defaultgrade>
+  <penalty>0.1</penalty>
+  <hidden>0</hidden>
+  <idnumber></idnumber>
+  <stackversion><text>2026063000</text></stackversion>
+  <questionvariables>
+    <text><![CDATA[/* Design: where a perpendicular bisector meets a circle. Entries [A, B, C, r, orient, m, [two coordinates]]; the chapter's activity and exercise on this are not repeated. orient 0: AB horizontal, bisector x = m, answers are y-coordinates; orient 1: AB vertical, bisector y = m, answers are x-coordinates. Source: original. */
+q61: [[[-1,-1],[9,-1],[10,-2],10,0,4,[-10,6]],[[-4,1],[-4,7],[-3,12],10,1,4,[-9,3]],[[1,-2],[7,-2],[-2,-3],10,0,4,[-11,5]],[[4,-3],[4,5],[2,-3],5,1,1,[-1,5]],[[1,4],[5,4],[12,5],15,0,3,[-7,17]],[[-4,-6],[-4,4],[2,2],5,1,-1,[-2,6]],[[-4,2],[4,2],[-6,3],10,0,0,[-5,11]],[[2,-8],[2,2],[4,9],13,1,-3,[-1,9]],[[-6,-4],[0,-4],[-7,3],5,0,-3,[0,6]],[[1,-1],[1,5],[1,7],13,1,2,[-11,13]]];
+ix: 1+rand(10);
+A: q61[ix][1]; B: q61[ix][2]; C: q61[ix][3]; r: q61[ix][4]; o: q61[ix][5]; m: q61[ix][6]; ys: sort(q61[ix][7]);
+lv: ["x","y"][o+1];
+av: ["y","x"][o+1];
+/* s: the shared coordinate of A and B (the line AB itself); cp: C's coordinate across the bisector; cc: C's coordinate along it */
+s: A[2-o];
+cp: C[1+o];
+cc: C[2-o];
+ca: abs(cp-m);
+cb: sqrt(r^2-ca^2);
+dl: [cc-r, cc+r];
+ta2: ys[1]; ta3: ys[2];]]></text>
+  </questionvariables>
+  <specificfeedback format="html"><text><![CDATA[]]></text></specificfeedback>
+  <questionnote format="moodle_auto_format">
+    <text>ix={@ix@}, line {@lv@}={@m@}, places {@ys@}</text>
+  </questionnote>
+  <questiondescription format="html"><text><![CDATA[<p id="concept">Loci: where a perpendicular bisector meets a circle</p><p id="description">Grade 12 CBE Core 2.3: Find where the perpendicular bisector of AB meets a circle locus on a grid.</p><p id="edition">Core</p><p id="provenance">This question is original to this project.</p><p id="citation">INNODEMS CBC Grade 12 Mathematics, first draft by Ben Davies, 2026. Aligned to the KICD Senior School Curriculum Design, Core Mathematics Grade 12 (draft).</p>]]></text></questiondescription>
+  <questionsimplify>1</questionsimplify>
+  <assumepositive>0</assumepositive>
+  <assumereal>0</assumereal>
+  <prtcorrect format="html"><text><![CDATA[[[commonstring key="symbolicprtcorrectfeedback"/]] [[commonstring key="defaultprtcorrectfeedback"/]]]]></text></prtcorrect>
+  <prtpartiallycorrect format="html"><text><![CDATA[[[commonstring key="symbolicprtpartiallycorrectfeedback"/]] [[commonstring key="defaultprtpartiallycorrectfeedback"/]]]]></text></prtpartiallycorrect>
+  <prtincorrect format="html"><text><![CDATA[[[commonstring key="symbolicprtincorrectfeedback"/]] [[commonstring key="defaultprtincorrectfeedback"/]]]]></text></prtincorrect>
+  <decimals>.</decimals>
+  <scientificnotation>*10</scientificnotation>
+  <multiplicationsign>none</multiplicationsign>
+  <sqrtsign>1</sqrtsign>
+  <complexno>i</complexno>
+  <inversetrig>cos-1</inversetrig>
+  <logicsymbol>lang</logicsymbol>
+  <matrixparens>[</matrixparens>
+  <isbroken>0</isbroken>
+  <variantsselectionseed></variantsselectionseed>
+
+  <input><name>ans1</name><type>numerical</type><tans>m</tans><boxsize>5</boxsize><strictsyntax>1</strictsyntax><insertstars>0</insertstars><syntaxhint></syntaxhint><syntaxattribute>0</syntaxattribute><forbidwords></forbidwords><allowwords></allowwords><forbidfloat>0</forbidfloat><requirelowestterms>0</requirelowestterms><checkanswertype>0</checkanswertype><mustverify>0</mustverify><showvalidation>0</showvalidation><options></options></input>
+  <input><name>ans2</name><type>numerical</type><tans>ta2</tans><boxsize>5</boxsize><strictsyntax>1</strictsyntax><insertstars>0</insertstars><syntaxhint></syntaxhint><syntaxattribute>0</syntaxattribute><forbidwords></forbidwords><allowwords></allowwords><forbidfloat>0</forbidfloat><requirelowestterms>0</requirelowestterms><checkanswertype>0</checkanswertype><mustverify>0</mustverify><showvalidation>0</showvalidation><options></options></input>
+  <input><name>ans3</name><type>numerical</type><tans>ta3</tans><boxsize>5</boxsize><strictsyntax>1</strictsyntax><insertstars>0</insertstars><syntaxhint></syntaxhint><syntaxattribute>0</syntaxattribute><forbidwords></forbidwords><allowwords></allowwords><forbidfloat>0</forbidfloat><requirelowestterms>0</requirelowestterms><checkanswertype>0</checkanswertype><mustverify>0</mustverify><showvalidation>0</showvalidation><options></options></input>
+
+  <prt><name>prt1</name><value>1.0000000</value><autosimplify>1</autosimplify><feedbackstyle>1</feedbackstyle><feedbackvariables><text><![CDATA[nd(v) := if integerp(v) then v else float(floor(1000*v+1/2)/1000);]]></text></feedbackvariables>
+    <node><name>0</name><description>Perpendicular bisector</description><answertest>NumAbsolute</answertest><sans>ans1</sans><tans>m</tans><testoptions>0.001</testoptions><quiet>0</quiet><truescoremode>=</truescoremode><truescore>1.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt1-1-T</trueanswernote><truefeedback format="html"><text><![CDATA[]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>1</falsenextnode><falseanswernote>prt1-1-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>1</name><description>The line AB</description><answertest>NumAbsolute</answertest><sans>ans1</sans><tans>s</tans><testoptions>0.001</testoptions><quiet>0</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt1-2-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>That is the line through \(A\) and \(B\). The perpendicular bisector crosses \(AB\) at its midpoint, at right angles.</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>-1</falsenextnode><falseanswernote>prt1-2-F</falseanswernote><falsefeedback format="html"><text><![CDATA[<p>Your line \({@lv@} = {@ans1@}\) meets the line through \(A\) and \(B\) at a point \({@nd(abs(ans1-A[1+o]))@}\) km from \(A\) and \({@nd(abs(ans1-B[1+o]))@}\) km from \(B\). Every point of the locus is the same distance from \(A\) as from \(B\).</p>]]></text></falsefeedback></node>
+  </prt>
+  <prt><name>prt2</name><value>1.0000000</value><autosimplify>1</autosimplify><feedbackstyle>1</feedbackstyle><feedbackvariables><text><![CDATA[sa: sort([ans2, ans3]);
+e0: abs(sa[1]-ys[1])+abs(sa[2]-ys[2]);
+ed: abs(sa[1]-dl[1])+abs(sa[2]-dl[2]);
+one: is(abs(ans2-ys[1])<0.001 or abs(ans2-ys[2])<0.001 or abs(ans3-ys[1])<0.001 or abs(ans3-ys[2])<0.001);]]></text></feedbackvariables>
+    <node><name>0</name><description>Both places, in either order</description><answertest>NumAbsolute</answertest><sans>e0</sans><tans>0</tans><testoptions>0.001</testoptions><quiet>0</quiet><truescoremode>=</truescoremode><truescore>1.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt2-1-T</trueanswernote><truefeedback format="html"><text><![CDATA[]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>1</falsenextnode><falseanswernote>prt2-1-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>1</name><description>Moved r along the line from C</description><answertest>NumAbsolute</answertest><sans>ed</sans><tans>0</tans><testoptions>0.001</testoptions><quiet>0</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt2-2-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>You moved \({@r@}\) km along the line from the point level with \(C\). But \(C\) is not on the line: it is \({@ca@}\) km from it, so your places are more than \({@r@}\) km from \(C\). The \({@r@}\) km is the hypotenuse of a right-angled triangle.</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>2</falsenextnode><falseanswernote>prt2-2-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>2</name><description>One place right</description><answertest>AlgEquiv</answertest><sans>one</sans><tans>true</tans><testoptions></testoptions><quiet>0</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt2-3-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>One place is right; the other is the same distance along the line, on the other side of the point nearest \(C\).</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>-1</falsenextnode><falseanswernote>prt2-3-F</falseanswernote><falsefeedback format="html"><text><![CDATA[<p>The place on the line with \({@av@} = {@ans2@}\) is about \({@dispdp(float(sqrt(ca^2+(ans2-cc)^2)),2)@}\) km from \(C\), and the place with \({@av@} = {@ans3@}\) is about \({@dispdp(float(sqrt(ca^2+(ans3-cc)^2)),2)@}\) km from \(C\). Each must be exactly \({@r@}\) km from \(C\): use Pythagoras with \(C\)'s distance from the line.</p>]]></text></falsefeedback></node>
+  </prt>
+
+  <deployedseed>4</deployedseed>
+  <deployedseed>5</deployedseed>
+  <deployedseed>15</deployedseed>
+  <deployedseed>8</deployedseed>
+  <deployedseed>24</deployedseed>
+  <deployedseed>1</deployedseed>
+  <deployedseed>3</deployedseed>
+  <deployedseed>10</deployedseed>
+  <deployedseed>2</deployedseed>
+  <deployedseed>17</deployedseed>
+  <qtest><testcase>1</testcase><description>Correct</description>
+    <testinput><name>ans1</name><value>m</value></testinput>
+    <testinput><name>ans2</name><value>ys[1]</value></testinput>
+    <testinput><name>ans3</name><value>ys[2]</value></testinput>
+    <expected><name>prt1</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt1-1-T</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt2-1-T</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>2</testcase><description>Correct, other order</description>
+    <testinput><name>ans1</name><value>m</value></testinput>
+    <testinput><name>ans2</name><value>ys[2]</value></testinput>
+    <testinput><name>ans3</name><value>ys[1]</value></testinput>
+    <expected><name>prt1</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt1-1-T</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt2-1-T</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>3</testcase><description>Line AB; moved r from C</description>
+    <testinput><name>ans1</name><value>s</value></testinput>
+    <testinput><name>ans2</name><value>dl[1]</value></testinput>
+    <testinput><name>ans3</name><value>dl[2]</value></testinput>
+    <expected><name>prt1</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt1-1-F | prt1-2-T</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt2-1-F | prt2-2-T</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>4</testcase><description>One place right</description>
+    <testinput><name>ans1</name><value>m</value></testinput>
+    <testinput><name>ans2</name><value>ys[1]</value></testinput>
+    <testinput><name>ans3</name><value>ys[2]+1</value></testinput>
+    <expected><name>prt1</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt1-1-T</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt2-1-F | prt2-2-F | prt2-3-T</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>5</testcase><description>Generic wrong</description>
+    <testinput><name>ans1</name><value>ev(m+1/2,simp)</value></testinput>
+    <testinput><name>ans2</name><value>ev(ys[1]+1/2,simp)</value></testinput>
+    <testinput><name>ans3</name><value>ev(ys[2]+1/2,simp)</value></testinput>
+    <expected><name>prt1</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt1-1-F | prt1-2-F</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt2-1-F | prt2-2-F | prt2-3-F</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>6</testcase><description>Invalid: letter in (a)</description>
+    <testinput><name>ans1</name><value>x</value></testinput>
+    <testinput><name>ans2</name><value>ys[1]</value></testinput>
+    <testinput><name>ans3</name><value>ys[2]</value></testinput>
+    <expected><name>prt1</name><expectedscore></expectedscore><expectedpenalty></expectedpenalty><expectedanswernote>NULL</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt2-1-T</expectedanswernote></expected>
+  </qtest>
+</question>
+</quiz>

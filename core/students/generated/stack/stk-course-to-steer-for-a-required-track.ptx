@@ -1,0 +1,6 @@
+<stack-static>
+    <statement><p><p>A ship must make good a track of <m>{260}^\circ</m>. Its speed through the water is <m>{20}</m> knots, and a current flows towards <m>{225}^\circ</m> at <m>{2}</m> knots.</p><p>(a) Find the course to steer, as a bearing correct to 1 decimal place.</p><p><fillin characters="8" name="ans1"/> <m>^\circ</m>  </p><p>(b) Find the ground speed, correct to 1 decimal place.</p><p><fillin characters="8" name="ans2"/> knots  </p></p></statement>
+    <solution><p><p>Draw the track line from the start towards <m>{260}^\circ</m> and the current arrow from the start (<m>{2}</m> knots towards <m>{225}^\circ</m>). The course arrow, of length <m>{20}</m>, goes from the tip of the current arrow to meet the track line. The angle between the track and the current is <m>{35}^\circ</m>.</p><p>(a) By the sine rule, <m>\sin d = \dfrac{ {2} \sin {35}^\circ}{ {20} }</m>, so <m>d = {3.288}^\circ</m>. Steer into the current, on the other side of the track from it: course <m>= {260}^\circ + {3.3}^\circ = {263.3}^\circ</m>.</p><p>(b) Resolve along the track: ground speed <m>= {20} \cos {3.3}^\circ + {2} \cos {35}^\circ = {21.605} \approx {21.6}</m> knots.</p></p></solution>
+    <answer><p><m>263.288155537</m></p></answer>
+    <answer><p><m>21.6053779925</m></p></answer>
+</stack-static>

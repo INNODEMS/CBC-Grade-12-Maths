@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<quiz>
+<question type="stack">
+  <name><text>Matrix from the image of the unit square</text></name>
+  <questiontext format="html">
+    <text><![CDATA[<p>The unit square OABC, with A(1, 0), B(1, 1) and C(0, 1), is mapped by a matrix \(M\) onto the parallelogram \(OA'B'C'\) with \(A'({@Ap[1]@},\,{@Ap[2]@})\), \(B'({@Bp[1]@},\,{@Bp[2]@})\) and \(C'({@Cp[1]@},\,{@Cp[2]@})\).</p><p>Find \(M\).</p><div>\(M = \) [[input:ans1]] [[validation:ans1]] [[feedback:prt1]]</div>]]></text>
+  </questiontext>
+  <generalfeedback format="html">
+    <text><![CDATA[<p>The columns of a matrix are where (1, 0) and (0, 1) go. A(1, 0) goes to \(A'({@Ap[1]@},\,{@Ap[2]@})\), so the first column is \({@transpose(matrix(Ap))@}\). C(0, 1) goes to \(C'({@Cp[1]@},\,{@Cp[2]@})\), so the second column is \({@transpose(matrix(Cp))@}\).</p><p>\(M = {@ta@}\). Check with B: \({@ta@}{@matrix([1],[1])@} = {@transpose(matrix(Bp))@}\), which is \(B' = A' + C'\).</p>]]></text>
+  </generalfeedback>
+  <defaultgrade>1</defaultgrade>
+  <penalty>0.1</penalty>
+  <hidden>0</hidden>
+  <idnumber></idnumber>
+  <stackversion><text>2026063000</text></stackversion>
+  <questionvariables>
+    <text><![CDATA[validate_numeric(ex) := block([sx], sx: ev(ex, simp), if listofvars(ex) = [] and freeof(%i, sx) then "" else "Type a number in each box, not a letter.");
+/* Design: matrix from the image of the unit square, given as coordinates. Source: adapted from SMP Book 5 (Metric), Chapter 14, Exercise B, question 2. No matrix is symmetric and A' differs from C', so the transpose and the swapped columns differ from the answer. */
+mlist: [matrix([0,-2],[-3,3]),matrix([3,0],[5,-1]),matrix([5,-1],[-3,1]),matrix([-4,-3],[-2,-2]),matrix([-3,4],[3,0]),matrix([-1,1],[3,3]),matrix([1,0],[3,-2]),matrix([4,-4],[-1,-4]),matrix([4,-3],[4,0]),matrix([-4,-1],[-2,0])];
+ix: 1+rand(10);
+ta: mlist[ix];
+a: ta[1,1]; b: ta[1,2]; c: ta[2,1]; d: ta[2,2];
+Ap: [a,c]; Bp: [a+b,c+d]; Cp: [b,d];
+/* diagnostics: images written as rows; columns in the wrong order; B' used for the second column */
+dT: transpose(ta); dS: matrix([b,a],[d,c]); dB: matrix([a,a+b],[c,c+d]);
+tr: matrix([Ap[1],Cp[1]],[Ap[2],Cp[2]]);
+tw: ta+matrix([0,1],[0,0]);
+]]></text>
+  </questionvariables>
+  <specificfeedback format="html"><text><![CDATA[]]></text></specificfeedback>
+  <questionnote format="moodle_auto_format">
+    <text>ix={@ix@}, M={@ta@}</text>
+  </questionnote>
+  <questiondescription format="html"><text><![CDATA[<p id="concept">Matrices and Transformations: matrix from the image of the unit square</p><p id="description">Grade 12 CBE Core 2.1: Find the matrix of a transformation from the images of the vertices of the unit square.</p><p id="edition">Core</p><p id="provenance">This question is adapted from Chapter 14, Exercise B, Question 2 of School Mathematics Project, SMP Book 5 (Metric), ed. P. G. Bowie, Cambridge University Press, 1969: the image given by coordinates instead of a figure, new matrices, randomised, with named feedback.</p><p id="citation">INNODEMS CBC Grade 12 Mathematics, first draft by Ben Davies, 2026. Aligned to the KICD Senior School Curriculum Design, Core Mathematics Grade 12 (draft).</p>]]></text></questiondescription>
+  <questionsimplify>1</questionsimplify>
+  <assumepositive>0</assumepositive>
+  <assumereal>0</assumereal>
+  <prtcorrect format="html"><text><![CDATA[[[commonstring key="symbolicprtcorrectfeedback"/]] [[commonstring key="defaultprtcorrectfeedback"/]]]]></text></prtcorrect>
+  <prtpartiallycorrect format="html"><text><![CDATA[[[commonstring key="symbolicprtpartiallycorrectfeedback"/]] [[commonstring key="defaultprtpartiallycorrectfeedback"/]]]]></text></prtpartiallycorrect>
+  <prtincorrect format="html"><text><![CDATA[[[commonstring key="symbolicprtincorrectfeedback"/]] [[commonstring key="defaultprtincorrectfeedback"/]]]]></text></prtincorrect>
+  <decimals>.</decimals>
+  <scientificnotation>*10</scientificnotation>
+  <multiplicationsign>none</multiplicationsign>
+  <sqrtsign>1</sqrtsign>
+  <complexno>i</complexno>
+  <inversetrig>cos-1</inversetrig>
+  <logicsymbol>lang</logicsymbol>
+  <matrixparens>[</matrixparens>
+  <isbroken>0</isbroken>
+  <variantsselectionseed></variantsselectionseed>
+
+  <input><name>ans1</name><type>matrix</type><tans>ta</tans><boxsize>3</boxsize><strictsyntax>1</strictsyntax><insertstars>0</insertstars><syntaxhint></syntaxhint><syntaxattribute>0</syntaxattribute><forbidwords></forbidwords><allowwords></allowwords><forbidfloat>0</forbidfloat><requirelowestterms>0</requirelowestterms><checkanswertype>0</checkanswertype><mustverify>0</mustverify><showvalidation>3</showvalidation><options>validator:validate_numeric</options></input>
+
+  <prt><name>prt1</name><value>1.0000000</value><autosimplify>1</autosimplify><feedbackstyle>1</feedbackstyle><feedbackvariables><text><![CDATA[]]></text></feedbackvariables>
+    <node><name>0</name><description>Matrix</description><answertest>AlgEquiv</answertest><sans>ans1</sans><tans>ta</tans><testoptions></testoptions><quiet>0</quiet><truescoremode>=</truescoremode><truescore>1.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt1-1-T</trueanswernote><truefeedback format="html"><text><![CDATA[]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>1</falsenextnode><falseanswernote>prt1-1-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>1</name><description>Images as rows</description><answertest>AlgEquiv</answertest><sans>ans1</sans><tans>dT</tans><testoptions></testoptions><quiet>1</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt1-2-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>You wrote the images as rows. The image of A(1, 0) is the first column of \(M\), written downwards: \({@transpose(matrix(Ap))@}\).</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>2</falsenextnode><falseanswernote>prt1-2-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>2</name><description>Columns in the wrong order</description><answertest>AlgEquiv</answertest><sans>ans1</sans><tans>dS</tans><testoptions></testoptions><quiet>1</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt1-3-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>Your columns are the right way up but in the wrong order. The first column is the image of A(1, 0), which is \(A'\).</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>3</falsenextnode><falseanswernote>prt1-3-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>3</name><description>B' used as the second column</description><answertest>AlgEquiv</answertest><sans>ans1</sans><tans>dB</tans><testoptions></testoptions><quiet>1</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt1-4-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>\(B'\) is the image of B(1, 1), not of C(0, 1). The second column is \(C'\). (Check: \(B' = A' + C'\).)</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>-1</falsenextnode><falseanswernote>prt1-4-F</falseanswernote><falsefeedback format="html"><text><![CDATA[<p>Your matrix sends (1, 0) to \(({@ans1[1,1]@},\,{@ans1[2,1]@})\) and (0, 1) to \(({@ans1[1,2]@},\,{@ans1[2,2]@})\). Column 1 must be the image of (1, 0), which is \(A'\); column 2 must be the image of (0, 1), which is \(C'\).</p>]]></text></falsefeedback></node>
+  </prt>
+
+  <deployedseed>4</deployedseed>
+  <deployedseed>5</deployedseed>
+  <deployedseed>15</deployedseed>
+  <deployedseed>8</deployedseed>
+  <deployedseed>24</deployedseed>
+  <deployedseed>1</deployedseed>
+  <deployedseed>3</deployedseed>
+  <deployedseed>10</deployedseed>
+  <deployedseed>2</deployedseed>
+  <deployedseed>17</deployedseed>
+  <qtest><testcase>1</testcase><description>Correct</description>
+    <testinput><name>ans1</name><value>tr</value></testinput>
+    <expected><name>prt1</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt1-1-T</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>2</testcase><description>Images written as rows</description>
+    <testinput><name>ans1</name><value>dT</value></testinput>
+    <expected><name>prt1</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt1-1-F | prt1-2-T</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>3</testcase><description>Columns in the wrong order</description>
+    <testinput><name>ans1</name><value>dS</value></testinput>
+    <expected><name>prt1</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt1-1-F | prt1-2-F | prt1-3-T</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>4</testcase><description>B' as the second column</description>
+    <testinput><name>ans1</name><value>dB</value></testinput>
+    <expected><name>prt1</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt1-1-F | prt1-2-F | prt1-3-F | prt1-4-T</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>5</testcase><description>Generic: one entry off</description>
+    <testinput><name>ans1</name><value>tw</value></testinput>
+    <expected><name>prt1</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt1-1-F | prt1-2-F | prt1-3-F | prt1-4-F</expectedanswernote></expected>
+  </qtest>
+</question>
+</quiz>

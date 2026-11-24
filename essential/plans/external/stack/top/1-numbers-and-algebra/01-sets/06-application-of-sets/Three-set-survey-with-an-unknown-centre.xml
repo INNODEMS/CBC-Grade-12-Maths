@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<quiz>
+<question type="stack">
+  <name><text>Three-set survey with an unknown centre</text></name>
+  <questiontext format="html">
+    <text><![CDATA[<p>\({@N@}\) learners at a school in {@town@} were asked how they travelled during the last week: by matatu (\(M\)), by boda boda (\(B\)) or on foot (\(W\)). \({@nA@}\) used a matatu, \({@nB@}\) a boda boda and \({@nC@}\) walked.</p><p>\({@r2@}\) used a matatu and a boda boda but did not walk; \({@r4@}\) used a matatu and walked but no boda boda; \({@r6@}\) used a boda boda and walked but no matatu. \({@r8@}\) used none of these.</p><p>(a) How many used all three? [[input:ans1]] [[validation:ans1]] [[feedback:prt1]]</p><p>(b) How many used a matatu only? [[input:ans2]] [[validation:ans2]] [[feedback:prt2]]</p>]]></text>
+  </questiontext>
+  <generalfeedback format="html">
+    <text><![CDATA[<p>Let \(x\) learners use all three. The <q>exactly two</q> regions are given, so each <q>only</q> region is a set total minus its two <q>exactly two</q> regions minus \(x\):</p><p>matatu only \({@nA@} - {@r2@} - {@r4@} - x = {@ka@} - x\); boda boda only \({@nB@} - {@r2@} - {@r6@} - x = {@kb@} - x\); on foot only \({@nC@} - {@r4@} - {@r6@} - x = {@kc@} - x\).</p><p>Adding all eight regions:</p><p>\[({@ka@} - x) + ({@kb@} - x) + ({@kc@} - x) + {@r2@} + {@r4@} + {@r6@} + x + {@r8@} = {@N@}\]</p><p>so \({@S@} - 2x = {@N@}\), \(2x = {@x2@}\) and \(x = {@x@}\).</p><p>(a) \({@x@}\) used all three. (b) Matatu only \(= {@ka@} - {@x@} = {@r1@}\).</p><p>Check that no region is negative and that each set total is right, for example matatu \({@r1@} + {@r2@} + {@r4@} + {@x@} = {@nA@}\).</p><div style="text-align:center;" role="img" aria-label="Venn diagram of the travel counts: M only {@r1@}, M and B only {@r2@}, B only {@r3@}, M and W only {@r4@}, all three {@r5@}, B and W only {@r6@}, W only {@r7@}, none {@r8@}">
+[[jsxgraph width="420px" height="300px"]]
+(function () {
+  var lab = {#["M","B","W"]#}, txt = {#[r1,r2,r3,r4,r5,r6,r7,r8]#}, circ = false, shd = {#[]#};
+  var b = JXG.JSXGraph.initBoard(divid, {boundingbox: [-4.2, 3, 4.2, -3], axis: false, grid: false, keepaspectratio: true,
+      showNavigation: false, showCopyright: false, pan: {enabled: false}, zoom: {enabled: false}});
+  var three = (lab.length === 3), i, j;
+  var C2 = [[-1, 0, 1.7], [1, 0, 1.7]], C3 = [[-0.85, 0.55, 1.55], [0.85, 0.55, 1.55], [0, -0.9, 1.55]];
+  var CC = three ? C3 : C2;
+  var P2 = [[-1.8, 0], [0, 0], [1.8, 0], [-3.5, -2.4]];
+  var P3 = [[-1.6, 1.0], [0, 1.35], [1.6, 1.0], [-1.05, -0.55], [0, 0.05], [1.05, -0.55], [0, -1.85], [-3.5, -2.5]];
+  var PP = three ? P3 : P2;
+  var L2 = [[-2.6, 1.6], [2.6, 1.6]], L3 = [[-2.35, 2.05], [2.35, 2.05], [1.55, -2.35]];
+  var LL = three ? L3 : L2;
+  function inC(k, x, y) { var c = CC[k]; return (x - c[0]) * (x - c[0]) + (y - c[1]) * (y - c[1]) < c[2] * c[2]; }
+  function region(x, y) {
+    if (x < -4 || x > 4 || y < -2.8 || y > 2.8) { return 0; }
+    if (!three) { var a = inC(0, x, y), bb = inC(1, x, y); return a ? (bb ? 2 : 1) : (bb ? 3 : 4); }
+    var code = (inC(0, x, y) ? 1 : 0) + (inC(1, x, y) ? 2 : 0) + (inC(2, x, y) ? 4 : 0);
+    return [8, 1, 3, 2, 7, 4, 6, 5][code];
+  }
+  var att = {fixed: true, highlight: false, withLabel: false};
+  b.create('polygon', [[-4, 2.8], [4, 2.8], [4, -2.8], [-4, -2.8]], {fillOpacity: 0, highlight: false, fixed: true, vertices: {visible: false},
+      borders: {strokeColor: '#000000', strokeWidth: 1.5, highlight: false, fixed: true}});
+  b.create('text', [-3.85, 2.5, 'ξ'], {fixed: true, highlight: false, fontSize: 18, anchorY: 'middle'});
+  if (shd.length > 0) {
+    for (j = -7; j <= 7; j += 0.22) {
+      var run = null;
+      for (i = -4; i <= 4.0001; i += 0.02) {
+        var x = i, y = i - j, inside = shd.indexOf(region(x, y)) >= 0;
+        if (inside && run === null) { run = [x, y]; }
+        if ((!inside || i > 4) && run !== null) {
+          b.create('segment', [run, [x - 0.02, y - 0.02]], {fixed: true, highlight: false, layer: 1, strokeColor: '#1f5fa8', strokeWidth: 1.2, withLabel: false, point1: {visible: false}, point2: {visible: false}});
+          run = null;
+        }
+      }
+    }
+  }
+  for (i = 0; i < CC.length; i++) {
+    b.create('circle', [[CC[i][0], CC[i][1]], CC[i][2]], {fixed: true, highlight: false, strokeColor: '#000000', strokeWidth: 1.8, fillOpacity: 0, center: {visible: false}});
+    b.create('text', [LL[i][0], LL[i][1], lab[i]], {fixed: true, highlight: false, fontSize: 18, anchorX: 'middle', anchorY: 'middle', cssStyle: 'font-style:italic;'});
+  }
+  for (i = 0; i < txt.length; i++) {
+    if (circ) {
+      b.create('circle', [[PP[i][0], PP[i][1]], 0.24], {fixed: true, highlight: false, strokeColor: '#444444', strokeWidth: 1, fillColor: '#ffffff', fillOpacity: 1, center: {visible: false}});
+      b.create('text', [PP[i][0], PP[i][1], '' + txt[i]], {fixed: true, highlight: false, fontSize: 13, anchorX: 'middle', anchorY: 'middle'});
+    } else {
+      b.create('text', [PP[i][0], PP[i][1], '' + txt[i]], {fixed: true, highlight: false, fontSize: 17, anchorX: 'middle', anchorY: 'middle', cssStyle: 'font-weight:bold;'});
+    }
+  }
+})();
+[[/jsxgraph]]
+</div>]]></text>
+  </generalfeedback>
+  <defaultgrade>2</defaultgrade>
+  <penalty>0.1</penalty>
+  <hidden>0</hidden>
+  <idnumber></idnumber>
+  <stackversion><text>2026063000</text></stackversion>
+  <questionvariables>
+    <text><![CDATA[cardn(S) := length(listify(S));
+dset(S) := if emptyp(S) then "\\{\\,\\}" else sconcat("\\{", simplode(map(string, listify(S)), ", "), "\\}");
+ix: 1+rand(10);
+/* Design: three-set survey with 'exactly two' data; find all three (transport context). Source: adapted from SMP Book 5, revision exercise.
+   Curated region lists, one seed per entry. r5 = x (all three); r2, r4, r6 given as exactly two.
+   ka, kb, kc: each 'only' region is ka - x and so on; S - N = 2x. */
+L: [[17,9,10,9,9,5,11,7,77,44,33,34,18,18,14,9,18,26,8,14,37,95,"Ruiru",26,19,20],
+  [15,12,13,8,4,8,15,12,87,39,37,35,16,12,12,4,8,19,11,9,35,95,"Kikuyu",19,17,19],
+  [18,11,9,7,3,11,12,3,74,39,34,33,14,10,14,3,6,21,15,8,38,80,"Machakos",21,12,15],
+  [8,4,10,5,6,3,13,7,56,23,23,27,10,11,9,6,12,14,2,11,28,68,"Naivasha",14,16,19],
+  [12,8,9,2,4,6,7,5,53,26,27,19,12,6,10,4,8,16,8,9,32,61,"Webuye",16,13,11],
+  [10,1,13,11,9,4,9,11,68,31,27,33,10,20,13,9,18,19,1,14,30,86,"Homa Bay",19,22,18],
+  [7,9,6,4,7,5,12,10,60,27,27,28,16,11,12,7,14,14,0,12,27,74,"Narok",14,13,19],
+  [13,7,11,8,6,8,7,10,70,34,32,29,13,14,14,6,12,19,7,11,33,82,"Embu",19,17,13],
+  [9,3,11,6,4,8,13,7,61,22,26,31,7,10,12,4,8,13,5,9,29,69,"Nanyuki",13,15,17],
+  [19,3,9,11,3,6,8,11,70,36,21,28,6,14,9,3,6,22,16,8,39,76,"Kilifi",22,12,11]];
+r1: L[ix][1]; r2: L[ix][2]; r3: L[ix][3]; r4: L[ix][4]; r5: L[ix][5]; r6: L[ix][6]; r7: L[ix][7]; r8: L[ix][8]; N: L[ix][9]; nA: L[ix][10]; nB: L[ix][11]; nC: L[ix][12]; nAB: L[ix][13]; nAC: L[ix][14]; nBC: L[ix][15]; c: L[ix][16]; x2: L[ix][17]; r1x: L[ix][18]; r1m: L[ix][19]; t4a: L[ix][20]; t4b: L[ix][21]; S: L[ix][22]; town: L[ix][23]; ka: L[ix][24]; kb: L[ix][25]; kc: L[ix][26]; 
+x: r5;
+]]></text>
+  </questionvariables>
+  <specificfeedback format="html"><text><![CDATA[]]></text></specificfeedback>
+  <questionnote format="moodle_auto_format">
+    <text>ix={@ix@}, x={@x@}, r1={@r1@}</text>
+  </questionnote>
+  <questiondescription format="html"><text><![CDATA[<p id="concept">Sets: three-set surveys with an unknown centre</p><p id="description">Grade 12 CBE Core and Essential 1.1 (e): Find the number in all three of three groups from the set totals, the exactly-two counts and the number in none, and then an only region.</p><p id="edition">Core and Essential</p><p id="provenance">This question is adapted from the miscellaneous revision exercises (26 boys and three languages) of School Mathematics Project, SMP Book 5 (Metric), ed. P. G. Bowie, Cambridge University Press, 1969: finding the number in all three sets of a survey; exactly-two counts are given instead of pair totals, transport in Kenya, every number new.</p><p id="citation">INNODEMS CBC Grade 12 Mathematics, first draft by Ben Davies, 2026. Aligned to the KICD Senior School Curriculum Design, Core and Essential Mathematics Grade 12 (draft).</p>]]></text></questiondescription>
+  <questionsimplify>1</questionsimplify>
+  <assumepositive>0</assumepositive>
+  <assumereal>0</assumereal>
+  <prtcorrect format="html"><text><![CDATA[[[commonstring key="symbolicprtcorrectfeedback"/]] [[commonstring key="defaultprtcorrectfeedback"/]]]]></text></prtcorrect>
+  <prtpartiallycorrect format="html"><text><![CDATA[[[commonstring key="symbolicprtpartiallycorrectfeedback"/]] [[commonstring key="defaultprtpartiallycorrectfeedback"/]]]]></text></prtpartiallycorrect>
+  <prtincorrect format="html"><text><![CDATA[[[commonstring key="symbolicprtincorrectfeedback"/]] [[commonstring key="defaultprtincorrectfeedback"/]]]]></text></prtincorrect>
+  <decimals>.</decimals>
+  <scientificnotation>*10</scientificnotation>
+  <multiplicationsign>none</multiplicationsign>
+  <sqrtsign>1</sqrtsign>
+  <complexno>i</complexno>
+  <inversetrig>cos-1</inversetrig>
+  <logicsymbol>lang</logicsymbol>
+  <matrixparens>[</matrixparens>
+  <isbroken>0</isbroken>
+  <variantsselectionseed></variantsselectionseed>
+
+  <input><name>ans1</name><type>numerical</type><tans>x</tans><boxsize>5</boxsize><strictsyntax>1</strictsyntax><insertstars>0</insertstars><syntaxhint></syntaxhint><syntaxattribute>0</syntaxattribute><forbidwords></forbidwords><allowwords></allowwords><forbidfloat>1</forbidfloat><requirelowestterms>0</requirelowestterms><checkanswertype>0</checkanswertype><mustverify>0</mustverify><showvalidation>0</showvalidation><options>intnum</options></input>
+  <input><name>ans2</name><type>numerical</type><tans>r1</tans><boxsize>5</boxsize><strictsyntax>1</strictsyntax><insertstars>0</insertstars><syntaxhint></syntaxhint><syntaxattribute>0</syntaxattribute><forbidwords></forbidwords><allowwords></allowwords><forbidfloat>1</forbidfloat><requirelowestterms>0</requirelowestterms><checkanswertype>0</checkanswertype><mustverify>0</mustverify><showvalidation>0</showvalidation><options>intnum</options></input>
+
+  <prt><name>prt1</name><value>1.0000000</value><autosimplify>1</autosimplify><feedbackstyle>1</feedbackstyle><feedbackvariables><text><![CDATA[]]></text></feedbackvariables>
+    <node><name>0</name><description>All three</description><answertest>AlgEquiv</answertest><sans>ans1</sans><tans>x</tans><testoptions></testoptions><quiet>0</quiet><truescoremode>=</truescoremode><truescore>1.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt1-1-T</trueanswernote><truefeedback format="html"><text><![CDATA[]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>1</falsenextnode><falseanswernote>prt1-1-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>1</name><description>Twice x</description><answertest>AlgEquiv</answertest><sans>ans1</sans><tans>x2</tans><testoptions></testoptions><quiet>0</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt1-2-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>Look again at the last step of your equation. Adding the eight regions takes \(x\) away three times and adds it once, so the equation has \(2x\) in it, not \(x\).</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>-1</falsenextnode><falseanswernote>prt1-2-F</falseanswernote><falsefeedback format="html"><text><![CDATA[<p>Let \(x\) use all three. Write each <q>only</q> region in \(x\), add all eight regions and set the sum equal to \({@N@}\).</p>]]></text></falsefeedback></node>
+  </prt>
+  <prt><name>prt2</name><value>1.0000000</value><autosimplify>1</autosimplify><feedbackstyle>1</feedbackstyle><feedbackvariables><text><![CDATA[ftc: is(ans2=nA-r2-r4-ans1);]]></text></feedbackvariables>
+    <node><name>0</name><description>Matatu only</description><answertest>AlgEquiv</answertest><sans>ans2</sans><tans>r1</tans><testoptions></testoptions><quiet>0</quiet><truescoremode>=</truescoremode><truescore>1.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt2-1-T</trueanswernote><truefeedback format="html"><text><![CDATA[]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>1</falsenextnode><falseanswernote>prt2-1-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>1</name><description>Centre not removed</description><answertest>AlgEquiv</answertest><sans>ans2</sans><tans>r1x</tans><testoptions></testoptions><quiet>0</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt2-2-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>Matatu only must also leave out those who used all three.</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>2</falsenextnode><falseanswernote>prt2-2-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>2</name><description>Follow-through</description><answertest>AlgEquiv</answertest><sans>ftc</sans><tans>true</tans><testoptions></testoptions><quiet>0</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt2-3-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>Your method is right, but it uses your answer to (a), which is not right.</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>-1</falsenextnode><falseanswernote>prt2-3-F</falseanswernote><falsefeedback format="html"><text><![CDATA[<p>Matatu only \(= {@nA@} - {@r2@} - {@r4@} - \) (all three).</p>]]></text></falsefeedback></node>
+  </prt>
+
+  <deployedseed>4</deployedseed>
+  <deployedseed>5</deployedseed>
+  <deployedseed>15</deployedseed>
+  <deployedseed>8</deployedseed>
+  <deployedseed>24</deployedseed>
+  <deployedseed>1</deployedseed>
+  <deployedseed>3</deployedseed>
+  <deployedseed>10</deployedseed>
+  <deployedseed>2</deployedseed>
+  <deployedseed>17</deployedseed>
+  <qtest><testcase>1</testcase><description>Correct</description>
+    <testinput><name>ans1</name><value>x</value></testinput>
+    <testinput><name>ans2</name><value>r1</value></testinput>
+    <expected><name>prt1</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt1-1-T</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt2-1-T</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>2</testcase><description>Twice x; centre not removed</description>
+    <testinput><name>ans1</name><value>x2</value></testinput>
+    <testinput><name>ans2</name><value>r1x</value></testinput>
+    <expected><name>prt1</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt1-1-F | prt1-2-T</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt2-1-F | prt2-2-T</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>3</testcase><description>Twice x; matatu only follows from it</description>
+    <testinput><name>ans1</name><value>x2</value></testinput>
+    <testinput><name>ans2</name><value>r1m</value></testinput>
+    <expected><name>prt1</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt1-1-F | prt1-2-T</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt2-1-F | prt2-2-F | prt2-3-T</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>4</testcase><description>Generic wrong</description>
+    <testinput><name>ans1</name><value>t4a</value></testinput>
+    <testinput><name>ans2</name><value>t4b</value></testinput>
+    <expected><name>prt1</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt1-1-F | prt1-2-F</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt2-1-F | prt2-2-F | prt2-3-F</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>5</testcase><description>Invalid: letter in (a)</description>
+    <testinput><name>ans1</name><value>y</value></testinput>
+    <testinput><name>ans2</name><value>r1</value></testinput>
+    <expected><name>prt1</name><expectedscore></expectedscore><expectedpenalty></expectedpenalty><expectedanswernote>NULL</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore></expectedscore><expectedpenalty></expectedpenalty><expectedanswernote>NULL</expectedanswernote></expected>
+  </qtest>
+</question>
+</quiz>

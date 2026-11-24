@@ -1,0 +1,7 @@
+<stack-static>
+    <statement><p><p>Find each indefinite integral. Use <m>c</m> for the constant of integration.</p><p>(a)</p><div><m>\displaystyle \int {5}\,dx =</m> <fillin characters="20" name="ans1"/>  </div><p>(b)</p><div><m>\displaystyle \int {6 x}\,dx =</m> <fillin characters="20" name="ans2"/>  </div><p>(c)</p><div><m>\displaystyle \int {9 x^2}\,dx =</m> <fillin characters="20" name="ans3"/>  </div></p></statement>
+    <solution><p><p>Integration undoes differentiation: raise the power of <m>x</m> by <m>1</m> and divide by the new power, <m>\int x^n\,dx = \dfrac{x^{n+1}}{n+1} + c</m>. A constant <m>k</m> is <m>k x^0</m>, so it integrates to <m>kx</m>.</p><p>(a) <m>\displaystyle \int {5}\,dx = {5 x} + c</m>. Check: <m>\dfrac{d}{dx}\left({5 x} + c\right) = {5}</m>.</p><p>(b) <m>\displaystyle \int {6 x}\,dx = \frac{ {6}x^2}{2} + c = {3 x^2} + c</m>. Check: <m>\dfrac{d}{dx}\left({3 x^2} + c\right) = {6 x}</m>.</p><p>(c) <m>\displaystyle \int {9 x^2}\,dx = \frac{ {9}x^{ {3} } }{ {3} } + c = {3 x^3} + c</m>. Check: <m>\dfrac{d}{dx}\left({3 x^3} + c\right) = {9 x^2}</m>.</p><p>Differentiating a constant gives <m>0</m>, so we cannot tell which constant was there: write <m>+\,c</m>.</p></p></solution>
+    <answer><p><m>5 x+c</m></p></answer>
+    <answer><p><m>3 x^2+c</m></p></answer>
+    <answer><p><m>3 x^3+c</m></p></answer>
+</stack-static>

@@ -1,0 +1,5 @@
+<stack-static>
+    <statement><p><p>The graph of <m>y = {\sin}\,x</m> is transformed by, in order:</p><ol><li>a stretch with the <m>x</m>-axis invariant, stretch factor <m>{2}</m>;</li><li>a stretch with the <m>y</m>-axis invariant, stretch factor <m>{\frac{1}{2}}</m>;</li><li>a translation by the vector <m>\begin{pmatrix} {30}^\circ \\ {1} \end{pmatrix}</m>.</li></ol><p>Write the equation of the final graph.</p><div><fillin characters="20" name="ans1"/>  </div></p></statement>
+    <solution><p><p>Apply the transformations in turn.</p><ol><li>Multiply by <m>{2}</m>: <m>y = {2}{\sin}\,x</m>.</li><li>Replace <m>x</m> by <m>\dfrac{x}{{\frac{1}{2}}} = {2}x</m>: <m>y = {2\sin 2x}</m>.</li><li>Replace <m>x</m> by <m>x - ({30}^\circ)</m> and add <m>{1}</m>: <m>y = {2 \sin \left( 2 \left(x-30\right) \right)+1}</m>, that is <m>y = {2 \sin \left( 2 x-60 \right)+1}</m> (angles in degrees).</li></ol></p></solution>
+    <answer><p><m>y=2 \sin \left( 2 x-60 \right)+1</m></p></answer>
+</stack-static>

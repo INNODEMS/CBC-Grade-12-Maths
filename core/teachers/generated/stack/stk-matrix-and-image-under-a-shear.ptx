@@ -1,0 +1,7 @@
+<stack-static>
+    <statement><p><p>A shear has the x-axis invariant and shear factor <m>{4}</m>.</p><p>(a) Write down its matrix.</p><div><fillin characters="3" name="ans1"/>  </div><p>(b) Find the image of the point <m>({-1},\,{4})</m>.</p><div>( <fillin characters="5" name="ans2"/> , <fillin characters="5" name="ans3"/> )   </div></p></statement>
+    <solution><p><p>Every point slides parallel to the invariant axis, by the shear factor times its distance from that axis, so areas do not change.</p><p>(a) With the x-axis invariant, (1, 0) and (0, 1) go to the columns of <m>{\left[\begin{array}{cc} 1 &amp; 4 \\ 0 &amp; 1 \end{array}\right]}</m>: <m>x' = {4 y+x}</m> and <m>y' = y</m>.</p><p>(b) The point's y-coordinate, <m>{4}</m>, is its signed distance from the x-axis, so it slides <m>{4} \times {4} = {16}</m> parallel to the x-axis: <m>{\left[\begin{array}{cc} 1 &amp; 4 \\ 0 &amp; 1 \end{array}\right]}{\left[\begin{array}{c} -1 \\ 4 \end{array}\right]} = {\left[\begin{array}{c} 15 \\ 4 \end{array}\right]}</m>. The image is <m>({15},\,{4})</m>.</p></p></solution>
+    <answer><p><m>\left[\begin{array}{cc} 1 &amp; 4 \\ 0 &amp; 1 \end{array}\right]</m></p></answer>
+    <answer><p><m>15</m></p></answer>
+    <answer><p><m>4</m></p></answer>
+</stack-static>

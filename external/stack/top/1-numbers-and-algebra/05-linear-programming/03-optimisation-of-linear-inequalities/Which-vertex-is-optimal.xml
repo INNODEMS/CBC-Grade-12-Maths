@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<quiz>
+<question type="stack">
+  <name><text>Which vertex is optimal</text></name>
+  <questiontext format="html">
+    <text><![CDATA[<p>R is the feasible region shown, with vertices A\((0, 0)\), B\(({@vs[2][1]@}, {@vs[2][2]@})\), C\(({@vs[3][1]@}, {@vs[3][2]@})\), D\(({@vs[4][1]@}, {@vs[4][2]@})\) and E\(({@vs[5][1]@}, {@vs[5][2]@})\).</p><div style="text-align:center;" role="img" aria-label="{@arl@}">
+[[jsxgraph width="420px" height="400px"]]
+(function () {
+  // static region board: the unwanted side of every boundary is shaded, R is left clear
+  var J = {#JB#};
+  var bb = J[0], Ls = J[1], Vs = J[2], R = J[3], st = J[4];
+  var b = JXG.JSXGraph.initBoard(divid, {boundingbox: bb, axis: false, grid: false, keepAspectRatio: false,
+    showNavigation: false, showCopyright: false, pan: {enabled: false}, zoom: {enabled: false}});
+  var i, k;
+  for (k = Math.ceil(bb[0]); k <= bb[2]; k++) {
+    b.create('segment', [[k, bb[3]], [k, bb[1]]], {strokeColor: '#d9d9d9', strokeWidth: 1, fixed: true, highlight: false});
+  }
+  for (k = Math.ceil(bb[3]); k <= bb[1]; k++) {
+    b.create('segment', [[bb[0], k], [bb[2], k]], {strokeColor: '#d9d9d9', strokeWidth: 1, fixed: true, highlight: false});
+  }
+  function clip(P, a, q, c, s) {
+    var out = [], j, p, r, fp, fr, t;
+    for (j = 0; j < P.length; j++) {
+      p = P[j]; r = P[(j + 1) % P.length];
+      fp = s * (a * p[0] + q * p[1] - c); fr = s * (a * r[0] + q * r[1] - c);
+      if (fp >= 0) { out.push(p); }
+      if ((fp >= 0) !== (fr >= 0)) { t = fp / (fp - fr); out.push([p[0] + t * (r[0] - p[0]), p[1] + t * (r[1] - p[1])]); }
+    }
+    return out;
+  }
+  function shade(a, q, c, s) {
+    var P = clip([[bb[0], bb[3]], [bb[2], bb[3]], [bb[2], bb[1]], [bb[0], bb[1]]], a, q, c, s);
+    if (P.length > 2) {
+      b.create('polygon', P, {fillColor: '#808080', fillOpacity: 0.25, borders: {visible: false},
+        vertices: {visible: false}, fixed: true, highlight: false, hasInnerPoints: false});
+    }
+  }
+  shade(1, 0, 0, -1); shade(0, 1, 0, -1);
+  b.create('axis', [[0, 0], [1, 0]], {name: 'x', withLabel: true, label: {position: 'rt', offset: [-12, 12]},
+    ticks: {insertTicks: false, ticksDistance: st, minorTicks: st - 1, majorHeight: 8, minorHeight: 4, drawZero: true, label: {offset: [-4, -12]}}});
+  b.create('axis', [[0, 0], [0, 1]], {name: 'y', withLabel: true, label: {position: 'rt', offset: [8, -6]},
+    ticks: {insertTicks: false, ticksDistance: st, minorTicks: st - 1, majorHeight: 8, minorHeight: 4, drawZero: false, label: {offset: [-18, 0]}}});
+  for (i = 0; i < Ls.length; i++) {
+    var L = Ls[i];
+    if (L[3] !== 0) { shade(L[0], L[1], L[2], L[3]); }
+    b.create('line', [-L[2], L[0], L[1]], {strokeColor: (L[3] !== 0 ? '#000000' : '#1f4e9c'), strokeWidth: 2, dash: (L[4] ? 2 : 0), fixed: true, highlight: false});
+    if (L[7] > 0) { b.create('text', [L[5], L[6], 'L<sub>' + L[7] + '</sub>'], {fontSize: 14, fixed: true, highlight: false}); }
+    if (L[7] < 0) { b.create('text', [L[5], L[6], 'search line'], {fontSize: 13, color: '#1f4e9c', fixed: true, highlight: false}); }
+  }
+  for (i = 0; i < Vs.length; i++) {
+    var V = Vs[i], nm = 'ABCDE'.charAt(V[2] - 1);
+    if (V[3]) { nm = nm + '(' + V[0] + ', ' + V[1] + ')'; }
+    b.create('point', [V[0], V[1]], {name: nm, fixed: true, size: 2, color: '#000000', highlight: false,
+      label: {offset: [V[4], V[5]], fontSize: 13}});
+  }
+  if (R.length === 2) { b.create('text', [R[0], R[1], 'R'], {fontSize: 18, fixed: true, highlight: false}); }
+})();
+[[/jsxgraph]]
+</div><p>For each profit, choose the vertex of R where it is greatest.</p><p>\(P = {@obs[1][1]@}x + {@obs[1][2]@}y\): [[input:ans1]] [[validation:ans1]] [[feedback:prt1]]</p><p>\(P = {@obs[2][1]@}x + {@obs[2][2]@}y\): [[input:ans2]] [[validation:ans2]] [[feedback:prt2]]</p><p>\(P = {@obs[3][1]@}x + {@obs[3][2]@}y\): [[input:ans3]] [[validation:ans3]] [[feedback:prt3]]</p>]]></text>
+  </questiontext>
+  <generalfeedback format="html">
+    <text><![CDATA[<p>The search line for \(P = ax + by\) has gradient \(-a/b\). It leaves R at the vertex where its gradient lies between the gradients of the two edges that meet there. You can also work out \(P\) at each vertex.</p><p>\(P = {@obs[1][1]@}x + {@obs[1][2]@}y\): gradient \({@grs[1]@}\), greatest at {@ta[1]@}. \(P = {@obs[2][1]@}x + {@obs[2][2]@}y\): gradient \({@grs[2]@}\), greatest at {@ta[2]@}. \(P = {@obs[3][1]@}x + {@obs[3][2]@}y\): gradient \({@grs[3]@}\), greatest at {@ta[3]@}.</p>]]></text>
+  </generalfeedback>
+  <defaultgrade>3</defaultgrade>
+  <penalty>0.1</penalty>
+  <hidden>0</hidden>
+  <idnumber></idnumber>
+  <stackversion><text>2026063000</text></stackversion>
+  <questionvariables>
+    <text><![CDATA[/* Design: classify-the-objects pattern. Source: original. Core only. Three objectives with distinct optimal vertices; A (the origin) is never correct; row order rotated by entry. */
+Q34L: [[[[0,0],[16,0],[14,7],[9,13],[0,15]],[[3,5],[11,6],[1,10]],["D","C","E"],["E","D","D"],["undefined (the edge is vertical) and \\(0\\)","\\(0\\) and \\(-\\frac{7}{2}\\)","\\(-\\frac{7}{2}\\) and \\(-\\frac{6}{5}\\)","\\(-\\frac{6}{5}\\) and \\(-\\frac{2}{9}\\)","\\(-\\frac{2}{9}\\) and undefined (the edge is vertical)"],[-3/5,-11/6,-1/10],[[-1,18,22,-1],[[7,2,112,1,0,0.0,0.0,0],[6,5,119,1,0,0.0,0.0,0],[2,9,135,1,0,0.0,0.0,0]],[[0.0,0.0,1,1,6,10],[16.0,0.0,2,1,6,10],[14.0,7.0,3,1,6,10],[9.0,13.0,4,1,6,10],[0.0,15.0,5,1,6,10]],[],2],"Graph with x from 0 to 22 and y from 0 to 18. The feasible region R is left clear and the unwanted side of each boundary is shaded. Boundaries: 7x + 2y = 112 (solid); 6x + 5y = 119 (solid); 2x + 9y = 135 (solid). Vertices of R: A (0, 0), B (16, 0), C (14, 7), D (9, 13), E (0, 15)."],
+[[[0,0],[16,0],[13,7],[7,12],[0,13]],[[2,3],[5,2],[11,9]],["D","B","C"],["E","C","D"],["undefined (the edge is vertical) and \\(0\\)","\\(0\\) and \\(-\\frac{7}{3}\\)","\\(-\\frac{7}{3}\\) and \\(-\\frac{5}{6}\\)","\\(-\\frac{5}{6}\\) and \\(-\\frac{1}{7}\\)","\\(-\\frac{1}{7}\\) and undefined (the edge is vertical)"],[-2/3,-5/2,-11/9],[[-1,16,22,-1],[[7,3,112,1,0,0.0,0.0,0],[5,6,107,1,0,0.0,0.0,0],[1,7,91,1,0,0.0,0.0,0]],[[0.0,0.0,1,1,6,10],[16.0,0.0,2,1,6,10],[13.0,7.0,3,1,6,10],[7.0,12.0,4,1,6,10],[0.0,13.0,5,1,6,10]],[],2],"Graph with x from 0 to 22 and y from 0 to 16. The feasible region R is left clear and the unwanted side of each boundary is shaded. Boundaries: 7x + 3y = 112 (solid); 5x + 6y = 107 (solid); x + 7y = 91 (solid). Vertices of R: A (0, 0), B (16, 0), C (13, 7), D (7, 12), E (0, 13)."],
+[[[0,0],[14,0],[12,7],[7,13],[0,14]],[[10,3],[5,9],[1,12]],["C","D","E"],["D","E","D"],["undefined (the edge is vertical) and \\(0\\)","\\(0\\) and \\(-\\frac{7}{2}\\)","\\(-\\frac{7}{2}\\) and \\(-\\frac{6}{5}\\)","\\(-\\frac{6}{5}\\) and \\(-\\frac{1}{7}\\)","\\(-\\frac{1}{7}\\) and undefined (the edge is vertical)"],[-10/3,-5/9,-1/12],[[-1,17,20,-1],[[7,2,98,1,0,0.0,0.0,0],[6,5,107,1,0,0.0,0.0,0],[1,7,98,1,0,0.0,0.0,0]],[[0.0,0.0,1,1,6,10],[14.0,0.0,2,1,6,10],[12.0,7.0,3,1,6,10],[7.0,13.0,4,1,6,10],[0.0,14.0,5,1,6,10]],[],2],"Graph with x from 0 to 20 and y from 0 to 17. The feasible region R is left clear and the unwanted side of each boundary is shaded. Boundaries: 7x + 2y = 98 (solid); 6x + 5y = 107 (solid); x + 7y = 98 (solid). Vertices of R: A (0, 0), B (14, 0), C (12, 7), D (7, 13), E (0, 14)."],
+[[[0,0],[13,0],[11,7],[6,13],[0,14]],[[8,5],[5,7],[11,1]],["C","D","B"],["D","E","C"],["undefined (the edge is vertical) and \\(0\\)","\\(0\\) and \\(-\\frac{7}{2}\\)","\\(-\\frac{7}{2}\\) and \\(-\\frac{6}{5}\\)","\\(-\\frac{6}{5}\\) and \\(-\\frac{1}{6}\\)","\\(-\\frac{1}{6}\\) and undefined (the edge is vertical)"],[-8/5,-5/7,"-11"],[[-1,17,19,-1],[[7,2,91,1,0,0.0,0.0,0],[6,5,101,1,0,0.0,0.0,0],[1,6,84,1,0,0.0,0.0,0]],[[0.0,0.0,1,1,6,10],[13.0,0.0,2,1,6,10],[11.0,7.0,3,1,6,10],[6.0,13.0,4,1,6,10],[0.0,14.0,5,1,6,10]],[],2],"Graph with x from 0 to 19 and y from 0 to 17. The feasible region R is left clear and the unwanted side of each boundary is shaded. Boundaries: 7x + 2y = 91 (solid); 6x + 5y = 101 (solid); x + 6y = 84 (solid). Vertices of R: A (0, 0), B (13, 0), C (11, 7), D (6, 13), E (0, 14)."],
+[[[0,0],[16,0],[13,8],[7,13],[0,14]],[[9,7],[9,2],[5,11]],["C","B","D"],["D","C","E"],["undefined (the edge is vertical) and \\(0\\)","\\(0\\) and \\(-\\frac{8}{3}\\)","\\(-\\frac{8}{3}\\) and \\(-\\frac{5}{6}\\)","\\(-\\frac{5}{6}\\) and \\(-\\frac{1}{7}\\)","\\(-\\frac{1}{7}\\) and undefined (the edge is vertical)"],[-9/7,-9/2,-5/11],[[-1,17,22,-1],[[8,3,128,1,0,0.0,0.0,0],[5,6,113,1,0,0.0,0.0,0],[1,7,98,1,0,0.0,0.0,0]],[[0.0,0.0,1,1,6,10],[16.0,0.0,2,1,6,10],[13.0,8.0,3,1,6,10],[7.0,13.0,4,1,6,10],[0.0,14.0,5,1,6,10]],[],2],"Graph with x from 0 to 22 and y from 0 to 17. The feasible region R is left clear and the unwanted side of each boundary is shaded. Boundaries: 8x + 3y = 128 (solid); 5x + 6y = 113 (solid); x + 7y = 98 (solid). Vertices of R: A (0, 0), B (16, 0), C (13, 8), D (7, 13), E (0, 14)."],
+[[[0,0],[13,0],[12,6],[7,12],[0,15]],[[11,10],[2,9],[8,1]],["D","E","B"],["E","D","C"],["undefined (the edge is vertical) and \\(0\\)","\\(0\\) and \\(-6\\)","\\(-6\\) and \\(-\\frac{6}{5}\\)","\\(-\\frac{6}{5}\\) and \\(-\\frac{3}{7}\\)","\\(-\\frac{3}{7}\\) and undefined (the edge is vertical)"],[-11/10,-2/9,"-8"],[[-1,18,19,-1],[[6,1,78,1,0,0.0,0.0,0],[6,5,102,1,0,0.0,0.0,0],[3,7,105,1,0,0.0,0.0,0]],[[0.0,0.0,1,1,6,10],[13.0,0.0,2,1,6,10],[12.0,6.0,3,1,6,10],[7.0,12.0,4,1,6,10],[0.0,15.0,5,1,6,10]],[],2],"Graph with x from 0 to 19 and y from 0 to 18. The feasible region R is left clear and the unwanted side of each boundary is shaded. Boundaries: 6x + y = 78 (solid); 6x + 5y = 102 (solid); 3x + 7y = 105 (solid). Vertices of R: A (0, 0), B (13, 0), C (12, 6), D (7, 12), E (0, 15)."],
+[[[0,0],[15,0],[13,7],[6,12],[0,13]],[[5,4],[6,11],[1,12]],["C","D","E"],["D","E","D"],["undefined (the edge is vertical) and \\(0\\)","\\(0\\) and \\(-\\frac{7}{2}\\)","\\(-\\frac{7}{2}\\) and \\(-\\frac{5}{7}\\)","\\(-\\frac{5}{7}\\) and \\(-\\frac{1}{6}\\)","\\(-\\frac{1}{6}\\) and undefined (the edge is vertical)"],[-5/4,-6/11,-1/12],[[-1,16,21,-1],[[7,2,105,1,0,0.0,0.0,0],[5,7,114,1,0,0.0,0.0,0],[1,6,78,1,0,0.0,0.0,0]],[[0.0,0.0,1,1,6,10],[15.0,0.0,2,1,6,10],[13.0,7.0,3,1,6,10],[6.0,12.0,4,1,6,10],[0.0,13.0,5,1,6,10]],[],2],"Graph with x from 0 to 21 and y from 0 to 16. The feasible region R is left clear and the unwanted side of each boundary is shaded. Boundaries: 7x + 2y = 105 (solid); 5x + 7y = 114 (solid); x + 6y = 78 (solid). Vertices of R: A (0, 0), B (15, 0), C (13, 7), D (6, 12), E (0, 13)."],
+[[[0,0],[15,0],[11,7],[6,13],[0,14]],[[9,5],[9,10],[8,5]],["B","D","C"],["C","E","D"],["undefined (the edge is vertical) and \\(0\\)","\\(0\\) and \\(-\\frac{7}{4}\\)","\\(-\\frac{7}{4}\\) and \\(-\\frac{6}{5}\\)","\\(-\\frac{6}{5}\\) and \\(-\\frac{1}{6}\\)","\\(-\\frac{1}{6}\\) and undefined (the edge is vertical)"],[-9/5,-9/10,-8/5],[[-1,17,21,-1],[[7,4,105,1,0,0.0,0.0,0],[6,5,101,1,0,0.0,0.0,0],[1,6,84,1,0,0.0,0.0,0]],[[0.0,0.0,1,1,6,10],[15.0,0.0,2,1,6,10],[11.0,7.0,3,1,6,10],[6.0,13.0,4,1,6,10],[0.0,14.0,5,1,6,10]],[],2],"Graph with x from 0 to 21 and y from 0 to 17. The feasible region R is left clear and the unwanted side of each boundary is shaded. Boundaries: 7x + 4y = 105 (solid); 6x + 5y = 101 (solid); x + 6y = 84 (solid). Vertices of R: A (0, 0), B (15, 0), C (11, 7), D (6, 13), E (0, 14)."],
+[[[0,0],[12,0],[11,6],[6,12],[0,13]],[[1,10],[2,9],[11,3]],["E","D","C"],["D","E","D"],["undefined (the edge is vertical) and \\(0\\)","\\(0\\) and \\(-6\\)","\\(-6\\) and \\(-\\frac{6}{5}\\)","\\(-\\frac{6}{5}\\) and \\(-\\frac{1}{6}\\)","\\(-\\frac{1}{6}\\) and undefined (the edge is vertical)"],[-1/10,-2/9,-11/3],[[-1,16,18,-1],[[6,1,72,1,0,0.0,0.0,0],[6,5,96,1,0,0.0,0.0,0],[1,6,78,1,0,0.0,0.0,0]],[[0.0,0.0,1,1,6,10],[12.0,0.0,2,1,6,10],[11.0,6.0,3,1,6,10],[6.0,12.0,4,1,6,10],[0.0,13.0,5,1,6,10]],[],2],"Graph with x from 0 to 18 and y from 0 to 16. The feasible region R is left clear and the unwanted side of each boundary is shaded. Boundaries: 6x + y = 72 (solid); 6x + 5y = 96 (solid); x + 6y = 78 (solid). Vertices of R: A (0, 0), B (12, 0), C (11, 6), D (6, 12), E (0, 13)."],
+[[[0,0],[12,0],[11,6],[9,13],[0,15]],[[8,9],[4,1],[1,8]],["D","C","E"],["E","D","D"],["undefined (the edge is vertical) and \\(0\\)","\\(0\\) and \\(-6\\)","\\(-6\\) and \\(-\\frac{7}{2}\\)","\\(-\\frac{7}{2}\\) and \\(-\\frac{2}{9}\\)","\\(-\\frac{2}{9}\\) and undefined (the edge is vertical)"],[-8/9,"-4",-1/8],[[-1,18,18,-1],[[6,1,72,1,0,0.0,0.0,0],[7,2,89,1,0,0.0,0.0,0],[2,9,135,1,0,0.0,0.0,0]],[[0.0,0.0,1,1,6,10],[12.0,0.0,2,1,6,10],[11.0,6.0,3,1,6,10],[9.0,13.0,4,1,6,10],[0.0,15.0,5,1,6,10]],[],2],"Graph with x from 0 to 18 and y from 0 to 18. The feasible region R is left clear and the unwanted side of each boundary is shaded. Boundaries: 6x + y = 72 (solid); 7x + 2y = 89 (solid); 2x + 9y = 135 (solid). Vertices of R: A (0, 0), B (12, 0), C (11, 6), D (9, 13), E (0, 15)."]];
+ix: 1+rand(10);
+E: Q34L[ix];
+vs: E[1]; obs: E[2]; ta: E[3]; nx: E[4]; egr: E[5]; grs: E[6]; JB: E[7]; arl: E[8];
+ta1: sconcat(ta[1], "1"); ta2: sconcat(ta[2], "2"); ta3: sconcat(ta[3], "3");
+nx1: sconcat(nx[1], "1"); nx2: sconcat(nx[2], "2"); nx3: sconcat(nx[3], "3");
+mko(k) := makelist([sconcat(["A","B","C","D","E"][j], string(k)), is(["A","B","C","D","E"][j] = ta[k]), ["A","B","C","D","E"][j]], j, 1, 5);
+o1: mko(1); o2: mko(2); o3: mko(3);
+vix(s) := if s = "A" then 1 elseif s = "B" then 2 elseif s = "C" then 3 elseif s = "D" then 4 else 5;
+nbr(s, k) := block([u: vix(s), w: vix(ta[k])], is(mod(u - w, 5) = 1 or mod(w - u, 5) = 1));
+]]></text>
+  </questionvariables>
+  <specificfeedback format="html"><text><![CDATA[]]></text></specificfeedback>
+  <questionnote format="moodle_auto_format">
+    <text>ix={@ix@}, answers {@ta@}</text>
+  </questionnote>
+  <questiondescription format="html"><text><![CDATA[<p id="concept">Linear Programming: which vertex is optimal</p><p id="description">Grade 12 CBE Core 1.4 (c): For three linear objectives on one feasible region, choose the vertex where each is greatest, by comparing gradients or values.</p><p id="edition">Core</p><p id="provenance">This question is original to this project.</p><p id="citation">INNODEMS CBC Grade 12 Mathematics, first draft by Ben Davies, 2026. Aligned to the KICD Senior School Curriculum Design, Core Mathematics Grade 12 (draft).</p>]]></text></questiondescription>
+  <questionsimplify>1</questionsimplify>
+  <assumepositive>0</assumepositive>
+  <assumereal>0</assumereal>
+  <prtcorrect format="html"><text><![CDATA[[[commonstring key="symbolicprtcorrectfeedback"/]] [[commonstring key="defaultprtcorrectfeedback"/]]]]></text></prtcorrect>
+  <prtpartiallycorrect format="html"><text><![CDATA[[[commonstring key="symbolicprtpartiallycorrectfeedback"/]] [[commonstring key="defaultprtpartiallycorrectfeedback"/]]]]></text></prtpartiallycorrect>
+  <prtincorrect format="html"><text><![CDATA[[[commonstring key="symbolicprtincorrectfeedback"/]] [[commonstring key="defaultprtincorrectfeedback"/]]]]></text></prtincorrect>
+  <decimals>.</decimals>
+  <scientificnotation>*10</scientificnotation>
+  <multiplicationsign>none</multiplicationsign>
+  <sqrtsign>1</sqrtsign>
+  <complexno>i</complexno>
+  <inversetrig>cos-1</inversetrig>
+  <logicsymbol>lang</logicsymbol>
+  <matrixparens>[</matrixparens>
+  <isbroken>0</isbroken>
+  <variantsselectionseed></variantsselectionseed>
+
+  <input><name>ans1</name><type>dropdown</type><tans>o1</tans><boxsize>15</boxsize><strictsyntax>1</strictsyntax><insertstars>0</insertstars><syntaxhint></syntaxhint><syntaxattribute>0</syntaxattribute><forbidwords></forbidwords><allowwords></allowwords><forbidfloat>1</forbidfloat><requirelowestterms>0</requirelowestterms><checkanswertype>0</checkanswertype><mustverify>0</mustverify><showvalidation>0</showvalidation><options></options></input>
+  <input><name>ans2</name><type>dropdown</type><tans>o2</tans><boxsize>15</boxsize><strictsyntax>1</strictsyntax><insertstars>0</insertstars><syntaxhint></syntaxhint><syntaxattribute>0</syntaxattribute><forbidwords></forbidwords><allowwords></allowwords><forbidfloat>1</forbidfloat><requirelowestterms>0</requirelowestterms><checkanswertype>0</checkanswertype><mustverify>0</mustverify><showvalidation>0</showvalidation><options></options></input>
+  <input><name>ans3</name><type>dropdown</type><tans>o3</tans><boxsize>15</boxsize><strictsyntax>1</strictsyntax><insertstars>0</insertstars><syntaxhint></syntaxhint><syntaxattribute>0</syntaxattribute><forbidwords></forbidwords><allowwords></allowwords><forbidfloat>1</forbidfloat><requirelowestterms>0</requirelowestterms><checkanswertype>0</checkanswertype><mustverify>0</mustverify><showvalidation>0</showvalidation><options></options></input>
+
+  <prt><name>prt1</name><value>1.0000000</value><autosimplify>1</autosimplify><feedbackstyle>1</feedbackstyle><feedbackvariables><text><![CDATA[ch1: charat(ans1, 1); vv1: vs[vix(ch1)];]]></text></feedbackvariables>
+    <node><name>0</name><description>Row 1</description><answertest>AlgEquiv</answertest><sans>ans1</sans><tans>ta1</tans><testoptions></testoptions><quiet>0</quiet><truescoremode>=</truescoremode><truescore>1.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt1-1-T</trueanswernote><truefeedback format="html"><text><![CDATA[]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>1</falsenextnode><falseanswernote>prt1-1-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>1</name><description>Chose the origin</description><answertest>AlgEquiv</answertest><sans>ans1</sans><tans>"A1"</tans><testoptions></testoptions><quiet>0</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt1-2-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>At A, the origin, \(P = 0\), the smallest value.</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>2</falsenextnode><falseanswernote>prt1-2-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>2</name><description>Neighbour of the right vertex</description><answertest>AlgEquiv</answertest><sans>nbr(ch1, 1)</sans><tans>true</tans><testoptions></testoptions><quiet>0</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt1-3-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>The search line has gradient \({@grs[1]@}\). The edges at {@ch1@} have gradients {@egr[vix(ch1)]@}. The line leaves R at the vertex where its gradient lies between the gradients of the two edges that meet there.</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>-1</falsenextnode><falseanswernote>prt1-3-F</falseanswernote><falsefeedback format="html"><text><![CDATA[<p>At {@ch1@}, \(P = {@obs[1][1]@} \times {@vv1[1]@} + {@obs[1][2]@} \times {@vv1[2]@} = {@obs[1][1]*vv1[1] + obs[1][2]*vv1[2]@}\). Work out \(P\) at the other vertices and compare, or slide the search line out from the origin.</p>]]></text></falsefeedback></node>
+  </prt>
+  <prt><name>prt2</name><value>1.0000000</value><autosimplify>1</autosimplify><feedbackstyle>1</feedbackstyle><feedbackvariables><text><![CDATA[ch2: charat(ans2, 1); vv2: vs[vix(ch2)];]]></text></feedbackvariables>
+    <node><name>0</name><description>Row 2</description><answertest>AlgEquiv</answertest><sans>ans2</sans><tans>ta2</tans><testoptions></testoptions><quiet>0</quiet><truescoremode>=</truescoremode><truescore>1.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt2-1-T</trueanswernote><truefeedback format="html"><text><![CDATA[]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>1</falsenextnode><falseanswernote>prt2-1-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>1</name><description>Chose the origin</description><answertest>AlgEquiv</answertest><sans>ans2</sans><tans>"A2"</tans><testoptions></testoptions><quiet>0</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt2-2-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>At A, the origin, \(P = 0\), the smallest value.</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>2</falsenextnode><falseanswernote>prt2-2-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>2</name><description>Neighbour of the right vertex</description><answertest>AlgEquiv</answertest><sans>nbr(ch2, 2)</sans><tans>true</tans><testoptions></testoptions><quiet>0</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt2-3-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>The search line has gradient \({@grs[2]@}\). The edges at {@ch2@} have gradients {@egr[vix(ch2)]@}. The line leaves R at the vertex where its gradient lies between the gradients of the two edges that meet there.</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>-1</falsenextnode><falseanswernote>prt2-3-F</falseanswernote><falsefeedback format="html"><text><![CDATA[<p>At {@ch2@}, \(P = {@obs[2][1]@} \times {@vv2[1]@} + {@obs[2][2]@} \times {@vv2[2]@} = {@obs[2][1]*vv2[1] + obs[2][2]*vv2[2]@}\). Work out \(P\) at the other vertices and compare, or slide the search line out from the origin.</p>]]></text></falsefeedback></node>
+  </prt>
+  <prt><name>prt3</name><value>1.0000000</value><autosimplify>1</autosimplify><feedbackstyle>1</feedbackstyle><feedbackvariables><text><![CDATA[ch3: charat(ans3, 1); vv3: vs[vix(ch3)];]]></text></feedbackvariables>
+    <node><name>0</name><description>Row 3</description><answertest>AlgEquiv</answertest><sans>ans3</sans><tans>ta3</tans><testoptions></testoptions><quiet>0</quiet><truescoremode>=</truescoremode><truescore>1.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt3-1-T</trueanswernote><truefeedback format="html"><text><![CDATA[]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>1</falsenextnode><falseanswernote>prt3-1-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>1</name><description>Chose the origin</description><answertest>AlgEquiv</answertest><sans>ans3</sans><tans>"A3"</tans><testoptions></testoptions><quiet>0</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt3-2-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>At A, the origin, \(P = 0\), the smallest value.</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>2</falsenextnode><falseanswernote>prt3-2-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>2</name><description>Neighbour of the right vertex</description><answertest>AlgEquiv</answertest><sans>nbr(ch3, 3)</sans><tans>true</tans><testoptions></testoptions><quiet>0</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt3-3-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>The search line has gradient \({@grs[3]@}\). The edges at {@ch3@} have gradients {@egr[vix(ch3)]@}. The line leaves R at the vertex where its gradient lies between the gradients of the two edges that meet there.</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>-1</falsenextnode><falseanswernote>prt3-3-F</falseanswernote><falsefeedback format="html"><text><![CDATA[<p>At {@ch3@}, \(P = {@obs[3][1]@} \times {@vv3[1]@} + {@obs[3][2]@} \times {@vv3[2]@} = {@obs[3][1]*vv3[1] + obs[3][2]*vv3[2]@}\). Work out \(P\) at the other vertices and compare, or slide the search line out from the origin.</p>]]></text></falsefeedback></node>
+  </prt>
+
+  <deployedseed>4</deployedseed>
+  <deployedseed>5</deployedseed>
+  <deployedseed>15</deployedseed>
+  <deployedseed>8</deployedseed>
+  <deployedseed>24</deployedseed>
+  <deployedseed>1</deployedseed>
+  <deployedseed>3</deployedseed>
+  <deployedseed>10</deployedseed>
+  <deployedseed>2</deployedseed>
+  <deployedseed>17</deployedseed>
+  <qtest><testcase>1</testcase><description>Correct</description>
+    <testinput><name>ans1</name><value>ta1</value></testinput>
+    <testinput><name>ans2</name><value>ta2</value></testinput>
+    <testinput><name>ans3</name><value>ta3</value></testinput>
+    <expected><name>prt1</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt1-1-T</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt2-1-T</expectedanswernote></expected>
+    <expected><name>prt3</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt3-1-T</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>2</testcase><description>All A</description>
+    <testinput><name>ans1</name><value>"A1"</value></testinput>
+    <testinput><name>ans2</name><value>"A2"</value></testinput>
+    <testinput><name>ans3</name><value>"A3"</value></testinput>
+    <expected><name>prt1</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt1-1-F | prt1-2-T</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt2-1-F | prt2-2-T</expectedanswernote></expected>
+    <expected><name>prt3</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt3-1-F | prt3-2-T</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>3</testcase><description>A neighbouring vertex in each row</description>
+    <testinput><name>ans1</name><value>nx1</value></testinput>
+    <testinput><name>ans2</name><value>nx2</value></testinput>
+    <testinput><name>ans3</name><value>nx3</value></testinput>
+    <expected><name>prt1</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt1-1-F | prt1-2-F | prt1-3-T</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt2-1-F | prt2-2-F | prt2-3-T</expectedanswernote></expected>
+    <expected><name>prt3</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt3-1-F | prt3-2-F | prt3-3-T</expectedanswernote></expected>
+  </qtest>
+</question>
+</quiz>

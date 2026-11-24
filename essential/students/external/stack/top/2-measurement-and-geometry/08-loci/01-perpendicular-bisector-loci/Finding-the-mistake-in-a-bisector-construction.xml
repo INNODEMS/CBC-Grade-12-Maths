@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<quiz>
+<question type="stack">
+  <name><text>Finding the mistake in a bisector construction</text></name>
+  <questiontext format="html">
+    <text><![CDATA[<p>{@nm[1]@} constructed the perpendicular bisector of a line segment \(AB\) of length \({@L@}\) cm. {@nm[2]@} wrote:</p><ol><li><p>Draw \(AB = {@L@}\) cm.</p></li><li><p>Open the compasses to {@exd(R1)@} cm.</p></li><li><p>With the point at \(A\), draw an arc above \(AB\) and an arc below \(AB\).</p></li><li><p>[[if test="is(er=2)"]]Open the compasses to {@exd(R2)@} cm, put the point at \(B\) and draw an arc above \(AB\) and an arc below \(AB\).[[else]]Without changing the compasses, put the point at \(B\) and draw an arc above \(AB\) and an arc below \(AB\).[[/if]]</p></li><li><p>[[if test="is(er=3)"]]Join the point where the arcs cross above \(AB\) to \(B\).[[else]]Join the two points where the arcs cross.[[/if]]</p></li></ol><p>The diagram shows the construction drawn exactly as written.</p><div style="text-align:center;" role="img" aria-label="{@arl@}">
+[[jsxgraph width="340px" height="220px"]]
+(function () {
+  var L = {#L#}, R1 = {#float(R1)#}, R2 = {#float(RB)#}, er = {#er#};
+  var x = (L * L + R1 * R1 - R2 * R2) / (2 * L), h2 = R1 * R1 - x * x, y, tA, tB;
+  if (h2 > 0) {
+    y = Math.sqrt(h2); tA = Math.atan2(y, x); tB = Math.atan2(y, x - L);
+  } else {
+    y = 0; tA = 1.1; tB = Math.PI - 1.1;
+  }
+  // The height grows with the crossing points so the arcs are never cut off at the top or bottom
+  var top = Math.max(5.2, y + 1.6);
+  var b = JXG.JSXGraph.initBoard(divid, {boundingbox: [-1.6, top, L + 1.6, -top], keepAspectRatio: true, axis: false, grid: false,
+    showNavigation: false, showCopyright: false, pan: {enabled: false}, zoom: {enabled: false}});
+  var A = b.create('point', [0, 0], {name: 'A', fixed: true, size: 2, color: '#000000', label: {offset: [-14, -10]}});
+  var B = b.create('point', [L, 0], {name: 'B', fixed: true, size: 2, color: '#000000', label: {offset: [6, -10]}});
+  b.create('segment', [A, B], {strokeColor: '#000000', strokeWidth: 2, fixed: true, highlight: false});
+  function arc(cx, R, t) {
+    b.create('curve', [function (s) { return cx + R * Math.cos(s); }, function (s) { return R * Math.sin(s); }, t - 0.4, t + 0.4],
+      {strokeColor: '#1f4e9c', strokeWidth: 1.5, fixed: true, highlight: false});
+  }
+  arc(0, R1, tA); arc(0, R1, -tA); arc(L, R2, tB); arc(L, R2, -tB);
+  if (er === 2) {
+    b.create('line', [[x, y], [x, -y]], {strokeColor: '#b00000', strokeWidth: 1.5, straightFirst: false, straightLast: false, fixed: true, highlight: false});
+  }
+  if (er === 3) {
+    b.create('segment', [[x, y], B], {strokeColor: '#b00000', strokeWidth: 1.5, fixed: true, highlight: false});
+  }
+})();
+[[/jsxgraph]]
+</div><p>(a) Which step has the mistake?</p><div>[[input:ans1]] [[validation:ans1]] [[feedback:prt1]]</div><p>(b) What does the mistake do?</p><div>[[input:ans2]] [[validation:ans2]] [[feedback:prt2]]</div>]]></text>
+  </questiontext>
+  <generalfeedback format="html">
+    <text><![CDATA[<p>The correct construction is:</p><ol><li><p>Draw \(AB = {@L@}\) cm.</p></li><li><p>Open the compasses to more than half of \(AB\), that is more than {@exd(L/2)@} cm.</p></li><li><p>With the point at \(A\), draw an arc above \(AB\) and an arc below \(AB\).</p></li><li><p>Without changing the compasses, put the point at \(B\) and draw an arc above and an arc below \(AB\).</p></li><li><p>Join the two points where the arcs cross.</p></li></ol><p>Each crossing point is one radius from \(A\) and the same radius from \(B\), so it is equidistant from \(A\) and \(B\). That is why the radius must be more than half of \(AB\) (or the arcs do not meet) and must stay the same for both ends.</p><p>[[if test="is(er=1)"]]The mistake is in Step 2: {@exd(R1)@} cm is less than half of \(AB\), so the arcs from \(A\) and \(B\) do not meet.[[elif test="is(er=2)"]]The mistake is in Step 4: the compasses were changed to {@exd(R2)@} cm, so the crossing points are not equidistant from \(A\) and \(B\). The line joining them is still at right angles to \(AB\), but it does not pass through the midpoint.[[else]]The mistake is in Step 5: the line must join the two crossing points. Joining one crossing point to \(B\) gives a line that does not cross \(AB\) at right angles.[[/if]]</p>]]></text>
+  </generalfeedback>
+  <defaultgrade>2</defaultgrade>
+  <penalty>0.1</penalty>
+  <hidden>0</hidden>
+  <idnumber></idnumber>
+  <stackversion><text>2026063000</text></stackversion>
+  <questionvariables>
+    <text><![CDATA[/* exd: shortest exact decimal display of a terminating value (up to 3 d.p.) */
+exd(v) := if integerp(v) then v else if integerp(10*v) then dispdp(float(v),1) else if integerp(100*v) then dispdp(float(v),2) else dispdp(float(v),3);
+/* Design: find the mistake in a perpendicular bisector construction. er 1: radius not more than half of AB; 2: radius changed for B; 3: wrong points joined. Source: original. */
+L: rand([6,7,8,9,10]);
+er: 1+rand(3);
+R1: if is(er=1) then L/2-rand([1,3/2]) else L/2+rand([1,3/2,2]);
+R2: R1+rand([1,3/2]);
+RB: if is(er=2) then R2 else R1;
+nm: rand([["Wanjiru","She"],["Otieno","He"],["Chebet","She"],["Kamau","He"],["Achieng","She"],["Mutua","He"]]);
+o1: [["s1",false,"Step 1"],["s2",is(er=1),"Step 2"],["s3",false,"Step 3"],["s4",is(er=2),"Step 4"],["s5",is(er=3),"Step 5"]];
+o2: [["ok",false,"Nothing: the construction is correct"],["meet",is(er=1),"The arcs from A and B do not meet"],["mid",is(er=2),"The line crosses AB at right angles, but not at its midpoint"],["perp",is(er=3),"The line does not cross AB at right angles"]];
+ta1: ["s2","s4","s5"][er];
+ta2: ["meet","mid","perp"][er];
+/* diagnostic step: Step 5 blamed when the arcs are wrong (er 1, 2); Step 2 blamed when the joining is wrong (er 3) */
+dg1: ["s5","s5","s2"][er];
+gw1: ["s4","s2","s4"][er];
+wc2: first(sublist(["meet","mid","perp"], lambda([z], is(z#ta2))));
+/* the aria-label says what this variant's drawing shows */
+arl: sconcat("The construction drawn exactly as the steps are written: segment AB with arcs drawn from A and from B above and below it. ",
+  ["The arcs from A do not reach the arcs from B, so they do not cross and no line is drawn.",
+   "The arcs cross at two points, one above and one below AB, both nearer to one end than the other; the line joining them is drawn.",
+   "The arcs cross above and below AB; a line is drawn from the crossing point above AB to B."][er]);]]></text>
+  </questionvariables>
+  <specificfeedback format="html"><text><![CDATA[]]></text></specificfeedback>
+  <questionnote format="moodle_auto_format">
+    <text>er={@er@}, L={@L@}, R1={@exd(R1)@}, R2={@exd(R2)@}, name {@nm[1]@}</text>
+  </questionnote>
+  <questiondescription format="html"><text><![CDATA[<p id="concept">Loci: finding the mistake in a perpendicular bisector construction</p><p id="description">Grade 12 CBE Core 2.3: Find the faulty step in a perpendicular bisector construction and say what it does.</p><p id="edition">Core</p><p id="provenance">This question is original to this project.</p><p id="citation">INNODEMS CBC Grade 12 Mathematics, first draft by Ben Davies, 2026. Aligned to the KICD Senior School Curriculum Design, Core Mathematics Grade 12 (draft).</p>]]></text></questiondescription>
+  <questionsimplify>1</questionsimplify>
+  <assumepositive>0</assumepositive>
+  <assumereal>0</assumereal>
+  <prtcorrect format="html"><text><![CDATA[[[commonstring key="symbolicprtcorrectfeedback"/]] [[commonstring key="defaultprtcorrectfeedback"/]]]]></text></prtcorrect>
+  <prtpartiallycorrect format="html"><text><![CDATA[[[commonstring key="symbolicprtpartiallycorrectfeedback"/]] [[commonstring key="defaultprtpartiallycorrectfeedback"/]]]]></text></prtpartiallycorrect>
+  <prtincorrect format="html"><text><![CDATA[[[commonstring key="symbolicprtincorrectfeedback"/]] [[commonstring key="defaultprtincorrectfeedback"/]]]]></text></prtincorrect>
+  <decimals>.</decimals>
+  <scientificnotation>*10</scientificnotation>
+  <multiplicationsign>none</multiplicationsign>
+  <sqrtsign>1</sqrtsign>
+  <complexno>i</complexno>
+  <inversetrig>cos-1</inversetrig>
+  <logicsymbol>lang</logicsymbol>
+  <matrixparens>[</matrixparens>
+  <isbroken>0</isbroken>
+  <variantsselectionseed></variantsselectionseed>
+
+  <input><name>ans1</name><type>dropdown</type><tans>o1</tans><boxsize>15</boxsize><strictsyntax>1</strictsyntax><insertstars>0</insertstars><syntaxhint></syntaxhint><syntaxattribute>0</syntaxattribute><forbidwords></forbidwords><allowwords></allowwords><forbidfloat>1</forbidfloat><requirelowestterms>0</requirelowestterms><checkanswertype>0</checkanswertype><mustverify>0</mustverify><showvalidation>0</showvalidation><options></options></input>
+  <input><name>ans2</name><type>radio</type><tans>o2</tans><boxsize>15</boxsize><strictsyntax>1</strictsyntax><insertstars>0</insertstars><syntaxhint></syntaxhint><syntaxattribute>0</syntaxattribute><forbidwords></forbidwords><allowwords></allowwords><forbidfloat>1</forbidfloat><requirelowestterms>0</requirelowestterms><checkanswertype>0</checkanswertype><mustverify>0</mustverify><showvalidation>0</showvalidation><options></options></input>
+
+  <prt><name>prt1</name><value>1.0000000</value><autosimplify>1</autosimplify><feedbackstyle>1</feedbackstyle><feedbackvariables><text><![CDATA[]]></text></feedbackvariables>
+    <node><name>0</name><description>Faulty step</description><answertest>AlgEquiv</answertest><sans>ans1</sans><tans>ta1</tans><testoptions></testoptions><quiet>0</quiet><truescoremode>=</truescoremode><truescore>1.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt1-1-T</trueanswernote><truefeedback format="html"><text><![CDATA[]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>1</falsenextnode><falseanswernote>prt1-1-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>1</name><description>Blamed a step that is right once the others are</description><answertest>AlgEquiv</answertest><sans>ans1</sans><tans>dg1</tans><testoptions></testoptions><quiet>0</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt1-2-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>[[if test="is(er=3)"]]The radius in Step 2, {@exd(R1)@} cm, is more than half of \(AB\) and is kept for Step 4, so the arcs are right. Look at which points are joined.[[else]]Step 5 is right once the arcs are right: the line through the two crossing points is the perpendicular bisector. The mistake is earlier.[[/if]]</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>2</falsenextnode><falseanswernote>prt1-2-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>2</name><description>Chose step 1 or 3</description><answertest>AlgEquiv</answertest><sans>is(ans1="s1" or ans1="s3")</sans><tans>true</tans><testoptions></testoptions><quiet>0</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt1-3-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>Steps 1 and 3 are correct as written.</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>-1</falsenextnode><falseanswernote>prt1-3-F</falseanswernote><falsefeedback format="html"><text><![CDATA[<p>[[if test="is(er=1)"]]Step 4 keeps the compasses as they were, which is what the construction needs. Look at the diagram: do the arcs from \(A\) and from \(B\) meet? Which step decides that?[[elif test="is(er=2)"]]The radius in Step 2, {@exd(R1)@} cm, is more than half of \(AB\) ({@exd(L/2)@} cm), so the arcs from \(A\) are right. Follow the compasses through the later steps.[[else]]Step 4 keeps the compasses as they were, so the arcs are right and they cross above and below \(AB\). Look at what is done with the crossing points.[[/if]]</p>]]></text></falsefeedback></node>
+  </prt>
+  <prt><name>prt2</name><value>1.0000000</value><autosimplify>1</autosimplify><feedbackstyle>1</feedbackstyle><feedbackvariables><text><![CDATA[]]></text></feedbackvariables>
+    <node><name>0</name><description>What the mistake does</description><answertest>AlgEquiv</answertest><sans>ans2</sans><tans>ta2</tans><testoptions></testoptions><quiet>0</quiet><truescoremode>=</truescoremode><truescore>1.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt2-1-T</trueanswernote><truefeedback format="html"><text><![CDATA[]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>1</falsenextnode><falseanswernote>prt2-1-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>1</name><description>Said the construction is correct</description><answertest>AlgEquiv</answertest><sans>ans2</sans><tans>"ok"</tans><testoptions></testoptions><quiet>0</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt2-2-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>There is a mistake in the working; find it in part (a).</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>-1</falsenextnode><falseanswernote>prt2-2-F</falseanswernote><falsefeedback format="html"><text><![CDATA[<p>[[if test="is(er=1)"]]No line is drawn in the diagram, so nothing crosses \(AB\). Look at the arcs: each has radius {@exd(R1)@} cm, and \(AB = {@L@}\) cm.[[elif test="is(ans2=\"meet\")"]]The arcs do meet: the diagram shows them crossing above and below \(AB\). Look at the line that is drawn.[[elif test="is(er=2)"]]Your choice says the line is not at right angles to \(AB\). Each crossing point is {@exd(R1)@} cm from \(A\) and {@exd(R2)@} cm from \(B\), one above \(AB\) and one below, so the two are mirror images in \(AB\) and the line joining them is at right angles to it. Where does it cross \(AB\)?[[else]]Your choice says the line is at right angles to \(AB\). The line drawn runs from the crossing point above \(AB\) to \(B\): check that angle in the diagram.[[/if]]</p>]]></text></falsefeedback></node>
+  </prt>
+
+  <deployedseed>2</deployedseed>
+  <deployedseed>7</deployedseed>
+  <deployedseed>1</deployedseed>
+  <deployedseed>4</deployedseed>
+  <deployedseed>8</deployedseed>
+  <deployedseed>3</deployedseed>
+  <deployedseed>5</deployedseed>
+  <deployedseed>9</deployedseed>
+  <deployedseed>16</deployedseed>
+  <deployedseed>6</deployedseed>
+  <qtest><testcase>1</testcase><description>Correct</description>
+    <testinput><name>ans1</name><value>ta1</value></testinput>
+    <testinput><name>ans2</name><value>ta2</value></testinput>
+    <expected><name>prt1</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt1-1-T</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt2-1-T</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>2</testcase><description>Blamed the step that is right; said nothing is wrong</description>
+    <testinput><name>ans1</name><value>dg1</value></testinput>
+    <testinput><name>ans2</name><value>"ok"</value></testinput>
+    <expected><name>prt1</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt1-1-F | prt1-2-T</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt2-1-F | prt2-2-T</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>3</testcase><description>Step 3; wrong consequence</description>
+    <testinput><name>ans1</name><value>"s3"</value></testinput>
+    <testinput><name>ans2</name><value>wc2</value></testinput>
+    <expected><name>prt1</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt1-1-F | prt1-2-F | prt1-3-T</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt2-1-F | prt2-2-F</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>4</testcase><description>Generic wrong step; right consequence</description>
+    <testinput><name>ans1</name><value>gw1</value></testinput>
+    <testinput><name>ans2</name><value>ta2</value></testinput>
+    <expected><name>prt1</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt1-1-F | prt1-2-F | prt1-3-F</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt2-1-T</expectedanswernote></expected>
+  </qtest>
+</question>
+</quiz>

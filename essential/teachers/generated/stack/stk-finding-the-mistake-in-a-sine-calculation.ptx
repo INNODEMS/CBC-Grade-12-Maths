@@ -1,0 +1,6 @@
+<stack-static>
+    <statement><p><p>Achieng was told that <m>\cos x = {-0.28}</m> and <m>{90^\circ \lt x \lt 180^\circ}</m>. She found <m>\sin x</m> like this. Her working has one mistake.</p><tabular style="border-collapse:collapse;"><row><cell style="padding:3px 12px;">Step 1</cell><cell><m>\sin^2 x = 1 - \cos^2 x</m></cell></row><row><cell style="padding:3px 12px;">Step 2</cell><cell><m>\sin^2 x = 1 - ({-0.28}) = {1.2800}</m></cell></row><row><cell style="padding:3px 12px;">Step 3</cell><cell><m>\sin x = \pm\sqrt{ {1.2800} } = \pm {1.1314}</m></cell></row><row><cell style="padding:3px 12px;">Step 4</cell><cell><m>x</m> is in the second quadrant, so <m>\sin x = {1.1314}</m></cell></row></tabular><p>(a) Which step has the mistake?</p><div>[ Step 1 | Step 2 | Step 3 | Step 4 ]  </div><p>(b) Give the correct value of <m>\sin x</m>.</p><div><m>\sin x =</m> <fillin characters="6" name="ans2"/>  </div></p></statement>
+    <solution><p><p><m>\sin^2 x = 1 - \cos^2 x = 1 - ({-0.28})^2 = {0.9216}</m>, so <m>\sin x = \pm\sqrt{ {0.9216} } = \pm {0.9600}</m>.</p><p><m>x</m> is in the second quadrant, where <m>\sin x</m> is positive: <m>\sin x = {0.9600}</m>.</p><p>Achieng's mistake is in step 2: she subtracted <m>\cos x</m>, not <m>\cos^2 x</m>.</p></p></solution>
+    <answer><p>Step 2</p></answer>
+    <answer><p><m>0.96</m></p></answer>
+</stack-static>

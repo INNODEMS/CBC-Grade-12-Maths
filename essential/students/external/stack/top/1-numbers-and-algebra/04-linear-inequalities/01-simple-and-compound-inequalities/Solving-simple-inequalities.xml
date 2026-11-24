@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<quiz>
+<question type="stack">
+  <name><text>Solving simple inequalities</text></name>
+  <questiontext format="html">
+    <text><![CDATA[<p>Solve each inequality. Choose the sign and type the number.</p><p>(a) {@sa@}</p><div>\(x\) [[input:ans1]] [[input:ans2]] [[validation:ans2]] [[feedback:prt1]]</div><p>(b) {@sb@}</p><div>\(x\) [[input:ans3]] [[input:ans4]] [[validation:ans4]] [[feedback:prt2]]</div>]]></text>
+  </questiontext>
+  <generalfeedback format="html">
+    <text><![CDATA[<p>(a) Subtract \({@c@}x\) from both sides: \({@lfs([[a-c,"x"],[b,""]])@} {@relt(rela)@} {@d@}\). [[if test="is(b>0)"]]Subtract \({@b@}\)[[else]]Add \({@-b@}\)[[/if]] on both sides: \({@lfs([[a-c,"x"]])@} {@relt(rela)@} {@d-b@}\). Divide both sides by \({@a-c@}\), a positive number, so the sign stays the same: {@ansa@}. Check with \(x = {@cha@}\): the left side is \({@a*cha+b@}\) and the right side is \({@c*cha+d@}\), and the statement is true.</p><p>(b) Method 1: subtract \({@p@}\) from both sides: \({@lfs([[-q,"x"]])@} {@relt(relb)@} {@r-p@}\). Divide both sides by \({@-q@}\). Dividing by a negative number turns the sign round: {@ansb@}.</p><p>Method 2: add \({@lfs([[q,"x"]])@}\) to both sides so that no negative number is involved: \({@p@} {@relt(relb)@} {@lfs([[r,""],[q,"x"]])@}\). Subtract \({@r@}\) from both sides: \({@p-r@} {@relt(relb)@} {@lfs([[q,"x"]])@}\), so \({@nd(kb)@} {@relt(relb)@} x\), which is the same as {@ansb@}.</p><p>Check with \(x = {@chb@}\): the left side is \({@p-q*chb@}\), and \({@p-q*chb@} {@relt(relb)@} {@r@}\) is true.</p>]]></text>
+  </generalfeedback>
+  <defaultgrade>2</defaultgrade>
+  <penalty>0.1</penalty>
+  <hidden>0</hidden>
+  <idnumber></idnumber>
+  <stackversion><text>2026063000</text></stackversion>
+  <questionvariables>
+    <text><![CDATA[/* helpers: relation tokens, display strings, inequality builders */
+relt(r) := if r="lt" then "\\lt" else if r="le" then "\\le" else if r="gt" then "\\gt" else "\\ge";
+reluc(r) := if r="lt" then "<" else if r="le" then "≤" else if r="gt" then ">" else "≥";
+relflip(r) := if r="lt" then "gt" else if r="le" then "ge" else if r="gt" then "lt" else "le";
+relother(r) := if r="lt" then "le" else if r="le" then "lt" else if r="gt" then "ge" else "gt";
+relcomp(r) := if r="lt" then "ge" else if r="le" then "gt" else if r="gt" then "le" else "lt";
+strictp(r) := is(r="lt" or r="gt");
+/* Typed answers must be one inequality; "and"/"or" statements are rejected at validation. */
+vsingle(ex) := if not atom(ex) and member(op(ex), ["and", "or", "nounand", "nounor"]) then "Type a single inequality, without the words and or or." else "";
+mkin(u, r, w) := if r="lt" then u<w else if r="le" then u<=w else if r="gt" then u>w else u>=w;
+holds(u, r, w) := if r="lt" then is(u<w) else if r="le" then is(u<=w) else if r="gt" then is(u>w) else is(u>=w);
+relopts(c) := [["lt",is(c="lt"),"<"],["le",is(c="le"),"≤"],["gt",is(c="gt"),">"],["ge",is(c="ge"),"≥"]];
+termp(v) := block([dd], dd: denom(v), while is(mod(dd,2)=0) do dd: dd/2, while is(mod(dd,5)=0) do dd: dd/5, is(dd=1));
+nd(v) := if integerp(v) then string(v) else if termp(v) then string(float(v))
+  else sconcat(if is(v<0) then "-" else "", "\\frac{", string(abs(num(v))), "}{", string(denom(v)), "}");
+ndm(v) := sconcat("\\(", nd(v), "\\)");
+/* plain-text number for aria-labels (nd gives TeX fractions, which a screen reader reads raw) */
+ndt(v) := if integerp(v) then string(v) else if termp(v) then string(float(v)) else sconcat(string(num(v)), "/", string(denom(v)));
+trm(k, v, fst) := block([m, s], m: abs(k), s: if v="" then nd(m) else if m=1 then v else sconcat(nd(m), v),
+  if fst then (if k<0 then sconcat("-", s) else s) else (if k<0 then sconcat(" - ", s) else sconcat(" + ", s)));
+lfs(L) := block([s, t], s: "", for t in L do (if t[1]#0 then s: sconcat(s, trm(t[1], t[2], is(s="")))), if s="" then "0" else s);
+ins(a, b, c, r) := sconcat(lfs([[a,"x"],[b,"y"]]), " ", relt(r), " ", nd(c));
+ineqd(a, b, c, r) := sconcat("\\(", ins(a, b, c, r), "\\)");
+lind(a, b, c) := sconcat("\\(", lfs([[a,"x"],[b,"y"]]), " = ", nd(c), "\\)");
+ineqm(a, b, c, r) := mkin(a*x+b*y, r, c);
+/* Design: solve inequalities with the unknown on both sides and with a negative coefficient. Source: adapted from SMP GCSE Higher 1, Chapter 28, questions D3 and E4.
+   q12 [[a,b,c,d], rel_a, [p,q,r], rel_b]: (a) a*x+b rel_a c*x+d, (b) p-q*x rel_b r. */
+q12: [[[5,-5,3,-1],"lt",[4,7,18],"lt"],[[5,9,3,-3],"gt",[13,4,-3],"gt"],[[6,-14,4,2],"gt",[10,6,-14],"ge"],[[7,-3,3,21],"ge",[6,5,-4],"lt"],[[9,-1,7,-7],"le",[6,2,11],"gt"],[[5,9,2,27],"le",[18,2,8],"le"],[[5,5,3,-1],"ge",[6,5,-24],"lt"],[[3,-1,1,7],"ge",[5,5,25],"ge"],[[9,11,6,-1],"le",[15,2,20],"le"],[[4,-2,1,-14],"lt",[5,5,-25],"ge"]];
+ix: 1+rand(10);
+a: q12[ix][1][1]; b: q12[ix][1][2]; c: q12[ix][1][3]; d: q12[ix][1][4]; rela: q12[ix][2];
+p: q12[ix][3][1]; q: q12[ix][3][2]; r: q12[ix][3][3]; relb: q12[ix][4];
+ka: (d-b)/(a-c); tra: rela;
+kb: (p-r)/q; trb: relflip(relb);
+/* diagnostics: moved b with the wrong sign; added the x terms; divided by q not -q; moved p with the wrong sign */
+da1: (d+b)/(a-c); da2: (d-b)/(a+c);
+db1: -kb; db2: -(r+p)/q;
+o1: relopts(tra); o3: relopts(trb);
+/* test values */
+kaf: float(ka); kbf: float(kb); kao: ka+1/7; kbo: kb+1/7;
+roa: relother(tra); rob: relother(trb); rfa: relflip(tra);
+sa: sconcat("\\(", lfs([[a,"x"],[b,""]]), " ", relt(rela), " ", lfs([[c,"x"],[d,""]]), "\\)");
+sb: sconcat("\\(", lfs([[p,""],[-q,"x"]]), " ", relt(relb), " ", nd(r), "\\)");
+ansa: sconcat("\\(x ", relt(tra), " ", nd(ka), "\\)");
+ansb: sconcat("\\(x ", relt(trb), " ", nd(kb), "\\)");
+/* check values: one more than the boundary on the allowed side */
+cha: if is(tra="gt" or tra="ge") then ceiling(ka)+1 else floor(ka)-1;
+chb: if is(trb="gt" or trb="ge") then ceiling(kb)+1 else floor(kb)-1;]]></text>
+  </questionvariables>
+  <specificfeedback format="html"><text><![CDATA[]]></text></specificfeedback>
+  <questionnote format="moodle_auto_format">
+    <text>ix={@ix@}, (a) {@ansa@}, (b) {@ansb@}</text>
+  </questionnote>
+  <questiondescription format="html"><text><![CDATA[<p id="concept">Linear Inequalities: solving simple inequalities</p><p id="description">Grade 12 CBE Essential 1.3: Solve a linear inequality with the unknown on both sides, and one with a negative coefficient of the unknown.</p><p id="edition">Essential</p><p id="provenance">This question is adapted from Chapter 28 (Solving inequalities), Sections D and E, questions D3 and E4 of Ling, J., Scruton, P., Shilton, S. and West, H., SMP GCSE Mathematics: Higher 1 for AQA, Edexcel and OCR two-tier GCSE mathematics, Cambridge University Press, 2006: new inequalities, with the sign and the boundary entered separately.</p><p id="citation">INNODEMS CBC Grade 12 Mathematics, first draft by Ben Davies, 2026. Aligned to the KICD Senior School Curriculum Design, Essential Mathematics Grade 12 (draft).</p>]]></text></questiondescription>
+  <questionsimplify>1</questionsimplify>
+  <assumepositive>0</assumepositive>
+  <assumereal>0</assumereal>
+  <prtcorrect format="html"><text><![CDATA[[[commonstring key="symbolicprtcorrectfeedback"/]] [[commonstring key="defaultprtcorrectfeedback"/]]]]></text></prtcorrect>
+  <prtpartiallycorrect format="html"><text><![CDATA[[[commonstring key="symbolicprtpartiallycorrectfeedback"/]] [[commonstring key="defaultprtpartiallycorrectfeedback"/]]]]></text></prtpartiallycorrect>
+  <prtincorrect format="html"><text><![CDATA[[[commonstring key="symbolicprtincorrectfeedback"/]] [[commonstring key="defaultprtincorrectfeedback"/]]]]></text></prtincorrect>
+  <decimals>.</decimals>
+  <scientificnotation>*10</scientificnotation>
+  <multiplicationsign>none</multiplicationsign>
+  <sqrtsign>1</sqrtsign>
+  <complexno>i</complexno>
+  <inversetrig>cos-1</inversetrig>
+  <logicsymbol>lang</logicsymbol>
+  <matrixparens>[</matrixparens>
+  <isbroken>0</isbroken>
+  <variantsselectionseed></variantsselectionseed>
+
+  <input><name>ans1</name><type>dropdown</type><tans>o1</tans><boxsize>15</boxsize><strictsyntax>1</strictsyntax><insertstars>0</insertstars><syntaxhint></syntaxhint><syntaxattribute>0</syntaxattribute><forbidwords></forbidwords><allowwords></allowwords><forbidfloat>1</forbidfloat><requirelowestterms>0</requirelowestterms><checkanswertype>0</checkanswertype><mustverify>0</mustverify><showvalidation>0</showvalidation><options></options></input>
+  <input><name>ans2</name><type>numerical</type><tans>ka</tans><boxsize>5</boxsize><strictsyntax>1</strictsyntax><insertstars>0</insertstars><syntaxhint></syntaxhint><syntaxattribute>0</syntaxattribute><forbidwords></forbidwords><allowwords></allowwords><forbidfloat>0</forbidfloat><requirelowestterms>0</requirelowestterms><checkanswertype>0</checkanswertype><mustverify>0</mustverify><showvalidation>0</showvalidation><options></options></input>
+  <input><name>ans3</name><type>dropdown</type><tans>o3</tans><boxsize>15</boxsize><strictsyntax>1</strictsyntax><insertstars>0</insertstars><syntaxhint></syntaxhint><syntaxattribute>0</syntaxattribute><forbidwords></forbidwords><allowwords></allowwords><forbidfloat>1</forbidfloat><requirelowestterms>0</requirelowestterms><checkanswertype>0</checkanswertype><mustverify>0</mustverify><showvalidation>0</showvalidation><options></options></input>
+  <input><name>ans4</name><type>numerical</type><tans>kb</tans><boxsize>5</boxsize><strictsyntax>1</strictsyntax><insertstars>0</insertstars><syntaxhint></syntaxhint><syntaxattribute>0</syntaxattribute><forbidwords></forbidwords><allowwords></allowwords><forbidfloat>0</forbidfloat><requirelowestterms>0</requirelowestterms><checkanswertype>0</checkanswertype><mustverify>0</mustverify><showvalidation>0</showvalidation><options></options></input>
+
+  <prt><name>prt1</name><value>1.0000000</value><autosimplify>1</autosimplify><feedbackstyle>1</feedbackstyle><feedbackvariables><text><![CDATA[xr: ratdisrep(rat(ans2));]]></text></feedbackvariables>
+    <node><name>0</name><description>Boundary value</description><answertest>NumAbsolute</answertest><sans>ans2</sans><tans>ka</tans><testoptions>0.001</testoptions><quiet>0</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>1</truenextnode><trueanswernote>prt1-1-T</trueanswernote><truefeedback format="html"><text><![CDATA[]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>3</falsenextnode><falseanswernote>prt1-1-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>1</name><description>Sign</description><answertest>AlgEquiv</answertest><sans>ans1</sans><tans>tra</tans><testoptions></testoptions><quiet>0</quiet><truescoremode>=</truescoremode><truescore>1.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt1-2-T</trueanswernote><truefeedback format="html"><text><![CDATA[]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>2</falsenextnode><falseanswernote>prt1-2-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>2</name><description>Right direction, wrong strictness</description><answertest>AlgEquiv</answertest><sans>ans1</sans><tans>roa</tans><testoptions></testoptions><quiet>0</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt1-3-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>The value {@ndm(ka)@} is right, but check the sign: [[if test="strictp(tra)"]]the question's sign is strict, so yours must be too[[else]]the question's sign includes <q>equal to</q>, so yours must too[[/if]].</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>-1</falsenextnode><falseanswernote>prt1-3-F</falseanswernote><falsefeedback format="html"><text><![CDATA[<p>The value is right, but you turned the sign round. You divided by \({@a-c@}\), which is positive, so the sign stays the same way round.</p>]]></text></falsefeedback></node>
+    <node><name>3</name><description>Moved b with the wrong sign</description><answertest>NumAbsolute</answertest><sans>ans2</sans><tans>da1</tans><testoptions>0.001</testoptions><quiet>0</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt1-4-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>Check the step where you move \({@b@}\): to remove it from the left side, [[if test="is(b>0)"]]subtract \({@b@}\)[[else]]add \({@-b@}\)[[/if]] on both sides, so the right side becomes \({@d-b@}\).</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>4</falsenextnode><falseanswernote>prt1-4-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>4</name><description>Added the x terms</description><answertest>NumAbsolute</answertest><sans>ans2</sans><tans>da2</tans><testoptions>0.001</testoptions><quiet>0</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt1-5-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>To collect the \(x\) terms, subtract \({@c@}x\) from both sides. That leaves \({@a-c@}x\) on the left, not \({@a+c@}x\).</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>-1</falsenextnode><falseanswernote>prt1-5-F</falseanswernote><falsefeedback format="html"><text><![CDATA[<p>At the boundary value the two sides are equal. With \(x = {@nd(xr)@}\) the left side is \({@nd(a*xr+b)@}\) and the right side is \({@nd(c*xr+d)@}\). Collect the \(x\) terms on the left and the numbers on the right, then divide by the number in front of \(x\).</p>]]></text></falsefeedback></node>
+  </prt>
+  <prt><name>prt2</name><value>1.0000000</value><autosimplify>1</autosimplify><feedbackstyle>1</feedbackstyle><feedbackvariables><text><![CDATA[xr: ratdisrep(rat(ans4));]]></text></feedbackvariables>
+    <node><name>0</name><description>Boundary value</description><answertest>NumAbsolute</answertest><sans>ans4</sans><tans>kb</tans><testoptions>0.001</testoptions><quiet>0</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>1</truenextnode><trueanswernote>prt2-1-T</trueanswernote><truefeedback format="html"><text><![CDATA[]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>3</falsenextnode><falseanswernote>prt2-1-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>1</name><description>Sign</description><answertest>AlgEquiv</answertest><sans>ans3</sans><tans>trb</tans><testoptions></testoptions><quiet>0</quiet><truescoremode>=</truescoremode><truescore>1.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt2-2-T</trueanswernote><truefeedback format="html"><text><![CDATA[]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>2</falsenextnode><falseanswernote>prt2-2-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>2</name><description>Right direction, wrong strictness</description><answertest>AlgEquiv</answertest><sans>ans3</sans><tans>rob</tans><testoptions></testoptions><quiet>0</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt2-3-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>The value {@ndm(kb)@} is right, but check the sign: [[if test="strictp(trb)"]]the question's sign is strict, so yours must be too[[else]]the question's sign includes <q>equal to</q>, so yours must too[[/if]].</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>-1</falsenextnode><falseanswernote>prt2-3-F</falseanswernote><falsefeedback format="html"><text><![CDATA[<p>The value is right, but the sign must turn round. When you divide both sides by \({@-q@}\), the order is reversed: \(2 \lt 3\) but \(-2 \gt -3\). Or add \({@q@}x\) to both sides first so that no negative number is involved.</p>]]></text></falsefeedback></node>
+    <node><name>3</name><description>Divided by q, not -q</description><answertest>NumAbsolute</answertest><sans>ans4</sans><tans>db1</tans><testoptions>0.001</testoptions><quiet>0</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt2-4-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>You divided by \({@q@}\) instead of \({@-q@}\). The term is \({@lfs([[-q,"x"]])@}\).</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>4</falsenextnode><falseanswernote>prt2-4-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>4</name><description>Moved p with the wrong sign</description><answertest>NumAbsolute</answertest><sans>ans4</sans><tans>db2</tans><testoptions>0.001</testoptions><quiet>0</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt2-5-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>Subtract \({@p@}\) from both sides first: the right side becomes \({@r-p@}\).</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>-1</falsenextnode><falseanswernote>prt2-5-F</falseanswernote><falsefeedback format="html"><text><![CDATA[<p>At the boundary value the two sides are equal. With \(x = {@nd(xr)@}\) the left side is \({@nd(p-q*xr)@}\), not \({@r@}\). Get the \(x\) term on its own, then divide by its coefficient. Dividing by a negative number turns the sign round.</p>]]></text></falsefeedback></node>
+  </prt>
+
+  <deployedseed>4</deployedseed>
+  <deployedseed>5</deployedseed>
+  <deployedseed>15</deployedseed>
+  <deployedseed>8</deployedseed>
+  <deployedseed>24</deployedseed>
+  <deployedseed>1</deployedseed>
+  <deployedseed>3</deployedseed>
+  <deployedseed>10</deployedseed>
+  <deployedseed>2</deployedseed>
+  <deployedseed>17</deployedseed>
+  <qtest><testcase>1</testcase><description>Correct</description>
+    <testinput><name>ans1</name><value>tra</value></testinput>
+    <testinput><name>ans2</name><value>ka</value></testinput>
+    <testinput><name>ans3</name><value>trb</value></testinput>
+    <testinput><name>ans4</name><value>kb</value></testinput>
+    <expected><name>prt1</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt1-1-T | prt1-2-T</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt2-1-T | prt2-2-T</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>2</testcase><description>Correct, decimals</description>
+    <testinput><name>ans1</name><value>tra</value></testinput>
+    <testinput><name>ans2</name><value>kaf</value></testinput>
+    <testinput><name>ans3</name><value>trb</value></testinput>
+    <testinput><name>ans4</name><value>kbf</value></testinput>
+    <expected><name>prt1</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt1-1-T | prt1-2-T</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt2-1-T | prt2-2-T</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>3</testcase><description>Right numbers, other strictness</description>
+    <testinput><name>ans1</name><value>roa</value></testinput>
+    <testinput><name>ans2</name><value>ka</value></testinput>
+    <testinput><name>ans3</name><value>rob</value></testinput>
+    <testinput><name>ans4</name><value>kb</value></testinput>
+    <expected><name>prt1</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt1-1-T | prt1-2-F | prt1-3-T</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt2-1-T | prt2-2-F | prt2-3-T</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>4</testcase><description>Right numbers, sign turned (a) and not turned (b)</description>
+    <testinput><name>ans1</name><value>rfa</value></testinput>
+    <testinput><name>ans2</name><value>ka</value></testinput>
+    <testinput><name>ans3</name><value>relb</value></testinput>
+    <testinput><name>ans4</name><value>kb</value></testinput>
+    <expected><name>prt1</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt1-1-T | prt1-2-F | prt1-3-F</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt2-1-T | prt2-2-F | prt2-3-F</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>5</testcase><description>Moved b wrongly; divided by q</description>
+    <testinput><name>ans1</name><value>tra</value></testinput>
+    <testinput><name>ans2</name><value>da1</value></testinput>
+    <testinput><name>ans3</name><value>trb</value></testinput>
+    <testinput><name>ans4</name><value>db1</value></testinput>
+    <expected><name>prt1</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt1-1-F | prt1-4-T</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt2-1-F | prt2-4-T</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>6</testcase><description>Added x terms; moved p wrongly</description>
+    <testinput><name>ans1</name><value>tra</value></testinput>
+    <testinput><name>ans2</name><value>da2</value></testinput>
+    <testinput><name>ans3</name><value>trb</value></testinput>
+    <testinput><name>ans4</name><value>db2</value></testinput>
+    <expected><name>prt1</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt1-1-F | prt1-4-F | prt1-5-T</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt2-1-F | prt2-4-F | prt2-5-T</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>7</testcase><description>Generic offsets</description>
+    <testinput><name>ans1</name><value>tra</value></testinput>
+    <testinput><name>ans2</name><value>kao</value></testinput>
+    <testinput><name>ans3</name><value>trb</value></testinput>
+    <testinput><name>ans4</name><value>kbo</value></testinput>
+    <expected><name>prt1</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt1-1-F | prt1-4-F | prt1-5-F</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt2-1-F | prt2-4-F | prt2-5-F</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>8</testcase><description>Invalid: letter in (a)</description>
+    <testinput><name>ans1</name><value>tra</value></testinput>
+    <testinput><name>ans2</name><value>x</value></testinput>
+    <testinput><name>ans3</name><value>trb</value></testinput>
+    <testinput><name>ans4</name><value>kb</value></testinput>
+    <expected><name>prt1</name><expectedscore></expectedscore><expectedpenalty></expectedpenalty><expectedanswernote>NULL</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt2-1-T | prt2-2-T</expectedanswernote></expected>
+  </qtest>
+</question>
+</quiz>

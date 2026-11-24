@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<quiz>
+<question type="stack">
+  <name><text>Rate of appreciation</text></name>
+  <questiontext format="html">
+    <text><![CDATA[<p>(a) A plot in {@t1@} was valued at Ksh \({@ksh(V0)@}\) and one year later at Ksh \({@ksh(V1)@}\). Find the rate of appreciation, as a percentage.</p><p>[[input:ans1]] % [[validation:ans1]] [[feedback:prt1]]</p><p>(b) A house in {@t2@} rose in value from Ksh \({@ksh(W0)@}\) to Ksh \({@ksh(W2)@}\) in \(2\) years, appreciating at the same rate each year. Find the yearly rate of appreciation.</p><p>[[input:ans2]] % [[validation:ans2]] [[feedback:prt2]]</p><p>Give each answer exactly or correct to 1 decimal place.</p>]]></text>
+  </questiontext>
+  <generalfeedback format="html">
+    <text><![CDATA[<p>(a) The increase is \({@ksh(V1)@} - {@ksh(V0)@} = {@ksh(V1-V0)@}\). As a percentage of the starting value:</p><p>\[\frac{{@ksh(V1-V0)@}}{{@ksh(V0)@}} \times 100 = {@dd(ra)@}\%.\]</p><p>(b) Over two years the value is multiplied by \(\left(1 + \frac{r}{100}\right)^2\), so</p><p>\[\left(1 + \frac{r}{100}\right)^2 = \frac{{@ksh(W2)@}}{{@ksh(W0)@}} = {@dd(ratio)@}, \qquad 1 + \frac{r}{100} = \sqrt{ {@dd(ratio)@} } = {@dd(1+r2/100)@}.\]</p><p>The yearly rate is \({@r2@}\%\). Halving the total rise of \({@dd(tot)@}\%\) gives \({@dd(hf)@}\%\), which is too big: each year's rise is on a bigger value.</p>]]></text>
+  </generalfeedback>
+  <defaultgrade>2</defaultgrade>
+  <penalty>0.1</penalty>
+  <hidden>0</hidden>
+  <idnumber></idnumber>
+  <stackversion><text>2026063000</text></stackversion>
+  <questionvariables>
+    <text><![CDATA[kgrp(n) := block([s, out, k], s: string(n), k: slength(s), if k < 5 then s else (out: "", while k > 3 do (out: sconcat("\\,", substring(s, k-2, k+1), out), k: k-3), sconcat(substring(s, 1, k+1), out)));
+ksh(v) := block([c, w, f], c: floor(100*v+1/2), w: floor(c/100), f: c-100*w, if f = 0 then kgrp(w) else sconcat(kgrp(w), ".", if f < 10 then "0" else "", string(f)));
+dd(v) := if integerp(v) then v else if integerp(10*v) then dispdp(float(v),1) else if integerp(100*v) then dispdp(float(v),2) else if integerp(1000*v) then dispdp(float(v),3) else dispdp(float(v),4);
+ix: 1+rand(10);
+/* Design: [V0, V1, W0, r2]; W2 = W0 (1 + r2/100)^2 is whole on every entry. Source: original. */
+L: [[460000,506000,1200000,10],[760000,820800,880000,16],[1600000,1840000,500000,20],[380000,418000,2400000,5],[2500000,2725000,640000,25],[960000,1036800,1500000,12],[540000,588600,3000000,8],[1250000,1400000,760000,30],[680000,731000,2000000,6],[3400000,3672000,900000,18]];
+E: L[ix];
+V0: E[1]; V1: E[2]; W0: E[3]; r2: E[4];
+t1: ["Kajiado","Nanyuki","Kericho","Kilifi","Meru","Embu","Bungoma","Kitale","Voi","Isiolo"][ix];
+t2: ["Ruiru","Kakamega","Naivasha","Thika","Kisii","Nyeri","Ngong","Athi River","Machakos","Kisumu"][ix];
+W2: W0*(1+r2/100)^2;
+ra: 100*(V1-V0)/V0;
+ratio: W2/W0;
+/* diagnostics */
+rn: 100*(V1-V0)/V1;
+rq: 100*V1/V0;
+tot: 100*(ratio-1);
+hf: tot/2;
+rw: 100*ratio;
+]]></text>
+  </questionvariables>
+  <specificfeedback format="html"><text><![CDATA[]]></text></specificfeedback>
+  <questionnote format="moodle_auto_format">
+    <text>ix={@ix@}, ra={@dd(ra)@}, r2={@r2@}</text>
+  </questionnote>
+  <questiondescription format="html"><text><![CDATA[<p id="concept">Commercial Arithmetic III: rate of appreciation</p><p id="description">Grade 12 CBE Essential 2.4 (c): Find the rate of appreciation over one year, and the equal yearly rate over two years by a square root.</p><p id="edition">Essential</p><p id="provenance">This question is original to this project.</p><p id="citation">INNODEMS CBC Grade 12 Mathematics, first draft by Ben Davies, 2026. Aligned to the KICD Senior School Curriculum Design, Essential Mathematics Grade 12 (draft).</p>]]></text></questiondescription>
+  <questionsimplify>1</questionsimplify>
+  <assumepositive>0</assumepositive>
+  <assumereal>0</assumereal>
+  <prtcorrect format="html"><text><![CDATA[[[commonstring key="symbolicprtcorrectfeedback"/]] [[commonstring key="defaultprtcorrectfeedback"/]]]]></text></prtcorrect>
+  <prtpartiallycorrect format="html"><text><![CDATA[[[commonstring key="symbolicprtpartiallycorrectfeedback"/]] [[commonstring key="defaultprtpartiallycorrectfeedback"/]]]]></text></prtpartiallycorrect>
+  <prtincorrect format="html"><text><![CDATA[[[commonstring key="symbolicprtincorrectfeedback"/]] [[commonstring key="defaultprtincorrectfeedback"/]]]]></text></prtincorrect>
+  <decimals>.</decimals>
+  <scientificnotation>*10</scientificnotation>
+  <multiplicationsign>none</multiplicationsign>
+  <sqrtsign>1</sqrtsign>
+  <complexno>i</complexno>
+  <inversetrig>cos-1</inversetrig>
+  <logicsymbol>lang</logicsymbol>
+  <matrixparens>[</matrixparens>
+  <isbroken>0</isbroken>
+  <variantsselectionseed></variantsselectionseed>
+
+  <input><name>ans1</name><type>numerical</type><tans>ra</tans><boxsize>5</boxsize><strictsyntax>1</strictsyntax><insertstars>0</insertstars><syntaxhint></syntaxhint><syntaxattribute>0</syntaxattribute><forbidwords></forbidwords><allowwords></allowwords><forbidfloat>0</forbidfloat><requirelowestterms>0</requirelowestterms><checkanswertype>0</checkanswertype><mustverify>0</mustverify><showvalidation>0</showvalidation><options></options></input>
+  <input><name>ans2</name><type>numerical</type><tans>r2</tans><boxsize>5</boxsize><strictsyntax>1</strictsyntax><insertstars>0</insertstars><syntaxhint></syntaxhint><syntaxattribute>0</syntaxattribute><forbidwords></forbidwords><allowwords></allowwords><forbidfloat>0</forbidfloat><requirelowestterms>0</requirelowestterms><checkanswertype>0</checkanswertype><mustverify>0</mustverify><showvalidation>0</showvalidation><options></options></input>
+
+  <prt><name>prt1</name><value>1.0000000</value><autosimplify>1</autosimplify><feedbackstyle>1</feedbackstyle><feedbackvariables><text><![CDATA[ps1: is(ans1>0);
+ck1: V0*ans1/100;]]></text></feedbackvariables>
+    <node><name>0</name><description>One-year rate</description><answertest>NumAbsolute</answertest><sans>ans1</sans><tans>ra</tans><testoptions>0.0501</testoptions><quiet>0</quiet><truescoremode>=</truescoremode><truescore>1.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt1-1-T</trueanswernote><truefeedback format="html"><text><![CDATA[]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>1</falsenextnode><falseanswernote>prt1-1-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>1</name><description>Divided by new value</description><answertest>NumAbsolute</answertest><sans>ans1</sans><tans>rn</tans><testoptions>0.0501</testoptions><quiet>0</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt1-2-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>Divide the increase by the starting value, Ksh \({@ksh(V0)@}\), not the new value.</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>2</falsenextnode><falseanswernote>prt1-2-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>2</name><description>Ratio as a percentage</description><answertest>NumAbsolute</answertest><sans>ans1</sans><tans>rq</tans><testoptions>0.0501</testoptions><quiet>0</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt1-3-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>That is the new value as a percentage of the old one. Subtract \(100\%\).</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>-1</falsenextnode><falseanswernote>prt1-3-F</falseanswernote><falsefeedback format="html"><text><![CDATA[[[if test="ps1"]]<p>Check your rate: \({@ans1@}\%\) of Ksh \({@ksh(V0)@}\) is Ksh \({@ksh(ck1)@}\), but the value rose by \({@ksh(V1)@} - {@ksh(V0)@}\).</p>[[/if]]<p>Rate \(=\) increase \(\div\) starting value \(\times 100\).</p>]]></text></falsefeedback></node>
+  </prt>
+  <prt><name>prt2</name><value>1.0000000</value><autosimplify>1</autosimplify><feedbackstyle>1</feedbackstyle><feedbackvariables><text><![CDATA[ps2: is(ans2>0 and ans2<1000);
+ck2: W0*(1+ans2/100)^2;]]></text></feedbackvariables>
+    <node><name>0</name><description>Two-year rate</description><answertest>NumAbsolute</answertest><sans>ans2</sans><tans>r2</tans><testoptions>0.0501</testoptions><quiet>0</quiet><truescoremode>=</truescoremode><truescore>1.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt2-1-T</trueanswernote><truefeedback format="html"><text><![CDATA[]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>1</falsenextnode><falseanswernote>prt2-1-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>1</name><description>Halved</description><answertest>NumAbsolute</answertest><sans>ans2</sans><tans>hf</tans><testoptions>0.0501</testoptions><quiet>0</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt2-2-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>Halving the total percentage does not work: each year's rise is on a bigger value. Solve \(\left(1 + \frac{r}{100}\right)^2 = \frac{{@ksh(W2)@}}{{@ksh(W0)@}}\).</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>2</falsenextnode><falseanswernote>prt2-2-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>2</name><description>Total</description><answertest>NumAbsolute</answertest><sans>ans2</sans><tans>tot</tans><testoptions>0.0501</testoptions><quiet>0</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt2-3-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>That is the total over both years. Find the yearly rate: take the square root of \({@dd(ratio)@}\).</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>3</falsenextnode><falseanswernote>prt2-3-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>3</name><description>Ratio as a percentage</description><answertest>NumAbsolute</answertest><sans>ans2</sans><tans>rw</tans><testoptions>0.0501</testoptions><quiet>0</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt2-4-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>That is the new value as a percentage of the old one.</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>-1</falsenextnode><falseanswernote>prt2-4-F</falseanswernote><falsefeedback format="html"><text><![CDATA[[[if test="ps2"]]<p>Check your rate: two years at \({@ans2@}\%\) take Ksh \({@ksh(W0)@}\) to Ksh \({@ksh(ck2)@}\), not Ksh \({@ksh(W2)@}\).</p>[[/if]]<p>Solve \(\left(1 + \frac{r}{100}\right)^2 = \frac{{@ksh(W2)@}}{{@ksh(W0)@}}\): take the square root, then subtract \(1\) and multiply by \(100\).</p>]]></text></falsefeedback></node>
+  </prt>
+
+  <deployedseed>4</deployedseed>
+  <deployedseed>5</deployedseed>
+  <deployedseed>15</deployedseed>
+  <deployedseed>8</deployedseed>
+  <deployedseed>24</deployedseed>
+  <deployedseed>1</deployedseed>
+  <deployedseed>3</deployedseed>
+  <deployedseed>10</deployedseed>
+  <deployedseed>2</deployedseed>
+  <deployedseed>17</deployedseed>
+  <qtest><testcase>1</testcase><description>Correct</description>
+    <testinput><name>ans1</name><value>ra</value></testinput>
+    <testinput><name>ans2</name><value>r2</value></testinput>
+    <expected><name>prt1</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt1-1-T</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt2-1-T</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>2</testcase><description>Generic wrong</description>
+    <testinput><name>ans1</name><value>float(ra+1.7)</value></testinput>
+    <testinput><name>ans2</name><value>float(r2+2.3)</value></testinput>
+    <expected><name>prt1</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt1-1-F | prt1-2-F | prt1-3-F</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt2-1-F | prt2-2-F | prt2-3-F | prt2-4-F</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>3</testcase><description>New value; halved</description>
+    <testinput><name>ans1</name><value>float(rn)</value></testinput>
+    <testinput><name>ans2</name><value>float(hf)</value></testinput>
+    <expected><name>prt1</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt1-1-F | prt1-2-T</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt2-1-F | prt2-2-T</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>4</testcase><description>Ratio; total</description>
+    <testinput><name>ans1</name><value>float(rq)</value></testinput>
+    <testinput><name>ans2</name><value>float(tot)</value></testinput>
+    <expected><name>prt1</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt1-1-F | prt1-2-F | prt1-3-T</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt2-1-F | prt2-2-F | prt2-3-T</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>5</testcase><description>Ratio in (b)</description>
+    <testinput><name>ans1</name><value>ra</value></testinput>
+    <testinput><name>ans2</name><value>float(rw)</value></testinput>
+    <expected><name>prt1</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt1-1-T</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt2-1-F | prt2-2-F | prt2-3-F | prt2-4-T</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>6</testcase><description>Invalid: letter in (a)</description>
+    <testinput><name>ans1</name><value>x</value></testinput>
+    <testinput><name>ans2</name><value>r2</value></testinput>
+    <expected><name>prt1</name><expectedscore></expectedscore><expectedpenalty></expectedpenalty><expectedanswernote>NULL</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt2-1-T</expectedanswernote></expected>
+  </qtest>
+</question>
+</quiz>

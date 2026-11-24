@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<quiz>
+<question type="stack">
+  <name><text>Finding the mistake in a maximum volume calculation</text></name>
+  <questiontext format="html">
+    <text><![CDATA[<p>Njeri wants the greatest volume of an open box made from a square sheet \({@s0@}\) cm by \({@s0@}\) cm by cutting squares of side \(x\) cm from the corners. Her working has one mistake.</p>[[if test="is(er=1)"]]<ol><li>The height of the box is \(x\) cm, and \(x\) must be between \(0\) and \({@s0/2@}\).</li><li>Each side of the base is \(({@s0@} - x)\) cm, so \(V = x({@s0@} - x)^2\).</li><li>\(V = {@x^3-2*s0*x^2+s0^2*x@}\)</li><li>\(\dfrac{dV}{dx} = {@3*x^2-4*s0*x+s0^2@}\)</li><li>\(\dfrac{dV}{dx} = (3x - {@s0@})(x - {@s0@}) = 0\), so \(x = {@s0/3@}\) or \(x = {@s0@}\).</li><li>\(\dfrac{d^2V}{dx^2} = {@6*x-4*s0@}\). At \(x = {@s0/3@}\) this is \({@-2*s0@}\), which is negative, so \(x = {@s0/3@}\) gives the greatest volume.</li><li>\(V = {@s0/3@} \times ({@s0@} - {@s0/3@})^2 = [[if test="is(shown>=10000)"]]{#floor(shown/1000)#}\,{#floor(mod(shown,1000)/100)#}{#floor(mod(shown,100)/10)#}{#mod(shown,10)#}[[else]]{#shown#}[[/if]]\) cm\(^3\)</li></ol>[[elif test="is(er=2)"]]<ol><li>The height of the box is \(x\) cm, and \(x\) must be between \(0\) and \({@s0/2@}\).</li><li>Each side of the base is \(({@s0@} - 2x)\) cm, so \(V = x({@s0@} - 2x)^2\).</li><li>\(V = {@4*x^3-4*s0*x^2+s0^2*x@}\)</li><li>\(\dfrac{dV}{dx} = {@12*x^2-8*s0*x+s0^2@}\)</li><li>\(\dfrac{dV}{dx} = (6x - {@s0@})(2x - {@s0@}) = 0\), so \(x = {@s0/6@}\) or \(x = {@s0/2@}\).</li><li>\(\dfrac{d^2V}{dx^2} = {@24*x-8*s0@}\). At \(x = {@s0/6@}\) this is \({@-4*s0@}\), which is negative, so \(x = {@s0/6@}\) gives the least volume. So use \(x = {@s0/2@}\).</li><li>\(V = {@s0/2@} \times ({@s0@} - {@s0@})^2 = 0\) cm\(^3\)</li></ol>[[else]]<ol><li>The height of the box is \(x\) cm, and \(x\) must be between \(0\) and \({@s0/2@}\).</li><li>Each side of the base is \(({@s0@} - 2x)\) cm, so \(V = x({@s0@} - 2x)^2\).</li><li>\(V = {@4*x^3-4*s0*x^2+s0^2*x@}\)</li><li>\(\dfrac{dV}{dx} = {@12*x^2-8*s0*x+s0^2@}\)</li><li>\(\dfrac{dV}{dx} = (6x - {@s0@})(2x - {@s0@}) = 0\), so \(x = {@s0/6@}\) or \(x = {@s0/2@}\).</li><li>\(\dfrac{d^2V}{dx^2} = {@24*x-8*s0@}\). At \(x = {@s0/6@}\) this is \({@-4*s0@}\), which is negative, so \(x = {@s0/6@}\) gives the greatest volume.</li><li>\(V = {@s0/6@} \times ({@s0@} - {@s0/6@})^2 = [[if test="is(shown>=10000)"]]{#floor(shown/1000)#}\,{#floor(mod(shown,1000)/100)#}{#floor(mod(shown,100)/10)#}{#mod(shown,10)#}[[else]]{#shown#}[[/if]]\) cm\(^3\)</li></ol>[[/if]]<p>(a) Which step has the mistake?</p><div>[[input:ans1]] [[validation:ans1]] [[feedback:prt1]]</div><p>(b) Give the correct greatest volume.</p><div>[[input:ans2]] cm\(^3\) [[validation:ans2]] [[feedback:prt2]]</div>]]></text>
+  </questiontext>
+  <generalfeedback format="html">
+    <text><![CDATA[[[if test="is(er=1)"]]<p>(a) The mistake is in Step 2. Cutting a square from each corner shortens each edge of the base at both ends, so the base is \(({@s0@} - 2x)\) cm square, not \(({@s0@} - x)\) cm. Every later step follows from the wrong model.</p>[[elif test="is(er=2)"]]<p>(a) The mistake is in Step 6. A negative second derivative means a maximum point, so \(x = {@s0/6@}\) gives the greatest volume. At \(x = {@s0/2@}\) the base has side \(0\): there is no box.</p>[[else]]<p>(a) The mistake is in Step 7. The side of the base is \({@s0@} - 2x = {@s0@} - {@s0/3@}\), not \({@s0@} - {@s0/6@}\).</p>[[/if]]<p>(b) The correct working is:</p><ol><li>The height of the box is \(x\) cm, and \(x\) must be between \(0\) and \({@s0/2@}\).</li><li>Each side of the base is \(({@s0@} - 2x)\) cm, so \(V = x({@s0@} - 2x)^2\).</li><li>\(V = {@4*x^3-4*s0*x^2+s0^2*x@}\)</li><li>\(\dfrac{dV}{dx} = {@12*x^2-8*s0*x+s0^2@}\)</li><li>\(\dfrac{dV}{dx} = (6x - {@s0@})(2x - {@s0@}) = 0\), so \(x = {@s0/6@}\) or \(x = {@s0/2@}\).</li><li>\(\dfrac{d^2V}{dx^2} = {@24*x-8*s0@}\). At \(x = {@s0/6@}\) this is \({@-4*s0@}\), which is negative, so \(x = {@s0/6@}\) gives the greatest volume.</li><li>\(V = {@s0/6@} \times ({@s0@} - {@s0/3@})^2 = [[if test="is(corr>=10000)"]]{#floor(corr/1000)#}\,{#floor(mod(corr,1000)/100)#}{#floor(mod(corr,100)/10)#}{#mod(corr,10)#}[[else]]{#corr#}[[/if]]\) cm\(^3\)</li></ol>]]></text>
+  </generalfeedback>
+  <defaultgrade>2</defaultgrade>
+  <penalty>0.1</penalty>
+  <hidden>0</hidden>
+  <idnumber></idnumber>
+  <stackversion><text>2026063000</text></stackversion>
+  <questionvariables>
+    <text><![CDATA[/* Design: step dropdown plus the correct value. Seven steps; Step 1 is a height-and-domain step, so the correct step is never Step 1. er 1: step 2 uses base s - x, and steps 3 to 7 follow from it; er 2: step 6 calls x = s/6 the least volume and uses x = s/2; er 3: step 7 uses s - s/6 for the base. Source: original. */
+L: [[24,1],[30,2],[36,3],[18,1],[42,2],[48,3],[60,1],[54,2],[12,3],[66,1]];
+ix: 1+rand(10);
+s0: L[ix][1]; er: L[ix][2];
+corr: 2*s0^3/27;
+shown: if er=1 then 4*s0^3/27 elseif er=2 then 0 else 25*s0^3/216;
+opts: [["s1",false,"Step 1"],["s2",is(er=1),"Step 2"],["s3",false,"Step 3"],["s4",false,"Step 4"],["s5",false,"Step 5"],["s6",is(er=2),"Step 6"],["s7",is(er=3),"Step 7"]];]]></text>
+  </questionvariables>
+  <specificfeedback format="html"><text><![CDATA[]]></text></specificfeedback>
+  <questionnote format="moodle_auto_format">
+    <text>ix={@ix@}, s0={@s0@}, er={@er@}, shown={@shown@}, correct={@corr@}</text>
+  </questionnote>
+  <questiondescription format="html"><text><![CDATA[<p id="concept">Differentiation II: finding the mistake in an optimisation</p><p id="description">Grade 12 CBE Core 4.1: Find the wrong step in a worked maximum-volume calculation for an open box, and give the correct greatest volume.</p><p id="edition">Core</p><p id="provenance">This question is original to this project.</p><p id="citation">INNODEMS CBC Grade 12 Mathematics, first draft by Ben Davies, 2026. Aligned to the KICD Senior School Curriculum Design, Core Mathematics Grade 12 (draft).</p>]]></text></questiondescription>
+  <questionsimplify>1</questionsimplify>
+  <assumepositive>0</assumepositive>
+  <assumereal>0</assumereal>
+  <prtcorrect format="html"><text><![CDATA[[[commonstring key="symbolicprtcorrectfeedback"/]] [[commonstring key="defaultprtcorrectfeedback"/]]]]></text></prtcorrect>
+  <prtpartiallycorrect format="html"><text><![CDATA[[[commonstring key="symbolicprtpartiallycorrectfeedback"/]] [[commonstring key="defaultprtpartiallycorrectfeedback"/]]]]></text></prtpartiallycorrect>
+  <prtincorrect format="html"><text><![CDATA[[[commonstring key="symbolicprtincorrectfeedback"/]] [[commonstring key="defaultprtincorrectfeedback"/]]]]></text></prtincorrect>
+  <decimals>.</decimals>
+  <scientificnotation>*10</scientificnotation>
+  <multiplicationsign>none</multiplicationsign>
+  <sqrtsign>1</sqrtsign>
+  <complexno>i</complexno>
+  <inversetrig>cos-1</inversetrig>
+  <logicsymbol>lang</logicsymbol>
+  <matrixparens>[</matrixparens>
+  <isbroken>0</isbroken>
+  <variantsselectionseed></variantsselectionseed>
+
+  <input><name>ans1</name><type>dropdown</type><tans>opts</tans><boxsize>8</boxsize><strictsyntax>1</strictsyntax><insertstars>0</insertstars><syntaxhint></syntaxhint><syntaxattribute>0</syntaxattribute><forbidwords></forbidwords><allowwords></allowwords><forbidfloat>1</forbidfloat><requirelowestterms>0</requirelowestterms><checkanswertype>0</checkanswertype><mustverify>0</mustverify><showvalidation>0</showvalidation><options></options></input>
+  <input><name>ans2</name><type>numerical</type><tans>corr</tans><boxsize>6</boxsize><strictsyntax>1</strictsyntax><insertstars>0</insertstars><syntaxhint></syntaxhint><syntaxattribute>0</syntaxattribute><forbidwords></forbidwords><allowwords></allowwords><forbidfloat>1</forbidfloat><requirelowestterms>0</requirelowestterms><checkanswertype>0</checkanswertype><mustverify>0</mustverify><showvalidation>0</showvalidation><options></options></input>
+
+  <prt><name>prt1</name><value>1.0000000</value><autosimplify>1</autosimplify><feedbackstyle>1</feedbackstyle><feedbackvariables><text><![CDATA[ch: if ans1="s1" then 1 elseif ans1="s2" then 2 elseif ans1="s3" then 3 elseif ans1="s4" then 4 elseif ans1="s6" then 6 elseif ans1="s7" then 7 else 0;]]></text></feedbackvariables>
+    <node><name>0</name><description>Step with the mistake</description><answertest>AlgEquiv</answertest><sans>ans1</sans><tans>first(mcq_correct(opts))</tans><testoptions></testoptions><quiet>1</quiet><truescoremode>=</truescoremode><truescore>1.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt1-1-T</trueanswernote><truefeedback format="html"><text><![CDATA[]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>1</falsenextnode><falseanswernote>prt1-1-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>1</name><description>Doubted the solutions</description><answertest>AlgEquiv</answertest><sans>ans1</sans><tans>"s5"</tans><testoptions></testoptions><quiet>1</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt1-2-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>Step 5 is right: both solutions of \(\dfrac{dV}{dx} = 0\) are correct for the derivative in Step 4. Choosing between them comes later. The mistake is in another step.</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>-1</falsenextnode><falseanswernote>prt1-2-F</falseanswernote><falsefeedback format="html"><text><![CDATA[[[if test="is(ch=1)"]]<p>Step 1 is right: the squares that are cut out have side \(x\) cm, and that is the height once the sides are folded up. Two of them must fit along an edge of \({@s0@}\) cm, so \(x\) is less than \({@s0/2@}\).</p>[[elif test="is(ch=2)"]]<p>Step 2 is right: a square is cut from both ends of each edge, so each side of the base is \(({@s0@} - 2x)\) cm, and the volume is the height times the area of the base.</p>[[elif test="is(ch=3)"]]<p>Step 3 is a correct expansion of the \(V\) in Step 2. You can test a line like this with a value: at \(x = 1\) both lines give \({@if er=1 then (s0-1)^2 else (s0-2)^2@}\).</p>[[elif test="is(ch=4)"]]<p>Step 4 is the correct derivative of the line in Step 3: each term is multiplied by its power, and the power is reduced by \(1\).</p>[[elif test="is(ch=6)"]]<p>Step 6 follows correctly from the lines above it: the second derivative is the derivative of the line in Step 4, its value at \(x = {@if er=1 then s0/3 else s0/6@}\) is right, and a negative second derivative means a maximum.</p>[[elif test="is(ch=7)"]]<p>Step 7 substitutes \(x = {@if er=1 then s0/3 else s0/2@}\) correctly into the \(V\) of Step 2, and the arithmetic is right.[[if test="is(er=2)"]] A greatest volume of \(0\) is a sign that something went wrong before this step.[[/if]]</p>[[else]][[/if]]<p>The mistake is in another step: look for a line that does not follow from the one before it, or from the box itself.</p>]]></text></falsefeedback></node>
+  </prt>
+  <prt><name>prt2</name><value>1.0000000</value><autosimplify>1</autosimplify><feedbackstyle>1</feedbackstyle><feedbackvariables><text><![CDATA[]]></text></feedbackvariables>
+    <node><name>0</name><description>Correct volume</description><answertest>AlgEquiv</answertest><sans>ans2</sans><tans>corr</tans><testoptions></testoptions><quiet>1</quiet><truescoremode>=</truescoremode><truescore>1.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt2-1-T</trueanswernote><truefeedback format="html"><text><![CDATA[]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>1</falsenextnode><falseanswernote>prt2-1-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>1</name><description>Njeri's answer</description><answertest>AlgEquiv</answertest><sans>ans2</sans><tans>shown</tans><testoptions></testoptions><quiet>1</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt2-2-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>That is Njeri's answer, which contains the mistake.</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>-1</falsenextnode><falseanswernote>prt2-2-F</falseanswernote><falsefeedback format="html"><text><![CDATA[<p>Correct the mistake, then follow the working through to the volume.</p>]]></text></falsefeedback></node>
+  </prt>
+
+  <deployedseed>4</deployedseed>
+  <deployedseed>5</deployedseed>
+  <deployedseed>15</deployedseed>
+  <deployedseed>8</deployedseed>
+  <deployedseed>24</deployedseed>
+  <deployedseed>1</deployedseed>
+  <deployedseed>3</deployedseed>
+  <deployedseed>10</deployedseed>
+  <deployedseed>2</deployedseed>
+  <deployedseed>17</deployedseed>
+  <qtest><testcase>1</testcase><description>Correct</description>
+    <testinput><name>ans1</name><value>first(mcq_correct(opts))</value></testinput>
+    <testinput><name>ans2</name><value>corr</value></testinput>
+    <expected><name>prt1</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt1-1-T</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt2-1-T</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>2</testcase><description>Doubted the solutions; Njeri's answer</description>
+    <testinput><name>ans1</name><value>"s5"</value></testinput>
+    <testinput><name>ans2</name><value>shown</value></testinput>
+    <expected><name>prt1</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt1-1-F | prt1-2-T</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt2-1-F | prt2-2-T</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>3</testcase><description>Generic wrong</description>
+    <testinput><name>ans1</name><value>"s1"</value></testinput>
+    <testinput><name>ans2</name><value>corr+1</value></testinput>
+    <expected><name>prt1</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt1-1-F | prt1-2-F</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt2-1-F | prt2-2-F</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>4</testcase><description>A correct middle step chosen</description>
+    <testinput><name>ans1</name><value>"s4"</value></testinput>
+    <testinput><name>ans2</name><value>corr</value></testinput>
+    <expected><name>prt1</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt1-1-F | prt1-2-F</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt2-1-T</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>5</testcase><description>Invalid: letter in (b)</description>
+    <testinput><name>ans1</name><value>first(mcq_correct(opts))</value></testinput>
+    <testinput><name>ans2</name><value>x</value></testinput>
+    <expected><name>prt1</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt1-1-T</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore></expectedscore><expectedpenalty></expectedpenalty><expectedanswernote>NULL</expectedanswernote></expected>
+  </qtest>
+</question>
+</quiz>

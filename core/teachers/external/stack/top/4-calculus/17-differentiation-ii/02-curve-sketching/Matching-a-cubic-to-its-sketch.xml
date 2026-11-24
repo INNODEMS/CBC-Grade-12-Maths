@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<quiz>
+<question type="stack">
+  <name><text>Matching a cubic to its sketch</text></name>
+  <questiontext format="html">
+    <text><![CDATA[<p>(a) Which graph shows \(y = {@ffac@}\)?</p><table style="margin:auto;"><tr><td><div style="text-align:center;" role="img" aria-label="Graph A: touches the x-axis at x = {#G[1][2]#} and crosses it at x = {#G[1][3]#}; it [[if test="is(G[1][1]>0)"]]rises[[else]]falls[[/if]] to the right.">
+[[jsxgraph width="240px" height="200px"]]
+(function() {
+  var b = JXG.JSXGraph.initBoard(divid, {boundingbox: [-{#W#}, {#Yb#}, {#W#}, -{#Yb#}], axis: true, grid: false, showNavigation: false, showCopyright: false, pan: {enabled: false}, zoom: {enabled: false}});
+  b.create('functiongraph', [function(x) { return {#G[1][1]#}*(x-({#G[1][2]#}))*(x-({#G[1][2]#}))*(x-({#G[1][3]#})); }], {strokeColor: '#1f4e9c', strokeWidth: 2, fixed: true, highlight: false});
+  b.create('text', [-{#W#}+0.4, {#Yb#}*0.8, 'Graph A'], {fixed: true, highlight: false, useMathJax: false, fontSize: 14});
+})();
+[[/jsxgraph]]
+</div></td><td><div style="text-align:center;" role="img" aria-label="Graph B: touches the x-axis at x = {#G[2][2]#} and crosses it at x = {#G[2][3]#}; it [[if test="is(G[2][1]>0)"]]rises[[else]]falls[[/if]] to the right.">
+[[jsxgraph width="240px" height="200px"]]
+(function() {
+  var b = JXG.JSXGraph.initBoard(divid, {boundingbox: [-{#W#}, {#Yb#}, {#W#}, -{#Yb#}], axis: true, grid: false, showNavigation: false, showCopyright: false, pan: {enabled: false}, zoom: {enabled: false}});
+  b.create('functiongraph', [function(x) { return {#G[2][1]#}*(x-({#G[2][2]#}))*(x-({#G[2][2]#}))*(x-({#G[2][3]#})); }], {strokeColor: '#1f4e9c', strokeWidth: 2, fixed: true, highlight: false});
+  b.create('text', [-{#W#}+0.4, {#Yb#}*0.8, 'Graph B'], {fixed: true, highlight: false, useMathJax: false, fontSize: 14});
+})();
+[[/jsxgraph]]
+</div></td></tr><tr><td><div style="text-align:center;" role="img" aria-label="Graph C: touches the x-axis at x = {#G[3][2]#} and crosses it at x = {#G[3][3]#}; it [[if test="is(G[3][1]>0)"]]rises[[else]]falls[[/if]] to the right.">
+[[jsxgraph width="240px" height="200px"]]
+(function() {
+  var b = JXG.JSXGraph.initBoard(divid, {boundingbox: [-{#W#}, {#Yb#}, {#W#}, -{#Yb#}], axis: true, grid: false, showNavigation: false, showCopyright: false, pan: {enabled: false}, zoom: {enabled: false}});
+  b.create('functiongraph', [function(x) { return {#G[3][1]#}*(x-({#G[3][2]#}))*(x-({#G[3][2]#}))*(x-({#G[3][3]#})); }], {strokeColor: '#1f4e9c', strokeWidth: 2, fixed: true, highlight: false});
+  b.create('text', [-{#W#}+0.4, {#Yb#}*0.8, 'Graph C'], {fixed: true, highlight: false, useMathJax: false, fontSize: 14});
+})();
+[[/jsxgraph]]
+</div></td><td><div style="text-align:center;" role="img" aria-label="Graph D: touches the x-axis at x = {#G[4][2]#} and crosses it at x = {#G[4][3]#}; it [[if test="is(G[4][1]>0)"]]rises[[else]]falls[[/if]] to the right.">
+[[jsxgraph width="240px" height="200px"]]
+(function() {
+  var b = JXG.JSXGraph.initBoard(divid, {boundingbox: [-{#W#}, {#Yb#}, {#W#}, -{#Yb#}], axis: true, grid: false, showNavigation: false, showCopyright: false, pan: {enabled: false}, zoom: {enabled: false}});
+  b.create('functiongraph', [function(x) { return {#G[4][1]#}*(x-({#G[4][2]#}))*(x-({#G[4][2]#}))*(x-({#G[4][3]#})); }], {strokeColor: '#1f4e9c', strokeWidth: 2, fixed: true, highlight: false});
+  b.create('text', [-{#W#}+0.4, {#Yb#}*0.8, 'Graph D'], {fixed: true, highlight: false, useMathJax: false, fontSize: 14});
+})();
+[[/jsxgraph]]
+</div></td></tr></table><div>[[input:ans1]] [[validation:ans1]] [[feedback:prt1]]</div><p>(b) At which value of \(x\) does this curve touch the \(x\)-axis?</p><div>\(x =\) [[input:ans2]] [[validation:ans2]] [[feedback:prt2]]</div><p>(c) At which value of \(x\) does it cross the \(x\)-axis?</p><div>\(x =\) [[input:ans3]] [[validation:ans3]] [[feedback:prt3]]</div>]]></text>
+  </questiontext>
+  <generalfeedback format="html">
+    <text><![CDATA[<p>The factors give the intercepts: \(y = 0\) at \(x = {@m0@}\) and \(x = {@n0@}\). The squared factor \({@(x-m0)^2@}\) is never negative, so \(y\) does not change sign at \(x = {@m0@}\): the curve touches the axis there and crosses it at \(x = {@n0@}\).</p><p>[[if test="is(a0>0)"]]The leading coefficient is positive, so the curve rises to the right.[[else]]The leading coefficient is negative, so the curve falls to the right.[[/if]]</p><p>(a) Graph [[if test="is(pos=1)"]]A[[elif test="is(pos=2)"]]B[[elif test="is(pos=3)"]]C[[else]]D[[/if]]. Graph [[if test="is(pr=1)"]]A[[elif test="is(pr=2)"]]B[[elif test="is(pr=3)"]]C[[else]]D[[/if]] is upside down, Graph [[if test="is(ps=1)"]]A[[elif test="is(ps=2)"]]B[[elif test="is(ps=3)"]]C[[else]]D[[/if]] touches and crosses at the wrong places, and Graph [[if test="is(pm=1)"]]A[[elif test="is(pm=2)"]]B[[elif test="is(pm=3)"]]C[[else]]D[[/if]] is the mirror image in the \(y\)-axis.</p><p>(b) \(x = {@m0@}\). (c) \(x = {@n0@}\).</p>]]></text>
+  </generalfeedback>
+  <defaultgrade>3</defaultgrade>
+  <penalty>0.1</penalty>
+  <hidden>0</hidden>
+  <idnumber></idnumber>
+  <stackversion><text>2026063000</text></stackversion>
+  <questionvariables>
+    <text><![CDATA[/* Design: base a0(x-m0)^2(x-n0); distractors: reflect (-base), swap (touch and cross exchanged), mirror (base(-x)). Each curve is stored as [c, r2, r1] for c(x-r2)^2(x-r1). The graph order is a balanced curated permutation per index: each of the four curves appears at each letter 2 or 3 times, and the correct letter by index is A B C A C D A B D C. Keep it balanced so no letter is always the correct or the reflected graph. Source: original. */
+L: [[1,-1,2],[-1,1,-2],[1,2,-1],[-1,3,-1],[1,-2,3],[-1,-2,1],[1,-3,1],[-1,1,4],[1,1,-2],[-1,-2,3]];
+ix: 1+rand(10);
+a0: L[ix][1]; m0: L[ix][2]; n0: L[ix][3];
+gord: [[1,3,4,2],[4,1,3,2],[2,4,1,3],[1,2,4,3],[2,3,1,4],[3,4,2,1],[1,3,2,4],[3,1,4,2],[4,2,3,1],[3,2,1,4]][ix];
+ffac: a0*(x-m0)^2*(x-n0);
+Bs: [a0,m0,n0]; Rf: [-a0,m0,n0]; Sw: [a0,n0,m0]; Mi: [-a0,-m0,-n0];
+Ty: [Bs,Rf,Sw,Mi];
+G: makelist(Ty[gord[j]],j,1,4);
+gpos: [[1,4,2,3],[2,4,3,1],[3,1,4,2],[1,2,4,3],[3,1,2,4],[4,3,1,2],[1,3,2,4],[2,4,1,3],[4,2,3,1],[3,2,1,4]][ix];
+pos: gpos[1]; pr: gpos[2]; ps: gpos[3]; pm: gpos[4];
+lets: ["A","B","C","D"];
+lc: lets[pos]; lr: lets[pr]; ls: lets[ps]; lm: lets[pm];
+opts: [["A",is(pos=1),"Graph A"],["B",is(pos=2),"Graph B"],["C",is(pos=3),"Graph C"],["D",is(pos=4),"Graph D"]];
+kk: abs(n0-m0)/3;
+Yb: max(ceiling(1.4*4*kk^3),3);
+W: max(abs(m0),abs(n0))+2;]]></text>
+  </questionvariables>
+  <specificfeedback format="html"><text><![CDATA[]]></text></specificfeedback>
+  <questionnote format="moodle_auto_format">
+    <text>ix={@ix@}, y={@ffac@}, correct graph {@pos@}</text>
+  </questionnote>
+  <questiondescription format="html"><text><![CDATA[<p id="concept">Differentiation II: matching a cubic to its sketch</p><p id="description">Grade 12 CBE Core 4.1: Choose the graph of a factorised cubic from four sketches, using the repeated root, the single root and the sign of the leading coefficient.</p><p id="edition">Core</p><p id="provenance">This question is original to this project.</p><p id="citation">INNODEMS CBC Grade 12 Mathematics, first draft by Ben Davies, 2026. Aligned to the KICD Senior School Curriculum Design, Core Mathematics Grade 12 (draft).</p>]]></text></questiondescription>
+  <questionsimplify>1</questionsimplify>
+  <assumepositive>0</assumepositive>
+  <assumereal>0</assumereal>
+  <prtcorrect format="html"><text><![CDATA[[[commonstring key="symbolicprtcorrectfeedback"/]] [[commonstring key="defaultprtcorrectfeedback"/]]]]></text></prtcorrect>
+  <prtpartiallycorrect format="html"><text><![CDATA[[[commonstring key="symbolicprtpartiallycorrectfeedback"/]] [[commonstring key="defaultprtpartiallycorrectfeedback"/]]]]></text></prtpartiallycorrect>
+  <prtincorrect format="html"><text><![CDATA[[[commonstring key="symbolicprtincorrectfeedback"/]] [[commonstring key="defaultprtincorrectfeedback"/]]]]></text></prtincorrect>
+  <decimals>.</decimals>
+  <scientificnotation>*10</scientificnotation>
+  <multiplicationsign>none</multiplicationsign>
+  <sqrtsign>1</sqrtsign>
+  <complexno>i</complexno>
+  <inversetrig>cos-1</inversetrig>
+  <logicsymbol>lang</logicsymbol>
+  <matrixparens>[</matrixparens>
+  <isbroken>0</isbroken>
+  <variantsselectionseed></variantsselectionseed>
+
+  <input><name>ans1</name><type>radio</type><tans>opts</tans><boxsize>15</boxsize><strictsyntax>1</strictsyntax><insertstars>0</insertstars><syntaxhint></syntaxhint><syntaxattribute>0</syntaxattribute><forbidwords></forbidwords><allowwords></allowwords><forbidfloat>1</forbidfloat><requirelowestterms>0</requirelowestterms><checkanswertype>0</checkanswertype><mustverify>0</mustverify><showvalidation>0</showvalidation><options></options></input>
+  <input><name>ans2</name><type>numerical</type><tans>m0</tans><boxsize>5</boxsize><strictsyntax>1</strictsyntax><insertstars>0</insertstars><syntaxhint></syntaxhint><syntaxattribute>0</syntaxattribute><forbidwords></forbidwords><allowwords></allowwords><forbidfloat>1</forbidfloat><requirelowestterms>0</requirelowestterms><checkanswertype>0</checkanswertype><mustverify>0</mustverify><showvalidation>0</showvalidation><options></options></input>
+  <input><name>ans3</name><type>numerical</type><tans>n0</tans><boxsize>5</boxsize><strictsyntax>1</strictsyntax><insertstars>0</insertstars><syntaxhint></syntaxhint><syntaxattribute>0</syntaxattribute><forbidwords></forbidwords><allowwords></allowwords><forbidfloat>1</forbidfloat><requirelowestterms>0</requirelowestterms><checkanswertype>0</checkanswertype><mustverify>0</mustverify><showvalidation>0</showvalidation><options></options></input>
+
+  <prt><name>prt1</name><value>1.0000000</value><autosimplify>1</autosimplify><feedbackstyle>1</feedbackstyle><feedbackvariables><text><![CDATA[]]></text></feedbackvariables>
+    <node><name>0</name><description>Graph</description><answertest>AlgEquiv</answertest><sans>ans1</sans><tans>first(mcq_correct(opts))</tans><testoptions></testoptions><quiet>1</quiet><truescoremode>=</truescoremode><truescore>1.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt1-1-T</trueanswernote><truefeedback format="html"><text><![CDATA[]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>1</falsenextnode><falseanswernote>prt1-1-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>1</name><description>Reflected</description><answertest>AlgEquiv</answertest><sans>ans1</sans><tans>lr</tans><testoptions></testoptions><quiet>1</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt1-2-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>That graph is upside down: the leading coefficient of \(y\) is \({@a0@}\), so \(y\) is large and [[if test="is(a0>0)"]]positive[[else]]negative[[/if]] for large positive \(x\).</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>2</falsenextnode><falseanswernote>prt1-2-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>2</name><description>Touch and cross swapped</description><answertest>AlgEquiv</answertest><sans>ans1</sans><tans>ls</tans><testoptions></testoptions><quiet>1</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt1-3-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>That graph touches the \(x\)-axis at \(x = {@n0@}\). The squared factor makes the curve touch the axis at the repeated root.</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>-1</falsenextnode><falseanswernote>prt1-3-F</falseanswernote><falsefeedback format="html"><text><![CDATA[<p>That graph is the mirror image of the curve in the \(y\)-axis: its intercepts are at the negatives of the right ones.</p>]]></text></falsefeedback></node>
+  </prt>
+  <prt><name>prt2</name><value>1.0000000</value><autosimplify>1</autosimplify><feedbackstyle>1</feedbackstyle><feedbackvariables><text><![CDATA[]]></text></feedbackvariables>
+    <node><name>0</name><description>Root</description><answertest>AlgEquiv</answertest><sans>ans2</sans><tans>m0</tans><testoptions></testoptions><quiet>1</quiet><truescoremode>=</truescoremode><truescore>1.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt2-1-T</trueanswernote><truefeedback format="html"><text><![CDATA[]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>1</falsenextnode><falseanswernote>prt2-1-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>1</name><description>Other root</description><answertest>AlgEquiv</answertest><sans>ans2</sans><tans>n0</tans><testoptions></testoptions><quiet>1</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt2-2-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>The curve crosses the axis there. It touches where the factor is squared.</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>2</falsenextnode><falseanswernote>prt2-2-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>2</name><description>Sign</description><answertest>AlgEquiv</answertest><sans>ans2</sans><tans>-(m0)</tans><testoptions></testoptions><quiet>1</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt2-3-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>Check the sign: \((x - r)\) is zero when \(x = r\).</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>-1</falsenextnode><falseanswernote>prt2-3-F</falseanswernote><falsefeedback format="html"><text><![CDATA[<p>A squared factor \((x - r)^2\) makes the curve touch the \(x\)-axis at \(x = r\); a single factor makes it cross.</p>]]></text></falsefeedback></node>
+  </prt>
+  <prt><name>prt3</name><value>1.0000000</value><autosimplify>1</autosimplify><feedbackstyle>1</feedbackstyle><feedbackvariables><text><![CDATA[]]></text></feedbackvariables>
+    <node><name>0</name><description>Root</description><answertest>AlgEquiv</answertest><sans>ans3</sans><tans>n0</tans><testoptions></testoptions><quiet>1</quiet><truescoremode>=</truescoremode><truescore>1.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt3-1-T</trueanswernote><truefeedback format="html"><text><![CDATA[]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>1</falsenextnode><falseanswernote>prt3-1-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>1</name><description>Other root</description><answertest>AlgEquiv</answertest><sans>ans3</sans><tans>m0</tans><testoptions></testoptions><quiet>1</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt3-2-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>The curve touches the axis there, because that factor is squared. It crosses at the single factor.</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>2</falsenextnode><falseanswernote>prt3-2-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>2</name><description>Sign</description><answertest>AlgEquiv</answertest><sans>ans3</sans><tans>-(n0)</tans><testoptions></testoptions><quiet>1</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt3-3-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>Check the sign: \((x - r)\) is zero when \(x = r\).</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>-1</falsenextnode><falseanswernote>prt3-3-F</falseanswernote><falsefeedback format="html"><text><![CDATA[<p>A squared factor \((x - r)^2\) makes the curve touch the \(x\)-axis at \(x = r\); a single factor makes it cross.</p>]]></text></falsefeedback></node>
+  </prt>
+
+  <deployedseed>4</deployedseed>
+  <deployedseed>5</deployedseed>
+  <deployedseed>15</deployedseed>
+  <deployedseed>8</deployedseed>
+  <deployedseed>24</deployedseed>
+  <deployedseed>1</deployedseed>
+  <deployedseed>3</deployedseed>
+  <deployedseed>10</deployedseed>
+  <deployedseed>2</deployedseed>
+  <deployedseed>17</deployedseed>
+  <qtest><testcase>1</testcase><description>Correct</description>
+    <testinput><name>ans1</name><value>first(mcq_correct(opts))</value></testinput>
+    <testinput><name>ans2</name><value>m0</value></testinput>
+    <testinput><name>ans3</name><value>n0</value></testinput>
+    <expected><name>prt1</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt1-1-T</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt2-1-T</expectedanswernote></expected>
+    <expected><name>prt3</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt3-1-T</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>2</testcase><description>Reflected graph; cross value for touch</description>
+    <testinput><name>ans1</name><value>lr</value></testinput>
+    <testinput><name>ans2</name><value>n0</value></testinput>
+    <testinput><name>ans3</name><value>n0</value></testinput>
+    <expected><name>prt1</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt1-1-F | prt1-2-T</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt2-1-F | prt2-2-T</expectedanswernote></expected>
+    <expected><name>prt3</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt3-1-T</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>3</testcase><description>Swapped graph; sign; touch value for cross</description>
+    <testinput><name>ans1</name><value>ls</value></testinput>
+    <testinput><name>ans2</name><value>-m0</value></testinput>
+    <testinput><name>ans3</name><value>m0</value></testinput>
+    <expected><name>prt1</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt1-1-F | prt1-2-F | prt1-3-T</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt2-1-F | prt2-2-F | prt2-3-T</expectedanswernote></expected>
+    <expected><name>prt3</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt3-1-F | prt3-2-T</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>4</testcase><description>Mirror graph; generic; sign</description>
+    <testinput><name>ans1</name><value>lm</value></testinput>
+    <testinput><name>ans2</name><value>m0+100</value></testinput>
+    <testinput><name>ans3</name><value>-n0</value></testinput>
+    <expected><name>prt1</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt1-1-F | prt1-2-F | prt1-3-F</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt2-1-F | prt2-2-F | prt2-3-F</expectedanswernote></expected>
+    <expected><name>prt3</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt3-1-F | prt3-2-F | prt3-3-T</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>5</testcase><description>Invalid: letter in (b)</description>
+    <testinput><name>ans1</name><value>first(mcq_correct(opts))</value></testinput>
+    <testinput><name>ans2</name><value>x</value></testinput>
+    <testinput><name>ans3</name><value>n0</value></testinput>
+    <expected><name>prt1</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt1-1-T</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore></expectedscore><expectedpenalty></expectedpenalty><expectedanswernote>NULL</expectedanswernote></expected>
+    <expected><name>prt3</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt3-1-T</expectedanswernote></expected>
+  </qtest>
+</question>
+</quiz>

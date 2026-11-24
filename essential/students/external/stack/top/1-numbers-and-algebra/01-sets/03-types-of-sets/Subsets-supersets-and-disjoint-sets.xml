@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<quiz>
+<question type="stack">
+  <name><text>Subsets supersets and disjoint sets</text></name>
+  <questiontext format="html">
+    <text><![CDATA[<p>\(A = {@dset(A)@}\), \(B = {@dset(B)@}\), \(C = {@dset(C)@}\) and \(D = {@Dd@}\). Is each statement true or false?</p><p>(a) \(A \subset B\) [[input:ans1]] [[validation:ans1]] [[feedback:prt1]]</p><p>(b) \(B \supseteq C\) [[input:ans2]] [[validation:ans2]] [[feedback:prt2]]</p><p>(c) \(A\) and \(C\) are disjoint. [[input:ans3]] [[validation:ans3]] [[feedback:prt3]]</p><p>(d) \(D\) is a singleton. [[input:ans4]] [[validation:ans4]] [[feedback:prt4]]</p>]]></text>
+  </questiontext>
+  <generalfeedback format="html">
+    <text><![CDATA[<p>(a) {@e1@}</p><p>(b) {@e2@}</p><p>(c) {@e3@}</p><p>(d) {@e4@}</p>]]></text>
+  </generalfeedback>
+  <defaultgrade>4</defaultgrade>
+  <penalty>0.1</penalty>
+  <hidden>0</hidden>
+  <idnumber></idnumber>
+  <stackversion><text>2026063000</text></stackversion>
+  <questionvariables>
+    <text><![CDATA[cardn(S) := length(listify(S));
+dset(S) := if emptyp(S) then "\\{\\,\\}" else sconcat("\\{", simplode(map(string, listify(S)), ", "), "\\}");
+ix: 1+rand(10);
+tf(k) := [[1, is(k=1), "True"], [2, is(k=2), "False"]];
+/* Design: true or false for subset, superset and disjoint statements. Source: original. Essential only. Curated list, one seed per entry;
+   traps A = B, D = {0}, D empty, D = {-5, 5}. Keys 1 true, 2 false; f: the other option for tests; e: explanations. */
+L: [[{2,8},{2,8,10},{1,5},"\\{x : x \\text{ is a whole number}, x + 5 = 5\\}",1,2,1,1,2,1,2,2,"\\(A \\subset B\\) needs every element of \\(A\\) to be in \\(B\\), and \\(A \\neq B\\); here every element of \\(A\\) is in \\(B\\) and \\(A \\neq B\\), so \\(A \\subset B\\) is true.","\\(B \\supseteq C\\) means every element of \\(C\\) is in \\(B\\); here \\(1\\) and \\(5\\) are not in \\(B\\), so the statement is false.","\\(A \\cap C = \\{\\,\\}\\), so \\(A\\) and \\(C\\) have no element in common: they are disjoint.","\\(D = \\{0\\}\\) has \\(1\\) element; a singleton has exactly one element, so the statement is true."],
+  [{1,5,9},{1,5,9},{5},"\\{x : x \\text{ is an even prime number}\\}",2,1,2,1,1,2,1,2,"\\(A \\subset B\\) needs every element of \\(A\\) to be in \\(B\\), and \\(A \\neq B\\); here \\(A = B\\), so \\(A\\) is not a proper subset of \\(B\\) and the statement is false.","\\(B \\supseteq C\\) means every element of \\(C\\) is in \\(B\\); here it is, so the statement is true.","\\(A \\cap C = \\{5\\}\\), so \\(A\\) and \\(C\\) have an element in common: they are not disjoint.","\\(D = \\{2\\}\\) has \\(1\\) element; a singleton has exactly one element, so the statement is true."],
+  [{3,6},{3,6,9,15},{6,15},"\\{x : x \\text{ is a natural number}, x^2 = 16\\}",1,1,2,1,2,2,1,2,"\\(A \\subset B\\) needs every element of \\(A\\) to be in \\(B\\), and \\(A \\neq B\\); here every element of \\(A\\) is in \\(B\\) and \\(A \\neq B\\), so \\(A \\subset B\\) is true.","\\(B \\supseteq C\\) means every element of \\(C\\) is in \\(B\\); here it is, so the statement is true.","\\(A \\cap C = \\{6\\}\\), so \\(A\\) and \\(C\\) have an element in common: they are not disjoint.","\\(D = \\{4\\}\\) has \\(1\\) element; a singleton has exactly one element, so the statement is true."],
+  [{7,8,9},{6,7,8},{1,2},"\\{x : x \\text{ is an integer}, x^2 = 25\\}",2,2,1,2,1,1,2,1,"\\(A \\subset B\\) needs every element of \\(A\\) to be in \\(B\\), and \\(A \\neq B\\); here \\(9\\) is not in \\(B\\), so the statement is false.","\\(B \\supseteq C\\) means every element of \\(C\\) is in \\(B\\); here \\(1\\) and \\(2\\) are not in \\(B\\), so the statement is false.","\\(A \\cap C = \\{\\,\\}\\), so \\(A\\) and \\(C\\) have no element in common: they are disjoint.","\\(D = \\{-5, 5\\}\\) has \\(2\\) elements; a singleton has exactly one element, so the statement is false."],
+  [{10,20},{10,20,30},{30,40},"\\{x : x \\text{ is a natural number}, x + 4 = 4\\}",1,2,1,2,2,1,2,1,"\\(A \\subset B\\) needs every element of \\(A\\) to be in \\(B\\), and \\(A \\neq B\\); here every element of \\(A\\) is in \\(B\\) and \\(A \\neq B\\), so \\(A \\subset B\\) is true.","\\(B \\supseteq C\\) means every element of \\(C\\) is in \\(B\\); here \\(40\\) is not in \\(B\\), so the statement is false.","\\(A \\cap C = \\{\\,\\}\\), so \\(A\\) and \\(C\\) have no element in common: they are disjoint.","\\(D = \\{\\,\\}\\) has \\(0\\) elements; a singleton has exactly one element, so the statement is false."],
+  [{0,1},{0,1,2},{2},"\\{x : x \\text{ is a whole number}, 3x = 0\\}",1,1,1,1,2,2,2,2,"\\(A \\subset B\\) needs every element of \\(A\\) to be in \\(B\\), and \\(A \\neq B\\); here every element of \\(A\\) is in \\(B\\) and \\(A \\neq B\\), so \\(A \\subset B\\) is true.","\\(B \\supseteq C\\) means every element of \\(C\\) is in \\(B\\); here it is, so the statement is true.","\\(A \\cap C = \\{\\,\\}\\), so \\(A\\) and \\(C\\) have no element in common: they are disjoint.","\\(D = \\{0\\}\\) has \\(1\\) element; a singleton has exactly one element, so the statement is true."],
+  [{4,5,6},{4,5,6},{1,4},"\\{x : x \\text{ is a prime number between 13 and 19}\\}",2,2,2,1,1,1,1,2,"\\(A \\subset B\\) needs every element of \\(A\\) to be in \\(B\\), and \\(A \\neq B\\); here \\(A = B\\), so \\(A\\) is not a proper subset of \\(B\\) and the statement is false.","\\(B \\supseteq C\\) means every element of \\(C\\) is in \\(B\\); here \\(1\\) is not in \\(B\\), so the statement is false.","\\(A \\cap C = \\{4\\}\\), so \\(A\\) and \\(C\\) have an element in common: they are not disjoint.","\\(D = \\{17\\}\\) has \\(1\\) element; a singleton has exactly one element, so the statement is true."],
+  [{11,13},{11,12,13,14},{12,14},"\\{x : x \\text{ is a square number between 10 and 30}\\}",1,1,1,2,2,2,2,1,"\\(A \\subset B\\) needs every element of \\(A\\) to be in \\(B\\), and \\(A \\neq B\\); here every element of \\(A\\) is in \\(B\\) and \\(A \\neq B\\), so \\(A \\subset B\\) is true.","\\(B \\supseteq C\\) means every element of \\(C\\) is in \\(B\\); here it is, so the statement is true.","\\(A \\cap C = \\{\\,\\}\\), so \\(A\\) and \\(C\\) have no element in common: they are disjoint.","\\(D = \\{16, 25\\}\\) has \\(2\\) elements; a singleton has exactly one element, so the statement is false."],
+  [{2,3,7},{2,3},{3},"\\{x : x \\text{ is a whole number}, x < 1\\}",2,1,2,1,1,2,1,2,"\\(A \\subset B\\) needs every element of \\(A\\) to be in \\(B\\), and \\(A \\neq B\\); here \\(7\\) is not in \\(B\\), so the statement is false.","\\(B \\supseteq C\\) means every element of \\(C\\) is in \\(B\\); here it is, so the statement is true.","\\(A \\cap C = \\{3\\}\\), so \\(A\\) and \\(C\\) have an element in common: they are not disjoint.","\\(D = \\{0\\}\\) has \\(1\\) element; a singleton has exactly one element, so the statement is true."],
+  [{6,9},{3,6,9},{1,2,3},"\\{x : x \\text{ is a natural number}, x < 3\\}",1,2,1,2,2,1,2,1,"\\(A \\subset B\\) needs every element of \\(A\\) to be in \\(B\\), and \\(A \\neq B\\); here every element of \\(A\\) is in \\(B\\) and \\(A \\neq B\\), so \\(A \\subset B\\) is true.","\\(B \\supseteq C\\) means every element of \\(C\\) is in \\(B\\); here \\(1\\) and \\(2\\) are not in \\(B\\), so the statement is false.","\\(A \\cap C = \\{\\,\\}\\), so \\(A\\) and \\(C\\) have no element in common: they are disjoint.","\\(D = \\{1, 2\\}\\) has \\(2\\) elements; a singleton has exactly one element, so the statement is false."]];
+A: L[ix][1]; B: L[ix][2]; C: L[ix][3]; Dd: L[ix][4]; k1: L[ix][5]; k2: L[ix][6]; k3: L[ix][7]; k4: L[ix][8]; f1: L[ix][9]; f2: L[ix][10]; f3: L[ix][11]; f4: L[ix][12]; e1: L[ix][13]; e2: L[ix][14]; e3: L[ix][15]; e4: L[ix][16]; 
+o1: tf(k1); o2: tf(k2); o3: tf(k3); o4: tf(k4);
+]]></text>
+  </questionvariables>
+  <specificfeedback format="html"><text><![CDATA[]]></text></specificfeedback>
+  <questionnote format="moodle_auto_format">
+    <text>ix={@ix@}, keys {@[k1,k2,k3,k4]@}</text>
+  </questionnote>
+  <questiondescription format="html"><text><![CDATA[<p id="concept">Sets: proper subsets, supersets, disjoint sets and singletons</p><p id="description">Grade 12 CBE Essential 1.1 (a): Decide whether statements about proper subsets, supersets, disjoint sets and singletons are true.</p><p id="edition">Essential</p><p id="provenance">This question is original to this project.</p><p id="citation">INNODEMS CBC Grade 12 Mathematics, first draft by Ben Davies, 2026. Aligned to the KICD Senior School Curriculum Design, Essential Mathematics Grade 12 (draft).</p>]]></text></questiondescription>
+  <questionsimplify>1</questionsimplify>
+  <assumepositive>0</assumepositive>
+  <assumereal>0</assumereal>
+  <prtcorrect format="html"><text><![CDATA[[[commonstring key="symbolicprtcorrectfeedback"/]] [[commonstring key="defaultprtcorrectfeedback"/]]]]></text></prtcorrect>
+  <prtpartiallycorrect format="html"><text><![CDATA[[[commonstring key="symbolicprtpartiallycorrectfeedback"/]] [[commonstring key="defaultprtpartiallycorrectfeedback"/]]]]></text></prtpartiallycorrect>
+  <prtincorrect format="html"><text><![CDATA[[[commonstring key="symbolicprtincorrectfeedback"/]] [[commonstring key="defaultprtincorrectfeedback"/]]]]></text></prtincorrect>
+  <decimals>.</decimals>
+  <scientificnotation>*10</scientificnotation>
+  <multiplicationsign>none</multiplicationsign>
+  <sqrtsign>1</sqrtsign>
+  <complexno>i</complexno>
+  <inversetrig>cos-1</inversetrig>
+  <logicsymbol>lang</logicsymbol>
+  <matrixparens>[</matrixparens>
+  <isbroken>0</isbroken>
+  <variantsselectionseed></variantsselectionseed>
+
+  <input><name>ans1</name><type>dropdown</type><tans>o1</tans><boxsize>15</boxsize><strictsyntax>1</strictsyntax><insertstars>0</insertstars><syntaxhint></syntaxhint><syntaxattribute>0</syntaxattribute><forbidwords></forbidwords><allowwords></allowwords><forbidfloat>1</forbidfloat><requirelowestterms>0</requirelowestterms><checkanswertype>0</checkanswertype><mustverify>0</mustverify><showvalidation>0</showvalidation><options></options></input>
+  <input><name>ans2</name><type>dropdown</type><tans>o2</tans><boxsize>15</boxsize><strictsyntax>1</strictsyntax><insertstars>0</insertstars><syntaxhint></syntaxhint><syntaxattribute>0</syntaxattribute><forbidwords></forbidwords><allowwords></allowwords><forbidfloat>1</forbidfloat><requirelowestterms>0</requirelowestterms><checkanswertype>0</checkanswertype><mustverify>0</mustverify><showvalidation>0</showvalidation><options></options></input>
+  <input><name>ans3</name><type>dropdown</type><tans>o3</tans><boxsize>15</boxsize><strictsyntax>1</strictsyntax><insertstars>0</insertstars><syntaxhint></syntaxhint><syntaxattribute>0</syntaxattribute><forbidwords></forbidwords><allowwords></allowwords><forbidfloat>1</forbidfloat><requirelowestterms>0</requirelowestterms><checkanswertype>0</checkanswertype><mustverify>0</mustverify><showvalidation>0</showvalidation><options></options></input>
+  <input><name>ans4</name><type>dropdown</type><tans>o4</tans><boxsize>15</boxsize><strictsyntax>1</strictsyntax><insertstars>0</insertstars><syntaxhint></syntaxhint><syntaxattribute>0</syntaxattribute><forbidwords></forbidwords><allowwords></allowwords><forbidfloat>1</forbidfloat><requirelowestterms>0</requirelowestterms><checkanswertype>0</checkanswertype><mustverify>0</mustverify><showvalidation>0</showvalidation><options></options></input>
+
+  <prt><name>prt1</name><value>1.0000000</value><autosimplify>1</autosimplify><feedbackstyle>1</feedbackstyle><feedbackvariables><text><![CDATA[]]></text></feedbackvariables>
+    <node><name>0</name><description>Key</description><answertest>AlgEquiv</answertest><sans>ans1</sans><tans>k1</tans><testoptions></testoptions><quiet>0</quiet><truescoremode>=</truescoremode><truescore>1.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt1-1-T</trueanswernote><truefeedback format="html"><text><![CDATA[]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>-1</falsenextnode><falseanswernote>prt1-1-F</falseanswernote><falsefeedback format="html"><text><![CDATA[<p>{@e1@}</p>]]></text></falsefeedback></node>
+  </prt>
+  <prt><name>prt2</name><value>1.0000000</value><autosimplify>1</autosimplify><feedbackstyle>1</feedbackstyle><feedbackvariables><text><![CDATA[]]></text></feedbackvariables>
+    <node><name>0</name><description>Key</description><answertest>AlgEquiv</answertest><sans>ans2</sans><tans>k2</tans><testoptions></testoptions><quiet>0</quiet><truescoremode>=</truescoremode><truescore>1.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt2-1-T</trueanswernote><truefeedback format="html"><text><![CDATA[]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>-1</falsenextnode><falseanswernote>prt2-1-F</falseanswernote><falsefeedback format="html"><text><![CDATA[<p>{@e2@}</p>]]></text></falsefeedback></node>
+  </prt>
+  <prt><name>prt3</name><value>1.0000000</value><autosimplify>1</autosimplify><feedbackstyle>1</feedbackstyle><feedbackvariables><text><![CDATA[]]></text></feedbackvariables>
+    <node><name>0</name><description>Key</description><answertest>AlgEquiv</answertest><sans>ans3</sans><tans>k3</tans><testoptions></testoptions><quiet>0</quiet><truescoremode>=</truescoremode><truescore>1.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt3-1-T</trueanswernote><truefeedback format="html"><text><![CDATA[]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>-1</falsenextnode><falseanswernote>prt3-1-F</falseanswernote><falsefeedback format="html"><text><![CDATA[<p>{@e3@}</p>]]></text></falsefeedback></node>
+  </prt>
+  <prt><name>prt4</name><value>1.0000000</value><autosimplify>1</autosimplify><feedbackstyle>1</feedbackstyle><feedbackvariables><text><![CDATA[]]></text></feedbackvariables>
+    <node><name>0</name><description>Key</description><answertest>AlgEquiv</answertest><sans>ans4</sans><tans>k4</tans><testoptions></testoptions><quiet>0</quiet><truescoremode>=</truescoremode><truescore>1.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt4-1-T</trueanswernote><truefeedback format="html"><text><![CDATA[]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>-1</falsenextnode><falseanswernote>prt4-1-F</falseanswernote><falsefeedback format="html"><text><![CDATA[<p>{@e4@}</p>]]></text></falsefeedback></node>
+  </prt>
+
+  <deployedseed>4</deployedseed>
+  <deployedseed>5</deployedseed>
+  <deployedseed>15</deployedseed>
+  <deployedseed>8</deployedseed>
+  <deployedseed>24</deployedseed>
+  <deployedseed>1</deployedseed>
+  <deployedseed>3</deployedseed>
+  <deployedseed>10</deployedseed>
+  <deployedseed>2</deployedseed>
+  <deployedseed>17</deployedseed>
+  <qtest><testcase>1</testcase><description>Correct</description>
+    <testinput><name>ans1</name><value>k1</value></testinput>
+    <testinput><name>ans2</name><value>k2</value></testinput>
+    <testinput><name>ans3</name><value>k3</value></testinput>
+    <testinput><name>ans4</name><value>k4</value></testinput>
+    <expected><name>prt1</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt1-1-T</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt2-1-T</expectedanswernote></expected>
+    <expected><name>prt3</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt3-1-T</expectedanswernote></expected>
+    <expected><name>prt4</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt4-1-T</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>2</testcase><description>All wrong</description>
+    <testinput><name>ans1</name><value>f1</value></testinput>
+    <testinput><name>ans2</name><value>f2</value></testinput>
+    <testinput><name>ans3</name><value>f3</value></testinput>
+    <testinput><name>ans4</name><value>f4</value></testinput>
+    <expected><name>prt1</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt1-1-F</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt2-1-F</expectedanswernote></expected>
+    <expected><name>prt3</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt3-1-F</expectedanswernote></expected>
+    <expected><name>prt4</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt4-1-F</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>3</testcase><description>Mixed</description>
+    <testinput><name>ans1</name><value>k1</value></testinput>
+    <testinput><name>ans2</name><value>f2</value></testinput>
+    <testinput><name>ans3</name><value>f3</value></testinput>
+    <testinput><name>ans4</name><value>k4</value></testinput>
+    <expected><name>prt1</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt1-1-T</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt2-1-F</expectedanswernote></expected>
+    <expected><name>prt3</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt3-1-F</expectedanswernote></expected>
+    <expected><name>prt4</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt4-1-T</expectedanswernote></expected>
+  </qtest>
+</question>
+</quiz>

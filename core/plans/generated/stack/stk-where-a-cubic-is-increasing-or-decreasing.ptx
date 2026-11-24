@@ -1,0 +1,11 @@
+<stack-static>
+    <statement><p><p>The function <m>f(x) = {x^3-3 x^2-9 x+2}</m> is decreasing for <m>a \lt x \lt b</m>, and nowhere else.</p><p>(a) Find <m>a</m> and <m>b</m>.</p><div><m>a =</m> <fillin characters="5" name="ans1"/>  <m>\quad b =</m> <fillin characters="5" name="ans2"/>  </div><p>(b) For which values of <m>x</m> is <m>f</m> increasing?</p><div><ol marker="(1)">
+<li>between a and b only</li>
+<li>for x less than a, and for x greater than b</li>
+<li>for x greater than b only</li>
+</ol>  </div></p></statement>
+    <solution><p><p>A function is increasing where its gradient is positive and decreasing where its gradient is negative.</p><p><me>f'(x) = {3 x^2-6 x-9} = {3 \left(x-3\right) \left(x+1\right)}</me>so <m>f'(x) = 0</m> at <m>x = {-1}</m> and <m>x = {3}</m>.</p><p>The coefficient of <m>x^2</m> in <m>f'(x)</m> is positive, so <m>f'(x)</m> is negative between its roots and positive outside them.</p><p>(a) <m>f</m> is decreasing for <m>{-1} \lt x \lt {3}</m>: <m>a = {-1}</m>, <m>b = {3}</m>.</p><p>(b) <m>f</m> is increasing for <m>x \lt {-1}</m> and for <m>x \gt {3}</m>.</p></p></solution>
+    <answer><p><m>-1</m></p></answer>
+    <answer><p><m>3</m></p></answer>
+    <answer><p><m>(2)</m></p></answer>
+</stack-static>

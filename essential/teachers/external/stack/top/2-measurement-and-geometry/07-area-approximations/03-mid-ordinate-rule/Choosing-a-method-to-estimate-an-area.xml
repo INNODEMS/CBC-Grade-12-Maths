@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<quiz>
+<question type="stack">
+  <name><text>Choosing a method to estimate an area</text></name>
+  <questiontext format="html">
+    <text><![CDATA[<p>For each situation, choose the method that fits the information given.</p><p>(a) {@s1@}</p><div>[[input:ans1]] [[validation:ans1]]</div><p>(b) {@s2@}</p><div>[[input:ans2]] [[validation:ans2]]</div><p>(c) {@s3@}</p><div>[[input:ans3]] [[validation:ans3]]</div><p>(d) {@s4@}</p><div>[[input:ans4]] [[validation:ans4]] [[feedback:prt1]]</div>]]></text>
+  </questiontext>
+  <generalfeedback format="html">
+    <text><![CDATA[<p>Counting squares needs only an outline; the trapezoidal rule needs heights at the edges of the strips; the mid-ordinate rule needs heights at the middles.</p><p>(a) [[if test="is(mr[1]=\"C\")"]]counting squares: there is only an outline on a grid, with no measurements.[[elif test="is(mr[1]=\"T\")"]]the trapezoidal rule: the measurements are at the edges of equal strips, including both ends.[[else]]the mid-ordinate rule: the measurements are at the middles of equal strips, with none at the edges.[[/if]]</p><p>(b) [[if test="is(mr[2]=\"C\")"]]counting squares: there is only an outline on a grid, with no measurements.[[elif test="is(mr[2]=\"T\")"]]the trapezoidal rule: the measurements are at the edges of equal strips, including both ends.[[else]]the mid-ordinate rule: the measurements are at the middles of equal strips, with none at the edges.[[/if]]</p><p>(c) [[if test="is(mr[3]=\"C\")"]]counting squares: there is only an outline on a grid, with no measurements.[[elif test="is(mr[3]=\"T\")"]]the trapezoidal rule: the measurements are at the edges of equal strips, including both ends.[[else]]the mid-ordinate rule: the measurements are at the middles of equal strips, with none at the edges.[[/if]]</p><p>(d) [[if test="is(mr[4]=\"C\")"]]counting squares: there is only an outline on a grid, with no measurements.[[elif test="is(mr[4]=\"T\")"]]the trapezoidal rule: the measurements are at the edges of equal strips, including both ends.[[else]]the mid-ordinate rule: the measurements are at the middles of equal strips, with none at the edges.[[/if]]</p>]]></text>
+  </generalfeedback>
+  <defaultgrade>1</defaultgrade>
+  <penalty>0.1</penalty>
+  <hidden>0</hidden>
+  <idnumber></idnumber>
+  <stackversion><text>2026063000</text></stackversion>
+  <questionvariables>
+    <text><![CDATA[/* Design: choose a method for each situation, one dropdown per row. Situations 1-3 counting squares (C), 4-6 trapezoidal (T: odd numbers of strips, so the mid-ordinate rule cannot use them), 7-9 mid-ordinate (M: no edge values). Every selection has all three methods. Source: original. */
+SIT: ["An aerial photograph of a forest with a grid of squares printed over it. No measurements were made on the ground.",
+      "The outline of a footprint drawn round on centimetre squared paper.",
+      "The shadow of a tree on a playground marked out in squares of 1 m by 1 m.",
+      "The depth of an irrigation canal 3.5 m wide, measured at both edges and every 0.5 m across.",
+      "The width of a school garden measured at both ends and every 4 m along a straight path 20 m long.",
+      "The heights of a curve known at x = 0, 1, 2, 3, 4 and 5 only.",
+      "The width of a tea plot measured only at 10 m, 30 m and 50 m along a straight track 60 m long.",
+      "The height of a rock face measured at the middle of each 5 m section along its foot, and nowhere else.",
+      "The height of a curved hedge measured at the centre of each 2 m section along a 12 m path."];
+MTH: ["C","C","C","T","T","T","M","M","M"];
+SEL: [[1,4,7,5],[2,5,8,9],[3,6,7,1],[4,9,2,6],[5,1,8,3],[6,7,2,4],[7,3,5,8],[8,2,6,1],[9,4,3,5],[1,8,6,9]];
+ix: 1+rand(10);
+rows: SEL[ix];
+mr: makelist(MTH[rows[j]],j,1,4);
+s1: SIT[rows[1]]; s2: SIT[rows[2]]; s3: SIT[rows[3]]; s4: SIT[rows[4]];
+mk(m) := [["none",false,"none of these: the area cannot be estimated"],["cs",is(m="C"),"counting squares"],["tr",is(m="T"),"the trapezoidal rule"],["mo",is(m="M"),"the mid-ordinate rule"]];
+o1: mk(mr[1]); o2: mk(mr[2]); o3: mk(mr[3]); o4: mk(mr[4]);
+kv: makelist(if mr[j]="C" then "cs" elseif mr[j]="T" then "tr" else "mo",j,1,4);
+/* test inputs */
+t2v: makelist(if mr[j]="C" then "cs" elseif mr[j]="T" then "mo" else "tr",j,1,4);
+t3v: makelist(if mr[j]="C" then "tr" else kv[j],j,1,4);
+ft: first(sublist_indices(mr, lambda([m], m="T")));
+nonev: makelist(if j=ft then "none" else kv[j],j,1,4);]]></text>
+  </questionvariables>
+  <specificfeedback format="html"><text><![CDATA[]]></text></specificfeedback>
+  <questionnote format="moodle_auto_format">
+    <text>ix={@ix@}, rows={@rows@}</text>
+  </questionnote>
+  <questiondescription format="html"><text><![CDATA[<p id="concept">Area Approximations: choosing a method to estimate an area</p><p id="description">Grade 12 CBE Core 2.2 (d) / Essential 2.1 (d): Match each situation to counting squares, the trapezoidal rule or the mid-ordinate rule, from where the measurements were taken.</p><p id="edition">Core and Essential</p><p id="provenance">This question is original to this project.</p><p id="citation">INNODEMS CBC Grade 12 Mathematics, first draft by Ben Davies, 2026. Aligned to the KICD Senior School Curriculum Design, Core and Essential Mathematics Grade 12 (draft).</p>]]></text></questiondescription>
+  <questionsimplify>1</questionsimplify>
+  <assumepositive>0</assumepositive>
+  <assumereal>0</assumereal>
+  <prtcorrect format="html"><text><![CDATA[[[commonstring key="symbolicprtcorrectfeedback"/]] [[commonstring key="defaultprtcorrectfeedback"/]]]]></text></prtcorrect>
+  <prtpartiallycorrect format="html"><text><![CDATA[[[commonstring key="symbolicprtpartiallycorrectfeedback"/]] [[commonstring key="defaultprtpartiallycorrectfeedback"/]]]]></text></prtpartiallycorrect>
+  <prtincorrect format="html"><text><![CDATA[[[commonstring key="symbolicprtincorrectfeedback"/]] [[commonstring key="defaultprtincorrectfeedback"/]]]]></text></prtincorrect>
+  <decimals>.</decimals>
+  <scientificnotation>*10</scientificnotation>
+  <multiplicationsign>none</multiplicationsign>
+  <sqrtsign>1</sqrtsign>
+  <complexno>i</complexno>
+  <inversetrig>cos-1</inversetrig>
+  <logicsymbol>lang</logicsymbol>
+  <matrixparens>[</matrixparens>
+  <isbroken>0</isbroken>
+  <variantsselectionseed></variantsselectionseed>
+
+  <input><name>ans1</name><type>dropdown</type><tans>o1</tans><boxsize>20</boxsize><strictsyntax>1</strictsyntax><insertstars>0</insertstars><syntaxhint></syntaxhint><syntaxattribute>0</syntaxattribute><forbidwords></forbidwords><allowwords></allowwords><forbidfloat>1</forbidfloat><requirelowestterms>0</requirelowestterms><checkanswertype>0</checkanswertype><mustverify>0</mustverify><showvalidation>0</showvalidation><options></options></input>
+  <input><name>ans2</name><type>dropdown</type><tans>o2</tans><boxsize>20</boxsize><strictsyntax>1</strictsyntax><insertstars>0</insertstars><syntaxhint></syntaxhint><syntaxattribute>0</syntaxattribute><forbidwords></forbidwords><allowwords></allowwords><forbidfloat>1</forbidfloat><requirelowestterms>0</requirelowestterms><checkanswertype>0</checkanswertype><mustverify>0</mustverify><showvalidation>0</showvalidation><options></options></input>
+  <input><name>ans3</name><type>dropdown</type><tans>o3</tans><boxsize>20</boxsize><strictsyntax>1</strictsyntax><insertstars>0</insertstars><syntaxhint></syntaxhint><syntaxattribute>0</syntaxattribute><forbidwords></forbidwords><allowwords></allowwords><forbidfloat>1</forbidfloat><requirelowestterms>0</requirelowestterms><checkanswertype>0</checkanswertype><mustverify>0</mustverify><showvalidation>0</showvalidation><options></options></input>
+  <input><name>ans4</name><type>dropdown</type><tans>o4</tans><boxsize>20</boxsize><strictsyntax>1</strictsyntax><insertstars>0</insertstars><syntaxhint></syntaxhint><syntaxattribute>0</syntaxattribute><forbidwords></forbidwords><allowwords></allowwords><forbidfloat>1</forbidfloat><requirelowestterms>0</requirelowestterms><checkanswertype>0</checkanswertype><mustverify>0</mustverify><showvalidation>0</showvalidation><options></options></input>
+
+  <prt><name>prt1</name><value>1.0000000</value><autosimplify>1</autosimplify><feedbackstyle>1</feedbackstyle><feedbackvariables><text><![CDATA[aa: [ans1,ans2,ans3,ans4];
+tms: some(lambda([j], (mr[j]="T" and aa[j]="mo") or (mr[j]="M" and aa[j]="tr")), [1,2,3,4]);
+csw: some(lambda([j], (mr[j]="C" and aa[j]#"cs") or (mr[j]#"C" and aa[j]="cs")), [1,2,3,4]);
+nc: length(sublist([1,2,3,4], lambda([j], aa[j]=kv[j])));
+rcl: makelist(if aa[j]=kv[j] then 0 elseif aa[j]="none" then 1 elseif aa[j]="cs" then 2 elseif mr[j]="C" then 3 elseif aa[j]="tr" then 4 else 5, j, 1, 4);
+rc1: rcl[1]; rc2: rcl[2]; rc3: rcl[3]; rc4: rcl[4];
+RDT: ["", "", "", "Here the depths are at both edges and every 0.5 m between: they are the edges of 7 strips, and 7 strips cannot be paired into wider ones.", "Here the widths are at both ends and every 4 m between: they are the edges of 5 strips, and 5 strips cannot be paired into wider ones.", "Here the heights are at x = 0, 1, 2, 3, 4 and 5: they are the edges of 5 strips, and 5 strips cannot be paired into wider ones.", "Here the width was not measured at 0 m or at 60 m.", "Here the height was measured only at the middle of each section, not at the ends of the sections.", "Here the height was measured only at the centre of each section, not at the ends of the sections."];
+rd1: RDT[rows[1]]; rd2: RDT[rows[2]]; rd3: RDT[rows[3]]; rd4: RDT[rows[4]];]]></text></feedbackvariables>
+    <node><name>0</name><description>All four</description><answertest>AlgEquiv</answertest><sans>[ans1,ans2,ans3,ans4]</sans><tans>kv</tans><testoptions></testoptions><quiet>1</quiet><truescoremode>=</truescoremode><truescore>1.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt1-1-T</trueanswernote><truefeedback format="html"><text><![CDATA[]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>1</falsenextnode><falseanswernote>prt1-1-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>1</name><description>Edges and middles swapped</description><answertest>AlgEquiv</answertest><sans>tms</sans><tans>true</tans><testoptions></testoptions><quiet>0</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt1-2-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>\({@nc@}\) of \(4\) right.</p>[[if test="is(rc1=1)"]]<p>(a) The area can be estimated. Ask what you have: a drawing on a grid, or measurements, and where the measurements were taken.</p>[[elif test="is(rc1=2)"]]<p>(a) Counting squares needs a drawing of the shape on a grid. Here there are measurements and no drawing.</p>[[elif test="is(rc1=3)"]]<p>(a) Both rules need heights or widths measured at equal steps. Here there is only a shape on a grid of squares.</p>[[elif test="is(rc1=4)"]]<p>(a) The trapezoidal rule needs a measurement at both edges of every strip, including the two ends. {@rd1@}</p>[[elif test="is(rc1=5)"]]<p>(a) The mid-ordinate rule needs a measurement at the middle of every strip. {@rd1@}</p>[[else]][[/if]][[if test="is(rc2=1)"]]<p>(b) The area can be estimated. Ask what you have: a drawing on a grid, or measurements, and where the measurements were taken.</p>[[elif test="is(rc2=2)"]]<p>(b) Counting squares needs a drawing of the shape on a grid. Here there are measurements and no drawing.</p>[[elif test="is(rc2=3)"]]<p>(b) Both rules need heights or widths measured at equal steps. Here there is only a shape on a grid of squares.</p>[[elif test="is(rc2=4)"]]<p>(b) The trapezoidal rule needs a measurement at both edges of every strip, including the two ends. {@rd2@}</p>[[elif test="is(rc2=5)"]]<p>(b) The mid-ordinate rule needs a measurement at the middle of every strip. {@rd2@}</p>[[else]][[/if]][[if test="is(rc3=1)"]]<p>(c) The area can be estimated. Ask what you have: a drawing on a grid, or measurements, and where the measurements were taken.</p>[[elif test="is(rc3=2)"]]<p>(c) Counting squares needs a drawing of the shape on a grid. Here there are measurements and no drawing.</p>[[elif test="is(rc3=3)"]]<p>(c) Both rules need heights or widths measured at equal steps. Here there is only a shape on a grid of squares.</p>[[elif test="is(rc3=4)"]]<p>(c) The trapezoidal rule needs a measurement at both edges of every strip, including the two ends. {@rd3@}</p>[[elif test="is(rc3=5)"]]<p>(c) The mid-ordinate rule needs a measurement at the middle of every strip. {@rd3@}</p>[[else]][[/if]][[if test="is(rc4=1)"]]<p>(d) The area can be estimated. Ask what you have: a drawing on a grid, or measurements, and where the measurements were taken.</p>[[elif test="is(rc4=2)"]]<p>(d) Counting squares needs a drawing of the shape on a grid. Here there are measurements and no drawing.</p>[[elif test="is(rc4=3)"]]<p>(d) Both rules need heights or widths measured at equal steps. Here there is only a shape on a grid of squares.</p>[[elif test="is(rc4=4)"]]<p>(d) The trapezoidal rule needs a measurement at both edges of every strip, including the two ends. {@rd4@}</p>[[elif test="is(rc4=5)"]]<p>(d) The mid-ordinate rule needs a measurement at the middle of every strip. {@rd4@}</p>[[else]][[/if]]]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>2</falsenextnode><falseanswernote>prt1-2-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>2</name><description>Counting squares misplaced</description><answertest>AlgEquiv</answertest><sans>csw</sans><tans>true</tans><testoptions></testoptions><quiet>0</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt1-3-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>\({@nc@}\) of \(4\) right.</p>[[if test="is(rc1=1)"]]<p>(a) The area can be estimated. Ask what you have: a drawing on a grid, or measurements, and where the measurements were taken.</p>[[elif test="is(rc1=2)"]]<p>(a) Counting squares needs a drawing of the shape on a grid. Here there are measurements and no drawing.</p>[[elif test="is(rc1=3)"]]<p>(a) Both rules need heights or widths measured at equal steps. Here there is only a shape on a grid of squares.</p>[[elif test="is(rc1=4)"]]<p>(a) The trapezoidal rule needs a measurement at both edges of every strip, including the two ends. {@rd1@}</p>[[elif test="is(rc1=5)"]]<p>(a) The mid-ordinate rule needs a measurement at the middle of every strip. {@rd1@}</p>[[else]][[/if]][[if test="is(rc2=1)"]]<p>(b) The area can be estimated. Ask what you have: a drawing on a grid, or measurements, and where the measurements were taken.</p>[[elif test="is(rc2=2)"]]<p>(b) Counting squares needs a drawing of the shape on a grid. Here there are measurements and no drawing.</p>[[elif test="is(rc2=3)"]]<p>(b) Both rules need heights or widths measured at equal steps. Here there is only a shape on a grid of squares.</p>[[elif test="is(rc2=4)"]]<p>(b) The trapezoidal rule needs a measurement at both edges of every strip, including the two ends. {@rd2@}</p>[[elif test="is(rc2=5)"]]<p>(b) The mid-ordinate rule needs a measurement at the middle of every strip. {@rd2@}</p>[[else]][[/if]][[if test="is(rc3=1)"]]<p>(c) The area can be estimated. Ask what you have: a drawing on a grid, or measurements, and where the measurements were taken.</p>[[elif test="is(rc3=2)"]]<p>(c) Counting squares needs a drawing of the shape on a grid. Here there are measurements and no drawing.</p>[[elif test="is(rc3=3)"]]<p>(c) Both rules need heights or widths measured at equal steps. Here there is only a shape on a grid of squares.</p>[[elif test="is(rc3=4)"]]<p>(c) The trapezoidal rule needs a measurement at both edges of every strip, including the two ends. {@rd3@}</p>[[elif test="is(rc3=5)"]]<p>(c) The mid-ordinate rule needs a measurement at the middle of every strip. {@rd3@}</p>[[else]][[/if]][[if test="is(rc4=1)"]]<p>(d) The area can be estimated. Ask what you have: a drawing on a grid, or measurements, and where the measurements were taken.</p>[[elif test="is(rc4=2)"]]<p>(d) Counting squares needs a drawing of the shape on a grid. Here there are measurements and no drawing.</p>[[elif test="is(rc4=3)"]]<p>(d) Both rules need heights or widths measured at equal steps. Here there is only a shape on a grid of squares.</p>[[elif test="is(rc4=4)"]]<p>(d) The trapezoidal rule needs a measurement at both edges of every strip, including the two ends. {@rd4@}</p>[[elif test="is(rc4=5)"]]<p>(d) The mid-ordinate rule needs a measurement at the middle of every strip. {@rd4@}</p>[[else]][[/if]]]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>-1</falsenextnode><falseanswernote>prt1-3-F</falseanswernote><falsefeedback format="html"><text><![CDATA[<p>\({@nc@}\) of \(4\) right.</p>[[if test="is(rc1=1)"]]<p>(a) The area can be estimated. Ask what you have: a drawing on a grid, or measurements, and where the measurements were taken.</p>[[elif test="is(rc1=2)"]]<p>(a) Counting squares needs a drawing of the shape on a grid. Here there are measurements and no drawing.</p>[[elif test="is(rc1=3)"]]<p>(a) Both rules need heights or widths measured at equal steps. Here there is only a shape on a grid of squares.</p>[[elif test="is(rc1=4)"]]<p>(a) The trapezoidal rule needs a measurement at both edges of every strip, including the two ends. {@rd1@}</p>[[elif test="is(rc1=5)"]]<p>(a) The mid-ordinate rule needs a measurement at the middle of every strip. {@rd1@}</p>[[else]][[/if]][[if test="is(rc2=1)"]]<p>(b) The area can be estimated. Ask what you have: a drawing on a grid, or measurements, and where the measurements were taken.</p>[[elif test="is(rc2=2)"]]<p>(b) Counting squares needs a drawing of the shape on a grid. Here there are measurements and no drawing.</p>[[elif test="is(rc2=3)"]]<p>(b) Both rules need heights or widths measured at equal steps. Here there is only a shape on a grid of squares.</p>[[elif test="is(rc2=4)"]]<p>(b) The trapezoidal rule needs a measurement at both edges of every strip, including the two ends. {@rd2@}</p>[[elif test="is(rc2=5)"]]<p>(b) The mid-ordinate rule needs a measurement at the middle of every strip. {@rd2@}</p>[[else]][[/if]][[if test="is(rc3=1)"]]<p>(c) The area can be estimated. Ask what you have: a drawing on a grid, or measurements, and where the measurements were taken.</p>[[elif test="is(rc3=2)"]]<p>(c) Counting squares needs a drawing of the shape on a grid. Here there are measurements and no drawing.</p>[[elif test="is(rc3=3)"]]<p>(c) Both rules need heights or widths measured at equal steps. Here there is only a shape on a grid of squares.</p>[[elif test="is(rc3=4)"]]<p>(c) The trapezoidal rule needs a measurement at both edges of every strip, including the two ends. {@rd3@}</p>[[elif test="is(rc3=5)"]]<p>(c) The mid-ordinate rule needs a measurement at the middle of every strip. {@rd3@}</p>[[else]][[/if]][[if test="is(rc4=1)"]]<p>(d) The area can be estimated. Ask what you have: a drawing on a grid, or measurements, and where the measurements were taken.</p>[[elif test="is(rc4=2)"]]<p>(d) Counting squares needs a drawing of the shape on a grid. Here there are measurements and no drawing.</p>[[elif test="is(rc4=3)"]]<p>(d) Both rules need heights or widths measured at equal steps. Here there is only a shape on a grid of squares.</p>[[elif test="is(rc4=4)"]]<p>(d) The trapezoidal rule needs a measurement at both edges of every strip, including the two ends. {@rd4@}</p>[[elif test="is(rc4=5)"]]<p>(d) The mid-ordinate rule needs a measurement at the middle of every strip. {@rd4@}</p>[[else]][[/if]]]]></text></falsefeedback></node>
+  </prt>
+
+  <deployedseed>4</deployedseed>
+  <deployedseed>5</deployedseed>
+  <deployedseed>15</deployedseed>
+  <deployedseed>8</deployedseed>
+  <deployedseed>24</deployedseed>
+  <deployedseed>1</deployedseed>
+  <deployedseed>3</deployedseed>
+  <deployedseed>10</deployedseed>
+  <deployedseed>2</deployedseed>
+  <deployedseed>17</deployedseed>
+  <qtest><testcase>1</testcase><description>Correct</description>
+    <testinput><name>ans1</name><value>kv[1]</value></testinput>
+    <testinput><name>ans2</name><value>kv[2]</value></testinput>
+    <testinput><name>ans3</name><value>kv[3]</value></testinput>
+    <testinput><name>ans4</name><value>kv[4]</value></testinput>
+    <expected><name>prt1</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt1-1-T</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>2</testcase><description>Edges and middles swapped</description>
+    <testinput><name>ans1</name><value>t2v[1]</value></testinput>
+    <testinput><name>ans2</name><value>t2v[2]</value></testinput>
+    <testinput><name>ans3</name><value>t2v[3]</value></testinput>
+    <testinput><name>ans4</name><value>t2v[4]</value></testinput>
+    <expected><name>prt1</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt1-1-F | prt1-2-T</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>3</testcase><description>Counting-squares rows given a rule</description>
+    <testinput><name>ans1</name><value>t3v[1]</value></testinput>
+    <testinput><name>ans2</name><value>t3v[2]</value></testinput>
+    <testinput><name>ans3</name><value>t3v[3]</value></testinput>
+    <testinput><name>ans4</name><value>t3v[4]</value></testinput>
+    <expected><name>prt1</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt1-1-F | prt1-2-F | prt1-3-T</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>4</testcase><description>One trapezoidal row: none</description>
+    <testinput><name>ans1</name><value>nonev[1]</value></testinput>
+    <testinput><name>ans2</name><value>nonev[2]</value></testinput>
+    <testinput><name>ans3</name><value>nonev[3]</value></testinput>
+    <testinput><name>ans4</name><value>nonev[4]</value></testinput>
+    <expected><name>prt1</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt1-1-F | prt1-2-F | prt1-3-F</expectedanswernote></expected>
+  </qtest>
+</question>
+</quiz>

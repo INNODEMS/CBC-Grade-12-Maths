@@ -1,0 +1,6 @@
+<stack-static>
+    <statement><p><p>(a) Use Pascal's triangle to write down the coefficients of <m>(a + b)^{6}</m>, in order, as a list.</p><div><fillin characters="45" name="ans1"/>  </div><p>(b) What do the numbers in this row add up to?</p><div><fillin characters="8" name="ans2"/>  </div></p></statement>
+    <solution><p><p>Each number in Pascal's triangle is the sum of the two numbers above it, and every row starts and ends with 1. The single 1 at the top is the row for power 0. Building down from the row for power 4:</p><p>Power 4: 1, 4, 6, 4, 1<br/>Power 5: 1, 5, 10, 10, 5, 1<br/>Power 6: 1, 6, 15, 20, 15, 6, 1</p><p>(a) The coefficients of <m>(a + b)^{6}</m> are [1, 6, 15, 20, 15, 6, 1].</p><p>(b) Their sum is <m>{64} = 2^{6}</m>. Putting <m>a = b = 1</m> in <m>(a + b)^{6}</m> makes every term equal to its coefficient, so the row adds up to <m>(1 + 1)^{6}</m>. Each row adds up to twice the row before.</p></p></solution>
+    <answer><p><m>\left[ 1 , 6 , 15 , 20 , 15 , 6 , 1 \right] </m></p></answer>
+    <answer><p><m>64</m></p></answer>
+</stack-static>

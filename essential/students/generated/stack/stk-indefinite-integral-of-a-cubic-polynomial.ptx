@@ -1,0 +1,5 @@
+<stack-static>
+    <statement><p><p>Find the indefinite integral. Use <m>c</m> for the constant of integration.</p><div><m>\displaystyle \int \left({4 x^3+6 x^2-2 x+5}\right)dx =</m> <fillin characters="20" name="ans1"/>  </div></p></statement>
+    <solution><p><p>Integrate term by term: raise each power of <m>x</m> by <m>1</m> and divide by the new power. The constant <m>{5}</m> is <m>{5} \times x^0</m>, so it integrates to <m>{5 x}</m>. Add one constant of integration for the whole answer.</p><p>Term by term: <m>{4 x^3}</m> gives <m>{x^4}</m>, <m>{6 x^2}</m> gives <m>{2 x^3}</m>, <m>{-2 x}</m> gives <m>{-x^2}</m> and <m>{5}</m> gives <m>{5 x}</m>. So</p><p><me>\int \left({4 x^3+6 x^2-2 x+5}\right)dx = {x^4+2 x^3-x^2+5 x} + c</me></p><p>Check: <m>\dfrac{d}{dx}\left({x^4+2 x^3-x^2+5 x} + c\right) = {4 x^3+6 x^2-2 x+5}</m>.</p></p></solution>
+    <answer><p><m>x^4+2 x^3-x^2+5 x+c</m></p></answer>
+</stack-static>

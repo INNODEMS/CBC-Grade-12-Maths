@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<quiz>
+<question type="stack">
+  <name><text>Building a binomial with a given coefficient</text></name>
+  <questiontext format="html">
+    <text><![CDATA[<p>Give a binomial of the form \((p + qx)^4\), where \(p\) and \(q\) are non-zero whole numbers, such that the coefficient of \(x^{@tp@}\) in its expansion is \({@tg@}\). There is more than one correct answer.</p><p>Type it as a bracket to the power 4, for example <code>(5-2*x)^4</code>.</p><div>[[input:ans1]] [[validation:ans1]] [[feedback:prt1]]</div>]]></text>
+  </questiontext>
+  <generalfeedback format="html">
+    <text><![CDATA[<p>The row for power 4 is 1, 4, 6, 4, 1. In \((p + qx)^4\) the term in \(x^2\) is \(6p^2(qx)^2\) and the term in \(x^3\) is \(4p(qx)^3\), so the coefficient of \(x^2\) is \(6p^2q^2\) and the coefficient of \(x^3\) is \(4pq^3\).</p>[[if test="is(tp=2)"]]<p>Here \(6p^2q^2 = {@tg@}\), so \(p^2q^2 = {@m^2@}\) and \(pq = {@m@}\) or \(pq = {@-m@}\).</p>[[else]]<p>Here \(4pq^3 = {@tg@}\), so \(pq^3 = {@m@}\).</p>[[/if]]<p>Two answers are \({@sampd@}\) and \({@samp2d@}\). Changing the sign of both \(p\) and \(q\) also works, for example \({@neg1d@}\), because \((-p - qx)^4 = (p + qx)^4\).</p>]]></text>
+  </generalfeedback>
+  <defaultgrade>1</defaultgrade>
+  <penalty>0.1</penalty>
+  <hidden>0</hidden>
+  <idnumber></idnumber>
+  <stackversion><text>2026063000</text></stackversion>
+  <questionvariables>
+    <text><![CDATA[validate_b4(ex) := block([b,bs,e], e: ev(ex,simp), if is(safe_op(e)="^") then (if is(ev(second(args(e)),simp)=4) then (b: first(args(e)), bs: ev(expand(b),simp), if is(listofvars(bs)=[x]) and is(ev(hipow(bs,x),simp)=1) and integerp(ev(coeff(bs,x,0),simp)) and integerp(ev(coeff(bs,x,1),simp)) and is(ev(coeff(bs,x,0),simp)#0) then "" else "Type a bracket raised to the power 4, with whole numbers in the bracket, for example (5-2*x)^4.") else "Type a bracket raised to the power 4, with whole numbers in the bracket, for example (5-2*x)^4.") else "Type a bracket raised to the power 4, with whole numbers in the bracket, for example (5-2*x)^4.");
+/* Design: construct-an-instance pattern (grading checks the property, never a model answer). Source: original. tp 2: 6p^2q^2 = 6m^2, so pq = m or -m; tp 3: 4pq^3 = 4m, so pq^3 = m. */
+L: [[2,2,[1,2],[2,1]],[3,8,[8,1],[1,2]],[2,3,[1,3],[3,1]],[3,24,[24,1],[3,2]],[2,4,[1,4],[4,1]],[3,27,[27,1],[1,3]],[2,5,[1,5],[5,1]],[3,16,[16,1],[2,2]],[2,6,[2,3],[6,1]],[3,54,[54,1],[2,3]]];
+ix: 1+rand(10);
+tp: L[ix][1];
+m: L[ix][2];
+tg: if tp=2 then 6*m^2 else 4*m;
+s1: L[ix][3];
+s2: L[ix][4];
+samp: (s1[1]+s1[2]*x)^4;
+samp2: (s2[1]+s2[2]*x)^4;
+dgb: if tp=2 then (1+m^2*x)^4 else (1+m*x)^4;
+wrb: (s1[1]+(s1[2]+1)*x)^4;
+neg1: (-s1[1]-s1[2]*x)^4;
+bstr(p,q) := sconcat("\\left(",p,if q>0 then " + " else " - ",if abs(q)=1 then "" else string(abs(q)),"x\\right)^4");
+sampd: bstr(s1[1],s1[2]); samp2d: bstr(s2[1],s2[2]); neg1d: bstr(-s1[1],-s1[2]);
+bad3: (s1[1]+s1[2]*x)^3;]]></text>
+  </questionvariables>
+  <specificfeedback format="html"><text><![CDATA[]]></text></specificfeedback>
+  <questionnote format="moodle_auto_format">
+    <text>ix={@ix@}, tp={@tp@}, T={@tg@}, samples {@samp@}, {@samp2@}</text>
+  </questionnote>
+  <questiondescription format="html"><text><![CDATA[<p id="concept">Binomial Expansions: building a binomial with a given coefficient</p><p id="description">Grade 12 CBE Core 1.2: Construct (p + qx)^4 with a given coefficient of x^2 or x^3; any correct bracket is accepted.</p><p id="edition">Core</p><p id="provenance">This question is original to this project.</p><p id="citation">INNODEMS CBC Grade 12 Mathematics, first draft by Ben Davies, 2026. Aligned to the KICD Senior School Curriculum Design, Core Mathematics Grade 12 (draft).</p>]]></text></questiondescription>
+  <questionsimplify>1</questionsimplify>
+  <assumepositive>0</assumepositive>
+  <assumereal>0</assumereal>
+  <prtcorrect format="html"><text><![CDATA[[[commonstring key="symbolicprtcorrectfeedback"/]] [[commonstring key="defaultprtcorrectfeedback"/]]]]></text></prtcorrect>
+  <prtpartiallycorrect format="html"><text><![CDATA[[[commonstring key="symbolicprtpartiallycorrectfeedback"/]] [[commonstring key="defaultprtpartiallycorrectfeedback"/]]]]></text></prtpartiallycorrect>
+  <prtincorrect format="html"><text><![CDATA[[[commonstring key="symbolicprtincorrectfeedback"/]] [[commonstring key="defaultprtincorrectfeedback"/]]]]></text></prtincorrect>
+  <decimals>.</decimals>
+  <scientificnotation>*10</scientificnotation>
+  <multiplicationsign>none</multiplicationsign>
+  <sqrtsign>1</sqrtsign>
+  <complexno>i</complexno>
+  <inversetrig>cos-1</inversetrig>
+  <logicsymbol>lang</logicsymbol>
+  <matrixparens>[</matrixparens>
+  <isbroken>0</isbroken>
+  <variantsselectionseed></variantsselectionseed>
+
+  <input><name>ans1</name><type>algebraic</type><tans>samp</tans><boxsize>20</boxsize><strictsyntax>1</strictsyntax><insertstars>4</insertstars><syntaxhint></syntaxhint><syntaxattribute>0</syntaxattribute><forbidwords>expand,binomial,ev,subst,taylor</forbidwords><allowwords></allowwords><forbidfloat>1</forbidfloat><requirelowestterms>0</requirelowestterms><checkanswertype>0</checkanswertype><mustverify>0</mustverify><showvalidation>3</showvalidation><options>validator:validate_b4</options></input>
+
+  <prt><name>prt1</name><value>1.0000000</value><autosimplify>1</autosimplify><feedbackstyle>1</feedbackstyle><feedbackvariables><text><![CDATA[bs: first(args(ans1));
+pp: coeff(expand(bs),x,0);
+qq: coeff(expand(bs),x,1);
+got: coeff(expand(ans1),x,tp);
+dg: if tp=2 then 6*pp*qq else 4*pp*qq;]]></text></feedbackvariables>
+    <node><name>0</name><description>Coefficient has the target value</description><answertest>AlgEquiv</answertest><sans>got</sans><tans>tg</tans><testoptions></testoptions><quiet>1</quiet><truescoremode>=</truescoremode><truescore>1.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt1-1-T</trueanswernote><truefeedback format="html"><text><![CDATA[]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>1</falsenextnode><falseanswernote>prt1-1-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>1</name><description>Row number times p times q only</description><answertest>AlgEquiv</answertest><sans>dg</sans><tans>tg</tans><testoptions></testoptions><quiet>1</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt1-2-T</trueanswernote><truefeedback format="html"><text><![CDATA[[[if test="is(tp=2)"]]<p>Your bracket has \(6 \times {@pp@} \times {@qq@} = {@tg@}\), but in \((p + qx)^4\) the term in \(x^2\) is \(6p^2(qx)^2\): both \(p\) and \(q\) are squared. Your bracket gives \({@got@}x^2\).</p>[[else]]<p>Your bracket has \(4 \times {@pp@} \times {@qq@} = {@tg@}\), but the term in \(x^3\) is \(4p(qx)^3\): \(q\) is cubed. Your bracket gives \({@got@}x^3\).</p>[[/if]]]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>-1</falsenextnode><falseanswernote>prt1-2-F</falseanswernote><falsefeedback format="html"><text><![CDATA[<p>Your bracket gives coefficient \({@got@}\). In \((p + qx)^4\) the coefficient of \(x^2\) is \(6p^2q^2\) and of \(x^3\) is \(4pq^3\). Choose \(p\) and \(q\) that make it \({@tg@}\).</p>]]></text></falsefeedback></node>
+  </prt>
+
+  <deployedseed>4</deployedseed>
+  <deployedseed>5</deployedseed>
+  <deployedseed>15</deployedseed>
+  <deployedseed>8</deployedseed>
+  <deployedseed>24</deployedseed>
+  <deployedseed>1</deployedseed>
+  <deployedseed>3</deployedseed>
+  <deployedseed>10</deployedseed>
+  <deployedseed>2</deployedseed>
+  <deployedseed>17</deployedseed>
+  <qtest><testcase>1</testcase><description>Correct, first sample</description>
+    <testinput><name>ans1</name><value>samp</value></testinput>
+    <expected><name>prt1</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt1-1-T</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>2</testcase><description>Correct, second sample</description>
+    <testinput><name>ans1</name><value>samp2</value></testinput>
+    <expected><name>prt1</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt1-1-T</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>3</testcase><description>Correct, both signs changed</description>
+    <testinput><name>ans1</name><value>neg1</value></testinput>
+    <expected><name>prt1</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt1-1-T</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>4</testcase><description>Row number times p times q only</description>
+    <testinput><name>ans1</name><value>dgb</value></testinput>
+    <expected><name>prt1</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt1-1-F | prt1-2-T</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>5</testcase><description>Generic wrong</description>
+    <testinput><name>ans1</name><value>wrb</value></testinput>
+    <expected><name>prt1</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt1-1-F | prt1-2-F</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>6</testcase><description>Invalid: wrong power</description>
+    <testinput><name>ans1</name><value>bad3</value></testinput>
+    <expected><name>prt1</name><expectedscore></expectedscore><expectedpenalty></expectedpenalty><expectedanswernote>NULL</expectedanswernote></expected>
+  </qtest>
+</question>
+</quiz>

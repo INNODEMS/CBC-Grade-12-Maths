@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<quiz>
+<question type="stack">
+  <name><text>Greatest and least values on an interval</text></name>
+  <questiontext format="html">
+    <text><![CDATA[<p>Find the greatest and least values of \(f(x) = {@f@}\) for \({@L1@} \le x \le {@U1@}\).</p><div>Greatest value: [[input:ans1]] [[validation:ans1]] [[feedback:prt1]]</div><div>Least value: [[input:ans2]] [[validation:ans2]] [[feedback:prt2]]</div>]]></text>
+  </questiontext>
+  <generalfeedback format="html">
+    <text><![CDATA[<p>On an interval the greatest or least value may be at a stationary point or at an end. List the candidates, then compare.</p><p>\(f'(x) = {@df@} = {@3*a0*(x-p0)*(x-q0)@}\), so the stationary points are at \(x = {@p0@}\) and \(x = {@q0@}\), both inside the interval.</p><table border="1" style="border-collapse:collapse;text-align:center;"><tr><th style="padding:4px 10px;">\(x\)</th><th style="padding:4px 10px;">\(f(x)\)</th><th style="padding:4px 10px;">Kind</th></tr><tr><td style="padding:4px 10px;">\({@xs[1]@}\)</td><td style="padding:4px 10px;">\({@vs[1]@}\)</td><td style="padding:4px 10px;">end of the interval</td></tr><tr><td style="padding:4px 10px;">\({@xs[2]@}\)</td><td style="padding:4px 10px;">\({@vs[2]@}\)</td><td style="padding:4px 10px;">stationary point</td></tr><tr><td style="padding:4px 10px;">\({@xs[3]@}\)</td><td style="padding:4px 10px;">\({@vs[3]@}\)</td><td style="padding:4px 10px;">stationary point</td></tr><tr><td style="padding:4px 10px;">\({@xs[4]@}\)</td><td style="padding:4px 10px;">\({@vs[4]@}\)</td><td style="padding:4px 10px;">end of the interval</td></tr></table><p>The greatest value is \({@G@}\), at \(x = {@gx@}\). The least value is \({@Lv@}\), at \(x = {@lx@}\).</p><div style="text-align:center;" role="img" aria-label="Graph of f for {#L1#} to {#U1#}, with the candidates ({#L1#}, {#vs[1]#}), ({#p0#}, {#vs[2]#}), ({#q0#}, {#vs[3]#}) and ({#U1#}, {#vs[4]#}) marked.">
+[[jsxgraph width="360px" height="280px"]]
+(function() {
+  var b = JXG.JSXGraph.initBoard(divid, {boundingbox: [{#L1#}-1, {#G+pd#}, {#U1#}+1, {#Lv-pd#}], axis: true, grid: false, showNavigation: false, showCopyright: false, pan: {enabled: false}, zoom: {enabled: false}});
+  // f on the interval only
+  b.create('functiongraph', [function(x) { return {#a0#}*x*x*x+({#coeff(f,x,2)#})*x*x+({#coeff(f,x,1)#})*x+({#d0#}); }, {#L1#}, {#U1#}], {strokeColor: '#1f4e9c', strokeWidth: 2, fixed: true, highlight: false});
+  b.create('point', [{#L1#}, {#vs[1]#}], {name: '({#L1#}, {#vs[1]#})', size: 3, fixed: true, strokeColor: '#000000', fillColor: '#000000', showInfobox: false, label: {useMathJax: false, offset: [6, 8]}});
+  b.create('point', [{#p0#}, {#vs[2]#}], {name: '({#p0#}, {#vs[2]#})', size: 3, fixed: true, strokeColor: '#000000', fillColor: '#000000', showInfobox: false, label: {useMathJax: false, offset: [6, 8]}});
+  b.create('point', [{#q0#}, {#vs[3]#}], {name: '({#q0#}, {#vs[3]#})', size: 3, fixed: true, strokeColor: '#000000', fillColor: '#000000', showInfobox: false, label: {useMathJax: false, offset: [6, 8]}});
+  b.create('point', [{#U1#}, {#vs[4]#}], {name: '({#U1#}, {#vs[4]#})', size: 3, fixed: true, strokeColor: '#000000', fillColor: '#000000', showInfobox: false, label: {useMathJax: false, offset: [-40, 8]}});
+})();
+[[/jsxgraph]]
+</div>]]></text>
+  </generalfeedback>
+  <defaultgrade>2</defaultgrade>
+  <penalty>0.1</penalty>
+  <hidden>0</hidden>
+  <idnumber></idnumber>
+  <stackversion><text>2026063000</text></stackversion>
+  <questionvariables>
+    <text><![CDATA[/* Design: candidates are f at both ends and at both stationary points (both inside the interval). Source: original. */
+L: [[2,-2,1,3,-3,3],[-2,1,4,5,-1,5],[-2,-1,2,-2,-3,3],[2,0,3,4,-2,4],[-2,0,3,1,-1,5],[2,1,4,-3,-1,5],[2,0,1,6,-2,2],[-2,0,3,2,-2,5],[1,-3,3,-4,-4,5],[-1,0,4,7,-1,5]];
+ix: 1+rand(10);
+a0: L[ix][1]; p0: L[ix][2]; q0: L[ix][3]; d0: L[ix][4]; L1: L[ix][5]; U1: L[ix][6];
+f: expand((a0)*x^3-3*(a0)*((p0)+(q0))/2*x^2+3*(a0)*(p0)*(q0)*x+(d0));
+df: diff(f,x);
+xs: [L1,p0,q0,U1];
+vs: [ev(f,x=L1),ev(f,x=p0),ev(f,x=q0),ev(f,x=U1)];
+G: lmax(vs); Lv: lmin(vs);
+gi: if vs[1]=G then 1 elseif vs[2]=G then 2 elseif vs[3]=G then 3 else 4;
+li: if vs[1]=Lv then 1 elseif vs[2]=Lv then 2 elseif vs[3]=Lv then 3 else 4;
+gx: xs[gi]; lx: xs[li];
+sv: sort(vs); g2: sv[3]; l2: sv[2];
+g2i: if vs[1]=g2 then 1 elseif vs[2]=g2 then 2 elseif vs[3]=g2 then 3 else 4;
+l2i: if vs[1]=l2 then 1 elseif vs[2]=l2 then 2 elseif vs[3]=l2 then 3 else 4;
+g2x: xs[g2i]; l2x: xs[l2i];
+mxi: if a0>0 then 2 else 3; mni: if a0>0 then 3 else 2;
+g2loc: if g2i=mxi then 1 else 0; l2loc: if l2i=mni then 1 else 0;
+pd: (G-Lv)/8+1;]]></text>
+  </questionvariables>
+  <specificfeedback format="html"><text><![CDATA[]]></text></specificfeedback>
+  <questionnote format="moodle_auto_format">
+    <text>ix={@ix@}, f={@f@}, [{@L1@},{@U1@}], G={@G@} at {@gx@}, L={@Lv@} at {@lx@}</text>
+  </questionnote>
+  <questiondescription format="html"><text><![CDATA[<p id="concept">Differentiation II: greatest and least values on an interval</p><p id="description">Grade 12 CBE Core 4.1: Find the greatest and least values of a cubic on a closed interval by comparing the stationary values with the values at the ends.</p><p id="edition">Core</p><p id="provenance">This question is original to this project.</p><p id="citation">INNODEMS CBC Grade 12 Mathematics, first draft by Ben Davies, 2026. Aligned to the KICD Senior School Curriculum Design, Core Mathematics Grade 12 (draft).</p>]]></text></questiondescription>
+  <questionsimplify>1</questionsimplify>
+  <assumepositive>0</assumepositive>
+  <assumereal>0</assumereal>
+  <prtcorrect format="html"><text><![CDATA[[[commonstring key="symbolicprtcorrectfeedback"/]] [[commonstring key="defaultprtcorrectfeedback"/]]]]></text></prtcorrect>
+  <prtpartiallycorrect format="html"><text><![CDATA[[[commonstring key="symbolicprtpartiallycorrectfeedback"/]] [[commonstring key="defaultprtpartiallycorrectfeedback"/]]]]></text></prtpartiallycorrect>
+  <prtincorrect format="html"><text><![CDATA[[[commonstring key="symbolicprtincorrectfeedback"/]] [[commonstring key="defaultprtincorrectfeedback"/]]]]></text></prtincorrect>
+  <decimals>.</decimals>
+  <scientificnotation>*10</scientificnotation>
+  <multiplicationsign>none</multiplicationsign>
+  <sqrtsign>1</sqrtsign>
+  <complexno>i</complexno>
+  <inversetrig>cos-1</inversetrig>
+  <logicsymbol>lang</logicsymbol>
+  <matrixparens>[</matrixparens>
+  <isbroken>0</isbroken>
+  <variantsselectionseed></variantsselectionseed>
+
+  <input><name>ans1</name><type>numerical</type><tans>G</tans><boxsize>5</boxsize><strictsyntax>1</strictsyntax><insertstars>0</insertstars><syntaxhint></syntaxhint><syntaxattribute>0</syntaxattribute><forbidwords></forbidwords><allowwords></allowwords><forbidfloat>1</forbidfloat><requirelowestterms>0</requirelowestterms><checkanswertype>0</checkanswertype><mustverify>0</mustverify><showvalidation>0</showvalidation><options></options></input>
+  <input><name>ans2</name><type>numerical</type><tans>Lv</tans><boxsize>5</boxsize><strictsyntax>1</strictsyntax><insertstars>0</insertstars><syntaxhint></syntaxhint><syntaxattribute>0</syntaxattribute><forbidwords></forbidwords><allowwords></allowwords><forbidfloat>1</forbidfloat><requirelowestterms>0</requirelowestterms><checkanswertype>0</checkanswertype><mustverify>0</mustverify><showvalidation>0</showvalidation><options></options></input>
+
+  <prt><name>prt1</name><value>1.0000000</value><autosimplify>1</autosimplify><feedbackstyle>1</feedbackstyle><feedbackvariables><text><![CDATA[]]></text></feedbackvariables>
+    <node><name>0</name><description>Greatest</description><answertest>AlgEquiv</answertest><sans>ans1</sans><tans>G</tans><testoptions></testoptions><quiet>1</quiet><truescoremode>=</truescoremode><truescore>1.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt1-1-T</trueanswernote><truefeedback format="html"><text><![CDATA[]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>1</falsenextnode><falseanswernote>prt1-1-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>1</name><description>Second largest</description><answertest>AlgEquiv</answertest><sans>ans1</sans><tans>g2</tans><testoptions></testoptions><quiet>1</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt1-2-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>That is \(f\) at \(x = {@g2x@}\)[[if test="is(g2loc=1)"]], the maximum point,[[/if]] but \(f\) is larger elsewhere on the interval. Compare \(f\) at both stationary points and at both ends, \(x = {@L1@}\) and \(x = {@U1@}\).</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>2</falsenextnode><falseanswernote>prt1-2-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>2</name><description>x instead of f</description><answertest>AlgEquiv</answertest><sans>ans1</sans><tans>gx</tans><testoptions></testoptions><quiet>1</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt1-3-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>That is the value of \(x\). Give the value of \(f\) there.</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>-1</falsenextnode><falseanswernote>prt1-3-F</falseanswernote><falsefeedback format="html"><text><![CDATA[<p>List the candidates: the stationary points inside the interval and both ends. Work out \(f\) at each and choose the largest.</p>]]></text></falsefeedback></node>
+  </prt>
+  <prt><name>prt2</name><value>1.0000000</value><autosimplify>1</autosimplify><feedbackstyle>1</feedbackstyle><feedbackvariables><text><![CDATA[]]></text></feedbackvariables>
+    <node><name>0</name><description>Least</description><answertest>AlgEquiv</answertest><sans>ans2</sans><tans>Lv</tans><testoptions></testoptions><quiet>1</quiet><truescoremode>=</truescoremode><truescore>1.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt2-1-T</trueanswernote><truefeedback format="html"><text><![CDATA[]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>1</falsenextnode><falseanswernote>prt2-1-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>1</name><description>Second smallest</description><answertest>AlgEquiv</answertest><sans>ans2</sans><tans>l2</tans><testoptions></testoptions><quiet>1</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt2-2-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>That is \(f\) at \(x = {@l2x@}\)[[if test="is(l2loc=1)"]], the minimum point,[[/if]] but \(f\) is smaller elsewhere on the interval. Compare \(f\) at both stationary points and at both ends, \(x = {@L1@}\) and \(x = {@U1@}\).</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>2</falsenextnode><falseanswernote>prt2-2-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>2</name><description>x instead of f</description><answertest>AlgEquiv</answertest><sans>ans2</sans><tans>lx</tans><testoptions></testoptions><quiet>1</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt2-3-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>That is the value of \(x\). Give the value of \(f\) there.</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>-1</falsenextnode><falseanswernote>prt2-3-F</falseanswernote><falsefeedback format="html"><text><![CDATA[<p>List the candidates: the stationary points inside the interval and both ends. Work out \(f\) at each and choose the smallest.</p>]]></text></falsefeedback></node>
+  </prt>
+
+  <deployedseed>4</deployedseed>
+  <deployedseed>5</deployedseed>
+  <deployedseed>15</deployedseed>
+  <deployedseed>8</deployedseed>
+  <deployedseed>24</deployedseed>
+  <deployedseed>1</deployedseed>
+  <deployedseed>3</deployedseed>
+  <deployedseed>10</deployedseed>
+  <deployedseed>2</deployedseed>
+  <deployedseed>17</deployedseed>
+  <qtest><testcase>1</testcase><description>Correct</description>
+    <testinput><name>ans1</name><value>G</value></testinput>
+    <testinput><name>ans2</name><value>Lv</value></testinput>
+    <expected><name>prt1</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt1-1-T</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt2-1-T</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>2</testcase><description>Second candidates</description>
+    <testinput><name>ans1</name><value>g2</value></testinput>
+    <testinput><name>ans2</name><value>l2</value></testinput>
+    <expected><name>prt1</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt1-1-F | prt1-2-T</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt2-1-F | prt2-2-T</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>3</testcase><description>x-values given</description>
+    <testinput><name>ans1</name><value>gx</value></testinput>
+    <testinput><name>ans2</name><value>lx</value></testinput>
+    <expected><name>prt1</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt1-1-F | prt1-2-F | prt1-3-T</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt2-1-F | prt2-2-F | prt2-3-T</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>4</testcase><description>Generic wrong</description>
+    <testinput><name>ans1</name><value>G+100</value></testinput>
+    <testinput><name>ans2</name><value>Lv-100</value></testinput>
+    <expected><name>prt1</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt1-1-F | prt1-2-F | prt1-3-F</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt2-1-F | prt2-2-F | prt2-3-F</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>5</testcase><description>Invalid: letter in the greatest value</description>
+    <testinput><name>ans1</name><value>x</value></testinput>
+    <testinput><name>ans2</name><value>Lv</value></testinput>
+    <expected><name>prt1</name><expectedscore></expectedscore><expectedpenalty></expectedpenalty><expectedanswernote>NULL</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt2-1-T</expectedanswernote></expected>
+  </qtest>
+</question>
+</quiz>

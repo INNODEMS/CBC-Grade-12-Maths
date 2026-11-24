@@ -1,0 +1,365 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<quiz>
+<question type="stack">
+  <name><text>Regions of a two-set Venn diagram</text></name>
+  <questiontext format="html">
+    <text><![CDATA[<div style="text-align:center;" role="img" aria-label="Venn diagram: sets {@la@} and {@lb@} inside the universal set, regions numbered 1 to 4">
+[[jsxgraph width="420px" height="300px"]]
+(function () {
+  var lab = {#labs#}, txt = {#[1,2,3,4]#}, circ = true, shd = {#[]#};
+  var b = JXG.JSXGraph.initBoard(divid, {boundingbox: [-4.2, 3, 4.2, -3], axis: false, grid: false, keepaspectratio: true,
+      showNavigation: false, showCopyright: false, pan: {enabled: false}, zoom: {enabled: false}});
+  var three = (lab.length === 3), i, j;
+  var C2 = [[-1, 0, 1.7], [1, 0, 1.7]], C3 = [[-0.85, 0.55, 1.55], [0.85, 0.55, 1.55], [0, -0.9, 1.55]];
+  var CC = three ? C3 : C2;
+  var P2 = [[-1.8, 0], [0, 0], [1.8, 0], [-3.5, -2.4]];
+  var P3 = [[-1.6, 1.0], [0, 1.35], [1.6, 1.0], [-1.05, -0.55], [0, 0.05], [1.05, -0.55], [0, -1.85], [-3.5, -2.5]];
+  var PP = three ? P3 : P2;
+  var L2 = [[-2.6, 1.6], [2.6, 1.6]], L3 = [[-2.35, 2.05], [2.35, 2.05], [1.55, -2.35]];
+  var LL = three ? L3 : L2;
+  function inC(k, x, y) { var c = CC[k]; return (x - c[0]) * (x - c[0]) + (y - c[1]) * (y - c[1]) < c[2] * c[2]; }
+  function region(x, y) {
+    if (x < -4 || x > 4 || y < -2.8 || y > 2.8) { return 0; }
+    if (!three) { var a = inC(0, x, y), bb = inC(1, x, y); return a ? (bb ? 2 : 1) : (bb ? 3 : 4); }
+    var code = (inC(0, x, y) ? 1 : 0) + (inC(1, x, y) ? 2 : 0) + (inC(2, x, y) ? 4 : 0);
+    return [8, 1, 3, 2, 7, 4, 6, 5][code];
+  }
+  var att = {fixed: true, highlight: false, withLabel: false};
+  b.create('polygon', [[-4, 2.8], [4, 2.8], [4, -2.8], [-4, -2.8]], {fillOpacity: 0, highlight: false, fixed: true, vertices: {visible: false},
+      borders: {strokeColor: '#000000', strokeWidth: 1.5, highlight: false, fixed: true}});
+  b.create('text', [-3.85, 2.5, 'ξ'], {fixed: true, highlight: false, fontSize: 18, anchorY: 'middle'});
+  if (shd.length > 0) {
+    for (j = -7; j <= 7; j += 0.22) {
+      var run = null;
+      for (i = -4; i <= 4.0001; i += 0.02) {
+        var x = i, y = i - j, inside = shd.indexOf(region(x, y)) >= 0;
+        if (inside && run === null) { run = [x, y]; }
+        if ((!inside || i > 4) && run !== null) {
+          b.create('segment', [run, [x - 0.02, y - 0.02]], {fixed: true, highlight: false, layer: 1, strokeColor: '#1f5fa8', strokeWidth: 1.2, withLabel: false, point1: {visible: false}, point2: {visible: false}});
+          run = null;
+        }
+      }
+    }
+  }
+  for (i = 0; i < CC.length; i++) {
+    b.create('circle', [[CC[i][0], CC[i][1]], CC[i][2]], {fixed: true, highlight: false, strokeColor: '#000000', strokeWidth: 1.8, fillOpacity: 0, center: {visible: false}});
+    b.create('text', [LL[i][0], LL[i][1], lab[i]], {fixed: true, highlight: false, fontSize: 18, anchorX: 'middle', anchorY: 'middle', cssStyle: 'font-style:italic;'});
+  }
+  for (i = 0; i < txt.length; i++) {
+    if (circ) {
+      b.create('circle', [[PP[i][0], PP[i][1]], 0.24], {fixed: true, highlight: false, strokeColor: '#444444', strokeWidth: 1, fillColor: '#ffffff', fillOpacity: 1, center: {visible: false}});
+      b.create('text', [PP[i][0], PP[i][1], '' + txt[i]], {fixed: true, highlight: false, fontSize: 13, anchorX: 'middle', anchorY: 'middle'});
+    } else {
+      b.create('text', [PP[i][0], PP[i][1], '' + txt[i]], {fixed: true, highlight: false, fontSize: 17, anchorX: 'middle', anchorY: 'middle', cssStyle: 'font-weight:bold;'});
+    }
+  }
+})();
+[[/jsxgraph]]
+</div><p>The regions of the Venn diagram are numbered \(1\) to \(4\). List the regions that make up each set.</p><p>(a) \({@e1@}\) [[input:ans1]] [[validation:ans1]] [[feedback:prt1]]</p><p>(b) \({@e2@}\) [[input:ans2]] [[validation:ans2]] [[feedback:prt2]]</p><p>(c) \({@e3@}\) [[input:ans3]] [[validation:ans3]] [[feedback:prt3]]</p>]]></text>
+  </questiontext>
+  <generalfeedback format="html">
+    <text><![CDATA[<p>\({@la@}\) is regions \(1\) and \(2\); \({@lb@}\) is regions \(2\) and \(3\); region \(4\) is outside both.</p><p>(a) {@st1@} The shaded regions show \({@e1@}\).</p><div style="text-align:center;" role="img" aria-label="Venn diagram with the regions of part (a) hatched: regions {@ta1@}">
+[[jsxgraph width="280px" height="200px"]]
+(function () {
+  var lab = {#labs#}, txt = {#[1,2,3,4]#}, circ = true, shd = {#sh1#};
+  var b = JXG.JSXGraph.initBoard(divid, {boundingbox: [-4.2, 3, 4.2, -3], axis: false, grid: false, keepaspectratio: true,
+      showNavigation: false, showCopyright: false, pan: {enabled: false}, zoom: {enabled: false}});
+  var three = (lab.length === 3), i, j;
+  var C2 = [[-1, 0, 1.7], [1, 0, 1.7]], C3 = [[-0.85, 0.55, 1.55], [0.85, 0.55, 1.55], [0, -0.9, 1.55]];
+  var CC = three ? C3 : C2;
+  var P2 = [[-1.8, 0], [0, 0], [1.8, 0], [-3.5, -2.4]];
+  var P3 = [[-1.6, 1.0], [0, 1.35], [1.6, 1.0], [-1.05, -0.55], [0, 0.05], [1.05, -0.55], [0, -1.85], [-3.5, -2.5]];
+  var PP = three ? P3 : P2;
+  var L2 = [[-2.6, 1.6], [2.6, 1.6]], L3 = [[-2.35, 2.05], [2.35, 2.05], [1.55, -2.35]];
+  var LL = three ? L3 : L2;
+  function inC(k, x, y) { var c = CC[k]; return (x - c[0]) * (x - c[0]) + (y - c[1]) * (y - c[1]) < c[2] * c[2]; }
+  function region(x, y) {
+    if (x < -4 || x > 4 || y < -2.8 || y > 2.8) { return 0; }
+    if (!three) { var a = inC(0, x, y), bb = inC(1, x, y); return a ? (bb ? 2 : 1) : (bb ? 3 : 4); }
+    var code = (inC(0, x, y) ? 1 : 0) + (inC(1, x, y) ? 2 : 0) + (inC(2, x, y) ? 4 : 0);
+    return [8, 1, 3, 2, 7, 4, 6, 5][code];
+  }
+  var att = {fixed: true, highlight: false, withLabel: false};
+  b.create('polygon', [[-4, 2.8], [4, 2.8], [4, -2.8], [-4, -2.8]], {fillOpacity: 0, highlight: false, fixed: true, vertices: {visible: false},
+      borders: {strokeColor: '#000000', strokeWidth: 1.5, highlight: false, fixed: true}});
+  b.create('text', [-3.85, 2.5, 'ξ'], {fixed: true, highlight: false, fontSize: 18, anchorY: 'middle'});
+  if (shd.length > 0) {
+    for (j = -7; j <= 7; j += 0.22) {
+      var run = null;
+      for (i = -4; i <= 4.0001; i += 0.02) {
+        var x = i, y = i - j, inside = shd.indexOf(region(x, y)) >= 0;
+        if (inside && run === null) { run = [x, y]; }
+        if ((!inside || i > 4) && run !== null) {
+          b.create('segment', [run, [x - 0.02, y - 0.02]], {fixed: true, highlight: false, layer: 1, strokeColor: '#1f5fa8', strokeWidth: 1.2, withLabel: false, point1: {visible: false}, point2: {visible: false}});
+          run = null;
+        }
+      }
+    }
+  }
+  for (i = 0; i < CC.length; i++) {
+    b.create('circle', [[CC[i][0], CC[i][1]], CC[i][2]], {fixed: true, highlight: false, strokeColor: '#000000', strokeWidth: 1.8, fillOpacity: 0, center: {visible: false}});
+    b.create('text', [LL[i][0], LL[i][1], lab[i]], {fixed: true, highlight: false, fontSize: 18, anchorX: 'middle', anchorY: 'middle', cssStyle: 'font-style:italic;'});
+  }
+  for (i = 0; i < txt.length; i++) {
+    if (circ) {
+      b.create('circle', [[PP[i][0], PP[i][1]], 0.24], {fixed: true, highlight: false, strokeColor: '#444444', strokeWidth: 1, fillColor: '#ffffff', fillOpacity: 1, center: {visible: false}});
+      b.create('text', [PP[i][0], PP[i][1], '' + txt[i]], {fixed: true, highlight: false, fontSize: 13, anchorX: 'middle', anchorY: 'middle'});
+    } else {
+      b.create('text', [PP[i][0], PP[i][1], '' + txt[i]], {fixed: true, highlight: false, fontSize: 17, anchorX: 'middle', anchorY: 'middle', cssStyle: 'font-weight:bold;'});
+    }
+  }
+})();
+[[/jsxgraph]]
+</div><p>(b) {@st2@} The shaded regions show \({@e2@}\).</p><div style="text-align:center;" role="img" aria-label="Venn diagram with the regions of part (b) hatched: regions {@ta2@}">
+[[jsxgraph width="280px" height="200px"]]
+(function () {
+  var lab = {#labs#}, txt = {#[1,2,3,4]#}, circ = true, shd = {#sh2#};
+  var b = JXG.JSXGraph.initBoard(divid, {boundingbox: [-4.2, 3, 4.2, -3], axis: false, grid: false, keepaspectratio: true,
+      showNavigation: false, showCopyright: false, pan: {enabled: false}, zoom: {enabled: false}});
+  var three = (lab.length === 3), i, j;
+  var C2 = [[-1, 0, 1.7], [1, 0, 1.7]], C3 = [[-0.85, 0.55, 1.55], [0.85, 0.55, 1.55], [0, -0.9, 1.55]];
+  var CC = three ? C3 : C2;
+  var P2 = [[-1.8, 0], [0, 0], [1.8, 0], [-3.5, -2.4]];
+  var P3 = [[-1.6, 1.0], [0, 1.35], [1.6, 1.0], [-1.05, -0.55], [0, 0.05], [1.05, -0.55], [0, -1.85], [-3.5, -2.5]];
+  var PP = three ? P3 : P2;
+  var L2 = [[-2.6, 1.6], [2.6, 1.6]], L3 = [[-2.35, 2.05], [2.35, 2.05], [1.55, -2.35]];
+  var LL = three ? L3 : L2;
+  function inC(k, x, y) { var c = CC[k]; return (x - c[0]) * (x - c[0]) + (y - c[1]) * (y - c[1]) < c[2] * c[2]; }
+  function region(x, y) {
+    if (x < -4 || x > 4 || y < -2.8 || y > 2.8) { return 0; }
+    if (!three) { var a = inC(0, x, y), bb = inC(1, x, y); return a ? (bb ? 2 : 1) : (bb ? 3 : 4); }
+    var code = (inC(0, x, y) ? 1 : 0) + (inC(1, x, y) ? 2 : 0) + (inC(2, x, y) ? 4 : 0);
+    return [8, 1, 3, 2, 7, 4, 6, 5][code];
+  }
+  var att = {fixed: true, highlight: false, withLabel: false};
+  b.create('polygon', [[-4, 2.8], [4, 2.8], [4, -2.8], [-4, -2.8]], {fillOpacity: 0, highlight: false, fixed: true, vertices: {visible: false},
+      borders: {strokeColor: '#000000', strokeWidth: 1.5, highlight: false, fixed: true}});
+  b.create('text', [-3.85, 2.5, 'ξ'], {fixed: true, highlight: false, fontSize: 18, anchorY: 'middle'});
+  if (shd.length > 0) {
+    for (j = -7; j <= 7; j += 0.22) {
+      var run = null;
+      for (i = -4; i <= 4.0001; i += 0.02) {
+        var x = i, y = i - j, inside = shd.indexOf(region(x, y)) >= 0;
+        if (inside && run === null) { run = [x, y]; }
+        if ((!inside || i > 4) && run !== null) {
+          b.create('segment', [run, [x - 0.02, y - 0.02]], {fixed: true, highlight: false, layer: 1, strokeColor: '#1f5fa8', strokeWidth: 1.2, withLabel: false, point1: {visible: false}, point2: {visible: false}});
+          run = null;
+        }
+      }
+    }
+  }
+  for (i = 0; i < CC.length; i++) {
+    b.create('circle', [[CC[i][0], CC[i][1]], CC[i][2]], {fixed: true, highlight: false, strokeColor: '#000000', strokeWidth: 1.8, fillOpacity: 0, center: {visible: false}});
+    b.create('text', [LL[i][0], LL[i][1], lab[i]], {fixed: true, highlight: false, fontSize: 18, anchorX: 'middle', anchorY: 'middle', cssStyle: 'font-style:italic;'});
+  }
+  for (i = 0; i < txt.length; i++) {
+    if (circ) {
+      b.create('circle', [[PP[i][0], PP[i][1]], 0.24], {fixed: true, highlight: false, strokeColor: '#444444', strokeWidth: 1, fillColor: '#ffffff', fillOpacity: 1, center: {visible: false}});
+      b.create('text', [PP[i][0], PP[i][1], '' + txt[i]], {fixed: true, highlight: false, fontSize: 13, anchorX: 'middle', anchorY: 'middle'});
+    } else {
+      b.create('text', [PP[i][0], PP[i][1], '' + txt[i]], {fixed: true, highlight: false, fontSize: 17, anchorX: 'middle', anchorY: 'middle', cssStyle: 'font-weight:bold;'});
+    }
+  }
+})();
+[[/jsxgraph]]
+</div><p>(c) {@st3@} The shaded regions show \({@e3@}\).</p><div style="text-align:center;" role="img" aria-label="Venn diagram with the regions of part (c) hatched: regions {@ta3@}">
+[[jsxgraph width="280px" height="200px"]]
+(function () {
+  var lab = {#labs#}, txt = {#[1,2,3,4]#}, circ = true, shd = {#sh3#};
+  var b = JXG.JSXGraph.initBoard(divid, {boundingbox: [-4.2, 3, 4.2, -3], axis: false, grid: false, keepaspectratio: true,
+      showNavigation: false, showCopyright: false, pan: {enabled: false}, zoom: {enabled: false}});
+  var three = (lab.length === 3), i, j;
+  var C2 = [[-1, 0, 1.7], [1, 0, 1.7]], C3 = [[-0.85, 0.55, 1.55], [0.85, 0.55, 1.55], [0, -0.9, 1.55]];
+  var CC = three ? C3 : C2;
+  var P2 = [[-1.8, 0], [0, 0], [1.8, 0], [-3.5, -2.4]];
+  var P3 = [[-1.6, 1.0], [0, 1.35], [1.6, 1.0], [-1.05, -0.55], [0, 0.05], [1.05, -0.55], [0, -1.85], [-3.5, -2.5]];
+  var PP = three ? P3 : P2;
+  var L2 = [[-2.6, 1.6], [2.6, 1.6]], L3 = [[-2.35, 2.05], [2.35, 2.05], [1.55, -2.35]];
+  var LL = three ? L3 : L2;
+  function inC(k, x, y) { var c = CC[k]; return (x - c[0]) * (x - c[0]) + (y - c[1]) * (y - c[1]) < c[2] * c[2]; }
+  function region(x, y) {
+    if (x < -4 || x > 4 || y < -2.8 || y > 2.8) { return 0; }
+    if (!three) { var a = inC(0, x, y), bb = inC(1, x, y); return a ? (bb ? 2 : 1) : (bb ? 3 : 4); }
+    var code = (inC(0, x, y) ? 1 : 0) + (inC(1, x, y) ? 2 : 0) + (inC(2, x, y) ? 4 : 0);
+    return [8, 1, 3, 2, 7, 4, 6, 5][code];
+  }
+  var att = {fixed: true, highlight: false, withLabel: false};
+  b.create('polygon', [[-4, 2.8], [4, 2.8], [4, -2.8], [-4, -2.8]], {fillOpacity: 0, highlight: false, fixed: true, vertices: {visible: false},
+      borders: {strokeColor: '#000000', strokeWidth: 1.5, highlight: false, fixed: true}});
+  b.create('text', [-3.85, 2.5, 'ξ'], {fixed: true, highlight: false, fontSize: 18, anchorY: 'middle'});
+  if (shd.length > 0) {
+    for (j = -7; j <= 7; j += 0.22) {
+      var run = null;
+      for (i = -4; i <= 4.0001; i += 0.02) {
+        var x = i, y = i - j, inside = shd.indexOf(region(x, y)) >= 0;
+        if (inside && run === null) { run = [x, y]; }
+        if ((!inside || i > 4) && run !== null) {
+          b.create('segment', [run, [x - 0.02, y - 0.02]], {fixed: true, highlight: false, layer: 1, strokeColor: '#1f5fa8', strokeWidth: 1.2, withLabel: false, point1: {visible: false}, point2: {visible: false}});
+          run = null;
+        }
+      }
+    }
+  }
+  for (i = 0; i < CC.length; i++) {
+    b.create('circle', [[CC[i][0], CC[i][1]], CC[i][2]], {fixed: true, highlight: false, strokeColor: '#000000', strokeWidth: 1.8, fillOpacity: 0, center: {visible: false}});
+    b.create('text', [LL[i][0], LL[i][1], lab[i]], {fixed: true, highlight: false, fontSize: 18, anchorX: 'middle', anchorY: 'middle', cssStyle: 'font-style:italic;'});
+  }
+  for (i = 0; i < txt.length; i++) {
+    if (circ) {
+      b.create('circle', [[PP[i][0], PP[i][1]], 0.24], {fixed: true, highlight: false, strokeColor: '#444444', strokeWidth: 1, fillColor: '#ffffff', fillOpacity: 1, center: {visible: false}});
+      b.create('text', [PP[i][0], PP[i][1], '' + txt[i]], {fixed: true, highlight: false, fontSize: 13, anchorX: 'middle', anchorY: 'middle'});
+    } else {
+      b.create('text', [PP[i][0], PP[i][1], '' + txt[i]], {fixed: true, highlight: false, fontSize: 17, anchorX: 'middle', anchorY: 'middle', cssStyle: 'font-weight:bold;'});
+    }
+  }
+})();
+[[/jsxgraph]]
+</div>]]></text>
+  </generalfeedback>
+  <defaultgrade>3</defaultgrade>
+  <penalty>0.1</penalty>
+  <hidden>0</hidden>
+  <idnumber></idnumber>
+  <stackversion><text>2026063000</text></stackversion>
+  <questionvariables>
+    <text><![CDATA[cardn(S) := length(listify(S));
+dset(S) := if emptyp(S) then "\\{\\,\\}" else sconcat("\\{", simplode(map(string, listify(S)), ", "), "\\}");
+ix: 1+rand(10);
+/* Design: give the region numbers for a set expression. Source: adapted from SMP Book 4, revision exercise, page 83, question 7. Curated list, one seed per entry.
+   Regions: 1 first set only, 2 both, 3 second set only, 4 outside both. ta: answer, cp: its complement,
+   sw: the answer with the operation swapped, sm: swap message; mi, ex, g: test sets; st: worked steps; sh: shading list. */
+L: [["A","B",["A","B"],"A \\cup B",{1,2,3},{4},{2},"<p>You used \\(\\cap\\) where the expression has \\(\\cup\\), or the other way round.</p>",{1,2},{1,2,3,4},{1,2,4},"In region numbers, \\(A = \\{1, 2\\}\\) and \\(B = \\{2, 3\\}\\), so \\(A \\cup B = \\{1, 2, 3\\}\\).",[1,2,3],"(A \\cap B)'",{1,3,4},{2},{4},"<p>You used \\(\\cap\\) where the expression has \\(\\cup\\), or the other way round.</p>",{1,3},{1,2,3,4},{1,2,3},"In region numbers, \\(A \\cap B = \\{2\\}\\), so \\((A \\cap B)' = \\{1, 3, 4\\}\\).",[1,3,4],"A \\cup (A \\cup B)'",{1,2,4},{3},{1},"<p>You used \\(\\cap\\) where the expression has \\(\\cup\\), or the other way round.</p>",{1,2},{1,2,3,4},{1,2,3},"In region numbers, \\(A = \\{1, 2\\}\\) and \\((A \\cup B)' = \\{4\\}\\), so \\(A \\cup (A \\cup B)' = \\{1, 2, 4\\}\\).",[1,2,4]],
+  ["F","N",["F","N"],"F \\cap N",{2},{1,3,4},{1,2,3},"<p>You used \\(\\cap\\) where the expression has \\(\\cup\\), or the other way round.</p>",{},{1,2},{1},"In region numbers, \\(F = \\{1, 2\\}\\) and \\(N = \\{2, 3\\}\\), so \\(F \\cap N = \\{2\\}\\).",[2],"(F - N)'",{2,3,4},{1},{1,2,4},"<p>You took the difference the wrong way round.</p>",{2,3},{1,2,3,4},{1,2,3},"In region numbers, \\(F - N = \\{1\\}\\), so \\((F - N)' = \\{2, 3, 4\\}\\).",[2,3,4],"(F \\cup N) \\cap F'",{3},{1,2,4},{2,3,4},"<p>You used \\(\\cap\\) where the expression has \\(\\cup\\), or the other way round.</p>",{},{1,3},{1},"In region numbers, \\(F \\cup N = \\{1, 2, 3\\}\\) and \\(F' = \\{3, 4\\}\\), so \\((F \\cup N) \\cap F' = \\{3\\}\\).",[3]],
+  ["M","K",["M","K"],"M - K",{1},{2,3,4},{3},"<p>You took the difference the wrong way round.</p>",{},{1,2},{2},"In region numbers, \\(M = \\{1, 2\\}\\) and \\(K = \\{2, 3\\}\\), so \\(M - K = \\{1\\}\\).",[1],"M' \\cup K'",{1,3,4},{2},{4},"<p>You used \\(\\cap\\) where the expression has \\(\\cup\\), or the other way round.</p>",{1,3},{1,2,3,4},{1,2,3},"In region numbers, \\(M' = \\{3, 4\\}\\) and \\(K' = \\{1, 4\\}\\), so \\(M' \\cup K' = \\{1, 3, 4\\}\\).",[1,3,4],"(M \\cup K)' \\cup K",{2,3,4},{1},{3},"<p>You used \\(\\cap\\) where the expression has \\(\\cup\\), or the other way round.</p>",{2,3},{1,2,3,4},{1,2,3},"In region numbers, \\((M \\cup K)' = \\{4\\}\\) and \\(K = \\{2, 3\\}\\), so \\((M \\cup K)' \\cup K = \\{2, 3, 4\\}\\).",[2,3,4]],
+  ["P","Q",["P","Q"],"Q - P",{3},{1,2,4},{1},"<p>You took the difference the wrong way round.</p>",{},{1,3},{2},"In region numbers, \\(Q = \\{2, 3\\}\\) and \\(P = \\{1, 2\\}\\), so \\(Q - P = \\{3\\}\\).",[3],"(Q - P)'",{1,2,4},{3},{2,3,4},"<p>You took the difference the wrong way round.</p>",{1,2},{1,2,3,4},{1,2,3},"In region numbers, \\(Q - P = \\{3\\}\\), so \\((Q - P)' = \\{1, 2, 4\\}\\).",[1,2,4],"P' - Q",{4},{1,2,3},{2},"<p>You took the difference the wrong way round.</p>",{},{1,4},{1},"In region numbers, \\(P' = \\{3, 4\\}\\) and \\(Q = \\{2, 3\\}\\), so \\(P' - Q = \\{4\\}\\).",[4]],
+  ["S","T",["S","T"],"S \\cup T",{1,2,3},{4},{2},"<p>You used \\(\\cap\\) where the expression has \\(\\cup\\), or the other way round.</p>",{1,2},{1,2,3,4},{1,2,4},"In region numbers, \\(S = \\{1, 2\\}\\) and \\(T = \\{2, 3\\}\\), so \\(S \\cup T = \\{1, 2, 3\\}\\).",[1,2,3],"(S - T)'",{2,3,4},{1},{1,2,4},"<p>You took the difference the wrong way round.</p>",{2,3},{1,2,3,4},{1,2,3},"In region numbers, \\(S - T = \\{1\\}\\), so \\((S - T)' = \\{2, 3, 4\\}\\).",[2,3,4],"T' \\cup (S \\cap T)",{1,2,4},{3},{1},"<p>You used \\(\\cap\\) where the expression has \\(\\cup\\), or the other way round.</p>",{1,2},{1,2,3,4},{1,2,3},"In region numbers, \\(T' = \\{1, 4\\}\\) and \\(S \\cap T = \\{2\\}\\), so \\(T' \\cup (S \\cap T) = \\{1, 2, 4\\}\\).",[1,2,4]],
+  ["C","D",["C","D"],"C \\cap D",{2},{1,3,4},{1,2,3},"<p>You used \\(\\cap\\) where the expression has \\(\\cup\\), or the other way round.</p>",{},{1,2},{1},"In region numbers, \\(C = \\{1, 2\\}\\) and \\(D = \\{2, 3\\}\\), so \\(C \\cap D = \\{2\\}\\).",[2],"(C \\cap D)'",{1,3,4},{2},{4},"<p>You used \\(\\cap\\) where the expression has \\(\\cup\\), or the other way round.</p>",{1,3},{1,2,3,4},{1,2,3},"In region numbers, \\(C \\cap D = \\{2\\}\\), so \\((C \\cap D)' = \\{1, 3, 4\\}\\).",[1,3,4],"(C \\cup D)' \\cup D",{2,3,4},{1},{3},"<p>You used \\(\\cap\\) where the expression has \\(\\cup\\), or the other way round.</p>",{2,3},{1,2,3,4},{1,2,3},"In region numbers, \\((C \\cup D)' = \\{4\\}\\) and \\(D = \\{2, 3\\}\\), so \\((C \\cup D)' \\cup D = \\{2, 3, 4\\}\\).",[2,3,4]],
+  ["G","H",["G","H"],"G - H",{1},{2,3,4},{3},"<p>You took the difference the wrong way round.</p>",{},{1,2},{2},"In region numbers, \\(G = \\{1, 2\\}\\) and \\(H = \\{2, 3\\}\\), so \\(G - H = \\{1\\}\\).",[1],"(H - G)'",{1,2,4},{3},{2,3,4},"<p>You took the difference the wrong way round.</p>",{1,2},{1,2,3,4},{1,2,3},"In region numbers, \\(H - G = \\{3\\}\\), so \\((H - G)' = \\{1, 2, 4\\}\\).",[1,2,4],"(G \\cup H) \\cap G'",{3},{1,2,4},{2,3,4},"<p>You used \\(\\cap\\) where the expression has \\(\\cup\\), or the other way round.</p>",{},{1,3},{1},"In region numbers, \\(G \\cup H = \\{1, 2, 3\\}\\) and \\(G' = \\{3, 4\\}\\), so \\((G \\cup H) \\cap G' = \\{3\\}\\).",[3]],
+  ["X","Y",["X","Y"],"Y - X",{3},{1,2,4},{1},"<p>You took the difference the wrong way round.</p>",{},{1,3},{2},"In region numbers, \\(Y = \\{2, 3\\}\\) and \\(X = \\{1, 2\\}\\), so \\(Y - X = \\{3\\}\\).",[3],"X' \\cup Y'",{1,3,4},{2},{4},"<p>You used \\(\\cap\\) where the expression has \\(\\cup\\), or the other way round.</p>",{1,3},{1,2,3,4},{1,2,3},"In region numbers, \\(X' = \\{3, 4\\}\\) and \\(Y' = \\{1, 4\\}\\), so \\(X' \\cup Y' = \\{1, 3, 4\\}\\).",[1,3,4],"X \\cup (X \\cup Y)'",{1,2,4},{3},{1},"<p>You used \\(\\cap\\) where the expression has \\(\\cup\\), or the other way round.</p>",{1,2},{1,2,3,4},{1,2,3},"In region numbers, \\(X = \\{1, 2\\}\\) and \\((X \\cup Y)' = \\{4\\}\\), so \\(X \\cup (X \\cup Y)' = \\{1, 2, 4\\}\\).",[1,2,4]],
+  ["R","W",["R","W"],"R \\cup W",{1,2,3},{4},{2},"<p>You used \\(\\cap\\) where the expression has \\(\\cup\\), or the other way round.</p>",{1,2},{1,2,3,4},{1,2,4},"In region numbers, \\(R = \\{1, 2\\}\\) and \\(W = \\{2, 3\\}\\), so \\(R \\cup W = \\{1, 2, 3\\}\\).",[1,2,3],"(W - R)'",{1,2,4},{3},{2,3,4},"<p>You took the difference the wrong way round.</p>",{1,2},{1,2,3,4},{1,2,3},"In region numbers, \\(W - R = \\{3\\}\\), so \\((W - R)' = \\{1, 2, 4\\}\\).",[1,2,4],"R' - W",{4},{1,2,3},{2},"<p>You took the difference the wrong way round.</p>",{},{1,4},{1},"In region numbers, \\(R' = \\{3, 4\\}\\) and \\(W = \\{2, 3\\}\\), so \\(R' - W = \\{4\\}\\).",[4]],
+  ["J","L",["J","L"],"J \\cap L",{2},{1,3,4},{1,2,3},"<p>You used \\(\\cap\\) where the expression has \\(\\cup\\), or the other way round.</p>",{},{1,2},{1},"In region numbers, \\(J = \\{1, 2\\}\\) and \\(L = \\{2, 3\\}\\), so \\(J \\cap L = \\{2\\}\\).",[2],"J' \\cup L'",{1,3,4},{2},{4},"<p>You used \\(\\cap\\) where the expression has \\(\\cup\\), or the other way round.</p>",{1,3},{1,2,3,4},{1,2,3},"In region numbers, \\(J' = \\{3, 4\\}\\) and \\(L' = \\{1, 4\\}\\), so \\(J' \\cup L' = \\{1, 3, 4\\}\\).",[1,3,4],"L' \\cup (J \\cap L)",{1,2,4},{3},{1},"<p>You used \\(\\cap\\) where the expression has \\(\\cup\\), or the other way round.</p>",{1,2},{1,2,3,4},{1,2,3},"In region numbers, \\(L' = \\{1, 4\\}\\) and \\(J \\cap L = \\{2\\}\\), so \\(L' \\cup (J \\cap L) = \\{1, 2, 4\\}\\).",[1,2,4]]];
+la: L[ix][1]; lb: L[ix][2]; labs: L[ix][3]; e1: L[ix][4]; ta1: L[ix][5]; cp1: L[ix][6]; sw1: L[ix][7]; sm1: L[ix][8]; mi1: L[ix][9]; ex1: L[ix][10]; g1: L[ix][11]; st1: L[ix][12]; sh1: L[ix][13]; e2: L[ix][14]; ta2: L[ix][15]; cp2: L[ix][16]; sw2: L[ix][17]; sm2: L[ix][18]; mi2: L[ix][19]; ex2: L[ix][20]; g2: L[ix][21]; st2: L[ix][22]; sh2: L[ix][23]; e3: L[ix][24]; ta3: L[ix][25]; cp3: L[ix][26]; sw3: L[ix][27]; sm3: L[ix][28]; mi3: L[ix][29]; ex3: L[ix][30]; g3: L[ix][31]; st3: L[ix][32]; sh3: L[ix][33]; 
+]]></text>
+  </questionvariables>
+  <specificfeedback format="html"><text><![CDATA[]]></text></specificfeedback>
+  <questionnote format="moodle_auto_format">
+    <text>ix={@ix@}, ta=[{@ta1@}, {@ta2@}, {@ta3@}]</text>
+  </questionnote>
+  <questiondescription format="html"><text><![CDATA[<p id="concept">Sets: regions of a two-set Venn diagram</p><p id="description">Grade 12 CBE Core and Essential 1.1 (d): Describe sets built from two sets with union, intersection, complement and difference by listing their regions in a numbered Venn diagram.</p><p id="edition">Core and Essential</p><p id="provenance">This question is adapted from the revision exercise on page 83, question 7 of School Mathematics Project, SMP Book 4 (Metric), ed. P. G. Bowie, Cambridge University Press, 1969: shading sets built from two sets on a Venn diagram; region numbers make the shading a typed set, and every expression is new.</p><p id="citation">INNODEMS CBC Grade 12 Mathematics, first draft by Ben Davies, 2026. Aligned to the KICD Senior School Curriculum Design, Core and Essential Mathematics Grade 12 (draft).</p>]]></text></questiondescription>
+  <questionsimplify>1</questionsimplify>
+  <assumepositive>0</assumepositive>
+  <assumereal>0</assumereal>
+  <prtcorrect format="html"><text><![CDATA[[[commonstring key="symbolicprtcorrectfeedback"/]] [[commonstring key="defaultprtcorrectfeedback"/]]]]></text></prtcorrect>
+  <prtpartiallycorrect format="html"><text><![CDATA[[[commonstring key="symbolicprtpartiallycorrectfeedback"/]] [[commonstring key="defaultprtpartiallycorrectfeedback"/]]]]></text></prtpartiallycorrect>
+  <prtincorrect format="html"><text><![CDATA[[[commonstring key="symbolicprtincorrectfeedback"/]] [[commonstring key="defaultprtincorrectfeedback"/]]]]></text></prtincorrect>
+  <decimals>.</decimals>
+  <scientificnotation>*10</scientificnotation>
+  <multiplicationsign>none</multiplicationsign>
+  <sqrtsign>1</sqrtsign>
+  <complexno>i</complexno>
+  <inversetrig>cos-1</inversetrig>
+  <logicsymbol>lang</logicsymbol>
+  <matrixparens>[</matrixparens>
+  <isbroken>0</isbroken>
+  <variantsselectionseed></variantsselectionseed>
+
+  <input><name>ans1</name><type>algebraic</type><tans>ta1</tans><boxsize>25</boxsize><strictsyntax>1</strictsyntax><insertstars>0</insertstars><syntaxhint></syntaxhint><syntaxattribute>0</syntaxattribute><forbidwords></forbidwords><allowwords></allowwords><forbidfloat>1</forbidfloat><requirelowestterms>0</requirelowestterms><checkanswertype>1</checkanswertype><mustverify>0</mustverify><showvalidation>1</showvalidation><options></options></input>
+  <input><name>ans2</name><type>algebraic</type><tans>ta2</tans><boxsize>25</boxsize><strictsyntax>1</strictsyntax><insertstars>0</insertstars><syntaxhint></syntaxhint><syntaxattribute>0</syntaxattribute><forbidwords></forbidwords><allowwords></allowwords><forbidfloat>1</forbidfloat><requirelowestterms>0</requirelowestterms><checkanswertype>1</checkanswertype><mustverify>0</mustverify><showvalidation>1</showvalidation><options></options></input>
+  <input><name>ans3</name><type>algebraic</type><tans>ta3</tans><boxsize>25</boxsize><strictsyntax>1</strictsyntax><insertstars>0</insertstars><syntaxhint></syntaxhint><syntaxattribute>0</syntaxattribute><forbidwords></forbidwords><allowwords></allowwords><forbidfloat>1</forbidfloat><requirelowestterms>0</requirelowestterms><checkanswertype>1</checkanswertype><mustverify>0</mustverify><showvalidation>1</showvalidation><options></options></input>
+
+  <prt><name>prt1</name><value>1.0000000</value><autosimplify>1</autosimplify><feedbackstyle>1</feedbackstyle><feedbackvariables><text><![CDATA[xtra: setdifference(ans1,ta1);
+nmiss: cardn(setdifference(ta1,ans1));
+]]></text></feedbackvariables>
+    <node><name>0</name><description>Correct set</description><answertest>AlgEquiv</answertest><sans>ans1</sans><tans>ta1</tans><testoptions></testoptions><quiet>1</quiet><truescoremode>=</truescoremode><truescore>1.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt1-1-T</trueanswernote><truefeedback format="html"><text><![CDATA[]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>1</falsenextnode><falseanswernote>prt1-1-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>1</name><description>Complement</description><answertest>AlgEquiv</answertest><sans>ans1</sans><tans>cp1</tans><testoptions></testoptions><quiet>1</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt1-2-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>Look again at the complement signs (the dashes). Your regions fit an expression with one complement more, or one fewer, than this one has.</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>2</falsenextnode><falseanswernote>prt1-2-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>2</name><description>Swapped operation</description><answertest>AlgEquiv</answertest><sans>ans1</sans><tans>sw1</tans><testoptions></testoptions><quiet>1</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt1-3-T</trueanswernote><truefeedback format="html"><text><![CDATA[{@sm1@}]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>3</falsenextnode><falseanswernote>prt1-3-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>3</name><description>Missing elements</description><answertest>AlgEquiv</answertest><sans>is(subsetp(ans1,ta1))</sans><tans>true</tans><testoptions></testoptions><quiet>0</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt1-4-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>Every element you listed belongs, but you have left out [[if test="is(nmiss=1)"]]1 element[[else]]{@nmiss@} elements[[/if]].</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>4</falsenextnode><falseanswernote>prt1-4-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>4</name><description>Extra elements</description><answertest>AlgEquiv</answertest><sans>is(subsetp(ta1,ans1))</sans><tans>true</tans><testoptions></testoptions><quiet>0</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt1-5-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>Your set contains every element it should, and also \({@dset(xtra)@}\), which [[if test="is(cardn(xtra)=1)"]]does[[else]]do[[/if]] not belong.</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>-1</falsenextnode><falseanswernote>prt1-5-F</falseanswernote><falsefeedback format="html"><text><![CDATA[<p>\({@dset(xtra)@}\) [[if test="is(cardn(xtra)=1)"]]does[[else]]do[[/if]] not belong, and [[if test="is(nmiss=1)"]]1 element is[[else]]{@nmiss@} elements are[[/if]] missing. Work inside the brackets first and write the region numbers of each step.</p>]]></text></falsefeedback></node>
+  </prt>
+  <prt><name>prt2</name><value>1.0000000</value><autosimplify>1</autosimplify><feedbackstyle>1</feedbackstyle><feedbackvariables><text><![CDATA[xtra: setdifference(ans2,ta2);
+nmiss: cardn(setdifference(ta2,ans2));
+]]></text></feedbackvariables>
+    <node><name>0</name><description>Correct set</description><answertest>AlgEquiv</answertest><sans>ans2</sans><tans>ta2</tans><testoptions></testoptions><quiet>1</quiet><truescoremode>=</truescoremode><truescore>1.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt2-1-T</trueanswernote><truefeedback format="html"><text><![CDATA[]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>1</falsenextnode><falseanswernote>prt2-1-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>1</name><description>Complement</description><answertest>AlgEquiv</answertest><sans>ans2</sans><tans>cp2</tans><testoptions></testoptions><quiet>1</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt2-2-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>Look again at the complement signs (the dashes). Your regions fit an expression with one complement more, or one fewer, than this one has.</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>2</falsenextnode><falseanswernote>prt2-2-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>2</name><description>Swapped operation</description><answertest>AlgEquiv</answertest><sans>ans2</sans><tans>sw2</tans><testoptions></testoptions><quiet>1</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt2-3-T</trueanswernote><truefeedback format="html"><text><![CDATA[{@sm2@}]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>3</falsenextnode><falseanswernote>prt2-3-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>3</name><description>Missing elements</description><answertest>AlgEquiv</answertest><sans>is(subsetp(ans2,ta2))</sans><tans>true</tans><testoptions></testoptions><quiet>0</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt2-4-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>Every element you listed belongs, but you have left out [[if test="is(nmiss=1)"]]1 element[[else]]{@nmiss@} elements[[/if]].</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>4</falsenextnode><falseanswernote>prt2-4-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>4</name><description>Extra elements</description><answertest>AlgEquiv</answertest><sans>is(subsetp(ta2,ans2))</sans><tans>true</tans><testoptions></testoptions><quiet>0</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt2-5-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>Your set contains every element it should, and also \({@dset(xtra)@}\), which [[if test="is(cardn(xtra)=1)"]]does[[else]]do[[/if]] not belong.</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>-1</falsenextnode><falseanswernote>prt2-5-F</falseanswernote><falsefeedback format="html"><text><![CDATA[<p>\({@dset(xtra)@}\) [[if test="is(cardn(xtra)=1)"]]does[[else]]do[[/if]] not belong, and [[if test="is(nmiss=1)"]]1 element is[[else]]{@nmiss@} elements are[[/if]] missing. Work inside the brackets first and write the region numbers of each step.</p>]]></text></falsefeedback></node>
+  </prt>
+  <prt><name>prt3</name><value>1.0000000</value><autosimplify>1</autosimplify><feedbackstyle>1</feedbackstyle><feedbackvariables><text><![CDATA[xtra: setdifference(ans3,ta3);
+nmiss: cardn(setdifference(ta3,ans3));
+]]></text></feedbackvariables>
+    <node><name>0</name><description>Correct set</description><answertest>AlgEquiv</answertest><sans>ans3</sans><tans>ta3</tans><testoptions></testoptions><quiet>1</quiet><truescoremode>=</truescoremode><truescore>1.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt3-1-T</trueanswernote><truefeedback format="html"><text><![CDATA[]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>1</falsenextnode><falseanswernote>prt3-1-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>1</name><description>Complement</description><answertest>AlgEquiv</answertest><sans>ans3</sans><tans>cp3</tans><testoptions></testoptions><quiet>1</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt3-2-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>Look again at the complement signs (the dashes). Your regions fit an expression with one complement more, or one fewer, than this one has.</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>2</falsenextnode><falseanswernote>prt3-2-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>2</name><description>Swapped operation</description><answertest>AlgEquiv</answertest><sans>ans3</sans><tans>sw3</tans><testoptions></testoptions><quiet>1</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt3-3-T</trueanswernote><truefeedback format="html"><text><![CDATA[{@sm3@}]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>3</falsenextnode><falseanswernote>prt3-3-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>3</name><description>Missing elements</description><answertest>AlgEquiv</answertest><sans>is(subsetp(ans3,ta3))</sans><tans>true</tans><testoptions></testoptions><quiet>0</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt3-4-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>Every element you listed belongs, but you have left out [[if test="is(nmiss=1)"]]1 element[[else]]{@nmiss@} elements[[/if]].</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>4</falsenextnode><falseanswernote>prt3-4-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>4</name><description>Extra elements</description><answertest>AlgEquiv</answertest><sans>is(subsetp(ta3,ans3))</sans><tans>true</tans><testoptions></testoptions><quiet>0</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt3-5-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>Your set contains every element it should, and also \({@dset(xtra)@}\), which [[if test="is(cardn(xtra)=1)"]]does[[else]]do[[/if]] not belong.</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>-1</falsenextnode><falseanswernote>prt3-5-F</falseanswernote><falsefeedback format="html"><text><![CDATA[<p>\({@dset(xtra)@}\) [[if test="is(cardn(xtra)=1)"]]does[[else]]do[[/if]] not belong, and [[if test="is(nmiss=1)"]]1 element is[[else]]{@nmiss@} elements are[[/if]] missing. Work inside the brackets first and write the region numbers of each step.</p>]]></text></falsefeedback></node>
+  </prt>
+
+  <deployedseed>4</deployedseed>
+  <deployedseed>5</deployedseed>
+  <deployedseed>15</deployedseed>
+  <deployedseed>8</deployedseed>
+  <deployedseed>24</deployedseed>
+  <deployedseed>1</deployedseed>
+  <deployedseed>3</deployedseed>
+  <deployedseed>10</deployedseed>
+  <deployedseed>2</deployedseed>
+  <deployedseed>17</deployedseed>
+  <qtest><testcase>1</testcase><description>Correct</description>
+    <testinput><name>ans1</name><value>ta1</value></testinput>
+    <testinput><name>ans2</name><value>ta2</value></testinput>
+    <testinput><name>ans3</name><value>ta3</value></testinput>
+    <expected><name>prt1</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt1-1-T</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt2-1-T</expectedanswernote></expected>
+    <expected><name>prt3</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt3-1-T</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>2</testcase><description>Complements</description>
+    <testinput><name>ans1</name><value>cp1</value></testinput>
+    <testinput><name>ans2</name><value>cp2</value></testinput>
+    <testinput><name>ans3</name><value>cp3</value></testinput>
+    <expected><name>prt1</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt1-1-F | prt1-2-T</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt2-1-F | prt2-2-T</expectedanswernote></expected>
+    <expected><name>prt3</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt3-1-F | prt3-2-T</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>3</testcase><description>Operations swapped</description>
+    <testinput><name>ans1</name><value>sw1</value></testinput>
+    <testinput><name>ans2</name><value>sw2</value></testinput>
+    <testinput><name>ans3</name><value>sw3</value></testinput>
+    <expected><name>prt1</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt1-1-F | prt1-2-F | prt1-3-T</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt2-1-F | prt2-2-F | prt2-3-T</expectedanswernote></expected>
+    <expected><name>prt3</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt3-1-F | prt3-2-F | prt3-3-T</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>4</testcase><description>A region missing</description>
+    <testinput><name>ans1</name><value>mi1</value></testinput>
+    <testinput><name>ans2</name><value>mi2</value></testinput>
+    <testinput><name>ans3</name><value>mi3</value></testinput>
+    <expected><name>prt1</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt1-1-F | prt1-2-F | prt1-3-F | prt1-4-T</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt2-1-F | prt2-2-F | prt2-3-F | prt2-4-T</expectedanswernote></expected>
+    <expected><name>prt3</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt3-1-F | prt3-2-F | prt3-3-F | prt3-4-T</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>5</testcase><description>An extra region</description>
+    <testinput><name>ans1</name><value>ex1</value></testinput>
+    <testinput><name>ans2</name><value>ex2</value></testinput>
+    <testinput><name>ans3</name><value>ex3</value></testinput>
+    <expected><name>prt1</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt1-1-F | prt1-2-F | prt1-3-F | prt1-4-F | prt1-5-T</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt2-1-F | prt2-2-F | prt2-3-F | prt2-4-F | prt2-5-T</expectedanswernote></expected>
+    <expected><name>prt3</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt3-1-F | prt3-2-F | prt3-3-F | prt3-4-F | prt3-5-T</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>6</testcase><description>Missing and extra (generic)</description>
+    <testinput><name>ans1</name><value>g1</value></testinput>
+    <testinput><name>ans2</name><value>g2</value></testinput>
+    <testinput><name>ans3</name><value>g3</value></testinput>
+    <expected><name>prt1</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt1-1-F | prt1-2-F | prt1-3-F | prt1-4-F | prt1-5-F</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt2-1-F | prt2-2-F | prt2-3-F | prt2-4-F | prt2-5-F</expectedanswernote></expected>
+    <expected><name>prt3</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt3-1-F | prt3-2-F | prt3-3-F | prt3-4-F | prt3-5-F</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>7</testcase><description>Invalid: a list in (b)</description>
+    <testinput><name>ans1</name><value>ta1</value></testinput>
+    <testinput><name>ans2</name><value>[1,2]</value></testinput>
+    <testinput><name>ans3</name><value>ta3</value></testinput>
+    <expected><name>prt1</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt1-1-T</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore></expectedscore><expectedpenalty></expectedpenalty><expectedanswernote>NULL</expectedanswernote></expected>
+    <expected><name>prt3</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt3-1-T</expectedanswernote></expected>
+  </qtest>
+</question>
+</quiz>

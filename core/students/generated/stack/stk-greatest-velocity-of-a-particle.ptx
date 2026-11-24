@@ -1,0 +1,8 @@
+<stack-static>
+    <statement><p><p>A particle <m>P</m> moves along a straight line so that its displacement from <m>O</m> after <m>t</m> seconds is <m>s = {6 t^2-t^3}</m> metres, <m>t \ge 0</m>.</p><p>(a) Find the time at which the velocity of <m>P</m> is greatest.</p><div><m>t =</m> <fillin characters="5" name="ans1"/>  </div><p>(b) Find the greatest velocity.</p><div><fillin characters="5" name="ans2"/> <m>\text{m/s}</m>  </div><p>(c) <m>P</m> is at rest when <m>t = 0</m>. When is it next at rest?</p><div><m>t =</m> <fillin characters="5" name="ans3"/>  </div><p>(d) Find the acceleration of <m>P</m> at that moment.</p><div><fillin characters="5" name="ans4"/> <m>\text{m/s}^2</m>  </div></p></statement>
+    <solution><p><p><m>v = \dfrac{ds}{dt} = {12 t-3 t^2}</m> and <m>a = \dfrac{dv}{dt} = {12-6 t}</m>.</p><p>(a) The velocity is greatest when its rate of change, the acceleration, is zero: <m>a = 0</m> at <m>t = {2}</m>. Before that <m>a \gt 0</m> and <m>v</m> is increasing; after it <m>a \lt 0</m> and <m>v</m> is decreasing, so this is the greatest velocity.</p><p>(b) <m>v = {12}\,\text{m/s}</m> at <m>t = {2}</m>.</p><p>(c) <m>v = {3 \left(4-t\right) t} = 0</m> at <m>t = 0</m> and <m>t = {4}</m>.</p><p>(d) At <m>t = {4}</m>, <m>a = {-12}\,\text{m/s}^2</m>. The velocity is <m>0</m> but the acceleration is negative, so <m>P</m> is about to move back towards <m>O</m>.</p></p></solution>
+    <answer><p><m>2</m></p></answer>
+    <answer><p><m>12</m></p></answer>
+    <answer><p><m>4</m></p></answer>
+    <answer><p><m>-12</m></p></answer>
+</stack-static>

@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<quiz>
+<question type="stack">
+  <name><text>Projection of a line onto a plane</text></name>
+  <questiontext format="html">
+    <text><![CDATA[<p>In the cuboid ABCDEFGH, AB = {@ll@} cm, BC = {@ww@} cm and AE = {@hh@} cm.</p><div style="text-align:center;" role="img" aria-label="A cuboid ABCDEFGH. ABCD is the base and E, F, G, H are above A, B, C, D. The hidden corner D and its three edges are dashed.">
+[[jsxgraph width="360px" height="280px"]]
+(function() {
+  var b = JXG.JSXGraph.initBoard(divid, {boundingbox: [-1.2, 6.2, 8.9, -1.6], axis: false, grid: false, keepaspectratio: true,
+    showNavigation: false, showCopyright: false, pan: {enabled: false}, zoom: {enabled: false}});
+  // oblique projection: receding edges at 30 degrees, half length
+  function P(x, y, z) { return [x + 0.5*y*Math.cos(Math.PI/6), z + 0.5*y*Math.sin(Math.PI/6)]; }
+  var solid = {strokeColor: '#000000', strokeWidth: 2, fixed: true, highlight: false};
+  var hid = {strokeColor: '#000000', strokeWidth: 1.5, dash: 2, fixed: true, highlight: false};
+  var dot = {strokeColor: '#000000', strokeWidth: 1.5, dash: 1, fixed: true, highlight: false};
+  var tx = {fixed: true, highlight: false, useMathJax: false, fontSize: 15, anchorX: 'middle', anchorY: 'middle'};
+  var cx = 3.87, cy = 2.0;
+  function lab(Q, s) { var dx = Q[0]-cx, dy = Q[1]-cy, r = Math.sqrt(dx*dx+dy*dy) || 1;
+    b.create('text', [Q[0]+0.42*dx/r, Q[1]+0.42*dy/r, s], tx); }
+  function seg(Q, R, o) { b.create('segment', [Q, R], o); }
+  function mark(Q, R, S) { // right-angle mark at Q between QR and QS
+    function u(X) { var dx = X[0]-Q[0], dy = X[1]-Q[1], r = Math.sqrt(dx*dx+dy*dy); return [0.3*dx/r, 0.3*dy/r]; }
+    var a = u(R), c = u(S);
+    b.create('polygon', [[Q[0]+a[0], Q[1]+a[1]], [Q[0]+a[0]+c[0], Q[1]+a[1]+c[1]], [Q[0]+c[0], Q[1]+c[1]]],
+      {fixed: true, highlight: false, fillOpacity: 0, vertices: {visible: false},
+       borders: {strokeColor: '#000000', strokeWidth: 1, fixed: true, highlight: false}});
+  }
+  // cuboid ABCDEFGH: l = 6, w = 4, h = 3 (shape only)
+  var A = P(0,0,0), B = P(6,0,0), C = P(6,4,0), D = P(0,4,0), E = P(0,0,3), F = P(6,0,3), G = P(6,4,3), H = P(0,4,3);
+  seg(A,B,solid); seg(B,C,solid); seg(B,F,solid); seg(C,G,solid); seg(A,E,solid);
+  seg(E,F,solid); seg(F,G,solid); seg(G,H,solid); seg(H,E,solid);
+  // hidden corner D: its three edges dashed
+  seg(A,D,hid); seg(D,C,hid); seg(D,H,hid);
+  lab(A,'A'); lab(B,'B'); lab(C,'C'); lab(D,'D'); lab(E,'E'); lab(F,'F'); lab(G,'G'); lab(H,'H');
+})();
+[[/jsxgraph]]
+</div><p>The diagram is not drawn to scale.</p><p>(a) The projection of {@lin@} on the plane {@pl@} is</p><div>[[input:ans1]] [[validation:ans1]] [[feedback:prt1]]</div><p>(b) Find the length of this projection.</p><div>[[input:ans2]] cm [[validation:ans2]] [[feedback:prt2]]</div><p>Give lengths correct to 2 decimal places and angles correct to 1 decimal place. Keep full calculator accuracy until the final answer.</p>]]></text>
+  </questiontext>
+  <generalfeedback format="html">
+    <text><![CDATA[<p>(a) Drop a perpendicular from each end of {@lin@} to the plane {@pl@}. The projection joins the two feet: it is {@prj@}.</p>[[if test="two"]]<p>(b) {@prj@} is a diagonal of a rectangle with sides {@ca@} cm and {@cb@} cm, so \({@prj@}^2 = {@ca@}^2 + {@cb@}^2 = {@S1@}\) and {@prj@} = \(\sqrt{{@S1@}}\) = {@d2(tl)@} cm.</p>[[else]]<p>(b) {@prj@} is an edge of the cuboid, so its length is {@tl@} cm.</p>[[/if]]]]></text>
+  </generalfeedback>
+  <defaultgrade>2</defaultgrade>
+  <penalty>0.1</penalty>
+  <hidden>0</hidden>
+  <idnumber></idnumber>
+  <stackversion><text>2026063000</text></stackversion>
+  <questionvariables>
+    <text><![CDATA[plist: [["AG","ABCD","AC",["BD","AG","CG","AB","AC"],[["AG","AG is the line itself. Its projection lies in the base ABCD: drop a perpendicular from each end."],["CG","CG is a perpendicular from the line to the base ABCD. It joins the line to its projection; the projection is the line in the plane, AC."],["BD","BD lies in the base ABCD, but it does not join the feet of the perpendiculars from A and G."],["AB","AB lies in the base ABCD, but a perpendicular from the far end of AG lands at the other end of AC, not at the end of AB."]],14,6,11],["AG","BCGF","BG",["AG","CF","BC","BG","AB"],[["AG","AG is the line itself. Its projection lies in the face BCGF: drop a perpendicular from each end."],["AB","AB is a perpendicular from the line to the face BCGF. It joins the line to its projection; the projection is the line in the plane, BG."],["CF","CF lies in the face BCGF, but it does not join the feet of the perpendiculars from A and G."],["BC","BC lies in the face BCGF, but a perpendicular from the far end of AG lands at the other end of BG, not at the end of BC."]],6,15,3],["HB","ABCD","BD",["AC","HB","AB","DH","BD"],[["HB","HB is the line itself. Its projection lies in the base ABCD: drop a perpendicular from each end."],["DH","DH is a perpendicular from the line to the base ABCD. It joins the line to its projection; the projection is the line in the plane, BD."],["AC","AC lies in the base ABCD, but it does not join the feet of the perpendiculars from H and B."],["AB","AB lies in the base ABCD, but a perpendicular from the far end of HB lands at the other end of BD, not at the end of AB."]],9,3,11],["EC","ABFE","BE",["EC","BE","AF","EF","BC"],[["EC","EC is the line itself. Its projection lies in the face ABFE: drop a perpendicular from each end."],["BC","BC is a perpendicular from the line to the face ABFE. It joins the line to its projection; the projection is the line in the plane, BE."],["AF","AF lies in the face ABFE, but it does not join the feet of the perpendiculars from E and C."],["EF","EF lies in the face ABFE, but a perpendicular from the far end of EC lands at the other end of BE, not at the end of EF."]],6,13,12],["CE","ADHE","DE",["CD","AH","DE","AD","CE"],[["CE","CE is the line itself. Its projection lies in the face ADHE: drop a perpendicular from each end."],["CD","CD is a perpendicular from the line to the face ADHE. It joins the line to its projection; the projection is the line in the plane, DE."],["AH","AH lies in the face ADHE, but it does not join the feet of the perpendiculars from C and E."],["AD","AD lies in the face ADHE, but a perpendicular from the far end of CE lands at the other end of DE, not at the end of AD."]],5,4,8],["GA","EFGH","EG",["FH","EG","EF","GA","AE"],[["GA","GA is the line itself. Its projection lies in the top EFGH: drop a perpendicular from each end."],["AE","AE is a perpendicular from the line to the top EFGH. It joins the line to its projection; the projection is the line in the plane, EG."],["FH","FH lies in the top EFGH, but it does not join the feet of the perpendiculars from G and A."],["EF","EF lies in the top EFGH, but a perpendicular from the far end of GA lands at the other end of EG, not at the end of EF."]],16,15,7],["DF","DCGH","DG",["DF","FG","DG","CH","DC"],[["DF","DF is the line itself. Its projection lies in the face DCGH: drop a perpendicular from each end."],["FG","FG is a perpendicular from the line to the face DCGH. It joins the line to its projection; the projection is the line in the plane, DG."],["CH","CH lies in the face DCGH, but it does not join the feet of the perpendiculars from D and F."],["DC","DC lies in the face DCGH, but a perpendicular from the far end of DF lands at the other end of DG, not at the end of DC."]],20,7,6],["AF","ABCD","AB",["AF","BC","AC","AB","BF"],[["AF","AF is the line itself. Its projection lies in the base ABCD: drop a perpendicular from each end."],["BF","BF is a perpendicular from the line to the base ABCD. It joins the line to its projection; the projection is the line in the plane, AB."],["AC","AC lies in the base ABCD, but it does not join the feet of the perpendiculars from A and F."],["BC","BC lies in the base ABCD, but a perpendicular from the far end of AF lands at the other end of AB, not at the end of BC."]],5,6,12],["CH","ABCD","CD",["DH","CH","AD","CD","BD"],[["CH","CH is the line itself. Its projection lies in the base ABCD: drop a perpendicular from each end."],["DH","DH is a perpendicular from the line to the base ABCD. It joins the line to its projection; the projection is the line in the plane, CD."],["BD","BD lies in the base ABCD, but it does not join the feet of the perpendiculars from C and H."],["AD","AD lies in the base ABCD, but a perpendicular from the far end of CH lands at the other end of CD, not at the end of AD."]],18,9,10],["BH","ADHE","AH",["AB","DE","AH","BH","AD"],[["BH","BH is the line itself. Its projection lies in the face ADHE: drop a perpendicular from each end."],["AB","AB is a perpendicular from the line to the face ADHE. It joins the line to its projection; the projection is the line in the plane, AH."],["DE","DE lies in the face ADHE, but it does not join the feet of the perpendiculars from B and H."],["AD","AD lies in the face ADHE, but a perpendicular from the far end of BH lands at the other end of AH, not at the end of AD."]],13,9,8]];
+/* Design: name the projection of a line onto a plane, then its length. Distractor order in each entry: the line itself, a perpendicular, the other diagonal of the plane, an edge. Every wrong option has its own feedback. Source: adapted from SMP GCSE Higher 2, Chapter 34, A3 (which plane contains the line), turned round. */
+ix: 1+rand(10); PP: plist[ix];
+lin: PP[1]; pl: PP[2]; prj: PP[3]; DF: PP[5];
+ll: PP[6]; ww: PP[7]; hh: PP[8];
+LS: "ABCDEFGH"; LT: [[0,0,0],[ll,0,0],[ll,ww,0],[0,ww,0],[0,0,hh],[ll,0,hh],[ll,ww,hh],[0,ww,hh]];
+pt(c) := LT[ssearch(c, LS)];
+vv(s) := pt(charat(s,2)) - pt(charat(s,1));
+sq(s) := vv(s) . vv(s);
+dst(s) := float(sqrt(sq(s)));
+angd(s) := block([u,w], u: pt(charat(s,1))-pt(charat(s,2)), w: pt(charat(s,3))-pt(charat(s,2)), float(acos((u . w)/sqrt((u . u)*(w . w)))*180/%pi));
+r1(v) := float(floor(10*v+1/2)/10); r2(v) := float(floor(100*v+1/2)/100);
+d1(v) := dispdp(r1(v),1); d2(v) := dispdp(r2(v),2); d4(v) := dispdp(float(floor(10000*v+1/2)/10000),4);
+NA: -999; NB: -888; NC: -777;
+nf(v) := if integerp(v) then v else float(v);
+opts: makelist([o, is(o = prj), o], o, PP[4]);
+o1: DF[1][1]; o2: DF[2][1]; o3: DF[3][1]; o4: DF[4][1];
+cmp: sublist(map(abs, vv(prj)), lambda([t], is(t > 0)));
+two: is(length(cmp) = 2); ca: cmp[1]; cb: if two then cmp[2] else 0;
+S1: sq(prj); tl: dst(prj); tlr: r2(tl); tla: tl+0.02; tlg: tl+0.5;
+dl1: dst(lin); dl2: if two then cmp[1]+cmp[2] else NA; dl3: if two then S1 else NB; dl4: dst(o2);
+]]></text>
+  </questionvariables>
+  <specificfeedback format="html"><text><![CDATA[]]></text></specificfeedback>
+  <questionnote format="moodle_auto_format">
+    <text>ix={@ix@}, {@lin@} on {@pl@}, projection {@prj@}, length {@d2(tl)@}</text>
+  </questionnote>
+  <questiondescription format="html"><text><![CDATA[<p id="concept">Three-Dimensional Geometry: projection of a line onto a plane</p><p id="description">Grade 12 CBE Core 2.4: Name the projection of a line on a face of a cuboid and find its length.</p><p id="edition">Core</p><p id="provenance">This question is adapted from Chapter 34, Section A, question A3 of Ling, J., Scruton, P., Shilton, S. and West, H., SMP GCSE Mathematics: Higher 2 for AQA, Edexcel and OCR two-tier GCSE mathematics, Cambridge University Press, 2007: turned round to name the projection of a line on a plane, then find its length; new cases, numbers and wording, randomised, with named feedback.</p><p id="citation">INNODEMS CBC Grade 12 Mathematics, first draft by Ben Davies, 2026. Aligned to the KICD Senior School Curriculum Design, Core Mathematics Grade 12 (draft).</p>]]></text></questiondescription>
+  <questionsimplify>1</questionsimplify>
+  <assumepositive>0</assumepositive>
+  <assumereal>0</assumereal>
+  <prtcorrect format="html"><text><![CDATA[[[commonstring key="symbolicprtcorrectfeedback"/]] [[commonstring key="defaultprtcorrectfeedback"/]]]]></text></prtcorrect>
+  <prtpartiallycorrect format="html"><text><![CDATA[[[commonstring key="symbolicprtpartiallycorrectfeedback"/]] [[commonstring key="defaultprtpartiallycorrectfeedback"/]]]]></text></prtpartiallycorrect>
+  <prtincorrect format="html"><text><![CDATA[[[commonstring key="symbolicprtincorrectfeedback"/]] [[commonstring key="defaultprtincorrectfeedback"/]]]]></text></prtincorrect>
+  <decimals>.</decimals>
+  <scientificnotation>*10</scientificnotation>
+  <multiplicationsign>none</multiplicationsign>
+  <sqrtsign>1</sqrtsign>
+  <complexno>i</complexno>
+  <inversetrig>cos-1</inversetrig>
+  <logicsymbol>lang</logicsymbol>
+  <matrixparens>[</matrixparens>
+  <isbroken>0</isbroken>
+  <variantsselectionseed></variantsselectionseed>
+
+  <input><name>ans1</name><type>dropdown</type><tans>opts</tans><boxsize>15</boxsize><strictsyntax>1</strictsyntax><insertstars>0</insertstars><syntaxhint></syntaxhint><syntaxattribute>0</syntaxattribute><forbidwords></forbidwords><allowwords></allowwords><forbidfloat>1</forbidfloat><requirelowestterms>0</requirelowestterms><checkanswertype>0</checkanswertype><mustverify>0</mustverify><showvalidation>0</showvalidation><options></options></input>
+  <input><name>ans2</name><type>numerical</type><tans>tl</tans><boxsize>8</boxsize><strictsyntax>1</strictsyntax><insertstars>0</insertstars><syntaxhint></syntaxhint><syntaxattribute>0</syntaxattribute><forbidwords></forbidwords><allowwords></allowwords><forbidfloat>0</forbidfloat><requirelowestterms>0</requirelowestterms><checkanswertype>0</checkanswertype><mustverify>0</mustverify><showvalidation>0</showvalidation><options></options></input>
+
+  <prt><name>prt1</name><value>1.0000000</value><autosimplify>1</autosimplify><feedbackstyle>1</feedbackstyle><feedbackvariables><text><![CDATA[fbk: sublist_indices(DF, lambda([d], is(d[1] = ans1)));
+fbt: if fbk = [] then "" else if fbk[1] = 2 then sconcat(ans1, " is a perpendicular from an end of ", lin, " to the plane ", pl, ". It joins the line to its projection; the projection itself lies in the plane and joins the feet of the perpendiculars from the two ends of ", lin, ". One foot is an end of ", ans1, ": where is the other?") else if fbk[1] = 4 then sconcat(ans1, " lies in the plane ", pl, ", but drop a perpendicular from each end of ", lin, " to the plane: the two feet are not the two ends of ", ans1, ".") else DF[fbk[1]][2]; nofb: is(fbk = []);
+]]></text></feedbackvariables>
+    <node><name>0</name><description>Projection</description><answertest>AlgEquiv</answertest><sans>ans1</sans><tans>prj</tans><testoptions></testoptions><quiet>1</quiet><truescoremode>=</truescoremode><truescore>1.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt1-1-T</trueanswernote><truefeedback format="html"><text><![CDATA[]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>-1</falsenextnode><falseanswernote>prt1-1-F</falseanswernote><falsefeedback format="html"><text><![CDATA[<p>{@fbt@}</p>[[if test="nofb"]]<p>The projection of {@lin@} on {@pl@} joins the feet of the perpendiculars from its two ends.</p>[[/if]]]]></text></falsefeedback></node>
+  </prt>
+  <prt><name>prt2</name><value>1.0000000</value><autosimplify>1</autosimplify><feedbackstyle>1</feedbackstyle><feedbackvariables><text><![CDATA[sq2: float(ans2^2);
+]]></text></feedbackvariables>
+    <node><name>0</name><description>Answer</description><answertest>NumAbsolute</answertest><sans>ans2</sans><tans>tl</tans><testoptions>0.00501</testoptions><quiet>1</quiet><truescoremode>=</truescoremode><truescore>1.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt2-1-T</trueanswernote><truefeedback format="html"><text><![CDATA[]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>1</falsenextnode><falseanswernote>prt2-1-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>1</name><description>Line itself</description><answertest>NumAbsolute</answertest><sans>ans2</sans><tans>dl1</tans><testoptions>0.00501</testoptions><quiet>1</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt2-2-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>That is the length of {@lin@} itself. Its projection is shorter: it lies in the plane.</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>2</falsenextnode><falseanswernote>prt2-2-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>2</name><description>Edges added</description><answertest>NumAbsolute</answertest><sans>ans2</sans><tans>dl2</tans><testoptions>0.00501</testoptions><quiet>1</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt2-3-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>You added the two edges. The projection is the hypotenuse of a right-angled triangle: use Pythagoras.</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>3</falsenextnode><falseanswernote>prt2-3-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>3</name><description>No square root</description><answertest>NumAbsolute</answertest><sans>ans2</sans><tans>dl3</tans><testoptions>0.00501</testoptions><quiet>1</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt2-4-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>You found \({@ca@}^2 + {@cb@}^2 = {@S1@}\) but did not take the square root.</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>4</falsenextnode><falseanswernote>prt2-4-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>4</name><description>Perpendicular</description><answertest>NumAbsolute</answertest><sans>ans2</sans><tans>dl4</tans><testoptions>0.00501</testoptions><quiet>1</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt2-5-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>That is the length of the perpendicular {@o2@}, not of the projection.</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>5</falsenextnode><falseanswernote>prt2-5-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>5</name><description>Close but not accurate</description><answertest>NumAbsolute</answertest><sans>ans2</sans><tans>tl</tans><testoptions>0.03</testoptions><quiet>1</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt2-6-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>Your answer is close but not accurate to 2 decimal places. Keep full calculator accuracy until the end (store values, or keep the square root), then round the length once.</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>-1</falsenextnode><falseanswernote>prt2-6-F</falseanswernote><falsefeedback format="html"><text><![CDATA[<p>The projection lies in the plane {@pl@}, so it is an edge or a diagonal of that face. Your length squared is {@d2(sq2)@}. For a diagonal that should be the sum of the squares of the two edges of the face; an edge can be read from the dimensions. Which is it here?</p>]]></text></falsefeedback></node>
+  </prt>
+
+  <deployedseed>4</deployedseed>
+  <deployedseed>5</deployedseed>
+  <deployedseed>15</deployedseed>
+  <deployedseed>8</deployedseed>
+  <deployedseed>24</deployedseed>
+  <deployedseed>1</deployedseed>
+  <deployedseed>3</deployedseed>
+  <deployedseed>10</deployedseed>
+  <deployedseed>2</deployedseed>
+  <deployedseed>17</deployedseed>
+  <qtest><testcase>1</testcase><description>Correct</description>
+    <testinput><name>ans1</name><value>prj</value></testinput>
+    <testinput><name>ans2</name><value>tl</value></testinput>
+    <expected><name>prt1</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt1-1-T</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt2-1-T</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>2</testcase><description>Correct, exact square root</description>
+    <testinput><name>ans1</name><value>prj</value></testinput>
+    <testinput><name>ans2</name><value>sqrt(S1)</value></testinput>
+    <expected><name>prt1</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt1-1-T</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt2-1-T</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>3</testcase><description>Correct, rounded</description>
+    <testinput><name>ans1</name><value>prj</value></testinput>
+    <testinput><name>ans2</name><value>tlr</value></testinput>
+    <expected><name>prt1</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt1-1-T</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt2-1-T</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>4</testcase><description>The line itself; its length</description>
+    <testinput><name>ans1</name><value>o1</value></testinput>
+    <testinput><name>ans2</name><value>dl1</value></testinput>
+    <expected><name>prt1</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt1-1-F</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt2-1-F | prt2-2-T</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>5</testcase><description>A perpendicular; edges added (NA on edge entries)</description>
+    <testinput><name>ans1</name><value>o2</value></testinput>
+    <testinput><name>ans2</name><value>dl2</value></testinput>
+    <expected><name>prt1</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt1-1-F</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt2-1-F | prt2-2-F | prt2-3-T</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>6</testcase><description>The other diagonal; no square root (NA on edge entries)</description>
+    <testinput><name>ans1</name><value>o3</value></testinput>
+    <testinput><name>ans2</name><value>dl3</value></testinput>
+    <expected><name>prt1</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt1-1-F</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt2-1-F | prt2-2-F | prt2-3-F | prt2-4-T</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>7</testcase><description>An edge; the perpendicular's length</description>
+    <testinput><name>ans1</name><value>o4</value></testinput>
+    <testinput><name>ans2</name><value>dl4</value></testinput>
+    <expected><name>prt1</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt1-1-F</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt2-1-F | prt2-2-F | prt2-3-F | prt2-4-F | prt2-5-T</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>8</testcase><description>Correct; close but not accurate</description>
+    <testinput><name>ans1</name><value>prj</value></testinput>
+    <testinput><name>ans2</name><value>tla</value></testinput>
+    <expected><name>prt1</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt1-1-T</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt2-1-F | prt2-2-F | prt2-3-F | prt2-4-F | prt2-5-F | prt2-6-T</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>9</testcase><description>Correct; generic wrong</description>
+    <testinput><name>ans1</name><value>prj</value></testinput>
+    <testinput><name>ans2</name><value>tlg</value></testinput>
+    <expected><name>prt1</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt1-1-T</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt2-1-F | prt2-2-F | prt2-3-F | prt2-4-F | prt2-5-F | prt2-6-F</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>10</testcase><description>Invalid: a letter in (b)</description>
+    <testinput><name>ans1</name><value>prj</value></testinput>
+    <testinput><name>ans2</name><value>x</value></testinput>
+    <expected><name>prt1</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt1-1-T</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore></expectedscore><expectedpenalty></expectedpenalty><expectedanswernote>NULL</expectedanswernote></expected>
+  </qtest>
+</question>
+</quiz>

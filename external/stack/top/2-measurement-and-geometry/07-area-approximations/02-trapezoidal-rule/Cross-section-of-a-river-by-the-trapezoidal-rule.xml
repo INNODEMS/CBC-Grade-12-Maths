@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<quiz>
+<question type="stack">
+  <name><text>Cross section of a river by the trapezoidal rule</text></name>
+  <questiontext format="html">
+    <text><![CDATA[<p>To find how much water the [[if test="is(ix=1)"]]Nzoia River at Bungoma[[elif test="is(ix=2)"]]Tana River at Garissa[[elif test="is(ix=3)"]]Yala River near Siaya[[elif test="is(ix=4)"]]Athi River near Kibwezi[[elif test="is(ix=5)"]]Thika River at Thika[[elif test="is(ix=6)"]]Ewaso Ng'iro River at Archers Post[[elif test="is(ix=7)"]]Sondu River near Nyakach[[elif test="is(ix=8)"]]Nyando River near Ahero[[elif test="is(ix=9)"]]Turkwel River at Lodwar[[else]]Mara River near the Mara bridge[[/if]] carries, a team stretched a rope \({@W@}\,\text{m}\) across the river and measured the depth every \({@hh@}\,\text{m}\), from one bank to the other.</p><table border="1" style="border-collapse:collapse;text-align:center;"><tr><th style="padding:4px 10px;">Distance from bank (m)</th>[[foreach u="xs"]]<td style="padding:4px 10px;">\({@u@}\)</td>[[/foreach]]</tr><tr><th style="padding:4px 10px;">Depth (m)</th>[[foreach u="dall"]]<td style="padding:4px 10px;">\({@exd(u)@}\)</td>[[/foreach]]</tr></table><p>(a) Use the trapezoidal rule to estimate the area of the cross-section of the river.</p><div>[[input:ans1]] \(\text{m}^2\) [[validation:ans1]] [[feedback:prt1]]</div><p>(b) The water flows at \({@exd(v)@}\,\text{m/s}\). Estimate the volume of water that passes the rope each second.</p><div>[[input:ans2]] \(\text{m}^3\) [[validation:ans2]] [[feedback:prt2]]</div><p>(c) The river bed curves like a bowl between the measured points, as in the sketch. Which statement is true?</p><div style="text-align:center;" role="img" aria-label="Sketch: a curved river bed with straight dashed lines joining the measured depths; the dashed lines lie above the bed.">[[jsxgraph width="420px" height="220px"]]
+(function() {
+  var b = JXG.JSXGraph.initBoard(divid, {boundingbox: [-0.6, 0.6, 6.6, -3.0], axis: false, grid: false, showNavigation: false, showCopyright: false, pan: {enabled: false}, zoom: {enabled: false}});
+  var d = function(x) { return -2.4 * Math.sin(Math.PI * x / 6); };
+  b.create('segment', [[-0.5, 0], [6.5, 0]], {strokeColor: '#000000', strokeWidth: 2, fixed: true, highlight: false});
+  b.create('text', [-0.5, 0.35, 'water surface (not to scale)'], {fontSize: 12, fixed: true, highlight: false});
+  b.create('functiongraph', [d, 0, 6], {strokeColor: '#000000', strokeWidth: 3, fixed: true, highlight: false});
+  for (var k = 0; k < 4; k++) { b.create('segment', [[1.5 * k, d(1.5 * k)], [1.5 * (k + 1), d(1.5 * (k + 1))]], {strokeColor: '#000000', strokeWidth: 2, dash: 2, fixed: true, highlight: false}); }
+  for (var j = 1; j < 4; j++) { b.create('segment', [[1.5 * j, 0], [1.5 * j, d(1.5 * j)]], {strokeColor: '#666666', strokeWidth: 1, fixed: true, highlight: false}); }
+  b.create('text', [2.2, -2.75, 'river bed (solid curve)'], {fontSize: 12, fixed: true, highlight: false});
+})();
+[[/jsxgraph]]</div><div>[[input:ans3]] [[validation:ans3]] [[feedback:prt3]]</div>]]></text>
+  </questiontext>
+  <generalfeedback format="html">
+    <text><![CDATA[<p>(a) There are \({@n+1@}\) measuring points, so \({@n@}\) strips of width \(h = {@W@} \div {@n@} = {@hh@}\,\text{m}\). The depths at the banks are \(0\), but they are still ordinates. Each inner depth is a side of two trapezia, so it is counted twice:</p><p>\[A \approx \tfrac{1}{2} \times {@hh@} \times \left[0 + 0 + 2 \times {@exd(apply("+",ds))@}\right] = {@exd(A)@}\,\text{m}^2\]</p><p>(b) Each second a slice of water \({@exd(v)@}\,\text{m}\) long passes the rope, so the volume is area \(\times\) speed \(= {@exd(A)@} \times {@exd(v)@} = {@exd(Qf)@}\,\text{m}^3\) each second.</p><p>(c) The straight lines between the measured depths lie above the curved bed, so each trapezium stops short of the bed and some water is left out: the estimate is too small.</p>]]></text>
+  </generalfeedback>
+  <defaultgrade>3</defaultgrade>
+  <penalty>0.1</penalty>
+  <hidden>0</hidden>
+  <idnumber></idnumber>
+  <stackversion><text>2026063000</text></stackversion>
+  <questionvariables>
+    <text><![CDATA[/* exd: shortest exact decimal display of a terminating value (up to 3 d.p.) */
+exd(v) := if integerp(v) then v else if integerp(10*v) then dispdp(float(v),1) else if integerp(100*v) then dispdp(float(v),2) else dispdp(float(v),3);
+/* Design: cross section of a river by the trapezoidal rule. Entries [W, n, depths (exact tenths, without the zero at each bank), speed]. Source: original. */
+L: [[24,6,[10,18,24,23,15]/10,1/2],[30,5,[14,23,25,16]/10,4/5],[16,4,[9,16,11]/10,3/5],[40,8,[8,15,21,26,28,24,16]/10,2/5],[18,6,[7,13,18,19,12]/10,6/5],[35,5,[16,29,31,20]/10,1/2],[12,4,[6,11,8]/10,9/10],[28,7,[10,19,24,27,21,13]/10,7/10],[20,5,[11,18,20,12]/10,11/10],[45,9,[9,17,23,28,30,26,19,10]/10,3/10]];
+ix: 1+rand(10);
+W: L[ix][1]; n: L[ix][2]; ds: L[ix][3]; v: L[ix][4];
+hh: W/n;
+A: hh*apply("+",ds);
+Qf: A*v;
+xs: makelist(j*hh,j,0,n);
+dall: append([0],ds,[0]);
+opts: [["r0",false,"The estimate is exact, because the depths were measured carefully."],["r1",true,"The estimate is too small: the straight lines between the measured depths lie above the curved bed, so some water is left out."],["r2",false,"The estimate is too big: the straight lines between the measured depths lie below the curved bed."]];
+/* diagnostics */
+A2: 2*A; Ahalf: A/2;
+Ahs: (W/(n+1))*apply("+",ds);
+Ahi: (W/(n-1))*apply("+",ds);
+Qdiv: A/v; Qadd: A+v;]]></text>
+  </questionvariables>
+  <specificfeedback format="html"><text><![CDATA[]]></text></specificfeedback>
+  <questionnote format="moodle_auto_format">
+    <text>ix={@ix@}, W={@W@}, n={@n@}, h={@hh@}, A={@A@}, Q={@Qf@}</text>
+  </questionnote>
+  <questiondescription format="html"><text><![CDATA[<p id="concept">Area Approximations: cross-section of a river by the trapezoidal rule</p><p id="description">Grade 12 CBE Core 2.2 (b, d) / Essential 2.1 (b, d): Estimate the cross-section of a river from depth soundings with the trapezoidal rule, the volume of water passing each second, and say why the estimate is too small.</p><p id="edition">Core and Essential</p><p id="provenance">This question is original to this project.</p><p id="citation">INNODEMS CBC Grade 12 Mathematics, first draft by Ben Davies, 2026. Aligned to the KICD Senior School Curriculum Design, Core and Essential Mathematics Grade 12 (draft).</p>]]></text></questiondescription>
+  <questionsimplify>1</questionsimplify>
+  <assumepositive>0</assumepositive>
+  <assumereal>0</assumereal>
+  <prtcorrect format="html"><text><![CDATA[[[commonstring key="symbolicprtcorrectfeedback"/]] [[commonstring key="defaultprtcorrectfeedback"/]]]]></text></prtcorrect>
+  <prtpartiallycorrect format="html"><text><![CDATA[[[commonstring key="symbolicprtpartiallycorrectfeedback"/]] [[commonstring key="defaultprtpartiallycorrectfeedback"/]]]]></text></prtpartiallycorrect>
+  <prtincorrect format="html"><text><![CDATA[[[commonstring key="symbolicprtincorrectfeedback"/]] [[commonstring key="defaultprtincorrectfeedback"/]]]]></text></prtincorrect>
+  <decimals>.</decimals>
+  <scientificnotation>*10</scientificnotation>
+  <multiplicationsign>none</multiplicationsign>
+  <sqrtsign>1</sqrtsign>
+  <complexno>i</complexno>
+  <inversetrig>cos-1</inversetrig>
+  <logicsymbol>lang</logicsymbol>
+  <matrixparens>[</matrixparens>
+  <isbroken>0</isbroken>
+  <variantsselectionseed></variantsselectionseed>
+
+  <input><name>ans1</name><type>numerical</type><tans>A</tans><boxsize>8</boxsize><strictsyntax>1</strictsyntax><insertstars>0</insertstars><syntaxhint></syntaxhint><syntaxattribute>0</syntaxattribute><forbidwords></forbidwords><allowwords></allowwords><forbidfloat>0</forbidfloat><requirelowestterms>0</requirelowestterms><checkanswertype>0</checkanswertype><mustverify>0</mustverify><showvalidation>0</showvalidation><options></options></input>
+  <input><name>ans2</name><type>numerical</type><tans>Qf</tans><boxsize>8</boxsize><strictsyntax>1</strictsyntax><insertstars>0</insertstars><syntaxhint></syntaxhint><syntaxattribute>0</syntaxattribute><forbidwords></forbidwords><allowwords></allowwords><forbidfloat>0</forbidfloat><requirelowestterms>0</requirelowestterms><checkanswertype>0</checkanswertype><mustverify>0</mustverify><showvalidation>0</showvalidation><options></options></input>
+  <input><name>ans3</name><type>radio</type><tans>opts</tans><boxsize>15</boxsize><strictsyntax>1</strictsyntax><insertstars>0</insertstars><syntaxhint></syntaxhint><syntaxattribute>0</syntaxattribute><forbidwords></forbidwords><allowwords></allowwords><forbidfloat>1</forbidfloat><requirelowestterms>0</requirelowestterms><checkanswertype>0</checkanswertype><mustverify>0</mustverify><showvalidation>0</showvalidation><options></options></input>
+
+  <prt><name>prt1</name><value>1.0000000</value><autosimplify>1</autosimplify><feedbackstyle>1</feedbackstyle><feedbackvariables><text><![CDATA[dmx: lmax(ds);
+deep: is(ans1/W > dmx);
+md: block([r], r: round(100*float(ans1/W))/100, if integerp(r) then r else float(r));]]></text></feedbackvariables>
+    <node><name>0</name><description>Area</description><answertest>NumAbsolute</answertest><sans>ans1</sans><tans>A</tans><testoptions>0.001</testoptions><quiet>0</quiet><truescoremode>=</truescoremode><truescore>1.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt1-1-T</trueanswernote><truefeedback format="html"><text><![CDATA[]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>1</falsenextnode><falseanswernote>prt1-1-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>1</name><description>No half</description><answertest>NumAbsolute</answertest><sans>ans1</sans><tans>A2</tans><testoptions>0.001</testoptions><quiet>0</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt1-2-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>You left out the \(\tfrac{1}{2}\) in \(\tfrac{1}{2}h\). With zero depths at both banks the rule is \(\tfrac{1}{2}h \times 2 \times\) (sum of the inner depths).</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>2</falsenextnode><falseanswernote>prt1-2-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>2</name><description>Inner not doubled</description><answertest>NumAbsolute</answertest><sans>ans1</sans><tans>Ahalf</tans><testoptions>0.001</testoptions><quiet>0</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt1-3-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>Each inner depth is a side of two trapezia, so it is counted twice.</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>3</falsenextnode><falseanswernote>prt1-3-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>3</name><description>Divided by the number of depths</description><answertest>NumAbsolute</answertest><sans>ans1</sans><tans>Ahs</tans><testoptions>0.001</testoptions><quiet>0</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt1-4-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>You divided the width by the number of depths. There are \({@n@}\) strips between the \({@n+1@}\) measuring points, so \(h = {@hh@}\,\text{m}\).</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>4</falsenextnode><falseanswernote>prt1-4-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>4</name><description>Divided by the inner depths</description><answertest>NumAbsolute</answertest><sans>ans1</sans><tans>Ahi</tans><testoptions>0.001</testoptions><quiet>0</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt1-5-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>You divided by the number of inner depths. Count the strips: \({@n@}\).</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>-1</falsenextnode><falseanswernote>prt1-5-F</falseanswernote><falsefeedback format="html"><text><![CDATA[[[if test="deep"]]<p>Your area is that of a rectangle \({@W@}\,\text{m}\) wide and about \({@md@}\,\text{m}\) deep. The river is nowhere deeper than \({@exd(dmx)@}\,\text{m}\), so your area is too big.</p>[[/if]]<p>Area \(\approx \tfrac{1}{2}h\left[y_0 + y_n + 2(y_1 + \cdots + y_{n-1})\right]\), with \(y_0 = y_n = 0\) at the banks and \(h\) the gap between measuring points.</p>]]></text></falsefeedback></node>
+  </prt>
+  <prt><name>prt2</name><value>1.0000000</value><autosimplify>1</autosimplify><feedbackstyle>1</feedbackstyle><feedbackvariables><text><![CDATA[]]></text></feedbackvariables>
+    <node><name>0</name><description>Flow</description><answertest>NumAbsolute</answertest><sans>ans2</sans><tans>Qf</tans><testoptions>0.001</testoptions><quiet>0</quiet><truescoremode>=</truescoremode><truescore>1.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt2-1-T</trueanswernote><truefeedback format="html"><text><![CDATA[]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>1</falsenextnode><falseanswernote>prt2-1-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>1</name><description>Divided by speed</description><answertest>NumAbsolute</answertest><sans>ans2</sans><tans>Qdiv</tans><testoptions>0.001</testoptions><quiet>0</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt2-2-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>You divided by the speed. Each second a slice of water \({@exd(v)@}\,\text{m}\) long passes the rope, so multiply the area by the speed.</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>2</falsenextnode><falseanswernote>prt2-2-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>2</name><description>Added speed</description><answertest>NumAbsolute</answertest><sans>ans2</sans><tans>Qadd</tans><testoptions>0.001</testoptions><quiet>0</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt2-3-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>You added the speed to the area. Volume each second \(=\) area \(\times\) speed.</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>3</falsenextnode><falseanswernote>prt2-3-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>3</name><description>Follow-through</description><answertest>NumAbsolute</answertest><sans>ans2</sans><tans>ans1*v</tans><testoptions>0.001</testoptions><quiet>0</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt2-4-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>Right method; check your area in (a).</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>-1</falsenextnode><falseanswernote>prt2-4-F</falseanswernote><falsefeedback format="html"><text><![CDATA[<p>Each second a slice of water \({@exd(v)@}\,\text{m}\) long passes the rope. Its volume is the area of its end \(\times\) its length.</p>]]></text></falsefeedback></node>
+  </prt>
+  <prt><name>prt3</name><value>1.0000000</value><autosimplify>1</autosimplify><feedbackstyle>1</feedbackstyle><feedbackvariables><text><![CDATA[]]></text></feedbackvariables>
+    <node><name>0</name><description>Too small</description><answertest>AlgEquiv</answertest><sans>ans3</sans><tans>"r1"</tans><testoptions></testoptions><quiet>0</quiet><truescoremode>=</truescoremode><truescore>1.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt3-1-T</trueanswernote><truefeedback format="html"><text><![CDATA[]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>1</falsenextnode><falseanswernote>prt3-1-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>1</name><description>Too big</description><answertest>AlgEquiv</answertest><sans>ans3</sans><tans>"r2"</tans><testoptions></testoptions><quiet>0</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt3-2-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>Look at the sketch: the dashed lines are above the bed, so the trapezia stop short of it.</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>-1</falsenextnode><falseanswernote>prt3-2-F</falseanswernote><falsefeedback format="html"><text><![CDATA[<p>Careful measuring does not remove the error from joining the points with straight lines.</p>]]></text></falsefeedback></node>
+  </prt>
+
+  <deployedseed>4</deployedseed>
+  <deployedseed>5</deployedseed>
+  <deployedseed>15</deployedseed>
+  <deployedseed>8</deployedseed>
+  <deployedseed>24</deployedseed>
+  <deployedseed>1</deployedseed>
+  <deployedseed>3</deployedseed>
+  <deployedseed>10</deployedseed>
+  <deployedseed>2</deployedseed>
+  <deployedseed>17</deployedseed>
+  <qtest><testcase>1</testcase><description>Correct</description>
+    <testinput><name>ans1</name><value>A</value></testinput>
+    <testinput><name>ans2</name><value>Qf</value></testinput>
+    <testinput><name>ans3</name><value>"r1"</value></testinput>
+    <expected><name>prt1</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt1-1-T</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt2-1-T</expectedanswernote></expected>
+    <expected><name>prt3</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt3-1-T</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>2</testcase><description>No half; divided; too big</description>
+    <testinput><name>ans1</name><value>A2</value></testinput>
+    <testinput><name>ans2</name><value>Qdiv</value></testinput>
+    <testinput><name>ans3</name><value>"r2"</value></testinput>
+    <expected><name>prt1</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt1-1-F | prt1-2-T</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt2-1-F | prt2-2-T</expectedanswernote></expected>
+    <expected><name>prt3</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt3-1-F | prt3-2-T</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>3</testcase><description>Inner once; added; exact</description>
+    <testinput><name>ans1</name><value>Ahalf</value></testinput>
+    <testinput><name>ans2</name><value>Qadd</value></testinput>
+    <testinput><name>ans3</name><value>"r0"</value></testinput>
+    <expected><name>prt1</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt1-1-F | prt1-2-F | prt1-3-T</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt2-1-F | prt2-2-F | prt2-3-T</expectedanswernote></expected>
+    <expected><name>prt3</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt3-1-F | prt3-2-F</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>4</testcase><description>Width over depths; follow-through</description>
+    <testinput><name>ans1</name><value>Ahs</value></testinput>
+    <testinput><name>ans2</name><value>Ahs*v</value></testinput>
+    <testinput><name>ans3</name><value>"r1"</value></testinput>
+    <expected><name>prt1</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt1-1-F | prt1-2-F | prt1-3-F | prt1-4-T</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt2-1-F | prt2-2-F | prt2-3-F | prt2-4-T</expectedanswernote></expected>
+    <expected><name>prt3</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt3-1-T</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>5</testcase><description>Width over inner depths</description>
+    <testinput><name>ans1</name><value>Ahi</value></testinput>
+    <testinput><name>ans2</name><value>Qf</value></testinput>
+    <testinput><name>ans3</name><value>"r1"</value></testinput>
+    <expected><name>prt1</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt1-1-F | prt1-2-F | prt1-3-F | prt1-4-F | prt1-5-T</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt2-1-T</expectedanswernote></expected>
+    <expected><name>prt3</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt3-1-T</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>6</testcase><description>Generic wrong</description>
+    <testinput><name>ans1</name><value>A+1</value></testinput>
+    <testinput><name>ans2</name><value>Qf+1</value></testinput>
+    <testinput><name>ans3</name><value>"r1"</value></testinput>
+    <expected><name>prt1</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt1-1-F | prt1-2-F | prt1-3-F | prt1-4-F | prt1-5-F</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt2-1-F | prt2-2-F | prt2-3-F | prt2-4-F</expectedanswernote></expected>
+    <expected><name>prt3</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt3-1-T</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>7</testcase><description>Invalid: letter in (a)</description>
+    <testinput><name>ans1</name><value>x</value></testinput>
+    <testinput><name>ans2</name><value>Qf</value></testinput>
+    <testinput><name>ans3</name><value>"r1"</value></testinput>
+    <expected><name>prt1</name><expectedscore></expectedscore><expectedpenalty></expectedpenalty><expectedanswernote>NULL</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore></expectedscore><expectedpenalty></expectedpenalty><expectedanswernote>NULL</expectedanswernote></expected>
+    <expected><name>prt3</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt3-1-T</expectedanswernote></expected>
+  </qtest>
+</question>
+</quiz>

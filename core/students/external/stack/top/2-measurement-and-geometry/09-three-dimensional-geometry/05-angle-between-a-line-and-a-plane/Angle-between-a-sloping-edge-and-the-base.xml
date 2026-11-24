@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<quiz>
+<question type="stack">
+  <name><text>Angle between a sloping edge and the base</text></name>
+  <questiontext format="html">
+    <text><![CDATA[<p>{@ctx@} is a right pyramid VABCD on a rectangular base with AB = {@ll@} and BC = {@ww@} {@un@}. [[if test="isH"]]Its height VO is {@gv@} {@un@}.[[else]]Each sloping edge is {@gv@} {@un@} long.[[/if]] M is the midpoint of BC.</p><div style="text-align:center;" role="img" aria-label="A right pyramid VABCD on a rectangular base ABCD. O is the centre of the base, where the dashed diagonals AC and BD cross, and V is above O; VO is dotted. M is the midpoint of BC and N is the midpoint of AB. The hidden corner D and its edges are dashed.">
+[[jsxgraph width="360px" height="280px"]]
+(function() {
+  var b = JXG.JSXGraph.initBoard(divid, {boundingbox: [-1.2, 6.4, 8.9, -1.4], axis: false, grid: false, keepaspectratio: true,
+    showNavigation: false, showCopyright: false, pan: {enabled: false}, zoom: {enabled: false}});
+  // oblique projection: receding edges at 30 degrees, half length
+  function P(x, y, z) { return [x + 0.5*y*Math.cos(Math.PI/6), z + 0.5*y*Math.sin(Math.PI/6)]; }
+  var solid = {strokeColor: '#000000', strokeWidth: 2, fixed: true, highlight: false};
+  var hid = {strokeColor: '#000000', strokeWidth: 1.5, dash: 2, fixed: true, highlight: false};
+  var dot = {strokeColor: '#000000', strokeWidth: 1.5, dash: 1, fixed: true, highlight: false};
+  var tx = {fixed: true, highlight: false, useMathJax: false, fontSize: 15, anchorX: 'middle', anchorY: 'middle'};
+  var cx = 3.87, cy = 1.8;
+  function lab(Q, s) { var dx = Q[0]-cx, dy = Q[1]-cy, r = Math.sqrt(dx*dx+dy*dy) || 1;
+    b.create('text', [Q[0]+0.42*dx/r, Q[1]+0.42*dy/r, s], tx); }
+  function seg(Q, R, o) { b.create('segment', [Q, R], o); }
+  function mark(Q, R, S) { // right-angle mark at Q between QR and QS
+    function u(X) { var dx = X[0]-Q[0], dy = X[1]-Q[1], r = Math.sqrt(dx*dx+dy*dy); return [0.3*dx/r, 0.3*dy/r]; }
+    var a = u(R), c = u(S);
+    b.create('polygon', [[Q[0]+a[0], Q[1]+a[1]], [Q[0]+a[0]+c[0], Q[1]+a[1]+c[1]], [Q[0]+c[0], Q[1]+c[1]]],
+      {fixed: true, highlight: false, fillOpacity: 0, vertices: {visible: false},
+       borders: {strokeColor: '#000000', strokeWidth: 1, fixed: true, highlight: false}});
+  }
+  // right pyramid VABCD on a rectangular base (shape only)
+  var A = P(0,0,0), B = P(6,0,0), C = P(6,4,0), D = P(0,4,0), O = P(3,2,0), V = P(3,2,4.5), M = P(6,2,0), N = P(3,0,0);
+  seg(A,B,solid); seg(B,C,solid); seg(V,A,solid); seg(V,B,solid); seg(V,C,solid);
+  // hidden edges and the base diagonals dashed; the height VO dotted
+  seg(A,D,hid); seg(D,C,hid); seg(V,D,hid); seg(A,C,hid); seg(B,D,hid); seg(V,O,dot);
+  b.create('point', O, {fixed: true, highlight: false, size: 1.5, name: '', fillColor: '#000000', strokeColor: '#000000'});
+  b.create('point', M, {fixed: true, highlight: false, size: 1.5, name: '', fillColor: '#000000', strokeColor: '#000000'});
+  b.create('point', N, {fixed: true, highlight: false, size: 1.5, name: '', fillColor: '#000000', strokeColor: '#000000'});
+  lab(A,'A'); lab(B,'B'); lab(C,'C'); lab(D,'D'); lab(V,'V');
+  b.create('text', [M[0]+0.4, M[1], 'M'], tx); b.create('text', [N[0], N[1]-0.4, 'N'], tx);
+  b.create('text', [O[0]-0.15, O[1]-0.4, 'O'], tx);
+})();
+[[/jsxgraph]]
+</div><p>The diagram is not drawn to scale.</p><p>(a) The projection of VA on the base is</p><div>[[input:ans1]] [[validation:ans1]] [[feedback:prt1]]</div><p>(b) Find the angle between VA and the base.</p><div>[[input:ans2]] \(^\circ\) [[validation:ans2]] [[feedback:prt2]]</div><p>Give lengths correct to 2 decimal places and angles correct to 1 decimal place. Keep full calculator accuracy until the final answer.</p>]]></text>
+  </questiontext>
+  <generalfeedback format="html">
+    <text><![CDATA[<p>(a) V is vertically above O, so the perpendicular from V lands at O and the projection of VA on the base is OA.</p><p>(b) OA is half of the diagonal AC: \(\mathrm{OA}^2 = \frac{{@ll@}^2 + {@ww@}^2}{4} = {@SA@}\), OA = {@d2(OA)@} {@un@}. Triangle VOA has a right angle at O, so [[if test="isH"]]\(\tan \mathrm{VAO} = \frac{\mathrm{VO}}{\mathrm{OA}} = \frac{{@gv@}}{\sqrt{{@SA@}}}\)[[else]]\(\cos \mathrm{VAO} = \frac{\mathrm{OA}}{\mathrm{VA}} = \frac{\sqrt{{@SA@}}}{{@gv@}}\)[[/if]] and the angle between VA and the base is \({@d1(th)@}^\circ\).</p>]]></text>
+  </generalfeedback>
+  <defaultgrade>2</defaultgrade>
+  <penalty>0.1</penalty>
+  <hidden>0</hidden>
+  <idnumber></idnumber>
+  <stackversion><text>2026063000</text></stackversion>
+  <questionvariables>
+    <text><![CDATA[plist: [[0,12,5,"h",10,["OM","VO","AC","AB","OA"]],[1,5.7,5.4,"h",1.8,["AB","VO","AC","OA","OM"]],[2,5.6,4.6,"h",2.5,["OM","AC","AB","OA","VO"]],[3,19,12,"h",16,["OM","VO","AB","AC","OA"]],[0,11,6,"h",6,["OM","AC","VO","AB","OA"]],[1,8.1,8.8,"h",2,["AB","VO","OM","AC","OA"]],[2,5.5,6.3,"e",6,["AB","OA","OM","VO","AC"]],[3,17,15,"e",25,["VO","OM","AC","OA","AB"]],[0,16,17,"e",13,["AB","VO","AC","OM","OA"]],[1,6.6,4.2,"e",5.6,["AB","VO","OM","OA","AC"]]];
+/* Design: angle between a sloping edge and the base of a pyramid; six entries give the height, four the sloping edge. Source: adapted from SMP GCSE Higher 2, Chapter 34, B12(b)(ii), and SMP Book 5 (Metric), Chapter 7, Exercise D, Q5(b) (rectangular base). */
+CT: [["A model pyramid","cm"],["The roof of a gazebo","m"],["A pyramid tent","m"],["A glass paperweight","cm"]];
+ix: 1+rand(10); PP: plist[ix];
+ctx: CT[PP[1]+1][1]; un: CT[PP[1]+1][2]; ll: PP[2]; ww: PP[3]; isH: is(PP[4] = "h"); gv: PP[5]; OP: PP[6];
+hh: if isH then gv else sqrt(gv^2 - (ll^2+ww^2)/4);
+LS: "ABCDVOMN"; LT: [[0,0,0],[ll,0,0],[ll,ww,0],[0,ww,0],[ll/2,ww/2,hh],[ll/2,ww/2,0],[ll,ww/2,0],[ll/2,0,0]];
+pt(c) := LT[ssearch(c, LS)];
+vv(s) := pt(charat(s,2)) - pt(charat(s,1));
+sq(s) := vv(s) . vv(s);
+dst(s) := float(sqrt(sq(s)));
+angd(s) := block([u,w], u: pt(charat(s,1))-pt(charat(s,2)), w: pt(charat(s,3))-pt(charat(s,2)), float(acos((u . w)/sqrt((u . u)*(w . w)))*180/%pi));
+r1(v) := float(floor(10*v+1/2)/10); r2(v) := float(floor(100*v+1/2)/100);
+d1(v) := dispdp(r1(v),1); d2(v) := dispdp(r2(v),2); d4(v) := dispdp(float(floor(10000*v+1/2)/10000),4);
+NA: -999; NB: -888; NC: -777;
+nf(v) := if integerp(v) then v else float(v);
+r4(v) := float(floor(10000*v+1/2)/10000);
+SA: r4(sq("OA")); OA: dst("OA");
+th: angd("VAO"); fM: angd("VMO"); fN: angd("VNO"); fd: float(atan(hh/dst("AC"))*180/%pi); cp: 90-th;
+thr: r1(th); tha: th+0.2; thg: th+1.0; thrad: float(th*%pi/180);
+opts: makelist([o, is(o = "OA"), o], o, OP);
+]]></text>
+  </questionvariables>
+  <specificfeedback format="html"><text><![CDATA[]]></text></specificfeedback>
+  <questionnote format="moodle_auto_format">
+    <text>ix={@ix@}, {@ctx@}, {@ll@} by {@ww@}, {@PP[4]@}={@gv@}, angle {@d1(th)@}</text>
+  </questionnote>
+  <questiondescription format="html"><text><![CDATA[<p id="concept">Three-Dimensional Geometry: angle between a sloping edge and the base</p><p id="description">Grade 12 CBE Core 2.4: Name the projection of a sloping edge of a rectangular-based right pyramid on the base, then find the angle between the edge and the base.</p><p id="edition">Core</p><p id="provenance">This question is adapted from Chapter 34, Section B, question B12(b)(ii) of Ling, J., Scruton, P., Shilton, S. and West, H., SMP GCSE Mathematics: Higher 2 for AQA, Edexcel and OCR two-tier GCSE mathematics, Cambridge University Press, 2007: rectangular bases given by height or sloping edge, new contexts and numbers, a naming step, randomised, with named feedback.</p><p id="citation">INNODEMS CBC Grade 12 Mathematics, first draft by Ben Davies, 2026. Aligned to the KICD Senior School Curriculum Design, Core Mathematics Grade 12 (draft).</p>]]></text></questiondescription>
+  <questionsimplify>1</questionsimplify>
+  <assumepositive>0</assumepositive>
+  <assumereal>0</assumereal>
+  <prtcorrect format="html"><text><![CDATA[[[commonstring key="symbolicprtcorrectfeedback"/]] [[commonstring key="defaultprtcorrectfeedback"/]]]]></text></prtcorrect>
+  <prtpartiallycorrect format="html"><text><![CDATA[[[commonstring key="symbolicprtpartiallycorrectfeedback"/]] [[commonstring key="defaultprtpartiallycorrectfeedback"/]]]]></text></prtpartiallycorrect>
+  <prtincorrect format="html"><text><![CDATA[[[commonstring key="symbolicprtincorrectfeedback"/]] [[commonstring key="defaultprtincorrectfeedback"/]]]]></text></prtincorrect>
+  <decimals>.</decimals>
+  <scientificnotation>*10</scientificnotation>
+  <multiplicationsign>none</multiplicationsign>
+  <sqrtsign>1</sqrtsign>
+  <complexno>i</complexno>
+  <inversetrig>cos-1</inversetrig>
+  <logicsymbol>lang</logicsymbol>
+  <matrixparens>[</matrixparens>
+  <isbroken>0</isbroken>
+  <variantsselectionseed></variantsselectionseed>
+
+  <input><name>ans1</name><type>dropdown</type><tans>opts</tans><boxsize>15</boxsize><strictsyntax>1</strictsyntax><insertstars>0</insertstars><syntaxhint></syntaxhint><syntaxattribute>0</syntaxattribute><forbidwords></forbidwords><allowwords></allowwords><forbidfloat>1</forbidfloat><requirelowestterms>0</requirelowestterms><checkanswertype>0</checkanswertype><mustverify>0</mustverify><showvalidation>0</showvalidation><options></options></input>
+  <input><name>ans2</name><type>numerical</type><tans>th</tans><boxsize>6</boxsize><strictsyntax>1</strictsyntax><insertstars>0</insertstars><syntaxhint></syntaxhint><syntaxattribute>0</syntaxattribute><forbidwords></forbidwords><allowwords></allowwords><forbidfloat>0</forbidfloat><requirelowestterms>0</requirelowestterms><checkanswertype>0</checkanswertype><mustverify>0</mustverify><showvalidation>0</showvalidation><options></options></input>
+
+  <prt><name>prt1</name><value>1.0000000</value><autosimplify>1</autosimplify><feedbackstyle>1</feedbackstyle><feedbackvariables><text><![CDATA[kAC: is(ans1 = "AC"); kOM: is(ans1 = "OM"); kVO: is(ans1 = "VO");
+]]></text></feedbackvariables>
+    <node><name>0</name><description>Projection</description><answertest>AlgEquiv</answertest><sans>ans1</sans><tans>"OA"</tans><testoptions></testoptions><quiet>1</quiet><truescoremode>=</truescoremode><truescore>1.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt1-1-T</trueanswernote><truefeedback format="html"><text><![CDATA[]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>-1</falsenextnode><falseanswernote>prt1-1-F</falseanswernote><falsefeedback format="html"><text><![CDATA[[[if test="kAC"]]<p>AC is the whole diagonal of the base. The projection of VA starts at A and ends at the foot of the perpendicular from V to the base. Is V vertically above C?</p>[[else]][[if test="kOM"]]<p>OM runs to the middle of a side: it is the projection of VM, not of VA.</p>[[else]][[if test="kVO"]]<p>VO is the perpendicular from V to the base.</p>[[else]]<p>AB lies in the base but V is not above B.</p>[[/if]][[/if]][[/if]]]]></text></falsefeedback></node>
+  </prt>
+  <prt><name>prt2</name><value>1.0000000</value><autosimplify>1</autosimplify><feedbackstyle>1</feedbackstyle><feedbackvariables><text><![CDATA[okr: is(ans2 > 0 and ans2 < 90); rdn: float(ans2*%pi/180);
+oav: if okr then (if isH then float(gv/tan(rdn)) else float(gv*cos(rdn))) else NA;
+]]></text></feedbackvariables>
+    <node><name>0</name><description>Answer</description><answertest>NumAbsolute</answertest><sans>ans2</sans><tans>th</tans><testoptions>0.0501</testoptions><quiet>1</quiet><truescoremode>=</truescoremode><truescore>1.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt2-1-T</trueanswernote><truefeedback format="html"><text><![CDATA[]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>1</falsenextnode><falseanswernote>prt2-1-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>1</name><description>Face slope OM</description><answertest>NumAbsolute</answertest><sans>ans2</sans><tans>fM</tans><testoptions>0.0501</testoptions><quiet>1</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt2-2-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>That is the slope of the face VBC, using OM, the distance to the middle of a side. VA goes to the corner A, so use the distance from O to that corner.</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>2</falsenextnode><falseanswernote>prt2-2-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>2</name><description>Face slope ON</description><answertest>NumAbsolute</answertest><sans>ans2</sans><tans>fN</tans><testoptions>0.0501</testoptions><quiet>1</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt2-3-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>That is the slope of the face VAB, using ON, the distance to the middle of a side. VA goes to the corner A, so use the distance from O to that corner.</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>3</falsenextnode><falseanswernote>prt2-3-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>3</name><description>Whole diagonal</description><answertest>NumAbsolute</answertest><sans>ans2</sans><tans>fd</tans><testoptions>0.0501</testoptions><quiet>1</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt2-4-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>You used the whole diagonal AC. O is its midpoint.</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>4</falsenextnode><falseanswernote>prt2-4-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>4</name><description>Complement</description><answertest>NumAbsolute</answertest><sans>ans2</sans><tans>cp</tans><testoptions>0.0501</testoptions><quiet>1</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt2-5-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>That is angle AVO, between VA and the vertical.</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>5</falsenextnode><falseanswernote>prt2-5-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>5</name><description>Calculator in radians</description><answertest>NumAbsolute</answertest><sans>ans2</sans><tans>float((th)*%pi/180)</tans><testoptions>0.00501</testoptions><quiet>1</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt2-6-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>Your calculator is set to radians. Set it to degrees (DEG) and work out the angle again.</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>6</falsenextnode><falseanswernote>prt2-6-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>6</name><description>Close but not accurate</description><answertest>NumAbsolute</answertest><sans>ans2</sans><tans>th</tans><testoptions>0.3</testoptions><quiet>1</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt2-7-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>Your answer is close but not accurate to 1 decimal place. Keep full calculator accuracy until the end, then round the angle once.</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>-1</falsenextnode><falseanswernote>prt2-7-F</falseanswernote><falsefeedback format="html"><text><![CDATA[[[if test="okr"]]<p>Triangle VOA has a right angle at O. With your angle at A and [[if test="isH"]]VO[[else]]VA[[/if]] = {@gv@} {@un@}, OA would be {@d2(oav)@} {@un@}. OA runs from the centre O of the base to the corner A: compare your value with half the diagonal of the {@ll@} by {@ww@} base.</p>[[else]]<p>An angle between two lines, or between a line or plane and a plane, is between \(0^\circ\) and \(90^\circ\). Check your working and your calculator mode.</p>[[/if]]]]></text></falsefeedback></node>
+  </prt>
+
+  <deployedseed>4</deployedseed>
+  <deployedseed>5</deployedseed>
+  <deployedseed>15</deployedseed>
+  <deployedseed>8</deployedseed>
+  <deployedseed>24</deployedseed>
+  <deployedseed>1</deployedseed>
+  <deployedseed>3</deployedseed>
+  <deployedseed>10</deployedseed>
+  <deployedseed>2</deployedseed>
+  <deployedseed>17</deployedseed>
+  <qtest><testcase>1</testcase><description>Correct</description>
+    <testinput><name>ans1</name><value>"OA"</value></testinput>
+    <testinput><name>ans2</name><value>th</value></testinput>
+    <expected><name>prt1</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt1-1-T</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt2-1-T</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>2</testcase><description>Correct, rounded to 1 d.p.</description>
+    <testinput><name>ans1</name><value>"OA"</value></testinput>
+    <testinput><name>ans2</name><value>thr</value></testinput>
+    <expected><name>prt1</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt1-1-T</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt2-1-T</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>3</testcase><description>OM; face slope with OM</description>
+    <testinput><name>ans1</name><value>"OM"</value></testinput>
+    <testinput><name>ans2</name><value>fM</value></testinput>
+    <expected><name>prt1</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt1-1-F</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt2-1-F | prt2-2-T</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>4</testcase><description>AB; face slope with ON</description>
+    <testinput><name>ans1</name><value>"AB"</value></testinput>
+    <testinput><name>ans2</name><value>fN</value></testinput>
+    <expected><name>prt1</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt1-1-F</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt2-1-F | prt2-2-F | prt2-3-T</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>5</testcase><description>AC; whole diagonal</description>
+    <testinput><name>ans1</name><value>"AC"</value></testinput>
+    <testinput><name>ans2</name><value>fd</value></testinput>
+    <expected><name>prt1</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt1-1-F</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt2-1-F | prt2-2-F | prt2-3-F | prt2-4-T</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>6</testcase><description>VO; complement</description>
+    <testinput><name>ans1</name><value>"VO"</value></testinput>
+    <testinput><name>ans2</name><value>cp</value></testinput>
+    <expected><name>prt1</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt1-1-F</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt2-1-F | prt2-2-F | prt2-3-F | prt2-4-F | prt2-5-T</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>7</testcase><description>Correct; radians</description>
+    <testinput><name>ans1</name><value>"OA"</value></testinput>
+    <testinput><name>ans2</name><value>thrad</value></testinput>
+    <expected><name>prt1</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt1-1-T</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt2-1-F | prt2-2-F | prt2-3-F | prt2-4-F | prt2-5-F | prt2-6-T</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>8</testcase><description>Correct; close but not accurate</description>
+    <testinput><name>ans1</name><value>"OA"</value></testinput>
+    <testinput><name>ans2</name><value>tha</value></testinput>
+    <expected><name>prt1</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt1-1-T</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt2-1-F | prt2-2-F | prt2-3-F | prt2-4-F | prt2-5-F | prt2-6-F | prt2-7-T</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>9</testcase><description>Correct; generic wrong</description>
+    <testinput><name>ans1</name><value>"OA"</value></testinput>
+    <testinput><name>ans2</name><value>thg</value></testinput>
+    <expected><name>prt1</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt1-1-T</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt2-1-F | prt2-2-F | prt2-3-F | prt2-4-F | prt2-5-F | prt2-6-F | prt2-7-F</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>10</testcase><description>Invalid: a letter in (b)</description>
+    <testinput><name>ans1</name><value>"OA"</value></testinput>
+    <testinput><name>ans2</name><value>x</value></testinput>
+    <expected><name>prt1</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt1-1-T</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore></expectedscore><expectedpenalty></expectedpenalty><expectedanswernote>NULL</expectedanswernote></expected>
+  </qtest>
+</question>
+</quiz>

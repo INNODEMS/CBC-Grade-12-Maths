@@ -1,0 +1,7 @@
+<stack-static>
+    <statement><p><p>A water tank is to be the same distance from three homes at <m>P({4}, {12})</m>, <m>Q({11}, {-5})</m> and <m>R({11}, {5})</m>. Grid units are metres.</p><p>(a) Give the position of the tank.</p><div><m>\big(</m><fillin characters="5" name="ans1"/>, <fillin characters="5" name="ans2"/><m>\big)</m>   </div><p>(b) How far is it from each home?</p><div><fillin characters="5" name="ans3"/> m  </div></p></statement>
+    <solution><p><p>(a) A point equidistant from <m>P</m> and <m>Q</m> is on the perpendicular bisector of <m>PQ</m>; a point equidistant from <m>Q</m> and <m>R</m> is on the perpendicular bisector of <m>QR</m>. The tank is where they meet. Writing the tank as <m>(h, k)</m>, the two conditions <m>TP^2 = TQ^2</m> and <m>TQ^2 = TR^2</m> are two linear equations in <m>h</m> and <m>k</m>, whose solution is <m>({-1}, {0})</m>.</p><p>(b) <m>TP^2 = ({5})^2 + ({12})^2 = {169}</m>, so the tank is <m>{13}</m> m from each home. (Check: <m>TQ^2</m> and <m>TR^2</m> are also <m>{169}</m>.)</p><p>The centroid <m>({\frac{26}{3}}, {4})</m>, the mean of the three points, is a different point: it is not equidistant from the homes.</p></p></solution>
+    <answer><p><m>-1</m></p></answer>
+    <answer><p><m>0</m></p></answer>
+    <answer><p><m>13</m></p></answer>
+</stack-static>

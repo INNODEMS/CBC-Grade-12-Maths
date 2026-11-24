@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<quiz>
+<question type="stack">
+  <name><text>Column vector from a grid</text></name>
+  <questiontext format="html">
+    <text><![CDATA[<p>The arrow on the grid goes from P to Q.</p><div style="text-align:center;" role="img" aria-label="An arrow on a grid from P({#x0#}, {#y0#}) to Q({#x1#}, {#y1#}).">
+[[jsxgraph width="440px" height="360px"]]
+(function() {
+  var b = JXG.JSXGraph.initBoard(divid, {boundingbox: [-0.6, 7.6, 9.6, -0.6], axis: false, grid: false, keepAspectRatio: true, showNavigation: false, showCopyright: false, pan: {enabled: false}, zoom: {enabled: false}});
+  var gl = {strokeColor: '#d0d0d0', strokeWidth: 1, fixed: true, highlight: false};
+  for (var gx = 0; gx <= 9; gx++) { b.create('segment', [[gx, 0], [gx, 7]], gl); }
+  for (var gy = 0; gy <= 7; gy++) { b.create('segment', [[0, gy], [9, gy]], gl); }
+  var tx = {fixed: true, highlight: false, useMathJax: false, fontSize: 13};
+  var lab = {fixed: true, highlight: false, useMathJax: false, fontSize: 16};
+  for (var tk = 0; tk <= 9; tk++) { b.create('text', [tk - 0.15, 0 - 0.35, String(tk)], tx); }
+  for (var tk2 = 1; tk2 <= 7; tk2++) { b.create('text', [0 - 0.5, tk2, String(tk2)], tx); }
+  var ar = {strokeColor: '#1f4e9c', strokeWidth: 3, lastArrow: {type: 2, size: 5}, fixed: true, highlight: false};
+  var po = {fixed: true, highlight: false, size: 2, fillColor: '#000000', strokeColor: '#000000', withLabel: false};
+  b.create('point', [{#x0#}, {#y0#}], po); b.create('point', [{#x1#}, {#y1#}], po);
+  b.create('arrow', [[{#x0#}, {#y0#}], [{#x1#}, {#y1#}]], ar);
+  b.create('text', [{#x0#} + 0.15, {#y0#} + 0.35, 'P'], lab);
+  b.create('text', [{#x1#} + 0.15, {#y1#} + 0.35, 'Q'], lab);
+
+})();
+[[/jsxgraph]]
+</div><p>(a) Write \(\overrightarrow{PQ}\) as a column vector.</p><div>\(\overrightarrow{PQ} =\) [[input:ans1]] [[validation:ans1]] [[feedback:prt1]]</div><p>(b) Write \(\overrightarrow{QP}\) as a column vector.</p><div>\(\overrightarrow{QP} =\) [[input:ans2]] [[validation:ans2]] [[feedback:prt2]]</div>]]></text>
+  </questiontext>
+  <generalfeedback format="html">
+    <text><![CDATA[<p>The top number is the move across and the bottom number the move up. Moves left or down are negative.</p><p>(a) From \(P({@x0@},\,{@y0@})\) the arrow goes \({@abs(a)@}\) [[if test="is(a>0)"]]right[[else]]left[[/if]] and \({@abs(b)@}\) [[if test="is(b>0)"]]up[[else]]down[[/if]] to \(Q({@x1@},\,{@y1@})\), so \(\overrightarrow{PQ} = {@ta@}\).</p><p>(b) \(\overrightarrow{QP}\) goes the other way, from Q back to P, so both signs change: \(\overrightarrow{QP} = -\overrightarrow{PQ} = {@tb@}\).</p>]]></text>
+  </generalfeedback>
+  <defaultgrade>2</defaultgrade>
+  <penalty>0.1</penalty>
+  <hidden>0</hidden>
+  <idnumber></idnumber>
+  <stackversion><text>2026063000</text></stackversion>
+  <questionvariables>
+    <text><![CDATA[validate_numeric(ex) := block([sx], sx: ev(ex, simp), if listofvars(ex) = [] and freeof(%i, sx) then "" else "Type a number in each box, not a letter.");
+col(v) := matrix([v[1]],[v[2]]);
+/* Design: column vector for a drawn movement, P to Q and its reverse. On every variant at least one component is negative, |a| # |b|, and every diagnostic is distinct. Source: adapted from SMP GCSE Foundation 2, Chapter 15, Section B, B7. */
+a: rand_with_prohib(-5,5,[0]);
+b0: rand_with_prohib(1,5,[abs(a)]);
+b: if a>0 then -b0 else b0*rand([-1,1]);
+x0: max(0,-a)+rand(10-abs(a)); y0: max(0,-b)+rand(8-abs(b));
+x1: x0+a; y1: y0+b;
+ta: col([a,b]); tb: col([-a,-b]);
+swp: col([b,a]); absv: col([abs(a),abs(b)]);
+tw1: ta+matrix([1],[0]); tw2: tb+matrix([1],[0]);
+badm: matrix([q],[1]);
+]]></text>
+  </questionvariables>
+  <specificfeedback format="html"><text><![CDATA[]]></text></specificfeedback>
+  <questionnote format="moodle_auto_format">
+    <text>P=({@x0@},{@y0@}), Q=({@x1@},{@y1@}), PQ={@[a,b]@}</text>
+  </questionnote>
+  <questiondescription format="html"><text><![CDATA[<p id="concept">Vectors: column vectors from a grid</p><p id="description">Grade 12 CBE Essential 2.2: Write the column vector of an arrow drawn on a grid, and of the reverse arrow.</p><p id="edition">Essential</p><p id="provenance">This question is adapted from Question B7 in Section B of Chapter 15 of Ling, J., Scruton, P., Shilton, S. and West, H., SMP GCSE Mathematics: Foundation 2 for AQA, Edexcel and OCR two-tier GCSE mathematics, Cambridge University Press, 2007: new numbers, Kenyan context, STACK randomisation, the reverse vector added, with named feedback.</p><p id="citation">INNODEMS CBC Grade 12 Mathematics, first draft by Ben Davies, 2026. Aligned to the KICD Senior School Curriculum Design, Essential Mathematics Grade 12 (draft).</p>]]></text></questiondescription>
+  <questionsimplify>1</questionsimplify>
+  <assumepositive>0</assumepositive>
+  <assumereal>0</assumereal>
+  <prtcorrect format="html"><text><![CDATA[[[commonstring key="symbolicprtcorrectfeedback"/]] [[commonstring key="defaultprtcorrectfeedback"/]]]]></text></prtcorrect>
+  <prtpartiallycorrect format="html"><text><![CDATA[[[commonstring key="symbolicprtpartiallycorrectfeedback"/]] [[commonstring key="defaultprtpartiallycorrectfeedback"/]]]]></text></prtpartiallycorrect>
+  <prtincorrect format="html"><text><![CDATA[[[commonstring key="symbolicprtincorrectfeedback"/]] [[commonstring key="defaultprtincorrectfeedback"/]]]]></text></prtincorrect>
+  <decimals>.</decimals>
+  <scientificnotation>*10</scientificnotation>
+  <multiplicationsign>none</multiplicationsign>
+  <sqrtsign>1</sqrtsign>
+  <complexno>i</complexno>
+  <inversetrig>cos-1</inversetrig>
+  <logicsymbol>lang</logicsymbol>
+  <matrixparens>(</matrixparens>
+  <isbroken>0</isbroken>
+  <variantsselectionseed></variantsselectionseed>
+
+  <input><name>ans1</name><type>matrix</type><tans>ta</tans><boxsize>3</boxsize><strictsyntax>1</strictsyntax><insertstars>0</insertstars><syntaxhint></syntaxhint><syntaxattribute>0</syntaxattribute><forbidwords></forbidwords><allowwords></allowwords><forbidfloat>0</forbidfloat><requirelowestterms>0</requirelowestterms><checkanswertype>0</checkanswertype><mustverify>0</mustverify><showvalidation>3</showvalidation><options>validator:validate_numeric</options></input>
+  <input><name>ans2</name><type>matrix</type><tans>tb</tans><boxsize>3</boxsize><strictsyntax>1</strictsyntax><insertstars>0</insertstars><syntaxhint></syntaxhint><syntaxattribute>0</syntaxattribute><forbidwords></forbidwords><allowwords></allowwords><forbidfloat>0</forbidfloat><requirelowestterms>0</requirelowestterms><checkanswertype>0</checkanswertype><mustverify>0</mustverify><showvalidation>3</showvalidation><options>validator:validate_numeric</options></input>
+
+  <prt><name>prt1</name><value>1.0000000</value><autosimplify>1</autosimplify><feedbackstyle>1</feedbackstyle><feedbackvariables><text><![CDATA[zE: [x0+ans1[1,1], y0+ans1[2,1]];
+]]></text></feedbackvariables>
+    <node><name>0</name><description>PQ</description><answertest>AlgEquiv</answertest><sans>ans1</sans><tans>ta</tans><testoptions></testoptions><quiet>0</quiet><truescoremode>=</truescoremode><truescore>1.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt1-1-T</trueanswernote><truefeedback format="html"><text><![CDATA[]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>1</falsenextnode><falseanswernote>prt1-1-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>1</name><description>Across and up swapped</description><answertest>AlgEquiv</answertest><sans>ans1</sans><tans>swp</tans><testoptions></testoptions><quiet>1</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt1-2-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>The top number is the move across and the bottom number the move up. From P the arrow goes \({@abs(a)@}\) [[if test="is(a>0)"]]right[[else]]left[[/if]] and \({@abs(b)@}\) [[if test="is(b>0)"]]up[[else]]down[[/if]].</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>2</falsenextnode><falseanswernote>prt1-2-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>2</name><description>Signs left out</description><answertest>AlgEquiv</answertest><sans>ans1</sans><tans>absv</tans><testoptions></testoptions><quiet>1</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt1-3-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>You counted the squares but left out the signs. A move left or down is negative.</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>-1</falsenextnode><falseanswernote>prt1-3-F</falseanswernote><falsefeedback format="html"><text><![CDATA[<p>Check your vector on the grid: it takes \(P({@x0@},\,{@y0@})\) to \(({@zE[1]@},\,{@zE[2]@})\), which is not Q. Count the squares from P to Q: across first, then up or down.</p>]]></text></falsefeedback></node>
+  </prt>
+  <prt><name>prt2</name><value>1.0000000</value><autosimplify>1</autosimplify><feedbackstyle>1</feedbackstyle><feedbackvariables><text><![CDATA[zF: [x1+ans2[1,1], y1+ans2[2,1]];
+]]></text></feedbackvariables>
+    <node><name>0</name><description>QP</description><answertest>AlgEquiv</answertest><sans>ans2</sans><tans>tb</tans><testoptions></testoptions><quiet>0</quiet><truescoremode>=</truescoremode><truescore>1.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt2-1-T</trueanswernote><truefeedback format="html"><text><![CDATA[]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>1</falsenextnode><falseanswernote>prt2-1-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>1</name><description>Gave PQ</description><answertest>AlgEquiv</answertest><sans>ans2</sans><tans>ta</tans><testoptions></testoptions><quiet>1</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt2-2-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>That is \(\overrightarrow{PQ}\). \(\overrightarrow{QP}\) goes the other way, from Q back to P, so both signs change.</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>2</falsenextnode><falseanswernote>prt2-2-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>2</name><description>Across and up swapped</description><answertest>AlgEquiv</answertest><sans>ans2</sans><tans>swp</tans><testoptions></testoptions><quiet>1</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt2-3-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>The top number is the move across and the bottom number the move up. From P the arrow goes \({@abs(a)@}\) [[if test="is(a>0)"]]right[[else]]left[[/if]] and \({@abs(b)@}\) [[if test="is(b>0)"]]up[[else]]down[[/if]].</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>-1</falsenextnode><falseanswernote>prt2-3-F</falseanswernote><falsefeedback format="html"><text><![CDATA[<p>Check your vector on the grid: it takes \(Q({@x1@},\,{@y1@})\) to \(({@zF[1]@},\,{@zF[2]@})\), not back to P. \(\overrightarrow{QP}\) is the reverse of \(\overrightarrow{PQ}\): change the sign of both components.</p>]]></text></falsefeedback></node>
+  </prt>
+
+  <deployedseed>1</deployedseed>
+  <deployedseed>2</deployedseed>
+  <deployedseed>3</deployedseed>
+  <deployedseed>5</deployedseed>
+  <deployedseed>7</deployedseed>
+  <deployedseed>9</deployedseed>
+  <deployedseed>11</deployedseed>
+  <deployedseed>12</deployedseed>
+  <deployedseed>15</deployedseed>
+  <deployedseed>16</deployedseed>
+  <qtest><testcase>1</testcase><description>Correct</description>
+    <testinput><name>ans1</name><value>ta</value></testinput>
+    <testinput><name>ans2</name><value>tb</value></testinput>
+    <expected><name>prt1</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt1-1-T</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt2-1-T</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>2</testcase><description>Across and up swapped; PQ for QP</description>
+    <testinput><name>ans1</name><value>swp</value></testinput>
+    <testinput><name>ans2</name><value>ta</value></testinput>
+    <expected><name>prt1</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt1-1-F | prt1-2-T</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt2-1-F | prt2-2-T</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>3</testcase><description>Signs left out; across and up swapped</description>
+    <testinput><name>ans1</name><value>absv</value></testinput>
+    <testinput><name>ans2</name><value>swp</value></testinput>
+    <expected><name>prt1</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt1-1-F | prt1-2-F | prt1-3-T</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt2-1-F | prt2-2-F | prt2-3-T</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>4</testcase><description>Generic: one entry off</description>
+    <testinput><name>ans1</name><value>tw1</value></testinput>
+    <testinput><name>ans2</name><value>tw2</value></testinput>
+    <expected><name>prt1</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt1-1-F | prt1-2-F | prt1-3-F</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt2-1-F | prt2-2-F | prt2-3-F</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>5</testcase><description>Invalid: a letter in (a)</description>
+    <testinput><name>ans1</name><value>badm</value></testinput>
+    <testinput><name>ans2</name><value>tb</value></testinput>
+    <expected><name>prt1</name><expectedscore></expectedscore><expectedpenalty></expectedpenalty><expectedanswernote>NULL</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt2-1-T</expectedanswernote></expected>
+  </qtest>
+</question>
+</quiz>

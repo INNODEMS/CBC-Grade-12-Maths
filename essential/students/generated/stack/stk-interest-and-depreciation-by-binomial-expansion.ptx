@@ -1,0 +1,8 @@
+<stack-static>
+    <statement><p><p>Ksh <m>{45\,000}</m> is saved in a SACCO account that adds <m>{4}\%</m> interest at the end of each year. After <m>{4}</m> years the amount is <m>{45\,000}(1 + x)^{4}</m>.</p><p>(a) What is <m>x</m>?</p><div><m>x =</m> <fillin characters="8" name="ans1"/>  </div><p>(b) The second term of the expansion of <m>{45\,000}(1 + x)^{4}</m> is <m>{45\,000} \times {4}x</m>. Work it out in Ksh.</p><div>Ksh <fillin characters="10" name="ans2"/>  </div><p>(c) Work out the third term in Ksh.</p><div>Ksh <fillin characters="10" name="ans3"/>  </div><p>(d) Use the first three terms to estimate the amount after <m>{4}</m> years, to the nearest shilling.</p><div>Ksh <fillin characters="10" name="ans4"/>  </div></p></statement>
+    <solution><p><p>The first term is the starting amount; the second term, <m>P \times nx</m>, is the simple interest over <m>{4}</m> years; the later terms are the interest earned on interest.</p><p>(a) The amount grows by <m>{4}\%</m> a year, so <m>x = {0.04}</m>.</p><p>(b) <m>{45\,000} \times {4} \times ({0.04}) = {7200}</m></p><p>(c) The row for power <m>{4}</m> starts 1, <m>{4}</m>, <m>{6}</m>, so the third term is <m>{45\,000} \times {6} \times ({0.04})^2 = {432}</m>.</p><p>(d) <m>{45\,000} + ({7200}) + {432} = {52\,632}</m>, so the estimate is Ksh <m>{52\,632}</m>. The exact value from a calculator is Ksh <m>{52\,643.64}</m>.</p></p></solution>
+    <answer><p><m>\frac{1}{25}</m></p></answer>
+    <answer><p><m>7200</m></p></answer>
+    <answer><p><m>432</m></p></answer>
+    <answer><p><m>52632</m></p></answer>
+</stack-static>

@@ -1,0 +1,8 @@
+<stack-static>
+    <statement><p><p>A day school kitchen in Embu must serve at least <m>219</m> servings of lunch. A small pot of githeri gives <m>31</m> servings and a pot of rice gives <m>18</m>. A pot of githeri uses <m>8</m> bundles of firewood and a pot of rice uses <m>3</m>; there are <m>48</m> bundles. Let <m>x</m> be the number of pots of githeri and <m>y</m> the number of pots of rice. Food cooked beyond what is needed is wasted.</p><p>Type <m>\le</m> as <c>&lt;=</c> and <m>\ge</m> as <c>&gt;=</c>, for example <c>4x+9y&lt;=72</c>. Use the letters x and y as defined in the question.</p><p>(a) Write the inequality that makes sure there is enough.</p><div><fillin characters="18" name="ans1"/>  </div><p>(b) Find the whole-number plan with the least waste. <m>x =</m> <fillin characters="4" name="ans2"/>  <m>y =</m> <fillin characters="4" name="ans3"/> </p><div/><p>(c) How many servings are wasted with your plan? <fillin characters="6" name="ans4"/>  </p></p></statement>
+    <solution><p><p>(a) <m>{18 y+31 x\geq 219}</m>, with <m>{8}x + {3}y \le {48}</m>, <m>x \ge 0</m>, <m>y \ge 0</m>.</p><p>(b) The waste is <m>W = {31}x + {18}y - {219}</m>. Test the whole-number plans of R near the line <m>{31}x + {18}y = {219}</m>: the least waste is at <m>x = {3}</m>, <m>y = {7}</m>.</p><p>(c) <m>{31} \times {3} + {18} \times {7} - {219} = {0}</m> servings. Making the most of what you have is the same as making the least waste.</p></p></solution>
+    <answer><p><m>18 y+31 x\geq 219</m></p></answer>
+    <answer><p><m>3</m></p></answer>
+    <answer><p><m>7</m></p></answer>
+    <answer><p><m>0</m></p></answer>
+</stack-static>

@@ -1,0 +1,227 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<quiz>
+<question type="stack">
+  <name><text>Writing an inequality from a graph</text></name>
+  <questiontext format="html">
+    <text><![CDATA[<p>The graph shows a boundary line with the unwanted side shaded.</p><div style="text-align:center;" role="img" aria-label="{@arl@}">
+[[jsxgraph width="360px" height="360px"]]
+(function () {
+
+  function clip(P, a, b, c, s) {
+    var out = [], i, p, q, fp, fq, t;
+    for (i = 0; i < P.length; i++) {
+      p = P[i]; q = P[(i + 1) % P.length];
+      fp = s * (a * p[0] + b * p[1] - c); fq = s * (a * q[0] + b * q[1] - c);
+      if (fp >= 0) { out.push(p); }
+      if ((fp >= 0) !== (fq >= 0)) { t = fp / (fp - fq); out.push([p[0] + t * (q[0] - p[0]), p[1] + t * (q[1] - p[1])]); }
+    }
+    return out;
+  }
+  function frame(x0, x1, y0, y1) { return [[x0, y0], [x1, y0], [x1, y1], [x0, y1]]; }
+  function unwanted(L, R) { var s = (L[3] === 'lt' || L[3] === 'le') ? 1 : -1; return clip(R, L[0], L[1], L[2], s); }
+  function shade(b, P) {
+    if (P.length < 3) { return; }
+    b.create('polygon', P, {fillColor: '#808080', fillOpacity: 0.3, borders: {strokeWidth: 0, visible: false},
+      vertices: {visible: false}, fixed: true, highlight: false, withLines: false, hasInnerPoints: false});
+  }
+  function boundary(b, L, dashedOverride) {
+    var strict = (L[3] === 'lt' || L[3] === 'gt');
+    if (dashedOverride !== undefined) { strict = dashedOverride; }
+    // A dashed boundary on an axis (x = 0 or y = 0) would be hidden by the solid axis drawn
+    // under it; a white line underneath breaks the axis so the dashes show.
+    if (strict && L[2] === 0 && (L[0] === 0 || L[1] === 0)) {
+      b.create('line', [0, L[0], L[1]], {strokeColor: '#ffffff', strokeWidth: 4, fixed: true, highlight: false});
+    }
+    b.create('line', [-L[2], L[0], L[1]], {strokeColor: '#000000', strokeWidth: 2, dash: strict ? 2 : 0,
+      fixed: true, highlight: false, straightFirst: true, straightLast: true});
+  }
+  function grid(b, x0, x1, y0, y1, step) {
+    var g = {strokeColor: '#d0d0d0', strokeWidth: 1, fixed: true, highlight: false}, k, ax = {strokeColor: '#000000', strokeWidth: 1.5, fixed: true, highlight: false, lastArrow: {type: 2, size: 6}};
+    for (k = Math.ceil(x0); k <= x1; k++) { b.create('segment', [[k, y0], [k, y1]], g); }
+    for (k = Math.ceil(y0); k <= y1; k++) { b.create('segment', [[x0, k], [x1, k]], g); }
+    b.create('arrow', [[x0, 0], [x1, 0]], ax); b.create('arrow', [[0, y0], [0, y1]], ax);
+    var t = {fixed: true, highlight: false, fontSize: 11, anchorX: 'middle', anchorY: 'top'};
+    for (k = Math.ceil(x0); k < x1; k++) { if (k !== 0 && k % step === 0) { b.create('text', [k, -0.15, String(k)], t); } }
+    for (k = Math.ceil(y0); k < y1; k++) { if (k !== 0 && k % step === 0) { b.create('text', [-0.2, k, String(k)], {fixed: true, highlight: false, fontSize: 11, anchorX: 'right', anchorY: 'middle'}); } }
+    b.create('text', [-0.2, -0.15, '0'], {fixed: true, highlight: false, fontSize: 11, anchorX: 'right', anchorY: 'top'});
+    b.create('text', [x1 - 0.1, 0.25, 'x'], {fixed: true, highlight: false, fontSize: 14, anchorX: 'right', anchorY: 'bottom'});
+    b.create('text', [0.25, y1 - 0.1, 'y'], {fixed: true, highlight: false, fontSize: 14, anchorX: 'left', anchorY: 'top'});
+  }
+  function opts(bb) {
+    return {boundingbox: bb, keepAspectRatio: true, axis: false, grid: false, showNavigation: false,
+      showCopyright: false, pan: {enabled: false}, zoom: {enabled: false}};
+  }
+
+  var L = [{#a#}, {#b#}, {#c#}, {#rel#}], lo = {#blo#}, hi = {#bhi#}, st = {#bst#};
+  var b = JXG.JSXGraph.initBoard(divid, opts([lo - 0.5, hi + 0.5, hi + 0.5, lo - 0.5]));
+  var R = frame(lo, hi, lo, hi);
+  grid(b, lo, hi, lo, hi, st);
+  shade(b, unwanted(L, R));
+  boundary(b, L);
+  // R at the area centroid of the clear part (the vertex average can sit on the origin's labels)
+  var s = (L[3] === 'lt' || L[3] === 'le') ? -1 : 1, W = clip(R, L[0], L[1], L[2], s), cx = 0, cy = 0, ar = 0, cr, i, p, q;
+  for (i = 0; i < W.length; i++) { p = W[i]; q = W[(i + 1) % W.length]; cr = p[0] * q[1] - q[0] * p[1]; ar += cr; cx += (p[0] + q[0]) * cr; cy += (p[1] + q[1]) * cr; }
+  cx = cx / (3 * ar); cy = cy / (3 * ar);
+  // then the half-unit grid point in the clear part that keeps clear of the axes and the line, nearest that centroid
+  var nl = Math.sqrt(L[0] * L[0] + L[1] * L[1]), bx = cx, by = cy, bsc = -1e9, gx2, gy2, dd, sc2;
+  for (gx2 = lo + 0.5; gx2 <= hi - 0.5; gx2 += 0.5) { for (gy2 = lo + 0.5; gy2 <= hi - 0.5; gy2 += 0.5) {
+    dd = s * (L[0] * gx2 + L[1] * gy2 - L[2]) / nl; if (dd < 0.8) { continue; }
+    dd = Math.min(dd, Math.abs(gx2) + 0.2, Math.abs(gy2) + 0.2, 1.5);
+    sc2 = 10 * dd - Math.sqrt((gx2 - cx) * (gx2 - cx) + (gy2 - cy) * (gy2 - cy));
+    if (sc2 > bsc) { bsc = sc2; bx = gx2; by = gy2; } } }
+  cx = bx; cy = by;
+  b.create('text', [cx, cy, 'R'], {fixed: true, highlight: false, fontSize: 20, fontWeight: 'bold', anchorX: 'middle', anchorY: 'middle', cssStyle: 'font-weight:bold;'});
+})();
+[[/jsxgraph]]
+</div><p>Key: shaded, not wanted; unshaded (\(R\)), the required region.</p><p>The shaded region is not wanted. Write the inequality that describes the clear region \(R\).</p><div>[[input:ans1]] [[validation:ans1]]</div><div>[[feedback:prt1]]</div>]]></text>
+  </questiontext>
+  <generalfeedback format="html">
+    <text><![CDATA[<p>Step 1, the boundary: the line crosses the axes at \(({@X@}, 0)\) and \((0, {@Y@})\), so its equation is {@lind(a, b, c)@} (check: \(x = {@X@}, y = 0\) gives \({@a*X@}\); \(x = 0, y = {@Y@}\) gives \({@b*Y@}\)).</p><p>Step 2, the style: the line is [[if test="strictp(rel)"]]dashed, so points on it are not in \(R\): use \(\lt\) or \(\gt\)[[else]]solid, so points on it are in \(R\): use \(\le\) or \(\ge\)[[/if]].</p><p>Step 3, the direction, from a point in the clear region: [[if test="oin"]]the origin is in \(R\), and at \((0, 0)\) the left side is \(0\), which is [[if test="is(c>0)"]]less[[else]]more[[/if]] than \({@c@}\).[[else]]the origin is in the shaded part, so \(R\) is the side where the left side is [[if test="is(c>0)"]]more[[else]]less[[/if]] than \({@c@}\) (at \((0, 0)\) it is \(0\)).[[/if]]</p><p>So \(R\) is {@ineqd(a, b, c, rel)@}. Any equivalent form is also right, for example with every term multiplied by the same positive number.</p>]]></text>
+  </generalfeedback>
+  <defaultgrade>1</defaultgrade>
+  <penalty>0.1</penalty>
+  <hidden>0</hidden>
+  <idnumber></idnumber>
+  <stackversion><text>2026063000</text></stackversion>
+  <questionvariables>
+    <text><![CDATA[/* helpers: relation tokens, display strings, inequality builders */
+relt(r) := if r="lt" then "\\lt" else if r="le" then "\\le" else if r="gt" then "\\gt" else "\\ge";
+reluc(r) := if r="lt" then "<" else if r="le" then "≤" else if r="gt" then ">" else "≥";
+relflip(r) := if r="lt" then "gt" else if r="le" then "ge" else if r="gt" then "lt" else "le";
+relother(r) := if r="lt" then "le" else if r="le" then "lt" else if r="gt" then "ge" else "gt";
+relcomp(r) := if r="lt" then "ge" else if r="le" then "gt" else if r="gt" then "le" else "lt";
+strictp(r) := is(r="lt" or r="gt");
+/* Typed answers must be one inequality; "and"/"or" statements are rejected at validation. */
+vsingle(ex) := if not atom(ex) and member(op(ex), ["and", "or", "nounand", "nounor"]) then "Type a single inequality, without the words and or or." else "";
+mkin(u, r, w) := if r="lt" then u<w else if r="le" then u<=w else if r="gt" then u>w else u>=w;
+holds(u, r, w) := if r="lt" then is(u<w) else if r="le" then is(u<=w) else if r="gt" then is(u>w) else is(u>=w);
+relopts(c) := [["lt",is(c="lt"),"<"],["le",is(c="le"),"≤"],["gt",is(c="gt"),">"],["ge",is(c="ge"),"≥"]];
+termp(v) := block([dd], dd: denom(v), while is(mod(dd,2)=0) do dd: dd/2, while is(mod(dd,5)=0) do dd: dd/5, is(dd=1));
+nd(v) := if integerp(v) then string(v) else if termp(v) then string(float(v))
+  else sconcat(if is(v<0) then "-" else "", "\\frac{", string(abs(num(v))), "}{", string(denom(v)), "}");
+ndm(v) := sconcat("\\(", nd(v), "\\)");
+/* plain-text number for aria-labels (nd gives TeX fractions, which a screen reader reads raw) */
+ndt(v) := if integerp(v) then string(v) else if termp(v) then string(float(v)) else sconcat(string(num(v)), "/", string(denom(v)));
+trm(k, v, fst) := block([m, s], m: abs(k), s: if v="" then nd(m) else if m=1 then v else sconcat(nd(m), v),
+  if fst then (if k<0 then sconcat("-", s) else s) else (if k<0 then sconcat(" - ", s) else sconcat(" + ", s)));
+lfs(L) := block([s, t], s: "", for t in L do (if t[1]#0 then s: sconcat(s, trm(t[1], t[2], is(s="")))), if s="" then "0" else s);
+ins(a, b, c, r) := sconcat(lfs([[a,"x"],[b,"y"]]), " ", relt(r), " ", nd(c));
+ineqd(a, b, c, r) := sconcat("\\(", ins(a, b, c, r), "\\)");
+lind(a, b, c) := sconcat("\\(", lfs([[a,"x"],[b,"y"]]), " = ", nd(c), "\\)");
+ineqm(a, b, c, r) := mkin(a*x+b*y, r, c);
+/* Design: equation of the boundary, then the inequality; the unwanted side is shaded. Source: adapted from SMP GCSE Higher 2, Chapter 1, question C5.
+   Curated [a,b,c,rel]: R is a*x+b*y rel c; the other side is shaded. All lines sloping. */
+q51: [[-8,7,-56,"gt"],[2,7,-14,"lt"],[-5,7,-35,"ge"],[-4,7,28,"ge"],[-7,3,21,"gt"],[5,6,-30,"le"],[1,7,-7,"lt"],[-1,8,-8,"le"],[1,6,-6,"gt"],[8,3,24,"le"]];
+ix: 1+rand(10);
+a: q51[ix][1]; b: q51[ix][2]; c: q51[ix][3]; rel: q51[ix][4];
+X: c/a; Y: c/b;
+ta1: ineqm(a, b, c, rel);
+tcomp: ineqm(a, b, c, relcomp(rel));
+tflip: ineqm(a, b, c, relflip(rel));
+tstrict: ineqm(a, b, c, relother(rel));
+tswap: mkin(b*x+a*y, rel, c);
+/* test inputs */
+tscale: mkin(-2*a*x-2*b*y, relflip(rel), -2*c);
+tgen: ineqm(a, b, c+1, rel);
+tguard: mkin(a*x, rel, c);
+teq: a*x+b*y=c;
+oin: holds(0, rel, c);
+blo: min(0, X, Y)-2; bhi: max(0, X, Y)+2; bst: if is(bhi-blo>12) then 2 else 1;
+arl: sconcat("A ", if strictp(rel) then "dashed" else "solid", " line through (", nd(X), ", 0) and (0, ", nd(Y), ") on a grid. The side ",
+  if oin then "not containing" else "containing", " the origin is shaded; R is the clear side.");]]></text>
+  </questionvariables>
+  <specificfeedback format="html"><text><![CDATA[]]></text></specificfeedback>
+  <questionnote format="moodle_auto_format">
+    <text>ix={@ix@}, {@ineqd(a,b,c,rel)@}</text>
+  </questionnote>
+  <questiondescription format="html"><text><![CDATA[<p id="concept">Linear Inequalities: an inequality from a graph</p><p id="description">Grade 12 CBE Essential 1.3: Write the inequality for the clear region of a graph with one sloping boundary, with the unwanted side shaded.</p><p id="edition">Essential</p><p id="provenance">This question is adapted from Chapter 1 (Graphing inequalities), Section C, question C5 of Ling, J., Scruton, P., Shilton, S. and West, H., SMP GCSE Mathematics: Higher 2 for AQA, Edexcel and OCR two-tier GCSE mathematics, Cambridge University Press, 2007: new boundary lines, the unwanted side shaded and the clear region described.</p><p id="citation">INNODEMS CBC Grade 12 Mathematics, first draft by Ben Davies, 2026. Aligned to the KICD Senior School Curriculum Design, Essential Mathematics Grade 12 (draft).</p>]]></text></questiondescription>
+  <questionsimplify>1</questionsimplify>
+  <assumepositive>0</assumepositive>
+  <assumereal>0</assumereal>
+  <prtcorrect format="html"><text><![CDATA[[[commonstring key="symbolicprtcorrectfeedback"/]] [[commonstring key="defaultprtcorrectfeedback"/]]]]></text></prtcorrect>
+  <prtpartiallycorrect format="html"><text><![CDATA[[[commonstring key="symbolicprtpartiallycorrectfeedback"/]] [[commonstring key="defaultprtpartiallycorrectfeedback"/]]]]></text></prtpartiallycorrect>
+  <prtincorrect format="html"><text><![CDATA[[[commonstring key="symbolicprtincorrectfeedback"/]] [[commonstring key="defaultprtincorrectfeedback"/]]]]></text></prtincorrect>
+  <decimals>.</decimals>
+  <scientificnotation>*10</scientificnotation>
+  <multiplicationsign>none</multiplicationsign>
+  <sqrtsign>1</sqrtsign>
+  <complexno>i</complexno>
+  <inversetrig>cos-1</inversetrig>
+  <logicsymbol>lang</logicsymbol>
+  <matrixparens>[</matrixparens>
+  <isbroken>0</isbroken>
+  <variantsselectionseed></variantsselectionseed>
+
+  <input><name>ans1</name><type>algebraic</type><tans>ta1</tans><boxsize>18</boxsize><strictsyntax>1</strictsyntax><insertstars>4</insertstars><syntaxhint></syntaxhint><syntaxattribute>0</syntaxattribute><forbidwords></forbidwords><allowwords></allowwords><forbidfloat>1</forbidfloat><requirelowestterms>0</requirelowestterms><checkanswertype>1</checkanswertype><mustverify>0</mustverify><showvalidation>3</showvalidation><options>validator:vsingle</options></input>
+
+  <prt><name>prt1</name><value>1.0000000</value><autosimplify>1</autosimplify><feedbackstyle>1</feedbackstyle><feedbackvariables><text><![CDATA[/* guard: same letters as the teacher's answer (AlgEquiv ignores the name of a lone variable) */
+gsd: ev(lhs(ans1)-rhs(ans1),simp);
+gsv: sort(listofvars(gsd));
+gtv: sort(listofvars(ev(lhs(ta1)-rhs(ta1),simp)));
+samevars: is(gsv = gtv);
+lok: polynomialp(gsd, [x, y]);
+lca: if lok then coeff(expand(gsd), x) else 0;
+lcb: if lok then coeff(expand(gsd), y) else 0;
+lc0: if lok then ev(expand(gsd), x=0, y=0) else 0;
+llin: is(lok and numberp(lca) and numberp(lcb) and numberp(lc0) and not is(lca=0 and lcb=0) and is(expand(gsd-lca*x-lcb*y-lc0)=0));
+lbd: if not llin then "" else if is(lcb=0) then sconcat("the vertical line \\(x = ", nd(-lc0/lca), "\\)")
+  else if is(lca=0) then sconcat("the horizontal line \\(y = ", nd(-lc0/lcb), "\\)")
+  else if is(lc0=0) then "a sloping line through \\((0, 0)\\)"
+  else sconcat("a sloping line that crosses the axes at \\((", nd(-lc0/lca), ", 0)\\) and \\((0, ", nd(-lc0/lcb), ")\\)");
+]]></text></feedbackvariables>
+    <node><name>0</name><description>Guard: uses x and y</description><answertest>AlgEquiv</answertest><sans>samevars</sans><tans>true</tans><testoptions></testoptions><quiet>1</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>1</truenextnode><trueanswernote>prt1-1-T</trueanswernote><truefeedback format="html"><text><![CDATA[]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>-1</falsenextnode><falseanswernote>prt1-1-F</falseanswernote><falsefeedback format="html"><text><![CDATA[<p>The boundary is a sloping line, so your inequality needs both \(x\) and \(y\).</p>]]></text></falsefeedback></node>
+    <node><name>1</name><description>Correct inequality</description><answertest>AlgEquiv</answertest><sans>ans1</sans><tans>ta1</tans><testoptions></testoptions><quiet>1</quiet><truescoremode>=</truescoremode><truescore>1.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt1-2-T</trueanswernote><truefeedback format="html"><text><![CDATA[]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>2</falsenextnode><falseanswernote>prt1-2-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>2</name><description>Described the shaded side</description><answertest>AlgEquiv</answertest><sans>ans1</sans><tans>tcomp</tans><testoptions></testoptions><quiet>1</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt1-3-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>That describes the shaded side. The shaded side is the one we do not want: write the inequality for the clear region \(R\), and check it with a point in \(R\).</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>3</falsenextnode><falseanswernote>prt1-3-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>3</name><description>Sign the wrong way, same strictness</description><answertest>AlgEquiv</answertest><sans>ans1</sans><tans>tflip</tans><testoptions></testoptions><quiet>1</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt1-4-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>Your sign points towards the shaded side. Test a point in \(R\), then check whether the line is solid or dashed.</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>4</falsenextnode><falseanswernote>prt1-4-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>4</name><description>Right direction, wrong strictness</description><answertest>AlgEquiv</answertest><sans>ans1</sans><tans>tstrict</tans><testoptions></testoptions><quiet>1</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt1-5-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>The direction is right. The line is [[if test="strictp(rel)"]]dashed, so use \(\lt\) or \(\gt\)[[else]]solid, so use \(\le\) or \(\ge\)[[/if]].</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>5</falsenextnode><falseanswernote>prt1-5-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>5</name><description>Crossings swapped</description><answertest>AlgEquiv</answertest><sans>ans1</sans><tans>tswap</tans><testoptions></testoptions><quiet>1</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt1-6-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>Check the boundary: it crosses the axes at \(({@X@}, 0)\) and \((0, {@Y@})\); yours crosses at \(({@Y@}, 0)\) and \((0, {@X@})\).</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>-1</falsenextnode><falseanswernote>prt1-6-F</falseanswernote><falsefeedback format="html"><text><![CDATA[<p>[[if test="llin"]]Your inequality has {@lbd@} as its boundary, which is not the line on the graph. [[/if]]Find the equation of the line from where it crosses the axes, choose \(\le\), \(\lt\), \(\ge\) or \(\gt\) from its style, and test a point in \(R\).</p>]]></text></falsefeedback></node>
+  </prt>
+
+  <deployedseed>4</deployedseed>
+  <deployedseed>5</deployedseed>
+  <deployedseed>15</deployedseed>
+  <deployedseed>8</deployedseed>
+  <deployedseed>24</deployedseed>
+  <deployedseed>1</deployedseed>
+  <deployedseed>3</deployedseed>
+  <deployedseed>10</deployedseed>
+  <deployedseed>2</deployedseed>
+  <deployedseed>17</deployedseed>
+  <qtest><testcase>1</testcase><description>Correct</description>
+    <testinput><name>ans1</name><value>ta1</value></testinput>
+    <expected><name>prt1</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt1-1-T | prt1-2-T</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>2</testcase><description>Correct, scaled by -2 and sign reversed</description>
+    <testinput><name>ans1</name><value>tscale</value></testinput>
+    <expected><name>prt1</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt1-1-T | prt1-2-T</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>3</testcase><description>Shaded side</description>
+    <testinput><name>ans1</name><value>tcomp</value></testinput>
+    <expected><name>prt1</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt1-1-T | prt1-2-F | prt1-3-T</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>4</testcase><description>Sign flipped</description>
+    <testinput><name>ans1</name><value>tflip</value></testinput>
+    <expected><name>prt1</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt1-1-T | prt1-2-F | prt1-3-F | prt1-4-T</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>5</testcase><description>Wrong strictness</description>
+    <testinput><name>ans1</name><value>tstrict</value></testinput>
+    <expected><name>prt1</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt1-1-T | prt1-2-F | prt1-3-F | prt1-4-F | prt1-5-T</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>6</testcase><description>Crossings swapped</description>
+    <testinput><name>ans1</name><value>tswap</value></testinput>
+    <expected><name>prt1</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt1-1-T | prt1-2-F | prt1-3-F | prt1-4-F | prt1-5-F | prt1-6-T</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>7</testcase><description>Generic: constant off by one</description>
+    <testinput><name>ans1</name><value>tgen</value></testinput>
+    <expected><name>prt1</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt1-1-T | prt1-2-F | prt1-3-F | prt1-4-F | prt1-5-F | prt1-6-F</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>8</testcase><description>Guard: x only</description>
+    <testinput><name>ans1</name><value>tguard</value></testinput>
+    <expected><name>prt1</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt1-1-F</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>9</testcase><description>Invalid: an equation</description>
+    <testinput><name>ans1</name><value>teq</value></testinput>
+    <expected><name>prt1</name><expectedscore></expectedscore><expectedpenalty></expectedpenalty><expectedanswernote>NULL</expectedanswernote></expected>
+  </qtest>
+</question>
+</quiz>

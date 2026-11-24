@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<quiz>
+<question type="stack">
+  <name><text>Distance along a meridian</text></name>
+  <questiontext format="html">
+    <text><![CDATA[<p>\(P([[if test="is(ix=1)"]]3^\circ\,15'\,\mathrm{N}, 38^\circ\,\mathrm{E}[[/if]][[if test="is(ix=2)"]]2^\circ\,50'\,\mathrm{S}, 41^\circ\,\mathrm{E}[[/if]][[if test="is(ix=3)"]]6^\circ\,20'\,\mathrm{S}, 42^\circ\,\mathrm{E}[[/if]][[if test="is(ix=4)"]]1^\circ\,35'\,\mathrm{N}, 36^\circ\,\mathrm{E}[[/if]][[if test="is(ix=5)"]]12^\circ\,10'\,\mathrm{N}, 55^\circ\,\mathrm{E}[[/if]][[if test="is(ix=6)"]]7^\circ\,55'\,\mathrm{S}, 40^\circ\,\mathrm{E}[[/if]][[if test="is(ix=7)"]]18^\circ\,30'\,\mathrm{S}, 57^\circ\,\mathrm{E}[[/if]][[if test="is(ix=8)"]]0^\circ\,40'\,\mathrm{N}, 44^\circ\,\mathrm{E}[[/if]][[if test="is(ix=9)"]]5^\circ\,05'\,\mathrm{N}, 48^\circ\,\mathrm{E}[[/if]][[if test="is(ix=10)"]]9^\circ\,45'\,\mathrm{S}, 39^\circ\,\mathrm{E}[[/if]])\) and \(Q([[if test="is(ix=1)"]]11^\circ\,40'\,\mathrm{N}, 38^\circ\,\mathrm{E}[[/if]][[if test="is(ix=2)"]]9^\circ\,25'\,\mathrm{N}, 41^\circ\,\mathrm{E}[[/if]][[if test="is(ix=3)"]]14^\circ\,05'\,\mathrm{S}, 42^\circ\,\mathrm{E}[[/if]][[if test="is(ix=4)"]]4^\circ\,50'\,\mathrm{S}, 36^\circ\,\mathrm{E}[[/if]][[if test="is(ix=5)"]]25^\circ\,45'\,\mathrm{N}, 55^\circ\,\mathrm{E}[[/if]][[if test="is(ix=6)"]]3^\circ\,20'\,\mathrm{N}, 40^\circ\,\mathrm{E}[[/if]][[if test="is(ix=7)"]]4^\circ\,45'\,\mathrm{S}, 57^\circ\,\mathrm{E}[[/if]][[if test="is(ix=8)"]]13^\circ\,25'\,\mathrm{S}, 44^\circ\,\mathrm{E}[[/if]][[if test="is(ix=9)"]]21^\circ\,50'\,\mathrm{N}, 48^\circ\,\mathrm{E}[[/if]][[if test="is(ix=10)"]]2^\circ\,10'\,\mathrm{N}, 39^\circ\,\mathrm{E}[[/if]])\) are on the meridian \({@lon@}^\circ\,\mathrm{E}\). Take \(\pi = \tfrac{22}{7}\) and \(R = 6370\,\text{km}\). Distances in km within 0.1% of the exact value are accepted.</p><p>(a) Find the distance \(PQ\) along the meridian in nautical miles.</p><p>[[input:ans1]] nm [[validation:ans1]] [[feedback:prt1]]</p><p>(b) Find \(PQ\) in kilometres, to the nearest km.</p><p>[[input:ans2]] km [[validation:ans2]] [[feedback:prt2]]</p>]]></text>
+  </questiontext>
+  <generalfeedback format="html">
+    <text><![CDATA[<p>(a) [[if test="same"]]\(P\) and \(Q\) are on the same side of the equator, so subtract the latitudes.[[else]]\(P\) and \(Q\) are on opposite sides of the equator, so add the latitudes.[[/if]] [[if test="same"]]\({@floor((hi)/60)@}^\circ\,[[if test="is(mod(hi,60)<10)"]]0[[/if]]{@mod(hi,60)@}' - {@floor((lo)/60)@}^\circ\,[[if test="is(mod(lo,60)<10)"]]0[[/if]]{@mod(lo,60)@}' = {@floor((nm)/60)@}^\circ\,[[if test="is(mod(nm,60)<10)"]]0[[/if]]{@mod(nm,60)@}'\)[[else]]\({@floor((a)/60)@}^\circ\,[[if test="is(mod(a,60)<10)"]]0[[/if]]{@mod(a,60)@}' + {@floor((b)/60)@}^\circ\,[[if test="is(mod(b,60)<10)"]]0[[/if]]{@mod(b,60)@}' = {@floor((nm)/60)@}^\circ\,[[if test="is(mod(nm,60)<10)"]]0[[/if]]{@mod(nm,60)@}'\)[[/if]]. A meridian is half of a great circle, and a nautical mile is one minute of arc on a great circle, so the difference in minutes is the distance in nautical miles: \({@D@} \times 60 + {@M@} = {@nm@}\), so \(PQ = {@nm@}\) nm.</p><p>(b) The angle at the centre is \({@nm@}' = {@dispdp(float(nm/60),3)@}^\circ\), so</p><p>\[PQ = \frac{ {@dispdp(float(nm/60),3)@} }{360} \times 2 \times \frac{22}{7} \times 6370 = {@dispdp(float(kmv),1)@} \approx {@floor(kmv+1/2)@}\,\text{km}.\]</p><p>Or use \(1\) nm \(= 1.853\,\text{km}\): \({@nm@} \times 1.853 = {@dispdp(float(nm*1.853),1)@}\,\text{km}\).</p>]]></text>
+  </generalfeedback>
+  <defaultgrade>2</defaultgrade>
+  <penalty>0.1</penalty>
+  <hidden>0</hidden>
+  <idnumber></idnumber>
+  <stackversion><text>2026063000</text></stackversion>
+  <questionvariables>
+    <text><![CDATA[cosd(x) := cos(x*%pi/180);
+sind(x) := sin(x*%pi/180);
+atand(x) := 180*atan(x)/%pi;
+asind(x) := 180*asin(x)/%pi;
+two(v) := if v < 10 then sconcat("0", string(v)) else string(v);
+hm(m) := block([q], q: mod(m, 1440), sconcat(two(floor(q/60)), ":", two(mod(q, 60))));
+dmx(m) := sconcat(string(floor(m/60)), "^\\circ", two(mod(m, 60)), "'");
+/* Design: great-circle distance along a meridian, in km. [latP deg, min, N/S, latQ deg, min, N/S, longitude E]. Angles in minutes. Source: adapted from SMP Book 5 (Metric), chapter 3, Exercise D question 8. */
+L: [[3,15,"N",11,40,"N",38],[2,50,"S",9,25,"N",41],[6,20,"S",14,5,"S",42],[1,35,"N",4,50,"S",36],[12,10,"N",25,45,"N",55],[7,55,"S",3,20,"N",40],[18,30,"S",4,45,"S",57],[0,40,"N",13,25,"S",44],[5,5,"N",21,50,"N",48],[9,45,"S",2,10,"N",39]];
+ix: 1+rand(10);
+E: L[ix];
+lon: E[7];
+a: 60*E[1]+E[2]; b: 60*E[4]+E[5];
+same: is(E[3]=E[6]);
+nm: if same then abs(a-b) else a+b;
+wr: if same then a+b else abs(a-b);
+D: floor(nm/60); M: mod(nm,60);
+kmv: nm/60/360*40040;
+kmtol: max(1,kmv/1000);
+/* diagnostics */
+dec: (D+M/100)*60; deg: nm/60; half: kmv/2; divnm: nm/1.853;
+deckm: (D+M/100)/360*40040; rulekm: wr/60/360*40040;
+hi: max(a,b); lo: min(a,b);
+]]></text>
+  </questionvariables>
+  <specificfeedback format="html"><text><![CDATA[]]></text></specificfeedback>
+  <questionnote format="moodle_auto_format">
+    <text>ix={@ix@}, nm={@nm@}, km={@dispdp(float(kmv),1)@}, tol={@dispdp(float(kmtol),3)@}</text>
+  </questionnote>
+  <questiondescription format="html"><text><![CDATA[<p id="concept">Navigation: distance along a meridian</p><p id="description">Grade 12 CBE Core 2.7 (c) / Essential 2.3 (d): Find the distance between two places on the same meridian in nautical miles and in kilometres.</p><p id="edition">Core and Essential</p><p id="provenance">This question is adapted from Chapter 3 (The sphere), Exercise D, question 8 of School Mathematics Project, SMP Book 5 (Metric), ed. P. G. Bowie, Cambridge University Press, 1969: great-circle distance along a meridian; kilometres added, new positions.</p><p id="citation">INNODEMS CBC Grade 12 Mathematics, first draft by Ben Davies, 2026. Aligned to the KICD Senior School Curriculum Design, Core and Essential Mathematics Grade 12 (draft).</p>]]></text></questiondescription>
+  <questionsimplify>1</questionsimplify>
+  <assumepositive>0</assumepositive>
+  <assumereal>0</assumereal>
+  <prtcorrect format="html"><text><![CDATA[[[commonstring key="symbolicprtcorrectfeedback"/]] [[commonstring key="defaultprtcorrectfeedback"/]]]]></text></prtcorrect>
+  <prtpartiallycorrect format="html"><text><![CDATA[[[commonstring key="symbolicprtpartiallycorrectfeedback"/]] [[commonstring key="defaultprtpartiallycorrectfeedback"/]]]]></text></prtpartiallycorrect>
+  <prtincorrect format="html"><text><![CDATA[[[commonstring key="symbolicprtincorrectfeedback"/]] [[commonstring key="defaultprtincorrectfeedback"/]]]]></text></prtincorrect>
+  <decimals>.</decimals>
+  <scientificnotation>*10</scientificnotation>
+  <multiplicationsign>none</multiplicationsign>
+  <sqrtsign>1</sqrtsign>
+  <complexno>i</complexno>
+  <inversetrig>cos-1</inversetrig>
+  <logicsymbol>lang</logicsymbol>
+  <matrixparens>[</matrixparens>
+  <isbroken>0</isbroken>
+  <variantsselectionseed></variantsselectionseed>
+
+  <input><name>ans1</name><type>numerical</type><tans>nm</tans><boxsize>8</boxsize><strictsyntax>1</strictsyntax><insertstars>0</insertstars><syntaxhint></syntaxhint><syntaxattribute>0</syntaxattribute><forbidwords></forbidwords><allowwords></allowwords><forbidfloat>0</forbidfloat><requirelowestterms>0</requirelowestterms><checkanswertype>0</checkanswertype><mustverify>0</mustverify><showvalidation>0</showvalidation><options></options></input>
+  <input><name>ans2</name><type>numerical</type><tans>float(kmv)</tans><boxsize>8</boxsize><strictsyntax>1</strictsyntax><insertstars>0</insertstars><syntaxhint></syntaxhint><syntaxattribute>0</syntaxattribute><forbidwords></forbidwords><allowwords></allowwords><forbidfloat>0</forbidfloat><requirelowestterms>0</requirelowestterms><checkanswertype>0</checkanswertype><mustverify>0</mustverify><showvalidation>0</showvalidation><options></options></input>
+
+  <prt><name>prt1</name><value>1.0000000</value><autosimplify>1</autosimplify><feedbackstyle>1</feedbackstyle><feedbackvariables><text><![CDATA[]]></text></feedbackvariables>
+    <node><name>0</name><description>Distance in nm</description><answertest>NumAbsolute</answertest><sans>ans1</sans><tans>nm</tans><testoptions>0.001</testoptions><quiet>0</quiet><truescoremode>=</truescoremode><truescore>1.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt1-1-T</trueanswernote><truefeedback format="html"><text><![CDATA[]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>1</falsenextnode><falseanswernote>prt1-1-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>1</name><description>Rule swapped</description><answertest>NumAbsolute</answertest><sans>ans1</sans><tans>wr</tans><testoptions>0.001</testoptions><quiet>0</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt1-2-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>[[if test="same"]]\(P\) and \(Q\) are on the same side of the equator, so subtract the latitudes.[[else]]\(P\) and \(Q\) are on opposite sides of the equator, so add the latitudes.[[/if]]</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>2</falsenextnode><falseanswernote>prt1-2-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>2</name><description>Minutes as decimals</description><answertest>NumAbsolute</answertest><sans>ans1</sans><tans>dec</tans><testoptions>0.001</testoptions><quiet>0</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt1-3-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>You read \({@D@}^\circ\,[[if test="is(M<10)"]]0[[/if]]{@M@}'\) as the decimal \({@D@}.[[if test="is(M<10)"]]0[[/if]]{@M@}\). There are 60 minutes in a degree, not 100: change the degrees to minutes and add the \({@M@}\) minutes.</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>3</falsenextnode><falseanswernote>prt1-3-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>3</name><description>Degrees</description><answertest>NumAbsolute</answertest><sans>ans1</sans><tans>deg</tans><testoptions>0.001</testoptions><quiet>0</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt1-4-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>That is the difference in degrees. A nautical mile is one minute of arc, so give the difference in minutes.</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>-1</falsenextnode><falseanswernote>prt1-4-F</falseanswernote><falsefeedback format="html"><text><![CDATA[<p>Your \({@ans1@}\) nm is \({@ans1@}'\) of arc on the meridian, which is \({@dispdp(float(ans1/60),2)@}^\circ\). Compare that with the difference in latitude between \(P\) and \(Q\), worked in degrees and minutes.</p>]]></text></falsefeedback></node>
+  </prt>
+  <prt><name>prt2</name><value>1.0000000</value><autosimplify>1</autosimplify><feedbackstyle>1</feedbackstyle><feedbackvariables><text><![CDATA[ft: is(abs(ans1-nm)>0.001 and abs(ans2-ans1*1.853)<=kmtol);
+yr: if ans1>0 then float(ans2/ans1) else 0;
+yshow: is(ans1>0 and abs(yr-1.853)>0.002);]]></text></feedbackvariables>
+    <node><name>0</name><description>Distance in km</description><answertest>NumAbsolute</answertest><sans>ans2</sans><tans>kmv</tans><testoptions>kmtol</testoptions><quiet>0</quiet><truescoremode>=</truescoremode><truescore>1.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt2-1-T</trueanswernote><truefeedback format="html"><text><![CDATA[]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>1</falsenextnode><falseanswernote>prt2-1-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>1</name><description>Half circumference</description><answertest>NumAbsolute</answertest><sans>ans2</sans><tans>half</tans><testoptions>kmtol</testoptions><quiet>0</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt2-2-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>You used \(\pi R\) instead of \(2\pi R\) for the whole circle.</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>2</falsenextnode><falseanswernote>prt2-2-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>2</name><description>Divided by 1.853</description><answertest>NumAbsolute</answertest><sans>ans2</sans><tans>divnm</tans><testoptions>kmtol</testoptions><quiet>0</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt2-3-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>\(1\) nm \(= 1.853\,\text{km}\), so km \(=\) nm \(\times 1.853\), not nm \(\div 1.853\).</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>3</falsenextnode><falseanswernote>prt2-3-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>3</name><description>Minutes as decimals</description><answertest>NumAbsolute</answertest><sans>ans2</sans><tans>deckm</tans><testoptions>kmtol</testoptions><quiet>0</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt2-4-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>You read \({@D@}^\circ\,[[if test="is(M<10)"]]0[[/if]]{@M@}'\) as the decimal \({@D@}.[[if test="is(M<10)"]]0[[/if]]{@M@}^\circ\). The \({@M@}\) minutes are sixtieths of a degree, not hundredths.</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>4</falsenextnode><falseanswernote>prt2-4-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>4</name><description>Rule swapped</description><answertest>NumAbsolute</answertest><sans>ans2</sans><tans>rulekm</tans><testoptions>kmtol</testoptions><quiet>0</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt2-5-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>[[if test="same"]]\(P\) and \(Q\) are on the same side of the equator, so subtract the latitudes.[[else]]\(P\) and \(Q\) are on opposite sides of the equator, so add the latitudes.[[/if]]</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>5</falsenextnode><falseanswernote>prt2-5-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>5</name><description>Follow-through</description><answertest>AlgEquiv</answertest><sans>ft</sans><tans>true</tans><testoptions></testoptions><quiet>1</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt2-6-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>Your conversion is right for your answer to (a), but (a) is wrong.</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>-1</falsenextnode><falseanswernote>prt2-6-F</falseanswernote><falsefeedback format="html"><text><![CDATA[<p>[[if test="yshow"]]Your answers to (a) and (b) make one nautical mile equal to \({@dispdp(yr,3)@}\,\text{km}\). [[/if]]One nautical mile is \(1.853\,\text{km}\). You can also work from the angle at the centre, as a fraction of the whole circle.</p>]]></text></falsefeedback></node>
+  </prt>
+
+  <deployedseed>4</deployedseed>
+  <deployedseed>5</deployedseed>
+  <deployedseed>15</deployedseed>
+  <deployedseed>8</deployedseed>
+  <deployedseed>24</deployedseed>
+  <deployedseed>1</deployedseed>
+  <deployedseed>3</deployedseed>
+  <deployedseed>10</deployedseed>
+  <deployedseed>2</deployedseed>
+  <deployedseed>17</deployedseed>
+  <qtest><testcase>1</testcase><description>Correct</description>
+    <testinput><name>ans1</name><value>nm</value></testinput>
+    <testinput><name>ans2</name><value>floor(kmv+1/2)</value></testinput>
+    <expected><name>prt1</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt1-1-T</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt2-1-T</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>2</testcase><description>Correct by nm times 1.853</description>
+    <testinput><name>ans1</name><value>nm</value></testinput>
+    <testinput><name>ans2</name><value>float(nm*1.853)</value></testinput>
+    <expected><name>prt1</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt1-1-T</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt2-1-T</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>3</testcase><description>Correct with calculator pi</description>
+    <testinput><name>ans1</name><value>nm</value></testinput>
+    <testinput><name>ans2</name><value>float(nm/21600*2*%pi*6370)</value></testinput>
+    <expected><name>prt1</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt1-1-T</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt2-1-T</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>4</testcase><description>Generic wrong</description>
+    <testinput><name>ans1</name><value>nm+7</value></testinput>
+    <testinput><name>ans2</name><value>floor(kmv+1/2)+50</value></testinput>
+    <expected><name>prt1</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt1-1-F | prt1-2-F | prt1-3-F | prt1-4-F</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt2-1-F | prt2-2-F | prt2-3-F | prt2-4-F | prt2-5-F | prt2-6-F</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>5</testcase><description>Rule swapped; half circle</description>
+    <testinput><name>ans1</name><value>wr</value></testinput>
+    <testinput><name>ans2</name><value>float(half)</value></testinput>
+    <expected><name>prt1</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt1-1-F | prt1-2-T</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt2-1-F | prt2-2-T</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>6</testcase><description>Minutes as decimals; divided</description>
+    <testinput><name>ans1</name><value>float(dec)</value></testinput>
+    <testinput><name>ans2</name><value>float(divnm)</value></testinput>
+    <expected><name>prt1</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt1-1-F | prt1-2-F | prt1-3-T</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt2-1-F | prt2-2-F | prt2-3-T</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>7</testcase><description>Degrees; decimal minutes in km</description>
+    <testinput><name>ans1</name><value>float(deg)</value></testinput>
+    <testinput><name>ans2</name><value>float(deckm)</value></testinput>
+    <expected><name>prt1</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt1-1-F | prt1-2-F | prt1-3-F | prt1-4-T</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt2-1-F | prt2-2-F | prt2-3-F | prt2-4-T</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>8</testcase><description>Rule swapped in km</description>
+    <testinput><name>ans1</name><value>nm</value></testinput>
+    <testinput><name>ans2</name><value>float(rulekm)</value></testinput>
+    <expected><name>prt1</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt1-1-T</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt2-1-F | prt2-2-F | prt2-3-F | prt2-4-F | prt2-5-T</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>9</testcase><description>Follow-through</description>
+    <testinput><name>ans1</name><value>nm+7</value></testinput>
+    <testinput><name>ans2</name><value>float((nm+7)*1.853)</value></testinput>
+    <expected><name>prt1</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt1-1-F | prt1-2-F | prt1-3-F | prt1-4-F</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt2-1-F | prt2-2-F | prt2-3-F | prt2-4-F | prt2-5-F | prt2-6-T</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>10</testcase><description>Invalid: letter in (b)</description>
+    <testinput><name>ans1</name><value>nm</value></testinput>
+    <testinput><name>ans2</name><value>x</value></testinput>
+    <expected><name>prt1</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt1-1-T</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore></expectedscore><expectedpenalty></expectedpenalty><expectedanswernote>NULL</expectedanswernote></expected>
+  </qtest>
+</question>
+</quiz>

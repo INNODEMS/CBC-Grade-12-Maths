@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<quiz>
+<question type="stack">
+  <name><text>Translation vector of a wave</text></name>
+  <questiontext format="html">
+    <text><![CDATA[<p>The graph of \(y = {@base@}\) is mapped onto \(y = {@image@}\) by a translation. Give the translation vector.</p><div><table style="display:inline-table;vertical-align:middle;border-collapse:collapse;"><tr><td rowspan="2" style="font-size:3em;padding:0 4px;">(</td><td style="padding:2px;">[[input:ans1]] \(^\circ\)</td><td rowspan="2" style="font-size:3em;padding:0 4px;">)</td></tr><tr><td style="padding:2px;">[[input:ans2]]</td></tr></table></div><div>[[validation:ans1]] [[validation:ans2]] [[feedback:prt1]] [[feedback:prt2]]</div>]]></text>
+  </questiontext>
+  <generalfeedback format="html">
+    <text><![CDATA[<p>Take out the \({@b@}\): \(y = {@fact@}\).</p><p>Replacing \(x\) by \(x {@tc(sh)@}^\circ\) moves the graph the opposite way to the sign, by the angle divided by \({@b@}\): \({@abs(sh)@}^\circ\) to the [[if test="is(sh > 0)"]]left[[else]]right[[/if]]. Adding \({@d@}\) outside moves every point {@updown@} by \({@abs(d)@}\).</p><p>The translation vector is \(\begin{pmatrix} {@hx@}^\circ \\ {@d@} \end{pmatrix}\).</p>]]></text>
+  </generalfeedback>
+  <defaultgrade>2</defaultgrade>
+  <penalty>0.1</penalty>
+  <hidden>0</hidden>
+  <idnumber></idnumber>
+  <stackversion><text>2026063000</text></stackversion>
+  <questionvariables>
+    <text><![CDATA[hits(L,s,tol) := length(sublist(L, lambda([v], is(abs(v-s) <= tol))));
+matchset(L,S,tol) := is(length(L) = length(S)) and every(lambda([s], is(hits(L,s,tol) = 1)), S);
+allgenuine(L,S,tol) := every(lambda([v], some(lambda([s], is(abs(v-s) <= tol)), S)), L);
+validate_angles(ex) := if (setp(ex) or listp(ex)) and every(lambda([v], numberp(ev(v,simp))), if setp(ex) then listify(ex) else ex) then "" else "Type the angles as numbers inside curly brackets, separated by commas, for example {30, 150}. Do not type the degree sign.";
+r1(v) := float(floor(10*v+1/2)/10);
+ang1(v) := block([r], r: floor(10*v+1/2), if integerp(r/10) then string(r/10) else string(float(r/10)));
+setraw(L) := if L = [] then "\\{\\,\\}" else sconcat("\\{", simplode(map(lambda([v], sconcat(ang1(v), "^\\circ")), sort(L)), ", "), "\\}");
+degraw(v) := sconcat(ang1(v), "^\\circ");
+setstr(L) := sconcat("\\(", setraw(L), "\\)");
+angc(v) := block([al], al: float(acos(v)*180/%pi), if abs(al) < 1e-9 then [0,360] elseif abs(al-180) < 1e-9 then [180] else [al, 360-al]);
+angs(v) := block([al], al: float(asin(v)*180/%pi), if abs(al) < 1e-9 then [0,180,360] elseif abs(al-90) < 1e-9 then [90] elseif abs(al+90) < 1e-9 then [270] elseif al > 0 then [al, 180-al] else [180-al, 360+al]);
+qroots(A,B,C) := if A = 0 then (if B = 0 then [] else [-C/B]) elseif B^2-4*A*C < 0 then [] else [(-B-sqrt(B^2-4*A*C))/(2*A), (-B+sqrt(B^2-4*A*C))/(2*A)];
+inrange(L) := sublist(L, lambda([v], is(abs(float(v)) <= 1+1e-12)));
+uniqf(L) := unique(map(lambda([v], float(floor(10000*v+1/2)/10000)), L));
+nice(v) := block([r], r: floor(1000*v+1/2)/1000, if integerp(r) then r else float(r));
+res2(v) := block([r], r: floor(100*v+1/2)/100, if integerp(r) then string(r) else string(float(r)));
+tm(n, s) := if n = 0 then "" elseif n = 1 then sconcat(" + ", s) elseif n = -1 then sconcat(" - ", s) elseif n > 0 then sconcat(" + ", string(n), s) else sconcat(" - ", string(-n), s);
+tc(n) := if n = 0 then "" elseif n > 0 then sconcat(" + ", string(n)) else sconcat(" - ", string(-n));
+lead(n, s) := if n = 1 then s elseif n = -1 then sconcat("-", s) else sconcat(string(n), s);
+/* Design: the translation vector of a wave y = sin(b theta + k). Source: original. */
+L: [[1,2,2,100,1],[0,3,3,-150,-2],[1,1,2,-40,3],[0,2,4,140,-1],[1,3,3,75,2],[0,1,2,-70,-3],[1,4,5,100,1],[0,2,3,-60,2],[1,1,6,90,-2],[0,3,2,30,4]];
+ix: 1+rand(10);
+fs: L[ix][1]; a: L[ix][2]; b: L[ix][3]; cc: L[ix][4]; d: L[ix][5];
+fname: if fs = 1 then "\\sin" else "\\cos";
+dnum(v) := if integerp(v) then string(v) else string(float(v));
+bxs(b) := if b = 1 then " x" elseif integerp(b) then sconcat(" ", string(b), "x") elseif num(b) = 1 then sconcat("\\tfrac{x}{", string(denom(b)), "}") else sconcat("\\tfrac{", string(num(b)), "x}{", string(denom(b)), "}");
+hx: -cc/b; sh: cc/b;
+dfull: -cc; dsign: cc/b; draw: cc; dneg: -d;
+base: sconcat(lead(a, fname), " ", string(b), "x");
+image: sconcat(lead(a, fname), "(", string(b), "x", tc(cc), "^\\circ)", tc(d));
+fact: sconcat(lead(a, fname), " ", string(b), "(x", tc(sh), "^\\circ)", tc(d));
+sgnw: if cc > 0 then "+" else "-";
+updown: if d > 0 then "up" else "down";
+downup: if d > 0 then "down" else "up";
+/* The wave repeats every 360/b degrees, so a shift that differs from hx by whole periods is also a correct translation: it is accepted with a note. Choose c so that the "whole angle and direction" and "whole angle" slips are not such shifts. */
+wper: 360/b; hxalt: hx + wper;
+]]></text>
+  </questionvariables>
+  <specificfeedback format="html"><text><![CDATA[]]></text></specificfeedback>
+  <questionnote format="moodle_auto_format">
+    <text>ix={@ix@}, b={@b@}, c={@cc@}, d={@d@}, vector ({@hx@}, {@d@})</text>
+  </questionnote>
+  <questiondescription format="html"><text><![CDATA[<p id="concept">Trigonometry III: translation vector of a wave</p><p id="description">Grade 12 CBE Core 2.5: Give the column vector of the translation mapping y = a sin bx (or cos) onto y = a sin(bx + c) + d.</p><p id="edition">Core</p><p id="provenance">This question is original to this project.</p><p id="citation">INNODEMS CBC Grade 12 Mathematics, first draft by Ben Davies, 2026. Aligned to the KICD Senior School Curriculum Design, Core Mathematics Grade 12 (draft).</p>]]></text></questiondescription>
+  <questionsimplify>1</questionsimplify>
+  <assumepositive>0</assumepositive>
+  <assumereal>0</assumereal>
+  <prtcorrect format="html"><text><![CDATA[[[commonstring key="symbolicprtcorrectfeedback"/]] [[commonstring key="defaultprtcorrectfeedback"/]]]]></text></prtcorrect>
+  <prtpartiallycorrect format="html"><text><![CDATA[[[commonstring key="symbolicprtpartiallycorrectfeedback"/]] [[commonstring key="defaultprtpartiallycorrectfeedback"/]]]]></text></prtpartiallycorrect>
+  <prtincorrect format="html"><text><![CDATA[[[commonstring key="symbolicprtincorrectfeedback"/]] [[commonstring key="defaultprtincorrectfeedback"/]]]]></text></prtincorrect>
+  <decimals>.</decimals>
+  <scientificnotation>*10</scientificnotation>
+  <multiplicationsign>none</multiplicationsign>
+  <sqrtsign>1</sqrtsign>
+  <complexno>i</complexno>
+  <inversetrig>cos-1</inversetrig>
+  <logicsymbol>lang</logicsymbol>
+  <matrixparens>[</matrixparens>
+  <isbroken>0</isbroken>
+  <variantsselectionseed></variantsselectionseed>
+
+  <input><name>ans1</name><type>numerical</type><tans>hx</tans><boxsize>6</boxsize><strictsyntax>1</strictsyntax><insertstars>0</insertstars><syntaxhint></syntaxhint><syntaxattribute>0</syntaxattribute><forbidwords></forbidwords><allowwords></allowwords><forbidfloat>0</forbidfloat><requirelowestterms>0</requirelowestterms><checkanswertype>0</checkanswertype><mustverify>0</mustverify><showvalidation>0</showvalidation><options></options></input>
+  <input><name>ans2</name><type>numerical</type><tans>d</tans><boxsize>6</boxsize><strictsyntax>1</strictsyntax><insertstars>0</insertstars><syntaxhint></syntaxhint><syntaxattribute>0</syntaxattribute><forbidwords></forbidwords><allowwords></allowwords><forbidfloat>0</forbidfloat><requirelowestterms>0</requirelowestterms><checkanswertype>0</checkanswertype><mustverify>0</mustverify><showvalidation>0</showvalidation><options></options></input>
+
+  <prt><name>prt1</name><value>1.0000000</value><autosimplify>1</autosimplify><feedbackstyle>1</feedbackstyle><feedbackvariables><text><![CDATA[hm: float(mod(ans1-hx, wper));
+okh: is(hm < 0.001 or hm > wper-0.001);
+princ: is(abs(ans1-hx) < 0.001);
+]]></text></feedbackvariables>
+    <node><name>0</name><description>Horizontal shift</description><answertest>AlgEquiv</answertest><sans>okh</sans><tans>true</tans><testoptions></testoptions><quiet>1</quiet><truescoremode>=</truescoremode><truescore>1.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt1-1-T</trueanswernote><truefeedback format="html"><text><![CDATA[[[if test="not princ"]]<p>Accepted. The wave repeats every \({@wper@}^\circ\), so your shift of \({@ans1@}^\circ\) gives the same graph as the shortest shift, \({@hx@}^\circ\).</p>[[/if]]]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>1</falsenextnode><falseanswernote>prt1-1-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>1</name><description>Whole angle</description><answertest>NumAbsolute</answertest><sans>ans1</sans><tans>dfull</tans><testoptions>0.001</testoptions><quiet>1</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt1-2-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>You moved the graph by the whole \({@abs(cc)@}^\circ\), but \(x\) is multiplied by \({@b@}\) inside the bracket. A translation carries the point of \(y = {@base@}\) at \(x = 0^\circ\), where the angle \({@b@}x\) is \(0^\circ\), to the point of the new graph where the angle \({@b@}x {@tc(cc)@}^\circ\) is \(0^\circ\). At your \(x = {@ans1@}^\circ\) that angle is \({@nice(b*ans1+cc)@}^\circ\).</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>2</falsenextnode><falseanswernote>prt1-2-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>2</name><description>Direction</description><answertest>NumAbsolute</answertest><sans>ans1</sans><tans>dsign</tans><testoptions>0.001</testoptions><quiet>1</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt1-3-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>Right size, wrong direction. A translation carries the point of \(y = {@base@}\) at \(x = 0^\circ\), where the angle \({@b@}x\) is \(0^\circ\), to the point of the new graph where the angle \({@b@}x {@tc(cc)@}^\circ\) is \(0^\circ\). At your \(x = {@ans1@}^\circ\) that angle is \({@nice(b*ans1+cc)@}^\circ\).</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>3</falsenextnode><falseanswernote>prt1-3-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>3</name><description>Whole angle and direction</description><answertest>NumAbsolute</answertest><sans>ans1</sans><tans>draw</tans><testoptions>0.001</testoptions><quiet>1</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt1-4-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>Check both the size and the direction of the shift. A translation carries the point of \(y = {@base@}\) at \(x = 0^\circ\), where the angle \({@b@}x\) is \(0^\circ\), to the point of the new graph where the angle \({@b@}x {@tc(cc)@}^\circ\) is \(0^\circ\). At your \(x = {@ans1@}^\circ\) that angle is \({@nice(b*ans1+cc)@}^\circ\).</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>-1</falsenextnode><falseanswernote>prt1-4-F</falseanswernote><falsefeedback format="html"><text><![CDATA[<p>A translation carries the point of \(y = {@base@}\) at \(x = 0^\circ\), where the angle \({@b@}x\) is \(0^\circ\), to the point of the new graph where the angle \({@b@}x {@tc(cc)@}^\circ\) is \(0^\circ\). At your \(x = {@ans1@}^\circ\) that angle is \({@nice(b*ans1+cc)@}^\circ\). Take the \({@b@}\) out of the bracket as a factor to see the shift.</p>]]></text></falsefeedback></node>
+  </prt>
+  <prt><name>prt2</name><value>1.0000000</value><autosimplify>1</autosimplify><feedbackstyle>1</feedbackstyle><feedbackvariables><text><![CDATA[]]></text></feedbackvariables>
+    <node><name>0</name><description>Vertical shift</description><answertest>NumAbsolute</answertest><sans>ans2</sans><tans>d</tans><testoptions>0.001</testoptions><quiet>1</quiet><truescoremode>=</truescoremode><truescore>1.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt2-1-T</trueanswernote><truefeedback format="html"><text><![CDATA[]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>1</falsenextnode><falseanswernote>prt2-1-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>1</name><description>Sign of d</description><answertest>NumAbsolute</answertest><sans>ans2</sans><tans>dneg</tans><testoptions>0.001</testoptions><quiet>1</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt2-2-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>Your vector moves every point {@downup@} by \({@abs(d)@}\). Compare the two equations: is each \(y\)-value of the new graph larger or smaller than before?</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>-1</falsenextnode><falseanswernote>prt2-2-F</falseanswernote><falsefeedback format="html"><text><![CDATA[<p>Your vector changes every \(y\)-value by \({@ans2@}\). Compare the two equations: what is added to every \(y\)-value of \(y = {@base@}\)?</p>]]></text></falsefeedback></node>
+  </prt>
+
+  <deployedseed>4</deployedseed>
+  <deployedseed>5</deployedseed>
+  <deployedseed>15</deployedseed>
+  <deployedseed>8</deployedseed>
+  <deployedseed>24</deployedseed>
+  <deployedseed>1</deployedseed>
+  <deployedseed>3</deployedseed>
+  <deployedseed>10</deployedseed>
+  <deployedseed>2</deployedseed>
+  <deployedseed>17</deployedseed>
+  <qtest><testcase>1</testcase><description>Correct</description>
+    <testinput><name>ans1</name><value>hx</value></testinput>
+    <testinput><name>ans2</name><value>d</value></testinput>
+    <expected><name>prt1</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt1-1-T</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt2-1-T</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>2</testcase><description>Correct: a shift one whole period further on</description>
+    <testinput><name>ans1</name><value>hxalt</value></testinput>
+    <testinput><name>ans2</name><value>d</value></testinput>
+    <expected><name>prt1</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt1-1-T</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt2-1-T</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>3</testcase><description>Generic wrong</description>
+    <testinput><name>ans1</name><value>hx+10</value></testinput>
+    <testinput><name>ans2</name><value>d+1</value></testinput>
+    <expected><name>prt1</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt1-1-F | prt1-2-F | prt1-3-F | prt1-4-F</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt2-1-F | prt2-2-F</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>4</testcase><description>Whole angle; sign of d</description>
+    <testinput><name>ans1</name><value>dfull</value></testinput>
+    <testinput><name>ans2</name><value>dneg</value></testinput>
+    <expected><name>prt1</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt1-1-F | prt1-2-T</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt2-1-F | prt2-2-T</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>5</testcase><description>Wrong direction</description>
+    <testinput><name>ans1</name><value>dsign</value></testinput>
+    <testinput><name>ans2</name><value>d</value></testinput>
+    <expected><name>prt1</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt1-1-F | prt1-2-F | prt1-3-T</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt2-1-T</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>6</testcase><description>Whole angle and direction</description>
+    <testinput><name>ans1</name><value>draw</value></testinput>
+    <testinput><name>ans2</name><value>d</value></testinput>
+    <expected><name>prt1</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt1-1-F | prt1-2-F | prt1-3-F | prt1-4-T</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt2-1-T</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>7</testcase><description>Invalid: a letter in the top entry</description>
+    <testinput><name>ans1</name><value>x</value></testinput>
+    <testinput><name>ans2</name><value>d</value></testinput>
+    <expected><name>prt1</name><expectedscore></expectedscore><expectedpenalty></expectedpenalty><expectedanswernote>NULL</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt2-1-T</expectedanswernote></expected>
+  </qtest>
+</question>
+</quiz>

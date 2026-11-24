@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<quiz>
+<question type="stack">
+  <name><text>From set-builder notation to a list</text></name>
+  <questiontext format="html">
+    <text><![CDATA[<p>(a) List the elements of \({@rA@}\).</p><p>[[input:ans1]] [[validation:ans1]] [[feedback:prt1]]</p><p>(b) List the elements of \({@rB@}\).</p><p>[[input:ans2]] [[validation:ans2]] [[feedback:prt2]]</p>]]></text>
+  </questiontext>
+  <generalfeedback format="html">
+    <text><![CDATA[{@ga@}{@gb@}]]></text>
+  </generalfeedback>
+  <defaultgrade>2</defaultgrade>
+  <penalty>0.1</penalty>
+  <hidden>0</hidden>
+  <idnumber></idnumber>
+  <stackversion><text>2026063000</text></stackversion>
+  <questionvariables>
+    <text><![CDATA[cardn(S) := length(listify(S));
+dset(S) := if emptyp(S) then "\\{\\,\\}" else sconcat("\\{", simplode(map(string, listify(S)), ", "), "\\}");
+ix: 1+rand(10);
+/* Design: list a set given in set-builder notation. Source: adapted from SMP Book 3, Chapter 11, Exercise A, question 9.
+   Curated lists, one seed per entry; all 20 answers differ.
+   Slo, Shi, T0, Tk: the answer with one end value toggled (named diagnostics); t4..t6 test sets. */
+L: [["\\{x : x \\text{ is an integer}, -3 < x \\le 2\\}","\\{x : x \\text{ is a whole number}, 3x - 2 < 19\\}","whole","3x - 2 < 19",{-2,-1,0,1,2},{0,1,2,3,4,5,6},{-3,-2,-1,0,1,2},{-2,-1,0,1},{1,2,3,4,5,6},{0,1,2,3,4,5,6,7},{-2,-1,1,2},{0,1,2,4,5,6},{-2,-1,0,1,2,7},{0,1,2,3,4,5,6,12},{-2,-1,1,2,7},{0,1,2,4,5,6,12},"<p>Check the lower end: \\(-3 < x\\) means \\(-3\\) is not in the set.</p>","<p>Check the upper end: \\(x \\le 2\\) means \\(2\\) is in the set.</p>","<p>Whole numbers start at \\(0\\).</p>","<p>Solve \\(3x - 2 < 19\\): \\(3x < 21\\), so \\(x < 7\\), and \\(7\\) is not in the set.</p>","<p>(a) The integers with \\(-3 < x \\le 2\\) run from \\(-2\\) to \\(2\\), so the set is \\(\\{-2, -1, 0, 1, 2\\}\\).</p>","<p>(b) Solve the inequality: \\(3x - 2 < 19\\) gives \\(3x < 21\\), so \\(x < 7\\). The whole numbers start at \\(0\\), so the set is \\(\\{0, 1, 2, 3, 4, 5, 6\\}\\).</p>"],
+  ["\\{x : x \\text{ is an integer}, -5 \\le x < 0\\}","\\{x : x \\text{ is a natural number}, 2x + 5 \\le 17\\}","natural","2x + 5 \\le 17",{-5,-4,-3,-2,-1},{1,2,3,4,5,6},{-4,-3,-2,-1},{-5,-4,-3,-2,-1,0},{0,1,2,3,4,5,6},{1,2,3,4,5},{-5,-4,-2,-1},{1,2,3,5,6},{-5,-4,-3,-2,-1,5},{1,2,3,4,5,6,11},{-5,-4,-2,-1,5},{1,2,3,5,6,11},"<p>Check the lower end: \\(-5 \\le x\\) means \\(-5\\) is in the set.</p>","<p>Check the upper end: \\(x < 0\\) means \\(0\\) is not in the set.</p>","<p>Natural numbers start at \\(1\\).</p>","<p>Solve \\(2x + 5 \\le 17\\): \\(2x \\le 12\\), so \\(x \\le 6\\), and \\(6\\) is in the set.</p>","<p>(a) The integers with \\(-5 \\le x < 0\\) run from \\(-5\\) to \\(-1\\), so the set is \\(\\{-5, -4, -3, -2, -1\\}\\).</p>","<p>(b) Solve the inequality: \\(2x + 5 \\le 17\\) gives \\(2x \\le 12\\), so \\(x \\le 6\\). The natural numbers start at \\(1\\), so the set is \\(\\{1, 2, 3, 4, 5, 6\\}\\).</p>"],
+  ["\\{x : x \\text{ is an integer}, -2 < x < 4\\}","\\{x : x \\text{ is a whole number}, 4x + 3 < 15\\}","whole","4x + 3 < 15",{-1,0,1,2,3},{0,1,2},{-2,-1,0,1,2,3},{-1,0,1,2,3,4},{1,2},{0,1,2,3},{-1,0,2,3},{0,2},{-1,0,1,2,3,9},{0,1,2,8},{-1,0,2,3,9},{0,2,8},"<p>Check the lower end: \\(-2 < x\\) means \\(-2\\) is not in the set.</p>","<p>Check the upper end: \\(x < 4\\) means \\(4\\) is not in the set.</p>","<p>Whole numbers start at \\(0\\).</p>","<p>Solve \\(4x + 3 < 15\\): \\(4x < 12\\), so \\(x < 3\\), and \\(3\\) is not in the set.</p>","<p>(a) The integers with \\(-2 < x < 4\\) run from \\(-1\\) to \\(3\\), so the set is \\(\\{-1, 0, 1, 2, 3\\}\\).</p>","<p>(b) Solve the inequality: \\(4x + 3 < 15\\) gives \\(4x < 12\\), so \\(x < 3\\). The whole numbers start at \\(0\\), so the set is \\(\\{0, 1, 2\\}\\).</p>"],
+  ["\\{x : x \\text{ is an integer}, -4 \\le x \\le 1\\}","\\{x : x \\text{ is a natural number}, 5x - 3 \\le 32\\}","natural","5x - 3 \\le 32",{-4,-3,-2,-1,0,1},{1,2,3,4,5,6,7},{-3,-2,-1,0,1},{-4,-3,-2,-1,0},{0,1,2,3,4,5,6,7},{1,2,3,4,5,6},{-4,-3,-2,0,1},{1,2,3,5,6,7},{-4,-3,-2,-1,0,1,6},{1,2,3,4,5,6,7,12},{-4,-3,-2,0,1,6},{1,2,3,5,6,7,12},"<p>Check the lower end: \\(-4 \\le x\\) means \\(-4\\) is in the set.</p>","<p>Check the upper end: \\(x \\le 1\\) means \\(1\\) is in the set.</p>","<p>Natural numbers start at \\(1\\).</p>","<p>Solve \\(5x - 3 \\le 32\\): \\(5x \\le 35\\), so \\(x \\le 7\\), and \\(7\\) is in the set.</p>","<p>(a) The integers with \\(-4 \\le x \\le 1\\) run from \\(-4\\) to \\(1\\), so the set is \\(\\{-4, -3, -2, -1, 0, 1\\}\\).</p>","<p>(b) Solve the inequality: \\(5x - 3 \\le 32\\) gives \\(5x \\le 35\\), so \\(x \\le 7\\). The natural numbers start at \\(1\\), so the set is \\(\\{1, 2, 3, 4, 5, 6, 7\\}\\).</p>"],
+  ["\\{x : x \\text{ is an integer}, -1 < x \\le 5\\}","\\{x : x \\text{ is a whole number}, x + 9 < 13\\}","whole","x + 9 < 13",{0,1,2,3,4,5},{0,1,2,3},{-1,0,1,2,3,4,5},{0,1,2,3,4},{1,2,3},{0,1,2,3,4},{0,1,2,4,5},{0,1,3},{0,1,2,3,4,5,10},{0,1,2,3,9},{0,1,2,4,5,10},{0,1,3,9},"<p>Check the lower end: \\(-1 < x\\) means \\(-1\\) is not in the set.</p>","<p>Check the upper end: \\(x \\le 5\\) means \\(5\\) is in the set.</p>","<p>Whole numbers start at \\(0\\).</p>","<p>Solve \\(x + 9 < 13\\): \\(x < 4\\), so \\(x < 4\\), and \\(4\\) is not in the set.</p>","<p>(a) The integers with \\(-1 < x \\le 5\\) run from \\(0\\) to \\(5\\), so the set is \\(\\{0, 1, 2, 3, 4, 5\\}\\).</p>","<p>(b) Solve the inequality: \\(x + 9 < 13\\) gives \\(x < 4\\). The whole numbers start at \\(0\\), so the set is \\(\\{0, 1, 2, 3\\}\\).</p>"],
+  ["\\{x : x \\text{ is an integer}, -7 < x \\le -2\\}","\\{x : x \\text{ is a natural number}, 3x + 4 \\le 31\\}","natural","3x + 4 \\le 31",{-6,-5,-4,-3,-2},{1,2,3,4,5,6,7,8,9},{-7,-6,-5,-4,-3,-2},{-6,-5,-4,-3},{0,1,2,3,4,5,6,7,8,9},{1,2,3,4,5,6,7,8},{-6,-5,-3,-2},{1,2,3,4,6,7,8,9},{-6,-5,-4,-3,-2,3},{1,2,3,4,5,6,7,8,9,14},{-6,-5,-3,-2,3},{1,2,3,4,6,7,8,9,14},"<p>Check the lower end: \\(-7 < x\\) means \\(-7\\) is not in the set.</p>","<p>Check the upper end: \\(x \\le -2\\) means \\(-2\\) is in the set.</p>","<p>Natural numbers start at \\(1\\).</p>","<p>Solve \\(3x + 4 \\le 31\\): \\(3x \\le 27\\), so \\(x \\le 9\\), and \\(9\\) is in the set.</p>","<p>(a) The integers with \\(-7 < x \\le -2\\) run from \\(-6\\) to \\(-2\\), so the set is \\(\\{-6, -5, -4, -3, -2\\}\\).</p>","<p>(b) Solve the inequality: \\(3x + 4 \\le 31\\) gives \\(3x \\le 27\\), so \\(x \\le 9\\). The natural numbers start at \\(1\\), so the set is \\(\\{1, 2, 3, 4, 5, 6, 7, 8, 9\\}\\).</p>"],
+  ["\\{x : x \\text{ is an integer}, 1 < x \\le 7\\}","\\{x : x \\text{ is a whole number}, 6x - 1 < 53\\}","whole","6x - 1 < 53",{2,3,4,5,6,7},{0,1,2,3,4,5,6,7,8},{1,2,3,4,5,6,7},{2,3,4,5,6},{1,2,3,4,5,6,7,8},{0,1,2,3,4,5,6,7,8,9},{2,3,4,6,7},{0,1,2,3,5,6,7,8},{2,3,4,5,6,7,12},{0,1,2,3,4,5,6,7,8,14},{2,3,4,6,7,12},{0,1,2,3,5,6,7,8,14},"<p>Check the lower end: \\(1 < x\\) means \\(1\\) is not in the set.</p>","<p>Check the upper end: \\(x \\le 7\\) means \\(7\\) is in the set.</p>","<p>Whole numbers start at \\(0\\).</p>","<p>Solve \\(6x - 1 < 53\\): \\(6x < 54\\), so \\(x < 9\\), and \\(9\\) is not in the set.</p>","<p>(a) The integers with \\(1 < x \\le 7\\) run from \\(2\\) to \\(7\\), so the set is \\(\\{2, 3, 4, 5, 6, 7\\}\\).</p>","<p>(b) Solve the inequality: \\(6x - 1 < 53\\) gives \\(6x < 54\\), so \\(x < 9\\). The whole numbers start at \\(0\\), so the set is \\(\\{0, 1, 2, 3, 4, 5, 6, 7, 8\\}\\).</p>"],
+  ["\\{x : x \\text{ is an integer}, -3 \\le x < 3\\}","\\{x : x \\text{ is a natural number}, 7x - 5 < 23\\}","natural","7x - 5 < 23",{-3,-2,-1,0,1,2},{1,2,3},{-2,-1,0,1,2},{-3,-2,-1,0,1,2,3},{0,1,2,3},{1,2,3,4},{-3,-2,-1,1,2},{1,3},{-3,-2,-1,0,1,2,8},{1,2,3,9},{-3,-2,-1,1,2,8},{1,3,9},"<p>Check the lower end: \\(-3 \\le x\\) means \\(-3\\) is in the set.</p>","<p>Check the upper end: \\(x < 3\\) means \\(3\\) is not in the set.</p>","<p>Natural numbers start at \\(1\\).</p>","<p>Solve \\(7x - 5 < 23\\): \\(7x < 28\\), so \\(x < 4\\), and \\(4\\) is not in the set.</p>","<p>(a) The integers with \\(-3 \\le x < 3\\) run from \\(-3\\) to \\(2\\), so the set is \\(\\{-3, -2, -1, 0, 1, 2\\}\\).</p>","<p>(b) Solve the inequality: \\(7x - 5 < 23\\) gives \\(7x < 28\\), so \\(x < 4\\). The natural numbers start at \\(1\\), so the set is \\(\\{1, 2, 3\\}\\).</p>"],
+  ["\\{x : x \\text{ is an integer}, -8 < x < -4\\}","\\{x : x \\text{ is a whole number}, 2x + 3 \\le 13\\}","whole","2x + 3 \\le 13",{-7,-6,-5},{0,1,2,3,4,5},{-8,-7,-6,-5},{-7,-6,-5,-4},{1,2,3,4,5},{0,1,2,3,4},{-7,-5},{0,1,2,4,5},{-7,-6,-5,1},{0,1,2,3,4,5,10},{-7,-5,1},{0,1,2,4,5,10},"<p>Check the lower end: \\(-8 < x\\) means \\(-8\\) is not in the set.</p>","<p>Check the upper end: \\(x < -4\\) means \\(-4\\) is not in the set.</p>","<p>Whole numbers start at \\(0\\).</p>","<p>Solve \\(2x + 3 \\le 13\\): \\(2x \\le 10\\), so \\(x \\le 5\\), and \\(5\\) is in the set.</p>","<p>(a) The integers with \\(-8 < x < -4\\) run from \\(-7\\) to \\(-5\\), so the set is \\(\\{-7, -6, -5\\}\\).</p>","<p>(b) Solve the inequality: \\(2x + 3 \\le 13\\) gives \\(2x \\le 10\\), so \\(x \\le 5\\). The whole numbers start at \\(0\\), so the set is \\(\\{0, 1, 2, 3, 4, 5\\}\\).</p>"],
+  ["\\{x : x \\text{ is an integer}, 2 \\le x < 9\\}","\\{x : x \\text{ is a natural number}, 4x - 9 < 27\\}","natural","4x - 9 < 27",{2,3,4,5,6,7,8},{1,2,3,4,5,6,7,8},{3,4,5,6,7,8},{2,3,4,5,6,7,8,9},{0,1,2,3,4,5,6,7,8},{1,2,3,4,5,6,7,8,9},{2,3,4,6,7,8},{1,2,3,4,6,7,8},{2,3,4,5,6,7,8,14},{1,2,3,4,5,6,7,8,14},{2,3,4,6,7,8,14},{1,2,3,4,6,7,8,14},"<p>Check the lower end: \\(2 \\le x\\) means \\(2\\) is in the set.</p>","<p>Check the upper end: \\(x < 9\\) means \\(9\\) is not in the set.</p>","<p>Natural numbers start at \\(1\\).</p>","<p>Solve \\(4x - 9 < 27\\): \\(4x < 36\\), so \\(x < 9\\), and \\(9\\) is not in the set.</p>","<p>(a) The integers with \\(2 \\le x < 9\\) run from \\(2\\) to \\(8\\), so the set is \\(\\{2, 3, 4, 5, 6, 7, 8\\}\\).</p>","<p>(b) Solve the inequality: \\(4x - 9 < 27\\) gives \\(4x < 36\\), so \\(x < 9\\). The natural numbers start at \\(1\\), so the set is \\(\\{1, 2, 3, 4, 5, 6, 7, 8\\}\\).</p>"]];
+rA: L[ix][1]; rB: L[ix][2]; kw: L[ix][3]; ineq: L[ix][4]; S: L[ix][5]; T: L[ix][6]; Slo: L[ix][7]; Shi: L[ix][8]; T0: L[ix][9]; Tk: L[ix][10]; t4a: L[ix][11]; t4b: L[ix][12]; t5a: L[ix][13]; t5b: L[ix][14]; t6a: L[ix][15]; t6b: L[ix][16]; fa2: L[ix][17]; fa3: L[ix][18]; fb2: L[ix][19]; fb3: L[ix][20]; ga: L[ix][21]; gb: L[ix][22]; 
+]]></text>
+  </questionvariables>
+  <specificfeedback format="html"><text><![CDATA[]]></text></specificfeedback>
+  <questionnote format="moodle_auto_format">
+    <text>ix={@ix@}, S={@S@}, T={@T@}</text>
+  </questionnote>
+  <questiondescription format="html"><text><![CDATA[<p id="concept">Sets: from set-builder notation to a list</p><p id="description">Grade 12 CBE Core and Essential 1.1 (b): List the elements of sets given in set-builder notation by an inequality, with integers, whole numbers or natural numbers.</p><p id="edition">Core and Essential</p><p id="provenance">This question is adapted from Chapter 11, Exercise A, question 9 of School Mathematics Project, SMP Book 3 (Metric), ed. A. G. Howson, Cambridge University Press, 1967: listing solution sets given by a rule; every rule is new and the kind of number is varied.</p><p id="citation">INNODEMS CBC Grade 12 Mathematics, first draft by Ben Davies, 2026. Aligned to the KICD Senior School Curriculum Design, Core and Essential Mathematics Grade 12 (draft).</p>]]></text></questiondescription>
+  <questionsimplify>1</questionsimplify>
+  <assumepositive>0</assumepositive>
+  <assumereal>0</assumereal>
+  <prtcorrect format="html"><text><![CDATA[[[commonstring key="symbolicprtcorrectfeedback"/]] [[commonstring key="defaultprtcorrectfeedback"/]]]]></text></prtcorrect>
+  <prtpartiallycorrect format="html"><text><![CDATA[[[commonstring key="symbolicprtpartiallycorrectfeedback"/]] [[commonstring key="defaultprtpartiallycorrectfeedback"/]]]]></text></prtpartiallycorrect>
+  <prtincorrect format="html"><text><![CDATA[[[commonstring key="symbolicprtincorrectfeedback"/]] [[commonstring key="defaultprtincorrectfeedback"/]]]]></text></prtincorrect>
+  <decimals>.</decimals>
+  <scientificnotation>*10</scientificnotation>
+  <multiplicationsign>none</multiplicationsign>
+  <sqrtsign>1</sqrtsign>
+  <complexno>i</complexno>
+  <inversetrig>cos-1</inversetrig>
+  <logicsymbol>lang</logicsymbol>
+  <matrixparens>[</matrixparens>
+  <isbroken>0</isbroken>
+  <variantsselectionseed></variantsselectionseed>
+
+  <input><name>ans1</name><type>algebraic</type><tans>S</tans><boxsize>25</boxsize><strictsyntax>1</strictsyntax><insertstars>0</insertstars><syntaxhint></syntaxhint><syntaxattribute>0</syntaxattribute><forbidwords></forbidwords><allowwords></allowwords><forbidfloat>1</forbidfloat><requirelowestterms>0</requirelowestterms><checkanswertype>1</checkanswertype><mustverify>0</mustverify><showvalidation>1</showvalidation><options></options></input>
+  <input><name>ans2</name><type>algebraic</type><tans>T</tans><boxsize>25</boxsize><strictsyntax>1</strictsyntax><insertstars>0</insertstars><syntaxhint></syntaxhint><syntaxattribute>0</syntaxattribute><forbidwords></forbidwords><allowwords></allowwords><forbidfloat>1</forbidfloat><requirelowestterms>0</requirelowestterms><checkanswertype>1</checkanswertype><mustverify>0</mustverify><showvalidation>1</showvalidation><options></options></input>
+
+  <prt><name>prt1</name><value>1.0000000</value><autosimplify>1</autosimplify><feedbackstyle>1</feedbackstyle><feedbackvariables><text><![CDATA[xtra: setdifference(ans1,S);
+nmiss: cardn(setdifference(S,ans1));
+]]></text></feedbackvariables>
+    <node><name>0</name><description>Correct set</description><answertest>AlgEquiv</answertest><sans>ans1</sans><tans>S</tans><testoptions></testoptions><quiet>1</quiet><truescoremode>=</truescoremode><truescore>1.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt1-1-T</trueanswernote><truefeedback format="html"><text><![CDATA[]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>1</falsenextnode><falseanswernote>prt1-1-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>1</name><description>Lower end</description><answertest>AlgEquiv</answertest><sans>ans1</sans><tans>Slo</tans><testoptions></testoptions><quiet>1</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt1-2-T</trueanswernote><truefeedback format="html"><text><![CDATA[{@fa2@}]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>2</falsenextnode><falseanswernote>prt1-2-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>2</name><description>Upper end</description><answertest>AlgEquiv</answertest><sans>ans1</sans><tans>Shi</tans><testoptions></testoptions><quiet>1</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt1-3-T</trueanswernote><truefeedback format="html"><text><![CDATA[{@fa3@}]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>3</falsenextnode><falseanswernote>prt1-3-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>3</name><description>Missing elements</description><answertest>AlgEquiv</answertest><sans>is(subsetp(ans1,S))</sans><tans>true</tans><testoptions></testoptions><quiet>0</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt1-4-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>Every element you listed belongs, but you have left out [[if test="is(nmiss=1)"]]1 element[[else]]{@nmiss@} elements[[/if]].</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>4</falsenextnode><falseanswernote>prt1-4-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>4</name><description>Extra elements</description><answertest>AlgEquiv</answertest><sans>is(subsetp(S,ans1))</sans><tans>true</tans><testoptions></testoptions><quiet>0</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt1-5-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>Your set contains every element it should, and also \({@dset(xtra)@}\), which [[if test="is(cardn(xtra)=1)"]]does[[else]]do[[/if]] not belong.</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>-1</falsenextnode><falseanswernote>prt1-5-F</falseanswernote><falsefeedback format="html"><text><![CDATA[<p>\({@dset(xtra)@}\) [[if test="is(cardn(xtra)=1)"]]does[[else]]do[[/if]] not belong, and [[if test="is(nmiss=1)"]]1 element is[[else]]{@nmiss@} elements are[[/if]] missing. List the integers from the first one allowed to the last one allowed.</p>]]></text></falsefeedback></node>
+  </prt>
+  <prt><name>prt2</name><value>1.0000000</value><autosimplify>1</autosimplify><feedbackstyle>1</feedbackstyle><feedbackvariables><text><![CDATA[xtra: setdifference(ans2,T);
+nmiss: cardn(setdifference(T,ans2));
+]]></text></feedbackvariables>
+    <node><name>0</name><description>Correct set</description><answertest>AlgEquiv</answertest><sans>ans2</sans><tans>T</tans><testoptions></testoptions><quiet>1</quiet><truescoremode>=</truescoremode><truescore>1.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt2-1-T</trueanswernote><truefeedback format="html"><text><![CDATA[]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>1</falsenextnode><falseanswernote>prt2-1-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>1</name><description>Kind of number</description><answertest>AlgEquiv</answertest><sans>ans2</sans><tans>T0</tans><testoptions></testoptions><quiet>1</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt2-2-T</trueanswernote><truefeedback format="html"><text><![CDATA[{@fb2@}]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>2</falsenextnode><falseanswernote>prt2-2-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>2</name><description>End of the inequality</description><answertest>AlgEquiv</answertest><sans>ans2</sans><tans>Tk</tans><testoptions></testoptions><quiet>1</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt2-3-T</trueanswernote><truefeedback format="html"><text><![CDATA[{@fb3@}]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>3</falsenextnode><falseanswernote>prt2-3-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>3</name><description>Missing elements</description><answertest>AlgEquiv</answertest><sans>is(subsetp(ans2,T))</sans><tans>true</tans><testoptions></testoptions><quiet>0</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt2-4-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>Every element you listed belongs, but you have left out [[if test="is(nmiss=1)"]]1 element[[else]]{@nmiss@} elements[[/if]].</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>4</falsenextnode><falseanswernote>prt2-4-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>4</name><description>Extra elements</description><answertest>AlgEquiv</answertest><sans>is(subsetp(T,ans2))</sans><tans>true</tans><testoptions></testoptions><quiet>0</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt2-5-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>Your set contains every element it should, and also \({@dset(xtra)@}\), which [[if test="is(cardn(xtra)=1)"]]does[[else]]do[[/if]] not belong.</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>-1</falsenextnode><falseanswernote>prt2-5-F</falseanswernote><falsefeedback format="html"><text><![CDATA[<p>\({@dset(xtra)@}\) [[if test="is(cardn(xtra)=1)"]]does[[else]]do[[/if]] not belong, and [[if test="is(nmiss=1)"]]1 element is[[else]]{@nmiss@} elements are[[/if]] missing. Solve the inequality first, then list the {@kw@} numbers that satisfy it.</p>]]></text></falsefeedback></node>
+  </prt>
+
+  <deployedseed>4</deployedseed>
+  <deployedseed>5</deployedseed>
+  <deployedseed>15</deployedseed>
+  <deployedseed>8</deployedseed>
+  <deployedseed>24</deployedseed>
+  <deployedseed>1</deployedseed>
+  <deployedseed>3</deployedseed>
+  <deployedseed>10</deployedseed>
+  <deployedseed>2</deployedseed>
+  <deployedseed>17</deployedseed>
+  <qtest><testcase>1</testcase><description>Correct</description>
+    <testinput><name>ans1</name><value>S</value></testinput>
+    <testinput><name>ans2</name><value>T</value></testinput>
+    <expected><name>prt1</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt1-1-T</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt2-1-T</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>2</testcase><description>Lower end wrong; kind of number wrong</description>
+    <testinput><name>ans1</name><value>Slo</value></testinput>
+    <testinput><name>ans2</name><value>T0</value></testinput>
+    <expected><name>prt1</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt1-1-F | prt1-2-T</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt2-1-F | prt2-2-T</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>3</testcase><description>Upper end wrong; end of the inequality wrong</description>
+    <testinput><name>ans1</name><value>Shi</value></testinput>
+    <testinput><name>ans2</name><value>Tk</value></testinput>
+    <expected><name>prt1</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt1-1-F | prt1-2-F | prt1-3-T</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt2-1-F | prt2-2-F | prt2-3-T</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>4</testcase><description>An interior element missing</description>
+    <testinput><name>ans1</name><value>t4a</value></testinput>
+    <testinput><name>ans2</name><value>t4b</value></testinput>
+    <expected><name>prt1</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt1-1-F | prt1-2-F | prt1-3-F | prt1-4-T</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt2-1-F | prt2-2-F | prt2-3-F | prt2-4-T</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>5</testcase><description>An extra element</description>
+    <testinput><name>ans1</name><value>t5a</value></testinput>
+    <testinput><name>ans2</name><value>t5b</value></testinput>
+    <expected><name>prt1</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt1-1-F | prt1-2-F | prt1-3-F | prt1-4-F | prt1-5-T</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt2-1-F | prt2-2-F | prt2-3-F | prt2-4-F | prt2-5-T</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>6</testcase><description>Missing and extra (generic)</description>
+    <testinput><name>ans1</name><value>t6a</value></testinput>
+    <testinput><name>ans2</name><value>t6b</value></testinput>
+    <expected><name>prt1</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt1-1-F | prt1-2-F | prt1-3-F | prt1-4-F | prt1-5-F</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt2-1-F | prt2-2-F | prt2-3-F | prt2-4-F | prt2-5-F</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>7</testcase><description>Invalid: no curly brackets in (a)</description>
+    <testinput><name>ans1</name><value>-2,-1,0</value></testinput>
+    <testinput><name>ans2</name><value>T</value></testinput>
+    <expected><name>prt1</name><expectedscore></expectedscore><expectedpenalty></expectedpenalty><expectedanswernote>NULL</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt2-1-T</expectedanswernote></expected>
+  </qtest>
+</question>
+</quiz>

@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<quiz>
+<question type="stack">
+  <name><text>The ratio theorem in terms of a and b</text></name>
+  <questiontext format="html">
+    <text><![CDATA[<p>\(\overrightarrow{OA} = \mathbf{a}\) and \(\overrightarrow{OB} = \mathbf{b}\).</p><p>(a) P divides AB internally in the ratio \({@m1@} : {@n1@}\). Find \(\overrightarrow{OP}\).</p><div>\(\overrightarrow{OP} =\) [[input:ans1]] [[validation:ans1]] [[feedback:prt1]]</div><p>(b) Q divides AB externally in the ratio \({@m2@} : {@n2@}\). Find \(\overrightarrow{OQ}\).</p><div>\(\overrightarrow{OQ} =\) [[input:ans2]] [[validation:ans2]] [[feedback:prt2]]</div>]]></text>
+  </questiontext>
+  <generalfeedback format="html">
+    <text><![CDATA[<p>(a) Internal ratio theorem: \(\overrightarrow{OP} = \dfrac{n\mathbf{a} + m\mathbf{b}}{m + n} = {@ta1e@}\).</p><p>(b) External ratio theorem: \(\overrightarrow{OQ} = \dfrac{m\mathbf{b} - n\mathbf{a}}{m - n} = {@ta2e@}\). The coefficients add to 1 in both.</p>]]></text>
+  </generalfeedback>
+  <defaultgrade>2</defaultgrade>
+  <penalty>0.1</penalty>
+  <hidden>0</hidden>
+  <idnumber></idnumber>
+  <stackversion><text>2026063000</text></stackversion>
+  <questionvariables>
+    <text><![CDATA[validate_ab(ex) := block([s, ca, cb], if not every(lambda([vv], member(vv, [a,b])), listofvars(ex)) then "Use only the vectors a and b." else (s: ev(expand(ex), simp), ca: ev(coeff(s,a), simp), cb: ev(coeff(s,b), simp), if ev(is(s - ca*a - cb*b = 0), simp) and ev(numberp(float(ca)) and numberp(float(cb)), simp) then "" else "Write your answer as a number times a plus a number times b, for example 3/5*a+2/5*b."));
+texput(a,"\\mathbf{a}"); texput(b,"\\mathbf{b}");
+/* Design: the ratio theorem in terms of a and b. Diagnostics are distinct as coefficient pairs on every entry. Source: original. */
+rlist: [[[2,3],[3,1]],[[3,1],[1,3]],[[1,4],[5,2]],[[3,2],[2,1]],[[1,2],[4,1]],[[2,1],[1,2]],[[4,1],[3,2]],[[3,4],[2,5]],[[5,2],[1,4]],[[1,3],[5,3]]];
+ix: 1+rand(10);
+m1: rlist[ix][1][1]; n1: rlist[ix][1][2]; m2: rlist[ix][2][1]; n2: rlist[ix][2][2];
+ta1: (n1*a+m1*b)/(m1+n1); cr1: (m1*a+n1*b)/(m1+n1); nd1: n1*a+m1*b;
+ta2: (m2*b-n2*a)/(m2-n2); in2: (n2*a+m2*b)/(m2+n2); sg2: (n2*a+m2*b)/(m2-n2); sw2: (n2*b-m2*a)/(n2-m2);
+ta1e: expand(ta1); ta2e: expand(ta2);
+w1: ta1+a; w2: ta2+b;
+]]></text>
+  </questionvariables>
+  <specificfeedback format="html"><text><![CDATA[]]></text></specificfeedback>
+  <questionnote format="moodle_auto_format">
+    <text>ix={@ix@}, internal {@m1@}:{@n1@}, external {@m2@}:{@n2@}</text>
+  </questionnote>
+  <questiondescription format="html"><text><![CDATA[<p id="concept">Vectors II: the ratio theorem in terms of a and b</p><p id="description">Grade 12 CBE Core 2.6: Use the ratio theorem to write the position vectors of points dividing AB internally and externally in terms of a and b.</p><p id="edition">Core</p><p id="provenance">This question is original to this project.</p><p id="citation">INNODEMS CBC Grade 12 Mathematics, first draft by Ben Davies, 2026. Aligned to the KICD Senior School Curriculum Design, Core Mathematics Grade 12 (draft).</p>]]></text></questiondescription>
+  <questionsimplify>1</questionsimplify>
+  <assumepositive>0</assumepositive>
+  <assumereal>0</assumereal>
+  <prtcorrect format="html"><text><![CDATA[[[commonstring key="symbolicprtcorrectfeedback"/]] [[commonstring key="defaultprtcorrectfeedback"/]]]]></text></prtcorrect>
+  <prtpartiallycorrect format="html"><text><![CDATA[[[commonstring key="symbolicprtpartiallycorrectfeedback"/]] [[commonstring key="defaultprtpartiallycorrectfeedback"/]]]]></text></prtpartiallycorrect>
+  <prtincorrect format="html"><text><![CDATA[[[commonstring key="symbolicprtincorrectfeedback"/]] [[commonstring key="defaultprtincorrectfeedback"/]]]]></text></prtincorrect>
+  <decimals>.</decimals>
+  <scientificnotation>*10</scientificnotation>
+  <multiplicationsign>none</multiplicationsign>
+  <sqrtsign>1</sqrtsign>
+  <complexno>symi</complexno>
+  <inversetrig>cos-1</inversetrig>
+  <logicsymbol>lang</logicsymbol>
+  <matrixparens>(</matrixparens>
+  <isbroken>0</isbroken>
+  <variantsselectionseed></variantsselectionseed>
+
+  <input><name>ans1</name><type>algebraic</type><tans>ta1</tans><boxsize>15</boxsize><strictsyntax>1</strictsyntax><insertstars>4</insertstars><syntaxhint></syntaxhint><syntaxattribute>0</syntaxattribute><forbidwords></forbidwords><allowwords></allowwords><forbidfloat>1</forbidfloat><requirelowestterms>0</requirelowestterms><checkanswertype>0</checkanswertype><mustverify>0</mustverify><showvalidation>3</showvalidation><options>validator:validate_ab</options></input>
+  <input><name>ans2</name><type>algebraic</type><tans>ta2</tans><boxsize>15</boxsize><strictsyntax>1</strictsyntax><insertstars>4</insertstars><syntaxhint></syntaxhint><syntaxattribute>0</syntaxattribute><forbidwords></forbidwords><allowwords></allowwords><forbidfloat>1</forbidfloat><requirelowestterms>0</requirelowestterms><checkanswertype>0</checkanswertype><mustverify>0</mustverify><showvalidation>3</showvalidation><options>validator:validate_ab</options></input>
+
+  <prt><name>prt1</name><value>1.0000000</value><autosimplify>1</autosimplify><feedbackstyle>1</feedbackstyle><feedbackvariables><text><![CDATA[sx: expand(ans1); la: coeff(sx,a); mu: coeff(sx,b); onl: is(la+mu = 1);
+rr: if ratnump(mu) then block([p: abs(mu), q: abs(1-mu), dd, gg], dd: denom(p)*denom(q), gg: gcd(p*dd, q*dd), [p*dd/gg, q*dd/gg]) else [abs(mu), abs(1-mu)];
+]]></text></feedbackvariables>
+    <node><name>0</name><description>OP</description><answertest>AlgEquiv</answertest><sans>ans1</sans><tans>ta1</tans><testoptions></testoptions><quiet>1</quiet><truescoremode>=</truescoremode><truescore>1.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt1-1-T</trueanswernote><truefeedback format="html"><text><![CDATA[]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>1</falsenextnode><falseanswernote>prt1-1-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>1</name><description>Weights crossed</description><answertest>AlgEquiv</answertest><sans>ans1</sans><tans>cr1</tans><testoptions></testoptions><quiet>1</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt1-2-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>The weight on \(\mathbf{a}\) is the part of the ratio next to B: \({@n1@}\).</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>2</falsenextnode><falseanswernote>prt1-2-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>2</name><description>Not divided</description><answertest>AlgEquiv</answertest><sans>ans1</sans><tans>nd1</tans><testoptions></testoptions><quiet>1</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt1-3-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>Divide by \({@m1+n1@}\): the coefficients must add to 1.</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>-1</falsenextnode><falseanswernote>prt1-3-F</falseanswernote><falsefeedback format="html"><text><![CDATA[[[if test="onl"]]<p>Your point is on the line AB, with \(\overrightarrow{AP} = {@mu@}\,\overrightarrow{AB}\). So for your point \(AP : PB = {@rr[1]@} : {@rr[2]@}\), which is not \({@m1@} : {@n1@}\).</p>[[else]]<p>Your coefficients add to \({@la+mu@}\), not 1, so your point is not on the line AB. The weight on \(\mathbf{b}\) is the fraction of the way from A to B: split AB into \({@m1+n1@}\) equal parts.</p>[[/if]]]]></text></falsefeedback></node>
+  </prt>
+  <prt><name>prt2</name><value>1.0000000</value><autosimplify>1</autosimplify><feedbackstyle>1</feedbackstyle><feedbackvariables><text><![CDATA[sx: expand(ans2); la: coeff(sx,a); mu: coeff(sx,b); onl: is(la+mu = 1);
+rr: if ratnump(mu) then block([p: abs(mu), q: abs(1-mu), dd, gg], dd: denom(p)*denom(q), gg: gcd(p*dd, q*dd), [p*dd/gg, q*dd/gg]) else [abs(mu), abs(1-mu)];
+]]></text></feedbackvariables>
+    <node><name>0</name><description>OQ</description><answertest>AlgEquiv</answertest><sans>ans2</sans><tans>ta2</tans><testoptions></testoptions><quiet>1</quiet><truescoremode>=</truescoremode><truescore>1.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt2-1-T</trueanswernote><truefeedback format="html"><text><![CDATA[]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>1</falsenextnode><falseanswernote>prt2-1-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>1</name><description>Internal</description><answertest>AlgEquiv</answertest><sans>ans2</sans><tans>in2</tans><testoptions></testoptions><quiet>1</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt2-2-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>That point is between A and B: it divides AB internally. For external division Q is outside the segment AB.</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>2</falsenextnode><falseanswernote>prt2-2-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>2</name><description>Sign</description><answertest>AlgEquiv</answertest><sans>ans2</sans><tans>sg2</tans><testoptions></testoptions><quiet>1</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt2-3-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>Your coefficients add to \({@la+mu@}\), not 1, so your point is not on the line AB. For external division the two parts are subtracted in the top as well as in the bottom.</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>3</falsenextnode><falseanswernote>prt2-3-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>3</name><description>Ratio swapped</description><answertest>AlgEquiv</answertest><sans>ans2</sans><tans>sw2</tans><testoptions></testoptions><quiet>1</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt2-4-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>That divides AB externally in \({@n2@} : {@m2@}\).</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>-1</falsenextnode><falseanswernote>prt2-4-F</falseanswernote><falsefeedback format="html"><text><![CDATA[[[if test="onl"]]<p>Your point is on the line AB, with \(\overrightarrow{AQ} = {@mu@}\,\overrightarrow{AB}\). So for your point \(AQ : QB = {@rr[1]@} : {@rr[2]@}\), which is not \({@m2@} : {@n2@}\).</p>[[else]]<p>Your coefficients add to \({@la+mu@}\), not 1, so your point is not on the line AB. Q is on the line AB, outside the segment, with \(AQ : QB = {@m2@} : {@n2@}\).</p>[[/if]]]]></text></falsefeedback></node>
+  </prt>
+
+  <deployedseed>4</deployedseed>
+  <deployedseed>5</deployedseed>
+  <deployedseed>15</deployedseed>
+  <deployedseed>8</deployedseed>
+  <deployedseed>24</deployedseed>
+  <deployedseed>1</deployedseed>
+  <deployedseed>3</deployedseed>
+  <deployedseed>10</deployedseed>
+  <deployedseed>2</deployedseed>
+  <deployedseed>17</deployedseed>
+  <qtest><testcase>1</testcase><description>Correct</description>
+    <testinput><name>ans1</name><value>ta1</value></testinput>
+    <testinput><name>ans2</name><value>ta2</value></testinput>
+    <expected><name>prt1</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt1-1-T</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt2-1-T</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>2</testcase><description>Correct, expanded</description>
+    <testinput><name>ans1</name><value>ta1e</value></testinput>
+    <testinput><name>ans2</name><value>ta2e</value></testinput>
+    <expected><name>prt1</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt1-1-T</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt2-1-T</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>3</testcase><description>Crossed; internal</description>
+    <testinput><name>ans1</name><value>cr1</value></testinput>
+    <testinput><name>ans2</name><value>in2</value></testinput>
+    <expected><name>prt1</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt1-1-F | prt1-2-T</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt2-1-F | prt2-2-T</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>4</testcase><description>Not divided; sign</description>
+    <testinput><name>ans1</name><value>nd1</value></testinput>
+    <testinput><name>ans2</name><value>sg2</value></testinput>
+    <expected><name>prt1</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt1-1-F | prt1-2-F | prt1-3-T</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt2-1-F | prt2-2-F | prt2-3-T</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>5</testcase><description>Generic; swapped</description>
+    <testinput><name>ans1</name><value>w1</value></testinput>
+    <testinput><name>ans2</name><value>sw2</value></testinput>
+    <expected><name>prt1</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt1-1-F | prt1-2-F | prt1-3-F</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt2-1-F | prt2-2-F | prt2-3-F | prt2-4-T</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>6</testcase><description>Generic in (b)</description>
+    <testinput><name>ans1</name><value>ta1</value></testinput>
+    <testinput><name>ans2</name><value>w2</value></testinput>
+    <expected><name>prt1</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt1-1-T</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt2-1-F | prt2-2-F | prt2-3-F | prt2-4-F</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>7</testcase><description>Invalid: another letter in (a)</description>
+    <testinput><name>ans1</name><value>x*a</value></testinput>
+    <testinput><name>ans2</name><value>ta2</value></testinput>
+    <expected><name>prt1</name><expectedscore></expectedscore><expectedpenalty></expectedpenalty><expectedanswernote>NULL</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt2-1-T</expectedanswernote></expected>
+  </qtest>
+</question>
+</quiz>

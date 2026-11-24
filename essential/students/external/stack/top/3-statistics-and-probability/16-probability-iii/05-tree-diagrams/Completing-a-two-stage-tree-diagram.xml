@@ -1,0 +1,286 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<quiz>
+<question type="stack">
+  <name><text>Completing a two-stage tree diagram</text></name>
+  <questiontext format="html">
+    <text><![CDATA[<p>[[if test="is(cx=1)"]]On a farm in Nyandarua, the probability that a calf is vaccinated against East Coast fever is \({@pdec(p)@}\). A vaccinated calf falls ill with the disease with probability \({@pdec(q1)@}\). A calf that is not vaccinated falls ill with probability \({@pdec(q2)@}\).[[elif test="is(cx=2)"]]In Kisumu, the probability that it rains in the morning is \({@pdec(p)@}\). If it rains, Otieno arrives at school on time with probability \({@pdec(q1)@}\). If it does not rain, he arrives on time with probability \({@pdec(q2)@}\).[[elif test="is(cx=3)"]]The probability that a farmer in Trans Nzoia uses certified maize seed is \({@pdec(p)@}\). A farmer who uses certified seed harvests more than 20 bags an acre with probability \({@pdec(q1)@}\). A farmer who does not harvests more than 20 bags an acre with probability \({@pdec(q2)@}\).[[elif test="is(cx=4)"]]The probability that Chebet revises for a test is \({@pdec(p)@}\). If she revises, she passes with probability \({@pdec(q1)@}\). If she does not revise, she passes with probability \({@pdec(q2)@}\).[[/if]]</p><p>The tree diagram shows this information, with three probabilities missing.</p><div style="text-align:center;" role="img" aria-label="Tree diagram. First branches: [[if test="is(cx=1)"]]vaccinated[[elif test="is(cx=2)"]]rain[[elif test="is(cx=3)"]]certified seed[[elif test="is(cx=4)"]]revises[[/if]], {#float(p)#}; [[if test="is(cx=1)"]]not vaccinated[[elif test="is(cx=2)"]]no rain[[elif test="is(cx=3)"]]not certified[[elif test="is(cx=4)"]]does not revise[[/if]], (i). After [[if test="is(cx=1)"]]vaccinated[[elif test="is(cx=2)"]]rain[[elif test="is(cx=3)"]]certified seed[[elif test="is(cx=4)"]]revises[[/if]]: [[if test="is(cx=1)"]]ill[[elif test="is(cx=2)"]]on time[[elif test="is(cx=3)"]]more than 20 bags[[elif test="is(cx=4)"]]passes[[/if]], {#float(q1)#}; [[if test="is(cx=1)"]]not ill[[elif test="is(cx=2)"]]late[[elif test="is(cx=3)"]]20 bags or fewer[[elif test="is(cx=4)"]]fails[[/if]], (ii). After [[if test="is(cx=1)"]]not vaccinated[[elif test="is(cx=2)"]]no rain[[elif test="is(cx=3)"]]not certified[[elif test="is(cx=4)"]]does not revise[[/if]]: [[if test="is(cx=1)"]]ill[[elif test="is(cx=2)"]]on time[[elif test="is(cx=3)"]]more than 20 bags[[elif test="is(cx=4)"]]passes[[/if]], {#float(q2)#}; [[if test="is(cx=1)"]]not ill[[elif test="is(cx=2)"]]late[[elif test="is(cx=3)"]]20 bags or fewer[[elif test="is(cx=4)"]]fails[[/if]], (iii).">
+[[jsxgraph width="480px" height="300px"]]
+(function() {
+  var p = {#float(p)#}, q1 = {#float(q1)#}, q2 = {#float(q2)#};
+  var wa = {#la#}, wna = {#lna#}, wb = {#lb#}, wnb = {#lnb#};
+  var b = JXG.JSXGraph.initBoard(divid, {
+    boundingbox: [-0.4, 3.2, 10.8, -3.2], axis: false, grid: false,
+    pan: {enabled: false}, zoom: {enabled: false}, showNavigation: false, showCopyright: false
+  });
+  var st = {strokeColor: '#000000', strokeWidth: 1.5, fixed: true, highlight: false};
+  var tx = {fixed: true, highlight: false, fontSize: 13, anchorY: 'middle'};
+  function seg(x1, y1, x2, y2) { b.create('segment', [[x1, y1], [x2, y2]], st); }
+  function lab(x, y, s, ax) { b.create('text', [x, y, s], {fixed: true, highlight: false, fontSize: 13, anchorX: ax, anchorY: 'middle'}); }
+  // stage 1
+  seg(0, 0, 3.0, 1.6); seg(0, 0, 3.0, -1.6);
+  lab(1.3, 1.25, String(p), 'right'); lab(1.3, -1.25, '(i)', 'right');
+  lab(3.1, 1.6, wa, 'left'); lab(3.1, -1.6, wna, 'left');
+  // stage 2
+  seg(5.5, 1.6, 7.6, 2.5); seg(5.5, 1.6, 7.6, 0.7);
+  seg(5.5, -1.6, 7.6, -0.7); seg(5.5, -1.6, 7.6, -2.5);
+  lab(6.5, 2.45, String(q1), 'right'); lab(6.5, 0.75, '(ii)', 'right');
+  lab(6.5, -0.75, String(q2), 'right'); lab(6.5, -2.45, '(iii)', 'right');
+  lab(7.7, 2.5, wb, 'left'); lab(7.7, 0.7, wnb, 'left');
+  lab(7.7, -0.7, wb, 'left'); lab(7.7, -2.5, wnb, 'left');
+})();
+[[/jsxgraph]]
+</div><p>Give each probability exactly, as a fraction or an exact decimal.</p><p>(a) Find the missing probabilities.</p><div>(i) [[input:ans1]] [[validation:ans1]] [[feedback:prt1]]</div><div>(ii) [[input:ans2]] [[validation:ans2]] [[feedback:prt2]]</div><div>(iii) [[input:ans3]] [[validation:ans3]] [[feedback:prt3]]</div><p>(b) Find \(P(\)[[if test="is(cx=1)"]]vaccinated[[elif test="is(cx=2)"]]rain[[elif test="is(cx=3)"]]certified seed[[elif test="is(cx=4)"]]revises[[/if]] and [[if test="is(cx=1)"]]ill[[elif test="is(cx=2)"]]on time[[elif test="is(cx=3)"]]more than 20 bags[[elif test="is(cx=4)"]]passes[[/if]]\()\).</p><div>[[input:ans4]] [[validation:ans4]] [[feedback:prt4]]</div><p>(c) Find \(P(\)[[if test="is(cx=1)"]]ill[[elif test="is(cx=2)"]]on time[[elif test="is(cx=3)"]]more than 20 bags[[elif test="is(cx=4)"]]passes[[/if]]\()\).</p><div>[[input:ans5]] [[validation:ans5]] [[feedback:prt5]]</div><p>(d) Find \(P(\)[[if test="is(cx=1)"]]not ill[[elif test="is(cx=2)"]]late[[elif test="is(cx=3)"]]20 bags or fewer[[elif test="is(cx=4)"]]fails[[/if]]\()\).</p><div>[[input:ans6]] [[validation:ans6]] [[feedback:prt6]]</div>]]></text>
+  </questiontext>
+  <generalfeedback format="html">
+    <text><![CDATA[<p>(a) The branches from each point add to 1. (i) \(1 - {@pdec(p)@} = {@pdec(ta1)@}\). (ii) \(1 - {@pdec(q1)@} = {@pdec(ta2)@}\). (iii) \(1 - {@pdec(q2)@} = {@pdec(ta3)@}\).</p><p>(b) Multiply along the path [[if test="is(cx=1)"]]vaccinated[[elif test="is(cx=2)"]]rain[[elif test="is(cx=3)"]]certified seed[[elif test="is(cx=4)"]]revises[[/if]] then [[if test="is(cx=1)"]]ill[[elif test="is(cx=2)"]]on time[[elif test="is(cx=3)"]]more than 20 bags[[elif test="is(cx=4)"]]passes[[/if]]: \({@pdec(p)@} \times {@pdec(q1)@} = {@pdec(ta4)@}\).</p><p>(c) Two paths end in [[if test="is(cx=1)"]]ill[[elif test="is(cx=2)"]]on time[[elif test="is(cx=3)"]]more than 20 bags[[elif test="is(cx=4)"]]passes[[/if]]. Add them: \({@pdec(p)@} \times {@pdec(q1)@} + {@pdec(1-p)@} \times {@pdec(q2)@} = {@pdec(ta4)@} + {@pdec((1-p)*q2)@} = {@pdec(ta5)@}\).</p><p>(d) Use the complement: \(P(\)[[if test="is(cx=1)"]]not ill[[elif test="is(cx=2)"]]late[[elif test="is(cx=3)"]]20 bags or fewer[[elif test="is(cx=4)"]]fails[[/if]]\() = 1 - {@pdec(ta5)@} = {@pdec(ta6)@}\). As a check, the other two paths give \({@pdec(p*(1-q1))@} + {@pdec((1-p)*(1-q2))@} = {@pdec(ta6)@}\).</p>]]></text>
+  </generalfeedback>
+  <defaultgrade>6</defaultgrade>
+  <penalty>0.1</penalty>
+  <hidden>0</hidden>
+  <idnumber></idnumber>
+  <stackversion><text>2026063000</text></stackversion>
+  <questionvariables>
+    <text><![CDATA[/* pdec: exact decimal display of a value with at most 4 decimal places */
+pdec(v) := if integerp(v) then v elseif integerp(10*v) then dispdp(float(v),1) elseif integerp(100*v) then dispdp(float(v),2) elseif integerp(1000*v) then dispdp(float(v),3) else dispdp(float(v),4);
+/* Design: second-stage probability depends on the first. [p, q1, q2, context] in hundredths; context 1 vaccination, 2 rain, 3 certified seed, 4 revision. No (a)(i) follow-through node: no offset works on all entries. Source: adapted from SMP AS/A2 Statistics 1, chapter 3, section E, E1. */
+L: [[20,15,75,1],[35,70,80,2],[65,30,15,3],[40,80,15,4],[45,70,60,3],[15,20,90,1],[80,60,50,4],[55,65,10,4],[90,25,55,1],[65,25,50,2]];
+ix: 1+rand(10);
+p: L[ix][1]/100; q1: L[ix][2]/100; q2: L[ix][3]/100; cx: L[ix][4];
+/* short labels for the board only (JavaScript strings) */
+la: ["Vaccinated","Rain","Certified seed","Revises"][cx];
+lna: ["Not vaccinated","No rain","Not certified","Does not revise"][cx];
+lb: ["Ill","On time","More than 20 bags","Passes"][cx];
+lnb: ["Not ill","Late","20 bags or fewer","Fails"][cx];
+ta1: 1-p; ta2: 1-q1; ta3: 1-q2; ta4: p*q1; ta5: p*q1+(1-p)*q2; ta6: 1-ta5;
+tl1: min(1/200,ta1/20); tl2: min(1/200,ta2/20); tl3: min(1/200,ta3/20); tl4: min(1/200,ta4/20); tl5: min(1/200,ta5/20); tl6: min(1/200,ta6/20);
+/* diagnostics */
+d4b: p+q1;
+d5b: q1+q2;
+d5c: (1-p)*q2;
+d6a: (1-p)*(1-q2);
+d6b: p*(1-q1);]]></text>
+  </questionvariables>
+  <specificfeedback format="html"><text><![CDATA[]]></text></specificfeedback>
+  <questionnote format="moodle_auto_format">
+    <text>ix={@ix@}, p={@pdec(p)@}, q1={@pdec(q1)@}, q2={@pdec(q2)@}</text>
+  </questionnote>
+  <questiondescription format="html"><text><![CDATA[<p id="concept">Probability III: completing a two-stage tree diagram</p><p id="description">Grade 12 CBE Essential 3.2: Complete the missing branches of a two-stage tree diagram whose second stage depends on the first, multiply along paths and add paths.</p><p id="edition">Essential</p><p id="provenance">This question is adapted from Chapter 3, Section E, question E1 of Cassell, D., Instone, S., Ling, J., Scruton, P. and Shilton, S., SMP AS/A2 Mathematics: Statistics 1 for Edexcel, Cambridge University Press, 2004: a two-stage tree with a dependent second stage in four new Kenyan contexts with new numbers, randomised.</p><p id="citation">INNODEMS CBC Grade 12 Mathematics, first draft by Ben Davies, 2026. Aligned to the KICD Senior School Curriculum Design, Essential Mathematics Grade 12 (draft).</p>]]></text></questiondescription>
+  <questionsimplify>1</questionsimplify>
+  <assumepositive>0</assumepositive>
+  <assumereal>0</assumereal>
+  <prtcorrect format="html"><text><![CDATA[[[commonstring key="symbolicprtcorrectfeedback"/]] [[commonstring key="defaultprtcorrectfeedback"/]]]]></text></prtcorrect>
+  <prtpartiallycorrect format="html"><text><![CDATA[[[commonstring key="symbolicprtpartiallycorrectfeedback"/]] [[commonstring key="defaultprtpartiallycorrectfeedback"/]]]]></text></prtpartiallycorrect>
+  <prtincorrect format="html"><text><![CDATA[[[commonstring key="symbolicprtincorrectfeedback"/]] [[commonstring key="defaultprtincorrectfeedback"/]]]]></text></prtincorrect>
+  <decimals>.</decimals>
+  <scientificnotation>*10</scientificnotation>
+  <multiplicationsign>none</multiplicationsign>
+  <sqrtsign>1</sqrtsign>
+  <complexno>i</complexno>
+  <inversetrig>cos-1</inversetrig>
+  <logicsymbol>lang</logicsymbol>
+  <matrixparens>[</matrixparens>
+  <isbroken>0</isbroken>
+  <variantsselectionseed></variantsselectionseed>
+
+  <input><name>ans1</name><type>numerical</type><tans>ta1</tans><boxsize>8</boxsize><strictsyntax>1</strictsyntax><insertstars>0</insertstars><syntaxhint></syntaxhint><syntaxattribute>0</syntaxattribute><forbidwords></forbidwords><allowwords></allowwords><forbidfloat>0</forbidfloat><requirelowestterms>0</requirelowestterms><checkanswertype>0</checkanswertype><mustverify>0</mustverify><showvalidation>0</showvalidation><options></options></input>
+  <input><name>ans2</name><type>numerical</type><tans>ta2</tans><boxsize>8</boxsize><strictsyntax>1</strictsyntax><insertstars>0</insertstars><syntaxhint></syntaxhint><syntaxattribute>0</syntaxattribute><forbidwords></forbidwords><allowwords></allowwords><forbidfloat>0</forbidfloat><requirelowestterms>0</requirelowestterms><checkanswertype>0</checkanswertype><mustverify>0</mustverify><showvalidation>0</showvalidation><options></options></input>
+  <input><name>ans3</name><type>numerical</type><tans>ta3</tans><boxsize>8</boxsize><strictsyntax>1</strictsyntax><insertstars>0</insertstars><syntaxhint></syntaxhint><syntaxattribute>0</syntaxattribute><forbidwords></forbidwords><allowwords></allowwords><forbidfloat>0</forbidfloat><requirelowestterms>0</requirelowestterms><checkanswertype>0</checkanswertype><mustverify>0</mustverify><showvalidation>0</showvalidation><options></options></input>
+  <input><name>ans4</name><type>numerical</type><tans>ta4</tans><boxsize>8</boxsize><strictsyntax>1</strictsyntax><insertstars>0</insertstars><syntaxhint></syntaxhint><syntaxattribute>0</syntaxattribute><forbidwords></forbidwords><allowwords></allowwords><forbidfloat>0</forbidfloat><requirelowestterms>0</requirelowestterms><checkanswertype>0</checkanswertype><mustverify>0</mustverify><showvalidation>0</showvalidation><options></options></input>
+  <input><name>ans5</name><type>numerical</type><tans>ta5</tans><boxsize>8</boxsize><strictsyntax>1</strictsyntax><insertstars>0</insertstars><syntaxhint></syntaxhint><syntaxattribute>0</syntaxattribute><forbidwords></forbidwords><allowwords></allowwords><forbidfloat>0</forbidfloat><requirelowestterms>0</requirelowestterms><checkanswertype>0</checkanswertype><mustverify>0</mustverify><showvalidation>0</showvalidation><options></options></input>
+  <input><name>ans6</name><type>numerical</type><tans>ta6</tans><boxsize>8</boxsize><strictsyntax>1</strictsyntax><insertstars>0</insertstars><syntaxhint></syntaxhint><syntaxattribute>0</syntaxattribute><forbidwords></forbidwords><allowwords></allowwords><forbidfloat>0</forbidfloat><requirelowestterms>0</requirelowestterms><checkanswertype>0</checkanswertype><mustverify>0</mustverify><showvalidation>0</showvalidation><options></options></input>
+
+  <prt><name>prt1</name><value>1.0000000</value><autosimplify>1</autosimplify><feedbackstyle>1</feedbackstyle><feedbackvariables><text><![CDATA[]]></text></feedbackvariables>
+    <node><name>0</name><description>ok</description><answertest>NumAbsolute</answertest><sans>ans1</sans><tans>ta1</tans><testoptions>10^(-9)</testoptions><quiet>1</quiet><truescoremode>=</truescoremode><truescore>1.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt1-1-T</trueanswernote><truefeedback format="html"><text><![CDATA[]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>1</falsenextnode><falseanswernote>prt1-1-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>1</name><description>round</description><answertest>NumAbsolute</answertest><sans>ans1</sans><tans>ta1</tans><testoptions>tl1</testoptions><quiet>1</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt1-2-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>Your value is close to the right one but has been rounded. Give the exact probability as a fraction or an exact decimal.</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>2</falsenextnode><falseanswernote>prt1-2-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>2</name><description>given</description><answertest>NumAbsolute</answertest><sans>ans1</sans><tans>p</tans><testoptions>tl1</testoptions><quiet>1</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt1-3-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>That is the branch you were given. The two branches from the start add to 1.</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>3</falsenextnode><falseanswernote>prt1-3-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>3</name><description>range</description><answertest>AlgEquiv</answertest><sans>is(ans1&lt;0 or ans1&gt;1)</sans><tans>true</tans><testoptions></testoptions><quiet>1</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt1-4-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>A probability is always between 0 and 1, so \({@ans1@}\) cannot be a probability.</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>-1</falsenextnode><falseanswernote>prt1-4-F</falseanswernote><falsefeedback format="html"><text><![CDATA[<p>Each pair of branches from one point adds to 1.</p>]]></text></falsefeedback></node>
+  </prt>
+  <prt><name>prt2</name><value>1.0000000</value><autosimplify>1</autosimplify><feedbackstyle>1</feedbackstyle><feedbackvariables><text><![CDATA[]]></text></feedbackvariables>
+    <node><name>0</name><description>ok</description><answertest>NumAbsolute</answertest><sans>ans2</sans><tans>ta2</tans><testoptions>10^(-9)</testoptions><quiet>1</quiet><truescoremode>=</truescoremode><truescore>1.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt2-1-T</trueanswernote><truefeedback format="html"><text><![CDATA[]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>1</falsenextnode><falseanswernote>prt2-1-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>1</name><description>round</description><answertest>NumAbsolute</answertest><sans>ans2</sans><tans>ta2</tans><testoptions>tl2</testoptions><quiet>1</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt2-2-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>Your value is close to the right one but has been rounded. Give the exact probability as a fraction or an exact decimal.</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>2</falsenextnode><falseanswernote>prt2-2-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>2</name><description>first</description><answertest>NumAbsolute</answertest><sans>ans2</sans><tans>ta1</tans><testoptions>tl2</testoptions><quiet>1</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt2-3-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>That is branch (i). Branch (ii) comes after [[if test="is(cx=1)"]]vaccinated[[elif test="is(cx=2)"]]rain[[elif test="is(cx=3)"]]certified seed[[elif test="is(cx=4)"]]revises[[/if]], so it pairs with the other branch after [[if test="is(cx=1)"]]vaccinated[[elif test="is(cx=2)"]]rain[[elif test="is(cx=3)"]]certified seed[[elif test="is(cx=4)"]]revises[[/if]]: those two add to 1.</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>3</falsenextnode><falseanswernote>prt2-3-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>3</name><description>range</description><answertest>AlgEquiv</answertest><sans>is(ans2&lt;0 or ans2&gt;1)</sans><tans>true</tans><testoptions></testoptions><quiet>1</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt2-4-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>A probability is always between 0 and 1, so \({@ans2@}\) cannot be a probability.</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>-1</falsenextnode><falseanswernote>prt2-4-F</falseanswernote><falsefeedback format="html"><text><![CDATA[<p>Each pair of branches from one point adds to 1.</p>]]></text></falsefeedback></node>
+  </prt>
+  <prt><name>prt3</name><value>1.0000000</value><autosimplify>1</autosimplify><feedbackstyle>1</feedbackstyle><feedbackvariables><text><![CDATA[]]></text></feedbackvariables>
+    <node><name>0</name><description>ok</description><answertest>NumAbsolute</answertest><sans>ans3</sans><tans>ta3</tans><testoptions>10^(-9)</testoptions><quiet>1</quiet><truescoremode>=</truescoremode><truescore>1.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt3-1-T</trueanswernote><truefeedback format="html"><text><![CDATA[]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>1</falsenextnode><falseanswernote>prt3-1-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>1</name><description>round</description><answertest>NumAbsolute</answertest><sans>ans3</sans><tans>ta3</tans><testoptions>tl3</testoptions><quiet>1</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt3-2-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>Your value is close to the right one but has been rounded. Give the exact probability as a fraction or an exact decimal.</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>2</falsenextnode><falseanswernote>prt3-2-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>2</name><description>other</description><answertest>NumAbsolute</answertest><sans>ans3</sans><tans>ta2</tans><testoptions>tl3</testoptions><quiet>1</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt3-3-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>That belongs after [[if test="is(cx=1)"]]vaccinated[[elif test="is(cx=2)"]]rain[[elif test="is(cx=3)"]]certified seed[[elif test="is(cx=4)"]]revises[[/if]]. Branch (iii) comes after [[if test="is(cx=1)"]]not vaccinated[[elif test="is(cx=2)"]]no rain[[elif test="is(cx=3)"]]not certified[[elif test="is(cx=4)"]]does not revise[[/if]], so it pairs with the other branch after [[if test="is(cx=1)"]]not vaccinated[[elif test="is(cx=2)"]]no rain[[elif test="is(cx=3)"]]not certified[[elif test="is(cx=4)"]]does not revise[[/if]]: those two add to 1.</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>3</falsenextnode><falseanswernote>prt3-3-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>3</name><description>first</description><answertest>NumAbsolute</answertest><sans>ans3</sans><tans>ta1</tans><testoptions>tl3</testoptions><quiet>1</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt3-4-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>That is branch (i). Branch (iii) comes after [[if test="is(cx=1)"]]not vaccinated[[elif test="is(cx=2)"]]no rain[[elif test="is(cx=3)"]]not certified[[elif test="is(cx=4)"]]does not revise[[/if]], so it pairs with the other branch after [[if test="is(cx=1)"]]not vaccinated[[elif test="is(cx=2)"]]no rain[[elif test="is(cx=3)"]]not certified[[elif test="is(cx=4)"]]does not revise[[/if]]: those two add to 1.</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>4</falsenextnode><falseanswernote>prt3-4-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>4</name><description>range</description><answertest>AlgEquiv</answertest><sans>is(ans3&lt;0 or ans3&gt;1)</sans><tans>true</tans><testoptions></testoptions><quiet>1</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt3-5-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>A probability is always between 0 and 1, so \({@ans3@}\) cannot be a probability.</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>-1</falsenextnode><falseanswernote>prt3-5-F</falseanswernote><falsefeedback format="html"><text><![CDATA[<p>Each pair of branches from one point adds to 1.</p>]]></text></falsefeedback></node>
+  </prt>
+  <prt><name>prt4</name><value>1.0000000</value><autosimplify>1</autosimplify><feedbackstyle>1</feedbackstyle><feedbackvariables><text><![CDATA[]]></text></feedbackvariables>
+    <node><name>0</name><description>ok</description><answertest>NumAbsolute</answertest><sans>ans4</sans><tans>ta4</tans><testoptions>10^(-9)</testoptions><quiet>1</quiet><truescoremode>=</truescoremode><truescore>1.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt4-1-T</trueanswernote><truefeedback format="html"><text><![CDATA[]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>1</falsenextnode><falseanswernote>prt4-1-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>1</name><description>round</description><answertest>NumAbsolute</answertest><sans>ans4</sans><tans>ta4</tans><testoptions>tl4</testoptions><quiet>1</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt4-2-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>Your value is close to the right one but has been rounded. Give the exact probability as a fraction or an exact decimal.</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>2</falsenextnode><falseanswernote>prt4-2-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>2</name><description>branch</description><answertest>NumAbsolute</answertest><sans>ans4</sans><tans>q1</tans><testoptions>tl4</testoptions><quiet>1</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt4-3-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>That is one branch only. Multiply the probabilities along the whole path: [[if test="is(cx=1)"]]vaccinated[[elif test="is(cx=2)"]]rain[[elif test="is(cx=3)"]]certified seed[[elif test="is(cx=4)"]]revises[[/if]], then [[if test="is(cx=1)"]]ill[[elif test="is(cx=2)"]]on time[[elif test="is(cx=3)"]]more than 20 bags[[elif test="is(cx=4)"]]passes[[/if]].</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>3</falsenextnode><falseanswernote>prt4-3-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>3</name><description>add</description><answertest>NumAbsolute</answertest><sans>ans4</sans><tans>d4b</tans><testoptions>tl4</testoptions><quiet>1</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt4-4-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>Along a path, multiply.</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>4</falsenextnode><falseanswernote>prt4-4-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>4</name><description>range</description><answertest>AlgEquiv</answertest><sans>is(ans4&lt;0 or ans4&gt;1)</sans><tans>true</tans><testoptions></testoptions><quiet>1</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt4-5-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>A probability is always between 0 and 1, so \({@ans4@}\) cannot be a probability.</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>-1</falsenextnode><falseanswernote>prt4-5-F</falseanswernote><falsefeedback format="html"><text><![CDATA[<p>Multiply the probabilities along the path [[if test="is(cx=1)"]]vaccinated[[elif test="is(cx=2)"]]rain[[elif test="is(cx=3)"]]certified seed[[elif test="is(cx=4)"]]revises[[/if]] then [[if test="is(cx=1)"]]ill[[elif test="is(cx=2)"]]on time[[elif test="is(cx=3)"]]more than 20 bags[[elif test="is(cx=4)"]]passes[[/if]].</p>]]></text></falsefeedback></node>
+  </prt>
+  <prt><name>prt5</name><value>1.0000000</value><autosimplify>1</autosimplify><feedbackstyle>1</feedbackstyle><feedbackvariables><text><![CDATA[]]></text></feedbackvariables>
+    <node><name>0</name><description>ok</description><answertest>NumAbsolute</answertest><sans>ans5</sans><tans>ta5</tans><testoptions>10^(-9)</testoptions><quiet>1</quiet><truescoremode>=</truescoremode><truescore>1.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt5-1-T</trueanswernote><truefeedback format="html"><text><![CDATA[]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>1</falsenextnode><falseanswernote>prt5-1-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>1</name><description>round</description><answertest>NumAbsolute</answertest><sans>ans5</sans><tans>ta5</tans><testoptions>tl5</testoptions><quiet>1</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt5-2-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>Your value is close to the right one but has been rounded. Give the exact probability as a fraction or an exact decimal.</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>2</falsenextnode><falseanswernote>prt5-2-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>2</name><description>path1</description><answertest>NumAbsolute</answertest><sans>ans5</sans><tans>ta4</tans><testoptions>tl5</testoptions><quiet>1</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt5-3-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>That is only the path [[if test="is(cx=1)"]]vaccinated[[elif test="is(cx=2)"]]rain[[elif test="is(cx=3)"]]certified seed[[elif test="is(cx=4)"]]revises[[/if]] then [[if test="is(cx=1)"]]ill[[elif test="is(cx=2)"]]on time[[elif test="is(cx=3)"]]more than 20 bags[[elif test="is(cx=4)"]]passes[[/if]]. [[if test="is(cx=1)"]]ill[[elif test="is(cx=2)"]]on time[[elif test="is(cx=3)"]]more than 20 bags[[elif test="is(cx=4)"]]passes[[/if]] can also follow [[if test="is(cx=1)"]]not vaccinated[[elif test="is(cx=2)"]]no rain[[elif test="is(cx=3)"]]not certified[[elif test="is(cx=4)"]]does not revise[[/if]]: add the two paths.</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>3</falsenextnode><falseanswernote>prt5-3-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>3</name><description>branches</description><answertest>NumAbsolute</answertest><sans>ans5</sans><tans>d5b</tans><testoptions>tl5</testoptions><quiet>1</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt5-4-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>Add the path probabilities, not the branch probabilities.</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>4</falsenextnode><falseanswernote>prt5-4-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>4</name><description>path2</description><answertest>NumAbsolute</answertest><sans>ans5</sans><tans>d5c</tans><testoptions>tl5</testoptions><quiet>1</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt5-5-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>That is only the second path, [[if test="is(cx=1)"]]not vaccinated[[elif test="is(cx=2)"]]no rain[[elif test="is(cx=3)"]]not certified[[elif test="is(cx=4)"]]does not revise[[/if]] then [[if test="is(cx=1)"]]ill[[elif test="is(cx=2)"]]on time[[elif test="is(cx=3)"]]more than 20 bags[[elif test="is(cx=4)"]]passes[[/if]]. Add the path [[if test="is(cx=1)"]]vaccinated[[elif test="is(cx=2)"]]rain[[elif test="is(cx=3)"]]certified seed[[elif test="is(cx=4)"]]revises[[/if]] then [[if test="is(cx=1)"]]ill[[elif test="is(cx=2)"]]on time[[elif test="is(cx=3)"]]more than 20 bags[[elif test="is(cx=4)"]]passes[[/if]] too.</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>5</falsenextnode><falseanswernote>prt5-5-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>5</name><description>range</description><answertest>AlgEquiv</answertest><sans>is(ans5&lt;0 or ans5&gt;1)</sans><tans>true</tans><testoptions></testoptions><quiet>1</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt5-6-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>A probability is always between 0 and 1, so \({@ans5@}\) cannot be a probability.</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>-1</falsenextnode><falseanswernote>prt5-6-F</falseanswernote><falsefeedback format="html"><text><![CDATA[<p>Multiply along each path that ends in [[if test="is(cx=1)"]]ill[[elif test="is(cx=2)"]]on time[[elif test="is(cx=3)"]]more than 20 bags[[elif test="is(cx=4)"]]passes[[/if]], then add the paths.</p>]]></text></falsefeedback></node>
+  </prt>
+  <prt><name>prt6</name><value>1.0000000</value><autosimplify>1</autosimplify><feedbackstyle>1</feedbackstyle><feedbackvariables><text><![CDATA[]]></text></feedbackvariables>
+    <node><name>0</name><description>ok</description><answertest>NumAbsolute</answertest><sans>ans6</sans><tans>ta6</tans><testoptions>10^(-9)</testoptions><quiet>1</quiet><truescoremode>=</truescoremode><truescore>1.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt6-1-T</trueanswernote><truefeedback format="html"><text><![CDATA[]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>1</falsenextnode><falseanswernote>prt6-1-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>1</name><description>round</description><answertest>NumAbsolute</answertest><sans>ans6</sans><tans>ta6</tans><testoptions>tl6</testoptions><quiet>1</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt6-2-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>Your value is close to the right one but has been rounded. Give the exact probability as a fraction or an exact decimal.</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>2</falsenextnode><falseanswernote>prt6-2-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>2</name><description>path2</description><answertest>NumAbsolute</answertest><sans>ans6</sans><tans>d6a</tans><testoptions>tl6</testoptions><quiet>1</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt6-3-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>That is one path that ends in [[if test="is(cx=1)"]]not ill[[elif test="is(cx=2)"]]late[[elif test="is(cx=3)"]]20 bags or fewer[[elif test="is(cx=4)"]]fails[[/if]]; there are two. Add them, or use \(1 - P(\)[[if test="is(cx=1)"]]ill[[elif test="is(cx=2)"]]on time[[elif test="is(cx=3)"]]more than 20 bags[[elif test="is(cx=4)"]]passes[[/if]]\()\).</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>3</falsenextnode><falseanswernote>prt6-3-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>3</name><description>path1</description><answertest>NumAbsolute</answertest><sans>ans6</sans><tans>d6b</tans><testoptions>tl6</testoptions><quiet>1</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt6-4-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>That is one path that ends in [[if test="is(cx=1)"]]not ill[[elif test="is(cx=2)"]]late[[elif test="is(cx=3)"]]20 bags or fewer[[elif test="is(cx=4)"]]fails[[/if]]; there are two. Add them, or use \(1 - P(\)[[if test="is(cx=1)"]]ill[[elif test="is(cx=2)"]]on time[[elif test="is(cx=3)"]]more than 20 bags[[elif test="is(cx=4)"]]passes[[/if]]\()\).</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>4</falsenextnode><falseanswernote>prt6-4-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>4</name><description>ft</description><answertest>NumAbsolute</answertest><sans>ans6</sans><tans>1-ans5</tans><testoptions>tl6</testoptions><quiet>1</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt6-5-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>Your method is right for your answer to (c), but that answer is wrong; see (c).</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>5</falsenextnode><falseanswernote>prt6-5-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>5</name><description>range</description><answertest>AlgEquiv</answertest><sans>is(ans6&lt;0 or ans6&gt;1)</sans><tans>true</tans><testoptions></testoptions><quiet>1</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt6-6-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>A probability is always between 0 and 1, so \({@ans6@}\) cannot be a probability.</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>-1</falsenextnode><falseanswernote>prt6-6-F</falseanswernote><falsefeedback format="html"><text><![CDATA[<p>Use \(1 - P(\)[[if test="is(cx=1)"]]ill[[elif test="is(cx=2)"]]on time[[elif test="is(cx=3)"]]more than 20 bags[[elif test="is(cx=4)"]]passes[[/if]]\()\), or add the two paths that end in [[if test="is(cx=1)"]]not ill[[elif test="is(cx=2)"]]late[[elif test="is(cx=3)"]]20 bags or fewer[[elif test="is(cx=4)"]]fails[[/if]].</p>]]></text></falsefeedback></node>
+  </prt>
+
+  <deployedseed>4</deployedseed>
+  <deployedseed>5</deployedseed>
+  <deployedseed>15</deployedseed>
+  <deployedseed>8</deployedseed>
+  <deployedseed>24</deployedseed>
+  <deployedseed>1</deployedseed>
+  <deployedseed>3</deployedseed>
+  <deployedseed>10</deployedseed>
+  <deployedseed>2</deployedseed>
+  <deployedseed>17</deployedseed>
+  <qtest><testcase>1</testcase><description>Correct, derived</description>
+    <testinput><name>ans1</name><value>ev(1-p,simp)</value></testinput>
+    <testinput><name>ans2</name><value>ev(1-q1,simp)</value></testinput>
+    <testinput><name>ans3</name><value>ev(1-q2,simp)</value></testinput>
+    <testinput><name>ans4</name><value>ev(p*q1,simp)</value></testinput>
+    <testinput><name>ans5</name><value>ev(p*q1+(1-p)*q2,simp)</value></testinput>
+    <testinput><name>ans6</name><value>ev(1-(p*q1+(1-p)*q2),simp)</value></testinput>
+    <expected><name>prt1</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt1-1-T</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt2-1-T</expectedanswernote></expected>
+    <expected><name>prt3</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt3-1-T</expectedanswernote></expected>
+    <expected><name>prt4</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt4-1-T</expectedanswernote></expected>
+    <expected><name>prt5</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt5-1-T</expectedanswernote></expected>
+    <expected><name>prt6</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt6-1-T</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>2</testcase><description>Rounded (b), (c)</description>
+    <testinput><name>ans1</name><value>ta1</value></testinput>
+    <testinput><name>ans2</name><value>ta2</value></testinput>
+    <testinput><name>ans3</name><value>ta3</value></testinput>
+    <testinput><name>ans4</name><value>float(ta4+tl4/2)</value></testinput>
+    <testinput><name>ans5</name><value>float(ta5+tl5/2)</value></testinput>
+    <testinput><name>ans6</name><value>ta6</value></testinput>
+    <expected><name>prt1</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt1-1-T</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt2-1-T</expectedanswernote></expected>
+    <expected><name>prt3</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt3-1-T</expectedanswernote></expected>
+    <expected><name>prt4</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt4-1-F | prt4-2-T</expectedanswernote></expected>
+    <expected><name>prt5</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt5-1-F | prt5-2-T</expectedanswernote></expected>
+    <expected><name>prt6</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt6-1-T</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>3</testcase><description>Given branch; first pair; second pair; one branch; one path; one path</description>
+    <testinput><name>ans1</name><value>p</value></testinput>
+    <testinput><name>ans2</name><value>ta1</value></testinput>
+    <testinput><name>ans3</name><value>ta2</value></testinput>
+    <testinput><name>ans4</name><value>q1</value></testinput>
+    <testinput><name>ans5</name><value>ta4</value></testinput>
+    <testinput><name>ans6</name><value>d6a</value></testinput>
+    <expected><name>prt1</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt1-1-F | prt1-2-F | prt1-3-T</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt2-1-F | prt2-2-F | prt2-3-T</expectedanswernote></expected>
+    <expected><name>prt3</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt3-1-F | prt3-2-F | prt3-3-T</expectedanswernote></expected>
+    <expected><name>prt4</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt4-1-F | prt4-2-F | prt4-3-T</expectedanswernote></expected>
+    <expected><name>prt5</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt5-1-F | prt5-2-F | prt5-3-T</expectedanswernote></expected>
+    <expected><name>prt6</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt6-1-F | prt6-2-F | prt6-3-T</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>4</testcase><description>Branch (i) in (iii); added along; added branches; other path</description>
+    <testinput><name>ans1</name><value>ta1</value></testinput>
+    <testinput><name>ans2</name><value>ta2</value></testinput>
+    <testinput><name>ans3</name><value>ta1</value></testinput>
+    <testinput><name>ans4</name><value>d4b</value></testinput>
+    <testinput><name>ans5</name><value>d5b</value></testinput>
+    <testinput><name>ans6</name><value>d6b</value></testinput>
+    <expected><name>prt1</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt1-1-T</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt2-1-T</expectedanswernote></expected>
+    <expected><name>prt3</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt3-1-F | prt3-2-F | prt3-3-F | prt3-4-T</expectedanswernote></expected>
+    <expected><name>prt4</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt4-1-F | prt4-2-F | prt4-3-F | prt4-4-T</expectedanswernote></expected>
+    <expected><name>prt5</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt5-1-F | prt5-2-F | prt5-3-F | prt5-4-T</expectedanswernote></expected>
+    <expected><name>prt6</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt6-1-F | prt6-2-F | prt6-3-F | prt6-4-T</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>5</testcase><description>Second path only in (c)</description>
+    <testinput><name>ans1</name><value>ta1</value></testinput>
+    <testinput><name>ans2</name><value>ta2</value></testinput>
+    <testinput><name>ans3</name><value>ta3</value></testinput>
+    <testinput><name>ans4</name><value>ta4</value></testinput>
+    <testinput><name>ans5</name><value>d5c</value></testinput>
+    <testinput><name>ans6</name><value>ta6</value></testinput>
+    <expected><name>prt1</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt1-1-T</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt2-1-T</expectedanswernote></expected>
+    <expected><name>prt3</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt3-1-T</expectedanswernote></expected>
+    <expected><name>prt4</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt4-1-T</expectedanswernote></expected>
+    <expected><name>prt5</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt5-1-F | prt5-2-F | prt5-3-F | prt5-4-F | prt5-5-T</expectedanswernote></expected>
+    <expected><name>prt6</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt6-1-T</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>6</testcase><description>Follow-through from a wrong (c)</description>
+    <testinput><name>ans1</name><value>ta1</value></testinput>
+    <testinput><name>ans2</name><value>ta2</value></testinput>
+    <testinput><name>ans3</name><value>ta3</value></testinput>
+    <testinput><name>ans4</name><value>ta4</value></testinput>
+    <testinput><name>ans5</name><value>ta5+3/20</value></testinput>
+    <testinput><name>ans6</name><value>1-(ta5+3/20)</value></testinput>
+    <expected><name>prt1</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt1-1-T</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt2-1-T</expectedanswernote></expected>
+    <expected><name>prt3</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt3-1-T</expectedanswernote></expected>
+    <expected><name>prt4</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt4-1-T</expectedanswernote></expected>
+    <expected><name>prt5</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt5-1-F | prt5-2-F | prt5-3-F | prt5-4-F | prt5-5-F | prt5-6-F</expectedanswernote></expected>
+    <expected><name>prt6</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt6-1-F | prt6-2-F | prt6-3-F | prt6-4-F | prt6-5-T</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>7</testcase><description>Generic wrong (a) to (c)</description>
+    <testinput><name>ans1</name><value>ta1/2</value></testinput>
+    <testinput><name>ans2</name><value>ta2/3</value></testinput>
+    <testinput><name>ans3</name><value>ta3/3</value></testinput>
+    <testinput><name>ans4</name><value>ta4/2</value></testinput>
+    <testinput><name>ans5</name><value>(1+ta5)/2</value></testinput>
+    <testinput><name>ans6</name><value>ta6</value></testinput>
+    <expected><name>prt1</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt1-1-F | prt1-2-F | prt1-3-F | prt1-4-F</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt2-1-F | prt2-2-F | prt2-3-F | prt2-4-F</expectedanswernote></expected>
+    <expected><name>prt3</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt3-1-F | prt3-2-F | prt3-3-F | prt3-4-F | prt3-5-F</expectedanswernote></expected>
+    <expected><name>prt4</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt4-1-F | prt4-2-F | prt4-3-F | prt4-4-F | prt4-5-F</expectedanswernote></expected>
+    <expected><name>prt5</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt5-1-F | prt5-2-F | prt5-3-F | prt5-4-F | prt5-5-F | prt5-6-F</expectedanswernote></expected>
+    <expected><name>prt6</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt6-1-T</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>8</testcase><description>Generic wrong (d)</description>
+    <testinput><name>ans1</name><value>ta1</value></testinput>
+    <testinput><name>ans2</name><value>ta2</value></testinput>
+    <testinput><name>ans3</name><value>ta3</value></testinput>
+    <testinput><name>ans4</name><value>ta4</value></testinput>
+    <testinput><name>ans5</name><value>ta5</value></testinput>
+    <testinput><name>ans6</name><value>ta6/2</value></testinput>
+    <expected><name>prt1</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt1-1-T</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt2-1-T</expectedanswernote></expected>
+    <expected><name>prt3</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt3-1-T</expectedanswernote></expected>
+    <expected><name>prt4</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt4-1-T</expectedanswernote></expected>
+    <expected><name>prt5</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt5-1-T</expectedanswernote></expected>
+    <expected><name>prt6</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt6-1-F | prt6-2-F | prt6-3-F | prt6-4-F | prt6-5-F | prt6-6-F</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>9</testcase><description>Out of range (c)</description>
+    <testinput><name>ans1</name><value>ta1</value></testinput>
+    <testinput><name>ans2</name><value>ta2</value></testinput>
+    <testinput><name>ans3</name><value>ta3</value></testinput>
+    <testinput><name>ans4</name><value>ta4</value></testinput>
+    <testinput><name>ans5</name><value>ta5+1</value></testinput>
+    <testinput><name>ans6</name><value>ta6</value></testinput>
+    <expected><name>prt1</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt1-1-T</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt2-1-T</expectedanswernote></expected>
+    <expected><name>prt3</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt3-1-T</expectedanswernote></expected>
+    <expected><name>prt4</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt4-1-T</expectedanswernote></expected>
+    <expected><name>prt5</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt5-1-F | prt5-2-F | prt5-3-F | prt5-4-F | prt5-5-F | prt5-6-T</expectedanswernote></expected>
+    <expected><name>prt6</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt6-1-T</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>10</testcase><description>Invalid: letter in (a)(i)</description>
+    <testinput><name>ans1</name><value>x</value></testinput>
+    <testinput><name>ans2</name><value>ta2</value></testinput>
+    <testinput><name>ans3</name><value>ta3</value></testinput>
+    <testinput><name>ans4</name><value>ta4</value></testinput>
+    <testinput><name>ans5</name><value>ta5</value></testinput>
+    <testinput><name>ans6</name><value>ta6</value></testinput>
+    <expected><name>prt1</name><expectedscore></expectedscore><expectedpenalty></expectedpenalty><expectedanswernote>NULL</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt2-1-T</expectedanswernote></expected>
+    <expected><name>prt3</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt3-1-T</expectedanswernote></expected>
+    <expected><name>prt4</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt4-1-T</expectedanswernote></expected>
+    <expected><name>prt5</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt5-1-T</expectedanswernote></expected>
+    <expected><name>prt6</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt6-1-T</expectedanswernote></expected>
+  </qtest>
+</question>
+</quiz>

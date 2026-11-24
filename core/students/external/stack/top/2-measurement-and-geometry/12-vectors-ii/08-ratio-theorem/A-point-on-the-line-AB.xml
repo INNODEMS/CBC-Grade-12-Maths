@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<quiz>
+<question type="stack">
+  <name><text>A point on the line AB</text></name>
+  <questiontext format="html">
+    <text><![CDATA[<p>\(\overrightarrow{OA} = \mathbf{a}\) and \(\overrightarrow{OB} = \mathbf{b}\). Give the position vector, in terms of \(\mathbf{a}\) and \(\mathbf{b}\), of a point R that lies on the line AB [[if test="is(ix=1)"]]beyond B[[/if]][[if test="is(ix=2)"]]beyond A[[/if]][[if test="is(ix=3)"]]between A and B, nearer to A than to B[[/if]][[if test="is(ix=4)"]]between A and B, nearer to B than to A[[/if]][[if test="is(ix=5)"]]beyond B, with AR more than twice as long as AB[[/if]][[if test="is(ix=6)"]]beyond B, with AR less than twice as long as AB[[/if]][[if test="is(ix=7)"]]beyond A, with AR longer than AB[[/if]][[if test="is(ix=8)"]]beyond A, with AR shorter than AB[[/if]][[if test="is(ix=9)"]]between A and B, less than a quarter of the way from A to B[[/if]][[if test="is(ix=10)"]]between A and B, more than three quarters of the way from A to B[[/if]].</p><div>\(\overrightarrow{OR} =\) [[input:ans1]] [[validation:ans1]] [[feedback:prt1]]</div>]]></text>
+  </questiontext>
+  <generalfeedback format="html">
+    <text><![CDATA[<p>A point with position vector \(\lambda\mathbf{a} + \mu\mathbf{b}\) lies on the line AB exactly when \(\lambda + \mu = 1\). Then \(\overrightarrow{AR} = \mu\,\overrightarrow{AB}\): the point is between A and B when \(0 \lt \mu \lt 1\), beyond B when \(\mu \gt 1\) and beyond A when \(\mu \lt 0\). The size of \(\mu\) says how many times as long as AB the line AR is.</p><p>For a point [[if test="is(ix=1)"]]beyond B[[/if]][[if test="is(ix=2)"]]beyond A[[/if]][[if test="is(ix=3)"]]between A and B, nearer to A than to B[[/if]][[if test="is(ix=4)"]]between A and B, nearer to B than to A[[/if]][[if test="is(ix=5)"]]beyond B, with AR more than twice as long as AB[[/if]][[if test="is(ix=6)"]]beyond B, with AR less than twice as long as AB[[/if]][[if test="is(ix=7)"]]beyond A, with AR longer than AB[[/if]][[if test="is(ix=8)"]]beyond A, with AR shorter than AB[[/if]][[if test="is(ix=9)"]]between A and B, less than a quarter of the way from A to B[[/if]][[if test="is(ix=10)"]]between A and B, more than three quarters of the way from A to B[[/if]] the coefficient of \(\mathbf{b}\) must be [[if test="is(ix=1)"]]greater than 1[[/if]][[if test="is(ix=2)"]]negative[[/if]][[if test="is(ix=3)"]]between 0 and \(\dfrac{1}{2}\)[[/if]][[if test="is(ix=4)"]]between \(\dfrac{1}{2}\) and 1[[/if]][[if test="is(ix=5)"]]greater than 2[[/if]][[if test="is(ix=6)"]]between 1 and 2[[/if]][[if test="is(ix=7)"]]less than \(-1\)[[/if]][[if test="is(ix=8)"]]between \(-1\) and 0[[/if]][[if test="is(ix=9)"]]between 0 and \(\dfrac{1}{4}\)[[/if]][[if test="is(ix=10)"]]between \(\dfrac{3}{4}\) and 1[[/if]]. One answer is \({@samp@}\); another is \({@alt@}\).</p>]]></text>
+  </generalfeedback>
+  <defaultgrade>1</defaultgrade>
+  <penalty>0.1</penalty>
+  <hidden>0</hidden>
+  <idnumber></idnumber>
+  <stackversion><text>2026063000</text></stackversion>
+  <questionvariables>
+    <text><![CDATA[validate_ab(ex) := block([s, ca, cb], if not every(lambda([vv], member(vv, [a,b])), listofvars(ex)) then "Use only the vectors a and b." else (s: ev(expand(ex), simp), ca: ev(coeff(s,a), simp), cb: ev(coeff(s,b), simp), if ev(is(s - ca*a - cb*b = 0), simp) and ev(numberp(float(ca)) and numberp(float(cb)), simp) then "" else "Write your answer as a number times a plus a number times b, for example 3/5*a+2/5*b."));
+texput(a,"\\mathbf{a}"); texput(b,"\\mathbf{b}");
+/* Design: give a point on the line AB, graded by property: coefficients add to 1 and the coefficient of b, mu, is in the named range, where AR = mu AB. Ten positions: three beyond B, three beyond A, four between A and B. Source: original. */
+plist: [[1,1000,2,3,1/2],[-1000,0,-1,-2,1/2],[0,1/2,1/3,1/4,2/3],[1/2,1,2/3,3/4,1/3],[2,1000,3,4,3/2],[1,2,3/2,5/4,3],[-1000,-1,-2,-3,-1/2],[-1,0,-1/2,-1/3,-2],[0,1/4,1/5,1/8,1/3],[3/4,1,4/5,7/8,2/3]];
+ix: 1+rand(10);
+lo: plist[ix][1]; hi: plist[ix][2]; ms: plist[ix][3]; mt: plist[ix][4]; mw: plist[ix][5];
+samp: (1-ms)*a+ms*b;
+alt: (1-mt)*a+mt*b;
+wrongreg: (1-mw)*a+mw*b;
+]]></text>
+  </questionvariables>
+  <specificfeedback format="html"><text><![CDATA[]]></text></specificfeedback>
+  <questionnote format="moodle_auto_format">
+    <text>ix={@ix@}</text>
+  </questionnote>
+  <questiondescription format="html"><text><![CDATA[<p id="concept">Vectors II: a point on the line AB</p><p id="description">Grade 12 CBE Core 2.6: Construct the position vector of a point on line AB in a given position, using coefficients that add to 1.</p><p id="edition">Core</p><p id="provenance">This question is original to this project.</p><p id="citation">INNODEMS CBC Grade 12 Mathematics, first draft by Ben Davies, 2026. Aligned to the KICD Senior School Curriculum Design, Core Mathematics Grade 12 (draft).</p>]]></text></questiondescription>
+  <questionsimplify>1</questionsimplify>
+  <assumepositive>0</assumepositive>
+  <assumereal>0</assumereal>
+  <prtcorrect format="html"><text><![CDATA[[[commonstring key="symbolicprtcorrectfeedback"/]] [[commonstring key="defaultprtcorrectfeedback"/]]]]></text></prtcorrect>
+  <prtpartiallycorrect format="html"><text><![CDATA[[[commonstring key="symbolicprtpartiallycorrectfeedback"/]] [[commonstring key="defaultprtpartiallycorrectfeedback"/]]]]></text></prtpartiallycorrect>
+  <prtincorrect format="html"><text><![CDATA[[[commonstring key="symbolicprtincorrectfeedback"/]] [[commonstring key="defaultprtincorrectfeedback"/]]]]></text></prtincorrect>
+  <decimals>.</decimals>
+  <scientificnotation>*10</scientificnotation>
+  <multiplicationsign>none</multiplicationsign>
+  <sqrtsign>1</sqrtsign>
+  <complexno>symi</complexno>
+  <inversetrig>cos-1</inversetrig>
+  <logicsymbol>lang</logicsymbol>
+  <matrixparens>(</matrixparens>
+  <isbroken>0</isbroken>
+  <variantsselectionseed></variantsselectionseed>
+
+  <input><name>ans1</name><type>algebraic</type><tans>samp</tans><boxsize>15</boxsize><strictsyntax>1</strictsyntax><insertstars>4</insertstars><syntaxhint></syntaxhint><syntaxattribute>0</syntaxattribute><forbidwords></forbidwords><allowwords></allowwords><forbidfloat>1</forbidfloat><requirelowestterms>0</requirelowestterms><checkanswertype>0</checkanswertype><mustverify>0</mustverify><showvalidation>3</showvalidation><options>validator:validate_ab</options></input>
+
+  <prt><name>prt1</name><value>1.0000000</value><autosimplify>1</autosimplify><feedbackstyle>1</feedbackstyle><feedbackvariables><text><![CDATA[s: expand(ans1); la: coeff(s,a); mu: coeff(s,b);
+online: is(abs(la+mu-1) < 10^-9);
+inreg: is(mu > lo and mu < hi);
+]]></text></feedbackvariables>
+    <node><name>0</name><description>On AB in the position asked for</description><answertest>AlgEquiv</answertest><sans>online and inreg</sans><tans>true</tans><testoptions></testoptions><quiet>1</quiet><truescoremode>=</truescoremode><truescore>1.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt1-1-T</trueanswernote><truefeedback format="html"><text><![CDATA[]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>1</falsenextnode><falseanswernote>prt1-1-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>1</name><description>An endpoint</description><answertest>AlgEquiv</answertest><sans>is(la = 1 and mu = 0) or is(la = 0 and mu = 1)</sans><tans>true</tans><testoptions></testoptions><quiet>1</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt1-2-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>That is A or B itself; give another point.</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>2</falsenextnode><falseanswernote>prt1-2-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>2</name><description>Not on AB</description><answertest>AlgEquiv</answertest><sans>not online</sans><tans>true</tans><testoptions></testoptions><quiet>1</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt1-3-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>\({@la@} + [[if test="is(mu < 0)"]]({@mu@})[[else]]{@mu@}[[/if]] = {@la+mu@}\), not 1, so R is not on the line AB. Points on AB have coefficients that add to 1.</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>3</falsenextnode><falseanswernote>prt1-3-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>3</name><description>On AB, wrong position</description><answertest>AlgEquiv</answertest><sans>online</sans><tans>true</tans><testoptions></testoptions><quiet>1</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt1-4-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>R is on the line AB, but \(\mu = {@mu@}\) puts it [[if test="is(mu > 1)"]]beyond B[[/if]][[if test="is(mu < 0)"]]beyond A[[/if]][[if test="is(mu = 1/2)"]]at the midpoint of AB[[/if]][[if test="is(mu > 0 and mu < 1 and mu # 1/2)"]]between A and B[[/if]], with \(\overrightarrow{AR} = {@mu@}\,\overrightarrow{AB}\). For a point [[if test="is(ix=1)"]]beyond B[[/if]][[if test="is(ix=2)"]]beyond A[[/if]][[if test="is(ix=3)"]]between A and B, nearer to A than to B[[/if]][[if test="is(ix=4)"]]between A and B, nearer to B than to A[[/if]][[if test="is(ix=5)"]]beyond B, with AR more than twice as long as AB[[/if]][[if test="is(ix=6)"]]beyond B, with AR less than twice as long as AB[[/if]][[if test="is(ix=7)"]]beyond A, with AR longer than AB[[/if]][[if test="is(ix=8)"]]beyond A, with AR shorter than AB[[/if]][[if test="is(ix=9)"]]between A and B, less than a quarter of the way from A to B[[/if]][[if test="is(ix=10)"]]between A and B, more than three quarters of the way from A to B[[/if]], the coefficient of \(\mathbf{b}\) must be [[if test="is(ix=1)"]]greater than 1[[/if]][[if test="is(ix=2)"]]negative[[/if]][[if test="is(ix=3)"]]between 0 and \(\dfrac{1}{2}\)[[/if]][[if test="is(ix=4)"]]between \(\dfrac{1}{2}\) and 1[[/if]][[if test="is(ix=5)"]]greater than 2[[/if]][[if test="is(ix=6)"]]between 1 and 2[[/if]][[if test="is(ix=7)"]]less than \(-1\)[[/if]][[if test="is(ix=8)"]]between \(-1\) and 0[[/if]][[if test="is(ix=9)"]]between 0 and \(\dfrac{1}{4}\)[[/if]][[if test="is(ix=10)"]]between \(\dfrac{3}{4}\) and 1[[/if]].</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>-1</falsenextnode><falseanswernote>prt1-4-F</falseanswernote><falsefeedback format="html"><text><![CDATA[<p>Points on AB have coefficients of \(\mathbf{a}\) and \(\mathbf{b}\) that add to 1.</p>]]></text></falsefeedback></node>
+  </prt>
+
+  <deployedseed>4</deployedseed>
+  <deployedseed>5</deployedseed>
+  <deployedseed>15</deployedseed>
+  <deployedseed>8</deployedseed>
+  <deployedseed>24</deployedseed>
+  <deployedseed>1</deployedseed>
+  <deployedseed>3</deployedseed>
+  <deployedseed>10</deployedseed>
+  <deployedseed>2</deployedseed>
+  <deployedseed>17</deployedseed>
+  <qtest><testcase>1</testcase><description>Correct: sample</description>
+    <testinput><name>ans1</name><value>samp</value></testinput>
+    <expected><name>prt1</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt1-1-T</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>2</testcase><description>Correct: another point</description>
+    <testinput><name>ans1</name><value>alt</value></testinput>
+    <expected><name>prt1</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt1-1-T</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>3</testcase><description>An endpoint</description>
+    <testinput><name>ans1</name><value>b</value></testinput>
+    <expected><name>prt1</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt1-1-F | prt1-2-T</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>4</testcase><description>Not on the line</description>
+    <testinput><name>ans1</name><value>a+b</value></testinput>
+    <expected><name>prt1</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt1-1-F | prt1-2-F | prt1-3-T</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>5</testcase><description>Wrong position on the line</description>
+    <testinput><name>ans1</name><value>wrongreg</value></testinput>
+    <expected><name>prt1</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt1-1-F | prt1-2-F | prt1-3-F | prt1-4-T</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>6</testcase><description>Wrong position: the midpoint</description>
+    <testinput><name>ans1</name><value>1/2*a+1/2*b</value></testinput>
+    <expected><name>prt1</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt1-1-F | prt1-2-F | prt1-3-F | prt1-4-T</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>7</testcase><description>Invalid: not linear</description>
+    <testinput><name>ans1</name><value>a*b</value></testinput>
+    <expected><name>prt1</name><expectedscore></expectedscore><expectedpenalty></expectedpenalty><expectedanswernote>NULL</expectedanswernote></expected>
+  </qtest>
+</question>
+</quiz>

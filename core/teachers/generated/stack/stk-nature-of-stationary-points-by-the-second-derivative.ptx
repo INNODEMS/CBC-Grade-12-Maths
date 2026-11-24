@@ -1,0 +1,9 @@
+<stack-static>
+    <statement><p><p>The curve <m>y = {x^3-27 x+5}</m> has stationary points at <m>x = {-3}</m> and <m>x = {3}</m>.</p><p>(a) Find <m>\dfrac{d^2y}{dx^2}</m>.</p><div><m>\dfrac{d^2y}{dx^2} =</m> <fillin characters="12" name="ans1"/>  </div><p>(b) Find the value of <m>\dfrac{d^2y}{dx^2}</m> at <m>x = {-3}</m>.</p><div><fillin characters="5" name="ans2"/>  </div><p>This stationary point is a [ maximum point | minimum point | point of inflection ]  </p><p>(c) Find the value of <m>\dfrac{d^2y}{dx^2}</m> at <m>x = {3}</m>.</p><div><fillin characters="5" name="ans4"/>  </div><p>This stationary point is a [ maximum point | minimum point | point of inflection ]  </p></p></statement>
+    <solution><p><p>The second derivative <m>\dfrac{d^2y}{dx^2}</m> is the rate at which the gradient itself is changing. At a stationary point, <m>\dfrac{d^2y}{dx^2} \lt 0</m> means the gradient is decreasing, so the point is a maximum point; <m>\dfrac{d^2y}{dx^2} \gt 0</m> means a minimum point.</p><p>(a) <m>\dfrac{dy}{dx} = {3 x^2-27}</m>, so <m>\dfrac{d^2y}{dx^2} = {6 x}</m>.</p><p>(b) At <m>x = {-3}</m>, <m>\dfrac{d^2y}{dx^2} = {-18}</m>, which is negative: a maximum point.</p><p>(c) At <m>x = {3}</m>, <m>\dfrac{d^2y}{dx^2} = {18}</m>, which is positive: a minimum point.</p></p></solution>
+    <answer><p><m>6 x</m></p></answer>
+    <answer><p><m>-18</m></p></answer>
+    <answer><p>maximum point</p></answer>
+    <answer><p><m>18</m></p></answer>
+    <answer><p>minimum point</p></answer>
+</stack-static>

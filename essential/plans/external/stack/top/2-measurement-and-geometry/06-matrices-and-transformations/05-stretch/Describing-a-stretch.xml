@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<quiz>
+<question type="stack">
+  <name><text>Describing a stretch</text></name>
+  <questiontext format="html">
+    <text><![CDATA[<p>Triangle PQR, with \(P({@P0[1]@},\,{@P0[2]@})\), \(Q({@Q0[1]@},\,{@Q0[2]@})\) and \(R({@R0[1]@},\,{@R0[2]@})\), is mapped onto triangle \(P'Q'R'\), with \(P'({@P1[1]@},\,{@P1[2]@})\), \(Q'({@Q1[1]@},\,{@Q1[2]@})\) and \(R'({@R1[1]@},\,{@R1[2]@})\), by a stretch.</p><p>(a) Which axis is invariant?</p><div>[[input:ans1]] [[validation:ans1]] [[feedback:prt1]]</div><p>(b) The stretch factor is</p><div>[[input:ans2]] [[validation:ans2]] [[feedback:prt2]]</div><p>(c) The matrix of the stretch is</p><div>[[input:ans3]] [[validation:ans3]] [[feedback:prt3]]</div>]]></text>
+  </questiontext>
+  <generalfeedback format="html">
+    <text><![CDATA[<p>(a) Every [[if test="is(ax=\"x\")"]]x[[else]]y[[/if]]-coordinate stays the same and every [[if test="is(ax=\"x\")"]]y[[else]]x[[/if]]-coordinate changes, so the points move parallel to the [[if test="is(ax=\"x\")"]]y[[else]]x[[/if]]-axis, at right angles to the [[if test="is(ax=\"x\")"]]x[[else]]y[[/if]]-axis. The [[if test="is(ax=\"x\")"]]x[[else]]y[[/if]]-axis is invariant.</p><p>(b) Stretch factor = new distance from the invariant axis \(\div\) old distance. For P: \({@abs(if ax="x" then P1[2] else P1[1])@} \div {@abs(if ax="x" then P0[2] else P0[1])@} = {@k@}\).</p><p>(c) The images of (1, 0) and (0, 1) are the columns: \({@ta@}\).</p>]]></text>
+  </generalfeedback>
+  <defaultgrade>3</defaultgrade>
+  <penalty>0.1</penalty>
+  <hidden>0</hidden>
+  <idnumber></idnumber>
+  <stackversion><text>2026063000</text></stackversion>
+  <questionvariables>
+    <text><![CDATA[validate_numeric(ex) := block([sx], sx: ev(ex, simp), if listofvars(ex) = [] and freeof(%i, sx) then "" else "Type a number in each box, not a letter.");
+/* Design: describe a stretch. Source: original. No vertex lies on either axis, so every vertex moves; k, 1/k and k - 1 are distinct on every entry. Option "neither axis" is first and never correct. */
+slist: [["y",2,[[-2,-1],[4,2],[2,-3]]],["x",5/2,[[-1,-1],[-3,-4],[1,-3]]],["y",1/2,[[-4,-3],[4,-3],[-3,3]]],["x",4,[[4,-2],[-2,-1],[-4,-2]]],["y",3/2,[[-1,-3],[-3,-4],[2,1]]],["x",6,[[1,1],[-3,-1],[-2,-2]]],["y",1/4,[[1,-2],[3,2],[2,-1]]],["x",7/2,[[-3,4],[-2,3],[-4,-1]]],["y",3/4,[[4,2],[3,4],[-3,-4]]],["x",2/5,[[1,2],[-3,-2],[4,-2]]]];
+ix: 1+rand(10);
+ax: slist[ix][1]; k: slist[ix][2]; V: slist[ix][3];
+ta: if ax="x" then matrix([1,0],[0,k]) else matrix([k,0],[0,1]);
+ma(a,f) := if a="x" then matrix([1,0],[0,f]) else if a="y" then matrix([f,0],[0,1]) else matrix([nostretch,0],[0,0]);
+imv(v) := list_matrix_entries(ta.transpose(matrix(v)));
+P0: V[1]; Q0: V[2]; R0: V[3]; P1: imv(P0); Q1: imv(Q0); R1: imv(R0);
+opt1: [["neither",false,"neither axis"],["x",is(ax="x"),"the x-axis"],["y",is(ax="y"),"the y-axis"]];
+oax: if ax="x" then "y" else "x";
+/* diagnostics: (b) 1/k (object over image), k - 1 (moved over distance); (c) the other axis's matrix; follow-through */
+ik: 1/k; km: k-1; dW: ma(oax,k); dWr: ma(oax,1/k);
+tw: ta+matrix([0,1],[0,0]); kw: k+1;
+]]></text>
+  </questionvariables>
+  <specificfeedback format="html"><text><![CDATA[]]></text></specificfeedback>
+  <questionnote format="moodle_auto_format">
+    <text>ix={@ix@}, axis {@ax@}, k={@k@}</text>
+  </questionnote>
+  <questiondescription format="html"><text><![CDATA[<p id="concept">Matrices and Transformations: describing a stretch</p><p id="description">Grade 12 CBE Core 2.1: Identify the invariant axis and stretch factor of a one-way stretch from a triangle and its image, and give its matrix.</p><p id="edition">Core</p><p id="provenance">This question is original to this project.</p><p id="citation">INNODEMS CBC Grade 12 Mathematics, first draft by Ben Davies, 2026. Aligned to the KICD Senior School Curriculum Design, Core Mathematics Grade 12 (draft).</p>]]></text></questiondescription>
+  <questionsimplify>1</questionsimplify>
+  <assumepositive>0</assumepositive>
+  <assumereal>0</assumereal>
+  <prtcorrect format="html"><text><![CDATA[[[commonstring key="symbolicprtcorrectfeedback"/]] [[commonstring key="defaultprtcorrectfeedback"/]]]]></text></prtcorrect>
+  <prtpartiallycorrect format="html"><text><![CDATA[[[commonstring key="symbolicprtpartiallycorrectfeedback"/]] [[commonstring key="defaultprtpartiallycorrectfeedback"/]]]]></text></prtpartiallycorrect>
+  <prtincorrect format="html"><text><![CDATA[[[commonstring key="symbolicprtincorrectfeedback"/]] [[commonstring key="defaultprtincorrectfeedback"/]]]]></text></prtincorrect>
+  <decimals>.</decimals>
+  <scientificnotation>*10</scientificnotation>
+  <multiplicationsign>none</multiplicationsign>
+  <sqrtsign>1</sqrtsign>
+  <complexno>i</complexno>
+  <inversetrig>cos-1</inversetrig>
+  <logicsymbol>lang</logicsymbol>
+  <matrixparens>[</matrixparens>
+  <isbroken>0</isbroken>
+  <variantsselectionseed></variantsselectionseed>
+
+  <input><name>ans1</name><type>dropdown</type><tans>opt1</tans><boxsize>15</boxsize><strictsyntax>1</strictsyntax><insertstars>0</insertstars><syntaxhint></syntaxhint><syntaxattribute>0</syntaxattribute><forbidwords></forbidwords><allowwords></allowwords><forbidfloat>1</forbidfloat><requirelowestterms>0</requirelowestterms><checkanswertype>0</checkanswertype><mustverify>0</mustverify><showvalidation>0</showvalidation><options></options></input>
+  <input><name>ans2</name><type>numerical</type><tans>k</tans><boxsize>5</boxsize><strictsyntax>1</strictsyntax><insertstars>0</insertstars><syntaxhint></syntaxhint><syntaxattribute>0</syntaxattribute><forbidwords></forbidwords><allowwords></allowwords><forbidfloat>0</forbidfloat><requirelowestterms>0</requirelowestterms><checkanswertype>0</checkanswertype><mustverify>0</mustverify><showvalidation>0</showvalidation><options></options></input>
+  <input><name>ans3</name><type>matrix</type><tans>ta</tans><boxsize>3</boxsize><strictsyntax>1</strictsyntax><insertstars>0</insertstars><syntaxhint></syntaxhint><syntaxattribute>0</syntaxattribute><forbidwords></forbidwords><allowwords></allowwords><forbidfloat>0</forbidfloat><requirelowestterms>0</requirelowestterms><checkanswertype>0</checkanswertype><mustverify>0</mustverify><showvalidation>3</showvalidation><options>validator:validate_numeric</options></input>
+
+  <prt><name>prt1</name><value>1.0000000</value><autosimplify>1</autosimplify><feedbackstyle>1</feedbackstyle><feedbackvariables><text><![CDATA[]]></text></feedbackvariables>
+    <node><name>0</name><description>Invariant axis</description><answertest>AlgEquiv</answertest><sans>ans1</sans><tans>ax</tans><testoptions></testoptions><quiet>1</quiet><truescoremode>=</truescoremode><truescore>1.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt1-1-T</trueanswernote><truefeedback format="html"><text><![CDATA[]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>1</falsenextnode><falseanswernote>prt1-1-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>1</name><description>Other axis</description><answertest>AlgEquiv</answertest><sans>ans1</sans><tans>oax</tans><testoptions></testoptions><quiet>1</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt1-2-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>The points moved parallel to the [[if test="is(ax=\"x\")"]]y[[else]]x[[/if]]-axis, so the [[if test="is(ax=\"x\")"]]x[[else]]y[[/if]]-axis is the line that stays put: the points move at right angles to the invariant axis.</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>-1</falsenextnode><falseanswernote>prt1-2-F</falseanswernote><falsefeedback format="html"><text><![CDATA[<p>Look at which coordinate stays the same for every vertex. The points move at right angles to the invariant axis, and points on it would not move.</p>]]></text></falsefeedback></node>
+  </prt>
+  <prt><name>prt2</name><value>1.0000000</value><autosimplify>1</autosimplify><feedbackstyle>1</feedbackstyle><feedbackvariables><text><![CDATA[]]></text></feedbackvariables>
+    <node><name>0</name><description>Stretch factor</description><answertest>NumAbsolute</answertest><sans>ans2</sans><tans>k</tans><testoptions>0.001</testoptions><quiet>1</quiet><truescoremode>=</truescoremode><truescore>1.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt2-1-T</trueanswernote><truefeedback format="html"><text><![CDATA[]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>1</falsenextnode><falseanswernote>prt2-1-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>1</name><description>Object over image</description><answertest>NumAbsolute</answertest><sans>ans2</sans><tans>ik</tans><testoptions>0.001</testoptions><quiet>1</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt2-2-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>You divided object by image. Stretch factor = new distance from the invariant axis \(\div\) old distance.</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>2</falsenextnode><falseanswernote>prt2-2-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>2</name><description>Moved over distance</description><answertest>NumAbsolute</answertest><sans>ans2</sans><tans>km</tans><testoptions>0.001</testoptions><quiet>1</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt2-3-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>You divided the distance moved by the old distance. For a stretch, divide the new distance from the invariant axis by the old one.</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>-1</falsenextnode><falseanswernote>prt2-3-F</falseanswernote><falsefeedback format="html"><text><![CDATA[<p>Stretch factor = new distance from the invariant axis \(\div\) old distance. Use any vertex.</p>]]></text></falsefeedback></node>
+  </prt>
+  <prt><name>prt3</name><value>1.0000000</value><autosimplify>1</autosimplify><feedbackstyle>1</feedbackstyle><feedbackvariables><text><![CDATA[fm: ma(ans1, ans2);
+]]></text></feedbackvariables>
+    <node><name>0</name><description>Matrix</description><answertest>AlgEquiv</answertest><sans>ans3</sans><tans>ta</tans><testoptions></testoptions><quiet>0</quiet><truescoremode>=</truescoremode><truescore>1.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt3-1-T</trueanswernote><truefeedback format="html"><text><![CDATA[]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>1</falsenextnode><falseanswernote>prt3-1-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>1</name><description>Other axis's matrix</description><answertest>AlgEquiv</answertest><sans>ans3</sans><tans>dW</tans><testoptions></testoptions><quiet>1</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt3-2-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>That matrix multiplies the [[if test="is(ax=\"x\")"]]x[[else]]y[[/if]]-coordinate, so it keeps the [[if test="is(ax=\"x\")"]]y[[else]]x[[/if]]-axis invariant. Here the [[if test="is(ax=\"x\")"]]y[[else]]x[[/if]]-coordinate is multiplied by the stretch factor.</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>2</falsenextnode><falseanswernote>prt3-2-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>2</name><description>Follow-through from (a) and (b)</description><answertest>AlgEquiv</answertest><sans>ans3</sans><tans>fm</tans><testoptions></testoptions><quiet>1</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt3-3-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>That is the right matrix for your answers to (a) and (b), but they are not right; see them.</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>-1</falsenextnode><falseanswernote>prt3-3-F</falseanswernote><falsefeedback format="html"><text><![CDATA[<p>Your matrix sends (1, 0) to \(({@ans3[1,1]@},\,{@ans3[2,1]@})\) and (0, 1) to \(({@ans3[1,2]@},\,{@ans3[2,2]@})\). Find the images of (1, 0) and (0, 1) under the stretch: they are the columns of the matrix.</p>]]></text></falsefeedback></node>
+  </prt>
+
+  <deployedseed>4</deployedseed>
+  <deployedseed>5</deployedseed>
+  <deployedseed>15</deployedseed>
+  <deployedseed>8</deployedseed>
+  <deployedseed>24</deployedseed>
+  <deployedseed>1</deployedseed>
+  <deployedseed>3</deployedseed>
+  <deployedseed>10</deployedseed>
+  <deployedseed>2</deployedseed>
+  <deployedseed>17</deployedseed>
+  <qtest><testcase>1</testcase><description>Correct</description>
+    <testinput><name>ans1</name><value>ax</value></testinput>
+    <testinput><name>ans2</name><value>k</value></testinput>
+    <testinput><name>ans3</name><value>ta</value></testinput>
+    <expected><name>prt1</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt1-1-T</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt2-1-T</expectedanswernote></expected>
+    <expected><name>prt3</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt3-1-T</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>2</testcase><description>Other axis; 1/k; other axis's matrix</description>
+    <testinput><name>ans1</name><value>oax</value></testinput>
+    <testinput><name>ans2</name><value>ik</value></testinput>
+    <testinput><name>ans3</name><value>dW</value></testinput>
+    <expected><name>prt1</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt1-1-F | prt1-2-T</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt2-1-F | prt2-2-T</expectedanswernote></expected>
+    <expected><name>prt3</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt3-1-F | prt3-2-T</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>3</testcase><description>k - 1; generic matrix</description>
+    <testinput><name>ans1</name><value>ax</value></testinput>
+    <testinput><name>ans2</name><value>km</value></testinput>
+    <testinput><name>ans3</name><value>tw</value></testinput>
+    <expected><name>prt1</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt1-1-T</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt2-1-F | prt2-2-F | prt2-3-T</expectedanswernote></expected>
+    <expected><name>prt3</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt3-1-F | prt3-2-F | prt3-3-F</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>4</testcase><description>Follow-through matrix</description>
+    <testinput><name>ans1</name><value>oax</value></testinput>
+    <testinput><name>ans2</name><value>ik</value></testinput>
+    <testinput><name>ans3</name><value>dWr</value></testinput>
+    <expected><name>prt1</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt1-1-F | prt1-2-T</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt2-1-F | prt2-2-T</expectedanswernote></expected>
+    <expected><name>prt3</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt3-1-F | prt3-2-F | prt3-3-T</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>5</testcase><description>Generic</description>
+    <testinput><name>ans1</name><value>"neither"</value></testinput>
+    <testinput><name>ans2</name><value>kw</value></testinput>
+    <testinput><name>ans3</name><value>tw</value></testinput>
+    <expected><name>prt1</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt1-1-F | prt1-2-F</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt2-1-F | prt2-2-F | prt2-3-F</expectedanswernote></expected>
+    <expected><name>prt3</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt3-1-F | prt3-2-F | prt3-3-F</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>6</testcase><description>Invalid: a letter in (b)</description>
+    <testinput><name>ans1</name><value>ax</value></testinput>
+    <testinput><name>ans2</name><value>x</value></testinput>
+    <testinput><name>ans3</name><value>ta</value></testinput>
+    <expected><name>prt1</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt1-1-T</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore></expectedscore><expectedpenalty></expectedpenalty><expectedanswernote>NULL</expectedanswernote></expected>
+    <expected><name>prt3</name><expectedscore></expectedscore><expectedpenalty></expectedpenalty><expectedanswernote>NULL</expectedanswernote></expected>
+  </qtest>
+</question>
+</quiz>

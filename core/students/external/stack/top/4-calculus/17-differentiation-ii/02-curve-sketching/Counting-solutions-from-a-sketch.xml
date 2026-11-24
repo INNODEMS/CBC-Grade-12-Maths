@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<quiz>
+<question type="stack">
+  <name><text>Counting solutions from a sketch</text></name>
+  <questiontext format="html">
+    <text><![CDATA[<p>Let \(f(x) = {@f@}\).</p><p>(a) Find the \(y\)-coordinate of the maximum point and of the minimum point of \(y = f(x)\).</p><div>Maximum point: \(y =\) [[input:ans1]] [[validation:ans1]] [[feedback:prt1]]</div><div>Minimum point: \(y =\) [[input:ans2]] [[validation:ans2]] [[feedback:prt2]]</div><p>(b) How many real solutions has the equation \(f(x) = {@kq@}\)?</p><div>[[input:ans3]] [[validation:ans3]] [[feedback:prt3]]</div><p>(c) The equation \(f(x) = c\) has three real solutions when</p><div>[[input:ans4]] \(\lt c \lt\) [[input:ans5]] [[validation:ans4]] [[validation:ans5]] [[feedback:prt4]]</div>]]></text>
+  </questiontext>
+  <generalfeedback format="html">
+    <text><![CDATA[<p>\(f'(x) = {@df@} = {@3*a0*(x-p0)*(x-q0)@}\), which is \(0\) at \(x = {@p0@}\) and \(x = {@q0@}\). The leading coefficient is positive, so the curve rises, turns at the maximum point \(({@p0@}, {@ymax@})\), falls to the minimum point \(({@q0@}, {@ymin@})\) and rises again.</p><p>(b) The solutions of \(f(x) = {@kq@}\) are where the line \(y = {@kq@}\) meets the curve. [[if test="is(ns=3)"]]The line lies between the minimum and maximum values, so it meets the curve three times.[[else]][[if test="is(ns=1)"]]The line lies [[if test="is(hi=1)"]]above the maximum[[else]]below the minimum[[/if]] value, so it meets the curve once.[[else]]The line passes through a turning point, where it touches the curve, and crosses the curve once more: two solutions.[[/if]][[/if]]</p><div style="text-align:center;" role="img" aria-label="Sketch of y = f(x) with a maximum point at ({#p0#}, {#ymax#}) and a minimum point at ({#q0#}, {#ymin#}), and the dashed line y = {#kq#}, which meets the curve {#ns#} times.">
+[[jsxgraph width="360px" height="280px"]]
+(function() {
+  var b = JXG.JSXGraph.initBoard(divid, {boundingbox: [{#xl#}, {#yu+pd#}, {#xr#}, {#yl-pd#}], axis: true, grid: false, showNavigation: false, showCopyright: false, pan: {enabled: false}, zoom: {enabled: false}});
+  // the curve and the line y = k
+  b.create('functiongraph', [function(x) { return {#a0#}*x*x*x+({#coeff(f,x,2)#})*x*x+({#coeff(f,x,1)#})*x+({#d0#}); }], {strokeColor: '#1f4e9c', strokeWidth: 2, fixed: true, highlight: false});
+  b.create('line', [[0, {#kq#}], [1, {#kq#}]], {strokeColor: '#000000', dash: 2, fixed: true, highlight: false});
+  b.create('point', [{#p0#}, {#ymax#}], {name: '({#p0#}, {#ymax#})', size: 3, fixed: true, strokeColor: '#000000', fillColor: '#000000', showInfobox: false, label: {useMathJax: false, offset: [8, 8]}});
+  b.create('point', [{#q0#}, {#ymin#}], {name: '({#q0#}, {#ymin#})', size: 3, fixed: true, strokeColor: '#000000', fillColor: '#000000', showInfobox: false, label: {useMathJax: false, offset: [8, -14]}});
+})();
+[[/jsxgraph]]
+</div><p>(c) Three solutions need the line strictly between the minimum and maximum values: \({@ymin@} \lt c \lt {@ymax@}\).</p>]]></text>
+  </generalfeedback>
+  <defaultgrade>4</defaultgrade>
+  <penalty>0.1</penalty>
+  <hidden>0</hidden>
+  <idnumber></idnumber>
+  <stackversion><text>2026063000</text></stackversion>
+  <questionvariables>
+    <text><![CDATA[/* Design: a0 > 0, so the maximum is at p0 and the minimum at q0. Case 3: k strictly between the stationary values (the integer below their mean); 1hi: ymax + 3; 1lo: ymin - 2; 2max: ymax; 2min: ymin. Source: original. */
+L: [[1,-1,1,2,"3"],[2,-2,2,1,"1hi"],[1,-1,5,2,"2max"],[2,-1,2,4,"3"],[1,-3,1,0,"1lo"],[2,1,3,5,"2min"],[1,-4,0,-3,"3"],[2,-2,1,1,"1hi"],[1,1,5,2,"2max"],[2,-1,1,6,"3"]];
+ix: 1+rand(10);
+a0: L[ix][1]; p0: L[ix][2]; q0: L[ix][3]; d0: L[ix][4]; cs: L[ix][5];
+f: expand((a0)*x^3-3*(a0)*((p0)+(q0))/2*x^2+3*(a0)*(p0)*(q0)*x+(d0));
+df: diff(f,x);
+ymax: ev(f,x=p0); ymin: ev(f,x=q0);
+kq: if cs="3" then floor((ymax+ymin)/2) elseif cs="1hi" then ymax+3 elseif cs="1lo" then ymin-2 elseif cs="2max" then ymax else ymin;
+ns: if cs="3" then 3 elseif cs="1hi" or cs="1lo" then 1 else 2;
+hi: if cs="1hi" then 1 else 0;
+diag3: if ns=3 then 2 else 3;
+/* sketch window */
+xl: p0-2; xr: q0+2; yl: min(ymin,kq,ev(f,x=xl)); yu: max(ymax,kq,ev(f,x=xr)); pd: (yu-yl)/8+1;]]></text>
+  </questionvariables>
+  <specificfeedback format="html"><text><![CDATA[]]></text></specificfeedback>
+  <questionnote format="moodle_auto_format">
+    <text>ix={@ix@}, f={@f@}, ymax={@ymax@}, ymin={@ymin@}, k={@kq@}, count={@ns@}</text>
+  </questionnote>
+  <questiondescription format="html"><text><![CDATA[<p id="concept">Differentiation II: counting solutions from the stationary values</p><p id="description">Grade 12 CBE Core 4.1: Find the stationary values of a cubic and use them to count the solutions of f(x) = k and to find when there are three.</p><p id="edition">Core</p><p id="provenance">This question is original to this project.</p><p id="citation">INNODEMS CBC Grade 12 Mathematics, first draft by Ben Davies, 2026. Aligned to the KICD Senior School Curriculum Design, Core Mathematics Grade 12 (draft).</p>]]></text></questiondescription>
+  <questionsimplify>1</questionsimplify>
+  <assumepositive>0</assumepositive>
+  <assumereal>0</assumereal>
+  <prtcorrect format="html"><text><![CDATA[[[commonstring key="symbolicprtcorrectfeedback"/]] [[commonstring key="defaultprtcorrectfeedback"/]]]]></text></prtcorrect>
+  <prtpartiallycorrect format="html"><text><![CDATA[[[commonstring key="symbolicprtpartiallycorrectfeedback"/]] [[commonstring key="defaultprtpartiallycorrectfeedback"/]]]]></text></prtpartiallycorrect>
+  <prtincorrect format="html"><text><![CDATA[[[commonstring key="symbolicprtincorrectfeedback"/]] [[commonstring key="defaultprtincorrectfeedback"/]]]]></text></prtincorrect>
+  <decimals>.</decimals>
+  <scientificnotation>*10</scientificnotation>
+  <multiplicationsign>none</multiplicationsign>
+  <sqrtsign>1</sqrtsign>
+  <complexno>i</complexno>
+  <inversetrig>cos-1</inversetrig>
+  <logicsymbol>lang</logicsymbol>
+  <matrixparens>[</matrixparens>
+  <isbroken>0</isbroken>
+  <variantsselectionseed></variantsselectionseed>
+
+  <input><name>ans1</name><type>numerical</type><tans>ymax</tans><boxsize>5</boxsize><strictsyntax>1</strictsyntax><insertstars>0</insertstars><syntaxhint></syntaxhint><syntaxattribute>0</syntaxattribute><forbidwords></forbidwords><allowwords></allowwords><forbidfloat>1</forbidfloat><requirelowestterms>0</requirelowestterms><checkanswertype>0</checkanswertype><mustverify>0</mustverify><showvalidation>0</showvalidation><options></options></input>
+  <input><name>ans2</name><type>numerical</type><tans>ymin</tans><boxsize>5</boxsize><strictsyntax>1</strictsyntax><insertstars>0</insertstars><syntaxhint></syntaxhint><syntaxattribute>0</syntaxattribute><forbidwords></forbidwords><allowwords></allowwords><forbidfloat>1</forbidfloat><requirelowestterms>0</requirelowestterms><checkanswertype>0</checkanswertype><mustverify>0</mustverify><showvalidation>0</showvalidation><options></options></input>
+  <input><name>ans3</name><type>numerical</type><tans>ns</tans><boxsize>5</boxsize><strictsyntax>1</strictsyntax><insertstars>0</insertstars><syntaxhint></syntaxhint><syntaxattribute>0</syntaxattribute><forbidwords></forbidwords><allowwords></allowwords><forbidfloat>1</forbidfloat><requirelowestterms>0</requirelowestterms><checkanswertype>0</checkanswertype><mustverify>0</mustverify><showvalidation>0</showvalidation><options></options></input>
+  <input><name>ans4</name><type>numerical</type><tans>ymin</tans><boxsize>5</boxsize><strictsyntax>1</strictsyntax><insertstars>0</insertstars><syntaxhint></syntaxhint><syntaxattribute>0</syntaxattribute><forbidwords></forbidwords><allowwords></allowwords><forbidfloat>1</forbidfloat><requirelowestterms>0</requirelowestterms><checkanswertype>0</checkanswertype><mustverify>0</mustverify><showvalidation>0</showvalidation><options></options></input>
+  <input><name>ans5</name><type>numerical</type><tans>ymax</tans><boxsize>5</boxsize><strictsyntax>1</strictsyntax><insertstars>0</insertstars><syntaxhint></syntaxhint><syntaxattribute>0</syntaxattribute><forbidwords></forbidwords><allowwords></allowwords><forbidfloat>1</forbidfloat><requirelowestterms>0</requirelowestterms><checkanswertype>0</checkanswertype><mustverify>0</mustverify><showvalidation>0</showvalidation><options></options></input>
+
+  <prt><name>prt1</name><value>1.0000000</value><autosimplify>1</autosimplify><feedbackstyle>1</feedbackstyle><feedbackvariables><text><![CDATA[]]></text></feedbackvariables>
+    <node><name>0</name><description>Maximum value</description><answertest>AlgEquiv</answertest><sans>ans1</sans><tans>ymax</tans><testoptions></testoptions><quiet>1</quiet><truescoremode>=</truescoremode><truescore>1.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt1-1-T</trueanswernote><truefeedback format="html"><text><![CDATA[]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>1</falsenextnode><falseanswernote>prt1-1-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>1</name><description>Minimum value</description><answertest>AlgEquiv</answertest><sans>ans1</sans><tans>ymin</tans><testoptions></testoptions><quiet>1</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt1-2-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>That is the \(y\)-coordinate of the minimum point.</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>2</falsenextnode><falseanswernote>prt1-2-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>2</name><description>x-coordinate</description><answertest>AlgEquiv</answertest><sans>ans1</sans><tans>p0</tans><testoptions></testoptions><quiet>1</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt1-3-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>That is the \(x\)-coordinate of the maximum point; give its \(y\)-coordinate.</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>-1</falsenextnode><falseanswernote>prt1-3-F</falseanswernote><falsefeedback format="html"><text><![CDATA[<p>Find \(f'(x)\), solve \(f'(x) = 0\), classify, and substitute into \(f\).</p>]]></text></falsefeedback></node>
+  </prt>
+  <prt><name>prt2</name><value>1.0000000</value><autosimplify>1</autosimplify><feedbackstyle>1</feedbackstyle><feedbackvariables><text><![CDATA[]]></text></feedbackvariables>
+    <node><name>0</name><description>Minimum value</description><answertest>AlgEquiv</answertest><sans>ans2</sans><tans>ymin</tans><testoptions></testoptions><quiet>1</quiet><truescoremode>=</truescoremode><truescore>1.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt2-1-T</trueanswernote><truefeedback format="html"><text><![CDATA[]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>1</falsenextnode><falseanswernote>prt2-1-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>1</name><description>Maximum value</description><answertest>AlgEquiv</answertest><sans>ans2</sans><tans>ymax</tans><testoptions></testoptions><quiet>1</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt2-2-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>That is the \(y\)-coordinate of the maximum point.</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>2</falsenextnode><falseanswernote>prt2-2-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>2</name><description>x-coordinate</description><answertest>AlgEquiv</answertest><sans>ans2</sans><tans>q0</tans><testoptions></testoptions><quiet>1</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt2-3-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>That is the \(x\)-coordinate of the minimum point; give its \(y\)-coordinate.</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>-1</falsenextnode><falseanswernote>prt2-3-F</falseanswernote><falsefeedback format="html"><text><![CDATA[<p>Find \(f'(x)\), solve \(f'(x) = 0\), classify, and substitute into \(f\).</p>]]></text></falsefeedback></node>
+  </prt>
+  <prt><name>prt3</name><value>1.0000000</value><autosimplify>1</autosimplify><feedbackstyle>1</feedbackstyle><feedbackvariables><text><![CDATA[]]></text></feedbackvariables>
+    <node><name>0</name><description>Number of solutions</description><answertest>AlgEquiv</answertest><sans>ans3</sans><tans>ns</tans><testoptions></testoptions><quiet>1</quiet><truescoremode>=</truescoremode><truescore>1.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt3-1-T</trueanswernote><truefeedback format="html"><text><![CDATA[]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>1</falsenextnode><falseanswernote>prt3-1-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>1</name><description>Named count</description><answertest>AlgEquiv</answertest><sans>ans3</sans><tans>diag3</tans><testoptions></testoptions><quiet>1</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt3-2-T</trueanswernote><truefeedback format="html"><text><![CDATA[[[if test="is(ns=3)"]]<p>\(2\) is the number of stationary points, not of solutions. Draw the line \(y = {@kq@}\) on a sketch: compare \({@kq@}\) with your maximum and minimum values in (a), then count where the line meets the curve.</p>[[else]]<p>A cubic equation can have \(3\) real solutions, but only when the line lies strictly between the minimum and maximum values. Compare \({@kq@}\) with your values in (a): is the line \(y = {@kq@}\) between them, level with one of them, or outside them?</p>[[/if]]]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>-1</falsenextnode><falseanswernote>prt3-2-F</falseanswernote><falsefeedback format="html"><text><![CDATA[<p>Draw the horizontal line \(y = {@kq@}\) on a sketch of the curve and count where it meets the curve. Compare \({@kq@}\) with the maximum and minimum values.</p>]]></text></falsefeedback></node>
+  </prt>
+  <prt><name>prt4</name><value>1.0000000</value><autosimplify>1</autosimplify><feedbackstyle>1</feedbackstyle><feedbackvariables><text><![CDATA[]]></text></feedbackvariables>
+    <node><name>0</name><description>Interval</description><answertest>AlgEquiv</answertest><sans>[ans4,ans5]</sans><tans>[ymin,ymax]</tans><testoptions></testoptions><quiet>1</quiet><truescoremode>=</truescoremode><truescore>1.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt4-1-T</trueanswernote><truefeedback format="html"><text><![CDATA[]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>1</falsenextnode><falseanswernote>prt4-1-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>1</name><description>Order</description><answertest>AlgEquiv</answertest><sans>[ans4,ans5]</sans><tans>[ymax,ymin]</tans><testoptions></testoptions><quiet>1</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt4-2-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>Write the smaller value first.</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>2</falsenextnode><falseanswernote>prt4-2-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>2</name><description>x-values</description><answertest>AlgEquiv</answertest><sans>[ans4,ans5]</sans><tans>[p0,q0]</tans><testoptions></testoptions><quiet>1</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt4-3-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>Those are the \(x\)-coordinates of the stationary points. \(c\) is compared with the \(y\)-values.</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>-1</falsenextnode><falseanswernote>prt4-3-F</falseanswernote><falsefeedback format="html"><text><![CDATA[<p>Three solutions need the line \(y = c\) strictly between the minimum and maximum values.</p>]]></text></falsefeedback></node>
+  </prt>
+
+  <deployedseed>4</deployedseed>
+  <deployedseed>5</deployedseed>
+  <deployedseed>15</deployedseed>
+  <deployedseed>8</deployedseed>
+  <deployedseed>24</deployedseed>
+  <deployedseed>1</deployedseed>
+  <deployedseed>3</deployedseed>
+  <deployedseed>10</deployedseed>
+  <deployedseed>2</deployedseed>
+  <deployedseed>17</deployedseed>
+  <qtest><testcase>1</testcase><description>Correct</description>
+    <testinput><name>ans1</name><value>ymax</value></testinput>
+    <testinput><name>ans2</name><value>ymin</value></testinput>
+    <testinput><name>ans3</name><value>ns</value></testinput>
+    <testinput><name>ans4</name><value>ymin</value></testinput>
+    <testinput><name>ans5</name><value>ymax</value></testinput>
+    <expected><name>prt1</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt1-1-T</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt2-1-T</expectedanswernote></expected>
+    <expected><name>prt3</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt3-1-T</expectedanswernote></expected>
+    <expected><name>prt4</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt4-1-T</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>2</testcase><description>Max and min confused; named count</description>
+    <testinput><name>ans1</name><value>ymin</value></testinput>
+    <testinput><name>ans2</name><value>ymax</value></testinput>
+    <testinput><name>ans3</name><value>diag3</value></testinput>
+    <testinput><name>ans4</name><value>ymax</value></testinput>
+    <testinput><name>ans5</name><value>ymin</value></testinput>
+    <expected><name>prt1</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt1-1-F | prt1-2-T</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt2-1-F | prt2-2-T</expectedanswernote></expected>
+    <expected><name>prt3</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt3-1-F | prt3-2-T</expectedanswernote></expected>
+    <expected><name>prt4</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt4-1-F | prt4-2-T</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>3</testcase><description>x-coordinates given</description>
+    <testinput><name>ans1</name><value>p0</value></testinput>
+    <testinput><name>ans2</name><value>q0</value></testinput>
+    <testinput><name>ans3</name><value>ns+10</value></testinput>
+    <testinput><name>ans4</name><value>p0</value></testinput>
+    <testinput><name>ans5</name><value>q0</value></testinput>
+    <expected><name>prt1</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt1-1-F | prt1-2-F | prt1-3-T</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt2-1-F | prt2-2-F | prt2-3-T</expectedanswernote></expected>
+    <expected><name>prt3</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt3-1-F | prt3-2-F</expectedanswernote></expected>
+    <expected><name>prt4</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt4-1-F | prt4-2-F | prt4-3-T</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>4</testcase><description>Generic wrong values</description>
+    <testinput><name>ans1</name><value>ymax+100</value></testinput>
+    <testinput><name>ans2</name><value>ymin+100</value></testinput>
+    <testinput><name>ans3</name><value>ns</value></testinput>
+    <testinput><name>ans4</name><value>ymin+100</value></testinput>
+    <testinput><name>ans5</name><value>ymax+100</value></testinput>
+    <expected><name>prt1</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt1-1-F | prt1-2-F | prt1-3-F</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt2-1-F | prt2-2-F | prt2-3-F</expectedanswernote></expected>
+    <expected><name>prt3</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt3-1-T</expectedanswernote></expected>
+    <expected><name>prt4</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt4-1-F | prt4-2-F | prt4-3-F</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>5</testcase><description>Invalid: letter in (b)</description>
+    <testinput><name>ans1</name><value>ymax</value></testinput>
+    <testinput><name>ans2</name><value>ymin</value></testinput>
+    <testinput><name>ans3</name><value>x</value></testinput>
+    <testinput><name>ans4</name><value>ymin</value></testinput>
+    <testinput><name>ans5</name><value>ymax</value></testinput>
+    <expected><name>prt1</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt1-1-T</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt2-1-T</expectedanswernote></expected>
+    <expected><name>prt3</name><expectedscore></expectedscore><expectedpenalty></expectedpenalty><expectedanswernote>NULL</expectedanswernote></expected>
+    <expected><name>prt4</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt4-1-T</expectedanswernote></expected>
+  </qtest>
+</question>
+</quiz>

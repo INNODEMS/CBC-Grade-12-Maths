@@ -1,0 +1,6 @@
+<stack-static>
+    <statement><p><p>Two road crews, working together, must finish a job in exactly <m>{4}</m> days. Choose how many days each crew would take working alone. Use whole numbers, and make the two crews different. Many answers are correct.</p><p>Crew 1: <fillin characters="4" name="ansa"/> days </p><p>Crew 2: <fillin characters="4" name="ansb"/> days </p><p/></p></statement>
+    <solution><p><p>Crews taking <m>a</m> and <m>b</m> days alone do <m>\dfrac{1}{a} + \dfrac{1}{b}</m> of the job a day together. This must be <m>\dfrac{1}{ {4} }</m>, so <m>ab = {4}(a + b)</m>, which rearranges to <m>(a - {4})(b - {4}) = {16}</m>.</p><p>So write <m>{16}</m> as a product of two different whole numbers and add <m>{4}</m> to each. For example <m>{16} = {2} \times {8}</m> gives <m>a = {6}</m> and <m>b = {12}</m>.</p><p>Check: <m>\dfrac{1}{ {6} } + \dfrac{1}{ {12} } = {\frac{1}{4}}</m>. Other factor pairs of <m>{16}</m> give other answers.</p></p></solution>
+    <answer><p><m>6</m></p></answer>
+    <answer><p><m>12</m></p></answer>
+</stack-static>

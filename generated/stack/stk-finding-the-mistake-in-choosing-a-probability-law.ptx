@@ -1,0 +1,12 @@
+<stack-static>
+    <statement><p><p>A fair die is rolled and a fair spinner numbered 1 to <m>{8}</m> is spun. Baraka wrote three probabilities. Exactly one line is wrong.</p><p>Line 1: <m>P(\text{die shows } {5} \text{ or } {1}) = \dfrac{1}{6} + \dfrac{1}{6} = \dfrac{1}{3}</m></p><p>Line 2: <m>P(\text{die shows } {5} \text{ and spinner shows } {3}) = \dfrac{1}{6} + \dfrac{1}{{8}} = {\frac{7}{24}}</m></p><p>Line 3: <m>P(\text{die shows } {5} \text{ or spinner shows } {3}) = 1 - \dfrac{5}{6} \times \dfrac{{7}}{{8}} = {\frac{13}{48}}</m></p><p>Give each probability exactly, as a fraction or an exact decimal.</p><p>(a) Which line is wrong?</p><div>[ Line 1 | Line 2 | Line 3 ]  </div><p>(b) What is the mistake?</p><div><ol marker="(1)">
+<li>Probabilities should never be added.</li>
+<li>Both events must happen and they are independent, so he should multiply, not add.</li>
+<li>The die cannot show both numbers at once, so he should add, not multiply.</li>
+<li>The two events can happen together, so adding counts the outcome where both happen twice.</li>
+</ol>  </div><p>(c) Give the correct probability for that line.</p><div><fillin characters="8" name="ans3"/>  </div></p></statement>
+    <solution><p><p>Check each line. For <q>and</q> with the die and the spinner, which are separate experiments, multiply. For <q>or</q> with one die, the two numbers cannot both happen, so add. For <q>or</q> with the die and the spinner, both can happen together, so use <m>1 - P(\text{neither})</m>.</p><p>(a) Line <m>{2}</m> adds for an <q>and</q> event. (b) The die and the spinner are independent and both must happen, so multiply. (c) <m>\dfrac{1}{6} \times \dfrac{1}{{8}} = {\frac{1}{48}}</m>.</p></p></solution>
+    <answer><p>Line 2</p></answer>
+    <answer><p><m>(2)</m></p></answer>
+    <answer><p><m>\frac{1}{48}</m></p></answer>
+</stack-static>

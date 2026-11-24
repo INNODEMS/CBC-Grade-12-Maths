@@ -1,0 +1,5 @@
+<stack-static>
+    <statement><p><p>Give a binomial of the form <m>(p + qx)^4</m>, where <m>p</m> and <m>q</m> are non-zero whole numbers, such that the coefficient of <m>x^{2}</m> in its expansion is <m>{24}</m>. There is more than one correct answer.</p><p>Type it as a bracket to the power 4, for example <c>(5-2*x)^4</c>.</p><div><fillin characters="20" name="ans1"/>  </div></p></statement>
+    <solution><p><p>The row for power 4 is 1, 4, 6, 4, 1. In <m>(p + qx)^4</m> the term in <m>x^2</m> is <m>6p^2(qx)^2</m> and the term in <m>x^3</m> is <m>4p(qx)^3</m>, so the coefficient of <m>x^2</m> is <m>6p^2q^2</m> and the coefficient of <m>x^3</m> is <m>4pq^3</m>.</p><p>Here <m>6p^2q^2 = {24}</m>, so <m>p^2q^2 = {4}</m> and <m>pq = {2}</m> or <m>pq = {-2}</m>.</p><p>Two answers are <m>{\left(1 + 2x\right)^4}</m> and <m>{\left(2 + x\right)^4}</m>. Changing the sign of both <m>p</m> and <m>q</m> also works, for example <m>{\left(-1 - 2x\right)^4}</m>, because <m>(-p - qx)^4 = (p + qx)^4</m>.</p></p></solution>
+    <answer><p><m>{\left(2 x+1\right)}^4</m></p></answer>
+</stack-static>

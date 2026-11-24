@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<quiz>
+<question type="stack">
+  <name><text>Finding the mistake in a locus from a line</text></name>
+  <questiontext format="html">
+    <text><![CDATA[<p>Kiprono was asked for the locus of points \({@d@}\) units from the line \({@vs@} = {@c@}\). He wrote: [[if test="is(er=1)"]]the line \({@vs@} = {@c+d@}\)[[elif test="is(er=2)"]]the lines \({@vs@} = {@exd(c-d/2)@}\) and \({@vs@} = {@exd(c+d/2)@}\)[[else]]the lines \({@vs@} = {@d@}\) and \({@vs@} = {@-d@}\)[[/if]].</p><p>(a) What is wrong with his answer?</p><div>[[input:ans1]] [[validation:ans1]] [[feedback:prt1]]</div><p>(b) Give the correct locus.</p><div>The lines \({@vs@} = \) [[input:ans2]] and \({@vs@} = \) [[input:ans3]] [[validation:ans2]] [[validation:ans3]] [[feedback:prt2]]</div><p>(c) Give the locus of points equidistant from the lines \({@vs@} = {@c@}\) and \({@vs@} = {@c2@}\).</p><div>\({@vs@} = \) [[input:ans4]] [[validation:ans4]] [[feedback:prt3]]</div>]]></text>
+  </questiontext>
+  <generalfeedback format="html">
+    <text><![CDATA[<p>(a) [[if test="is(er=1)"]]The points \({@d@}\) units from a line lie on both sides of it: Kiprono has given only one of the two lines.[[elif test="is(er=2)"]]Each of his lines is only \({@exd(d/2)@}\) units from \({@vs@} = {@c@}\): he has used half the distance on each side.[[else]]His lines are \({@d@}\) units from the axis \({@vs@} = 0\), not from \({@vs@} = {@c@}\).[[/if]]</p><p>(b) The locus is a pair of lines parallel to \({@vs@} = {@c@}\), one on each side and each \({@d@}\) units from it: \({@vs@} = {@c@} - {@d@} = {@c-d@}\) and \({@vs@} = {@c@} + {@d@} = {@c+d@}\).</p><p>(c) Points equidistant from two parallel lines lie on the parallel line halfway between them: \({@vs@} = \dfrac{ {#msum#} }{2} = {@mid@}\).</p>]]></text>
+  </generalfeedback>
+  <defaultgrade>3</defaultgrade>
+  <penalty>0.1</penalty>
+  <hidden>0</hidden>
+  <idnumber></idnumber>
+  <stackversion><text>2026063000</text></stackversion>
+  <questionvariables>
+    <text><![CDATA[/* exd: shortest exact decimal display of a terminating value (up to 3 d.p.) */
+exd(v) := if integerp(v) then v else if integerp(10*v) then dispdp(float(v),1) else if integerp(100*v) then dispdp(float(v),2) else dispdp(float(v),3);
+/* Design: find the mistake in a locus at a distance from a line. o 0: horizontal lines (y = c); 1: vertical (x = c). er 1: one line only; 2: half the distance; 3: distance from the axis. Source: original. */
+o: rand(2);
+vs: ["y","x"][o+1];
+c: rand_with_prohib(-5,5,[0]);
+d: rand_with_prohib(2,6,[abs(c)]);
+er: 1+rand(3);
+kk: rand_with_prohib(-5,5,[-1,0,1,c]);
+c2: c+2*kk;
+mid: c+kk;
+/* the midline sum shows a negative second line in brackets, not "1 + -9" */
+msum: if is(c2<0) then sconcat(c, " + (", c2, ")") else sconcat(c, " + ", c2);
+o1: [["ok",false,"Nothing: Kiprono is right"],["one",is(er=1),"He has given only one of the two lines"],["half",is(er=2),"He has used half the distance on each side"],["axis",is(er=3),"He has measured the distance from the axis, not from the line"]];
+ta1: ["one","half","axis"][er];
+wk1: first(sublist(["one","half","axis"], lambda([z], is(z#ta1))));
+/* (b) diagnostics as sorted pairs: half the distance; Kiprono's lines (er 1) or the lines measured from the axis (er 2, 3) */
+hf: [c-d/2, c+d/2];
+hl: if is(er=1) then [c+d, c+d] else [-d, d];]]></text>
+  </questionvariables>
+  <specificfeedback format="html"><text><![CDATA[]]></text></specificfeedback>
+  <questionnote format="moodle_auto_format">
+    <text>er={@er@}, o={@o@}, c={@c@}, d={@d@}, kk={@kk@}</text>
+  </questionnote>
+  <questiondescription format="html"><text><![CDATA[<p id="concept">Loci: finding the mistake in a locus from a line</p><p id="description">Grade 12 CBE Core 2.3: Find the mistake in a locus of points a fixed distance from a line, give the correct locus and the midline of two parallel lines.</p><p id="edition">Core</p><p id="provenance">This question is original to this project.</p><p id="citation">INNODEMS CBC Grade 12 Mathematics, first draft by Ben Davies, 2026. Aligned to the KICD Senior School Curriculum Design, Core Mathematics Grade 12 (draft).</p>]]></text></questiondescription>
+  <questionsimplify>1</questionsimplify>
+  <assumepositive>0</assumepositive>
+  <assumereal>0</assumereal>
+  <prtcorrect format="html"><text><![CDATA[[[commonstring key="symbolicprtcorrectfeedback"/]] [[commonstring key="defaultprtcorrectfeedback"/]]]]></text></prtcorrect>
+  <prtpartiallycorrect format="html"><text><![CDATA[[[commonstring key="symbolicprtpartiallycorrectfeedback"/]] [[commonstring key="defaultprtpartiallycorrectfeedback"/]]]]></text></prtpartiallycorrect>
+  <prtincorrect format="html"><text><![CDATA[[[commonstring key="symbolicprtincorrectfeedback"/]] [[commonstring key="defaultprtincorrectfeedback"/]]]]></text></prtincorrect>
+  <decimals>.</decimals>
+  <scientificnotation>*10</scientificnotation>
+  <multiplicationsign>none</multiplicationsign>
+  <sqrtsign>1</sqrtsign>
+  <complexno>i</complexno>
+  <inversetrig>cos-1</inversetrig>
+  <logicsymbol>lang</logicsymbol>
+  <matrixparens>[</matrixparens>
+  <isbroken>0</isbroken>
+  <variantsselectionseed></variantsselectionseed>
+
+  <input><name>ans1</name><type>radio</type><tans>o1</tans><boxsize>15</boxsize><strictsyntax>1</strictsyntax><insertstars>0</insertstars><syntaxhint></syntaxhint><syntaxattribute>0</syntaxattribute><forbidwords></forbidwords><allowwords></allowwords><forbidfloat>1</forbidfloat><requirelowestterms>0</requirelowestterms><checkanswertype>0</checkanswertype><mustverify>0</mustverify><showvalidation>0</showvalidation><options></options></input>
+  <input><name>ans2</name><type>numerical</type><tans>c-d</tans><boxsize>5</boxsize><strictsyntax>1</strictsyntax><insertstars>0</insertstars><syntaxhint></syntaxhint><syntaxattribute>0</syntaxattribute><forbidwords></forbidwords><allowwords></allowwords><forbidfloat>0</forbidfloat><requirelowestterms>0</requirelowestterms><checkanswertype>0</checkanswertype><mustverify>0</mustverify><showvalidation>0</showvalidation><options></options></input>
+  <input><name>ans3</name><type>numerical</type><tans>c+d</tans><boxsize>5</boxsize><strictsyntax>1</strictsyntax><insertstars>0</insertstars><syntaxhint></syntaxhint><syntaxattribute>0</syntaxattribute><forbidwords></forbidwords><allowwords></allowwords><forbidfloat>0</forbidfloat><requirelowestterms>0</requirelowestterms><checkanswertype>0</checkanswertype><mustverify>0</mustverify><showvalidation>0</showvalidation><options></options></input>
+  <input><name>ans4</name><type>numerical</type><tans>mid</tans><boxsize>5</boxsize><strictsyntax>1</strictsyntax><insertstars>0</insertstars><syntaxhint></syntaxhint><syntaxattribute>0</syntaxattribute><forbidwords></forbidwords><allowwords></allowwords><forbidfloat>0</forbidfloat><requirelowestterms>0</requirelowestterms><checkanswertype>0</checkanswertype><mustverify>0</mustverify><showvalidation>0</showvalidation><options></options></input>
+
+  <prt><name>prt1</name><value>1.0000000</value><autosimplify>1</autosimplify><feedbackstyle>1</feedbackstyle><feedbackvariables><text><![CDATA[]]></text></feedbackvariables>
+    <node><name>0</name><description>What is wrong</description><answertest>AlgEquiv</answertest><sans>ans1</sans><tans>ta1</tans><testoptions></testoptions><quiet>0</quiet><truescoremode>=</truescoremode><truescore>1.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt1-1-T</trueanswernote><truefeedback format="html"><text><![CDATA[]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>1</falsenextnode><falseanswernote>prt1-1-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>1</name><description>Said Kiprono is right</description><answertest>AlgEquiv</answertest><sans>ans1</sans><tans>"ok"</tans><testoptions></testoptions><quiet>0</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt1-2-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>[[if test="is(er=1)"]]Every point of his line is \({@d@}\) units from \({@vs@} = {@c@}\). Now test a point that is not on his line, such as one with \({@vs@} = {@c-d@}\): how far is it from \({@vs@} = {@c@}\)?[[elif test="is(er=2)"]]Test a point on one of his lines, such as one with \({@vs@} = {@exd(c+d/2)@}\): is it \({@d@}\) units from \({@vs@} = {@c@}\)?[[else]]Test a point on one of his lines, such as one with \({@vs@} = {@d@}\): is it \({@d@}\) units from \({@vs@} = {@c@}\)?[[/if]]</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>-1</falsenextnode><falseanswernote>prt1-2-F</falseanswernote><falsefeedback format="html"><text><![CDATA[<p>[[if test="is(ans1=\"one\")"]]Kiprono has given two lines, not one. Work out how far each of his lines is from \({@vs@} = {@c@}\).[[elif test="is(ans1=\"half\") and is(er=1)"]]Half the distance would be \({@exd(d/2)@}\) [[if test="is(d=2)"]]unit[[else]]units[[/if]]. His line \({@vs@} = {@c+d@}\) is \({@d@}\) units from \({@vs@} = {@c@}\), the full distance. Is one line the whole locus?[[elif test="is(ans1=\"half\")"]]Half the distance would put his lines \({@exd(d/2)@}\) [[if test="is(d=2)"]]unit[[else]]units[[/if]] from \({@vs@} = {@c@}\). His lines \({@vs@} = {@d@}\) and \({@vs@} = {@-d@}\) are \({@abs(d-c)@}\) and \({@abs(d+c)@}\) units from it, which are not equal.[[elif test="is(er=1)"]]His line \({@vs@} = {@c+d@}\) is \({@d@}\) units from \({@vs@} = {@c@}\), so he did measure from the line. Is one line the whole locus?[[else]]His lines are each \({@exd(d/2)@}\) [[if test="is(d=2)"]]unit[[else]]units[[/if]] from \({@vs@} = {@c@}\), one on each side of it, so he did measure from the line. Compare that distance with the \({@d@}\) units asked for.[[/if]]</p>]]></text></falsefeedback></node>
+  </prt>
+  <prt><name>prt2</name><value>1.0000000</value><autosimplify>1</autosimplify><feedbackstyle>1</feedbackstyle><feedbackvariables><text><![CDATA[sa: sort([ans2, ans3]);
+e0: abs(sa[1]-(c-d))+abs(sa[2]-(c+d));
+eh: abs(sa[1]-hf[1])+abs(sa[2]-hf[2]);
+el: abs(sa[1]-hl[1])+abs(sa[2]-hl[2]);
+one: is(abs(ans2-(c-d))<0.001 or abs(ans2-(c+d))<0.001 or abs(ans3-(c-d))<0.001 or abs(ans3-(c+d))<0.001);
+nd(v) := if integerp(v) then v else float(floor(1000*v+1/2)/1000);]]></text></feedbackvariables>
+    <node><name>0</name><description>Both lines, in either order</description><answertest>NumAbsolute</answertest><sans>e0</sans><tans>0</tans><testoptions>0.001</testoptions><quiet>0</quiet><truescoremode>=</truescoremode><truescore>1.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt2-1-T</trueanswernote><truefeedback format="html"><text><![CDATA[]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>1</falsenextnode><falseanswernote>prt2-1-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>1</name><description>Half the distance each side</description><answertest>NumAbsolute</answertest><sans>eh</sans><tans>0</tans><testoptions>0.001</testoptions><quiet>0</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt2-2-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>[[if test="is(er=2)"]]That is Kiprono's answer, which has the mistake. [[/if]]Your lines are each \({@exd(d/2)@}\) [[if test="is(d=2)"]]unit[[else]]units[[/if]] from \({@vs@} = {@c@}\). The locus is \({@d@}\) units from it.</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>2</falsenextnode><falseanswernote>prt2-2-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>2</name><description>Kiprono's single line (er 1) or lines measured from the axis (er 2, 3)</description><answertest>NumAbsolute</answertest><sans>el</sans><tans>0</tans><testoptions>0.001</testoptions><quiet>0</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt2-3-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>[[if test="is(er=1)"]]That is Kiprono's answer: the line \({@vs@} = {@c+d@}\) is only one of the two lines.[[elif test="is(er=3)"]]That is Kiprono's answer: those lines are \({@d@}\) units from the axis \({@vs@} = 0\), not from \({@vs@} = {@c@}\).[[else]]Those lines are \({@d@}\) units from the axis \({@vs@} = 0\), not from \({@vs@} = {@c@}\).[[/if]]</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>3</falsenextnode><falseanswernote>prt2-3-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>3</name><description>One line right</description><answertest>AlgEquiv</answertest><sans>one</sans><tans>true</tans><testoptions></testoptions><quiet>0</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt2-4-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>One of your lines is right. The other is the same distance on the other side of \({@vs@} = {@c@}\).</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>-1</falsenextnode><falseanswernote>prt2-4-F</falseanswernote><falsefeedback format="html"><text><![CDATA[<p>Your lines are \({@nd(abs(ans2-c))@}\) and \({@nd(abs(ans3-c))@}\) units from \({@vs@} = {@c@}\). Each line of the locus is \({@d@}\) units from it, one on each side.</p>]]></text></falsefeedback></node>
+  </prt>
+  <prt><name>prt3</name><value>1.0000000</value><autosimplify>1</autosimplify><feedbackstyle>1</feedbackstyle><feedbackvariables><text><![CDATA[nd(v) := if integerp(v) then v else float(floor(1000*v+1/2)/1000);]]></text></feedbackvariables>
+    <node><name>0</name><description>Midline</description><answertest>NumAbsolute</answertest><sans>ans4</sans><tans>mid</tans><testoptions>0.001</testoptions><quiet>0</quiet><truescoremode>=</truescoremode><truescore>1.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt3-1-T</trueanswernote><truefeedback format="html"><text><![CDATA[]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>1</falsenextnode><falseanswernote>prt3-1-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>1</name><description>Half the gap only</description><answertest>NumAbsolute</answertest><sans>ans4</sans><tans>kk</tans><testoptions>0.001</testoptions><quiet>0</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt3-2-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>\({@abs(kk)@}\) is half the gap between the lines; the midline is that far from \({@vs@} = {@c@}\).</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>2</falsenextnode><falseanswernote>prt3-2-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>2</name><description>The gap</description><answertest>NumAbsolute</answertest><sans>ans4</sans><tans>2*kk</tans><testoptions>0.001</testoptions><quiet>0</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt3-3-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>That is the gap between the lines, not a position. The midline is half of that gap from each line.</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>-1</falsenextnode><falseanswernote>prt3-3-F</falseanswernote><falsefeedback format="html"><text><![CDATA[<p>Your line \({@vs@} = {@ans4@}\) is \({@nd(abs(ans4-c))@}\) [[if test="is(abs(ans4-c)=1)"]]unit[[else]]units[[/if]] from \({@vs@} = {@c@}\) and \({@nd(abs(ans4-c2))@}\) [[if test="is(abs(ans4-c2)=1)"]]unit[[else]]units[[/if]] from \({@vs@} = {@c2@}\). The locus is the same distance from both lines.</p>]]></text></falsefeedback></node>
+  </prt>
+
+  <deployedseed>2</deployedseed>
+  <deployedseed>10</deployedseed>
+  <deployedseed>1</deployedseed>
+  <deployedseed>3</deployedseed>
+  <deployedseed>17</deployedseed>
+  <deployedseed>4</deployedseed>
+  <deployedseed>5</deployedseed>
+  <deployedseed>19</deployedseed>
+  <deployedseed>6</deployedseed>
+  <deployedseed>8</deployedseed>
+  <qtest><testcase>1</testcase><description>Correct</description>
+    <testinput><name>ans1</name><value>ta1</value></testinput>
+    <testinput><name>ans2</name><value>c-d</value></testinput>
+    <testinput><name>ans3</name><value>c+d</value></testinput>
+    <testinput><name>ans4</name><value>mid</value></testinput>
+    <expected><name>prt1</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt1-1-T</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt2-1-T</expectedanswernote></expected>
+    <expected><name>prt3</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt3-1-T</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>2</testcase><description>Right lines in the other order</description>
+    <testinput><name>ans1</name><value>ta1</value></testinput>
+    <testinput><name>ans2</name><value>c+d</value></testinput>
+    <testinput><name>ans3</name><value>c-d</value></testinput>
+    <testinput><name>ans4</name><value>mid</value></testinput>
+    <expected><name>prt1</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt1-1-T</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt2-1-T</expectedanswernote></expected>
+    <expected><name>prt3</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt3-1-T</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>3</testcase><description>Nothing wrong; Kiprono's or axis lines; half the gap</description>
+    <testinput><name>ans1</name><value>"ok"</value></testinput>
+    <testinput><name>ans2</name><value>hl[1]</value></testinput>
+    <testinput><name>ans3</name><value>hl[2]</value></testinput>
+    <testinput><name>ans4</name><value>kk</value></testinput>
+    <expected><name>prt1</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt1-1-F | prt1-2-T</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt2-1-F | prt2-2-F | prt2-3-T</expectedanswernote></expected>
+    <expected><name>prt3</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt3-1-F | prt3-2-T</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>4</testcase><description>Wrong reason; half distance; the gap</description>
+    <testinput><name>ans1</name><value>wk1</value></testinput>
+    <testinput><name>ans2</name><value>ev(c-d/2,simp)</value></testinput>
+    <testinput><name>ans3</name><value>ev(c+d/2,simp)</value></testinput>
+    <testinput><name>ans4</name><value>2*kk</value></testinput>
+    <expected><name>prt1</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt1-1-F | prt1-2-F</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt2-1-F | prt2-2-T</expectedanswernote></expected>
+    <expected><name>prt3</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt3-1-F | prt3-2-F | prt3-3-T</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>5</testcase><description>One line right; generic midline</description>
+    <testinput><name>ans1</name><value>ta1</value></testinput>
+    <testinput><name>ans2</name><value>c+d</value></testinput>
+    <testinput><name>ans3</name><value>c+d+1</value></testinput>
+    <testinput><name>ans4</name><value>ev(mid+1/2,simp)</value></testinput>
+    <expected><name>prt1</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt1-1-T</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt2-1-F | prt2-2-F | prt2-3-F | prt2-4-T</expectedanswernote></expected>
+    <expected><name>prt3</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt3-1-F | prt3-2-F | prt3-3-F</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>6</testcase><description>Generic lines</description>
+    <testinput><name>ans1</name><value>ta1</value></testinput>
+    <testinput><name>ans2</name><value>c+d+1</value></testinput>
+    <testinput><name>ans3</name><value>c-d-1</value></testinput>
+    <testinput><name>ans4</name><value>mid</value></testinput>
+    <expected><name>prt1</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt1-1-T</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt2-1-F | prt2-2-F | prt2-3-F | prt2-4-F</expectedanswernote></expected>
+    <expected><name>prt3</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt3-1-T</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>7</testcase><description>Invalid: letter in (c)</description>
+    <testinput><name>ans1</name><value>ta1</value></testinput>
+    <testinput><name>ans2</name><value>c-d</value></testinput>
+    <testinput><name>ans3</name><value>c+d</value></testinput>
+    <testinput><name>ans4</name><value>y</value></testinput>
+    <expected><name>prt1</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt1-1-T</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt2-1-T</expectedanswernote></expected>
+    <expected><name>prt3</name><expectedscore></expectedscore><expectedpenalty></expectedpenalty><expectedanswernote>NULL</expectedanswernote></expected>
+  </qtest>
+</question>
+</quiz>

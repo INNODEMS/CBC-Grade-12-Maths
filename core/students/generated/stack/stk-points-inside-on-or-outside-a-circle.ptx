@@ -1,0 +1,8 @@
+<stack-static>
+    <statement><p><p>The locus of points <m>{13}</m> units from <m>C({4}, {-3})</m> is a circle. For each point, decide where it is.</p><ol><li><div><m>({-11}, {5})</m> [ inside the circle | on the circle | outside the circle ]  </div></li><li><div><m>({12}, {6})</m> [ inside the circle | on the circle | outside the circle ]  </div></li><li><div><m>({-1}, {9})</m> [ inside the circle | on the circle | outside the circle ]  </div></li><li><div><m>({-6}, {-14})</m> [ inside the circle | on the circle | outside the circle ]  </div></li></ol></p></statement>
+    <solution><p><p>A point is on the circle when its distance from <m>C</m> is exactly <m>{13}</m>, inside when it is less and outside when it is more. By Pythagoras the square of the distance is <m>\Delta x^2 + \Delta y^2</m>, where <m>\Delta x</m> and <m>\Delta y</m> are the moves across and up from <m>C</m>. Compare it with <m>{13}^2 = {169}</m>, so that nothing is rounded.</p><ol><li><p><m>({-11}, {5})</m>: <m>{15}^2 + {8}^2 = {289}</m>, more than <m>{169}</m>, so outside.</p></li><li><p><m>({12}, {6})</m>: <m>{8}^2 + {9}^2 = {145}</m>, less than <m>{169}</m>, so inside.</p></li><li><p><m>({-1}, {9})</m>: <m>{5}^2 + {12}^2 = {169}</m>, equal to <m>{169}</m>, so on the circle.</p></li><li><p><m>({-6}, {-14})</m>: <m>{10}^2 + {11}^2 = {221}</m>, more than <m>{169}</m>, so outside.</p></li></ol></p></solution>
+    <answer><p>outside the circle</p></answer>
+    <answer><p>inside the circle</p></answer>
+    <answer><p>on the circle</p></answer>
+    <answer><p>outside the circle</p></answer>
+</stack-static>

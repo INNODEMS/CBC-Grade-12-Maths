@@ -1,0 +1,1357 @@
+<!DOCTYPE html>
+<!--********************************************-->
+<!--*       Generated from PreTeXt source      *-->
+<!--*                                          *-->
+<!--*         https://pretextbook.org          *-->
+<!--*                                          *-->
+<!--********************************************-->
+<html lang="en-US" dir="ltr">
+<!--******************************************-->
+<!--*  Authored with PreTeXt                 *-->
+<!--*  pretextbook.org                       *-->
+<!--*  Theme: denver                         *-->
+<!--*  Palette:                              *-->
+<!--******************************************-->
+<head xmlns:og="http://ogp.me/ns#" xmlns:book="https://ogp.me/ns/book#">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Experimental Probability</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link rel="stylesheet" href="_static/pretext/fonts/material-symbols-outlined.css">
+<link href="_static/pretext/css/theme.css" rel="stylesheet" type="text/css">
+<style>
+@counter-style ptx-marker-1 { system: extends lower-alpha; prefix: '('; suffix: ') '; }
+@counter-style ptx-marker-2 { system: extends lower-roman; prefix: ''; suffix: '. '; }
+@counter-style ptx-marker-3 { system: extends decimal; prefix: ''; suffix: '. '; }
+</style>
+<script type="module">import { startMathJax } from './_static/pretext/js/dist/mathjax_startup.js';
+startMathJax({
+hasWebworkReps: false,
+hasSage: false,
+isReact: false,
+htmlPresentation: false,
+lang: "en-US",
+});
+</script><script defer data-pretext-mathjax="true" onerror="this.dataset.loadFailed = 'true';" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-mml-chtml.js"></script><meta name="Keywords" content="Authored in PreTeXt">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta property="og:type" content="book">
+<meta name="twitter:title" content="Grade 12 Essential Mathematics: Teachers’ Book">
+<meta property="og:title" content="Grade 12 Essential Mathematics: Teachers’ Book">
+<meta property="book:title" content="Grade 12 Essential Mathematics: Teachers’ Book">
+<meta name="twitter:description" content="A simple string (no markup is allowed) to describe your book.">
+<meta property="og:description" content="A simple string (no markup is allowed) to describe your book.">
+<meta name="twitter:card" content="summary">
+<script src="_static/pretext/js/jquery.min.js"></script><script src="_static/pretext/js/dist/pretext-core.js?v=2.56"></script><script src="_static/pretext/js/dist/pretext-read-aloud.js?v=2.56"></script><!--** eBookCongig is necessary to configure interactive       **-->
+<!--** Runestone components to run locally in reader's browser **-->
+<!--** No external communication:                              **-->
+<!--**     log level is 0, Runestone Services are disabled     **-->
+<script type="text/javascript">
+eBookConfig = {};
+eBookConfig.useRunestoneServices = false;
+eBookConfig.host = 'http://127.0.0.1:8000';
+eBookConfig.course = 'PTX_Course_Title_Here';
+eBookConfig.basecourse = 'PTX_Base_Course';
+eBookConfig.isLoggedIn = false;
+eBookConfig.email = '';
+eBookConfig.isInstructor = false;
+eBookConfig.logLevel = 0;
+eBookConfig.username = '';
+eBookConfig.readings = null;
+eBookConfig.activities = null;
+eBookConfig.downloadsEnabled = false;
+eBookConfig.allow_pairs = false;
+eBookConfig.enableScratchAC = false;
+eBookConfig.build_info = "";
+eBookConfig.python3 = null;
+eBookConfig.runestone_version = '8.4.3';
+eBookConfig.jobehost = '';
+eBookConfig.proxyuri_runs = '';
+eBookConfig.proxyuri_files = '';
+eBookConfig.enable_chatcodes =  false;
+</script>
+<!--*** Runestone Services ***-->
+<script src="_static/prefix-runtime.90336ab72cbb648f.bundle.js"></script><script src="_static/prefix-23.7d27cb317c36911a.bundle.js"></script><script src="_static/prefix-runestone.1f0ec0deacd7bb16.bundle.js"></script><link rel="stylesheet" type="text/css" href="_static/prefix-runestone.52ceae47a9e6e8ed.css">
+<script src="_static/pretext/js/dist/lti_iframe_resizer.js"></script><script src="_static/pretext/js/dist/pretext-stack/stackjsvle.js" type="text/javascript"></script><script src="_static/pretext/js/dist/pretext-stack/stackapicalls.js" type="text/javascript"></script><script type="text/javascript">
+            const stack_api_url = "https://stackapi-1-43834256136.europe-west1.run.app";
+        </script><script type="text/javascript">
+            function docHasLoaded() {
+                stackSetup();
+            }
+        </script><script src="https://cdnjs.cloudflare.com/ajax/libs/lunr.js/2.3.9/lunr.min.js" integrity="sha512-4xUl/d6D6THrAnXAwGajXkoWaeMNwEKK4iNfq5DotEbLPAfk6FSxSP3ydNxqDgCw1c/0Z1Jg6L8h2j+++9BZmg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script><script src="lunr-pretext-search-index.js" async=""></script><script src="_static/pretext/js/dist/pretext_search.js"></script><!--knowl.js code controls Sage Cells within knowls--><script>sagecellEvalName='Evaluate (Sage)';
+</script>
+</head>
+<body onload="docHasLoaded()" id="changeme" class="pretext book ignore-math">
+<a class="assistive" href="#ptx-content">Skip to main content</a><header id="ptx-masthead" class="ptx-masthead" role="banner"><div class="ptx-banner"><div class="title-container">
+<div class="heading ptx-banner-heading"><a href="book-cbe-grade-12-maths.html"><span class="title">Grade 12 Essential Mathematics</span> <span class="subtitle">Teachers’ Book</span></a></div>
+<p class="byline">INNODEMS</p>
+</div></div></header><nav id="ptx-navbar" class="ptx-navbar navbar"><div class="ptx-navbar-contents">
+<button id="ptx-toc-toggle" type="button" aria-controls="ptx-sidebar" class="toc-toggle button" title="Contents"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe5d2;</span><span class="name">Contents</span></button><div class="ptx-search-box">
+<div class="ptx-search-widget"><button id="ptx-search-button" type="button" class="ptx-search-button button" title="Search Book"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe8b6;</span><span class="name">Search Book</span></button></div>
+<dialog id="ptx-search-dialog" class="ptx-dialog ptx-search-dialog"><div class="ptx-search-dialog-controls">
+<input aria-label="Search term" id="ptx-search-terms" class="ptx-search-terms" type="text" name="terms" placeholder="Search terms"><button aria-label="Close" id="ptx-search-close" class="ptx-search-close"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe5cd;</span></button>
+</div>
+<div id="ptx-search-status" class="ptx-search-status" aria-live="polite" aria-atomic="true"></div>
+<h2 class="heading ptx-search-results-heading">Search Results: </h2>
+<div id="ptx-search-empty" class="ptx-search-empty"><span>No results.</span></div>
+<ol id="ptx-search-results" class="ptx-search-results"></ol></dialog>
+</div>
+<span class="nav-other-controls"><button id="ptx-read-aloud-button" class="ptx-read-aloud-button button" title="Read aloud" aria-expanded="false"><span class="icon material-symbols-outlined" aria-hidden="true">&#xf1bc;</span><span class="name">Read aloud</span></button><div id="ptx-read-aloud-player" class="ptx-read-aloud-player" hidden="hidden" role="group" aria-label="Read aloud">
+<button id="ptx-read-aloud-prev" class="button" title="Previous sentence"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe045;</span></button><button id="ptx-read-aloud-toggle" class="ptx-read-aloud-toggle button" title="Play"><span class="ptx-read-aloud-icon-play"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe037;</span></span><span class="ptx-read-aloud-icon-pause"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe034;</span></span></button><button id="ptx-read-aloud-next" class="button" title="Next sentence"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe044;</span></button><a id="ptx-read-aloud-continue" class="ptx-read-aloud-continue button" hidden="hidden">Continue<span class="icon material-symbols-outlined" aria-hidden="true">&#xe037;</span></a><button id="ptx-read-aloud-settings-button" class="ptx-read-aloud-settings-button button" title="Reading settings"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe429;</span></button>
+</div>
+<dialog class="ptx-dialog ptx-read-aloud-settings-popup" id="ptx-read-aloud-settings-popup"><div class="ptx-readability-options-popup-controls">
+<h2 class="heading">Read aloud settings</h2>
+<button class="ptx-read-aloud-settings-close-button button" id="ptx-read-aloud-settings-close-button" title="Close"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe5cd;</span></button>
+</div>
+<div class="ptx-readability-options-group">
+<label for="ptx-read-aloud-voice"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe91f;</span><span>Voice</span></label><select id="ptx-read-aloud-voice"></select><label class="ptx-readability-slider-label" for="ptx-read-aloud-rate"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe9e4;</span><span>Reading speed</span><output id="ptx-read-aloud-rate-value" for="ptx-read-aloud-rate">1×</output></label><input type="range" id="ptx-read-aloud-rate" min="0.5" max="2" step="0.1" value="1"><label for="ptx-read-aloud-asides"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe5d7;</span><span>Collapsed content</span></label><select id="ptx-read-aloud-asides"><option value="skip">Announce, do not read</option>
+<option value="read">Read automatically</option></select><label for="ptx-read-aloud-autoscroll"><input type="checkbox" id="ptx-read-aloud-autoscroll" checked><span>Follow along (auto-scroll)</span></label><label for="ptx-read-aloud-autocontinue"><input type="checkbox" id="ptx-read-aloud-autocontinue"><span>Continue to the next page automatically</span></label>
+</div></dialog><button id="ptx-readability-options-button" class="ptx-readability-options-button button" title="Readability settings"><span class="icon material-symbols-outlined" aria-hidden="true">&#xf6f1;</span><span class="name">Readability settings</span></button><dialog class="ptx-dialog ptx-readability-options-popup" id="ptx-readability-options-popup"><div class="ptx-readability-options-popup-controls">
+<h2 class="heading">Readability settings</h2>
+<button class="ptx-readability-options-close-button button" id="ptx-readability-options-close-button" title="Close"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe5cd;</span></button>
+</div>
+<div class="ptx-readability-options-group">
+<label class="ptx-readability-slider-label" for="ptx-readability-line-height"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe240;</span><span>Line height</span><output id="ptx-readability-line-height-value" for="ptx-readability-line-height">1.35</output></label><input type="range" id="ptx-readability-line-height" min="1.10" max="3" step="0.05" value="1.35">
+</div>
+<div class="ptx-readability-options-group">
+<label class="ptx-readability-slider-label" for="ptx-readability-font-size"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe245;</span><span>Content font size</span><output id="ptx-readability-font-size-value" for="ptx-readability-font-size">100%</output></label><input type="range" id="ptx-readability-font-size" min="0.8" max="1.5" step="0.05" value="1">
+</div>
+<fieldset class="ptx-readability-options-group ptx-readability-options-group-theme">
+<legend>Theme</legend>
+<label for="ptx-readability-theme-system"><input type="radio" name="ptx-readability-theme" id="ptx-readability-theme-system" value="system"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe1ab;</span><span>System</span></label><label for="ptx-readability-theme-light"><input type="radio" name="ptx-readability-theme" id="ptx-readability-theme-light" value="light"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe518;</span><span>Light</span></label><label for="ptx-readability-theme-dark"><input type="radio" name="ptx-readability-theme" id="ptx-readability-theme-dark" value="dark"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe51c;</span><span>Dark</span></label>
+</fieldset>
+<fieldset class="ptx-readability-options-group">
+<legend>Assistive technologies</legend>
+<label for="ptx-readability-accessible-permalinks"><input type="checkbox" id="ptx-readability-accessible-permalinks"><span>🔗</span><span>Expose permalinks</span></label>
+</fieldset>
+<div class="ptx-readability-options-group"><button type="button" class="ptx-readability-reset-button button" id="ptx-readability-reset-button"><span class="icon material-symbols-outlined" aria-hidden="true">&#xf053;</span><span class="name">Reset All</span></button></div></dialog></span><span class="treebuttons"><a class="previous-button button" href="sec-discrete-probability-2.html" title="Previous"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe5cb;</span><span class="name">Prev</span></a><a class="up-button button" href="sec-discrete-probability.html" title="Up"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe5ce;</span><span class="name">Up</span></a><a class="next-button button" href="subsec-probability-distributions.html" title="Next"><span class="name">Next</span><span class="icon material-symbols-outlined" aria-hidden="true">&#xe5cc;</span></a></span>
+</div></nav><div id="latex-macros" class="hidden-content process-math" style="display:none"><span class="process-math">\(\newcommand{\N}{\mathbb N} \newcommand{\Z}{\mathbb Z} \newcommand{\Q}{\mathbb Q} \newcommand{\R}{\mathbb R}
+\newcommand{\lt}{&lt;}
+\newcommand{\gt}{&gt;}
+\newcommand{\amp}{&amp;}
+\definecolor{fillinmathshade}{gray}{0.9}
+\newcommand{\fillinmath}[1]{\mathchoice{\colorbox{fillinmathshade}{$\displaystyle     \phantom{\,#1\,}$}}{\colorbox{fillinmathshade}{$\textstyle        \phantom{\,#1\,}$}}{\colorbox{fillinmathshade}{$\scriptstyle      \phantom{\,#1\,}$}}{\colorbox{fillinmathshade}{$\scriptscriptstyle\phantom{\,#1\,}$}}}
+\)</span></div>
+<div class="ptx-page">
+<div id="ptx-sidebar" role="complementary" class="ptx-sidebar"><nav id="ptx-toc" tabindex="-1" aria-label="Contents" class="ptx-toc depth4 parts focused" data-preexpanded-levels="0" data-max-levels="4"><ul class="structural toc-item-list contains-active">
+<li class="toc-item toc-frontmatter">
+<div class="toc-title-box"><a href="frontmatter.html" class="internal"><span class="title">Front Matter</span></a></div>
+<ul id="ptx-toc-group-frontmatter" class="structural toc-item-list"><li class="toc-item toc-preface"><div class="toc-title-box"><a href="preface.html" class="internal"><span class="title">Preface</span></a></div></li></ul>
+</li>
+<li class="toc-item toc-part">
+<div class="toc-title-box"><a href="part-numbers-and-algebra.html" class="internal"><span class="codenumber">I</span> <span class="title">Numbers and Algebra</span></a></div>
+<ul id="ptx-toc-group-part-numbers-and-algebra" class="structural toc-item-list">
+<li class="toc-item toc-chapter">
+<div class="toc-title-box"><a href="ch-sets.html" class="internal"><span class="codenumber">1</span> <span class="title">Sets</span></a></div>
+<ul id="ptx-toc-group-ch-sets" class="structural toc-item-list">
+<li class="toc-item toc-introduction"><div class="toc-title-box"><a href="ch-sets-2.html" class="internal"><span class="title">Introduction</span></a></div></li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="sec-set-notation.html" class="internal"><span class="codenumber">1.1</span> <span class="title">Set Notation</span></a></div>
+<ul id="ptx-toc-group-sec-set-notation" class="structural toc-item-list"><li class="toc-item toc-exercises"><div class="toc-title-box"><a href="exercises-set-notation.html" class="internal"><span class="codenumber">1.1</span> <span class="title">Exercises</span></a></div></li></ul>
+</li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="sec-representation-of-sets.html" class="internal"><span class="codenumber">1.2</span> <span class="title">Representation of Sets</span></a></div>
+<ul id="ptx-toc-group-sec-representation-of-sets" class="structural toc-item-list"><li class="toc-item toc-exercises"><div class="toc-title-box"><a href="exercises-representation-of-sets.html" class="internal"><span class="codenumber">1.2</span> <span class="title">Exercises</span></a></div></li></ul>
+</li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="sec-types-of-sets.html" class="internal"><span class="codenumber">1.3</span> <span class="title">Types of Sets</span></a></div>
+<ul id="ptx-toc-group-sec-types-of-sets" class="structural toc-item-list">
+<li class="toc-item toc-exercises"><div class="toc-title-box"><a href="exercises-types-of-sets.html" class="internal"><span class="codenumber">1.3</span> <span class="title">Exercises</span></a></div></li>
+<li class="toc-item toc-exercises"><div class="toc-title-box"><a href="exercises-more-types-of-sets.html" class="internal"><span class="codenumber">1.3</span> <span class="title">More Types of Sets</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="sec-operations-on-sets.html" class="internal"><span class="codenumber">1.4</span> <span class="title">Operations on Sets</span></a></div>
+<ul id="ptx-toc-group-sec-operations-on-sets" class="structural toc-item-list">
+<li class="toc-item toc-objectives"><div class="toc-title-box"><a href="sec-operations-on-sets-2.html" class="internal"><span class="title">Curriculum Alignment</span></a></div></li>
+<li class="toc-item toc-subsection">
+<div class="toc-title-box"><a href="subsec-union-and-intersection.html" class="internal"><span class="codenumber">1.4.1</span> <span class="title">Union and Intersection</span></a></div>
+<ul id="ptx-toc-group-subsec-union-and-intersection" class="structural toc-item-list"><li class="toc-item toc-exercises"><div class="toc-title-box"><a href="subsec-union-and-intersection.html#exercises-union-and-intersection" class="internal"><span class="codenumber">1.4.1</span> <span class="title">Exercises</span></a></div></li></ul>
+</li>
+<li class="toc-item toc-subsection">
+<div class="toc-title-box"><a href="subsec-complement-and-difference.html" class="internal"><span class="codenumber">1.4.2</span> <span class="title">Complement and Difference</span></a></div>
+<ul id="ptx-toc-group-subsec-complement-and-difference" class="structural toc-item-list"><li class="toc-item toc-exercises"><div class="toc-title-box"><a href="subsec-complement-and-difference.html#exercises-complement-and-difference" class="internal"><span class="codenumber">1.4.2</span> <span class="title">Exercises</span></a></div></li></ul>
+</li>
+</ul>
+</li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="sec-venn-diagrams.html" class="internal"><span class="codenumber">1.5</span> <span class="title">Venn Diagrams</span></a></div>
+<ul id="ptx-toc-group-sec-venn-diagrams" class="structural toc-item-list">
+<li class="toc-item toc-objectives"><div class="toc-title-box"><a href="sec-venn-diagrams-2.html" class="internal"><span class="title">Curriculum Alignment</span></a></div></li>
+<li class="toc-item toc-subsection">
+<div class="toc-title-box"><a href="subsec-two-set-venn-diagrams.html" class="internal"><span class="codenumber">1.5.1</span> <span class="title">Venn Diagrams with Two Sets</span></a></div>
+<ul id="ptx-toc-group-subsec-two-set-venn-diagrams" class="structural toc-item-list"><li class="toc-item toc-exercises"><div class="toc-title-box"><a href="subsec-two-set-venn-diagrams.html#exercises-two-set-venn-diagrams" class="internal"><span class="codenumber">1.5.1</span> <span class="title">Exercises</span></a></div></li></ul>
+</li>
+<li class="toc-item toc-subsection">
+<div class="toc-title-box"><a href="subsec-three-set-venn-diagrams.html" class="internal"><span class="codenumber">1.5.2</span> <span class="title">Venn Diagrams with Three Sets</span></a></div>
+<ul id="ptx-toc-group-subsec-three-set-venn-diagrams" class="structural toc-item-list"><li class="toc-item toc-exercises"><div class="toc-title-box"><a href="subsec-three-set-venn-diagrams.html#exercises-three-set-venn-diagrams" class="internal"><span class="codenumber">1.5.2</span> <span class="title">Exercises</span></a></div></li></ul>
+</li>
+</ul>
+</li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="sec-application-of-sets.html" class="internal"><span class="codenumber">1.6</span> <span class="title">Application of Sets</span></a></div>
+<ul id="ptx-toc-group-sec-application-of-sets" class="structural toc-item-list">
+<li class="toc-item toc-objectives"><div class="toc-title-box"><a href="sec-application-of-sets-2.html" class="internal"><span class="title">Curriculum Alignment</span></a></div></li>
+<li class="toc-item toc-subsection">
+<div class="toc-title-box"><a href="subsec-surveys-with-two-sets.html" class="internal"><span class="codenumber">1.6.1</span> <span class="title">Surveys with Two Sets</span></a></div>
+<ul id="ptx-toc-group-subsec-surveys-with-two-sets" class="structural toc-item-list"><li class="toc-item toc-exercises"><div class="toc-title-box"><a href="subsec-surveys-with-two-sets.html#exercises-surveys-with-two-sets" class="internal"><span class="codenumber">1.6.1</span> <span class="title">Exercises</span></a></div></li></ul>
+</li>
+<li class="toc-item toc-subsection">
+<div class="toc-title-box"><a href="subsec-surveys-with-three-sets.html" class="internal"><span class="codenumber">1.6.2</span> <span class="title">Surveys with Three Sets</span></a></div>
+<ul id="ptx-toc-group-subsec-surveys-with-three-sets" class="structural toc-item-list"><li class="toc-item toc-exercises"><div class="toc-title-box"><a href="subsec-surveys-with-three-sets.html#exercises-surveys-with-three-sets" class="internal"><span class="codenumber">1.6.2</span> <span class="title">Exercises</span></a></div></li></ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-item toc-chapter">
+<div class="toc-title-box"><a href="ch-compound-proportions-rates-of-work-and-mixtures.html" class="internal"><span class="codenumber">2</span> <span class="title">Compound Proportions, Rates of Work and Mixtures</span></a></div>
+<ul id="ptx-toc-group-ch-compound-proportions-rates-of-work-and-mixtures" class="structural toc-item-list">
+<li class="toc-item toc-introduction"><div class="toc-title-box"><a href="ch-compound-proportions-rates-of-work-and-mixtures-2.html" class="internal"><span class="title">Introduction</span></a></div></li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="sec-proportional-parts.html" class="internal"><span class="codenumber">2.1</span> <span class="title">Proportional Parts</span></a></div>
+<ul id="ptx-toc-group-sec-proportional-parts" class="structural toc-item-list">
+<li class="toc-item toc-objectives"><div class="toc-title-box"><a href="sec-proportional-parts-2.html" class="internal"><span class="title">Curriculum Alignment</span></a></div></li>
+<li class="toc-item toc-introduction"><div class="toc-title-box"><a href="sec-proportional-parts-3.html" class="internal"><span class="title">Introduction</span></a></div></li>
+<li class="toc-item toc-subsection">
+<div class="toc-title-box"><a href="subsec-sharing-in-a-ratio.html" class="internal"><span class="codenumber">2.1.1</span> <span class="title">Sharing in a Ratio</span></a></div>
+<ul id="ptx-toc-group-subsec-sharing-in-a-ratio" class="structural toc-item-list"><li class="toc-item toc-exercises"><div class="toc-title-box"><a href="subsec-sharing-in-a-ratio.html#exercises-sharing-in-a-ratio" class="internal"><span class="codenumber">2.1.1</span> <span class="title">Exercises</span></a></div></li></ul>
+</li>
+<li class="toc-item toc-subsection">
+<div class="toc-title-box"><a href="subsec-proportional-parts-in-practice.html" class="internal"><span class="codenumber">2.1.2</span> <span class="title">Proportional Parts in Practice</span></a></div>
+<ul id="ptx-toc-group-subsec-proportional-parts-in-practice" class="structural toc-item-list"><li class="toc-item toc-exercises"><div class="toc-title-box"><a href="subsec-proportional-parts-in-practice.html#exercises-proportional-parts-in-practice" class="internal"><span class="codenumber">2.1.2</span> <span class="title">Exercises</span></a></div></li></ul>
+</li>
+</ul>
+</li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="sec-compound-proportions.html" class="internal"><span class="codenumber">2.2</span> <span class="title">Compound Proportions</span></a></div>
+<ul id="ptx-toc-group-sec-compound-proportions" class="structural toc-item-list">
+<li class="toc-item toc-objectives"><div class="toc-title-box"><a href="sec-compound-proportions-2.html" class="internal"><span class="title">Curriculum Alignment</span></a></div></li>
+<li class="toc-item toc-subsection">
+<div class="toc-title-box"><a href="subsec-direct-and-inverse-proportion.html" class="internal"><span class="codenumber">2.2.1</span> <span class="title">Direct and Inverse Proportion</span></a></div>
+<ul id="ptx-toc-group-subsec-direct-and-inverse-proportion" class="structural toc-item-list"><li class="toc-item toc-exercises"><div class="toc-title-box"><a href="subsec-direct-and-inverse-proportion.html#exercises-direct-and-inverse-proportion" class="internal"><span class="codenumber">2.2.1</span> <span class="title">Exercises</span></a></div></li></ul>
+</li>
+<li class="toc-item toc-subsection">
+<div class="toc-title-box"><a href="subsec-compound-proportion-unitary-method.html" class="internal"><span class="codenumber">2.2.2</span> <span class="title">Compound Proportion by the Unitary Method</span></a></div>
+<ul id="ptx-toc-group-subsec-compound-proportion-unitary-method" class="structural toc-item-list"><li class="toc-item toc-exercises"><div class="toc-title-box"><a href="subsec-compound-proportion-unitary-method.html#exercises-compound-proportion-unitary-method" class="internal"><span class="codenumber">2.2.2</span> <span class="title">Exercises</span></a></div></li></ul>
+</li>
+</ul>
+</li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="sec-rates-of-work.html" class="internal"><span class="codenumber">2.3</span> <span class="title">Rates of Work</span></a></div>
+<ul id="ptx-toc-group-sec-rates-of-work" class="structural toc-item-list">
+<li class="toc-item toc-objectives"><div class="toc-title-box"><a href="sec-rates-of-work-2.html" class="internal"><span class="title">Curriculum Alignment</span></a></div></li>
+<li class="toc-item toc-introduction"><div class="toc-title-box"><a href="sec-rates-of-work-3.html" class="internal"><span class="title">Introduction</span></a></div></li>
+<li class="toc-item toc-subsection">
+<div class="toc-title-box"><a href="subsec-working-together.html" class="internal"><span class="codenumber">2.3.1</span> <span class="title">Working Together</span></a></div>
+<ul id="ptx-toc-group-subsec-working-together" class="structural toc-item-list"><li class="toc-item toc-exercises"><div class="toc-title-box"><a href="subsec-working-together.html#exercises-working-together" class="internal"><span class="codenumber">2.3.1</span> <span class="title">Exercises</span></a></div></li></ul>
+</li>
+<li class="toc-item toc-subsection">
+<div class="toc-title-box"><a href="subsec-filling-emptying-and-safe-hours.html" class="internal"><span class="codenumber">2.3.2</span> <span class="title">Filling, Emptying and Safe Working Hours</span></a></div>
+<ul id="ptx-toc-group-subsec-filling-emptying-and-safe-hours" class="structural toc-item-list"><li class="toc-item toc-exercises"><div class="toc-title-box"><a href="subsec-filling-emptying-and-safe-hours.html#exercises-filling-emptying-and-safe-hours" class="internal"><span class="codenumber">2.3.2</span> <span class="title">Exercises</span></a></div></li></ul>
+</li>
+</ul>
+</li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="sec-mixtures.html" class="internal"><span class="codenumber">2.4</span> <span class="title">Mixtures</span></a></div>
+<ul id="ptx-toc-group-sec-mixtures" class="structural toc-item-list">
+<li class="toc-item toc-objectives"><div class="toc-title-box"><a href="sec-mixtures-2.html" class="internal"><span class="title">Curriculum Alignment</span></a></div></li>
+<li class="toc-item toc-subsection">
+<div class="toc-title-box"><a href="subsec-mixtures-in-a-ratio.html" class="internal"><span class="codenumber">2.4.1</span> <span class="title">Mixtures in a Ratio</span></a></div>
+<ul id="ptx-toc-group-subsec-mixtures-in-a-ratio" class="structural toc-item-list"><li class="toc-item toc-exercises"><div class="toc-title-box"><a href="subsec-mixtures-in-a-ratio.html#exercises-mixtures-in-a-ratio" class="internal"><span class="codenumber">2.4.1</span> <span class="title">Exercises</span></a></div></li></ul>
+</li>
+<li class="toc-item toc-subsection">
+<div class="toc-title-box"><a href="subsec-mixing-to-a-target-price.html" class="internal"><span class="codenumber">2.4.2</span> <span class="title">Mixing to a Target Price</span></a></div>
+<ul id="ptx-toc-group-subsec-mixing-to-a-target-price" class="structural toc-item-list"><li class="toc-item toc-exercises"><div class="toc-title-box"><a href="subsec-mixing-to-a-target-price.html#exercises-mixing-to-a-target-price" class="internal"><span class="codenumber">2.4.2</span> <span class="title">Exercises</span></a></div></li></ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-item toc-chapter">
+<div class="toc-title-box"><a href="ch-linear-inequalities.html" class="internal"><span class="codenumber">3</span> <span class="title">Linear Inequalities</span></a></div>
+<ul id="ptx-toc-group-ch-linear-inequalities" class="structural toc-item-list">
+<li class="toc-item toc-introduction"><div class="toc-title-box"><a href="ch-linear-inequalities-2.html" class="internal"><span class="title">Introduction</span></a></div></li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="sec-simple-and-compound-inequalities.html" class="internal"><span class="codenumber">3.1</span> <span class="title">Simple and Compound Inequalities</span></a></div>
+<ul id="ptx-toc-group-sec-simple-and-compound-inequalities" class="structural toc-item-list">
+<li class="toc-item toc-objectives"><div class="toc-title-box"><a href="sec-simple-and-compound-inequalities-2.html" class="internal"><span class="title">Curriculum Alignment</span></a></div></li>
+<li class="toc-item toc-introduction"><div class="toc-title-box"><a href="sec-simple-and-compound-inequalities-3.html" class="internal"><span class="title">Introduction</span></a></div></li>
+<li class="toc-item toc-subsection">
+<div class="toc-title-box"><a href="subsec-forming-and-solving-simple-inequalities.html" class="internal"><span class="codenumber">3.1.1</span> <span class="title">Forming and Solving Simple Inequalities</span></a></div>
+<ul id="ptx-toc-group-subsec-forming-and-solving-simple-inequalities" class="structural toc-item-list"><li class="toc-item toc-exercises"><div class="toc-title-box"><a href="subsec-forming-and-solving-simple-inequalities.html#exercises-forming-and-solving-simple-inequalities" class="internal"><span class="codenumber">3.1.1</span> <span class="title">Exercises</span></a></div></li></ul>
+</li>
+<li class="toc-item toc-subsection">
+<div class="toc-title-box"><a href="subsec-compound-inequalities.html" class="internal"><span class="codenumber">3.1.2</span> <span class="title">Compound Inequalities</span></a></div>
+<ul id="ptx-toc-group-subsec-compound-inequalities" class="structural toc-item-list"><li class="toc-item toc-exercises"><div class="toc-title-box"><a href="subsec-compound-inequalities.html#exercises-compound-inequalities" class="internal"><span class="codenumber">3.1.2</span> <span class="title">Exercises</span></a></div></li></ul>
+</li>
+</ul>
+</li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="sec-linear-inequalities-in-two-unknowns.html" class="internal"><span class="codenumber">3.2</span> <span class="title">Linear Inequalities in Two Unknowns</span></a></div>
+<ul id="ptx-toc-group-sec-linear-inequalities-in-two-unknowns" class="structural toc-item-list"><li class="toc-item toc-exercises"><div class="toc-title-box"><a href="exercises-inequalities-in-two-unknowns.html" class="internal"><span class="codenumber">3.2</span> <span class="title">Exercises</span></a></div></li></ul>
+</li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="sec-graphical-representation-of-linear-inequalities.html" class="internal"><span class="codenumber">3.3</span> <span class="title">Graphical Representation of Linear Inequalities</span></a></div>
+<ul id="ptx-toc-group-sec-graphical-representation-of-linear-inequalities" class="structural toc-item-list"><li class="toc-item toc-exercises"><div class="toc-title-box"><a href="exercises-graphical-representation.html" class="internal"><span class="codenumber">3.3</span> <span class="title">Exercises</span></a></div></li></ul>
+</li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="sec-graphical-solutions-of-simultaneous-linear-inequalities.html" class="internal"><span class="codenumber">3.4</span> <span class="title">Graphical Solutions of Simultaneous Linear Inequalities</span></a></div>
+<ul id="ptx-toc-group-sec-graphical-solutions-of-simultaneous-linear-inequalities" class="structural toc-item-list"><li class="toc-item toc-exercises"><div class="toc-title-box"><a href="exercises-simultaneous-inequalities.html" class="internal"><span class="codenumber">3.4</span> <span class="title">Exercises</span></a></div></li></ul>
+</li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="sec-linear-inequalities-from-graphs.html" class="internal"><span class="codenumber">3.5</span> <span class="title">Forming Linear Inequalities from Graphs</span></a></div>
+<ul id="ptx-toc-group-sec-linear-inequalities-from-graphs" class="structural toc-item-list"><li class="toc-item toc-exercises"><div class="toc-title-box"><a href="exercises-inequalities-from-graphs.html" class="internal"><span class="codenumber">3.5</span> <span class="title">Exercises</span></a></div></li></ul>
+</li>
+</ul>
+</li>
+<li class="toc-item toc-chapter">
+<div class="toc-title-box"><a href="ch-linear-programming.html" class="internal"><span class="codenumber">4</span> <span class="title">Linear Programming</span></a></div>
+<ul id="ptx-toc-group-ch-linear-programming" class="structural toc-item-list">
+<li class="toc-item toc-introduction"><div class="toc-title-box"><a href="ch-linear-programming-2.html" class="internal"><span class="title">Introduction</span></a></div></li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="sec-forming-linear-inequalities.html" class="internal"><span class="codenumber">4.1</span> <span class="title">Forming Linear Inequalities</span></a></div>
+<ul id="ptx-toc-group-sec-forming-linear-inequalities" class="structural toc-item-list">
+<li class="toc-item toc-objectives"><div class="toc-title-box"><a href="sec-forming-linear-inequalities-2.html" class="internal"><span class="title">Curriculum Alignment</span></a></div></li>
+<li class="toc-item toc-introduction"><div class="toc-title-box"><a href="sec-forming-linear-inequalities-3.html" class="internal"><span class="title">Introduction</span></a></div></li>
+<li class="toc-item toc-subsection">
+<div class="toc-title-box"><a href="subsec-constraints-from-words.html" class="internal"><span class="codenumber">4.1.1</span> <span class="title">Constraints from Words</span></a></div>
+<ul id="ptx-toc-group-subsec-constraints-from-words" class="structural toc-item-list"><li class="toc-item toc-exercises"><div class="toc-title-box"><a href="subsec-constraints-from-words.html#exercises-constraints-from-words" class="internal"><span class="codenumber">4.1.1</span> <span class="title">Exercises</span></a></div></li></ul>
+</li>
+<li class="toc-item toc-subsection">
+<div class="toc-title-box"><a href="subsec-building-a-linear-programming-model.html" class="internal"><span class="codenumber">4.1.2</span> <span class="title">Building a Model: Constraints and the Objective Function</span></a></div>
+<ul id="ptx-toc-group-subsec-building-a-linear-programming-model" class="structural toc-item-list"><li class="toc-item toc-exercises"><div class="toc-title-box"><a href="subsec-building-a-linear-programming-model.html#exercises-building-a-model" class="internal"><span class="codenumber">4.1.2</span> <span class="title">Exercises</span></a></div></li></ul>
+</li>
+</ul>
+</li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="sec-graphing-linear-inequalities.html" class="internal"><span class="codenumber">4.2</span> <span class="title">Graphing Linear Inequalities</span></a></div>
+<ul id="ptx-toc-group-sec-graphing-linear-inequalities" class="structural toc-item-list">
+<li class="toc-item toc-objectives"><div class="toc-title-box"><a href="sec-graphing-linear-inequalities-2.html" class="internal"><span class="title">Curriculum Alignment</span></a></div></li>
+<li class="toc-item toc-subsection">
+<div class="toc-title-box"><a href="subsec-graphing-constraints.html" class="internal"><span class="codenumber">4.2.1</span> <span class="title">Graphing Constraints: Shading the Unwanted Region</span></a></div>
+<ul id="ptx-toc-group-subsec-graphing-constraints" class="structural toc-item-list"><li class="toc-item toc-exercises"><div class="toc-title-box"><a href="subsec-graphing-constraints.html#exercises-graphing-constraints" class="internal"><span class="codenumber">4.2.1</span> <span class="title">Exercises</span></a></div></li></ul>
+</li>
+<li class="toc-item toc-subsection">
+<div class="toc-title-box"><a href="subsec-vertices-and-whole-number-points.html" class="internal"><span class="codenumber">4.2.2</span> <span class="title">Vertices and Whole-Number Points</span></a></div>
+<ul id="ptx-toc-group-subsec-vertices-and-whole-number-points" class="structural toc-item-list"><li class="toc-item toc-exercises"><div class="toc-title-box"><a href="subsec-vertices-and-whole-number-points.html#exercises-vertices-and-points" class="internal"><span class="codenumber">4.2.2</span> <span class="title">Exercises</span></a></div></li></ul>
+</li>
+</ul>
+</li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="sec-optimisation-of-linear-inequalities.html" class="internal"><span class="codenumber">4.3</span> <span class="title">Optimisation of Linear Inequalities</span></a></div>
+<ul id="ptx-toc-group-sec-optimisation-of-linear-inequalities" class="structural toc-item-list">
+<li class="toc-item toc-objectives"><div class="toc-title-box"><a href="sec-optimisation-of-linear-inequalities-2.html" class="internal"><span class="title">Curriculum Alignment</span></a></div></li>
+<li class="toc-item toc-subsection">
+<div class="toc-title-box"><a href="subsec-optimum-by-sampling.html" class="internal"><span class="codenumber">4.3.1</span> <span class="title">Finding the Optimum by Sampling</span></a></div>
+<ul id="ptx-toc-group-subsec-optimum-by-sampling" class="structural toc-item-list"><li class="toc-item toc-exercises"><div class="toc-title-box"><a href="subsec-optimum-by-sampling.html#exercises-optimum-by-sampling" class="internal"><span class="codenumber">4.3.1</span> <span class="title">Exercises</span></a></div></li></ul>
+</li>
+</ul>
+</li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="sec-application-of-linear-programming.html" class="internal"><span class="codenumber">4.4</span> <span class="title">Application of Linear Programming</span></a></div>
+<ul id="ptx-toc-group-sec-application-of-linear-programming" class="structural toc-item-list">
+<li class="toc-item toc-objectives"><div class="toc-title-box"><a href="sec-application-of-linear-programming-2.html" class="internal"><span class="title">Curriculum Alignment</span></a></div></li>
+<li class="toc-item toc-subsection">
+<div class="toc-title-box"><a href="subsec-maximum-profit.html" class="internal"><span class="codenumber">4.4.1</span> <span class="title">Solving a Problem: Maximum Profit</span></a></div>
+<ul id="ptx-toc-group-subsec-maximum-profit" class="structural toc-item-list"><li class="toc-item toc-exercises"><div class="toc-title-box"><a href="subsec-maximum-profit.html#exercises-maximum-profit" class="internal"><span class="codenumber">4.4.1</span> <span class="title">Exercises</span></a></div></li></ul>
+</li>
+<li class="toc-item toc-subsection">
+<div class="toc-title-box"><a href="subsec-minimum-cost-and-least-waste.html" class="internal"><span class="codenumber">4.4.2</span> <span class="title">Minimum Cost and Least Waste</span></a></div>
+<ul id="ptx-toc-group-subsec-minimum-cost-and-least-waste" class="structural toc-item-list"><li class="toc-item toc-exercises"><div class="toc-title-box"><a href="subsec-minimum-cost-and-least-waste.html#exercises-minimum-cost-and-waste" class="internal"><span class="codenumber">4.4.2</span> <span class="title">Exercises</span></a></div></li></ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-item toc-part">
+<div class="toc-title-box"><a href="part-measurements-and-geometry.html" class="internal"><span class="codenumber">II</span> <span class="title">Measurements and Geometry</span></a></div>
+<ul id="ptx-toc-group-part-measurements-and-geometry" class="structural toc-item-list">
+<li class="toc-item toc-chapter">
+<div class="toc-title-box"><a href="ch-area-approximations.html" class="internal"><span class="codenumber">5</span> <span class="title">Area Approximations</span></a></div>
+<ul id="ptx-toc-group-ch-area-approximations" class="structural toc-item-list">
+<li class="toc-item toc-introduction"><div class="toc-title-box"><a href="ch-area-approximations-2.html" class="internal"><span class="title">Introduction</span></a></div></li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="sec-counting-squares.html" class="internal"><span class="codenumber">5.1</span> <span class="title">Counting Squares</span></a></div>
+<ul id="ptx-toc-group-sec-counting-squares" class="structural toc-item-list">
+<li class="toc-item toc-objectives"><div class="toc-title-box"><a href="sec-counting-squares-2.html" class="internal"><span class="title">Curriculum Alignment</span></a></div></li>
+<li class="toc-item toc-introduction"><div class="toc-title-box"><a href="sec-counting-squares-3.html" class="internal"><span class="title">Introduction</span></a></div></li>
+<li class="toc-item toc-subsection">
+<div class="toc-title-box"><a href="subsec-counting-squares-for-irregular-shapes.html" class="internal"><span class="codenumber">5.1.1</span> <span class="title">Counting Squares for Irregular Shapes</span></a></div>
+<ul id="ptx-toc-group-subsec-counting-squares-for-irregular-shapes" class="structural toc-item-list"><li class="toc-item toc-exercises"><div class="toc-title-box"><a href="subsec-counting-squares-for-irregular-shapes.html#exercises-counting-squares-irregular" class="internal"><span class="codenumber">5.1.1</span> <span class="title">Exercises</span></a></div></li></ul>
+</li>
+<li class="toc-item toc-subsection">
+<div class="toc-title-box"><a href="subsec-counting-squares-under-a-curve.html" class="internal"><span class="codenumber">5.1.2</span> <span class="title">Counting Squares Under a Curve</span></a></div>
+<ul id="ptx-toc-group-subsec-counting-squares-under-a-curve" class="structural toc-item-list"><li class="toc-item toc-exercises"><div class="toc-title-box"><a href="subsec-counting-squares-under-a-curve.html#exercises-counting-squares-under-a-curve" class="internal"><span class="codenumber">5.1.2</span> <span class="title">Exercises</span></a></div></li></ul>
+</li>
+</ul>
+</li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="sec-trapezoidal-rule.html" class="internal"><span class="codenumber">5.2</span> <span class="title">Trapezoidal Rule</span></a></div>
+<ul id="ptx-toc-group-sec-trapezoidal-rule" class="structural toc-item-list">
+<li class="toc-item toc-objectives"><div class="toc-title-box"><a href="sec-trapezoidal-rule-2.html" class="internal"><span class="title">Curriculum Alignment</span></a></div></li>
+<li class="toc-item toc-subsection">
+<div class="toc-title-box"><a href="subsec-the-trapezoidal-rule.html" class="internal"><span class="codenumber">5.2.1</span> <span class="title">Using the Trapezoidal Rule</span></a></div>
+<ul id="ptx-toc-group-subsec-the-trapezoidal-rule" class="structural toc-item-list"><li class="toc-item toc-exercises"><div class="toc-title-box"><a href="subsec-the-trapezoidal-rule.html#exercises-the-trapezoidal-rule" class="internal"><span class="codenumber">5.2.1</span> <span class="title">Exercises</span></a></div></li></ul>
+</li>
+<li class="toc-item toc-subsection">
+<div class="toc-title-box"><a href="subsec-applying-the-trapezoidal-rule.html" class="internal"><span class="codenumber">5.2.2</span> <span class="title">Rivers, Fields and the Size of the Error</span></a></div>
+<ul id="ptx-toc-group-subsec-applying-the-trapezoidal-rule" class="structural toc-item-list"><li class="toc-item toc-exercises"><div class="toc-title-box"><a href="subsec-applying-the-trapezoidal-rule.html#exercises-applying-the-trapezoidal-rule" class="internal"><span class="codenumber">5.2.2</span> <span class="title">Exercises</span></a></div></li></ul>
+</li>
+</ul>
+</li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="sec-mid-ordinate-rule.html" class="internal"><span class="codenumber">5.3</span> <span class="title">Mid-ordinate Rule</span></a></div>
+<ul id="ptx-toc-group-sec-mid-ordinate-rule" class="structural toc-item-list">
+<li class="toc-item toc-objectives"><div class="toc-title-box"><a href="sec-mid-ordinate-rule-2.html" class="internal"><span class="title">Curriculum Alignment</span></a></div></li>
+<li class="toc-item toc-subsection">
+<div class="toc-title-box"><a href="subsec-the-mid-ordinate-rule.html" class="internal"><span class="codenumber">5.3.1</span> <span class="title">Using the Mid-ordinate Rule</span></a></div>
+<ul id="ptx-toc-group-subsec-the-mid-ordinate-rule" class="structural toc-item-list"><li class="toc-item toc-exercises"><div class="toc-title-box"><a href="subsec-the-mid-ordinate-rule.html#exercises-the-mid-ordinate-rule" class="internal"><span class="codenumber">5.3.1</span> <span class="title">Exercises</span></a></div></li></ul>
+</li>
+<li class="toc-item toc-subsection">
+<div class="toc-title-box"><a href="subsec-comparing-the-methods.html" class="internal"><span class="codenumber">5.3.2</span> <span class="title">Comparing the Three Methods</span></a></div>
+<ul id="ptx-toc-group-subsec-comparing-the-methods" class="structural toc-item-list"><li class="toc-item toc-exercises"><div class="toc-title-box"><a href="subsec-comparing-the-methods.html#exercises-comparing-the-methods" class="internal"><span class="codenumber">5.3.2</span> <span class="title">Exercises</span></a></div></li></ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-item toc-chapter">
+<div class="toc-title-box"><a href="ch-vectors.html" class="internal"><span class="codenumber">6</span> <span class="title">Vectors</span></a></div>
+<ul id="ptx-toc-group-ch-vectors" class="structural toc-item-list">
+<li class="toc-item toc-introduction"><div class="toc-title-box"><a href="ch-vectors-2.html" class="internal"><span class="title">Introduction</span></a></div></li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="sec-vector-and-scalar-quantities.html" class="internal"><span class="codenumber">6.1</span> <span class="title">Vector and Scalar Quantities</span></a></div>
+<ul id="ptx-toc-group-sec-vector-and-scalar-quantities" class="structural toc-item-list"><li class="toc-item toc-exercises"><div class="toc-title-box"><a href="exercises-vector-and-scalar-quantities.html" class="internal"><span class="codenumber">6.1</span> <span class="title">Exercises</span></a></div></li></ul>
+</li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="sec-vector-notation.html" class="internal"><span class="codenumber">6.2</span> <span class="title">Vector Notation</span></a></div>
+<ul id="ptx-toc-group-sec-vector-notation" class="structural toc-item-list"><li class="toc-item toc-exercises"><div class="toc-title-box"><a href="exercises-vector-notation.html" class="internal"><span class="codenumber">6.2</span> <span class="title">Exercises</span></a></div></li></ul>
+</li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="sec-representation-of-vectors.html" class="internal"><span class="codenumber">6.3</span> <span class="title">Representation of Vectors</span></a></div>
+<ul id="ptx-toc-group-sec-representation-of-vectors" class="structural toc-item-list"><li class="toc-item toc-exercises"><div class="toc-title-box"><a href="exercises-representation-of-vectors.html" class="internal"><span class="codenumber">6.3</span> <span class="title">Exercises</span></a></div></li></ul>
+</li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="sec-addition-of-vectors.html" class="internal"><span class="codenumber">6.4</span> <span class="title">Addition of Vectors</span></a></div>
+<ul id="ptx-toc-group-sec-addition-of-vectors" class="structural toc-item-list"><li class="toc-item toc-exercises"><div class="toc-title-box"><a href="exercises-addition-of-vectors.html" class="internal"><span class="codenumber">6.4</span> <span class="title">Exercises</span></a></div></li></ul>
+</li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="sec-multiplication-of-a-vector-by-a-scalar.html" class="internal"><span class="codenumber">6.5</span> <span class="title">Multiplication of a Vector by a Scalar</span></a></div>
+<ul id="ptx-toc-group-sec-multiplication-of-a-vector-by-a-scalar" class="structural toc-item-list"><li class="toc-item toc-exercises"><div class="toc-title-box"><a href="exercises-multiplication-by-a-scalar.html" class="internal"><span class="codenumber">6.5</span> <span class="title">Exercises</span></a></div></li></ul>
+</li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="sec-magnitude-of-a-vector.html" class="internal"><span class="codenumber">6.6</span> <span class="title">Magnitude of a Vector</span></a></div>
+<ul id="ptx-toc-group-sec-magnitude-of-a-vector" class="structural toc-item-list"><li class="toc-item toc-exercises"><div class="toc-title-box"><a href="exercises-magnitude-of-a-vector.html" class="internal"><span class="codenumber">6.6</span> <span class="title">Exercises</span></a></div></li></ul>
+</li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="sec-translation-vector.html" class="internal"><span class="codenumber">6.7</span> <span class="title">Translation Vector</span></a></div>
+<ul id="ptx-toc-group-sec-translation-vector" class="structural toc-item-list"><li class="toc-item toc-exercises"><div class="toc-title-box"><a href="exercises-translation-vector.html" class="internal"><span class="codenumber">6.7</span> <span class="title">Exercises</span></a></div></li></ul>
+</li>
+</ul>
+</li>
+<li class="toc-item toc-chapter">
+<div class="toc-title-box"><a href="ch-navigation.html" class="internal"><span class="codenumber">7</span> <span class="title">Navigation</span></a></div>
+<ul id="ptx-toc-group-ch-navigation" class="structural toc-item-list">
+<li class="toc-item toc-introduction"><div class="toc-title-box"><a href="ch-navigation-2.html" class="internal"><span class="title">Introduction</span></a></div></li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="sec-longitudes-and-latitudes.html" class="internal"><span class="codenumber">7.1</span> <span class="title">Longitudes and Latitudes</span></a></div>
+<ul id="ptx-toc-group-sec-longitudes-and-latitudes" class="structural toc-item-list">
+<li class="toc-item toc-objectives"><div class="toc-title-box"><a href="sec-longitudes-and-latitudes-2.html" class="internal"><span class="title">Curriculum Alignment</span></a></div></li>
+<li class="toc-item toc-introduction"><div class="toc-title-box"><a href="sec-longitudes-and-latitudes-3.html" class="internal"><span class="title">Introduction</span></a></div></li>
+<li class="toc-item toc-subsection">
+<div class="toc-title-box"><a href="subsec-great-and-small-circles.html" class="internal"><span class="codenumber">7.1.1</span> <span class="title">Great and Small Circles</span></a></div>
+<ul id="ptx-toc-group-subsec-great-and-small-circles" class="structural toc-item-list"><li class="toc-item toc-exercises"><div class="toc-title-box"><a href="subsec-great-and-small-circles.html#exercises-great-and-small-circles" class="internal"><span class="codenumber">7.1.1</span> <span class="title">Exercises</span></a></div></li></ul>
+</li>
+<li class="toc-item toc-subsection">
+<div class="toc-title-box"><a href="subsec-latitude-and-longitude.html" class="internal"><span class="codenumber">7.1.2</span> <span class="title">Latitude, Longitude and Position</span></a></div>
+<ul id="ptx-toc-group-subsec-latitude-and-longitude" class="structural toc-item-list"><li class="toc-item toc-exercises"><div class="toc-title-box"><a href="subsec-latitude-and-longitude.html#exercises-latitude-and-longitude" class="internal"><span class="codenumber">7.1.2</span> <span class="title">Exercises</span></a></div></li></ul>
+</li>
+</ul>
+</li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="sec-distances-on-the-earths-surface.html" class="internal"><span class="codenumber">7.2</span> <span class="title">Distances on the Earth’s Surface</span></a></div>
+<ul id="ptx-toc-group-sec-distances-on-the-earths-surface" class="structural toc-item-list">
+<li class="toc-item toc-objectives"><div class="toc-title-box"><a href="sec-distances-on-the-earths-surface-2.html" class="internal"><span class="title">Curriculum Alignment</span></a></div></li>
+<li class="toc-item toc-subsection">
+<div class="toc-title-box"><a href="subsec-distance-along-a-great-circle.html" class="internal"><span class="codenumber">7.2.1</span> <span class="title">Distance Along a Great Circle</span></a></div>
+<ul id="ptx-toc-group-subsec-distance-along-a-great-circle" class="structural toc-item-list"><li class="toc-item toc-exercises"><div class="toc-title-box"><a href="subsec-distance-along-a-great-circle.html#exercises-distance-along-a-great-circle" class="internal"><span class="codenumber">7.2.1</span> <span class="title">Exercises</span></a></div></li></ul>
+</li>
+<li class="toc-item toc-subsection">
+<div class="toc-title-box"><a href="subsec-distance-along-a-parallel.html" class="internal"><span class="codenumber">7.2.2</span> <span class="title">Distance Along a Parallel of Latitude</span></a></div>
+<ul id="ptx-toc-group-subsec-distance-along-a-parallel" class="structural toc-item-list"><li class="toc-item toc-exercises"><div class="toc-title-box"><a href="subsec-distance-along-a-parallel.html#exercises-distance-along-a-parallel" class="internal"><span class="codenumber">7.2.2</span> <span class="title">Exercises</span></a></div></li></ul>
+</li>
+</ul>
+</li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="sec-distance-and-speed.html" class="internal"><span class="codenumber">7.3</span> <span class="title">Distance and Speed</span></a></div>
+<ul id="ptx-toc-group-sec-distance-and-speed" class="structural toc-item-list"><li class="toc-item toc-exercises"><div class="toc-title-box"><a href="exercises-distance-and-speed.html" class="internal"><span class="codenumber">7.3</span> <span class="title">Exercises</span></a></div></li></ul>
+</li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="sec-longitude-and-time.html" class="internal"><span class="codenumber">7.4</span> <span class="title">Longitude and Time</span></a></div>
+<ul id="ptx-toc-group-sec-longitude-and-time" class="structural toc-item-list">
+<li class="toc-item toc-objectives"><div class="toc-title-box"><a href="sec-longitude-and-time-2.html" class="internal"><span class="title">Curriculum Alignment</span></a></div></li>
+<li class="toc-item toc-subsection">
+<div class="toc-title-box"><a href="subsec-local-time-and-longitude.html" class="internal"><span class="codenumber">7.4.1</span> <span class="title">Local Time and Longitude</span></a></div>
+<ul id="ptx-toc-group-subsec-local-time-and-longitude" class="structural toc-item-list"><li class="toc-item toc-exercises"><div class="toc-title-box"><a href="subsec-local-time-and-longitude.html#exercises-local-time-and-longitude" class="internal"><span class="codenumber">7.4.1</span> <span class="title">Exercises</span></a></div></li></ul>
+</li>
+<li class="toc-item toc-subsection">
+<div class="toc-title-box"><a href="subsec-journeys-across-longitudes.html" class="internal"><span class="codenumber">7.4.2</span> <span class="title">Journeys Across Longitudes</span></a></div>
+<ul id="ptx-toc-group-subsec-journeys-across-longitudes" class="structural toc-item-list"><li class="toc-item toc-exercises"><div class="toc-title-box"><a href="subsec-journeys-across-longitudes.html#exercises-journeys-across-longitudes" class="internal"><span class="codenumber">7.4.2</span> <span class="title">Exercises</span></a></div></li></ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-item toc-chapter">
+<div class="toc-title-box"><a href="ch-commercial-arithmetic-iii.html" class="internal"><span class="codenumber">8</span> <span class="title">Commercial Arithmetic III</span></a></div>
+<ul id="ptx-toc-group-ch-commercial-arithmetic-iii" class="structural toc-item-list">
+<li class="toc-item toc-introduction"><div class="toc-title-box"><a href="ch-commercial-arithmetic-iii-2.html" class="internal"><span class="title">Introduction</span></a></div></li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="sec-simple-interest.html" class="internal"><span class="codenumber">8.1</span> <span class="title">Simple Interest</span></a></div>
+<ul id="ptx-toc-group-sec-simple-interest" class="structural toc-item-list">
+<li class="toc-item toc-objectives"><div class="toc-title-box"><a href="sec-simple-interest-2.html" class="internal"><span class="title">Curriculum Alignment</span></a></div></li>
+<li class="toc-item toc-introduction"><div class="toc-title-box"><a href="sec-simple-interest-3.html" class="internal"><span class="title">Introduction</span></a></div></li>
+<li class="toc-item toc-subsection">
+<div class="toc-title-box"><a href="subsec-simple-interest-and-amount.html" class="internal"><span class="codenumber">8.1.1</span> <span class="title">Simple Interest and the Amount</span></a></div>
+<ul id="ptx-toc-group-subsec-simple-interest-and-amount" class="structural toc-item-list"><li class="toc-item toc-exercises"><div class="toc-title-box"><a href="subsec-simple-interest-and-amount.html#exercises-simple-interest-and-amount" class="internal"><span class="codenumber">8.1.1</span> <span class="title">Exercises</span></a></div></li></ul>
+</li>
+<li class="toc-item toc-subsection">
+<div class="toc-title-box"><a href="subsec-finding-rate-time-principal.html" class="internal"><span class="codenumber">8.1.2</span> <span class="title">Finding the Rate, the Time or the Principal</span></a></div>
+<ul id="ptx-toc-group-subsec-finding-rate-time-principal" class="structural toc-item-list"><li class="toc-item toc-exercises"><div class="toc-title-box"><a href="subsec-finding-rate-time-principal.html#exercises-finding-rate-time-principal" class="internal"><span class="codenumber">8.1.2</span> <span class="title">Exercises</span></a></div></li></ul>
+</li>
+</ul>
+</li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="sec-compound-interest.html" class="internal"><span class="codenumber">8.2</span> <span class="title">Compound Interest</span></a></div>
+<ul id="ptx-toc-group-sec-compound-interest" class="structural toc-item-list">
+<li class="toc-item toc-objectives"><div class="toc-title-box"><a href="sec-compound-interest-2.html" class="internal"><span class="title">Curriculum Alignment</span></a></div></li>
+<li class="toc-item toc-subsection">
+<div class="toc-title-box"><a href="subsec-compound-interest-by-formula.html" class="internal"><span class="codenumber">8.2.1</span> <span class="title">Compound Interest Year by Year and by Formula</span></a></div>
+<ul id="ptx-toc-group-subsec-compound-interest-by-formula" class="structural toc-item-list"><li class="toc-item toc-exercises"><div class="toc-title-box"><a href="subsec-compound-interest-by-formula.html#exercises-compound-interest-by-formula" class="internal"><span class="codenumber">8.2.1</span> <span class="title">Exercises</span></a></div></li></ul>
+</li>
+<li class="toc-item toc-subsection">
+<div class="toc-title-box"><a href="subsec-simple-and-compound-compared.html" class="internal"><span class="codenumber">8.2.2</span> <span class="title">Simple and Compound Interest Compared</span></a></div>
+<ul id="ptx-toc-group-subsec-simple-and-compound-compared" class="structural toc-item-list"><li class="toc-item toc-exercises"><div class="toc-title-box"><a href="subsec-simple-and-compound-compared.html#exercises-simple-and-compound-compared" class="internal"><span class="codenumber">8.2.2</span> <span class="title">Exercises</span></a></div></li></ul>
+</li>
+</ul>
+</li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="sec-appreciation.html" class="internal"><span class="codenumber">8.3</span> <span class="title">Appreciation</span></a></div>
+<ul id="ptx-toc-group-sec-appreciation" class="structural toc-item-list"><li class="toc-item toc-exercises"><div class="toc-title-box"><a href="exercises-appreciation.html" class="internal"><span class="codenumber">8.3</span> <span class="title">Exercises</span></a></div></li></ul>
+</li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="sec-depreciation.html" class="internal"><span class="codenumber">8.4</span> <span class="title">Depreciation</span></a></div>
+<ul id="ptx-toc-group-sec-depreciation" class="structural toc-item-list"><li class="toc-item toc-exercises"><div class="toc-title-box"><a href="exercises-depreciation.html" class="internal"><span class="codenumber">8.4</span> <span class="title">Exercises</span></a></div></li></ul>
+</li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="sec-hire-purchase.html" class="internal"><span class="codenumber">8.5</span> <span class="title">Hire Purchase</span></a></div>
+<ul id="ptx-toc-group-sec-hire-purchase" class="structural toc-item-list"><li class="toc-item toc-exercises"><div class="toc-title-box"><a href="exercises-hire-purchase.html" class="internal"><span class="codenumber">8.5</span> <span class="title">Exercises</span></a></div></li></ul>
+</li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="sec-income-tax.html" class="internal"><span class="codenumber">8.6</span> <span class="title">Income Tax</span></a></div>
+<ul id="ptx-toc-group-sec-income-tax" class="structural toc-item-list">
+<li class="toc-item toc-objectives"><div class="toc-title-box"><a href="sec-income-tax-2.html" class="internal"><span class="title">Curriculum Alignment</span></a></div></li>
+<li class="toc-item toc-subsection">
+<div class="toc-title-box"><a href="subsec-paye-from-the-tax-bands.html" class="internal"><span class="codenumber">8.6.1</span> <span class="title">PAYE from the Tax Bands</span></a></div>
+<ul id="ptx-toc-group-subsec-paye-from-the-tax-bands" class="structural toc-item-list"><li class="toc-item toc-exercises"><div class="toc-title-box"><a href="subsec-paye-from-the-tax-bands.html#exercises-paye-from-the-tax-bands" class="internal"><span class="codenumber">8.6.1</span> <span class="title">Exercises</span></a></div></li></ul>
+</li>
+<li class="toc-item toc-subsection">
+<div class="toc-title-box"><a href="subsec-net-pay-and-the-payslip.html" class="internal"><span class="codenumber">8.6.2</span> <span class="title">Net Pay and the Payslip</span></a></div>
+<ul id="ptx-toc-group-subsec-net-pay-and-the-payslip" class="structural toc-item-list"><li class="toc-item toc-exercises"><div class="toc-title-box"><a href="subsec-net-pay-and-the-payslip.html#exercises-net-pay-and-the-payslip" class="internal"><span class="codenumber">8.6.2</span> <span class="title">Exercises</span></a></div></li></ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-item toc-part contains-active">
+<div class="toc-title-box"><a href="part-statistics-and-probability.html" class="internal"><span class="codenumber">III</span> <span class="title">Statistics and Probability</span></a></div>
+<ul class="structural toc-item-list contains-active" id="ptx-toc-group-part-statistics-and-probability">
+<li class="toc-item toc-chapter">
+<div class="toc-title-box"><a href="ch-statistics-ii.html" class="internal"><span class="codenumber">9</span> <span class="title">Statistics III</span></a></div>
+<ul id="ptx-toc-group-ch-statistics-ii" class="structural toc-item-list">
+<li class="toc-item toc-introduction"><div class="toc-title-box"><a href="ch-statistics-ii-2.html" class="internal"><span class="title">Introduction</span></a></div></li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="sec-measures-of-central-tendency-by-calculation.html" class="internal"><span class="codenumber">9.1</span> <span class="title">Mean, Median and Quartiles by Calculation</span></a></div>
+<ul id="ptx-toc-group-sec-measures-of-central-tendency-by-calculation" class="structural toc-item-list">
+<li class="toc-item toc-objectives"><div class="toc-title-box"><a href="sec-measures-of-central-tendency-by-calculation-2.html" class="internal"><span class="title">Curriculum Alignment</span></a></div></li>
+<li class="toc-item toc-introduction"><div class="toc-title-box"><a href="sec-measures-of-central-tendency-by-calculation-3.html" class="internal"><span class="title">Introduction</span></a></div></li>
+<li class="toc-item toc-subsection">
+<div class="toc-title-box"><a href="subsec-mean-by-calculation.html" class="internal"><span class="codenumber">9.1.1</span> <span class="title">Mean by Calculation</span></a></div>
+<ul id="ptx-toc-group-subsec-mean-by-calculation" class="structural toc-item-list"><li class="toc-item toc-exercises"><div class="toc-title-box"><a href="subsec-mean-by-calculation.html#exercises-mean-by-calculation" class="internal"><span class="codenumber">9.1.1</span> <span class="title">Exercises</span></a></div></li></ul>
+</li>
+<li class="toc-item toc-subsection">
+<div class="toc-title-box"><a href="subsec-variance-and-standard-deviation-ungrouped.html" class="internal"><span class="codenumber">9.1.2</span> <span class="title">Variance and Standard Deviation</span></a></div>
+<ul id="ptx-toc-group-subsec-variance-and-standard-deviation-ungrouped" class="structural toc-item-list"><li class="toc-item toc-exercises"><div class="toc-title-box"><a href="subsec-variance-and-standard-deviation-ungrouped.html#exercises-variance-and-standard-deviation" class="internal"><span class="codenumber">9.1.2</span> <span class="title">Exercises</span></a></div></li></ul>
+</li>
+<li class="toc-item toc-subsection">
+<div class="toc-title-box"><a href="subsec-median-quartiles-deciles-percentiles-ungrouped.html" class="internal"><span class="codenumber">9.1.3</span> <span class="title">Median and Quartiles</span></a></div>
+<ul id="ptx-toc-group-subsec-median-quartiles-deciles-percentiles-ungrouped" class="structural toc-item-list"><li class="toc-item toc-exercises"><div class="toc-title-box"><a href="subsec-median-quartiles-deciles-percentiles-ungrouped.html#exercises-ungrouped-quartiles" class="internal"><span class="codenumber">9.1.3</span> <span class="title">Exercises</span></a></div></li></ul>
+</li>
+</ul>
+</li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="sec-cumulative-frequency-curves.html" class="internal"><span class="codenumber">9.2</span> <span class="title">Cumulative Frequency Curves</span></a></div>
+<ul id="ptx-toc-group-sec-cumulative-frequency-curves" class="structural toc-item-list"><li class="toc-item toc-exercises"><div class="toc-title-box"><a href="exercises-cumulative-frequency-curves.html" class="internal"><span class="codenumber">9.2</span> <span class="title">Exercises</span></a></div></li></ul>
+</li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="sec-quartiles-deciles-and-percentiles-for-grouped-data.html" class="internal"><span class="codenumber">9.3</span> <span class="title">Median and Quartiles for Grouped Data</span></a></div>
+<ul id="ptx-toc-group-sec-quartiles-deciles-and-percentiles-for-grouped-data" class="structural toc-item-list">
+<li class="toc-item toc-objectives"><div class="toc-title-box"><a href="sec-quartiles-deciles-and-percentiles-for-grouped-data-2.html" class="internal"><span class="title">Curriculum Alignment</span></a></div></li>
+<li class="toc-item toc-subsection">
+<div class="toc-title-box"><a href="subsec-median-and-quartiles-grouped.html" class="internal"><span class="codenumber">9.3.1</span> <span class="title">Median and Quartiles of Grouped Data</span></a></div>
+<ul id="ptx-toc-group-subsec-median-and-quartiles-grouped" class="structural toc-item-list"><li class="toc-item toc-exercises"><div class="toc-title-box"><a href="subsec-median-and-quartiles-grouped.html#exercises-grouped-quartiles" class="internal"><span class="codenumber">9.3.1</span> <span class="title">Exercises</span></a></div></li></ul>
+</li>
+<li class="toc-item toc-subsection">
+<div class="toc-title-box"><a href="subsec-estimating-from-the-ogive.html" class="internal"><span class="codenumber">9.3.2</span> <span class="title">Estimating from a Cumulative Frequency Curve</span></a></div>
+<ul id="ptx-toc-group-subsec-estimating-from-the-ogive" class="structural toc-item-list"><li class="toc-item toc-exercises"><div class="toc-title-box"><a href="subsec-estimating-from-the-ogive.html#exercises-estimating-from-the-curve" class="internal"><span class="codenumber">9.3.2</span> <span class="title">Exercises</span></a></div></li></ul>
+</li>
+</ul>
+</li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="sec-measures-of-dispersion.html" class="internal"><span class="codenumber">9.4</span> <span class="title">Measures of Dispersion</span></a></div>
+<ul id="ptx-toc-group-sec-measures-of-dispersion" class="structural toc-item-list">
+<li class="toc-item toc-objectives"><div class="toc-title-box"><a href="sec-measures-of-dispersion-2.html" class="internal"><span class="title">Curriculum Alignment</span></a></div></li>
+<li class="toc-item toc-subsection">
+<div class="toc-title-box"><a href="subsec-range-iqr-and-quartile-deviation.html" class="internal"><span class="codenumber">9.4.1</span> <span class="title">Range, Interquartile Range and Quartile Deviation</span></a></div>
+<ul id="ptx-toc-group-subsec-range-iqr-and-quartile-deviation" class="structural toc-item-list"><li class="toc-item toc-exercises"><div class="toc-title-box"><a href="subsec-range-iqr-and-quartile-deviation.html#exercises-range-iqr-qd" class="internal"><span class="codenumber">9.4.1</span> <span class="title">Exercises</span></a></div></li></ul>
+</li>
+<li class="toc-item toc-subsection">
+<div class="toc-title-box"><a href="subsec-variance-and-standard-deviation-grouped.html" class="internal"><span class="codenumber">9.4.2</span> <span class="title">Standard Deviation of Grouped Data</span></a></div>
+<ul id="ptx-toc-group-subsec-variance-and-standard-deviation-grouped" class="structural toc-item-list"><li class="toc-item toc-exercises"><div class="toc-title-box"><a href="subsec-variance-and-standard-deviation-grouped.html#exercises-grouped-standard-deviation" class="internal"><span class="codenumber">9.4.2</span> <span class="title">Exercises</span></a></div></li></ul>
+</li>
+<li class="toc-item toc-subsection">
+<div class="toc-title-box"><a href="subsec-comparing-data-sets-and-the-project.html" class="internal"><span class="codenumber">9.4.3</span> <span class="title">Comparing Data Sets and the Statistics Project</span></a></div>
+<ul id="ptx-toc-group-subsec-comparing-data-sets-and-the-project" class="structural toc-item-list"><li class="toc-item toc-exercises"><div class="toc-title-box"><a href="subsec-comparing-data-sets-and-the-project.html#exercises-comparing-data-sets" class="internal"><span class="codenumber">9.4.3</span> <span class="title">Exercises</span></a></div></li></ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-item toc-chapter contains-active">
+<div class="toc-title-box"><a href="ch-probability-iii.html" class="internal"><span class="codenumber">10</span> <span class="title">Probability III</span></a></div>
+<ul class="structural toc-item-list contains-active" id="ptx-toc-group-ch-probability-iii">
+<li class="toc-item toc-introduction"><div class="toc-title-box"><a href="ch-probability-iii-2.html" class="internal"><span class="title">Introduction</span></a></div></li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="sec-theoretical-probability.html" class="internal"><span class="codenumber">10.1</span> <span class="title">Theoretical Probability</span></a></div>
+<ul id="ptx-toc-group-sec-theoretical-probability" class="structural toc-item-list">
+<li class="toc-item toc-objectives"><div class="toc-title-box"><a href="sec-theoretical-probability-2.html" class="internal"><span class="title">Curriculum Alignment</span></a></div></li>
+<li class="toc-item toc-introduction"><div class="toc-title-box"><a href="sec-theoretical-probability-3.html" class="internal"><span class="title">Introduction</span></a></div></li>
+<li class="toc-item toc-subsection">
+<div class="toc-title-box"><a href="subsec-equally-likely-outcomes.html" class="internal"><span class="codenumber">10.1.1</span> <span class="title">Equally Likely Outcomes</span></a></div>
+<ul id="ptx-toc-group-subsec-equally-likely-outcomes" class="structural toc-item-list"><li class="toc-item toc-exercises"><div class="toc-title-box"><a href="subsec-equally-likely-outcomes.html#exercises-equally-likely-outcomes" class="internal"><span class="codenumber">10.1.1</span> <span class="title">Exercises</span></a></div></li></ul>
+</li>
+<li class="toc-item toc-subsection">
+<div class="toc-title-box"><a href="subsec-sample-spaces-for-two-experiments.html" class="internal"><span class="codenumber">10.1.2</span> <span class="title">Listing Outcomes for Two Experiments</span></a></div>
+<ul id="ptx-toc-group-subsec-sample-spaces-for-two-experiments" class="structural toc-item-list"><li class="toc-item toc-exercises"><div class="toc-title-box"><a href="subsec-sample-spaces-for-two-experiments.html#exercises-two-experiments" class="internal"><span class="codenumber">10.1.2</span> <span class="title">Exercises</span></a></div></li></ul>
+</li>
+</ul>
+</li>
+<li class="toc-item toc-section contains-active">
+<div class="toc-title-box"><a href="sec-discrete-probability.html" class="internal"><span class="codenumber">10.2</span> <span class="title">Discrete Probability</span></a></div>
+<ul class="structural toc-item-list contains-active" id="ptx-toc-group-sec-discrete-probability">
+<li class="toc-item toc-objectives"><div class="toc-title-box"><a href="sec-discrete-probability-2.html" class="internal"><span class="title">Curriculum Alignment</span></a></div></li>
+<li class="toc-item toc-subsection contains-active">
+<div class="toc-title-box"><a href="subsec-experimental-probability.html" class="internal"><span class="codenumber">10.2.1</span> <span class="title">Experimental Probability</span></a></div>
+<ul class="structural toc-item-list active" id="ptx-toc-group-subsec-experimental-probability"><li class="toc-item toc-exercises"><div class="toc-title-box"><a href="subsec-experimental-probability.html#exercises-experimental-probability" class="internal"><span class="codenumber">10.2.1</span> <span class="title">Exercises</span></a></div></li></ul>
+</li>
+<li class="toc-item toc-subsection">
+<div class="toc-title-box"><a href="subsec-probability-distributions.html" class="internal"><span class="codenumber">10.2.2</span> <span class="title">Probability Distributions</span></a></div>
+<ul id="ptx-toc-group-subsec-probability-distributions" class="structural toc-item-list"><li class="toc-item toc-exercises"><div class="toc-title-box"><a href="subsec-probability-distributions.html#exercises-probability-distributions" class="internal"><span class="codenumber">10.2.2</span> <span class="title">Exercises</span></a></div></li></ul>
+</li>
+</ul>
+</li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="sec-laws-of-probability.html" class="internal"><span class="codenumber">10.3</span> <span class="title">Laws of Probability</span></a></div>
+<ul id="ptx-toc-group-sec-laws-of-probability" class="structural toc-item-list"><li class="toc-item toc-exercises"><div class="toc-title-box"><a href="exercises-laws-of-probability.html" class="internal"><span class="codenumber">10.3</span> <span class="title">Exercises</span></a></div></li></ul>
+</li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="sec-combined-events.html" class="internal"><span class="codenumber">10.4</span> <span class="title">Combined Events</span></a></div>
+<ul id="ptx-toc-group-sec-combined-events" class="structural toc-item-list">
+<li class="toc-item toc-objectives"><div class="toc-title-box"><a href="sec-combined-events-2.html" class="internal"><span class="title">Curriculum Alignment</span></a></div></li>
+<li class="toc-item toc-subsection">
+<div class="toc-title-box"><a href="subsec-mutually-exclusive-or-independent.html" class="internal"><span class="codenumber">10.4.1</span> <span class="title">Mutually Exclusive and Independent Events</span></a></div>
+<ul id="ptx-toc-group-subsec-mutually-exclusive-or-independent" class="structural toc-item-list"><li class="toc-item toc-exercises"><div class="toc-title-box"><a href="subsec-mutually-exclusive-or-independent.html#exercises-me-and-independent" class="internal"><span class="codenumber">10.4.1</span> <span class="title">Exercises</span></a></div></li></ul>
+</li>
+<li class="toc-item toc-subsection">
+<div class="toc-title-box"><a href="subsec-at-least-one-and-exactly-one.html" class="internal"><span class="codenumber">10.4.2</span> <span class="title">Neither, At Least One and Exactly One</span></a></div>
+<ul id="ptx-toc-group-subsec-at-least-one-and-exactly-one" class="structural toc-item-list"><li class="toc-item toc-exercises"><div class="toc-title-box"><a href="subsec-at-least-one-and-exactly-one.html#exercises-at-least-one" class="internal"><span class="codenumber">10.4.2</span> <span class="title">Exercises</span></a></div></li></ul>
+</li>
+</ul>
+</li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="sec-tree-diagrams.html" class="internal"><span class="codenumber">10.5</span> <span class="title">Tree Diagrams</span></a></div>
+<ul id="ptx-toc-group-sec-tree-diagrams" class="structural toc-item-list">
+<li class="toc-item toc-objectives"><div class="toc-title-box"><a href="sec-tree-diagrams-2.html" class="internal"><span class="title">Curriculum Alignment</span></a></div></li>
+<li class="toc-item toc-subsection">
+<div class="toc-title-box"><a href="subsec-two-stage-tree-diagrams.html" class="internal"><span class="codenumber">10.5.1</span> <span class="title">Two-Stage Tree Diagrams</span></a></div>
+<ul id="ptx-toc-group-subsec-two-stage-tree-diagrams" class="structural toc-item-list"><li class="toc-item toc-exercises"><div class="toc-title-box"><a href="subsec-two-stage-tree-diagrams.html#exercises-two-stage-trees" class="internal"><span class="codenumber">10.5.1</span> <span class="title">Exercises</span></a></div></li></ul>
+</li>
+<li class="toc-item toc-subsection">
+<div class="toc-title-box"><a href="subsec-three-stage-tree-diagrams.html" class="internal"><span class="codenumber">10.5.2</span> <span class="title">Three-Stage Tree Diagrams</span></a></div>
+<ul id="ptx-toc-group-subsec-three-stage-tree-diagrams" class="structural toc-item-list"><li class="toc-item toc-exercises"><div class="toc-title-box"><a href="subsec-three-stage-tree-diagrams.html#exercises-three-stage-trees" class="internal"><span class="codenumber">10.5.2</span> <span class="title">Exercises</span></a></div></li></ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-item toc-backmatter">
+<div class="toc-title-box"><a href="backmatter.html" class="internal"><span class="title">Backmatter</span></a></div>
+<ul id="ptx-toc-group-backmatter" class="structural toc-item-list">
+<li class="toc-item toc-appendix"><div class="toc-title-box"><a href="appendix-syllabus-alignment.html" class="internal"><span class="codenumber">A.</span> <span class="title">Syllabus Alignment</span></a></div></li>
+<li class="toc-item toc-appendix"><div class="toc-title-box"><a href="appendix-lo-coverage-table.html" class="internal"><span class="codenumber">B.</span> <span class="title">Learning Outcomes Coverage Table</span></a></div></li>
+<li class="toc-item toc-colophon"><div class="toc-title-box"><a href="backmatter-4.html" class="internal"><span class="title">Colophon</span></a></div></li>
+</ul>
+</li>
+</ul></nav></div>
+<main class="ptx-main"><div id="ptx-content" class="ptx-content">
+<section class="subsection" id="subsec-experimental-probability">
+<h1 class="heading hide-type">
+<span class="type">Subsection</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">10.2.1</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">Experimental Probability</span>
+</h1>
+<div class="para logical" id="subsec-experimental-probability-2">
+<div class="para">Upon completion of this lesson, learners will be able to:</div>
+<ol class="decimal" id="subsec-experimental-probability-2-1">
+<li id="subsec-experimental-probability-2-1-1">
+<div class="para" id="subsec-experimental-probability-2-1-1-1">
+<em class="alert">Know:</em> a relative frequency estimates a probability; more trials usually give a better estimate; expected frequency is the number of trials times the probability.<div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#subsec-experimental-probability-2-1-1-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" aria-hidden="true" data-description="Item 1"><a tabindex="-1" href="#subsec-experimental-probability-2-1-1" title="Copy heading and permalink for Item 1" aria-label="Copy heading and permalink for Item 1">🔗</a></div>
+</li>
+<li id="subsec-experimental-probability-2-1-2">
+<div class="para" id="subsec-experimental-probability-2-1-2-1">
+<em class="alert">Do:</em> compute relative frequencies and expected frequencies, and judge whether results suggest bias.<div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#subsec-experimental-probability-2-1-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" aria-hidden="true" data-description="Item 2"><a tabindex="-1" href="#subsec-experimental-probability-2-1-2" title="Copy heading and permalink for Item 2" aria-label="Copy heading and permalink for Item 2">🔗</a></div>
+</li>
+<li id="subsec-experimental-probability-2-1-3">
+<div class="para" id="subsec-experimental-probability-2-1-3-1">
+<em class="alert">Apply:</em> seed tests, helmet surveys and dice that may be biased.<div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#subsec-experimental-probability-2-1-3-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" aria-hidden="true" data-description="Item 3"><a tabindex="-1" href="#subsec-experimental-probability-2-1-3" title="Copy heading and permalink for Item 3" aria-label="Copy heading and permalink for Item 3">🔗</a></div>
+</li>
+</ol>
+<div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#subsec-experimental-probability-2" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<article class="axiom theorem-like" id="subsec-experimental-probability-3"><h2 class="heading">
+<span class="type">Teacher Resource</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">10.2.1</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">Problem-Solving and Discovery.</span>
+</h2>
+<dl class="description-list">
+<dt id="subsec-experimental-probability-3-2-1">Suggested Time<div class="autopermalink" aria-hidden="true" data-description="Item: Suggested Time"><a tabindex="-1" href="#subsec-experimental-probability-3-2-1" title="Copy heading and permalink for Item: Suggested Time" aria-label="Copy heading and permalink for Item: Suggested Time">🔗</a></div>
+</dt>
+<dd>
+<div class="para" id="subsec-experimental-probability-3-2-1-2">14 minutes<div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#subsec-experimental-probability-3-2-1-2" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+</dd>
+<dt id="subsec-experimental-probability-3-2-2">Objective<div class="autopermalink" aria-hidden="true" data-description="Item: Objective"><a tabindex="-1" href="#subsec-experimental-probability-3-2-2" title="Copy heading and permalink for Item: Objective" aria-label="Copy heading and permalink for Item: Objective">🔗</a></div>
+</dt>
+<dd>
+<div class="para" id="subsec-experimental-probability-3-2-2-2">Learners estimate a probability by experiment and watch the estimate settle as the number of trials grows.<div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#subsec-experimental-probability-3-2-2-2" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+</dd>
+<dt id="subsec-experimental-probability-3-2-3">Teacher’s Role<div class="autopermalink" aria-hidden="true" data-description="Item: Teacher’s Role"><a tabindex="-1" href="#subsec-experimental-probability-3-2-3" title="Copy heading and permalink for Item: Teacher’s Role" aria-label="Copy heading and permalink for Item: Teacher’s Role">🔗</a></div>
+</dt>
+<dd>
+<div class="para" id="subsec-experimental-probability-3-2-3-2">Each group of four needs one soda bottle top. Groups toss it <span class="process-math">\(50\)</span> times and tally the results; pool the class results on the board (eight groups make <span class="process-math">\(400\)</span> tosses). If time is short, use the results given in the activity. Road safety: mention that the same method, counting and dividing, gives the helmet estimate in <a href="subsec-experimental-probability.html#example-helmets-on-boda-bodas" class="xref" data-knowl="./knowl/xref/example-helmets-on-boda-bodas.html" data-reveal-label="Reveal" data-close-label="Close" title="Example 10.2.12: Helmets on Boda Bodas">Example 10.2.12</a>. Collaboration: the class total is better than any one group’s.<div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#subsec-experimental-probability-3-2-3-2" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+</dd>
+</dl>
+<div class="autopermalink" aria-hidden="true" data-description="Teacher Resource 10.2.1: Problem-Solving and Discovery"><a tabindex="-1" href="#subsec-experimental-probability-3" title="Copy heading and permalink for Teacher Resource 10.2.1: Problem-Solving and Discovery" aria-label="Copy heading and permalink for Teacher Resource 10.2.1: Problem-Solving and Discovery">🔗</a></div>
+</article>
+<article class="activity project-like" id="act-tossing-bottle-tops"><h2 class="heading">
+<span class="type">Learner Experience</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">10.2.2</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">Tossing Bottle Tops.</span>
+</h2>
+<div class="para" id="act-tossing-bottle-tops-2-1">Work in groups of four with one soda bottle top. A toss lands either printed side up or printed side down.<div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#act-tossing-bottle-tops-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div> 
+<div class="para logical" id="act-tossing-bottle-tops-2-2">
+<ol class="lower-alpha" style="list-style: ptx-marker-1;" id="act-tossing-bottle-tops-2-2-1">
+<li id="act-tossing-bottle-tops-2-2-1-1">
+<div class="para" id="act-tossing-bottle-tops-2-2-1-1-1">Toss the bottle top <span class="process-math">\(50\)</span> times. Tally how often it lands printed side up and printed side down.<div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#act-tossing-bottle-tops-2-2-1-1-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<details id="act-tossing-bottle-tops-2-2-1-1-2" class="solution solution-like born-hidden-knowl"><summary class="knowl__link"><span class="type">Solution</span><span class="period heading-divison-mark heading-divison-mark__period">.</span></summary>
+<div class="solution solution-like knowl__content">
+<div class="para" id="act-tossing-bottle-tops-2-2-1-1-2-1">Results vary. One group recorded <span class="process-math">\(31\)</span> printed side up and <span class="process-math">\(19\)</span> down.<div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#act-tossing-bottle-tops-2-2-1-1-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" aria-hidden="true" data-description="Solution a.1"><a tabindex="-1" href="#act-tossing-bottle-tops-2-2-1-1-2" title="Copy heading and permalink for Solution a.1" aria-label="Copy heading and permalink for Solution a.1">🔗</a></div>
+</div></details><div class="autopermalink" aria-hidden="true" data-description="Item a"><a tabindex="-1" href="#act-tossing-bottle-tops-2-2-1-1" title="Copy heading and permalink for Item a" aria-label="Copy heading and permalink for Item a">🔗</a></div>
+</li>
+<li id="act-tossing-bottle-tops-2-2-1-2">
+<div class="para" id="act-tossing-bottle-tops-2-2-1-2-1">Work out the fraction of your tosses that landed printed side up, as a decimal.<div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#act-tossing-bottle-tops-2-2-1-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<details id="act-tossing-bottle-tops-2-2-1-2-2" class="solution solution-like born-hidden-knowl"><summary class="knowl__link"><span class="type">Solution</span><span class="period heading-divison-mark heading-divison-mark__period">.</span></summary>
+<div class="solution solution-like knowl__content">
+<div class="para" id="act-tossing-bottle-tops-2-2-1-2-2-1">For that group, <span class="process-math">\(\frac{31}{50} = 0.62\text{.}\)</span><div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#act-tossing-bottle-tops-2-2-1-2-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" aria-hidden="true" data-description="Solution b.1"><a tabindex="-1" href="#act-tossing-bottle-tops-2-2-1-2-2" title="Copy heading and permalink for Solution b.1" aria-label="Copy heading and permalink for Solution b.1">🔗</a></div>
+</div></details><div class="autopermalink" aria-hidden="true" data-description="Item b"><a tabindex="-1" href="#act-tossing-bottle-tops-2-2-1-2" title="Copy heading and permalink for Item b" aria-label="Copy heading and permalink for Item b">🔗</a></div>
+</li>
+<li id="act-tossing-bottle-tops-2-2-1-3">
+<div class="para" id="act-tossing-bottle-tops-2-2-1-3-1">Add up the results of the whole class and work out the fraction again. Which estimate do you trust more, and why?<div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#act-tossing-bottle-tops-2-2-1-3-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<details id="act-tossing-bottle-tops-2-2-1-3-2" class="solution solution-like born-hidden-knowl"><summary class="knowl__link"><span class="type">Solution</span><span class="period heading-divison-mark heading-divison-mark__period">.</span></summary>
+<div class="solution solution-like knowl__content">
+<div class="para" id="act-tossing-bottle-tops-2-2-1-3-2-1">One class recorded <span class="process-math">\(236\)</span> printed side up in <span class="process-math">\(400\)</span> tosses: <span class="process-math">\(\frac{236}{400} = 0.59\text{.}\)</span> The class figure is more trustworthy because it uses more tosses.<div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#act-tossing-bottle-tops-2-2-1-3-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" aria-hidden="true" data-description="Solution c.1"><a tabindex="-1" href="#act-tossing-bottle-tops-2-2-1-3-2" title="Copy heading and permalink for Solution c.1" aria-label="Copy heading and permalink for Solution c.1">🔗</a></div>
+</div></details><div class="autopermalink" aria-hidden="true" data-description="Item c"><a tabindex="-1" href="#act-tossing-bottle-tops-2-2-1-3" title="Copy heading and permalink for Item c" aria-label="Copy heading and permalink for Item c">🔗</a></div>
+</li>
+<li id="act-tossing-bottle-tops-2-2-1-4">
+<div class="para" id="act-tossing-bottle-tops-2-2-1-4-1">Is the probability of landing printed side up equal to <span class="process-math">\(\frac{1}{2}\text{?}\)</span> Why can we not find it by counting outcomes, as we did for a coin?<div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#act-tossing-bottle-tops-2-2-1-4-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<details id="act-tossing-bottle-tops-2-2-1-4-2" class="solution solution-like born-hidden-knowl"><summary class="knowl__link"><span class="type">Solution</span><span class="period heading-divison-mark heading-divison-mark__period">.</span></summary>
+<div class="solution solution-like knowl__content">
+<div class="para" id="act-tossing-bottle-tops-2-2-1-4-2-1">Probably not: the two sides are different shapes, so the outcomes are not equally likely. Counting outcomes only works when they are equally likely, so we must estimate by experiment.<div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#act-tossing-bottle-tops-2-2-1-4-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" aria-hidden="true" data-description="Solution d.1"><a tabindex="-1" href="#act-tossing-bottle-tops-2-2-1-4-2" title="Copy heading and permalink for Solution d.1" aria-label="Copy heading and permalink for Solution d.1">🔗</a></div>
+</div></details><div class="autopermalink" aria-hidden="true" data-description="Item d"><a tabindex="-1" href="#act-tossing-bottle-tops-2-2-1-4" title="Copy heading and permalink for Item d" aria-label="Copy heading and permalink for Item d">🔗</a></div>
+</li>
+<li id="act-tossing-bottle-tops-2-2-1-5">
+<div class="para" id="act-tossing-bottle-tops-2-2-1-5-1">Use the class estimate to predict how many times the bottle top would land printed side up in <span class="process-math">\(1000\)</span> tosses.<div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#act-tossing-bottle-tops-2-2-1-5-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<details id="act-tossing-bottle-tops-2-2-1-5-2" class="solution solution-like born-hidden-knowl"><summary class="knowl__link"><span class="type">Solution</span><span class="period heading-divison-mark heading-divison-mark__period">.</span></summary>
+<div class="solution solution-like knowl__content">
+<div class="para" id="act-tossing-bottle-tops-2-2-1-5-2-1">About <span class="process-math">\(1000 \times 0.59 = 590\)</span> times.<div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#act-tossing-bottle-tops-2-2-1-5-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" aria-hidden="true" data-description="Solution e.1"><a tabindex="-1" href="#act-tossing-bottle-tops-2-2-1-5-2" title="Copy heading and permalink for Solution e.1" aria-label="Copy heading and permalink for Solution e.1">🔗</a></div>
+</div></details><div class="autopermalink" aria-hidden="true" data-description="Item e"><a tabindex="-1" href="#act-tossing-bottle-tops-2-2-1-5" title="Copy heading and permalink for Item e" aria-label="Copy heading and permalink for Item e">🔗</a></div>
+</li>
+</ol>
+<div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#act-tossing-bottle-tops-2-2" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" aria-hidden="true" data-description="Learner Experience 10.2.2: Tossing Bottle Tops"><a tabindex="-1" href="#act-tossing-bottle-tops" title="Copy heading and permalink for Learner Experience 10.2.2: Tossing Bottle Tops" aria-label="Copy heading and permalink for Learner Experience 10.2.2: Tossing Bottle Tops">🔗</a></div>
+</article>
+<article class="axiom theorem-like" id="subsec-experimental-probability-5"><h2 class="heading">
+<span class="type">Teacher Resource</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">10.2.3</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">Structured Instruction.</span>
+</h2>
+<div class="para logical" id="subsec-experimental-probability-5-2">
+<dl class="description-list">
+<dt id="subsec-experimental-probability-5-2-1-1">Suggested Time<div class="autopermalink" aria-hidden="true" data-description="Item: Suggested Time"><a tabindex="-1" href="#subsec-experimental-probability-5-2-1-1" title="Copy heading and permalink for Item: Suggested Time" aria-label="Copy heading and permalink for Item: Suggested Time">🔗</a></div>
+</dt>
+<dd>
+<div class="para" id="subsec-experimental-probability-5-2-1-1-2">8 minutes<div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#subsec-experimental-probability-5-2-1-1-2" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+</dd>
+<dt id="subsec-experimental-probability-5-2-1-2">Objective<div class="autopermalink" aria-hidden="true" data-description="Item: Objective"><a tabindex="-1" href="#subsec-experimental-probability-5-2-1-2" title="Copy heading and permalink for Item: Objective" aria-label="Copy heading and permalink for Item: Objective">🔗</a></div>
+</dt>
+<dd>
+<div class="para" id="subsec-experimental-probability-5-2-1-2-2">To define relative frequency and expected frequency, and compare experimental and theoretical probability.<div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#subsec-experimental-probability-5-2-1-2-2" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+</dd>
+</dl>
+<div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#subsec-experimental-probability-5-2" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<section class="paragraphs" id="subsec-experimental-probability-5-3"><h3 class="heading"><span class="title">Key Takeaways &amp; Teacher Connection.</span></h3>
+<ol class="decimal" id="subsec-experimental-probability-5-3-2">
+<li id="subsec-experimental-probability-5-3-2-1">
+<div class="para" id="subsec-experimental-probability-5-3-2-1-1">
+<em class="alert">Connecting to Learner Work:</em> the fraction in part (b) is a relative frequency; part (e) is an expected frequency.<div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#subsec-experimental-probability-5-3-2-1-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" aria-hidden="true" data-description="Item 1"><a tabindex="-1" href="#subsec-experimental-probability-5-3-2-1" title="Copy heading and permalink for Item 1" aria-label="Copy heading and permalink for Item 1">🔗</a></div>
+</li>
+<li id="subsec-experimental-probability-5-3-2-2">
+<div class="para" id="subsec-experimental-probability-5-3-2-2-1">More trials usually give a better estimate: show the simulator below.<div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#subsec-experimental-probability-5-3-2-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" aria-hidden="true" data-description="Item 2"><a tabindex="-1" href="#subsec-experimental-probability-5-3-2-2" title="Copy heading and permalink for Item 2" aria-label="Copy heading and permalink for Item 2">🔗</a></div>
+</li>
+<li id="subsec-experimental-probability-5-3-2-3">
+<div class="para" id="subsec-experimental-probability-5-3-2-3-1">Theoretical probability needs equally likely outcomes; experimental probability needs only data.<div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#subsec-experimental-probability-5-3-2-3-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" aria-hidden="true" data-description="Item 3"><a tabindex="-1" href="#subsec-experimental-probability-5-3-2-3" title="Copy heading and permalink for Item 3" aria-label="Copy heading and permalink for Item 3">🔗</a></div>
+</li>
+</ol>
+<div class="autopermalink" aria-hidden="true" data-description="Paragraphs: Key Takeaways &amp; Teacher Connection"><a tabindex="-1" href="#subsec-experimental-probability-5-3" title="Copy heading and permalink for Paragraphs: Key Takeaways &amp; Teacher Connection" aria-label="Copy heading and permalink for Paragraphs: Key Takeaways &amp; Teacher Connection">🔗</a></div>
+</section><div class="autopermalink" aria-hidden="true" data-description="Teacher Resource 10.2.3: Structured Instruction"><a tabindex="-1" href="#subsec-experimental-probability-5" title="Copy heading and permalink for Teacher Resource 10.2.3: Structured Instruction" aria-label="Copy heading and permalink for Teacher Resource 10.2.3: Structured Instruction">🔗</a></div>
+</article>
+<article class="insight remark-like" id="insight-experimental-probability"><h2 class="heading">
+<span class="type">Key Takeaway</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">10.2.4</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">Experimental Probability.</span>
+</h2>
+<div class="para logical" id="insight-experimental-probability-2">
+<div class="para">Each time an experiment is carried out is a <dfn class="terminology">trial</dfn>. The <dfn class="terminology">relative frequency</dfn> of an event is the fraction of the trials in which the event happened:</div>
+<div class="displaymath process-math" id="insight-experimental-probability-2-3">
+\begin{equation*}
+\text{relative frequency} = \frac{\text{number of times the event happens}}{\text{number of trials}}
+\end{equation*}
+</div>
+<div class="para">It is an estimate of the probability, called the <dfn class="terminology">experimental probability</dfn>. More trials usually give a better estimate.</div>
+<div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#insight-experimental-probability-2" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="para" id="insight-experimental-probability-3">If an event has probability <span class="process-math">\(P(E)\text{,}\)</span> then in <span class="process-math">\(n\)</span> trials we expect it to happen about <span class="process-math">\(n \times P(E)\)</span> times. This is the <dfn class="terminology">expected frequency</dfn>. The real number of times will usually be close to it, but not exactly equal.<div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#insight-experimental-probability-3" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" aria-hidden="true" data-description="Key Takeaway 10.2.4: Experimental Probability"><a tabindex="-1" href="#insight-experimental-probability" title="Copy heading and permalink for Key Takeaway 10.2.4: Experimental Probability" aria-label="Copy heading and permalink for Key Takeaway 10.2.4: Experimental Probability">🔗</a></div>
+</article>
+<figure class="figure figure-like" id="fig-probability-simulator"><div class="interactive-iframe-container"><iframe id="interactive-probability-simulator" style="width:540px; height:405px; display: block; " src="interactive-probability-simulator-if.html"></iframe></div>
+<div class="interactive-iframe-container__opener"><a href="interactive-probability-simulator.html" title="Open in new tab" aria-label="Open in new tab" target="_blank"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe89e;</span></a></div>
+<div class="instructions interactive__instructions">
+<details id="interactive-probability-simulator-2" class="solution-like born-hidden-knowl"><summary class="knowl__link"><h2 class="heading"><span class="type">Instructions<span class="period heading-divison-mark heading-divison-mark__period">.</span></span></h2></summary>
+<div class="solution-like knowl__content">
+<div class="para logical" id="interactive-probability-simulator-2-1">
+<ul class="disc" id="interactive-probability-simulator-2-1-1">
+<li id="interactive-probability-simulator-2-1-1-1">
+<div class="para" id="interactive-probability-simulator-2-1-1-1-1">Press <em class="alert">Coin: heads</em> to toss a fair coin, or <em class="alert">Die: a six</em> to roll a fair die. Each choice starts again from zero trials.<div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#interactive-probability-simulator-2-1-1-1-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" aria-hidden="true" data-description="Item"><a tabindex="-1" href="#interactive-probability-simulator-2-1-1-1" title="Copy heading and permalink for Item" aria-label="Copy heading and permalink for Item">🔗</a></div>
+</li>
+<li id="interactive-probability-simulator-2-1-1-2">
+<div class="para" id="interactive-probability-simulator-2-1-1-2-1">Press <em class="alert">1 trial</em>, <em class="alert">10 trials</em> or <em class="alert">100 trials</em> to run more trials. The line shows the relative frequency of a success after each trial; the dashed line is the theoretical probability, <span class="process-math">\(\frac{1}{2}\)</span> or <span class="process-math">\(\frac{1}{6}\text{.}\)</span><div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#interactive-probability-simulator-2-1-1-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" aria-hidden="true" data-description="Item"><a tabindex="-1" href="#interactive-probability-simulator-2-1-1-2" title="Copy heading and permalink for Item" aria-label="Copy heading and permalink for Item">🔗</a></div>
+</li>
+<li id="interactive-probability-simulator-2-1-1-3">
+<div class="para" id="interactive-probability-simulator-2-1-1-3-1">Press <em class="alert">100 trials</em> ten times to reach <span class="process-math">\(1000\)</span> trials. How close to the dashed line is the relative frequency now? Press <em class="alert">Reset</em> and try again: is the result the same?<div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#interactive-probability-simulator-2-1-1-3-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" aria-hidden="true" data-description="Item"><a tabindex="-1" href="#interactive-probability-simulator-2-1-1-3" title="Copy heading and permalink for Item" aria-label="Copy heading and permalink for Item">🔗</a></div>
+</li>
+</ul>
+<div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#interactive-probability-simulator-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" aria-hidden="true" data-description="Instructions"><a tabindex="-1" href="#interactive-probability-simulator-2" title="Copy heading and permalink for Instructions" aria-label="Copy heading and permalink for Instructions">🔗</a></div>
+</div></details>
+</div>
+<figcaption><span class="type">Figure</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">10.2.5<span class="period heading-divison-mark heading-divison-mark__period">.</span></span><span class="space heading-divison-mark heading-divison-mark__space"> </span>Press a button to run more trials. The relative frequency wanders at first and then settles close to the dashed line.<div class="autopermalink" aria-hidden="true" data-description="Figure 10.2.5"><a tabindex="-1" href="#fig-probability-simulator" title="Copy heading and permalink for Figure 10.2.5" aria-label="Copy heading and permalink for Figure 10.2.5">🔗</a></div></figcaption>
+</figure>
+<div class="para" id="subsec-experimental-probability-8">Real results behave in the same way. <a href="subsec-experimental-probability.html#fig-bottle-top-relative-frequency" class="xref" data-knowl="./knowl/xref/fig-bottle-top-relative-frequency.html" data-reveal-label="Reveal" data-close-label="Close" title="Figure 10.2.6">Figure 10.2.6</a> shows the running relative frequency for one group that carried on tossing its bottle top to <span class="process-math">\(100\)</span> tosses.<div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#subsec-experimental-probability-8" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<figure class="figure figure-like" id="fig-bottle-top-relative-frequency"><div class="image-box" style="width: 90%; margin-left: 5%; margin-right: 5%;">
+<img src="generated/latex-image/fig-bottle-top-relative-frequency-2.svg" role="img" class="contained" alt="A line graph of the relative frequency of printed side up after 10 to 100 tosses. The values move from 0.7 down to about 0.6 and then stay near 0.6."><details class="image-description" aria-live="polite"><summary title="details"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe88e;</span></summary><div id="fig-bottle-top-relative-frequency-2-description" style="width: 88.89%; margin-left: 5.56%;">
+<div class="para" id="fig-bottle-top-relative-frequency-2-2-1">Horizontal axis number of tosses from 0 to 100; vertical axis relative frequency from 0.5 to 0.75. Points joined by straight lines: after 10 tosses 0.7, 20 tosses 0.65, 30 tosses 0.63, 40 tosses 0.6, 50 tosses 0.62, 60 tosses 0.6, 80 tosses 0.61, 100 tosses 0.6.<div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#fig-bottle-top-relative-frequency-2-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+</div></details>
+</div>
+<figcaption><span class="type">Figure</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">10.2.6<span class="period heading-divison-mark heading-divison-mark__period">.</span></span><span class="space heading-divison-mark heading-divison-mark__space"> </span>Running relative frequency of printed side up for one bottle top.<div class="autopermalink" aria-hidden="true" data-description="Figure 10.2.6"><a tabindex="-1" href="#fig-bottle-top-relative-frequency" title="Copy heading and permalink for Figure 10.2.6" aria-label="Copy heading and permalink for Figure 10.2.6">🔗</a></div></figcaption>
+</figure>
+<article class="axiom theorem-like" id="subsec-experimental-probability-10"><h2 class="heading">
+<span class="type">Teacher Resource</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">10.2.7</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">Practice and Application.</span>
+</h2>
+<div class="para logical" id="subsec-experimental-probability-10-2">
+<dl class="description-list">
+<dt id="subsec-experimental-probability-10-2-1-1">Suggested Time<div class="autopermalink" aria-hidden="true" data-description="Item: Suggested Time"><a tabindex="-1" href="#subsec-experimental-probability-10-2-1-1" title="Copy heading and permalink for Item: Suggested Time" aria-label="Copy heading and permalink for Item: Suggested Time">🔗</a></div>
+</dt>
+<dd>
+<div class="para" id="subsec-experimental-probability-10-2-1-1-2">10 minutes<div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#subsec-experimental-probability-10-2-1-1-2" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+</dd>
+<dt id="subsec-experimental-probability-10-2-1-2">Objective<div class="autopermalink" aria-hidden="true" data-description="Item: Objective"><a tabindex="-1" href="#subsec-experimental-probability-10-2-1-2" title="Copy heading and permalink for Item: Objective" aria-label="Copy heading and permalink for Item: Objective">🔗</a></div>
+</dt>
+<dd>
+<div class="para" id="subsec-experimental-probability-10-2-1-2-2">To apply the learned concepts and procedures to solve varied problems.<div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#subsec-experimental-probability-10-2-1-2-2" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+</dd>
+<dt id="subsec-experimental-probability-10-2-1-3">Teacher’s Role<div class="autopermalink" aria-hidden="true" data-description="Item: Teacher’s Role"><a tabindex="-1" href="#subsec-experimental-probability-10-2-1-3" title="Copy heading and permalink for Item: Teacher’s Role" aria-label="Copy heading and permalink for Item: Teacher’s Role">🔗</a></div>
+</dt>
+<dd>
+<div class="para" id="subsec-experimental-probability-10-2-1-3-2">The teacher works through the following examples with the class, asking questions and connecting to insights from the learner experience.<div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#subsec-experimental-probability-10-2-1-3-2" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+</dd>
+</dl>
+<div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#subsec-experimental-probability-10-2" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" aria-hidden="true" data-description="Teacher Resource 10.2.7: Practice and Application"><a tabindex="-1" href="#subsec-experimental-probability-10" title="Copy heading and permalink for Teacher Resource 10.2.7: Practice and Application" aria-label="Copy heading and permalink for Teacher Resource 10.2.7: Practice and Application">🔗</a></div>
+</article>
+<article class="example example-like" id="example-njeris-bottle-top"><h2 class="heading">
+<span class="type">Example</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">10.2.8</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">Njeri’s Bottle Top.</span>
+</h2>
+<div class="para" id="example-njeris-bottle-top-2-1">Njeri tosses a bottle top <span class="process-math">\(120\)</span> times and it lands printed side up <span class="process-math">\(78\)</span> times. Estimate the probability that it lands (a) printed side up, (b) printed side down. (c) How many times would you expect it to land printed side up in <span class="process-math">\(200\)</span> tosses?<div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#example-njeris-bottle-top-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="solution solution-like" id="example-njeris-bottle-top-3">
+<h3 class="heading">
+<span class="type">Solution</span><span class="period heading-divison-mark heading-divison-mark__period">.</span>
+</h3>
+<div class="para" id="example-njeris-bottle-top-3-1">(a) Relative frequency <span class="process-math">\(= \dfrac{78}{120} = 0.65\text{.}\)</span><div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#example-njeris-bottle-top-3-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="para" id="example-njeris-bottle-top-3-2">(b) <span class="process-math">\(1 - 0.65 = 0.35\text{.}\)</span><div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#example-njeris-bottle-top-3-2" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="para" id="example-njeris-bottle-top-3-3">(c) Expected frequency <span class="process-math">\(= 200 \times 0.65 = 130\)</span> times.<div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#example-njeris-bottle-top-3-3" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" aria-hidden="true" data-description="Solution 10.2.8.1"><a tabindex="-1" href="#example-njeris-bottle-top-3" title="Copy heading and permalink for Solution 10.2.8.1" aria-label="Copy heading and permalink for Solution 10.2.8.1">🔗</a></div>
+</div>
+<div class="autopermalink" aria-hidden="true" data-description="Example 10.2.8: Njeri’s Bottle Top"><a tabindex="-1" href="#example-njeris-bottle-top" title="Copy heading and permalink for Example 10.2.8: Njeri’s Bottle Top" aria-label="Copy heading and permalink for Example 10.2.8: Njeri’s Bottle Top">🔗</a></div>
+</article>
+<article class="example example-like" id="example-testing-maize-seed"><h2 class="heading">
+<span class="type">Example</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">10.2.9</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">Testing Maize Seed.</span>
+</h2>
+<div class="para" id="example-testing-maize-seed-2-1">An agro-dealer in Eldoret tests <span class="process-math">\(250\)</span> maize seeds from a new batch, and <span class="process-math">\(215\)</span> germinate. Estimate the probability that a seed from the batch germinates. A farmer plants <span class="process-math">\(2000\)</span> of these seeds. About how many would you expect to germinate?<div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#example-testing-maize-seed-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="solution solution-like" id="example-testing-maize-seed-3">
+<h3 class="heading">
+<span class="type">Solution</span><span class="period heading-divison-mark heading-divison-mark__period">.</span>
+</h3>
+<div class="para" id="example-testing-maize-seed-3-1">Relative frequency <span class="process-math">\(= \dfrac{215}{250} = 0.86\text{.}\)</span> Expected number <span class="process-math">\(= 2000 \times 0.86 = 1720\)</span> seeds.<div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#example-testing-maize-seed-3-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" aria-hidden="true" data-description="Solution 10.2.9.1"><a tabindex="-1" href="#example-testing-maize-seed-3" title="Copy heading and permalink for Solution 10.2.9.1" aria-label="Copy heading and permalink for Solution 10.2.9.1">🔗</a></div>
+</div>
+<div class="autopermalink" aria-hidden="true" data-description="Example 10.2.9: Testing Maize Seed"><a tabindex="-1" href="#example-testing-maize-seed" title="Copy heading and permalink for Example 10.2.9: Testing Maize Seed" aria-label="Copy heading and permalink for Example 10.2.9: Testing Maize Seed">🔗</a></div>
+</article>
+<article class="example example-like" id="example-is-this-die-fair"><h2 class="heading">
+<span class="type">Example</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">10.2.10</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">Is This Die Fair?</span>
+</h2>
+<div class="para" id="example-is-this-die-fair-2-1">Two dice, A and B, are each rolled <span class="process-math">\(240\)</span> times.<div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#example-is-this-die-fair-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div> 
+<figure class="table table-like" id="table-two-dice-240-rolls"><figcaption><span class="type">Table</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">10.2.11<span class="period heading-divison-mark heading-divison-mark__period">.</span></span><span class="space heading-divison-mark heading-divison-mark__space"> </span>Scores in 240 Rolls<div class="autopermalink" aria-hidden="true" data-description="Table 10.2.11: Scores in 240 Rolls"><a tabindex="-1" href="#table-two-dice-240-rolls" title="Copy heading and permalink for Table 10.2.11: Scores in 240 Rolls" aria-label="Copy heading and permalink for Table 10.2.11: Scores in 240 Rolls">🔗</a></div></figcaption><div class="tabular-box natural-width"><table class="tabular">
+<tr class="header-horizontal">
+<th scope="col" class="c m b2 r1 l1 t1 lines">Score</th>
+<th scope="col" class="c m b2 r1 l0 t1 lines">1</th>
+<th scope="col" class="c m b2 r1 l0 t1 lines">2</th>
+<th scope="col" class="c m b2 r1 l0 t1 lines">3</th>
+<th scope="col" class="c m b2 r1 l0 t1 lines">4</th>
+<th scope="col" class="c m b2 r1 l0 t1 lines">5</th>
+<th scope="col" class="c m b2 r1 l0 t1 lines">6</th>
+</tr>
+<tr>
+<td class="c m b1 r1 l1 t0 lines">Die A</td>
+<td class="c m b1 r1 l0 t0 lines">37</td>
+<td class="c m b1 r1 l0 t0 lines">42</td>
+<td class="c m b1 r1 l0 t0 lines">39</td>
+<td class="c m b1 r1 l0 t0 lines">44</td>
+<td class="c m b1 r1 l0 t0 lines">38</td>
+<td class="c m b1 r1 l0 t0 lines">40</td>
+</tr>
+<tr>
+<td class="c m b1 r1 l1 t0 lines">Die B</td>
+<td class="c m b1 r1 l0 t0 lines">31</td>
+<td class="c m b1 r1 l0 t0 lines">33</td>
+<td class="c m b1 r1 l0 t0 lines">35</td>
+<td class="c m b1 r1 l0 t0 lines">30</td>
+<td class="c m b1 r1 l0 t0 lines">34</td>
+<td class="c m b1 r1 l0 t0 lines">77</td>
+</tr>
+</table></div>
+</figure> 
+<div class="para" id="example-is-this-die-fair-2-3">Is either die likely to be biased?<div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#example-is-this-die-fair-2-3" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="solution solution-like" id="example-is-this-die-fair-3">
+<h3 class="heading">
+<span class="type">Solution</span><span class="period heading-divison-mark heading-divison-mark__period">.</span>
+</h3>
+<div class="para" id="example-is-this-die-fair-3-1">For a fair die each score has probability <span class="process-math">\(\frac{1}{6}\text{,}\)</span> so the expected frequency of each score is <span class="process-math">\(240 \times \frac{1}{6} = 40\text{.}\)</span><div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#example-is-this-die-fair-3-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="para" id="example-is-this-die-fair-3-2">Every frequency of die A is within <span class="process-math">\(4\)</span> of <span class="process-math">\(40\text{.}\)</span> No die gives exactly <span class="process-math">\(40\)</span> of each score, so there is no reason to think die A is biased.<div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#example-is-this-die-fair-3-2" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="para" id="example-is-this-die-fair-3-3">Die B gave <span class="process-math">\(77\)</span> sixes, nearly twice the expected <span class="process-math">\(40\text{,}\)</span> and fewer of every other score. Die B is probably biased towards six.<div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#example-is-this-die-fair-3-3" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" aria-hidden="true" data-description="Solution 10.2.10.1"><a tabindex="-1" href="#example-is-this-die-fair-3" title="Copy heading and permalink for Solution 10.2.10.1" aria-label="Copy heading and permalink for Solution 10.2.10.1">🔗</a></div>
+</div>
+<div class="autopermalink" aria-hidden="true" data-description="Example 10.2.10: Is This Die Fair?"><a tabindex="-1" href="#example-is-this-die-fair" title="Copy heading and permalink for Example 10.2.10: Is This Die Fair?" aria-label="Copy heading and permalink for Example 10.2.10: Is This Die Fair?">🔗</a></div>
+</article>
+<article class="example example-like" id="example-helmets-on-boda-bodas"><h2 class="heading">
+<span class="type">Example</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">10.2.12</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">Helmets on Boda Bodas.</span>
+</h2>
+<div class="para" id="example-helmets-on-boda-bodas-2-1">At a junction in Nakuru, <span class="process-math">\(112\)</span> of <span class="process-math">\(160\)</span> boda boda riders observed were wearing a helmet. Estimate the probability that a rider at this junction (a) wears a helmet, (b) does not. (c) Of <span class="process-math">\(500\)</span> riders passing the junction, about how many would you expect to have no helmet?<div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#example-helmets-on-boda-bodas-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="solution solution-like" id="example-helmets-on-boda-bodas-3">
+<h3 class="heading">
+<span class="type">Solution</span><span class="period heading-divison-mark heading-divison-mark__period">.</span>
+</h3>
+<div class="para" id="example-helmets-on-boda-bodas-3-1">(a) <span class="process-math">\(\dfrac{112}{160} = 0.7\text{.}\)</span> (b) <span class="process-math">\(1 - 0.7 = 0.3\text{.}\)</span> (c) <span class="process-math">\(500 \times 0.3 = 150\)</span> riders.<div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#example-helmets-on-boda-bodas-3-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="para" id="example-helmets-on-boda-bodas-3-2">A helmet greatly reduces the risk of a serious head injury in a crash, so a road-safety campaign might use figures like these to decide where to check riders.<div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#example-helmets-on-boda-bodas-3-2" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" aria-hidden="true" data-description="Solution 10.2.12.1"><a tabindex="-1" href="#example-helmets-on-boda-bodas-3" title="Copy heading and permalink for Solution 10.2.12.1" aria-label="Copy heading and permalink for Solution 10.2.12.1">🔗</a></div>
+</div>
+<div class="autopermalink" aria-hidden="true" data-description="Example 10.2.12: Helmets on Boda Bodas"><a tabindex="-1" href="#example-helmets-on-boda-bodas" title="Copy heading and permalink for Example 10.2.12: Helmets on Boda Bodas" aria-label="Copy heading and permalink for Example 10.2.12: Helmets on Boda Bodas">🔗</a></div>
+</article>
+<article class="axiom theorem-like" id="subsec-experimental-probability-15"><h2 class="heading">
+<span class="type">Teacher Resource</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">10.2.13</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">Assessment / Evaluate.</span>
+</h2>
+<div class="para logical" id="subsec-experimental-probability-15-2">
+<dl class="description-list">
+<dt id="subsec-experimental-probability-15-2-1-1">Suggested Time<div class="autopermalink" aria-hidden="true" data-description="Item: Suggested Time"><a tabindex="-1" href="#subsec-experimental-probability-15-2-1-1" title="Copy heading and permalink for Item: Suggested Time" aria-label="Copy heading and permalink for Item: Suggested Time">🔗</a></div>
+</dt>
+<dd>
+<div class="para" id="subsec-experimental-probability-15-2-1-1-2">8 minutes<div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#subsec-experimental-probability-15-2-1-1-2" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+</dd>
+<dt id="subsec-experimental-probability-15-2-1-2">Objective<div class="autopermalink" aria-hidden="true" data-description="Item: Objective"><a tabindex="-1" href="#subsec-experimental-probability-15-2-1-2" title="Copy heading and permalink for Item: Objective" aria-label="Copy heading and permalink for Item: Objective">🔗</a></div>
+</dt>
+<dd>
+<div class="para" id="subsec-experimental-probability-15-2-1-2-2">To formatively assess individual Learner understanding of the lesson objectives.<div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#subsec-experimental-probability-15-2-1-2-2" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+</dd>
+<dt id="subsec-experimental-probability-15-2-1-3">Learning Experience<div class="autopermalink" aria-hidden="true" data-description="Item: Learning Experience"><a tabindex="-1" href="#subsec-experimental-probability-15-2-1-3" title="Copy heading and permalink for Item: Learning Experience" aria-label="Copy heading and permalink for Item: Learning Experience">🔗</a></div>
+</dt>
+<dd>
+<div class="para" id="subsec-experimental-probability-15-2-1-3-2">Learners independently complete a short assessment task (select from the exercises below).<div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#subsec-experimental-probability-15-2-1-3-2" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+</dd>
+<dt id="subsec-experimental-probability-15-2-1-4">Teacher’s Role<div class="autopermalink" aria-hidden="true" data-description="Item: Teacher’s Role"><a tabindex="-1" href="#subsec-experimental-probability-15-2-1-4" title="Copy heading and permalink for Item: Teacher’s Role" aria-label="Copy heading and permalink for Item: Teacher’s Role">🔗</a></div>
+</dt>
+<dd>
+<div class="para" id="subsec-experimental-probability-15-2-1-4-2">Collect and review the exit tickets to gauge Learner understanding and identify any common misconceptions that need to be addressed in the next lesson.<div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#subsec-experimental-probability-15-2-1-4-2" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+</dd>
+</dl>
+<div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#subsec-experimental-probability-15-2" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" aria-hidden="true" data-description="Teacher Resource 10.2.13: Assessment / Evaluate"><a tabindex="-1" href="#subsec-experimental-probability-15" title="Copy heading and permalink for Teacher Resource 10.2.13: Assessment / Evaluate" aria-label="Copy heading and permalink for Teacher Resource 10.2.13: Assessment / Evaluate">🔗</a></div>
+</article>
+<article class="axiom theorem-like" id="subsec-experimental-probability-16"><h2 class="heading">
+<span class="type">Teacher Resource</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">10.2.14</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">Checkpoint Guide.</span>
+</h2>
+<section class="paragraphs" id="subsec-experimental-probability-16-2"><h3 class="heading"><span class="title">Teacher’s Role.</span></h3>
+<div class="autopermalink" aria-hidden="true" data-description="Paragraphs: Teacher’s Role"><a tabindex="-1" href="#subsec-experimental-probability-16-2" title="Copy heading and permalink for Paragraphs: Teacher’s Role" aria-label="Copy heading and permalink for Paragraphs: Teacher’s Role">🔗</a></div>
+</section>
+<div class="para logical" id="subsec-experimental-probability-16-3">
+<ul class="disc" id="subsec-experimental-probability-16-3-1">
+<li id="subsec-experimental-probability-16-3-1-1">
+<div class="para" id="subsec-experimental-probability-16-3-1-1-1">Pair Learners strategically so stronger learners can explain reasoning to peers.<div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#subsec-experimental-probability-16-3-1-1-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" aria-hidden="true" data-description="Item"><a tabindex="-1" href="#subsec-experimental-probability-16-3-1-1" title="Copy heading and permalink for Item" aria-label="Copy heading and permalink for Item">🔗</a></div>
+</li>
+<li id="subsec-experimental-probability-16-3-1-2">
+<div class="para" id="subsec-experimental-probability-16-3-1-2-1">Collect and review the exit tickets to gauge Learner understanding and identify any common misconceptions that need to be addressed in the next lesson.<div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#subsec-experimental-probability-16-3-1-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" aria-hidden="true" data-description="Item"><a tabindex="-1" href="#subsec-experimental-probability-16-3-1-2" title="Copy heading and permalink for Item" aria-label="Copy heading and permalink for Item">🔗</a></div>
+</li>
+</ul>
+<div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#subsec-experimental-probability-16-3" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<section class="paragraphs" id="subsec-experimental-probability-16-4"><h3 class="heading"><span class="title">Instructions to Give Leaners.</span></h3>
+<div class="autopermalink" aria-hidden="true" data-description="Paragraphs: Instructions to Give Leaners"><a tabindex="-1" href="#subsec-experimental-probability-16-4" title="Copy heading and permalink for Paragraphs: Instructions to Give Leaners" aria-label="Copy heading and permalink for Paragraphs: Instructions to Give Leaners">🔗</a></div>
+</section>
+<div class="para logical" id="subsec-experimental-probability-16-5">
+<ol class="decimal" id="subsec-experimental-probability-16-5-1">
+<li id="subsec-experimental-probability-16-5-1-1">
+<div class="para" id="subsec-experimental-probability-16-5-1-1-1">Click <code class="code-inline tex2jax_ignore">Show new example question</code> to load the problem<div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#subsec-experimental-probability-16-5-1-1-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" aria-hidden="true" data-description="Item 1"><a tabindex="-1" href="#subsec-experimental-probability-16-5-1-1" title="Copy heading and permalink for Item 1" aria-label="Copy heading and permalink for Item 1">🔗</a></div>
+</li>
+<li id="subsec-experimental-probability-16-5-1-2">
+<div class="para" id="subsec-experimental-probability-16-5-1-2-1">Solve the displayed question<div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#subsec-experimental-probability-16-5-1-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" aria-hidden="true" data-description="Item 2"><a tabindex="-1" href="#subsec-experimental-probability-16-5-1-2" title="Copy heading and permalink for Item 2" aria-label="Copy heading and permalink for Item 2">🔗</a></div>
+</li>
+<li id="subsec-experimental-probability-16-5-1-3">
+<div class="para" id="subsec-experimental-probability-16-5-1-3-1">Click <code class="code-inline tex2jax_ignore">Submit</code> to check your answer<div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#subsec-experimental-probability-16-5-1-3-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" aria-hidden="true" data-description="Item 3"><a tabindex="-1" href="#subsec-experimental-probability-16-5-1-3" title="Copy heading and permalink for Item 3" aria-label="Copy heading and permalink for Item 3">🔗</a></div>
+</li>
+<li id="subsec-experimental-probability-16-5-1-4">
+<div class="para" id="subsec-experimental-probability-16-5-1-4-1">If incorrect, carefully read the feedback and analyse the error before trying a new question. The immediate feedback from checkpoint submissions allows Learners to identify and correct errors in real-time.<div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#subsec-experimental-probability-16-5-1-4-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" aria-hidden="true" data-description="Item 4"><a tabindex="-1" href="#subsec-experimental-probability-16-5-1-4" title="Copy heading and permalink for Item 4" aria-label="Copy heading and permalink for Item 4">🔗</a></div>
+</li>
+<li id="subsec-experimental-probability-16-5-1-5">
+<div class="para" id="subsec-experimental-probability-16-5-1-5-1">Complete at least 5 questions before rotating<div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#subsec-experimental-probability-16-5-1-5-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" aria-hidden="true" data-description="Item 5"><a tabindex="-1" href="#subsec-experimental-probability-16-5-1-5" title="Copy heading and permalink for Item 5" aria-label="Copy heading and permalink for Item 5">🔗</a></div>
+</li>
+</ol>
+<div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#subsec-experimental-probability-16-5" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" aria-hidden="true" data-description="Teacher Resource 10.2.14: Checkpoint Guide"><a tabindex="-1" href="#subsec-experimental-probability-16" title="Copy heading and permalink for Teacher Resource 10.2.14: Checkpoint Guide" aria-label="Copy heading and permalink for Teacher Resource 10.2.14: Checkpoint Guide">🔗</a></div>
+</article>
+<div class="para" id="subsec-experimental-probability-17">Type a fraction with a slash, for example <code class="code-inline tex2jax_ignore">5/12</code>, and a decimal with a point, for example <code class="code-inline tex2jax_ignore">0.35</code>. Give probabilities exactly: do not round.<div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#subsec-experimental-probability-17" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<article class="exercise exercise-like" id="ex-relative-frequency-and-expected-frequency"><h2 class="heading">
+<span class="type">Checkpoint</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">10.2.15</span><span class="period heading-divison-mark heading-divison-mark__period">.</span>
+</h2>
+<div class="container-fluid que stack" data-qfile="external/stack/top/3-statistics-and-probability/16-probability-iii/02-discrete-probability/Relative-frequency-and-expected-frequency.xml" id="stk-relative-frequency-and-expected-frequency"></div>
+<div class="autopermalink" aria-hidden="true" data-description="Checkpoint 10.2.15"><a tabindex="-1" href="#ex-relative-frequency-and-expected-frequency" title="Copy heading and permalink for Checkpoint 10.2.15" aria-label="Copy heading and permalink for Checkpoint 10.2.15">🔗</a></div>
+</article>
+<article class="exercise exercise-like" id="ex-deciding-whether-a-die-is-biased"><h2 class="heading">
+<span class="type">Checkpoint</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">10.2.16</span><span class="period heading-divison-mark heading-divison-mark__period">.</span>
+</h2>
+<div class="container-fluid que stack" data-qfile="external/stack/top/3-statistics-and-probability/16-probability-iii/02-discrete-probability/Deciding-whether-a-die-is-biased.xml" id="stk-deciding-whether-a-die-is-biased"></div>
+<div class="autopermalink" aria-hidden="true" data-description="Checkpoint 10.2.16"><a tabindex="-1" href="#ex-deciding-whether-a-die-is-biased" title="Copy heading and permalink for Checkpoint 10.2.16" aria-label="Copy heading and permalink for Checkpoint 10.2.16">🔗</a></div>
+</article>
+<section class="exercises" id="exercises-experimental-probability">
+<h2 class="heading hide-type">
+<span class="type">Exercises</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber"></span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">Exercises</span>
+</h2>
+<article class="exercise exercise-like" id="ex-airtime-relative-frequency"><h3 class="heading"><span class="codenumber">1<span class="period heading-divison-mark heading-divison-mark__period">.</span></span></h3>
+<div class="para" id="ex-airtime-relative-frequency-1-1">One week, <span class="process-math">\(46\)</span> of the <span class="process-math">\(200\)</span> customers at a kiosk in Nyeri bought airtime. Find the relative frequency of a customer buying airtime. How many of the next <span class="process-math">\(1000\)</span> customers would you expect to buy airtime?<div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#ex-airtime-relative-frequency-1-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="solutions">
+<details id="ex-airtime-relative-frequency-2" class="answer solution-like born-hidden-knowl"><summary class="knowl__link"><span class="type">Answer</span><span class="period heading-divison-mark heading-divison-mark__period">.</span></summary>
+<div class="answer solution-like knowl__content">
+<div class="para" id="ex-airtime-relative-frequency-2-1">
+<span class="process-math">\(0.23\text{;}\)</span> <span class="process-math">\(230\)</span><div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#ex-airtime-relative-frequency-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" aria-hidden="true" data-description="Answer 10.2.1.1.1"><a tabindex="-1" href="#ex-airtime-relative-frequency-2" title="Copy heading and permalink for Answer 10.2.1.1.1" aria-label="Copy heading and permalink for Answer 10.2.1.1.1">🔗</a></div>
+</div></details>
+</div>
+<div class="autopermalink" aria-hidden="true" data-description="Exercise 10.2.1.1"><a tabindex="-1" href="#ex-airtime-relative-frequency" title="Copy heading and permalink for Exercise 10.2.1.1" aria-label="Copy heading and permalink for Exercise 10.2.1.1">🔗</a></div>
+</article>
+<article class="exercise exercise-like" id="ex-seatbelt-survey"><h3 class="heading"><span class="codenumber">2<span class="period heading-divison-mark heading-divison-mark__period">.</span></span></h3>
+<div class="para" id="ex-seatbelt-survey-1-1">At a matatu stage in Thika, <span class="process-math">\(40\)</span> of <span class="process-math">\(250\)</span> matatus checked had a passenger not wearing a seatbelt. Find the relative frequency. Out of <span class="process-math">\(1500\)</span> matatus, how many would you expect to have a passenger without a seatbelt?<div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#ex-seatbelt-survey-1-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="solutions">
+<details id="ex-seatbelt-survey-2" class="answer solution-like born-hidden-knowl"><summary class="knowl__link"><span class="type">Answer</span><span class="period heading-divison-mark heading-divison-mark__period">.</span></summary>
+<div class="answer solution-like knowl__content">
+<div class="para" id="ex-seatbelt-survey-2-1">
+<span class="process-math">\(0.16\text{;}\)</span> <span class="process-math">\(240\)</span><div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#ex-seatbelt-survey-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" aria-hidden="true" data-description="Answer 10.2.1.2.1"><a tabindex="-1" href="#ex-seatbelt-survey-2" title="Copy heading and permalink for Answer 10.2.1.2.1" aria-label="Copy heading and permalink for Answer 10.2.1.2.1">🔗</a></div>
+</div></details>
+</div>
+<div class="autopermalink" aria-hidden="true" data-description="Exercise 10.2.1.2"><a tabindex="-1" href="#ex-seatbelt-survey" title="Copy heading and permalink for Exercise 10.2.1.2" aria-label="Copy heading and permalink for Exercise 10.2.1.2">🔗</a></div>
+</article>
+<article class="exercise exercise-like" id="ex-drawing-pin"><h3 class="heading"><span class="codenumber">3<span class="period heading-divison-mark heading-divison-mark__period">.</span></span></h3>
+<div class="para" id="ex-drawing-pin-1-1">A drawing pin lands point up <span class="process-math">\(33\)</span> times in <span class="process-math">\(60\)</span> drops. Estimate the probability that it lands (a) point up, (b) point down.<div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#ex-drawing-pin-1-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="solutions">
+<details id="ex-drawing-pin-2" class="answer solution-like born-hidden-knowl"><summary class="knowl__link"><span class="type">Answer</span><span class="period heading-divison-mark heading-divison-mark__period">.</span></summary>
+<div class="answer solution-like knowl__content">
+<div class="para" id="ex-drawing-pin-2-1">(a) <span class="process-math">\(0.55\)</span> (b) <span class="process-math">\(0.45\)</span><div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#ex-drawing-pin-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" aria-hidden="true" data-description="Answer 10.2.1.3.1"><a tabindex="-1" href="#ex-drawing-pin-2" title="Copy heading and permalink for Answer 10.2.1.3.1" aria-label="Copy heading and permalink for Answer 10.2.1.3.1">🔗</a></div>
+</div></details>
+</div>
+<div class="autopermalink" aria-hidden="true" data-description="Exercise 10.2.1.3"><a tabindex="-1" href="#ex-drawing-pin" title="Copy heading and permalink for Exercise 10.2.1.3" aria-label="Copy heading and permalink for Exercise 10.2.1.3">🔗</a></div>
+</article>
+<article class="exercise exercise-like" id="ex-april-rain"><h3 class="heading"><span class="codenumber">4<span class="period heading-divison-mark heading-divison-mark__period">.</span></span></h3>
+<div class="para" id="ex-april-rain-1-1">It rained in Kisumu on <span class="process-math">\(18\)</span> of the <span class="process-math">\(30\)</span> days of April one year. Estimate the probability of rain on an April day, and the number of rainy April days next year. Why might this estimate be wrong?<div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#ex-april-rain-1-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="solutions">
+<details id="ex-april-rain-2" class="answer solution-like born-hidden-knowl"><summary class="knowl__link"><span class="type">Answer</span><span class="period heading-divison-mark heading-divison-mark__period">.</span></summary>
+<div class="answer solution-like knowl__content">
+<div class="para" id="ex-april-rain-2-1">
+<span class="process-math">\(0.6\text{;}\)</span> about <span class="process-math">\(18\)</span> days. One year is a small sample, and years differ.<div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#ex-april-rain-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" aria-hidden="true" data-description="Answer 10.2.1.4.1"><a tabindex="-1" href="#ex-april-rain-2" title="Copy heading and permalink for Answer 10.2.1.4.1" aria-label="Copy heading and permalink for Answer 10.2.1.4.1">🔗</a></div>
+</div></details>
+</div>
+<div class="autopermalink" aria-hidden="true" data-description="Exercise 10.2.1.4"><a tabindex="-1" href="#ex-april-rain" title="Copy heading and permalink for Exercise 10.2.1.4" aria-label="Copy heading and permalink for Exercise 10.2.1.4">🔗</a></div>
+</article>
+<article class="exercise exercise-like" id="ex-how-many-penalties"><h3 class="heading"><span class="codenumber">5<span class="period heading-divison-mark heading-divison-mark__period">.</span></span></h3>
+<div class="para" id="ex-how-many-penalties-1-1">In a school football league, the relative frequency of scoring from a penalty was <span class="process-math">\(0.75\text{.}\)</span> Penalties produced <span class="process-math">\(54\)</span> goals. How many penalties were taken?<div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#ex-how-many-penalties-1-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="solutions">
+<details id="ex-how-many-penalties-2" class="answer solution-like born-hidden-knowl"><summary class="knowl__link"><span class="type">Answer</span><span class="period heading-divison-mark heading-divison-mark__period">.</span></summary>
+<div class="answer solution-like knowl__content">
+<div class="para" id="ex-how-many-penalties-2-1">
+<span class="process-math">\(72\)</span><div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#ex-how-many-penalties-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" aria-hidden="true" data-description="Answer 10.2.1.5.1"><a tabindex="-1" href="#ex-how-many-penalties-2" title="Copy heading and permalink for Answer 10.2.1.5.1" aria-label="Copy heading and permalink for Answer 10.2.1.5.1">🔗</a></div>
+</div></details>
+<details id="ex-how-many-penalties-3" class="solution solution-like born-hidden-knowl"><summary class="knowl__link"><span class="type">Solution</span><span class="period heading-divison-mark heading-divison-mark__period">.</span></summary>
+<div class="solution solution-like knowl__content">
+<div class="para" id="ex-how-many-penalties-3-1">
+<span class="process-math">\(\frac{54}{n} = 0.75\text{,}\)</span> so <span class="process-math">\(n = 54 \div 0.75 = 72\text{.}\)</span><div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#ex-how-many-penalties-3-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" aria-hidden="true" data-description="Solution 10.2.1.5.1"><a tabindex="-1" href="#ex-how-many-penalties-3" title="Copy heading and permalink for Solution 10.2.1.5.1" aria-label="Copy heading and permalink for Solution 10.2.1.5.1">🔗</a></div>
+</div></details>
+</div>
+<div class="autopermalink" aria-hidden="true" data-description="Exercise 10.2.1.5"><a tabindex="-1" href="#ex-how-many-penalties" title="Copy heading and permalink for Exercise 10.2.1.5" aria-label="Copy heading and permalink for Exercise 10.2.1.5">🔗</a></div>
+</article>
+<article class="exercise exercise-like" id="ex-wanjiku-ten-tosses"><h3 class="heading">
+<span class="codenumber">6<span class="period heading-divison-mark heading-divison-mark__period">.</span></span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">Challenge: Ten Tosses.</span>
+</h3>
+<div class="para" id="ex-wanjiku-ten-tosses-2-1">Wanjiku tossed a coin <span class="process-math">\(10\)</span> times and got <span class="process-math">\(7\)</span> heads. She says the coin is biased, with probability of a head <span class="process-math">\(0.7\text{.}\)</span> Comment on her conclusion.<div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#ex-wanjiku-ten-tosses-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="solutions">
+<details id="ex-wanjiku-ten-tosses-3" class="hint solution-like born-hidden-knowl"><summary class="knowl__link"><span class="type">Hint</span><span class="period heading-divison-mark heading-divison-mark__period">.</span></summary>
+<div class="hint solution-like knowl__content">
+<div class="para" id="ex-wanjiku-ten-tosses-3-1">What happens to a relative frequency as the number of trials increases?<div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#ex-wanjiku-ten-tosses-3-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" aria-hidden="true" data-description="Hint 10.2.1.6.1"><a tabindex="-1" href="#ex-wanjiku-ten-tosses-3" title="Copy heading and permalink for Hint 10.2.1.6.1" aria-label="Copy heading and permalink for Hint 10.2.1.6.1">🔗</a></div>
+</div></details>
+<details id="ex-wanjiku-ten-tosses-4" class="answer solution-like born-hidden-knowl"><summary class="knowl__link"><span class="type">Answer</span><span class="period heading-divison-mark heading-divison-mark__period">.</span></summary>
+<div class="answer solution-like knowl__content">
+<div class="para" id="ex-wanjiku-ten-tosses-4-1">Ten tosses are too few: <span class="process-math">\(7\)</span> heads in <span class="process-math">\(10\)</span> is quite possible with a fair coin. She should toss it many more times.<div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#ex-wanjiku-ten-tosses-4-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" aria-hidden="true" data-description="Answer 10.2.1.6.1"><a tabindex="-1" href="#ex-wanjiku-ten-tosses-4" title="Copy heading and permalink for Answer 10.2.1.6.1" aria-label="Copy heading and permalink for Answer 10.2.1.6.1">🔗</a></div>
+</div></details>
+<details id="ex-wanjiku-ten-tosses-5" class="solution solution-like born-hidden-knowl"><summary class="knowl__link"><span class="type">Solution</span><span class="period heading-divison-mark heading-divison-mark__period">.</span></summary>
+<div class="solution solution-like knowl__content">
+<div class="para" id="ex-wanjiku-ten-tosses-5-1">With few trials the relative frequency can be far from the probability. Run the simulator with <span class="process-math">\(10\)</span> trials a few times: results such as <span class="process-math">\(0.7\)</span> or <span class="process-math">\(0.3\)</span> appear often for a fair coin. Only a large number of tosses would show whether the coin is biased.<div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#ex-wanjiku-ten-tosses-5-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" aria-hidden="true" data-description="Solution 10.2.1.6.1"><a tabindex="-1" href="#ex-wanjiku-ten-tosses-5" title="Copy heading and permalink for Solution 10.2.1.6.1" aria-label="Copy heading and permalink for Solution 10.2.1.6.1">🔗</a></div>
+</div></details>
+</div>
+<div class="autopermalink" aria-hidden="true" data-description="Exercise 10.2.1.6: Challenge: Ten Tosses"><a tabindex="-1" href="#ex-wanjiku-ten-tosses" title="Copy heading and permalink for Exercise 10.2.1.6: Challenge: Ten Tosses" aria-label="Copy heading and permalink for Exercise 10.2.1.6: Challenge: Ten Tosses">🔗</a></div>
+</article><div class="autopermalink" aria-hidden="true" data-description="Exercises 10.2.1"><a tabindex="-1" href="#exercises-experimental-probability" title="Copy heading and permalink for Exercises 10.2.1" aria-label="Copy heading and permalink for Exercises 10.2.1">🔗</a></div>
+</section>
+<article class="axiom theorem-like" id="subsec-experimental-probability-21"><h2 class="heading">
+<span class="type">Teacher Resource</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">10.2.17</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">Differentiation.</span>
+</h2>
+<figure class="table table-like" id="table-differentiation-experimental-probability"><figcaption><span class="type">Table</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">10.2.18<span class="period heading-divison-mark heading-divison-mark__period">.</span></span><span class="space heading-divison-mark heading-divison-mark__space"> </span>Differentiation Strategies<div class="autopermalink" aria-hidden="true" data-description="Table 10.2.18: Differentiation Strategies"><a tabindex="-1" href="#table-differentiation-experimental-probability" title="Copy heading and permalink for Table 10.2.18: Differentiation Strategies" aria-label="Copy heading and permalink for Table 10.2.18: Differentiation Strategies">🔗</a></div></figcaption><div class="tabular-box natural-width"><table class="tabular">
+<tr class="header-horizontal">
+<th scope="col" class="l m b2 r1 l1 t1 lines">Learner Group</th>
+<th scope="col" class="l m b2 r1 l0 t1 lines">Strategy and Learning Experience</th>
+</tr>
+<tr>
+<td class="l m b1 r1 l1 t0 lines">Struggling Learners (Support)</td>
+<td class="l m b1 r1 l0 t0 lines">Give a tally chart template with a relative frequency column. Use the simulator with <em class="alert">10 trials</em> presses. Assign <a href="subsec-experimental-probability.html#ex-airtime-relative-frequency" class="xref" data-knowl="./knowl/xref/ex-airtime-relative-frequency.html" data-reveal-label="Reveal" data-close-label="Close" title="Exercise 10.2.1.1">Exercise 10.2.1.1</a> and <a href="subsec-experimental-probability.html#ex-drawing-pin" class="xref" data-knowl="./knowl/xref/ex-drawing-pin.html" data-reveal-label="Reveal" data-close-label="Close" title="Exercise 10.2.1.3">Exercise 10.2.1.3</a>.</td>
+</tr>
+<tr>
+<td class="l m b1 r1 l1 t0 lines">On-Level Learners (Core)</td>
+<td class="l m b1 r1 l0 t0 lines">Full activity and all examples. Assign <a href="subsec-experimental-probability.html#ex-airtime-relative-frequency" class="xref" data-knowl="./knowl/xref/ex-airtime-relative-frequency.html" data-reveal-label="Reveal" data-close-label="Close" title="Exercise 10.2.1.1">Exercise 10.2.1.1</a> to <a href="subsec-experimental-probability.html#ex-how-many-penalties" class="xref" data-knowl="./knowl/xref/ex-how-many-penalties.html" data-reveal-label="Reveal" data-close-label="Close" title="Exercise 10.2.1.5">Exercise 10.2.1.5</a>.</td>
+</tr>
+<tr>
+<td class="l m b1 r1 l1 t0 lines">Advanced Learners (Challenge)</td>
+<td class="l m b1 r1 l0 t0 lines">All exercises including <a href="subsec-experimental-probability.html#ex-wanjiku-ten-tosses" class="xref" data-knowl="./knowl/xref/ex-wanjiku-ten-tosses.html" data-reveal-label="Reveal" data-close-label="Close" title="Exercise 10.2.1.6: Challenge: Ten Tosses">Exercise 10.2.1.6</a>. Extension: use the simulator to find after how many trials the relative frequency of a six stays within <span class="process-math">\(0.02\)</span> of <span class="process-math">\(\frac{1}{6}\text{.}\)</span> (It varies from run to run; usually several hundred trials.)</td>
+</tr>
+</table></div>
+</figure><div class="autopermalink" aria-hidden="true" data-description="Teacher Resource 10.2.17: Differentiation"><a tabindex="-1" href="#subsec-experimental-probability-21" title="Copy heading and permalink for Teacher Resource 10.2.17: Differentiation" aria-label="Copy heading and permalink for Teacher Resource 10.2.17: Differentiation">🔗</a></div>
+</article>
+<article class="axiom theorem-like" id="subsec-experimental-probability-22"><h2 class="heading">
+<span class="type">Teacher Resource</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">10.2.19</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">Assessment.</span>
+</h2>
+<figure class="table table-like" id="subsec-experimental-probability-22-2"><figcaption><span class="type">Table</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">10.2.20<span class="period heading-divison-mark heading-divison-mark__period">.</span></span><span class="space heading-divison-mark heading-divison-mark__space"> </span>Assessment methods<div class="autopermalink" aria-hidden="true" data-description="Table 10.2.20: Assessment methods"><a tabindex="-1" href="#subsec-experimental-probability-22-2" title="Copy heading and permalink for Table 10.2.20: Assessment methods" aria-label="Copy heading and permalink for Table 10.2.20: Assessment methods">🔗</a></div></figcaption><div class="tabular-box natural-width"><table class="tabular">
+<tr class="header-horizontal">
+<th scope="col" class="l m b1 r0 l0 t0 lines">Type</th>
+<th scope="col" class="l m b1 r0 l0 t0 lines">Method</th>
+<th scope="col" class="l m b1 r0 l0 t0 lines">Purpose</th>
+</tr>
+<tr>
+<td class="l m b0 r0 l0 t0 lines">Formative (During Lesson)</td>
+<td class="l m b0 r0 l0 t0 lines">
+<em class="alert">Observation:</em> Teacher circulates during the anchor task, listening to group discussions.<br><em class="alert">Questioning:</em> Teacher asks probing questions to check for understanding.<br><em class="alert">Exit Ticket:</em> A short, independent task at the end of the lesson.</td>
+<td class="l m b0 r0 l0 t0 lines">To monitor learner progress in real-time, provide immediate feedback, and adjust instruction as needed.</td>
+</tr>
+<tr>
+<td class="l m b0 r0 l0 t0 lines">Summative (After Lesson)</td>
+<td class="l m b0 r0 l0 t0 lines">Homework assignment with more complex problems.<br>Future quiz/test questions.</td>
+<td class="l m b0 r0 l0 t0 lines">To evaluate mastery of the learning objectives after instruction and practice.</td>
+</tr>
+</table></div>
+</figure><div class="autopermalink" aria-hidden="true" data-description="Teacher Resource 10.2.19: Assessment"><a tabindex="-1" href="#subsec-experimental-probability-22" title="Copy heading and permalink for Teacher Resource 10.2.19: Assessment" aria-label="Copy heading and permalink for Teacher Resource 10.2.19: Assessment">🔗</a></div>
+</article>
+<article class="axiom theorem-like" id="subsec-experimental-probability-23"><h2 class="heading">
+<span class="type">Teacher Resource</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">10.2.21</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">Teacher Reflection.</span>
+</h2>
+<div class="para logical" id="subsec-experimental-probability-23-2">
+<div class="para">Complete this after the lesson</div>
+<ol class="decimal" id="subsec-experimental-probability-23-2-1">
+<li id="subsec-experimental-probability-23-2-1-1">
+<div class="para" id="subsec-experimental-probability-23-2-1-1-1">What went well?<div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#subsec-experimental-probability-23-2-1-1-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" aria-hidden="true" data-description="Item 1"><a tabindex="-1" href="#subsec-experimental-probability-23-2-1-1" title="Copy heading and permalink for Item 1" aria-label="Copy heading and permalink for Item 1">🔗</a></div>
+</li>
+<li id="subsec-experimental-probability-23-2-1-2">
+<div class="para" id="subsec-experimental-probability-23-2-1-2-1">What would I change?<div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#subsec-experimental-probability-23-2-1-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" aria-hidden="true" data-description="Item 2"><a tabindex="-1" href="#subsec-experimental-probability-23-2-1-2" title="Copy heading and permalink for Item 2" aria-label="Copy heading and permalink for Item 2">🔗</a></div>
+</li>
+<li id="subsec-experimental-probability-23-2-1-3">
+<div class="para" id="subsec-experimental-probability-23-2-1-3-1">Learner Understanding: What did the exit tickets reveal about Learner learning?<div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#subsec-experimental-probability-23-2-1-3-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" aria-hidden="true" data-description="Item 3"><a tabindex="-1" href="#subsec-experimental-probability-23-2-1-3" title="Copy heading and permalink for Item 3" aria-label="Copy heading and permalink for Item 3">🔗</a></div>
+</li>
+<li id="subsec-experimental-probability-23-2-1-4">
+<div class="para" id="subsec-experimental-probability-23-2-1-4-1">Next Steps: Based on the assessment data, what is the plan for the next lesson?<div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#subsec-experimental-probability-23-2-1-4-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" aria-hidden="true" data-description="Item 4"><a tabindex="-1" href="#subsec-experimental-probability-23-2-1-4" title="Copy heading and permalink for Item 4" aria-label="Copy heading and permalink for Item 4">🔗</a></div>
+</li>
+</ol>
+<div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#subsec-experimental-probability-23-2" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" aria-hidden="true" data-description="Teacher Resource 10.2.21: Teacher Reflection"><a tabindex="-1" href="#subsec-experimental-probability-23" title="Copy heading and permalink for Teacher Resource 10.2.21: Teacher Reflection" aria-label="Copy heading and permalink for Teacher Resource 10.2.21: Teacher Reflection">🔗</a></div>
+</article><div class="autopermalink" aria-hidden="true" data-description="Subsection 10.2.1: Experimental Probability"><a tabindex="-1" href="#subsec-experimental-probability" title="Copy heading and permalink for Subsection 10.2.1: Experimental Probability" aria-label="Copy heading and permalink for Subsection 10.2.1: Experimental Probability">🔗</a></div>
+</section>
+</div>
+<div id="ptx-content-footer" class="ptx-content-footer">
+<a class="previous-button button" href="sec-discrete-probability-2.html" title="Previous"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe5cb;</span><span class="name">Prev</span></a><a class="top-button button" href="#" title="Top"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe5ce;</span><span class="name">Top</span></a><a class="next-button button" href="subsec-probability-distributions.html" title="Next"><span class="name">Next</span><span class="icon material-symbols-outlined" aria-hidden="true">&#xe5cc;</span></a>
+</div></main>
+</div>
+<div id="ptx-page-footer" class="ptx-page-footer">
+<a class="pretext-link" href="https://pretextbook.org" title="PreTeXt"><div class="logo"><svg xmlns="http://www.w3.org/2000/svg" height="100%" viewBox="338 3000 8772 6866" role="img"><title>PreTeXt logo</title><g style="stroke-width:.025in; stroke:currentColor; fill:none"><polyline points="472,3590 472,9732 " style="stroke-width:174; stroke-linejoin:miter; stroke-linecap:round; "></polyline><path style="stroke-width:126;stroke-linecap:butt;" d="M 4724,9448 A 4660 4660  0  0  1  8598  9259"></path><path style="stroke-width:174;stroke-linecap:butt;" d="M 4488,9685 A 4228 4228  0  0  0   472  9732"></path><path style="stroke-width:126;stroke-linecap:butt;" d="M 4724,3590 A 4241 4241  0  0  1  8598  3496"></path><path style="stroke-width:126;stroke-linecap:round;" d="M 850,3496  A 4241 4241  0  0  1  4724  3590"></path><path style="stroke-width:126;stroke-linecap:round;" d="M 850,9259  A 4507 4507  0  0  1  4724  9448"></path><polyline points="5385,4299 4062,8125" style="stroke-width:300; stroke-linejoin:miter; stroke-linecap:round;"></polyline><polyline points="8598,3496 8598,9259" style="stroke-width:126; stroke-linejoin:miter; stroke-linecap:round;"></polyline><polyline points="850,3496 850,9259" style="stroke-width:126; stroke-linejoin:miter; stroke-linecap:round;"></polyline><polyline points="4960,9685 4488,9685" style="stroke-width:174; stroke-linejoin:miter; stroke-linecap:round;"></polyline><polyline points="3070,4582 1889,6141 3070,7700" style="stroke-width:300; stroke-linejoin:miter; stroke-linecap:round;"></polyline><polyline points="6418,4582 7600,6141 6418,7700" style="stroke-width:300; stroke-linejoin:miter; stroke-linecap:round;"></polyline><polyline points="8976,3590 8976,9732" style="stroke-width:174; stroke-linejoin:miter; stroke-linecap:round;"></polyline><path style="stroke-width:174;stroke-linecap:butt;" d="M 4960,9685 A 4228 4228  0  0  1  8976  9732"></path></g></svg></div></a><a class="runestone-link" href="https://runestone.academy" title="Runestone Academy"><img class="logo" alt="Runestone Academy logo" src="data:image/png;base64,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"></a><a class="mathjax-link" href="https://www.mathjax.org" title="MathJax"><img class="logo" alt="MathJax logo" src="data:image/png;base64,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"></a>
+</div>
+<script src="external/print-button.js"></script>
+</body>
+</html>

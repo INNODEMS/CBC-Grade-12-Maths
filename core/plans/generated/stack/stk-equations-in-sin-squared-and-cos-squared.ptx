@@ -1,0 +1,5 @@
+<stack-static>
+    <statement><p><p>Solve <m>{2}\sin^2 x = {5}\cos^2 x</m> for <m>0^\circ \le x \le 360^\circ</m>. Give angles that are not whole numbers to 1 decimal place.</p><div><m>x \in</m> <fillin characters="20" name="ans1"/>  </div></p></statement>
+    <solution><p><p>Divide both sides by <m>{2}\cos^2 x</m>. Since <m>\dfrac{\sin x}{\cos x} = \tan x</m>,</p><p><me>\tan^2 x = {\frac{5}{2}}, \qquad \tan x = {\frac{\sqrt{5}}{\sqrt{2}}} \text{ or } \tan x = -{\frac{\sqrt{5}}{\sqrt{2}}}.</me></p><p><m>\tan x = {\frac{\sqrt{5}}{\sqrt{2}}}</m> gives <m>x = {57.7^\circ}</m> (calculator) and <m>180^\circ + {57.7^\circ}</m>; <m>\tan x = -{\frac{\sqrt{5}}{\sqrt{2}}}</m> gives <m>180^\circ - {57.7^\circ}</m> and <m>360^\circ - {57.7^\circ}</m>, because tan repeats every <m>180^\circ</m>.</p><p>So <m>x \in {\{57.7^\circ, 122.3^\circ, 237.7^\circ, 302.3^\circ\}}</m>.</p><p>No solution is lost by dividing: if <m>\cos x = 0</m> then <m>\sin^2 x = 1</m>, and the left side is <m>{2}</m>, not <m>0</m>.</p></p></solution>
+    <answer><p><m>\left \{57.7 , 122.3 , 237.7 , 302.3 \right \}</m></p></answer>
+</stack-static>

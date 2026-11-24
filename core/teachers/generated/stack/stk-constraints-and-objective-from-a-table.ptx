@@ -1,0 +1,13 @@
+<stack-static>
+    <statement><p><p>A candle maker in Kisumu makes boxes of plain candles and boxes of scented candles. The table shows what each item needs, what is available, and the profit on each item. Let <m>x</m> be the number of boxes of plain candles and <m>y</m> the number of boxes of scented candles.</p><tabular border="1" style="border-collapse:collapse;text-align:center;"><row><cell style="padding:4px 10px;">Resource</cell><cell style="padding:4px 10px;">One of the boxes of plain candles (<m>x</m>)</cell><cell style="padding:4px 10px;">One of the boxes of scented candles (<m>y</m>)</cell><cell style="padding:4px 10px;">Available</cell></row><row><cell style="padding:4px 10px;">Wax (kg)</cell><cell><m>{7}</m></cell><cell><m>{1}</m></cell><cell><m>{125}</m></cell></row><row><cell style="padding:4px 10px;">Time (hours)</cell><cell><m>{7}</m></cell><cell><m>{4}</m></cell><cell><m>{165}</m></cell></row><row><cell style="padding:4px 10px;">Profit (Ksh)</cell><cell><m>{350}</m></cell><cell><m>{200}</m></cell><cell/></row></tabular><p>(a) Write the inequality for the first resource, Wax (kg).</p><div><fillin characters="18" name="ans1"/>  </div><p>(b) Write the inequality for the second resource, Time (hours).</p><div><fillin characters="18" name="ans2"/>  </div><p>(c) Write the profit <m>P</m>, in Ksh, in terms of <m>x</m> and <m>y</m>.</p><div><m>P =</m> <fillin characters="14" name="ans3"/>  </div><p>(d) Can they make <m>{4}</m> boxes of plain candles and <m>{14}</m> boxes of scented candles?</p><div><ol marker="(1)">
+<li>No: it needs more than they have of the second resource (time).</li>
+<li>Yes: the plan satisfies both conditions.</li>
+<li>No: it needs more than they have of both resources.</li>
+<li>No: it needs more than they have of the first resource (wax).</li>
+</ol>  </div></p></statement>
+    <solution><p><p>Each row of the table is one resource and gives one constraint: multiply each number by its letter, add, and compare with the amount available.</p><p>(a) <m>{y+7 x\leq 125}</m></p><p>(b) <m>{4 y+7 x\leq 165}</m></p><p>(c) <m>P = {200 y+350 x}</m>. The profit is the objective function: it is not a constraint.</p><p>(d) Put <m>x = {4}</m>, <m>y = {14}</m> into each inequality. First resource: <m>{7} \times {4} + {1} \times {14} = {42}</m>, at most the <m>{125}</m> available. Second resource: <m>{7} \times {4} + {4} \times {14} = {84}</m>, at most the <m>{165}</m> available. So the answer is: Yes: the plan satisfies both conditions.</p></p></solution>
+    <answer><p><m>y+7 x\leq 125</m></p></answer>
+    <answer><p><m>4 y+7 x\leq 165</m></p></answer>
+    <answer><p><m>200 y+350 x</m></p></answer>
+    <answer><p><m>(2)</m></p></answer>
+</stack-static>

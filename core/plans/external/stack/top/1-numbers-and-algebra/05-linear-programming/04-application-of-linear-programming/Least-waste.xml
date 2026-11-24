@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<quiz>
+<question type="stack">
+  <name><text>Least waste</text></name>
+  <questiontext format="html">
+    <text><![CDATA[<p>{@E[1]@}</p><p>Type \(\le\) as <code>&lt;=</code> and \(\ge\) as <code>&gt;=</code>, for example <code>4x+9y&lt;=72</code>. Use the letters x and y as defined in the question.</p><p>(a) Write the inequality that makes sure there is enough.</p><div>[[input:ans1]] [[validation:ans1]] [[feedback:prt1]]</div><p>(b) Find the whole-number plan with the least waste. \(x =\) [[input:ans2]] [[validation:ans2]] \(y =\) [[input:ans3]] [[validation:ans3]]</p><div>[[feedback:prt2]]</div><p>(c) How many {@un@} are wasted with your plan? [[input:ans4]] [[validation:ans4]] [[feedback:prt3]]</p>]]></text>
+  </questiontext>
+  <generalfeedback format="html">
+    <text><![CDATA[<p>(a) \({@ta1@}\), with \({@uc@}x + {@ud@}y \le {@RR@}\), \(x \ge 0\), \(y \ge 0\).</p><p>(b) The waste is \(W = {@ga@}x + {@gb@}y - {@NN@}\). Test the whole-number plans of R near the line \({@ga@}x + {@gb@}y = {@NN@}\): the least waste is at \(x = {@bst[1]@}\), \(y = {@bst[2]@}\).</p><p>(c) \({@ga@} \times {@bst[1]@} + {@gb@} \times {@bst[2]@} - {@NN@} = {@W@}\) {@un@}. Making the most of what you have is the same as making the least waste.</p>]]></text>
+  </generalfeedback>
+  <defaultgrade>3</defaultgrade>
+  <penalty>0.1</penalty>
+  <hidden>0</hidden>
+  <idnumber></idnumber>
+  <stackversion><text>2026063000</text></stackversion>
+  <questionvariables>
+    <text><![CDATA[/* Design: least waste (waste-reduction PCI). Source: original. The least waste is unique and at least 2 below the next; the best plan uses both items.
+   fw: the plan with the fewest items when it is not the best (entries 3, 6, 7), else [-1, -1] so its node never fires. */
+/* lincan(q): canonical form of a linear inequality in x and y: [strict?, [a, b, c]] meaning a*x + b*y + c (< or <=) 0 */
+lincan(q) := block([r, d, s], r: op(q), d: expand(lhs(q) - rhs(q)),
+    if r = ">" or r = ">=" then d: -d,
+    s: is(r = "<" or r = ">"),
+    [s, map(lambda([t], float(t)), [coeff(d, x), coeff(d, y), subst([x = 0, y = 0], d)])]);
+lpar(u, v) := is(abs(u[1]*v[2] - u[2]*v[1]) + abs(u[1]*v[3] - u[3]*v[1]) + abs(u[2]*v[3] - u[3]*v[2]) < 1/10^9 * (abs(u[1]) + abs(u[2]) + abs(u[3])) * (abs(v[1]) + abs(v[2]) + abs(v[3])));
+ldot(u, v) := u[1]*v[1] + u[2]*v[2] + u[3]*v[3];
+/* lcls(L, T): "same" region; "dir" same boundary, other side, same strictness; "strict" same side, other strictness; "both"; "other" */
+lcls(L, T) := block([l: lincan(L), t: lincan(T)],
+    if not lpar(l[2], t[2]) then "other"
+    elseif ldot(l[2], t[2]) > 0 then (if l[1] = t[1] then "same" else "strict")
+    elseif l[1] = t[1] then "dir" else "both");
+/* the validator: an inequality in x and y, linear */
+validate_ineq(ex) := block([e: ev(ex, simp), d],
+    if atom(e) or not member(op(e), ["<", "<=", ">", ">="]) then
+        "Type an inequality using <, <=, > or >=, for example 2*x+3*y<=60. An equation with = is not an inequality."
+    elseif listofvars(e) = [] or not every(lambda([v], member(v, [x, y])), listofvars(e)) then "Use only the letters x and y."
+    else (d: ev(expand(lhs(e) - rhs(e)), simp),
+          if not ev(polynomialp(d, [x, y]), simp) then
+              "This inequality should be linear: only numbers times x and y, added or subtracted."
+          elseif ev(hipow(d, x), simp) > 1 or ev(hipow(d, y), simp) > 1 or not freeof(x, ev(coeff(d, y), simp)) then
+              "This inequality should be linear: no powers or products of x and y." else ""));
+/* mkineq([a, b, rel, c]): the inequality a*x + b*y rel c */
+mkineq(L) := if L[3] = "<=" then L[1]*x + L[2]*y <= L[4] elseif L[3] = "<" then L[1]*x + L[2]*y < L[4]
+    elseif L[3] = ">=" then L[1]*x + L[2]*y >= L[4] else L[1]*x + L[2]*y > L[4];
+Q43L: [["A day school kitchen in Embu must serve at least \\(219\\) servings of lunch. A small pot of githeri gives \\(31\\) servings and a pot of rice gives \\(18\\). A pot of githeri uses \\(8\\) bundles of firewood and a pot of rice uses \\(3\\); there are \\(48\\) bundles. Let \\(x\\) be the number of pots of githeri and \\(y\\) the number of pots of rice. Food cooked beyond what is needed is wasted.",31,18,219,8,3,48,[3,7],0,[-1,-1],0,[0,13],[0,17],"servings"],
+["A caterer at a wedding in Kisumu must provide at least \\(507\\) servings. A tray of pilau gives \\(60\\) servings and a tray of chapati gives \\(43\\). A tray of pilau uses \\(8\\) kg of charcoal and a tray of chapati uses \\(1\\) kg; there are \\(29\\) kg of charcoal. Let \\(x\\) be the number of trays of pilau and \\(y\\) the number of trays of chapati. Food cooked beyond what is needed is wasted.",60,43,507,8,1,29,[2,9],0,[-1,-1],0,[0,12],[1,22],"servings"],
+["A dairy cooperative in Nyeri must deliver at least \\(326\\) litres of milk to a school. A large churn holds \\(79\\) litres and a small churn holds \\(50\\) litres, and every churn sent is filled. Sending a large churn costs Ksh \\(900\\) and a small churn Ksh \\(100\\); the budget is Ksh \\(6800\\). Let \\(x\\) be the number of large churns and \\(y\\) the number of small churns. Milk beyond the order goes sour and is wasted.",79,50,326,9,1,68,[1,5],3,[3,2],11,[0,7],[5,24],"litres"],
+["A feed store in Nakuru must supply at least \\(358\\) kg of layers mash to a farmer. A large bag holds \\(45\\) kg and a small bag holds \\(37\\) kg. Delivering a large bag costs Ksh \\(700\\) and a small bag Ksh \\(100\\); the delivery budget is Ksh \\(3700\\). Let \\(x\\) be the number of large bags and \\(y\\) the number of small bags. Mash beyond the order goes stale and is wasted.",45,37,358,7,1,37,[4,5],7,[-1,-1],7,[0,10],[2,24],"kg"],
+["A water project near Garissa must bring at least \\(274\\) jerrycans of water to a village in a day. A tractor-bowser trip brings \\(44\\) jerrycans and a trip by a pickup with a water tank brings \\(28\\). A tractor-bowser trip costs Ksh \\(700\\) in fuel and a pickup trip Ksh \\(200\\); there is Ksh \\(4900\\) a day. Let \\(x\\) be the number of tractor-bowser trips and \\(y\\) the number of pickup trips. Water beyond what the village can store is wasted.",44,28,274,7,2,49,[5,2],2,[-1,-1],2,[0,10],[0,25],"jerrycans"],
+["A school in Machakos must give at least \\(288\\) learners a packet of milk. A crate holds \\(59\\) packets and a box holds \\(46\\) packets. A crate costs Ksh \\(900\\) and a box Ksh \\(700\\); the budget is Ksh \\(5400\\). Let \\(x\\) be the number of crates and \\(y\\) the number of boxes. Packets beyond one a learner go off and are wasted.",59,46,288,9,7,54,[1,5],1,[5,0],7,[0,7],[0,8],"packets"],
+["A church in Naivasha must serve at least \\(160\\) cups of tea after a fundraising service. An urn makes \\(27\\) cups and a flask makes \\(17\\) cups. Preparing an urn takes \\(7\\) minutes of volunteers' time and a flask \\(3\\) minutes; there are \\(37\\) minutes. Let \\(x\\) be the number of urns and \\(y\\) the number of flasks. Tea made beyond what is needed is poured away.",27,17,160,7,3,37,[1,8],3,[3,5],6,[0,10],[0,13],"cups"],
+["A relief agency in Turkana must give out at least \\(379\\) kg of maize flour. A large sack holds \\(89\\) kg and a small sack holds \\(47\\) kg. Transporting a large sack costs Ksh \\(900\\) and a small sack Ksh \\(100\\); the budget is Ksh \\(4700\\). Let \\(x\\) be the number of large sacks and \\(y\\) the number of small sacks. Flour beyond what is needed spoils in the store and is wasted.",89,47,379,9,1,47,[4,1],24,[-1,-1],24,[0,9],[3,21],"kg"],
+["A dairy stand at a school sports day in Nyeri must fill at least \\(301\\) cups of yoghurt. A large container fills \\(73\\) cups and a small container fills \\(45\\). A large container takes \\(8\\) units of fridge space and a small one \\(1\\) unit; there are \\(77\\) units. Let \\(x\\) be the number of large containers and \\(y\\) the number of small containers. Yoghurt beyond the cups ordered is wasted.",73,45,301,8,1,77,[3,2],8,[-1,-1],8,[0,7],[7,22],"cups"],
+["A builder in Thika needs at least \\(335\\) wheelbarrows of concrete. A large mixer load gives \\(34\\) wheelbarrows and a small load gives \\(31\\). A large load uses \\(6\\) bags of cement and a small load uses \\(5\\); there are \\(77\\) bags. Let \\(x\\) be the number of large loads and \\(y\\) the number of small loads. Concrete beyond what is needed sets and is wasted.",34,31,335,6,5,77,[9,1],2,[-1,-1],2,[0,11],[0,16],"wheelbarrows of concrete"]];
+ix: 1+rand(10);
+E: Q43L[ix];
+ga: E[2]; gb: E[3]; NN: E[4]; uc: E[5]; ud: E[6]; RR: E[7]; bst: E[8]; W: E[9]; fw: E[10]; Wfew: E[11]; pw: E[12]; ol: E[13]; un: E[14];
+ta1: ga*x+gb*y>=NN; sw1: gb*x+ga*y>=NN; dr1: ga*x+gb*y<=NN;
+Wof(u, w) := ga*u + gb*w - NN;
+wpw: Wof(pw[1], pw[2]);
+validate_int(ex) := if integerp(ev(ex, simp)) then "" else "Type whole numbers.";
+]]></text>
+  </questionvariables>
+  <specificfeedback format="html"><text><![CDATA[]]></text></specificfeedback>
+  <questionnote format="moodle_auto_format">
+    <text>ix={@ix@}, best ({@bst[1]@}, {@bst[2]@}), W={@W@}</text>
+  </questionnote>
+  <questiondescription format="html"><text><![CDATA[<p id="concept">Linear Programming: least waste</p><p id="description">Grade 12 CBE Core 1.4 (d, e) / Essential 1.4 (d, e): Write an at-least requirement, then find the whole-number plan within a limit that leaves the least waste, and the amount wasted.</p><p id="edition">Core and Essential</p><p id="provenance">This question is original to this project.</p><p id="citation">INNODEMS CBC Grade 12 Mathematics, first draft by Ben Davies, 2026. Aligned to the KICD Senior School Curriculum Design, Core and Essential Mathematics Grade 12 (draft).</p>]]></text></questiondescription>
+  <questionsimplify>1</questionsimplify>
+  <assumepositive>0</assumepositive>
+  <assumereal>0</assumereal>
+  <prtcorrect format="html"><text><![CDATA[[[commonstring key="symbolicprtcorrectfeedback"/]] [[commonstring key="defaultprtcorrectfeedback"/]]]]></text></prtcorrect>
+  <prtpartiallycorrect format="html"><text><![CDATA[[[commonstring key="symbolicprtpartiallycorrectfeedback"/]] [[commonstring key="defaultprtpartiallycorrectfeedback"/]]]]></text></prtpartiallycorrect>
+  <prtincorrect format="html"><text><![CDATA[[[commonstring key="symbolicprtincorrectfeedback"/]] [[commonstring key="defaultprtincorrectfeedback"/]]]]></text></prtincorrect>
+  <decimals>.</decimals>
+  <scientificnotation>*10</scientificnotation>
+  <multiplicationsign>none</multiplicationsign>
+  <sqrtsign>1</sqrtsign>
+  <complexno>i</complexno>
+  <inversetrig>cos-1</inversetrig>
+  <logicsymbol>lang</logicsymbol>
+  <matrixparens>[</matrixparens>
+  <isbroken>0</isbroken>
+  <variantsselectionseed></variantsselectionseed>
+
+  <input><name>ans1</name><type>algebraic</type><tans>ta1</tans><boxsize>18</boxsize><strictsyntax>1</strictsyntax><insertstars>4</insertstars><syntaxhint></syntaxhint><syntaxattribute>0</syntaxattribute><forbidwords></forbidwords><allowwords></allowwords><forbidfloat>0</forbidfloat><requirelowestterms>0</requirelowestterms><checkanswertype>0</checkanswertype><mustverify>0</mustverify><showvalidation>1</showvalidation><options>validator:validate_ineq</options></input>
+  <input><name>ans2</name><type>numerical</type><tans>bst[1]</tans><boxsize>4</boxsize><strictsyntax>1</strictsyntax><insertstars>0</insertstars><syntaxhint></syntaxhint><syntaxattribute>0</syntaxattribute><forbidwords></forbidwords><allowwords></allowwords><forbidfloat>1</forbidfloat><requirelowestterms>0</requirelowestterms><checkanswertype>0</checkanswertype><mustverify>0</mustverify><showvalidation>0</showvalidation><options>validator:validate_int</options></input>
+  <input><name>ans3</name><type>numerical</type><tans>bst[2]</tans><boxsize>4</boxsize><strictsyntax>1</strictsyntax><insertstars>0</insertstars><syntaxhint></syntaxhint><syntaxattribute>0</syntaxattribute><forbidwords></forbidwords><allowwords></allowwords><forbidfloat>1</forbidfloat><requirelowestterms>0</requirelowestterms><checkanswertype>0</checkanswertype><mustverify>0</mustverify><showvalidation>0</showvalidation><options>validator:validate_int</options></input>
+  <input><name>ans4</name><type>numerical</type><tans>W</tans><boxsize>6</boxsize><strictsyntax>1</strictsyntax><insertstars>0</insertstars><syntaxhint></syntaxhint><syntaxattribute>0</syntaxattribute><forbidwords></forbidwords><allowwords></allowwords><forbidfloat>0</forbidfloat><requirelowestterms>0</requirelowestterms><checkanswertype>0</checkanswertype><mustverify>0</mustverify><showvalidation>0</showvalidation><options></options></input>
+
+  <prt><name>prt1</name><value>1.0000000</value><autosimplify>1</autosimplify><feedbackstyle>1</feedbackstyle><feedbackvariables><text><![CDATA[k1: lcls(ans1, ta1); w1: lcls(ans1, sw1);]]></text></feedbackvariables>
+    <node><name>0</name><description>Requirement</description><answertest>AlgEquiv</answertest><sans>k1</sans><tans>"same"</tans><testoptions></testoptions><quiet>0</quiet><truescoremode>=</truescoremode><truescore>1.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt1-1-T</trueanswernote><truefeedback format="html"><text><![CDATA[]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>1</falsenextnode><falseanswernote>prt1-1-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>1</name><description>Wrong direction</description><answertest>AlgEquiv</answertest><sans>k1</sans><tans>"dir"</tans><testoptions></testoptions><quiet>0</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt1-2-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>Your inequality says the total is \({@NN@}\) {@un@} or less. &lsquo;At least \({@NN@}\)&rsquo; means the total cannot go below \({@NN@}\).</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>2</falsenextnode><falseanswernote>prt1-2-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>2</name><description>Amounts swapped</description><answertest>AlgEquiv</answertest><sans>w1</sans><tans>"same"</tans><testoptions></testoptions><quiet>0</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt1-3-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>You matched the amounts to the wrong letters: each of the \(x\) items gives \({@ga@}\) {@un@}.</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>-1</falsenextnode><falseanswernote>prt1-3-F</falseanswernote><falsefeedback format="html"><text><![CDATA[<p>Total = (amount from one) \(\times\, x\) + (amount from the other) \(\times\, y\), and it must be at least \({@NN@}\).</p>]]></text></falsefeedback></node>
+  </prt>
+  <prt><name>prt2</name><value>1.0000000</value><autosimplify>1</autosimplify><feedbackstyle>1</feedbackstyle><feedbackvariables><text><![CDATA[enough: is(ga*ans2 + gb*ans3 >= NN); lim: is(uc*ans2 + ud*ans3 <= RR and ans2 >= 0 and ans3 >= 0);]]></text></feedbackvariables>
+    <node><name>0</name><description>Enough</description><answertest>AlgEquiv</answertest><sans>enough</sans><tans>true</tans><testoptions></testoptions><quiet>0</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>1</truenextnode><trueanswernote>prt2-1-T</trueanswernote><truefeedback format="html"><text><![CDATA[]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>-1</falsenextnode><falseanswernote>prt2-1-F</falseanswernote><falsefeedback format="html"><text><![CDATA[<p>Your plan gives \({@ga*ans2+gb*ans3@}\) {@un@}, less than \({@NN@}\).</p>]]></text></falsefeedback></node>
+    <node><name>1</name><description>Within the limit</description><answertest>AlgEquiv</answertest><sans>lim</sans><tans>true</tans><testoptions></testoptions><quiet>0</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>2</truenextnode><trueanswernote>prt2-2-T</trueanswernote><truefeedback format="html"><text><![CDATA[]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>-1</falsenextnode><falseanswernote>prt2-2-F</falseanswernote><falsefeedback format="html"><text><![CDATA[<p>Your plan needs \({@uc*ans2+ud*ans3@}\), more than the \({@RR@}\) available.</p>]]></text></falsefeedback></node>
+    <node><name>2</name><description>Least waste</description><answertest>AlgEquiv</answertest><sans>Wof(ans2, ans3)</sans><tans>W</tans><testoptions></testoptions><quiet>0</quiet><truescoremode>=</truescoremode><truescore>1.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt2-3-T</trueanswernote><truefeedback format="html"><text><![CDATA[]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>3</falsenextnode><falseanswernote>prt2-3-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>3</name><description>Fewest items</description><answertest>AlgEquiv</answertest><sans>[ans2, ans3]</sans><tans>fw</tans><testoptions></testoptions><quiet>1</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt2-4-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>That plan uses the fewest items but leaves \({@Wfew@}\) {@un@} over; another plan leaves less.</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>-1</falsenextnode><falseanswernote>prt2-4-F</falseanswernote><falsefeedback format="html"><text><![CDATA[<p>Your plan leaves \({@Wof(ans2, ans3)@}\) {@un@} over. Try other plans near the line \({@ga@}x + {@gb@}y = {@NN@}\).</p>]]></text></falsefeedback></node>
+  </prt>
+  <prt><name>prt3</name><value>1.0000000</value><autosimplify>1</autosimplify><feedbackstyle>1</feedbackstyle><feedbackvariables><text><![CDATA[]]></text></feedbackvariables>
+    <node><name>0</name><description>Waste</description><answertest>NumAbsolute</answertest><sans>ans4</sans><tans>W</tans><testoptions>0.001</testoptions><quiet>0</quiet><truescoremode>=</truescoremode><truescore>1.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt3-1-T</trueanswernote><truefeedback format="html"><text><![CDATA[]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>1</falsenextnode><falseanswernote>prt3-1-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>1</name><description>Follow-through</description><answertest>NumAbsolute</answertest><sans>ans4</sans><tans>Wof(ans2, ans3)</tans><testoptions>0.001</testoptions><quiet>0</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt3-2-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>That is right for your plan in (b), but your plan is not the one with the least waste.</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>2</falsenextnode><falseanswernote>prt3-2-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>2</name><description>Total, not waste</description><answertest>NumAbsolute</answertest><sans>ans4</sans><tans>ga*ans2 + gb*ans3</tans><testoptions>0.001</testoptions><quiet>0</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt3-3-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>That is the total made. The waste is the total minus \({@NN@}\).</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>-1</falsenextnode><falseanswernote>prt3-3-F</falseanswernote><falsefeedback format="html"><text><![CDATA[<p>Your plan in (b) makes \({@ga@} \times {@ans2@} + {@gb@} \times {@ans3@}\) {@un@}. The waste is what is left over after the \({@NN@}\) needed.</p>]]></text></falsefeedback></node>
+  </prt>
+
+  <deployedseed>4</deployedseed>
+  <deployedseed>5</deployedseed>
+  <deployedseed>15</deployedseed>
+  <deployedseed>8</deployedseed>
+  <deployedseed>24</deployedseed>
+  <deployedseed>1</deployedseed>
+  <deployedseed>3</deployedseed>
+  <deployedseed>10</deployedseed>
+  <deployedseed>2</deployedseed>
+  <deployedseed>17</deployedseed>
+  <qtest><testcase>1</testcase><description>Correct</description>
+    <testinput><name>ans1</name><value>ta1</value></testinput>
+    <testinput><name>ans2</name><value>bst[1]</value></testinput>
+    <testinput><name>ans3</name><value>bst[2]</value></testinput>
+    <testinput><name>ans4</name><value>W</value></testinput>
+    <expected><name>prt1</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt1-1-T</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt2-1-T | prt2-2-T | prt2-3-T</expectedanswernote></expected>
+    <expected><name>prt3</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt3-1-T</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>2</testcase><description>Another plan in R; its waste</description>
+    <testinput><name>ans1</name><value>NN&lt;=ga*x+gb*y</value></testinput>
+    <testinput><name>ans2</name><value>pw[1]</value></testinput>
+    <testinput><name>ans3</name><value>pw[2]</value></testinput>
+    <testinput><name>ans4</name><value>wpw</value></testinput>
+    <expected><name>prt1</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt1-1-T</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt2-1-T | prt2-2-T | prt2-3-F | prt2-4-F</expectedanswernote></expected>
+    <expected><name>prt3</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt3-1-F | prt3-2-T</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>3</testcase><description>Wrong direction; too little; the total</description>
+    <testinput><name>ans1</name><value>dr1</value></testinput>
+    <testinput><name>ans2</name><value>1</value></testinput>
+    <testinput><name>ans3</name><value>1</value></testinput>
+    <testinput><name>ans4</name><value>ga+gb</value></testinput>
+    <expected><name>prt1</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt1-1-F | prt1-2-T</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt2-1-F</expectedanswernote></expected>
+    <expected><name>prt3</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt3-1-F | prt3-2-F | prt3-3-T</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>4</testcase><description>Amounts swapped; over the limit; generic</description>
+    <testinput><name>ans1</name><value>sw1</value></testinput>
+    <testinput><name>ans2</name><value>ol[1]</value></testinput>
+    <testinput><name>ans3</name><value>ol[2]</value></testinput>
+    <testinput><name>ans4</name><value>W+1000</value></testinput>
+    <expected><name>prt1</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt1-1-F | prt1-2-F | prt1-3-T</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt2-1-T | prt2-2-F</expectedanswernote></expected>
+    <expected><name>prt3</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt3-1-F | prt3-2-F | prt3-3-F</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>5</testcase><description>Generic inequality</description>
+    <testinput><name>ans1</name><value>ga*x+gb*y&gt;=NN+1</value></testinput>
+    <testinput><name>ans2</name><value>bst[1]</value></testinput>
+    <testinput><name>ans3</name><value>bst[2]</value></testinput>
+    <testinput><name>ans4</name><value>W</value></testinput>
+    <expected><name>prt1</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt1-1-F | prt1-2-F | prt1-3-F</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt2-1-T | prt2-2-T | prt2-3-T</expectedanswernote></expected>
+    <expected><name>prt3</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt3-1-T</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>6</testcase><description>Invalid: an expression in (a)</description>
+    <testinput><name>ans1</name><value>ga*x+gb*y</value></testinput>
+    <testinput><name>ans2</name><value>bst[1]</value></testinput>
+    <testinput><name>ans3</name><value>bst[2]</value></testinput>
+    <testinput><name>ans4</name><value>W</value></testinput>
+    <expected><name>prt1</name><expectedscore></expectedscore><expectedpenalty></expectedpenalty><expectedanswernote>NULL</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt2-1-T | prt2-2-T | prt2-3-T</expectedanswernote></expected>
+    <expected><name>prt3</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt3-1-T</expectedanswernote></expected>
+  </qtest>
+</question>
+</quiz>

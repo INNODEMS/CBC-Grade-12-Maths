@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<quiz>
+<question type="stack">
+  <name><text>A new position after moving</text></name>
+  <questiontext format="html">
+    <text><![CDATA[<p>A ship is at \(P({@lat0@}^\circ\,\mathrm{[[if test="n0"]]N[[else]]S[[/if]]}, {@lon0@}^\circ\,\mathrm{[[if test="e0"]]E[[else]]W[[/if]]})\).</p><p>(a) It sails [[if test="is(d1=1)"]]due north[[else]]due south[[/if]] along its meridian through \({@dphi@}^\circ\) of latitude. Give its new latitude.</p><p>[[input:ans1]] \(^\circ\) [[input:ans2]] [[validation:ans1]] [[feedback:prt1]]</p><p>(b) Instead, it sails [[if test="is(d2=1)"]]due east[[else]]due west[[/if]] along its parallel through \({@dlam@}^\circ\) of longitude. Give its new longitude.</p><p>[[input:ans3]] \(^\circ\) [[input:ans4]] [[validation:ans3]] [[feedback:prt2]]</p>]]></text>
+  </questiontext>
+  <generalfeedback format="html">
+    <text><![CDATA[<p>(a) Count along the meridian, with the equator as \(0^\circ\). [[if test="xeq"]]The first \({@lat0@}^\circ\) take the ship to the equator; the remaining \({@dphi-lat0@}^\circ\) take it into the other hemisphere.[[else]][[if test="away"]]The ship moves away from the equator, so its latitude grows: \({@lat0@}^\circ + {@dphi@}^\circ\).[[else]]The ship moves towards the equator but does not reach it: \({@lat0@}^\circ - {@dphi@}^\circ\).[[/if]][[/if]] New latitude: \({@lat1@}^\circ\,\mathrm{[[if test="n1"]]N[[else]]S[[/if]]}\).</p><p>(b) Think of longitude as a number line from \(180^\circ\,\mathrm{W}\) through \(0^\circ\) to \(180^\circ\,\mathrm{E}\), joined up at \(180^\circ\). [[if test="x180"]]The ship passes the \(180^\circ\) meridian: counting on gives \({@unred@}^\circ\), which is \(360^\circ - {@unred@}^\circ = {@lon1@}^\circ\) on the other side.[[else]][[if test="xgr"]]The ship crosses the Greenwich meridian, so the letter changes.[[else]]The ship stays on the same side of Greenwich.[[/if]][[/if]] New longitude: \({@lon1@}^\circ\,\mathrm{[[if test="e1"]]E[[else]]W[[/if]]}\).</p>]]></text>
+  </generalfeedback>
+  <defaultgrade>2</defaultgrade>
+  <penalty>0.1</penalty>
+  <hidden>0</hidden>
+  <idnumber></idnumber>
+  <stackversion><text>2026063000</text></stackversion>
+  <questionvariables>
+    <text><![CDATA[cosd(x) := cos(x*%pi/180);
+sind(x) := sin(x*%pi/180);
+atand(x) := 180*atan(x)/%pi;
+asind(x) := 180*asin(x)/%pi;
+two(v) := if v < 10 then sconcat("0", string(v)) else string(v);
+hm(m) := block([q], q: mod(m, 1440), sconcat(two(floor(q/60)), ":", two(mod(q, 60))));
+dmx(m) := sconcat(string(floor(m/60)), "^\\circ", two(mod(m, 60)), "'");
+/* Design: [lat0, N/S, d1 (1 north, -1 south), dphi, lon0, E/W, d2 (1 east, -1 west), dlam]. Signed: north and east positive. The wrong-operation node applies on every entry (added when the ship moves towards the equator, subtracted when it moves away). Source: original. */
+Q: [[5,"N",-1,12,170,"E",1,25],[3,"S",1,9,20,"W",1,35],[12,"N",1,15,8,"E",-1,30],[20,"S",-1,18,150,"W",-1,40],[8,"S",1,20,35,"E",1,40],[15,"N",-1,10,160,"E",1,15],[2,"N",-1,14,12,"W",1,20],[25,"S",1,7,100,"E",-1,45],[6,"S",1,30,165,"W",-1,30],[10,"N",-1,6,5,"E",-1,25]];
+ix: 1+rand(10);
+E: Q[ix];
+lat0: E[1]; ns0: E[2]; d1: E[3]; dphi: E[4]; lon0: E[5]; ew0: E[6]; d2: E[7]; dlam: E[8];
+s0: if ns0="N" then lat0 else -lat0;
+s1: s0+d1*dphi;
+g0: if ew0="E" then lon0 else -lon0;
+graw: g0+d2*dlam;
+g1: if graw>180 then graw-360 else (if graw<=-180 then graw+360 else graw);
+lat1: abs(s1); ns1: if s1>0 then "N" else "S"; lon1: abs(g1); ew1: if g1>0 then "E" else "W";
+nsw: if ns1="N" then "S" else "N"; eww: if ew1="E" then "W" else "E";
+xeq: is(s0*s1<0); away: is(s0*d1>0);
+wrA: if away then abs(lat0-dphi) else lat0+dphi;
+x180: is(abs(graw)>180); xgr: is(g0*graw<0);
+unred: abs(graw);
+n0: is(ns0="N"); e0: is(ew0="E"); n1: is(ns1="N"); e1: is(ew1="E");
+opt2: [["N", is(ns1="N"), "N"], ["S", is(ns1="S"), "S"]];
+opt4: [["E", is(ew1="E"), "E"], ["W", is(ew1="W"), "W"]];
+]]></text>
+  </questionvariables>
+  <specificfeedback format="html"><text><![CDATA[]]></text></specificfeedback>
+  <questionnote format="moodle_auto_format">
+    <text>ix={@ix@}, new lat {@lat1@}{@ns1@}, new long {@lon1@}{@ew1@}</text>
+  </questionnote>
+  <questiondescription format="html"><text><![CDATA[<p id="concept">Navigation: new position after moving</p><p id="description">Grade 12 CBE Core 2.7 (b) / Essential 2.3 (b): Find the new latitude or longitude of a ship after it sails along a meridian or a parallel, across the equator, Greenwich or the 180 degree meridian.</p><p id="edition">Core and Essential</p><p id="provenance">This question is original to this project.</p><p id="citation">INNODEMS CBC Grade 12 Mathematics, first draft by Ben Davies, 2026. Aligned to the KICD Senior School Curriculum Design, Core and Essential Mathematics Grade 12 (draft).</p>]]></text></questiondescription>
+  <questionsimplify>1</questionsimplify>
+  <assumepositive>0</assumepositive>
+  <assumereal>0</assumereal>
+  <prtcorrect format="html"><text><![CDATA[[[commonstring key="symbolicprtcorrectfeedback"/]] [[commonstring key="defaultprtcorrectfeedback"/]]]]></text></prtcorrect>
+  <prtpartiallycorrect format="html"><text><![CDATA[[[commonstring key="symbolicprtpartiallycorrectfeedback"/]] [[commonstring key="defaultprtpartiallycorrectfeedback"/]]]]></text></prtpartiallycorrect>
+  <prtincorrect format="html"><text><![CDATA[[[commonstring key="symbolicprtincorrectfeedback"/]] [[commonstring key="defaultprtincorrectfeedback"/]]]]></text></prtincorrect>
+  <decimals>.</decimals>
+  <scientificnotation>*10</scientificnotation>
+  <multiplicationsign>none</multiplicationsign>
+  <sqrtsign>1</sqrtsign>
+  <complexno>i</complexno>
+  <inversetrig>cos-1</inversetrig>
+  <logicsymbol>lang</logicsymbol>
+  <matrixparens>[</matrixparens>
+  <isbroken>0</isbroken>
+  <variantsselectionseed></variantsselectionseed>
+
+  <input><name>ans1</name><type>numerical</type><tans>lat1</tans><boxsize>4</boxsize><strictsyntax>1</strictsyntax><insertstars>0</insertstars><syntaxhint></syntaxhint><syntaxattribute>0</syntaxattribute><forbidwords></forbidwords><allowwords></allowwords><forbidfloat>1</forbidfloat><requirelowestterms>0</requirelowestterms><checkanswertype>0</checkanswertype><mustverify>0</mustverify><showvalidation>0</showvalidation><options></options></input>
+  <input><name>ans2</name><type>dropdown</type><tans>opt2</tans><boxsize>4</boxsize><strictsyntax>1</strictsyntax><insertstars>0</insertstars><syntaxhint></syntaxhint><syntaxattribute>0</syntaxattribute><forbidwords></forbidwords><allowwords></allowwords><forbidfloat>1</forbidfloat><requirelowestterms>0</requirelowestterms><checkanswertype>0</checkanswertype><mustverify>0</mustverify><showvalidation>0</showvalidation><options></options></input>
+  <input><name>ans3</name><type>numerical</type><tans>lon1</tans><boxsize>4</boxsize><strictsyntax>1</strictsyntax><insertstars>0</insertstars><syntaxhint></syntaxhint><syntaxattribute>0</syntaxattribute><forbidwords></forbidwords><allowwords></allowwords><forbidfloat>1</forbidfloat><requirelowestterms>0</requirelowestterms><checkanswertype>0</checkanswertype><mustverify>0</mustverify><showvalidation>0</showvalidation><options></options></input>
+  <input><name>ans4</name><type>dropdown</type><tans>opt4</tans><boxsize>4</boxsize><strictsyntax>1</strictsyntax><insertstars>0</insertstars><syntaxhint></syntaxhint><syntaxattribute>0</syntaxattribute><forbidwords></forbidwords><allowwords></allowwords><forbidfloat>1</forbidfloat><requirelowestterms>0</requirelowestterms><checkanswertype>0</checkanswertype><mustverify>0</mustverify><showvalidation>0</showvalidation><options></options></input>
+
+  <prt><name>prt1</name><value>1.0000000</value><autosimplify>1</autosimplify><feedbackstyle>1</feedbackstyle><feedbackvariables><text><![CDATA[c1: is(ans1=lat1 and ans2=ns1);
+z1: is(ans1=lat1);
+w1: is(ans1=wrA);
+ys: if ans2="N" then ans1 else -ans1;
+yd: ys-s0;]]></text></feedbackvariables>
+    <node><name>0</name><description>New latitude</description><answertest>AlgEquiv</answertest><sans>c1</sans><tans>true</tans><testoptions></testoptions><quiet>0</quiet><truescoremode>=</truescoremode><truescore>1.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt1-1-T</trueanswernote><truefeedback format="html"><text><![CDATA[]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>1</falsenextnode><falseanswernote>prt1-1-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>1</name><description>Letter wrong</description><answertest>AlgEquiv</answertest><sans>z1</sans><tans>true</tans><testoptions></testoptions><quiet>0</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt1-2-T</trueanswernote><truefeedback format="html"><text><![CDATA[[[if test="xeq"]]<p>The size is right, but the ship crossed the equator: sailing \({@dphi@}^\circ\) [[if test="is(d1=1)"]]due north[[else]]due south[[/if]] from \({@lat0@}^\circ\,\mathrm{[[if test="n0"]]N[[else]]S[[/if]]}\) takes it \({@lat1@}^\circ\) into the other hemisphere.</p>[[else]]<p>The size is right. Check N or S: the ship is still in the [[if test="n1"]]northern[[else]]southern[[/if]] hemisphere.</p>[[/if]]]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>2</falsenextnode><falseanswernote>prt1-2-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>2</name><description>Wrong operation</description><answertest>AlgEquiv</answertest><sans>w1</sans><tans>true</tans><testoptions></testoptions><quiet>0</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt1-3-T</trueanswernote><truefeedback format="html"><text><![CDATA[[[if test="xeq"]]<p>You added \({@dphi@}^\circ\) to \({@lat0@}^\circ\). The ship is moving towards the equator, and it reaches the equator after only \({@lat0@}^\circ\). Where does the rest of the move take it?</p>[[else]][[if test="away"]]<p>You took the difference between \({@lat0@}^\circ\) and \({@dphi@}^\circ\). The ship moves away from the equator, so its latitude grows.</p>[[else]]<p>You added \({@dphi@}^\circ\) to \({@lat0@}^\circ\). The ship moves towards the equator, so its latitude falls.</p>[[/if]][[/if]]]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>-1</falsenextnode><falseanswernote>prt1-3-F</falseanswernote><falsefeedback format="html"><text><![CDATA[<p>Your answer is [[if test="is(yd>0)"]]\({@yd@}^\circ\) north of[[else]][[if test="is(yd<0)"]]\({@-yd@}^\circ\) south of[[else]]the same as[[/if]][[/if]] the starting latitude, but the ship sailed \({@dphi@}^\circ\) [[if test="is(d1=1)"]]due north[[else]]due south[[/if]]. Draw the meridian with the equator marked, then count from \({@lat0@}^\circ\,\mathrm{[[if test="n0"]]N[[else]]S[[/if]]}\).</p>]]></text></falsefeedback></node>
+  </prt>
+  <prt><name>prt2</name><value>1.0000000</value><autosimplify>1</autosimplify><feedbackstyle>1</feedbackstyle><feedbackvariables><text><![CDATA[c2: is(ans3=lon1 and ans4=ew1);
+big: is(ans3>180);
+z2: is(ans3=lon1);
+yg: if ans4="E" then ans3 else -ans3;
+yd: mod(yg-g0+180,360)-180;]]></text></feedbackvariables>
+    <node><name>0</name><description>New longitude</description><answertest>AlgEquiv</answertest><sans>c2</sans><tans>true</tans><testoptions></testoptions><quiet>0</quiet><truescoremode>=</truescoremode><truescore>1.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt2-1-T</trueanswernote><truefeedback format="html"><text><![CDATA[]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>1</falsenextnode><falseanswernote>prt2-1-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>1</name><description>Over 180</description><answertest>AlgEquiv</answertest><sans>big</sans><tans>true</tans><testoptions></testoptions><quiet>0</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt2-2-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>Longitude only goes up to \(180^\circ\). Your \({@ans3@}^\circ\) is past the \(180^\circ\) meridian: measure it the shorter way round from Greenwich instead, which is the rest of the full turn of \(360^\circ\), and change the letter.</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>2</falsenextnode><falseanswernote>prt2-2-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>2</name><description>Letter wrong</description><answertest>AlgEquiv</answertest><sans>z2</sans><tans>true</tans><testoptions></testoptions><quiet>0</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt2-3-T</trueanswernote><truefeedback format="html"><text><![CDATA[[[if test="x180"]]<p>The size is right, but the ship crossed the \(180^\circ\) meridian, so the letter changes.</p>[[else]][[if test="xgr"]]<p>The size is right, but the ship crossed the Greenwich meridian, so the letter changes.</p>[[else]]<p>The size is right. Check E or W: the ship did not cross the Greenwich or the \(180^\circ\) meridian.</p>[[/if]][[/if]]]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>-1</falsenextnode><falseanswernote>prt2-3-F</falseanswernote><falsefeedback format="html"><text><![CDATA[<p>Your answer is [[if test="is(yd>0)"]]\({@yd@}^\circ\) east of[[else]][[if test="is(yd<0)"]]\({@-yd@}^\circ\) west of[[else]]the same as[[/if]][[/if]] the starting longitude, but the ship sailed \({@dlam@}^\circ\) [[if test="is(d2=1)"]]due east[[else]]due west[[/if]]. Moving east increases an east longitude and decreases a west one. Past \(0^\circ\) or \(180^\circ\), the letter changes.</p>]]></text></falsefeedback></node>
+  </prt>
+
+  <deployedseed>4</deployedseed>
+  <deployedseed>5</deployedseed>
+  <deployedseed>15</deployedseed>
+  <deployedseed>8</deployedseed>
+  <deployedseed>24</deployedseed>
+  <deployedseed>1</deployedseed>
+  <deployedseed>3</deployedseed>
+  <deployedseed>10</deployedseed>
+  <deployedseed>2</deployedseed>
+  <deployedseed>17</deployedseed>
+  <qtest><testcase>1</testcase><description>Correct</description>
+    <testinput><name>ans1</name><value>lat1</value></testinput>
+    <testinput><name>ans2</name><value>ns1</value></testinput>
+    <testinput><name>ans3</name><value>lon1</value></testinput>
+    <testinput><name>ans4</name><value>ew1</value></testinput>
+    <expected><name>prt1</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt1-1-T</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt2-1-T</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>2</testcase><description>Generic wrong, right letters</description>
+    <testinput><name>ans1</name><value>lat1+3</value></testinput>
+    <testinput><name>ans2</name><value>ns1</value></testinput>
+    <testinput><name>ans3</name><value>lon1+3</value></testinput>
+    <testinput><name>ans4</name><value>ew1</value></testinput>
+    <expected><name>prt1</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt1-1-F | prt1-2-F | prt1-3-F</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt2-1-F | prt2-2-F | prt2-3-F</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>3</testcase><description>Letters swapped</description>
+    <testinput><name>ans1</name><value>lat1</value></testinput>
+    <testinput><name>ans2</name><value>nsw</value></testinput>
+    <testinput><name>ans3</name><value>lon1</value></testinput>
+    <testinput><name>ans4</name><value>eww</value></testinput>
+    <expected><name>prt1</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt1-1-F | prt1-2-T</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt2-1-F | prt2-2-F | prt2-3-T</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>4</testcase><description>Wrong operation for latitude</description>
+    <testinput><name>ans1</name><value>wrA</value></testinput>
+    <testinput><name>ans2</name><value>ns0</value></testinput>
+    <testinput><name>ans3</name><value>lon1</value></testinput>
+    <testinput><name>ans4</name><value>ew1</value></testinput>
+    <expected><name>prt1</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt1-1-F | prt1-2-F | prt1-3-T</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt2-1-T</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>5</testcase><description>Longitude over 180</description>
+    <testinput><name>ans1</name><value>lat1</value></testinput>
+    <testinput><name>ans2</name><value>ns1</value></testinput>
+    <testinput><name>ans3</name><value>360-lon1</value></testinput>
+    <testinput><name>ans4</name><value>ew0</value></testinput>
+    <expected><name>prt1</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt1-1-T</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt2-1-F | prt2-2-T</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>6</testcase><description>Invalid: letter in (a)</description>
+    <testinput><name>ans1</name><value>x</value></testinput>
+    <testinput><name>ans2</name><value>ns1</value></testinput>
+    <testinput><name>ans3</name><value>lon1</value></testinput>
+    <testinput><name>ans4</name><value>ew1</value></testinput>
+    <expected><name>prt1</name><expectedscore></expectedscore><expectedpenalty></expectedpenalty><expectedanswernote>NULL</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt2-1-T</expectedanswernote></expected>
+  </qtest>
+</question>
+</quiz>

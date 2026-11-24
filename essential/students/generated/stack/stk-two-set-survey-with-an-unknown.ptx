@@ -1,0 +1,6 @@
+<stack-static>
+    <statement><p><p><m>{50}</m> traders at a market in Kisumu were asked about money services. <m>{39}</m> use M-Pesa, <m>{22}</m> have a bank account and <m>{4}</m> use neither.</p><p>(a) How many use both? <fillin characters="5" name="ans1"/>  </p><p>(b) How many use exactly one of the two? <fillin characters="5" name="ans2"/>  </p></p></statement>
+    <solution><p><p>Let <m>x</m> traders use both. Then M-Pesa only is <m>{39} - x</m>, bank only is <m>{22} - x</m>, and <m>{4}</m> use neither. Every trader is in exactly one region, so</p><p><me>({39} - x) + x + ({22} - x) + {4} = {50}</me></p><p>which gives <m>{65} - x = {50}</m>, so <m>x = {15}</m>.</p><p>(a) <m>{15}</m> use both.</p><p>(b) Exactly one <m>=</m> M-Pesa only <m>+</m> bank only <m>= {24} + {7} = {31}</m>.</p><p>Check: <m>{24} + {15} + {7} + {4} = {50}</m>.</p></p></solution>
+    <answer><p><m>15</m></p></answer>
+    <answer><p><m>31</m></p></answer>
+</stack-static>

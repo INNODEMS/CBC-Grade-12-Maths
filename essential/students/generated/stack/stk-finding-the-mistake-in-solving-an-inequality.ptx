@@ -1,0 +1,12 @@
+<stack-static>
+    <statement><p><p>Wanjiru solved <m>2x + 3 \le 7x - 27</m>. Her working has one mistake.</p><tabular border="1" style="border-collapse:collapse;text-align:left;"><row><cell style="padding:4px 10px;">Step</cell><cell style="padding:4px 10px;">Working</cell><cell style="padding:4px 10px;">Reason</cell></row><row><cell style="padding:4px 10px;">1</cell><cell style="padding:4px 10px;"><m>-5x + 3 \le -27</m></cell><cell style="padding:4px 10px;">subtract <m>{7}x</m> from both sides</cell></row><row><cell style="padding:4px 10px;">2</cell><cell style="padding:4px 10px;"><m>-5x \le -24</m></cell><cell style="padding:4px 10px;">subtract <m>3</m> from both sides</cell></row><row><cell style="padding:4px 10px;">3</cell><cell style="padding:4px 10px;"><m>x \ge 4.8</m></cell><cell style="padding:4px 10px;">divide both sides by <m>{-5}</m></cell></row></tabular><p>So she wrote <m>x \ge 4.8</m>.</p><p>(a) Which step has the mistake?</p><div><ol marker="(1)">
+<li>None: the working is correct</li>
+<li>Step 1</li>
+<li>Step 2</li>
+<li>Step 3</li>
+</ol>  </div><p>(b) Solve the inequality correctly.</p><div><m>x</m> [ &lt; | ≤ | &gt; | ≥ ] <fillin characters="5" name="ans3"/>  </div></p></statement>
+    <solution><p><p>(a) Step 2 is wrong: to subtract <m>3</m> from both sides, the right side becomes <m>{-30}</m>, not <m>{-24}</m>. A quick test: put a value allowed by her answer into the original inequality and see whether it is true.</p><p>(b) Subtract <m>{7}x</m>: <m>{-5x + 3} {\le} {-27}</m>. Then subtract <m>3</m> from both sides: <m>{-5x} {\le} {-30}</m>. Divide by <m>{-5}</m>, a negative number, and turn the sign round: <m>x \ge 6</m>.</p><p>Or collect the <m>x</m> terms on the right, where the coefficient <m>{5}</m> is positive, and no reversal is needed. Check with <m>x = {7}</m>: the left side is <m>{17}</m>, the right side is <m>{22}</m>, and the original statement is true.</p></p></solution>
+    <answer><p><m>(3)</m></p></answer>
+    <answer><p>≥</p></answer>
+    <answer><p><m>6</m></p></answer>
+</stack-static>

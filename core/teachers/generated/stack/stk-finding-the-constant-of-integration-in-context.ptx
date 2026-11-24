@@ -1,0 +1,6 @@
+<stack-static>
+    <statement><p><p>Water flows into a tank at a school in Kitui. After <m>t</m> minutes the rate of flow is <m>\dfrac{dV}{dt} = {4 t+40}</m> litres per minute. At <m>t = 0</m> the tank holds <m>{300}</m> litres.</p><p>(a) Find <m>{V}</m> in terms of <m>t</m>.</p><div><m>{V} =</m> <fillin characters="20" name="ans1"/>  </div><p>(b) Find <m>{V}</m> when <m>t = {10}</m>.</p><div><m>{V} =</m> <fillin characters="8" name="ans2"/> litres  </div></p></statement>
+    <solution><p><p>Integrate the rate to get a formula with a constant, then use the starting value to find the constant.</p><p>(a) <me>{V} = \int \left({4 t+40}\right) dt = {2 t^2+40 t} + c</me>At <m>t = 0</m>, <m>{V} = {300}</m>, so <m>c = {300}</m> and <m>{V} = {2 t^2+40 t+300}</m>.</p><p>(b) At <m>t = {10}</m>: <m>{V} = {900}</m> litres.</p></p></solution>
+    <answer><p><m>2 t^2+40 t+300</m></p></answer>
+    <answer><p><m>900</m></p></answer>
+</stack-static>

@@ -1,0 +1,7 @@
+<stack-static>
+    <statement><p><p>Equal squares of side <m>x</m> cm are cut from the corners of a square sheet of manila paper <m>{12}</m> cm by <m>{12}</m> cm, and the sides are folded up to make an open box.</p><p>(a) Write the volume <m>V</m> cm<m>^3</m> in terms of <m>x</m>.</p><div><m>V =</m> <fillin characters="15" name="ans1"/>  </div><p>(b) Find the value of <m>x</m> that gives the greatest volume.</p><div><m>x =</m> <fillin characters="5" name="ans2"/> cm  </div><p>(c) Find the greatest volume.</p><div><fillin characters="6" name="ans3"/> cm<m>^3</m>  </div></p></statement>
+    <solution><p><p>(a) Cutting a square from each corner shortens each edge of the base at both ends, so the base is <m>{12-2 x}</m> cm square and the height is <m>x</m> cm:</p><p><me>V = {{\left(12-2 x\right)}^2 x} = {4 x^3-48 x^2+144 x}, \qquad 0 \lt x \lt {6}</me></p><p>(b) <m>\dfrac{dV}{dx} = {12 x^2-96 x+144} = {\left(2 x-12\right) \left(6 x-12\right)}</m>, which is <m>0</m> when <m>x = {2}</m> or <m>x = {6}</m>. At <m>x = {6}</m> the base has side <m>0</m>, so there is no box. <m>\dfrac{d^2V}{dx^2} = {24 x-96}</m>, which is <m>{-48}</m> at <m>x = {2}</m>: negative, so this gives the greatest volume.</p><p>(c) The box is <m>{8}</m> cm by <m>{8}</m> cm by <m>{2}</m> cm, and <m>V = 128</m> cm<m>^3</m>.</p></p></solution>
+    <answer><p><m>{\left(12-2 x\right)}^2 x</m></p></answer>
+    <answer><p><m>2</m></p></answer>
+    <answer><p><m>128</m></p></answer>
+</stack-static>

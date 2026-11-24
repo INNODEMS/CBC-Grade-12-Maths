@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<quiz>
+<question type="stack">
+  <name><text>Highest tax band</text></name>
+  <questiontext format="html">
+    <text><![CDATA[<p>PAYE tax bands for resident individuals, from 1 July 2023 (Kenya Revenue Authority; Finance Act 2023):</p><table border="1" style="border-collapse:collapse;text-align:center;"><tr><th style="padding:4px 10px;">Monthly taxable pay (Ksh)</th><th style="padding:4px 10px;">Rate</th></tr><tr><td style="padding:4px 10px;">First \(24\,000\)</td><td style="padding:4px 10px;">\(10\%\)</td></tr><tr><td style="padding:4px 10px;">Next \(8333\)</td><td style="padding:4px 10px;">\(25\%\)</td></tr><tr><td style="padding:4px 10px;">Next \(467\,667\)</td><td style="padding:4px 10px;">\(30\%\)</td></tr><tr><td style="padding:4px 10px;">Next \(300\,000\)</td><td style="padding:4px 10px;">\(32.5\%\)</td></tr><tr><td style="padding:4px 10px;">Above \(800\,000\)</td><td style="padding:4px 10px;">\(35\%\)</td></tr></table><p>Personal relief: Ksh \(2400\) a month, taken off the tax. PAYE is never negative.</p><p>For each monthly taxable pay, choose the highest rate at which any part of it is taxed.</p><p>(a) Ksh \({@ksh(pp[1])@}\) [[input:ans1]] [[validation:ans1]] [[feedback:prt1]]</p><p>(b) Ksh \({@ksh(pp[2])@}\) [[input:ans2]] [[validation:ans2]] [[feedback:prt2]]</p><p>(c) Ksh \({@ksh(pp[3])@}\) [[input:ans3]] [[validation:ans3]] [[feedback:prt3]]</p><p>(d) Ksh \({@ksh(pp[4])@}\) [[input:ans4]] [[validation:ans4]] [[feedback:prt4]]</p><p>(e) Ksh \({@ksh(pp[5])@}\) [[input:ans5]] [[validation:ans5]] [[feedback:prt5]]</p>]]></text>
+  </questiontext>
+  <generalfeedback format="html">
+    <text><![CDATA[<p>The band edges are \(24\,000\), \(32\,333\), \(500\,000\) and \(800\,000\). A pay exactly at the top of a band stays in that band.</p><ul><li>(a) Ksh \({@ksh(pp[1])@}\): [[if test="is(S[1]=1)"]]All of it is in the first band, up to \(24\,000\).[[/if]][[if test="is(S[1]=2)"]]The first band ends at exactly \(24\,000\), so nothing is taxed above \(10\%\).[[/if]][[if test="is(S[1]=3)"]]\(500\) shillings are above \(24\,000\), in the \(25\%\) band.[[/if]][[if test="is(S[1]=4)"]]The \(25\%\) band runs up to \(24\,000 + 8333 = 32\,333\) exactly.[[/if]][[if test="is(S[1]=5)"]]\(67\) shillings are above \(32\,333\), in the \(30\%\) band.[[/if]][[if test="is(S[1]=6)"]]It is between \(32\,333\) and \(500\,000\): the top slice is taxed at \(30\%\).[[/if]][[if test="is(S[1]=7)"]]The \(30\%\) band runs up to \(500\,000\).[[/if]][[if test="is(S[1]=8)"]]The \(30\%\) band ends at exactly \(500\,000\).[[/if]][[if test="is(S[1]=9)"]]\(20\,000\) shillings are above \(500\,000\), in the \(32.5\%\) band.[[/if]][[if test="is(S[1]=10)"]]The \(32.5\%\) band ends at exactly \(800\,000\).[[/if]][[if test="is(S[1]=11)"]]Pay above \(800\,000\) is taxed at \(35\%\).[[/if]][[if test="is(S[1]=12)"]]Above \(800\,000\): \(35\%\) on the top slice.[[/if]][[if test="is(S[1]=13)"]]It is above \(24\,000\) but below \(32\,333\).[[/if]][[if test="is(S[1]=14)"]]Between \(32\,333\) and \(500\,000\): \(30\%\).[[/if]]</li><li>(b) Ksh \({@ksh(pp[2])@}\): [[if test="is(S[2]=1)"]]All of it is in the first band, up to \(24\,000\).[[/if]][[if test="is(S[2]=2)"]]The first band ends at exactly \(24\,000\), so nothing is taxed above \(10\%\).[[/if]][[if test="is(S[2]=3)"]]\(500\) shillings are above \(24\,000\), in the \(25\%\) band.[[/if]][[if test="is(S[2]=4)"]]The \(25\%\) band runs up to \(24\,000 + 8333 = 32\,333\) exactly.[[/if]][[if test="is(S[2]=5)"]]\(67\) shillings are above \(32\,333\), in the \(30\%\) band.[[/if]][[if test="is(S[2]=6)"]]It is between \(32\,333\) and \(500\,000\): the top slice is taxed at \(30\%\).[[/if]][[if test="is(S[2]=7)"]]The \(30\%\) band runs up to \(500\,000\).[[/if]][[if test="is(S[2]=8)"]]The \(30\%\) band ends at exactly \(500\,000\).[[/if]][[if test="is(S[2]=9)"]]\(20\,000\) shillings are above \(500\,000\), in the \(32.5\%\) band.[[/if]][[if test="is(S[2]=10)"]]The \(32.5\%\) band ends at exactly \(800\,000\).[[/if]][[if test="is(S[2]=11)"]]Pay above \(800\,000\) is taxed at \(35\%\).[[/if]][[if test="is(S[2]=12)"]]Above \(800\,000\): \(35\%\) on the top slice.[[/if]][[if test="is(S[2]=13)"]]It is above \(24\,000\) but below \(32\,333\).[[/if]][[if test="is(S[2]=14)"]]Between \(32\,333\) and \(500\,000\): \(30\%\).[[/if]]</li><li>(c) Ksh \({@ksh(pp[3])@}\): [[if test="is(S[3]=1)"]]All of it is in the first band, up to \(24\,000\).[[/if]][[if test="is(S[3]=2)"]]The first band ends at exactly \(24\,000\), so nothing is taxed above \(10\%\).[[/if]][[if test="is(S[3]=3)"]]\(500\) shillings are above \(24\,000\), in the \(25\%\) band.[[/if]][[if test="is(S[3]=4)"]]The \(25\%\) band runs up to \(24\,000 + 8333 = 32\,333\) exactly.[[/if]][[if test="is(S[3]=5)"]]\(67\) shillings are above \(32\,333\), in the \(30\%\) band.[[/if]][[if test="is(S[3]=6)"]]It is between \(32\,333\) and \(500\,000\): the top slice is taxed at \(30\%\).[[/if]][[if test="is(S[3]=7)"]]The \(30\%\) band runs up to \(500\,000\).[[/if]][[if test="is(S[3]=8)"]]The \(30\%\) band ends at exactly \(500\,000\).[[/if]][[if test="is(S[3]=9)"]]\(20\,000\) shillings are above \(500\,000\), in the \(32.5\%\) band.[[/if]][[if test="is(S[3]=10)"]]The \(32.5\%\) band ends at exactly \(800\,000\).[[/if]][[if test="is(S[3]=11)"]]Pay above \(800\,000\) is taxed at \(35\%\).[[/if]][[if test="is(S[3]=12)"]]Above \(800\,000\): \(35\%\) on the top slice.[[/if]][[if test="is(S[3]=13)"]]It is above \(24\,000\) but below \(32\,333\).[[/if]][[if test="is(S[3]=14)"]]Between \(32\,333\) and \(500\,000\): \(30\%\).[[/if]]</li><li>(d) Ksh \({@ksh(pp[4])@}\): [[if test="is(S[4]=1)"]]All of it is in the first band, up to \(24\,000\).[[/if]][[if test="is(S[4]=2)"]]The first band ends at exactly \(24\,000\), so nothing is taxed above \(10\%\).[[/if]][[if test="is(S[4]=3)"]]\(500\) shillings are above \(24\,000\), in the \(25\%\) band.[[/if]][[if test="is(S[4]=4)"]]The \(25\%\) band runs up to \(24\,000 + 8333 = 32\,333\) exactly.[[/if]][[if test="is(S[4]=5)"]]\(67\) shillings are above \(32\,333\), in the \(30\%\) band.[[/if]][[if test="is(S[4]=6)"]]It is between \(32\,333\) and \(500\,000\): the top slice is taxed at \(30\%\).[[/if]][[if test="is(S[4]=7)"]]The \(30\%\) band runs up to \(500\,000\).[[/if]][[if test="is(S[4]=8)"]]The \(30\%\) band ends at exactly \(500\,000\).[[/if]][[if test="is(S[4]=9)"]]\(20\,000\) shillings are above \(500\,000\), in the \(32.5\%\) band.[[/if]][[if test="is(S[4]=10)"]]The \(32.5\%\) band ends at exactly \(800\,000\).[[/if]][[if test="is(S[4]=11)"]]Pay above \(800\,000\) is taxed at \(35\%\).[[/if]][[if test="is(S[4]=12)"]]Above \(800\,000\): \(35\%\) on the top slice.[[/if]][[if test="is(S[4]=13)"]]It is above \(24\,000\) but below \(32\,333\).[[/if]][[if test="is(S[4]=14)"]]Between \(32\,333\) and \(500\,000\): \(30\%\).[[/if]]</li><li>(e) Ksh \({@ksh(pp[5])@}\): [[if test="is(S[5]=1)"]]All of it is in the first band, up to \(24\,000\).[[/if]][[if test="is(S[5]=2)"]]The first band ends at exactly \(24\,000\), so nothing is taxed above \(10\%\).[[/if]][[if test="is(S[5]=3)"]]\(500\) shillings are above \(24\,000\), in the \(25\%\) band.[[/if]][[if test="is(S[5]=4)"]]The \(25\%\) band runs up to \(24\,000 + 8333 = 32\,333\) exactly.[[/if]][[if test="is(S[5]=5)"]]\(67\) shillings are above \(32\,333\), in the \(30\%\) band.[[/if]][[if test="is(S[5]=6)"]]It is between \(32\,333\) and \(500\,000\): the top slice is taxed at \(30\%\).[[/if]][[if test="is(S[5]=7)"]]The \(30\%\) band runs up to \(500\,000\).[[/if]][[if test="is(S[5]=8)"]]The \(30\%\) band ends at exactly \(500\,000\).[[/if]][[if test="is(S[5]=9)"]]\(20\,000\) shillings are above \(500\,000\), in the \(32.5\%\) band.[[/if]][[if test="is(S[5]=10)"]]The \(32.5\%\) band ends at exactly \(800\,000\).[[/if]][[if test="is(S[5]=11)"]]Pay above \(800\,000\) is taxed at \(35\%\).[[/if]][[if test="is(S[5]=12)"]]Above \(800\,000\): \(35\%\) on the top slice.[[/if]][[if test="is(S[5]=13)"]]It is above \(24\,000\) but below \(32\,333\).[[/if]][[if test="is(S[5]=14)"]]Between \(32\,333\) and \(500\,000\): \(30\%\).[[/if]]</li></ul>]]></text>
+  </generalfeedback>
+  <defaultgrade>5</defaultgrade>
+  <penalty>0.1</penalty>
+  <hidden>0</hidden>
+  <idnumber></idnumber>
+  <stackversion><text>2026063000</text></stackversion>
+  <questionvariables>
+    <text><![CDATA[kgrp(n) := block([s, out, k], s: string(n), k: slength(s), if k < 5 then s else (out: "", while k > 3 do (out: sconcat("\\,", substring(s, k-2, k+1), out), k: k-3), sconcat(substring(s, 1, k+1), out)));
+ksh(v) := block([c, w, f], c: floor(100*v+1/2), w: floor(c/100), f: c-100*w, if f = 0 then kgrp(w) else sconcat(kgrp(w), ".", if f < 10 then "0" else "", string(f)));
+dd(v) := if integerp(v) then v else if integerp(10*v) then dispdp(float(v),1) else if integerp(100*v) then dispdp(float(v),2) else if integerp(1000*v) then dispdp(float(v),3) else dispdp(float(v),4);
+taxf(x) := min(x,24000)*10/100 + max(0,min(x,32333)-24000)*25/100 + max(0,min(x,500000)-32333)*30/100 + max(0,min(x,800000)-500000)*65/200 + max(0,x-800000)*35/100;
+payef(x) := max(0, taxf(x)-2400);
+ix: 1+rand(10);
+/* Design: classify pattern with one response tree per row. Pool of 14 pays with the highest band reached (1 = 10%, 2 = 25%, 3 = 30%, 4 = 32.5%, 5 = 35%); ten curated sets of five, each with a boundary trap and at least three keys; rows shuffled. Source: original. */
+pays: [18500,24000,24500,32333,32400,74000,499000,500000,520000,800000,812000,1250000,31900,260000];
+keys: [1,1,2,2,3,3,3,3,4,4,5,5,2,3];
+sets: [[1,4,6,9,11],[2,3,7,10,12],[13,5,8,9,1],[4,14,10,2,11],[3,6,8,12,2],[5,1,10,13,14],[9,4,12,7,3],[11,2,5,8,6],[10,13,7,1,12],[8,3,14,4,9]];
+S: random_permutation(sets[ix]);
+pp: makelist(pays[S[j]], j, 1, 5);
+kk: makelist(keys[S[j]], j, 1, 5);
+ww: makelist(mod(kk[j],5)+1, j, 1, 5);
+k1: kk[1];
+w1: ww[1];
+k2: kk[2];
+w2: ww[2];
+k3: kk[3];
+w3: ww[3];
+k4: kk[4];
+w4: ww[4];
+k5: kk[5];
+w5: ww[5];
+opt1: [[1, is(kk[1]=1), "10%"], [2, is(kk[1]=2), "25%"], [3, is(kk[1]=3), "30%"], [4, is(kk[1]=4), "32.5%"], [5, is(kk[1]=5), "35%"]];
+opt2: [[1, is(kk[2]=1), "10%"], [2, is(kk[2]=2), "25%"], [3, is(kk[2]=3), "30%"], [4, is(kk[2]=4), "32.5%"], [5, is(kk[2]=5), "35%"]];
+opt3: [[1, is(kk[3]=1), "10%"], [2, is(kk[3]=2), "25%"], [3, is(kk[3]=3), "30%"], [4, is(kk[3]=4), "32.5%"], [5, is(kk[3]=5), "35%"]];
+opt4: [[1, is(kk[4]=1), "10%"], [2, is(kk[4]=2), "25%"], [3, is(kk[4]=3), "30%"], [4, is(kk[4]=4), "32.5%"], [5, is(kk[4]=5), "35%"]];
+opt5: [[1, is(kk[5]=1), "10%"], [2, is(kk[5]=2), "25%"], [3, is(kk[5]=3), "30%"], [4, is(kk[5]=4), "32.5%"], [5, is(kk[5]=5), "35%"]];
+]]></text>
+  </questionvariables>
+  <specificfeedback format="html"><text><![CDATA[]]></text></specificfeedback>
+  <questionnote format="moodle_auto_format">
+    <text>ix={@ix@}, S={@S@}</text>
+  </questionnote>
+  <questiondescription format="html"><text><![CDATA[<p id="concept">Commercial Arithmetic III: highest tax band</p><p id="description">Grade 12 CBE Essential 2.4 (e): Decide the highest PAYE rate that applies to each of five monthly taxable pays, including pays exactly at a band edge.</p><p id="edition">Essential</p><p id="provenance">This question is original to this project.</p><p id="citation">INNODEMS CBC Grade 12 Mathematics, first draft by Ben Davies, 2026. Aligned to the KICD Senior School Curriculum Design, Essential Mathematics Grade 12 (draft).</p>]]></text></questiondescription>
+  <questionsimplify>1</questionsimplify>
+  <assumepositive>0</assumepositive>
+  <assumereal>0</assumereal>
+  <prtcorrect format="html"><text><![CDATA[[[commonstring key="symbolicprtcorrectfeedback"/]] [[commonstring key="defaultprtcorrectfeedback"/]]]]></text></prtcorrect>
+  <prtpartiallycorrect format="html"><text><![CDATA[[[commonstring key="symbolicprtpartiallycorrectfeedback"/]] [[commonstring key="defaultprtpartiallycorrectfeedback"/]]]]></text></prtpartiallycorrect>
+  <prtincorrect format="html"><text><![CDATA[[[commonstring key="symbolicprtincorrectfeedback"/]] [[commonstring key="defaultprtincorrectfeedback"/]]]]></text></prtincorrect>
+  <decimals>.</decimals>
+  <scientificnotation>*10</scientificnotation>
+  <multiplicationsign>none</multiplicationsign>
+  <sqrtsign>1</sqrtsign>
+  <complexno>i</complexno>
+  <inversetrig>cos-1</inversetrig>
+  <logicsymbol>lang</logicsymbol>
+  <matrixparens>[</matrixparens>
+  <isbroken>0</isbroken>
+  <variantsselectionseed></variantsselectionseed>
+
+  <input><name>ans1</name><type>dropdown</type><tans>opt1</tans><boxsize>15</boxsize><strictsyntax>1</strictsyntax><insertstars>0</insertstars><syntaxhint></syntaxhint><syntaxattribute>0</syntaxattribute><forbidwords></forbidwords><allowwords></allowwords><forbidfloat>1</forbidfloat><requirelowestterms>0</requirelowestterms><checkanswertype>0</checkanswertype><mustverify>0</mustverify><showvalidation>0</showvalidation><options></options></input>
+  <input><name>ans2</name><type>dropdown</type><tans>opt2</tans><boxsize>15</boxsize><strictsyntax>1</strictsyntax><insertstars>0</insertstars><syntaxhint></syntaxhint><syntaxattribute>0</syntaxattribute><forbidwords></forbidwords><allowwords></allowwords><forbidfloat>1</forbidfloat><requirelowestterms>0</requirelowestterms><checkanswertype>0</checkanswertype><mustverify>0</mustverify><showvalidation>0</showvalidation><options></options></input>
+  <input><name>ans3</name><type>dropdown</type><tans>opt3</tans><boxsize>15</boxsize><strictsyntax>1</strictsyntax><insertstars>0</insertstars><syntaxhint></syntaxhint><syntaxattribute>0</syntaxattribute><forbidwords></forbidwords><allowwords></allowwords><forbidfloat>1</forbidfloat><requirelowestterms>0</requirelowestterms><checkanswertype>0</checkanswertype><mustverify>0</mustverify><showvalidation>0</showvalidation><options></options></input>
+  <input><name>ans4</name><type>dropdown</type><tans>opt4</tans><boxsize>15</boxsize><strictsyntax>1</strictsyntax><insertstars>0</insertstars><syntaxhint></syntaxhint><syntaxattribute>0</syntaxattribute><forbidwords></forbidwords><allowwords></allowwords><forbidfloat>1</forbidfloat><requirelowestterms>0</requirelowestterms><checkanswertype>0</checkanswertype><mustverify>0</mustverify><showvalidation>0</showvalidation><options></options></input>
+  <input><name>ans5</name><type>dropdown</type><tans>opt5</tans><boxsize>15</boxsize><strictsyntax>1</strictsyntax><insertstars>0</insertstars><syntaxhint></syntaxhint><syntaxattribute>0</syntaxattribute><forbidwords></forbidwords><allowwords></allowwords><forbidfloat>1</forbidfloat><requirelowestterms>0</requirelowestterms><checkanswertype>0</checkanswertype><mustverify>0</mustverify><showvalidation>0</showvalidation><options></options></input>
+
+  <prt><name>prt1</name><value>1.0000000</value><autosimplify>1</autosimplify><feedbackstyle>1</feedbackstyle><feedbackvariables><text><![CDATA[chz: ans1;
+pq: pp[1];
+edg: [0,24000,32333,500000,800000,800000];
+rts: [10,25,30,65/2,35];
+rsel: rts[chz];
+elo: edg[chz];
+ehi: edg[chz+1];
+ovr: pq-ehi;]]></text></feedbackvariables>
+    <node><name>0</name><description>Highest band</description><answertest>AlgEquiv</answertest><sans>ans1</sans><tans>k1</tans><testoptions></testoptions><quiet>0</quiet><truescoremode>=</truescoremode><truescore>1.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt1-1-T</trueanswernote><truefeedback format="html"><text><![CDATA[]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>-1</falsenextnode><falseanswernote>prt1-1-F</falseanswernote><falsefeedback format="html"><text><![CDATA[[[if test="is(chz>k1)"]]<p>You chose \({@dd(rsel)@}\%\). That rate is charged only on pay above Ksh \({@ksh(elo)@}\)[[if test="is(pq=elo)"]], and a pay of exactly Ksh \({@ksh(elo)@}\) has nothing above it.[[else]], and no part of Ksh \({@ksh(pq)@}\) is above that.[[/if]] Which bands does this pay reach?</p>[[else]]<p>You chose \({@dd(rsel)@}\%\). That band ends at Ksh \({@ksh(ehi)@}\), and Ksh \({@ksh(pq)@}\) is Ksh \({@ksh(ovr)@}\) more than that. The part above Ksh \({@ksh(ehi)@}\) is taxed at a higher rate.</p>[[/if]]]]></text></falsefeedback></node>
+  </prt>
+  <prt><name>prt2</name><value>1.0000000</value><autosimplify>1</autosimplify><feedbackstyle>1</feedbackstyle><feedbackvariables><text><![CDATA[chz: ans2;
+pq: pp[2];
+edg: [0,24000,32333,500000,800000,800000];
+rts: [10,25,30,65/2,35];
+rsel: rts[chz];
+elo: edg[chz];
+ehi: edg[chz+1];
+ovr: pq-ehi;]]></text></feedbackvariables>
+    <node><name>0</name><description>Highest band</description><answertest>AlgEquiv</answertest><sans>ans2</sans><tans>k2</tans><testoptions></testoptions><quiet>0</quiet><truescoremode>=</truescoremode><truescore>1.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt2-1-T</trueanswernote><truefeedback format="html"><text><![CDATA[]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>-1</falsenextnode><falseanswernote>prt2-1-F</falseanswernote><falsefeedback format="html"><text><![CDATA[[[if test="is(chz>k2)"]]<p>You chose \({@dd(rsel)@}\%\). That rate is charged only on pay above Ksh \({@ksh(elo)@}\)[[if test="is(pq=elo)"]], and a pay of exactly Ksh \({@ksh(elo)@}\) has nothing above it.[[else]], and no part of Ksh \({@ksh(pq)@}\) is above that.[[/if]] Which bands does this pay reach?</p>[[else]]<p>You chose \({@dd(rsel)@}\%\). That band ends at Ksh \({@ksh(ehi)@}\), and Ksh \({@ksh(pq)@}\) is Ksh \({@ksh(ovr)@}\) more than that. The part above Ksh \({@ksh(ehi)@}\) is taxed at a higher rate.</p>[[/if]]]]></text></falsefeedback></node>
+  </prt>
+  <prt><name>prt3</name><value>1.0000000</value><autosimplify>1</autosimplify><feedbackstyle>1</feedbackstyle><feedbackvariables><text><![CDATA[chz: ans3;
+pq: pp[3];
+edg: [0,24000,32333,500000,800000,800000];
+rts: [10,25,30,65/2,35];
+rsel: rts[chz];
+elo: edg[chz];
+ehi: edg[chz+1];
+ovr: pq-ehi;]]></text></feedbackvariables>
+    <node><name>0</name><description>Highest band</description><answertest>AlgEquiv</answertest><sans>ans3</sans><tans>k3</tans><testoptions></testoptions><quiet>0</quiet><truescoremode>=</truescoremode><truescore>1.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt3-1-T</trueanswernote><truefeedback format="html"><text><![CDATA[]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>-1</falsenextnode><falseanswernote>prt3-1-F</falseanswernote><falsefeedback format="html"><text><![CDATA[[[if test="is(chz>k3)"]]<p>You chose \({@dd(rsel)@}\%\). That rate is charged only on pay above Ksh \({@ksh(elo)@}\)[[if test="is(pq=elo)"]], and a pay of exactly Ksh \({@ksh(elo)@}\) has nothing above it.[[else]], and no part of Ksh \({@ksh(pq)@}\) is above that.[[/if]] Which bands does this pay reach?</p>[[else]]<p>You chose \({@dd(rsel)@}\%\). That band ends at Ksh \({@ksh(ehi)@}\), and Ksh \({@ksh(pq)@}\) is Ksh \({@ksh(ovr)@}\) more than that. The part above Ksh \({@ksh(ehi)@}\) is taxed at a higher rate.</p>[[/if]]]]></text></falsefeedback></node>
+  </prt>
+  <prt><name>prt4</name><value>1.0000000</value><autosimplify>1</autosimplify><feedbackstyle>1</feedbackstyle><feedbackvariables><text><![CDATA[chz: ans4;
+pq: pp[4];
+edg: [0,24000,32333,500000,800000,800000];
+rts: [10,25,30,65/2,35];
+rsel: rts[chz];
+elo: edg[chz];
+ehi: edg[chz+1];
+ovr: pq-ehi;]]></text></feedbackvariables>
+    <node><name>0</name><description>Highest band</description><answertest>AlgEquiv</answertest><sans>ans4</sans><tans>k4</tans><testoptions></testoptions><quiet>0</quiet><truescoremode>=</truescoremode><truescore>1.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt4-1-T</trueanswernote><truefeedback format="html"><text><![CDATA[]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>-1</falsenextnode><falseanswernote>prt4-1-F</falseanswernote><falsefeedback format="html"><text><![CDATA[[[if test="is(chz>k4)"]]<p>You chose \({@dd(rsel)@}\%\). That rate is charged only on pay above Ksh \({@ksh(elo)@}\)[[if test="is(pq=elo)"]], and a pay of exactly Ksh \({@ksh(elo)@}\) has nothing above it.[[else]], and no part of Ksh \({@ksh(pq)@}\) is above that.[[/if]] Which bands does this pay reach?</p>[[else]]<p>You chose \({@dd(rsel)@}\%\). That band ends at Ksh \({@ksh(ehi)@}\), and Ksh \({@ksh(pq)@}\) is Ksh \({@ksh(ovr)@}\) more than that. The part above Ksh \({@ksh(ehi)@}\) is taxed at a higher rate.</p>[[/if]]]]></text></falsefeedback></node>
+  </prt>
+  <prt><name>prt5</name><value>1.0000000</value><autosimplify>1</autosimplify><feedbackstyle>1</feedbackstyle><feedbackvariables><text><![CDATA[chz: ans5;
+pq: pp[5];
+edg: [0,24000,32333,500000,800000,800000];
+rts: [10,25,30,65/2,35];
+rsel: rts[chz];
+elo: edg[chz];
+ehi: edg[chz+1];
+ovr: pq-ehi;]]></text></feedbackvariables>
+    <node><name>0</name><description>Highest band</description><answertest>AlgEquiv</answertest><sans>ans5</sans><tans>k5</tans><testoptions></testoptions><quiet>0</quiet><truescoremode>=</truescoremode><truescore>1.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt5-1-T</trueanswernote><truefeedback format="html"><text><![CDATA[]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>-1</falsenextnode><falseanswernote>prt5-1-F</falseanswernote><falsefeedback format="html"><text><![CDATA[[[if test="is(chz>k5)"]]<p>You chose \({@dd(rsel)@}\%\). That rate is charged only on pay above Ksh \({@ksh(elo)@}\)[[if test="is(pq=elo)"]], and a pay of exactly Ksh \({@ksh(elo)@}\) has nothing above it.[[else]], and no part of Ksh \({@ksh(pq)@}\) is above that.[[/if]] Which bands does this pay reach?</p>[[else]]<p>You chose \({@dd(rsel)@}\%\). That band ends at Ksh \({@ksh(ehi)@}\), and Ksh \({@ksh(pq)@}\) is Ksh \({@ksh(ovr)@}\) more than that. The part above Ksh \({@ksh(ehi)@}\) is taxed at a higher rate.</p>[[/if]]]]></text></falsefeedback></node>
+  </prt>
+
+  <deployedseed>4</deployedseed>
+  <deployedseed>5</deployedseed>
+  <deployedseed>15</deployedseed>
+  <deployedseed>8</deployedseed>
+  <deployedseed>24</deployedseed>
+  <deployedseed>1</deployedseed>
+  <deployedseed>3</deployedseed>
+  <deployedseed>10</deployedseed>
+  <deployedseed>2</deployedseed>
+  <deployedseed>17</deployedseed>
+  <qtest><testcase>1</testcase><description>Correct</description>
+    <testinput><name>ans1</name><value>k1</value></testinput>
+    <testinput><name>ans2</name><value>k2</value></testinput>
+    <testinput><name>ans3</name><value>k3</value></testinput>
+    <testinput><name>ans4</name><value>k4</value></testinput>
+    <testinput><name>ans5</name><value>k5</value></testinput>
+    <expected><name>prt1</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt1-1-T</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt2-1-T</expectedanswernote></expected>
+    <expected><name>prt3</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt3-1-T</expectedanswernote></expected>
+    <expected><name>prt4</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt4-1-T</expectedanswernote></expected>
+    <expected><name>prt5</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt5-1-T</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>2</testcase><description>All wrong</description>
+    <testinput><name>ans1</name><value>w1</value></testinput>
+    <testinput><name>ans2</name><value>w2</value></testinput>
+    <testinput><name>ans3</name><value>w3</value></testinput>
+    <testinput><name>ans4</name><value>w4</value></testinput>
+    <testinput><name>ans5</name><value>w5</value></testinput>
+    <expected><name>prt1</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt1-1-F</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt2-1-F</expectedanswernote></expected>
+    <expected><name>prt3</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt3-1-F</expectedanswernote></expected>
+    <expected><name>prt4</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt4-1-F</expectedanswernote></expected>
+    <expected><name>prt5</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt5-1-F</expectedanswernote></expected>
+  </qtest>
+</question>
+</quiz>

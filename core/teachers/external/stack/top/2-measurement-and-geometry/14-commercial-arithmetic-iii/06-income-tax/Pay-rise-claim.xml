@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<quiz>
+<question type="stack">
+  <name><text>Pay rise claim</text></name>
+  <questiontext format="html">
+    <text><![CDATA[<p>PAYE tax bands for resident individuals, from 1 July 2023 (Kenya Revenue Authority; Finance Act 2023):</p><table border="1" style="border-collapse:collapse;text-align:center;"><tr><th style="padding:4px 10px;">Monthly taxable pay (Ksh)</th><th style="padding:4px 10px;">Rate</th></tr><tr><td style="padding:4px 10px;">First \(24\,000\)</td><td style="padding:4px 10px;">\(10\%\)</td></tr><tr><td style="padding:4px 10px;">Next \(8333\)</td><td style="padding:4px 10px;">\(25\%\)</td></tr><tr><td style="padding:4px 10px;">Next \(467\,667\)</td><td style="padding:4px 10px;">\(30\%\)</td></tr><tr><td style="padding:4px 10px;">Next \(300\,000\)</td><td style="padding:4px 10px;">\(32.5\%\)</td></tr><tr><td style="padding:4px 10px;">Above \(800\,000\)</td><td style="padding:4px 10px;">\(35\%\)</td></tr></table><p>Personal relief: Ksh \(2400\) a month, taken off the tax. PAYE is never negative.</p><p>{@nm@}'s taxable pay rises from Ksh \({@ksh(X1)@}\) to Ksh \({@ksh(X2)@}\) a month. The other deductions on the payslip do not change. {@nm@} says: <q>Now I am in the \(30\%\) band, so all my pay is taxed at \(30\%\) and I will take home less than before.</q></p><p>(a) Find the PAYE before the rise.</p><p>Ksh [[input:ans1]] [[validation:ans1]] [[feedback:prt1]]</p><p>(b) Find the PAYE after the rise.</p><p>Ksh [[input:ans2]] [[validation:ans2]] [[feedback:prt2]]</p><p>(c) Which statement is right?</p><p>[[input:ans3]] [[validation:ans3]] [[feedback:prt3]]</p><p>(d) By how much does take-home pay change? Type a negative number for a fall.</p><p>Ksh [[input:ans4]] [[validation:ans4]] [[feedback:prt4]]</p>]]></text>
+  </questiontext>
+  <generalfeedback format="html">
+    <text><![CDATA[<p>(a) Before: tax \(= 2400 + 25\% \times ({@ksh(X1)@} - 24\,000) = {@ksh(t1)@}\); PAYE \(= {@ksh(t1)@} - 2400 = {@ksh(p1)@}\).</p><p>(b) After: tax \(= 2400 + 2083.25 + 30\% \times ({@ksh(X2)@} - 32\,333) = {@ksh(t2)@}\); PAYE \(= {@ksh(p2)@}\).</p><p>(c) Each slice of pay is taxed at its own band's rate, so a rise never lowers take-home pay. Only the part above \(32\,333\) pays \(30\%\); personal relief stays Ksh \(2400\).</p><p>(d) The pay rises by \({@ksh(rs)@}\) and PAYE by \({@ksh(p2)@} - {@ksh(p1)@} = {@ksh(pc)@}\), so take-home pay rises by \({@ksh(rs)@} - {@ksh(pc)@} = {@ksh(inc)@}\).</p>]]></text>
+  </generalfeedback>
+  <defaultgrade>4</defaultgrade>
+  <penalty>0.1</penalty>
+  <hidden>0</hidden>
+  <idnumber></idnumber>
+  <stackversion><text>2026063000</text></stackversion>
+  <questionvariables>
+    <text><![CDATA[kgrp(n) := block([s, out, k], s: string(n), k: slength(s), if k < 5 then s else (out: "", while k > 3 do (out: sconcat("\\,", substring(s, k-2, k+1), out), k: k-3), sconcat(substring(s, 1, k+1), out)));
+ksh(v) := block([c, w, f], c: floor(100*v+1/2), w: floor(c/100), f: c-100*w, if f = 0 then kgrp(w) else sconcat(kgrp(w), ".", if f < 10 then "0" else "", string(f)));
+dd(v) := if integerp(v) then v else if integerp(10*v) then dispdp(float(v),1) else if integerp(100*v) then dispdp(float(v),2) else if integerp(1000*v) then dispdp(float(v),3) else dispdp(float(v),4);
+taxf(x) := min(x,24000)*10/100 + max(0,min(x,32333)-24000)*25/100 + max(0,min(x,500000)-32333)*30/100 + max(0,min(x,800000)-500000)*65/200 + max(0,x-800000)*35/100;
+payef(x) := max(0, taxf(x)-2400);
+ix: 1+rand(10);
+/* Design: claim-to-criticise pattern. [X1, X2]: every pair crosses from the 25% band into the 30% band. Other deductions are unchanged, so take-home pay changes by the rise minus the extra PAYE. Source: original. */
+L: [[26000,34000],[29500,35000],[31000,38500],[25400,33900],[30200,36800],[27800,40000],[32000,42500],[28600,33500],[24800,37000],[31500,34600]];
+E: L[ix];
+X1: E[1]; X2: E[2];
+nm: ["Achieng","Kiprono","Wanjiru","Omondi","Nekesa","Mutua","Chebet","Barasa","Njeri","Hassan"][ix];
+p1: payef(X1);
+p2: payef(X2);
+rs: X2-X1;
+pc: p2-p1;
+inc: rs-pc;
+/* diagnostics */
+t1: taxf(X1);
+t2: taxf(X2);
+f1: X1/4-2400;
+f2: 3*X2/10-2400;
+f30: 7*rs/10;
+g1: p1+150;
+g2: p2+150;
+g4: inc+600;
+h2: p2+500;
+h4: inc-500;
+opt3: [[1, false, sconcat(nm, " is right: all of the pay is now taxed at 30%, so take-home pay falls.")], [2, true, sconcat(nm, " is wrong: only the part of the pay above Ksh 32 333 is taxed at 30%, so take-home pay rises.")], [3, false, sconcat(nm, " is right: personal relief is lost on moving into a higher band.")], [4, false, sconcat(nm, " is wrong: the rate of tax does not depend on how much you earn.")]];
+]]></text>
+  </questionvariables>
+  <specificfeedback format="html"><text><![CDATA[]]></text></specificfeedback>
+  <questionnote format="moodle_auto_format">
+    <text>ix={@ix@}, p1={@dispdp(float(p1),2)@}, p2={@dispdp(float(p2),2)@}, inc={@dispdp(float(inc),2)@}</text>
+  </questionnote>
+  <questiondescription format="html"><text><![CDATA[<p id="concept">Commercial Arithmetic III: a pay rise into the 30 per cent band</p><p id="description">Grade 12 CBE Essential 2.4 (e): Find the PAYE before and after a pay rise that crosses into the 30% band, judge a claim that take-home pay falls, and find the change in take-home pay.</p><p id="edition">Essential</p><p id="provenance">This question is original to this project.</p><p id="citation">INNODEMS CBC Grade 12 Mathematics, first draft by Ben Davies, 2026. Aligned to the KICD Senior School Curriculum Design, Essential Mathematics Grade 12 (draft).</p>]]></text></questiondescription>
+  <questionsimplify>1</questionsimplify>
+  <assumepositive>0</assumepositive>
+  <assumereal>0</assumereal>
+  <prtcorrect format="html"><text><![CDATA[[[commonstring key="symbolicprtcorrectfeedback"/]] [[commonstring key="defaultprtcorrectfeedback"/]]]]></text></prtcorrect>
+  <prtpartiallycorrect format="html"><text><![CDATA[[[commonstring key="symbolicprtpartiallycorrectfeedback"/]] [[commonstring key="defaultprtpartiallycorrectfeedback"/]]]]></text></prtpartiallycorrect>
+  <prtincorrect format="html"><text><![CDATA[[[commonstring key="symbolicprtincorrectfeedback"/]] [[commonstring key="defaultprtincorrectfeedback"/]]]]></text></prtincorrect>
+  <decimals>.</decimals>
+  <scientificnotation>*10</scientificnotation>
+  <multiplicationsign>none</multiplicationsign>
+  <sqrtsign>1</sqrtsign>
+  <complexno>i</complexno>
+  <inversetrig>cos-1</inversetrig>
+  <logicsymbol>lang</logicsymbol>
+  <matrixparens>[</matrixparens>
+  <isbroken>0</isbroken>
+  <variantsselectionseed></variantsselectionseed>
+
+  <input><name>ans1</name><type>numerical</type><tans>float(p1)</tans><boxsize>10</boxsize><strictsyntax>1</strictsyntax><insertstars>0</insertstars><syntaxhint></syntaxhint><syntaxattribute>0</syntaxattribute><forbidwords></forbidwords><allowwords></allowwords><forbidfloat>0</forbidfloat><requirelowestterms>0</requirelowestterms><checkanswertype>0</checkanswertype><mustverify>0</mustverify><showvalidation>0</showvalidation><options></options></input>
+  <input><name>ans2</name><type>numerical</type><tans>float(p2)</tans><boxsize>10</boxsize><strictsyntax>1</strictsyntax><insertstars>0</insertstars><syntaxhint></syntaxhint><syntaxattribute>0</syntaxattribute><forbidwords></forbidwords><allowwords></allowwords><forbidfloat>0</forbidfloat><requirelowestterms>0</requirelowestterms><checkanswertype>0</checkanswertype><mustverify>0</mustverify><showvalidation>0</showvalidation><options></options></input>
+  <input><name>ans3</name><type>radio</type><tans>opt3</tans><boxsize>15</boxsize><strictsyntax>1</strictsyntax><insertstars>0</insertstars><syntaxhint></syntaxhint><syntaxattribute>0</syntaxattribute><forbidwords></forbidwords><allowwords></allowwords><forbidfloat>1</forbidfloat><requirelowestterms>0</requirelowestterms><checkanswertype>0</checkanswertype><mustverify>0</mustverify><showvalidation>0</showvalidation><options></options></input>
+  <input><name>ans4</name><type>numerical</type><tans>float(inc)</tans><boxsize>10</boxsize><strictsyntax>1</strictsyntax><insertstars>0</insertstars><syntaxhint></syntaxhint><syntaxattribute>0</syntaxattribute><forbidwords></forbidwords><allowwords></allowwords><forbidfloat>0</forbidfloat><requirelowestterms>0</requirelowestterms><checkanswertype>0</checkanswertype><mustverify>0</mustverify><showvalidation>0</showvalidation><options></options></input>
+
+  <prt><name>prt1</name><value>1.0000000</value><autosimplify>1</autosimplify><feedbackstyle>1</feedbackstyle><feedbackvariables><text><![CDATA[]]></text></feedbackvariables>
+    <node><name>0</name><description>PAYE before</description><answertest>NumAbsolute</answertest><sans>ans1</sans><tans>p1</tans><testoptions>0.501</testoptions><quiet>0</quiet><truescoremode>=</truescoremode><truescore>1.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt1-1-T</trueanswernote><truefeedback format="html"><text><![CDATA[]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>1</falsenextnode><falseanswernote>prt1-1-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>1</name><description>No relief</description><answertest>NumAbsolute</answertest><sans>ans1</sans><tans>t1</tans><testoptions>0.501</testoptions><quiet>0</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt1-2-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>Subtract the personal relief of Ksh \(2400\).</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>2</falsenextnode><falseanswernote>prt1-2-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>2</name><description>All at 25%</description><answertest>NumAbsolute</answertest><sans>ans1</sans><tans>f1</tans><testoptions>0.501</testoptions><quiet>0</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt1-3-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>Only the slice above \(24\,000\) is taxed at \(25\%\); the first \(24\,000\) is taxed at \(10\%\).</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>-1</falsenextnode><falseanswernote>prt1-3-F</falseanswernote><falsefeedback format="html"><text><![CDATA[<p>Tax \(10\%\) of the first \(24\,000\) and \(25\%\) of the rest, then subtract Ksh \(2400\).</p>]]></text></falsefeedback></node>
+  </prt>
+  <prt><name>prt2</name><value>1.0000000</value><autosimplify>1</autosimplify><feedbackstyle>1</feedbackstyle><feedbackvariables><text><![CDATA[]]></text></feedbackvariables>
+    <node><name>0</name><description>PAYE after</description><answertest>NumAbsolute</answertest><sans>ans2</sans><tans>p2</tans><testoptions>0.501</testoptions><quiet>0</quiet><truescoremode>=</truescoremode><truescore>1.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt2-1-T</trueanswernote><truefeedback format="html"><text><![CDATA[]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>1</falsenextnode><falseanswernote>prt2-1-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>1</name><description>No relief</description><answertest>NumAbsolute</answertest><sans>ans2</sans><tans>t2</tans><testoptions>0.501</testoptions><quiet>0</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt2-2-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>Subtract the personal relief of Ksh \(2400\).</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>2</falsenextnode><falseanswernote>prt2-2-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>2</name><description>All at 30%</description><answertest>NumAbsolute</answertest><sans>ans2</sans><tans>f2</tans><testoptions>0.501</testoptions><quiet>0</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt2-3-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>That is the claim: \(30\%\) of all the pay. Only the slice above \(32\,333\) is taxed at \(30\%\).</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>-1</falsenextnode><falseanswernote>prt2-3-F</falseanswernote><falsefeedback format="html"><text><![CDATA[<p>Tax each slice at its band's rate: \(10\%\), then \(25\%\) up to \(32\,333\), then \(30\%\); subtract Ksh \(2400\).</p>]]></text></falsefeedback></node>
+  </prt>
+  <prt><name>prt3</name><value>1.0000000</value><autosimplify>1</autosimplify><feedbackstyle>1</feedbackstyle><feedbackvariables><text><![CDATA[]]></text></feedbackvariables>
+    <node><name>0</name><description>Judgement</description><answertest>AlgEquiv</answertest><sans>ans3</sans><tans>2</tans><testoptions></testoptions><quiet>0</quiet><truescoremode>=</truescoremode><truescore>1.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt3-1-T</trueanswernote><truefeedback format="html"><text><![CDATA[]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>1</falsenextnode><falseanswernote>prt3-1-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>1</name><description>Agreed</description><answertest>AlgEquiv</answertest><sans>ans3</sans><tans>1</tans><testoptions></testoptions><quiet>0</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt3-2-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>Test the claim on the first Ksh \(24\,000\) of the pay: it was taxed at \(10\%\) before the rise and is still taxed at \(10\%\) after it. The rise changes the tax only on the extra Ksh \({@ksh(rs)@}\). Can the extra tax be more than the extra pay?</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>2</falsenextnode><falseanswernote>prt3-2-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>2</name><description>Relief lost</description><answertest>AlgEquiv</answertest><sans>ans3</sans><tans>3</tans><testoptions></testoptions><quiet>0</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt3-3-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>Everyone gets the same personal relief, Ksh \(2400\) a month, whatever the band.</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>3</falsenextnode><falseanswernote>prt3-3-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>3</name><description>No bands</description><answertest>AlgEquiv</answertest><sans>ans3</sans><tans>4</tans><testoptions></testoptions><quiet>0</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt3-4-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>The rate does depend on pay: that is what the bands are.</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>-1</falsenextnode><falseanswernote>prt3-4-F</falseanswernote><falsefeedback format="html"><text><![CDATA[<p>Choose one statement.</p>]]></text></falsefeedback></node>
+  </prt>
+  <prt><name>prt4</name><value>1.0000000</value><autosimplify>1</autosimplify><feedbackstyle>1</feedbackstyle><feedbackvariables><text><![CDATA[ft4: is((abs(ans1-p1)>0.501 or abs(ans2-p2)>0.501) and abs(ans4-((X2-X1)-(ans2-ans1)))<=0.501);]]></text></feedbackvariables>
+    <node><name>0</name><description>Change in take-home pay</description><answertest>NumAbsolute</answertest><sans>ans4</sans><tans>inc</tans><testoptions>0.501</testoptions><quiet>0</quiet><truescoremode>=</truescoremode><truescore>1.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt4-1-T</trueanswernote><truefeedback format="html"><text><![CDATA[]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>1</falsenextnode><falseanswernote>prt4-1-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>1</name><description>Whole rise</description><answertest>NumAbsolute</answertest><sans>ans4</sans><tans>rs</tans><testoptions>0.501</testoptions><quiet>0</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt4-2-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>That is the rise in taxable pay. PAYE rises too: take the rise in PAYE, (b) minus (a), from Ksh \({@ksh(rs)@}\).</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>2</falsenextnode><falseanswernote>prt4-2-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>2</name><description>All the rise at 30%</description><answertest>NumAbsolute</answertest><sans>ans4</sans><tans>f30</tans><testoptions>0.501</testoptions><quiet>0</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt4-3-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>Only the slice above \(32\,333\) pays \(30\%\); the part of the rise below it pays \(25\%\).</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>3</falsenextnode><falseanswernote>prt4-3-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>3</name><description>Extra PAYE</description><answertest>NumAbsolute</answertest><sans>ans4</sans><tans>pc</tans><testoptions>0.501</testoptions><quiet>0</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt4-4-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>That is the extra PAYE. Take-home pay rises by the rise minus the extra PAYE.</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>4</falsenextnode><falseanswernote>prt4-4-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>4</name><description>Follow-through</description><answertest>AlgEquiv</answertest><sans>ft4</sans><tans>true</tans><testoptions></testoptions><quiet>0</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt4-5-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>Your method is right, but it uses your PAYE answers in (a) and (b), and at least one of them is wrong.</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>-1</falsenextnode><falseanswernote>prt4-5-F</falseanswernote><falsefeedback format="html"><text><![CDATA[<p>Change in take-home pay \(=\) rise in pay \(-\) rise in PAYE.</p>]]></text></falsefeedback></node>
+  </prt>
+
+  <deployedseed>4</deployedseed>
+  <deployedseed>5</deployedseed>
+  <deployedseed>15</deployedseed>
+  <deployedseed>8</deployedseed>
+  <deployedseed>24</deployedseed>
+  <deployedseed>1</deployedseed>
+  <deployedseed>3</deployedseed>
+  <deployedseed>10</deployedseed>
+  <deployedseed>2</deployedseed>
+  <deployedseed>17</deployedseed>
+  <qtest><testcase>1</testcase><description>Correct</description>
+    <testinput><name>ans1</name><value>float(p1)</value></testinput>
+    <testinput><name>ans2</name><value>float(p2)</value></testinput>
+    <testinput><name>ans3</name><value>2</value></testinput>
+    <testinput><name>ans4</name><value>float(inc)</value></testinput>
+    <expected><name>prt1</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt1-1-T</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt2-1-T</expectedanswernote></expected>
+    <expected><name>prt3</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt3-1-T</expectedanswernote></expected>
+    <expected><name>prt4</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt4-1-T</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>2</testcase><description>Generic wrong</description>
+    <testinput><name>ans1</name><value>float(g1)</value></testinput>
+    <testinput><name>ans2</name><value>float(g2)</value></testinput>
+    <testinput><name>ans3</name><value>2</value></testinput>
+    <testinput><name>ans4</name><value>float(g4)</value></testinput>
+    <expected><name>prt1</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt1-1-F | prt1-2-F | prt1-3-F</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt2-1-F | prt2-2-F | prt2-3-F</expectedanswernote></expected>
+    <expected><name>prt3</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt3-1-T</expectedanswernote></expected>
+    <expected><name>prt4</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt4-1-F | prt4-2-F | prt4-3-F | prt4-4-F | prt4-5-F</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>3</testcase><description>No relief; agreed; whole rise</description>
+    <testinput><name>ans1</name><value>float(t1)</value></testinput>
+    <testinput><name>ans2</name><value>float(t2)</value></testinput>
+    <testinput><name>ans3</name><value>1</value></testinput>
+    <testinput><name>ans4</name><value>rs</value></testinput>
+    <expected><name>prt1</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt1-1-F | prt1-2-T</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt2-1-F | prt2-2-T</expectedanswernote></expected>
+    <expected><name>prt3</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt3-1-F | prt3-2-T</expectedanswernote></expected>
+    <expected><name>prt4</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt4-1-F | prt4-2-T</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>4</testcase><description>One rate; relief lost; all at 30%</description>
+    <testinput><name>ans1</name><value>float(f1)</value></testinput>
+    <testinput><name>ans2</name><value>float(f2)</value></testinput>
+    <testinput><name>ans3</name><value>3</value></testinput>
+    <testinput><name>ans4</name><value>float(f30)</value></testinput>
+    <expected><name>prt1</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt1-1-F | prt1-2-F | prt1-3-T</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt2-1-F | prt2-2-F | prt2-3-T</expectedanswernote></expected>
+    <expected><name>prt3</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt3-1-F | prt3-2-F | prt3-3-T</expectedanswernote></expected>
+    <expected><name>prt4</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt4-1-F | prt4-2-F | prt4-3-T</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>5</testcase><description>No bands; extra PAYE</description>
+    <testinput><name>ans1</name><value>float(p1)</value></testinput>
+    <testinput><name>ans2</name><value>float(p2)</value></testinput>
+    <testinput><name>ans3</name><value>4</value></testinput>
+    <testinput><name>ans4</name><value>float(pc)</value></testinput>
+    <expected><name>prt1</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt1-1-T</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt2-1-T</expectedanswernote></expected>
+    <expected><name>prt3</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt3-1-F | prt3-2-F | prt3-3-F | prt3-4-T</expectedanswernote></expected>
+    <expected><name>prt4</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt4-1-F | prt4-2-F | prt4-3-F | prt4-4-T</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>6</testcase><description>Follow-through</description>
+    <testinput><name>ans1</name><value>float(p1)</value></testinput>
+    <testinput><name>ans2</name><value>float(h2)</value></testinput>
+    <testinput><name>ans3</name><value>2</value></testinput>
+    <testinput><name>ans4</name><value>float(h4)</value></testinput>
+    <expected><name>prt1</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt1-1-T</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt2-1-F | prt2-2-F | prt2-3-F</expectedanswernote></expected>
+    <expected><name>prt3</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt3-1-T</expectedanswernote></expected>
+    <expected><name>prt4</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt4-1-F | prt4-2-F | prt4-3-F | prt4-4-F | prt4-5-T</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>7</testcase><description>Invalid: letter in (d)</description>
+    <testinput><name>ans1</name><value>float(p1)</value></testinput>
+    <testinput><name>ans2</name><value>float(p2)</value></testinput>
+    <testinput><name>ans3</name><value>2</value></testinput>
+    <testinput><name>ans4</name><value>x</value></testinput>
+    <expected><name>prt1</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt1-1-T</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt2-1-T</expectedanswernote></expected>
+    <expected><name>prt3</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt3-1-T</expectedanswernote></expected>
+    <expected><name>prt4</name><expectedscore></expectedscore><expectedpenalty></expectedpenalty><expectedanswernote>NULL</expectedanswernote></expected>
+  </qtest>
+</question>
+</quiz>

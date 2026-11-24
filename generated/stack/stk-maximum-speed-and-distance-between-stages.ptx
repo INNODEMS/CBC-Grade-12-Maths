@@ -1,0 +1,6 @@
+<stack-static>
+    <statement><p><p>A matatu leaves a stage from rest and stops at the next stage <m>{30}</m> seconds later. Its velocity <m>t</m> seconds after it leaves is <m>v = {\frac{1}{25}}t({30} - t)</m> m/s.</p><p>(a) Find its greatest speed.</p><div>Greatest speed <m>=</m> <fillin characters="8" name="ans1"/> m/s  </div><p>(b) Find the distance between the two stages.</p><div>Distance <m>=</m> <fillin characters="8" name="ans2"/> m  </div></p></statement>
+    <solution><p><p>Differentiate to find when the speed is greatest; integrate to find the distance.</p><p>(a) <m>\dfrac{dv}{dt} = {\frac{30-t}{25}-\frac{t}{25}} = 0</m> when <m>t = {15}</m>. Then <m>v = {\frac{1}{25}} \times {15} \times {15} = {9}</m> m/s.</p><p>(b) The velocity is never negative, so the distance is <m>\displaystyle\int_0^{ {30} } {\frac{1}{25}}t({30} - t)\,dt = \left[{\frac{3 t^2}{5}-\frac{t^3}{75}}\right]_0^{ {30} } = {180}</m> m.</p><p>This is <m>\tfrac{2}{3}</m> of top speed <m>\times</m> time: more than the triangle <m>\tfrac{1}{2} \times {30} \times {9}</m> and less than the rectangle <m>{30} \times {9}</m>.</p></p></solution>
+    <answer><p><m>9</m></p></answer>
+    <answer><p><m>180</m></p></answer>
+</stack-static>

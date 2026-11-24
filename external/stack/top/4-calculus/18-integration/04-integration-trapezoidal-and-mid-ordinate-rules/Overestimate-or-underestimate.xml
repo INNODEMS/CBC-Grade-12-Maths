@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<quiz>
+<question type="stack">
+  <name><text>Overestimate or underestimate</text></name>
+  <questiontext format="html">
+    <text><![CDATA[<p>Without calculating, decide whether each estimate is an overestimate, an underestimate or the exact area.</p><p>First decide whether each curve bends upwards, bends downwards or is a straight line on its interval.</p><ol><li><div>The {@rr[1]@} rule with \(4\) strips for \(y = {@fr[1]@}\) from \(x = {@lr[1]@}\) to \(x = {@hr[1]@}\) gives [[input:ans1]] [[validation:ans1]]</div></li><li><div>The {@rr[2]@} rule with \(4\) strips for \(y = {@fr[2]@}\) from \(x = {@lr[2]@}\) to \(x = {@hr[2]@}\) gives [[input:ans2]] [[validation:ans2]]</div></li><li><div>The {@rr[3]@} rule with \(4\) strips for \(y = {@fr[3]@}\) from \(x = {@lr[3]@}\) to \(x = {@hr[3]@}\) gives [[input:ans3]] [[validation:ans3]]</div></li><li><div>The {@rr[4]@} rule with \(4\) strips for \(y = {@fr[4]@}\) from \(x = {@lr[4]@}\) to \(x = {@hr[4]@}\) gives [[input:ans4]] [[validation:ans4]]</div></li><li><div>The {@rr[5]@} rule with \(4\) strips for \(y = {@fr[5]@}\) from \(x = {@lr[5]@}\) to \(x = {@hr[5]@}\) gives [[input:ans5]] [[validation:ans5]]</div></li></ol><div>[[feedback:prt1]]</div>]]></text>
+  </questiontext>
+  <generalfeedback format="html">
+    <text><![CDATA[<p>For a curve that bends upwards the chords lie above the curve, so the trapezoidal rule overestimates; the mid-ordinate rule errs the other way and underestimates. For a curve that bends downwards both are reversed. For a straight line both rules give the exact area. The second derivative tells the bend: positive on the interval means it bends upwards.</p><ol><li><p>\(y = {@fr[1]@}\), \({@lr[1]@} \le x \le {@hr[1]@}\): \(\dfrac{d^2y}{dx^2} = {@diff(fr[1],x,2)@}\), [[if test="is(pm[1]<=2)"]]never negative on this interval, so the curve bends upwards[[elif test="is(pm[1]<=4)"]]never positive on this interval, so the curve bends downwards[[else]]so the graph is a straight line[[/if]]. The {@rr[1]@} rule gives [[if test="is(pm[1]=1 or pm[1]=4)"]]an overestimate[[elif test="is(pm[1]=5)"]]the exact area[[else]]an underestimate[[/if]].</p></li><li><p>\(y = {@fr[2]@}\), \({@lr[2]@} \le x \le {@hr[2]@}\): \(\dfrac{d^2y}{dx^2} = {@diff(fr[2],x,2)@}\), [[if test="is(pm[2]<=2)"]]never negative on this interval, so the curve bends upwards[[elif test="is(pm[2]<=4)"]]never positive on this interval, so the curve bends downwards[[else]]so the graph is a straight line[[/if]]. The {@rr[2]@} rule gives [[if test="is(pm[2]=1 or pm[2]=4)"]]an overestimate[[elif test="is(pm[2]=5)"]]the exact area[[else]]an underestimate[[/if]].</p></li><li><p>\(y = {@fr[3]@}\), \({@lr[3]@} \le x \le {@hr[3]@}\): \(\dfrac{d^2y}{dx^2} = {@diff(fr[3],x,2)@}\), [[if test="is(pm[3]<=2)"]]never negative on this interval, so the curve bends upwards[[elif test="is(pm[3]<=4)"]]never positive on this interval, so the curve bends downwards[[else]]so the graph is a straight line[[/if]]. The {@rr[3]@} rule gives [[if test="is(pm[3]=1 or pm[3]=4)"]]an overestimate[[elif test="is(pm[3]=5)"]]the exact area[[else]]an underestimate[[/if]].</p></li><li><p>\(y = {@fr[4]@}\), \({@lr[4]@} \le x \le {@hr[4]@}\): \(\dfrac{d^2y}{dx^2} = {@diff(fr[4],x,2)@}\), [[if test="is(pm[4]<=2)"]]never negative on this interval, so the curve bends upwards[[elif test="is(pm[4]<=4)"]]never positive on this interval, so the curve bends downwards[[else]]so the graph is a straight line[[/if]]. The {@rr[4]@} rule gives [[if test="is(pm[4]=1 or pm[4]=4)"]]an overestimate[[elif test="is(pm[4]=5)"]]the exact area[[else]]an underestimate[[/if]].</p></li><li><p>\(y = {@fr[5]@}\), \({@lr[5]@} \le x \le {@hr[5]@}\): \(\dfrac{d^2y}{dx^2} = {@diff(fr[5],x,2)@}\), [[if test="is(pm[5]<=2)"]]never negative on this interval, so the curve bends upwards[[elif test="is(pm[5]<=4)"]]never positive on this interval, so the curve bends downwards[[else]]so the graph is a straight line[[/if]]. The {@rr[5]@} rule gives [[if test="is(pm[5]=1 or pm[5]=4)"]]an overestimate[[elif test="is(pm[5]=5)"]]the exact area[[else]]an underestimate[[/if]].</p></li></ol>]]></text>
+  </generalfeedback>
+  <defaultgrade>1</defaultgrade>
+  <penalty>0.1</penalty>
+  <hidden>0</hidden>
+  <idnumber></idnumber>
+  <stackversion><text>2026063000</text></stackversion>
+  <questionvariables>
+    <text><![CDATA[/* Design: classify pattern. Kinds 1 upT, 2 upM, 3 downT, 4 downM, 5 line. Pools checked for bend and positivity. Source: original. */
+upl: [[[2,0,1],0,3],[[1,0,0,1],0,2],[[5,-2,1],1,4],[[3,0,0,2],1,3],[[4,1,2],0,2],[[6,-4,1],2,5],[[1,0,3],0,2],[[2,0,0,1],0,3]];
+dnl: [[[10,0,-1],0,3],[[8,2,-1],0,3],[[20,0,0,-1],0,2],[[12,4,-1],1,5],[[9,0,-1],0,2],[[30,0,0,-2],1,2],[[6,1,-1],0,2],[[15,2,-1],1,4]];
+lnl: [[[1,3],0,4],[[5,-1],0,3],[[2,4],1,5],[[7,-2],0,3],[[3,2],1,4],[[10,-3],0,2]];
+P: [[3,1,5,2,4],[2,5,1,4,3],[5,3,2,1,4],[4,2,3,5,1],[1,4,2,5,3],[2,3,5,4,1],[5,1,4,3,2],[3,4,1,2,5],[4,5,3,1,2],[1,3,4,2,5]];
+ix: 1+rand(10);
+pm: P[ix];
+mk(cl) := sum(cl[j]*x^(j-1), j, 1, length(cl));
+itm: [upl[mod(ix,8)+1], upl[mod(ix+3,8)+1], dnl[mod(ix,8)+1], dnl[mod(ix+5,8)+1], lnl[mod(ix,6)+1]];
+rul: makelist(if kd = 5 then (if is(mod(ix,2)=0) then "trapezoidal" else "mid-ordinate") else ["trapezoidal", "mid-ordinate", "trapezoidal", "mid-ordinate"][kd], kd, 1, 5);
+corr: ["o", "u", "u", "o", "e"];
+/* row r shows kind pm[r]; rw[kd] is the row of kind kd */
+IP: [[2,4,1,5,3],[3,1,5,4,2],[4,3,2,5,1],[5,2,3,1,4],[1,3,5,2,4],[5,1,2,4,3],[2,5,4,3,1],[3,4,1,2,5],[4,5,3,1,2],[1,4,2,3,5]];
+rw: IP[ix];
+fr: makelist(mk(itm[pm[r]][1]), r, 1, 5);
+lr: makelist(itm[pm[r]][2], r, 1, 5);
+hr: makelist(itm[pm[r]][3], r, 1, 5);
+rr: makelist(rul[pm[r]], r, 1, 5);
+kc: makelist(sconcat(corr[pm[r]], r), r, 1, 5);
+mko(r) := [[sconcat("o", r), is(corr[pm[r]] = "o"), "an overestimate"], [sconcat("u", r), is(corr[pm[r]] = "u"), "an underestimate"], [sconcat("e", r), is(corr[pm[r]] = "e"), "the exact area"]];
+o1: mko(1); o2: mko(2); o3: mko(3); o4: mko(4); o5: mko(5);
+/* test vectors: both T rows reversed; both M rows reversed; line row "over"; upT row "exact" */
+tT: makelist(if is(r = rw[1]) then sconcat("u", r) else if is(r = rw[3]) then sconcat("o", r) else kc[r], r, 1, 5);
+tM: makelist(if is(r = rw[2]) then sconcat("o", r) else if is(r = rw[4]) then sconcat("u", r) else kc[r], r, 1, 5);
+tL: makelist(if is(r = rw[5]) then sconcat("o", r) else kc[r], r, 1, 5);
+tG: makelist(if is(r = rw[1]) then sconcat("e", r) else kc[r], r, 1, 5);]]></text>
+  </questionvariables>
+  <specificfeedback format="html"><text><![CDATA[]]></text></specificfeedback>
+  <questionnote format="moodle_auto_format">
+    <text>ix={@ix@}, perm={@pm@}</text>
+  </questionnote>
+  <questiondescription format="html"><text><![CDATA[<p id="concept">Integration: over- and underestimates from the bend of the curve</p><p id="description">Grade 12 CBE Core 4.2: Decide whether trapezoidal and mid-ordinate estimates are over- or underestimates from the bend of the curve.</p><p id="edition">Core</p><p id="provenance">This question is original to this project.</p><p id="citation">INNODEMS CBC Grade 12 Mathematics, first draft by Ben Davies, 2026. Aligned to the KICD Senior School Curriculum Design, Core Mathematics Grade 12 (draft).</p>]]></text></questiondescription>
+  <questionsimplify>1</questionsimplify>
+  <assumepositive>0</assumepositive>
+  <assumereal>0</assumereal>
+  <prtcorrect format="html"><text><![CDATA[[[commonstring key="symbolicprtcorrectfeedback"/]] [[commonstring key="defaultprtcorrectfeedback"/]]]]></text></prtcorrect>
+  <prtpartiallycorrect format="html"><text><![CDATA[[[commonstring key="symbolicprtpartiallycorrectfeedback"/]] [[commonstring key="defaultprtpartiallycorrectfeedback"/]]]]></text></prtpartiallycorrect>
+  <prtincorrect format="html"><text><![CDATA[[[commonstring key="symbolicprtincorrectfeedback"/]] [[commonstring key="defaultprtincorrectfeedback"/]]]]></text></prtincorrect>
+  <decimals>.</decimals>
+  <scientificnotation>*10</scientificnotation>
+  <multiplicationsign>none</multiplicationsign>
+  <sqrtsign>1</sqrtsign>
+  <complexno>i</complexno>
+  <inversetrig>cos-1</inversetrig>
+  <logicsymbol>lang</logicsymbol>
+  <matrixparens>[</matrixparens>
+  <isbroken>0</isbroken>
+  <variantsselectionseed></variantsselectionseed>
+
+  <input><name>ans1</name><type>dropdown</type><tans>o1</tans><boxsize>15</boxsize><strictsyntax>1</strictsyntax><insertstars>0</insertstars><syntaxhint></syntaxhint><syntaxattribute>0</syntaxattribute><forbidwords></forbidwords><allowwords></allowwords><forbidfloat>1</forbidfloat><requirelowestterms>0</requirelowestterms><checkanswertype>0</checkanswertype><mustverify>0</mustverify><showvalidation>0</showvalidation><options></options></input>
+  <input><name>ans2</name><type>dropdown</type><tans>o2</tans><boxsize>15</boxsize><strictsyntax>1</strictsyntax><insertstars>0</insertstars><syntaxhint></syntaxhint><syntaxattribute>0</syntaxattribute><forbidwords></forbidwords><allowwords></allowwords><forbidfloat>1</forbidfloat><requirelowestterms>0</requirelowestterms><checkanswertype>0</checkanswertype><mustverify>0</mustverify><showvalidation>0</showvalidation><options></options></input>
+  <input><name>ans3</name><type>dropdown</type><tans>o3</tans><boxsize>15</boxsize><strictsyntax>1</strictsyntax><insertstars>0</insertstars><syntaxhint></syntaxhint><syntaxattribute>0</syntaxattribute><forbidwords></forbidwords><allowwords></allowwords><forbidfloat>1</forbidfloat><requirelowestterms>0</requirelowestterms><checkanswertype>0</checkanswertype><mustverify>0</mustverify><showvalidation>0</showvalidation><options></options></input>
+  <input><name>ans4</name><type>dropdown</type><tans>o4</tans><boxsize>15</boxsize><strictsyntax>1</strictsyntax><insertstars>0</insertstars><syntaxhint></syntaxhint><syntaxattribute>0</syntaxattribute><forbidwords></forbidwords><allowwords></allowwords><forbidfloat>1</forbidfloat><requirelowestterms>0</requirelowestterms><checkanswertype>0</checkanswertype><mustverify>0</mustverify><showvalidation>0</showvalidation><options></options></input>
+  <input><name>ans5</name><type>dropdown</type><tans>o5</tans><boxsize>15</boxsize><strictsyntax>1</strictsyntax><insertstars>0</insertstars><syntaxhint></syntaxhint><syntaxattribute>0</syntaxattribute><forbidwords></forbidwords><allowwords></allowwords><forbidfloat>1</forbidfloat><requirelowestterms>0</requirelowestterms><checkanswertype>0</checkanswertype><mustverify>0</mustverify><showvalidation>0</showvalidation><options></options></input>
+
+  <prt><name>prt1</name><value>1.0000000</value><autosimplify>1</autosimplify><feedbackstyle>1</feedbackstyle><feedbackvariables><text><![CDATA[A: [ans1, ans2, ans3, ans4, ans5];
+mk1: makelist(if is(A[r] = kc[r]) then 1 else 0, r, 1, 5);
+ncorrect: apply("+", mk1);
+swapT: is(A[rw[1]] = sconcat("u", rw[1])) and is(A[rw[3]] = sconcat("o", rw[3]));
+swapM: is(A[rw[2]] = sconcat("o", rw[2])) and is(A[rw[4]] = sconcat("u", rw[4]));
+linewrong: not is(A[rw[5]] = sconcat("e", rw[5]));]]></text></feedbackvariables>
+    <node><name>0</name><description>All five right</description><answertest>AlgEquiv</answertest><sans>ncorrect</sans><tans>5</tans><testoptions></testoptions><quiet>0</quiet><truescoremode>=</truescoremode><truescore>1.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt1-1-T</trueanswernote><truefeedback format="html"><text><![CDATA[]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>1</falsenextnode><falseanswernote>prt1-1-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>1</name><description>Trapezoidal rows reversed</description><answertest>AlgEquiv</answertest><sans>swapT</sans><tans>true</tans><testoptions></testoptions><quiet>0</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt1-2-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>You reversed both trapezoidal rows. Sketch \(y = {@fr[rw[1]]@}\), which bends upwards, and join two points on it with a chord: is the chord above or below the curve? Do the same for \(y = {@fr[rw[3]]@}\), which bends downwards.</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>2</falsenextnode><falseanswernote>prt1-2-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>2</name><description>Mid-ordinate rows reversed</description><answertest>AlgEquiv</answertest><sans>swapM</sans><tans>true</tans><testoptions></testoptions><quiet>0</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt1-3-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>You reversed both mid-ordinate rows. The mid-ordinate rule errs the opposite way to the trapezoidal rule. Decide what the trapezoidal rule would do for \(y = {@fr[rw[2]]@}\), which bends upwards, and for \(y = {@fr[rw[4]]@}\), which bends downwards, then reverse it.</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>3</falsenextnode><falseanswernote>prt1-3-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>3</name><description>Straight line not exact</description><answertest>AlgEquiv</answertest><sans>linewrong</sans><tans>true</tans><testoptions></testoptions><quiet>0</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt1-4-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>\(y = {@fr[rw[5]]@}\) is a straight line: it bends neither way. Sketch one strip under a straight line: how much area does the {@rr[rw[5]]@} rule gain or lose?</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>-1</falsenextnode><falseanswernote>prt1-4-F</falseanswernote><falsefeedback format="html"><text><![CDATA[<p>\({@ncorrect@}\) of \(5\) are right. Decide the bend first (\(\dfrac{d^2y}{dx^2}\) positive: bends upwards), then the rule: trapezia overestimate when the curve bends upwards, and the mid-ordinate rule errs the other way.</p>]]></text></falsefeedback></node>
+  </prt>
+
+  <deployedseed>4</deployedseed>
+  <deployedseed>5</deployedseed>
+  <deployedseed>15</deployedseed>
+  <deployedseed>8</deployedseed>
+  <deployedseed>24</deployedseed>
+  <deployedseed>1</deployedseed>
+  <deployedseed>3</deployedseed>
+  <deployedseed>10</deployedseed>
+  <deployedseed>2</deployedseed>
+  <deployedseed>17</deployedseed>
+  <qtest><testcase>1</testcase><description>Correct</description>
+    <testinput><name>ans1</name><value>kc[1]</value></testinput>
+    <testinput><name>ans2</name><value>kc[2]</value></testinput>
+    <testinput><name>ans3</name><value>kc[3]</value></testinput>
+    <testinput><name>ans4</name><value>kc[4]</value></testinput>
+    <testinput><name>ans5</name><value>kc[5]</value></testinput>
+    <expected><name>prt1</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt1-1-T</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>2</testcase><description>Both trapezoidal rows reversed</description>
+    <testinput><name>ans1</name><value>tT[1]</value></testinput>
+    <testinput><name>ans2</name><value>tT[2]</value></testinput>
+    <testinput><name>ans3</name><value>tT[3]</value></testinput>
+    <testinput><name>ans4</name><value>tT[4]</value></testinput>
+    <testinput><name>ans5</name><value>tT[5]</value></testinput>
+    <expected><name>prt1</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt1-1-F | prt1-2-T</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>3</testcase><description>Both mid-ordinate rows reversed</description>
+    <testinput><name>ans1</name><value>tM[1]</value></testinput>
+    <testinput><name>ans2</name><value>tM[2]</value></testinput>
+    <testinput><name>ans3</name><value>tM[3]</value></testinput>
+    <testinput><name>ans4</name><value>tM[4]</value></testinput>
+    <testinput><name>ans5</name><value>tM[5]</value></testinput>
+    <expected><name>prt1</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt1-1-F | prt1-2-F | prt1-3-T</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>4</testcase><description>Straight line marked over</description>
+    <testinput><name>ans1</name><value>tL[1]</value></testinput>
+    <testinput><name>ans2</name><value>tL[2]</value></testinput>
+    <testinput><name>ans3</name><value>tL[3]</value></testinput>
+    <testinput><name>ans4</name><value>tL[4]</value></testinput>
+    <testinput><name>ans5</name><value>tL[5]</value></testinput>
+    <expected><name>prt1</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt1-1-F | prt1-2-F | prt1-3-F | prt1-4-T</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>5</testcase><description>Generic: up-curve trapezoidal row marked exact</description>
+    <testinput><name>ans1</name><value>tG[1]</value></testinput>
+    <testinput><name>ans2</name><value>tG[2]</value></testinput>
+    <testinput><name>ans3</name><value>tG[3]</value></testinput>
+    <testinput><name>ans4</name><value>tG[4]</value></testinput>
+    <testinput><name>ans5</name><value>tG[5]</value></testinput>
+    <expected><name>prt1</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt1-1-F | prt1-2-F | prt1-3-F | prt1-4-F</expectedanswernote></expected>
+  </qtest>
+</question>
+</quiz>

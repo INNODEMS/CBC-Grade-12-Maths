@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<quiz>
+<question type="stack">
+  <name><text>Magnitude of a vector and distance between points</text></name>
+  <questiontext format="html">
+    <text><![CDATA[<p>Give exact values, or decimals correct to 2 decimal places.</p><p>(a) Find the magnitude of \({@cv3(v)@}\).</p><div>[[input:ans1]] [[validation:ans1]] [[feedback:prt1]]</div><p>(b) Find the distance between \(P({@P[1]@},\,{@P[2]@},\,{@P[3]@})\) and \(Q({@Q[1]@},\,{@Q[2]@},\,{@Q[3]@})\).</p><div>[[input:ans2]] [[validation:ans2]] [[feedback:prt2]]</div>]]></text>
+  </questiontext>
+  <generalfeedback format="html">
+    <text><![CDATA[<p>Pythagoras twice: across the floor, then up, gives \(|\mathbf{r}| = \sqrt{x^2 + y^2 + z^2}\).</p><p>(a) \(\sqrt{({@v[1]@})^2 + ({@v[2]@})^2 + ({@v[3]@})^2} = \sqrt{{@S@}} = {@tm1@}\)[[if test="not integerp(tm1)"]] \(\approx {@m1d@}\)[[/if]].</p><p>(b) \(\overrightarrow{PQ} = \mathbf{q} - \mathbf{p} = {@cv3(d)@}\), so \(PQ = \sqrt{({@d[1]@})^2 + ({@d[2]@})^2 + ({@d[3]@})^2} = \sqrt{{@Sd@}} = {@tm2@}\)[[if test="not integerp(tm2)"]] \(\approx {@m2d@}\)[[/if]].</p>]]></text>
+  </generalfeedback>
+  <defaultgrade>2</defaultgrade>
+  <penalty>0.1</penalty>
+  <hidden>0</hidden>
+  <idnumber></idnumber>
+  <stackversion><text>2026063000</text></stackversion>
+  <questionvariables>
+    <text><![CDATA[cv3(v) := matrix([v[1]],[v[2]],[v[3]]);
+/* Design: magnitude of a vector and distance between points. Entries 1 to 4 have whole-number magnitudes. Diagnostics are more than 2 x 0.00501 apart on every entry. Source: adapted from SMP AS/A2 Core 4, Chapter 9, C9 and Exercise D, Q6. */
+mlist: [[[-6,-2,9],[2,-5,-3],[1,6,2]],[[-4,8,-1],[6,4,-4],[-1,-3,-5]],[[-2,6,-3],[-1,2,-1],[5,3,-5]],[[-2,10,-11],[5,-3,-1],[-2,2,-2]],[[4,8,-7],[-5,6,4],[2,1,-5]],[[-5,7,1],[-5,5,3],[5,3,2]],[[5,-3,7],[1,1,2],[-2,-3,-5]],[[2,-1,4],[-4,1,-2],[5,5,-3]],[[7,-4,1],[1,1,4],[-2,5,5]],[[-1,8,-7],[-3,-1,6],[-1,3,-5]]];
+ix: 1+rand(10);
+v: mlist[ix][1]; P: mlist[ix][2]; Q: mlist[ix][3];
+sq3(u) := u[1]^2+u[2]^2+u[3]^2;
+S: sq3(v); tm1: sqrt(S);
+d: Q-P; Sd: sq3(d); tm2: sqrt(Sd);
+neg: first(sublist(v, lambda([t], is(t < 0))));
+dg2: sqrt(abs(v[1]*abs(v[1])+v[2]*abs(v[2])+v[3]*abs(v[3])));
+dg3: abs(v[1])+abs(v[2])+abs(v[3]);
+dg4: abs(v[1]+v[2]+v[3]);
+eP: sqrt(sq3(P+Q)); eQ: sqrt(sq3(Q)); eA: abs(d[1])+abs(d[2])+abs(d[3]);
+m1d: dispdp(float(floor(10^2*(tm1)+1/2)/10^2),2); m2d: dispdp(float(floor(10^2*(tm2)+1/2)/10^2),2);
+f1: float(tm1); f2: float(tm2);
+r1: float(floor(100*tm1+1/2)/100); r2: float(floor(100*tm2+1/2)/100);
+w1: f1+0.5; w2: f2+0.5;
+]]></text>
+  </questionvariables>
+  <specificfeedback format="html"><text><![CDATA[]]></text></specificfeedback>
+  <questionnote format="moodle_auto_format">
+    <text>ix={@ix@}, |v|={@m1d@}, |PQ|={@m2d@}</text>
+  </questionnote>
+  <questiondescription format="html"><text><![CDATA[<p id="concept">Vectors II: magnitude of a vector and distance between points</p><p id="description">Grade 12 CBE Core 2.6: Find the magnitude of a three-dimensional vector and the distance between two points, exactly or to 2 decimal places.</p><p id="edition">Core</p><p id="provenance">This question is adapted from Question C9 in Section C and Question 6 in Exercise D of Chapter 9 of Instone, S., Ling, J., Scruton, P., Shilton, S. and West, H., SMP AS/A2 Mathematics: Core 4 for AQA, Cambridge University Press, 2005: new numbers, the two skills in one question, randomised over a curated list, with named feedback.</p><p id="citation">INNODEMS CBC Grade 12 Mathematics, first draft by Ben Davies, 2026. Aligned to the KICD Senior School Curriculum Design, Core Mathematics Grade 12 (draft).</p>]]></text></questiondescription>
+  <questionsimplify>1</questionsimplify>
+  <assumepositive>0</assumepositive>
+  <assumereal>0</assumereal>
+  <prtcorrect format="html"><text><![CDATA[[[commonstring key="symbolicprtcorrectfeedback"/]] [[commonstring key="defaultprtcorrectfeedback"/]]]]></text></prtcorrect>
+  <prtpartiallycorrect format="html"><text><![CDATA[[[commonstring key="symbolicprtpartiallycorrectfeedback"/]] [[commonstring key="defaultprtpartiallycorrectfeedback"/]]]]></text></prtpartiallycorrect>
+  <prtincorrect format="html"><text><![CDATA[[[commonstring key="symbolicprtincorrectfeedback"/]] [[commonstring key="defaultprtincorrectfeedback"/]]]]></text></prtincorrect>
+  <decimals>.</decimals>
+  <scientificnotation>*10</scientificnotation>
+  <multiplicationsign>none</multiplicationsign>
+  <sqrtsign>1</sqrtsign>
+  <complexno>symi</complexno>
+  <inversetrig>cos-1</inversetrig>
+  <logicsymbol>lang</logicsymbol>
+  <matrixparens>(</matrixparens>
+  <isbroken>0</isbroken>
+  <variantsselectionseed></variantsselectionseed>
+
+  <input><name>ans1</name><type>numerical</type><tans>tm1</tans><boxsize>8</boxsize><strictsyntax>1</strictsyntax><insertstars>0</insertstars><syntaxhint></syntaxhint><syntaxattribute>0</syntaxattribute><forbidwords></forbidwords><allowwords></allowwords><forbidfloat>0</forbidfloat><requirelowestterms>0</requirelowestterms><checkanswertype>0</checkanswertype><mustverify>0</mustverify><showvalidation>0</showvalidation><options></options></input>
+  <input><name>ans2</name><type>numerical</type><tans>tm2</tans><boxsize>8</boxsize><strictsyntax>1</strictsyntax><insertstars>0</insertstars><syntaxhint></syntaxhint><syntaxattribute>0</syntaxattribute><forbidwords></forbidwords><allowwords></allowwords><forbidfloat>0</forbidfloat><requirelowestterms>0</requirelowestterms><checkanswertype>0</checkanswertype><mustverify>0</mustverify><showvalidation>0</showvalidation><options></options></input>
+
+  <prt><name>prt1</name><value>1.0000000</value><autosimplify>1</autosimplify><feedbackstyle>1</feedbackstyle><feedbackvariables><text><![CDATA[sq: ans1^2; sqd: if integerp(sq) then sq else float(floor(1000*sq+1/2)/1000);
+]]></text></feedbackvariables>
+    <node><name>0</name><description>|v|</description><answertest>NumAbsolute</answertest><sans>ans1</sans><tans>f1</tans><testoptions>0.00501</testoptions><quiet>1</quiet><truescoremode>=</truescoremode><truescore>1.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt1-1-T</trueanswernote><truefeedback format="html"><text><![CDATA[]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>1</falsenextnode><falseanswernote>prt1-1-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>1</name><description>No square root</description><answertest>NumAbsolute</answertest><sans>ans1</sans><tans>S</tans><testoptions>0.00501</testoptions><quiet>1</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt1-2-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>You found \(x^2 + y^2 + z^2 = {@S@}\) but did not take the square root.</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>2</falsenextnode><falseanswernote>prt1-2-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>2</name><description>Negative squared as negative</description><answertest>NumAbsolute</answertest><sans>ans1</sans><tans>float(dg2)</tans><testoptions>0.00501</testoptions><quiet>1</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt1-3-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>A negative number squared is positive: \(({@neg@})^2 = {@neg^2@}\).</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>3</falsenextnode><falseanswernote>prt1-3-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>3</name><description>Sum of sizes</description><answertest>NumAbsolute</answertest><sans>ans1</sans><tans>dg3</tans><testoptions>0.00501</testoptions><quiet>1</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt1-4-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>You added the sizes of the components. Square them, add, then take the square root.</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>4</falsenextnode><falseanswernote>prt1-4-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>4</name><description>Sum of components</description><answertest>NumAbsolute</answertest><sans>ans1</sans><tans>dg4</tans><testoptions>0.00501</testoptions><quiet>1</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt1-5-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>You added the components. Square each one first.</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>-1</falsenextnode><falseanswernote>prt1-5-F</falseanswernote><falsefeedback format="html"><text><![CDATA[[[if test="is(ans1 < 0)"]]<p>A magnitude is a length, so it cannot be negative.</p>[[else]][[if test="is(abs(ans1-f1) < 0.06)"]]<p>Your answer is close but not accurate enough. Give the exact value, or a decimal correct to 2 decimal places.</p>[[else]]<p>Square each component, add, then take the square root. Check your answer: its square must equal \(({@v[1]@})^2 + ({@v[2]@})^2 + ({@v[3]@})^2\). Your answer squared is \({@sqd@}\).</p>[[/if]][[/if]]]]></text></falsefeedback></node>
+  </prt>
+  <prt><name>prt2</name><value>1.0000000</value><autosimplify>1</autosimplify><feedbackstyle>1</feedbackstyle><feedbackvariables><text><![CDATA[sq: ans2^2; sqd: if integerp(sq) then sq else float(floor(1000*sq+1/2)/1000);
+]]></text></feedbackvariables>
+    <node><name>0</name><description>|PQ|</description><answertest>NumAbsolute</answertest><sans>ans2</sans><tans>f2</tans><testoptions>0.00501</testoptions><quiet>1</quiet><truescoremode>=</truescoremode><truescore>1.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt2-1-T</trueanswernote><truefeedback format="html"><text><![CDATA[]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>1</falsenextnode><falseanswernote>prt2-1-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>1</name><description>No square root</description><answertest>NumAbsolute</answertest><sans>ans2</sans><tans>Sd</tans><testoptions>0.00501</testoptions><quiet>1</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt2-2-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>You found the sum of the squares, \({@Sd@}\), but did not take the square root.</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>2</falsenextnode><falseanswernote>prt2-2-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>2</name><description>Added coordinates</description><answertest>NumAbsolute</answertest><sans>ans2</sans><tans>float(eP)</tans><testoptions>0.00501</testoptions><quiet>1</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt2-3-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>You added the coordinates. The vector \(\overrightarrow{PQ}\) is \(\mathbf{q} - \mathbf{p}\): subtract them.</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>3</falsenextnode><falseanswernote>prt2-3-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>3</name><description>|OQ|</description><answertest>NumAbsolute</answertest><sans>ans2</sans><tans>float(eQ)</tans><testoptions>0.00501</testoptions><quiet>1</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt2-4-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>That is the distance of Q from O. You need the vector from P to Q first.</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>4</falsenextnode><falseanswernote>prt2-4-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>4</name><description>Sum of sizes</description><answertest>NumAbsolute</answertest><sans>ans2</sans><tans>eA</tans><testoptions>0.00501</testoptions><quiet>1</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt2-5-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>You added the sizes of the components of \(\overrightarrow{PQ}\). Square them, add, then take the square root.</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>-1</falsenextnode><falseanswernote>prt2-5-F</falseanswernote><falsefeedback format="html"><text><![CDATA[[[if test="is(ans2 < 0)"]]<p>A distance cannot be negative.</p>[[else]][[if test="is(abs(ans2-f2) < 0.06)"]]<p>Your answer is close but not accurate enough. Give the exact value, or a decimal correct to 2 decimal places.</p>[[else]]<p>Find \(\overrightarrow{PQ} = \mathbf{q} - \mathbf{p}\), then its magnitude. Check your answer: its square must equal the sum of the squares of the three components of \(\overrightarrow{PQ}\). Your answer squared is \({@sqd@}\).</p>[[/if]][[/if]]]]></text></falsefeedback></node>
+  </prt>
+
+  <deployedseed>4</deployedseed>
+  <deployedseed>5</deployedseed>
+  <deployedseed>15</deployedseed>
+  <deployedseed>8</deployedseed>
+  <deployedseed>24</deployedseed>
+  <deployedseed>1</deployedseed>
+  <deployedseed>3</deployedseed>
+  <deployedseed>10</deployedseed>
+  <deployedseed>2</deployedseed>
+  <deployedseed>17</deployedseed>
+  <qtest><testcase>1</testcase><description>Correct, exact</description>
+    <testinput><name>ans1</name><value>sqrt(S)</value></testinput>
+    <testinput><name>ans2</name><value>sqrt(Sd)</value></testinput>
+    <expected><name>prt1</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt1-1-T</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt2-1-T</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>2</testcase><description>Correct, 2 d.p.</description>
+    <testinput><name>ans1</name><value>r1</value></testinput>
+    <testinput><name>ans2</name><value>r2</value></testinput>
+    <expected><name>prt1</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt1-1-T</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt2-1-T</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>3</testcase><description>No square root</description>
+    <testinput><name>ans1</name><value>S</value></testinput>
+    <testinput><name>ans2</name><value>Sd</value></testinput>
+    <expected><name>prt1</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt1-1-F | prt1-2-T</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt2-1-F | prt2-2-T</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>4</testcase><description>Signs kept; added coordinates</description>
+    <testinput><name>ans1</name><value>float(dg2)</value></testinput>
+    <testinput><name>ans2</name><value>float(eP)</value></testinput>
+    <expected><name>prt1</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt1-1-F | prt1-2-F | prt1-3-T</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt2-1-F | prt2-2-F | prt2-3-T</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>5</testcase><description>Sum of sizes; |OQ|</description>
+    <testinput><name>ans1</name><value>dg3</value></testinput>
+    <testinput><name>ans2</name><value>float(eQ)</value></testinput>
+    <expected><name>prt1</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt1-1-F | prt1-2-F | prt1-3-F | prt1-4-T</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt2-1-F | prt2-2-F | prt2-3-F | prt2-4-T</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>6</testcase><description>Sum of components; sum of sizes</description>
+    <testinput><name>ans1</name><value>dg4</value></testinput>
+    <testinput><name>ans2</name><value>eA</value></testinput>
+    <expected><name>prt1</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt1-1-F | prt1-2-F | prt1-3-F | prt1-4-F | prt1-5-T</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt2-1-F | prt2-2-F | prt2-3-F | prt2-4-F | prt2-5-T</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>7</testcase><description>Generic offsets</description>
+    <testinput><name>ans1</name><value>w1</value></testinput>
+    <testinput><name>ans2</name><value>w2</value></testinput>
+    <expected><name>prt1</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt1-1-F | prt1-2-F | prt1-3-F | prt1-4-F | prt1-5-F</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt2-1-F | prt2-2-F | prt2-3-F | prt2-4-F | prt2-5-F</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>8</testcase><description>Invalid: a letter in (a)</description>
+    <testinput><name>ans1</name><value>x</value></testinput>
+    <testinput><name>ans2</name><value>sqrt(Sd)</value></testinput>
+    <expected><name>prt1</name><expectedscore></expectedscore><expectedpenalty></expectedpenalty><expectedanswernote>NULL</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt2-1-T</expectedanswernote></expected>
+  </qtest>
+</question>
+</quiz>

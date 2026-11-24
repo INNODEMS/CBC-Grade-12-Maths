@@ -1,0 +1,6 @@
+<stack-static>
+    <statement><p><p>Given that <m>\displaystyle \int_{1}^{k} \left({2 x+2}\right)dx = {12}</m>, where <m>k &gt; 1</m>:</p><p>(a) find the integral in terms of <m>k</m>;</p><div><m>\displaystyle \int_{1}^{k} \left({2 x+2}\right)dx =</m> <fillin characters="20" name="ans1"/>  </div><p>(b) find the value of <m>k</m>.</p><div><m>k =</m> <fillin characters="8" name="ans2"/>  </div></p></statement>
+    <solution><p><p>Integrate, substitute the limits <m>k</m> and <m>1</m>, and subtract; then set the result equal to <m>{12}</m> and solve the quadratic.</p><p>(a) <me>\int_{1}^{k} \left({2 x+2}\right)dx = \left[{x^2+2 x}\right]_1^k = \left({k^2+2 k}\right) - {3} = {k^2+2 k-3}</me></p><p>(b) <m>{k^2+2 k-3} = {12}</m>, so <m>{k^2+2 k-15} = 0</m>, which factorises as <m>{\left(k-3\right) \left(k+5\right)} = 0</m>. So <m>k = {3}</m> or <m>k = {-5}</m>. The upper limit must be greater than <m>1</m>, so <m>k = {3}</m>.</p></p></solution>
+    <answer><p><m>k^2+2 k-3</m></p></answer>
+    <answer><p><m>3</m></p></answer>
+</stack-static>

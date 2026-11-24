@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<quiz>
+<question type="stack">
+  <name><text>Building the trapezoidal rule from trapezia</text></name>
+  <questiontext format="html">
+    <text><![CDATA[<p>A region is split into \({@n@}\) strips, each \({@hh@}\,\text{m}\) wide. The ordinates (the heights at the edges of the strips), in metres, are \(y_0, y_1, \ldots, y_{ {@n@} }\).</p><p>Type y0, y1 and so on for the ordinates, for example <code>3*(y0+y1)</code>.</p><p>(a) Write an expression for the area of strip \({@kk@}\), treated as a trapezium.</p><div>[[input:ans1]] [[validation:ans1]] [[feedback:prt1]]</div><p>(b) Add the areas of all \({@n@}\) trapezia. Write the total as one expression in \(y_0\) to \(y_{ {@n@} }\).</p><div>[[input:ans2]] [[validation:ans2]] [[feedback:prt2]]</div>]]></text>
+  </questiontext>
+  <generalfeedback format="html">
+    <text><![CDATA[<p>(a) Strip \({@kk@}\) lies between the ordinates \(y_{ {@kk-1@} }\) and \(y_{ {@kk@} }\). A trapezium has area \(\tfrac{1}{2} \times\) (sum of the parallel sides) \(\times\) width, so its area is \({@ta1@}\).</p><p>(b) The areas of the \({@n@}\) strips are \({@tsum@}\). Add them. Each inner ordinate is a side of two trapezia, so it is counted twice, while \(y_0\) and \(y_{ {@n@} }\) appear once:</p><p>\[A \approx {@ta2@}\]</p><p>This is the trapezoidal rule \(A \approx \tfrac{1}{2}h\left[y_0 + y_n + 2(y_1 + y_2 + \cdots + y_{n-1})\right]\) with \(h = {@hh@}\) and \(n = {@n@}\).</p>]]></text>
+  </generalfeedback>
+  <defaultgrade>2</defaultgrade>
+  <penalty>0.1</penalty>
+  <hidden>0</hidden>
+  <idnumber></idnumber>
+  <stackversion><text>2026063000</text></stackversion>
+  <questionvariables>
+    <text><![CDATA[validate_y7(ex) := if every(lambda([v], member(v, [y0,y1,y2,y3,y4,y5,y6,y7])), listofvars(ex)) then "" else "Use only the ordinates y0, y1, y2, ... in your expression.";
+/* Design: the sum of trapezia collected into the trapezoidal rule; n strips with a numeric h. Entries [n, h, k]; h is even, so h/2 is whole. Source: adapted from SMP AS/A2 Core 2, Chapter 9, Section C. */
+L: [[3,2,2],[4,10,3],[5,4,2],[6,6,4],[4,8,2],[3,20,3],[5,10,5],[6,2,3],[4,6,4],[5,4,3]];
+ix: 1+rand(10);
+n: L[ix][1]; hh: L[ix][2]; kk: L[ix][3];
+YA: [y0,y1,y2,y3,y4,y5,y6,y7];
+yv: makelist(YA[j+1],j,0,n);
+ta1: hh/2*(yv[kk]+yv[kk+1]);
+inner: apply("+",rest(rest(yv),-1));
+ta2: hh/2*(first(yv)+last(yv)+2*inner);
+tsum: makelist(hh/2*(yv[j]+yv[j+1]),j,1,n);
+/* diagnostics */
+d1h: hh*(yv[kk]+yv[kk+1]);
+d1r: hh*yv[kk+1]; d1l: hh*yv[kk];
+d1s: if kk < n then hh/2*(yv[kk+1]+yv[kk+2]) else hh/2*(yv[kk-1]+yv[kk]);
+d2h: hh*(first(yv)+last(yv)+2*inner);
+d2once: hh/2*apply("+",yv);
+d2all: hh*apply("+",yv);
+d2ends: hh/2*(2*first(yv)+2*last(yv)+inner);
+d2rect: hh*apply("+",rest(yv,-1));
+/* underscore test inputs (consolidatesubscripts) */
+us: [y0=y_0,y1=y_1,y2=y_2,y3=y_3,y4=y_4,y5=y_5,y6=y_6];]]></text>
+  </questionvariables>
+  <specificfeedback format="html"><text><![CDATA[]]></text></specificfeedback>
+  <questionnote format="moodle_auto_format">
+    <text>ix={@ix@}, n={@n@}, h={@hh@}, k={@kk@}</text>
+  </questionnote>
+  <questiondescription format="html"><text><![CDATA[<p id="concept">Area Approximations: building the trapezoidal rule from trapezia</p><p id="description">Grade 12 CBE Core 2.2 (b) / Essential 2.1 (b): Write the area of one strip as a trapezium in terms of ordinates, then add the areas of all the strips and collect the terms to obtain the trapezoidal rule.</p><p id="edition">Core</p><p id="provenance">This question is adapted from Section C of Chapter 9 (the trapezium areas collected to the short cut) of Cassell, D., Instone, S., Ling, J., Scruton, P., Shilton, S. and West, H., SMP AS/A2 Mathematics: Core 2 for AQA, Cambridge University Press, 2004: n strips with a numeric strip width and ordinates y0 to yn; randomised strip and named feedback for each slip.</p><p id="citation">INNODEMS CBC Grade 12 Mathematics, first draft by Ben Davies, 2026. Aligned to the KICD Senior School Curriculum Design, Core Mathematics Grade 12 (draft).</p>]]></text></questiondescription>
+  <questionsimplify>1</questionsimplify>
+  <assumepositive>0</assumepositive>
+  <assumereal>0</assumereal>
+  <prtcorrect format="html"><text><![CDATA[[[commonstring key="symbolicprtcorrectfeedback"/]] [[commonstring key="defaultprtcorrectfeedback"/]]]]></text></prtcorrect>
+  <prtpartiallycorrect format="html"><text><![CDATA[[[commonstring key="symbolicprtpartiallycorrectfeedback"/]] [[commonstring key="defaultprtpartiallycorrectfeedback"/]]]]></text></prtpartiallycorrect>
+  <prtincorrect format="html"><text><![CDATA[[[commonstring key="symbolicprtincorrectfeedback"/]] [[commonstring key="defaultprtincorrectfeedback"/]]]]></text></prtincorrect>
+  <decimals>.</decimals>
+  <scientificnotation>*10</scientificnotation>
+  <multiplicationsign>none</multiplicationsign>
+  <sqrtsign>1</sqrtsign>
+  <complexno>i</complexno>
+  <inversetrig>cos-1</inversetrig>
+  <logicsymbol>lang</logicsymbol>
+  <matrixparens>[</matrixparens>
+  <isbroken>0</isbroken>
+  <variantsselectionseed></variantsselectionseed>
+
+  <input><name>ans1</name><type>algebraic</type><tans>ta1</tans><boxsize>30</boxsize><strictsyntax>1</strictsyntax><insertstars>4</insertstars><syntaxhint></syntaxhint><syntaxattribute>0</syntaxattribute><forbidwords></forbidwords><allowwords></allowwords><forbidfloat>1</forbidfloat><requirelowestterms>0</requirelowestterms><checkanswertype>0</checkanswertype><mustverify>0</mustverify><showvalidation>3</showvalidation><options>validator:validate_y7, consolidatesubscripts</options></input>
+  <input><name>ans2</name><type>algebraic</type><tans>ta2</tans><boxsize>30</boxsize><strictsyntax>1</strictsyntax><insertstars>4</insertstars><syntaxhint></syntaxhint><syntaxattribute>0</syntaxattribute><forbidwords></forbidwords><allowwords></allowwords><forbidfloat>1</forbidfloat><requirelowestterms>0</requirelowestterms><checkanswertype>0</checkanswertype><mustverify>0</mustverify><showvalidation>3</showvalidation><options>validator:validate_y7, consolidatesubscripts</options></input>
+
+  <prt><name>prt1</name><value>1.0000000</value><autosimplify>1</autosimplify><feedbackstyle>1</feedbackstyle><feedbackvariables><text><![CDATA[rect1: is(ans1 = d1r or ans1 = d1l);
+one1: ev(subst(makelist(u=1,u,YA), ans1), simp);]]></text></feedbackvariables>
+    <node><name>0</name><description>Strip area</description><answertest>AlgEquiv</answertest><sans>ans1</sans><tans>ta1</tans><testoptions></testoptions><quiet>0</quiet><truescoremode>=</truescoremode><truescore>1.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt1-1-T</trueanswernote><truefeedback format="html"><text><![CDATA[]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>1</falsenextnode><falseanswernote>prt1-1-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>1</name><description>No half</description><answertest>AlgEquiv</answertest><sans>ans1</sans><tans>d1h</tans><testoptions></testoptions><quiet>0</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt1-2-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>You left out the \(\tfrac{1}{2}\): a trapezium's area is \(\tfrac{1}{2} \times\) (sum of the parallel sides) \(\times\) width.</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>2</falsenextnode><falseanswernote>prt1-2-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>2</name><description>Rectangle</description><answertest>AlgEquiv</answertest><sans>rect1</sans><tans>true</tans><testoptions></testoptions><quiet>0</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt1-3-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>That is a rectangle. Strip \({@kk@}\) is a trapezium with parallel sides \(y_{ {@kk-1@} }\) and \(y_{ {@kk@} }\).</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>3</falsenextnode><falseanswernote>prt1-3-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>3</name><description>Neighbouring strip</description><answertest>AlgEquiv</answertest><sans>ans1</sans><tans>d1s</tans><testoptions></testoptions><quiet>0</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt1-4-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>Strip \({@kk@}\) lies between \(y_{ {@kk-1@} }\) and \(y_{ {@kk@} }\): strip 1 is between \(y_0\) and \(y_1\).</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>-1</falsenextnode><falseanswernote>prt1-4-F</falseanswernote><falsefeedback format="html"><text><![CDATA[<p>Test your expression: if every ordinate were \(1\,\text{m}\), strip \({@kk@}\) would be a rectangle \({@hh@}\,\text{m}\) by \(1\,\text{m}\), with area \({@hh@}\,\text{m}^2\). [[if test="is(one1=hh)"]]Your expression passes this test, so check which ordinates it uses: strip 1 lies between \(y_0\) and \(y_1\).[[else]]Your expression gives \({@one1@}\).[[/if]]</p><p>Strip \({@kk@}\) is a trapezium: use its width and its two parallel sides.</p>]]></text></falsefeedback></node>
+  </prt>
+  <prt><name>prt2</name><value>1.0000000</value><autosimplify>1</autosimplify><feedbackstyle>1</feedbackstyle><feedbackvariables><text><![CDATA[one2: ev(subst(makelist(u=1,u,YA), ans2), simp);]]></text></feedbackvariables>
+    <node><name>0</name><description>Total</description><answertest>AlgEquiv</answertest><sans>ans2</sans><tans>ta2</tans><testoptions></testoptions><quiet>0</quiet><truescoremode>=</truescoremode><truescore>1.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt2-1-T</trueanswernote><truefeedback format="html"><text><![CDATA[]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>1</falsenextnode><falseanswernote>prt2-1-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>1</name><description>No half</description><answertest>AlgEquiv</answertest><sans>ans2</sans><tans>d2h</tans><testoptions></testoptions><quiet>0</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt2-2-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>You left out the \(\tfrac{1}{2}\).</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>2</falsenextnode><falseanswernote>prt2-2-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>2</name><description>Inner once</description><answertest>AlgEquiv</answertest><sans>ans2</sans><tans>d2once</tans><testoptions></testoptions><quiet>0</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt2-3-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>Each inner ordinate is a side of two trapezia, so it appears twice in the total.</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>3</falsenextnode><falseanswernote>prt2-3-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>3</name><description>All twice</description><answertest>AlgEquiv</answertest><sans>ans2</sans><tans>d2all</tans><testoptions></testoptions><quiet>0</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt2-4-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>Only the inner ordinates appear twice; \(y_0\) and \(y_{ {@n@} }\) belong to one trapezium each.</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>4</falsenextnode><falseanswernote>prt2-4-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>4</name><description>Ends twice instead</description><answertest>AlgEquiv</answertest><sans>ans2</sans><tans>d2ends</tans><testoptions></testoptions><quiet>0</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt2-5-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>The first and last ordinates appear once and the inner ones twice, not the other way round.</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>5</falsenextnode><falseanswernote>prt2-5-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>5</name><description>Rectangles</description><answertest>AlgEquiv</answertest><sans>ans2</sans><tans>d2rect</tans><testoptions></testoptions><quiet>0</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt2-6-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>That adds rectangles on the left edges. Use trapezia: \(\tfrac{1}{2} \times {@hh@} \times\) (left \(+\) right) for each strip.</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>-1</falsenextnode><falseanswernote>prt2-6-F</falseanswernote><falsefeedback format="html"><text><![CDATA[<p>Test your expression: if every ordinate were \(1\,\text{m}\), the region would be a rectangle \({@n*hh@}\,\text{m}\) by \(1\,\text{m}\), with area \({@n*hh@}\,\text{m}^2\). [[if test="is(one2=n*hh)"]]Your expression passes this test, so check how many trapezia each ordinate belongs to.[[else]]Your expression gives \({@one2@}\).[[/if]]</p><p>Write each strip as \(\tfrac{1}{2} \times {@hh@} \times\) (left \(+\) right), add the \({@n@}\) areas and collect the terms.</p>]]></text></falsefeedback></node>
+  </prt>
+
+  <deployedseed>4</deployedseed>
+  <deployedseed>5</deployedseed>
+  <deployedseed>15</deployedseed>
+  <deployedseed>8</deployedseed>
+  <deployedseed>24</deployedseed>
+  <deployedseed>1</deployedseed>
+  <deployedseed>3</deployedseed>
+  <deployedseed>10</deployedseed>
+  <deployedseed>2</deployedseed>
+  <deployedseed>17</deployedseed>
+  <qtest><testcase>1</testcase><description>Correct</description>
+    <testinput><name>ans1</name><value>ta1</value></testinput>
+    <testinput><name>ans2</name><value>ta2</value></testinput>
+    <expected><name>prt1</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt1-1-T</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt2-1-T</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>2</testcase><description>Correct, expanded</description>
+    <testinput><name>ans1</name><value>expand(ta1)</value></testinput>
+    <testinput><name>ans2</name><value>expand(ta2)</value></testinput>
+    <expected><name>prt1</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt1-1-T</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt2-1-T</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>3</testcase><description>Correct, typed with underscores</description>
+    <testinput><name>ans1</name><value>subst(us,ta1)</value></testinput>
+    <testinput><name>ans2</name><value>subst(us,ta2)</value></testinput>
+    <expected><name>prt1</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt1-1-T</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt2-1-T</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>4</testcase><description>No half</description>
+    <testinput><name>ans1</name><value>d1h</value></testinput>
+    <testinput><name>ans2</name><value>d2h</value></testinput>
+    <expected><name>prt1</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt1-1-F | prt1-2-T</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt2-1-F | prt2-2-T</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>5</testcase><description>Rectangle; inner once</description>
+    <testinput><name>ans1</name><value>d1r</value></testinput>
+    <testinput><name>ans2</name><value>d2once</value></testinput>
+    <expected><name>prt1</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt1-1-F | prt1-2-F | prt1-3-T</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt2-1-F | prt2-2-F | prt2-3-T</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>6</testcase><description>Left rectangle</description>
+    <testinput><name>ans1</name><value>d1l</value></testinput>
+    <testinput><name>ans2</name><value>ta2</value></testinput>
+    <expected><name>prt1</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt1-1-F | prt1-2-F | prt1-3-T</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt2-1-T</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>7</testcase><description>Neighbouring strip; all twice</description>
+    <testinput><name>ans1</name><value>d1s</value></testinput>
+    <testinput><name>ans2</name><value>d2all</value></testinput>
+    <expected><name>prt1</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt1-1-F | prt1-2-F | prt1-3-F | prt1-4-T</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt2-1-F | prt2-2-F | prt2-3-F | prt2-4-T</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>8</testcase><description>Ends twice</description>
+    <testinput><name>ans1</name><value>ta1</value></testinput>
+    <testinput><name>ans2</name><value>d2ends</value></testinput>
+    <expected><name>prt1</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt1-1-T</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt2-1-F | prt2-2-F | prt2-3-F | prt2-4-F | prt2-5-T</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>9</testcase><description>Rectangles</description>
+    <testinput><name>ans1</name><value>ta1</value></testinput>
+    <testinput><name>ans2</name><value>d2rect</value></testinput>
+    <expected><name>prt1</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt1-1-T</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt2-1-F | prt2-2-F | prt2-3-F | prt2-4-F | prt2-5-F | prt2-6-T</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>10</testcase><description>Generic wrong</description>
+    <testinput><name>ans1</name><value>ta1+y0</value></testinput>
+    <testinput><name>ans2</name><value>ta2+y0</value></testinput>
+    <expected><name>prt1</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt1-1-F | prt1-2-F | prt1-3-F | prt1-4-F</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt2-1-F | prt2-2-F | prt2-3-F | prt2-4-F | prt2-5-F | prt2-6-F</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>11</testcase><description>Invalid: letter h</description>
+    <testinput><name>ans1</name><value>h*y0</value></testinput>
+    <testinput><name>ans2</name><value>ta2</value></testinput>
+    <expected><name>prt1</name><expectedscore></expectedscore><expectedpenalty></expectedpenalty><expectedanswernote>NULL</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt2-1-T</expectedanswernote></expected>
+  </qtest>
+</question>
+</quiz>

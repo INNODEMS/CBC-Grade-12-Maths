@@ -1,0 +1,7 @@
+<stack-static>
+    <statement><p><p>The curve <m>y = x^3 + ax^2 + bx + 4</m> has a stationary point at <m>({1}, {7})</m>.</p><p>(a) Find <m>a</m> and <m>b</m>.</p><div><m>a =</m> <fillin characters="5" name="ans1"/>  <m>\quad b =</m> <fillin characters="5" name="ans2"/>  </div><p>(b) The stationary point is a [ maximum point | minimum point | point of inflection ]  </p></p></statement>
+    <solution><p><p>Two facts give two equations. The gradient is <m>0</m> at the point, and the point lies on the curve.</p><p><m>\dfrac{dy}{dx} = 3x^2 + 2ax + b</m>. At <m>x = {1}</m>: <m>{b+2 a+3} = 0</m>.</p><p>The curve passes through <m>({1}, {7})</m>: <m>{b+a+5} = {7}</m>.</p><p>Solving these simultaneously gives <m>a = {-5}</m> and <m>b = {7}</m>, so <m>y = {x^3-5 x^2+7 x+4}</m>.</p><p>(b) <m>\dfrac{d^2y}{dx^2} = 6x + 2a = {6 x-10}</m>, which is <m>{-4}</m> at <m>x = {1}</m>: negative, so the point is a maximum point.</p></p></solution>
+    <answer><p><m>-5</m></p></answer>
+    <answer><p><m>7</m></p></answer>
+    <answer><p>maximum point</p></answer>
+</stack-static>

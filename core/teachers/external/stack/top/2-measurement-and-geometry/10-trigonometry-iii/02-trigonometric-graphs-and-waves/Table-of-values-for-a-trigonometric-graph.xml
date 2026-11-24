@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<quiz>
+<question type="stack">
+  <name><text>Table of values for a trigonometric graph</text></name>
+  <questiontext format="html">
+    <text><![CDATA[<p>Complete the table of values for \(y = {@fdisp@}\), giving values to 2 decimal places.</p><div style="overflow-x:auto;"><table border="1" style="border-collapse:collapse;text-align:center;"><tr><th style="padding:4px 10px;">\(x\)</th>[[foreach t="xg"]]<th style="padding:4px 10px;">\({@t@}^\circ\)</th>[[/foreach]]</tr><tr><th style="padding:4px 10px;">\(y\)</th>[[foreach t="ycell"]]<td style="padding:4px 10px;">{@t@}</td>[[/foreach]]</tr></table></div><div>(a) \(x = {@xs[1]@}^\circ\): \(y =\) [[input:ans1]] [[validation:ans1]]</div><div>(b) \(x = {@xs[2]@}^\circ\): \(y =\) [[input:ans2]] [[validation:ans2]]</div><div>(c) \(x = {@xs[3]@}^\circ\): \(y =\) [[input:ans3]] [[validation:ans3]]</div><div>(d) \(x = {@xs[4]@}^\circ\): \(y =\) [[input:ans4]] [[validation:ans4]]</div><div>(e) \(x = {@xs[5]@}^\circ\): \(y =\) [[input:ans5]] [[validation:ans5]]</div><div>[[feedback:prt1]]</div>]]></text>
+  </questiontext>
+  <generalfeedback format="html">
+    <text><![CDATA[<p>Work out the angle in the bracket first, take \({@fname@}\) of it in degree mode, then multiply by \({@a@}\).</p><table border="1" style="border-collapse:collapse;text-align:center;"><tr><th style="padding:4px 10px;">\(x\)</th><th style="padding:4px 10px;">angle</th><th style="padding:4px 10px;">\(y\)</th></tr><tr><td style="padding:4px 10px;">\({@xs[1]@}^\circ\)</td><td style="padding:4px 10px;">\({@inner[1]@}^\circ\)</td><td style="padding:4px 10px;">\({@dispdp(r2(yv[1]),2)@}\)</td></tr><tr><td style="padding:4px 10px;">\({@xs[2]@}^\circ\)</td><td style="padding:4px 10px;">\({@inner[2]@}^\circ\)</td><td style="padding:4px 10px;">\({@dispdp(r2(yv[2]),2)@}\)</td></tr><tr><td style="padding:4px 10px;">\({@xs[3]@}^\circ\)</td><td style="padding:4px 10px;">\({@inner[3]@}^\circ\)</td><td style="padding:4px 10px;">\({@dispdp(r2(yv[3]),2)@}\)</td></tr><tr><td style="padding:4px 10px;">\({@xs[4]@}^\circ\)</td><td style="padding:4px 10px;">\({@inner[4]@}^\circ\)</td><td style="padding:4px 10px;">\({@dispdp(r2(yv[4]),2)@}\)</td></tr><tr><td style="padding:4px 10px;">\({@xs[5]@}^\circ\)</td><td style="padding:4px 10px;">\({@inner[5]@}^\circ\)</td><td style="padding:4px 10px;">\({@dispdp(r2(yv[5]),2)@}\)</td></tr></table>]]></text>
+  </generalfeedback>
+  <defaultgrade>1</defaultgrade>
+  <penalty>0.1</penalty>
+  <hidden>0</hidden>
+  <idnumber></idnumber>
+  <stackversion><text>2026063000</text></stackversion>
+  <questionvariables>
+    <text><![CDATA[hits(L,s,tol) := length(sublist(L, lambda([v], is(abs(v-s) <= tol))));
+matchset(L,S,tol) := is(length(L) = length(S)) and every(lambda([s], is(hits(L,s,tol) = 1)), S);
+allgenuine(L,S,tol) := every(lambda([v], some(lambda([s], is(abs(v-s) <= tol)), S)), L);
+validate_angles(ex) := if (setp(ex) or listp(ex)) and every(lambda([v], numberp(ev(v,simp))), if setp(ex) then listify(ex) else ex) then "" else "Type the angles as numbers inside curly brackets, separated by commas, for example {30, 150}. Do not type the degree sign.";
+r1(v) := float(floor(10*v+1/2)/10);
+ang1(v) := block([r], r: floor(10*v+1/2), if integerp(r/10) then string(r/10) else string(float(r/10)));
+setraw(L) := if L = [] then "\\{\\,\\}" else sconcat("\\{", simplode(map(lambda([v], sconcat(ang1(v), "^\\circ")), sort(L)), ", "), "\\}");
+degraw(v) := sconcat(ang1(v), "^\\circ");
+setstr(L) := sconcat("\\(", setraw(L), "\\)");
+angc(v) := block([al], al: float(acos(v)*180/%pi), if abs(al) < 1e-9 then [0,360] elseif abs(al-180) < 1e-9 then [180] else [al, 360-al]);
+angs(v) := block([al], al: float(asin(v)*180/%pi), if abs(al) < 1e-9 then [0,180,360] elseif abs(al-90) < 1e-9 then [90] elseif abs(al+90) < 1e-9 then [270] elseif al > 0 then [al, 180-al] else [180-al, 360+al]);
+qroots(A,B,C) := if A = 0 then (if B = 0 then [] else [-C/B]) elseif B^2-4*A*C < 0 then [] else [(-B-sqrt(B^2-4*A*C))/(2*A), (-B+sqrt(B^2-4*A*C))/(2*A)];
+inrange(L) := sublist(L, lambda([v], is(abs(float(v)) <= 1+1e-12)));
+uniqf(L) := unique(map(lambda([v], float(floor(10000*v+1/2)/10000)), L));
+nice(v) := block([r], r: floor(1000*v+1/2)/1000, if integerp(r) then r else float(r));
+res2(v) := block([r], r: floor(100*v+1/2)/100, if integerp(r) then string(r) else string(float(r)));
+tm(n, s) := if n = 0 then "" elseif n = 1 then sconcat(" + ", s) elseif n = -1 then sconcat(" - ", s) elseif n > 0 then sconcat(" + ", string(n), s) else sconcat(" - ", string(-n), s);
+tc(n) := if n = 0 then "" elseif n > 0 then sconcat(" + ", string(n)) else sconcat(" - ", string(-n));
+lead(n, s) := if n = 1 then s elseif n = -1 then sconcat("-", s) else sconcat(string(n), s);
+/* Design: table of values for a trigonometric graph. Entry: 1 sine / 0 cosine, a, b, phase cc (never c: learners do not type c here, but the chapter keeps c free), the five asked x-values. Source: original. */
+L: [[1,2,1,15,[60,120,210,270,330]],[0,3,1,-30,[0,90,150,240,300]],[1,3,1,75,[30,90,150,240,300]],[0,2,1,60,[30,90,180,240,330]],
+ [1,4,1,-60,[0,90,150,210,330]],[0,1.5,1,45,[0,90,150,240,330]],[1,2,2,0,[15,60,105,150,165]],[0,3,2,30,[0,45,75,120,165]],
+ [1,5,1,-45,[0,90,165,225,300]],[0,4,1,30,[30,60,120,210,300]]];
+ix: 1+rand(10);
+fs: L[ix][1]; a: L[ix][2]; b: L[ix][3]; cc: L[ix][4]; xs: L[ix][5];
+fname: if fs = 1 then "\\sin" else "\\cos";
+fd(t) := if fs = 1 then sin(%pi*t/180) else cos(%pi*t/180);
+fr(t) := if fs = 1 then sin(t) else cos(t);
+r2(v) := float(floor(100*v+1/2)/100);
+yv: makelist(float(a*fd(b*xs[k]+cc)), k, 1, 5);
+yrad: makelist(float(a*fr(b*xs[k]+cc)), k, 1, 5);
+ynoa: makelist(float(fd(b*xs[k]+cc)), k, 1, 5);
+stp: if b = 1 then 30 else 15;
+xmax: if b = 1 then 360 else 180;
+xg: makelist(stp*k, k, 0, xmax/stp);
+yg: map(lambda([t], r2(float(a*fd(b*t+cc)))), xg);
+argd: sconcat(if b = 1 then "x" else sconcat(string(b), "x"), tc(cc));
+fdisp: sconcat(if a = 1 then "" else string(a), fname, if cc = 0 then sconcat(" ", argd) else sconcat("(", argd, "^\\circ)"));
+inner: makelist(b*xs[k]+cc, k, 1, 5);
+lets: ["(a)","(b)","(c)","(d)","(e)"];
+ycell: map(lambda([t], if member(t, xs) then lets[sublist_indices(xs, lambda([u], is(u = t)))[1]] else dispdp(r2(float(a*fd(b*t+cc))),2)), xg);
+]]></text>
+  </questionvariables>
+  <specificfeedback format="html"><text><![CDATA[]]></text></specificfeedback>
+  <questionnote format="moodle_auto_format">
+    <text>ix={@ix@}, y={@fdisp@}, cells at {@xs@}</text>
+  </questionnote>
+  <questiondescription format="html"><text><![CDATA[<p id="concept">Trigonometry III: table of values for a wave</p><p id="description">Grade 12 CBE Core 2.5: Complete a table of values for y = a sin(bx + c) or y = a cos(bx + c) in degrees, to 2 decimal places.</p><p id="edition">Core</p><p id="provenance">This question is original to this project.</p><p id="citation">INNODEMS CBC Grade 12 Mathematics, first draft by Ben Davies, 2026. Aligned to the KICD Senior School Curriculum Design, Core Mathematics Grade 12 (draft).</p>]]></text></questiondescription>
+  <questionsimplify>1</questionsimplify>
+  <assumepositive>0</assumepositive>
+  <assumereal>0</assumereal>
+  <prtcorrect format="html"><text><![CDATA[[[commonstring key="symbolicprtcorrectfeedback"/]] [[commonstring key="defaultprtcorrectfeedback"/]]]]></text></prtcorrect>
+  <prtpartiallycorrect format="html"><text><![CDATA[[[commonstring key="symbolicprtpartiallycorrectfeedback"/]] [[commonstring key="defaultprtpartiallycorrectfeedback"/]]]]></text></prtpartiallycorrect>
+  <prtincorrect format="html"><text><![CDATA[[[commonstring key="symbolicprtincorrectfeedback"/]] [[commonstring key="defaultprtincorrectfeedback"/]]]]></text></prtincorrect>
+  <decimals>.</decimals>
+  <scientificnotation>*10</scientificnotation>
+  <multiplicationsign>none</multiplicationsign>
+  <sqrtsign>1</sqrtsign>
+  <complexno>i</complexno>
+  <inversetrig>cos-1</inversetrig>
+  <logicsymbol>lang</logicsymbol>
+  <matrixparens>[</matrixparens>
+  <isbroken>0</isbroken>
+  <variantsselectionseed></variantsselectionseed>
+
+  <input><name>ans1</name><type>numerical</type><tans>r2(yv[1])</tans><boxsize>5</boxsize><strictsyntax>1</strictsyntax><insertstars>0</insertstars><syntaxhint></syntaxhint><syntaxattribute>0</syntaxattribute><forbidwords></forbidwords><allowwords></allowwords><forbidfloat>0</forbidfloat><requirelowestterms>0</requirelowestterms><checkanswertype>0</checkanswertype><mustverify>0</mustverify><showvalidation>0</showvalidation><options></options></input>
+  <input><name>ans2</name><type>numerical</type><tans>r2(yv[2])</tans><boxsize>5</boxsize><strictsyntax>1</strictsyntax><insertstars>0</insertstars><syntaxhint></syntaxhint><syntaxattribute>0</syntaxattribute><forbidwords></forbidwords><allowwords></allowwords><forbidfloat>0</forbidfloat><requirelowestterms>0</requirelowestterms><checkanswertype>0</checkanswertype><mustverify>0</mustverify><showvalidation>0</showvalidation><options></options></input>
+  <input><name>ans3</name><type>numerical</type><tans>r2(yv[3])</tans><boxsize>5</boxsize><strictsyntax>1</strictsyntax><insertstars>0</insertstars><syntaxhint></syntaxhint><syntaxattribute>0</syntaxattribute><forbidwords></forbidwords><allowwords></allowwords><forbidfloat>0</forbidfloat><requirelowestterms>0</requirelowestterms><checkanswertype>0</checkanswertype><mustverify>0</mustverify><showvalidation>0</showvalidation><options></options></input>
+  <input><name>ans4</name><type>numerical</type><tans>r2(yv[4])</tans><boxsize>5</boxsize><strictsyntax>1</strictsyntax><insertstars>0</insertstars><syntaxhint></syntaxhint><syntaxattribute>0</syntaxattribute><forbidwords></forbidwords><allowwords></allowwords><forbidfloat>0</forbidfloat><requirelowestterms>0</requirelowestterms><checkanswertype>0</checkanswertype><mustverify>0</mustverify><showvalidation>0</showvalidation><options></options></input>
+  <input><name>ans5</name><type>numerical</type><tans>r2(yv[5])</tans><boxsize>5</boxsize><strictsyntax>1</strictsyntax><insertstars>0</insertstars><syntaxhint></syntaxhint><syntaxattribute>0</syntaxattribute><forbidwords></forbidwords><allowwords></allowwords><forbidfloat>0</forbidfloat><requirelowestterms>0</requirelowestterms><checkanswertype>0</checkanswertype><mustverify>0</mustverify><showvalidation>0</showvalidation><options></options></input>
+
+  <prt><name>prt1</name><value>1.0000000</value><autosimplify>1</autosimplify><feedbackstyle>1</feedbackstyle><feedbackvariables><text><![CDATA[al: [ans1, ans2, ans3, ans4, ans5];
+cellok: makelist(is(abs(al[k] - yv[k]) <= 0.00501), k, 1, 5);
+nrad: length(sublist(makelist(k, k, 1, 5), lambda([k], is(abs(al[k] - r2(yrad[k])) <= 0.00501) or is(abs(al[k] - yrad[k]) <= 0.00501))));
+nnoa: length(sublist(makelist(k, k, 1, 5), lambda([k], is(abs(al[k] - r2(ynoa[k])) <= 0.00501) or is(abs(al[k] - ynoa[k]) <= 0.00501))));
+wrongx: sublist(makelist(k, k, 1, 5), lambda([k], not cellok[k]));
+wrongxs: map(lambda([k], xs[k]), wrongx);
+wrongstr: simplode(map(lambda([k], sconcat(string(xs[k]), "^\\circ")), wrongx), ",\\ ");
+w1: if wrongx = [] then 1 else wrongx[1];
+]]></text></feedbackvariables>
+    <node><name>0</name><description>All five cells</description><answertest>AlgEquiv</answertest><sans>every(identity, cellok)</sans><tans>true</tans><testoptions></testoptions><quiet>1</quiet><truescoremode>=</truescoremode><truescore>1.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt1-1-T</trueanswernote><truefeedback format="html"><text><![CDATA[]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>1</falsenextnode><falseanswernote>prt1-1-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>1</name><description>Radian mode</description><answertest>AlgEquiv</answertest><sans>is(nrad &gt;= 3)</sans><tans>true</tans><testoptions></testoptions><quiet>1</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt1-2-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>Several values are what a calculator gives in radian mode. Switch to degrees (check that \(\sin 30 = 0.5\)).</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>2</falsenextnode><falseanswernote>prt1-2-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>2</name><description>Did not multiply by a</description><answertest>AlgEquiv</answertest><sans>is(nnoa &gt;= 3)</sans><tans>true</tans><testoptions></testoptions><quiet>1</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt1-3-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>You found the value of \({@fname@}\) but did not multiply by \({@a@}\).</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>-1</falsenextnode><falseanswernote>prt1-3-F</falseanswernote><falsefeedback format="html"><text><![CDATA[<p>Check your values at \(x = {@wrongstr@}\). Work out the angle first: for \(x = {@xs[w1]@}^\circ\) it is \({@inner[w1]@}^\circ\). Take \({@fname@}\) of the angle in degree mode, then multiply by \({@a@}\).</p>]]></text></falsefeedback></node>
+  </prt>
+
+  <deployedseed>4</deployedseed>
+  <deployedseed>5</deployedseed>
+  <deployedseed>15</deployedseed>
+  <deployedseed>8</deployedseed>
+  <deployedseed>24</deployedseed>
+  <deployedseed>1</deployedseed>
+  <deployedseed>3</deployedseed>
+  <deployedseed>10</deployedseed>
+  <deployedseed>2</deployedseed>
+  <deployedseed>17</deployedseed>
+  <qtest><testcase>1</testcase><description>Correct</description>
+    <testinput><name>ans1</name><value>r2(yv[1])</value></testinput>
+    <testinput><name>ans2</name><value>r2(yv[2])</value></testinput>
+    <testinput><name>ans3</name><value>r2(yv[3])</value></testinput>
+    <testinput><name>ans4</name><value>r2(yv[4])</value></testinput>
+    <testinput><name>ans5</name><value>r2(yv[5])</value></testinput>
+    <expected><name>prt1</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt1-1-T</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>2</testcase><description>Correct: unrounded values</description>
+    <testinput><name>ans1</name><value>yv[1]</value></testinput>
+    <testinput><name>ans2</name><value>yv[2]</value></testinput>
+    <testinput><name>ans3</name><value>yv[3]</value></testinput>
+    <testinput><name>ans4</name><value>yv[4]</value></testinput>
+    <testinput><name>ans5</name><value>yv[5]</value></testinput>
+    <expected><name>prt1</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt1-1-T</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>3</testcase><description>Radian mode</description>
+    <testinput><name>ans1</name><value>r2(yrad[1])</value></testinput>
+    <testinput><name>ans2</name><value>r2(yrad[2])</value></testinput>
+    <testinput><name>ans3</name><value>r2(yrad[3])</value></testinput>
+    <testinput><name>ans4</name><value>r2(yrad[4])</value></testinput>
+    <testinput><name>ans5</name><value>r2(yrad[5])</value></testinput>
+    <expected><name>prt1</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt1-1-F | prt1-2-T</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>4</testcase><description>Did not multiply by a</description>
+    <testinput><name>ans1</name><value>r2(ynoa[1])</value></testinput>
+    <testinput><name>ans2</name><value>r2(ynoa[2])</value></testinput>
+    <testinput><name>ans3</name><value>r2(ynoa[3])</value></testinput>
+    <testinput><name>ans4</name><value>r2(ynoa[4])</value></testinput>
+    <testinput><name>ans5</name><value>r2(ynoa[5])</value></testinput>
+    <expected><name>prt1</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt1-1-F | prt1-2-F | prt1-3-T</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>5</testcase><description>One cell wrong</description>
+    <testinput><name>ans1</name><value>r2(yv[1])+0.5</value></testinput>
+    <testinput><name>ans2</name><value>r2(yv[2])</value></testinput>
+    <testinput><name>ans3</name><value>r2(yv[3])</value></testinput>
+    <testinput><name>ans4</name><value>r2(yv[4])</value></testinput>
+    <testinput><name>ans5</name><value>r2(yv[5])</value></testinput>
+    <expected><name>prt1</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt1-1-F | prt1-2-F | prt1-3-F</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>6</testcase><description>Invalid: a letter in a cell</description>
+    <testinput><name>ans1</name><value>x</value></testinput>
+    <testinput><name>ans2</name><value>r2(yv[2])</value></testinput>
+    <testinput><name>ans3</name><value>r2(yv[3])</value></testinput>
+    <testinput><name>ans4</name><value>r2(yv[4])</value></testinput>
+    <testinput><name>ans5</name><value>r2(yv[5])</value></testinput>
+    <expected><name>prt1</name><expectedscore></expectedscore><expectedpenalty></expectedpenalty><expectedanswernote>NULL</expectedanswernote></expected>
+  </qtest>
+</question>
+</quiz>

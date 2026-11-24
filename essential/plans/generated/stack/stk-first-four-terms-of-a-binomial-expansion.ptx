@@ -1,0 +1,5 @@
+<stack-static>
+    <statement><p><p>Find the first four terms of the expansion of <m>{\left(1+2x\right)^{6}}</m> in ascending powers of <m>x</m>.</p><div><fillin characters="30" name="ans1"/>  </div></p></statement>
+    <solution><p><p>The row for power <m>{6}</m> starts 1, <m>{6}</m>, <m>{15}</m>, <m>{20}</m>. With <m>a = 1</m> and <m>b = {2 x}</m>, every power of 1 is 1, so each term is a row number times a power of <m>{2 x}</m>, with brackets:</p><p><me>1 + {6}\left({2 x}\right) + {15}\left({2 x}\right)^2 + {20}\left({2 x}\right)^3 + \cdots</me></p><p><m>\left({2 x}\right)^2 = {4 x^2}</m> and <m>\left({2 x}\right)^3 = {8 x^3}</m>, so the first four terms are <m>{1 + 12x + 60x^{2} + 160x^{3}}</m>.</p></p></solution>
+    <answer><p><m>160 x^3+60 x^2+12 x+1</m></p></answer>
+</stack-static>

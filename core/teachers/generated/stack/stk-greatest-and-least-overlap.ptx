@@ -1,0 +1,6 @@
+<stack-static>
+    <statement><p><p>Of <m>{42}</m> learners at a school in Kitui, <m>{31}</m> have visited Mombasa and <m>{25}</m> have visited Kisumu.</p><p>(a) What is the greatest possible number who have visited both? <fillin characters="5" name="ans1"/>  </p><p>(b) What is the least possible number who have visited both? <fillin characters="5" name="ans2"/>  </p></p></statement>
+    <solution><p><p>(a) The overlap cannot be bigger than the smaller group. It is greatest when every one of the <m>{25}</m> in the smaller group is also in the larger one, so the greatest possible number is <m>{25}</m>.</p><p>(b) <m>n(A \cap B) = n(A) + n(B) - n(A \cup B) = {56} - n(A \cup B)</m>. The overlap is least when <m>n(A \cup B)</m> is as big as it can be, which is <m>{42}</m> (everyone has visited at least one place). So the least possible number is <m>{56} - {42} = {14}</m>.</p></p></solution>
+    <answer><p><m>25</m></p></answer>
+    <answer><p><m>14</m></p></answer>
+</stack-static>

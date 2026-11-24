@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<quiz>
+<question type="stack">
+  <name><text>Describing a shear</text></name>
+  <questiontext format="html">
+    <text><![CDATA[<p>Rectangle ABCD, with \(A({@A0[1]@},\,{@A0[2]@})\), \(B({@B0[1]@},\,{@B0[2]@})\), \(C({@C0[1]@},\,{@C0[2]@})\) and \(D({@D0[1]@},\,{@D0[2]@})\), is mapped onto \(A'B'C'D'\), with \(A'({@A1[1]@},\,{@A1[2]@})\), \(B'({@B1[1]@},\,{@B1[2]@})\), \(C'({@C1[1]@},\,{@C1[2]@})\) and \(D'({@D1[1]@},\,{@D1[2]@})\), by a shear.</p><p>(a) The invariant axis is</p><div>[[input:ans1]] [[validation:ans1]] [[feedback:prt1]]</div><p>(b) The shear factor is</p><div>[[input:ans2]] [[validation:ans2]] [[feedback:prt2]]</div><p>(c) The area of \(A'B'C'D'\) is</p><div>[[input:ans3]] square units [[validation:ans3]] [[feedback:prt3]]</div>]]></text>
+  </questiontext>
+  <generalfeedback format="html">
+    <text><![CDATA[<p>(a) Every [[if test="is(ax=\"x\")"]]y[[else]]x[[/if]]-coordinate stays the same, so the points slide parallel to the [[if test="is(ax=\"x\")"]]x[[else]]y[[/if]]-axis: the [[if test="is(ax=\"x\")"]]x[[else]]y[[/if]]-axis is invariant.</p><p>(b) C is \({@dist@}\) units from the [[if test="is(ax=\"x\")"]]x[[else]]y[[/if]]-axis and moves \({@abs(mv)@}\) units in the [[if test="is(mv<0)"]]negative[[else]]positive[[/if]] [[if test="is(ax=\"x\")"]]x[[else]]y[[/if]]-direction, a signed distance of \({@mv@}\). So the shear factor is \({@mv@} \div {@dist@} = {@k@}\).</p><p>(c) A shear keeps the base and the height, so the area is unchanged: \({@ar@}\) square units. (The determinant of a shear matrix is 1.)</p>]]></text>
+  </generalfeedback>
+  <defaultgrade>3</defaultgrade>
+  <penalty>0.1</penalty>
+  <hidden>0</hidden>
+  <idnumber></idnumber>
+  <stackversion><text>2026063000</text></stackversion>
+  <questionvariables>
+    <text><![CDATA[/* Design: describe the transformation from coordinates. Source: adapted from SMP Book 5 (Metric), Chapter 13, Exercise D, question 1. C's distance from the invariant axis is not 0 or 1; the diagnostics (distance moved, -k, 1/k; |k| x area, (1 + |k|) x area) are distinct on every entry. */
+slist: [["x",3/2,[[0,2],[4,2],[4,5],[0,5]]],["y",-5/2,[[2,0],[6,0],[6,2],[2,2]]],["x",1/2,[[-2,1],[1,1],[1,3],[-2,3]]],["y",3,[[3,2],[7,2],[7,4],[3,4]]],["x",-1/2,[[-2,2],[2,2],[2,6],[-2,6]]],["y",5/2,[[1,1],[4,1],[4,5],[1,5]]],["x",-3/2,[[2,3],[5,3],[5,7],[2,7]]],["y",4,[[3,3],[6,3],[6,7],[3,7]]],["x",-3/4,[[-2,2],[2,2],[2,5],[-2,5]]],["y",1/4,[[3,0],[7,0],[7,2],[3,2]]]];
+ix: 1+rand(10);
+ax: slist[ix][1]; k: slist[ix][2]; V: slist[ix][3];
+Sm: if ax="x" then matrix([1,k],[0,1]) else matrix([1,0],[k,1]);
+imv(v) := list_matrix_entries(Sm.transpose(matrix(v)));
+A0: V[1]; B0: V[2]; C0: V[3]; D0: V[4]; A1: imv(A0); B1: imv(B0); C1: imv(C0); D1: imv(D0);
+dist: if ax="x" then C0[2] else C0[1];
+mv: k*dist;
+ar: abs((B0[1]-A0[1])*(D0[2]-A0[2])) + abs((B0[2]-A0[2])*(D0[1]-A0[1]));
+opt1: [["neither",false,"neither axis"],["x",is(ax="x"),"the x-axis"],["y",is(ax="y"),"the y-axis"]];
+oax: if ax="x" then "y" else "x";
+mk: -k; ik: 1/k; aK: abs(k)*ar; aK1: (1+abs(k))*ar;
+kw: k+1/3; arw1: ar+1; arw2: ar+5;
+]]></text>
+  </questionvariables>
+  <specificfeedback format="html"><text><![CDATA[]]></text></specificfeedback>
+  <questionnote format="moodle_auto_format">
+    <text>ix={@ix@}, axis {@ax@}, k={@k@}, area={@ar@}</text>
+  </questionnote>
+  <questiondescription format="html"><text><![CDATA[<p id="concept">Matrices and Transformations: describing a shear</p><p id="description">Grade 12 CBE Core 2.1: Identify the invariant axis and shear factor of a shear from a rectangle and its image, and state the area of the image.</p><p id="edition">Core</p><p id="provenance">This question is adapted from Chapter 13, Exercise D, Question 1 of School Mathematics Project, SMP Book 5 (Metric), ed. P. G. Bowie, Cambridge University Press, 1969: coordinates given instead of a tracing, new rectangles and factors, randomised, with named feedback.</p><p id="citation">INNODEMS CBC Grade 12 Mathematics, first draft by Ben Davies, 2026. Aligned to the KICD Senior School Curriculum Design, Core Mathematics Grade 12 (draft).</p>]]></text></questiondescription>
+  <questionsimplify>1</questionsimplify>
+  <assumepositive>0</assumepositive>
+  <assumereal>0</assumereal>
+  <prtcorrect format="html"><text><![CDATA[[[commonstring key="symbolicprtcorrectfeedback"/]] [[commonstring key="defaultprtcorrectfeedback"/]]]]></text></prtcorrect>
+  <prtpartiallycorrect format="html"><text><![CDATA[[[commonstring key="symbolicprtpartiallycorrectfeedback"/]] [[commonstring key="defaultprtpartiallycorrectfeedback"/]]]]></text></prtpartiallycorrect>
+  <prtincorrect format="html"><text><![CDATA[[[commonstring key="symbolicprtincorrectfeedback"/]] [[commonstring key="defaultprtincorrectfeedback"/]]]]></text></prtincorrect>
+  <decimals>.</decimals>
+  <scientificnotation>*10</scientificnotation>
+  <multiplicationsign>none</multiplicationsign>
+  <sqrtsign>1</sqrtsign>
+  <complexno>i</complexno>
+  <inversetrig>cos-1</inversetrig>
+  <logicsymbol>lang</logicsymbol>
+  <matrixparens>[</matrixparens>
+  <isbroken>0</isbroken>
+  <variantsselectionseed></variantsselectionseed>
+
+  <input><name>ans1</name><type>dropdown</type><tans>opt1</tans><boxsize>15</boxsize><strictsyntax>1</strictsyntax><insertstars>0</insertstars><syntaxhint></syntaxhint><syntaxattribute>0</syntaxattribute><forbidwords></forbidwords><allowwords></allowwords><forbidfloat>1</forbidfloat><requirelowestterms>0</requirelowestterms><checkanswertype>0</checkanswertype><mustverify>0</mustverify><showvalidation>0</showvalidation><options></options></input>
+  <input><name>ans2</name><type>numerical</type><tans>k</tans><boxsize>5</boxsize><strictsyntax>1</strictsyntax><insertstars>0</insertstars><syntaxhint></syntaxhint><syntaxattribute>0</syntaxattribute><forbidwords></forbidwords><allowwords></allowwords><forbidfloat>0</forbidfloat><requirelowestterms>0</requirelowestterms><checkanswertype>0</checkanswertype><mustverify>0</mustverify><showvalidation>0</showvalidation><options></options></input>
+  <input><name>ans3</name><type>numerical</type><tans>ar</tans><boxsize>5</boxsize><strictsyntax>1</strictsyntax><insertstars>0</insertstars><syntaxhint></syntaxhint><syntaxattribute>0</syntaxattribute><forbidwords></forbidwords><allowwords></allowwords><forbidfloat>0</forbidfloat><requirelowestterms>0</requirelowestterms><checkanswertype>0</checkanswertype><mustverify>0</mustverify><showvalidation>0</showvalidation><options></options></input>
+
+  <prt><name>prt1</name><value>1.0000000</value><autosimplify>1</autosimplify><feedbackstyle>1</feedbackstyle><feedbackvariables><text><![CDATA[]]></text></feedbackvariables>
+    <node><name>0</name><description>Invariant axis</description><answertest>AlgEquiv</answertest><sans>ans1</sans><tans>ax</tans><testoptions></testoptions><quiet>1</quiet><truescoremode>=</truescoremode><truescore>1.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt1-1-T</trueanswernote><truefeedback format="html"><text><![CDATA[]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>1</falsenextnode><falseanswernote>prt1-1-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>1</name><description>Other axis</description><answertest>AlgEquiv</answertest><sans>ans1</sans><tans>oax</tans><testoptions></testoptions><quiet>1</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt1-2-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>The points slid parallel to the [[if test="is(ax=\"x\")"]]x[[else]]y[[/if]]-axis, so that axis is invariant: points on it would not move.</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>-1</falsenextnode><falseanswernote>prt1-2-F</falseanswernote><falsefeedback format="html"><text><![CDATA[<p>Look at which coordinate stays the same for every vertex: the points slide parallel to the invariant axis.</p>]]></text></falsefeedback></node>
+  </prt>
+  <prt><name>prt2</name><value>1.0000000</value><autosimplify>1</autosimplify><feedbackstyle>1</feedbackstyle><feedbackvariables><text><![CDATA[]]></text></feedbackvariables>
+    <node><name>0</name><description>Shear factor</description><answertest>NumAbsolute</answertest><sans>ans2</sans><tans>k</tans><testoptions>0.001</testoptions><quiet>1</quiet><truescoremode>=</truescoremode><truescore>1.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt2-1-T</trueanswernote><truefeedback format="html"><text><![CDATA[]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>1</falsenextnode><falseanswernote>prt2-1-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>1</name><description>Did not divide</description><answertest>NumAbsolute</answertest><sans>ans2</sans><tans>mv</tans><testoptions>0.001</testoptions><quiet>1</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt2-2-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>\({@mv@}\) is how far C moved. Divide by C's distance from the invariant axis, \({@dist@}\).</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>2</falsenextnode><falseanswernote>prt2-2-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>2</name><description>Sign</description><answertest>NumAbsolute</answertest><sans>ans2</sans><tans>mk</tans><testoptions>0.001</testoptions><quiet>1</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt2-3-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>Check the direction: points [[if test="is(ax=\"x\")"]]above[[else]]to the right of[[/if]] the axis moved in the [[if test="is(k<0)"]]negative[[else]]positive[[/if]] [[if test="is(ax=\"x\")"]]x[[else]]y[[/if]]-direction, so the shear factor is [[if test="is(k<0)"]]negative[[else]]positive[[/if]].</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>3</falsenextnode><falseanswernote>prt2-3-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>3</name><description>Inverted</description><answertest>NumAbsolute</answertest><sans>ans2</sans><tans>ik</tans><testoptions>0.001</testoptions><quiet>1</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt2-4-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>Shear factor = distance moved \(\div\) distance from the invariant axis, not the other way round.</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>-1</falsenextnode><falseanswernote>prt2-4-F</falseanswernote><falsefeedback format="html"><text><![CDATA[<p>Shear factor = distance moved \(\div\) distance from the invariant axis, with a sign for the direction. Use corner C.</p>]]></text></falsefeedback></node>
+  </prt>
+  <prt><name>prt3</name><value>1.0000000</value><autosimplify>1</autosimplify><feedbackstyle>1</feedbackstyle><feedbackvariables><text><![CDATA[]]></text></feedbackvariables>
+    <node><name>0</name><description>Area</description><answertest>NumAbsolute</answertest><sans>ans3</sans><tans>ar</tans><testoptions>0.001</testoptions><quiet>1</quiet><truescoremode>=</truescoremode><truescore>1.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt3-1-T</trueanswernote><truefeedback format="html"><text><![CDATA[]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>1</falsenextnode><falseanswernote>prt3-1-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>1</name><description>Multiplied by |k|</description><answertest>NumAbsolute</answertest><sans>ans3</sans><tans>aK</tans><testoptions>0.001</testoptions><quiet>1</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt3-2-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>You multiplied the rectangle's area by \(|k| = {@abs(k)@}\). A shear does not change area: the determinant of a shear matrix is 1.</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>2</falsenextnode><falseanswernote>prt3-2-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>2</name><description>Multiplied by 1 + |k|</description><answertest>NumAbsolute</answertest><sans>ans3</sans><tans>aK1</tans><testoptions>0.001</testoptions><quiet>1</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt3-3-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>You multiplied the rectangle's area by \(1 + |k| = {@1+abs(k)@}\). A shear does not change area: the determinant of a shear matrix is 1.</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>-1</falsenextnode><falseanswernote>prt3-3-F</falseanswernote><falsefeedback format="html"><text><![CDATA[<p>A shear keeps the base and the height, so the area is unchanged.</p>]]></text></falsefeedback></node>
+  </prt>
+
+  <deployedseed>4</deployedseed>
+  <deployedseed>5</deployedseed>
+  <deployedseed>15</deployedseed>
+  <deployedseed>8</deployedseed>
+  <deployedseed>24</deployedseed>
+  <deployedseed>1</deployedseed>
+  <deployedseed>3</deployedseed>
+  <deployedseed>10</deployedseed>
+  <deployedseed>2</deployedseed>
+  <deployedseed>17</deployedseed>
+  <qtest><testcase>1</testcase><description>Correct</description>
+    <testinput><name>ans1</name><value>ax</value></testinput>
+    <testinput><name>ans2</name><value>k</value></testinput>
+    <testinput><name>ans3</name><value>ar</value></testinput>
+    <expected><name>prt1</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt1-1-T</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt2-1-T</expectedanswernote></expected>
+    <expected><name>prt3</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt3-1-T</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>2</testcase><description>Other axis; did not divide; |k| x area</description>
+    <testinput><name>ans1</name><value>oax</value></testinput>
+    <testinput><name>ans2</name><value>mv</value></testinput>
+    <testinput><name>ans3</name><value>aK</value></testinput>
+    <expected><name>prt1</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt1-1-F | prt1-2-T</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt2-1-F | prt2-2-T</expectedanswernote></expected>
+    <expected><name>prt3</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt3-1-F | prt3-2-T</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>3</testcase><description>Sign; (1 + |k|) x area</description>
+    <testinput><name>ans1</name><value>ax</value></testinput>
+    <testinput><name>ans2</name><value>mk</value></testinput>
+    <testinput><name>ans3</name><value>aK1</value></testinput>
+    <expected><name>prt1</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt1-1-T</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt2-1-F | prt2-2-F | prt2-3-T</expectedanswernote></expected>
+    <expected><name>prt3</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt3-1-F | prt3-2-F | prt3-3-T</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>4</testcase><description>Inverted; generic area</description>
+    <testinput><name>ans1</name><value>ax</value></testinput>
+    <testinput><name>ans2</name><value>ik</value></testinput>
+    <testinput><name>ans3</name><value>arw1</value></testinput>
+    <expected><name>prt1</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt1-1-T</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt2-1-F | prt2-2-F | prt2-3-F | prt2-4-T</expectedanswernote></expected>
+    <expected><name>prt3</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt3-1-F | prt3-2-F | prt3-3-F</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>5</testcase><description>Generic</description>
+    <testinput><name>ans1</name><value>"neither"</value></testinput>
+    <testinput><name>ans2</name><value>kw</value></testinput>
+    <testinput><name>ans3</name><value>arw2</value></testinput>
+    <expected><name>prt1</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt1-1-F | prt1-2-F</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt2-1-F | prt2-2-F | prt2-3-F | prt2-4-F</expectedanswernote></expected>
+    <expected><name>prt3</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt3-1-F | prt3-2-F | prt3-3-F</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>6</testcase><description>Invalid: a letter in (b)</description>
+    <testinput><name>ans1</name><value>ax</value></testinput>
+    <testinput><name>ans2</name><value>x</value></testinput>
+    <testinput><name>ans3</name><value>ar</value></testinput>
+    <expected><name>prt1</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt1-1-T</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore></expectedscore><expectedpenalty></expectedpenalty><expectedanswernote>NULL</expectedanswernote></expected>
+    <expected><name>prt3</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt3-1-T</expectedanswernote></expected>
+  </qtest>
+</question>
+</quiz>

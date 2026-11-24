@@ -1,0 +1,11 @@
+<stack-static>
+    <statement><p><p>Three boda boda riders pass a checkpoint. Each rider wears a helmet with probability <m>{\frac{3}{5}}</m>, independently. Wafula worked out the probability that exactly two riders wear a helmet. He wrote S for success and F for failure. His working has one mistake.</p><div style="border-left:3px solid #999;padding-left:10px;"><p>Paths: SSF.</p><p><m>P = {\frac{3}{5}} \times {\frac{3}{5}} \times {\frac{2}{5}} = {\frac{18}{125}}</m></p></div><p>Give each probability exactly, as a fraction or an exact decimal.</p><p>(a) What did Wafula do wrong?</p><div><ol marker="(1)">
+<li>He should have added the three paths instead of multiplying one path by 3.</li>
+<li>He used only one of the paths with exactly two successes.</li>
+<li>He included the path where all three succeed.</li>
+<li>He used the probability of success on branches where the item fails.</li>
+</ol>  </div><p>(b) Find the correct probability.</p><div><fillin characters="8" name="ans2"/>  </div></p></statement>
+    <solution><p><p>Exactly two successes happen on three paths, SSF, SFS and FSS. On each path the two S branches have probability <m>{\frac{3}{5}}</m> and the F branch <m>{\frac{2}{5}}</m>, so each path has probability <m>{\frac{3}{5}} \times {\frac{3}{5}} \times {\frac{2}{5}} = {\frac{18}{125}}</m>. The three paths are equal, so multiplying one by 3 is right.</p><p>(a) Wafula used only one of the three paths.</p><p>(b) <m>3 \times {\frac{18}{125}} = {\frac{54}{125}}</m>.</p></p></solution>
+    <answer><p><m>(2)</m></p></answer>
+    <answer><p><m>\frac{54}{125}</m></p></answer>
+</stack-static>

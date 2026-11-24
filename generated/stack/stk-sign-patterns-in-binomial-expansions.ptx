@@ -1,0 +1,8 @@
+<stack-static>
+    <statement><p><p>Each expansion below is written in descending powers of <m>x</m> (the highest power of <m>x</m> first). Without expanding fully, choose the pattern of the signs of its coefficients.</p><ol><li><div><m>{\left(2-x\right)^{3}}</m> [ All positive | Alternate, starting with + | Alternate, starting with − | All negative ] </div></li><li><div><m>{\left(5-x\right)^{4}}</m> [ All positive | Alternate, starting with + | Alternate, starting with − | All negative ] </div></li><li><div><m>{\left(x+3\right)^{4}}</m> [ All positive | Alternate, starting with + | Alternate, starting with − | All negative ] </div></li><li><div><m>{\left(-x-4\right)^{2}}</m> [ All positive | Alternate, starting with + | Alternate, starting with − | All negative ] </div></li></ol><div/></p></statement>
+    <solution><p><p>Look at the sign of the highest power of <m>x</m> and of the next term. A minus sign between the two terms of the bracket makes the signs alternate. An odd power of <m>-x</m> is negative and an even power is positive, and <m>(-x - c)^m = (-1)^m(x + c)^m</m>.</p><ol><li><m>{\left(2-x\right)^{3}} = {-x^3+6 x^2-12 x+8}</m>: alternate, starting with <m>-</m>.</li><li><m>{\left(5-x\right)^{4}} = {x^4-20 x^3+150 x^2-500 x+625}</m>: alternate, starting with <m>+</m>.</li><li><m>{\left(x+3\right)^{4}} = {x^4+12 x^3+54 x^2+108 x+81}</m>: all positive.</li><li><m>{\left(-x-4\right)^{2}} = {x^2+8 x+16}</m>: all positive.</li></ol></p></solution>
+    <answer><p>Alternate, starting with −</p></answer>
+    <answer><p>Alternate, starting with +</p></answer>
+    <answer><p>All positive</p></answer>
+    <answer><p>All positive</p></answer>
+</stack-static>

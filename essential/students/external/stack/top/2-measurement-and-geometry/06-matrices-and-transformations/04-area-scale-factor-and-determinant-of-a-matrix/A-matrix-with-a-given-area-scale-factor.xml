@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<quiz>
+<question type="stack">
+  <name><text>A matrix with a given area scale factor</text></name>
+  <questiontext format="html">
+    <text><![CDATA[<p>Give a matrix \(M\) with no zero entries such that the image of every shape under \(M\) has \({@s@}\) times the area of the shape and [[if test="is(o=1)"]]the same orientation[[else]]the reverse orientation[[/if]].</p><div>\(M = \) [[input:ans1]] [[validation:ans1]] [[feedback:prt1]]</div>]]></text>
+  </questiontext>
+  <generalfeedback format="html">
+    <text><![CDATA[<p>The area scale factor is \(|\det M|\), and a negative determinant reverses the orientation. So you need \(\det M = {@tg@}\).</p><p>Choose three entries that are not 0 and solve for the fourth. For example, \({@m1@}\) has determinant \({@determinant(m1)@}\), and so does \({@m2@}\). Many other matrices work.</p>]]></text>
+  </generalfeedback>
+  <defaultgrade>1</defaultgrade>
+  <penalty>0.1</penalty>
+  <hidden>0</hidden>
+  <idnumber></idnumber>
+  <stackversion><text>2026063000</text></stackversion>
+  <questionvariables>
+    <text><![CDATA[validate_numeric(ex) := block([sx], sx: ev(ex, simp), if listofvars(ex) = [] and freeof(%i, sx) then "" else "Type a number in each box, not a letter.");
+/* Design: construct-an-instance pattern (graded by property). Source: original. 5 same and 5 reversed orientation. Model answers m1, m2 have det = tg and no zero entry; zm has a zero; wm has det -tg; |det gm| # s. */
+slist: [[2,1],[3,-1],[4,1],[5,-1],[6,1],[8,-1],[3,1],[10,-1],[12,1],[2,-1]];
+ix: 1+rand(10);
+s: slist[ix][1]; o: slist[ix][2]; tg: s*o;
+m1: if o=1 then matrix([s+1,1],[1,1]) else matrix([1,s+1],[1,1]);
+m2: matrix([1,1],[1,1+tg]);
+zm: matrix([tg,0],[0,1]);
+wm: matrix([m1[1,1],m1[1,2]],[-m1[2,1],-m1[2,2]]);
+gm: if o=1 then matrix([s+2,1],[1,1]) else matrix([1,s+2],[1,1]);
+]]></text>
+  </questionvariables>
+  <specificfeedback format="html"><text><![CDATA[]]></text></specificfeedback>
+  <questionnote format="moodle_auto_format">
+    <text>ix={@ix@}, s={@s@}, orientation {@o@}</text>
+  </questionnote>
+  <questiondescription format="html"><text><![CDATA[<p id="concept">Matrices and Transformations: a matrix with a given area scale factor</p><p id="description">Grade 12 CBE Core 2.1: Construct a matrix with no zero entries whose determinant gives a stated area scale factor and orientation.</p><p id="edition">Core</p><p id="provenance">This question is original to this project.</p><p id="citation">INNODEMS CBC Grade 12 Mathematics, first draft by Ben Davies, 2026. Aligned to the KICD Senior School Curriculum Design, Core Mathematics Grade 12 (draft).</p>]]></text></questiondescription>
+  <questionsimplify>1</questionsimplify>
+  <assumepositive>0</assumepositive>
+  <assumereal>0</assumereal>
+  <prtcorrect format="html"><text><![CDATA[[[commonstring key="symbolicprtcorrectfeedback"/]] [[commonstring key="defaultprtcorrectfeedback"/]]]]></text></prtcorrect>
+  <prtpartiallycorrect format="html"><text><![CDATA[[[commonstring key="symbolicprtpartiallycorrectfeedback"/]] [[commonstring key="defaultprtpartiallycorrectfeedback"/]]]]></text></prtpartiallycorrect>
+  <prtincorrect format="html"><text><![CDATA[[[commonstring key="symbolicprtincorrectfeedback"/]] [[commonstring key="defaultprtincorrectfeedback"/]]]]></text></prtincorrect>
+  <decimals>.</decimals>
+  <scientificnotation>*10</scientificnotation>
+  <multiplicationsign>none</multiplicationsign>
+  <sqrtsign>1</sqrtsign>
+  <complexno>i</complexno>
+  <inversetrig>cos-1</inversetrig>
+  <logicsymbol>lang</logicsymbol>
+  <matrixparens>[</matrixparens>
+  <isbroken>0</isbroken>
+  <variantsselectionseed></variantsselectionseed>
+
+  <input><name>ans1</name><type>matrix</type><tans>m1</tans><boxsize>3</boxsize><strictsyntax>1</strictsyntax><insertstars>0</insertstars><syntaxhint></syntaxhint><syntaxattribute>0</syntaxattribute><forbidwords></forbidwords><allowwords></allowwords><forbidfloat>0</forbidfloat><requirelowestterms>0</requirelowestterms><checkanswertype>0</checkanswertype><mustverify>0</mustverify><showvalidation>3</showvalidation><options>validator:validate_numeric</options></input>
+
+  <prt><name>prt1</name><value>1.0000000</value><autosimplify>1</autosimplify><feedbackstyle>1</feedbackstyle><feedbackvariables><text><![CDATA[dA: determinant(ans1);
+nz: every(lambda([v], is(abs(v) > 0)), list_matrix_entries(ans1));
+g1: is(abs(dA-tg) < 0.0001) and nz;
+g2: is(abs(dA-tg) < 0.0001);
+g3: is(abs(dA+tg) < 0.0001);
+]]></text></feedbackvariables>
+    <node><name>0</name><description>det = target, no zeros</description><answertest>AlgEquiv</answertest><sans>g1</sans><tans>true</tans><testoptions></testoptions><quiet>1</quiet><truescoremode>=</truescoremode><truescore>1.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt1-1-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>\(\det M = {@dA@}\): the area scale factor is \({@s@}\) and [[if test="is(o=1)"]]the orientation is the same.[[else]]the orientation is reversed.[[/if]]</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>1</falsenextnode><falseanswernote>prt1-1-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>1</name><description>Right det, a zero entry</description><answertest>AlgEquiv</answertest><sans>g2</sans><tans>true</tans><testoptions></testoptions><quiet>1</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt1-2-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>Your determinant is right, but your matrix has a zero entry. Find one with no zeros, for example by choosing three entries and solving for the fourth.</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>2</falsenextnode><falseanswernote>prt1-2-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>2</name><description>Wrong orientation</description><answertest>AlgEquiv</answertest><sans>g3</sans><tans>true</tans><testoptions></testoptions><quiet>1</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt1-3-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>The area scale factor is right but the orientation is wrong: you need \(\det M = {@tg@}\), not \({@-tg@}\).</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>-1</falsenextnode><falseanswernote>prt1-3-F</falseanswernote><falsefeedback format="html"><text><![CDATA[<p>Your matrix has determinant \({@dA@}\). \(\det M = ad - bc\) must equal \({@tg@}\). Choose a, b and c (not 0) and solve for d.</p>]]></text></falsefeedback></node>
+  </prt>
+
+  <deployedseed>4</deployedseed>
+  <deployedseed>5</deployedseed>
+  <deployedseed>15</deployedseed>
+  <deployedseed>8</deployedseed>
+  <deployedseed>24</deployedseed>
+  <deployedseed>1</deployedseed>
+  <deployedseed>3</deployedseed>
+  <deployedseed>10</deployedseed>
+  <deployedseed>2</deployedseed>
+  <deployedseed>17</deployedseed>
+  <qtest><testcase>1</testcase><description>Correct: first model answer</description>
+    <testinput><name>ans1</name><value>m1</value></testinput>
+    <expected><name>prt1</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt1-1-T</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>2</testcase><description>Correct: second model answer</description>
+    <testinput><name>ans1</name><value>m2</value></testinput>
+    <expected><name>prt1</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt1-1-T</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>3</testcase><description>Right determinant, a zero entry</description>
+    <testinput><name>ans1</name><value>zm</value></testinput>
+    <expected><name>prt1</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt1-1-F | prt1-2-T</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>4</testcase><description>Wrong orientation</description>
+    <testinput><name>ans1</name><value>wm</value></testinput>
+    <expected><name>prt1</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt1-1-F | prt1-2-F | prt1-3-T</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>5</testcase><description>Generic: wrong area factor</description>
+    <testinput><name>ans1</name><value>gm</value></testinput>
+    <expected><name>prt1</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt1-1-F | prt1-2-F | prt1-3-F</expectedanswernote></expected>
+  </qtest>
+</question>
+</quiz>

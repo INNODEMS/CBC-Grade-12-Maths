@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<quiz>
+<question type="stack">
+  <name><text>Writing constraints from a situation</text></name>
+  <questiontext format="html">
+    <text><![CDATA[<p>{@E[1]@} Let \(x\) be the number of {@E[2]@} and \(y\) the number of {@E[3]@}. Write an inequality for each condition.</p><p>(a) {@E[10]@}</p><div>[[input:ans1]] [[validation:ans1]] [[feedback:prt1]]</div><p>(b) {@E[11]@}</p><div>[[input:ans2]] [[validation:ans2]] [[feedback:prt2]]</div><p>(c) {@E[12]@}</p><div>[[input:ans3]] [[validation:ans3]] [[feedback:prt3]]</div>]]></text>
+  </questiontext>
+  <generalfeedback format="html">
+    <text><![CDATA[<p>(a) The cost, or the amount used, is \({@p1@}x + {@p2@}y\), and &lsquo;at most&rsquo; gives \(\le\): \({@ta1@}\). Dividing by \({@g1@}\) gives the simpler form \({@ta1s@}\).</p><p>(b) The total number is \(x + y\), and &lsquo;at most&rsquo; gives \({@ta2@}\).</p><p>(c) \({@ta3@}\). The words decide the sign: at least \(\ge\), more than \(\gt\), fewer than \(\lt\), at most \(\le\). For &lsquo;times as many&rsquo;, check with numbers before you write the inequality.</p><p>Each limit on what is possible becomes one inequality. Any equivalent form, such as both sides multiplied by the same positive number, is accepted.</p>]]></text>
+  </generalfeedback>
+  <defaultgrade>3</defaultgrade>
+  <penalty>0.1</penalty>
+  <hidden>0</hidden>
+  <idnumber></idnumber>
+  <stackversion><text>2026063000</text></stackversion>
+  <questionvariables>
+    <text><![CDATA[/* Design: write constraints with letters, extended to two-unknown budgets and capacities. Source: adapted from SMP Book 5 (Metric), Chapter 8, Exercise A, question 7. Curated list; kinds ge 3, gt 2, ratio 3, lt 2. */
+/* lincan(q): canonical form of a linear inequality in x and y: [strict?, [a, b, c]] meaning a*x + b*y + c (< or <=) 0 */
+lincan(q) := block([r, d, s], r: op(q), d: expand(lhs(q) - rhs(q)),
+    if r = ">" or r = ">=" then d: -d,
+    s: is(r = "<" or r = ">"),
+    [s, map(lambda([t], float(t)), [coeff(d, x), coeff(d, y), subst([x = 0, y = 0], d)])]);
+lpar(u, v) := is(abs(u[1]*v[2] - u[2]*v[1]) + abs(u[1]*v[3] - u[3]*v[1]) + abs(u[2]*v[3] - u[3]*v[2]) < 1/10^9 * (abs(u[1]) + abs(u[2]) + abs(u[3])) * (abs(v[1]) + abs(v[2]) + abs(v[3])));
+ldot(u, v) := u[1]*v[1] + u[2]*v[2] + u[3]*v[3];
+/* lcls(L, T): "same" region; "dir" same boundary, other side, same strictness; "strict" same side, other strictness; "both"; "other" */
+lcls(L, T) := block([l: lincan(L), t: lincan(T)],
+    if not lpar(l[2], t[2]) then "other"
+    elseif ldot(l[2], t[2]) > 0 then (if l[1] = t[1] then "same" else "strict")
+    elseif l[1] = t[1] then "dir" else "both");
+/* the validator: an inequality in x and y, linear */
+validate_ineq(ex) := block([e: ev(ex, simp), d],
+    if atom(e) or not member(op(e), ["<", "<=", ">", ">="]) then
+        "Type an inequality using <, <=, > or >=, for example 2*x+3*y<=60. An equation with = is not an inequality."
+    elseif listofvars(e) = [] or not every(lambda([v], member(v, [x, y])), listofvars(e)) then "Use only the letters x and y."
+    else (d: ev(expand(lhs(e) - rhs(e)), simp),
+          if not ev(polynomialp(d, [x, y]), simp) then
+              "This inequality should be linear: only numbers times x and y, added or subtracted."
+          elseif ev(hipow(d, x), simp) > 1 or ev(hipow(d, y), simp) > 1 or not freeof(x, ev(coeff(d, y), simp)) then
+              "This inequality should be linear: no powers or products of x and y." else ""));
+/* mkineq([a, b, rel, c]): the inequality a*x + b*y rel c */
+mkineq(L) := if L[3] = "<=" then L[1]*x + L[2]*y <= L[4] elseif L[3] = "<" then L[1]*x + L[2]*y < L[4]
+    elseif L[3] = ">=" then L[1]*x + L[2]*y >= L[4] else L[1]*x + L[2]*y > L[4];
+Q11L: [["The school games club buys footballs and netballs.","footballs","netballs",1500,1100,21000,16,"ge_y",5,"Each of the footballs costs Ksh \\(1500\\) and each of the netballs costs Ksh \\(1100\\); they can spend at most Ksh \\(21\\,000\\).","There is room for at most \\(16\\) balls altogether.","There must be at least \\(5\\) netballs.","<p>Your inequality says there are \\(5\\) or fewer netballs. The sentence says at least \\(5\\).</p>","<p>Your inequality does not allow exactly \\(5\\) netballs. &lsquo;At least \\(5\\)&rsquo; includes \\(5\\) itself.</p>",y>=5,y>5,y<=5,5<=y,"Ksh \\(21\\,000\\)"],
+["A farmer in Bungoma buys bags of DAP and CAN fertiliser.","bags of DAP","bags of CAN",3600,2800,50400,15,"gt_x",6,"Each of the bags of DAP costs Ksh \\(3600\\) and each of the bags of CAN costs Ksh \\(2800\\); they can spend at most Ksh \\(50\\,400\\).","There is room for at most \\(15\\) bags altogether.","There must be more than \\(6\\) bags of DAP.","<p>Your inequality says there are fewer than \\(6\\) bags of DAP. The sentence says more than \\(6\\).</p>","<p>Your inequality allows exactly \\(6\\) bags of DAP. &lsquo;More than \\(6\\)&rsquo; does not include \\(6\\) itself.</p>",x>6,x>=6,x<6,6<x,"Ksh \\(50\\,400\\)"],
+["A transporter in Nyandarua loads sacks of potatoes and sacks of onions.","sacks of potatoes","sacks of onions",90,50,6000,100,"ratio_x",3,"Each sack of potatoes weighs \\(90\\) kg and each sack of onions weighs \\(50\\) kg; the lorry can carry at most \\(6000\\) kg.","There is room for at most \\(100\\) sacks altogether.","There must be at least \\(3\\) times as many sacks of potatoes as sacks of onions.","<p>Test your inequality with numbers: \\(x = 1\\), \\(y = 10\\) satisfies it. But with \\(10\\) sacks of onions, the sentence needs at least \\(30\\) sacks of potatoes.</p>","<p>Test your inequality with numbers: \\(x = 10\\), \\(y = 10\\) satisfies it. But with \\(10\\) sacks of onions, the sentence needs at least \\(30\\) sacks of potatoes. Which number should be multiplied by \\(3\\)?</p>",x-3*y>=0,3*x-y>=0,x-3*y<=0,3*y<=x,"\\(6000\\) kg"],
+["A florist in Nairobi buys bunches of roses and bunches of lilies.","bunches of roses","bunches of lilies",80,70,2520,35,"lt_y",12,"Each of the bunches of roses costs Ksh \\(80\\) and each of the bunches of lilies costs Ksh \\(70\\); they can spend at most Ksh \\(2520\\).","There is room for at most \\(35\\) bunches altogether.","There must be fewer than \\(12\\) bunches of lilies.","<p>Your inequality says there are more than \\(12\\) bunches of lilies. The sentence says fewer than \\(12\\).</p>","<p>Your inequality allows exactly \\(12\\) bunches of lilies. &lsquo;Fewer than \\(12\\)&rsquo; does not include \\(12\\) itself.</p>",y<12,y<=12,y>12,12>y,"Ksh \\(2520\\)"],
+["For prize-giving day, a school in Nyeri hires large tents and small tents.","large tents","small tents",6500,2500,52000,12,"ge_x",3,"Each of the large tents costs Ksh \\(6500\\) and each of the small tents costs Ksh \\(2500\\); they can spend at most Ksh \\(52\\,000\\).","There is room for at most \\(12\\) tents altogether.","There must be at least \\(3\\) large tents.","<p>Your inequality says there are \\(3\\) or fewer large tents. The sentence says at least \\(3\\).</p>","<p>Your inequality does not allow exactly \\(3\\) large tents. &lsquo;At least \\(3\\)&rsquo; includes \\(3\\) itself.</p>",x>=3,x>3,x<=3,3<=x,"Ksh \\(52\\,000\\)"],
+["A dairy shop in Mombasa makes yoghurt and mala.","litres of yoghurt","litres of mala",70,90,3600,45,"ratio_x",4,"Making a litre of yoghurt costs Ksh \\(70\\) and making a litre of mala costs Ksh \\(90\\); the shop can spend at most Ksh \\(3600\\).","The shop can make at most \\(45\\) litres altogether.","There must be at least \\(4\\) times as many litres of yoghurt as litres of mala.","<p>Test your inequality with numbers: \\(x = 1\\), \\(y = 10\\) satisfies it. But with \\(10\\) litres of mala, the sentence needs at least \\(40\\) litres of yoghurt.</p>","<p>Test your inequality with numbers: \\(x = 10\\), \\(y = 10\\) satisfies it. But with \\(10\\) litres of mala, the sentence needs at least \\(40\\) litres of yoghurt. Which number should be multiplied by \\(4\\)?</p>",x-4*y>=0,4*x-y>=0,x-4*y<=0,4*y<=x,"Ksh \\(3600\\)"],
+["A boda boda group in Eldoret buys helmets and reflector jackets for its riders.","helmets","reflector jackets",2500,800,30000,22,"gt_y",8,"Each of the helmets costs Ksh \\(2500\\) and each of the reflector jackets costs Ksh \\(800\\); they can spend at most Ksh \\(30\\,000\\).","There is room for at most \\(22\\) items altogether.","There must be more than \\(8\\) reflector jackets.","<p>Your inequality says there are fewer than \\(8\\) reflector jackets. The sentence says more than \\(8\\).</p>","<p>Your inequality allows exactly \\(8\\) reflector jackets. &lsquo;More than \\(8\\)&rsquo; does not include \\(8\\) itself.</p>",y>8,y>=8,y<8,8<y,"Ksh \\(30\\,000\\)"],
+["A fish farmer in Kakamega stocks a pond with tilapia and catfish fingerlings.","tilapia fingerlings","catfish fingerlings",10,12,9000,800,"ge_y",250,"Each of the tilapia fingerlings costs Ksh \\(10\\) and each of the catfish fingerlings costs Ksh \\(12\\); they can spend at most Ksh \\(9000\\).","There is room for at most \\(800\\) fingerlings altogether.","There must be at least \\(250\\) catfish fingerlings.","<p>Your inequality says there are \\(250\\) or fewer catfish fingerlings. The sentence says at least \\(250\\).</p>","<p>Your inequality does not allow exactly \\(250\\) catfish fingerlings. &lsquo;At least \\(250\\)&rsquo; includes \\(250\\) itself.</p>",y>=250,y>250,y<=250,250<=y,"Ksh \\(9000\\)"],
+["A school library in Kitui buys novels and dictionaries.","novels","dictionaries",650,1800,46800,50,"ratio_x",3,"Each of the novels costs Ksh \\(650\\) and each of the dictionaries costs Ksh \\(1800\\); they can spend at most Ksh \\(46\\,800\\).","There is room for at most \\(50\\) books altogether.","There must be at least \\(3\\) times as many novels as dictionaries.","<p>Test your inequality with numbers: \\(x = 1\\), \\(y = 10\\) satisfies it. But with \\(10\\) dictionaries, the sentence needs at least \\(30\\) novels.</p>","<p>Test your inequality with numbers: \\(x = 10\\), \\(y = 10\\) satisfies it. But with \\(10\\) dictionaries, the sentence needs at least \\(30\\) novels. Which number should be multiplied by \\(3\\)?</p>",x-3*y>=0,3*x-y>=0,x-3*y<=0,3*y<=x,"Ksh \\(46\\,800\\)"],
+["A dairy farmer in Nyandarua buys bags of dairy meal and bales of hay.","bags of dairy meal","bales of hay",3000,450,27000,40,"lt_x",9,"Each of the bags of dairy meal costs Ksh \\(3000\\) and each of the bales of hay costs Ksh \\(450\\); they can spend at most Ksh \\(27\\,000\\).","There is room for at most \\(40\\) bags and bales altogether.","There must be fewer than \\(9\\) bags of dairy meal.","<p>Your inequality says there are more than \\(9\\) bags of dairy meal. The sentence says fewer than \\(9\\).</p>","<p>Your inequality allows exactly \\(9\\) bags of dairy meal. &lsquo;Fewer than \\(9\\)&rsquo; does not include \\(9\\) itself.</p>",x<9,x<=9,x>9,9>x,"Ksh \\(27\\,000\\)"]];
+ix: 1+rand(10);
+E: Q11L[ix];
+p1: E[4]; p2: E[5]; B: E[6]; NN: E[7]; kd: E[8]; kk: E[9];
+ta1: p1*x+p2*y<=B;
+ta2: x+y<=NN;
+ta3: E[15];
+/* named errors */
+sw1: p2*x+p1*y<=B;
+one2x: x<=NN; one2y: y<=NN;
+e3: E[16];
+dr1: p1*x+p2*y>=B; dr2: x+y>=NN; dr3: E[17];
+st1: p1*x+p2*y<B; st2: x+y<NN;
+g1: gcd(gcd(p1, p2), B);
+ta1s: (p1/g1)*x+(p2/g1)*y<=B/g1;
+rev3: E[18];
+ta1d: sconcat(string(p1/g1), "x + ", string(p2/g1), "y");
+]]></text>
+  </questionvariables>
+  <specificfeedback format="html"><text><![CDATA[]]></text></specificfeedback>
+  <questionnote format="moodle_auto_format">
+    <text>ix={@ix@}, kind={@kd@}, ta1={@ta1@}, ta2={@ta2@}, ta3={@ta3@}</text>
+  </questionnote>
+  <questiondescription format="html"><text><![CDATA[<p id="concept">Linear Programming: writing constraints from words</p><p id="description">Grade 12 CBE Core 1.4 (a) / Essential 1.4 (a): Write a budget, a total and a third condition (at least, more than, fewer than, or k times as many) as linear inequalities in x and y.</p><p id="edition">Core and Essential</p><p id="provenance">This question is adapted from Chapter 8, Exercise A, question 7 of School Mathematics Project, SMP Book 5 (Metric), ed. P. G. Bowie, Cambridge University Press, 1969: sentences of conditions turned into inequalities, extended to two-unknown budgets and capacities, with Kenyan contexts, new numbers and named feedback.</p><p id="citation">INNODEMS CBC Grade 12 Mathematics, first draft by Ben Davies, 2026. Aligned to the KICD Senior School Curriculum Design, Core and Essential Mathematics Grade 12 (draft).</p>]]></text></questiondescription>
+  <questionsimplify>1</questionsimplify>
+  <assumepositive>0</assumepositive>
+  <assumereal>0</assumereal>
+  <prtcorrect format="html"><text><![CDATA[[[commonstring key="symbolicprtcorrectfeedback"/]] [[commonstring key="defaultprtcorrectfeedback"/]]]]></text></prtcorrect>
+  <prtpartiallycorrect format="html"><text><![CDATA[[[commonstring key="symbolicprtpartiallycorrectfeedback"/]] [[commonstring key="defaultprtpartiallycorrectfeedback"/]]]]></text></prtpartiallycorrect>
+  <prtincorrect format="html"><text><![CDATA[[[commonstring key="symbolicprtincorrectfeedback"/]] [[commonstring key="defaultprtincorrectfeedback"/]]]]></text></prtincorrect>
+  <decimals>.</decimals>
+  <scientificnotation>*10</scientificnotation>
+  <multiplicationsign>none</multiplicationsign>
+  <sqrtsign>1</sqrtsign>
+  <complexno>i</complexno>
+  <inversetrig>cos-1</inversetrig>
+  <logicsymbol>lang</logicsymbol>
+  <matrixparens>[</matrixparens>
+  <isbroken>0</isbroken>
+  <variantsselectionseed></variantsselectionseed>
+
+  <input><name>ans1</name><type>algebraic</type><tans>ta1</tans><boxsize>18</boxsize><strictsyntax>1</strictsyntax><insertstars>4</insertstars><syntaxhint></syntaxhint><syntaxattribute>0</syntaxattribute><forbidwords></forbidwords><allowwords></allowwords><forbidfloat>0</forbidfloat><requirelowestterms>0</requirelowestterms><checkanswertype>0</checkanswertype><mustverify>0</mustverify><showvalidation>1</showvalidation><options>validator:validate_ineq</options></input>
+  <input><name>ans2</name><type>algebraic</type><tans>ta2</tans><boxsize>18</boxsize><strictsyntax>1</strictsyntax><insertstars>4</insertstars><syntaxhint></syntaxhint><syntaxattribute>0</syntaxattribute><forbidwords></forbidwords><allowwords></allowwords><forbidfloat>0</forbidfloat><requirelowestterms>0</requirelowestterms><checkanswertype>0</checkanswertype><mustverify>0</mustverify><showvalidation>1</showvalidation><options>validator:validate_ineq</options></input>
+  <input><name>ans3</name><type>algebraic</type><tans>ta3</tans><boxsize>18</boxsize><strictsyntax>1</strictsyntax><insertstars>4</insertstars><syntaxhint></syntaxhint><syntaxattribute>0</syntaxattribute><forbidwords></forbidwords><allowwords></allowwords><forbidfloat>0</forbidfloat><requirelowestterms>0</requirelowestterms><checkanswertype>0</checkanswertype><mustverify>0</mustverify><showvalidation>1</showvalidation><options>validator:validate_ineq</options></input>
+
+  <prt><name>prt1</name><value>1.0000000</value><autosimplify>1</autosimplify><feedbackstyle>1</feedbackstyle><feedbackvariables><text><![CDATA[c1: lcls(ans1, ta1); s1: lcls(ans1, sw1);]]></text></feedbackvariables>
+    <node><name>0</name><description>Same region as the budget inequality</description><answertest>AlgEquiv</answertest><sans>c1</sans><tans>"same"</tans><testoptions></testoptions><quiet>0</quiet><truescoremode>=</truescoremode><truescore>1.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt1-1-T</trueanswernote><truefeedback format="html"><text><![CDATA[]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>1</falsenextnode><falseanswernote>prt1-1-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>1</name><description>Wrong direction</description><answertest>AlgEquiv</answertest><sans>c1</sans><tans>"dir"</tans><testoptions></testoptions><quiet>0</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt1-2-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>Your inequality says the total is {@E[19]@} or more. &lsquo;At most&rsquo; means the total cannot go above {@E[19]@}.</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>2</falsenextnode><falseanswernote>prt1-2-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>2</name><description>Prices on the wrong letters</description><answertest>AlgEquiv</answertest><sans>s1</sans><tans>"same"</tans><testoptions></testoptions><quiet>0</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt1-3-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>You matched the numbers to the wrong letters: your inequality puts \({@p2@}\) with \(x\), but \(x\) counts the {@E[2]@}.</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>3</falsenextnode><falseanswernote>prt1-3-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>3</name><description>Strict for at most</description><answertest>AlgEquiv</answertest><sans>c1</sans><tans>"strict"</tans><testoptions></testoptions><quiet>0</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt1-4-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>Your inequality does not allow a total of exactly {@E[19]@}. &lsquo;At most&rsquo; includes the limit itself.</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>-1</falsenextnode><falseanswernote>prt1-4-F</falseanswernote><falsefeedback format="html"><text><![CDATA[<p>Multiply the amount for one of the {@E[2]@} by \(x\) and the amount for one of the {@E[3]@} by \(y\), add, and compare the total with the limit in the sentence.</p>]]></text></falsefeedback></node>
+  </prt>
+  <prt><name>prt2</name><value>1.0000000</value><autosimplify>1</autosimplify><feedbackstyle>1</feedbackstyle><feedbackvariables><text><![CDATA[c2: lcls(ans2, ta2); s2: is(lcls(ans2, one2x) = "same" or lcls(ans2, one2y) = "same");]]></text></feedbackvariables>
+    <node><name>0</name><description>Total</description><answertest>AlgEquiv</answertest><sans>c2</sans><tans>"same"</tans><testoptions></testoptions><quiet>0</quiet><truescoremode>=</truescoremode><truescore>1.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt2-1-T</trueanswernote><truefeedback format="html"><text><![CDATA[]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>1</falsenextnode><falseanswernote>prt2-1-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>1</name><description>Wrong direction</description><answertest>AlgEquiv</answertest><sans>c2</sans><tans>"dir"</tans><testoptions></testoptions><quiet>0</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt2-2-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>Your inequality says the total number is \({@NN@}\) or more. &lsquo;At most \({@NN@}\)&rsquo; means it cannot go above \({@NN@}\).</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>2</falsenextnode><falseanswernote>prt2-2-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>2</name><description>One kind only</description><answertest>AlgEquiv</answertest><sans>s2</sans><tans>true</tans><testoptions></testoptions><quiet>0</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt2-3-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>Your inequality limits one kind only. The sentence limits the two kinds together.</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>3</falsenextnode><falseanswernote>prt2-3-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>3</name><description>Strict for at most</description><answertest>AlgEquiv</answertest><sans>c2</sans><tans>"strict"</tans><testoptions></testoptions><quiet>0</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt2-4-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>Your inequality does not allow exactly \({@NN@}\) altogether. &lsquo;At most \({@NN@}\)&rsquo; includes \({@NN@}\) itself.</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>-1</falsenextnode><falseanswernote>prt2-4-F</falseanswernote><falsefeedback format="html"><text><![CDATA[<p>The sentence is about the two kinds together: write their total in letters, then compare it with \({@NN@}\).</p>]]></text></falsefeedback></node>
+  </prt>
+  <prt><name>prt3</name><value>1.0000000</value><autosimplify>1</autosimplify><feedbackstyle>1</feedbackstyle><feedbackvariables><text><![CDATA[c3: lcls(ans3, ta3); s3: lcls(ans3, e3);]]></text></feedbackvariables>
+    <node><name>0</name><description>Third condition</description><answertest>AlgEquiv</answertest><sans>c3</sans><tans>"same"</tans><testoptions></testoptions><quiet>0</quiet><truescoremode>=</truescoremode><truescore>1.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt3-1-T</trueanswernote><truefeedback format="html"><text><![CDATA[]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>1</falsenextnode><falseanswernote>prt3-1-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>1</name><description>Wrong direction</description><answertest>AlgEquiv</answertest><sans>c3</sans><tans>"dir"</tans><testoptions></testoptions><quiet>0</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt3-2-T</trueanswernote><truefeedback format="html"><text><![CDATA[{@E[13]@}]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>2</falsenextnode><falseanswernote>prt3-2-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>2</name><description>Named third error (ratio reversed or strictness)</description><answertest>AlgEquiv</answertest><sans>s3</sans><tans>"same"</tans><testoptions></testoptions><quiet>0</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt3-3-T</trueanswernote><truefeedback format="html"><text><![CDATA[{@E[14]@}]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>-1</falsenextnode><falseanswernote>prt3-3-F</falseanswernote><falsefeedback format="html"><text><![CDATA[<p>Translate the words with the table: at least \(\ge\), more than \(\gt\), fewer than \(\lt\). Check which letter the sentence is about.</p>]]></text></falsefeedback></node>
+  </prt>
+
+  <deployedseed>4</deployedseed>
+  <deployedseed>5</deployedseed>
+  <deployedseed>15</deployedseed>
+  <deployedseed>8</deployedseed>
+  <deployedseed>24</deployedseed>
+  <deployedseed>1</deployedseed>
+  <deployedseed>3</deployedseed>
+  <deployedseed>10</deployedseed>
+  <deployedseed>2</deployedseed>
+  <deployedseed>17</deployedseed>
+  <qtest><testcase>1</testcase><description>Correct</description>
+    <testinput><name>ans1</name><value>ta1</value></testinput>
+    <testinput><name>ans2</name><value>ta2</value></testinput>
+    <testinput><name>ans3</name><value>ta3</value></testinput>
+    <expected><name>prt1</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt1-1-T</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt2-1-T</expectedanswernote></expected>
+    <expected><name>prt3</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt3-1-T</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>2</testcase><description>Equivalent forms: simplified, doubled, reversed</description>
+    <testinput><name>ans1</name><value>ta1s</value></testinput>
+    <testinput><name>ans2</name><value>2*x+2*y&lt;=2*NN</value></testinput>
+    <testinput><name>ans3</name><value>rev3</value></testinput>
+    <expected><name>prt1</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt1-1-T</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt2-1-T</expectedanswernote></expected>
+    <expected><name>prt3</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt3-1-T</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>3</testcase><description>Wrong direction on all three</description>
+    <testinput><name>ans1</name><value>dr1</value></testinput>
+    <testinput><name>ans2</name><value>dr2</value></testinput>
+    <testinput><name>ans3</name><value>dr3</value></testinput>
+    <expected><name>prt1</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt1-1-F | prt1-2-T</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt2-1-F | prt2-2-T</expectedanswernote></expected>
+    <expected><name>prt3</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt3-1-F | prt3-2-T</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>4</testcase><description>Named errors: prices swapped, one kind, third error</description>
+    <testinput><name>ans1</name><value>sw1</value></testinput>
+    <testinput><name>ans2</name><value>one2x</value></testinput>
+    <testinput><name>ans3</name><value>e3</value></testinput>
+    <expected><name>prt1</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt1-1-F | prt1-2-F | prt1-3-T</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt2-1-F | prt2-2-F | prt2-3-T</expectedanswernote></expected>
+    <expected><name>prt3</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt3-1-F | prt3-2-F | prt3-3-T</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>5</testcase><description>Strict for at most</description>
+    <testinput><name>ans1</name><value>st1</value></testinput>
+    <testinput><name>ans2</name><value>st2</value></testinput>
+    <testinput><name>ans3</name><value>ta3</value></testinput>
+    <expected><name>prt1</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt1-1-F | prt1-2-F | prt1-3-F | prt1-4-T</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt2-1-F | prt2-2-F | prt2-3-F | prt2-4-T</expectedanswernote></expected>
+    <expected><name>prt3</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt3-1-T</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>6</testcase><description>Letters swapped and other generic</description>
+    <testinput><name>ans1</name><value>p1*y+p2*x&lt;=B+1</value></testinput>
+    <testinput><name>ans2</name><value>x+y&lt;=NN+1</value></testinput>
+    <testinput><name>ans3</name><value>x+y&gt;=1</value></testinput>
+    <expected><name>prt1</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt1-1-F | prt1-2-F | prt1-3-F | prt1-4-F</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt2-1-F | prt2-2-F | prt2-3-F | prt2-4-F</expectedanswernote></expected>
+    <expected><name>prt3</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt3-1-F | prt3-2-F | prt3-3-F</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>7</testcase><description>Invalid: an equation in (a)</description>
+    <testinput><name>ans1</name><value>x+y=10</value></testinput>
+    <testinput><name>ans2</name><value>ta2</value></testinput>
+    <testinput><name>ans3</name><value>ta3</value></testinput>
+    <expected><name>prt1</name><expectedscore></expectedscore><expectedpenalty></expectedpenalty><expectedanswernote>NULL</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt2-1-T</expectedanswernote></expected>
+    <expected><name>prt3</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt3-1-T</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>8</testcase><description>Invalid: not linear in (a)</description>
+    <testinput><name>ans1</name><value>p1*x+p2*y+sqrt(x)&lt;=B</value></testinput>
+    <testinput><name>ans2</name><value>ta2</value></testinput>
+    <testinput><name>ans3</name><value>ta3</value></testinput>
+    <expected><name>prt1</name><expectedscore></expectedscore><expectedpenalty></expectedpenalty><expectedanswernote>NULL</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt2-1-T</expectedanswernote></expected>
+    <expected><name>prt3</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt3-1-T</expectedanswernote></expected>
+  </qtest>
+</question>
+</quiz>

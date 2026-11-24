@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<quiz>
+<question type="stack">
+  <name><text>Radius of a small circle</text></name>
+  <questiontext format="html">
+    <text><![CDATA[<p>(a) A spherical water tank at a school in Machakos has radius \({@exd(Rb)@}\,\text{m}\). The water surface is \({@exd(d)@}\,\text{m}\) above the centre of the tank. Find the radius of the water surface, correct to 2 decimal places.</p><p>[[input:ans1]] m [[validation:ans1]] [[feedback:prt1]]</p><p>(b) Take \(R = 6370\,\text{km}\). Find the radius of the parallel of latitude \({@phi@}^\circ\,\mathrm{[[if test="hn"]]N[[else]]S[[/if]]}\), correct to the nearest km.</p><p>[[input:ans2]] km [[validation:ans2]] [[feedback:prt2]]</p>]]></text>
+  </questiontext>
+  <generalfeedback format="html">
+    <text><![CDATA[<p>(a) The centre of the tank, the centre of the water surface and a point on its edge form a right-angled triangle. The tank's radius \({@exd(Rb)@}\,\text{m}\) is the hypotenuse and \({@exd(d)@}\,\text{m}\) is one side, so</p><p>\[r^2 = {@exd(Rb)@}^2 - {@exd(d)@}^2 = {@exd(Rb^2-d^2)@}, \qquad r = {@dispdp(float(r),3)@} \approx {@dispdp(float(floor(100*r+1/2)/100),2)@}\,\text{m}.\]</p><p>(b) In the cross-section through the poles, the radius of the parallel is the side next to the angle of latitude in a right-angled triangle with hypotenuse \(R\). A parallel is a small circle, radius \(R\cos\varphi\), that shrinks to a point at the pole:</p><p>\[r = 6370 \cos {@phi@}^\circ = {@dispdp(float(rp),1)@} \approx {@floor(rp+1/2)@}\,\text{km}.\]</p>]]></text>
+  </generalfeedback>
+  <defaultgrade>2</defaultgrade>
+  <penalty>0.1</penalty>
+  <hidden>0</hidden>
+  <idnumber></idnumber>
+  <stackversion><text>2026063000</text></stackversion>
+  <questionvariables>
+    <text><![CDATA[/* exd: shortest exact decimal display of a terminating value (up to 3 d.p.) */
+exd(v) := if integerp(v) then v else if integerp(10*v) then dispdp(float(v),1) else if integerp(100*v) then dispdp(float(v),2) else dispdp(float(v),3);
+cosd(x) := cos(x*%pi/180);
+sind(x) := sin(x*%pi/180);
+atand(x) := 180*atan(x)/%pi;
+asind(x) := 180*asin(x)/%pi;
+two(v) := if v < 10 then sconcat("0", string(v)) else string(v);
+hm(m) := block([q], q: mod(m, 1440), sconcat(two(floor(q/60)), ":", two(mod(q, 60))));
+dmx(m) := sconcat(string(floor(m/60)), "^\\circ", two(mod(m, 60)), "'");
+/* Design: radius of a small circle, with a water tank and parallels of latitude. Source: adapted from SMP Book 5 (Metric), chapter 3, Exercise A questions 6 and 7. */
+Rb: rand_with_step(3/2,3,1/2);
+d: rand_with_step(1/5,Rb-3/10,1/10);
+r: sqrt(Rb^2-d^2);
+phi: rand_with_prohib(10,70,[45]);
+hem: rand(["N","S"]);
+hn: is(hem="N");
+rp: 6370*cosd(phi);
+/* diagnostics */
+dRd: Rb-d; dpl: sqrt(Rb^2+d^2); dnr: Rb^2-d^2;
+rs: 6370*sind(phi); rc: 40040*cosd(phi); rr: 6370*cos(phi); rl: 6370*(90-phi)/90;]]></text>
+  </questionvariables>
+  <specificfeedback format="html"><text><![CDATA[]]></text></specificfeedback>
+  <questionnote format="moodle_auto_format">
+    <text>Rb={@Rb@}, d={@d@}, r={@dispdp(float(r),3)@}, phi={@phi@}{@hem@}, rp={@dispdp(float(rp),1)@}</text>
+  </questionnote>
+  <questiondescription format="html"><text><![CDATA[<p id="concept">Navigation: radius of a small circle</p><p id="description">Grade 12 CBE Core 2.7 (a) / Essential 2.3 (a): Find the radius of a small circle of a sphere by Pythagoras, and the radius of a parallel of latitude as R cos(latitude).</p><p id="edition">Core and Essential</p><p id="provenance">This question is adapted from Chapter 3 (The sphere), Exercise A, questions 6 and 7 of School Mathematics Project, SMP Book 5 (Metric), ed. P. G. Bowie, Cambridge University Press, 1969: the radius of a small circle; a school water tank and parallels of latitude, new numbers.</p><p id="citation">INNODEMS CBC Grade 12 Mathematics, first draft by Ben Davies, 2026. Aligned to the KICD Senior School Curriculum Design, Core and Essential Mathematics Grade 12 (draft).</p>]]></text></questiondescription>
+  <questionsimplify>1</questionsimplify>
+  <assumepositive>0</assumepositive>
+  <assumereal>0</assumereal>
+  <prtcorrect format="html"><text><![CDATA[[[commonstring key="symbolicprtcorrectfeedback"/]] [[commonstring key="defaultprtcorrectfeedback"/]]]]></text></prtcorrect>
+  <prtpartiallycorrect format="html"><text><![CDATA[[[commonstring key="symbolicprtpartiallycorrectfeedback"/]] [[commonstring key="defaultprtpartiallycorrectfeedback"/]]]]></text></prtpartiallycorrect>
+  <prtincorrect format="html"><text><![CDATA[[[commonstring key="symbolicprtincorrectfeedback"/]] [[commonstring key="defaultprtincorrectfeedback"/]]]]></text></prtincorrect>
+  <decimals>.</decimals>
+  <scientificnotation>*10</scientificnotation>
+  <multiplicationsign>none</multiplicationsign>
+  <sqrtsign>1</sqrtsign>
+  <complexno>i</complexno>
+  <inversetrig>cos-1</inversetrig>
+  <logicsymbol>lang</logicsymbol>
+  <matrixparens>[</matrixparens>
+  <isbroken>0</isbroken>
+  <variantsselectionseed></variantsselectionseed>
+
+  <input><name>ans1</name><type>numerical</type><tans>float(r)</tans><boxsize>8</boxsize><strictsyntax>1</strictsyntax><insertstars>0</insertstars><syntaxhint></syntaxhint><syntaxattribute>0</syntaxattribute><forbidwords></forbidwords><allowwords></allowwords><forbidfloat>0</forbidfloat><requirelowestterms>0</requirelowestterms><checkanswertype>0</checkanswertype><mustverify>0</mustverify><showvalidation>0</showvalidation><options></options></input>
+  <input><name>ans2</name><type>numerical</type><tans>float(rp)</tans><boxsize>8</boxsize><strictsyntax>1</strictsyntax><insertstars>0</insertstars><syntaxhint></syntaxhint><syntaxattribute>0</syntaxattribute><forbidwords></forbidwords><allowwords></allowwords><forbidfloat>0</forbidfloat><requirelowestterms>0</requirelowestterms><checkanswertype>0</checkanswertype><mustverify>0</mustverify><showvalidation>0</showvalidation><options></options></input>
+
+  <prt><name>prt1</name><value>1.0000000</value><autosimplify>1</autosimplify><feedbackstyle>1</feedbackstyle><feedbackvariables><text><![CDATA[yh: float(sqrt(ans1^2+d^2));]]></text></feedbackvariables>
+    <node><name>0</name><description>Radius of the surface</description><answertest>NumAbsolute</answertest><sans>ans1</sans><tans>r</tans><testoptions>0.00501</testoptions><quiet>0</quiet><truescoremode>=</truescoremode><truescore>1.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt1-1-T</trueanswernote><truefeedback format="html"><text><![CDATA[]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>1</falsenextnode><falseanswernote>prt1-1-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>1</name><description>Subtracted lengths</description><answertest>NumAbsolute</answertest><sans>ans1</sans><tans>dRd</tans><testoptions>0.00501</testoptions><quiet>0</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt1-2-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>You subtracted the lengths: \({@exd(Rb)@} - {@exd(d)@}\). The radius of the surface, the distance \({@exd(d)@}\,\text{m}\) and the tank's radius \({@exd(Rb)@}\,\text{m}\) form a right-angled triangle with \({@exd(Rb)@}\,\text{m}\) as the hypotenuse.</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>2</falsenextnode><falseanswernote>prt1-2-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>2</name><description>Added squares</description><answertest>NumAbsolute</answertest><sans>ans1</sans><tans>dpl</tans><testoptions>0.00501</testoptions><quiet>0</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt1-3-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>You added the squares: \(\sqrt{ {@exd(Rb)@}^2 + {@exd(d)@}^2}\). That makes the water surface wider than the tank. The tank's radius \({@exd(Rb)@}\,\text{m}\) is the hypotenuse, the longest side of the triangle.</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>3</falsenextnode><falseanswernote>prt1-3-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>3</name><description>No square root</description><answertest>NumAbsolute</answertest><sans>ans1</sans><tans>dnr</tans><testoptions>0.00501</testoptions><quiet>0</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt1-4-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>That is \(r^2\). Take its square root.</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>-1</falsenextnode><falseanswernote>prt1-4-F</falseanswernote><falsefeedback format="html"><text><![CDATA[<p>Check with the right-angled triangle whose corners are the centre of the tank, the centre of the water surface and a point on its edge. That point is on the tank, so it must be \({@exd(Rb)@}\,\text{m}\) from the centre of the tank. With your radius it is \(\sqrt{ {@ans1@}^2 + {@exd(d)@}^2} = {@dispdp(yh,3)@}\,\text{m}\) from the centre.</p>]]></text></falsefeedback></node>
+  </prt>
+  <prt><name>prt2</name><value>1.0000000</value><autosimplify>1</autosimplify><feedbackstyle>1</feedbackstyle><feedbackvariables><text><![CDATA[ylat: if ans2>0 and ans2<=6370 then float(180*acos(ans2/6370)/%pi) else 0;]]></text></feedbackvariables>
+    <node><name>0</name><description>Radius of the parallel</description><answertest>NumAbsolute</answertest><sans>ans2</sans><tans>rp</tans><testoptions>1</testoptions><quiet>0</quiet><truescoremode>=</truescoremode><truescore>1.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt2-1-T</trueanswernote><truefeedback format="html"><text><![CDATA[]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>1</falsenextnode><falseanswernote>prt2-1-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>1</name><description>Used sin</description><answertest>NumAbsolute</answertest><sans>ans2</sans><tans>rs</tans><testoptions>1</testoptions><quiet>0</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt2-2-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>You used \(\sin {@phi@}^\circ\). In the cross-section the angle at the edge of the parallel is the latitude, and the radius of the parallel is the side next to it: \(r = R\cos\varphi\).</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>2</falsenextnode><falseanswernote>prt2-2-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>2</name><description>Whole parallel</description><answertest>NumAbsolute</answertest><sans>ans2</sans><tans>rc</tans><testoptions>1</testoptions><quiet>0</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt2-3-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>That is the length of the whole parallel, \(2\pi R\cos\varphi\). The radius is \(R\cos\varphi\).</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>3</falsenextnode><falseanswernote>prt2-3-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>3</name><description>Radians</description><answertest>NumAbsolute</answertest><sans>ans2</sans><tans>rr</tans><testoptions>1</testoptions><quiet>0</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt2-4-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>Your calculator is in radians. Set it to degrees.</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>4</falsenextnode><falseanswernote>prt2-4-F</falseanswernote><falsefeedback format="html"><text><![CDATA[]]></text></falsefeedback></node>
+    <node><name>4</name><description>Proportional</description><answertest>NumAbsolute</answertest><sans>ans2</sans><tans>rl</tans><testoptions>1</testoptions><quiet>0</quiet><truescoremode>=</truescoremode><truescore>0.0000000</truescore><truepenalty></truepenalty><truenextnode>-1</truenextnode><trueanswernote>prt2-5-T</trueanswernote><truefeedback format="html"><text><![CDATA[<p>The radius does not shrink in proportion to the latitude. Use \(r = R\cos\varphi\).</p>]]></text></truefeedback><falsescoremode>=</falsescoremode><falsescore>0.0000000</falsescore><falsepenalty></falsepenalty><falsenextnode>-1</falsenextnode><falseanswernote>prt2-5-F</falseanswernote><falsefeedback format="html"><text><![CDATA[<p>[[if test="is(ans2>6370)"]]No circle on the earth has a radius of more than \(6370\,\text{km}\).[[else]][[if test="is(ans2<=0)"]]A radius is a positive length.[[else]]A parallel of radius \({@ans2@}\,\text{km}\) would be at latitude \({@dispdp(ylat,1)@}^\circ\), not \({@phi@}^\circ\).[[/if]][[/if]] In the cross-section through the poles, the radius of the parallel is the side next to the angle of latitude, and \(R\) is the hypotenuse.</p>]]></text></falsefeedback></node>
+  </prt>
+
+  <deployedseed>1</deployedseed>
+  <deployedseed>2</deployedseed>
+  <deployedseed>3</deployedseed>
+  <deployedseed>4</deployedseed>
+  <deployedseed>5</deployedseed>
+  <deployedseed>6</deployedseed>
+  <deployedseed>7</deployedseed>
+  <deployedseed>8</deployedseed>
+  <deployedseed>9</deployedseed>
+  <deployedseed>10</deployedseed>
+  <qtest><testcase>1</testcase><description>Correct, rounded</description>
+    <testinput><name>ans1</name><value>float(floor(10^2*(r)+1/2)/10^2)</value></testinput>
+    <testinput><name>ans2</name><value>floor(rp+1/2)</value></testinput>
+    <expected><name>prt1</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt1-1-T</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt2-1-T</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>2</testcase><description>Correct, unrounded</description>
+    <testinput><name>ans1</name><value>float(r)</value></testinput>
+    <testinput><name>ans2</name><value>float(rp)</value></testinput>
+    <expected><name>prt1</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt1-1-T</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt2-1-T</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>3</testcase><description>Generic wrong</description>
+    <testinput><name>ans1</name><value>float(floor(10^2*(r)+1/2)/10^2)+0.3</value></testinput>
+    <testinput><name>ans2</name><value>floor(rp+1/2)+20</value></testinput>
+    <expected><name>prt1</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt1-1-F | prt1-2-F | prt1-3-F | prt1-4-F</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt2-1-F | prt2-2-F | prt2-3-F | prt2-4-F | prt2-5-F</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>4</testcase><description>Subtracted lengths; used sin</description>
+    <testinput><name>ans1</name><value>float(dRd)</value></testinput>
+    <testinput><name>ans2</name><value>float(rs)</value></testinput>
+    <expected><name>prt1</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt1-1-F | prt1-2-T</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt2-1-F | prt2-2-T</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>5</testcase><description>Added squares; whole parallel</description>
+    <testinput><name>ans1</name><value>float(dpl)</value></testinput>
+    <testinput><name>ans2</name><value>float(rc)</value></testinput>
+    <expected><name>prt1</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt1-1-F | prt1-2-F | prt1-3-T</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt2-1-F | prt2-2-F | prt2-3-T</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>6</testcase><description>No square root; radians</description>
+    <testinput><name>ans1</name><value>float(dnr)</value></testinput>
+    <testinput><name>ans2</name><value>float(rr)</value></testinput>
+    <expected><name>prt1</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt1-1-F | prt1-2-F | prt1-3-F | prt1-4-T</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt2-1-F | prt2-2-F | prt2-3-F | prt2-4-T</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>7</testcase><description>Proportional to latitude</description>
+    <testinput><name>ans1</name><value>float(r)</value></testinput>
+    <testinput><name>ans2</name><value>float(rl)</value></testinput>
+    <expected><name>prt1</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt1-1-T</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>0.0000000</expectedscore><expectedpenalty>0.1000000</expectedpenalty><expectedanswernote>prt2-1-F | prt2-2-F | prt2-3-F | prt2-4-F | prt2-5-T</expectedanswernote></expected>
+  </qtest>
+  <qtest><testcase>8</testcase><description>Invalid: letter in (a)</description>
+    <testinput><name>ans1</name><value>x</value></testinput>
+    <testinput><name>ans2</name><value>float(rp)</value></testinput>
+    <expected><name>prt1</name><expectedscore></expectedscore><expectedpenalty></expectedpenalty><expectedanswernote>NULL</expectedanswernote></expected>
+    <expected><name>prt2</name><expectedscore>1.0000000</expectedscore><expectedpenalty>0.0000000</expectedpenalty><expectedanswernote>prt2-1-T</expectedanswernote></expected>
+  </qtest>
+</question>
+</quiz>
